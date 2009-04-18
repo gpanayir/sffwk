@@ -1,0 +1,446 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Fwk.ServiceConnector</name>
+    </assembly>
+    <members>
+        <member name="T:Fwk.ServiceConnector.RemotingWrapper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.ExecuteService(System.String,System.String)">
+            <summary>
+            Metodo no implementado
+            </summary>
+            <param name="pServiceName"></param>
+            <param name="pData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.ExecuteService``2(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="pServiceName"></param>
+            <param name="pData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.ExecuteService``2(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <param name="pData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.LoadRemotingConfigSettings">
+            <summary>
+            Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile
+            </summary>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.CreateClaseRemota">
+            <summary>
+            Crea en este caso SimpleFacaddeRemoteObject .-
+            </summary>
+            <returns>Instancia de SimpleFacaddeRemoteObject</returns>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.GetAllServices">
+            <summary>
+            Recupera la configuración de todos los servicios de negocio.
+            </summary>
+            <returns>Lista de configuraciones de servicios de negocio.</returns>
+            <date>2008-04-10T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.GetServiceConfiguration(System.String)">
+            <summary>
+            Recupera la configuración de un servicio de negocio.
+            </summary>
+            <param name="pServiceName">Nombre del servicio.</param>
+            <returns>configuración del servicio de negocio.</returns>
+            <date>2008-04-07T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.SetServiceConfiguration(System.String,Fwk.Bases.ServiceConfiguration)">
+            <summary>
+            Actualiza la configuración de un servicio de negocio.
+            </summary>
+            <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
+            <param name="pServiceName">Nombre del servicio a actualizar.</param>
+            <date>2008-04-10T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.AddServiceConfiguration(Fwk.Bases.ServiceConfiguration)">
+            <summary>
+            Almacena la configuración de un nuevo servicio de negocio.
+            </summary>
+            <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
+            <date>2008-04-13T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.RemotingWrapper.DeleteServiceConfiguration(System.String)">
+            <summary>
+            Elimina la configuración de un servicio de negocio.
+            </summary>
+            <param name="pServiceName">Nombre del servicio.</param>
+            <date>2008-04-13T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.SingleService">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.#ctor">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.ExecuteService(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.ExecuteServiceAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.ExecuteServiceAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.GetServiceConfiguration(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.GetServiceConfigurationAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.GetServiceConfigurationAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.GetServicesList(System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.GetServicesListAsync(System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.GetServicesListAsync(System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.SetServiceConfiguration(Fwk.ServiceConnector.SingleService.ServiceConfiguration)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.SetServiceConfigurationAsync(Fwk.ServiceConnector.SingleService.ServiceConfiguration)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.SetServiceConfigurationAsync(Fwk.ServiceConnector.SingleService.ServiceConfiguration,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.AddServiceConfiguration(Fwk.ServiceConnector.SingleService.ServiceConfiguration)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.AddServiceConfigurationAsync(Fwk.ServiceConnector.SingleService.ServiceConfiguration)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.AddServiceConfigurationAsync(Fwk.ServiceConnector.SingleService.ServiceConfiguration,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.DeleteServiceConfiguration(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.DeleteServiceConfigurationAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.DeleteServiceConfigurationAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:Fwk.ServiceConnector.SingleService.SingleService.CancelAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="E:Fwk.ServiceConnector.SingleService.SingleService.ExecuteServiceCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Fwk.ServiceConnector.SingleService.SingleService.GetServiceConfigurationCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Fwk.ServiceConnector.SingleService.SingleService.GetServicesListCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Fwk.ServiceConnector.SingleService.SingleService.SetServiceConfigurationCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Fwk.ServiceConnector.SingleService.SingleService.AddServiceConfigurationCompleted">
+            <remarks/>
+        </member>
+        <member name="E:Fwk.ServiceConnector.SingleService.SingleService.DeleteServiceConfigurationCompleted">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.ServiceConfiguration">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.Entity">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.Description">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.Handler">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.Request">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.Response">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.Available">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.Audit">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.TransactionalBehaviour">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.IsolationLevel">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.Timeout">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.Cacheable">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.FolderRepositoryKey">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ServiceConfiguration.name">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.TransactionalBehaviour">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.TransactionalBehaviour.Support">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.TransactionalBehaviour.Required">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.TransactionalBehaviour.RequiresNew">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.TransactionalBehaviour.Suppres">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.IsolationLevel">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.IsolationLevel.Chaos">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.IsolationLevel.ReadCommitted">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.IsolationLevel.ReadUncommitted">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.IsolationLevel.RepeatableRead">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.IsolationLevel.Serializable">
+            <remarks/>
+        </member>
+        <member name="F:Fwk.ServiceConnector.SingleService.IsolationLevel.Snapshot">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.ExecuteServiceCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.ExecuteServiceCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.ExecuteServiceCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.GetServiceConfigurationCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.GetServiceConfigurationCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.GetServiceConfigurationCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.GetServicesListCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.GetServicesListCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:Fwk.ServiceConnector.SingleService.GetServicesListCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.SetServiceConfigurationCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.AddServiceConfigurationCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.SingleService.DeleteServiceConfigurationCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:Fwk.ServiceConnector.WebServiceWrapper">
+            <summary>
+            Wrapper para interfaz de servicio implementada a través de un web service.
+            </summary>
+            <date>2007-06-23T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.WebServiceWrapper.ExecuteService(System.String,System.String)">
+            <summary>
+            Ejecuta un servicio de negocio.
+            </summary>
+            <param name="pServiceName">Nombre del servicio.</param>
+            <param name="pData">XML con datos de entrada para la  ejecución del servicio.</param>
+            <returns>XML con datos de salida del servicio.</returns>
+            <date>2007-08-23T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.WebServiceWrapper.ExecuteService``2(System.String,``0)">
+            <summary>
+            Ejecuta un servicio de negocio. (Metodo vigente solo por compatibilidad con versiones anteriores donde se pasaba el 
+            nombre del servicio como parametro.-
+            </summary>
+            <param name="pServiceName">Nombre del servicio.</param>
+            <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
+            <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
+            <date>2007-06-23T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.WebServiceWrapper.ExecuteService``2(``0)">
+            <summary>
+            Ejecuta un servicio de negocio.
+            </summary>
+            <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
+            <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
+            <date>2007-06-23T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.WebServiceWrapper.GetAllServices">
+            <summary>
+            Recupera la configuración de todos los servicios de negocio.
+            </summary>
+            <returns>Lista de configuraciones de servicios de negocio.</returns>
+            <date>2008-04-10T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.WebServiceWrapper.GetServiceConfiguration(System.String)">
+            <summary>
+            Recupera la configuración de un servicio de negocio.
+            </summary>
+            <param name="pServiceName">Nombre del servicio.</param>
+            <returns>configuración del servicio de negocio.</returns>
+            <date>2008-04-07T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.WebServiceWrapper.SetServiceConfiguration(System.String,Fwk.Bases.ServiceConfiguration)">
+            <summary>
+            Actualiza la configuración de un servicio de negocio.
+            </summary>
+            <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
+            <param name="pServiceName">Nombre del servicio a actualizar.</param>
+            <date>2008-04-10T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.WebServiceWrapper.AddServiceConfiguration(Fwk.Bases.ServiceConfiguration)">
+            <summary>
+            Almacena la configuración de un nuevo servicio de negocio.
+            </summary>
+            <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
+            <date>2008-04-13T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.WebServiceWrapper.DeleteServiceConfiguration(System.String)">
+            <summary>
+            Elimina la configuración de un servicio de negocio.
+            </summary>
+            <param name="pServiceName">Nombre del servicio.</param>
+            <date>2008-04-13T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.LocalWrapper.ExecuteService(Fwk.Bases.IServiceContract)">
+            <summary>
+            Implementa la llamada al backend atravez de la ejecucion de la SimpleFacade. 
+            Al llamar directamente a la SimpleFacade funciona como un despachador de servicios, esto lo hace
+            debido  a aque se trata de un wrapper local.
+            </summary>
+            <param name="pReq">Clase request que implementa IServiceContract. No nececita pasarce el reprecentativo xml de tal
+            objeto, esto es para evitar serializacion innecesaria</param>
+            <returns>Response con los resultados del servicio</returns>
+        </member>
+        <member name="M:Fwk.ServiceConnector.LocalWrapper.ExecuteService``2(System.String,``0)">
+            <summary>
+            Ejecuta un servicio de negocio.
+            </summary>
+            <param name="pServiceName">Nombre del servicio.</param>
+            <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
+            <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
+            <date>2007-06-23T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.LocalWrapper.ExecuteService``2(``0)">
+            <summary>
+            Ejecuta un servicio de negocio.
+            </summary>
+            <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
+            <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
+            <date>2007-06-23T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.LocalWrapper.ExecuteService(System.String,System.String)">
+            <summary>
+            Este metodo no esta implementado para un wrapper local.-
+            Su ejecucion producira un error.-
+            </summary>
+            <param name="pServiceName"></param>
+            <param name="pData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Fwk.ServiceConnector.LocalWrapper.GetAllServices">
+            <summary>
+            Recupera la configuración de todos los servicios de negocio.
+            </summary>
+            <returns>Lista de configuraciones de servicios de negocio.</returns>
+            <date>2008-04-10T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.LocalWrapper.GetServiceConfiguration(System.String)">
+            <summary>
+            Recupera la configuración de un servicio de negocio.
+            </summary>
+            <param name="pServiceName">Nombre del servicio.</param>
+            <returns>configuración del servicio de negocio.</returns>
+            <date>2008-04-07T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.LocalWrapper.SetServiceConfiguration(System.String,Fwk.Bases.ServiceConfiguration)">
+            <summary>
+            Actualiza la configuración de un servicio de negocio.
+            </summary>
+            <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
+            <date>2008-04-10T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.LocalWrapper.AddServiceConfiguration(Fwk.Bases.ServiceConfiguration)">
+            <summary>
+            Almacena la configuración de un nuevo servicio de negocio.
+            </summary>
+            <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
+            <date>2008-04-13T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+        <member name="M:Fwk.ServiceConnector.LocalWrapper.DeleteServiceConfiguration(System.String)">
+            <summary>
+            Elimina la configuración de un servicio de negocio.
+            </summary>
+            <param name="pServiceName">Nombre del servicio.</param>
+            <date>2008-04-13T00:00:00</date>
+            <author>moviedo</author>
+        </member>
+    </members>
+</doc>
