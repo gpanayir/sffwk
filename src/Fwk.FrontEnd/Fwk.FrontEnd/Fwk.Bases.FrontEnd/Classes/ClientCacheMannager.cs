@@ -27,7 +27,7 @@ namespace Fwk.Bases.FrontEnd
             
              FwkCache wFwkCache = _FwkCacheCollectionMannager.GetFwkCache(pRequest.CacheSettings.CacheManagerName);
 
-             //TODO: Agregar manejo de error para catching
+             //TODO: Agregar manejo de error para catching 
              wAux =  wFwkCache.GetItemFromCache(req.CacheSettings.ResponseCacheId);
              
 
