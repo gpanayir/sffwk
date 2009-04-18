@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Fwk.HelperFunctions;
+using Fwk.Bases;
+
+namespace Fwk.ServiceManagement
+{
+
+	/// <summary>
+	/// Proveedor de instancias de implementaciones de ISrviceConfigurationManager.
+	/// </summary>
+	/// <remarks>
+    /// Recupera el tipo a instanciar de los settings de la aplicación.
+	/// </remarks>
+	/// <date>2008-04-10T00:00:00</date>
+	/// <author>moviedo</author>
+	public class ObjectProvider
+	{
+		/// <summary>
+		/// Instancia una clase implementadora de IServiceConfigurationManager.
+		/// </summary>
+        /// <remarks>Recupera el tipo a instanciar de los settings de la aplicación.</remarks>
+        /// <returns>Administrador de configuración de servicio.</returns>
+		/// <date>2008-04-10T00:00:00</date>
+		/// <author>moviedo</author>
+        public static IServiceConfigurationManager GetServiceConfigurationManager()
+		{
+            // Instanciación del ServiceConfigurationManager.
+			IServiceConfigurationManager wResult = (IServiceConfigurationManager)ReflectionFunctions.CreateInstance(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationManagerType);
+			return wResult;
+		}
+	}
+}

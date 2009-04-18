@@ -1,0 +1,217 @@
+using System;
+using System.IO;
+using System.Windows.Forms;
+using System.Xml;
+
+namespace Fwk.HelperFunctions
+{
+
+
+
+    /// <summary>
+    /// Summary description for FileFunctions.
+    /// </summary>
+    public static class FileFunctions
+    {
+
+        #region Dialog
+
+        /// <summary>
+        /// Muestra dialog box para abrir un archivo .-
+        /// </summary>
+        /// <param name="pFilter">Filtro ej: "(*.xml)|*.xml"</param>
+        /// <returns></returns>
+        public static String OpenFileDialog_Open(string pFilter)
+        {
+            using (OpenFileDialog wDialog = new OpenFileDialog())
+            {
+
+                wDialog.CheckFileExists = true;
+                wDialog.Filter = pFilter;// String.Format("Files {0}|All Files (*.*)|*.*", pFilter);
+                if (wDialog.ShowDialog() == DialogResult.OK) return wDialog.FileName;
+                else return String.Empty;
+            }
+
+
+        }
+
+        /// <summary>
+        /// Crea un nuevo archivo de texto
+        /// </summary>
+        /// <param name="pFileName">Nombre sujerido para el archivo</param>
+        /// <param name="pContent">Contenido del archivo</param>
+        /// <param name="pFilter">Filtro ej: "(*.xml)|*.xml Puede utilizar la enumeracion ref<see cref="FileFunctions.OpenFilterEnums"/></param>
+        /// <param name="pIsXml">Espesifica si el contenido es de un xml para almacenarlo con la indentacion correcta</param>
+        /// <returns></returns>
+        public static String OpenFileDialog_New(String pFileName, String pContent, string pFilter, bool pIsXml)
+        {
+            SaveFileDialog wDialog = new SaveFileDialog();
+            wDialog.FileName = pFileName;
+            wDialog.Filter = pFilter;//String.Format("Files {0}|All Files (*.*)|*.*", pFilter); // "Files (*.xml)|*.xml|All Files (*.*)|*.*";
+            if (wDialog.ShowDialog() != DialogResult.OK)
+                return String.Empty;
+
+            if (pIsXml)
+            {
+                XmlDocument wDocument = new XmlDocument();
+
+                wDocument.LoadXml(pContent);
+                wDocument.Save(wDialog.FileName);
+                wDocument = null;
+            }
+            else
+            {
+                SaveTextFile(wDialog.FileName, pContent, false);
+            }
+
+
+            return wDialog.FileName;
+        }
+        /// <summary>
+        /// Crea un nuevo archivo  de texto
+        /// </summary>
+        /// <param name="pContent">Contenido del archivo</param>
+        /// <param name="pFilter">Filtro ej: "(*.xml)|*.xml"</param>
+        /// <param name="pIsXml">Espesifica si el contenido es de un xml para almacenarlo con la indentacion correcta</param>
+        /// <returns></returns>
+        public static String OpenFileDialog_New(String pContent, string pFilter, bool pIsXml)
+        {
+            return OpenFileDialog_New(String.Empty, pContent, pFilter, pIsXml);
+        }
+        #endregion
+
+        /// <summary>
+        /// Abre un archivo de texto
+        /// </summary>
+        /// <param name="pFileName">Nombre completo del archivo</param>
+        /// <returns></returns>
+        public static string OpenTextFile(string pFileName)
+        {
+            using (StreamReader sr = File.OpenText(pFileName))
+            {
+                string retString = sr.ReadToEnd();
+                sr.Close();
+
+                return retString;
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pPath"></param>
+        /// <returns></returns>
+        public static string PadPath(string pPath)
+        {
+            string retString = pPath.EndsWith("\\") ? pPath : pPath + "\\";
+            return retString;
+        }
+
+        /// <summary>
+        /// Agrega texto a un archivo. Este metoo sobreescribe el archivo existente.
+        /// </summary>
+        /// <param name="pFileName">Nombre completo del archivo</param>
+        /// <param name="pContent">Contenido del archivo</param>
+        public static void SaveTextFile(string pFileName, string pContent)
+        {
+            //StreamWriter sw = new StreamWriter(pFileName, false);
+            using (StreamWriter sw = File.AppendText(pFileName))
+            {
+                sw.Write(pContent);
+                sw.Close();
+            }
+        }
+
+        /// <summary>
+        /// Agrega el texto a un archivo. Si el archivo no existe, este método crea uno nuevo. 
+        /// </summary>
+        /// <param name="pFileName">Nombre completo del archivo</param>
+        /// <param name="pContent">Contenido del archivo</param>
+        /// <param name="pAppend">Determina si se van a agregar datos al archivo. 
+        /// Si ya existe el archivo y append es false, el archivo se sobrescribirá. 
+        /// Si ya existe el archivo y append es true, los datos se anexarán al archivo. De lo contrario, se crea un nuevo archivo. 
+        /// </param>
+        public static void SaveTextFile(string pFileName, string pContent, bool pAppend)
+        {
+            using (StreamWriter sw = new StreamWriter(pFileName, pAppend))
+            {
+                sw.Write(pContent);
+                sw.Close();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pFileName"></param>
+        /// <param name="pContent"></param>
+        public static void SaveBinaryFile(string pFileName, byte[] pContent)
+        {
+            FileStream fs = new FileStream(pFileName, FileMode.Create, FileAccess.Write);
+            fs.Write(pContent, 0, pContent.Length);
+            fs.Close();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pFileName"></param>
+        /// <returns></returns>
+        public static byte[] OpenBinaryFile(string pFileName)
+        {
+            FileStream fs;
+            fs = new FileStream(pFileName, FileMode.Open, FileAccess.Read);
+
+            // Tomo los bytes
+            byte[] content = new byte[fs.Length];
+            fs.Read(content, 0, Convert.ToInt32(fs.Length));
+            fs.Close();
+
+            return content;
+        }
+
+
+        /// <summary>
+        /// Tipos de filtro standars para un objeto <see cref="OpenFileDialog"/>
+        /// </summary>
+        public static class OpenFilterEnums
+        {
+            static string _OpenImageFilter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.PNG;*.BMP;*.JPG;*.GIF|All files (*.*)|*.*";
+
+            /// <summary>
+            /// "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.PNG;*.BMP;*.JPG;*.GIF|All files (*.*)|*.*"
+            /// </summary>
+            public static string OpenImageFilter
+            {
+                get { return _OpenImageFilter; }
+
+            }
+
+
+            static string _OpenXmlFilter = "Xml Files(*.XSD;*.XML;*.CONFIG;*.resx;)|*.XSD;*.XML;*.CONFIG;*.resx;|All files (*.*)|*.*";
+
+            /// <summary>
+            /// "Xml Files(*.XSD;*.XML;*.CONFIG;)|*.XSD;*.XML;*.CONFIG;|All files (*.*)|*.*"
+            /// </summary>
+            public static string OpenXmlFilter
+            {
+                get { return OpenFilterEnums._OpenXmlFilter; }
+
+            }
+            static string _OpenAssembliesFilter = "DLL Files (*.dll;*.exe)|*.dll;*.exe|All Files (*.*)|*.*";
+
+            /// <summary>
+            /// "DLL Files (*.dll;*.exe)|*.dll;*.exe|All Files (*.*)|*.*"
+            /// </summary>
+            public static string OpenAssembliesFilter
+            {
+                get { return OpenFilterEnums._OpenAssembliesFilter; }
+
+            }
+
+        }
+    }
+
+
+}

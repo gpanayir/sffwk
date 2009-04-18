@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="ConfigurationResponse" targetNamespace="http://tempuri.org/ConfigurationResponse.xsd"
+	elementFormDefault="unqualified" xmlns="http://tempuri.org/ConfigurationResponse.xsd" xmlns:mstns="http://tempuri.org/ConfigurationResponse.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="Result">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FileName" type="xs:string" nillable="true" msdata:ReadOnly="false" />
+				<xs:element name="FileContent" type="xs:string" nillable="true" msdata:ReadOnly="false" />
+				<xs:element name="TTL" type="xs:int" nillable="true" msdata:ReadOnly="false" />
+				<xs:element name="Encrypted" type="xs:boolean" nillable="true" msdata:ReadOnly="false" />
+				<xs:element name="CurrentVersion" type="xs:string" />
+				<xs:element name="ForceUpdate" type="xs:boolean" />
+				<xs:element name="BaseConfigFile" type="xs:boolean" />
+				<xs:element name="Cacheable" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

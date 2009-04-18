@@ -1,0 +1,43 @@
+
+Service Manager - Dispatcher
+
+ErrorId = 7001
+Descripcion: "El despachador de servicio no se encuentra disponible."
+
+ErrorId = 7002
+Descripcion: "El servicio " + [serviceName] + " no se encuentra configurado."
+
+ErrorId = 7002
+Descripcion: "El servicio " + [serviceName] + " no se puede ejecutar debido a que esta faltando el assembly [AssemblyName] en el despachador de servicio"
+
+ErrorId = 7005
+ Descripcion = wMessage.Append("El despachador de servicio no pudo continuar debido  \r\n");
+                wMessage.Append("a que el nombre del servicio no fue establecido");
+
+ErrorId = 7006
+ Descripcion =  Se ha intentado ejecutar un servicio que está configurado como no disponible.
+Servicio de configuracion
+ErrorId = 8004
+Descripcion "Error al cargar el archivo de configuracion de servicios " "Verifique que todos los servicios cuentan con todos los atributos confugurados"
+
+
+
+Servicio de configuracion
+ErrorId = 8005
+
+ErrorId = 2002
+Descripcion 
+
+Fwk.Logging
+
+ErrorId = 9000
+Descripcion: Debe especificar un nombre de archivo para guardar el log.
+
+Fwk.Exceptions
+
+ErrorId = 6000
+Descripcion: 
+Se produjo una excepcion funcional. El Mensaje de error no se encuentra disponible. \n" + 
+                        "Descripcion Tecnica: " + 
+                        
+FunctionalExceptionEnums.MsgErrorInConfigMannagerNotFount;
