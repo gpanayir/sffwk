@@ -29,7 +29,7 @@ namespace Fwk.DataBase.CustomControls
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbConnections = new Fwk.Bases.FrontEnd.UserControls.FwkAutoComboBox();
+            this.cmbConnections = new Fwk.Bases.FrontEnd.Controls.FwkAutoComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtServer = new System.Windows.Forms.TextBox();
@@ -254,6 +254,6 @@ namespace Fwk.DataBase.CustomControls
         private System.Windows.Forms.Button btnCancelar;
        
         private System.Windows.Forms.Label label3;
-        private Fwk.Bases.FrontEnd.UserControls.FwkAutoComboBox cmbConnections;
+        private Fwk.Bases.FrontEnd.Controls.FwkAutoComboBox cmbConnections;
     }
 }

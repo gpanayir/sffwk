@@ -5,9 +5,9 @@ using Fwk.Bases;
 using Fwk.BusinessFacades;
 using Fwk.Exceptions;
 
-namespace Fwk.FrontEnd.ServiceIntefaceWrappers
+namespace Fwk.ServiceConnector
 {
-    class LocalWrapper : IServiceInterfaceWrapper
+    class LocalWrapper : IServiceConnector
     {
 
         /// <summary>

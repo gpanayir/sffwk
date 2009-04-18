@@ -2,7 +2,7 @@ using System;
 using Fwk.Bases;
 using Fwk.Exceptions;
 
-namespace Fwk.FrontEnd.ServiceIntefaceWrappers
+namespace Fwk.ServiceConnector
 {
 
 	/// <summary>
@@ -10,7 +10,7 @@ namespace Fwk.FrontEnd.ServiceIntefaceWrappers
 	/// </summary>
 	/// <date>2007-06-23T00:00:00</date>
 	/// <author>moviedo</author>
-	public class WebServiceWrapper : IServiceInterfaceWrapper
+	public class WebServiceWrapper : IServiceConnector
 	{
 	    private string msz_URL = string.Empty;
 
@@ -173,7 +173,7 @@ namespace Fwk.FrontEnd.ServiceIntefaceWrappers
         /// <author>moviedo</author>
         public void SetServiceConfiguration(String pServiceName ,ServiceConfiguration pServiceConfiguration)
         {
-            Fwk.FrontEnd.ServiceIntefaceWrappers.SingleService.ServiceConfiguration wServiceConfigurationProxy = 
+            Fwk.ServiceConnector.SingleService.ServiceConfiguration wServiceConfigurationProxy = 
                 GetServiceConfigurationProxy(pServiceConfiguration);
             
             using (SingleService.SingleService wService = new SingleService.SingleService())
@@ -195,7 +195,7 @@ namespace Fwk.FrontEnd.ServiceIntefaceWrappers
         /// <author>moviedo</author>
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
-            Fwk.FrontEnd.ServiceIntefaceWrappers.SingleService.ServiceConfiguration wServiceConfigurationProxy = 
+            Fwk.ServiceConnector.SingleService.ServiceConfiguration wServiceConfigurationProxy = 
                 GetServiceConfigurationProxy(pServiceConfiguration);
 
             using (SingleService.SingleService wService = new SingleService.SingleService())
@@ -224,11 +224,11 @@ namespace Fwk.FrontEnd.ServiceIntefaceWrappers
         }
 
 
-        private static Fwk.FrontEnd.ServiceIntefaceWrappers.SingleService.ServiceConfiguration GetServiceConfigurationProxy(ServiceConfiguration pServiceConfiguration)
+        private static Fwk.ServiceConnector.SingleService.ServiceConfiguration GetServiceConfigurationProxy(ServiceConfiguration pServiceConfiguration)
         {
-            Fwk.FrontEnd.ServiceIntefaceWrappers.SingleService.ServiceConfiguration wServiceConfigurationProxy = null;
+            Fwk.ServiceConnector.SingleService.ServiceConfiguration wServiceConfigurationProxy = null;
 
-            wServiceConfigurationProxy = new Fwk.FrontEnd.ServiceIntefaceWrappers.SingleService.ServiceConfiguration();
+            wServiceConfigurationProxy = new Fwk.ServiceConnector.SingleService.ServiceConfiguration();
             wServiceConfigurationProxy.Audit = pServiceConfiguration.Audit;
             wServiceConfigurationProxy.name = pServiceConfiguration.Name;
             wServiceConfigurationProxy.Handler = pServiceConfiguration.Handler;
@@ -241,11 +241,11 @@ namespace Fwk.FrontEnd.ServiceIntefaceWrappers
             wServiceConfigurationProxy.Audit = pServiceConfiguration.Audit;
             wServiceConfigurationProxy.Timeout = pServiceConfiguration.Timeout;
             String name = Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel);
-            wServiceConfigurationProxy.IsolationLevel = (Fwk.FrontEnd.ServiceIntefaceWrappers.SingleService.IsolationLevel)
-                Enum.Parse(typeof(Fwk.FrontEnd.ServiceIntefaceWrappers.SingleService.IsolationLevel), pServiceConfiguration.IsolationLevel.ToString());
+            wServiceConfigurationProxy.IsolationLevel = (Fwk.ServiceConnector.SingleService.IsolationLevel)
+                Enum.Parse(typeof(Fwk.ServiceConnector.SingleService.IsolationLevel), pServiceConfiguration.IsolationLevel.ToString());
 
-            wServiceConfigurationProxy.TransactionalBehaviour = (Fwk.FrontEnd.ServiceIntefaceWrappers.SingleService.TransactionalBehaviour)
-                Enum.Parse(typeof(Fwk.FrontEnd.ServiceIntefaceWrappers.SingleService.TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour.ToString());
+            wServiceConfigurationProxy.TransactionalBehaviour = (Fwk.ServiceConnector.SingleService.TransactionalBehaviour)
+                Enum.Parse(typeof(Fwk.ServiceConnector.SingleService.TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour.ToString());
            
 
             return wServiceConfigurationProxy;

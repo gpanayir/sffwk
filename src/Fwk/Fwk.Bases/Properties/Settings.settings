@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Wrapper" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Fwk.FrontEnd.ServiceIntefaceWrappers.LocalWrapper, Fwk.FrontEnd.ServiceIntefaceWrappers</Value>
+      <Value Profile="(Default)">Fwk.ServiceConnector.LocalWrapper, Fwk.ServiceConnector</Value>
     </Setting>
     <Setting Name="DispatcherRemotingConfigFilePath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">RemotingConfigFile.config</Value>

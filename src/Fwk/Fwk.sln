@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Configuration.Configura
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Bases", "Fwk.Bases\Fwk.Bases.csproj", "{1654A893-0408-474E-873C-E79F00D7587C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.FrontEnd.ServiceIntefaceWrappers", "Fwk.FrontEnd.ServiceIntefaceWrappers\Fwk.FrontEnd.ServiceIntefaceWrappers.csproj", "{A1F08B2F-7D75-4BD4-8BD3-B98C582013EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.ServiceConnector", "Fwk.FrontEnd.ServiceIntefaceWrappers\Fwk.ServiceConnector.csproj", "{A1F08B2F-7D75-4BD4-8BD3-B98C582013EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.DataBase", "Fwk.DataBase\Fwk.DataBase.csproj", "{87C826E0-D87A-4C89-94ED-3B1044746A34}"
 EndProject

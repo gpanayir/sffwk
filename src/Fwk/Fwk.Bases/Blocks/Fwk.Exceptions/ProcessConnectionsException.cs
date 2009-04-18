@@ -30,8 +30,8 @@ namespace Fwk.Exceptions
                 case "System.Net.WebException":
                     {
                         wServiceError = ProcessWebException((System.Net.WebException)pEx, pURL);
-                        wServiceError.Assembly = "Fwk.FrontEnd.ServiceIntefaceWrappers.dll";
-                        wServiceError.Namespace = "Fwk.FrontEnd.ServiceIntefaceWrappers";
+                        wServiceError.Assembly = "Fwk.ServiceConnector.dll";
+                        wServiceError.Namespace = "Fwk.ServiceConnector";
                         wServiceError.Class = "Wrapper : IServiceInterfaceWrapper";
                         wServiceError.ErrorId = "1000";
                         break;

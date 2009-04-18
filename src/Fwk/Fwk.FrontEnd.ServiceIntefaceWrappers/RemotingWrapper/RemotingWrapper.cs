@@ -6,12 +6,12 @@ using Fwk.Exceptions;
 using System.Runtime.Remoting;
 using Fwk.Remoting.RemoteTypes;
 
-namespace Fwk.FrontEnd.ServiceIntefaceWrappers
+namespace Fwk.ServiceConnector
 {
     /// <summary>
     /// 
     /// </summary>
-    public class RemotingWrapper :IServiceInterfaceWrapper
+    public class RemotingWrapper :IServiceConnector
     {
         #region IServiceInterfaceWrapper Members
 

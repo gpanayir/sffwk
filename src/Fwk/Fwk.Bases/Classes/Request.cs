@@ -135,7 +135,7 @@ namespace Fwk.Bases
         }
         
 
-        IServiceInterfaceWrapper _Wrapper = null;
+        IServiceConnector _Connector = null;
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
@@ -149,12 +149,12 @@ namespace Fwk.Bases
         {
             TResponse wResponse = new TResponse();
 
-            if (_Wrapper == null)
+            if (_Connector == null)
             {
                 try
                 {
-                    _Wrapper =
-                        (IServiceInterfaceWrapper)
+                    _Connector =
+                        (IServiceConnector)
                         ReflectionFunctions.CreateInstance(ConfigurationsHelper.WrapperSetting);
                 }
                 catch (Exception ex)
@@ -167,7 +167,7 @@ namespace Fwk.Bases
             if (wResponse.Error == null)
             {
 
-                wResponse = _Wrapper.ExecuteService<TRequest, TResponse>(req);
+                wResponse = _Connector.ExecuteService<TRequest, TResponse>(req);
             }
 
             return wResponse;

@@ -7,14 +7,14 @@ namespace Fwk.Bases
 {
 
 	/// <summary>
-	/// Interfaz para clases que funcionan como wrappers de interfaces de servicio.
+	/// Interfaz para clases que funcionan como conector de interfaces de servicio.
 	/// </summary>
 	/// <remarks>
 	/// Las clases que implementen esta interfaz deben ser capaces de solicitar la  ejecución de servicios de negocio a través de métodos de la intefaz de servicio utilizada, y devolver el resultado del mismo como resultado de la  ejecución.
 	/// </remarks>
 	/// <date>2007-06-23T00:00:00</date>
     /// <author>moviedo</author>
-	public interface IServiceInterfaceWrapper
+    public interface IServiceConnector
 	{
 
 
