@@ -1,9 +1,0 @@
-SCC = This is a Source Code Control file
-
-[AssemblyExplorer.sln]
-SCC_Aux_Path = "D:\DesarrolloPROMI\Framework\SourceSafeFramework"
-SCC_Project_Name = "$/SourceCode/FrameworkHelpers/AssemblyExplorer", KNBAAAAA
-
-[Prominente.Framework.AssemblyExplorer.csproj]
-SCC_Aux_Path = "D:\DesarrolloPROMI\Framework\SourceSafeFramework"
-SCC_Project_Name = "$/SourceCode/FrameworkHelpers/AssemblyExplorer", KNBAAAAA
