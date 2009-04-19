@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TestComplexTypes" targetNamespace="http://tempuri.org/TestComplexTypes.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/TestComplexTypes.xsd" xmlns:mstns="http://tempuri.org/TestComplexTypes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Clase1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="A" type="xs:string" />
+        <xs:element name="B" type="xs:string" />
+        <xs:element name="Clase2" maxOccurs="1000" minOccurs="0" nillable="true">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="A2" type="xs:string" />
+              <xs:element name="B2" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

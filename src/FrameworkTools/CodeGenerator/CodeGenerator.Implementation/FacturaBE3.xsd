@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FacturaBE" elementFormDefault="qualified" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified">
+  <xs:element name="FacturaBE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NumeroCliente" type="xs:int" nillable="true" maxOccurs="100" />
+        <xs:element name="NombreCliente" type="xs:string" nillable="true" />
+        <xs:element name="FechaFactura" type="xs:dateTime" nillable="true" />
+        <xs:element name="ItemCollectionsBE" nillable="true" maxOccurs="1" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ItemBE" nillable="true" maxOccurs="12" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Descripcion" type="xs:string" nillable="true" />
+                    <xs:element name="Cantidad" type="xs:int" nillable="true" />
+                    <xs:element name="Telefonos" maxOccurs="1" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Telefono" maxOccurs="unbounded" minOccurs="0" nillable="true">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Numero" type="xs:int" nillable="true" />
+                                <xs:element name="Caracteristica" type="xs:string" nillable="true" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Vendedores" maxOccurs="unbounded" minOccurs="0" nillable="true">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Fecha" type="xs:dateTime" />
+              <xs:element name="Vendedor" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Nombre" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
