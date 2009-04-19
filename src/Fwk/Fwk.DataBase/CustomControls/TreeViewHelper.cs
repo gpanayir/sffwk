@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 using System.Text;
 using System.Windows.Forms;
-using Promi_Fwk_DataEntities = Fwk.DataBase.DataEntities;
-using Promi_Fwk_DataBase = Fwk.DataBase;
+using Fwk_DataEntities = Fwk.DataBase.DataEntities;
+using Fwk_DataBase = Fwk.DataBase;
 
 
 namespace Fwk.DataBase.CustomControls
@@ -47,10 +47,10 @@ namespace Fwk.DataBase.CustomControls
         /// </summary>
         /// <param name="pTreeView">Nodo</param>
         /// <param name="pTables">Tablas</param>
-        public static void LoadTreeView(TreeView pTreeView, Promi_Fwk_DataEntities.Tables pTables)
+        public static void LoadTreeView(TreeView pTreeView, Fwk_DataEntities.Tables pTables)
         {
             pTreeView.Nodes.Clear();    
-            foreach (Promi_Fwk_DataEntities.Table wTable in pTables)
+            foreach (Fwk_DataEntities.Table wTable in pTables)
             {
                 TreeNode wTreeNode = new TreeNode();
                 wTreeNode.Checked = false;
@@ -69,10 +69,10 @@ namespace Fwk.DataBase.CustomControls
         /// </summary>
         /// <param name="pParentNode">Nodo padre </param>
         /// <param name="pTable"></param>
-        private static void LoadColumnsNodes(TreeNode pParentNode, Promi_Fwk_DataEntities.Table pTable)
+        private static void LoadColumnsNodes(TreeNode pParentNode, Fwk_DataEntities.Table pTable)
         {
 
-            foreach (Promi_Fwk_DataEntities.Column wColumn in pTable.Columns)
+            foreach (Fwk_DataEntities.Column wColumn in pTable.Columns)
             {
 
                 String nullable = wColumn.Nullable ? "NULL" : String.Empty;
@@ -91,7 +91,7 @@ namespace Fwk.DataBase.CustomControls
         {
             if (pTable.IsColumnsLoaded) return;
 
-            Promi_Fwk_DataBase.Metadata wMetadata = new Metadata();
+            Fwk_DataBase.Metadata wMetadata = new Metadata();
 
             wMetadata.Table_FillColumns(pTable);
 
@@ -107,10 +107,10 @@ namespace Fwk.DataBase.CustomControls
         /// </summary>
         /// <param name="pTreeView">Nodo</param>
         /// <param name="pStoreProcedures">StoreProcedures</param>
-        public static void LoadTreeView(TreeView pTreeView, Promi_Fwk_DataEntities.StoreProcedures pStoreProcedures)
+        public static void LoadTreeView(TreeView pTreeView, Fwk_DataEntities.StoreProcedures pStoreProcedures)
         {
             pTreeView.Nodes.Clear();
-            foreach (Promi_Fwk_DataEntities.StoreProcedure wStoreProcedure in pStoreProcedures)
+            foreach (Fwk_DataEntities.StoreProcedure wStoreProcedure in pStoreProcedures)
             {
                 TreeNode wTreeNode = new TreeNode();
                 wTreeNode.Checked = false;
@@ -129,10 +129,10 @@ namespace Fwk.DataBase.CustomControls
         /// </summary>
         /// <param name="pParentNode">Nodo padre </param>
         /// <param name="pStoreProcedure">Store Procedure</param>
-        private static void LoadParameteresNodes(TreeNode pParentNode, Promi_Fwk_DataEntities.StoreProcedure pStoreProcedure)
+        private static void LoadParameteresNodes(TreeNode pParentNode, Fwk_DataEntities.StoreProcedure pStoreProcedure)
         {
 
-            foreach (Promi_Fwk_DataEntities.SPParameter wParameter in pStoreProcedure.Parameters)
+            foreach (Fwk_DataEntities.SPParameter wParameter in pStoreProcedure.Parameters)
             {
                 TreeNode wTreeNode = new TreeNode();
                 wTreeNode.Checked = false;
@@ -148,7 +148,7 @@ namespace Fwk.DataBase.CustomControls
         {
             if (pStoreProcedure.IsParametersLoaded) return;
 
-            Promi_Fwk_DataBase.Metadata wMetadata = new Metadata();
+            Fwk_DataBase.Metadata wMetadata = new Metadata();
 
             wMetadata.StoreProcedures_FillParameters(pStoreProcedure);
 
