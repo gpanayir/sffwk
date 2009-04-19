@@ -104,7 +104,7 @@ namespace Fwk.Bases.FrontEnd.Controls
                 using (FrmBase f = (FrmBase)ReflectionFunctions.CreateInstance(wAssemblyInfo))
                 {
                     //Busco en el archivo Configuration Manager el nombre de ensamblado, namespace y clase para crear diamicamente
-                    //Promiente.FrontClientes.frmModificacion , Promiente.FrontClientes"
+                    //FrontClientes.frmModificacion , FrontClientes"
                    
                     f.WindowState = _FormWindowState;
                     f.StartPosition = _FormStartPosition;
