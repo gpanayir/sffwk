@@ -24,7 +24,7 @@ namespace Fwk.Exceptions
         private String _Type;
 
         /// <summary>
-        /// Retorna el tipo de excepcion de promiente.-
+        /// Retorna el tipo de excepcion de pelsoft.-
         /// </summary>
         public String Type
         {

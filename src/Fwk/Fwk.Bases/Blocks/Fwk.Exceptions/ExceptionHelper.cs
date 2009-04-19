@@ -8,7 +8,7 @@ using System.Text;
 namespace Fwk.Exceptions
 {
     /// <summary>
-    /// Enumeracion que reprecenta los tipos de excepciones de promiente
+    /// Enumeracion que reprecenta los tipos de excepciones de pelsoft
     /// </summary>
     public enum FwkExceptionTypes
     {
