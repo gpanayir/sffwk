@@ -62,7 +62,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Fwk.Configuration, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fwk.Controls.Win32, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Libraries\Fwk.Controls.Win32.dll</HintPath>
