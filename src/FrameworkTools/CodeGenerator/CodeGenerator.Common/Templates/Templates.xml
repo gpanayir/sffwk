@@ -1,0 +1,1132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TemplateDocument>
+  <Template name="Patterns">
+    <Key name="CollectionNamePattern">[EntityName][PrefixSufixCollection]</Key>
+    <Key name="NamePattern">[EntityName][PrefixSufix]</Key>
+    <Key name="PrivateMemberPrefixPattern">m[PrefixType]_</Key>
+    <Key name="LocalVariablePrefixPattern">w[PrefixType]</Key>
+    <Key name="ChildCollectionNamePattern">[EntityName][PrefixSufixCollection]</Key>
+    <Key name="BussinessDataCollectionNamePattern">[EntityName][PrefixSufixCollection]</Key>
+    <Key name="BussinessDataNamePattern">[EntityName]</Key>
+    <Key name="StoreProcedureNamePattern">[Schema].[EntityName][PrefixSufix]</Key>
+    <Key name="ObjectPrefix"></Key>
+  </Template>
+  <Template name="NotSupportTypes">
+    <Key name="ToSearchInStoreProcedure">xml,timestamp,sql_variant,varbinary,binary,image</Key>
+    <Key name="ToIncludeInBackEnd">xml,timestamp,sql_variant</Key>
+    <Key name="ToInsertStoreProcedure">xml,timestamp,sql_variant</Key>
+    
+  </Template>
+  <Template name="EntityTemplate">
+    <Key name="Template">
+      <![CDATA[
+
+         
+         using System;
+using System.Collections.Generic;
+using Fwk.Bases;
+using System.Xml.Serialization;
+namespace [NamespaceDEBE]
+{
+    [XmlRoot("[CollectionNamePattern]"), SerializableAttribute]
+    public class [CollectionNamePattern] :Entities<[NamePattern]>
+    {
+            #region [Methods]
+            /// <summary>
+            /// Metodo estatico que retorna un objeto [CollectionNamePattern] apartir de un xml.-
+            /// </summary>
+            /// <param name="pXml">String con el xml</param>
+            /// <returns>[CollectionNamePattern]</returns>
+            public static [CollectionNamePattern] Get[CollectionNamePattern]FromXml(String pXml)
+            {
+                return ([CollectionNamePattern]) Entity.GetObjectFromXml(typeof([CollectionNamePattern]), pXml);
+            }
+            #endregion 
+    }
+    
+	  [XmlInclude(typeof([NamePattern])), Serializable]
+    public class [NamePattern]:Entity
+    {
+        #region [Private Members]
+        [PRIVATE_BODY]
+        #endregion
+             
+        #region [Properties]
+        [PROPERTY_BODY]
+        #endregion
+        
+        #region [Methods]
+         /// <summary>
+         /// Metodo estatico que retorna un objeto [NamePattern] apartir de un xml.-
+         /// </summary>
+         /// <param name="pXml">String con el xml</param>
+         /// <returns>[NamePattern]</returns>
+         public static [NamePattern] Get[NamePattern]FromXml(String pXml)
+           {
+                return ([NamePattern]) Entity.GetObjectFromXml(typeof([NamePattern]), pXml);
+           }
+         #endregion
+    }
+    
+}]]>
+    </Key>
+    <Key name="TemplateClassOnly">
+      <![CDATA[
+  
+	  [XmlInclude(typeof([NamePattern])), Serializable]
+    public class [NamePattern]:Entity
+    {
+        #region [Private Members]
+        [PRIVATE_BODY]
+        #endregion
+        
+      
+       
+        #region [Properties]
+        [PROPERTY_BODY]
+        #endregion
+        
+        #region [Methods]
+         /// <summary>
+         /// Metodo estatico que retorna un objeto [NamePattern] apartir de un xml.-
+         /// </summary>
+         /// <param name="pXml">String con el xml</param>
+         /// <returns>[NamePattern]</returns>
+         public static [NamePattern] Get[EntityName]FromXml(String pXml)
+           {
+                return ([NamePattern]) Entity.GetObjectFromXml(typeof([NamePattern]), pXml);
+           }
+         #endregion
+    }
+    
+]]>
+    </Key>
+    <Key name="TemplateEnvelopeOnly">
+      <![CDATA[using System;
+  using System.Collections.Generic;
+  using Fwk.Bases;
+  using System.Xml.Serialization;
+
+  namespace [NamespaceDEBE]
+  {
+      [BODY]
+      
+  }]]>
+    </Key>
+    <Key name="SchemaCollectionTemplate">
+      <![CDATA[
+      [XmlRoot("[CollectionNamePattern]"), SerializableAttribute]
+      public class [CollectionNamePattern] :Entities<[NamePattern]>
+        {
+            [BODY]
+            
+            #region [Methods]
+            /// <summary>
+            /// Metodo estatico que retorna un objeto [CollectionNamePattern] apartir de un xml.-
+            /// </summary>
+            /// <param name="pXml">String con el xml</param>
+            /// <returns>[CollectionNamePattern]</returns>
+            public static [CollectionNamePattern] Get[CollectionNamePattern]FromXml(String pXml)
+            {
+                return ([CollectionNamePattern]) Entity.GetObjectFromXml(typeof([CollectionNamePattern]), pXml);
+            }
+            #endregion
+        }]]>
+    </Key>
+    <Key name="ComplexTypePropertyTemplate">
+      <![CDATA[	
+        #region [[Property_Name]]
+        public [TYPENAME] [Property_Name]
+        {
+            get { return m_[Property_Name]; }
+            set { m_[Property_Name] = value;  }
+        }
+        #endregion]]>
+    </Key>
+    <Key name="SchemBody">
+      <![CDATA[	
+        #region [Private Members]
+        [PRIVATE_BODY]
+        #endregion
+        
+        public [EntityName](){}
+       
+        #region [Properties]
+        [PROPERTY_BODY]
+        #endregion    ]]>
+    </Key>
+    <Key name="PropertyTemplate">
+      <![CDATA[	
+        #region [[Property_Name]]
+        [XmlElement(ElementName = "[Property_Name]", DataType = "[SCHEMATYPENAME]")]
+        public [TYPENAME] [Property_Name]
+        {
+            get { return [PrivateMemberPrefixPattern][Property_Name]; }
+            set { [PrivateMemberPrefixPattern][Property_Name] = value;  }
+        }
+        #endregion]]>
+    </Key>
+    <Key name="PropertyTemplateBinary">
+      <![CDATA[	
+        #region [[Property_Name]]
+        [System.Xml.Serialization.XmlElementAttribute("[Property_Name]",DataType = "[SCHEMATYPENAME]")]
+        public [TYPENAME] [Property_Name]
+        {
+            get { return [PrivateMemberPrefixPattern][Property_Name]; }
+            set { [PrivateMemberPrefixPattern][Property_Name] = value;  }
+        }
+        #endregion]]>
+    </Key>
+  </Template>
+  <Template name="StoredProcedureTemplate">
+    <Key name="Common">
+      <Name/>
+      <Description/>
+      <Body>
+        <![CDATA[
+	<DROP>
+					
+	SET QUOTED_IDENTIFIER ON
+	GO
+	SET ANSI_NULLS ON
+	GO
+	       --------------------------------------------------------------------------------------------
+	        -- Author     :		 [Author]
+	        -- Date       :	   [CreationDate]
+	        -- Description: 	 [Description]
+	        --------------------------------------------------------------------------------------------
+	CREATE PROCEDURE [StoredProcedureName]
+	
+	[Parameters]
+	
+	AS
+					
+					
+	[ProcedureBody]
+					
+	GO	
+	]]>
+      </Body>
+    </Key>
+    <Key name="Insert">
+      <Name><![CDATA[[TableName]_i]]></Name>
+      <Description><![CDATA[Procedimiento de creación de [TableName].]]></Description>
+      <Body>
+        <![CDATA[
+INSERT INTO [TableName]
+(
+[Fields]
+)
+VALUES
+(
+[Values]
+)
+  [ReturnAutogenerated]
+]]>
+      </Body>
+    </Key>
+    <Key name="Update">
+      <Name><![CDATA[[TableName]_u]]></Name>
+      <Description><![CDATA[Procedimiento de actualización de [TableName].]]></Description>
+      <Body>
+        <![CDATA[
+UPDATE [TableName]
+SET 
+[SetStatements]
+WHERE [WhereClause]
+				]]>
+      </Body>
+    </Key>
+    <Key name="Delete">
+      <Name><![CDATA[[TableName]_d]]></Name>
+      <Description><![CDATA[Procedimiento de eliminación de [TableName].]]></Description>
+      <Body>
+        <![CDATA[
+DELETE FROM [TableName]
+WHERE [WhereClause]]]>
+      </Body>
+    </Key>
+    <Key name="Get">
+      <Name><![CDATA[[TableName]_g]]></Name>
+      <Description><![CDATA[Procedimiento búsqueda de [TableName] por clave primaria.]]></Description>
+      <Body>
+        <![CDATA[
+SELECT
+[SelectList]
+FROM [TableName]
+WHERE
+[WhereClause]
+]]>
+      </Body>
+    </Key>
+    <Key name="GetAll">
+      <Name><![CDATA[[TableName]_s]]></Name>
+      <Description><![CDATA[Procedimiento de búsqueda de [TableName].]]></Description>
+      <Body>
+        <![CDATA[
+  SELECT
+  [SelectList]
+  FROM [TableName]
+  ]]>
+      </Body>
+    </Key>
+    <Key name="GetAllPaginated">
+      <Name><![CDATA[[TableName]_sp]]></Name>
+      <Description><![CDATA[Procedimiento de búsqueda de [TableName].]]></Description>
+      <Body>
+        <![CDATA[
+            SELECT
+            [SelectList]
+            FROM [TableName]
+            ]]>
+      </Body>
+    </Key>
+    <Key name="GetByParam">
+      <Name><![CDATA[[TableName]_s_ByParam]]></Name>
+      <Description><![CDATA[Procedimiento de búsqueda de [TableName] por parámetros.]]></Description>
+      <Body>
+        <![CDATA[
+          SELECT
+          [SelectList]
+          FROM [TableName]
+          WHERE [WhereClause]
+]]>
+      </Body>
+    </Key>
+    <Key name="Search_TypeBit">
+      <Body>
+        <![CDATA[
+      -- <NOMBRE_CAMPO> = TYPE Bit
+
+	      IF (<NOMBRE_PARAMETRO_CAMPO> IS NOT NULL)
+         BEGIN
+				      SET @sql = @sql + ' AND <NOMBRE_CAMPO>  =  <NOMBRE_PARAMETRO_CAMPO> '
+	      END	
+					]]>
+      </Body>
+    </Key>
+    <Key name="Search_TypeDateTime">
+      <Body>
+        <![CDATA[
+						  -- <NOMBRE_CAMPO> = TYPE [TYPENAME]
+           
+				           -- IF (<NOMBRE_PARAMETRO_CAMPO_DESDE> IS NOT NULL AND <NOMBRE_PARAMETRO_CAMPO_DESDE> <> '' AND 
+				             --   <NOMBRE_PARAMETRO_CAMPO_HASTA> IS NOT NULL AND <NOMBRE_PARAMETRO_CAMPO_HASTA> <> '')
+                  --BEGIN	
+					          --  SET @sql = @sql + ' AND (<NOMBRE_CAMPO> >= <NOMBRE_PARAMETRO_CAMPO_DESDE> AND <NOMBRE_CAMPO> <= <NOMBRE_PARAMETRO_CAMPO_HASTA>)'
+                  --END
+			        -- <NOMBRE_CAMPO> = TYPE [TYPENAME]
+               IF (<NOMBRE_PARAMETRO_CAMPO> IS NOT NULL)
+                BEGIN
+			            SET @sql = @sql + ' AND <NOMBRE_CAMPO>  =   <NOMBRE_PARAMETRO_CAMPO> ' 
+                END
+		           
+					]]>
+      </Body>
+    </Key>
+    <Key name="Search_TypeNText">
+      <Body>
+        <![CDATA[
+				-- <NOMBRE_CAMPO> = TYPE [TYPENAME]
+        IF (<NOMBRE_PARAMETRO_CAMPO> IS NOT NULL)
+          BEGIN
+			      SET @sql = @sql + ' AND <NOMBRE_CAMPO>  LIKE   <NOMBRE_PARAMETRO_CAMPO> ' 
+          END
+					]]>
+      </Body>
+    </Key>
+    <Key name="Search_TypeNumeric">
+      <Body>
+        <![CDATA[
+				-- <NOMBRE_CAMPO> = TYPE [TYPENAME]
+            IF (<NOMBRE_PARAMETRO_CAMPO> IS NOT NULL)
+            BEGIN
+			        SET @sql = @sql + ' AND <NOMBRE_CAMPO> =  <NOMBRE_PARAMETRO_CAMPO> '
+            END
+					]]>
+      </Body>
+    </Key>
+    <Key name="Search_TypeVarChar">
+      <Body>
+        <![CDATA[
+				-- <NOMBRE_CAMPO> = TYPE [TYPENAME]
+             IF (<NOMBRE_PARAMETRO_CAMPO> IS NOT NULL)
+             BEGIN
+			        SET @sql = @sql + ' AND <NOMBRE_CAMPO>  LIKE  <NOMBRE_PARAMETRO_CAMPO> '
+             END
+					]]>
+      </Body>
+    </Key>
+    <Key name="DropStoreSQL2000">
+      <Body>
+        <![CDATA[
+					if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[StoredProcedureName]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+					drop procedure [StoredProcedureName]
+					GO
+					]]>
+      </Body>
+    </Key>
+    <Key name="DropStoreSQL2005">
+      <Body>
+        <![CDATA[
+			IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[StoredProcedureName]') AND type in (N'P', N'PC'))
+	    DROP PROCEDURE [StoredProcedureName]
+	    GO
+					]]>
+      </Body>
+    </Key>
+    <Key name="Search_DefinicionGlobal">
+      <Body>
+        <![CDATA[
+					<DROP>
+
+        --------------------------------------------------------------------------------------------
+        -- Autor:		[Author]
+        -- Creacion:		[CreationDate]
+        -- Descripcion: 	Realiza una busqueda por parametros de la tabla [TableName]
+        --------------------------------------------------------------------------------------------
+        -- Operadores posibles de usar:
+        --
+        -- <> | > | >= | < | <= | = | %_ | _% | %% | []
+        --
+        --------------------------------------------------------------------------------------------
+        CREATE PROCEDURE [StoredProcedureName]
+	        -- Lista de Parámetros
+	        @OrdenDeRegistros 					    VARCHAR(100) = null,
+        <PARAMETROS>
+
+        AS
+        BEGIN
+	        SET NOCOUNT ON
+	        SET DATEFORMAT DMY
+
+	        ----------------------------------------
+	        -- Definimos Variables
+	        ----------------------------------------
+	        DECLARE @sql        nvarchar(4000)
+	        DECLARE @parametros nvarchar(4000)
+
+	        SET @sql = N' SELECT * FROM [TableName] <WITH_NO_LOCK> WHERE 1 = 1 '
+
+        <CAMPOS>
+	        IF (@OrdenDeRegistros IS NOT NULL AND @OrdenDeRegistros <> '')
+	        BEGIN
+		        SET @sql = @sql + ' ORDER BY ' + @OrdenDeRegistros
+	        END
+
+	        SELECT @parametros = '<PARAMETROS_TIPO>'
+
+	        EXEC sp_executesql @sql, @parametros, <PARAMETROS_SOLO>
+        END
+
+					]]>
+      </Body>
+    </Key>
+    <Key name="OutputIdentitySet">
+      <Body>
+        <![CDATA[
+				
+	        Set [OutputVariable] = @@Identity
+					]]>
+      </Body>
+    </Key>
+  </Template>
+  <Template name="TDGTemplate">
+    <Key name="Name">
+      <Body><![CDATA[[EntityName]TDG]]></Body>
+    </Key>
+    <Key name="MethodParameterName">
+      <Body><![CDATA[p[ParameterName]]]></Body>
+    </Key>
+    <Key name="SimpleValueParameter">
+      <Body><![CDATA[[Direction] [TypeName] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="BEParameter">
+      <Body><![CDATA[[ParameterName] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="SBEParameter">
+      <Body><![CDATA[[ParameterName] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="PaginationParameters">
+      <Body><![CDATA[int pPageNum, int pPageSize]]></Body>
+    </Key>
+    <Key name="OutParameterMapping">
+      <Body><![CDATA[[MethodParameterName] = ([Type]) wDataBase.GetParameterValue(wCmd, "[ParameterName]");]]></Body>
+    </Key>
+    <Key name="Class">
+      <Body>
+        <![CDATA[using System;
+using System.Data;
+using System.Text;
+using System.Data.Common;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using Fwk.Bases;
+using Fwk.Exceptions;
+using [NamespaceDEBE];
+
+namespace [NamespaceTDG]
+{
+	/// <summary>
+	/// TableDataGateway para [EntityName].
+	/// </summary>
+	/// <Date>[CreationDate]</Date>
+	/// <Author>[Author]</Author>
+	public class [TDGName] : TableDataGateway
+	{
+  [Methods]
+	}
+}]]>
+      </Body>
+    </Key>
+    <Key name="Method">
+      <Body>
+        <![CDATA[/// <summary>
+    /// [MethodName]
+    /// </summary>
+    [SummaryParams]
+    /// <returns>[RetType]</returns>
+    /// <Date>[CreationDate]</Date>
+    /// <Author>[Author]</Author>
+    public static  [RetType] [MethodName]([ParamArgs])
+    {
+      Database wDataBase = null;
+      DbCommand wCmd = null;
+			
+      try
+      {                                              
+	      wDataBase = DatabaseFactory.CreateDatabase([CnnStringKey]);
+	      wCmd = wDataBase.GetStoredProcCommand("[StoredProcedureName]");
+        [Parameters]
+        [Return]				
+      }
+       catch (Exception ex)
+      {
+        throw ex;
+      }
+      finally
+      {
+	      wCmd.Dispose();
+	      wCmd = null;
+	      wDataBase = null;
+      }
+    }
+]]>
+      </Body>
+    </Key>
+    <Key name="ParameterSummary">
+      <Body><![CDATA[///<param name="[MethodParameterName]">[ParameterName]</param>]]></Body>
+    </Key>
+    <Key name="ParameterInput">
+      <Body>
+        <![CDATA[
+				/// [ParameterName]
+				wDataBase.AddInParameter(wCmd, "[ParameterName]", [ParameterType], [ParameterValue]);]]>
+      </Body>
+    </Key>
+    <Key name="ParameterOutput">
+      <Body>
+        <![CDATA[
+				/// [ParameterName]
+				wDataBase.AddOutParameter(wCmd, "[ParameterName]", [ParameterType], [ParameterLength]);]]>
+      </Body>
+    </Key>
+    <Key name="ReturnVoid">
+      <Body>
+        <![CDATA[
+				wDataBase.ExecuteNonQuery(wCmd);
+				[OutParameterMappings]]]>
+      </Body>
+    </Key>
+    <Key name="ReturnDataSet">
+      <Body>
+        <![CDATA[
+				return wDataBase.ExecuteDataSet(wCmd);]]>
+      </Body>
+    </Key>
+    <Key name="ReturnPaginatedDataSet">
+      <Body>
+        <![CDATA[
+				DbDataAdapter wAdapter = wDataBase.GetDataAdapter();
+				DataSet wDataSet = new DataSet();
+				wAdapter.Fill(wDataSet, (pPageSize * pPageNum) - pPageSize, pPageSize, "[EntityName]");
+				return wDataSet;]]>
+      </Body>
+    </Key>
+    <Key name="BatchMethod">
+      <Body>
+        <![CDATA[/// <summary>
+/// Crea registros en batch sobre la tabla [NamePattern].-
+/// </summary>
+/// <param name="[CollectionNamePattern]">[CollectionNamePattern]</param>
+/// <Date>[CreationDate]</Date>
+/// <Author>[Author]</Author>
+ internal static void [MethodName]([CollectionNamePattern] p[CollectionNamePattern])
+{
+    StringBuilder BatchCommandText = new StringBuilder();
+    try
+    {
+        Database wDatabase = DatabaseFactory.CreateDatabase([CnnStringKey]);
+
+        #region --[Seteo de Parametros]--
+        foreach ([NamePattern] w[NamePattern] in p[CollectionNamePattern])
+        {
+            BatchCommandText.Append(" Exec [StoredProcedureName] ");
+            if ([EntityId] == null )
+		        {
+			        BatchCommandText.Append("NULL");
+		        }
+		        else
+		        {
+			        BatchCommandText.Append([EntityId]);
+		        }		
+            BatchCommandText.Append( ",");
+            [ParametersSet]
+        }
+        #endregion
+
+        DbCommand wCommand = wDatabase.GetSqlStringCommand(BatchCommandText.ToString());
+        wCommand.CommandType = CommandType.Text;
+
+        if (BatchCommandText.Length > 0)
+        {
+            wDatabase.ExecuteNonQuery(wCommand);
+        }
+      
+        wCommand.Connection.Close();
+
+    }
+    catch (Exception ex)
+    {
+       throw ex;
+    }
+
+}
+
+]]>
+      </Body>
+    </Key>
+    <Key name="SPParameterBatchBit">
+      <Body>
+        <![CDATA[		
+           BatchCommandText.Append("@[Property_Name] = ");
+          if (w[NamePattern].[Property_Name] != null)
+           {
+             BatchCommandText.Append(w[NamePattern].[Property_Name]  == true ? "1":"0");
+           }
+           else { BatchCommandText.Append("NULL"); }
+           BatchCommandText.Append( ",");
+        ]]>
+      </Body>
+    </Key>
+    <Key name="SPParameterBatchDateTime">
+      <Body>
+        <![CDATA[		
+          BatchCommandText.Append("@[Property_Name] = ");
+          if (w[NamePattern].[Property_Name] != null)
+           {
+             BatchCommandText.Append("'");
+             BatchCommandText.Append(w[NamePattern].[Property_Name].Value.ToString("yyy-MM-dd H:mm:ss"));
+             BatchCommandText.Append("'");
+           }
+          else { BatchCommandText.Append("NULL"); }
+           BatchCommandText.Append( ",");
+]]>
+      </Body>
+    </Key>
+      <Key name="SPParameterBatchBinary">
+        <Body>
+          <![CDATA[		
+          BatchCommandText.Append("@[Property_Name] = ");
+          if (w[NamePattern].[Property_Name] != null)
+           {
+             BatchCommandText.Append("'" + w[NamePattern].[Property_Name] + "'");
+           }
+          else { BatchCommandText.Append("NULL"); }
+           BatchCommandText.Append( ",");
+]]>
+        </Body>
+    </Key>
+    <Key name="SPParameterBatchInteger">
+      <Body>
+        <![CDATA[		
+        BatchCommandText.Append("@[Property_Name] = ");
+        if (w[NamePattern].[Property_Name] != null)
+        {
+        BatchCommandText.Append(w[NamePattern].[Property_Name]);
+        }
+        else { BatchCommandText.Append("NULL"); }
+        BatchCommandText.Append( ",");
+]]>
+      </Body>
+    </Key>
+    <Key name="SPParameterBatchDecimal">
+      <Body>
+        <![CDATA[		
+        BatchCommandText.Append("@[Property_Name] = ");
+        if (w[NamePattern].[Property_Name] != null)
+        {
+        BatchCommandText.Append(w[NamePattern].[Property_Name].ToString().Replace(",","."));
+        }
+        else { BatchCommandText.Append("NULL"); }
+        BatchCommandText.Append( ",");
+]]>
+      </Body>
+    </Key>
+    <Key name="SPParameterBatchString">
+      <Body>
+        <![CDATA[		
+        BatchCommandText.Append("@[Property_Name] = ");
+        if (w[NamePattern].[Property_Name] != null)
+        {
+        BatchCommandText.Append("'" + w[NamePattern].[Property_Name] + "'");
+        }
+        else { BatchCommandText.Append("NULL"); }
+        BatchCommandText.Append( ",");
+]]>
+      </Body>
+    </Key>
+  </Template>
+  <Template name="DACTemplate">
+    <Key name="Name">
+      <Body><![CDATA[[EntityName]DAC]]></Body>
+    </Key>
+    <Key name="MethodParameterName">
+      <Body><![CDATA[p[ParameterName]]]></Body>
+    </Key>
+    <Key name="SimpleValueParameter">
+      <Body><![CDATA[[Direction] [TypeName] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="BEParameter">
+      <Body><![CDATA[[ParameterName] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="SBEParameter">
+      <Body><![CDATA[[ParameterName] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="PaginationParameters">
+      <Body><![CDATA[int pPageNum, int pPageSize]]></Body>
+    </Key>
+    <Key name="ParameterSummary">
+      <Body><![CDATA[///<param name="[MethodParameterName]">[ParameterName]</param>]]></Body>
+    </Key>
+    <Key name="TDGDeclaration">
+      <Body>
+        <![CDATA[[TDGEntityName] [TDGDereference]
+			]]>
+      </Body>
+    </Key>
+    <Key name="TDGInitialization">
+      <Body>
+        <![CDATA[w[TDGEntityName] = new [TDGEntityName]();
+				]]>
+      </Body>
+    </Key>
+    <Key name="TDGCall">
+      <Body>
+        <![CDATA[[TDGEntityName].[MethodName]([MethodCallParameters]);
+    [ChildsIteration]]]>
+      </Body>
+    </Key>
+    <Key name="ChildsIteration">
+      <Body>
+        <![CDATA[foreach([ChildName] w[ChildName] in [ParentName].[ChildCollectionName])
+					{
+						[RelationMapping]
+						[TDGCall]
+					}
+					]]>
+      </Body>
+    </Key>
+    <Key name="RelationMapping">
+      <Body>
+        <![CDATA[w[ChildName].[ChildFieldName] = [ParentName].[ParentFieldName];
+						]]>
+      </Body>
+    </Key>
+    <Key name="MethodCallParameterName">
+      <Body><![CDATA[[Direction] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="PaginationMethodCallParameters">
+      <Body><![CDATA[pPageNum, pPageSize]]></Body>
+    </Key>
+    <Key name="ReturnVoid">
+      <Body><![CDATA[[TDGCall]]]></Body>
+    </Key>
+    <Key name="ReturnDataSet">
+      <Body>
+        <![CDATA[
+				return [TDGCall] ]]>
+      </Body>
+    </Key>
+    <Key name="ReturnPaginatedDataSet">
+      <Body>
+        <![CDATA[
+				return [TDGCall]]]>
+      </Body>
+    </Key>
+    <Key name="TDGDereference">
+      <Body>
+        <![CDATA[w[TDGEntityName] = null;
+				]]>
+      </Body>
+    </Key>
+    <Key name="Class">
+      <Body>
+        <![CDATA[
+               
+              using System;
+              using System.Data;
+              using System.Data.Common;
+              using Microsoft.Practices.EnterpriseLibrary.Data;
+              using Fwk.Bases;
+              using Fwk.Exceptions;
+              using [NamespaceDEBE];
+
+              namespace [NamespaceDAC]
+              {
+	              /// <summary>
+	              /// Data access component para [EntityName].
+	              /// </summary>
+	              /// <Date>[CreationDate]</Date>
+	              /// <Author>[Author]</Author>
+	              public class [DACName] : DataAccessComponent
+	              {
+              [Methods]
+	              }
+              }]]>
+      </Body>
+    </Key>
+    <Key name="Method">
+      <Body>
+        <![CDATA[/// <summary>
+		      /// [MethodName]
+		      /// </summary>
+          [SummaryParams]
+		      /// <returns>[RetType]</returns>
+		      /// <Date>[CreationDate]</Date>
+		      /// <Author>[Author]</Author>
+		      public static [RetType] [MethodName]([ParamArgs])
+		      {
+           
+			      [Return]
+           
+		      }
+        ]]>
+      </Body>
+    </Key>
+  </Template>
+  <Template name="BCTemplate">
+    <Key name="Name">
+      <Body><![CDATA[[EntityName]BC]]></Body>
+    </Key>
+    <Key name="MethodParameterName">
+      <Body><![CDATA[p[ParameterName]]]></Body>
+    </Key>
+    <Key name="SimpleValueParameter">
+      <Body><![CDATA[[Direction] [TypeName] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="BEParameter">
+      <Body><![CDATA[[ParameterName] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="SBEParameter">
+      <Body><![CDATA[[ParameterName] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="PaginationParameters">
+      <Body><![CDATA[int pPageNum, int pPageSize]]></Body>
+    </Key>
+    <Key name="ParameterSummary">
+      <Body><![CDATA[///<param name="[MethodParameterName]">[ParameterName]</param>]]></Body>
+    </Key>
+    <Key name="DACDeclaration">
+      <Body>
+        <![CDATA[[DACEntityName] [DACDereference]
+			]]>
+      </Body>
+    </Key>
+    <Key name="DACInitialization">
+      <Body>
+        <![CDATA[w[DACEntityName] = new [DACEntityName]();
+				]]>
+      </Body>
+    </Key>
+    <Key name="Validations">
+      <Body>
+        <![CDATA[[EntityValidations]
+					[ChildsIteration]
+				]]>
+      </Body>
+    </Key>
+    <Key name="ChildsIteration">
+      <Body>
+        <![CDATA[foreach([ChildName] w[ChildName] in [ParentName].[ChildCollectionName])
+					{
+						[Validations]
+					}
+					]]>
+      </Body>
+    </Key>
+    <Key name="LenghtValidation">
+      <Body>
+        <![CDATA[if ([ValidatedData].Lenght > [Lenght])
+					throw new FunctionalException ("");
+				]]>
+      </Body>
+    </Key>
+    <Key name="NullValueValidation">
+      <Body>
+        <![CDATA[if (![ValidatedData].HasValue)
+					throw new FunctionalException ("");
+				]]>
+      </Body>
+    </Key>
+    <Key name="NullStringValidation">
+      <Body>
+        <![CDATA[if ([ValidatedData] != null)
+					throw new FunctionalException ("");
+				]]>
+      </Body>
+    </Key>
+    <Key name="DACCall">
+      <Body><![CDATA[[DACEntityName].[MethodName]([MethodCallParameters]);]]></Body>
+    </Key>
+    <Key name="MethodCallParameterName">
+      <Body><![CDATA[[Direction] [MethodParameterName]]]></Body>
+    </Key>
+    <Key name="PaginationMethodCallParameters">
+      <Body><![CDATA[pPageNum, pPageSize]]></Body>
+    </Key>
+    <Key name="ReturnVoid">
+      <Body><![CDATA[[DACCall]]]></Body>
+    </Key>
+    <Key name="ReturnDataSet">
+      <Body>
+        <![CDATA[
+				return [DACCall] ]]>
+      </Body>
+    </Key>
+    <Key name="ReturnPaginatedDataSet">
+      <Body>
+        <![CDATA[
+				return [DACCall]]]>
+      </Body>
+    </Key>
+    <Key name="DACDereference">
+      <Body>
+        <![CDATA[w[DACEntityName] = null;
+				]]>
+      </Body>
+    </Key>
+    <Key name="Class">
+      <Body>
+        <![CDATA[using System;
+using System.Data;
+using System.Data.Common;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using Fwk.Bases;
+using [NamespaceDAC];
+using [NamespaceDEBE];
+
+
+namespace [NamespaceBC]
+{
+	/// <summary>
+	/// Data access component para [EntityName].
+	/// </summary>
+	/// <Date>[CreationDate]</Date>
+	/// <Author>[Author]</Author>
+	public class [BCName] : Fwk.Bases.BusinessComponent
+	{
+[Methods]
+	}
+}]]>
+      </Body>
+    </Key>
+    <Key name="Method">
+      <Body>
+        <![CDATA[		/// <summary>
+		/// [MethodName]
+		/// </summary>
+    [SummaryParams]
+		/// <returns>[RetType]</returns>
+		/// <Date>[CreationDate]</Date>
+		/// <Author>[Author]</Author>
+		 public static [RetType] [MethodName]([ParamArgs])
+		{
+     try 
+     {
+			[Validations]
+			[Return]
+     }
+      catch (Exception ex)
+      {
+        throw ex;
+      }
+		}
+]]>
+      </Body>
+    </Key>
+  </Template>
+  <Template name="NamespaceTemplate">
+    <Key name="BE">
+      <Body><![CDATA[[CompanyName].[ApplicationName].[ModuleName].BackEnd.BusinessEntities]]></Body>
+    </Key>
+    <Key name="TDG">
+      <Body><![CDATA[[CompanyName].[ApplicationName].[ModuleName].BackEnd.DataAccessComponents]]></Body>
+    </Key>
+    <Key name="DAC">
+      <Body><![CDATA[[CompanyName].[ApplicationName].[ModuleName].BackEnd.DataAccessComponents]]></Body>
+    </Key>
+    <Key name="BC">
+      <Body><![CDATA[[CompanyName].[ApplicationName].[ModuleName].BackEnd.BusinessComponents]]></Body>
+    </Key>
+    <Key name="ISVC">
+      <Body><![CDATA[[CompanyName].[ApplicationName].[ModuleName].InterfaceServices.[ServiceName]]]></Body>
+    </Key>
+    <Key name="SVC">
+      <Body><![CDATA[[CompanyName].[ApplicationName].[ModuleName].BusinessService]]></Body>
+    </Key>
+  </Template>
+  <Template name="CodeGenerator">
+    <Key name="Signature">
+      <![CDATA[
+        //------------------------------------------------------------------------------
+        // <auto-generated>
+          //     This code was generated by a Code Generator.
+          //     Runtime Version:1.0
+          //
+          //     Changes to this file may cause incorrect behavior and will be lost if
+          //     the code is regenerated.
+          //
+        //</auto-generated>
+        //------------------------------------------------------------------------------
+        ]]>
+    </Key>
+  </Template>
+  <Template name="ServiceTemplate">
+    <Key name="ResponseClass">
+      <![CDATA[
+			[Serializable]
+            public class [ServiceName]Response : Response<[BussinessData]>
+            {
+            }
+        
+        ]]>
+    </Key>
+    <Key name="RequestClass">
+      <![CDATA[ 
+			[Serializable]
+            public class [ServiceName]Request : Request<[BussinessData]>
+            {
+			  public [ServiceName]Request()
+				{
+				  this.ServiceName = "[ServiceName]Serivice";
+				}
+            }
+        ]]>
+    </Key>
+    <Key name="REQClass">
+      <![CDATA[
+         using System;
+        using System.Collections.Generic;
+        using Fwk.Bases;
+        using System.Xml.Serialization;
+
+         namespace [NamespaceISVC].req
+        {
+            [RequestClass]
+        
+            #region [BussinesData] 
+            
+            [EntitiesClass]
+            
+            #endregion
+         }
+        ]]>
+    </Key>
+    <Key name="RESClass">
+      <![CDATA[
+        using System;
+        using System.Collections.Generic;
+        using Fwk.Bases;
+        using System.Xml.Serialization;
+
+         namespace [NamespaceISVC].res
+        {
+            [ResponseClass]
+            
+            #region [BussinesData]            
+            
+            [EntitiesClass]
+            
+            #endregion
+         }
+         
+        ]]>
+    </Key>
+    <Key name="ServiceClass">
+      <![CDATA[
+        using System;
+        using System.Data;
+        using Fwk.Bases;
+        using [NamespaceDEBE];
+        using [NamespaceBC];
+        using [NamespaceISVC].req;
+        using [NamespaceISVC].res;
+
+
+        namespace [NamespaceSVC]
+        {
+
+         public class [ServiceName]Service : BusinessService<[ServiceName]Request, [ServiceName]Response>
+         {
+		        public override [ServiceName]Response Execute([ServiceName]Request pServiceRequest)
+              
+		        {
+              [ServiceName]Response wRes = new [ServiceName]Response();
+              //Implement your code here
+              return wRes;
+		        }
+          }
+        }
+        ]]>
+    </Key>
+    <Key name="Insert"><![CDATA[Crear[EntityName]]]></Key>
+    <Key name="Update"><![CDATA[Actualizar[EntityName]]]></Key>
+    <Key name="Delette"><![CDATA[Eliminar[EntityName]]]></Key>
+    <Key name="GetByParam"><![CDATA[Obtener[EntityName]PorParametros]]></Key>
+    <Key name="GetAll"><![CDATA[Buscar[EntityName]Todos]]> </Key>
+  </Template>
+  <Template name="XSDTemplate">
+    <Key name="intAttribute"><![CDATA[<xs:element name="Attribute" type="xs:int" />]]></Key>
+    
+    <Key name="stringAttribute"><![CDATA[<xs:element name="Attribute" type="xs:string" minOccurs="0" />]]></Key>
+    <Key name="dateTimeAttribute"><![CDATA[<xs:element name="Attribute" type="xs:dateTime" minOccurs="0" />]]></Key>
+    <Key name="decimalAttribute"><![CDATA[<xs:element name="Attribute" type="xs:decimal" />]]></Key>
+    <Key name="doubleAttribute"><![CDATA[<xs:element name="Attribute" type="xs:double" />]]></Key>
+    <Key name="longAttribute"><![CDATA[<xs:element name="Attribute" type="xs:double" />]]></Key>
+    <Key name="shortAttribute"><![CDATA[<xs:element name="Attribute" type="xs:short" />]]></Key>
+    <Key name="booleanAttribute"><![CDATA[<xs:element name="Attribute" type="xs:boolean" />]]></Key>
+    <Key name="floatAttribute"><![CDATA[<xs:element name="Attribute" type="xs:float" />]]></Key>
+    <Key name="base64BinaryAttribute"><![CDATA[<xs:element name="Attribute" type="xs:base64Binary" />]]></Key>
+    <Key name="unsignedByteAttribute"><![CDATA[<xs:element name="Attribute" type="xs:unsignedByte" />]]></Key>
+    
+    <Key name="schema">
+
+      <![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="[ServiceName]" elementFormDefault="unqualified" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="[BussinessDataCollectionNamePattern]">
+     <xs:complexType>
+      <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:element maxOccurs="unbounded" minOccurs="0" nillable="true" name="[BussinessDataNamePattern]">
+          <xs:complexType>
+            <xs:sequence>
+              [sequence]
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></Key>
+    
+  </Template>
+</TemplateDocument>
