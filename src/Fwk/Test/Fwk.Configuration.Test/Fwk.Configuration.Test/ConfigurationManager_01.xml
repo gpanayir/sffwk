@@ -2,7 +2,7 @@
 <Groups>
 	<Group name="Config">
 		<Key name="ApplicationServerWrapper" encrypted="False">
-			<Value><![CDATA[Prominente.Libraries.Wrappers.ApplicationServerWrappers.RemotingApplicationServerWrapper, Prominente.Libraries.Wrappers.ApplicationServerWrappers]]></Value>
+			<Value><![CDATA[nente.Libraries.Wrappers.ApplicationServerWrappers.RemotingApplicationServerWrapper, nente.Libraries.Wrappers.ApplicationServerWrappers]]></Value>
 		</Key>
 		<Key name="CnnString" encrypted="False">
 			<Value><![CDATA[Instalado.]]></Value>
@@ -402,7 +402,7 @@ d		<Key name="DefaultDiasFechaDesdeHistorial" encrypted="False">
 	</Group>
 	<Group name="MailConfiguration">
 		<Key name="ServerMailName" encrypted="False">
-			<Value><![CDATA[promimail1]]></Value>
+			<Value><![CDATA[mail1]]></Value>
 		</Key>
 		<Key name="AttachmentFilePathName" encrypted="False">
 			<Value><![CDATA[c:\Temp]]></Value>
@@ -411,10 +411,10 @@ d		<Key name="DefaultDiasFechaDesdeHistorial" encrypted="False">
 			<Value><![CDATA[Mercurio]]></Value>
 		</Key>
 		<Key name="To" encrypted="False">
-			<Value><![CDATA[mayala@prominente.com.ar]]></Value>
+			<Value><![CDATA[mayala@nente.com.ar]]></Value>
 		</Key>
 		<Key name="Cc" encrypted="False">
-			<Value><![CDATA[mayala@prominente.com.ar]]></Value>
+			<Value><![CDATA[mayala@nente.com.ar]]></Value>
 		</Key>
 		<Key name="Bcc" encrypted="False">
 			<Value><![CDATA[ ]]></Value>
@@ -599,7 +599,7 @@ d		<Key name="DefaultDiasFechaDesdeHistorial" encrypted="False">
 	</Group>
 	<Group name="Log_Caidas">
 		<Key name="ConnectionString" encrypted="False">
-			<Value><![CDATA[Server=promidcsf02\sql2005;Database=SCA_Log;User id=sa;Password=instsql2005]]></Value>
+			<Value><![CDATA[Server=dcsf02\sql2005;Database=SCA_Log;User id=sa;Password=instsql2005]]></Value>
 		</Key>
 		<Key name="LOGINTEGRATIONS" encrypted="False">
 			<Value><![CDATA[true]]></Value>

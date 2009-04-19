@@ -284,8 +284,8 @@ namespace Fwk.Bases.Test
             c.IsolationLevel = Fwk.Transaction.IsolationLevel.ReadCommitted;
             c.Name = "pepep";
             c.TransactionalBehaviour = Fwk.Transaction.TransactionalBehaviour.Suppres;
-            c.Request = "Prominente.Infosys.InterfaceServices.BuscarPaisesPorParametros.BuscarPaisesPorParametrosRequest , Prominente.Infosys.InterfaceServices.GestionarPaisesISVC";
-            c.Response = "Prominente.Infosys.InterfaceServices.BuscarPaisesPorParametros.BuscarPaisesPorParametrosResponse , Prominente.Infosys.InterfaceServices.GestionarPaisesISVC";
+            c.Request = "BuscarPaisesPorParametros.BuscarPaisesPorParametrosRequest , GestionarPaisesISVC";
+            c.Response = "BuscarPaisesPorParametros.BuscarPaisesPorParametrosResponse , GestionarPaisesISVC";
 
             list.Add(c);
             c = new ServiceConfiguration();
@@ -295,8 +295,8 @@ namespace Fwk.Bases.Test
             c.IsolationLevel = Fwk.Transaction.IsolationLevel.ReadCommitted;
             c.Name = "ModificarLocalidadService";
             c.TransactionalBehaviour = Fwk.Transaction.TransactionalBehaviour.Suppres;
-            c.Request = "Prominente.Infosys.InterfaceServices.BuscarPaisesPorParametros.BuscarPaisesPorParametrosRequest , Prominente.Infosys.InterfaceServices.GestionarPaisesISVC";
-            c.Response = "Prominente.Infosys.InterfaceServices.BuscarPaisesPorParametros.BuscarPaisesPorParametrosResponse , Prominente.Infosys.InterfaceServices.GestionarPaisesISVC";
+            c.Request = "BuscarPaisesPorParametros.BuscarPaisesPorParametrosRequest , GestionarPaisesISVC";
+            c.Response = "BuscarPaisesPorParametros.BuscarPaisesPorParametrosResponse , GestionarPaisesISVC";
 
             list.Add(c);
             txtEntidadSimple.Text = c.GetXml();
