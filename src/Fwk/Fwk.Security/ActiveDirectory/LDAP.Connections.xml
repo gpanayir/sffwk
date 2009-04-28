@@ -1,7 +1,0 @@
-﻿<root>
-<LDAP_nt01_movistar>LDAP://Corba362nt01.alcomovistar.com.ar/OU=Movistar,dc=alcomovistar,dc=com,dc=ar</LDAP_nt01_movistar>
-<LDAP_mx02_movistar>LDAP://Corba362mx02.alcomovistar.com.ar/OU=Movistar,dc=alcomovistar,dc=com,dc=ar</LDAP_mx02_movistar>
-<LDAP_nt01_movistarSab>LDAP://Corba362nt01.alcomovistar.com.ar/OU=Movistar Sabattini,dc=alcomovistar,dc=com,dc=ar</LDAP_nt01_movistarSab>
-<LDAP_mx02_movistarSab>LDAP://Corba362mx02.alcomovistar.com.ar/OU,dc=alcomovistar,dc=com,dc=ar</LDAP_mx02_movistarSab>
-<LDAP_nt13_alco>LDAP://CORRSF71NT13.actionlinecba.org/DC=actionlinecba,DC=org</LDAP_nt13_alco>
-</root>
