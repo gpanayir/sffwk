@@ -11,8 +11,6 @@ pause
 copy Fwk.Bases.dll %SPDIR%\bin\
 copy Fwk.Bases.pdb %SPDIR%\bin\
 
-
-
 copy Fwk.Security.dll %SPDIR%\bin\
 copy Fwk.Security.pdb %SPDIR%\bin\
 
