@@ -34,6 +34,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StartupObject>Fwk.Configuration.Test.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,7 +65,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckConfigurationManager.cs" />
     <Compile Include="frmConfigurationTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +89,8 @@
     </Compile>
     <None Include="App.config" />
     <None Include="Configuration.config" />
+    <None Include="Properties\DataSources\Fwk.Configuration.Common.Group.datasource" />
+    <None Include="Properties\DataSources\Fwk.Configuration.Common.Key.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,10 +126,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigurationManager_01.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ConfigurationManager_O2.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
