@@ -18,18 +18,18 @@ namespace Fwk.Configuration
         /// <returns>True si ya esta configurado o False si no</returns>
         private static bool IsConfigured()
         {
-            bool wResult = false;
+            bool wIs = false;
 
             foreach (WellKnownClientTypeEntry wEntry in RemotingConfiguration.GetRegisteredWellKnownClientTypes())
             {
                 if (wEntry.TypeName == typeof(ConfigurationHolder).FullName)
                 {
-                    wResult = true;
+                    wIs = true;
                     break;
                 }
             }
 
-            return wResult;
+            return wIs;
         }
 
         /// <summary>
@@ -85,16 +85,16 @@ namespace Fwk.Configuration
             ConfigurationHolder wConfigHolder = CreateConfigurationHolder();
             string wBaseConfigFile = GetBaseConfigFileName();
 
-            string wResult = wConfigHolder.GetProperty(wBaseConfigFile, pGroupName, pPropertyName);
+            string strProperty = wConfigHolder.GetProperty(wBaseConfigFile, pGroupName, pPropertyName);
 
-            if (wResult.Length == 0)
+            if (strProperty.Length == 0)
             {
                 /// no encontró nada, lanza excepcion
                 throw new Exception ("Ocurrió una excepción al buscar una propiedad. [" + pPropertyName + "] " +
                     "La misma NO está configurada en ningún repositorio.");
             }
 
-            return wResult;
+            return strProperty;
         }
 
 
@@ -117,34 +117,34 @@ namespace Fwk.Configuration
         /// <param name="pFileName">Nombre del archivo</param>
         /// <param name="pClientVersion">Version del archivo del lado del cliente</param>
         /// <returns>FileStatus <see cref="FileStatus"/></returns>
-        public static FileStatus GetFileVersionStatus(string pFileName, string pClientVersion)
+        public static Helper.FileStatus GetFileVersionStatus(string pFileName, string pClientVersion)
         {
             ConfigurationHolder wConfigHolder = CreateConfigurationHolder();
-            FileStatus wResult = wConfigHolder.GetFileVersionStatus(pFileName, pClientVersion);
-            return wResult;
+            return wConfigHolder.GetFileVersionStatus(pFileName, pClientVersion);
+            
         }
 
         /// <summary>
         /// Obtiene un grupo determinado en el archivo de configuracion
         /// </summary>
         /// <param name="pGroupName"></param>
-        /// <returns>Hashtable con los grupos contenidos en el archivo de configuracion</returns>
-        public static Hashtable GetGroup(string pGroupName)
+        /// <returns>Group con los grupos contenidos en el archivo de configuracion</returns>
+        public static Group GetGroup(string pGroupName)
         {
             ConfigurationHolder wConfigHolder = CreateConfigurationHolder();
             string wBaseConfigFile = GetBaseConfigFileName();
 
-            Hashtable wResult = wConfigHolder.GetGroup(wBaseConfigFile, pGroupName);
+            Group wGroup = wConfigHolder.GetGroup(wBaseConfigFile, pGroupName);
 
-            if (wResult == null)
+            if (wGroup == null)
             {
-                throw new Exception("Ocurrió un error cuando se trataba de obtener " +
-                    "el grupo '" + pGroupName + "'. El grupo no se encuentra " +
+                throw new Exception(
+                    "El grupo '" + pGroupName + "'no se encuentra " +
                     "configurado en ninguno de los repositorios. " +
-                    "Grupo: '" + pGroupName + "'.");
+                    "Archivo: '" + wBaseConfigFile + "'.");
             }
 
-            return wResult;
+            return wGroup;
         }
     }
 }

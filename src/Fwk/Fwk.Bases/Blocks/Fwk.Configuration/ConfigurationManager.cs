@@ -129,9 +129,9 @@ namespace Fwk.Configuration
         /// Obtiene un grupo determinado en el archivo de configuracion
         /// </summary>
         /// <param name="pGroupName"></param>
-        /// <returns>Hashtable con los grupos contenidos en el archivo de configuracion</returns>
+        /// <returns>Group</returns>
         /// <Author>Marcelo Oviedo</Author>
-        public static Hashtable GetGroup(string pConfigProvider, string pGroupName)
+        public static Group GetGroup(string pConfigProvider, string pGroupName)
         {
             if (IsLocal())
             {
@@ -147,9 +147,9 @@ namespace Fwk.Configuration
         /// Obtiene un grupo determinado en el archivo de configuracion
         /// </summary>
         /// <param name="pGroupName"></param>
-        /// <returns>Hashtable con los grupos contenidos en el archivo de configuracion</returns>
+        /// <returns>Group </returns>
         /// <Author>Marcelo Oviedo</Author>
-        public static Hashtable GetGroup(string pGroupName)
+        public static Group GetGroup(string pGroupName)
         {
             if (IsLocal())
             {
@@ -171,7 +171,7 @@ namespace Fwk.Configuration
         /// <param name="pClientVersion">Version del archivo del lado del cliente</param>
         /// <returns>FileStatus <see cref="FileStatus"/></returns>
         /// <Author>Marcelo Oviedo</Author>
-        public static FileStatus GetFileVersionStatus(string pFileName, string pClientVersion)
+        public static Helper.FileStatus GetFileVersionStatus(string pFileName, string pClientVersion)
         {
             if (IsLocal())
             {

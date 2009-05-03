@@ -31,12 +31,7 @@ namespace Fwk.Bases
         }
        
 	}
-    //[XmlRoot("ServiceConfigurationCollection"), SerializableAttribute]
-    //public class ServiceConfigurationCollection2 : SortedDictionary<string, ServiceConfiguration>
-    //{
-        
-        
-    //}
+    
 
 	/// <summary>
 	/// Clase que contiene la configuración de un servicio de negocio.
@@ -204,7 +199,7 @@ namespace Fwk.Bases
         /// <returns>ServiceConfiguration</returns>
         public static ServiceConfiguration GetServiceConfigurationFromXml(String pXml)
         {
-            return (ServiceConfiguration)Entity.GetObjectFromXml(typeof(ServiceConfiguration), pXml);
+            return ServiceConfiguration.GetFromXml<ServiceConfiguration>(pXml);
         }
         /// <summary>
         /// Realiza un clon del objeto

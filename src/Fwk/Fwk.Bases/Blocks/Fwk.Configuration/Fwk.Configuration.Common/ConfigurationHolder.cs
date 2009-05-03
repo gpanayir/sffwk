@@ -8,6 +8,7 @@ using System.Collections;
 using System.Configuration;
 using Fwk.Bases.Properties;
 using Fwk.HelperFunctions;
+using System.Linq;
 
 namespace Fwk.Configuration.Common
 {
@@ -55,39 +56,23 @@ namespace Fwk.Configuration.Common
 		/// </summary>
 		/// <param name="pBaseConfigFileName">Nombre del archivo</param>
 		/// <param name="pGroupName">Nombre del grupo</param>
-		/// <returns>Hashtable</returns>
-		public Hashtable GetGroup (string pBaseConfigFileName, string pGroupName)
+        /// <returns>Group</returns>
+        public Group GetGroup(string pBaseConfigFileName, string pGroupName)
 		{
-			Hashtable ht = null;
-			string valueToRet;
+			
 			ConfigurationFile wConfigurationFile = this.GetConfig(pBaseConfigFileName);
 
-			if (!wConfigurationFile.ConfigResult.BaseConfigFile)
+			if (!wConfigurationFile.Groups.BaseConfigFile)
 			{
 				throw new Exception ("El archivo solicitado no es un archivo de configuración válido.");
 			}
 
-			XmlDocument wDoc = new XmlDocument();
-			wDoc.LoadXml(wConfigurationFile.DecryptedFileContent);
-
-			XmlElement wGroupElement = this.GetGroupElement(wDoc, pGroupName);
-			
-			if(wGroupElement != null)
-			{
-				// heurística de la capacidad de las tablas de hash
-				ht = new Hashtable(Convert.ToInt32(wGroupElement.ChildNodes.Count * 1.75));
-				foreach(XmlElement elem in wGroupElement.ChildNodes)
-				{
-					// toma el valor devuelto
-					valueToRet = elem.InnerText;
-
-					// agrego el valor
-					ht.Add(elem.GetAttribute("name"), valueToRet);
-				}
-			}
-
-			return ht;
-
+            Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
+            if (wGroup != null)
+            {
+                throw new Exception(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", pBaseConfigFileName }));
+            }
+            return wGroup;
 		}
 
 		/// <summary>
@@ -97,52 +82,33 @@ namespace Fwk.Configuration.Common
 		/// <param name="pGroupName">Nombre de grupo</param>
 		/// <param name="pPropertyName">Nombre de propiedad</param>
 		/// <returns>string</returns>
-		public string GetProperty (string pBaseConfigFileName, string pGroupName, string pPropertyName)
-		{
-			ConfigurationFile wConfigurationFile = this.GetConfig(pBaseConfigFileName);
+        public string GetProperty(string pBaseConfigFileName, string pGroupName, string pPropertyName)
+        {
+            ConfigurationFile wConfigurationFile = this.GetConfig(pBaseConfigFileName);
 
-			if (!wConfigurationFile.ConfigResult.BaseConfigFile)
-			{
-				throw new Exception ("El archivo solicitado no es un archivo de configuración válido.");
-			}
+            if (!wConfigurationFile.Groups.BaseConfigFile)
+            {
+                throw new Exception("El archivo solicitado no es un archivo de configuración válido.");
+            }
+
+            Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
+            if (wGroup != null)
+            {
+                throw new Exception(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", pBaseConfigFileName }));
+            }
+            Key wKey = wGroup.Keys.GetFirstByName(pPropertyName);
+            if (wGroup != null)
+            {
+                throw new Exception(string.Concat(new String[] { "No se encuentra la propiedad ", pPropertyName, " en el grupo de propiedades: ", pGroupName, " del archivo de configuración: ", pBaseConfigFileName }));
+            }
 
 
-			XmlDocument wDoc = new XmlDocument();
-			
-			
-			wDoc.LoadXml(wConfigurationFile.DecryptedFileContent);
 
+           
 
-			string wResult = String.Empty;
+            return wKey.Value.Text;
 
-			/// verifica que haya un nodo padre para todos
-			/// los grupos
-			if(wDoc.DocumentElement != null)
-			{
-				/// prepara la consulta XPath
-				StringBuilder sbXPath =  new StringBuilder("Group[@name='");
-				sbXPath.Append(pGroupName);
-				sbXPath.Append("']/Key[@name='");
-				sbXPath.Append(pPropertyName);
-				sbXPath.Append("']");
-
-				/// realiza la consulta
-				XmlElement wNode = (XmlElement) wDoc.DocumentElement.SelectSingleNode(sbXPath.ToString());
-
-				if (wNode != null)			
-					wResult = wNode.InnerText;
-
-				wNode = null;
-				sbXPath = null;
-
-			}
-
-			wConfigurationFile = null;
-			wDoc = null;
-
-			return wResult;
-
-		}
+        }
 
 
 		/// <summary>
@@ -169,11 +135,11 @@ namespace Fwk.Configuration.Common
 				wConfigurationFile = new ConfigurationFile();
 				wIsNewFile = true;
 			}
-            
-			if (wConfigurationFile.CheckFileStatus() != FileStatus.Ok)
+
+            if (wConfigurationFile.CheckFileStatus() != Helper.FileStatus.Ok)
 			{
 				this.SetConfigurationFile(wConfigurationFile, pFileName);
-				if (wIsNewFile && wConfigurationFile.ConfigResult.Cacheable) 
+				if (wIsNewFile && wConfigurationFile.Groups.Cacheable) 
 				{
 					_ConfigData.AddConfigurationFile(wConfigurationFile);
 				}
@@ -192,15 +158,15 @@ namespace Fwk.Configuration.Common
 		/// <param name="pFileName">Nombre de archivo</param>
 		/// <param name="pClientVersion">Version del archivo en el cliente</param>
 		/// <returns>FileStatus</returns>
-		public FileStatus GetFileVersionStatus (string pFileName, string pClientVersion)
+        public Helper.FileStatus GetFileVersionStatus(string pFileName, string pClientVersion)
 		{
             ConfigurationWebService.ConfigurationService wService = new ConfigurationWebService.ConfigurationService();
-			FileStatus wResult = (FileStatus) wService.GetFileVersionStatus(pFileName, pClientVersion);
+            Helper.FileStatus wStatus = (Helper.FileStatus)wService.GetFileVersionStatus(pFileName, pClientVersion);
 			
 			wService.Dispose();
 			wService = null;
 
-			return wResult;
+            return wStatus;
 		}
 
 
@@ -234,9 +200,11 @@ namespace Fwk.Configuration.Common
 		/// <param name="pFileName">Nombre de archivo.</param>
 		public void SetConfigurationFile (ConfigurationFile pConfigurationFile, string pFileName)
 		{
-			ConfigurationResponse.Result wResult = (ConfigurationResponse.Result) SerializationFunctions.DeserializeFromXml(typeof(ConfigurationResponse.Result), InvokeService(pFileName));
-			pConfigurationFile.ConfigResult = wResult;
-			wResult = null;
+            //ConfigurationResponse.Result wResult = (ConfigurationResponse.Result) 
+            //    SerializationFunctions.DeserializeFromXml(typeof(ConfigurationResponse.Result), InvokeService(pFileName));
+            pConfigurationFile.Groups = Groups.GetFromXml<Groups>(InvokeService(pFileName));
+            //pConfigurationFile.Groups = Groups.GetFromXml(InvokeService(pFileName));
+			
 		}
 		
 		/// <summary>

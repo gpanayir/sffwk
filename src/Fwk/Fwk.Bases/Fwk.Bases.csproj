@@ -82,6 +82,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
@@ -89,6 +92,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
@@ -107,6 +113,7 @@
     <Compile Include="Blocks\Fwk.BusinessFacades\ServiceCalls.cs" />
     <Compile Include="Blocks\Fwk.BusinessFacades\SimpleFacade.cs" />
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigFileRegistry.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationHolder.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationRepository.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationResponse.cs">

@@ -64,7 +64,7 @@ namespace Fwk.ServiceManagement
                 ex.Assembly = "Fwk.ServiceManagement.dll";
                 throw ex;
             }
-            //Alberto
+        
             wResult = _Services[pServiceName];
 
             return wResult;

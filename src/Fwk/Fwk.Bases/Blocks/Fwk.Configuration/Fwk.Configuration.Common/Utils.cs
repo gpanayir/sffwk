@@ -13,38 +13,28 @@ using Fwk.HelperFunctions;
 namespace Fwk.Configuration.Common
 {
 
-	[FlagsAttribute]
-	public enum FileVersionStatus
-	{
-		Ok = 1,
-		OptionalUpdate = 2,
-		RequiredUpdate = 4
-	}
+	
 
 	/// <summary>
 	/// Es una clase de ayuda que abstrae al sistema de configuracion de complejidades tecnicas reutilizables.
 	/// </summary>
     /// <Author>Marcelo Oviedo</Author>
-    public class Utils
+    public class Helper
 	{
-
-
-        
-
-     
-
-        #region d
-
-        /// <summary>
-        /// Obtiene un String con el contenido del archivo xml de configuracion. 
-        /// </summary>
-        /// <param name="pFileName">Nombre del archivo</param>
-        /// <param name="pPath">Ruta donde se encuentra el archivo</param>
-        /// <returns>String con el contenido del archivo xml de configuracion  </returns>
-        /// <Author>Marcelo Oviedo</Author>
-        public static String GetConfig(string pFileName,String pPath)
+        [FlagsAttribute]
+        public enum FileVersionStatus
         {
-            return GetConfig( pFileName, pPath,null);
+            Ok = 1,
+            OptionalUpdate = 2,
+            RequiredUpdate = 4
+        }
+
+        [FlagsAttribute]
+        public enum FileStatus
+        {
+            Ok = 1,
+            Expired = 2,
+            Inconsistent = 4
         }
 
         /// <summary>
@@ -63,73 +53,43 @@ namespace Fwk.Configuration.Common
         /// servicio web Configuration Service</param>
         /// <returns>String con el contenido del archivo xml de configuracion  </returns>
         /// <Author>Marcelo Oviedo</Author>
-	    public static String GetConfig(string pFileName,String pPath,XmlElement pCatalogEntry)
+        public static Groups GetConfig(string pFullFileName ,ConfigFileRegistry pConfigFileRegistry)
         {
 
-            //XmlElement wCatalogEntry = this.GetCatalogEntry(pFileName);
+            Groups wGroup;
+            string wFileContent = Fwk.HelperFunctions.FileFunctions.OpenTextFile(pFullFileName);
 
-            //if (!Convert.ToBoolean(GetChildNodeText(wCatalogEntry, "Available")))
-            //{
-            //    throw new Exception("El archivo de configuración solicitado no está disponible.");
-            //}
-
-            System.IO.StreamReader wReader = new System.IO.StreamReader(pPath + pFileName);
-            string wFileContent = wReader.ReadToEnd();
-            wReader.Close();
-
-
-            if (pCatalogEntry != null && Convert.ToBoolean(GetChildNodeText(pCatalogEntry, "Encrypt")))
+            if (pConfigFileRegistry != null && pConfigFileRegistry.Encrypt)
             {
                 wFileContent = Fwk.HelperFunctions.CryptographyFunctions.Encrypt(wFileContent);
+                wGroup = new Groups();
+            }
+            else//Si no esta encriptado dezerializa el contenido
+            {
+                wGroup = Groups.GetFromXml<Groups>(wFileContent);
+               
             }
 
-            ConfigurationResponse.Result wResult = new ConfigurationResponse.Result();
-            wResult.FileName = pFileName;
-            wResult.FileContent = wFileContent;
-            if(pCatalogEntry !=null)
+            wGroup.FileName = pFullFileName;
+            wGroup.FileContent = wFileContent;
+            if (pConfigFileRegistry != null)
             {
-                wResult.TTL = Convert.ToInt32(GetChildNodeText(pCatalogEntry, "TTL"));
-                wResult.Encrypted = Convert.ToBoolean(GetChildNodeText(pCatalogEntry, "Encrypt"));
-                wResult.ForceUpdate = Convert.ToBoolean(GetChildNodeText(pCatalogEntry, "ForceUpdate"));
-                wResult.CurrentVersion = GetChildNodeText(pCatalogEntry, "CurrentVersion");
-                wResult.BaseConfigFile = Convert.ToBoolean(GetChildNodeText(pCatalogEntry, "BaseConfigFile"));
-                wResult.Cacheable = Convert.ToBoolean(GetChildNodeText(pCatalogEntry, "Cacheable"));
+                wGroup.TTL = pConfigFileRegistry.TTL;
+                wGroup.Encrypted = pConfigFileRegistry.Encrypt;
+                wGroup.ForceUpdate = pConfigFileRegistry.ForceUpdate;
+                wGroup.CurrentVersion = pConfigFileRegistry.CurrentVersion;
+                wGroup.BaseConfigFile = pConfigFileRegistry.BaseConfigFile;
+                wGroup.Cacheable = pConfigFileRegistry.Cacheable;
             }
             else
             {
-                wResult.BaseConfigFile = true;
-                wResult.Cacheable = true;
+                wGroup.BaseConfigFile = true;
+                wGroup.Cacheable = true;
             }
-            string wXml = SerializationFunctions.SerializeToXml(wResult);
 
-            wReader = null;
-            wResult = null;
-            pCatalogEntry = null;
-
-            return wXml;
+            return wGroup;
         }
 
-        //private static XmlElement GetCatalogEntry(string pFileName)
-        //{
-        //    XmlDocument wDoc = new XmlDocument();
-        //    wDoc.Load(Server.MapPath("~/ConfigurationFiles/Catalog.xml"));
-
-        //    StringBuilder sbXPath = new StringBuilder("CatalogEntry[@name='");
-        //    sbXPath.Append(pFileName);
-        //    sbXPath.Append("']");
-        //    XmlElement wNode = (XmlElement)wDoc.DocumentElement.SelectSingleNode(sbXPath.ToString());
-
-        //    wDoc = null;
-        //    sbXPath = null;
-
-        //    return wNode;
-        //}
-
-        public static string GetChildNodeText(XmlElement pNode, string pChildName)
-        {
-            string wResult = pNode.SelectSingleNode(pChildName).InnerText;
-            return wResult;
-        }    
-        #endregion
+   
     }
 }
