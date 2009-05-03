@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CatalogEntries>
+<ConfigFileRegistrys>
 	<!--  
 	name: nombre del archivo 
 	CurrentVersion: versión actual del archivo
@@ -10,7 +10,7 @@
 	BaseConfigFile: indica si el archivo tiene estructura grupo-propiedad
 	Cacheable: indica si el archivo puede ser almacenado en memoria por el ConfigurationHolder	
 	-->
-	<CatalogEntry name="ConfigurationSample.xml">
+  <ConfigFileRegistry name="ConfigurationSample.xml">
 		<CurrentVersion>1.0</CurrentVersion>
 		<Available>true</Available>
 		<ForceUpdate>true</ForceUpdate>
@@ -18,8 +18,8 @@
 		<Encrypt>false</Encrypt>
 		<BaseConfigFile>true</BaseConfigFile>
 		<Cacheable>true</Cacheable>
-	</CatalogEntry>
-		<CatalogEntry name="ConfigurationManagerRemotingServer.xml">
+	</ConfigFileRegistry>
+   <ConfigFileRegistry name="ConfigurationManagerRemotingServer.xml">
 		<CurrentVersion>1.0</CurrentVersion>
 		<Available>true</Available>
 		<ForceUpdate>true</ForceUpdate>
@@ -27,5 +27,6 @@
 		<Encrypt>false</Encrypt>
 		<BaseConfigFile>true</BaseConfigFile>
 		<Cacheable>true</Cacheable>
-	</CatalogEntry>
-</CatalogEntries>
+	</ConfigFileRegistry>
+
+</ConfigFileRegistrys>
