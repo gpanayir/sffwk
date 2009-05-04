@@ -56,7 +56,7 @@ namespace Fwk.Configuration.Test
             wGroup.Name = "G1";
             wKey = new Fwk.Configuration.Common.Key();
             wKey.Name = "K1";
-            wKey.Value.Text = "aaaaaaaaaaaaaaaaa";
+            wKey.Value.Text= "aaaaaaaaaaaaaaaaa";
 
             wGroup.Keys.Add(wKey);
 
@@ -102,8 +102,8 @@ namespace Fwk.Configuration.Test
         {
             string xml = HelperFunctions.FileFunctions.OpenTextFile(Path.Combine( Application.StartupPath , txtConfigFileName.Text));
 
-            //Groups wGroups = Fwk.Configuration.Common.Groups.GetFromXml<Groups>(xml);
-            Groups wGroups = Fwk.Configuration.Common.Groups.GetFromXml(xml);
+            Groups wGroups = Fwk.Configuration.Common.Groups.GetFromXml<Groups>(xml);
+          
             xmlConfitFile.ForeColor = Color.Red;
 
             xmlConfitFile.Text = wGroups.GetXml();
