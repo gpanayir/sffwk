@@ -12,28 +12,6 @@ namespace Fwk.Xml
     /// </summary>
     /// <Author>moviedo</Author>
     /// <Date>28-12-2005</Date>
-    //public class CData
-    //{
-    //    /// <summary>
-    //    /// Crea y agrega una seccion CDATA en un nodo.
-    //    /// </summary>
-    //    /// <param name="pnode">El nodo al que se le agregara la seccion CDATA.</param>
-    //    public static void CDATASectionCreateAndAdd(XmlNode pnode)
-    //    {
-    //        CDATASectionCreateAndAdd(pnode, "");
-    //    }
-
-    //    /// <summary>
-    //    /// Crea y agrega una seccion CDATA en un nodo.
-    //    /// </summary>
-    //    /// <param name="pnode">El nodo al que se le agregara la seccion CDATA.</param>
-    //    /// <param name="pCDATASectionValue">El contenido de la seccion CDATA.</param>
-    //    public static void CDATASectionCreateAndAdd(XmlNode pnode, string pCDATASectionValue)
-    //    {
-    //        XmlCDataSection wNewCDataSection = pnode.OwnerDocument.CreateCDataSection(pCDATASectionValue);
-    //        pnode.AppendChild(wNewCDataSection);
-    //    }
-    //}
     [Serializable]
     public class CData : IXmlSerializable
     {
@@ -70,7 +48,7 @@ namespace Fwk.Xml
         {
 
             this.text = reader.ReadString();
-
+            reader.Read();
         }
 
         void IXmlSerializable.WriteXml(XmlWriter writer)

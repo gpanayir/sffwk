@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using System.Linq;
 using System.Collections.ObjectModel;
 using Fwk.Bases;
+using System.Xml;
 namespace Fwk.Configuration.Common
 {
 
@@ -163,7 +164,6 @@ namespace Fwk.Configuration.Common
     
 
     [XmlRoot("Groups"), SerializableAttribute]
-    //public class Groups : KeyedCollection<string, Group> 
     public class Groups : Entities<Group>
     {
         #region properties
@@ -231,24 +231,7 @@ namespace Fwk.Configuration.Common
         {
             return this.First(p => p.Name == pName);
         }
-        //public string GetXml()
-        //{
-           
-        //   string str =  HelperFunctions.SerializationFunctions.SerializeToXml(this);
-        //    return str;
-        //}
-
-        //public static Groups GetFromXml(string xml)
-        //{
-        //    Groups wGroups = (Groups)HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(Groups), xml);
-
-        //    return wGroups;
-        //}
-
-        //protected override string GetKeyForItem(Group pItem)
-        //{
-        //       return pItem.Name;
-        //}
+       
     }
     
     [XmlInclude(typeof(Group)), Serializable]
@@ -303,6 +286,23 @@ namespace Fwk.Configuration.Common
             set { _Encrypted = value; }
         }
 
+        //[XmlIgnore]
+        //public string _Value;
+        //public XmlCDataSection Value
+        //{
+
+        //    get
+        //    {
+        //        XmlDataDocument doc = new XmlDataDocument();
+        //        XmlCDataSection cd = doc.CreateCDataSection(this._Value);
+        //        return cd;
+        //    }
+
+        //    set
+        //    {
+        //        this._Value = value.Value;
+        //    }
+        //}
 
 
 

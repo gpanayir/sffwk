@@ -170,27 +170,7 @@ namespace Fwk.Configuration.Common
 		}
 
 
-		/// <summary>
-		/// Devuelve un elemento representativo de un grupo.
-		/// </summary>
-		/// <param name="pDocument">Documento xml</param>
-		/// <param name="pGroupName">Nombre del grupo</param>
-		/// <returns>XmlElement</returns>
-		private XmlElement GetGroupElement(XmlDocument pDocument, string pGroupName)
-		{
-			XmlElement retNode;
-
-			if(pDocument.DocumentElement == null)
-				return null;
-
-			StringBuilder sbXPath =  new StringBuilder("Group[@name='");
-			sbXPath.Append(pGroupName);
-			sbXPath.Append("']");
-
-			retNode = (XmlElement) pDocument.DocumentElement.SelectSingleNode(sbXPath.ToString());
-
-			return retNode;
-		}
+     
 
 
 		/// <summary>
@@ -200,10 +180,9 @@ namespace Fwk.Configuration.Common
 		/// <param name="pFileName">Nombre de archivo.</param>
 		public void SetConfigurationFile (ConfigurationFile pConfigurationFile, string pFileName)
 		{
-            //ConfigurationResponse.Result wResult = (ConfigurationResponse.Result) 
-            //    SerializationFunctions.DeserializeFromXml(typeof(ConfigurationResponse.Result), InvokeService(pFileName));
+          
             pConfigurationFile.Groups = Groups.GetFromXml<Groups>(InvokeService(pFileName));
-            //pConfigurationFile.Groups = Groups.GetFromXml(InvokeService(pFileName));
+
 			
 		}
 		
