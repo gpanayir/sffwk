@@ -9,10 +9,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.Bases.Connector</RootNamespace>
     <AssemblyName>Fwk.Bases.Connector</AssemblyName>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>fwk.snk</AssemblyOriginatorKeyFile>
