@@ -94,6 +94,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -125,24 +128,9 @@
     <None Include="AppConfig.old\SecctionsAndGroupsConfig.cs.old" />
     <None Include="AppConfig.old\TreeNodeConfig.cs.old" />
     <None Include="AppConfig.old\WrapperConfig.cs.old" />
-    <Compile Include="Class\CnnString.cs" />
-    <Compile Include="Class\ConfigManagerSettings.cs" />
-    <Compile Include="Class\Group.cs" />
-    <Compile Include="Class\Key.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\TemplateProvider.cs" />
     <Compile Include="ConfigManager\ConfigManagerControl.cs" />
-    <Compile Include="ConfigManager\ConfigManagerEngine.cs" />
-    <Compile Include="ConfigManager\Files.cs" />
-    <Compile Include="Forms\dockPanelAppConfigClient.Code.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\dockPanelAppConfigClient.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\dockPanelAppConfigClient.Designer.cs">
-      <DependentUpon>dockPanelAppConfigClient.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\dockPanelConfigManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,13 +152,21 @@
     <Compile Include="Forms\frmNewGroup.Designer.cs">
       <DependentUpon>frmNewGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UCKey.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UCKey.Designer.cs">
+      <DependentUpon>UCKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControlBase.Designer.cs">
+      <DependentUpon>UserControlBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="IsolatedStorage\Storage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\dockPanelAppConfigClient.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>dockPanelAppConfigClient.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\dockPanelConfigManager.resx">
       <SubType>Designer</SubType>
       <DependentUpon>dockPanelConfigManager.cs</DependentUpon>
@@ -182,6 +178,12 @@
     <EmbeddedResource Include="Forms\frmNewGroup.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmNewGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UCKey.resx">
+      <DependentUpon>UCKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControlBase.resx">
+      <DependentUpon>UserControlBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -222,19 +224,10 @@
     <None Include="Resources\Save16x16.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Open16x16.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Delete.Ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Open16x161.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TortoiseReadOnly.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TortoiseAdded.ico" />
@@ -255,176 +248,31 @@
     <None Include="Resources\TortoiseModified.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DISK06.ICO" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\DISKS04.ICO" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\news_info.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mail_small.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\saveHS.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SaveAllHS.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\SaveAllHS22222.bmp" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="Properties\DataSources\Fwk.Configuration.Common.Key.datasource" />
     <None Include="Resources\Web_WebConfig.ico" />
     <None Include="Resources\WinXPSetV4 Icon 60.ico" />
     <None Include="Resources\89.ICO" />
     <None Include="Resources\91.ICO" />
-    <None Include="Resources\textdoc.ico" />
-    <None Include="Resources\document.ico" />
-    <None Include="Resources\SaveAllHS.GIF" />
-    <Content Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ConfigurationSectionsAssemblies\Microsoft.Practices.ObjectBuilder2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ConfigurationSectionsAssemblies\Microsoft.Practices.Unity.Configuration.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ConfigurationSectionsAssemblies\Microsoft.Practices.Unity.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="DIARY00B.ICO" />
-    <None Include="Resources\69.ICO" />
-    <None Include="Resources\46.ICO" />
-    <None Include="Resources\461.ICO" />
-    <None Include="Resources\462.ICO" />
+    <None Include="Resources\save_as_small.png" />
+    <None Include="Resources\save_small.png" />
+    <None Include="Resources\documents_large.png" />
+    <None Include="Resources\documents_small.png" />
+    <None Include="Resources\open_folder_large.png" />
+    <None Include="Resources\open_folder_small.png" />
+    <None Include="Resources\foldr_16.png" />
+    <None Include="Resources\foldr_24.png" />
+    <None Include="Resources\foldr_32.png" />
+    <None Include="Resources\zoomi_16.png" />
+    <None Include="Resources\zoomo_16.png" />
+    <None Include="Resources\save_as_large.png" />
+    <None Include="Resources\save_large.png" />
     <Content Include="Templates.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.AppSettings.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Caching.Database.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Caching.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Common.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.HostAdapter.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.UI.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Configuration.EnvironmentalOverrides.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Data.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Logging.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Security.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Design.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Validation.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ConfigurationSectionsAssemblies\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Component>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -454,4 +302,11 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(SolutionDir)..\..\Entregas\ConfigurationApp\*.*" &gt;&gt; nul
+del "$(SolutionDir)..\..\Entregas\ConfigurationApp\*.pdb" &gt;&gt; nul 
+del "$(SolutionDir)..\..\Entregas\ConfigurationApp\*vshost*.*" &gt;&gt; nul
+
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>
