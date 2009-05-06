@@ -140,7 +140,7 @@ namespace ConfigurationApp
             // 
             // newToolStripMenuItem
             // 
-            this.newToolStripMenuItem.Image = global::ConfigurationApp.Properties.Resources.new_16;
+            this.newToolStripMenuItem.Image = global::ConfigurationApp.Properties.Resources.file_new_16;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
