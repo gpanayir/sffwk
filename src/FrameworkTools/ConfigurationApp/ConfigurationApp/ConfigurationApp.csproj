@@ -106,6 +106,10 @@
     <Compile Include="AppConfig\AppConfigControl.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppConfig\Class\CnnString.cs" />
+    <Compile Include="AppConfig\Class\ConfigManagerSettings.cs" />
+    <Compile Include="AppConfig\Class\Group.cs" />
+    <Compile Include="AppConfig\Class\Key.cs" />
     <Compile Include="AppConfig\ConfigurationManagerConfig.cs">
       <SubType>Code</SubType>
     </Compile>
