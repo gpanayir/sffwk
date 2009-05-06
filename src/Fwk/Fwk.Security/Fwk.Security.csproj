@@ -9,10 +9,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.Security</RootNamespace>
     <AssemblyName>Fwk.Security</AssemblyName>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>fwk.snk</AssemblyOriginatorKeyFile>
@@ -129,7 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\AddRulesScript.sql" />
-    <None Include="CustomRuleProvider\ASP_DataBaseUpdate\aspnetdb.rar" />
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\DataBaseUpdate.sql" />
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />
     <None Include="fwk.snk" />
@@ -162,6 +165,13 @@
     <Content Include="ActiveDirectory\LDAP_Query_AllUsers.txt" />
     <Content Include="ActiveDirectory\LDAP_Query_Group.txt" />
     <Content Include="ActiveDirectory\Propiedades.txt" />
+    <Content Include="CustomRuleProvider\ASP_DataBaseUpdate\ASPNETDB.MDF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CustomRuleProvider\ASP_DataBaseUpdate\aspnetdb_log.ldf">
+      <DependentUpon>ASPNETDB.MDF</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
@@ -175,7 +185,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetDir)$(TargetName).*"  "$(SolutionDir)..\Libraries\Framework\$(TargetName).*" &gt;&gt; nul</PostBuildEvent>
   </PropertyGroup>
 </Project>

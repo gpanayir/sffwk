@@ -8,7 +8,7 @@ using System.Collections;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using Common = Fwk.Configuration.Common;
-using ConfigurationResponse = Fwk.Configuration.Common.ConfigurationResponse;
+
 using Fwk.Configuration.Common;
 
 
@@ -20,82 +20,74 @@ using Fwk.Configuration.Common;
 public class ConfigurationService : System.Web.Services.WebService
 {
     ConfigFileRegistrys _ConfigFileRegistrys;
-	public ConfigurationService()
-	{
+    public ConfigurationService()
+    {
 
-		//Uncomment the following line if using designed components 
-		//InitializeComponent(); 
-	}
+        //Uncomment the following line if using designed components 
+        //InitializeComponent(); 
+    }
 
 
-	[WebMethod]
-	public Int32 GetFileVersionStatus(string pFileName, string pClientVersion)
-	{
-		try
-		{
+    [WebMethod]
+    public Int32 GetFileVersionStatus(string pFileName, string pClientVersion)
+    {
+        try
+        {
 
-			Common.Helper.FileVersionStatus wFileVersionStatus = Common.Helper.FileVersionStatus.Ok;
+            Common.Helper.FileVersionStatus wFileVersionStatus = Common.Helper.FileVersionStatus.Ok;
             InitConfigFileRegistry();
             ConfigFileRegistry cnfg = _ConfigFileRegistrys.GetFirstByName(pFileName);
-      
+
             if (cnfg.CurrentVersion != pClientVersion)
-			{
-				if (cnfg.ForceUpdate)
-				{
-					wFileVersionStatus = Common.Helper.FileVersionStatus.RequiredUpdate;
-				}
-				else
-				{
-					wFileVersionStatus = Common.Helper.FileVersionStatus.OptionalUpdate;
-				}
-			}
+            {
+                if (cnfg.ForceUpdate)
+                {
+                    wFileVersionStatus = Common.Helper.FileVersionStatus.RequiredUpdate;
+                }
+                else
+                {
+                    wFileVersionStatus = Common.Helper.FileVersionStatus.OptionalUpdate;
+                }
+            }
 
-			return (Int32)wFileVersionStatus;
-			 
-		}
-		catch (SoapException soex)
-		{
-			throw soex;
-		}
-	}
+            return (Int32)wFileVersionStatus;
 
-    
-	[WebMethod]
-	public string GetConfig(string pFileName)
-	{
-		try
-		{
-            InitConfigFileRegistry();
-    
-            ConfigFileRegistry cngf = _ConfigFileRegistrys.GetFirstByName(pFileName);
-            if (!cngf.Available)
-			{
-				throw new Exception("El archivo de configuración solicitado no está disponible.");
-			}
-
-            return Common.Helper.GetConfig( Server.MapPath(@"~/ConfigurationFiles/" + pFileName), cngf).GetXml();
-
-          
-           
-
-		}
-		catch (SoapException soex)
-		{
-			throw soex;
-		}
-
-	}
+        }
+        catch (SoapException soex)
+        {
+            throw soex;
+        }
+    }
 
 
-    void InitConfigFileRegistry() 
+    [WebMethod]
+    public string GetConfig(string pFileName)
     {
-        if (_ConfigFileRegistrys != null) return ;
+        try
+        {
+            InitConfigFileRegistry();
+
+            ConfigFileRegistry wConfigFileRegistry = _ConfigFileRegistrys.GetFirstByName(pFileName);
+            if (!wConfigFileRegistry.Available)
+            {
+                throw new Exception("El archivo de configuración solicitado no está disponible.");
+            }
+            return Common.Helper.GetConfig(Server.MapPath(@"~/ConfigurationFiles/" + pFileName), wConfigFileRegistry).GetXml();
+        }
+        catch (SoapException soex)
+        {
+            throw soex;
+        }
+
+    }
+
+
+    void InitConfigFileRegistry()
+    {
+        if (_ConfigFileRegistrys != null) return;
         string fileReg = Fwk.HelperFunctions.FileFunctions.OpenTextFile(Server.MapPath("~/ConfigurationFiles/FileReg.xml"));
         _ConfigFileRegistrys = new ConfigFileRegistrys();
         _ConfigFileRegistrys = ConfigFileRegistrys.GetFromXml<ConfigFileRegistrys>(fileReg);
     }
-   
-
-	
 }
 
