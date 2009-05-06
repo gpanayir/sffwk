@@ -151,7 +151,11 @@ namespace ConfigurationApp.Common
         /// <returns>Valor o contenido del template</returns>
         internal static string GetConfigurationManagerValue(String pPropertyName)
         {
+
+
+
             return _TemplateDictionary_ConfigManager[pPropertyName];
+
         }
         /// <summary>
         /// Retorna un valor del template StandarsDataConfiguration
