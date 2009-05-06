@@ -53,41 +53,41 @@ namespace Fwk.Configuration.Common
         /// servicio web Configuration Service</param>
         /// <returns>String con el contenido del archivo xml de configuracion  </returns>
         /// <Author>Marcelo Oviedo</Author>
-        public static Groups GetConfig(string pFullFileName ,ConfigFileRegistry pConfigFileRegistry)
+        public static ConfigurationFile GetConfig(string pFullFileName, ConfigFileRegistry pConfigFileRegistry)
         {
 
-            Groups wGroup;
+            ConfigurationFile wConfigurationFile;
             string wFileContent = Fwk.HelperFunctions.FileFunctions.OpenTextFile(pFullFileName);
 
             if (pConfigFileRegistry != null && pConfigFileRegistry.Encrypt)
             {
                 wFileContent = Fwk.HelperFunctions.CryptographyFunctions.Encrypt(wFileContent);
-                wGroup = new Groups();
+                wConfigurationFile = new ConfigurationFile();
             }
             else//Si no esta encriptado dezerializa el contenido
             {
-                wGroup = Groups.GetFromXml<Groups>(wFileContent);
+                wConfigurationFile = ConfigurationFile.GetFromXml<ConfigurationFile>(wFileContent);
                
             }
 
-            wGroup.FileName = pFullFileName;
-            wGroup.FileContent = wFileContent;
+            wConfigurationFile.FileName = pFullFileName;
+            //wConfigurationFile.FileContent.Text = wFileContent;
             if (pConfigFileRegistry != null)
             {
-                wGroup.TTL = pConfigFileRegistry.TTL;
-                wGroup.Encrypted = pConfigFileRegistry.Encrypt;
-                wGroup.ForceUpdate = pConfigFileRegistry.ForceUpdate;
-                wGroup.CurrentVersion = pConfigFileRegistry.CurrentVersion;
-                wGroup.BaseConfigFile = pConfigFileRegistry.BaseConfigFile;
-                wGroup.Cacheable = pConfigFileRegistry.Cacheable;
+                wConfigurationFile.TTL = pConfigFileRegistry.TTL;
+                wConfigurationFile.Encrypted = pConfigFileRegistry.Encrypt;
+                wConfigurationFile.ForceUpdate = pConfigFileRegistry.ForceUpdate;
+                wConfigurationFile.CurrentVersion = pConfigFileRegistry.CurrentVersion;
+                wConfigurationFile.BaseConfigFile = pConfigFileRegistry.BaseConfigFile;
+               
             }
             else
             {
-                wGroup.BaseConfigFile = true;
-                wGroup.Cacheable = true;
+                wConfigurationFile.BaseConfigFile = true;
+             
             }
 
-            return wGroup;
+            return wConfigurationFile;
         }
 
    

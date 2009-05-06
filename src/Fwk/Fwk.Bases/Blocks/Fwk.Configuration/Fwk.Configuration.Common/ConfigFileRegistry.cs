@@ -51,13 +51,7 @@ namespace Fwk.Configuration.Common
             get { return _ForceUpdate; }
             set { _ForceUpdate = value; }
         }
-        bool _Cacheable = true;
-
-        public bool Cacheable
-        {
-            get { return _Cacheable; }
-            set { _Cacheable = value; }
-        }
+       
         bool _BaseConfigFile = true;
 
         public bool BaseConfigFile
