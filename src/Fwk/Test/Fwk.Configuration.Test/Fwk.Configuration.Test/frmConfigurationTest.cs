@@ -15,13 +15,14 @@ namespace Fwk.Configuration.Test
         public frmConfigurationTest()
         {
             InitializeComponent();
+            comboBox1.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                textBox1.Text = ConfigurationManager.GetProperty("RemoteProvider","ValidationExceptionMessage", "NullOrEmptyField");
+                textBox1.Text = ConfigurationManager.GetProperty("RemoteProvider", "ValidationExceptionMessage", "NullOrEmptyField");
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }
@@ -32,16 +33,14 @@ namespace Fwk.Configuration.Test
             StringBuilder str = new StringBuilder();
             try
             {
-                str.AppendLine("Provider 01 ");
-                str.AppendLine(ConfigurationManager.GetProperty("ExceptionMessages", "fecha_desde_igual_hasta_error"));
-                str.AppendLine("Provider 02");
-                str.AppendLine(ConfigurationManager.GetProperty("P2", "ClientMessages", "nohayproductos_error"));
-
+                
+                textBox2.Text  = ConfigurationManager.GetProperty(txtGroupName.Text, txtProrpetieName.Text);
+           
+               
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }
-
-      
+          
 
         }
 
@@ -51,6 +50,11 @@ namespace Fwk.Configuration.Test
             Fwk.Configuration.Common.Groups wGroups;
             Fwk.Configuration.Common.Group wGroup;
             wGroups = new Fwk.Configuration.Common.Groups();
+            ConfigurationFile wConfigurationFile = new ConfigurationFile();
+            wConfigurationFile.CurrentVersion = "1.1";
+            wConfigurationFile.Encrypted = false;
+        
+
 
             wGroup = new Fwk.Configuration.Common.Group();
             wGroup.Name = "G1";
@@ -87,35 +91,66 @@ namespace Fwk.Configuration.Test
 
 
             wGroups.Add(wGroup);
+            wConfigurationFile.Groups = wGroups;
 
-
-            xmlConfitFile.Text = wGroups.GetXml();
+            xmlConfitFile.Text = wConfigurationFile.GetXml();
             xmlConfitFile.ForeColor = Color.Green;
         }
 
         private void btnGetProvider_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                groupBindingSource.DataSource = ConfigurationManager.GetConfigurationFile(Path.Combine(Application.StartupPath, textBox3.Text)).Groups;
+                grdGroups.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             string xml = HelperFunctions.FileFunctions.OpenTextFile(Path.Combine( Application.StartupPath , txtConfigFileName.Text));
 
-            Groups wGroups = Fwk.Configuration.Common.Groups.GetFromXml<Groups>(xml);
+            ConfigurationFile wConfigurationFile = Fwk.Configuration.Common.ConfigurationFile.GetFromXml<ConfigurationFile>(xml);
           
             xmlConfitFile.ForeColor = Color.Red;
 
-            xmlConfitFile.Text = wGroups.GetXml();
+            xmlConfitFile.Text = wConfigurationFile.GetXml();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-         
-            //Groups wGroups = Fwk.Configuration.Common.Groups.GetFromXml<Groups>(xmlConfitFile.Text);
-            Groups wGroups = (Groups)HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(Groups), xmlConfitFile.Text);
-            xmlConfitFile.ForeColor = Color.Blue;
-            xmlConfitFile.Text = wGroups.GetXml();
+
+            try
+            {
+                ConfigurationFile wConfigurationFile = (ConfigurationFile)HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ConfigurationFile), xmlConfitFile.Text);
+                xmlConfitFile.ForeColor = Color.Blue;
+                xmlConfitFile.Text = wConfigurationFile.GetXml();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnGetGroupKeys_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                keyBindingSource.DataSource = ConfigurationManager.GetGroup(comboBox1.Text, txtGroupName.Text).Keys;
+                grdGroups.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
 
         }
     }

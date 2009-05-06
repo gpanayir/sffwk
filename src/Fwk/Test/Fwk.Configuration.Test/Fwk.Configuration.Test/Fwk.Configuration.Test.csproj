@@ -128,7 +128,7 @@
     <Content Include="ConfigurationManager_01.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ConfigurationManager_O2.xml">
+    <Content Include="ConfigurationManager_02.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
