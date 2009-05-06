@@ -194,7 +194,14 @@ namespace Fwk.HelperFunctions
 
             return (T)wPropValue;
         }
-
+        public static Type GetPropertieType(object pSourceObject, string pPropertyName)
+        {
+            PropertyDescriptorCollection pProperties = TypeDescriptor.GetProperties(pSourceObject, true);
+            PropertyDescriptor pPropDesc = pProperties.Find(pPropertyName, true);
+            if (pPropDesc == null)
+                return null;
+            return pPropDesc.PropertyType;
+        }
         /// <summary>
         /// Retorna el valor de una propiedad.-
         /// Generalmente utilizado cuando el nombre de la propiedad es generada dinamicamente y no se sabe en 

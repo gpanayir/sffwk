@@ -9,10 +9,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.Bases</RootNamespace>
     <AssemblyName>Fwk.Bases</AssemblyName>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>fwk.snk</AssemblyOriginatorKeyFile>
@@ -82,9 +86,6 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
@@ -92,9 +93,6 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
@@ -116,9 +114,6 @@
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigFileRegistry.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationHolder.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationRepository.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationResponse.cs">
-      <DependentUpon>ConfigurationResponse.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\Utils.cs" />
     <Compile Include="Blocks\Fwk.Configuration\LocalConfigurationManager.cs" />
     <Compile Include="Blocks\Fwk.Configuration\RemoteConfigurationManager.cs" />
@@ -286,11 +281,6 @@
     <Content Include="Blocks\Fwk.Caching\Configurations.xml" />
     <Content Include="Blocks\Fwk.Blocking\database\PBlocking2000.sql" />
     <None Include="Blocks\Fwk.Configuration\app.config" />
-    <None Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\app.config" />
-    <None Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationResponse.xsd" />
-    <None Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationResponse.xsx">
-      <DependentUpon>ConfigurationResponse.xsd</DependentUpon>
-    </None>
     <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\ConfigurationService.disco" />
     <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\ConfigurationService.wsdl" />
     <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\Reference.map">

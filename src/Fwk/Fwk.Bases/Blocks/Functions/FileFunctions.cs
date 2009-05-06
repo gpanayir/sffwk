@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
+using System.Security.AccessControl;
 
 namespace Fwk.HelperFunctions
 {
@@ -169,6 +170,47 @@ namespace Fwk.HelperFunctions
             fs.Close();
 
             return content;
+        }
+
+        /// <summary>
+        /// Establece una nueva configuracion de seguridad apra el archivo.-
+        /// Ej: AddFileSecurity(fileInfo.FullName, @"ALCO\moviedo",FileSystemRights.FullControl, AccessControlType.Allow);
+        /// </summary>
+        /// <param name="pFileName"></param>
+        /// <param name="pAccount">ej: @"ALCO\moviedo"</param>
+        /// <param name="pRights"><see cref="FileSystemRights"/> </param>
+        /// <param name="pControlType"><see cref="AccessControlType"/></param>
+        public static void AddFileSecurity(string pFileName, string pAccount,
+        FileSystemRights pRights, AccessControlType pControlType)
+        {
+            // Actual configuracion de seguridad
+            System.Security.AccessControl.FileSecurity wFileSecurity = File.GetAccessControl(pFileName);
+
+            wFileSecurity.AddAccessRule(new FileSystemAccessRule(pAccount, pRights, pControlType));
+
+            // Establece la nueva configuracion de seguridad
+            File.SetAccessControl(pFileName, wFileSecurity);
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pFileName"></param>
+        /// <param name="pAccount">ej: @"ALCO\moviedo"</param>
+        /// <param name="pRights"><see cref="FileSystemRights"/></param>
+        /// <param name="pControlType"><see cref="AccessControlType"/></param>
+        public static void RemoveFileSecurity(string pFileName, string pAccount,
+        FileSystemRights pRights, AccessControlType pControlType)
+        {
+            //Actual configuracion de seguridad
+            System.Security.AccessControl.FileSecurity wFileSecurity = File.GetAccessControl(pFileName);
+
+            // Elimina FileSystemAccessRule de la config de seguridad (wFileSecurity)
+            wFileSecurity.RemoveAccessRule(new FileSystemAccessRule(pAccount, pRights, pControlType));
+
+            File.SetAccessControl(pFileName, wFileSecurity);
+
         }
 
 
