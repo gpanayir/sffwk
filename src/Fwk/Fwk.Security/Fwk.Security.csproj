@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\AddRulesScript.sql" />
+    <None Include="CustomRuleProvider\ASP_DataBaseUpdate\aspnetdb.rar" />
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\DataBaseUpdate.sql" />
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />
     <None Include="fwk.snk" />
@@ -165,13 +166,6 @@
     <Content Include="ActiveDirectory\LDAP_Query_AllUsers.txt" />
     <Content Include="ActiveDirectory\LDAP_Query_Group.txt" />
     <Content Include="ActiveDirectory\Propiedades.txt" />
-    <Content Include="CustomRuleProvider\ASP_DataBaseUpdate\ASPNETDB.MDF">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CustomRuleProvider\ASP_DataBaseUpdate\aspnetdb_log.ldf">
-      <DependentUpon>ASPNETDB.MDF</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
