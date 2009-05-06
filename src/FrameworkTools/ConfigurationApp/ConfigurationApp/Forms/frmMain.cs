@@ -53,34 +53,7 @@ namespace ConfigurationApp
             RefreshAllFiles(true);
         }
 
-        #region AppConfigControl
-
-        /// <summary>
-        /// Carga un archivo App.Config y lo mapea al tree view. Agrega un nuevo nodo (llamado NodeFile) al Node Root
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsMenuLoadAppClientConfig_Click(object sender, EventArgs e)
-        {
-            _dockPanelAppConfigClient.LoadFile();
-        }
-
-        /// <summary>
-        /// Crea un nuevo archivo en el treeview de App config
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsMenuNewAppClientConfig_Click(object sender, EventArgs e)
-        {
-            _dockPanelAppConfigClient.NewFile();
-        }
-
-
-
-
-
-
-        #endregion
+   
 
         #region ConfigManagerControl
 
@@ -147,7 +120,6 @@ namespace ConfigurationApp
 
         private void tsButtonRefreshAll_Click(object sender, EventArgs e)
         {
-            _dockPanelAppConfigClient.SaveIsolatedStorage();
             _dockPanelConfigManager.SaveIsolatedStorage();
 
             RefreshAllFiles(true);
@@ -161,9 +133,10 @@ namespace ConfigurationApp
                 _dockPanelConfigManager = new dockPanelConfigManager();
 
                 _dockPanelConfigManager.Storage = _Storage;
-                _dockPanelConfigManager.Property = this.propertyGrid1;
-
-                _dockPanelConfigManager.DoActionEvent += new DoActionEventHandler(_dockPanelConfigManager_DoActionEvent);
+              
+                _dockPanelConfigManager.Panel = this.splitContainer1.Panel2.Controls;
+                
+          
                 _dockPanelConfigManager.Enter += new EventHandler(_dockPanelConfigManager_Enter);
                 _dockPanelConfigManager.FormClosing += new FormClosingEventHandler(_dockPanelConfigManager_FormClosing);
 
@@ -181,36 +154,19 @@ namespace ConfigurationApp
         {
             _WorkSpace.Remove(ConfigurationType.ApplicationConfiuration);
         }
-        private void tsButtonAppClientConfigShow_Click(object sender, EventArgs e)
-        {
-            if (!_WorkSpace.Contains(ConfigurationType.ApplicationConfiuration))
-            {
-                _dockPanelAppConfigClient = new dockPanelAppConfigClient();
-
-                _dockPanelAppConfigClient.Storage = _Storage;
-                _dockPanelAppConfigClient.Property = this.propertyGrid1;
-                _dockPanelAppConfigClient.DoActionEvent += new DoActionEventHandler(_dockPanelAppConfigClient_DoActionEvent);
-                _dockPanelAppConfigClient.Enter += new EventHandler(_dockPanelAppConfigClient_Enter);
-                _dockPanelAppConfigClient.FormClosing += new FormClosingEventHandler(_dockPanelAppConfigClient_FormClosing);
-                _dockPanelAppConfigClient.Show(dockPanel1, Fwk.Controls.Win32.DockState.DockLeft);
-
-                _WorkSpace.Add(_dockPanelAppConfigClient, ConfigurationType.ApplicationConfiuration); 
-            }
-
-
-
-        }
+        
 
 
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _dockPanelAppConfigClient.SaveIsolatedStorage();
+            
 
             _dockPanelConfigManager.SaveIsolatedStorage();
 
         }
 
+      
 
 
 

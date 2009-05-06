@@ -64,7 +64,7 @@ namespace ConfigurationApp.Forms
             // 
             // tsMenuItemNewFile
             // 
-            this.tsMenuItemNewFile.Image = global::ConfigurationApp.Properties.Resources.document;
+            this.tsMenuItemNewFile.Image = global::ConfigurationApp.Properties.Resources.documents_small;
             this.tsMenuItemNewFile.Name = "tsMenuItemNewFile";
             this.tsMenuItemNewFile.Size = new System.Drawing.Size(137, 22);
             this.tsMenuItemNewFile.Text = "New";
@@ -72,7 +72,7 @@ namespace ConfigurationApp.Forms
             // 
             // tsMenuItemSaveAllFiles
             // 
-            this.tsMenuItemSaveAllFiles.Image = global::ConfigurationApp.Properties.Resources.SaveAllHS22222;
+            this.tsMenuItemSaveAllFiles.Image = global::ConfigurationApp.Properties.Resources.save_as_small;
             this.tsMenuItemSaveAllFiles.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.tsMenuItemSaveAllFiles.Name = "tsMenuItemSaveAllFiles";
             this.tsMenuItemSaveAllFiles.Size = new System.Drawing.Size(137, 22);
@@ -121,6 +121,7 @@ namespace ConfigurationApp.Forms
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
+            this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
             // 
             // imgImages
             // 
@@ -156,7 +157,7 @@ namespace ConfigurationApp.Forms
             // 
             // tsMenuItemSaveFile
             // 
-            this.tsMenuItemSaveFile.Image = global::ConfigurationApp.Properties.Resources.saveHS;
+            this.tsMenuItemSaveFile.Image = global::ConfigurationApp.Properties.Resources.save_as_small;
             this.tsMenuItemSaveFile.Name = "tsMenuItemSaveFile";
             this.tsMenuItemSaveFile.Size = new System.Drawing.Size(138, 22);
             this.tsMenuItemSaveFile.Text = "Save";
@@ -187,7 +188,7 @@ namespace ConfigurationApp.Forms
             // 
             // exploreToolStripMenuItem
             // 
-            this.exploreToolStripMenuItem.Image = global::ConfigurationApp.Properties.Resources._46;
+            this.exploreToolStripMenuItem.Image = global::ConfigurationApp.Properties.Resources.Web_WebConfig;
             this.exploreToolStripMenuItem.Name = "exploreToolStripMenuItem";
             this.exploreToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.exploreToolStripMenuItem.Text = "Explore";
@@ -223,13 +224,13 @@ namespace ConfigurationApp.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(274, 324);
+            this.CloseButton = false;
             this.Controls.Add(this.treeView1);
             this.Name = "dockPanelConfigManager";
             this.TabText = "Config Manager";
             this.Text = "Config Manager";
             this.ToolTipText = "Config Manager ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.dockPanelConfigManager_FormClosed);
-            this.Load += new System.EventHandler(this.dockPanelConfigManager_Load);
             this.mnConfigManagerRoot.ResumeLayout(false);
             this.mnCnfgManFile.ResumeLayout(false);
             this.mnGroupAndKey.ResumeLayout(false);

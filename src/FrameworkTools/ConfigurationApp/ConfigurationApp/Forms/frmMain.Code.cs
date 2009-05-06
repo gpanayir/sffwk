@@ -12,7 +12,7 @@ namespace ConfigurationApp
     {
         #region [Private members]
         private WorkSpace _WorkSpace = new WorkSpace();
-        private ConfigurationApp.Forms.dockPanelAppConfigClient _dockPanelAppConfigClient = null;
+        
         private ConfigurationApp.Forms.dockPanelConfigManager _dockPanelConfigManager = null;
         private Storage _Storage = null;
         private SelectedRoot m_SelectedRoot = SelectedRoot.None;
@@ -25,72 +25,52 @@ namespace ConfigurationApp
       
 
 
-        private void DetermineLabels(object sender)
-        {
-            //DetermineRoot();
-            if (m_SelectedRoot == SelectedRoot.AppConfigRoot)
-            {
-
-                lblGroup.Text = "Aplication:";
-                lblKey.Text = "Setting:";
-                lblFileName.Text = _dockPanelAppConfigClient._FileName;
-                lblKeyName.Text = _dockPanelAppConfigClient._KeyName;
-                lblGroupName.Text = _dockPanelAppConfigClient._GroupName;
-            }
-            else
-            {
-                lblGroup.Text = "Group:";
-                lblKey.Text = "Key:";
-                lblFileName.Text = _dockPanelConfigManager._FileName;
-                lblKeyName.Text = _dockPanelConfigManager._KeyName;
-                lblGroupName.Text = _dockPanelConfigManager._GroupName;
-            }
-        }
-
-        void _dockPanelConfigManager_DoActionEvent(object sender)
-        {
-            DetermineLabels(sender);
-        }
-
-        void _dockPanelAppConfigClient_DoActionEvent(object sender)
-        {
-            DetermineLabels(sender);
-        }
 
         
 
         private void InitializeDocPanels()
         {
             _Storage = new Storage();
-
-            _dockPanelAppConfigClient = new dockPanelAppConfigClient();
-            _dockPanelAppConfigClient.Storage = _Storage;
-            _dockPanelAppConfigClient.Property = propertyGrid1;
+           
             _dockPanelConfigManager = new dockPanelConfigManager();
             _dockPanelConfigManager.Storage = _Storage;
-            _dockPanelConfigManager.Property = propertyGrid1;
 
-       
+            if (!_WorkSpace.Contains(ConfigurationType.ConfigurationMannager))
+            {
+                _dockPanelConfigManager = new dockPanelConfigManager();
+
+                _dockPanelConfigManager.Storage = _Storage;
+
+                _dockPanelConfigManager.Panel = this.splitContainer1.Panel2.Controls;
+
+
+                _dockPanelConfigManager.Enter += new EventHandler(_dockPanelConfigManager_Enter);
+                _dockPanelConfigManager.FormClosing += new FormClosingEventHandler(_dockPanelConfigManager_FormClosing);
+
+                _dockPanelConfigManager.Show(dockPanel1, Fwk.Controls.Win32.DockState.DockLeft);
+
+                _WorkSpace.Add(_dockPanelConfigManager, ConfigurationType.ConfigurationMannager);
+            }
+           
+      
         }
 
         #region File methods
         private void SaveAllFiles()
         {
-            _dockPanelAppConfigClient.SaveAllFile();
+ 
             _dockPanelConfigManager.SaveAllFiles();
         }
         private void LoadFile()
         {
-            if (m_SelectedRoot == SelectedRoot.AppConfigRoot)
-                _dockPanelAppConfigClient.LoadFile();
+     
 
             if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
                 _dockPanelConfigManager.LoadFile();
         }
         private void SaveFile()
         {
-            if (m_SelectedRoot == SelectedRoot.AppConfigRoot)
-                _dockPanelAppConfigClient.SaveFile();
+     
 
             if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
                 _dockPanelConfigManager.SaveFile();
@@ -109,8 +89,7 @@ namespace ConfigurationApp
         {
            
 
-            if (m_SelectedRoot == SelectedRoot.AppConfigRoot)
-                _dockPanelAppConfigClient.NewFile();
+         
 
             if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
                 _dockPanelConfigManager.NewFile();
@@ -119,8 +98,7 @@ namespace ConfigurationApp
         {
             
 
-            if (m_SelectedRoot == SelectedRoot.AppConfigRoot)
-                _dockPanelAppConfigClient.QuitFile();
+      
 
             if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
                 _dockPanelConfigManager.QuitFile();
@@ -128,8 +106,7 @@ namespace ConfigurationApp
         private void RefreshAllFiles(bool pClear)
         {
 
-            if (m_SelectedRoot == SelectedRoot.AppConfigRoot)
-                _dockPanelAppConfigClient.RefreshAllFiles(pClear);
+          
 
             if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
                 _dockPanelConfigManager.RefreshAllFiles(pClear);

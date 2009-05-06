@@ -8,9 +8,12 @@ using System.Windows.Forms;
 using System.Xml;
 using ConfigurationApp.Common;
 using ConfigurationApp.IsolatedStorage;
+using Fwk.Configuration.Common;
+using System.Collections.Specialized;
 
 namespace ConfigurationApp.Forms
 {
+    public delegate void  DoActionEventHandler(Object sender);
     public partial class dockPanelConfigManager :  Fwk.Controls.Win32.DockContent
     {
         private event DoActionEventHandler _DoActionEvent;
@@ -39,17 +42,27 @@ namespace ConfigurationApp.Forms
         private Storage _Storage = null;
 
     
-        private PropertyGrid _PropertyGrid = null;
-        public String _FileName = String.Empty;
-        public String _GroupName = String.Empty;
-        public String _KeyName = String.Empty;
+      
 
-        public PropertyGrid Property
+
+
+        private Control.ControlCollection _Panel;
+        public  Control.ControlCollection Panel
         {
-            get { return _PropertyGrid; }
-            set { _PropertyGrid = value; }
+            get { return _Panel; }
+            set
+            {
+                _Panel = value;
+                _UCConfigElement = new UCConfigElement();
+                _Panel.Clear();
+                _UCConfigElement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+                _Panel.Add(_UCConfigElement);
+            }
 
         }
+        
         public TreeNode SelectedNode
         {
             get { return treeView1.SelectedNode; }
@@ -138,7 +151,7 @@ namespace ConfigurationApp.Forms
 
                 if (f.KeyName.Length != 0)
                 {
-                    ConfigManagerControl.AddKey(treeView1.SelectedNode.Parent, f.GroupName, f.KeyName, f.KeyValue, mnGroupAndKey);
+                    ConfigManagerControl.AddKey(treeView1.SelectedNode.Parent, treeView1.SelectedNode, f.KeyName, f.KeyValue, mnGroupAndKey);
                 }
             }
         }
@@ -242,6 +255,7 @@ namespace ConfigurationApp.Forms
         }
         public void RefreshAllFiles(Boolean pClear)
         {
+            _CnfgManagerSelectedNodeType = CnfgManagerSelectedNodeType.Root;
             if (pClear)
             {
                 treeView1.Nodes[0].Nodes.Clear();
@@ -249,127 +263,88 @@ namespace ConfigurationApp.Forms
             ConfigManagerControl.LoadFilesFromIsolatedStorage(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey, _Storage);
 
             treeView1.Nodes[0].Expand();
-
+            
         }
         #endregion
 
         #region [Keys & Settings]
-        private void CnfgManagerApplyChanges()
+        private void CnfgManagerApplyChanges(TreeNode ptreeNode)
         {
-            TreeNode wSel = treeView1.SelectedNode;
+
+            
             switch (_CnfgManagerSelectedNodeType)
             {
                 case CnfgManagerSelectedNodeType.Key:
                     {
-                        ChangeKey(wSel);
+                        ConfigManagerControl.ChangeKey(ptreeNode,(Key)_UCConfigElement.Get ());
                         break;
                     }
                 case CnfgManagerSelectedNodeType.Group:
                     {
-                        ConfigManagerControl.ChangeGroupName(wSel);
+                        ConfigManagerControl.ChangeGroupName(ptreeNode,(Group)_UCConfigElement.Get ());
                         break;
                     }
             }
         }
-        /// <summary>
-        /// Realiza un cambio en una clave de configuracion
-        /// </summary>
-        /// <param name="wTreeNodeKey">Nodo clave (key) del tree view</param>
-        /// <returns></returns>
-        private XmlNode ChangeKey(TreeNode wTreeNodeKey)
-        {
-
-            Key wKey = (Key)wTreeNodeKey.Tag;
-
-            //Cambio el valor 
-            XmlNode node = ConfigManagerControl.ChangeKeyValue(wTreeNodeKey);
-
-            //Cambio nombre de key 
-            if (wTreeNodeKey.Text.CompareTo(wKey.Name) != 0)
-            {
-                wTreeNodeKey.Text = wKey.Name;
-                ConfigManagerControl.ChangeKeyName(node, wKey.Name);
-            }
-            return node;
-        }
+      
+     
 
 
         #endregion
 
-        #region Events --> PropertyGrid 
-        /// <summary>
-        /// Se ejecuta cuando cambia algun valor de un objeto Group asociado a un Group Key del tree view
-        /// </summary>
-        /// <param name="s"></param>
-        /// <param name="e"></param>
-        private void PropertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+
+        UCConfigElement _UCConfigElement = new UCConfigElement ();
+        private void DoConfigManager(TreeNode pTreeNodeSelected)
         {
-           string newValue = e.ChangedItem.Value.ToString();
-           string oldValue = e.OldValue.ToString();
+            
 
-            CnfgManagerApplyChanges();
-            //_PropertyGrid.PropertyValueChanged -=
-            //    new PropertyValueChangedEventHandler(PropertyGrid_PropertyValueChanged);
-        }
-
-        #endregion
-
-        private void DoConfigManager(TreeViewEventArgs pTreeNodeSelected)
-        {
-            ///Eklimino cualquir manejador que este abierto 
-            _PropertyGrid.PropertyValueChanged -= new PropertyValueChangedEventHandler(PropertyGrid_PropertyValueChanged);
+            Group wGroup;
+            ListDictionary dic;
+       
             switch (_CnfgManagerSelectedNodeType)
             {
                 case CnfgManagerSelectedNodeType.Key:
                     {
-                        Key wKey = (Key)pTreeNodeSelected.Node.Tag;
-                        _PropertyGrid.SelectedObject = wKey;
-                        _FileName = wKey.FileName;
-                        _GroupName = wKey.GroupName;
-                        _KeyName = wKey.Name;
-                        _PropertyGrid.Show();
-                        _PropertyGrid.PropertyValueChanged += new PropertyValueChangedEventHandler(PropertyGrid_PropertyValueChanged);
-                        
+                        Key wKey = (Key)pTreeNodeSelected.Tag;
+
+                        dic = (ListDictionary)pTreeNodeSelected.Parent.Parent.Tag;
+                        ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
+                     
+                        wGroup = (Group)pTreeNodeSelected.Parent.Tag;
+
+                        _UCConfigElement.Populate(wKey, wConfigurationFile.FileName, wGroup.Name);
+
                         break;
                     }
                 case CnfgManagerSelectedNodeType.Group:
                     {
-                        Group wGroup = (Group)pTreeNodeSelected.Node.Tag;
-                        _PropertyGrid.SelectedObject = wGroup;
+                        dic = (ListDictionary)pTreeNodeSelected.Parent.Tag;
+                        ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
+                        _UCConfigElement.Populate((Group)pTreeNodeSelected.Tag, wConfigurationFile.FileName);
 
-                        _FileName = wGroup.FileName;
-                        _GroupName = wGroup.Name;
-                        _KeyName = String.Empty;
-                        _PropertyGrid.Show();
-                        _PropertyGrid.PropertyValueChanged += new PropertyValueChangedEventHandler(PropertyGrid_PropertyValueChanged);
                         break;
                     }
                 case CnfgManagerSelectedNodeType.File:
                     {
-                        if (pTreeNodeSelected.Node.Parent.Index == 1)
+                        if (pTreeNodeSelected.Parent.Index == 1)
                         {
-                            _FileName = pTreeNodeSelected.Node.Text;
-                            _GroupName = String.Empty;
-                            _KeyName = String.Empty;
+                            _UCConfigElement.Populate(pTreeNodeSelected.Text);
+                          
+                  
                         }
-                        _PropertyGrid.Hide();
+                      
                         break;
                     }
                 case CnfgManagerSelectedNodeType.Root:
                     {
-                        if (pTreeNodeSelected.Node.Index == 1)
-                        {
-                            _FileName = String.Empty; ;
-                            _GroupName = String.Empty;
-                            _KeyName = String.Empty;
-                        }
-                        _PropertyGrid.Hide();
+                     
                         break;
                     }
             }
             OnDoActionEvent(this);
         }
 
+       
         private TreeNode GetTreeNodeFile()
         {
             TreeNode wTreeNodeFile = null;
@@ -399,16 +374,29 @@ namespace ConfigurationApp.Forms
 
 
         #region Envents --> treeView
+        private void treeView1_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+
+            //string node = e.Node.Text; ---> Node que se acaba de seleccionar
+            //string sel = treeView1.SelectedNode.Text; ---> Nodo seleccionado
+
+            //return;
+            if (treeView1.SelectedNode != null)
+                CnfgManagerApplyChanges(treeView1.SelectedNode);
+        }
+
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            string node = e.Node.Text;
+            //string sel = treeView1.SelectedNode.Text;
+            //return;
             if (e.Node == null) return;
 
-            //DetermineLabels();
 
             // Determino que es lo que esta seleccionado 
             _CnfgManagerSelectedNodeType = (CnfgManagerSelectedNodeType) Enum.Parse(typeof (CnfgManagerSelectedNodeType), e.Node.Level.ToString());
 
-            DoConfigManager(e);
+            DoConfigManager(treeView1.SelectedNode);
         }
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -459,7 +447,7 @@ namespace ConfigurationApp.Forms
         private void dockPanelConfigManager_FormClosed(object sender, FormClosedEventArgs e)
         {
             SaveIsolatedStorage();
-            ConfigManagerControl.Dispose();
+            
         }
 
 
@@ -472,10 +460,7 @@ namespace ConfigurationApp.Forms
             ConfigManagerControl.SaveIsolatedStorage(treeView1.Nodes[0], _Storage);
         }
 
-        private void dockPanelConfigManager_Load(object sender, EventArgs e)
-        {
-            RefreshAllFiles(false);
-        }
+        
 
         private void exploreToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -483,5 +468,7 @@ namespace ConfigurationApp.Forms
 
             System.Diagnostics.Process.Start("explorer.exe", wTreeNodeFile.ToolTipText);
         }
+
+        
     }
 }
