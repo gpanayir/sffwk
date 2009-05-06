@@ -270,6 +270,9 @@
     <None Include="Resources\zoomo_16.png" />
     <None Include="Resources\save_as_large.png" />
     <None Include="Resources\save_large.png" />
+    <None Include="Resources\file_delete_16.png" />
+    <None Include="Resources\file_remove_16.png" />
+    <None Include="Resources\file_new_16.png" />
     <Content Include="Templates.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
