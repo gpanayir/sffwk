@@ -5,6 +5,8 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using Fwk.Bases;
+using System.Collections.Generic;
 
 namespace Fwk.HelperFunctions
 {
@@ -505,6 +507,23 @@ namespace Fwk.HelperFunctions
             fw.Write(arrWrite, 0, arrWrite.Length);
             fw.Close();
             return arrWrite;
+        }
+
+        /// <summary>
+        /// Toma los elementos de pEntitiCollection y los agrega a la coleccion TEntities
+        /// </summary>
+        /// <typeparam name="TEntities">Tipo de la coleccion de entidades</typeparam>
+        /// <typeparam name="TEntity">Tipo TEntity</typeparam>
+        /// <param name="pEntitiCollection">Coleccion de entidades</param>
+        /// <param name="pIenumerableList">Clase de lin q con los elementos TEntity</param>
+        public static void SetEntitiesFromIenumerable<TEntities, TEntity>(TEntities pEntitiCollection, IEnumerable<TEntity> pIenumerableList)
+            where TEntities : Entities<TEntity>
+            where TEntity : Entity
+        {
+            foreach (TEntity item in pIenumerableList)
+            {
+                pEntitiCollection.Add(item);
+            }
         }
     }
 }
