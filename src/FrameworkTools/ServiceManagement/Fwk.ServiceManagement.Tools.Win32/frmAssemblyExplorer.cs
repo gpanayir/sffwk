@@ -17,7 +17,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
     /// <summary>
     /// 
     /// </summary>
-    public partial class frmAssemblyExplorer : Form
+    public partial class frmAssemblyExplorer : Fwk.Bases.FrontEnd.FrmBase
     {
 
         private ServiceConfiguration _SelectedServiceConfiguration = null;
@@ -113,12 +113,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             }
             catch (System.Reflection.ReflectionTypeLoadException rx)
             {
-                fwkMessageViewComponent1.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(rx.LoaderExceptions));
+                base.ExceptionViewer.Show(rx.LoaderExceptions, "Service Management:. Loading assembly");
             }
             catch (Exception ex)
             {
 
-                fwkMessageViewComponent1.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
+                base.ExceptionViewer.Show(ex);
             }
         }
 

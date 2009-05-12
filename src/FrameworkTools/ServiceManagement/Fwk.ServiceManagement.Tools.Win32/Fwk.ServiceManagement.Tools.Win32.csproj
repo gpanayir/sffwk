@@ -113,12 +113,6 @@
     <Compile Include="frmServices.Designer.cs">
       <DependentUpon>frmServices.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MessageView.Designer.cs">
-      <DependentUpon>MessageView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ctrlService.resx">
@@ -133,10 +127,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmServices.resx">
       <DependentUpon>frmServices.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MessageView.resx">
-      <DependentUpon>MessageView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

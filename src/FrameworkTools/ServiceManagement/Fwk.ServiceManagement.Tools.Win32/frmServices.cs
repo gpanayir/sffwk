@@ -29,6 +29,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 		{
 			InitializeComponent();
             cnfg();
+            ctrlService1.ShowAction = Action.Query;
 		}
 
 
@@ -45,7 +46,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             catch(Exception ex)
             {
                
-                MessageView.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex), "Connection error", MessageBoxButtons.OK);
+                base.ExceptionViewer.Show(ex);
                 lblConnectionStatus.Text = "Disconnected";
             }
         }
@@ -76,14 +77,17 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
             if (ucbServiceGrid1.Services == null)
             {
-                MessageView.Show("Debe conectarce al despachaor de servicio antes de ejecutar esta operación", "Service mannanger", MessageBoxButtons.OK);
+                base.MessageViewer.Show("Debe conectarce al despachaor de servicio antes de ejecutar esta operación");
                 return;
             }
 
             ServiceConfiguration wServiceNew = new ServiceConfiguration();
             if (frmEdit.ShowNew(ref wServiceNew) == DialogResult.OK)
             {
+                wServiceNew.CreatedUserName = Environment.UserName;
+                wServiceNew.CreatedDateTime = System.DateTime.Now;
                 ucbServiceGrid1.Add(wServiceNew);
+                
                 base.AddServiceConfiguration(wServiceNew);
             }
         }
@@ -97,22 +101,22 @@ namespace Fwk.ServiceManagement.Tools.Win32
 		{
             if (ucbServiceGrid1.Services == null)
             {
-                MessageView.Show("Debe conectarce al despachaor de servicio antes de ejecutar esta operación", "Service mannanger", MessageBoxButtons.OK);
+                base.MessageViewer.Show("Debe conectarce al despachaor de servicio antes de ejecutar esta operación");
                 return;
             }
             if (ucbServiceGrid1.CurentServiceConfiguration == null)
             {
-                MessageView.Show("Seleccione un servicio para configurar", "Edit service", MessageBoxButtons.OK);
+                base.MessageViewer.Show("Seleccione un servicio para configurar");
                 return;
             }
-            ServiceConfiguration wServiceClon = ucbServiceGrid1.CurentServiceConfiguration.Clone();
+            ServiceConfiguration wServiceClon = ucbServiceGrid1.CurentServiceConfiguration;
             if (frmEdit.ShowEdit(wServiceClon) == DialogResult.OK)
             {
                 base.SetServiceConfiguration(ucbServiceGrid1.CurentServiceConfiguration.Name, wServiceClon);
                 ucbServiceGrid1.Update(wServiceClon);
                
             }
-                
+            ucbServiceGrid1_OnClickServiceHandler(ucbServiceGrid1.CurentServiceConfiguration);   
 		}
 
 		/// <summary>
@@ -124,16 +128,18 @@ namespace Fwk.ServiceManagement.Tools.Win32
 		{
             if (ucbServiceGrid1.Services == null)
             {
-                MessageView.Show("Debe conectarce al despachaor de servicio antes de ejecutar esta operación", "Service mannanger", MessageBoxButtons.OK);
+                base.MessageViewer.Show("Debe conectarce al despachaor de servicio antes de ejecutar esta operación");
                 return;
             }
             if (ucbServiceGrid1.CurentServiceConfiguration == null)
             {
-                MessageView.Show("Seleccione un servicio para configurar", "Edit service", MessageBoxButtons.OK);
+                base.MessageViewer.Show("Seleccione un servicio para configurar");
                 return;
             }
-            DialogResult wDialogResult = MessageView.Show("Confirma la eliminación de la configuración del servicio " + ucbServiceGrid1.CurentServiceConfiguration.Name, "Remove service", MessageBoxButtons.OKCancel);
-
+            base.MessageViewer.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question;
+            base.MessageViewer.MessageBoxButtons = MessageBoxButtons.OKCancel;
+            DialogResult wDialogResult = base.MessageViewer.Show("Confirma la eliminación de la configuración del servicio " + ucbServiceGrid1.CurentServiceConfiguration.Name);
+            base.SetMessageViewInfoDefault();
             if (wDialogResult == DialogResult.OK)
             {
                
@@ -148,7 +154,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         private void ucbServiceGrid1_OnClickServiceHandler(ServiceConfiguration pServiceConfiguration)
         {
-            ctrlService1.ShowAction = Action.Query;
+           
             ctrlService1.EntityParam = pServiceConfiguration;
             ctrlService1.Populate();
 

@@ -29,7 +29,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServices));
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -48,6 +47,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtAddres = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.btnView = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,7 +59,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMetaqadata = new System.Windows.Forms.Label();
-            this.txtAddres = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.ucbServiceGrid1 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
             this.ctrlService1 = new Fwk.ServiceManagement.Tools.Win32.ctrlService();
             this.toolStrip1.SuspendLayout();
@@ -246,6 +245,26 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.splitContainer1.SplitterDistance = 532;
             this.splitContainer1.TabIndex = 39;
             // 
+            // txtAddres
+            // 
+            this.txtAddres.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtAddres.AllowBlankSpace = true;
+            this.txtAddres.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
+            this.txtAddres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(253)))));
+            this.txtAddres.CapitalOnly = false;
+            this.txtAddres.ErrorIconRightToLeft = false;
+            this.txtAddres.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddres.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
+            this.txtAddres.Location = new System.Drawing.Point(146, 82);
+            this.txtAddres.Name = "txtAddres";
+            this.txtAddres.NotAllowedCharactersErrorText = "";
+            this.txtAddres.ReadOnly = true;
+            this.txtAddres.Required = false;
+            this.txtAddres.RequiredErrorText = null;
+            this.txtAddres.Size = new System.Drawing.Size(446, 21);
+            this.txtAddres.TabIndex = 40;
+            this.txtAddres.TextBoxType = Fwk.Bases.FrontEnd.Controls.FlatTextBoxTypeEnum.AlphaNumeric;
+            // 
             // btnView
             // 
             this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -370,25 +389,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.lblMetaqadata.Size = new System.Drawing.Size(109, 13);
             this.lblMetaqadata.TabIndex = 45;
             this.lblMetaqadata.Text = "<<<<<<<<<<<<<<<<<";
-            // 
-            // txtAddres
-            // 
-            this.txtAddres.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtAddres.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
-            this.txtAddres.BackColor = System.Drawing.Color.White;
-            this.txtAddres.CapitalOnly = false;
-            this.txtAddres.ErrorIconRightToLeft = false;
-            this.txtAddres.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddres.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
-            this.txtAddres.Location = new System.Drawing.Point(146, 82);
-            this.txtAddres.Name = "txtAddres";
-            this.txtAddres.NotAllowedCharactersErrorText = "";
-            this.txtAddres.ReadOnly = true;
-            this.txtAddres.Required = false;
-            this.txtAddres.RequiredErrorText = null;
-            this.txtAddres.Size = new System.Drawing.Size(446, 21);
-            this.txtAddres.TabIndex = 40;
-            this.txtAddres.TextBoxType = Fwk.Bases.FrontEnd.Controls.FlatTextBoxTypeEnum.AlphaNumeric;
             // 
             // ucbServiceGrid1
             // 

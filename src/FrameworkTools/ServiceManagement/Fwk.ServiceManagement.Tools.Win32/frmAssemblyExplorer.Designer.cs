@@ -40,7 +40,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblFileName = new System.Windows.Forms.Label();
             this.lblServiceName = new System.Windows.Forms.Label();
-            this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.serviceConfigurationCollectionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,15 +134,6 @@
             this.lblServiceName.Size = new System.Drawing.Size(0, 13);
             this.lblServiceName.TabIndex = 84;
             // 
-            // fwkMessageViewComponent1
-            // 
-            this.fwkMessageViewComponent1.BackColor = System.Drawing.Color.SteelBlue;
-            this.fwkMessageViewComponent1.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Exclamation;
-            this.fwkMessageViewComponent1.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
-            this.fwkMessageViewComponent1.TextMessageColor = System.Drawing.Color.Black;
-            this.fwkMessageViewComponent1.TextMessageForeColor = System.Drawing.Color.White;
-            this.fwkMessageViewComponent1.Title = "Message";
-            // 
             // frmAssemblyExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,6 +171,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Label lblServiceName;
-        private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewComponent1;
     }
 }

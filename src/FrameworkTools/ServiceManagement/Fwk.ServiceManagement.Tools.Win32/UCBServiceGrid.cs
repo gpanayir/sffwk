@@ -142,7 +142,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private void toolStripButtonFilter_Click(object sender, EventArgs e)
         {
             this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            FilterByName();
+            Filter();
             this.Cursor = System.Windows.Forms.Cursors.Default;
         }
 
@@ -177,7 +177,17 @@ namespace Fwk.ServiceManagement.Tools.Win32
             cmbFilterIsolationLevel.SelectedIndex = 0;
         }
 
-        private void FilterByName()
+        private void txtXmlFilePath_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+                Filter();
+                this.Cursor = System.Windows.Forms.Cursors.Default;
+            }
+        }
+
+        private void Filter()
         {
             ServiceConfiguration wServiceConfiguration = new ServiceConfiguration();
             wServiceConfiguration.Name = txtXmlFilePath.Text;
@@ -204,6 +214,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                                                          &&
                                                          (wNotInclude_IsolationLevel || wServiceConfiguration.IsolationLevel == s.IsolationLevel)
                                                          &&
+                                                         (
                                                          (s.Name.StartsWith(wServiceConfiguration.Name, StringComparison.OrdinalIgnoreCase) && Common.TipoBusquedaEnum.Start == tb)
                                                            ||
                                                            (s.Name.EndsWith(wServiceConfiguration.Name, StringComparison.OrdinalIgnoreCase) && Common.TipoBusquedaEnum.Finalize == tb)
@@ -212,7 +223,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                                                            ||
                                                            (s.Name == wServiceConfiguration.Name && Common.TipoBusquedaEnum.Equal == tb)
                                                            ||
-                                                           String.IsNullOrEmpty(wServiceConfiguration.Name)
+                                                           String.IsNullOrEmpty(wServiceConfiguration.Name))
                                                      select s;
 
             ServiceConfigurationCollection wServiceConfigurationCollection = new ServiceConfigurationCollection();
@@ -225,18 +236,33 @@ namespace Fwk.ServiceManagement.Tools.Win32
             //grdServices.Populate<ServiceConfigurationCollection,ServiceConfiguration>( wServiceConfigurationCollection);
             serviceConfigurationCollectionBindingSource.DataSource = wServiceConfigurationCollection;
         }
-
-         private void txtXmlFilePath_KeyDown(object sender, KeyEventArgs e)
+        private void cmbSearchType_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-                FilterByName();
-                this.Cursor = System.Windows.Forms.Cursors.Default;
-            }
-
+            Filter();
         }
+
+   
+
+     
+        
         #endregion
+
+        private void cmbFilterIsolationLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbFilterIsolationLevel.SelectedIndex == 0)
+                return;
+        
+            Filter();
+        }
+
+        private void cmbFilterTransactionalBehaviour_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbFilterTransactionalBehaviour.SelectedIndex == 0)
+                return;
+            Filter();
+        }
+
+         
 
 
 
