@@ -43,8 +43,8 @@ namespace Fwk.Bases.FrontEnd
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <param name="pServiceName">Nombre del servicio a actualizar.</param>
+        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2006-02-10T00:00:00</date>
         /// <author>moviedo</author>
         void SetServiceConfiguration(String pServiceName,ServiceConfiguration pServiceConfiguration);

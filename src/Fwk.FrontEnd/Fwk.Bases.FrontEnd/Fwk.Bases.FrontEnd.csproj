@@ -376,6 +376,12 @@
     <None Include="Resources\Control_ListBox.bmp" />
     <None Include="Resources\Control_DomainUpDown.bmp" />
     <None Include="Resources\Control_DateTimePicker.bmp" />
+    <EmbeddedResource Include="Classes\FrmBase.resx">
+      <DependentUpon>FrmBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\FwkUserControlBase.resx">
+      <DependentUpon>FwkUserControlBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Design\GridCellSyle\FwkCellStyleGreenFlat.resx">
       <DependentUpon>FwkCellStyleGreenFlat.cs</DependentUpon>
       <SubType>Designer</SubType>

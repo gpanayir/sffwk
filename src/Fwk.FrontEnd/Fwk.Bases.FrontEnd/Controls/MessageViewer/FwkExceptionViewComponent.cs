@@ -95,6 +95,21 @@ namespace Fwk.Bases.FrontEnd.Controls
             _FwkMessageView.ShowDialog();
             return _FwkMessageView.DialogResult;
         }
+
+        /// <summary>
+        /// Muestra el mensage
+        /// </summary>
+        /// <param name="e">Exception</param>
+        /// <returns>DialogResult</returns>
+        public DialogResult Show(Exception[] e,string pSource)
+        {
+
+            _FwkMessageView.Source = pSource;
+            _FwkMessageView.Message = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
+
+            _FwkMessageView.ShowDialog();
+            return _FwkMessageView.DialogResult;
+        }
     }
 
 

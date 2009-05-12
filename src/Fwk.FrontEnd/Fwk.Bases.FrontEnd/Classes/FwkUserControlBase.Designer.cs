@@ -31,10 +31,40 @@ namespace Fwk.Bases.FrontEnd
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container();
+            this.ExceptionViewer = new Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent(this.components);
+            this.MessageViewer = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            this.SuspendLayout();
+            // 
+            // ExceptionViewer
+            // 
+            this.ExceptionViewer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ExceptionViewer.TextMessageColor = System.Drawing.Color.White;
+            this.ExceptionViewer.TextMessageForeColorColor = System.Drawing.SystemColors.WindowText;
+            this.ExceptionViewer.Title = "FrmTechnicalMsg";
+            // 
+            // MessageViewer
+            // 
+            this.MessageViewer.BackColor = System.Drawing.Color.White;
+            this.MessageViewer.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
+            this.MessageViewer.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
+            this.MessageViewer.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
+            this.MessageViewer.TextMessageColor = System.Drawing.Color.White;
+            this.MessageViewer.TextMessageForeColor = System.Drawing.Color.Black;
+            this.MessageViewer.Title = "Message";
+            // 
+            // FwkUserControlBase
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "FwkUserControlBase";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent ExceptionViewer;
+        private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent MessageViewer;
     }
 }

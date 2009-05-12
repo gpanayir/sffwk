@@ -38,6 +38,72 @@ namespace Fwk.Bases.FrontEnd
             set { _EntityParam = value; }
         }
     
+         
+        /// <summary>
+        /// Establece el MessageViewer a sus valores por defecto
+        /// </summary>
+        protected void SetMessageViewInfoDefault()
+        {
+            MessageViewer.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
+            MessageViewer.MessageBoxButtons = MessageBoxButtons.OK;
+
+            
+        }
+
+
+
+
+        
+        /// <summary>
+        /// CLR ex no manejada
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnUnhandledException(Object sender, UnhandledExceptionEventArgs e)
+        {
+            HandleUnhandledException(e.ExceptionObject);
+        }
+
+        /// <summary>
+        /// Displays dialog with information about exceptions that occur in the application. 
+        /// </summary>
+        private static void AppThreadException(object source, System.Threading.ThreadExceptionEventArgs e)
+        {
+            HandleUnhandledException(e.Exception);
+        }
+
+        /// <summary>
+        /// metodo que resuelve el msg a mostrar para ex no manejadas
+        /// </summary>
+        /// <param name="o"></param>
+        public static void HandleUnhandledException(Object o)
+        {
+            string error;
+            Exception ex = o as Exception;
+            if (ex != null)
+            {
+                error = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
+            else
+            {
+                error = o.ToString();
+
+            }
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(5000);
+            sb.Append(@"Se detectaron anomalias en la aplicacion por favor chequee los siguientes errores: ");
+            sb.Append(Environment.NewLine);
+            sb.Append(Environment.NewLine);
+            sb.Append(@"{0}");
+            sb.Append(Environment.NewLine);
+            sb.Append("Desea salir de la aplicacion ?");
+            error = string.Format(sb.ToString(), error);
+            Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent wExceptionViewer = new Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent();
+             wExceptionViewer.Title = "";
+            DialogResult result = wExceptionViewer.Show("",error, string.Empty);
+            if (result == DialogResult.OK)
+                Application.Exit();
+        }
 
         /// <summary>
         /// Constructor por defecto.
@@ -47,6 +113,19 @@ namespace Fwk.Bases.FrontEnd
         public FrmBase()
         {
             InitializeComponent();
+            try
+            {
+                // Me subscribo al manejador de ex no manejadas (CLR)
+                AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(OnUnhandledException);
+
+                //Redirigo las ex no manejadas a ThreadException
+                Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(AppThreadException);
+            }
+            catch (Exception e)
+            {
+                HandleUnhandledException(e);
+            }
+
         }
 
 
@@ -144,10 +223,6 @@ namespace Fwk.Bases.FrontEnd
 
 
 
-        #region  Members Blocking
        
-
-
-        #endregion
     }
 }
