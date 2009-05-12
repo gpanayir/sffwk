@@ -62,6 +62,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Bases.FrontEnd, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fwk.Controls.Win32, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Libraries\Fwk.Controls.Win32.dll</HintPath>
@@ -106,10 +107,6 @@
     <Compile Include="AppConfig\AppConfigControl.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AppConfig\Class\CnnString.cs" />
-    <Compile Include="AppConfig\Class\ConfigManagerSettings.cs" />
-    <Compile Include="AppConfig\Class\Group.cs" />
-    <Compile Include="AppConfig\Class\Key.cs" />
     <Compile Include="AppConfig\ConfigurationManagerConfig.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -132,6 +129,10 @@
     <None Include="AppConfig.old\SecctionsAndGroupsConfig.cs.old" />
     <None Include="AppConfig.old\TreeNodeConfig.cs.old" />
     <None Include="AppConfig.old\WrapperConfig.cs.old" />
+    <Compile Include="Class\CnnString.cs" />
+    <Compile Include="Class\ConfigManagerSettings.cs" />
+    <Compile Include="Class\Group.cs" />
+    <Compile Include="Class\Key.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\TemplateProvider.cs" />
     <Compile Include="ConfigManager\ConfigManagerControl.cs" />
@@ -234,6 +235,9 @@
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TortoiseReadOnly.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\TortoiseAdded.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -274,9 +278,6 @@
     <None Include="Resources\zoomo_16.png" />
     <None Include="Resources\save_as_large.png" />
     <None Include="Resources\save_large.png" />
-    <None Include="Resources\file_delete_16.png" />
-    <None Include="Resources\file_remove_16.png" />
-    <None Include="Resources\file_new_16.png" />
     <Content Include="Templates.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

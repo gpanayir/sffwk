@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ConfigurationApp
 {
-    public partial class frmNewGroup : Form
+    public partial class frmNewGroup : Fwk.Bases.FrontEnd.FrmBase
     {
         public string GroupName
         {

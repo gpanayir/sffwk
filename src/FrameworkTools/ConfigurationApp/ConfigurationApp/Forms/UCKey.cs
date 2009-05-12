@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Fwk.Configuration.Common;
+using Fwk.Bases.FrontEnd;
 
 namespace ConfigurationApp.Forms
 {
 
-    public partial class UCConfigElement : UserControlBase
+    public partial class UCConfigElement : FwkUserControlBase
     {
         Key _Key;
         Group _Group;

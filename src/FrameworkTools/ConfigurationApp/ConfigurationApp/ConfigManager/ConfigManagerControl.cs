@@ -12,6 +12,8 @@ using Fwk.HelperFunctions;
 using FwkXml = Fwk.Xml;
 using ConfigurationApp.IsolatedStorage;
 using System.Linq;
+using Fwk.Exceptions;
+using Fwk.Bases.FrontEnd.Controls;
 namespace ConfigurationApp
 {
     internal class ConfigManagerControl
@@ -85,7 +87,8 @@ namespace ConfigurationApp
 
             if (_Holder.ExistConfigurationFile(strFileName))
             {
-                MessageBox.Show("The file " + strFileName + " exist");
+                Fwk.Bases.FrontEnd.Controls.FwkMessageView.Show(string.Concat("The file " , strFileName , " exist"),"Config mannager", MessageBoxButtons.OK,Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Exclamation);
+
                 return;
             }
 
@@ -129,11 +132,17 @@ namespace ConfigurationApp
                 //Si todo funciono buien agrego el nodo 
                 pConfigManagerTreeNode.Nodes.Add(wFileNode);
             }
-            catch (Exception er)
+            catch (InvalidOperationException er)
             {
-                MessageBox.Show("It's not valid configuration manager file" + Environment.NewLine + er.Message, "Error loading file", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _Holder.RemoveConfigManager(strFullFileName);
-
+               
+                TechnicalException te = new Fwk.Exceptions.TechnicalException("It's not valid configuration manager file", er);
+                FwkMessageView.Show(te, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
+                
+            }
+            catch (Exception er1)
+            {
+        
+                FwkMessageView.Show(er1, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
             }
         }
 
@@ -173,7 +182,8 @@ namespace ConfigurationApp
                 }
                 catch (System.UnauthorizedAccessException)
                 {
-                    throw new Exception("No tiene permiso para actualizar el archivo " + szFullFileName);
+                    throw new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo " , szFullFileName));
+                    
                 }
             }
         }
@@ -196,8 +206,10 @@ namespace ConfigurationApp
             }
             else
             {
-                DialogResult d = MessageBox.Show("Save changes to " + pFileNode.Text + "?"
-                    , "Configuration App", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            
+
+                DialogResult d = FwkMessageView.Show(string.Concat("Save changes to ", pFileNode.Text, "?"), "Config mannager", MessageBoxButtons.YesNoCancel, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question);
+
 
                 if (d == DialogResult.Yes)
                 {
@@ -404,7 +416,8 @@ namespace ConfigurationApp
             #region Seleccion de Groups Node
             if (ConfigurationApp.Common.Helper.TreeNodeExist(pTreeNodeGroup, pKeyName))
             {
-                MessageBox.Show("Already exist a key witch this name", "Duplicated key");
+                
+                FwkMessageView.Show("Already exist a propertie witch this name", "Duplicated propertie",MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Warning);
                 return;
             }
             ListDictionary dic = (ListDictionary)pFileNode.Tag;
@@ -490,7 +503,9 @@ namespace ConfigurationApp
 
             if (ConfigurationApp.Common.Helper.TreeNodeExist(pFileNode, pGroupName))
             {
-                MessageBox.Show("Already exist a group witch this name", "Duplicated group");
+                
+                FwkMessageView.Show("Already exist a group witch this name", "Duplicated group", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Warning);
+                
                 return;
             }
 

@@ -10,6 +10,7 @@ using ConfigurationApp.Common;
 using Fwk.HelperFunctions;
 using Fwk.Xml;
 using  ConfigurationApp.IsolatedStorage;
+using Fwk.Bases.FrontEnd.Controls;
 
 namespace ConfigurationApp
 {
@@ -99,8 +100,8 @@ namespace ConfigurationApp
 
             if (_AppConfigFilesList.IndexOf(pstrFullFileName) != -1)
             {
-                MessageBox.Show("This file already exist in the tree", "Information", MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                
+             FwkMessageView.Show("This file already exist in the tree", "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information);
                 return;
             }
 
@@ -125,7 +126,8 @@ namespace ConfigurationApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "AppConfiguration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
+                FwkMessageView.Show(ex.Message, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
             }
             
         }
@@ -185,10 +187,11 @@ namespace ConfigurationApp
                 }
                 else
                 {
-                    DialogResult d = MessageBox.Show("Save changes to " + pFileNode.Text + "?"
-                                                     , "Configuration App", MessageBoxButtons.YesNoCancel,
-                                                     MessageBoxIcon.Question);
-
+                   
+                   
+                    DialogResult d = FwkMessageView.Show(string.Concat("Save changes to " , pFileNode.Text , "?")
+                                                     ,"Config mannager", 
+                                                     MessageBoxButtons.YesNoCancel, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question);
                     if (d == DialogResult.Yes)
                     {
                         SaveFile(pFileNode);
@@ -214,7 +217,7 @@ namespace ConfigurationApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "AppConfiguration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FwkMessageView.Show(ex.Message, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
             }
         }
 
@@ -359,7 +362,8 @@ namespace ConfigurationApp
                 sbError.AppendLine("------------------------------");
                 sbError.AppendLine(er.Message);
                 
-                MessageBox.Show( sbError.ToString() , "AppConfiguration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                FwkMessageView.Show(sbError.ToString(), "AppConfiguration Error", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
         }
     }
 }

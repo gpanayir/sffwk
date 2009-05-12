@@ -6,7 +6,7 @@ using ConfigurationApp.IsolatedStorage;
 
 namespace ConfigurationApp
 {
-    public partial class frmMain : Form
+    public partial class frmMain : Fwk.Bases.FrontEnd.FrmBase
     {
 
 

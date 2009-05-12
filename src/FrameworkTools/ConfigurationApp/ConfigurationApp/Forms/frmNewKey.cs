@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace ConfigurationApp
 {
-    public partial class frmNewKey : Form
+    public partial class frmNewKey : Fwk.Bases.FrontEnd.FrmBase
     {
        
 
