@@ -102,27 +102,6 @@ namespace ConfigurationApp.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap file_new_16 {
-            get {
-                object obj = ResourceManager.GetObject("file_new_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap file_remove_16 {
-            get {
-                object obj = ResourceManager.GetObject("file_remove_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap file_remove_161 {
-            get {
-                object obj = ResourceManager.GetObject("file_remove_161", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap foldr_16 {
             get {
                 object obj = ResourceManager.GetObject("foldr_16", resourceCulture);

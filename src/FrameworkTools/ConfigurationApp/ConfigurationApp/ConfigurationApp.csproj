@@ -235,9 +235,6 @@
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\TortoiseReadOnly.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\TortoiseAdded.ico" />
   </ItemGroup>
   <ItemGroup>
