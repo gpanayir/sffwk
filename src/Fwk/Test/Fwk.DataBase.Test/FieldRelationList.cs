@@ -13,7 +13,7 @@ namespace TestDataBases
 	internal class FieldRelationList : List<FieldRelation>
 	{
 	}
-    
+
 	/// <summary>
 	/// Representa una relación entre dos campos de distintas tablas.
 	/// </summary>

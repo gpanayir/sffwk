@@ -54,7 +54,20 @@ namespace Fwk.Bases
         int _Timeout;
         bool _Cacheable;
         private string _FolderRepositoryKey;
+        private string _CreatedUserName;
 
+        public string CreatedUserName
+        {
+            get { return _CreatedUserName; }
+            set { _CreatedUserName = value; }
+        }
+        private DateTime _CreatedDateTime;
+
+        public DateTime CreatedDateTime
+        {
+            get { return _CreatedDateTime; }
+            set { _CreatedDateTime = value; }
+        }
 		/// <summary>
 		/// Nombre del servicio de negocio.
 		/// </summary>
@@ -233,6 +246,7 @@ namespace Fwk.Bases
             wStringBuilder.AppendLine(" Transactional Behaviour: ");
             wStringBuilder.AppendLine(Enum.GetName(typeof(IsolationLevel), _TransactionalBehaviour));
 
+            wStringBuilder.AppendLine(string.Concat(" Creation info: user:" , _CreatedUserName, "Date: " ,_CreatedDateTime.ToString()));
             return wStringBuilder.ToString();
         }
         #endregion

@@ -40,7 +40,7 @@ namespace Fwk.Logging.Test
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Logs _Logs =  Logs.GetFromXml<Logs>(Fwk.HelperFunctions .FileFunctions.OpenTextFile("Logs.xml"));
+            Events _Logs =  Events.GetFromXml<Events>(Fwk.HelperFunctions .FileFunctions.OpenTextFile("Logs.xml"));
             loadingResultsTextBox.Text = _Logs.GetXml();
         }
 
