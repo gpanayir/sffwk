@@ -15,7 +15,7 @@ namespace Fwk.Logging.Targets
     /// <author>moviedo</author>
     public class XmlTarget : Target
     {
-        public  static Logs Logs;
+        public  static Events Logs;
        
         #region <constructor>
         /// <summary>
@@ -62,7 +62,7 @@ namespace Fwk.Logging.Targets
         /// contrario, retorna un 'nuevo' Logs.
         /// </summary>
         /// <returns>Logs.</returns>
-         Logs OpenLogsFromFile()
+         Events OpenLogsFromFile()
         {
             
 
@@ -80,17 +80,17 @@ namespace Fwk.Logging.Targets
             }
             #endregion
 
-            Logs wLog;
+            Events wLog;
             
 
             if (!File.Exists(this.FileName))
             {
                
 
-                return  new Logs();;
+                return  new Events();;
             }
             
-            wLog = Logs.GetFromXml<Logs>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(this.FileName));
+            wLog = Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(this.FileName));
             return wLog;
         }
 

@@ -23,7 +23,7 @@ namespace Fwk.Logging
         private Guid _Id;
         private string _User;
         private string _Machine;
-        private string _Message;
+        private CData _Message = new CData ();
         private DateTime _DateAndTime;
         #endregion
 
@@ -43,7 +43,7 @@ namespace Fwk.Logging
             _Id = Guid.NewGuid();
             _Type = pType;
             _Source = pSource;
-            _Message = pMessage;
+            _Message.Text = pMessage;
             _Machine = Environment.MachineName;
             _User = Environment.UserName;
             _DateAndTime = DateTime.Now;
@@ -54,7 +54,8 @@ namespace Fwk.Logging
         /// <summary>
         /// Mensaje descriptivo del evento.
         /// </summary>
-        public string Message
+        [XmlElement("Message", Type = typeof(Fwk.Xml.CData))]
+        public CData Message
         {
             get { return _Message; }
             set { _Message = value; }
@@ -127,57 +128,32 @@ namespace Fwk.Logging
         /// genera una cadena de texto con ella.
         /// </summary>
         /// <returns>Cadena de texto.</returns>
-        public override string ToString()
-        {
-            StringBuilder wStringBuilder = new StringBuilder();            
-            wStringBuilder.Append("Log Id: ");
-            wStringBuilder.Append(this._Id);
-            wStringBuilder.Append(" | Date: ");
-            wStringBuilder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-            wStringBuilder.Append(" | Type: ");
-            wStringBuilder.Append(this._Type.ToString().ToUpper());
-            wStringBuilder.Append(" | Message: ");
-            wStringBuilder.Append(this._Message);
-            wStringBuilder.Append(" | Source: ");
-            wStringBuilder.Append(this._Source);
-            wStringBuilder.Append(" | User: ");
-            wStringBuilder.Append(this._User);
-            wStringBuilder.Append(" | Machine: ");
-            wStringBuilder.Append(this._Machine);
-            return wStringBuilder.ToString();
-        }
-
-        /// <summary>
-        /// Recopila la información de todos los atributos y
-        /// genera un nodo Xml con ella.
-        /// </summary>
-        /// <returns>Nodo Xml.</returns>
-        [Obsolete("Utilice GetXml")]
-        public XmlNode ToXml()
-        {
-            XmlDocument wDocument = new XmlDocument();
-            XmlElement wElement = Element.ElementCreateAndAdd(wDocument, "Log");
-            NodeAttribute.AttributeCreateAndSet(wDocument, wElement, "id", this._Id.ToString());
-            NodeAttribute.AttributeCreateAndSet(wDocument, wElement, "dateTime", this._DateAndTime.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-            NodeAttribute.AttributeCreateAndSet(wDocument, wElement, "type", this._Type.ToString().ToUpper());
-            NodeAttribute.AttributeCreateAndSet(wDocument, wElement, "source", this._Source);
-            NodeAttribute.AttributeCreateAndSet(wDocument, wElement, "user", this._User);
-            NodeAttribute.AttributeCreateAndSet(wDocument, wElement, "machine", this._Machine);
-            CData.CDATASectionCreateAndAdd(Node.NodeCreateAndAdd(wElement, "Message"), this.Message);
-            return wElement;
-        }
-        ///// <summary>
-        ///// Obtine un xml producto de la serializacion de la clase FacturaBE
-        ///// </summary>
-        ///// <returns>string con el xml de la serializacion</returns>
-        //public string GetXml()
+        //public override string ToString()
         //{
-        //    return Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(this);
+            //StringBuilder wStringBuilder = new StringBuilder();            
+            //wStringBuilder.Append("Log Id: ");
+            //wStringBuilder.Append(this._Id);
+            //wStringBuilder.Append(" | Date: ");
+            //wStringBuilder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
+            //wStringBuilder.Append(" | Type: ");
+            //wStringBuilder.Append(this._Type.ToString().ToUpper());
+            //wStringBuilder.Append(" | Message: ");
+            //wStringBuilder.Append(this._Message);
+            //wStringBuilder.Append(" | Source: ");
+            //wStringBuilder.Append(this._Source);
+            //wStringBuilder.Append(" | User: ");
+            //wStringBuilder.Append(this._User);
+            //wStringBuilder.Append(" | Machine: ");
+            //wStringBuilder.Append(this._Machine);
+            //return wStringBuilder.ToString();
         //}
+
+  
         #endregion
     }
-    [XmlRoot("Logs"), SerializableAttribute]
-    public class Logs : Fwk.Bases.Entities<Event>
+    
+    [XmlRoot("Events"), SerializableAttribute]
+    public class Events : Fwk.Bases.Entities<Event>
     { 
     
     }

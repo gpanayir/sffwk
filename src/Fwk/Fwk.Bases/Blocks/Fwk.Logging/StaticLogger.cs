@@ -20,7 +20,7 @@ namespace Fwk.Logging
         /// </summary>
          static StaticLogger()
         {
-            _LoggingSection = ConfigurationManager.GetSection("FwLogging") as LoggingSection;
+            _LoggingSection = ConfigurationManager.GetSection("FwkLogging") as LoggingSection;
         }
         #endregion
 

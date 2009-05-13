@@ -6,7 +6,7 @@ using System.Xml;
 using Fwk.Configuration.Common;
 using Fwk.Bases.Properties;
 using Fwk.HelperFunctions;
-      
+
 namespace Fwk.Configuration
 {
     /// <summary>
@@ -20,7 +20,7 @@ namespace Fwk.Configuration
     /// </remarks>
     /// </summary>
     /// <Author>Marcelo Oviedo</Author>
-    public  class LocalConfigurationManager
+    public class LocalConfigurationManager
     {
         private static LocalHolder _ConfigHolder = null;
 
@@ -53,7 +53,7 @@ namespace Fwk.Configuration
         internal static string GetProperty(string pConfigProvider, string pGroupName, string pPropertyName)
         {
             string wBaseConfigFile = String.Empty;
-          
+
 
             if (string.IsNullOrEmpty(pConfigProvider))
                 wBaseConfigFile = ConfigurationManager.GetBaseConfigFileName();
@@ -74,8 +74,8 @@ namespace Fwk.Configuration
             return strProperty;
 
         }
-       
-      
+
+
         /// <summary>
         /// Obtiene un ConfigurationFile <see cref="ConfigurationFile" atravez de su nombre/>
         /// </summary>
@@ -84,10 +84,10 @@ namespace Fwk.Configuration
         /// <Author>Marcelo Oviedo</Author>
         internal static ConfigurationFile GetConfigurationFile(string pFileName)
         {
-            return  _ConfigHolder.GetConfig(pFileName);
+            return _ConfigHolder.GetConfig(pFileName);
         }
 
-       
+
 
         /// <summary>
         /// Obtiene un grupo determinado en el archivo de configuracion
@@ -97,10 +97,10 @@ namespace Fwk.Configuration
         /// <Author>Marcelo Oviedo</Author>
         internal static Group GetGroup(string pGroupName)
         {
-            return GetGroup(string.Empty,pGroupName);
-           
+            return GetGroup(string.Empty, pGroupName);
+
         }
-             /// <summary>
+        /// <summary>
         /// Obtiene un grupo determinado en el archivo de configuracion
         /// </summary>
         /// <param name="pConfigProvider">Proveedor de configuuracion</param>
@@ -130,7 +130,7 @@ namespace Fwk.Configuration
             return wGroup;
         }
 
-        
+
         #region [Private members]
 
 
@@ -146,7 +146,7 @@ namespace Fwk.Configuration
             {
                 _ConfigHolder = new LocalHolder();
             }
-          
+
         }
         #endregion
     }
@@ -183,7 +183,7 @@ namespace Fwk.Configuration
             string wFileContent = string.Empty;
             bool wIsNewFile = false;
 
-           
+
 
             ConfigurationFile wConfigurationFile = _ConfigData.GetConfigurationFile(pFileName);
 
@@ -236,15 +236,15 @@ namespace Fwk.Configuration
                 wIsNewFile = true;
             }
 
-            
-                this.SetConfigurationFile(out wConfigurationFile, pFileName);
 
-                if (wIsNewFile)
-                {
-                    wConfigurationFile.FileName = pFileName;
-                    _ConfigData.AddConfigurationFile(wConfigurationFile);
-                }
-            
+            this.SetConfigurationFile(out wConfigurationFile, pFileName);
+
+            if (wIsNewFile)
+            {
+                wConfigurationFile.FileName = pFileName;
+                _ConfigData.AddConfigurationFile(wConfigurationFile);
+            }
+
 
 
             return wConfigurationFile;
@@ -308,8 +308,8 @@ namespace Fwk.Configuration
 
         }
 
-     
- 
+
+
 
         /// <summary>
         /// Agrega nuevamente los gupos al ConfigurationFile
@@ -319,7 +319,7 @@ namespace Fwk.Configuration
         /// <Author>Marcelo Oviedo</Author>
         public void SetConfigurationFile(out ConfigurationFile pConfigurationFile, string pFileName)
         {
-            
+
             string wFullFileName;
             if (System.IO.File.Exists(pFileName))
             {
@@ -332,16 +332,18 @@ namespace Fwk.Configuration
             }
 
             pConfigurationFile = Common.Helper.GetConfig(wFullFileName, null);
-            
-          
-            
+
+
+
         }
 
 
         public void RemoveConfigManager(string pFileName)
         {
+
             ConfigurationFile wConfigurationFile = _ConfigData.GetConfigurationFile(pFileName);
             _ConfigData.RemoveConfigurationFile(wConfigurationFile);
+
         }
         public bool ExistConfigurationFile(string pFileName)
         {
