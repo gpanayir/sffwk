@@ -85,11 +85,17 @@ namespace Fwk.AssemblyExplorer
 		private  AssemblyMethodCollection m_Methods = null; 
 		private AssemblyPropertyCollection m_Properties= null;
         private Type m_BaseType = null;
-
+        private Type _Type = null;
         public Type BaseType
         {
             get { return m_BaseType; }
             set { m_BaseType = value; }
+        }
+
+        public Type Type
+        {
+            get { return _Type; }
+            set { _Type = value; }
         }
         private string m_FullyQualifiedName;
 
@@ -119,7 +125,7 @@ namespace Fwk.AssemblyExplorer
             m_BaseType = pClass.BaseType;
 			m_Methods = new AssemblyMethodCollection();
 			m_Properties = new AssemblyPropertyCollection();
-
+            _Type = pClass;
 			this.FillMethods(pClass.GetMethods());
 			this.FillPropertys(pClass.GetProperties());
 

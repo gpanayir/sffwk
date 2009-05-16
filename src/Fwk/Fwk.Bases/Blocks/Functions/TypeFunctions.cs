@@ -525,5 +525,21 @@ namespace Fwk.HelperFunctions
                 pEntitiCollection.Add(item);
             }
         }
+        /// <summary>
+        /// Funcion que busca recurcivamente si Tsource hereda de Tbase
+        /// </summary>
+        /// <param name="Tsource"></param>
+        /// <param name="Tbase"></param>
+        /// <returns></returns>
+        public static bool TypeInheritFrom(Type Tsource, Type Tbase)
+        {
+            if (Tsource.BaseType == null) return false;
+            if (Tsource.BaseType != Tbase)
+                return TypeInheritFrom(Tsource.BaseType, Tbase);
+            else
+                return true;
+
+
+        }
     }
 }

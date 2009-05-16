@@ -43,12 +43,12 @@ namespace Fwk.HelperFunctions.Caching
             /// <summary>
             /// Data Cache Storage 
             /// </summary>
-            [Obsolete("Esta caracteristica bno se implementa en el frameworck")]
+            [Obsolete("Esta caracteristica no se implementa en el framework")]
             DataCacheStorage,
             /// <summary>
             /// A Custom Cache store 
             /// </summary>
-            [Obsolete("Esta caracteristica bno se implementa en el frameworck")]
+            [Obsolete("Esta caracteristica no se implementa en el framework")]
             CustomCacheStorage
 
         }
@@ -91,7 +91,16 @@ namespace Fwk.HelperFunctions.Caching
         /// </summary>
         public FwkCache()
         {
-            this.CacheManager = (CacheManager)CacheFactory.GetCacheManager();
+            try
+            {
+                this.CacheManager = (CacheManager)CacheFactory.GetCacheManager();
+            }
+            catch (System.TypeInitializationException e)
+            {
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al inicuializar la configuracion de cache",e);
+                te.ErrorId = "3000";
+                throw te;
+            }
         }
 
         /// <summary>

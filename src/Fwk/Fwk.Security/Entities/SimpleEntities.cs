@@ -11,33 +11,144 @@ using System.Web.Security;
 
 namespace Fwk.Security.Common
 {
+    
 
     public class User
     {
-        String _UserName;
-
-        public String UserName
+        private String m_AppName;
+        private String m_UserName;
+        private DateTime m_LastActivityDate;
+        private String m_Email;
+        private Boolean m_IsApproved;
+        private Boolean m_IsLockedOut;
+        private String m_Comment;
+        private String m_Password;
+        private String m_QuestionPassword;
+        private String m_AnswerPassword;
+        
+        /// <summary>
+        /// Answer security password
+        /// </summary>
+        public String AnswerPassword
         {
-            get { return _UserName; }
-            set { _UserName = value; }
+            get
+            {
+                return m_AnswerPassword;
+            }
+            set
+            {
+                m_AnswerPassword = value;
+            }
         }
-        String _AppName;
-
+        /// <summary>
+        /// Question security password
+        /// </summary>
+        public String QuestionPassword
+        {
+            get
+            {
+                return m_QuestionPassword;
+            }
+            set
+            {
+                m_QuestionPassword = value;
+            }
+        }
+        /// <summary>
+        /// User Password
+        /// </summary>
+        public String Password
+        {
+            get
+            {
+                return m_Password;
+            }
+            set
+            {
+                m_Password = value;
+            }
+        }
+        /// <summary>
+        /// User comment or description
+        /// </summary>
+        public String Comment
+        {
+            get
+            {
+                return m_Comment;
+            }
+            set
+            {
+                m_Comment = value;
+            }
+        }                
+        /// <summary>
+        /// Application name
+        /// </summary>
         public String AppName
         {
-            get { return _AppName; }
-            set { _AppName = value; }
+            get { return m_AppName; }
+            set { m_AppName = value; }
         }
+        /// <summary>
+        /// User name
+        /// </summary>
+        public String UserName
+        {
+            get { return m_UserName; }
+            set { m_UserName = value; }
+        }
+        /// <summary>
+        /// Last user activity
+        /// </summary>
+        public DateTime LastActivityDate
+        {
+            get{return m_LastActivityDate;}
+            set{m_LastActivityDate = value;}
+        }
+        /// <summary>
+        /// Get User Lock
+        /// </summary>
+        public Boolean IsLockedOut
+        {
+            get{return m_IsLockedOut;}            
+        }
+        /// <summary>
+        /// User Approved 
+        /// </summary>
+        public Boolean IsApproved
+        {
+            get{return m_IsApproved;}
+            set{m_IsApproved = value;}
+        }
+        /// <summary>
+        /// User Email
+        /// </summary>
+        public String Email
+        {
+            get{return m_Email;}
+            set{m_Email = value;}
+        }
+
+
         public User(MembershipUser pMembershipUser)
         {
-            _UserName = pMembershipUser.UserName;
+            m_UserName = pMembershipUser.UserName;
+            m_LastActivityDate = pMembershipUser.LastActivityDate;
+            m_IsLockedOut = pMembershipUser.IsLockedOut;
+            m_IsApproved = pMembershipUser.IsApproved;
+            m_Email = pMembershipUser.Email;
+            m_Comment = pMembershipUser.Comment;
+            m_QuestionPassword = pMembershipUser.PasswordQuestion;            
 
         }
+
         public User(string pUserName)
         {
-            _UserName = pUserName;
+            m_UserName = pUserName;
 
         }
+
     }
 
     public class UserList : List<User>

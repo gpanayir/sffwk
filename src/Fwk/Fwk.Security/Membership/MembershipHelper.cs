@@ -1,13 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-
-using System.Security.Principal;
-using Microsoft.Practices.EnterpriseLibrary.Security;
-using Microsoft.Practices.EnterpriseLibrary.Caching;
-using System.Windows.Forms;
 using System.Web.Security;
 using Fwk.Security.Common;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
@@ -78,6 +70,27 @@ namespace Fwk.Security
         }
 
         /// <summary>
+        /// Crea un usuario
+        /// </summary>
+        /// <param name="pUsername"></param>
+        /// <param name="pPassword"></param>
+        public static User CreateUser(string pUsername, string pPassword, string pEmail, string pPasswordQuestion,string pPasswordAnswer, Boolean pIsApproved)
+        {            
+            MembershipCreateStatus wStatus;
+
+            try
+            {                
+                MembershipUser newUser = Membership.CreateUser(pUsername, pPassword, pEmail, pPasswordQuestion, pPasswordAnswer, pIsApproved, out wStatus);
+
+                return new User(newUser);
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Elimina un usuario de la Base de Datos
         /// </summary>
         /// <param name="pUserName">Nombre de Usuario</param>
@@ -136,7 +149,7 @@ namespace Fwk.Security
         /// Bloquea un Usuario
         /// </summary>
         /// <param name="pUserName">Nombre del usuario que se desea bloquear</param>
-        public static void LockUser(String pUserName)
+        public static void UnApproved(String pUserName)
         {
             MembershipUser wUser = Membership.GetUser(pUserName);
 
@@ -153,7 +166,7 @@ namespace Fwk.Security
         /// Desbloquea un usuario
         /// </summary>
         /// <param name="pUserName">Nombre del usuario a desbloquear</param>
-        public static void UnLockUser(String pUserName)
+        public static void Approved(String pUserName)
         {
 
             MembershipUser wUser = Membership.GetUser(pUserName);
@@ -330,7 +343,47 @@ namespace Fwk.Security
             }
         }
 
-      
+        /// <summary>
+        ///  Obtiene el mensaje de error (Ingles)
+        /// </summary>
+        /// <param name="status">MembershipCreateStatus</param>
+        /// <returns>Mensaje de error</returns>
+        public static string GetErrorMessage(MembershipCreateStatus status)
+        {
+            switch (status)
+            {
+                case MembershipCreateStatus.DuplicateUserName:
+                    return "Username already exists. Please enter a different user name.";
+
+                case MembershipCreateStatus.DuplicateEmail:
+                    return "A username for that e-mail address already exists. Please enter a different e-mail address.";
+
+                case MembershipCreateStatus.InvalidPassword:
+                    return "The password provided is invalid. Please enter a valid password value.";
+
+                case MembershipCreateStatus.InvalidEmail:
+                    return "The e-mail address provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.InvalidAnswer:
+                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.InvalidQuestion:
+                    return "The password retrieval question provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.InvalidUserName:
+                    return "The user name provided is invalid. Please check the value and try again.";
+
+                case MembershipCreateStatus.ProviderError:
+                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+
+                case MembershipCreateStatus.UserRejected:
+                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+
+                default:
+                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+            }
+        }
+
                 
 
         #endregion
