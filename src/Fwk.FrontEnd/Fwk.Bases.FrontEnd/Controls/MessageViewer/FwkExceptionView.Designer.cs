@@ -133,12 +133,11 @@ namespace Fwk.Bases.FrontEnd.Controls
             // 
             this.txtSource.BackColor = System.Drawing.Color.White;
             this.txtSource.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSource.Location = new System.Drawing.Point(62, 49);
-            this.txtSource.Multiline = true;
+            this.txtSource.Location = new System.Drawing.Point(111, 33);
             this.txtSource.Name = "txtSource";
             this.txtSource.ReadOnly = true;
             this.txtSource.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSource.Size = new System.Drawing.Size(279, 35);
+            this.txtSource.Size = new System.Drawing.Size(216, 13);
             this.txtSource.TabIndex = 16;
             // 
             // imgIcon
@@ -153,14 +152,16 @@ namespace Fwk.Bases.FrontEnd.Controls
             // 
             // txtMessage
             // 
+            this.txtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMessage.BackColor = System.Drawing.Color.White;
-            this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMessage.Location = new System.Drawing.Point(62, 115);
+            this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMessage.Location = new System.Drawing.Point(57, 64);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.ReadOnly = true;
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMessage.Size = new System.Drawing.Size(279, 51);
+            this.txtMessage.Size = new System.Drawing.Size(284, 102);
             this.txtMessage.TabIndex = 17;
             // 
             // txtDetail
@@ -195,7 +196,7 @@ namespace Fwk.Bases.FrontEnd.Controls
             // 
             this.lblMessage.AutoSize = true;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(61, 97);
+            this.lblMessage.Location = new System.Drawing.Point(61, 48);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(54, 13);
             this.lblMessage.TabIndex = 20;
