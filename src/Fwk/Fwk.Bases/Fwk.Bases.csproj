@@ -138,7 +138,6 @@
     <Compile Include="Classes\BusinessService.cs" />
     <Compile Include="Classes\ConfigurationsHelper.cs" />
     <Compile Include="Classes\ContextInformation.cs" />
-    <Compile Include="Classes\DataAccessComponent.cs" />
     <Compile Include="Classes\Entities.cs" />
     <Compile Include="Classes\Entity.cs" />
     <Compile Include="Classes\EntityHistory\FwkHistoryAttribute.cs" />
