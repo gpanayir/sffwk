@@ -92,19 +92,15 @@ namespace Fwk.Configuration.Common
             }
 
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
-            if (wGroup != null)
+            if (wGroup == null)
             {
                 throw new Exception(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", pBaseConfigFileName }));
             }
             Key wKey = wGroup.Keys.GetFirstByName(pPropertyName);
-            if (wGroup != null)
+            if (wKey == null)
             {
-                throw new Exception(string.Concat(new String[] { "No se encuentra la propiedad ", pPropertyName, " en el grupo de propiedades: ", pGroupName, " del archivo de configuración: ", pBaseConfigFileName }));
+                throw new Exception(string.Concat(new String[] { "No se encuentra la propiedad ", pPropertyName, " en el grupo: ", pGroupName, " del archivo de configuración: ", pBaseConfigFileName }));
             }
-
-
-
-
 
             return wKey.Value.Text;
 

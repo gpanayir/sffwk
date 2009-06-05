@@ -56,15 +56,10 @@ namespace Fwk.Security
 
             try
             {
-        
-                //MembershipCreateStatus wStatus = MembershipCreateStatus.UserRejected;
                 System.Web.Security.Membership.CreateUser(pUsername, pPassword, pEmail);
-
-                
             }
             catch (Exception ex)
             {
-                //FwkMessageView.Show(ex, "CreateUser", System.Windows.Forms.MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
                 throw ex;
             }
         }
@@ -99,6 +94,28 @@ namespace Fwk.Security
             try
             {
                 Membership.DeleteUser(pUserName);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Actualiza un usuario
+        /// </summary>
+        /// <param name="pFwkUser">User a eliminar</param>
+        public static void UpdateUser(User pFwkUser)
+        {
+            try
+            {
+                MembershipUser wUser = Membership.GetUser(pFwkUser.UserName);
+                
+                wUser.Comment = pFwkUser.Comment;
+                wUser.Email = pFwkUser.Email;
+                wUser.IsApproved = pFwkUser.IsApproved;
+                
+                Membership.UpdateUser(wUser);
             }
             catch (Exception ex)
             {

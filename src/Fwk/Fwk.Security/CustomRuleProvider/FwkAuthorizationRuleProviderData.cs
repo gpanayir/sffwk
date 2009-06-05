@@ -82,7 +82,7 @@ namespace Fwk.Security.Configuration
             {
                 if (_Rules.Count == 0 && !String.IsNullOrEmpty((string)this["connectionStringName"]))
                 {
-                    FwkMembership.ConnectionStringName = (string)this["connectionStringName"];
+                    FwkMembership.ConnectionStringName = this["connectionStringName"].ToString().Trim();
                     _Rules = FwkMembership.GetRules( Membership.ApplicationName);
                 }
                 return _Rules;

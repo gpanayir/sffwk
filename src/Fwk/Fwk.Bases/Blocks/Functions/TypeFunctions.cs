@@ -528,14 +528,30 @@ namespace Fwk.HelperFunctions
         /// <summary>
         /// Funcion que busca recurcivamente si Tsource hereda de Tbase
         /// </summary>
-        /// <param name="Tsource"></param>
-        /// <param name="Tbase"></param>
+        /// <param name="Tsource">Tipo origen </param>
+        /// <param name="Tbase">Tipo base del cual puede heredar el tipo origen</param>
         /// <returns></returns>
         public static bool TypeInheritFrom(Type Tsource, Type Tbase)
         {
             if (Tsource.BaseType == null) return false;
             if (Tsource.BaseType != Tbase)
                 return TypeInheritFrom(Tsource.BaseType, Tbase);
+            else
+                return true;
+
+
+        }
+        /// <summary>
+        /// Funcion que busca recurcivamente si Tsource hereda de Tbase
+        /// </summary>
+        /// <param name="pObject">Instancia del tipo origen </param>
+        /// <param name="Tbase">Tipo base del cual puede heredar el tipo origen</param>
+        /// <returns></returns>
+        public static bool TypeInheritFrom<Tsource>(object pObject, Type Tbase)
+        {
+            if (typeof(Tsource).BaseType == null) return false;
+            if (typeof(Tsource).BaseType != Tbase)
+                return TypeInheritFrom(typeof(Tsource).BaseType, Tbase);
             else
                 return true;
 

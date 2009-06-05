@@ -47,8 +47,7 @@ namespace Fwk.AssemblyExplorer
 
 		protected override void OnInsert( int index, Object value )  
 		{
-			if ( value.GetType() != Type.GetType("Fwk.AssemblyExplorer.Assembly") )
-				throw new ArgumentException( "El valor debe ser del tipo Fwk.AssemblyExplorer.Assembly.", "value" );
+           
 		}
 
 		protected override void OnRemove( int index, Object value )  
