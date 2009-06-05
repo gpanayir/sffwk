@@ -22,9 +22,7 @@ namespace SecurityAppBlock.Admin
         public frmAdmin()
         {
             InitializeComponent();
-           
-
-           
+        
 
             this.assingRulesControl1.Init();
             this.assingRoles1.Init();

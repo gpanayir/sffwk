@@ -109,16 +109,16 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 base.MessageViewer.Show("Seleccione un servicio para configurar");
                 return;
             }
-            ServiceConfiguration wServiceClon = ucbServiceGrid1.CurentServiceConfiguration;
-            if (frmEdit.ShowEdit(wServiceClon) == DialogResult.OK)
+             _AuxServiceName  = ucbServiceGrid1.CurentServiceConfiguration.Name;
+            if (frmEdit.ShowEdit(ucbServiceGrid1.CurentServiceConfiguration) == DialogResult.OK)
             {
-                base.SetServiceConfiguration(ucbServiceGrid1.CurentServiceConfiguration.Name, wServiceClon);
-                ucbServiceGrid1.Update(wServiceClon);
+                base.SetServiceConfiguration(_AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
+                //ucbServiceGrid1.Update(wServiceClon);
                
             }
             ucbServiceGrid1_OnClickServiceHandler(ucbServiceGrid1.CurentServiceConfiguration);   
 		}
-
+        string _AuxServiceName;
 		/// <summary>
 		/// Elimina configuración de servicio de negocio.
 		/// </summary>

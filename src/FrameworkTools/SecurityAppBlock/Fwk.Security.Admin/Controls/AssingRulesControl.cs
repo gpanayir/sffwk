@@ -22,7 +22,7 @@ namespace SecurityAppBlock.Admin.Controls
             if (NewSecurityInfoCreated != null)
                 NewSecurityInfoCreated(this);
         }
-        private ISecurityCacheProvider cache;	// Security cache to handle tokens
+        //private ISecurityCacheProvider cache;	// Security cache to handle tokens
         private IAuthorizationProvider ruleProvider;
         Rol _SelectedRol = null;
         User _SelectedUser = null;
