@@ -134,7 +134,6 @@
     <Compile Include="Blocks\Fwk.ServiceManagement\ObjectProvider.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlConfigSection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlServiceConfigurationManager.cs" />
-    <Compile Include="Classes\BusinessComponent.cs" />
     <Compile Include="Classes\BusinessService.cs" />
     <Compile Include="Classes\ConfigurationsHelper.cs" />
     <Compile Include="Classes\ContextInformation.cs" />
