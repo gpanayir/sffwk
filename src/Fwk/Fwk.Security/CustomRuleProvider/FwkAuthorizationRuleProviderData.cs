@@ -69,14 +69,14 @@ namespace Fwk.Security.Configuration
             }
         }
 
-        NamedElementCollection<AuthorizationRuleData> _Rules = new NamedElementCollection<AuthorizationRuleData>();
+        NamedElementCollection<FwkAuthorizationRule> _Rules = new NamedElementCollection<FwkAuthorizationRule>();
         /// <summary>
         /// Gets or sets the list of rules associated with
         /// the provider.
         /// </summary>
         /// <value>A collection of <see cref="AuthorizationRuleData"/>.</value>
         [ConfigurationProperty(rulesProperty, IsRequired = false)]
-        public NamedElementCollection<AuthorizationRuleData> Rules
+        public NamedElementCollection<FwkAuthorizationRule> Rules
         {
             get
             {
@@ -120,7 +120,7 @@ namespace Fwk.Security.Configuration
             FwkAuthorizationRuleProviderData castedObjectConfiguration = (FwkAuthorizationRuleProviderData)objectConfiguration;
 
             IDictionary<string, IAuthorizationRule> authorizationRules = new Dictionary<string, IAuthorizationRule>();
-            foreach (AuthorizationRuleData ruleData in castedObjectConfiguration.Rules)
+            foreach (FwkAuthorizationRule ruleData in castedObjectConfiguration.Rules)
             {
                 authorizationRules.Add(ruleData.Name, ruleData);
             }
