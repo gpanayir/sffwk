@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Security;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using System.Configuration;
 
 namespace Fwk.Security
 {
@@ -13,7 +15,7 @@ namespace Fwk.Security
     /// rule that is governed by an 
     /// <see cref="AuthorizationRuleProvider"/>.
     /// </summary>
-    public class FwkAuthorizationRule :  IAuthorizationRule
+    public class FwkAuthorizationRule : NamedConfigurationElement, IAuthorizationRule
     {
         private  string _Expression ;
 
@@ -30,17 +32,17 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="name">The name of the rule</param>
         /// <param name="expression">The expression to evaluate.</param>
-        public FwkAuthorizationRule(string name, string expression) 
+        public FwkAuthorizationRule(string name, string expression) :base (name)
         {
             _Expression = expression;
-            _Name = name;
+            
         }
 
         /// <summary>
         /// Gets or sets the expression associated with
         /// this rule.
         /// </summary>
-		
+        [ConfigurationProperty("expression", IsRequired = false)]
 		public string Expression
 		{
 			get
@@ -52,18 +54,54 @@ namespace Fwk.Security
 				_Expression= value;
 			}
 		}
-        string _Name;
-        public string Name
+        int _CategoryId;
+        public int CategoryId
         {
             get
             {
-                return _Name;
+                return _CategoryId;
             }
             set
             {
-                _Name = value;
+                _CategoryId = value;
             }
         }
 
+    }
+}
+public class FwkCategory
+{
+    int? _ParentCategoryId;
+
+    public int? ParentCategoryId
+    {
+        get { return _ParentCategoryId; }
+        set { _ParentCategoryId = value; }
+    }
+    int _CategoryId;
+    public int CategoryId
+    {
+        get
+        {
+            return _CategoryId;
+        }
+        set
+        {
+            _CategoryId = value;
+        }
+    }
+
+    string _Name;
+
+    public string Name
+    {
+        get
+        {
+            return _Name;
+        }
+        set
+        {
+            _Name = value;
+        }
     }
 }
