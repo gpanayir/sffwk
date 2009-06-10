@@ -158,8 +158,15 @@ namespace Fwk.Security
         public static User GetUser(String pUserName)
         {
             MembershipUser wUser = Membership.GetUser(pUserName);
-
-            return new User(wUser);
+             // block the user
+            if (wUser == null)
+            {
+                return null;
+            }
+            else
+            {
+                return new User(wUser);
+            }
         }
 
         /// <summary>
@@ -516,9 +523,52 @@ namespace Fwk.Security
         /// <param name="pConnectionStringName"></param>
         /// <param name="pApplicationName"></param>
         /// <returns></returns>
-        public static NamedElementCollection<AuthorizationRuleData> GetRules(string pApplicationName)
+        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string pApplicationName)
         {
             return GetRules(pApplicationName, ConnectionStringName);
+        }
+        /// <summary>
+        /// Obtiene las reglas de una determinada aplicacion
+        /// </summary>
+        /// <param name="pConnectionStringName"></param>
+        /// <param name="pApplicationName"></param>
+        /// <returns></returns>
+        public static List<FwkCategory> GetRuleCategories(string pApplicationName)
+        {
+            return GetRuleCategories(pApplicationName, ConnectionStringName);
+        }
+
+        static List<FwkCategory> GetRuleCategories(string pApplicationName, string pConnectionStringName)
+        {
+            Database wDataBase = null;
+            DbCommand wCmd = null;
+            FwkCategory wCategory;
+            List<FwkCategory> wCategoryList = null;
+            try
+            {
+                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
+                wCmd = wDataBase.GetStoredProcCommand("[aspnet_Categories_s]");
+
+                /// ApplicationName
+                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
+                wCategoryList = new List<FwkCategory>(); 
+                using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
+                {
+                    while (reader.Read())
+                    {
+                        wCategory = new FwkCategory();
+                        wCategory.CategoryId = Convert.ToInt32(reader["CategoryId"]);
+                        wCategory.ParentCategoryId = Convert.ToInt32(reader["ParentCategoryId"]);
+                        wCategory.Name = Convert.ToString(reader["Name"]);
+                        wCategoryList.Add(wCategory);
+                    }
+                }
+                return wCategoryList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -527,13 +577,13 @@ namespace Fwk.Security
         /// <param name="pConnectionStringName"></param>
         /// <param name="pApplicationName"></param>
         /// <returns></returns>
-        static NamedElementCollection<AuthorizationRuleData> GetRules( string pApplicationName,string pConnectionStringName)
+        static NamedElementCollection<FwkAuthorizationRule> GetRules(string pApplicationName, string pConnectionStringName)
         {
 
             Database wDataBase = null;
             DbCommand wCmd = null;
-            AuthorizationRuleData rule = null;
-            NamedElementCollection<AuthorizationRuleData> wRules = null;
+            FwkAuthorizationRule rule = null;
+            NamedElementCollection<FwkAuthorizationRule> wRules = null;
             try
             {
 
@@ -543,10 +593,10 @@ namespace Fwk.Security
                 wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
 
                 IDataReader reader = wDataBase.ExecuteReader(wCmd);
-                wRules = new NamedElementCollection<AuthorizationRuleData>();
+                wRules = new NamedElementCollection<FwkAuthorizationRule>();
                 while (reader.Read())
                 {
-                    rule = new AuthorizationRuleData();
+                    rule = new FwkAuthorizationRule();
                     rule.Name = reader["Name"].ToString().Trim();
                     rule.Expression = reader["Expression"].ToString();
                     wRules.Add(rule);
@@ -668,7 +718,7 @@ namespace Fwk.Security
         /// <returns>void</returns>
         /// <Date>2008-12-22T11:29:57</Date>
         /// <Author>moviedo</Author>
-        public static void CreateRules(FwkAuthorizationRule paspnet_Rules, string pApplicationId, string pConnectionStringName)
+        public static void CreateRules(FwkAuthorizationRule paspnet_Rules, string pApplicationName, string pConnectionStringName)
         {
             Database wDataBase = null;
             DbCommand wCmd = null;
@@ -683,7 +733,7 @@ namespace Fwk.Security
                 /// expression
                 wDataBase.AddInParameter(wCmd, "expression", System.Data.DbType.String, paspnet_Rules.Expression);
                 /// ApplicationName
-                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationId);
+                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
 
                 wDataBase.ExecuteNonQuery(wCmd);
 

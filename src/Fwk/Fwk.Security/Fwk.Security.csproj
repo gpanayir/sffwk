@@ -136,6 +136,7 @@
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\aspnetdb.rar" />
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\DataBaseUpdate.sql" />
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />
+    <None Include="CustomRuleProvider\ASP_DataBaseUpdate\Security.rar" />
     <None Include="fwk.snk" />
   </ItemGroup>
   <ItemGroup>
