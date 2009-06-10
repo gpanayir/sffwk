@@ -39,12 +39,12 @@ namespace Fwk.Security.Configuration.Unity
         }
 
         private static IDictionary<string, IAuthorizationRule> CreateRulesDictionary(
-            IEnumerable<AuthorizationRuleData> rulesCollection)
+            IEnumerable<FwkAuthorizationRule> rulesCollection)
         {
             IDictionary<string, IAuthorizationRule> authorizationRules = new Dictionary<string, IAuthorizationRule>();
-           
 
-            foreach (AuthorizationRuleData ruleData in rulesCollection)
+
+            foreach (FwkAuthorizationRule ruleData in rulesCollection)
             {
                 authorizationRules.Add(ruleData.Name, ruleData);
             }
