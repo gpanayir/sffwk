@@ -102,7 +102,6 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Blocks\Functions\ExportFunctions.cs" />
-    <Compile Include="Blocks\Functions\WinFunctions.cs" />
     <Compile Include="Blocks\Fwk.Blocking\BlockingEngineBase.cs" />
     <Compile Include="Blocks\Fwk.Blocking\BlockingEngineDAC.cs" />
     <Compile Include="Blocks\Fwk.Blocking\BlockingMarkBase.cs" />
@@ -146,6 +145,7 @@
     <Compile Include="Classes\EntityHistory\ModificationHistoryAttribute.cs" />
     <Compile Include="Classes\EntityHistory\ModificationHistory.cs" />
     <Compile Include="Classes\EntityHistory\PropertyValue.cs" />
+    <Compile Include="Classes\FwkRemoteObject.cs" />
     <Compile Include="DialogDebuggerVisualizer\IEntityVisualizer.cs" />
     <Compile Include="DialogDebuggerVisualizer\IEntityVisualizerForm.cs">
       <SubType>Form</SubType>
@@ -194,7 +194,6 @@
     <Compile Include="Blocks\Fwk.Logging\targets\WindowsEventTarget.cs" />
     <Compile Include="Blocks\Fwk.Logging\targets\XmlTarget.cs" />
     <Compile Include="Blocks\Functions\LogFunctions.cs" />
-    <Compile Include="Blocks\Functions\MapperFunctions.cs" />
     <Compile Include="Blocks\Functions\MathFunctions.cs" />
     <Compile Include="Blocks\Functions\MoneyFunctions.cs" />
     <Compile Include="Blocks\Functions\RandomPassword.cs" />

@@ -19,7 +19,7 @@
     </SccProvider>
     <StartupObject>
     </StartupObject>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>fwk.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
@@ -109,7 +109,6 @@
     <Content Include="database\PBlocking2000.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="database\FwkBlocking.rar" />
     <None Include="fwk.snk" />
     <None Include="install.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -129,6 +128,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="database\FwkBlocking.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="database\FwkBlocking_log.LDF">
+      <DependentUpon>FwkBlocking.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="InstallUtil.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
