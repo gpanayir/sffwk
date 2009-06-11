@@ -9,10 +9,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.Remoting.Listener</RootNamespace>
     <AssemblyName>Fwk.Remoting.Listener</AssemblyName>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>fwk.snk</AssemblyOriginatorKeyFile>
     <TargetZone>LocalIntranet</TargetZone>
@@ -138,12 +142,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fwk.Remoting.RemoteTypes\Fwk.Remoting.RemoteTypes.csproj">
-      <Project>{BC2C2774-DF51-4F3D-955D-CB9F54157C84}</Project>
-      <Name>Fwk.Remoting.RemoteTypes</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
