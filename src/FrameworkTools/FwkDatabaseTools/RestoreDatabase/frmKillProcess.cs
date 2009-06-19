@@ -26,13 +26,13 @@ namespace RestoreDatabase
             try
             {
 
-                KillProceessEngine.KillProcess(txtDataBaseName.Text);
+                KillProceessEngine.KillProcess(GetConfigSetting());
                 MessageBox.Show("All the processes were killed satisfactorily..");
 
                 if (wViewAll.Checked)
-                    wDtt = KillProceessEngine.SearchProcess();
+                    wDtt = KillProceessEngine.SearchProcess(GetConfigSetting());
                 else
-                    wDtt = KillProceessEngine.SearchProcess(txtDataBaseName.Text);
+                    wDtt = KillProceessEngine.SearchProcess(txtDataBaseName.Text, GetConfigSetting());
 
                 grdLogRegistry.DataSource = wDtt;
             }
@@ -49,9 +49,9 @@ namespace RestoreDatabase
             try
             {
                 if (wViewAll.Checked)
-                    wDtt = KillProceessEngine.SearchProcess();
+                    wDtt = KillProceessEngine.SearchProcess(GetConfigSetting());
                 else
-                    wDtt = KillProceessEngine.SearchProcess(txtDataBaseName.Text);
+                    wDtt = KillProceessEngine.SearchProcess(txtDataBaseName.Text, GetConfigSetting());
 
                 grdLogRegistry.DataSource = wDtt;
 
@@ -75,7 +75,7 @@ namespace RestoreDatabase
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
-            KillProceessEngine.RestoreDataBase(txtDataBaseName.Text, txtBackUpSource.Text);
+            KillProceessEngine.RestoreDataBase(txtDataBaseName.Text, txtBackUpSource.Text, GetConfigSetting());
             MessageBox.Show("Restore Ok..", "KillProcess");
 
         }
@@ -86,12 +86,8 @@ namespace RestoreDatabase
 
         private void frmKillProcess_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ConfigSetting wConfig = new ConfigSetting();
-            wConfig.BackUpSource = txtBackUpSource.Text.Trim();
-            wConfig.DataBaseName = txtDataBaseName.Text.Trim();
-            wConfig.Server = txtServer.Text.Trim();
-            wConfig.User = txtUser.Text.Trim();
-            wConfig.Password = txtPassword.Text.Trim();
+            ConfigSetting wConfig =GetConfigSetting();
+          
 
 
             var wConfigSettings = from item in _ConfigSettings
@@ -113,7 +109,17 @@ namespace RestoreDatabase
                 _FwkCache.SaveItemInCache("KillProcessConfigSettings", _ConfigSettings);
             }
         }
+        ConfigSetting GetConfigSetting()
+        {
+            ConfigSetting wConfig = new ConfigSetting();
+            wConfig.BackUpSource = txtBackUpSource.Text.Trim();
+            wConfig.DataBaseName = txtDataBaseName.Text.Trim();
+            wConfig.Server = txtServer.Text.Trim();
+            wConfig.User = txtUser.Text.Trim();
+            wConfig.Password = txtPassword.Text.Trim();
 
+            return wConfig;
+        }
         private void frmKillProcess_Load(object sender, EventArgs e)
         {
 

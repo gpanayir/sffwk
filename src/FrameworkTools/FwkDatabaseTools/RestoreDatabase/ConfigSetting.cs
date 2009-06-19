@@ -63,6 +63,13 @@ namespace RestoreDatabase
             get { return _Password; }
             set { _Password = value; }
         }
+        bool _WindowsAutentification;
+
+        public bool WindowsAutentification
+        {
+            get { return _WindowsAutentification; }
+            set { _WindowsAutentification = value; }
+        }
 
 
 

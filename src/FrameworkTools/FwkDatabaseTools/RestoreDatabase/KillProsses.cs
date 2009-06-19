@@ -10,13 +10,15 @@ namespace RestoreDatabase
 {
     public class KillProceessEngine
     {
-        
+        static ConfigSetting _ConfigSetting ;
+        static Fwk.DataBase.CnnString cnn;
         private  const string _CnnStringTemplate =  @"Data Source=**Server**;Initial Catalog=master;User ID=**User**;Password=**Password**;";
         
-        public static void KillProcess(string wDataBaseName)
+        public static void KillProcess(ConfigSetting pConfigSetting)
         {
-            DataTable wDtt = SearchProcess();
-            DataRow[] wFilterRows = wDtt.Select("dbname = '" + wDataBaseName.Trim() + "'");
+
+            DataTable wDtt = SearchProcess(pConfigSetting);
+            DataRow[] wFilterRows = wDtt.Select("dbname = '" + pConfigSetting.DataBaseName.Trim() + "'");
 
             foreach(DataRow dtr in wFilterRows)
             {
@@ -49,9 +51,10 @@ namespace RestoreDatabase
             }
         }
 
-        public static DataTable SearchProcess(string wDataBaseName)
+        public static DataTable SearchProcess(string wDataBaseName,ConfigSetting pConfigSetting)
         {
-            DataTable wDtt = KillProceessEngine.SearchProcess();
+  
+            DataTable wDtt = KillProceessEngine.SearchProcess(pConfigSetting);
 
             DataRow[] dtrs = wDtt.Select("dbname = '" + wDataBaseName.Trim() + "'");
             DataTable dtt = new DataTable();
@@ -65,8 +68,9 @@ namespace RestoreDatabase
             return dtt;
 
         }
-        public static DataTable SearchProcess()
+        public static DataTable SearchProcess(ConfigSetting pConfigSetting)
         {
+            _ConfigSetting = pConfigSetting; 
             using (SqlConnection wCnn = new SqlConnection(GetCnnString()))
             using (SqlCommand wCmd = new SqlCommand())
             {
@@ -95,12 +99,21 @@ namespace RestoreDatabase
 
         private static string GetCnnString()
         {
-            return System.Configuration.ConfigurationManager.AppSettings["connectionStrings"].ToString();
+       
+            Fwk.DataBase.CnnString cnn= new Fwk.DataBase.CnnString ();
+            cnn.Password = _ConfigSetting.Password;
+            cnn.User = _ConfigSetting.User;
+            cnn.DataSource = _ConfigSetting.Server;
+            cnn.WindowsAutentification = false;
+            cnn.InitialCatalog = _ConfigSetting.DataBaseName;
+
+            return cnn.ToString();
         }
 
 
-        public static void RestoreDataBase(string pDataBaseName,string pSourcePatch)
+        public static void RestoreDataBase(string pDataBaseName,string pSourcePatch,ConfigSetting pConfigSetting)
         {
+            _ConfigSetting = pConfigSetting; 
             using (SqlConnection wCnn = new SqlConnection(GetCnnString()))
             using (SqlCommand wCmd = new SqlCommand())
             {
@@ -142,8 +155,9 @@ namespace RestoreDatabase
             }
         }
 
-        public static void BackUpDataBase(string pDataBaseName, string pSourcePatch)
+        public static void BackUpDataBase(string pDataBaseName, string pSourcePatch,ConfigSetting pConfigSetting)
         {
+            _ConfigSetting = pConfigSetting; 
             using (SqlConnection wCnn = new SqlConnection(GetCnnString()))
             using (SqlCommand wCmd = new SqlCommand())
             {
