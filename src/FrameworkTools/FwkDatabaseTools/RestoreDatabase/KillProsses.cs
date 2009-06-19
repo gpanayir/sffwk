@@ -196,50 +196,8 @@ namespace RestoreDatabase
             Console.WriteLine("El estado de la conexion cambio de " + myEvent.OriginalState + "a " + myEvent.CurrentState);
         }
 
-        public static void SaveConfig(string pBackUpSource,string pDataBaseName,string pServer,string pUser,string pPassword)
-        {
-            string wCnnString;
-            string _xml = AppDomain.CurrentDomain.BaseDirectory + @"KillProcessConfig.xml";
-            DataSet wDts = new DataSet();
-            wDts.ReadXml(_xml);
-
-            DataRow[] dtr = wDts.Tables[0].Select("key = 'BackUpSource'");
-            dtr[0]["value"] = pBackUpSource;
-
-            dtr = wDts.Tables[0].Select("key = 'connectionStrings'");
-            wCnnString = _CnnStringTemplate.Replace("**Server**", pServer);
-            wCnnString = wCnnString.Replace("**User**", pUser);
-            wCnnString = wCnnString.Replace("**Password**", pPassword);
-            dtr[0]["value"] = wCnnString;
-
-            dtr = wDts.Tables[0].Select("key = 'DataBaseName'");
-            dtr[0]["value"] = pDataBaseName;
-
-            dtr = wDts.Tables[0].Select("key = 'Server'");
-            dtr[0]["value"] = pServer;
-
-            dtr = wDts.Tables[0].Select("key = 'User'");
-            dtr[0]["value"] = pUser;
-
-            dtr = wDts.Tables[0].Select("key = 'Password'");
-            dtr[0]["value"] = pPassword;
-
-
-            StreamWriter wFileStream = new StreamWriter(_xml, false, System.Text.Encoding.ASCII);
-            wFileStream.Write(wDts.GetXml());
-            wFileStream.Close();
-
-
-        }
-        public static DataTable GetConfig()
-        {
-            string wCnnString;
-            string _xml = AppDomain.CurrentDomain.BaseDirectory + @"KillProcessConfig.xml";
-            DataSet wDts = new DataSet();
-            wDts.ReadXml(_xml);
-
-            return wDts.Tables[0];
-        }
+    
+       
     }    
 
         
