@@ -21,52 +21,72 @@ namespace Fwk.HelperFunctions
         /// Muestra dialog box para abrir un archivo .-
         /// </summary>
         /// <param name="pFilter">Filtro ej: "(*.xml)|*.xml"</param>
+        /// <param name="pTitle">titulo personalizado del cuadro de diálogo</param>
         /// <returns></returns>
-        public static String OpenFileDialog_Open(string pFilter)
+        public static String OpenFileDialog_Open(string pFilter, string pTitle)
         {
             using (OpenFileDialog wDialog = new OpenFileDialog())
             {
-
+                if (!String.IsNullOrEmpty(pTitle))
+                    wDialog.Title = pTitle;
                 wDialog.CheckFileExists = true;
                 wDialog.Filter = pFilter;// String.Format("Files {0}|All Files (*.*)|*.*", pFilter);
                 if (wDialog.ShowDialog() == DialogResult.OK) return wDialog.FileName;
                 else return String.Empty;
             }
+        }
 
-
+        /// <summary>
+        /// Muestra dialog box para abrir un archivo .-
+        /// </summary>
+        /// <param name="pFilter">Filtro ej: "(*.xml)|*.xml"</param>
+        /// <returns></returns>
+        public static String OpenFileDialog_Open(string pFilter)
+        {
+            return OpenFileDialog_Open(pFilter,String.Empty);
         }
 
         /// <summary>
         /// Crea un nuevo archivo de texto
+        ///   wDialog.AddExtension = true;
+        ///   wDialog.RestoreDirectory = true;
         /// </summary>
         /// <param name="pFileName">Nombre sujerido para el archivo</param>
         /// <param name="pContent">Contenido del archivo</param>
         /// <param name="pFilter">Filtro ej: "(*.xml)|*.xml Puede utilizar la enumeracion ref<see cref="FileFunctions.OpenFilterEnums"/></param>
         /// <param name="pIsXml">Espesifica si el contenido es de un xml para almacenarlo con la indentacion correcta</param>
+        /// <param name="pTitle">titulo personalizado del cuadro de diálogo</param>
         /// <returns></returns>
-        public static String OpenFileDialog_New(String pFileName, String pContent, string pFilter, bool pIsXml)
+        public static String OpenFileDialog_New(String pFileName, String pContent, string pFilter, bool pIsXml, string pTitle)
         {
-            SaveFileDialog wDialog = new SaveFileDialog();
-            wDialog.FileName = pFileName;
-            wDialog.Filter = pFilter;//String.Format("Files {0}|All Files (*.*)|*.*", pFilter); // "Files (*.xml)|*.xml|All Files (*.*)|*.*";
-            if (wDialog.ShowDialog() != DialogResult.OK)
-                return String.Empty;
-
-            if (pIsXml)
+            using (SaveFileDialog wDialog = new SaveFileDialog())
             {
-                XmlDocument wDocument = new XmlDocument();
+                if (!String.IsNullOrEmpty(pTitle))
+                    wDialog.Title = pTitle;
 
-                wDocument.LoadXml(pContent);
-                wDocument.Save(wDialog.FileName);
-                wDocument = null;
+                wDialog.FileName = pFileName;
+                wDialog.AddExtension = true;
+                wDialog.RestoreDirectory = true;
+                wDialog.Filter = pFilter;//String.Format("Files {0}|All Files (*.*)|*.*", pFilter); // "Files (*.xml)|*.xml|All Files (*.*)|*.*";
+                if (wDialog.ShowDialog() != DialogResult.OK)
+                    return String.Empty;
+
+                if (pIsXml)
+                {
+                    XmlDocument wDocument = new XmlDocument();
+
+                    wDocument.LoadXml(pContent);
+                    wDocument.Save(wDialog.FileName);
+                    wDocument = null;
+                }
+                else
+                {
+                    SaveTextFile(wDialog.FileName, pContent, false);
+                }
+
+
+                return wDialog.FileName;
             }
-            else
-            {
-                SaveTextFile(wDialog.FileName, pContent, false);
-            }
-
-
-            return wDialog.FileName;
         }
         /// <summary>
         /// Crea un nuevo archivo  de texto
@@ -77,7 +97,12 @@ namespace Fwk.HelperFunctions
         /// <returns></returns>
         public static String OpenFileDialog_New(String pContent, string pFilter, bool pIsXml)
         {
-            return OpenFileDialog_New(String.Empty, pContent, pFilter, pIsXml);
+            return OpenFileDialog_New(String.Empty, pContent, pFilter, pIsXml,string .Empty);
+        }
+
+        public static String OpenFileDialog_New(String pFileName,String pContent, string pFilter, bool pIsXml)
+        {
+            return OpenFileDialog_New(String.Empty, pContent, pFilter, pIsXml,string.Empty);
         }
         #endregion
 
@@ -219,6 +244,14 @@ namespace Fwk.HelperFunctions
         /// </summary>
         public static class OpenFilterEnums
         {
+
+            static string _OpenTextAndXmlFilter = "Text file (*.txt)|*.txt|XML file (*.xml)|*.xml|All files (*.*)|*.*";
+
+            public static string OpenTextAndXmlFilter
+            {
+                get { return _OpenTextAndXmlFilter; }
+            }
+
             static string _OpenImageFilter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.PNG;*.BMP;*.JPG;*.GIF|All files (*.*)|*.*";
 
             /// <summary>
@@ -231,7 +264,18 @@ namespace Fwk.HelperFunctions
             }
 
 
-            static string _OpenXmlFilter = "Xml Files(*.XSD;*.XML;*.CONFIG;*.resx;)|*.XSD;*.XML;*.CONFIG;*.resx;|All files (*.*)|*.*";
+            static string _OpenAllXmlFilesFilter = "Xml Files(*.XSD;*.XML;*.CONFIG;*.resx;)|*.XSD;*.XML;*.CONFIG;*.resx;|All files (*.*)|*.*";
+
+            /// <summary>
+            /// "Xml Files(*.XSD;*.XML;*.CONFIG;)|*.XSD;*.XML;*.CONFIG;|All files (*.*)|*.*"
+            /// </summary>
+            public static string OpenAllXmlFilesFilter
+            {
+                get { return OpenFilterEnums._OpenAllXmlFilesFilter; }
+
+            }
+
+            static string _OpenXmlFilter = "Xml Files(*.xml)|*.xml|All files (*.*)|*.*";
 
             /// <summary>
             /// "Xml Files(*.XSD;*.XML;*.CONFIG;)|*.XSD;*.XML;*.CONFIG;|All files (*.*)|*.*"

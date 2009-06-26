@@ -80,6 +80,7 @@ namespace SecurityAppBlock.Admin.Controls
             // inicializo Fwk Authorization provider y cathcing security provider
             // ASP.NET Membership y Profile providers no se inicializan de esta manera.
             this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
+            
             //this.cache = SecurityCacheFactory.GetSecurityCacheProvider("ProveedorAlmacenCaching");
 
 

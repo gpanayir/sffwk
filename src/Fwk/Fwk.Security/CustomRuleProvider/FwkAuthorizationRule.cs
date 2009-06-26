@@ -15,6 +15,7 @@ namespace Fwk.Security
     /// rule that is governed by an 
     /// <see cref="AuthorizationRuleProvider"/>.
     /// </summary>
+   
     public class FwkAuthorizationRule : NamedConfigurationElement, IAuthorizationRule
     {
         private  string _Expression ;
@@ -67,7 +68,57 @@ namespace Fwk.Security
             }
         }
 
+
+        
+
+     
     }
+
+[Serializable]
+public class FwkAuthorizationRuleAux : Fwk.Bases.Entity, IAuthorizationRule
+{
+
+    public FwkAuthorizationRuleAux()
+    { }
+    public FwkAuthorizationRuleAux(string name, string expression)
+    {
+        _Name = name;
+        _Expression = expression;
+    }
+
+    string _Expression;
+    #region IAuthorizationRule Members
+
+    public string Expression
+    {
+        get { return _Expression; }
+        set
+        {
+            _Expression = value;
+        }
+    }
+    string _Name;
+    public string Name
+    {
+        get { return _Name; }
+        set
+        {
+            _Name = value;
+        }
+    }
+    int _CategoryId;
+    public int CategoryId
+    {
+        get
+        {
+            return _CategoryId;
+        }
+        set
+        {
+            _CategoryId = value;
+        }
+    }
+    #endregion
 }
 public class FwkCategory
 {
@@ -104,4 +155,6 @@ public class FwkCategory
             _Name = value;
         }
     }
+}
+
 }

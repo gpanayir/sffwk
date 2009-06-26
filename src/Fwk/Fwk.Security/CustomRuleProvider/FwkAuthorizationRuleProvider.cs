@@ -31,6 +31,26 @@ namespace Fwk.Security
 
             this.authorizationRules = authorizationRules;
         }
+        /// <summary>
+        /// Initialize an instance of the <see cref="AuthorizationRuleProvider"/> class.
+        /// </summary>
+        /// <param name="authorizationRules">The collection of rules.</param>
+        public FwkAuthorizationRuleProvider(List<IAuthorizationRule> authorizationRules)
+        {
+            if (authorizationRules == null) throw new ArgumentNullException("authorizationRules");
+
+            this.authorizationRules = CreateRulesDictionary(authorizationRules); ;
+        }
+        /// <summary>
+        /// Initialize an instance of the <see cref="AuthorizationRuleProvider"/> class.
+        /// </summary>
+        /// <param name="authorizationRules">The collection of rules.</param>
+        public FwkAuthorizationRuleProvider(List<FwkAuthorizationRuleAux> authorizationRules)
+        {
+            if (authorizationRules == null) throw new ArgumentNullException("authorizationRules");
+
+            this.authorizationRules = CreateRulesDictionary(authorizationRules); ;
+        }
 
         /// <summary>
         /// Evaluates the specified authority against the specified context.
@@ -71,6 +91,51 @@ namespace Fwk.Security
             Parser parser = new Parser();
 
             return parser.Parse(expression);
+        }
+
+        static IDictionary<string, IAuthorizationRule> CreateRulesDictionary
+            (IEnumerable<IAuthorizationRule> rulesCollection)
+        {
+            IDictionary<string, IAuthorizationRule> authorizationRules = new Dictionary<string, IAuthorizationRule>();
+
+
+            foreach (FwkAuthorizationRule ruleData in rulesCollection)
+            {
+                authorizationRules.Add(ruleData.Name, ruleData);
+            }
+
+            return authorizationRules;
+        }
+
+
+        static IDictionary<string, IAuthorizationRule> CreateRulesDictionary
+           (List<IAuthorizationRule> rulesCollection)
+        {
+            IDictionary<string, IAuthorizationRule> authorizationRules = new Dictionary<string, IAuthorizationRule>();
+
+
+            foreach (IAuthorizationRule ruleData in rulesCollection)
+            {
+                authorizationRules.Add(ruleData.Name, ruleData);
+            }
+
+            return authorizationRules;
+        }
+
+
+
+        static IDictionary<string, IAuthorizationRule> CreateRulesDictionary
+         (List<FwkAuthorizationRuleAux> rulesCollection)
+        {
+            IDictionary<string, IAuthorizationRule> authorizationRules = new Dictionary<string, IAuthorizationRule>();
+
+
+            foreach (FwkAuthorizationRuleAux ruleData in rulesCollection)
+            {
+                authorizationRules.Add(ruleData.Name, ruleData);
+            }
+
+            return authorizationRules;
         }
     }
 }

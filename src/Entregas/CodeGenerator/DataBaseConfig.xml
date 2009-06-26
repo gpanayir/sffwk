@@ -1,0 +1,11 @@
+
+<CnnStringList>
+  <CnnString>
+    <WindowsAutentification>true</WindowsAutentification>
+    <DataSource>CORRSF71BI01</DataSource>
+    <User />
+    <InitialCatalog>BigBang</InitialCatalog>
+    <Name>ConnactionName</Name>
+    <Password />
+  </CnnString>
+</CnnStringList>

@@ -218,7 +218,7 @@ namespace Fwk.Bases
         /// Realiza un clon del objeto
         /// </summary>
         /// <returns></returns>
-        public  ServiceConfiguration Clone()
+        public ServiceConfiguration Clone()
         {
             return (ServiceConfiguration)base.Clone();
         }

@@ -7,6 +7,7 @@ using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using System.Data;
+using Microsoft.Practices.EnterpriseLibrary.Security;
 
 namespace Fwk.Security
 {
@@ -39,7 +40,12 @@ namespace Fwk.Security
 
             return wIsUserAuthenticated;
         }
-
+        /// <summary>
+        /// Verifican que usuario y password sean validos
+        /// </summary>
+        /// <param name="pUsername"></param>
+        /// <param name="pPassword"></param>
+        /// <returns></returns>
         public static Boolean ValidateUser(string pUsername, string pPassword )
         {
             return  Membership.ValidateUser(pUsername, pPassword);
@@ -91,14 +97,9 @@ namespace Fwk.Security
         /// <param name="pUserName">Nombre de Usuario</param>
         public static void DeleteUser(String pUserName)
         {
-            try
-            {
+            
                 Membership.DeleteUser(pUserName);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+           
         }
 
         /// <summary>
@@ -107,8 +108,7 @@ namespace Fwk.Security
         /// <param name="pFwkUser">User a eliminar</param>
         public static void UpdateUser(User pFwkUser)
         {
-            try
-            {
+            
                 MembershipUser wUser = Membership.GetUser(pFwkUser.UserName);
                 
                 wUser.Comment = pFwkUser.Comment;
@@ -116,11 +116,7 @@ namespace Fwk.Security
                 wUser.IsApproved = pFwkUser.IsApproved;
                 
                 Membership.UpdateUser(wUser);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+           
         }
 
         /// <summary>
@@ -141,6 +137,7 @@ namespace Fwk.Security
                 }
 
             }
+                
             catch (Exception ex)
             {
                 throw ex;
@@ -221,7 +218,7 @@ namespace Fwk.Security
 
             return wNewPassword;
         }
-
+        
         /// <summary>
         /// Cambia el password de un usuario
         /// </summary>
@@ -577,7 +574,7 @@ namespace Fwk.Security
         /// <param name="pConnectionStringName"></param>
         /// <param name="pApplicationName"></param>
         /// <returns></returns>
-        static NamedElementCollection<FwkAuthorizationRule> GetRules(string pApplicationName, string pConnectionStringName)
+        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string pApplicationName, string pConnectionStringName)
         {
 
             Database wDataBase = null;
@@ -656,6 +653,45 @@ namespace Fwk.Security
 
         }
 
+        /// <summary>
+        /// Retorna una lista de reglas de una determinada coneccion 
+        /// </summary>
+        /// <param name="pApplicationName"></param>
+        /// <param name="pConnectionStringName"></param>
+        /// <returns></returns>
+        public static List<FwkAuthorizationRuleAux> GetRulesAuxList(string pApplicationName, string pConnectionStringName)
+        {
+
+            Database wDataBase = null;
+            DbCommand wCmd = null;
+            FwkAuthorizationRuleAux rule = null;
+            List<FwkAuthorizationRuleAux> wRules = null;
+            try
+            {
+
+                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
+                wCmd = wDataBase.GetStoredProcCommand("aspnet_Rules_s");
+
+                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
+
+                IDataReader reader = wDataBase.ExecuteReader(wCmd);
+                wRules = new List<FwkAuthorizationRuleAux>();
+                while (reader.Read())
+                {
+                    rule = new FwkAuthorizationRuleAux(reader["Name"].ToString().Trim(), reader["Expression"].ToString());
+                    //rule.Name = reader["Name"].ToString().Trim();
+                    //rule.Expression = reader["Expression"].ToString();
+                    wRules.Add(rule);
+                }
+
+                return wRules;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
         /// <summary>
         /// Determina si existe una regla.-
         /// </summary>
