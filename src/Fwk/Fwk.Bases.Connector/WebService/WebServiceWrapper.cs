@@ -13,7 +13,7 @@ namespace Fwk.Bases.Connector
 	public class WebServiceWrapper : IServiceWrapper
 	{
 	    private string msz_URL = string.Empty;
-
+        public static string _URL;
 		#region IServiceInterfaceWrapper Members 
 
 		/// <summary>
@@ -39,8 +39,40 @@ namespace Fwk.Bases.Connector
 
 			return wResult;
 		}
+        public void ExecuteService_OneWay(string pServiceName, string pData)
+        {
+            string wResult = null;
 
+            using (SingleService.SingleService wService = new SingleService.SingleService())
+            {
 
+                wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
+                //msz_URL = wService.Url;
+                wService.ExecuteService_OneWay(pServiceName, pData);
+
+            }
+         
+        }
+        public void ExecuteServiceAsynk(string pServiceName, string pData,Delegate callback)
+        {
+            string wResult = null;
+
+            using (SingleService.SingleService wService = new SingleService.SingleService())
+            {
+
+                wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
+                //msz_URL = wService.Url;
+                wService.ExecuteServiceCompleted += new Fwk.Bases.Connector.SingleService.ExecuteServiceCompletedEventHandler(wService_ExecuteServiceCompleted);
+
+            }
+
+        }
+
+        void wService_ExecuteServiceCompleted(object sender, Fwk.Bases.Connector.SingleService.ExecuteServiceCompletedEventArgs e)
+        {
+            
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Ejecuta un servicio de negocio. (Metodo vigente solo por compatibilidad con versiones anteriores donde se pasaba el 
