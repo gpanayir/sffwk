@@ -86,9 +86,17 @@ namespace Fwk.ServiceManagement.Tools.Win32
             {
                 wServiceNew.CreatedUserName = Environment.UserName;
                 wServiceNew.CreatedDateTime = System.DateTime.Now;
-                ucbServiceGrid1.Add(wServiceNew);
-                
-                base.AddServiceConfiguration(wServiceNew);
+                try
+                {
+                    ucbServiceGrid1.Add(wServiceNew);
+
+
+                    base.AddServiceConfiguration(wServiceNew);
+                }
+                catch(Exception ex)
+                {
+                    base.MessageViewer.Show(ex.Message);
+                }
             }
         }
 

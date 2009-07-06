@@ -57,6 +57,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.cmbFilterIsolationLevel = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceConfigurationCollectionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdServices)).BeginInit();
@@ -294,6 +295,16 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.label2.TabIndex = 43;
             this.label2.Text = "Transactional Behaviour";
             // 
+            // fwkMessageViewComponent1
+            // 
+            this.fwkMessageViewComponent1.BackColor = System.Drawing.Color.White;
+            this.fwkMessageViewComponent1.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
+            this.fwkMessageViewComponent1.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
+            this.fwkMessageViewComponent1.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
+            this.fwkMessageViewComponent1.TextMessageColor = System.Drawing.Color.White;
+            this.fwkMessageViewComponent1.TextMessageForeColor = System.Drawing.Color.Black;
+            this.fwkMessageViewComponent1.Title = "Message";
+            // 
             // UCBServiceGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,5 +347,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox cmbFilterIsolationLevel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewComponent1;
     }
 }

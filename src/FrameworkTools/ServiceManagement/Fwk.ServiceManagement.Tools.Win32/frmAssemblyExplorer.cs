@@ -36,7 +36,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
             InitializeComponent();
 
-            if (!string.IsNullOrEmpty(SettingStorage.Storage._AssemblyPath))
+            if (!string.IsNullOrEmpty(SettingStorage.Storage.AssemblyPath))
             {
                 
                 LoadAssembly();
@@ -58,7 +58,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             if (wSchemaDialog.ShowDialog() == DialogResult.OK)
             {
-                SettingStorage.Storage._AssemblyPath = wSchemaDialog.FileName;
+                SettingStorage.Storage.AssemblyPath = wSchemaDialog.FileName;
                 SettingStorage.Save();
                 LoadAssembly();
             }
@@ -85,12 +85,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         void LoadAssembly()
         {
-            Assembly wAssembly = new Assembly(SettingStorage.Storage._AssemblyPath);
-            Fwk.Bases.ServiceConfiguration s = null;
-            Fwk.Bases.ServiceConfigurationCollection list = new Fwk.Bases.ServiceConfigurationCollection();
-            lblFileName.Text = SettingStorage.Storage._AssemblyPath;
+           
             try
             {
+                Assembly wAssembly = new Assembly(SettingStorage.Storage.AssemblyPath);
+                Fwk.Bases.ServiceConfiguration s = null;
+                Fwk.Bases.ServiceConfigurationCollection list = new Fwk.Bases.ServiceConfigurationCollection();
+                lblFileName.Text = SettingStorage.Storage.AssemblyPath;
+
                 foreach (AssemblyClass wAssemblyClass in wAssembly.ClassCollections)
                 {
                     if (wAssemblyClass.BaseType.Name.Contains("BusinessService"))
@@ -114,11 +116,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
             catch (System.Reflection.ReflectionTypeLoadException rx)
             {
                 base.ExceptionViewer.Show(rx.LoaderExceptions, "Service Management:. Loading assembly");
+                SettingStorage.Clear();
             }
             catch (Exception ex)
             {
 
                 base.ExceptionViewer.Show(ex);
+                SettingStorage.Clear();
             }
         }
 

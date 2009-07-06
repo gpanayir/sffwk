@@ -42,10 +42,15 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
             _FwkCache.SaveItemInCache(Assembly.GetExecutingAssembly().GetName().Name, Storage,true);
         }
+        public static void Clear()
+        {
+            _FwkCache.CacheManager.Flush();
+            Storage.AssemblyPath = string.Empty;
+        }
     }
     [Serializable]
     struct Storage
     {
-        public string _AssemblyPath;
+        public string AssemblyPath;
     }
 }

@@ -132,9 +132,16 @@ namespace Fwk.ServiceManagement.Tools.Win32
         /// <param name="pServiceConfiguration"></param>
         internal void Add(ServiceConfiguration pServiceConfiguration)
         {
+
+
+            if (_Services.Contains(pServiceConfiguration.Name))
+            {
+                throw new Fwk.Exceptions.TechnicalException(string.Concat("El servicio " + pServiceConfiguration.Name + " ya existe en la metadata"));
+            }
             _CurrentServiceConfiguration = pServiceConfiguration;
             _Services.Add(_CurrentServiceConfiguration);
             serviceConfigurationCollectionBindingSource.ResetBindings(true);
+
         }
 
 
