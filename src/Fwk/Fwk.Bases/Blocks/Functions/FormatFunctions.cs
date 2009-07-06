@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 
 namespace Fwk.HelperFunctions
@@ -231,6 +232,26 @@ namespace Fwk.HelperFunctions
                 wLetter = Enum.GetName(typeof(Keys),  64);
 
             return wLetter;
+        }
+
+
+        public static StringBuilder GetStringBuilderWhitSeparator<T>(IList<T> list, char separator, string propertieName)
+        {
+            StringBuilder strIn = new StringBuilder();
+            if (list != null)
+            {
+
+                foreach (T t in list)
+                {
+                    string val = Fwk.HelperFunctions.ReflectionFunctions.GetPropertieValue<string>(t, propertieName);
+                    strIn.Append(val);
+                    strIn.Append(",");
+                }
+            }
+            if (strIn.Length > 0)
+                strIn.Remove(strIn.Length - 1, 1);
+
+            return strIn;
         }
 	}
 }

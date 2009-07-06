@@ -128,25 +128,25 @@ namespace Fwk.Logging
         /// genera una cadena de texto con ella.
         /// </summary>
         /// <returns>Cadena de texto.</returns>
-        //public override string ToString()
-        //{
-            //StringBuilder wStringBuilder = new StringBuilder();            
-            //wStringBuilder.Append("Log Id: ");
-            //wStringBuilder.Append(this._Id);
-            //wStringBuilder.Append(" | Date: ");
-            //wStringBuilder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-            //wStringBuilder.Append(" | Type: ");
-            //wStringBuilder.Append(this._Type.ToString().ToUpper());
-            //wStringBuilder.Append(" | Message: ");
-            //wStringBuilder.Append(this._Message);
-            //wStringBuilder.Append(" | Source: ");
-            //wStringBuilder.Append(this._Source);
-            //wStringBuilder.Append(" | User: ");
-            //wStringBuilder.Append(this._User);
-            //wStringBuilder.Append(" | Machine: ");
-            //wStringBuilder.Append(this._Machine);
-            //return wStringBuilder.ToString();
-        //}
+        public override string ToString()
+        {
+            StringBuilder wStringBuilder = new StringBuilder();
+            wStringBuilder.Append(string.Concat("Log Id: ",this._Id));
+            wStringBuilder.AppendLine();
+            wStringBuilder.Append(" | Date: ");
+            wStringBuilder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
+            wStringBuilder.AppendLine(string.Concat(" Type: ",_Type.ToString().ToUpper()));
+
+            wStringBuilder.AppendLine("Message: ");
+            wStringBuilder.AppendLine(this._Message.Text);
+            wStringBuilder.AppendLine(" Source: ");
+            wStringBuilder.Append(this._Source);
+            wStringBuilder.AppendLine(" User: ");
+            wStringBuilder.Append(this._User);
+            wStringBuilder.AppendLine(" Machine: ");
+            wStringBuilder.Append(this._Machine);
+            return wStringBuilder.ToString();
+        }
 
   
         #endregion
