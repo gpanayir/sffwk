@@ -8,6 +8,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Security;
+using System.Text;
 
 namespace Fwk.Security
 {
@@ -108,15 +109,81 @@ namespace Fwk.Security
         /// <param name="pFwkUser">User a eliminar</param>
         public static void UpdateUser(User pFwkUser)
         {
-            
-                MembershipUser wUser = Membership.GetUser(pFwkUser.UserName);
-                
+
+            MembershipUser wUser = Membership.GetUser(pFwkUser.UserName);
+
+            wUser.Comment = pFwkUser.Comment;
+            wUser.Email = pFwkUser.Email;
+            wUser.IsApproved = pFwkUser.IsApproved;
+
+            Membership.UpdateUser(wUser);
+
+
+        }
+
+        /// <summary>
+        /// Actualiza informacion de un usuario
+        /// </summary>
+        /// <param name="pFwkUser">Usuario con los nuevos datos </param>
+        /// <param name="userName">Nombre de usuario a modificar</param>
+        public static void UpdateUser(User pFwkUser, string userName)
+        {
+            UpdateUser(pFwkUser, userName, ConnectionStringName);
+        }
+
+        /// <summary>
+        /// Actualiza informacion de un usuario
+        /// </summary>
+        /// <param name="pFwkUser">Usuario con los nuevos datos </param>
+        /// <param name="userName">Nombre de usuario a modificar</param>
+        /// <param name="pConnectionStringName">Cadena de coneccion de las Membership provider</param>
+        public static void UpdateUser(User pFwkUser, string userName, string pConnectionStringName)
+        {
+            try
+            {
+                MembershipUser wUser = Membership.GetUser(userName);
+
                 wUser.Comment = pFwkUser.Comment;
                 wUser.Email = pFwkUser.Email;
                 wUser.IsApproved = pFwkUser.IsApproved;
-                
+
                 Membership.UpdateUser(wUser);
-           
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            StringBuilder str = new StringBuilder("UPDATE aspnet_Users SET  UserName = '[newUserName]',  LoweredUserName = '[loweredNewUserName]'  WHERE (UserName = '[userName]')");
+
+            Database wDataBase = null;
+            DbCommand wCmd =null;
+            try
+            {
+                
+                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
+                wCmd = wDataBase.GetSqlStringCommand(str.ToString());
+                str.Replace("[newUserName]", pFwkUser.UserName);
+                str.Replace("[loweredNewUserName]", pFwkUser.UserName.ToLower());
+                str.Replace("[userName]", pFwkUser.UserName.ToLower());
+
+                wCmd.CommandType = CommandType.Text;
+                
+
+                wDataBase.ExecuteNonQuery(wCmd);
+
+               
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
         }
 
         /// <summary>
@@ -779,6 +846,45 @@ namespace Fwk.Security
                 throw ex;
             }
            
+        }
+
+        #endregion
+
+        #region [Application]
+
+        /// <summary>
+        /// Retorna el GUID de la aplicación
+        /// </summary>
+        /// <param name="pApplicationName">Nombre de la aplicación</param>
+        /// <returns>GUID de la aplicacion</returns>
+        public static string GetApplicationID(String pApplicationName)
+        {
+
+            String wApplicationId = String.Empty;
+            Database wDataBase = null;
+            DbCommand wCmd = null;
+            
+            try
+            {
+                wDataBase = DatabaseFactory.CreateDatabase(FwkMembership.ConnectionStringName);
+                wCmd = wDataBase.GetStoredProcCommand("[aspnet_Personalization_GetApplicationId]");
+
+                /// ApplicationName
+                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
+
+
+                wDataBase.AddOutParameter(wCmd, "ApplicationId", System.Data.DbType.Guid,64);
+
+                wDataBase.ExecuteScalar(wCmd);
+
+                wApplicationId = Convert.ToString(wDataBase.GetParameterValue(wCmd, "ApplicationId"));
+               
+                return wApplicationId;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #endregion
