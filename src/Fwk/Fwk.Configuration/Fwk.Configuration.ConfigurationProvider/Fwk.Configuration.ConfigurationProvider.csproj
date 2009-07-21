@@ -9,14 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.Configuration.ConfigurationProvider</RootNamespace>
     <AssemblyName>Fwk.Configuration.ConfigurationProvider</AssemblyName>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>fwk.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
