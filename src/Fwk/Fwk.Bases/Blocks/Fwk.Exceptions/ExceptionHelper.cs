@@ -65,7 +65,7 @@ namespace Fwk.Exceptions
             {
                 string[] wParams;
                 string wMsgId = ProcessRaiseErrorMsg(pexception.Message, out wParams);
-                return new FunctionalException(wMsgId, wParams);
+                return new FunctionalException(null, wMsgId, wParams);
             }
 
             // Si la excepcion es FunctionalException, o TechnicalException,

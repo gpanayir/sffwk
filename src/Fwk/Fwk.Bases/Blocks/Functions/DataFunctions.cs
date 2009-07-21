@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Xml;
+using System.IO;
 
 namespace Fwk.HelperFunctions
 {
@@ -11,6 +12,22 @@ namespace Fwk.HelperFunctions
 	/// <Author>moviedo</Author>
 	public class DataFunctions
 	{
+     
+      /// <summary>
+        /// Obtiene un System.DataSet desde un xml
+      /// </summary>
+      /// <param name="strXml">Cadena con formato xml</param>
+      /// <returns></returns>
+        public DataSet GetDataSetFromXml(string strXml)
+        {
+            DataSet wDts = new DataSet();
+
+          
+            wDts.ReadXml(new StringReader(strXml));
+
+            return wDts;
+        }
+
 		#region --[ValueGet]--
 		/// <summary>
 		/// Obtiene el valor de un campo del primer registro de un
