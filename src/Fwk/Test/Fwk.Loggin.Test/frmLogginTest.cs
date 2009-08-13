@@ -40,13 +40,31 @@ namespace Fwk.Logging.Test
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Events _Logs =  Events.GetFromXml<Events>(Fwk.HelperFunctions .FileFunctions.OpenTextFile("Logs.xml"));
+            Events _Logs = Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile("Logs.xml"));
             loadingResultsTextBox.Text = _Logs.GetXml();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             _loger.Error("Test Login", "pppppppppppppppppppppppp");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+
+            string prefixLogFile = string.Concat(DateTime.Now.Hour, "_", DateTime.Now.Minute, "_");
+            for (int i = 0; i < 100; i++)
+            {
+
+                Fwk.Logging.StaticLogger.Warning("test login" + i.ToString(), "aaaaaaaaaaaaaaaa", @"C:\xx", prefixLogFile);
+            }
+            
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            Fwk.Logging.StaticLogger.ClearXmlTargetEvents();
         }
     }
 }

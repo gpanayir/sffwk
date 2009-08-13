@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.lblRolesByUser = new System.Windows.Forms.Label();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.txtEmail = new DevExpress.XtraEditors.TextEdit();
@@ -41,12 +42,13 @@
             this.grdRoles1 = new System.Windows.Forms.DataGridView();
             this.btnUsersList = new System.Windows.Forms.Button();
             this.grdUsers1 = new System.Windows.Forms.DataGridView();
+            this.fwkMessageViewInfo = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceRoles1 = new System.Windows.Forms.BindingSource(this.components);
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.appNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userByAppBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.fwkMessageViewInfo = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
-            this.bindingSourceRoles1 = new System.Windows.Forms.BindingSource(this.components);
-            this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
@@ -54,8 +56,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userByAppBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRoles1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userByAppBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRolesByUser
@@ -70,6 +72,8 @@
             // 
             this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl1.Controls.Add(this.btnRemove);
+            this.groupControl1.Controls.Add(this.btnUpdate);
             this.groupControl1.Controls.Add(this.label10);
             this.groupControl1.Controls.Add(this.txtPassword);
             this.groupControl1.Controls.Add(this.txtEmail);
@@ -82,6 +86,19 @@
             this.groupControl1.Size = new System.Drawing.Size(687, 124);
             this.groupControl1.TabIndex = 22;
             this.groupControl1.Text = "User properties";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.White;
+            this.btnUpdate.Enabled = false;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Location = new System.Drawing.Point(402, 83);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(117, 26);
+            this.btnUpdate.TabIndex = 17;
+            this.btnUpdate.Text = "Update User Data";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label10
             // 
@@ -172,11 +189,11 @@
             this.btnUsersList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsersList.Image = global::SecurityAppBlock.Admin.Properties.Resources.fwk_Refresh;
             this.btnUsersList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsersList.Location = new System.Drawing.Point(8, 136);
+            this.btnUsersList.Location = new System.Drawing.Point(6, 134);
             this.btnUsersList.Name = "btnUsersList";
-            this.btnUsersList.Size = new System.Drawing.Size(91, 24);
+            this.btnUsersList.Size = new System.Drawing.Size(97, 24);
             this.btnUsersList.TabIndex = 19;
-            this.btnUsersList.Text = "All users";
+            this.btnUsersList.Text = "    Refresh users";
             this.btnUsersList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUsersList.UseVisualStyleBackColor = false;
             this.btnUsersList.Click += new System.EventHandler(this.btnUsersList_Click);
@@ -195,8 +212,43 @@
             this.grdUsers1.Name = "grdUsers1";
             this.grdUsers1.Size = new System.Drawing.Size(253, 355);
             this.grdUsers1.TabIndex = 18;
+            this.grdUsers1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUsers1_CellDoubleClick);
             this.grdUsers1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUsers1_CellClick);
-            
+            this.grdUsers1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUsers1_CellContentClick);
+            // 
+            // fwkMessageViewInfo
+            // 
+            this.fwkMessageViewInfo.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.fwkMessageViewInfo.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
+            this.fwkMessageViewInfo.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
+            this.fwkMessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
+            this.fwkMessageViewInfo.TextMessageColor = System.Drawing.Color.White;
+            this.fwkMessageViewInfo.TextMessageForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.fwkMessageViewInfo.Title = "Security admin";
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.White;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Image = global::SecurityAppBlock.Admin.Properties.Resources.fwk_delete_16x;
+            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemove.Location = new System.Drawing.Point(540, 82);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(113, 26);
+            this.btnRemove.TabIndex = 17;
+            this.btnRemove.Text = "Remove User";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // rolNameDataGridViewTextBoxColumn
+            // 
+            this.rolNameDataGridViewTextBoxColumn.DataPropertyName = "RolName";
+            this.rolNameDataGridViewTextBoxColumn.HeaderText = "RolName";
+            this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
+            // 
+            // bindingSourceRoles1
+            // 
+            this.bindingSourceRoles1.DataSource = typeof(Fwk.Security.Common.RolList);
             // 
             // userNameDataGridViewTextBoxColumn
             // 
@@ -214,27 +266,7 @@
             // 
             this.userByAppBindingSource.DataSource = typeof(Fwk.Security.Common.User);
             // 
-            // fwkMessageViewInfo
-            // 
-            this.fwkMessageViewInfo.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.fwkMessageViewInfo.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
-            this.fwkMessageViewInfo.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
-            this.fwkMessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
-            this.fwkMessageViewInfo.TextMessageColor = System.Drawing.Color.White;
-            this.fwkMessageViewInfo.TextMessageForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.fwkMessageViewInfo.Title = "Security admin";
-            // 
-            // bindingSourceRoles1
-            // 
-            this.bindingSourceRoles1.DataSource = typeof(Fwk.Security.Common.RolList);
-            // 
-            // rolNameDataGridViewTextBoxColumn
-            // 
-            this.rolNameDataGridViewTextBoxColumn.DataPropertyName = "RolName";
-            this.rolNameDataGridViewTextBoxColumn.HeaderText = "RolName";
-            this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
-            // 
-            // UserAdmminControl
+            // UserAdminControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -243,7 +275,7 @@
             this.Controls.Add(this.grdRoles1);
             this.Controls.Add(this.btnUsersList);
             this.Controls.Add(this.grdUsers1);
-            this.Name = "UserAdmminControl";
+            this.Name = "UserAdminControl";
             this.Size = new System.Drawing.Size(704, 533);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -252,8 +284,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userByAppBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRoles1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userByAppBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -278,5 +310,7 @@
         private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn rolNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource bindingSourceRoles1;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }

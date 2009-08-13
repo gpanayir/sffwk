@@ -25,12 +25,12 @@ namespace Fwk.Security
             return _FwkActyveDirectory;
 
         }
-       
+
         public static string ConnectionStringName;
 
         #region [Users]
 
-        public static Boolean ValidateUser(string pUsername, string pPassword,string pDomainName)
+        public static Boolean ValidateUser(string pUsername, string pPassword, string pDomainName)
         {
             Boolean wIsUserAuthenticated = false;
             _FwkActyveDirectory = GetActiveDirectoriInstance(pDomainName);
@@ -47,28 +47,23 @@ namespace Fwk.Security
         /// <param name="pUsername"></param>
         /// <param name="pPassword"></param>
         /// <returns></returns>
-        public static Boolean ValidateUser(string pUsername, string pPassword )
+        public static Boolean ValidateUser(string pUsername, string pPassword)
         {
-            return  Membership.ValidateUser(pUsername, pPassword);
+            return Membership.ValidateUser(pUsername, pPassword);
         }
 
         /// <summary>
         /// Crea un usuario
+        /// Si el usuario existe lanza una (System.Web.Security.MembershipCreateUserException ex) 
         /// </summary>
-        /// <param name="pUsername"></param>
-        /// <param name="pPassword"></param>
+        /// <param name="pUsername">Usuario</param>
+        /// <param name="pPassword">Clave</param>
         public static void CreateUser(string pUsername, string pPassword, string pEmail)
         {
             FwkIdentity wFwkIdentity = new FwkIdentity();
 
-            try
-            {
-                System.Web.Security.Membership.CreateUser(pUsername, pPassword, pEmail);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            System.Web.Security.Membership.CreateUser(pUsername, pPassword, pEmail);
+
         }
 
         /// <summary>
@@ -76,20 +71,15 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pUsername"></param>
         /// <param name="pPassword"></param>
-        public static User CreateUser(string pUsername, string pPassword, string pEmail, string pPasswordQuestion,string pPasswordAnswer, Boolean pIsApproved)
-        {            
-            MembershipCreateStatus wStatus;
+        public static User CreateUser(string pUsername, string pPassword, string pEmail, string pPasswordQuestion, string pPasswordAnswer, Boolean pIsApproved, out MembershipCreateStatus pStatus)
+        {
+            User wUsuario = null;
+            MembershipUser newUser = Membership.CreateUser(pUsername, pPassword, pEmail, pPasswordQuestion, pPasswordAnswer, pIsApproved, out pStatus);
+         
+            if (newUser != null)
+                wUsuario = new User(newUser);
+            return wUsuario;
 
-            try
-            {                
-                MembershipUser newUser = Membership.CreateUser(pUsername, pPassword, pEmail, pPasswordQuestion, pPasswordAnswer, pIsApproved, out wStatus);
-
-                return new User(newUser);
-            }
-            catch (Exception ex)
-            {                
-                throw ex;
-            }
         }
 
         /// <summary>
@@ -98,9 +88,9 @@ namespace Fwk.Security
         /// <param name="pUserName">Nombre de Usuario</param>
         public static void DeleteUser(String pUserName)
         {
-            
-                Membership.DeleteUser(pUserName);
-           
+
+            Membership.DeleteUser(pUserName);
+
         }
 
         /// <summary>
@@ -157,10 +147,10 @@ namespace Fwk.Security
             StringBuilder str = new StringBuilder("UPDATE aspnet_Users SET  UserName = '[newUserName]',  LoweredUserName = '[loweredNewUserName]'  WHERE (UserName = '[userName]')");
 
             Database wDataBase = null;
-            DbCommand wCmd =null;
+            DbCommand wCmd = null;
             try
             {
-                
+
                 wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
                 wCmd = wDataBase.GetSqlStringCommand(str.ToString());
                 str.Replace("[newUserName]", pFwkUser.UserName);
@@ -168,11 +158,11 @@ namespace Fwk.Security
                 str.Replace("[userName]", pFwkUser.UserName.ToLower());
 
                 wCmd.CommandType = CommandType.Text;
-                
+
 
                 wDataBase.ExecuteNonQuery(wCmd);
 
-               
+
 
 
 
@@ -196,7 +186,7 @@ namespace Fwk.Security
             List<User> wUsersList = new List<User>();
             try
             {
-                
+
                 foreach (MembershipUser wMembershipUser in Membership.GetAllUsers())
                 {
                     wUserByApp = new User(wMembershipUser);
@@ -204,7 +194,7 @@ namespace Fwk.Security
                 }
 
             }
-                
+
             catch (Exception ex)
             {
                 throw ex;
@@ -222,7 +212,7 @@ namespace Fwk.Security
         public static User GetUser(String pUserName)
         {
             MembershipUser wUser = Membership.GetUser(pUserName);
-             // block the user
+            // block the user
             if (wUser == null)
             {
                 return null;
@@ -247,7 +237,7 @@ namespace Fwk.Security
                 wUser.IsApproved = false;
                 Membership.UpdateUser(wUser);
             }
-                       
+
         }
 
         /// <summary>
@@ -266,7 +256,7 @@ namespace Fwk.Security
                 Membership.UpdateUser(wUser);
             }
         }
-               
+
         /// <summary>
         /// Resetea el Password de un usuario
         /// </summary>
@@ -285,7 +275,7 @@ namespace Fwk.Security
 
             return wNewPassword;
         }
-        
+
         /// <summary>
         /// Cambia el password de un usuario
         /// </summary>
@@ -300,7 +290,7 @@ namespace Fwk.Security
             return wUser.ChangePassword(pOldPassword, pNewPassword);
 
         }
-        
+
         /// <summary>
         /// Obtiene una lista de usuarios en un determinado rol
         /// </summary>
@@ -328,7 +318,7 @@ namespace Fwk.Security
             return wUsersList;
 
         }
-        
+
         /// <summary>
         /// Asigna roles a un usuario
         /// </summary>
@@ -336,14 +326,14 @@ namespace Fwk.Security
         /// <param name="pUserName">Usuario</param>
         public static void CreateRolesToUser(RolList pRolList, String pUserName)
         {
-          
+
             try
             {
                 foreach (Rol rol in pRolList)
                 {
-                    if (!Roles.IsUserInRole(pUserName,rol.RolName))
+                    if (!Roles.IsUserInRole(pUserName, rol.RolName))
                     {
-                        Roles.AddUserToRoles(pUserName ,new string[] { rol.RolName });                     
+                        Roles.AddUserToRoles(pUserName, new string[] { rol.RolName });
                     }
                 }
 
@@ -353,7 +343,7 @@ namespace Fwk.Security
                 //FwkMessageView.Show(ex, "CreateRole", System.Windows.Forms.MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
                 throw ex;
             }
-          
+
         }
 
         /// <summary>
@@ -365,14 +355,14 @@ namespace Fwk.Security
         {
             try
             {
-                if(!String.IsNullOrEmpty(pRoleName))
+                if (!String.IsNullOrEmpty(pRoleName))
                     Roles.RemoveUserFromRole(pUserName, pRoleName);
-                
+
             }
             catch (Exception ex)
             {
                 throw ex;
-            }        
+            }
         }
 
         /// <summary>
@@ -388,7 +378,7 @@ namespace Fwk.Security
                 {
                     if (!Roles.IsUserInRole(pUserName, rol.RolName))
                         Roles.RemoveUserFromRoles(pUserName, new string[] { rol.RolName });
-                    
+
                 }
             }
             catch (Exception ex)
@@ -472,7 +462,7 @@ namespace Fwk.Security
             }
         }
 
-                
+
 
         #endregion
 
@@ -489,7 +479,7 @@ namespace Fwk.Security
             try
             {
                 foreach (string s in Roles.GetAllRoles())
-                {                    
+                {
                     r = new Rol(s);
                     wRoleList.Add(r);
                 }
@@ -542,7 +532,7 @@ namespace Fwk.Security
                 if (!Roles.RoleExists(pRoleName))
                 {
                     Roles.CreateRole(pRoleName);
-                   
+
                 }
                 else
                 {
@@ -615,7 +605,7 @@ namespace Fwk.Security
 
                 /// ApplicationName
                 wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
-                wCategoryList = new List<FwkCategory>(); 
+                wCategoryList = new List<FwkCategory>();
                 using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
                 {
                     while (reader.Read())
@@ -778,7 +768,7 @@ namespace Fwk.Security
                 wDataBase.AddInParameter(wCmd, "name", System.Data.DbType.String, pRuleName);
                 wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
 
-                wDataBase.AddOutParameter(wCmd, "exist", System.Data.DbType.Boolean,1);
+                wDataBase.AddOutParameter(wCmd, "exist", System.Data.DbType.Boolean, 1);
 
                 wDataBase.ExecuteNonQuery(wCmd);
 
@@ -845,7 +835,7 @@ namespace Fwk.Security
             {
                 throw ex;
             }
-           
+
         }
 
         #endregion
@@ -863,7 +853,7 @@ namespace Fwk.Security
             String wApplicationId = String.Empty;
             Database wDataBase = null;
             DbCommand wCmd = null;
-            
+
             try
             {
                 wDataBase = DatabaseFactory.CreateDatabase(FwkMembership.ConnectionStringName);
@@ -873,12 +863,12 @@ namespace Fwk.Security
                 wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
 
 
-                wDataBase.AddOutParameter(wCmd, "ApplicationId", System.Data.DbType.Guid,64);
+                wDataBase.AddOutParameter(wCmd, "ApplicationId", System.Data.DbType.Guid, 64);
 
                 wDataBase.ExecuteScalar(wCmd);
 
                 wApplicationId = Convert.ToString(wDataBase.GetParameterValue(wCmd, "ApplicationId"));
-               
+
                 return wApplicationId;
             }
             catch (Exception ex)

@@ -212,7 +212,7 @@ namespace Fwk.Bases.Connector
             {
 
                 wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
-                wService.SetServiceConfiguration(wServiceConfigurationProxy);
+                wService.SetServiceConfiguration(pServiceName,wServiceConfigurationProxy);
 
             }
         }

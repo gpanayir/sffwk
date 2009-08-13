@@ -271,6 +271,9 @@
     <None Include="Resources\foldr_16.png" />
     <None Include="Resources\foldr_24.png" />
     <None Include="Resources\foldr_32.png" />
+    <None Include="file_remove_16.png" />
+    <None Include="file_delete_16.png" />
+    <None Include="new_16.png" />
     <None Include="Resources\zoomi_16.png" />
     <None Include="Resources\zoomo_16.png" />
     <None Include="Resources\save_as_large.png" />
