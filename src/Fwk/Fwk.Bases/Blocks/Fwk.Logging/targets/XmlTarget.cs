@@ -36,7 +36,8 @@ namespace Fwk.Logging.Targets
         public override void Write(Event pEvent)
         {
 
-            LoadLogs();
+            if (XmlTarget.Logs == null) 
+                XmlTarget.Logs = OpenLogsFromFile();
             XmlTarget.Logs.Add(pEvent);
             Fwk.HelperFunctions.FileFunctions.SaveTextFile(this.FileName, XmlTarget.Logs.GetXml(), false);
 
@@ -47,14 +48,6 @@ namespace Fwk.Logging.Targets
 
         #region <private methods>
 
-
-
-        void LoadLogs()
-        {
-            if (XmlTarget.Logs == null )
-                XmlTarget.Logs = OpenLogsFromFile();
-        }
-
        
         /// <summary>
         /// Retorna un Logs asociado al archivo especificado
@@ -64,8 +57,6 @@ namespace Fwk.Logging.Targets
         /// <returns>Logs.</returns>
          Events OpenLogsFromFile()
         {
-            
-
             #region validacion
             if (this.FileName.Trim().Length == 0)
             {
@@ -80,14 +71,11 @@ namespace Fwk.Logging.Targets
             }
             #endregion
 
-            Events wLog;
-            
+            Events wLog = new Events ();
 
             if (!File.Exists(this.FileName))
             {
-               
-
-                return  new Events();;
+                return wLog;
             }
             
             wLog = Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(this.FileName));

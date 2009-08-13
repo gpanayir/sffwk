@@ -165,6 +165,18 @@ namespace Fwk.HelperFunctions
             return GetFirstDayOfMonth(pYear, pMonth).AddMonths(1).AddTicks(-1); 
         }
 
+        /// <summary>
+        /// Retorna un string con la fecha en formato ISO. Por Ejemplo: 2009-07-14T15:43:25.683
+        /// </summary>
+        /// <param name="pDateTime">Fecha</param>
+        /// <returns>String en formato ISO del DateTime pasado. Por Ej: 2009-07-14T15:43:25.683</returns>
+        /// <Date>23-07-2009</Date>
+        /// <Author>Marcelo Oviedo</Author>
+        public static string ToDateTimeISO(DateTime pDateTime)
+        {
+            return string.Format("{0:s}", pDateTime);
+        }
 
 	}
+
 }

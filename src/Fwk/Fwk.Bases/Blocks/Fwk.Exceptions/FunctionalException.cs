@@ -40,7 +40,7 @@ namespace Fwk.Exceptions
             /// Severidad desconocida.
             /// </summary>
             Unknown
-        }
+        } 
         #endregion
 
         #region --[Protected Vars]--
@@ -184,7 +184,7 @@ namespace Fwk.Exceptions
                 _ErrorId = errorId.ToString();
             _KeyExceptionName = keyExceptionName;
             _ParamsArray = pparams;
-            _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Massage";
+            _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
             SetMessage();
         }
         ///// <summary>
@@ -199,7 +199,7 @@ namespace Fwk.Exceptions
         //{
         //    _KeyExceptionName = keyExceptionName;
         //    _ParamsArray = pparams;
-        //    _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Massage";
+        //    _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
         //    SetMessage();
         //}
 
@@ -220,7 +220,7 @@ namespace Fwk.Exceptions
             _KeyExceptionName = keyExceptionName;
             _ParamsArray = pparams;
             if (groupExceptionName.Trim().Length == 0)
-                _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Massage";
+                _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
             else
                 _GroupExceptionName = groupExceptionName;
 
@@ -245,7 +245,7 @@ namespace Fwk.Exceptions
         //    _KeyExceptionName = keyExceptionName;
         //    _ParamsArray = pparams;
         //    if (groupExceptionName.Trim().Length == 0)
-        //        _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Massage";
+        //        _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
         //    else
         //        _GroupExceptionName = groupExceptionName;
 
@@ -268,7 +268,7 @@ namespace Fwk.Exceptions
             _KeyExceptionName = keyExceptionName;
             _ParamsArray = pparams;
             mex_InternalException = pinner;
-            _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Massage";
+            _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
             SetMessage();
         }
 
@@ -284,7 +284,7 @@ namespace Fwk.Exceptions
         //    _KeyExceptionName = keyExceptionName;
         //    _ParamsArray = pparams;
         //    mex_InternalException = pinner;
-        //    _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Massage";
+        //    _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
         //    SetMessage();
         //}
 

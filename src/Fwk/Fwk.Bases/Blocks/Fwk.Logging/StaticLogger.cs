@@ -267,9 +267,16 @@ namespace Fwk.Logging
             wRule = null;
             pEvent = null;
         }
-        
-        
 
+       /// <summary>
+        /// Reinicio los logs para que Xmltarget lo busque 
+       /// en el archivo correspondiente o genere uno nuevo
+       /// </summary>
+        public static void ClearXmlTargetEvents()
+        {
+            XmlTarget.Logs = null;
+        }
+       static string currentFileName = string.Empty;
         private static Target GetTargetByRule(RuleElement pRule,string path,string fileNamePrefix)
         {
             switch (pRule.Target)
@@ -292,6 +299,15 @@ namespace Fwk.Logging
                             wFile.FileName = string.Concat(fileNamePrefix, pRule.FileName);
                         else
                             wFile.FileName = System.IO.Path.Combine(path, string.Concat(fileNamePrefix, pRule.FileName));
+
+                        //Si cambio el nombre del archivo de log reinicio los logs para que Xmltarget lo busque 
+                        // en el archivo correspondiente o genere uno nuevo
+                        if (string.Compare(wFile.FileName, currentFileName) != 0)
+                        {
+                            ClearXmlTargetEvents();
+                            currentFileName = wFile.FileName;
+
+                        }
                         return wFile;
                     }
                 case TargetType.WindowsEvent:
@@ -302,9 +318,17 @@ namespace Fwk.Logging
                     {
                         XmlTarget wXml = new XmlTarget();
                         if (string.IsNullOrEmpty(path))
-                            wXml.FileName = pRule.FileName;
+                            wXml.FileName = string.Concat(fileNamePrefix, pRule.FileName);
                         else
-                            wXml.FileName = System.IO.Path.Combine(path, pRule.FileName);
+                            wXml.FileName = System.IO.Path.Combine(path, string.Concat(fileNamePrefix, pRule.FileName));
+
+                        //Si cambio el nombre del archivo de log reinicio los logs para que Xmltarget lo busque 
+                        // en el archivo correspondiente o genere uno nuevo
+                        if (string.Compare(wXml.FileName, currentFileName) != 0)
+                        {
+                            ClearXmlTargetEvents();
+                            currentFileName = wXml.FileName;
+                        }
                         return wXml;
                     }
 
