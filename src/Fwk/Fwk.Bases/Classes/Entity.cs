@@ -7,6 +7,8 @@ using helper = Fwk.HelperFunctions;
 using System.Reflection;
 using System.Diagnostics;
 using Fwk.Bases.Debug;
+using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace Fwk.Bases
 {
@@ -177,6 +179,7 @@ namespace Fwk.Bases
         /// <summary>
         /// 
         /// </summary>
+        [BrowsableAttribute(false), XmlIgnoreAttribute()]
         public bool CanUndo
         {
             get
@@ -190,6 +193,7 @@ namespace Fwk.Bases
         /// <summary>
         /// 
         /// </summary>
+        [BrowsableAttribute(false), XmlIgnoreAttribute()]
         public bool CanRedo
         {
             get
@@ -201,7 +205,7 @@ namespace Fwk.Bases
 
             }
         }
-
+       
         /// <summary>
         /// 
         /// </summary>
@@ -232,8 +236,28 @@ namespace Fwk.Bases
 
         #endregion
         #endregion
+        #region IEntity Members
 
-         
+       
+
+
+       
+        EntityState _EntityState = EntityState.Unchanged;
+        /// <summary>
+        /// Retorna el estado de modificacion actual de la clase 
+        /// </summary>
+        [BrowsableAttribute(false)]
+        public EntityState EntityState
+        {
+            get
+            {
+                return _EntityState;
+            }
+            set
+            {
+                _EntityState = value;
+            }
+        }
         /// <summary>
         /// Obtiene un System.DataSet .-
         /// </summary>
@@ -245,7 +269,7 @@ namespace Fwk.Bases
 
             String strXml = helper.SerializationFunctions.SerializeToXml(this);
             wDts.ReadXml(new StringReader(strXml));
-            
+
             return wDts;
         }
 
@@ -258,7 +282,7 @@ namespace Fwk.Bases
             return helper.SerializationFunctions.SerializeToXml(this);
         }
 
-       
+
 
 
 
@@ -293,6 +317,9 @@ namespace Fwk.Bases
 
             return (T)helper.SerializationFunctions.DeserializeFromXml(typeof(T), pXmlData);
         }
+        #endregion
+         
+        
 
         #region ICloneable Members
         /// <summary>
@@ -323,5 +350,9 @@ namespace Fwk.Bases
             return this.MemberwiseClone();
         }
         #endregion
+
+
+
+        
     }
 }

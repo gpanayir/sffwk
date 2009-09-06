@@ -20,7 +20,25 @@ namespace Fwk.Bases
     [Serializable]
     public  class Entities<T> : List<T>, IEntity where T : Entity
     {
+        #region IEntity Members
 
+
+        EntityState _EntityState = EntityState.Unchanged;
+        /// <summary>
+        /// Retorna el estado de modificacion actual de la clase 
+        /// </summary>
+        [BrowsableAttribute(false)]
+        public EntityState EntityState
+        {
+            get
+            {
+                return _EntityState;
+            }
+            set
+            {
+                _EntityState = value;
+            }
+        }
         /// <summary>
         /// Obtine un xml producto de la serializacion de la coleccion Entities.-
         /// </summary>
@@ -57,7 +75,7 @@ namespace Fwk.Bases
         {
             return helper.SerializationFunctions.DeserializeFromXml(pType, pXmlData);
         }
-     
+
         /// <summary>
         /// Retorna un objeto a partir de la instancia estatica
         /// </summary>
@@ -74,19 +92,13 @@ namespace Fwk.Bases
         /// Rellena la clase con los valores del XML 
         /// <param name="pXmlData">Xml con el que se crea el objeto</param>
         /// <summary>
-        public void SetXml(string pXmlData) 
+        public void SetXml(string pXmlData)
         {
             helper.SerializationFunctions.DeserializeFromXml(this.GetType(), pXmlData);
         }
-        /// <summary>
-        /// Clona el contrato de servicio
-        /// </summary>
-        /// <typeparam name="TEntities">Tipo de Entities que implementa IEntity </typeparam>
-        /// <returns></returns>
-        public TEntities Clone<TEntities>() where TEntities : Entities<T>
-        {
-            return (TEntities)Fwk.HelperFunctions.SerializationFunctions.Deserialize(this.GetType(), this.GetXml());
-        }
+        #endregion
+       
+       
 
         #region Busqueda
         /// <summary>
@@ -548,7 +560,15 @@ namespace Fwk.Bases
 
         #region ICloneable Members
 
-
+        /// <summary>
+        /// Clona el contrato de servicio
+        /// </summary>
+        /// <typeparam name="TEntities">Tipo de Entities que implementa IEntity </typeparam>
+        /// <returns></returns>
+        public TEntities Clone<TEntities>() where TEntities : Entities<T>
+        {
+            return (TEntities)Fwk.HelperFunctions.SerializationFunctions.Deserialize(this.GetType(), this.GetXml());
+        }
         /// <summary>
         /// Crea una copia espejo de la clase.-
         /// </summary>
@@ -566,5 +586,7 @@ namespace Fwk.Bases
             return this.MemberwiseClone();
         }
         #endregion
+
+        
     }
 }
