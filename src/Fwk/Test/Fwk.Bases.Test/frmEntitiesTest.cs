@@ -28,7 +28,7 @@ namespace Fwk.Bases.Test
             m_ClienteCollectionBE  = new ClienteCollectionBE();
 
             ClienteBE wClienteBE1 = new ClienteBE();
-
+            wClienteBE1.EntityState = EntityState.Changed;
             wClienteBE1.Nombre = "Marcelo F Oviedo";
             wClienteBE1.Apellido = "Pelsoft";
             wClienteBE1.Edad = 32;
@@ -203,7 +203,7 @@ namespace Fwk.Bases.Test
             wFacturaBE.NumeroCliente = 90000;
             wFacturaBE.FechaFactura = System.DateTime.Now;
             wFacturaBE.ItemCollectionBE = wItemCollectionBE;
-
+           
             #endregion
 
             #region (Context)

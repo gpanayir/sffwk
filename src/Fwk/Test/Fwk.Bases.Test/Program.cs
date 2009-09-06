@@ -14,7 +14,7 @@ namespace Fwk.Bases.Test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmUndoRedoEntitiesTest());
+            Application.Run(new frmMain());
         }
     }
 }
