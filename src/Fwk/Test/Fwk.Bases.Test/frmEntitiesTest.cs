@@ -36,7 +36,7 @@ namespace Fwk.Bases.Test
 
 
             m_ClienteCollectionBE.Add(wClienteBE1);
-
+            string ss = m_ClienteCollectionBE.ToString();
             label2.Text = "Xml de ClienteBE1";
 
             txtEntidadSimple.Text = wClienteBE1.GetXml();
