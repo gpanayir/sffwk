@@ -587,6 +587,22 @@ namespace Fwk.Bases
         }
         #endregion
 
-        
+        #region ToString
+        /// <summary>
+        /// Returns a <see cref="T:System.String"></see> that represents the current <see cref="T:System.Object"></see>.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"></see> that represents the current <see cref="T:System.Object"></see>.
+        /// </returns>
+        public override string ToString()
+        {
+            string s = this.GetType().Name + " Collection" + System.Environment.NewLine;
+            foreach (T Item in this)
+            {
+                s += Item.ToString() + System.Environment.NewLine;
+            }
+            return s;
+        }
+        #endregion 
     }
 }

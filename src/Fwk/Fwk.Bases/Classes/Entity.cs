@@ -353,6 +353,87 @@ namespace Fwk.Bases
 
 
 
-        
+        #region ToString Method
+
+        ///<summary>
+        /// Returns a String that represents the current object.
+        ///</summary>
+        public override string ToString()
+        {
+            //return string.Format(System.Globalization.CultureInfo.InvariantCulture,
+            //    "{14}{13}- CustomerId: {0}{13}- CustomerRef: {1}{13}- CompanyName: {2}{13}- ContactName: {3}{13}- ContactTitle: {4}{13}- Address: {5}{13}- City: {6}{13}- Region: {7}{13}- PostalCode: {8}{13}- Country: {9}{13}- Phone: {10}{13}- Fax: {11}{13}- AuditStamp: {12}{13}{15}",
+            //    this.CustomerId,
+            //    this.CustomerRef,
+            //    this.CompanyName,
+            //    (this.ContactName == null) ? string.Empty : this.ContactName.ToString(),
+            //    (this.ContactTitle == null) ? string.Empty : this.ContactTitle.ToString(),
+            //    (this.Address == null) ? string.Empty : this.Address.ToString(),
+            //    (this.City == null) ? string.Empty : this.City.ToString(),
+            //    (this.Region == null) ? string.Empty : this.Region.ToString(),
+            //    (this.PostalCode == null) ? string.Empty : this.PostalCode.ToString(),
+            //    (this.Country == null) ? string.Empty : this.Country.ToString(),
+            //    (this.Phone == null) ? string.Empty : this.Phone.ToString(),
+            //    (this.Fax == null) ? string.Empty : this.Fax.ToString(),
+            //    (this.AuditStamp == null) ? string.Empty : this.AuditStamp.ToString(),
+            //    System.Environment.NewLine,
+            //    this.GetType(),
+            //    this.Error.Length == 0 ? string.Empty : string.Format("- Error: {0}\n", this.Error));
+
+            return HelperFunctions.TypeFunctions.ToString(this);
+        }
+        /// <summary>
+        /// Give a string representation of a object, with use of reflection.
+        /// </summary>
+        /// <param name="o">O.</param>
+        /// <returns></returns>
+        public static string ToString(Object o)
+        {
+            StringBuilder sb = new StringBuilder();
+            Type t = o.GetType();
+
+            PropertyInfo[] pi = t.GetProperties();
+
+            sb.Append("Properties for: " + o.GetType().Name + System.Environment.NewLine);
+            foreach (PropertyInfo i in pi)
+            {
+                try
+                {
+                    sb.Append("\t" + i.Name + "(" + i.PropertyType.ToString() + "): ");
+                    if (null != i.GetValue(o, null))
+                    {
+                        sb.Append(i.GetValue(o, null).ToString());
+                    }
+
+                }
+                catch
+                {
+                }
+                sb.Append(System.Environment.NewLine);
+
+            }
+
+            FieldInfo[] fi = t.GetFields();
+
+            foreach (FieldInfo i in fi)
+            {
+                try
+                {
+                    sb.Append("\t" + i.Name + "(" + i.FieldType.ToString() + "): ");
+                    if (null != i.GetValue(o))
+                    {
+                        sb.Append(i.GetValue(o).ToString());
+                    }
+
+                }
+                catch
+                {
+                }
+                sb.Append(System.Environment.NewLine);
+
+            }
+
+            return sb.ToString();
+        }
+        #endregion ToString Method
     }
 }

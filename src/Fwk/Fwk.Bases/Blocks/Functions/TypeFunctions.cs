@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using Fwk.Bases;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
 
 namespace Fwk.HelperFunctions
 {
@@ -556,6 +558,63 @@ namespace Fwk.HelperFunctions
                 return true;
 
 
+        }
+        /// <summary>
+        /// Give a string representation of a object, with use of reflection.
+        /// </summary>
+        /// <param name="o">O.</param>
+        /// <returns></returns>
+        public static string ToString(Object o)
+        {
+            StringBuilder sb = new StringBuilder();
+            Type t = o.GetType();
+
+            PropertyInfo[] pi = t.GetProperties();
+
+            sb.Append("Properties for: " + o.GetType().Name + System.Environment.NewLine);
+            foreach (PropertyInfo i in pi)
+            {
+                if (!(i.Name.CompareTo("CanUndo") == 0 ||
+                    i.Name.CompareTo("CanRedo") == 0))
+                {
+                    try
+                    {
+
+                        sb.Append("\t" + i.Name + "(" + i.PropertyType.ToString() + "): ");
+                        if (null != i.GetValue(o, null))
+                        {
+                            sb.Append(i.GetValue(o, null).ToString());
+                        }
+
+                    }
+                    catch
+                    {
+                    }
+                    sb.Append(System.Environment.NewLine);
+                }
+            }
+
+            FieldInfo[] fi = t.GetFields();
+
+            foreach (FieldInfo i in fi)
+            {
+                try
+                {
+                    sb.Append("\t" + i.Name + "(" + i.FieldType.ToString() + "): ");
+                    if (null != i.GetValue(o))
+                    {
+                        sb.Append(i.GetValue(o).ToString());
+                    }
+
+                }
+                catch
+                {
+                }
+                sb.Append(System.Environment.NewLine);
+
+            }
+
+            return sb.ToString();
         }
     }
 }
