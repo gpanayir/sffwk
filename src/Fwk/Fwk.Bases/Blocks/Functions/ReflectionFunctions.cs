@@ -194,6 +194,13 @@ namespace Fwk.HelperFunctions
 
             return (T)wPropValue;
         }
+
+        /// <summary>
+        /// Retorna el tipo de la propiedad
+        /// </summary>
+        /// <param name="pSourceObject">Objeto que contiene la propiedad</param>
+        /// <param name="pPropertyName">Nombre de la propiedad</param>
+        /// <returns>Tipo</returns>
         public static Type GetPropertieType(object pSourceObject, string pPropertyName)
         {
             PropertyDescriptorCollection pProperties = TypeDescriptor.GetProperties(pSourceObject, true);
