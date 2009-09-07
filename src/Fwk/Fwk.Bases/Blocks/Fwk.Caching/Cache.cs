@@ -97,7 +97,7 @@ namespace Fwk.HelperFunctions.Caching
             }
             catch (System.TypeInitializationException e)
             {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al inicuializar la configuracion de cache",e);
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al inicializar la configuración de cache",e);
                 te.ErrorId = "3000";
                 throw te;
             }

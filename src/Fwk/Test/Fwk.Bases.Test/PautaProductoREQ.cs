@@ -10,17 +10,17 @@ namespace Sebito.BackEnd.BusinessEntities
     {
 
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto AutorizacionBECollection apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>AutorizacionBECollection</returns>
-        public static AutorizacionBECollection GetAutorizacionBECollectionFromXml(String pXml)
-        {
-            return (AutorizacionBECollection)Entity.GetObjectFromXml(typeof(AutorizacionBECollection), pXml);
-        }
-        #endregion
+        //#region [Methods]
+        ///// <summary>
+        ///// Metodo estatico que retorna un objeto AutorizacionBECollection apartir de un xml.-
+        ///// </summary>
+        ///// <param name="pXml">String con el xml</param>
+        ///// <returns>AutorizacionBECollection</returns>
+        //public static AutorizacionBECollection GetAutorizacionBECollectionFromXml(String pXml)
+        //{
+        //    return Entity.GetFromXml<AutorizacionBECollection>( pXml);
+        //}
+        //#endregion
     }
     public class PautaProductoFechaTarifaBECollection : Entities<PautaProductoFechaTarifaBE>
     {

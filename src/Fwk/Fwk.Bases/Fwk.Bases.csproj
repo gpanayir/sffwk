@@ -128,6 +128,27 @@
     <Compile Include="Blocks\Fwk.Logging\config\LoggingSection.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElement.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElementCollection.cs" />
+    <Compile Include="Blocks\Fwk.Mail\config\MailAgentFactory.cs" />
+    <Compile Include="Blocks\Fwk.Mail\config\MailAgentSection.cs" />
+    <Compile Include="Blocks\Fwk.Mail\config\MailAgentElement.cs" />
+    <Compile Include="Blocks\Fwk.Mail\config\MailAgentElementCollection.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Common.cs" />
+    <Compile Include="Blocks\Fwk.Mail\FwkMailAgent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Mail\FwkMailAgent.Designer.cs">
+      <DependentUpon>FwkMailAgent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Mail\ImapServices.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Imap\Imap.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Imap\ImapBase.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Imap\ImapException.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Message.cs" />
+    <Compile Include="Blocks\Fwk.Mail\ObjCache.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Pop3Services.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Pop3\Pop3.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Pop3\Pop3Exception.cs" />
+    <Compile Include="Blocks\Fwk.Mail\ProtocolMailBase.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Database\DatabaseConfigSection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Database\DatabaseServiceConfigurationManager.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\ObjectProvider.cs" />
@@ -244,6 +265,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Blocks\Fwk.Mail\FwkMailAgent.resx">
+      <DependentUpon>FwkMailAgent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DialogDebuggerVisualizer\IEntityVisualizerForm.resx">
       <DependentUpon>IEntityVisualizerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -288,6 +312,8 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
+    <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
     <None Include="Blocks\Fwk.ServiceManagement\Database\app.config" />
     <None Include="Blocks\Fwk.ServiceManagement\Database\BPConfig.rar" />
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />

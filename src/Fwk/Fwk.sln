@@ -63,6 +63,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Fwk.Configuration.Configura
 		VWDPort = "1169"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Mail.Test", "Test\Fwk.Mail.Test\Fwk.Mail.Test.csproj", "{17877545-938E-45FF-BDDC-78E43944CBEE}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
