@@ -11,15 +11,15 @@ using Microsoft.Practices.EnterpriseLibrary.Caching;
 namespace Fwk.HelperFunctions.Caching
 {
     /// <summary>
-    /// 
+    /// Calse que mantiene las instancias de las cache manager de la aplicacion.-
     /// </summary>
-    public class FwkCacheCollectionMannager
+    public static class KwkCacheFactory
     {
-        System.Collections.Generic.Dictionary<String, FwkCache> _CacheCollection;
+        static System.Collections.Generic.Dictionary<String, FwkCache> _CacheCollection;
         /// <summary>
         /// Diccionario generico con una coleccion de <see cref="FwkCache"/>
         /// </summary>
-        public System.Collections.Generic.Dictionary<String, FwkCache> CacheCollection
+        public static System.Collections.Generic.Dictionary<String, FwkCache> CacheCollection
         {
             get { return _CacheCollection; }
             set { _CacheCollection = value; }
@@ -27,7 +27,7 @@ namespace Fwk.HelperFunctions.Caching
         /// <summary>
         /// 
         /// </summary>
-        public FwkCacheCollectionMannager()
+         static KwkCacheFactory()
         {
             _CacheCollection = new Dictionary<string, FwkCache>();
         }
@@ -41,8 +41,8 @@ namespace Fwk.HelperFunctions.Caching
         /// </summary>
         /// <param name="pCacheManagerName">Determina el nombre de la configuracion de la cache</param>
         /// <author>moviedo</author>
-        /// <date>29/11/2007</date>
-        public FwkCache GetFwkCache(string pCacheManagerName)
+        /// <date>29/11/2008</date>
+        public static FwkCache GetFwkCache(string pCacheManagerName)
         {
 
 

@@ -15,13 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_29D68460480B5A777CBAF68575A88AE1"
-        "OwnerKey" = "8:_CDD54BAC5E43733DBA42178E22A1984B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_29D68460480B5A777CBAF68575A88AE1"
+        "MsmKey" = "8:_0D4E63689BD3891C3286F9F898F1DB1F"
         "OwnerKey" = "8:_8C60BCCB755449C69162E2F60F1335AA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -51,18 +45,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_71C322691A8B8E0A33C90B7248DD98F8"
-        "OwnerKey" = "8:_A2C355EE37E86C33009F1221A6304E06"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_71C322691A8B8E0A33C90B7248DD98F8"
-        "OwnerKey" = "8:_8C60BCCB755449C69162E2F60F1335AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8C60BCCB755449C69162E2F60F1335AA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -75,44 +57,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A2C355EE37E86C33009F1221A6304E06"
-        "OwnerKey" = "8:_EFDD84E4D4B2CC3672095649971BB133"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A2C355EE37E86C33009F1221A6304E06"
-        "OwnerKey" = "8:_8C60BCCB755449C69162E2F60F1335AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CDD54BAC5E43733DBA42178E22A1984B"
-        "OwnerKey" = "8:_8C60BCCB755449C69162E2F60F1335AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EFDD84E4D4B2CC3672095649971BB133"
-        "OwnerKey" = "8:_8C60BCCB755449C69162E2F60F1335AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EFDD84E4D4B2CC3672095649971BB133"
-        "OwnerKey" = "8:_CDD54BAC5E43733DBA42178E22A1984B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EFDD84E4D4B2CC3672095649971BB133"
-        "OwnerKey" = "8:_29D68460480B5A777CBAF68575A88AE1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_71C322691A8B8E0A33C90B7248DD98F8"
+        "OwnerKey" = "8:_8C60BCCB755449C69162E2F60F1335AA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,31 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CDD54BAC5E43733DBA42178E22A1984B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_29D68460480B5A777CBAF68575A88AE1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8C60BCCB755449C69162E2F60F1335AA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EFDD84E4D4B2CC3672095649971BB133"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A2C355EE37E86C33009F1221A6304E06"
+        "OwnerKey" = "8:_0D4E63689BD3891C3286F9F898F1DB1F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -169,6 +91,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -185,6 +115,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -202,20 +140,6 @@
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
             "Identifier" = "8:_30890A0D_8E9D_418F_B757_8EBF7642FE67"
-            "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:"
-            }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_259F61A7F86A457F80641C78C89249F3"
-            {
-            "Name" = "8:Primary output from Fwk.Blocking.BlockingService (Active)"
-            "Condition" = "8:"
-            "Object" = "8:_8C60BCCB755449C69162E2F60F1335AA"
-            "FileType" = "3:2"
-            "InstallAction" = "3:4"
-            "Arguments" = "8:"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_64C353AB_A186_4E74_9938_DFD8535FADE6"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -270,20 +194,20 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_29D68460480B5A777CBAF68575A88AE1"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0D4E63689BD3891C3286F9F898F1DB1F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Fwk.Exceptions, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Microsoft.VisualStudio.DebuggerVisualizers, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_29D68460480B5A777CBAF68575A88AE1"
+                    "_0D4E63689BD3891C3286F9F898F1DB1F"
                     {
-                    "Name" = "8:Fwk.Exceptions.dll"
+                    "Name" = "8:Microsoft.VisualStudio.DebuggerVisualizers.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Fwk.Exceptions.dll"
+            "SourcePath" = "8:Microsoft.VisualStudio.DebuggerVisualizers.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DC910E84BD7D4116AA5698FF727EB75F"
@@ -392,37 +316,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_71C322691A8B8E0A33C90B7248DD98F8"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Fwk.Security, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_71C322691A8B8E0A33C90B7248DD98F8"
-                    {
-                    "Name" = "8:Fwk.Security.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Fwk.Security.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_DC910E84BD7D4116AA5698FF727EB75F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A01590D6C83C495698E8C4DCF509CDAA"
             {
             "SourcePath" = "8:..\\Fwk.Blocking.BlockingService\\StopService.bat"
@@ -441,99 +334,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A2C355EE37E86C33009F1221A6304E06"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Fwk.Configuration.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_A2C355EE37E86C33009F1221A6304E06"
-                    {
-                    "Name" = "8:Fwk.Configuration.Common.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Fwk.Configuration.Common.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_DC910E84BD7D4116AA5698FF727EB75F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CDD54BAC5E43733DBA42178E22A1984B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Fwk.Blocking, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_CDD54BAC5E43733DBA42178E22A1984B"
-                    {
-                    "Name" = "8:Fwk.Blocking.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Fwk.Blocking.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_DC910E84BD7D4116AA5698FF727EB75F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EFDD84E4D4B2CC3672095649971BB133"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Fwk.Configuration, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_EFDD84E4D4B2CC3672095649971BB133"
-                    {
-                    "Name" = "8:Fwk.Configuration.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Fwk.Configuration.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_DC910E84BD7D4116AA5698FF727EB75F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }

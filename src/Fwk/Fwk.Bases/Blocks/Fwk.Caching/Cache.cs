@@ -12,6 +12,7 @@ using Microsoft.Practices.EnterpriseLibrary.Caching.Expirations;
 
 namespace Fwk.HelperFunctions.Caching
 {
+    
     /// <summary>
     /// Componente que implementa la funcionalidad para aplicar caching .-
     /// </summary>
@@ -116,7 +117,7 @@ namespace Fwk.HelperFunctions.Caching
         /// <summary>
         /// Determino si el Item Existe en Caché
         /// </summary>
-        /// <param name="pCahcheId">Claye del Ítem Guardado</param>
+        /// <param name="pCahcheId">Clache del Ítem Guardado</param>
         /// <returns>Boolean: Indica si el Ítem se encuentra todavía en Caché</returns>
         /// <author>moviedo</author>
         /// <date>29/11/2007</date>
@@ -138,7 +139,7 @@ namespace Fwk.HelperFunctions.Caching
         /// <summary>
         /// Guarda Ítem en Caché según una key especificada.
         /// </summary>
-        /// <param name="pCahcheId">Claye del Ítem a Guardar</param>
+        /// <param name="pCahcheId">Id de item a guardar</param>
         /// <param name="pObject">Ítem a Guardar</param>
         /// <returns>Indica si se pudo insertar el Objeto en Caché con el Key especificado</returns>
         /// <author>moviedo</author>
@@ -150,7 +151,7 @@ namespace Fwk.HelperFunctions.Caching
         /// <summary>
         /// Guarda Ítem en Caché según una key especificada.
         /// </summary>
-        /// <param name="pCahcheId">Claye del Ítem a Guardar</param>
+        /// <param name="pCahcheId">Id de item a guardar</param>
         /// <param name="pObject">Ítem a Guardar</param>
         /// <param name="pReplaceIfExist">Si es = True y si existe algun item con el mismo Id lo reemplaza</param>
         /// <returns>Indica si se pudo insertar el Objeto en Caché con el Key especificado</returns>
@@ -169,30 +170,7 @@ namespace Fwk.HelperFunctions.Caching
             }
 
         }
-        ///// <summary>
-        ///// Guarda Ítem en Caché Generando Una Key Única.
-        ///// </summary>
-        ///// <param name="pObject">Ítem a Guardar</param>
-        ///// <returns>Key Unica con la que se guardó el Ítem</returns>
-        ///// <author>moviedo</author>
-        ///// <date>29/11/2007</date>
-        //public  String SaveItemInCache(Object pObject)
-        //{
-        //    try
-        //    {
-        //        String wCahcheId = Guid.NewGuid().ToString();
-
-        //        _CacheManager.Add(wCahcheId, pObject);
-
-        //        return wCahcheId;
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ExceptionHelper.ProcessException(ex);
-        //    }
-
-        //}
+       
 
         #endregion
 
@@ -206,29 +184,57 @@ namespace Fwk.HelperFunctions.Caching
         /// <returns>Key Unica con la que se guardó el Ítem</returns>
         /// <author>moviedo</author>
         /// <date>29/11/2007</date>
-        public  String SaveItemInCache(Object pObject, CacheItemPriority pPriority, Double pDaysFromExpiration)
+        [Obsolete("Se debe usar SaveItemInCache(Object pObject, CacheItemPriority pPriority, Double pExpirationTime, Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum pTimeMeasures)")]
+        public String SaveItemInCache(Object pObject, CacheItemPriority pPriority, Double pDaysFromExpiration, bool pRefreshOnExpired)
         {
 
             String wCahcheId = Guid.NewGuid().ToString();
 
-            SaveItemInCache(wCahcheId, pObject, pPriority, pDaysFromExpiration);
+            SaveItemInCache(wCahcheId, pObject, pPriority, pDaysFromExpiration, DateFunctions.TimeMeasuresEnum.FromDays, pRefreshOnExpired);
            
 
             return wCahcheId;
 
         }
+        /// <summary>
+        /// Guarda Ítem en Caché Generando Una Key Única.
+        /// </summary>
+        /// <param name="pObject">Ítem a Guardar</param>
+        /// <param name="pPriority">Prioridad del Ítem en Caché</param>
+        /// <param name="pDaysFromExpiration">Días para que el Ítem Expire</param>
+        /// <returns>Key Unica con la que se guardó el Ítem</returns>
+        /// <author>moviedo</author>
+        /// <date>29/09/2009</date>
+        public String SaveItemInCache(Object pObject, CacheItemPriority pPriority, Double pExpirationTime, Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum pTimeMeasures, bool pRefreshOnExpired)
+        {
+
+            String wCahcheId = Guid.NewGuid().ToString();
+
+            SaveItemInCache(wCahcheId, pObject, pPriority, pExpirationTime, pTimeMeasures,pRefreshOnExpired);
+
+
+            return wCahcheId;
+
+        }
+
+       
 
         /// <summary>
         /// Guarda Ítem en Caché según una key especificada.
         /// </summary>
-        /// <param name="pCahcheId">Claye del Ítem a Guardar</param>
+        /// <param name="pCahcheId">Id de item a guardar</param>
         /// <param name="pObject">Ítem a Guardar</param>
         /// <param name="pPriority">Prioridad del Ítem en Caché</param>
         /// <param name="pDaysFromExpiration">Minutos para que el Ítem Expire</param>
+        /// <param name="pTimeMeasures"></param>
+        /// <param name="pRefreshOnExpired">Determina si una ves obtendo el item del cache se renueva la expiracion o no</param>
         /// <returns>Indica si se pudo insertar el Objeto en Caché con el Key especificado</returns>
         /// <author>moviedo</author>
         /// <date>29/11/2007</date>
-        public Boolean SaveItemInCache(String pCahcheId, Object pObject, CacheItemPriority pPriority, Double pDaysFromExpiration)
+        public Boolean SaveItemInCache(String pCahcheId,
+            Object pObject, CacheItemPriority pPriority,
+            Double pExpirationTime,
+            Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum pTimeMeasures,bool pRefreshOnExpired)
         {
 
             if (CheckIfCachingExists(pCahcheId))
@@ -237,7 +243,38 @@ namespace Fwk.HelperFunctions.Caching
             }
             else
             {
-                _CacheManager.Add(pCahcheId, pObject, pPriority, null, new SlidingTime(TimeSpan.FromDays(pDaysFromExpiration)));
+                CacheRefreshAction wCacheRefreshAction = new CacheRefreshAction(pRefreshOnExpired, _CacheManagerName);
+                switch (pTimeMeasures)
+                {
+                    case DateFunctions.TimeMeasuresEnum.FromDays:
+                        {
+
+                            _CacheManager.Add(pCahcheId, pObject, pPriority, wCacheRefreshAction, new SlidingTime(TimeSpan.FromDays(pExpirationTime)));
+
+                            break;
+
+                        }
+                    case DateFunctions.TimeMeasuresEnum.FromHours:
+                        {
+
+                            _CacheManager.Add(pCahcheId, pObject, pPriority, wCacheRefreshAction, new SlidingTime(TimeSpan.FromHours(pExpirationTime)));
+                            break;
+
+                        }
+                    case DateFunctions.TimeMeasuresEnum.FromMinutes:
+                        {
+
+                            _CacheManager.Add(pCahcheId, pObject, pPriority, wCacheRefreshAction, new SlidingTime(TimeSpan.FromMinutes(pExpirationTime)));
+                            break;
+
+                        }
+                    case DateFunctions.TimeMeasuresEnum.FromSeconds:
+                        {
+
+                            _CacheManager.Add(pCahcheId, pObject, pPriority, wCacheRefreshAction, new SlidingTime(TimeSpan.FromSeconds(pExpirationTime)));
+                            break;
+                        }
+                }
                 return true;
             }
 
@@ -248,14 +285,14 @@ namespace Fwk.HelperFunctions.Caching
         /// <summary>
         /// Guarda Ítem en Caché según una key especificada.
         /// </summary>
-        /// <param name="pCahcheId">Claye del Ítem a Guardar</param>
+        /// <param name="pCahcheId">Id de item a guardar</param>
         /// <param name="pObject">Ítem a Guardar</param>
         /// <param name="pPriority">Prioridad del Ítem en Caché</param>
         /// <param name="pDateExpiration">Fecha para la cuál el Ítem Expirará</param>
         /// <returns>Indica si se pudo insertar el Objeto en Caché con el Key especificado</returns>
         /// <author>moviedo</author>
         /// <date>29/11/2007</date>
-        public  Boolean SaveItemInCache(String pCahcheId, Object pObject, CacheItemPriority pPriority, DateTime pDateExpiration)
+        public  Boolean SaveItemInCache(String pCahcheId, Object pObject, CacheItemPriority pPriority, DateTime pDateExpiration,bool pRefreshOnExpired)
         {
            
                 if (CheckIfCachingExists(pCahcheId))
@@ -265,7 +302,7 @@ namespace Fwk.HelperFunctions.Caching
                 else
                 {
                     AbsoluteTime expireTime = new AbsoluteTime(pDateExpiration);
-                    _CacheManager.Add(pCahcheId, pObject, pPriority, null, expireTime);
+                    _CacheManager.Add(pCahcheId, pObject, pPriority, new CacheRefreshAction(pRefreshOnExpired, _CacheManagerName), expireTime);
                     return true;
                 }
 
@@ -282,25 +319,17 @@ namespace Fwk.HelperFunctions.Caching
         /// <returns>Key Unica con la que se guardó el Ítem</returns>
         /// <author>moviedo</author>
         /// <date>29/11/2007</date>
-        public  String SaveItemInCache(Object pObject,CacheItemPriority pPriority,DateTime pDateExpiration)
+        public String SaveItemInCache(Object pObject, CacheItemPriority pPriority, DateTime pDateExpiration, bool pRefreshOnExpired)
         {
             String wCahcheId = Guid.NewGuid().ToString();
 
-     
-            SaveItemInCache(wCahcheId, pObject, pPriority, pDateExpiration);
-            //try
-            //{
-             
 
-            //    _CacheManager.Add(wCahcheId, pObject, pPriority, null, expireTime);
+            SaveItemInCache(wCahcheId, pObject, pPriority, pDateExpiration, pRefreshOnExpired);
+          
 
             return wCahcheId;
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ExceptionHelper.ProcessException(ex);
-            //}
+       
 
         }
 
@@ -345,7 +374,7 @@ namespace Fwk.HelperFunctions.Caching
         ///// <summary>
         ///// Guarda Ítem en Caché según una key especificada.
         ///// </summary>
-        ///// <param name="pCahcheId">Claye del Ítem a Guardar</param>
+        ///// <param name="pCahcheId">Id de item a guardar</param>
         ///// <param name="pObject">Ítem a Guardar</param>
         ///// <param name="pPriority">Prioridad del Ítem en Caché</param>
         ///// <param name="pDaysFromExpiration">Minutos para que el Ítem Expire</param>
@@ -422,7 +451,7 @@ namespace Fwk.HelperFunctions.Caching
         ///// <summary>
         ///// Guarda Ítem en Caché según una key especificada.
         ///// </summary>
-        ///// <param name="pCahcheId">Claye del Ítem a Guardar</param>
+        ///// <param name="pCahcheId">Id de item a guardar</param>
         ///// <param name="pObject">Ítem a Guardar</param>
         ///// <param name="pPriority">Prioridad del Ítem en Caché</param>
         ///// <param name="pDateExpiration">Fecha para la cuál el Ítem Expirará</param>

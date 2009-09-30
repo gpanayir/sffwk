@@ -191,20 +191,22 @@ namespace Fwk.HelperFunctions
 		/// </summary>
 		/// <param name="pObj"></param>
 		/// <returns></returns>
-		public static string SerializeToXml(object pObj)
-		{
-			XmlSerializer wSerializer;
-			StringWriter wStwSerializado = new StringWriter();
-			XmlTextWriter wXmlWriter = new XmlTextWriter(wStwSerializado);
-			XmlSerializerNamespaces wNameSpaces = new XmlSerializerNamespaces();
+        public static string SerializeToXml(object pObj)
+        {
+            XmlSerializer wSerializer;
+            StringWriter wStwSerializado = new StringWriter();
+            XmlTextWriter wXmlWriter = new XmlTextWriter(wStwSerializado);
+            XmlSerializerNamespaces wNameSpaces = new XmlSerializerNamespaces();
 
-			wXmlWriter.Formatting = Formatting.Indented;
-			wNameSpaces.Add(String.Empty, String.Empty);
-			wSerializer = new XmlSerializer(pObj.GetType());
-			wSerializer.Serialize(wXmlWriter, pObj, wNameSpaces);
+            wXmlWriter.Formatting = Formatting.Indented;
+            wNameSpaces.Add(String.Empty, String.Empty);
 
-			return wStwSerializado.ToString().Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", String.Empty);
-		}
+            wSerializer = new XmlSerializer(pObj.GetType());
+            wSerializer.Serialize(wXmlWriter, pObj, wNameSpaces);
+
+
+            return wStwSerializado.ToString().Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", String.Empty);
+        }
 
 		/// <summary>
 		/// Serializa un objeto.

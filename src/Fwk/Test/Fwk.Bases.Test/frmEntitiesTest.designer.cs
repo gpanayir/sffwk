@@ -56,6 +56,7 @@ namespace Fwk.Bases.Test
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.button12 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -227,6 +228,7 @@ namespace Fwk.Bases.Test
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button12);
             this.tabPage2.Controls.Add(this.button8);
             this.tabPage2.Controls.Add(this.button7);
             this.tabPage2.Controls.Add(this.button4);
@@ -252,7 +254,7 @@ namespace Fwk.Bases.Test
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(235, 33);
+            this.button7.Location = new System.Drawing.Point(251, 33);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(157, 21);
             this.button7.TabIndex = 12;
@@ -369,6 +371,16 @@ namespace Fwk.Bases.Test
             this.logoPictureBox.TabIndex = 0;
             this.logoPictureBox.TabStop = false;
             // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(475, 6);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(223, 21);
+            this.button12.TabIndex = 14;
+            this.button12.Text = "RES.GetXML()";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // frmEntitiesTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -426,6 +438,7 @@ namespace Fwk.Bases.Test
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox logoPictureBox;
+        private System.Windows.Forms.Button button12;
     }
 }
 

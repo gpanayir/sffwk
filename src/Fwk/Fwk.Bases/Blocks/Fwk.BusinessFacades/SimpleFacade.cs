@@ -34,7 +34,7 @@ namespace Fwk.BusinessFacades
     public sealed class SimpleFacade : IBusinessFacade
     {
 
-        FwkCacheCollectionMannager _FwkCacheCollectionMannager = null;
+  
             
         /// <summary>
         /// 
@@ -42,8 +42,7 @@ namespace Fwk.BusinessFacades
         public SimpleFacade()
         {
 
-            //Inicializa la cache con la configuracion por defecto
-            _FwkCacheCollectionMannager = new FwkCacheCollectionMannager ();
+        
         }
         #region < IBusinessFacade members >
 
@@ -172,24 +171,24 @@ namespace Fwk.BusinessFacades
         private IServiceContract GetCaheDataById(IRequest pRequest,ServiceConfiguration pServiceConfiguration)
         {
             IServiceContract wResult;
-            object wAux = null;
+            object wItemInCache = null;
             if (string.IsNullOrEmpty(pRequest.CacheSettings.ResponseCacheId))
                 pRequest.CacheSettings.ResponseCacheId = pRequest.ServiceName;
 
             //TODO: Agregar manejo de error para catching
-            if (_FwkCacheCollectionMannager.CacheCollection.ContainsKey(pRequest.CacheSettings.CacheManagerName))
+            if (KwkCacheFactory.CacheCollection.ContainsKey(pRequest.CacheSettings.CacheManagerName))
             {
-                wAux = _FwkCacheCollectionMannager.GetFwkCache(pRequest.CacheSettings.CacheManagerName).
+                wItemInCache = KwkCacheFactory.GetFwkCache(pRequest.CacheSettings.CacheManagerName).
                     GetItemFromCache(pRequest.CacheSettings.ResponseCacheId);
             }
 
-            if (wAux == null)
+            if (wItemInCache == null)
             {
                 wResult = null;
             }
             else
             {
-                wResult = (IServiceContract)wAux;
+                wResult = (IServiceContract)wItemInCache;
             }
             //Si no hay resultados en la cahce se procede a ejecurar el servicio y de obtener resultados sin error
             //se almacena en la cache
@@ -200,14 +199,15 @@ namespace Fwk.BusinessFacades
                 else
                     wResult = FacadeHelper.RunTransactionalProcess(pRequest, pServiceConfiguration);
 
+                //Almaceno el resultado en la cache solo si no hay errores en la ejecucion del servicio
                 if (wResult.Error == null)
                 {
-                    //Almaceno el resultado en la cache
-                    _FwkCacheCollectionMannager.GetFwkCache(pRequest.CacheSettings.CacheManagerName).SaveItemInCache(
+
+                    KwkCacheFactory.GetFwkCache(pRequest.CacheSettings.CacheManagerName).SaveItemInCache(
                         pRequest.CacheSettings.ResponseCacheId,
                         wResult,
                         pRequest.CacheSettings.Priority,
-                        pRequest.CacheSettings.DaysForExpiration);
+                        pRequest.CacheSettings.ExpirationTime, pRequest.CacheSettings.TimeMeasures, pRequest.CacheSettings.RefreshOnExpired);
                 }
             }
 

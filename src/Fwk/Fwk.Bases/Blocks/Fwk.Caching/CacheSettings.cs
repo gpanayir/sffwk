@@ -94,9 +94,9 @@ namespace Fwk.HelperFunctions.Caching
 
         private CacheItemPriority _Priority;
 
-        /// <summary>
-        /// Especifica la prioridad relativa de los elementos almacenados en el objeto Cache.  <see cref="CacheItemPriority"/>
-        /// AboveNormal Los elementos de la memoria caché con este nivel de prioridad tienen menos posibilidades de ser eliminados cuando el servidor libera la memoria del sistema que aquéllos que tengan asignada una prioridad Normal.  
+        ///<summary>
+        ///Especifica la prioridad relativa de los elementos almacenados en el objeto Cache.  <see cref="CacheItemPriority"/>
+        ///AboveNormal Los elementos de la memoria caché con este nivel de prioridad tienen menos posibilidades de ser eliminados cuando el servidor libera la memoria del sistema que aquéllos que tengan asignada una prioridad Normal.  
         ///BelowNormal Los elementos de la memoria caché con este nivel de prioridad tienen más posibilidad de ser eliminados cuando el servidor libera la memoria del sistema que aquéllos que tengan asignada una prioridad Normal.  
         ///Default El valor predeterminado para la prioridad de un elemento de la memoria caché es Normal.  
         ///High Los elementos de la memoria caché con este nivel de prioridad son los que menos posibilidades tienen de ser eliminados de la memoria caché cuando el servidor libera la memoria del sistema.  
@@ -110,16 +110,27 @@ namespace Fwk.HelperFunctions.Caching
             set { _Priority = value; }
         }
 
-        private Double _DaysForExpiration;
+        private Double _ExpirationTime = 0;
+        private Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum _TimeMeasuresEnum = DateFunctions.TimeMeasuresEnum.FromDays;
 
+        /// <summary>
+        /// Medida de tiempo q se usa para reprecentar ExpirationTime 
+        /// pueden ser dias, horas, minutos, segundos
+        /// Por defecto es FromDays.-
+        /// </summary>
+        public Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum TimeMeasures
+        {
+            get { return _TimeMeasuresEnum; }
+            set { _TimeMeasuresEnum = value; }
+        }
         /// <summary>
         /// Valor que indica la cantidad de dias que la cache espera a ser eliminada del cache repository.-
         /// Se pueden utilizar fracciones de dia.-
         /// </summary>
-        public Double DaysForExpiration
+        public Double ExpirationTime
         {
-            get { return _DaysForExpiration; }
-            set { _DaysForExpiration = value; }
+            get { return _ExpirationTime; }
+            set { _ExpirationTime = value; }
         }
 
 
@@ -149,7 +160,16 @@ namespace Fwk.HelperFunctions.Caching
         }
 
 
+        bool _RefreshOnExpired = false;
 
+        /// <summary>
+        /// Indica si el tiempo de expitracion del item cacheado se renuevan al volver a consultarlos
+        /// </summary>
+        public bool RefreshOnExpired
+        {
+            get { return _RefreshOnExpired; }
+            set { _RefreshOnExpired = value; }
+        }
 
     }
 }

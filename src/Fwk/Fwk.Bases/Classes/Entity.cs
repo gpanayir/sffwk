@@ -436,4 +436,153 @@ namespace Fwk.Bases
         }
         #endregion ToString Method
     }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public abstract class BaseEntity : IBaseEntity
+    {
+        
+        
+
+
+
+        #region ICloneable Members
+        /// <summary>
+        /// Crea una copia espejo de la clase.-
+        /// </summary>
+        /// <typeparam name="TEntity">Tipo de Entity que implementa IBaseEntity </typeparam>
+        /// <returns></returns>
+        public TEntity Clone<TEntity>() where TEntity : BaseEntity
+        {
+            return (TEntity)Clone();
+        }
+
+        /// <summary>
+        /// Crea una copia espejo de la clase.-
+        /// </summary>
+        /// <returns></returns>
+        public BaseEntity Clone()
+        {
+            return (BaseEntity)((ICloneable)this).Clone();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        object ICloneable.Clone()
+        {
+            return this.MemberwiseClone();
+        }
+        #endregion
+
+
+        #region IEntity Members
+
+
+
+
+
+        /// <summary>
+        /// Obtine un xml producto de la serializacion de la clase FacturaBE
+        /// </summary>
+        /// <returns>string con el xml de la serializacion</returns>
+        public string GetXml()
+        {
+            return helper.SerializationFunctions.SerializeToXml(this);
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// Rellena la clase con los valores del XML 
+        /// <param name="pXmlData">Xml con el que se crea el objeto</param>
+        /// <summary>
+        public void SetXml(string pXmlData)
+        {
+            helper.SerializationFunctions.DeserializeFromXml(this.GetType(), pXmlData);
+        }
+        /// <summary>
+        /// Retorna un objeto a partir de la instancia estatica
+        /// </summary>
+        /// <typeparam name="T">Tipo de entidad que se decee retornar este es un type gennerico ya que el metodo esta definido en la clase base</typeparam>
+        /// <param name="pXmlData">Xml del objeto que se decea retornar</param>
+        /// <returns>Entidad  </returns>
+        public static T GetFromXml<T>(string pXmlData) where T : BaseEntity
+        {
+
+            return (T)helper.SerializationFunctions.DeserializeFromXml(typeof(T), pXmlData);
+        }
+        #endregion
+
+
+        #region ToString Method
+
+        ///<summary>
+        /// Returns a String that represents the current object.
+        ///</summary>
+        public override string ToString()
+        {
+            
+            return HelperFunctions.TypeFunctions.ToString(this);
+        }
+        /// <summary>
+        /// Give a string representation of a object, with use of reflection.
+        /// </summary>
+        /// <param name="o">O.</param>
+        /// <returns></returns>
+        public static string ToString(Object o)
+        {
+            StringBuilder sb = new StringBuilder();
+            Type t = o.GetType();
+
+            PropertyInfo[] pi = t.GetProperties();
+
+            sb.Append("Properties for: " + o.GetType().Name + System.Environment.NewLine);
+            foreach (PropertyInfo i in pi)
+            {
+                try
+                {
+                    sb.Append("\t" + i.Name + "(" + i.PropertyType.ToString() + "): ");
+                    if (null != i.GetValue(o, null))
+                    {
+                        sb.Append(i.GetValue(o, null).ToString());
+                    }
+
+                }
+                catch
+                {
+                }
+                sb.Append(System.Environment.NewLine);
+
+            }
+
+            FieldInfo[] fi = t.GetFields();
+
+            foreach (FieldInfo i in fi)
+            {
+                try
+                {
+                    sb.Append("\t" + i.Name + "(" + i.FieldType.ToString() + "): ");
+                    if (null != i.GetValue(o))
+                    {
+                        sb.Append(i.GetValue(o).ToString());
+                    }
+
+                }
+                catch
+                {
+                }
+                sb.Append(System.Environment.NewLine);
+
+            }
+
+            return sb.ToString();
+        }
+        #endregion 
+    }
 }

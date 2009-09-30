@@ -331,5 +331,19 @@ namespace Fwk.Bases.Test
 
             ClienteBE c = m_ClienteCollectionBE.Find(new SearchEntityArg("Apellido", "pelsoft",true));
         }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            GetColaboratorDataByParamsResponse res = new GetColaboratorDataByParamsResponse();
+            res.BusinessData.ColaboratorData = new ColaboratorData();
+            res.BusinessData.ColaboratorData.Username = "moviedo";
+            res.BusinessData.ColaboratorData.UserId = 12;
+            res.BusinessData.ColaboratorData.SucursalId = 12;
+            res.BusinessData.ColaboratorData.Surname = "Oviedo";
+            res.BusinessData.ColaboratorData.MachineIp = "asdfasfsadfsd";
+
+            string xml = res.BusinessData.ColaboratorData.GetXml();
+            xml = res.GetXml();
+        }
     }
 }

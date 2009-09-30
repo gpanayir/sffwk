@@ -39,9 +39,14 @@ namespace Fwk.Bases.Connector
 
 			return wResult;
 		}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pServiceName"></param>
+        /// <param name="pData"></param>
         public void ExecuteService_OneWay(string pServiceName, string pData)
         {
-            string wResult = null;
+            
 
             using (SingleService.SingleService wService = new SingleService.SingleService())
             {
@@ -53,9 +58,15 @@ namespace Fwk.Bases.Connector
             }
          
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pServiceName"></param>
+        /// <param name="pData"></param>
+        /// <param name="callback"></param>
         public void ExecuteServiceAsynk(string pServiceName, string pData,Delegate callback)
         {
-            string wResult = null;
+           
 
             using (SingleService.SingleService wService = new SingleService.SingleService())
             {

@@ -4,7 +4,7 @@ using System.Text;
 using Fwk.Bases;
 using Fwk.Exceptions;
 using System.Runtime.Remoting;
-using Fwk.Remoting.RemoteTypes;
+using Fwk.Remoting;
 
 namespace Fwk.Bases.Connector
 {
@@ -65,22 +65,26 @@ namespace Fwk.Bases.Connector
 
 
 
+        protected static readonly object singletonLock = new object();
+        private static bool IsConfigured()
+        {
+            ///Seccion protegida por la posibilidad de multiples procesos intentar levantar la configuracion
+            lock (singletonLock)
+            {
+                bool wResult = false;
 
-         private static bool IsConfigured()
-		{
-			bool wResult = false;
+                foreach (WellKnownClientTypeEntry wEntry in RemotingConfiguration.GetRegisteredWellKnownClientTypes())
+                {
+                    if (wEntry.TypeName == typeof(FwkRemoteObject).FullName)
+                    {
+                        wResult = true;
+                        break;
+                    }
+                }
 
-			foreach (WellKnownClientTypeEntry wEntry in RemotingConfiguration.GetRegisteredWellKnownClientTypes())
-			{
-                if (wEntry.TypeName == typeof(FwkRemoteObject).FullName)
-				{
-					wResult = true;
-					break;
-				}
-			}
-
-			return wResult;
-		}
+                return wResult;
+            }
+        }
 
         
         /// <summary>

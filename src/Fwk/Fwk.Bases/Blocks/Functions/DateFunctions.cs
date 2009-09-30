@@ -3,11 +3,19 @@ using System.Data;
 
 namespace Fwk.HelperFunctions
 {
+
 	/// <summary>
 	/// Utilidades para fechas.
 	/// </summary>
 	public class DateFunctions
 	{
+        public enum TimeMeasuresEnum
+        {
+            FromDays,
+            FromHours,
+            FromMinutes,
+            FromSeconds
+        }
 		/// <summary>
 		/// Algoritmo que determina si hay o no InterSección entre dos rangos de fechas
 		/// </summary>
@@ -150,7 +158,6 @@ namespace Fwk.HelperFunctions
         {
             return (new DateTime(pYear, pMonth, 1));
         }
-
 
         /// <summary>
         /// Retorna el último dia del Mes. Por Ejemplo: 31/08/2009 11:59:59

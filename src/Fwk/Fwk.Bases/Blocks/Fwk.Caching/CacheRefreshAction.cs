@@ -15,7 +15,7 @@ namespace Fwk.HelperFunctions.Caching
     public class CacheRefreshAction : ICacheItemRefreshAction
     {
         private Boolean _RefreshOnExpired;
-        private CacheManager _wCacheManager;
+        private string _CacheManagerName;
 
         /// <summary>
         /// 
@@ -34,10 +34,10 @@ namespace Fwk.HelperFunctions.Caching
         /// <param name="pCacheManager"></param>
         /// <author>moviedo</author>
         /// <date>29/11/2007</date>
-        public CacheRefreshAction(Boolean pRefreshOnExpired, CacheManager pCacheManager) 
+        public CacheRefreshAction(Boolean pRefreshOnExpired, string pCacheManagerName) 
         {
             _RefreshOnExpired = pRefreshOnExpired;
-            _wCacheManager = pCacheManager;
+            _CacheManagerName = pCacheManagerName;
         }
 
         #region ICacheItemRefreshAction Members
@@ -53,20 +53,22 @@ namespace Fwk.HelperFunctions.Caching
         /// <date>29/11/2007</date>
         public void Refresh(string removedKey, object expiredValue, CacheItemRemovedReason removalReason)
         {
+            FwkCache wCacheManager = KwkCacheFactory.GetFwkCache(_CacheManagerName);
             if (removalReason == CacheItemRemovedReason.Expired)
+            {
                 if (_RefreshOnExpired == true)
                 {
-                    _wCacheManager.Add(removedKey, expiredValue);
+                    wCacheManager.CacheManager.Add(removedKey, expiredValue);
                 }
                 else
                 {
-                    _wCacheManager.Remove(removedKey);
+                    wCacheManager.CacheManager.Remove(removedKey);
                 }
-            else
-            {
-                throw new Exception("No se puede acceder al item del Cache: Item " + removalReason.ToString());
             }
-                
+            if (removalReason == CacheItemRemovedReason.Removed)
+            {
+                wCacheManager.CacheManager.Remove(removedKey);
+            }
         }
 
         #endregion

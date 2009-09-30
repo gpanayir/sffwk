@@ -7,7 +7,24 @@ namespace Fwk.Bases
     /// Define la interfaz de todas las Entidades tipo coleccion y escalares.
     /// Es decir la interfaz de las Entities y las Entity
     /// </summary>
-    public interface IEntity : ICloneable
+    public interface IEntity : IBaseEntity
+    {
+        ///// <summary>
+        ///// Obtiene un System.DataSet 
+        ///// </summary>
+        ///// <returns>System.DataSet</returns>
+        DataSet GetDataSet();
+
+        /// <summary>
+        /// Returns one of EntityState enum values 
+        /// </summary>
+        EntityState EntityState { get; set; }
+    }
+    /// <summary>
+    /// Define la interfaz de todas las Entidades tipo coleccion y escalares.
+    /// Es decir la interfaz de las Entities y las Entity
+    /// </summary>
+    public interface IBaseEntity : ICloneable
     {
         /// <summary>
         /// Obtine un xml producto de la serializacion de la coleccion Entities.-
@@ -21,18 +38,13 @@ namespace Fwk.Bases
         /// <summary>
         void SetXml(string pXmlData);
 
-        /// <summary>
-        /// Obtiene un System.DataSet 
-        /// </summary>
-        /// <returns>System.DataSet</returns>
-        DataSet GetDataSet();
+    
 
-        /// <summary>
-        /// Returns one of EntityState enum values 
-        /// </summary>
-        EntityState EntityState { get; set; }
+        ///// <summary>
+        ///// Returns one of EntityState enum values 
+        ///// </summary>
+        //EntityState EntityState { get; set; }
     }
-
     /// <summary>
     /// List of possible state for an entity.
     /// </summary>

@@ -39,7 +39,7 @@ namespace Fwk.Bases
 	/// <date>2008-04-07T00:00:00</date>
 	/// <author>moviedo</author>
     [XmlInclude(typeof(ServiceConfiguration)), Serializable]
-	public class ServiceConfiguration:Entity
+    public class ServiceConfiguration : BaseEntity
 	{
 
         string _Name;

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1654A893-0408-474E-873C-E79F00D7587C}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -113,6 +113,7 @@
     <Compile Include="Blocks\Fwk.BusinessFacades\FacadeHelper.cs" />
     <Compile Include="Blocks\Fwk.BusinessFacades\ServiceCalls.cs" />
     <Compile Include="Blocks\Fwk.BusinessFacades\SimpleFacade.cs" />
+    <Compile Include="Blocks\Fwk.Caching\ServiceCacheMannager.cs" />
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigFileRegistry.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationHolder.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlConfigSection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlServiceConfigurationManager.cs" />
     <Compile Include="Classes\BusinessService.cs" />
+    <Compile Include="Classes\ClientServiceBase.cs" />
     <Compile Include="Classes\ConfigurationsHelper.cs" />
     <Compile Include="Classes\ContextInformation.cs" />
     <Compile Include="Classes\Entities.cs" />
@@ -228,6 +230,7 @@
     <Compile Include="Blocks\Functions\Xml\Element.cs" />
     <Compile Include="Blocks\Functions\Xml\Node.cs" />
     <Compile Include="Blocks\Functions\Xml\NodeAttribute.cs" />
+    <Compile Include="Interfaces\IClientServiceBase.cs" />
     <Compile Include="Interfaces\IServiceConfigurationManager.cs" />
     <Compile Include="Classes\Request.cs" />
     <Compile Include="Classes\Response.cs" />
@@ -275,7 +278,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

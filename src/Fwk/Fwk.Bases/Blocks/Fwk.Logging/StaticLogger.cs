@@ -330,6 +330,8 @@ namespace Fwk.Logging
                             currentFileName = wXml.FileName;
                         }
                         return wXml;
+
+
                     }
 
 

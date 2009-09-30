@@ -5,7 +5,7 @@ using Fwk.BusinessFacades;
 using Fwk.Bases;
 using System.Diagnostics;
 
-namespace Fwk.Remoting.RemoteTypes
+namespace Fwk.Remoting
 {
     public class FwkRemoteObject : MarshalByRefObject
     {
