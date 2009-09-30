@@ -95,19 +95,22 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
                 foreach (AssemblyClass wAssemblyClass in wAssembly.ClassCollections)
                 {
-                    if (wAssemblyClass.BaseType.Name.Contains("BusinessService"))
+                    if (wAssemblyClass.BaseType != null)
                     {
-                        s = new Fwk.Bases.ServiceConfiguration();
-                        //Service name
-                        s.Name = wAssemblyClass.Name;
-                        s.Handler = wAssemblyClass.FullyQualifiedName;
-                        //Request
-                        s.Request = wAssemblyClass.Methods[0].Parameters[0].ParameterType.AssemblyQualifiedName;
+                        if (wAssemblyClass.BaseType.Name.Contains("BusinessService"))
+                        {
+                            s = new Fwk.Bases.ServiceConfiguration();
+                            //Service name
+                            s.Name = wAssemblyClass.Name;
+                            s.Handler = wAssemblyClass.FullyQualifiedName;
+                            //Request
+                            s.Request = wAssemblyClass.Methods[0].Parameters[0].ParameterType.AssemblyQualifiedName;
 
-                        //Response
-                        s.Response = wAssemblyClass.Methods[0].ReturnType.AssemblyQualifiedName;
+                            //Response
+                            s.Response = wAssemblyClass.Methods[0].ReturnType.AssemblyQualifiedName;
 
-                        list.Add(s);
+                            list.Add(s);
+                        }
                     }
                 }
 

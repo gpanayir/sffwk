@@ -465,8 +465,8 @@ namespace ConfigurationApp.Forms
         private void exploreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode wTreeNodeFile = GetTreeNodeFile();
-
-            System.Diagnostics.Process.Start("explorer.exe", wTreeNodeFile.ToolTipText);
+            System.Diagnostics.Process.Start("IExplore", wTreeNodeFile.ToolTipText);
+            
         }
 
         

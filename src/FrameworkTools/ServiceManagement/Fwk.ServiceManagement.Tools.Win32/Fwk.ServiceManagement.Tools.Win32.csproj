@@ -9,18 +9,30 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.ServiceManagement.Tools.Win32</RootNamespace>
     <AssemblyName>Fwk.ServiceManagement.Tools.Win32</AssemblyName>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <PublishUrl>http://localhost/Fwk.ServiceManagement.Tools.Win32/</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <StartupObject>Fwk.ServiceManagement.Tools.Win32.Program</StartupObject>
+    <ApplicationIcon>Data_Dataset.ico</ApplicationIcon>
+    <ManifestCertificateThumbprint>98EBB4D31B510B030568B5B52F14DBE3C7E16270</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Fwk.ServiceManagement.Tools.Win32_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <PublishUrl>\\Corrsf71bi01\NuevosProyectos\Alluss.cnn\Tools\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
+    <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -28,14 +40,14 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <InstallUrl>\\Corrsf71bi01\NuevosProyectos\Alluss.cnn\Tools\</InstallUrl>
+    <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
+    <CreateWebPageOnPublish>false</CreateWebPageOnPublish>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <StartupObject>Fwk.ServiceManagement.Tools.Win32.Program</StartupObject>
-    <ApplicationIcon>Data_Dataset.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -167,6 +179,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data_Dataset.ico" />
+    <None Include="Fwk.ServiceManagement.Tools.Win32_TemporaryKey.pfx" />
     <None Include="Resources\prntpv_16.png" />
     <None Include="Resources\EditService.ico" />
     <None Include="Resources\AddService.ico" />
@@ -206,13 +219,25 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
+      <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Microsoft.VisualStudio.DebuggerVisualizers">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -223,9 +248,9 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(SolutionDir)..\..\Entregas\ServiceManagement\*.*" &gt;&gt; nul
-del "$(SolutionDir)..\..\Entregas\ServiceManagement\*.pdb" &gt;&gt; nul 
-del "$(SolutionDir)..\..\Entregas\ServiceManagement\*vshost*.*" &gt;&gt; nul
+    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(SolutionDir)..\..\..\Entregas\ServiceManagement\*.*" &gt;&gt; nul
+del "$(SolutionDir)..\..\..\Entregas\ServiceManagement\*.pdb" &gt;&gt; nul 
+del "$(SolutionDir)..\..\..\Entregas\ServiceManagement\*vshost*.*" &gt;&gt; nul
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

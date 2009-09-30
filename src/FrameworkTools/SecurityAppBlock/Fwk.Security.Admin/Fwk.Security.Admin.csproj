@@ -28,10 +28,6 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -221,13 +217,8 @@
     <None Include="Resources\impt_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Fwk\Fwk.Security\Fwk.Security.csproj">
-      <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
-      <Name>Fwk.Security</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="group_16.ico" />
+    <None Include="App_CacheSetting.config" />
     <None Include="Resources\User %28Alt 2%29.png" />
     <None Include="Resources\User.png" />
     <None Include="Resources\Users.png" />
@@ -263,6 +254,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Fwk\Fwk.Security\Fwk.Security.csproj">
+      <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
+      <Name>Fwk.Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
