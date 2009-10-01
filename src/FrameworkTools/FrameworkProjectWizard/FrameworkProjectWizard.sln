@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkProjectWizard", "FrameworkProjectWizard\FrameworkProjectWizard.csproj", "{19BEB34B-6D55-4CCB-8ACC-DA835AC53DE4}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WizSetup", "WizSetup\WizSetup.vdproj", "{B3B96EAB-A885-4FCA-A1A2-B47E39A69A0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19BEB34B-6D55-4CCB-8ACC-DA835AC53DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19BEB34B-6D55-4CCB-8ACC-DA835AC53DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19BEB34B-6D55-4CCB-8ACC-DA835AC53DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19BEB34B-6D55-4CCB-8ACC-DA835AC53DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3B96EAB-A885-4FCA-A1A2-B47E39A69A0E}.Debug|Any CPU.ActiveCfg = Debug
+		{B3B96EAB-A885-4FCA-A1A2-B47E39A69A0E}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

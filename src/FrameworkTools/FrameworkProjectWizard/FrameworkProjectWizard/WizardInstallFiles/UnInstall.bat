@@ -1,0 +1,2 @@
+gacutil -u ..\FwkWizard
+pause

@@ -1,0 +1,35 @@
+<VSTemplate Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+	<TemplateData>
+		<Name>DataAccessComponentsProject</Name>
+		<Description>DataAccessComponentsProject</Description>
+		<ProjectType>CSharp</ProjectType>
+		<ProjectSubType>
+    </ProjectSubType>
+		<SortOrder>1000</SortOrder>
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>DataAccessComponentsProject</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+		<LocationField>Enabled</LocationField>
+		<EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+		<Icon>__TemplateIcon.ico</Icon>
+	</TemplateData>
+	<TemplateContent>
+		<Project TargetFileName="DataAccessComponents.csproj" File="DataAccessComponents.csproj" ReplaceParameters="true">
+			<ProjectItem ReplaceParameters="true" TargetFileName="DataAccessComponents.cs">DataAccessComponents.cs</ProjectItem>
+			<Folder Name="Properties" TargetFolderName="Properties">
+				<ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+			</Folder>
+		</Project>
+		<CustomParameters>
+		<CustomParameter Name="$BackendNamespace$" Value="[Company].[App].[Module].BackEnd"/>
+			<CustomParameter Name="$ComponentType$" Value="DAC"/>
+		<CustomParameter Name="$BCSuffix$" Value="BC"/>
+		<CustomParameter Name="$DACSuffix$" Value="DAC"/>
+		<CustomParameter Name="$BESuffix$" Value="BE"/>
+		</CustomParameters>
+	</TemplateContent>
+	  <WizardExtension>
+        <Assembly>Fwk.Wizard, Version=1.0.0.0,   Culture=neutral, PublicKeyToken=120bfd4e95eb9144</Assembly>
+        <FullClassName>Fwk.Wizard.SilpleArq.SipleArchitectWizard</FullClassName>
+    </WizardExtension>
+</VSTemplate>
