@@ -1,0 +1,10 @@
+
+<ArrayOfCnnString>
+  <CnnString>
+    <WindowsAutentification>false</WindowsAutentification>
+    <DataSource>promidcsf02\sql2005</DataSource>
+    <User>sa</User>
+    <InitialCatalog>TestFactura</InitialCatalog>
+    <Password>instsql2005</Password>
+  </CnnString>
+</ArrayOfCnnString>
