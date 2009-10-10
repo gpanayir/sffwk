@@ -174,13 +174,10 @@ namespace Fwk.BusinessFacades
             object wItemInCache = null;
             if (string.IsNullOrEmpty(pRequest.CacheSettings.ResponseCacheId))
                 pRequest.CacheSettings.ResponseCacheId = pRequest.ServiceName;
-
+            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(pRequest.CacheSettings.CacheManagerName);
             //TODO: Agregar manejo de error para catching
-            if (KwkCacheFactory.CacheCollection.ContainsKey(pRequest.CacheSettings.CacheManagerName))
-            {
-                wItemInCache = KwkCacheFactory.GetFwkCache(pRequest.CacheSettings.CacheManagerName).
-                    GetItemFromCache(pRequest.CacheSettings.ResponseCacheId);
-            }
+              wItemInCache = wFwkCache.GetItemFromCache(pRequest.CacheSettings.ResponseCacheId);
+            
 
             if (wItemInCache == null)
             {

@@ -96,7 +96,7 @@ namespace Fwk.HelperFunctions.Caching
             {
                 this.CacheManager = (CacheManager)CacheFactory.GetCacheManager();
             }
-            catch (System.TypeInitializationException e)
+            catch (System.Exception e)
             {
                 Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al inicializar la configuración de cache",e);
                 te.ErrorId = "3000";
@@ -237,12 +237,16 @@ namespace Fwk.HelperFunctions.Caching
             Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum pTimeMeasures,bool pRefreshOnExpired)
         {
 
+           
+
             if (CheckIfCachingExists(pCahcheId))
             {
                 return false;
             }
             else
             {
+                if (pExpirationTime <= 0)
+                    pExpirationTime = 1;
                 CacheRefreshAction wCacheRefreshAction = new CacheRefreshAction(pRefreshOnExpired, _CacheManagerName);
                 switch (pTimeMeasures)
                 {

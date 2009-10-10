@@ -4,19 +4,19 @@ namespace Fwk.Bases
 {
     public interface IClientServiceBase : IServiceWrapper
     {
-  
 
 
-       
 
-        IEntity EntityResult
+
+
+        IBaseEntity EntityResult
         {
             get;
             set;
         }
-         
 
-         IEntity EntityParam
+
+        IBaseEntity EntityParam
         {
             get;
             set;

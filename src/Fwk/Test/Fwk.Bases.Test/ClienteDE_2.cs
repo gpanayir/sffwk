@@ -12,15 +12,7 @@ namespace Fwk.Bases.Test
     [XmlRoot("ClienteCollectionBE_2"), SerializableAttribute]
     public class ClienteCollectionBE_2 : Entities<ClienteBE>
     {
-        /// <summary>
-        /// Metodo estatico que retorna on objeto ClienteCollectionBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pxml">String con el xml</param>
-        /// <returns>ClienteCollectionBE</returns>
-        public static ClienteCollectionBE_2 GetClienteCollectionBE(String pxml)
-        {
-            return (ClienteCollectionBE_2)Entity.GetObjectFromXml(typeof(ClienteCollectionBE), pxml);
-        }
+        
     }
 
 
@@ -96,15 +88,7 @@ namespace Fwk.Bases.Test
         #endregion
 
 
-        /// <summary>
-        /// Metodo estatico que retorna on objeto ClienteBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pxml">String con el xml</param>
-        /// <returns>ClienteBE</returns>
-        public static ClienteBE GetClienteBE(String pxml)
-        {
-            return (ClienteBE)Entity.GetObjectFromXml(typeof(ClienteBE), pxml);
-        }
+       
 
     }
 }

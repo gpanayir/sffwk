@@ -10,113 +10,43 @@ namespace X.pro.a.BackEnd.BusinessEntities
     {
 
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto AutorizacionBECollection apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>AutorizacionBECollection</returns>
-        public static AutorizacionBECollection GetAutorizacionBECollectionFromXml(String pXml)
-        {
-            return (AutorizacionBECollection)Entity.GetObjectFromXml(typeof(AutorizacionBECollection), pXml);
-        }
-        #endregion
+        
     }
     public class PautaProductoFechaTarifaBECollection : Entities<PautaProductoFechaTarifaBE>
     {
 
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto PautaProductoFechaTarifaBECollection apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>PautaProductoFechaTarifaBECollection</returns>
-        public static PautaProductoFechaTarifaBECollection GetPautaProductoFechaTarifaBECollectionFromXml(String pXml)
-        {
-            return (PautaProductoFechaTarifaBECollection)Entity.GetObjectFromXml(typeof(PautaProductoFechaTarifaBECollection), pXml);
-        }
-        #endregion
+        
     }
     public class PautaProductoFechaBECollection : Entities<PautaProductoFechaBE>
     {
 
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto PautaProductoFechaBECollection apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>PautaProductoFechaBECollection</returns>
-        public static PautaProductoFechaBECollection GetPautaProductoFechaBECollectionFromXml(String pXml)
-        {
-            return (PautaProductoFechaBECollection)Entity.GetObjectFromXml(typeof(PautaProductoFechaBECollection), pXml);
-        }
-        #endregion
+        
     }
     public class ProductoCatalogoBECollection : Entities<ProductoCatalogoBE>
     {
 
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto ProductoCatalogoBECollection apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>ProductoCatalogoBECollection</returns>
-        public static ProductoCatalogoBECollection GetProductoCatalogoBECollectionFromXml(String pXml)
-        {
-            return (ProductoCatalogoBECollection)Entity.GetObjectFromXml(typeof(ProductoCatalogoBECollection), pXml);
-        }
-        #endregion
+        
     }
     public class TarifaFichaBECollection : Entities<TarifaFichaBE>
     {
 
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto TarifaFichaBECollection apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>TarifaFichaBECollection</returns>
-        public static TarifaFichaBECollection GetTarifaFichaBECollectionFromXml(String pXml)
-        {
-            return (TarifaFichaBECollection)Entity.GetObjectFromXml(typeof(TarifaFichaBECollection), pXml);
-        }
-        #endregion
+        
     }
     public class TelefonoLlamadorBECollection : Entities<TelefonoLlamadorBE>
     {
 
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto TelefonoLlamadorBECollection apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>TelefonoLlamadorBECollection</returns>
-        public static TelefonoLlamadorBECollection GetTelefonoLlamadorBECollectionFromXml(String pXml)
-        {
-            return (TelefonoLlamadorBECollection)Entity.GetObjectFromXml(typeof(TelefonoLlamadorBECollection), pXml);
-        }
-        #endregion
+        
     }
     public class TelefonosBECollection : Entities<TelefonosBE>
     {
 
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto TelefonosBECollection apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>TelefonosBECollection</returns>
-        public static TelefonosBECollection GetTelefonosBECollectionFromXml(String pXml)
-        {
-            return (TelefonosBECollection)Entity.GetObjectFromXml(typeof(TelefonosBECollection), pXml);
-        }
-        #endregion
+        
     }
 
     [XmlInclude(typeof(TelefonoPagadorBE)), Serializable]
@@ -187,17 +117,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
 
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto TelefonoPagadorBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>TelefonoPagadorBE</returns>
-        public static TelefonoPagadorBE GetTelefonoPagadorFromXml(String pXml)
-        {
-            return (TelefonoPagadorBE)Entity.GetObjectFromXml(typeof(TelefonoPagadorBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -226,17 +146,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
 
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto AutorizacionBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>AutorizacionBE</returns>
-        public static AutorizacionBE GetAutorizacionFromXml(String pXml)
-        {
-            return (AutorizacionBE)Entity.GetObjectFromXml(typeof(AutorizacionBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -262,17 +172,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
         #endregion
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto AutorizacionesBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>AutorizacionesBE</returns>
-        public static AutorizacionesBE GetAutorizacionesFromXml(String pXml)
-        {
-            return (AutorizacionesBE)Entity.GetObjectFromXml(typeof(AutorizacionesBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -367,17 +267,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
 
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto ReclamoBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>ReclamoBE</returns>
-        public static ReclamoBE GetReclamoFromXml(String pXml)
-        {
-            return (ReclamoBE)Entity.GetObjectFromXml(typeof(ReclamoBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -461,17 +351,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
 
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto PautaProductoFechaTarifaBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>PautaProductoFechaTarifaBE</returns>
-        public static PautaProductoFechaTarifaBE GetPautaProductoFechaTarifaFromXml(String pXml)
-        {
-            return (PautaProductoFechaTarifaBE)Entity.GetObjectFromXml(typeof(PautaProductoFechaTarifaBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -497,17 +377,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
         #endregion
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto PautaProductoFechaTarifasBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>PautaProductoFechaTarifasBE</returns>
-        public static PautaProductoFechaTarifasBE GetPautaProductoFechaTarifasFromXml(String pXml)
-        {
-            return (PautaProductoFechaTarifasBE)Entity.GetObjectFromXml(typeof(PautaProductoFechaTarifasBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -687,17 +557,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
         #endregion
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto PautaProductoFechaBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>PautaProductoFechaBE</returns>
-        public static PautaProductoFechaBE GetPautaProductoFechaFromXml(String pXml)
-        {
-            return (PautaProductoFechaBE)Entity.GetObjectFromXml(typeof(PautaProductoFechaBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -723,17 +583,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
         #endregion
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto PautaProductoFechasBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>PautaProductoFechasBE</returns>
-        public static PautaProductoFechasBE GetPautaProductoFechasFromXml(String pXml)
-        {
-            return (PautaProductoFechasBE)Entity.GetObjectFromXml(typeof(PautaProductoFechasBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -803,17 +653,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
         #endregion
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto ProductoCatalogoBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>ProductoCatalogoBE</returns>
-        public static ProductoCatalogoBE GetProductoCatalogoFromXml(String pXml)
-        {
-            return (ProductoCatalogoBE)Entity.GetObjectFromXml(typeof(ProductoCatalogoBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -872,17 +712,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
 
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto ProductosCatalogoBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>ProductosCatalogoBE</returns>
-        public static ProductosCatalogoBE GetProductosCatalogoFromXml(String pXml)
-        {
-            return (ProductosCatalogoBE)Entity.GetObjectFromXml(typeof(ProductosCatalogoBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -966,17 +796,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
 
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto TarifaFichaBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>TarifaFichaBE</returns>
-        public static TarifaFichaBE GetTarifaFichaFromXml(String pXml)
-        {
-            return (TarifaFichaBE)Entity.GetObjectFromXml(typeof(TarifaFichaBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -1002,17 +822,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
         #endregion
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto TarifasFichaBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>TarifasFichaBE</returns>
-        public static TarifasFichaBE GetTarifasFichaFromXml(String pXml)
-        {
-            return (TarifasFichaBE)Entity.GetObjectFromXml(typeof(TarifasFichaBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -1159,17 +969,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
         #endregion
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto FichaBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>FichaBE</returns>
-        public static FichaBE GetFichaFromXml(String pXml)
-        {
-            return (FichaBE)Entity.GetObjectFromXml(typeof(FichaBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -1289,17 +1089,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
         #endregion
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto TelefonosLlamadorBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>TelefonosLlamadorBE</returns>
-        public static TelefonosLlamadorBE GetTelefonosLlamadorFromXml(String pXml)
-        {
-            return (TelefonosLlamadorBE)Entity.GetObjectFromXml(typeof(TelefonosLlamadorBE), pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -1350,17 +1140,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
 
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto DatosIVRBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>DatosIVRBE</returns>
-        public static DatosIVRBE GetDatosIVRFromXml(String pXml)
-        {
-            return Entity.GetFromXml<DatosIVRBE>(pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -1411,17 +1191,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
 
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto TelefonosBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>TelefonosBE</returns>
-        public static TelefonosBE GetTelefonosFromXml(String pXml)
-        {
-            return Entity.GetFromXml<TelefonosBE>(pXml);
-        }
-        #endregion
+        
     }
 
 
@@ -2339,17 +2109,7 @@ namespace X.pro.a.BackEnd.BusinessEntities
         #endregion
         #endregion
 
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto ParamBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>ParamBE</returns>
-        public static ParamBE GetParamFromXml(String pXml)
-        {
-            return (ParamBE)Entity.GetObjectFromXml(typeof(ParamBE), pXml);
-        }
-        #endregion
+        
     }
 
 

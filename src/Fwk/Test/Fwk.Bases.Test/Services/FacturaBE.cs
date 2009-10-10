@@ -52,29 +52,13 @@ namespace Fwk.Bases.Test
 
         #endregion
 
-        /// <summary>
-        /// Metodo estatico que retorna on objeto FacturaBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pxml">String con el xml</param>
-        /// <returns>FacturaBE</returns>
-        public static FacturaBE GetFacturaBE(String pxml)
-        {
-            return (FacturaBE)Entity.GetObjectFromXml(typeof(FacturaBE), pxml);
-        }
+        
     }
 
     [XmlRoot("ItemCollectionBE"), SerializableAttribute]
     public class ItemCollectionBE : Entities<ItemBE>
     {
-        /// <summary>
-        /// Metodo estatico que retorna on objeto ItemCollectionBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pxml">String con el xml</param>
-        /// <returns>ItemBE</returns>
-        public static ItemCollectionBE GetItemCollectionBE(String pxml)
-        {
-            return (ItemCollectionBE)Entity.GetObjectFromXml(typeof(ItemCollectionBE), pxml);
-        }
+        
     }
 
     [XmlInclude(typeof(ItemBE)), Serializable]
@@ -114,14 +98,6 @@ namespace Fwk.Bases.Test
 
         #endregion
 
-        /// <summary>
-        /// Metodo estatico que retorna on objeto ItemBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pxml">String con el xml</param>
-        /// <returns>ItemBE</returns>
-        public static ItemBE GetItemBE(String pxml)
-        {
-            return (ItemBE)Entity.GetObjectFromXml(typeof(ItemBE), pxml);
-        }
+       
     }
 }

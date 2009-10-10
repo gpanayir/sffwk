@@ -42,7 +42,7 @@ namespace Fwk.Cache.Test
             {
                 cache.RemoveItem(string.Concat(req.ServiceName + puserName));
             }
-            req.CacheSettings.CacheManagerName = cacheName;
+            //req.CacheSettings.CacheManagerName = cacheName;
             req.CacheSettings.CacheOnClientSide = true;
             req.CacheSettings.RefreshOnExpired = false;
             req.CacheSettings.ResponseCacheId = string.Concat(req.ServiceName + puserName);

@@ -179,31 +179,27 @@ namespace Fwk.Bases
         /// <summary>
         /// 
         /// </summary>
-        [BrowsableAttribute(false), XmlIgnoreAttribute()]
-        public bool CanUndo
+        public bool CanUndo()
         {
-            get
-            {
+            
                 if (PerformHistory())
                     return _IHistory.CanUndo;
                 else
                     return false;
-            }
+            
         }
         /// <summary>
         /// 
         /// </summary>
-        [BrowsableAttribute(false), XmlIgnoreAttribute()]
-        public bool CanRedo
+        public bool CanRedo()
         {
-            get
-            {
+            
                 if (PerformHistory())
                     return _IHistory.CanRedo;
                 else
                     return false;
 
-            }
+            
         }
        
         /// <summary>

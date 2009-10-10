@@ -97,8 +97,8 @@ namespace Fwk.Bases.Test
             else
                 textBox3.Text = null;
             //bindingSource1.DataSource = _ClienteCollectionBE[0];
-            btnUndo.Enabled = _ClienteCollectionBE[0].CanUndo;
-            btnRedo.Enabled = _ClienteCollectionBE[0].CanRedo;
+            btnUndo.Enabled = _ClienteCollectionBE[0].CanUndo();
+            btnRedo.Enabled = _ClienteCollectionBE[0].CanRedo();
 
         }
 
@@ -150,8 +150,8 @@ namespace Fwk.Bases.Test
         private void btnSetHistory_Click(object sender, EventArgs e)
         {
             _ClienteCollectionBE[0].SetHistory();
-            btnUndo.Enabled = _ClienteCollectionBE[0].CanUndo;
-            btnRedo.Enabled = _ClienteCollectionBE[0].CanRedo;
+            btnUndo.Enabled = _ClienteCollectionBE[0].CanUndo();
+            btnRedo.Enabled = _ClienteCollectionBE[0].CanRedo();
         }
     }
 }

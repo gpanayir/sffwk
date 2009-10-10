@@ -456,6 +456,19 @@ namespace Fwk.HelperFunctions
                 return ms.ToArray();
             }
         }
+        public static byte[] ConvertStringToByteArray(string stringText)
+          
+        {
+            System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
+            return encoding.GetBytes(stringText);
+        }
+        public static string ConvertByteToTextString(Byte[] bytes)
+        {
+
+            System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
+            return encoding.GetString(bytes);
+            
+        }
         /// <summary>
         /// Convierte una secuencia de bytes (cualquier clase que herede de stream) a un string .-
         /// </summary>

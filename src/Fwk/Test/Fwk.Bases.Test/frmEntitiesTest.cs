@@ -233,7 +233,7 @@ namespace Fwk.Bases.Test
             }
             try
             {
-                ClienteCollectionBE wClienteCollectionBE = ClienteCollectionBE.GetClienteCollectionBE(txtCollection.Text);
+                ClienteCollectionBE wClienteCollectionBE = ClienteCollectionBE.GetFromXml<ClienteCollectionBE>(txtCollection.Text);
                 MessageBox.Show(wClienteCollectionBE.GetDataSet().GetXml(), "ClienteCollectionBE creado apartir de un xml");
             }
             catch (Exception ex)
@@ -266,7 +266,7 @@ namespace Fwk.Bases.Test
         {
             Sebito.BackEnd.BusinessEntities.ParamBE param = new ParamBE ();
 
-           param =  ParamBE.GetParamFromXml("");
+            param = ParamBE.GetFromXml < ParamBE>("");
 
             
              

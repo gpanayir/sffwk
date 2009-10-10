@@ -14,23 +14,23 @@ namespace Fwk.HelperFunctions.Caching
         {
             IRequest req = (IRequest)pRequest;
             IServiceContract wResult;
-            object wAux = null;
+            object wItemInCache = null;
             if (string.IsNullOrEmpty(req.CacheSettings.ResponseCacheId))
                 req.CacheSettings.ResponseCacheId = req.ServiceName;
 
             FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(pRequest.CacheSettings.CacheManagerName);
 
             //TODO: Agregar manejo de error para catching
-            wAux = wFwkCache.GetItemFromCache(req.CacheSettings.ResponseCacheId);
+            wItemInCache = wFwkCache.GetItemFromCache(req.CacheSettings.ResponseCacheId);
 
 
-            if (wAux == null)
+            if (wItemInCache == null)
             {
                 wResult = null;
             }
             else
             {
-                wResult = (IServiceContract)wAux;
+                wResult = (IServiceContract)wItemInCache;
             }
 
 
@@ -41,8 +41,7 @@ namespace Fwk.HelperFunctions.Caching
         {
             IRequest req = (IRequest)pRequest;
 
-            if (req.CacheSettings.ExpirationTime == 0)
-                req.CacheSettings.ExpirationTime = 1;
+         
 
             if (string.IsNullOrEmpty(req.CacheSettings.ResponseCacheId))
                 req.CacheSettings.ResponseCacheId = pRequest.ServiceName;
