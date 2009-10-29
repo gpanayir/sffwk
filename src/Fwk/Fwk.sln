@@ -40,10 +40,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Configuration.Configura
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Fwk.Configuration.ConfigurationService", "Fwk.Configuration\Fwk.Configuration.ConfigurationService\", "{3200C835-9EFB-4961-93F4-AA7EA1869E7A}"
 	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = "Svn"
-		SccAuxPath = "Svn"
-		SccLocalPath = "Svn"
-		SccProvider = "SubversionScc"
 		TargetFramework = "3.5"
 		ProjectReferences = "{1654A893-0408-474E-873C-E79F00D7587C}|Fwk.Bases.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Fwk.Configuration.ConfigurationService"
