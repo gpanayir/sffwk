@@ -35,7 +35,7 @@ namespace Fwk.Cache.Test
         private DateTime? _FechaNacimiento ;
         private string _Nombre ;
         private string _Apellido;
-        private int? _Edad;
+        
 
         #endregion
 
@@ -68,7 +68,7 @@ namespace Fwk.Cache.Test
             get { return _Apellido; }
             set { _Apellido = value;  }
         }
-
+        private int? _Edad;
         [FwkHistoryAttribute("Edad")]
         public int? Edad
         {
