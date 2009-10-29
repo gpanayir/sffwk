@@ -20,22 +20,22 @@ namespace Fwk.Bases.FrontEnd
 
         private ClientServiceBase _ClientServiceBase = null;
 
-        private IEntity _EntityResult = null;
+        private IBaseEntity _EntityResult = null;
 
         /// <summary>
         /// 
         /// </summary>
-        public IEntity EntityResult
+        public IBaseEntity EntityResult
         {
             get { return _EntityResult; }
             set { _EntityResult = value; }
         }
-        private IEntity _EntityParam = null;
+        private IBaseEntity _EntityParam = null;
 
         /// <summary>
         /// 
         /// </summary>
-        public IEntity EntityParam
+        public IBaseEntity EntityParam
         {
             get { return _EntityParam; }
             set { _EntityParam = value; }

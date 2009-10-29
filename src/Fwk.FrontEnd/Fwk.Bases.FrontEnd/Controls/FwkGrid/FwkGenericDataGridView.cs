@@ -106,9 +106,10 @@ namespace Fwk.Bases.FrontEnd.Controls.FwkGrid
             this.DataSource = pEntities;
             
         }
-        public E GetSelectedEntity<E>() where E : Entity
+        public E GetSelectedEntity<E>() where E : IBaseEntity
         {
-            if (this.CurrentRow == null) return null;
+            object o = null;
+            if (this.CurrentRow == null) return (E)o;
 
             return ((E)this.CurrentRow.DataBoundItem);
         }

@@ -12,7 +12,7 @@ using Fwk.Bases.FrontEnd.Properties;
 
 namespace Fwk.Bases.FrontEnd.Controls
 {
-    public delegate void CloseFormHandler(IEntity pIEntityResult);
+    public delegate void CloseFormHandler(IBaseEntity pIEntityResult);
 
 
 
@@ -39,16 +39,16 @@ namespace Fwk.Bases.FrontEnd.Controls
             get { return _FormWindowState; }
             set { _FormWindowState = value; }
         }
-        private IEntity _EntityResult = null;
+        private IBaseEntity _EntityResult = null;
 
-        public IEntity EntityResult
+        public IBaseEntity EntityResult
         {
             get { return _EntityResult; }
             set { _EntityResult = value; }
         }
-        private IEntity _EntityParam = null;
+        private IBaseEntity _EntityParam = null;
 
-        public IEntity EntityParam
+        public IBaseEntity EntityParam
         {
             get { return _EntityParam; }
             set { _EntityParam = value; }
