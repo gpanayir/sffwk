@@ -9,6 +9,11 @@ using System.Windows.Forms;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.Practices.EnterpriseLibrary.Common;
 using Microsoft.Practices.EnterpriseLibrary.Caching.Expirations;
+using Microsoft.Practices.EnterpriseLibrary.Caching.BackingStoreImplementations;
+using Microsoft.Practices.ObjectBuilder2;
+using System.Reflection;
+using Microsoft.Practices.EnterpriseLibrary.Caching.Configuration;
+
 
 namespace Fwk.HelperFunctions.Caching
 {
@@ -111,7 +116,18 @@ namespace Fwk.HelperFunctions.Caching
         public FwkCache(String pCacheManagerName)
         {
             _CacheManagerName= pCacheManagerName;
-            this.CacheManager = (CacheManager)CacheFactory.GetCacheManager(pCacheManagerName);
+            try
+            {
+                this.CacheManager = (CacheManager)CacheFactory.GetCacheManager(pCacheManagerName);
+            }
+            catch (BuildFailedException )
+            {
+         
+                FwkCache.ForceFlush(pCacheManagerName);
+                this.CacheManager = (CacheManager)CacheFactory.GetCacheManager(pCacheManagerName);
+            }
+            
+            
         }
         #region "---[Existencia de Ítem en Caché]---"
         /// <summary>
@@ -551,5 +567,33 @@ namespace Fwk.HelperFunctions.Caching
 
         #endregion
 
+        /// <summary>
+        /// Elimina toda la cache de manera exigida .- Util cuando se precentan problemas de serializacion en la inicializacion de la 
+        /// cache
+        /// </summary>
+        /// <param name="pCacheManagerName"></param>
+        public static void ForceFlush(string pCacheManagerName)
+        {
+            Fwk.Exceptions.TechnicalException te;
+            //Obtengo la seccion de configuracion perteneciente a cachingConfiguration
+            CacheManagerSettings cnf = (CacheManagerSettings)System.Configuration.ConfigurationManager.GetSection("cachingConfiguration");
+            if (cnf == null)
+            {
+                te = new Fwk.Exceptions.TechnicalException("No tiene una seccion de configuracion de cache con el nombre cachingConfiguration");
+                te.Namespace = typeof(FwkCache).AssemblyQualifiedName;
+                te.ErrorId = "3000";
+                throw te;
+            }
+            
+            //Obtengo el backingStore.Name desde la CacheManager configurada
+            string backingStoreName = ((CacheManagerData)cnf.CacheManagers.Get(pCacheManagerName)).CacheStorage;
+
+            //Obtengo el nombre de particion del backing Store
+            string partitionName = ((IsolatedStorageCacheStorageData)(((CacheStorageData)cnf.BackingStores.Get(backingStoreName)))).PartitionName;
+            IBackingStore store = new IsolatedStorageBackingStore(partitionName);
+
+            cnf = null;
+            store.Flush();
+        }
     }
 }
