@@ -12,7 +12,7 @@ namespace Fwk.Mail.Pop3
 {
     sealed class Pop3
     {
-        private List<Pop3Message> MessageList;
+        private List<Pop3Message> mMessagesList;        
 
         // Singleton
         private Pop3() { }
@@ -25,126 +25,99 @@ namespace Fwk.Mail.Pop3
             // Create a TCP client for a TCP connection
             using (TcpClient tcpClient = new TcpClient())
             {
-
+                // Connect this TCP client to the server IP/name and port specified in the form
                 try
                 {
-                    // Connect this TCP client to the server IP/name and port specified in the form
                     tcpClient.Connect(pServer, 110);
-
-                    // Create a network stream to retrieve data from the TCP client
-                    NetworkStream netStream = tcpClient.GetStream();
-                    // We need a stream reader to be able to read the network stream
-                    System.IO.StreamReader strReader = new System.IO.StreamReader(netStream);
-                    // If the connection was made successfully
-                    if (tcpClient.Connected)
-                    {
-                        byte[] WriteBuffer = new byte[1024];
-                        // We're passing ASCII characters
-                        ASCIIEncoding enc = new System.Text.ASCIIEncoding();
-
-                        //Pass the username to the server
-                        WriteBuffer = enc.GetBytes(String.Format("USER {0}\r\n", pUsername));
-                        netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
-
-                        Response = strReader.ReadLine();
-
-
-                        // Pass the password to the server
-                        WriteBuffer = enc.GetBytes("PASS " + pPassword + "\r\n");
-                        netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
-
-                        Response = strReader.ReadLine();
-
-                        if (Response.Contains("-ERR"))
-                        {
-                            return LoginResponseEnum.LOGIN_FAIL;
-                        }
-
-
-                        // se listan los mensajes
-                        WriteBuffer = enc.GetBytes("LIST\r\n");
-                        netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
-
-                        Response = strReader.ReadLine();
-                        string ListMessage;
-
-                        ListMessage = strReader.ReadLine();
-
-                        MessageList = new List<Pop3Message>();
-
-                        while (true)
-                        {
-                            ListMessage = strReader.ReadLine();
-                            if (ListMessage == ".")
-                            {
-                               // no hay mas mensajes
-                                break;
-                            }
-                            else
-                            {
-                                Pop3Message msg = new Pop3Message();
-                                char[] seps = { ' ' };
-                                string[] values = ListMessage.Split(seps);
-                                msg.number = Int32.Parse(values[0]);
-                                msg.bytes = Int32.Parse(values[1]);
-                                msg.retrieved = false;
-                                MessageList.Add(msg);
-                                continue;
-                            }
-                        }
-                        
-                        // Quit del servidor Pop3
-                        WriteBuffer = enc.GetBytes("QUIT\r\n");
-                        netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
-                    }
-                    return LoginResponseEnum.LOGIN_SUCCESS;
                 }
                 catch (System.Net.Sockets.SocketException)
                 {
                     return LoginResponseEnum.CONNECTION_FAIL;
                 }
-                catch (Exception)
+
+                // Create a network stream to retrieve data from the TCP client
+                NetworkStream netStream = tcpClient.GetStream();
+                // We need a stream reader to be able to read the network stream
+                System.IO.StreamReader strReader = new System.IO.StreamReader(netStream);
+
+                // If the connection was made successfully
+                if (tcpClient.Connected)
                 {
-                    return LoginResponseEnum.LOGIN_FAIL;
+                    // Buffer to which we're going to write the commands
+                    byte[] WriteBuffer = new byte[1024];
+                    // We're passing ASCII characters
+                    ASCIIEncoding enc = new System.Text.ASCIIEncoding();
+
+                    // Pass the username to the server
+                    WriteBuffer = enc.GetBytes(String.Format("USER {0}\r\n", pUsername));
+
+                    netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
+
+                    Response = strReader.ReadLine();
+
+                    // Pass the password to the server
+                    WriteBuffer = enc.GetBytes(String.Format("PASS {0}\r\n", pPassword));
+
+                    netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
+
+                    Response = strReader.ReadLine();
+
+                    if (Response.Contains("-ERR"))
+                    {
+                        return LoginResponseEnum.LOGIN_FAIL;
+                    }
+
+                    // Now that we are (probably) authenticated, list the messages
+                    WriteBuffer = enc.GetBytes("LIST\r\n");
+
+                    netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
+
+                    Response = strReader.ReadLine();
+
+                    string ListMessage;
+
+                    Pop3Message wMessage;
+                    mMessagesList = new List<Pop3Message>();
+                    try
+                    {
+                        strReader.ReadLine();
+                        while (true)
+                        {
+                            ListMessage = strReader.ReadLine();
+                            if (ListMessage == ".")
+                            {
+                                // Este es el último mensaje
+                                break;
+                            }
+                            else
+                            {
+                                char[] seps = { ' ' };
+                                string[] values = ListMessage.Split(seps);
+                                // Lista de mensajes                                
+                                wMessage = new Pop3Message();
+                                wMessage.number = Int32.Parse(values[0]);
+                                wMessage.bytes = Int32.Parse(values[1]);
+                                wMessage.retrieved = false;
+                                mMessagesList.Add(wMessage);
+                                continue;
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                    WriteBuffer = enc.GetBytes("QUIT\r\n");
+                    netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
+
                 }
+
+                return LoginResponseEnum.LOGIN_SUCCESS;
             }
-                
         }
-              
 
         public List<Pop3Message> List()
         {
-            return MessageList;
-        }
-        
-        public Pop3Message Retrieve(Pop3Message rhs)
-        {
-            string message;
-            string response;
-            Pop3Message msg = new Pop3Message();
-            //msg.bytes = rhs.bytes;
-            //msg.number = rhs.number;
-            //message = "RETR " + rhs.number + "\r\n";
-            //Write(message);
-            //response = Response();
-            //if (response.Substring(0, 3) != "+OK")
-            //{
-            //    throw new Pop3Exception(response);
-            //}
-            //msg.retrieved = true;
-            //while (true)
-            //{
-            //    response = Response();
-            //    if (response == ".\r\n")
-            //    {
-            //        break;
-            //    }
-            //    else
-            //    {
-            //        msg.message += response;
-            //    }
-            //}
-            return msg;
+            return mMessagesList;
         }
 
     }

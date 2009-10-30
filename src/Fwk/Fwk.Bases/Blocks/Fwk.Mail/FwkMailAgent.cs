@@ -147,8 +147,9 @@ namespace Fwk.Mail
         private void GetFromCache()
         {
             _ItemCache = new ObjCache();
+           
             _Cache = new FwkCache();
-
+           
 
             // Se obtiene el objeto con los datos de la cache
             _ItemCache = (ObjCache)_Cache.GetItemFromCache("MailAgentCache");

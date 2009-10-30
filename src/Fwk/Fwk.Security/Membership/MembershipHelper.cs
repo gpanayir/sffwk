@@ -12,7 +12,7 @@ using System.Text;
 
 namespace Fwk.Security
 {
-    public class FwkMembership
+    public partial class FwkMembership
     {
         static FwkActyveDirectory _FwkActyveDirectory;
 
@@ -292,10 +292,10 @@ namespace Fwk.Security
         }
 
         /// <summary>
-        /// Obtiene una lista de usuarios en un determinado rol
+        /// Obtiene una lista de usuarios de un determinado rol.- Solo obtiene nombre de usuario
         /// </summary>
-        /// <param name="pRoleName"></param>
-        /// <returns></returns>
+        /// <param name="pRoleName">Nombre del rol</param>
+        /// <returns>lista de <see cref="User"/> </returns>
         public static List<User> GetUsersInRole(String pRoleName)
         {
 
@@ -318,7 +318,34 @@ namespace Fwk.Security
             return wUsersList;
 
         }
+        /// <summary>
+        /// Obtiene una lista de usuarios con sus detalles pertenecientes a un determinado rol
+        /// </summary>
+        /// <param name="pRoleName">Nombre del rol</param>
+        /// <returns>lista de <see cref="User"/> </returns>
+        public static List<User> GetUsersDetailedInRole(String pRoleName)
+        {
 
+            User wUserByApp;
+            List<User> wUsersList = new List<User>();
+            try
+            {
+                foreach (string userName in Roles.GetUsersInRole(pRoleName))
+                {
+
+                    wUserByApp =  FwkMembership.GetUser(userName); 
+                    wUsersList.Add(wUserByApp);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return wUsersList;
+
+        }
         /// <summary>
         /// Asigna roles a un usuario
         /// </summary>
@@ -581,49 +608,7 @@ namespace Fwk.Security
         {
             return GetRules(pApplicationName, ConnectionStringName);
         }
-        /// <summary>
-        /// Obtiene las reglas de una determinada aplicacion
-        /// </summary>
-        /// <param name="pConnectionStringName"></param>
-        /// <param name="pApplicationName"></param>
-        /// <returns></returns>
-        public static List<FwkCategory> GetRuleCategories(string pApplicationName)
-        {
-            return GetRuleCategories(pApplicationName, ConnectionStringName);
-        }
-
-        static List<FwkCategory> GetRuleCategories(string pApplicationName, string pConnectionStringName)
-        {
-            Database wDataBase = null;
-            DbCommand wCmd = null;
-            FwkCategory wCategory;
-            List<FwkCategory> wCategoryList = null;
-            try
-            {
-                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                wCmd = wDataBase.GetStoredProcCommand("[aspnet_Categories_s]");
-
-                /// ApplicationName
-                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
-                wCategoryList = new List<FwkCategory>();
-                using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
-                {
-                    while (reader.Read())
-                    {
-                        wCategory = new FwkCategory();
-                        wCategory.CategoryId = Convert.ToInt32(reader["CategoryId"]);
-                        wCategory.ParentCategoryId = Convert.ToInt32(reader["ParentCategoryId"]);
-                        wCategory.Name = Convert.ToString(reader["Name"]);
-                        wCategoryList.Add(wCategory);
-                    }
-                }
-                return wCategoryList;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+       
 
         /// <summary>
         /// Obtiene las reglas de una determinada aplicacion
