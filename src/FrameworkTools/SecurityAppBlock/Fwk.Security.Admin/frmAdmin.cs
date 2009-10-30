@@ -13,10 +13,11 @@ using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Security.Principal;
 using Fwk.Bases.FrontEnd.Controls;
 using Fwk.Security;
+using Fwk.Security.Admin.Controls;
 
-namespace SecurityAppBlock.Admin
+namespace Fwk.Security.Admin
 {
-    public partial class frmAdmin : Form
+    public partial class frmAdmin : XtraForm
     {
 
         public frmAdmin()
@@ -24,11 +25,7 @@ namespace SecurityAppBlock.Admin
             InitializeComponent();
         
 
-            this.assingRulesControl1.Init();
-            this.assingRoles1.Init();
-            this.rolesAdmin1.Init();
-            this.createRulesControl1.Init();
-            this.userAdmminControl1.Init();
+         
         }
 
         
@@ -39,44 +36,15 @@ namespace SecurityAppBlock.Admin
             MembershipUser user = Membership.GetUser();
         }
 
-        private void assingRoles1_NewSecurityInfoCreated(object sender)
-        {
-            this.assingRulesControl1.Init();
-            this.createRulesControl1.Init();
-            this.userAdmminControl1.Init();
-        }
-
-        private void rolesAdmin1_NewSecurityInfoCreated(object sender)
-        {
-            this.assingRulesControl1.Init();
-            this.assingRoles1.Init();
-            
-            this.createRulesControl1.Init();
-            this.userAdmminControl1.Init();
-        }
-
-        private void userAdmminControl1_NewSecurityInfoCreated(object sender)
-        {
-            this.assingRulesControl1.Init();
-            this.assingRoles1.Init();
-            this.createRulesControl1.Init();
-            this.rolesAdmin1.Init();
-            
-        }
-
-        private void createRulesControl1_NewSecurityInfoCreated(object sender)
-        {
-           
-        }
-
-        private void assingRulesControl1_NewSecurityInfoCreated(object sender)
-        {
        
+
+   
+
+    
+        private void navBarControl1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            ControlsFactory.Show(e.Link, this.panelControl1);
         }
-
-
-
-
        
 
        

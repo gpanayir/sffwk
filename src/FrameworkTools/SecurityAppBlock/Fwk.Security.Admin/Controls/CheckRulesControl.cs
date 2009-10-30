@@ -11,10 +11,10 @@ using System.Web.Security;
 using Microsoft.Practices.EnterpriseLibrary.Security;
 using Fwk.Security;
 
-namespace SecurityAppBlock.Admin.Controls
+namespace Fwk.Security.Admin.Controls
 {
   
-    public partial class CheckRulesControl : UserControl
+    public partial class CheckRulesControl : SecurityControlBase
     {
      
         private IAuthorizationProvider ruleProvider;
@@ -75,7 +75,7 @@ namespace SecurityAppBlock.Admin.Controls
             }
         }
 
-        internal void Init()
+        public override void Initialize()
         {
             // inicializo Fwk Authorization provider y cathcing security provider
             // ASP.NET Membership y Profile providers no se inicializan de esta manera.

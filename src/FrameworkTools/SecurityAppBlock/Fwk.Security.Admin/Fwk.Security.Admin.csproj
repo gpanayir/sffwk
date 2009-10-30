@@ -8,8 +8,8 @@
     <ProjectGuid>{27D62BF8-5321-428B-93CE-98CFB8F6223E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SecurityAppBlock.Admin</RootNamespace>
-    <AssemblyName>SecurityAppBlock.Admin</AssemblyName>
+    <RootNamespace>Fwk.Security.Admin</RootNamespace>
+    <AssemblyName>Fwk.Security.Admin</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>group_16.ico</ApplicationIcon>
@@ -47,17 +47,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v8.2, Version=8.2.4.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
-    <Reference Include="DevExpress.Utils.v8.2, Version=8.2.4.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
-    <Reference Include="DevExpress.XtraBars.v8.2, Version=8.2.4.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
-    <Reference Include="DevExpress.XtraBars.v8.2.Design, Version=8.2.4.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
-    <Reference Include="DevExpress.XtraEditors.v8.2, Version=8.2.4.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.Utils.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraEditors.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraGrid.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Archivos de programa\Developer Express .NET v8.2\\Sources\DevExpress.DLL\DevExpress.XtraEditors.v8.2.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraGrid.v9.1.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v8.2.Design, Version=8.2.4.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
-    <Reference Include="DevExpress.XtraNavBar.v8.2, Version=8.2.4.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
-    <Reference Include="DevExpress.XtraTreeList.v8.2, Version=8.2.4.0, Culture=neutral, PublicKeyToken=49d90c14d24271b5" />
+    <Reference Include="DevExpress.XtraLayout.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraNavBar.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraNavBar.v9.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraTreeList.v9.1.dll</HintPath>
+    </Reference>
     <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Fwk.Bases.FrontEnd, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -104,11 +109,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\AssingRoles.cs">
+    <Compile Include="Controls\CategoryCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\AssingRoles.Designer.cs">
-      <DependentUpon>AssingRoles.cs</DependentUpon>
+    <Compile Include="Controls\CategoryCreate.Designer.cs">
+      <DependentUpon>CategoryCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserAssingRoles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserAssingRoles.Designer.cs">
+      <DependentUpon>UserAssingRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\AssingRulesControl.cs">
       <SubType>UserControl</SubType>
@@ -122,17 +133,36 @@
     <Compile Include="Controls\CheckRulesControl.Designer.cs">
       <DependentUpon>CheckRulesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ControlsFactory.cs" />
     <Compile Include="Controls\CreateRoles.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\CreateRoles.Designer.cs">
       <DependentUpon>CreateRoles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserAdminControl.cs">
+    <Compile Include="Controls\UserCretate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UserAdminControl.Designer.cs">
-      <DependentUpon>UserAdminControl.cs</DependentUpon>
+    <Compile Include="Controls\UserCretate.Designer.cs">
+      <DependentUpon>UserCretate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SecurityControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SecurityControlBase.Designer.cs">
+      <DependentUpon>SecurityControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UserAdmin.Designer.cs">
+      <DependentUpon>UserAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAdmin.cs">
       <SubType>Form</SubType>
@@ -142,8 +172,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\AssingRoles.resx">
-      <DependentUpon>AssingRoles.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\CategoryCreate.resx">
+      <DependentUpon>CategoryCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserAssingRoles.resx">
+      <DependentUpon>UserAssingRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AssingRulesControl.resx">
       <DependentUpon>AssingRulesControl.cs</DependentUpon>
@@ -154,21 +187,40 @@
     <EmbeddedResource Include="Controls\CreateRoles.resx">
       <DependentUpon>CreateRoles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UserAdminControl.resx">
-      <DependentUpon>UserAdminControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\SecurityControlBase.resx">
+      <DependentUpon>SecurityControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserCretate.resx">
+      <DependentUpon>UserCretate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserAdmin.resx">
+      <DependentUpon>UserAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UsersGrid.resx">
+      <DependentUpon>UsersGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Controls\UsersGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UsersGrid.Designer.cs">
+      <DependentUpon>UsersGrid.cs</DependentUpon>
     </Compile>
     <None Include="App.config" />
   </ItemGroup>
@@ -189,9 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fwk_delete_16x.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\db.ico" />
@@ -218,7 +267,115 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="group_16.ico" />
+    <None Include="Properties\DataSources\Fwk.Security.FwkCategory.datasource" />
+    <None Include="Resources\roles_32.png" />
+    <None Include="Resources\file_add_32.png" />
+    <None Include="Resources\file_add_16.png" />
+    <None Include="Resources\177Left.png" />
+    <None Include="Resources\177.PNG" />
+    <None Include="Resources\ulock_32.png" />
+    <None Include="Resources\ulock_24.png" />
+    <None Include="Resources\ulock_16.png" />
+    <None Include="Resources\trash_32.gif" />
+    <None Include="Resources\trash_24.png" />
+    <None Include="Resources\trash_24.gif" />
+    <None Include="Resources\trash_16.gif" />
+    <None Include="Resources\srch_32.png" />
+    <None Include="Resources\srch_16.png" />
+    <None Include="Resources\save_as_48.png" />
+    <None Include="Resources\save_as_32.png" />
+    <None Include="Resources\save_as_2_48.png" />
+    <None Include="Resources\save_as_2_32.png" />
+    <None Include="Resources\save_as_2_24.png" />
+    <None Include="Resources\save_as_2_16.png" />
+    <None Include="Resources\save_as_16.png" />
+    <None Include="Resources\save_48.png" />
+    <None Include="Resources\save_32.png" />
+    <None Include="Resources\save_24.png" />
+    <None Include="Resources\save_16.png" />
+    <None Include="Resources\save as_24.png" />
+    <None Include="Resources\PDF_16x16.gif" />
+    <None Include="Resources\page_excel_16x16.ico" />
+    <None Include="Resources\note_16x16.png" />
+    <None Include="Resources\MinImage.bmp" />
+    <None Include="Resources\MaxImage.bmp" />
+    <None Include="Resources\mail_48.png" />
+    <None Include="Resources\mail_32.png" />
+    <None Include="Resources\mail_24.png" />
+    <None Include="Resources\mail_16.png" />
+    <None Include="Resources\lock_32.png" />
+    <None Include="Resources\lock_24.png" />
+    <None Include="Resources\lock_16.png" />
+    <None Include="Resources\information_48.png" />
+    <None Include="Resources\information_32.png" />
+    <None Include="Resources\information_24.png" />
+    <None Include="Resources\information_16.png" />
+    <None Include="Resources\html_16x16.png" />
+    <None Include="Resources\help_48.png" />
+    <None Include="Resources\help_32.png" />
+    <None Include="Resources\help_24.png" />
+    <None Include="Resources\help_16.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\Help %28Alt 2%29_32.png" />
+    <None Include="Resources\Help %28Alt 2%29_24.png" />
+    <None Include="Resources\Help %28Alt 2%29_16.png" />
+    <None Include="Resources\folder_new_32.png" />
+    <None Include="Resources\folder_new_24.png" />
+    <None Include="Resources\folder_new_16.png" />
+    <None Include="Resources\file_new_32.png" />
+    <None Include="Resources\file_new_16.png" />
+    <None Include="Resources\file_find_48.png" />
+    <None Include="Resources\file_find_32.png" />
+    <None Include="Resources\file_find_24.png" />
+    <None Include="Resources\file_find_16.png" />
+    <None Include="Resources\file_edit_48.png" />
+    <None Include="Resources\file_edit_32.png" />
+    <None Include="Resources\file_edit_24.png" />
+    <None Include="Resources\file_edit_16.png" />
+    <None Include="Resources\file_del_48.png" />
+    <None Include="Resources\file_del_32.png" />
+    <None Include="Resources\file_del_16.png" />
+    <None Include="Resources\file_de_24.png" />
+    <None Include="Resources\file_cancel_48.png" />
+    <None Include="Resources\file_cancel_32.png" />
+    <None Include="Resources\file_cancel_24.png" />
+    <None Include="Resources\file_cancel_16.png" />
+    <None Include="Resources\file_apply_32.png" />
+    <None Include="Resources\file_apply_16.png" />
+    <None Include="Resources\Explorer-16x16.gif" />
+    <None Include="Resources\expandVertical_24.png" />
+    <None Include="Resources\expandVertical_16.png" />
+    <None Include="Resources\Expand_16.png" />
+    <None Include="Resources\exclamation_48.png" />
+    <None Include="Resources\exclamation_32.png" />
+    <None Include="Resources\exclamation_24.png" />
+    <None Include="Resources\exclamation_16.png" />
+    <None Include="Resources\Excel-16x16.gif" />
+    <None Include="Resources\error_32.png" />
+    <None Include="Resources\error_24.png" />
+    <None Include="Resources\error_16.png" />
+    <None Include="Resources\copy_48.png" />
+    <None Include="Resources\copy_32.png" />
+    <None Include="Resources\copy_24.png" />
+    <None Include="Resources\copy_16.png" />
+    <None Include="Resources\collapseVertical_24.png" />
+    <None Include="Resources\collapseVertical_16.png" />
+    <None Include="Resources\collapce_16.png" />
+    <None Include="Resources\CloseImage.bmp" />
+    <None Include="Resources\Close_32.png" />
+    <None Include="Resources\Close_24.png" />
+    <None Include="Resources\Close_16.png" />
+    <None Include="Resources\cancel_32.png" />
+    <None Include="Resources\cancel_24.png" />
+    <None Include="Resources\Cancel_2_32.png" />
+    <None Include="Resources\Cancel_2_24.png" />
+    <None Include="Resources\Cancel_2_16.png" />
+    <None Include="Resources\cancel_16.png" />
+    <None Include="Resources\apply_32.png" />
+    <None Include="Resources\apply_24.png" />
+    <None Include="Resources\apply_16.png" />
     <None Include="App_CacheSetting.config" />
+    <None Include="Resources\Thumbs.db" />
     <None Include="Resources\User %28Alt 2%29.png" />
     <None Include="Resources\User.png" />
     <None Include="Resources\Users.png" />

@@ -11,11 +11,22 @@ using Fwk.Security;
 using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Web.Security;
 
-namespace SecurityAppBlock.Admin.Controls
+namespace Fwk.Security.Admin.Controls
 {
     [DefaultEvent("NewSecurityInfoCreated")]
-    public partial class AssingRulesControl : UserControl
+    public partial class AssingRulesControl : SecurityControlBase
     {
+        /// <summary>
+        /// Representa la informacion del tipo de control a instanciar 
+        /// 
+        /// </summary>
+        public override string AssemblyConditionControl
+        {
+            get
+            {
+                return typeof(AssingRulesControl).AssemblyQualifiedName;
+            }
+        }
         public event NewSecurityInfoCreatedHandler NewSecurityInfoCreated;
         protected void NewSecurityInfoCreatedHandler()
         {
@@ -34,8 +45,9 @@ namespace SecurityAppBlock.Admin.Controls
             InitializeComponent();
         }
 
-        internal void Init()
+        public override void Initialize()
         {
+            txtRuleName.Focus();
             using (new WaitCursorHelper(this))
             {
                 userBindingSource.DataSource = FwkMembership.GetAllUsers();
@@ -79,20 +91,7 @@ namespace SecurityAppBlock.Admin.Controls
 
         private void btnAddExcludedUser_Click(object sender, EventArgs e)
         {
-            if (_SelectedUser != null)
-            {
-                var s = from usr in _ExcludeUserList where usr.UserName == _SelectedUser.UserName select usr;
-                if (!s.Any())
-                {
-                    _ExcludeUserList.Add(new User (_SelectedUser.UserName));
-
-                    grdUserExcluded.DataSource = null;
-                    grdUserExcluded.DataSource = _ExcludeUserList;
-                }
-
-            }
-
-            BuildRulExpression();
+           
         }
 
         void BuildRulExpression()
@@ -136,17 +135,7 @@ namespace SecurityAppBlock.Admin.Controls
         }
 
        
-        private void btnGenerateRule_Click(object sender, EventArgs e)
-        {
-          
-
-           
-                BuildRulExpression();
-                
-                tabControl2.SelectTab(2);
-               
-            
-        }
+       
 
 
 
@@ -191,6 +180,24 @@ namespace SecurityAppBlock.Admin.Controls
                 errorProvider1.SetError(txtRuleName, string.Empty);
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (_SelectedUser != null)
+            {
+                var s = from usr in _ExcludeUserList where usr.UserName == _SelectedUser.UserName select usr;
+                if (!s.Any())
+                {
+                    _ExcludeUserList.Add(new User(_SelectedUser.UserName));
+
+                    grdUserExcluded.DataSource = null;
+                    grdUserExcluded.DataSource = _ExcludeUserList;
+                }
+
+            }
+
+            BuildRulExpression();
         }
 
        

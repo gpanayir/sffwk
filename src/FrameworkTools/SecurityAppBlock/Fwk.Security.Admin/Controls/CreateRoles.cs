@@ -10,11 +10,19 @@ using Fwk.Security.Common;
 using Fwk.Security;
 using Fwk.Bases.FrontEnd.Controls;
 
-namespace SecurityAppBlock.Admin.Controls
+namespace Fwk.Security.Admin.Controls
 {
     [DefaultEvent("NewSecurityInfoCreated")]
-    public partial class CreateRoles : UserControl
+    public partial class CreateRoles : SecurityControlBase
     {
+
+        public override string AssemblyConditionControl
+        {
+            get
+            {
+                return typeof(CreateRoles).AssemblyQualifiedName;
+            }
+        }
         public event NewSecurityInfoCreatedHandler NewSecurityInfoCreated;
         protected void NewSecurityInfoCreatedHandler()
         {
@@ -35,7 +43,7 @@ namespace SecurityAppBlock.Admin.Controls
                     FwkMembership.CreateRole(txtRolName.Text);
 
                     fwkMessageViewInfo.Show(string.Format(Properties.Resources.RolCreatedMessage, txtRolName.Text));
-                    Init();
+                    Initialize();
                     NewSecurityInfoCreatedHandler();
                 }
                 catch (Exception ex)
@@ -44,7 +52,7 @@ namespace SecurityAppBlock.Admin.Controls
                 }
             }
         }
-       public  void Init()
+        public override void Initialize()
         {
             using (new WaitCursorHelper(this))
             {
@@ -56,10 +64,11 @@ namespace SecurityAppBlock.Admin.Controls
         private void grdRoles2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (grdRoles.CurrentRow == null) return;
-            lblusers.Text = "User asigned " + ((Rol)grdRoles.CurrentRow.DataBoundItem).RolName;
+            
             using (new WaitCursorHelper(this))
             {
-                grdUsers.DataSource = FwkMembership.GetUsersInRole(((Rol)grdRoles.CurrentRow.DataBoundItem).RolName);
+                grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(((Rol)grdRoles.CurrentRow.DataBoundItem).RolName);
+                grdUsers.Refresh();
             }
         }
     }

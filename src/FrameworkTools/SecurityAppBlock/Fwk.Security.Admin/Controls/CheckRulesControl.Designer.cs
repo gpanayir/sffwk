@@ -1,4 +1,4 @@
-﻿namespace SecurityAppBlock.Admin.Controls
+﻿namespace Fwk.Security.Admin.Controls
 {
     partial class CheckRulesControl
     {
@@ -66,7 +66,7 @@
             // authorizeUsingIdentityRoleRulesButton
             // 
             this.authorizeUsingIdentityRoleRulesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.authorizeUsingIdentityRoleRulesButton.Image = global::SecurityAppBlock.Admin.Properties.Resources.Button_ok;
+            this.authorizeUsingIdentityRoleRulesButton.Image = global::Fwk.Security.Admin.Properties.Resources.Button_ok;
             this.authorizeUsingIdentityRoleRulesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.authorizeUsingIdentityRoleRulesButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.authorizeUsingIdentityRoleRulesButton.Location = new System.Drawing.Point(196, 107);
@@ -118,7 +118,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Image = global::SecurityAppBlock.Admin.Properties.Resources.User;
+            this.label2.Image = global::Fwk.Security.Admin.Properties.Resources.User;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label2.Location = new System.Drawing.Point(14, 4);

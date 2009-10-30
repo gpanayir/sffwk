@@ -1,4 +1,4 @@
-﻿namespace SecurityAppBlock.Admin.Controls
+﻿namespace Fwk.Security.Admin.Controls
 {
     partial class CreateRoles
     {
@@ -35,6 +35,9 @@
             this.btnCreateNewRol = new System.Windows.Forms.Button();
             this.fwkMessageViewInfo = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.grdUsers = new System.Windows.Forms.DataGridView();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grdRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rolListBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -44,6 +47,7 @@
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRolName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolListBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -84,11 +88,14 @@
             // 
             this.btnCreateNewRol.BackColor = System.Drawing.Color.White;
             this.btnCreateNewRol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateNewRol.Image = global::Fwk.Security.Admin.Properties.Resources.save_16;
+            this.btnCreateNewRol.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCreateNewRol.Location = new System.Drawing.Point(194, 40);
             this.btnCreateNewRol.Name = "btnCreateNewRol";
-            this.btnCreateNewRol.Size = new System.Drawing.Size(92, 26);
+            this.btnCreateNewRol.Size = new System.Drawing.Size(81, 26);
             this.btnCreateNewRol.TabIndex = 5;
-            this.btnCreateNewRol.Text = "Create rol";
+            this.btnCreateNewRol.Text = "Save rol";
+            this.btnCreateNewRol.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCreateNewRol.UseVisualStyleBackColor = false;
             this.btnCreateNewRol.Click += new System.EventHandler(this.btnCreateNewRol_Click);
             // 
@@ -106,11 +113,32 @@
             // 
             this.grdUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
+            this.grdUsers.AutoGenerateColumns = false;
             this.grdUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdUsers.Location = new System.Drawing.Point(347, 120);
+            this.grdUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.userNameDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn});
+            this.grdUsers.DataSource = this.userBindingSource;
+            this.grdUsers.Location = new System.Drawing.Point(330, 120);
             this.grdUsers.Name = "grdUsers";
-            this.grdUsers.Size = new System.Drawing.Size(289, 350);
+            this.grdUsers.Size = new System.Drawing.Size(306, 350);
             this.grdUsers.TabIndex = 22;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(Fwk.Security.Common.User);
             // 
             // grdRoles
             // 
@@ -140,14 +168,14 @@
             // lblusers
             // 
             this.lblusers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblusers.Image = global::SecurityAppBlock.Admin.Properties.Resources.User;
+            this.lblusers.Image = global::Fwk.Security.Admin.Properties.Resources.User;
             this.lblusers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblusers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblusers.Location = new System.Drawing.Point(344, 91);
             this.lblusers.Name = "lblusers";
             this.lblusers.Size = new System.Drawing.Size(122, 23);
             this.lblusers.TabIndex = 24;
-            this.lblusers.Text = "Users asigned";
+            this.lblusers.Text = "Asigned users";
             this.lblusers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -155,11 +183,11 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(454, 91);
+            this.label1.Location = new System.Drawing.Point(9, 94);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 23);
             this.label1.TabIndex = 25;
-            this.label1.Text = "Users asigned";
+            this.label1.Text = "Roles";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CreateRoles
@@ -177,6 +205,7 @@
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtRolName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolListBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -196,5 +225,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rolNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lblusers;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource userBindingSource;
     }
 }
