@@ -125,7 +125,7 @@ namespace Fwk.Security
     [Serializable]
     public class FwkCategory
     {
-        int? _ParentCategoryId;
+        int? _ParentCategoryId =0;
 
         public int? ParentCategoryId
         {
