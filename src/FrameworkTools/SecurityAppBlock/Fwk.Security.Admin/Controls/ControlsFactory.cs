@@ -45,12 +45,7 @@ namespace Fwk.Security.Admin.Controls
                  wSecurityControl = (SecurityControlBase)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(pName);
                 _SecurityControlList.Add(pName, wSecurityControl);
                 isNew = true;
-                ////Actualizo esta lista para q los colaboradores q recien ingresen al mesh global 
-                ////Sepan que submesh se an creado desde el administrador.-
-                //GlobalWrapper.MeshIdList = _SecurityControlList.Keys.ToList<String>();
-                ////Agrego al storage el mesh en el caso de que se trate de un nuevo mesh q no estaba en la cache
-                //if (!SettingStorage.Storage.MeshBEList.Exists(m => m.Id == wSecurityControl.MeshBE.Id))
-                //    SettingStorage.Storage.MeshBEList.Add(wSecurityControl.MeshBE);
+              
             }
             return wSecurityControl;
         }
