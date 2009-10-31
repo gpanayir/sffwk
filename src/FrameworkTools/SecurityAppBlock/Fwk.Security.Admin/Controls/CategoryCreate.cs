@@ -9,11 +9,14 @@ using System.Windows.Forms;
 using Fwk.Security.Common;
 using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Web.Security;
-
+  
 namespace Fwk.Security.Admin.Controls
 {
     public partial class CategoryCreate : SecurityControlBase
     {
+       
+        FwkCategory _ParentFwkCategory;
+        
         private IAuthorizationProvider ruleProvider;
         public override string AssemblyConditionControl
         {
@@ -50,7 +53,7 @@ namespace Fwk.Security.Admin.Controls
             FwkCategory wFwkCategory = new FwkCategory();
 
             wFwkCategory.Name = txtRuleName.Text.Trim();
-
+            wFwkCategory.ParentCategoryId = _ParentFwkCategory.CategoryId;
             wFwkCategory.FwkRulesInCategoryList = new List<FwkRulesInCategory>();
             FwkRulesInCategory wFwkRulesInCategory = null;
             FwkAuthorizationRule wFwkAuthorizationRule = null;
@@ -67,5 +70,14 @@ namespace Fwk.Security.Admin.Controls
             FwkMembership.CreateCategory(wFwkCategory,Membership.ApplicationName);
                
         }
+     
+
+        private void treeList1_Click(object sender, EventArgs e)
+        {
+            if(treeList1.FocusedNode != null)
+                 _ParentFwkCategory = (FwkCategory)treeList1.GetDataRecordByNode(treeList1.FocusedNode);
+        }
+
+        
     }
 }

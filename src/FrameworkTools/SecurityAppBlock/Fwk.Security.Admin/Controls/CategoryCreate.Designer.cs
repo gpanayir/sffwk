@@ -18,7 +18,7 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
-        }
+        } 
 
         #region Component Designer generated code
 
@@ -133,6 +133,8 @@
             this.treeList1.Name = "treeList1";
             this.treeList1.Size = new System.Drawing.Size(400, 251);
             this.treeList1.TabIndex = 26;
+
+            this.treeList1.Click += new System.EventHandler(this.treeList1_Click);
             // 
             // colCategoryId
             // 
@@ -169,6 +171,7 @@
             this.Controls.Add(this.txtRuleName);
             this.Name = "CategoryCreate";
             this.Size = new System.Drawing.Size(721, 440);
+          
             ((System.ComponentModel.ISupportInitialize)(this.lstBoxRules)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fwkAuthorizationRuleBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
