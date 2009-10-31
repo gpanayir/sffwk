@@ -1,0 +1,30 @@
+Generar progreso de la secuencia de comandos
+
+
+
+- dbo.aspnet_Rules_i (Correcto)
+
+- dbo.aspnet_Rules_s (Correcto)
+
+- dbo.aspnet_RulesCategory_d (Correcto)
+
+- dbo.aspnet_RulesCategory_g (Correcto)
+
+- dbo.aspnet_RulesCategory_i (Correcto)
+
+- dbo.aspnet_RulesCategory_s (Correcto)
+
+- dbo.aspnet_RulesCategory_u (Correcto)
+
+- dbo.aspnet_Rules_g_exist (Correcto)
+
+- dbo.aspnet_Categories_s (Correcto)
+
+- dbo.aspnet_RulesInCategory (Correcto)
+
+- dbo.aspnet_RulesCategory (Correcto)
+
+- dbo.aspnet_Rules (Correcto)
+
+
+
