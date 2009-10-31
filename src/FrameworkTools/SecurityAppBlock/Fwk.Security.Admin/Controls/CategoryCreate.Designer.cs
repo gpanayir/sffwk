@@ -37,7 +37,6 @@
             this.fwkAuthorizationRuleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-            this.colCategoryId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.fwkCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lstBoxRules)).BeginInit();
@@ -125,26 +124,16 @@
             // treeList1
             // 
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.colCategoryId,
             this.colName});
             this.treeList1.DataSource = this.fwkCategoryBindingSource;
-            this.treeList1.KeyFieldName = "ParentCategoryId";
-            this.treeList1.Location = new System.Drawing.Point(18, 131);
+            this.treeList1.FixedLineWidth = 1;
+            this.treeList1.KeyFieldName = "CategoryId";
+            this.treeList1.Location = new System.Drawing.Point(18, 114);
             this.treeList1.Name = "treeList1";
+            this.treeList1.ParentFieldName = "ParentId";
             this.treeList1.Size = new System.Drawing.Size(400, 251);
             this.treeList1.TabIndex = 26;
-
             this.treeList1.Click += new System.EventHandler(this.treeList1_Click);
-            // 
-            // colCategoryId
-            // 
-            this.colCategoryId.Caption = "CategoryId";
-            this.colCategoryId.FieldName = "CategoryId";
-            this.colCategoryId.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colCategoryId.Name = "colCategoryId";
-            this.colCategoryId.Visible = true;
-            this.colCategoryId.VisibleIndex = 0;
-            this.colCategoryId.Width = 126;
             // 
             // colName
             // 
@@ -152,7 +141,7 @@
             this.colName.FieldName = "Name";
             this.colName.Name = "colName";
             this.colName.Visible = true;
-            this.colName.VisibleIndex = 1;
+            this.colName.VisibleIndex = 0;
             this.colName.Width = 126;
             // 
             // fwkCategoryBindingSource
@@ -171,7 +160,7 @@
             this.Controls.Add(this.txtRuleName);
             this.Name = "CategoryCreate";
             this.Size = new System.Drawing.Size(721, 440);
-          
+            this.Load += new System.EventHandler(this.CategoryCreate_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lstBoxRules)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fwkAuthorizationRuleBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
@@ -192,7 +181,6 @@
         private System.Windows.Forms.BindingSource fwkAuthorizationRuleBindingSource;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
         private DevExpress.XtraTreeList.TreeList treeList1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn colCategoryId;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colName;
         private System.Windows.Forms.BindingSource fwkCategoryBindingSource;
     }

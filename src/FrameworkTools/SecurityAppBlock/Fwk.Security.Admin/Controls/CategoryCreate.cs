@@ -9,12 +9,14 @@ using System.Windows.Forms;
 using Fwk.Security.Common;
 using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Web.Security;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using System.Runtime.Remoting.Messaging;
   
 namespace Fwk.Security.Admin.Controls
 {
     public partial class CategoryCreate : SecurityControlBase
     {
-       
+        List<FwkCategory> _CategoryList;
         FwkCategory _ParentFwkCategory;
         
         private IAuthorizationProvider ruleProvider;
@@ -31,8 +33,8 @@ namespace Fwk.Security.Admin.Controls
         {
             using (new WaitCursorHelper(this))
             {
-                this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
-                this.fwkCategoryBindingSource.DataSource = FwkMembership.GetRuleCategories(Membership.ApplicationName);
+
+              
                 lstBoxRules.DataSource = FwkMembership.GetRulesList(Membership.ApplicationName);
                 lstBoxRules.Refresh();
             }
@@ -43,30 +45,26 @@ namespace Fwk.Security.Admin.Controls
             InitializeComponent();
         }
 
-        private void grdAllRules_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+       
 
         private void btnCreateNewRol_Click(object sender, EventArgs e)
         {
             FwkCategory wFwkCategory = new FwkCategory();
 
             wFwkCategory.Name = txtRuleName.Text.Trim();
-            wFwkCategory.ParentCategoryId = _ParentFwkCategory.CategoryId;
+            wFwkCategory.ParentId = _ParentFwkCategory.CategoryId;
             wFwkCategory.FwkRulesInCategoryList = new List<FwkRulesInCategory>();
             FwkRulesInCategory wFwkRulesInCategory = null;
-            FwkAuthorizationRule wFwkAuthorizationRule = null;
+       
             foreach (object obj in lstBoxRules.CheckedItems)
             {
                 wFwkRulesInCategory = new FwkRulesInCategory();
-
-                wFwkAuthorizationRule = (FwkAuthorizationRule)obj;
-                wFwkRulesInCategory.RuleName = wFwkAuthorizationRule.Name;
+                
+                wFwkRulesInCategory.RuleName = ((NamedConfigurationElement)obj).Name;
 
                 wFwkCategory.FwkRulesInCategoryList.Add(wFwkRulesInCategory);
             }
-            
+              
             FwkMembership.CreateCategory(wFwkCategory,Membership.ApplicationName);
                
         }
@@ -78,6 +76,78 @@ namespace Fwk.Security.Admin.Controls
                  _ParentFwkCategory = (FwkCategory)treeList1.GetDataRecordByNode(treeList1.FocusedNode);
         }
 
-        
+        private void CategoryCreate_Load(object sender, EventArgs e)
+        {
+            this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
+            PopulateAsync();
+        }
+        public delegate void DelegateWithOutAndRefParameters(out Exception ex);
+        /// <summary>
+        /// Carga de manera asincrona los Dominios relacionados entre si en la grilla.-
+        /// </summary>
+        public void PopulateAsync()
+        {
+            Exception ex = null;
+            DelegateWithOutAndRefParameters s = new DelegateWithOutAndRefParameters(Populate);
+
+            s.BeginInvoke(out ex, new AsyncCallback(EndPopulate), null);
+
+
+        }
+        /// <summary>
+        /// Fin de el metodo populate que fue llamado de forma asincrona
+        /// </summary>
+        /// <param name="res"></param>
+        void EndPopulate(IAsyncResult res)
+        {
+            Exception ex;
+            if (this.InvokeRequired)
+            {
+                AsyncCallback d = new AsyncCallback(EndPopulate);
+                this.Invoke(d, new object[] { res });
+
+            }
+            else
+            {
+                AsyncResult result = (AsyncResult)res;
+
+
+                DelegateWithOutAndRefParameters del = (DelegateWithOutAndRefParameters)result.AsyncDelegate;
+                del.EndInvoke(out ex, res);
+                if (ex != null)
+                {
+
+                    throw ex;
+                 
+                }
+                this.fwkCategoryBindingSource.DataSource = _CategoryList;
+                
+                treeList1.RefreshDataSource();
+            }
+        }
+
+        /// <summary>
+        /// Carga Dominios relacionados entre al objeto _RelatedDomains que esta bindiado a la grilla
+        /// </summary>
+        void Populate(out Exception ex)
+        {
+            ex = null;
+
+            try
+            {
+
+                _CategoryList = FwkMembership.GetRuleCategories(Membership.ApplicationName);
+   
+            }
+            catch (Exception err)
+            {
+                err.Source = "Origen de datos";
+                ex = err;
+            }
+
+
+
+        }
+       
     }
 }
