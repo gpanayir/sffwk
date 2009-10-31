@@ -45,6 +45,17 @@ namespace Fwk.Security
 
                 id= Convert.ToInt32( wDataBase.ExecuteScalar(wCmd));
 
+
+                foreach (FwkRulesInCategory rule in pFwkCategory.FwkRulesInCategoryList)
+                {
+                    rule.CategoryId = id;
+
+                    CreateRuleInCategory(rule, pApplicationName.ToLower(),pConnectionStringName);
+
+                }
+
+
+
                 return id;
                
             }
@@ -52,6 +63,10 @@ namespace Fwk.Security
             {
                 throw ex;
             }
+
+
+           
+        
         }
 
         /// <summary>
@@ -73,6 +88,9 @@ namespace Fwk.Security
             List<FwkCategory> wCategoryList = null;
             try
             {
+                ///TODO: Ver linq
+                //Fwk.Security.Membership.RulesDataContext dc = new Fwk.Security.Membership.RulesDataContext(pConnectionStringName);
+                //var xx = from s in dc.aspnet_RulesCategories where 
                 wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
                 wCmd = wDataBase.GetStoredProcCommand("[aspnet_Categories_s]");
 
@@ -85,7 +103,8 @@ namespace Fwk.Security
                     {
                         wCategory = new FwkCategory();
                         wCategory.CategoryId = Convert.ToInt32(reader["CategoryId"]);
-                        wCategory.ParentCategoryId = Convert.ToInt32(reader["ParentCategoryId"]);
+                        if(reader["ParentCategoryId"] != DBNull.Value)
+                            wCategory.ParentCategoryId = Convert.ToInt32(reader["ParentCategoryId"]);
                         wCategory.Name = Convert.ToString(reader["Name"]);
                         wCategoryList.Add(wCategory);
                     }
@@ -98,7 +117,36 @@ namespace Fwk.Security
             }
         }
 
+        static void CreateRuleInCategory(FwkRulesInCategory prule,string pApplicationName,string pConnectionStringName)
+        {
+            
+            Database wDataBase = null;
+            DbCommand wCmd = null;
+            
 
+            try
+            {
+                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
+                StringBuilder str = FwkMembershipScripts.ApplicationId_s;
+                str.Append(FwkMembershipScripts.RuleInCategory_i);
+
+                str.Replace("[ApplicationName]", pApplicationName.ToLower());
+                str.Replace("[CategoryId]", prule.CategoryId.ToString());
+                str.Replace("[RuleName]", prule.RuleName);
+
+                wCmd = wDataBase.GetSqlStringCommand(str.ToString());
+                wCmd.CommandType = CommandType.Text;
+
+                wDataBase.ExecuteNonQuery(wCmd);
+
+        
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         static Guid GetApplication(string pApplicationName, string pConnectionStringName)
         {
@@ -108,6 +156,14 @@ namespace Fwk.Security
            
             try
             {
+                ///TODO: Ver linq
+                //using (Fwk.Security.Membership.RulesDataContext dc = new Fwk.Security.Membership.RulesDataContext(pConnectionStringName))
+                //{
+
+                //    wApplicationNameId = from s in dc.aspnet_Applications where s.ApplicationName.Equals(pApplicationName) select s.ApplicationId;
+                //}
+                
+
                 wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
             
 
@@ -138,8 +194,22 @@ namespace Fwk.Security
         }
     }
 
+
+
     internal static class FwkMembershipScripts
     {
+        static StringBuilder _RuleInCategory_i;
+
+        public static StringBuilder RuleInCategory_i
+        {
+            get
+            {
+                SetRuleInCategory_i();
+                return FwkMembershipScripts._RuleInCategory_i;
+            }
+
+        }
+
         static StringBuilder _ApplicationId_s;
 
         public static StringBuilder ApplicationId_s
@@ -162,7 +232,29 @@ namespace Fwk.Security
             }
 
         }
+        static void SetRuleInCategory_i()
+        {
 
+            if (_RuleInCategory_i  == null)
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder(5000);
+
+                sb.Append(@"	INSERT INTO aspnet_RulesInCategory");
+                sb.Append(@"		(CategoryId");
+                sb.Append(@"		,RuleName");
+                sb.Append(@"		,ApplicationId)");
+
+                sb.Append(@"	VALUES (");
+                sb.Append(@"		[CategoryId],");
+                sb.Append(@"		'[RuleName]',");
+                sb.Append(@"		@ApplicationId) ");
+
+
+                _RuleInCategory_i = sb;
+            }
+
+
+        }
         static void SetCategory_i()
         {
 
