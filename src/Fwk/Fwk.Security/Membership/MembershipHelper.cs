@@ -14,6 +14,8 @@ namespace Fwk.Security
 {
     public partial class FwkMembership
     {
+        static  string fwkAuthorizationProviderName = "RuleProvider_Fwk";
+        //static string membershipConnectionStringName;
         static FwkActyveDirectory _FwkActyveDirectory;
 
         static FwkActyveDirectory GetActiveDirectoriInstance(string pDomainName)
@@ -25,9 +27,22 @@ namespace Fwk.Security
             return _FwkActyveDirectory;
 
         }
-
+       
+        /// <summary>
+        /// Se carga al iniciar la configuracion en <see cref="FwkAuthorizationRuleProviderData"/>
+        ///  FwkMembership.ConnectionStringName = this["connectionStringName"].ToString().Trim();
+        /// </summary>
         public static string ConnectionStringName;
-
+        static FwkMembership()
+        {
+             SecuritySettings wSecuritySettings = (SecuritySettings)System.Configuration.ConfigurationManager.GetSection("securityConfiguration");
+             if (wSecuritySettings != null)
+             {
+                 Fwk.Security.Configuration.FwkAuthorizationRuleProviderData data = ((Fwk.Security.Configuration.FwkAuthorizationRuleProviderData)(wSecuritySettings.AuthorizationProviders.Get(fwkAuthorizationProviderName)));
+                 if (data != null)
+                     ConnectionStringName = data.ConnectionStringName;
+             }
+        }
         #region [Users]
 
         public static Boolean ValidateUser(string pUsername, string pPassword, string pDomainName)

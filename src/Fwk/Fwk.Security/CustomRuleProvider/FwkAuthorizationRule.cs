@@ -127,7 +127,7 @@ namespace Fwk.Security
     {
         int? _ParentCategoryId =0;
 
-        public int? ParentCategoryId
+        public int? ParentId
         {
             get { return _ParentCategoryId; }
             set { _ParentCategoryId = value; }
