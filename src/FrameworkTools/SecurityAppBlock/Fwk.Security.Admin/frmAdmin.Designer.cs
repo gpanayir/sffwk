@@ -300,27 +300,34 @@ namespace Fwk.Security.Admin
             // 
             this.navBarGroup_Rules.Caption = "rules";
             this.navBarGroup_Rules.Expanded = true;
+            this.navBarGroup_Rules.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup_Rules.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CreateRule),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CategoryCreate),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_Check)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_Check),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CategoryCreate)});
+            this.navBarGroup_Rules.LargeImage = global::Fwk.Security.Admin.Properties.Resources.admin_24;
             this.navBarGroup_Rules.Name = "navBarGroup_Rules";
+            this.navBarGroup_Rules.SmallImage = global::Fwk.Security.Admin.Properties.Resources.admin_16;
             // 
             // navBarItem_CreateRule
             // 
             this.navBarItem_CreateRule.Caption = "Create rule";
+            this.navBarItem_CreateRule.LargeImage = global::Fwk.Security.Admin.Properties.Resources.application_list_add_32;
             this.navBarItem_CreateRule.Name = "navBarItem_CreateRule";
             this.navBarItem_CreateRule.Tag = "Fwk.Security.Admin.Controls.AssingRulesControl, Fwk.Security.Admin";
             // 
             // navBarItem_CategoryCreate
             // 
             this.navBarItem_CategoryCreate.Caption = "Create category";
+            this.navBarItem_CategoryCreate.LargeImage = global::Fwk.Security.Admin.Properties.Resources.map_32;
             this.navBarItem_CategoryCreate.Name = "navBarItem_CategoryCreate";
+            this.navBarItem_CategoryCreate.SmallImage = global::Fwk.Security.Admin.Properties.Resources.map_16;
             this.navBarItem_CategoryCreate.Tag = "Fwk.Security.Admin.Controls.CategoryCreate, Fwk.Security.Admin";
             // 
             // navBarItem_Check
             // 
             this.navBarItem_Check.Caption = "Check rule";
+            this.navBarItem_Check.LargeImage = global::Fwk.Security.Admin.Properties.Resources.access_control_ok_32;
             this.navBarItem_Check.Name = "navBarItem_Check";
             this.navBarItem_Check.Tag = "Fwk.Security.Admin.Controls.CheckRulesControl, Fwk.Security.Admin";
             // 

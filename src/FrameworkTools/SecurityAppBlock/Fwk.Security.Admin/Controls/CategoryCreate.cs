@@ -20,7 +20,7 @@ namespace Fwk.Security.Admin.Controls
         FwkCategory _ParentFwkCategory;
         
         private IAuthorizationProvider ruleProvider;
-        public override string AssemblyConditionControl
+        public override string AssemblySecurityControl
         {
             get
             {
@@ -43,16 +43,27 @@ namespace Fwk.Security.Admin.Controls
         public CategoryCreate()
         {
             InitializeComponent();
+            treeList1.Enabled = chkParentCategory.Checked;
         }
 
        
 
         private void btnCreateNewRol_Click(object sender, EventArgs e)
         {
+
+
+            if (string.IsNullOrEmpty(txtRuleName.Text))
+            {
+                MessageViewInfo.Show("Category name must not be empty");
+                txtRuleName.Focus();
+            }
             FwkCategory wFwkCategory = new FwkCategory();
 
             wFwkCategory.Name = txtRuleName.Text.Trim();
-            wFwkCategory.ParentId = _ParentFwkCategory.CategoryId;
+            if (chkParentCategory.Checked)
+                wFwkCategory.ParentId = _ParentFwkCategory.CategoryId;
+            else
+                wFwkCategory.ParentId = 0;
             wFwkCategory.FwkRulesInCategoryList = new List<FwkRulesInCategory>();
             FwkRulesInCategory wFwkRulesInCategory = null;
        
@@ -64,8 +75,15 @@ namespace Fwk.Security.Admin.Controls
 
                 wFwkCategory.FwkRulesInCategoryList.Add(wFwkRulesInCategory);
             }
-              
-            FwkMembership.CreateCategory(wFwkCategory,Membership.ApplicationName);
+
+            try
+            {
+                FwkMembership.CreateCategory(wFwkCategory, Membership.ApplicationName);
+                MessageViewInfo.Show("Category was successfully created");
+                PopulateAsync();
+            }
+            catch(Exception ex)
+            { throw ex; }
                
         }
      
@@ -79,7 +97,7 @@ namespace Fwk.Security.Admin.Controls
         private void CategoryCreate_Load(object sender, EventArgs e)
         {
             this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
-            PopulateAsync();
+ 
         }
         public delegate void DelegateWithOutAndRefParameters(out Exception ex);
         /// <summary>
@@ -147,6 +165,11 @@ namespace Fwk.Security.Admin.Controls
 
 
 
+        }
+
+        private void chkParentCategory_CheckedChanged(object sender, EventArgs e)
+        {
+            treeList1.Enabled = chkParentCategory.Checked;
         }
        
     }

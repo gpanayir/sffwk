@@ -39,6 +39,7 @@
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.colName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.fwkCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.chkParentCategory = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.lstBoxRules)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fwkAuthorizationRuleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
@@ -54,7 +55,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(138, 16);
             this.label11.TabIndex = 19;
-            this.label11.Text = "Entercategory name";
+            this.label11.Text = "Enter category name";
             // 
             // txtRuleName
             // 
@@ -83,7 +84,7 @@
             this.lblRolesByUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRolesByUser.Image = global::Fwk.Security.Admin.Properties.Resources.Users;
             this.lblRolesByUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblRolesByUser.Location = new System.Drawing.Point(29, 87);
+            this.lblRolesByUser.Location = new System.Drawing.Point(431, 84);
             this.lblRolesByUser.Name = "lblRolesByUser";
             this.lblRolesByUser.Size = new System.Drawing.Size(126, 15);
             this.lblRolesByUser.TabIndex = 25;
@@ -103,6 +104,7 @@
             this.lstBoxRules.DisplayMember = "Name";
             this.lstBoxRules.Location = new System.Drawing.Point(424, 114);
             this.lstBoxRules.Name = "lstBoxRules";
+            this.lstBoxRules.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lstBoxRules.Size = new System.Drawing.Size(286, 251);
             this.lstBoxRules.TabIndex = 24;
             this.lstBoxRules.ValueMember = "Name";
@@ -123,6 +125,8 @@
             // 
             // treeList1
             // 
+            this.treeList1.Appearance.FocusedCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.treeList1.Appearance.FocusedCell.Options.UseFont = true;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colName});
             this.treeList1.DataSource = this.fwkCategoryBindingSource;
@@ -130,6 +134,10 @@
             this.treeList1.KeyFieldName = "CategoryId";
             this.treeList1.Location = new System.Drawing.Point(18, 114);
             this.treeList1.Name = "treeList1";
+            this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
+            this.treeList1.OptionsView.ShowCheckBoxes = true;
+            this.treeList1.OptionsView.ShowHorzLines = false;
+            this.treeList1.OptionsView.ShowVertLines = false;
             this.treeList1.ParentFieldName = "ParentId";
             this.treeList1.Size = new System.Drawing.Size(400, 251);
             this.treeList1.TabIndex = 26;
@@ -140,6 +148,8 @@
             this.colName.Caption = "Name";
             this.colName.FieldName = "Name";
             this.colName.Name = "colName";
+            this.colName.OptionsColumn.AllowEdit = false;
+            this.colName.OptionsColumn.ReadOnly = true;
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
             this.colName.Width = 126;
@@ -148,10 +158,23 @@
             // 
             this.fwkCategoryBindingSource.DataSource = typeof(Fwk.Security.FwkCategory);
             // 
+            // chkParentCategory
+            // 
+            this.chkParentCategory.AutoSize = true;
+            this.chkParentCategory.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.chkParentCategory.Location = new System.Drawing.Point(20, 91);
+            this.chkParentCategory.Name = "chkParentCategory";
+            this.chkParentCategory.Size = new System.Drawing.Size(156, 17);
+            this.chkParentCategory.TabIndex = 28;
+            this.chkParentCategory.Text = "Select parent category";
+            this.chkParentCategory.UseVisualStyleBackColor = true;
+            this.chkParentCategory.CheckedChanged += new System.EventHandler(this.chkParentCategory_CheckedChanged);
+            // 
             // CategoryCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkParentCategory);
             this.Controls.Add(this.treeList1);
             this.Controls.Add(this.lblRolesByUser);
             this.Controls.Add(this.lstBoxRules);
@@ -183,5 +206,6 @@
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colName;
         private System.Windows.Forms.BindingSource fwkCategoryBindingSource;
+        private System.Windows.Forms.CheckBox chkParentCategory;
     }
 }

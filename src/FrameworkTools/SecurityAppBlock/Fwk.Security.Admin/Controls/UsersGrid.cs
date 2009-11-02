@@ -53,7 +53,11 @@ namespace Fwk.Security.Admin
         private void textEdit1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != (char)Keys.Enter) return;
-            if (string.IsNullOrEmpty(textEdit1.Text)) return;
+            if (string.IsNullOrEmpty(textEdit1.Text))
+            {
+                grdUsers.DataSource = userList;
+                grdUsers.Refresh();
+            }
             string strFind = textEdit1.Text.ToUpper();
             var list = from u in userList
                        where
@@ -61,7 +65,8 @@ namespace Fwk.Security.Admin
                         u.Email.ToUpper().Contains(strFind)
                        select u;
 
-            userByAppBindingSource.DataSource = list.ToList<User>();
+            grdUsers.DataSource = list.ToList<User>();
+            grdUsers.Refresh();
         }
     }
 }

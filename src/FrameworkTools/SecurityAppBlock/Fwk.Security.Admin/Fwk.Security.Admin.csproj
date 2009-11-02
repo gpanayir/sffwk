@@ -278,6 +278,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="group_16.ico" />
+    <None Include="Resources\map_32.png" />
+    <None Include="Resources\map_16.png" />
+    <None Include="Resources\map.png" />
+    <None Include="Resources\admin_24.png" />
+    <None Include="Resources\admin_16.png" />
+    <None Include="Resources\application_list_add_32.png" />
+    <None Include="Resources\application_list_ok_32.png" />
+    <None Include="Resources\access_control_ok_32.png" />
     <None Include="Properties\DataSources\Fwk.Security.FwkCategory.datasource" />
     <None Include="Resources\roles_32.png" />
     <None Include="Resources\file_add_32.png" />

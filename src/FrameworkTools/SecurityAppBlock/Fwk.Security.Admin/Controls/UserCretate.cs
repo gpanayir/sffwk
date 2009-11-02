@@ -22,7 +22,7 @@ namespace Fwk.Security.Admin.Controls
         /// <summary>
         /// Representa la informacion del tipo de control a instanciar 
         /// </summary>
-        public override string AssemblyConditionControl
+        public override string AssemblySecurityControl
         {
             get
             {

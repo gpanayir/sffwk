@@ -16,7 +16,7 @@ namespace Fwk.Security.Admin.Controls
     public partial class CreateRoles : SecurityControlBase
     {
 
-        public override string AssemblyConditionControl
+        public override string AssemblySecurityControl
         {
             get
             {

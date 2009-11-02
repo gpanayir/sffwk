@@ -17,7 +17,7 @@ namespace Fwk.Security.Admin.Controls
     public partial class UserAdmin : SecurityControlBase
     {  
 
-        public override string AssemblyConditionControl
+        public override string AssemblySecurityControl
         {
             get
             {
@@ -73,7 +73,19 @@ namespace Fwk.Security.Admin.Controls
                 return;
             }
             String wUserName = usersGrid1.CurrentUser.UserName;
-            FwkMembership.DeleteUser(wUserName);
+            
+
+
+            try
+            {
+                FwkMembership.DeleteUser(wUserName);
+                MessageViewInfo.Show("User was successfully removed");
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+
 
             lblRolesByUser.Text = string.Empty;
             txtEmail.Text = String.Empty;
@@ -99,8 +111,15 @@ namespace Fwk.Security.Admin.Controls
             wpdatedUser.AnswerPassword = txtAnsw.Text;
             wpdatedUser.QuestionPassword = txtQuest.Text;
 
-            FwkMembership.UpdateUser(wpdatedUser,wUser.UserName);
-
+            try
+            {
+                FwkMembership.UpdateUser(wpdatedUser, wUser.UserName);
+                MessageViewInfo.Show("User was successfully updated");
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
 
         }
 

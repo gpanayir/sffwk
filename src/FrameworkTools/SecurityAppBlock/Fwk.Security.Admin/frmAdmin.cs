@@ -36,14 +36,17 @@ namespace Fwk.Security.Admin
             MembershipUser user = Membership.GetUser();
         }
 
-       
 
-   
 
-    
+
+
+        SecurityControlBase currontSecurityControlBase;
         private void navBarControl1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            ControlsFactory.Show(e.Link, this.panelControl1);
+           currontSecurityControlBase =  ControlsFactory.Show(e.Link, this.panelControl1);
+            //Esto se hace de esta manera ya que el tree listo no se carga correctamente la  primera vez que se levanta el control
+           if (currontSecurityControlBase.GetType() == typeof(CategoryCreate))
+               ((CategoryCreate)currontSecurityControlBase).PopulateAsync();
         }
        
 

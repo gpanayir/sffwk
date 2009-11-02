@@ -52,12 +52,14 @@ namespace Fwk.Security.Admin.Controls
 
 
 
-        internal static void Show(NavBarItemLink pItem,Control pContainer)
+        internal static SecurityControlBase Show(NavBarItemLink pItem, Control pContainer)
         {
             SecurityControlBase wSecurityControl  = Get(pItem);
             
             AddtoPanel(wSecurityControl, pContainer);
             wSecurityControl.Initialize();
+
+            return wSecurityControl;
         }
 
 

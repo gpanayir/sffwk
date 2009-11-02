@@ -38,7 +38,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtRuleName = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.fwkMessageViewInfo = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -133,16 +132,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // fwkMessageViewInfo
-            // 
-            this.fwkMessageViewInfo.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.fwkMessageViewInfo.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
-            this.fwkMessageViewInfo.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
-            this.fwkMessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
-            this.fwkMessageViewInfo.TextMessageColor = System.Drawing.Color.White;
-            this.fwkMessageViewInfo.TextMessageForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.fwkMessageViewInfo.Title = "Security admin";
             // 
             // tabPage3
             // 
@@ -388,7 +377,6 @@
         private DevExpress.XtraEditors.SimpleButton btnCreateRule;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox txtRuleExpression;
-        private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewInfo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage2;

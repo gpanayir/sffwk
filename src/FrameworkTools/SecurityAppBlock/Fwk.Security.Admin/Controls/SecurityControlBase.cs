@@ -11,7 +11,7 @@ namespace Fwk.Security.Admin.Controls
 {
     public partial class SecurityControlBase : DevExpress.XtraEditors.XtraUserControl
     {
-        public virtual String AssemblyConditionControl
+        public virtual String AssemblySecurityControl
         {
             get { return (string.Empty); }
         }

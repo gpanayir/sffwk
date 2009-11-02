@@ -20,7 +20,7 @@ namespace Fwk.Security.Admin.Controls
         /// Representa la informacion del tipo de control a instanciar 
         /// 
         /// </summary>
-        public override string AssemblyConditionControl
+        public override string AssemblySecurityControl
         {
             get
             {
@@ -148,7 +148,7 @@ namespace Fwk.Security.Admin.Controls
             }
             if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), Membership.ApplicationName))
             {
-                fwkMessageViewInfo.Show(String.Format("The rule {0} exist", txtRuleName.Text));
+                MessageViewInfo.Show(String.Format("The rule {0} exist", txtRuleName.Text));
                 txtRuleName.Focus();
                 return;
             }
@@ -159,12 +159,12 @@ namespace Fwk.Security.Admin.Controls
                 wFwkAuthorizationRule.Name = txtRuleName.Text;
                 wFwkAuthorizationRule.Expression = txtRuleExpression.Text;
                 FwkMembership.CreateRules(wFwkAuthorizationRule, Membership.ApplicationName);
-                fwkMessageViewInfo.Show(String.Format(Properties.Resources.RuleCreatedMessage, txtRuleName.Text));
+                MessageViewInfo.Show(String.Format(Properties.Resources.RuleCreatedMessage, txtRuleName.Text));
                 NewSecurityInfoCreatedHandler();
             }
             catch (Exception ex)
             {
-                fwkMessageViewInfo.Show(ex);
+                MessageViewInfo.Show(ex);
             }
 
         }
