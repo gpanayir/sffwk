@@ -388,6 +388,7 @@ namespace Fwk.Security
 
         }
 
+
         /// <summary>
         /// Quita a un usuario de un rol
         /// </summary>
@@ -673,6 +674,34 @@ namespace Fwk.Security
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Asigna usuarios a un determinado rol 
+        /// </summary>
+        /// <param name="pRolName">Nombre del rol</param>
+        /// <param name="pUserList">Lista usuarios</param>
+        public static void CreateUsersToRole(string pRolName, List<User> pUserList)
+        {
+
+            try
+            {
+                foreach (User wUser in pUserList)
+                {
+                    if (!Roles.IsUserInRole(wUser.UserName, pRolName))
+                    {
+                        Roles.AddUserToRoles(wUser.UserName, new string[] { pRolName });
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //FwkMessageView.Show(ex, "CreateRole", System.Windows.Forms.MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
+                throw ex;
+            }
+
+        }
+
         #endregion
 
         #region [Rules]

@@ -161,8 +161,7 @@ namespace Fwk.Security
                     rule.CategoryId = pFwkCategory.CategoryId;
 
                     str.Append(FwkMembershipScripts.RuleInCategory_i);
-                    
-                    //str.Replace("[CategoryId]", rule.CategoryId.ToString());
+
                     str.Replace("[RuleName]", rule.RuleName);
                 }
                 str.Replace("[CategoryId]", pFwkCategory.CategoryId.ToString());
