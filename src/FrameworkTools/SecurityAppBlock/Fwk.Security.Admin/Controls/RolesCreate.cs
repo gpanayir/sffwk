@@ -13,14 +13,14 @@ using Fwk.Bases.FrontEnd.Controls;
 namespace Fwk.Security.Admin.Controls
 {
     [DefaultEvent("NewSecurityInfoCreated")]
-    public partial class CreateRoles : SecurityControlBase
+    public partial class RolesCreate : SecurityControlBase
     {
 
         public override string AssemblySecurityControl
         {
             get
             {
-                return typeof(CreateRoles).AssemblyQualifiedName;
+                return typeof(RolesCreate).AssemblyQualifiedName;
             }
         }
         public event NewSecurityInfoCreatedHandler NewSecurityInfoCreated;
@@ -29,7 +29,7 @@ namespace Fwk.Security.Admin.Controls
             if (NewSecurityInfoCreated != null)
                 NewSecurityInfoCreated(this);
         }
-        public CreateRoles()
+        public RolesCreate()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 try
                 {
-                    FwkMembership.CreateRole(txtRolName.Text);
+                    FwkMembership.CreateRole(txtRolName.Text,txtDescription.Text);
 
                     fwkMessageViewInfo.Show(string.Format(Properties.Resources.RolCreatedMessage, txtRolName.Text));
                     Initialize();

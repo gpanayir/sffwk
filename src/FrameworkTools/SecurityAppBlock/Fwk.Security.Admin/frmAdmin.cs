@@ -15,7 +15,7 @@ using Fwk.Bases.FrontEnd.Controls;
 using Fwk.Security;
 using Fwk.Security.Admin.Controls;
 
-namespace Fwk.Security.Admin
+namespace Fwk.Security.Admin 
 {
     public partial class frmAdmin : XtraForm
     {

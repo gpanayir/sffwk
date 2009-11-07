@@ -1,6 +1,6 @@
 ﻿namespace Fwk.Security.Admin.Controls
 {
-    partial class CreateRoles
+    partial class RolesCreate
     {
         /// <summary> 
         /// Required designer variable.
@@ -43,6 +43,8 @@
             this.rolListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblusers = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtDescription = new DevExpress.XtraEditors.MemoExEdit();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -51,12 +53,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolListBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl2
             // 
             this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl2.Controls.Add(this.label2);
+            this.groupControl2.Controls.Add(this.txtDescription);
             this.groupControl2.Controls.Add(this.label13);
             this.groupControl2.Controls.Add(this.txtRolName);
             this.groupControl2.Controls.Add(this.btnCreateNewRol);
@@ -92,7 +97,7 @@
             this.btnCreateNewRol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateNewRol.Image = global::Fwk.Security.Admin.Properties.Resources.save_16;
             this.btnCreateNewRol.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreateNewRol.Location = new System.Drawing.Point(194, 40);
+            this.btnCreateNewRol.Location = new System.Drawing.Point(504, 39);
             this.btnCreateNewRol.Name = "btnCreateNewRol";
             this.btnCreateNewRol.Size = new System.Drawing.Size(81, 26);
             this.btnCreateNewRol.TabIndex = 5;
@@ -192,7 +197,25 @@
             this.label1.Text = "Roles";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // CreateRoles
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(202, 43);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtDescription.Size = new System.Drawing.Size(204, 20);
+            this.txtDescription.TabIndex = 16;
+            // 
+            // label2
+            // 
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(203, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 16);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Description";
+            // 
+            // RolesCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -201,7 +224,7 @@
             this.Controls.Add(this.grdUsers);
             this.Controls.Add(this.grdRoles);
             this.Controls.Add(this.groupControl2);
-            this.Name = "CreateRoles";
+            this.Name = "RolesCreate";
             this.Size = new System.Drawing.Size(644, 490);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
@@ -211,6 +234,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolListBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -231,5 +255,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.MemoExEdit txtDescription;
     }
 }

@@ -164,7 +164,7 @@ namespace Fwk.Security.Admin
             this.navBarItem_RoleCreate.LargeImage = global::Fwk.Security.Admin.Properties.Resources.file_new_32;
             this.navBarItem_RoleCreate.Name = "navBarItem_RoleCreate";
             this.navBarItem_RoleCreate.SmallImage = global::Fwk.Security.Admin.Properties.Resources.file_add_16;
-            this.navBarItem_RoleCreate.Tag = "Fwk.Security.Admin.Controls.CreateRoles,Fwk.Security.Admin";
+            this.navBarItem_RoleCreate.Tag = "Fwk.Security.Admin.Controls.RolesCreate,Fwk.Security.Admin";
             // 
             // navBarGroup_Rules
             // 
