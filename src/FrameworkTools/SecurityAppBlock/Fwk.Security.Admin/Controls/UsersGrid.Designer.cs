@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             this.label9 = new System.Windows.Forms.Label();
             this.grdUsers = new System.Windows.Forms.DataGridView();
-            this.userByAppBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.appNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastActivityDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isLockedOutDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isApprovedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.userByAppBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userByAppBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -77,19 +77,8 @@
             this.grdUsers.Name = "grdUsers";
             this.grdUsers.Size = new System.Drawing.Size(608, 382);
             this.grdUsers.TabIndex = 17;
+            this.grdUsers.MultiSelectChanged += new System.EventHandler(this.grdUsers_MultiSelectChanged);
             this.grdUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUsers_CellClick);
-            // 
-            // userByAppBindingSource
-            // 
-            this.userByAppBindingSource.DataSource = typeof(Fwk.Security.Common.User);
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(6, 34);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(320, 20);
-            this.textEdit1.TabIndex = 19;
-            this.textEdit1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textEdit1_KeyPress);
             // 
             // userNameDataGridViewTextBoxColumn
             // 
@@ -127,6 +116,18 @@
             this.isApprovedDataGridViewCheckBoxColumn.DataPropertyName = "IsApproved";
             this.isApprovedDataGridViewCheckBoxColumn.HeaderText = "IsApproved";
             this.isApprovedDataGridViewCheckBoxColumn.Name = "isApprovedDataGridViewCheckBoxColumn";
+            // 
+            // userByAppBindingSource
+            // 
+            this.userByAppBindingSource.DataSource = typeof(Fwk.Security.Common.User);
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Location = new System.Drawing.Point(6, 34);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Size = new System.Drawing.Size(320, 20);
+            this.textEdit1.TabIndex = 19;
+            this.textEdit1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textEdit1_KeyPress);
             // 
             // UsersGrid
             // 

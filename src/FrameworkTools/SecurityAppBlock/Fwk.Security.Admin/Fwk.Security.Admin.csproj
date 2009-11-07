@@ -117,6 +117,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\frmUserFind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\frmUserFind.Designer.cs">
+      <DependentUpon>frmUserFind.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RuleObjetoSource.cs" />
     <Compile Include="Controls\CategoryCreate.cs">
       <SubType>UserControl</SubType>
@@ -189,6 +195,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\CategoryCreate.resx">
       <DependentUpon>CategoryCreate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\frmUserFind.resx">
+      <DependentUpon>frmUserFind.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\RulesInCategory.resx">

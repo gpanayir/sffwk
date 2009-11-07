@@ -16,6 +16,19 @@ namespace Fwk.Security.Admin
         public User CurrentUser;
         public event UserChangeHandler OnUserChange;
         List<User> userList;
+
+        List<User> selectedUserList = new List<User> ();
+        [Browsable(false)]
+        public List<User> SelectedUserList
+        {
+            get
+            {
+                GetSelecteds();
+                return selectedUserList;
+            }
+
+        }
+
         public UsersGrid()
         {
             InitializeComponent();
@@ -34,21 +47,20 @@ namespace Fwk.Security.Admin
             {
                 OnUserChange(CurrentUser, FwkMembership.GetRolesForUser(CurrentUser.UserName));
             }
-          
-         
 
+
+            
         }
 
         public void Initialize()
         {
 
-            
             userList = FwkMembership.GetAllUsers();
             grdUsers.DataSource = userList;
             grdUsers.Refresh();
         }
 
-        
+
 
         private void textEdit1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -67,6 +79,21 @@ namespace Fwk.Security.Admin
 
             grdUsers.DataSource = list.ToList<User>();
             grdUsers.Refresh();
+        }
+
+        public void GetSelecteds()
+        {
+            selectedUserList.Clear();
+            foreach (DataGridViewRow row in grdUsers.SelectedRows)
+            {
+                selectedUserList.Add(((User)row.DataBoundItem));
+            }
+            
+        }
+
+        private void grdUsers_MultiSelectChanged(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection ss = grdUsers.SelectedRows;
         }
     }
 }

@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtDescription = new DevExpress.XtraEditors.MemoExEdit();
             this.label13 = new System.Windows.Forms.Label();
             this.txtRolName = new DevExpress.XtraEditors.TextEdit();
             this.btnCreateNewRol = new System.Windows.Forms.Button();
@@ -43,17 +45,16 @@
             this.rolListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblusers = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtDescription = new DevExpress.XtraEditors.MemoExEdit();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnFindUsers = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRolName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolListBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl2
@@ -70,6 +71,24 @@
             this.groupControl2.Size = new System.Drawing.Size(633, 84);
             this.groupControl2.TabIndex = 19;
             this.groupControl2.Text = "Rol properties";
+            // 
+            // label2
+            // 
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(203, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 16);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Description";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(202, 43);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtDescription.Size = new System.Drawing.Size(204, 20);
+            this.txtDescription.TabIndex = 16;
             // 
             // label13
             // 
@@ -197,28 +216,26 @@
             this.label1.Text = "Roles";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtDescription
+            // btnFindUsers
             // 
-            this.txtDescription.Location = new System.Drawing.Point(202, 43);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtDescription.Size = new System.Drawing.Size(204, 20);
-            this.txtDescription.TabIndex = 16;
-            // 
-            // label2
-            // 
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(203, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 16);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Description";
+            this.btnFindUsers.BackColor = System.Drawing.Color.White;
+            this.btnFindUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFindUsers.Image = global::Fwk.Security.Admin.Properties.Resources.file_find_16;
+            this.btnFindUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFindUsers.Location = new System.Drawing.Point(472, 95);
+            this.btnFindUsers.Name = "btnFindUsers";
+            this.btnFindUsers.Size = new System.Drawing.Size(56, 20);
+            this.btnFindUsers.TabIndex = 26;
+            this.btnFindUsers.Text = "...";
+            this.btnFindUsers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFindUsers.UseVisualStyleBackColor = false;
+            this.btnFindUsers.Click += new System.EventHandler(this.btnFindUsers_Click);
             // 
             // RolesCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnFindUsers);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblusers);
             this.Controls.Add(this.grdUsers);
@@ -229,12 +246,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRolName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolListBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -257,5 +274,6 @@
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.MemoExEdit txtDescription;
+        private System.Windows.Forms.Button btnFindUsers;
     }
 }

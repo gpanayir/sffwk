@@ -15,7 +15,7 @@ namespace Fwk.Security.Admin.Controls
     [DefaultEvent("NewSecurityInfoCreated")]
     public partial class RolesCreate : SecurityControlBase
     {
-
+        Rol selectedRol;
         public override string AssemblySecurityControl
         {
             get
@@ -64,10 +64,10 @@ namespace Fwk.Security.Admin.Controls
         private void grdRoles2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (grdRoles.CurrentRow == null) return;
-            
+            selectedRol = (Rol)grdRoles.CurrentRow.DataBoundItem;
             using (new WaitCursorHelper(this))
             {
-                grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(((Rol)grdRoles.CurrentRow.DataBoundItem).RolName);
+                grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName);
                 grdUsers.Refresh();
             }
         }
@@ -81,6 +81,21 @@ namespace Fwk.Security.Admin.Controls
             else
             {
                 errorProvider1.SetError(txtRolName, string.Empty);
+            }
+        }
+
+        private void btnFindUsers_Click(object sender, EventArgs e)
+        {
+            using (frmUserFind frm = new frmUserFind())
+            {
+                
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+
+                    FwkMembership.CreateUsersToRole(selectedRol.RolName, frm.SelectedUserList);
+                    grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName);
+                    grdUsers.Refresh();
+                }
             }
         }
     }
