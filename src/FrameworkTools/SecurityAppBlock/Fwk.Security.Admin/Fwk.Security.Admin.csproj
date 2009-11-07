@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{27D62BF8-5321-428B-93CE-98CFB8F6223E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -49,6 +49,10 @@
   <ItemGroup>
     <Reference Include="DevExpress.Data.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
     <Reference Include="DevExpress.Utils.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraBars.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraBars.v9.1.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.XtraEditors.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
     <Reference Include="DevExpress.XtraGrid.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -94,7 +98,11 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -109,11 +117,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\RuleObjetoSource.cs" />
     <Compile Include="Controls\CategoryCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\CategoryCreate.Designer.cs">
       <DependentUpon>CategoryCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RulesInCategory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RulesInCategory.Designer.cs">
+      <DependentUpon>RulesInCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserAssingRoles.cs">
       <SubType>UserControl</SubType>
@@ -174,43 +189,36 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\CategoryCreate.resx">
       <DependentUpon>CategoryCreate.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RulesInCategory.resx">
+      <DependentUpon>RulesInCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserAssingRoles.resx">
       <DependentUpon>UserAssingRoles.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\AssingRulesControl.resx">
       <DependentUpon>AssingRulesControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CheckRulesControl.resx">
       <DependentUpon>CheckRulesControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CreateRoles.resx">
       <DependentUpon>CreateRoles.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SecurityControlBase.resx">
       <DependentUpon>SecurityControlBase.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserCretate.resx">
       <DependentUpon>UserCretate.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserAdmin.resx">
       <DependentUpon>UserAdmin.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -220,7 +228,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UsersGrid.resx">
       <DependentUpon>UsersGrid.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -278,13 +285,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="group_16.ico" />
+    <None Include="Properties\DataSources\Fwk.Security.aspnet_RulesInCategory.datasource" />
+    <None Include="Resources\application_list_add_32.png" />
+    <None Include="Resources\admin_24.png" />
+    <None Include="Resources\admin_32.png" />
+    <None Include="Resources\admin_16.png" />
     <None Include="Resources\map_32.png" />
     <None Include="Resources\map_16.png" />
-    <None Include="Resources\map.png" />
-    <None Include="Resources\admin_24.png" />
-    <None Include="Resources\admin_16.png" />
-    <None Include="Resources\application_list_add_32.png" />
-    <None Include="Resources\application_list_ok_32.png" />
     <None Include="Resources\access_control_ok_32.png" />
     <None Include="Properties\DataSources\Fwk.Security.FwkCategory.datasource" />
     <None Include="Resources\roles_32.png" />

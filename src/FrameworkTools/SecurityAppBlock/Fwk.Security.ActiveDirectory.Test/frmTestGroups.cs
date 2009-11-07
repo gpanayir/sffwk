@@ -16,9 +16,9 @@ namespace Fwk.Security.ActiveDirectory.Test
 {
     public partial class frmTestGroups : Form
     {
-        String[] _SelectedGroups;
-        ObjectDomainGroup _CurrentObjectDomainGroup;
-        FwkIdentity _FwkIdentityCurrent;
+        //String[] _SelectedGroups;
+    
+        //FwkIdentity _FwkIdentityCurrent;
 
         public frmTestGroups()
         {

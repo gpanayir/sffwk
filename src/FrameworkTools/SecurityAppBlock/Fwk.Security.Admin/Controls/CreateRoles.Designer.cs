@@ -43,6 +43,7 @@
             this.rolListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblusers = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRolName.Properties)).BeginInit();
@@ -83,6 +84,7 @@
             this.txtRolName.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
             this.txtRolName.Size = new System.Drawing.Size(153, 22);
             this.txtRolName.TabIndex = 6;
+            this.txtRolName.Validating += new System.ComponentModel.CancelEventHandler(this.txtRolName_Validating);
             // 
             // btnCreateNewRol
             // 
@@ -201,6 +203,7 @@
             this.Controls.Add(this.groupControl2);
             this.Name = "CreateRoles";
             this.Size = new System.Drawing.Size(644, 490);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtRolName.Properties)).EndInit();

@@ -45,20 +45,20 @@
             this.authorizationResultsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.authorizationResultsTextBox.Location = new System.Drawing.Point(0, 176);
+            this.authorizationResultsTextBox.Location = new System.Drawing.Point(0, 116);
             this.authorizationResultsTextBox.Multiline = true;
             this.authorizationResultsTextBox.Name = "authorizationResultsTextBox";
             this.authorizationResultsTextBox.ReadOnly = true;
             this.authorizationResultsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.authorizationResultsTextBox.Size = new System.Drawing.Size(596, 251);
+            this.authorizationResultsTextBox.Size = new System.Drawing.Size(596, 310);
             this.authorizationResultsTextBox.TabIndex = 39;
             this.authorizationResultsTextBox.TabStop = false;
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(28, 83);
+            this.label7.Location = new System.Drawing.Point(18, 71);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(141, 74);
+            this.label7.Size = new System.Drawing.Size(167, 53);
             this.label7.TabIndex = 38;
             this.label7.Text = "Determine if user is authorized to perform a task";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -69,7 +69,7 @@
             this.authorizeUsingIdentityRoleRulesButton.Image = global::Fwk.Security.Admin.Properties.Resources.Button_ok;
             this.authorizeUsingIdentityRoleRulesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.authorizeUsingIdentityRoleRulesButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.authorizeUsingIdentityRoleRulesButton.Location = new System.Drawing.Point(196, 107);
+            this.authorizeUsingIdentityRoleRulesButton.Location = new System.Drawing.Point(204, 84);
             this.authorizeUsingIdentityRoleRulesButton.Name = "authorizeUsingIdentityRoleRulesButton";
             this.authorizeUsingIdentityRoleRulesButton.Size = new System.Drawing.Size(79, 26);
             this.authorizeUsingIdentityRoleRulesButton.TabIndex = 37;
@@ -81,9 +81,8 @@
             // 
             this.identityTextBox.Location = new System.Drawing.Point(17, 35);
             this.identityTextBox.Name = "identityTextBox";
-            this.identityTextBox.Size = new System.Drawing.Size(168, 20);
+            this.identityTextBox.Size = new System.Drawing.Size(168, 21);
             this.identityTextBox.TabIndex = 36;
-            this.identityTextBox.Text = "moviedo";
             // 
             // label5
             // 
@@ -138,7 +137,7 @@
             this.fwkMessageViewInfo.TextMessageForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.fwkMessageViewInfo.Title = "Security admin";
             // 
-            // CreateRulesControl
+            // CheckRulesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -150,7 +149,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.rulesComboBox);
-            this.Name = "CreateRulesControl";
+            this.Name = "CheckRulesControl";
             this.Size = new System.Drawing.Size(601, 450);
             this.ResumeLayout(false);
             this.PerformLayout();

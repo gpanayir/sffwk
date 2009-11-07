@@ -32,17 +32,6 @@ namespace Fwk.Security.Admin
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdmin));
             this.button1 = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPageUsers = new System.Windows.Forms.TabPage();
-            this.userAdmminControl1 = new Fwk.Security.Admin.Controls.UserAdmin();
-            this.tabPageRoles = new System.Windows.Forms.TabPage();
-            this.rolesAdmin1 = new Fwk.Security.Admin.Controls.CreateRoles();
-            this.tabPageAsingRol = new System.Windows.Forms.TabPage();
-            this.assingRoles1 = new Fwk.Security.Admin.Controls.UserAssingRoles();
-            this.tabPage_Rules = new System.Windows.Forms.TabPage();
-            this.createRulesControl1 = new Fwk.Security.Admin.Controls.CheckRulesControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.assingRulesControl1 = new Fwk.Security.Admin.Controls.AssingRulesControl();
             this.lbltitle = new System.Windows.Forms.Label();
             this.fwkMessageViewInfo = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -54,17 +43,11 @@ namespace Fwk.Security.Admin
             this.navBarItem_RoleCreate = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup_Rules = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem_CreateRule = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem_CategoryCreate = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_Check = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem_CategoryCreate = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_CreateUser = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_AddRoles = new DevExpress.XtraNavBar.NavBarItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.tabControl1.SuspendLayout();
-            this.tabPageUsers.SuspendLayout();
-            this.tabPageRoles.SuspendLayout();
-            this.tabPageAsingRol.SuspendLayout();
-            this.tabPage_Rules.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.SuspendLayout();
@@ -78,119 +61,6 @@ namespace Fwk.Security.Admin
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPageUsers);
-            this.tabControl1.Controls.Add(this.tabPageRoles);
-            this.tabControl1.Controls.Add(this.tabPageAsingRol);
-            this.tabControl1.Controls.Add(this.tabPage_Rules);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(387, 76);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(456, 564);
-            this.tabControl1.TabIndex = 3;
-            // 
-            // tabPageUsers
-            // 
-            this.tabPageUsers.Controls.Add(this.userAdmminControl1);
-            this.tabPageUsers.Location = new System.Drawing.Point(4, 22);
-            this.tabPageUsers.Name = "tabPageUsers";
-            this.tabPageUsers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUsers.Size = new System.Drawing.Size(448, 538);
-            this.tabPageUsers.TabIndex = 0;
-            this.tabPageUsers.Text = "Users";
-            this.tabPageUsers.UseVisualStyleBackColor = true;
-            // 
-            // userAdmminControl1
-            // 
-            this.userAdmminControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userAdmminControl1.Location = new System.Drawing.Point(3, 3);
-            this.userAdmminControl1.Name = "userAdmminControl1";
-            this.userAdmminControl1.Size = new System.Drawing.Size(442, 532);
-            this.userAdmminControl1.TabIndex = 0;
-            // 
-            // tabPageRoles
-            // 
-            this.tabPageRoles.Controls.Add(this.rolesAdmin1);
-            this.tabPageRoles.Location = new System.Drawing.Point(4, 22);
-            this.tabPageRoles.Name = "tabPageRoles";
-            this.tabPageRoles.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageRoles.Size = new System.Drawing.Size(448, 538);
-            this.tabPageRoles.TabIndex = 1;
-            this.tabPageRoles.Text = "Roles";
-            this.tabPageRoles.UseVisualStyleBackColor = true;
-            // 
-            // rolesAdmin1
-            // 
-            this.rolesAdmin1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rolesAdmin1.Location = new System.Drawing.Point(3, 3);
-            this.rolesAdmin1.Name = "rolesAdmin1";
-            this.rolesAdmin1.Size = new System.Drawing.Size(442, 532);
-            this.rolesAdmin1.TabIndex = 0;
-            // 
-            // tabPageAsingRol
-            // 
-            this.tabPageAsingRol.Controls.Add(this.assingRoles1);
-            this.tabPageAsingRol.Location = new System.Drawing.Point(4, 22);
-            this.tabPageAsingRol.Name = "tabPageAsingRol";
-            this.tabPageAsingRol.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAsingRol.Size = new System.Drawing.Size(448, 538);
-            this.tabPageAsingRol.TabIndex = 2;
-            this.tabPageAsingRol.Text = "Assing roles";
-            this.tabPageAsingRol.UseVisualStyleBackColor = true;
-            // 
-            // assingRoles1
-            // 
-            this.assingRoles1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.assingRoles1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.assingRoles1.Location = new System.Drawing.Point(3, 3);
-            this.assingRoles1.Name = "assingRoles1";
-            this.assingRoles1.Size = new System.Drawing.Size(442, 532);
-            this.assingRoles1.TabIndex = 0;
-            // 
-            // tabPage_Rules
-            // 
-            this.tabPage_Rules.Controls.Add(this.createRulesControl1);
-            this.tabPage_Rules.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Rules.Name = "tabPage_Rules";
-            this.tabPage_Rules.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Rules.Size = new System.Drawing.Size(448, 538);
-            this.tabPage_Rules.TabIndex = 3;
-            this.tabPage_Rules.Text = "Check rules";
-            this.tabPage_Rules.UseVisualStyleBackColor = true;
-            // 
-            // createRulesControl1
-            // 
-            this.createRulesControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.createRulesControl1.Location = new System.Drawing.Point(3, 3);
-            this.createRulesControl1.Name = "createRulesControl1";
-            this.createRulesControl1.Size = new System.Drawing.Size(442, 532);
-            this.createRulesControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.assingRulesControl1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(448, 538);
-            this.tabPage1.TabIndex = 4;
-            this.tabPage1.Text = "Rules designer";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // assingRulesControl1
-            // 
-            this.assingRulesControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.assingRulesControl1.Location = new System.Drawing.Point(3, 3);
-            this.assingRulesControl1.Name = "assingRulesControl1";
-            this.assingRulesControl1.Size = new System.Drawing.Size(442, 532);
-            this.assingRulesControl1.TabIndex = 0;
-            // 
             // lbltitle
             // 
             this.lbltitle.BackColor = System.Drawing.Color.White;
@@ -199,7 +69,7 @@ namespace Fwk.Security.Admin
             this.lbltitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbltitle.Location = new System.Drawing.Point(0, 0);
             this.lbltitle.Name = "lbltitle";
-            this.lbltitle.Size = new System.Drawing.Size(855, 69);
+            this.lbltitle.Size = new System.Drawing.Size(985, 69);
             this.lbltitle.TabIndex = 2;
             this.lbltitle.Text = "Security admin";
             this.lbltitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -316,6 +186,13 @@ namespace Fwk.Security.Admin
             this.navBarItem_CreateRule.Name = "navBarItem_CreateRule";
             this.navBarItem_CreateRule.Tag = "Fwk.Security.Admin.Controls.AssingRulesControl, Fwk.Security.Admin";
             // 
+            // navBarItem_Check
+            // 
+            this.navBarItem_Check.Caption = "Check rule";
+            this.navBarItem_Check.LargeImage = global::Fwk.Security.Admin.Properties.Resources.access_control_ok_32;
+            this.navBarItem_Check.Name = "navBarItem_Check";
+            this.navBarItem_Check.Tag = "Fwk.Security.Admin.Controls.CheckRulesControl, Fwk.Security.Admin";
+            // 
             // navBarItem_CategoryCreate
             // 
             this.navBarItem_CategoryCreate.Caption = "Create category";
@@ -323,13 +200,6 @@ namespace Fwk.Security.Admin
             this.navBarItem_CategoryCreate.Name = "navBarItem_CategoryCreate";
             this.navBarItem_CategoryCreate.SmallImage = global::Fwk.Security.Admin.Properties.Resources.map_16;
             this.navBarItem_CategoryCreate.Tag = "Fwk.Security.Admin.Controls.CategoryCreate, Fwk.Security.Admin";
-            // 
-            // navBarItem_Check
-            // 
-            this.navBarItem_Check.Caption = "Check rule";
-            this.navBarItem_Check.LargeImage = global::Fwk.Security.Admin.Properties.Resources.access_control_ok_32;
-            this.navBarItem_Check.Name = "navBarItem_Check";
-            this.navBarItem_Check.Tag = "Fwk.Security.Admin.Controls.CheckRulesControl, Fwk.Security.Admin";
             // 
             // navBarItem_CreateUser
             // 
@@ -351,29 +221,22 @@ namespace Fwk.Security.Admin
             this.panelControl1.AutoSize = true;
             this.panelControl1.Location = new System.Drawing.Point(190, 72);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(644, 561);
+            this.panelControl1.Size = new System.Drawing.Size(783, 561);
             this.panelControl1.TabIndex = 5;
             // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 651);
+            this.ClientSize = new System.Drawing.Size(985, 651);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.navBarControl1);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lbltitle);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAdmin";
             this.Text = "Security admin";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.tabControl1.ResumeLayout(false);
-            this.tabPageUsers.ResumeLayout(false);
-            this.tabPageRoles.ResumeLayout(false);
-            this.tabPageAsingRol.ResumeLayout(false);
-            this.tabPage_Rules.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.ResumeLayout(false);
@@ -385,18 +248,7 @@ namespace Fwk.Security.Admin
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lbltitle;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPageUsers;
-        private System.Windows.Forms.TabPage tabPageRoles;
-        private System.Windows.Forms.TabPage tabPageAsingRol;
-        private System.Windows.Forms.TabPage tabPage_Rules;
-        private System.Windows.Forms.TabPage tabPage1;
-        private Fwk.Security.Admin.Controls.AssingRulesControl assingRulesControl1;
-        private Fwk.Security.Admin.Controls.CreateRoles rolesAdmin1;
-        private Fwk.Security.Admin.Controls.UserAssingRoles assingRoles1;
-        private Fwk.Security.Admin.Controls.CheckRulesControl createRulesControl1;
         private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewInfo;
-        private Fwk.Security.Admin.Controls.UserAdmin userAdmminControl1;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup_Users;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup_Groups;

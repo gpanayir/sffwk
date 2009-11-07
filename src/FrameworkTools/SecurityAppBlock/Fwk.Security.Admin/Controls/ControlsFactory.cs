@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using DevExpress.XtraNavBar;
 using System.Windows.Forms;
+using Microsoft.Practices.EnterpriseLibrary.Security;
 
 
 namespace Fwk.Security.Admin.Controls
@@ -13,6 +14,13 @@ namespace Fwk.Security.Admin.Controls
 
     internal class ControlsFactory
     {
+         
+        public static IAuthorizationProvider ruleProvider;
+        static ControlsFactory()
+        {
+            ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
+        }
+
         static Dictionary<string, SecurityControlBase> _SecurityControlList = new Dictionary<string, SecurityControlBase>();
 
         internal static SecurityControlBase Get(NavBarItemLink pItem)

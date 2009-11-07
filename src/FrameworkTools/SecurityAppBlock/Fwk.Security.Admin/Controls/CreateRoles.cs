@@ -71,5 +71,17 @@ namespace Fwk.Security.Admin.Controls
                 grdUsers.Refresh();
             }
         }
+
+        private void txtRolName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtRolName.Text))
+            {
+                errorProvider1.SetError(txtRolName, "Rol name must not be empty");
+            }
+            else
+            {
+                errorProvider1.SetError(txtRolName, string.Empty);
+            }
+        }
     }
 }

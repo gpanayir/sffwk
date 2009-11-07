@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.MessageViewInfo = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // MessageViewInfo
@@ -42,12 +44,17 @@
             this.MessageViewInfo.TextMessageForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.MessageViewInfo.Title = "Security admin";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // SecurityControlBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "SecurityControlBase";
             this.Size = new System.Drawing.Size(170, 150);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -55,5 +62,6 @@
         #endregion
 
         public Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent MessageViewInfo;
+        public System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

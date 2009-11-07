@@ -131,7 +131,7 @@
         private System.Windows.Forms.DataGridView grdDomainGroups;
         private System.Windows.Forms.BindingSource objectDomainGroupBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn cNDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oUDataGridViewTextBoxColumn;
+        //private System.Windows.Forms.DataGridViewTextBoxColumn oUDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDomainGroupName;

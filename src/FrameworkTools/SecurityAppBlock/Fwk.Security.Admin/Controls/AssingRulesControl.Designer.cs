@@ -37,7 +37,6 @@
             this.btnCreateRule = new DevExpress.XtraEditors.SimpleButton();
             this.label11 = new System.Windows.Forms.Label();
             this.txtRuleName = new System.Windows.Forms.TextBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -60,7 +59,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userExcludedBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUserExcluded)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAllUser)).BeginInit();
@@ -90,7 +88,6 @@
             // 
             this.txtRuleExpression.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.errorProvider1.SetIconAlignment(this.txtRuleExpression, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.txtRuleExpression.Location = new System.Drawing.Point(10, 524);
             this.txtRuleExpression.Multiline = true;
             this.txtRuleExpression.Name = "txtRuleExpression";
@@ -122,16 +119,11 @@
             // 
             // txtRuleName
             // 
-            this.errorProvider1.SetIconAlignment(this.txtRuleName, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.txtRuleName.Location = new System.Drawing.Point(147, 9);
             this.txtRuleName.Name = "txtRuleName";
             this.txtRuleName.Size = new System.Drawing.Size(190, 21);
             this.txtRuleName.TabIndex = 0;
             this.txtRuleName.Validating += new System.ComponentModel.CancelEventHandler(this.textRuleName_Validating);
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
             // 
             // tabPage3
             // 
@@ -353,7 +345,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userExcludedBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUserExcluded)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAllUser)).EndInit();
@@ -375,7 +366,6 @@
         private System.Windows.Forms.BindingSource userExcludedBindingSource;
         private System.Windows.Forms.BindingSource userBindingSource;
         private DevExpress.XtraEditors.SimpleButton btnCreateRule;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox txtRuleExpression;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl2;
