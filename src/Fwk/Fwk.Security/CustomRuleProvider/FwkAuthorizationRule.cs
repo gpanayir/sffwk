@@ -123,7 +123,7 @@ namespace Fwk.Security
         #endregion
     }
     [Serializable]
-    public class FwkCategory
+    public class FwkCategory:Entity
     {
         int? _ParentCategoryId =0;
 
@@ -159,9 +159,9 @@ namespace Fwk.Security
             }
         }
 
-        List<FwkRulesInCategory> _FwkRulesInCategoryList = null;
+        List<aspnet_RulesInCategory> _FwkRulesInCategoryList = null;
 
-        public List<FwkRulesInCategory> FwkRulesInCategoryList
+        public List<aspnet_RulesInCategory> FwkRulesInCategoryList
         {
             get { return _FwkRulesInCategoryList; }
             set { _FwkRulesInCategoryList = value; }
@@ -176,6 +176,9 @@ namespace Fwk.Security
     [Serializable]
     public class FwkRulesInCategory
     {
+        public FwkRulesInCategory() { }
+        public FwkRulesInCategory(string name) { msz_RuleName = name; }
+
         #region [Private Members]
         private System.Int32? mi_CategoryId;
         private System.String msz_RuleName;

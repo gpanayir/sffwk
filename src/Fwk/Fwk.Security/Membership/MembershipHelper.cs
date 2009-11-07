@@ -33,7 +33,7 @@ namespace Fwk.Security
         ///  FwkMembership.ConnectionStringName = this["connectionStringName"].ToString().Trim();
         /// </summary>
         public static string ConnectionStringName;
-        static FwkMembership()
+         static FwkMembership()
         {
              SecuritySettings wSecuritySettings = (SecuritySettings)System.Configuration.ConfigurationManager.GetSection("securityConfiguration");
              if (wSecuritySettings != null)

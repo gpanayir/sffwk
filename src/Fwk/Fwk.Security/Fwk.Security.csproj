@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -128,10 +128,13 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Membership\FwkMembership.Category.cs" />
     <Compile Include="Membership\MembershipHelper.cs" />
-    <Compile Include="Membership\Rules.designer.cs">
+    <Compile Include="Membership\RuleProvider.cs">
+      <DependentUpon>RuleProvider.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Membership\RuleProvider.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Rules.dbml</DependentUpon>
+      <DependentUpon>RuleProvider.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
@@ -153,11 +156,6 @@
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\Security.rar" />
     <None Include="Data\Scripts\FwkObjectsOnly_DropExistents.sql" />
     <None Include="fwk.snk" />
-    <None Include="Membership\Rules.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Rules.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -178,17 +176,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Membership\Rules.dbml.layout">
-      <DependentUpon>Rules.dbml</DependentUpon>
+    <None Include="Membership\RuleProvider.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>RuleProvider.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Membership\RuleProvider.dbml.layout">
+      <DependentUpon>RuleProvider.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
