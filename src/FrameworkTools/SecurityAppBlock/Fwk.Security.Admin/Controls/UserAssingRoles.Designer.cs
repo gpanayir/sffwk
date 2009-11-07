@@ -40,6 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.usersGrid1 = new Fwk.Security.Admin.UsersGrid();
             this.lblRolesByUser = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lstBoxRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolListBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUserRole)).BeginInit();
@@ -89,9 +90,11 @@
             // lblSelectedUser
             // 
             this.lblSelectedUser.AutoSize = true;
-            this.lblSelectedUser.Location = new System.Drawing.Point(271, 11);
+            this.lblSelectedUser.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblSelectedUser.ForeColor = System.Drawing.Color.Maroon;
+            this.lblSelectedUser.Location = new System.Drawing.Point(478, 75);
             this.lblSelectedUser.Name = "lblSelectedUser";
-            this.lblSelectedUser.Size = new System.Drawing.Size(75, 13);
+            this.lblSelectedUser.Size = new System.Drawing.Size(58, 13);
             this.lblSelectedUser.TabIndex = 18;
             this.lblSelectedUser.Text = ".................";
             // 
@@ -132,7 +135,7 @@
             this.label2.Image = global::Fwk.Security.Admin.Properties.Resources.User;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(151, 6);
+            this.label2.Location = new System.Drawing.Point(358, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 23);
             this.label2.TabIndex = 21;
@@ -177,6 +180,7 @@
             this.Name = "UserAssingRoles";
             this.Size = new System.Drawing.Size(809, 486);
             this.Load += new System.EventHandler(this.UserAssingRoles_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lstBoxRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolListBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUserRole)).EndInit();

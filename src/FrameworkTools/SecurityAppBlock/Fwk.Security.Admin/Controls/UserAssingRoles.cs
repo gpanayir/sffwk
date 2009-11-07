@@ -71,18 +71,23 @@ namespace Fwk.Security.Admin.Controls
             }
         }
 
-       
 
-      
+
+
         private void usersGrid1_OnUserChange(User user, RolList roles)
         {
             bindingSourceUserRole.DataSource = roles;
+                lblSelectedUser.Text = user.UserName;
         }
 
         private void UserAssingRoles_Load(object sender, EventArgs e)
         {
             usersGrid1.Initialize();
         }
+
+        
+
+        
 
     }
 }

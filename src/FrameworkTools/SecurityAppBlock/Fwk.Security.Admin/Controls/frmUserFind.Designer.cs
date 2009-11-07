@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.usersGrid1 = new Fwk.Security.Admin.UsersGrid();
             this.btnAcept = new DevExpress.XtraEditors.SimpleButton();
             this.brnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.usersGrid1 = new Fwk.Security.Admin.UsersGrid();
             this.SuspendLayout();
-            // 
-            // usersGrid1
-            // 
-            this.usersGrid1.Location = new System.Drawing.Point(8, 12);
-            this.usersGrid1.Name = "usersGrid1";
-            this.usersGrid1.Size = new System.Drawing.Size(611, 445);
-            this.usersGrid1.TabIndex = 0;
             // 
             // btnAcept
             // 
@@ -59,6 +52,13 @@
             this.brnCancel.Text = "Cancel";
             this.brnCancel.Click += new System.EventHandler(this.brnCancel_Click);
             // 
+            // usersGrid1
+            // 
+            this.usersGrid1.Location = new System.Drawing.Point(8, 12);
+            this.usersGrid1.Name = "usersGrid1";
+            this.usersGrid1.Size = new System.Drawing.Size(611, 445);
+            this.usersGrid1.TabIndex = 0;
+            // 
             // frmUserFind
             // 
             this.AcceptButton = this.btnAcept;
@@ -69,7 +69,10 @@
             this.Controls.Add(this.brnCancel);
             this.Controls.Add(this.btnAcept);
             this.Controls.Add(this.usersGrid1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmUserFind";
+            this.ShowIcon = false;
             this.Text = "Find users";
             this.ResumeLayout(false);
 

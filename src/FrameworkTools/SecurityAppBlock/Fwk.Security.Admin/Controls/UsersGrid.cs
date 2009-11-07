@@ -11,6 +11,7 @@ using Fwk.Security.Common;
 namespace Fwk.Security.Admin
 {
     public delegate void UserChangeHandler(User user, RolList roles);
+    [DefaultEvent("OnUserChange")]
     public partial class UsersGrid : UserControl
     {
         public User CurrentUser;
