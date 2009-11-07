@@ -130,6 +130,12 @@
     <Compile Include="Controls\CategoryCreate.Designer.cs">
       <DependentUpon>CategoryCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RulesEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RulesEditControl.Designer.cs">
+      <DependentUpon>RulesEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RulesInCategory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -142,11 +148,11 @@
     <Compile Include="Controls\UserAssingRoles.Designer.cs">
       <DependentUpon>UserAssingRoles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AssingRulesControl.cs">
+    <Compile Include="Controls\RulesAssingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\AssingRulesControl.Designer.cs">
-      <DependentUpon>AssingRulesControl.cs</DependentUpon>
+    <Compile Include="Controls\RulesAssingControl.Designer.cs">
+      <DependentUpon>RulesAssingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\CheckRulesControl.cs">
       <SubType>UserControl</SubType>
@@ -201,6 +207,10 @@
       <DependentUpon>frmUserFind.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RulesEditControl.resx">
+      <DependentUpon>RulesEditControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\RulesInCategory.resx">
       <DependentUpon>RulesInCategory.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -209,8 +219,8 @@
       <DependentUpon>UserAssingRoles.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\AssingRulesControl.resx">
-      <DependentUpon>AssingRulesControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\RulesAssingControl.resx">
+      <DependentUpon>RulesAssingControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CheckRulesControl.resx">

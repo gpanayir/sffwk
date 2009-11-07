@@ -14,7 +14,7 @@ using System.Web.Security;
 namespace Fwk.Security.Admin.Controls
 {
     [DefaultEvent("NewSecurityInfoCreated")]
-    public partial class AssingRulesControl : SecurityControlBase
+    public partial class RulesAssingControl : SecurityControlBase
     {
         /// <summary>
         /// Representa la informacion del tipo de control a instanciar 
@@ -24,7 +24,7 @@ namespace Fwk.Security.Admin.Controls
         {
             get
             {
-                return typeof(AssingRulesControl).AssemblyQualifiedName;
+                return typeof(RulesAssingControl).AssemblyQualifiedName;
             }
         }
         public event NewSecurityInfoCreatedHandler NewSecurityInfoCreated;
@@ -34,13 +34,13 @@ namespace Fwk.Security.Admin.Controls
                 NewSecurityInfoCreated(this);
         }
         //private ISecurityCacheProvider cache;	// Security cache to handle tokens
-        private IAuthorizationProvider ruleProvider;
+        //private IAuthorizationProvider ruleProvider;
         Rol _SelectedRol = null;
         User _SelectedUser = null;
 
         UserList _ExcludeUserList = new UserList();
         RolList _AssignedRolList = new RolList();
-        public AssingRulesControl()
+        public RulesAssingControl()
         {
             InitializeComponent();
         }
@@ -53,7 +53,7 @@ namespace Fwk.Security.Admin.Controls
                 userBindingSource.DataSource = FwkMembership.GetAllUsers();
                 rolBindingSource.DataSource = FwkMembership.GetAllRoles();
                 
-                this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
+               
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace Fwk.Security.Admin.Controls
 {
-    partial class AssingRulesControl
+    partial class RulesAssingControl
     {
         /// <summary> 
         /// Required designer variable.

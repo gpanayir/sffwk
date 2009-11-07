@@ -48,6 +48,7 @@ namespace Fwk.Security.Admin
             this.navBarItem_CreateUser = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_AddRoles = new DevExpress.XtraNavBar.NavBarItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.navBarItem_RulesEdit = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.SuspendLayout();
@@ -101,7 +102,8 @@ namespace Fwk.Security.Admin
             this.navBarItem_CreateRule,
             this.navBarItem_CategoryCreate,
             this.navBarItem_AssingRoles,
-            this.navBarItem_Check});
+            this.navBarItem_Check,
+            this.navBarItem_RulesEdit});
             this.navBarControl1.Location = new System.Drawing.Point(7, 72);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 177;
@@ -174,7 +176,8 @@ namespace Fwk.Security.Admin
             this.navBarGroup_Rules.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CreateRule),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_Check),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CategoryCreate)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CategoryCreate),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_RulesEdit)});
             this.navBarGroup_Rules.LargeImage = global::Fwk.Security.Admin.Properties.Resources.admin_24;
             this.navBarGroup_Rules.Name = "navBarGroup_Rules";
             this.navBarGroup_Rules.SmallImage = global::Fwk.Security.Admin.Properties.Resources.admin_16;
@@ -184,7 +187,7 @@ namespace Fwk.Security.Admin
             this.navBarItem_CreateRule.Caption = "Create rule";
             this.navBarItem_CreateRule.LargeImage = global::Fwk.Security.Admin.Properties.Resources.application_list_add_32;
             this.navBarItem_CreateRule.Name = "navBarItem_CreateRule";
-            this.navBarItem_CreateRule.Tag = "Fwk.Security.Admin.Controls.AssingRulesControl, Fwk.Security.Admin";
+            this.navBarItem_CreateRule.Tag = "Fwk.Security.Admin.Controls.RulesAssingControl, Fwk.Security.Admin";
             // 
             // navBarItem_Check
             // 
@@ -223,6 +226,14 @@ namespace Fwk.Security.Admin
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(783, 561);
             this.panelControl1.TabIndex = 5;
+            // 
+            // navBarItem_RulesEdit
+            // 
+            this.navBarItem_RulesEdit.Caption = "Edit";
+            this.navBarItem_RulesEdit.LargeImage = global::Fwk.Security.Admin.Properties.Resources.file_edit_32;
+            this.navBarItem_RulesEdit.Name = "navBarItem_RulesEdit";
+            this.navBarItem_RulesEdit.SmallImage = global::Fwk.Security.Admin.Properties.Resources.file_edit_16;
+            this.navBarItem_RulesEdit.Tag = "Fwk.Security.Admin.Controls.RulesEditControl, Fwk.Security.Admin";
             // 
             // frmAdmin
             // 
@@ -263,6 +274,7 @@ namespace Fwk.Security.Admin
         private DevExpress.XtraNavBar.NavBarItem navBarItem_CategoryCreate;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_AssingRoles;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_Check;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem_RulesEdit;
     }
 }
 
