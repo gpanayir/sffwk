@@ -32,11 +32,13 @@ namespace Fwk.Security
             
             try
             {
+                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+
                 wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                StringBuilder str = new StringBuilder ( FwkMembershipScripts.ApplicationId_s);
+                StringBuilder str = new StringBuilder(FwkMembershipScripts.Category_i);
                
-                str.Append(FwkMembershipScripts.Category_i);
-                str.Replace("[ApplicationName]", pApplicationName.ToLower());
+              
+                str.Replace("[ApplicationId]", wApplicationId.ToString());
                 if (pFwkCategory.ParentId == null) pFwkCategory.ParentId = 0;
                 str.Replace("[ParentCategoryId]", pFwkCategory.ParentId.ToString());
                 str.Replace("[CategoryName]", pFwkCategory.Name.ToLower());
@@ -72,37 +74,35 @@ namespace Fwk.Security
 
         public static List<FwkCategory> GetAllCategories(string pApplicationName, string pConnectionStringName)
         {
-            Database wDataBase = null;
-            DbCommand wCmd = null;
+           
             FwkCategory wCategory;
             List<FwkCategory> wCategoryList = null;
             try
             {
-                ///TODO: Ver linq
-                //Fwk.Security.Membership.RulesDataContext dc = new Fwk.Security.Membership.RulesDataContext(pConnectionStringName);
-                //var xx = from s in dc.aspnet_RulesCategories where 
-                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                wCmd = wDataBase.GetStoredProcCommand("[aspnet_Categories_s]");
-
-                /// ApplicationName
-                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
-                wCategoryList = new List<FwkCategory>();
-                using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
+                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
-                    while (reader.Read())
-                    {
-                        wCategory = new FwkCategory();
-                        wCategory.CategoryId = Convert.ToInt32(reader["CategoryId"]);
-                        if(reader["ParentCategoryId"] != DBNull.Value)
-                            wCategory.ParentId = Convert.ToInt32(reader["ParentCategoryId"]);
-                        wCategory.Name = Convert.ToString(reader["Name"]);
-                        wCategoryList.Add(wCategory);
-                    }
+                    var rulesinCat = from s in dc.aspnet_RulesCategories where s.ApplicationId == wApplicationId select s;
+                   
+                        wCategoryList = new List<FwkCategory>();
+                        foreach (aspnet_RulesCategory aspnet_cat in rulesinCat.ToList<aspnet_RulesCategory>())
+                        {
+                            wCategory = new FwkCategory();
+                            wCategory.CategoryId = aspnet_cat.CategoryId;
+                            if (aspnet_cat.ParentCategoryId != null)
+                                wCategory.ParentId = aspnet_cat.ParentCategoryId;
+                            wCategory.Name = aspnet_cat.Name;
+                            wCategoryList.Add(wCategory);
+                        }
+                    
                 }
+                
                 foreach (FwkCategory category in wCategoryList)
                 {
                     category.FwkRulesInCategoryList = GetFwkRulesInCategory(category.CategoryId, pConnectionStringName);
                 }
+                
+               
                 return wCategoryList;
             }
             catch (Exception ex)
@@ -149,25 +149,24 @@ namespace Fwk.Security
             
             Database wDataBase = null;
             DbCommand wCmd = null;
-            
+            Guid id = GetApplication(pApplicationName, pConnectionStringName);
 
             try
             {
                 wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                StringBuilder str = new StringBuilder (FwkMembershipScripts.ApplicationId_s);
-
-                str.Replace("[ApplicationName]", pApplicationName.ToLower());
-                str.Append(FwkMembershipScripts.RulesCategory_d);
-                str.Replace("[CategoryId]", pFwkCategory.CategoryId.ToString());
-                
+                StringBuilder str = new StringBuilder(FwkMembershipScripts.RulesCategory_d);
+            
                 foreach (aspnet_RulesInCategory rule in pFwkCategory.FwkRulesInCategoryList)
                 {
                     rule.CategoryId = pFwkCategory.CategoryId;
 
                     str.Append(FwkMembershipScripts.RuleInCategory_i);
-                    str.Replace("[CategoryId]", rule.CategoryId.ToString());
+                    
+                    //str.Replace("[CategoryId]", rule.CategoryId.ToString());
                     str.Replace("[RuleName]", rule.RuleName);
                 }
+                str.Replace("[CategoryId]", pFwkCategory.CategoryId.ToString());
+                str.Replace("[ApplicationId]", id.ToString());
                 wCmd = wDataBase.GetSqlStringCommand(str.ToString());
                 wCmd.CommandType = CommandType.Text;
 
@@ -451,7 +450,7 @@ namespace Fwk.Security
                 sb.Append(@"	VALUES (");
                 sb.Append(@"		[CategoryId],");
                 sb.Append(@"		'[RuleName]',");
-                sb.Append(@"		@ApplicationId) ");
+                sb.Append(@"		CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')) ");
 
 
                 _RuleInCategory_i = sb.ToString();
@@ -474,7 +473,7 @@ namespace Fwk.Security
                 sb.Append(@"	VALUES (");
                 sb.Append(@"		[ParentCategoryId],");
                 sb.Append(@"		'[CategoryName]',");
-                sb.Append(@"		@ApplicationId) select @@IDENTITY");
+                sb.Append(@"		CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')) select @@IDENTITY");
 
 
                 _Category_i = sb.ToString();

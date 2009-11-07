@@ -566,15 +566,35 @@ namespace Fwk.Security
         /// <summary>
         /// Crea un nuevo Rol
         /// </summary>
-        /// <param name="pRoleName">Nombre del Rol</param>
+        /// <param name="pRoleName"></param>
         public static void CreateRole(String pRoleName)
+        {
+
+            CreateRole(pRoleName,string.Empty,Membership.ApplicationName,ConnectionStringName);
+        }
+
+        /// <summary>
+        /// Crea un nuevo Rol
+        /// </summary>
+        /// <param name="pRoleName"></param>
+        /// <param name="pDescription"></param>
+        public static void CreateRole(String pRoleName,string pDescription)
+        {
+            CreateRole(pRoleName, pDescription, Membership.ApplicationName, ConnectionStringName);
+        }
+      
+        /// <summary>
+        /// Crea un nuevo Rol
+        /// </summary>
+        /// <param name="pRoleName">Nombre del Rol</param>
+        public static void CreateRole(String pRoleName, string pDescription,string pApplicationName, string pConnectionStringName)
         {
             try
             {
                 if (!Roles.RoleExists(pRoleName))
                 {
                     Roles.CreateRole(pRoleName);
-
+                    UpdateRole(pRoleName, pDescription, pApplicationName, pConnectionStringName);
                 }
                 else
                 {
@@ -609,6 +629,50 @@ namespace Fwk.Security
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pRoleName"></param>
+        /// <param name="pDescription"></param>
+        /// <param name="pApplicationName"></param>
+        /// <param name="pConnectionStringName"></param>
+        public static void UpdateRole(String pRoleName, string pDescription,string pApplicationName, string pConnectionStringName)
+        {
+       
+  
+            StringBuilder str = new StringBuilder("UPDATE aspnet_Roles SET  Description = '[Description]' WHERE (LoweredRoleName = LOWER('[RoleName]')) AND(ApplicationId = CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]') )");
+            Guid id = GetApplication(pApplicationName, pConnectionStringName);
+            Database wDataBase = null;
+            DbCommand wCmd = null;
+            try
+            {
+              
+                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
+
+                str.Replace("[ApplicationId]", id.ToString());
+                str.Replace("[Description]", pDescription);
+                str.Replace("[RoleName]", pRoleName);
+
+                wCmd = wDataBase.GetSqlStringCommand(str.ToString());
+
+              
+
+                wCmd.CommandType = CommandType.Text;
+
+
+                wDataBase.ExecuteNonQuery(wCmd);
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
         #region [Rules]
