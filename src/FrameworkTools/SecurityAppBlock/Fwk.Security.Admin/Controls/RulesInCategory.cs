@@ -306,13 +306,13 @@ namespace Fwk.Security.Admin.Controls
         private void simpleButton_OkCreateCategory_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(textEdit1.Text) && _ParentFwkCategory!=null)
-                if (FwkMembership.CategoryExist(textEdit1.Text.Trim(),_ParentFwkCategory.CategoryId, Membership.ApplicationName))
+                if (FwkMembership.ExistCategory(textEdit1.Text.Trim(), _ParentFwkCategory.CategoryId, Membership.ApplicationName))
                 {
                     MessageViewInfo.Show(string.Format("Category {0} already exist", textEdit1.Text.Trim()));
                     return;
                 }
             Create();
-        }
+        } 
         void Create()
         {
 

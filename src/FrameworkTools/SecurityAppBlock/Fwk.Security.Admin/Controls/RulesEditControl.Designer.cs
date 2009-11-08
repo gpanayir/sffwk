@@ -32,9 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RulesEditControl));
             this.rolBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbltitle = new System.Windows.Forms.Label();
-            this.grdAllRoles = new System.Windows.Forms.DataGridView();
+            this.grdRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdRulesByCategory = new DevExpress.XtraGrid.GridControl();
+            this.aspnetRulesInCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grdViewRulesByCategory = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -44,8 +47,10 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRulesByCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aspnetRulesInCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRulesByCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
@@ -64,24 +69,25 @@
             this.lbltitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbltitle.Location = new System.Drawing.Point(0, 0);
             this.lbltitle.Name = "lbltitle";
-            this.lbltitle.Size = new System.Drawing.Size(932, 34);
+            this.lbltitle.Size = new System.Drawing.Size(885, 34);
             this.lbltitle.TabIndex = 20;
-            this.lbltitle.Text = "Add roles to rule";
+            this.lbltitle.Text = "Edit rules";
             this.lbltitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // grdAllRoles
+            // grdRoles
             // 
-            this.grdAllRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.grdAllRoles.AutoGenerateColumns = false;
-            this.grdAllRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdAllRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdRoles.AutoGenerateColumns = false;
+            this.grdRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rolNameDataGridViewTextBoxColumn});
-            this.grdAllRoles.DataSource = this.rolBindingSource;
-            this.grdAllRoles.Location = new System.Drawing.Point(616, 62);
-            this.grdAllRoles.Name = "grdAllRoles";
-            this.grdAllRoles.Size = new System.Drawing.Size(260, 368);
-            this.grdAllRoles.TabIndex = 19;
+            this.grdRoles.ContextMenuStrip = this.contextMenuStrip1;
+            this.grdRoles.DataSource = this.rolBindingSource;
+            this.grdRoles.Location = new System.Drawing.Point(591, 60);
+            this.grdRoles.Name = "grdRoles";
+            this.grdRoles.Size = new System.Drawing.Size(275, 368);
+            this.grdRoles.TabIndex = 19;
             // 
             // rolNameDataGridViewTextBoxColumn
             // 
@@ -89,19 +95,38 @@
             this.rolNameDataGridViewTextBoxColumn.HeaderText = "RolName";
             this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeSelectedsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
+            // 
+            // removeSelectedsToolStripMenuItem
+            // 
+            this.removeSelectedsToolStripMenuItem.Name = "removeSelectedsToolStripMenuItem";
+            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.removeSelectedsToolStripMenuItem.Text = "Remove selecteds";
+            this.removeSelectedsToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedsToolStripMenuItem_Click);
+            // 
             // grdRulesByCategory
             // 
-            this.grdRulesByCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdRulesByCategory.Location = new System.Drawing.Point(246, 37);
+            this.grdRulesByCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.grdRulesByCategory.DataSource = this.aspnetRulesInCategoryBindingSource;
+            this.grdRulesByCategory.Location = new System.Drawing.Point(313, 37);
             this.grdRulesByCategory.MainView = this.grdViewRulesByCategory;
             this.grdRulesByCategory.Name = "grdRulesByCategory";
-            this.grdRulesByCategory.Size = new System.Drawing.Size(267, 403);
+            this.grdRulesByCategory.Size = new System.Drawing.Size(272, 403);
             this.grdRulesByCategory.TabIndex = 31;
             this.grdRulesByCategory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdViewRulesByCategory,
             this.gridView3});
+            this.grdRulesByCategory.Click += new System.EventHandler(this.grdRulesByCategory_Click);
+            // 
+            // aspnetRulesInCategoryBindingSource
+            // 
+            this.aspnetRulesInCategoryBindingSource.DataSource = typeof(Fwk.Security.aspnet_RulesInCategory);
             // 
             // grdViewRulesByCategory
             // 
@@ -157,10 +182,9 @@
             this.treeList1.OptionsView.ShowHorzLines = false;
             this.treeList1.OptionsView.ShowVertLines = false;
             this.treeList1.ParentFieldName = "ParentId";
-            this.treeList1.Size = new System.Drawing.Size(199, 403);
+            this.treeList1.Size = new System.Drawing.Size(290, 403);
             this.treeList1.StateImageList = this.imageList1;
             this.treeList1.TabIndex = 30;
-       
             this.treeList1.Click += new System.EventHandler(this.treeList1_Click);
             // 
             // colName
@@ -190,16 +214,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.grdRulesByCategory);
             this.Controls.Add(this.treeList1);
             this.Controls.Add(this.lbltitle);
-            this.Controls.Add(this.grdAllRoles);
+            this.Controls.Add(this.grdRulesByCategory);
+            this.Controls.Add(this.grdRoles);
             this.Name = "RulesEditControl";
-            this.Size = new System.Drawing.Size(932, 456);
+            this.Size = new System.Drawing.Size(885, 456);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdRulesByCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aspnetRulesInCategoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRulesByCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
@@ -212,7 +238,7 @@
 
         private System.Windows.Forms.BindingSource rolBindingSource;
         private System.Windows.Forms.Label lbltitle;
-        private System.Windows.Forms.DataGridView grdAllRoles;
+        private System.Windows.Forms.DataGridView grdRoles;
         private System.Windows.Forms.DataGridViewTextBoxColumn rolNameDataGridViewTextBoxColumn;
         private DevExpress.XtraGrid.GridControl grdRulesByCategory;
         private DevExpress.XtraGrid.Views.Grid.GridView grdViewRulesByCategory;
@@ -222,5 +248,8 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn colName;
         private System.Windows.Forms.BindingSource fwkCategoryBindingSource;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem removeSelectedsToolStripMenuItem;
+        private System.Windows.Forms.BindingSource aspnetRulesInCategoryBindingSource;
     }
 }

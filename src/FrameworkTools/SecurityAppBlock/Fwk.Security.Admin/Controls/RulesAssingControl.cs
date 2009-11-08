@@ -10,6 +10,7 @@ using Fwk.Security.Common;
 using Fwk.Security;
 using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Web.Security;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace Fwk.Security.Admin.Controls
 {
@@ -40,6 +41,8 @@ namespace Fwk.Security.Admin.Controls
 
         UserList _ExcludeUserList = new UserList();
         RolList _AssignedRolList = new RolList();
+
+        List<Rol> selectedRoles = new List<Rol>();
         public RulesAssingControl()
         {
             InitializeComponent();
@@ -67,22 +70,31 @@ namespace Fwk.Security.Admin.Controls
 
         private void btnAddRol_Click(object sender, EventArgs e)
         {
-            if (_SelectedRol != null)
+            FillSelectedRoles();
+            foreach (Rol selectedRol in selectedRoles)
             {
-                var s = from rol in _AssignedRolList where rol.RolName == _SelectedRol.RolName select rol;
-                if (!s.Any())
+
+                if (!_AssignedRolList.Any<Rol>(rol => rol.RolName.Equals(selectedRol.RolName, StringComparison.OrdinalIgnoreCase)))
                 {
-                    _AssignedRolList.Add(new Rol(_SelectedRol.RolName));
-   
+                    _AssignedRolList.Add(new Rol(selectedRol.RolName));
+
                     grdAssignedRoles.DataSource = null;
                     grdAssignedRoles.DataSource = _AssignedRolList;
                 }
-
             }
-            BuildRulExpression();
+            txtRuleExpression.Text = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
             NewSecurityInfoCreatedHandler();
         }
+        
+        void FillSelectedRoles()
+        {
+            selectedRoles.Clear();
+            foreach (DataGridViewRow row in grdAllRoles.SelectedRows)
+            {
+                selectedRoles.Add(((Rol)row.DataBoundItem));
+            }
 
+        }
         private void grdAllUser_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (grdAllUser.CurrentRow == null) return;
@@ -94,45 +106,7 @@ namespace Fwk.Security.Admin.Controls
            
         }
 
-        void BuildRulExpression()
-        {
-            StringBuilder wexpression = new StringBuilder();
-
-            #region included roles
-            if (_AssignedRolList.Count != 0)
-            {
-                wexpression.Append("(");
-                foreach (Rol rol in _AssignedRolList)
-                {
-                    wexpression.Append("R:");
-                    wexpression.Append(rol.RolName);
-                    wexpression.AppendLine(" OR ");
-                }
-                wexpression.Remove(wexpression.Length - 5, 5);
-                wexpression.Append(")");
-            }
-            #endregion
-
-            #region Excluded users
-            if (_ExcludeUserList.Count != 0)
-            {
-                if (_AssignedRolList.Count != 0)
-                    wexpression.Append(" AND ");
-
-                wexpression.Append("NOT (");
-                foreach (User user in _ExcludeUserList)
-                {
-                    wexpression.Append("I:");
-                    wexpression.Append(user.UserName);
-                    wexpression.AppendLine(" OR ");
-                }
-                wexpression.Remove(wexpression.Length - 5, 5);
-                wexpression.Append(")");
-            }
-            #endregion
-
-            txtRuleExpression.Text = wexpression.ToString();
-        }
+       
 
        
        
@@ -197,7 +171,22 @@ namespace Fwk.Security.Admin.Controls
 
             }
 
-            BuildRulExpression();
+            txtRuleExpression.Text = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+        }
+
+        private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        
+            foreach (DataGridViewRow row in grdAssignedRoles.SelectedRows)
+            {
+
+                _AssignedRolList.Remove(((Rol)row.DataBoundItem));
+
+          
+            }
+            grdAssignedRoles.DataSource = null;
+            grdAssignedRoles.DataSource = _AssignedRolList;
+            txtRuleExpression.Text = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
         }
 
        

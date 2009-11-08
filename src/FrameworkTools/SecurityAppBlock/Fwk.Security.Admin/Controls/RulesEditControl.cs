@@ -23,6 +23,7 @@ namespace Fwk.Security.Admin.Controls
         List<FwkCategory> _CategoryList;
         FwkCategory _ParentFwkCategory;
         List<AuthorizationRuleData> _RuleList;
+        aspnet_Rule _CurrentRule;
         /// <summary>
         /// Representa la informacion del tipo de control a instanciar 
         /// 
@@ -42,7 +43,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 //userBindingSource.DataSource = FwkMembership.GetAllUsers();
                 rolBindingSource.DataSource = FwkMembership.GetAllRoles();
-                grdAllRoles.Refresh();
+                grdRoles.Refresh();
        
         
             
@@ -141,11 +142,42 @@ namespace Fwk.Security.Admin.Controls
             if (treeList1.FocusedNode != null)
             {
                 _ParentFwkCategory = (FwkCategory)treeList1.GetDataRecordByNode(treeList1.FocusedNode);
-
-                grdRulesByCategory.DataSource = _ParentFwkCategory.FwkRulesInCategoryList;
+                aspnetRulesInCategoryBindingSource.DataSource = _ParentFwkCategory.FwkRulesInCategoryList;
+               
 
                 grdRulesByCategory.RefreshDataSource();
             }
+        }
+
+        private void grdRulesByCategory_Click(object sender, EventArgs e)
+        {
+
+            aspnet_RulesInCategory rule = (aspnet_RulesInCategory)((BindingSource)grdRulesByCategory.DataSource).Current;
+
+            _CurrentRule = FwkMembership.GetRule(rule.RuleName, Membership.ApplicationName);
+            _AssignedRolList = new RolList();
+           _ExcludeUserList = new UserList();
+            FwkMembershipScripts.BuildRolesAndUsersFromRuleExpression(_CurrentRule.expression, out _AssignedRolList, out _ExcludeUserList);
+       
+            rolBindingSource.DataSource = _AssignedRolList;
+            grdRoles.Refresh();
+        }
+
+        private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+         
+
+            foreach (DataGridViewRow row in grdRoles.SelectedRows)
+            {
+                _AssignedRolList.Remove(((Rol)row.DataBoundItem));
+            }
+            _CurrentRule.expression = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+          
+
+            rolBindingSource.DataSource = null;
+            rolBindingSource.DataSource = _AssignedRolList;
+            grdRoles.Refresh();
+
         }
     }
 }

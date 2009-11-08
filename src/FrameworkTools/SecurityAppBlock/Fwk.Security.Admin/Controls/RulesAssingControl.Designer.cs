@@ -55,6 +55,9 @@
             this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolAssignedBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userExcludedBindingSource)).BeginInit();
@@ -66,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAssignedRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).BeginInit();
             this.tabControl2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // rolAssignedBindingSource
@@ -246,7 +250,7 @@
             this.lbltitle.Name = "lbltitle";
             this.lbltitle.Size = new System.Drawing.Size(691, 34);
             this.lbltitle.TabIndex = 18;
-            this.lbltitle.Text = "Add roles to rule";
+            this.lbltitle.Text = "Add roles ";
             this.lbltitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnAsignarRoles
@@ -272,11 +276,13 @@
             this.grdAssignedRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdAssignedRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rolNameDataGridViewTextBoxColumn1});
+            this.grdAssignedRoles.ContextMenuStrip = this.contextMenuStrip1;
             this.grdAssignedRoles.DataSource = this.rolAssignedBindingSource;
             this.grdAssignedRoles.Location = new System.Drawing.Point(377, 40);
             this.grdAssignedRoles.Name = "grdAssignedRoles";
             this.grdAssignedRoles.Size = new System.Drawing.Size(299, 368);
             this.grdAssignedRoles.TabIndex = 11;
+        
             // 
             // rolNameDataGridViewTextBoxColumn1
             // 
@@ -329,7 +335,21 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Expression";
             // 
-            // AssingRulesControl
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeSelectedsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
+            // 
+            // removeSelectedsToolStripMenuItem
+            // 
+            this.removeSelectedsToolStripMenuItem.Name = "removeSelectedsToolStripMenuItem";
+            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.removeSelectedsToolStripMenuItem.Text = "Remove selecteds";
+            this.removeSelectedsToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedsToolStripMenuItem_Click);
+            // 
+            // RulesAssingControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -339,8 +359,9 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtRuleName);
             this.Controls.Add(this.tabControl2);
-            this.Name = "AssingRulesControl";
+            this.Name = "RulesAssingControl";
             this.Size = new System.Drawing.Size(727, 582);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolAssignedBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userExcludedBindingSource)).EndInit();
@@ -352,6 +373,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAssignedRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).EndInit();
             this.tabControl2.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,5 +407,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn appNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem removeSelectedsToolStripMenuItem;
     }
 }
