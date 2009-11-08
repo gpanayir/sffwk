@@ -299,9 +299,9 @@ namespace Fwk.Security
         /// <param name="pParentCategoryId">Id de la categora padre</param>
         /// <param name="pApplicationName">Nombre de la app</param>
         /// <returns></returns>
-        public static bool CategoryExist(string pCategoryName, int pParentCategoryId, string pApplicationName)
+        public static bool ExistCategory(string pCategoryName, int pParentCategoryId, string pApplicationName)
         {
-            return CategoryExist(pCategoryName, pParentCategoryId,pApplicationName, ConnectionStringName);
+            return ExistCategory(pCategoryName, pParentCategoryId, pApplicationName, ConnectionStringName);
         }
 
         /// <summary>
@@ -312,7 +312,7 @@ namespace Fwk.Security
         /// <param name="pApplicationName">Nombre de la app</param>
         /// <param name="pConnectionStringName">Nombre de la cadena de conección</param>
         /// <returns></returns>
-        public static bool CategoryExist(string pCategoryName, int pParentCategoryId,  string pApplicationName, string pConnectionStringName)
+        public static bool ExistCategory(string pCategoryName, int pParentCategoryId, string pApplicationName, string pConnectionStringName)
         {
             try
             {
@@ -379,122 +379,4 @@ namespace Fwk.Security
 
 
 
-    internal static class FwkMembershipScripts
-    {
-        static string _RuleInCategory_i;
-
-        public static string RuleInCategory_i
-        {
-            get
-            {
-                SetRuleInCategory_i();
-                return FwkMembershipScripts._RuleInCategory_i;
-            }
-
-        }
-        static string _Category_d = "DELETE FROM aspnet_RulesCategory WHERE  aspnet_RulesCategory.CategoryId = [CategoryId]";
-        static string _RulesCategory_d = "DELETE FROM aspnet_RulesInCategory WHERE  aspnet_RulesInCategory.CategoryId = [CategoryId]";
-        public static string RulesCategory_d
-        {
-            get
-            {
-                return FwkMembershipScripts._RulesCategory_d;
-            }
-
-        }
-        public static string Category_d
-        {
-            get
-            {
-                return FwkMembershipScripts._Category_d;
-            }
-
-        }
-
-       
-        static string _ApplicationId_s;
-
-        public static string ApplicationId_s
-        {
-            get
-            {
-                SetApplicationId();
-                return FwkMembershipScripts._ApplicationId_s;
-            }
-
-        }
-        static string _Category_i;
-
-        public static string  Category_i
-        {
-            get
-            {
-                SetCategory_i();
-                return _Category_i;
-            }
-
-        }
-        static void SetRuleInCategory_i()
-        {
-
-            if (string.IsNullOrEmpty(_RuleInCategory_i ))
-            {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder(5000);
-
-                sb.Append(@"	INSERT INTO aspnet_RulesInCategory");
-                sb.Append(@"		(CategoryId");
-                sb.Append(@"		,RuleName");
-                sb.Append(@"		,ApplicationId)");
-
-                sb.Append(@"	VALUES (");
-                sb.Append(@"		[CategoryId],");
-                sb.Append(@"		'[RuleName]',");
-                sb.Append(@"		CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')) ");
-
-
-                _RuleInCategory_i = sb.ToString();
-            }
-
-
-        }
-        static void SetCategory_i()
-        {
-
-            if (string.IsNullOrEmpty(_Category_i ))
-            {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder(5000);
-     
-                sb.Append(@"	INSERT INTO aspnet_RulesCategory");
-                sb.Append(@"		(ParentCategoryId");
-                sb.Append(@"		,[Name]");
-                sb.Append(@"		,ApplicationId)");
-        
-                sb.Append(@"	VALUES (");
-                sb.Append(@"		[ParentCategoryId],");
-                sb.Append(@"		'[CategoryName]',");
-                sb.Append(@"		CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')) select @@IDENTITY");
-
-
-                _Category_i = sb.ToString();
-            }
-
-
-        }
-
-        static void SetApplicationId()
-        {
-            if (string.IsNullOrEmpty(_ApplicationId_s))
-            {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder(5000);
-                sb.Append(@"DECLARE @ApplicationId uniqueidentifier ");
-                sb.Append(@"    SELECT  @ApplicationId = NULL ");
-                sb.Append(@"    SELECT  @ApplicationId = ApplicationId  ");
-                sb.Append(@"    FROM aspnet_Applications WHERE LOWER('[ApplicationName]') = LoweredApplicationName ");
-                //sb.Append(@"    IF (@ApplicationId IS NULL) ");
-                //sb.Append(@"        RETURN(0) ");
-                _ApplicationId_s = sb.ToString();
-            }
-
-        }
-    }
 }

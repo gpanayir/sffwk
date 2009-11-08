@@ -127,6 +127,7 @@
     <Compile Include="Entities\SimpleEntities.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Membership\FwkMembership.Category.cs" />
+    <Compile Include="Membership\FwkMembershipScripts.cs" />
     <Compile Include="Membership\MembershipHelper.cs" />
     <Compile Include="Membership\RuleProvider.cs">
       <DependentUpon>RuleProvider.dbml</DependentUpon>

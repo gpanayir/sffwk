@@ -9,7 +9,7 @@ using System.Data.Common;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Text;
-
+using System.Linq;
 namespace Fwk.Security
 {
     public partial class FwkMembership
@@ -705,6 +705,37 @@ namespace Fwk.Security
         #endregion
 
         #region [Rules]
+       
+        public static aspnet_Rule GetRule(string ruleName, string pApplicationName)
+        {
+            return GetRule(ruleName,pApplicationName, ConnectionStringName);
+        }
+
+        public static aspnet_Rule GetRule(string ruleName, string pApplicationName, string pConnectionStringName)
+        {
+
+            aspnet_Rule waspnet_Rule;
+            try
+            {
+
+                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
+                {
+                    waspnet_Rule = dc.aspnet_Rules.First<aspnet_Rule>(s => s.name.Equals(ruleName.Trim()) && s.ApplicationId == wApplicationId);
+                    return waspnet_Rule;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                ///TODO: mejorar manejo de Exception GetRule
+                throw new Exception(string.Concat("Error al intentar obtener los valores de la relgla: " + ruleName));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         /// <summary>
         /// Obtiene las reglas de una determinada aplicacion
@@ -720,6 +751,7 @@ namespace Fwk.Security
 
         /// <summary>
         /// Obtiene las reglas de una determinada aplicacion
+        /// Reemplaza aspnet_Rules_s
         /// </summary>
         /// <param name="pConnectionStringName"></param>
         /// <param name="pApplicationName"></param>
@@ -727,27 +759,33 @@ namespace Fwk.Security
         public static NamedElementCollection<FwkAuthorizationRule> GetRules(string pApplicationName, string pConnectionStringName)
         {
 
-            Database wDataBase = null;
-            DbCommand wCmd = null;
+            ///TODO: Eliminar aspnet_Rules_s
+           
             FwkAuthorizationRule rule = null;
             NamedElementCollection<FwkAuthorizationRule> wRules = null;
             try
             {
 
-                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                wCmd = wDataBase.GetStoredProcCommand("aspnet_Rules_s");
+                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
 
-                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
-
-                IDataReader reader = wDataBase.ExecuteReader(wCmd);
                 wRules = new NamedElementCollection<FwkAuthorizationRule>();
-                while (reader.Read())
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
-                    rule = new FwkAuthorizationRule();
-                    rule.Name = reader["Name"].ToString().Trim();
-                    rule.Expression = reader["Expression"].ToString();
-                    wRules.Add(rule);
+                    var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
+
+                    foreach (aspnet_Rule aspnet_Rule in aspnet_Rules.ToList<aspnet_Rule>())
+                    {
+                        rule = new FwkAuthorizationRule();
+                        rule.Name = aspnet_Rule.name;
+                        rule.Expression = aspnet_Rule.expression;
+
+
+                        wRules.Add(rule);
+                    }
                 }
+              
+               
+              
 
                 return wRules;
             }
@@ -850,23 +888,20 @@ namespace Fwk.Security
         /// <returns>boolean</returns>
         public static bool ExistRule(string pRuleName, string pApplicationName, string pConnectionStringName)
         {
-            Database wDataBase = null;
-            DbCommand wCmd = null;
-
+            bool wExist = false;
+            ///TODO: Eliminar aspnet_Rules_g_Exist
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                wCmd = wDataBase.GetStoredProcCommand("aspnet_Rules_g_Exist");
+                
+                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
 
-                wDataBase.AddInParameter(wCmd, "name", System.Data.DbType.String, pRuleName);
-                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
-
-                wDataBase.AddOutParameter(wCmd, "exist", System.Data.DbType.Boolean, 1);
-
-                wDataBase.ExecuteNonQuery(wCmd);
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
+                {
+                  wExist =   dc.aspnet_Rules.Any( s => s.Equals(pRuleName) && s.ApplicationId == wApplicationId );
+                }
 
 
-                return (bool)wDataBase.GetParameterValue(wCmd, "exist"); ;
+                return wExist;
             }
             catch (Exception ex)
             {
@@ -906,20 +941,26 @@ namespace Fwk.Security
         /// <Author>moviedo</Author>
         public static void CreateRules(FwkAuthorizationRule paspnet_Rules, string pApplicationName, string pConnectionStringName)
         {
+
+
+            ///TODO: Eliminar aspnet_Rules_i
             Database wDataBase = null;
             DbCommand wCmd = null;
 
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                wCmd = wDataBase.GetStoredProcCommand("[aspnet_Rules_i]");
+                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
 
-                /// name
-                wDataBase.AddInParameter(wCmd, "name", System.Data.DbType.String, paspnet_Rules.Name);
-                /// expression
-                wDataBase.AddInParameter(wCmd, "expression", System.Data.DbType.String, paspnet_Rules.Expression);
-                /// ApplicationName
-                wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
+                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
+                StringBuilder str = new StringBuilder(FwkMembershipScripts.Rule_i);
+                str.Replace("[ApplicationId]", wApplicationId.ToString());
+                str.Replace("[rulename]", paspnet_Rules.Name.Trim());
+                str.Replace("[expression]", paspnet_Rules.Expression);
+
+                wCmd = wDataBase.GetSqlStringCommand(str.ToString());
+                wCmd.CommandType = CommandType.Text;
+
+
 
                 wDataBase.ExecuteNonQuery(wCmd);
 
