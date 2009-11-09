@@ -84,30 +84,40 @@ namespace Fwk.Mail.Pop3
                         while (true)
                         {
                             ListMessage = strReader.ReadLine();
-                            if (ListMessage == ".")
+                            if (ListMessage != null)
                             {
-                                // Este es el último mensaje
-                                break;
+                                if (ListMessage == ".")
+                                {
+                                    // Este es el último mensaje
+                                    break;
+                                }
+                                else
+                                {
+                                    char[] seps = { ' ' };
+                                    string[] values = ListMessage.Split(seps);
+                                    // Lista de mensajes                                
+                                    wMessage = new Pop3Message();
+                                    wMessage.number = Int32.Parse(values[0]);
+                                    wMessage.bytes = Int32.Parse(values[1]);
+                                    wMessage.retrieved = false;
+                                    mMessagesList.Add(wMessage);
+                                    continue;
+                                }
                             }
                             else
-                            {
-                                char[] seps = { ' ' };
-                                string[] values = ListMessage.Split(seps);
-                                // Lista de mensajes                                
-                                wMessage = new Pop3Message();
-                                wMessage.number = Int32.Parse(values[0]);
-                                wMessage.bytes = Int32.Parse(values[1]);
-                                wMessage.retrieved = false;
-                                mMessagesList.Add(wMessage);
-                                continue;
-                            }
+                                break;
+                                                        
                         }
+                                                
+                        WriteBuffer = enc.GetBytes("QUIT\r\n");
+                        netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
+                        tcpClient.Close();
                     }
                     catch (Exception)
                     {
+                        tcpClient.Close();
                     }
-                    WriteBuffer = enc.GetBytes("QUIT\r\n");
-                    netStream.Write(WriteBuffer, 0, WriteBuffer.Length);
+                    
 
                 }
 
