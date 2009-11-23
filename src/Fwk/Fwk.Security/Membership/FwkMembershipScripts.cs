@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Fwk.Security.Common;
+using Microsoft.Practices.EnterpriseLibrary.Security;
 
 namespace Fwk.Security
 {
@@ -10,6 +11,8 @@ namespace Fwk.Security
     public  static class FwkMembershipScripts
     {
         static string _RuleInCategory_i;
+        static string _Category_d = "DELETE FROM aspnet_RulesCategory WHERE  aspnet_RulesCategory.CategoryId = [CategoryId]";
+        static string _RulesCategory_d = "DELETE FROM aspnet_RulesInCategory WHERE  aspnet_RulesInCategory.CategoryId = [CategoryId]";
 
         public static string RuleInCategory_i
         {
@@ -26,14 +29,23 @@ namespace Fwk.Security
         {
             get
             {
-                SetRule_i();
+                SetRule_i(); 
                 return FwkMembershipScripts._Rule_i;
             }
 
         }
+        static string _Rule_u;
 
-        static string _Category_d = "DELETE FROM aspnet_RulesCategory WHERE  aspnet_RulesCategory.CategoryId = [CategoryId]";
-        static string _RulesCategory_d = "DELETE FROM aspnet_RulesInCategory WHERE  aspnet_RulesInCategory.CategoryId = [CategoryId]";
+        public static string Rule_u
+        {
+            get
+            {
+                SetRule_u();
+                return FwkMembershipScripts._Rule_u;
+            }
+
+        }
+     
         public static string RulesCategory_d
         {
             get
@@ -161,8 +173,31 @@ namespace Fwk.Security
             }
 
         }
+        static void SetRule_u()
+        {
+
+            if (string.IsNullOrEmpty(_Rule_u))
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder(5000);
 
 
+                sb.Append(@"	UPDATE dbo.aspnet_Rules");
+                sb.Append(@"	SET	expression = '[expression]'");
+                sb.Append(@"		,[name]= '[rulename]'");
+                sb.Append(@"	WHERE [name]= '[rulename]' and ApplicationId = CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')");
+   
+
+                _Rule_u = sb.ToString();
+            }
+
+        }
+
+        /// <summary>
+        /// Construye la lista de usuarios y de roles desde la expresion de la regla.-
+        /// </summary>
+        /// <param name="assignedRoleList"></param>
+        /// <param name="excludeUserList"></param>
+        /// <returns></returns>
         public static string BuildRuleExpression(List<Rol> assignedRoleList, List<User> excludeUserList)
         {
             StringBuilder wexpression = new StringBuilder();
@@ -203,7 +238,14 @@ namespace Fwk.Security
             return wexpression.ToString();
         }
 
-        public static void BuildRolesAndUsersFromRuleExpression(string wexpression, out RolList assignedRoleList, out UserList excludeUserList)
+     
+        /// <summary>
+        /// Retorba las lista de usuarios y roles desde la expresion de la regla
+        /// </summary>
+        /// <param name="wexpression"></param>
+        /// <param name="assignedRoleList"></param>
+        /// <param name="excludeUserList"></param>
+        public static void BuildRolesAndUsers_FromRuleExpression(string wexpression, out RolList assignedRoleList, out UserList excludeUserList)
         {
             Rol wRol;
             User wUser;
@@ -236,7 +278,12 @@ namespace Fwk.Security
                     excludeUserList.Add(wUser);
                 }
             }
-         
+
         }
+
+       
+
+
     }
 }
+

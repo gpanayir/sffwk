@@ -111,16 +111,27 @@ namespace Fwk.Security
             }
         }
 
-        public static List<aspnet_RulesInCategory> GetFwkRulesInCategory(int pCategoryId, string pConnectionStringName)
+        public static List<FwkAuthorizationRuleAux> GetFwkRulesInCategory(int pCategoryId, string pConnectionStringName)
         {
-            IEnumerable<aspnet_RulesInCategory> rulesinCat = null;
+            IEnumerable<FwkAuthorizationRuleAux> rulesinCat = null;
             try
             {
 
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
-                    rulesinCat = from s in dc.aspnet_RulesInCategories where s.CategoryId == pCategoryId select s;
-                    return rulesinCat.ToList<aspnet_RulesInCategory>();
+                    rulesinCat = from s in dc.aspnet_Rules
+                                 from p in dc.aspnet_RulesInCategories
+
+                                 where
+                                 s.name.Equals(p.RuleName)
+                                 &&
+                                 p.CategoryId == pCategoryId
+                                 select new FwkAuthorizationRuleAux { Name = s.name, Expression = s.expression };
+
+
+
+
+                    return rulesinCat.ToList<FwkAuthorizationRuleAux>();
 
                 }
 
@@ -155,14 +166,14 @@ namespace Fwk.Security
             {
                 wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
                 StringBuilder str = new StringBuilder(FwkMembershipScripts.RulesCategory_d);
-            
-                foreach (aspnet_RulesInCategory rule in pFwkCategory.FwkRulesInCategoryList)
+
+                foreach (FwkAuthorizationRuleAux rule in pFwkCategory.FwkRulesInCategoryList)
                 {
-                    rule.CategoryId = pFwkCategory.CategoryId;
+                    
 
                     str.Append(FwkMembershipScripts.RuleInCategory_i);
 
-                    str.Replace("[RuleName]", rule.RuleName);
+                    str.Replace("[RuleName]", rule.Name);
                 }
                 str.Replace("[CategoryId]", pFwkCategory.CategoryId.ToString());
                 str.Replace("[ApplicationId]", id.ToString());
@@ -191,17 +202,34 @@ namespace Fwk.Security
         static List<FwkCategory> GetSubCategoriesByCategoryId(int pCategoryId, string pApplicationName, string pConnectionStringName)
         {
             IEnumerable<FwkCategory> wCategories = null;
+            FwkCategory wFwkCategory= new FwkCategory ();
             try
             {
                 Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(pConnectionStringName))
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
                     wCategories = from s in dc.aspnet_RulesCategories
                                   where (s.ParentCategoryId == pCategoryId
                         && s.ApplicationId == wApplicationId)
                                   select new FwkCategory { CategoryId = s.CategoryId, ParentId = s.ParentCategoryId, Name = s.Name };
+
+                    //var wRulesCategories = from s in dc.aspnet_RulesCategories
+                    //                       where (s.ParentCategoryId == pCategoryId
+                    //                       && s.ApplicationId == wApplicationId)
+                    //                       select s;
+
+                    //foreach(aspnet_RulesCategory rule in wRulesCategories.ToList<aspnet_RulesCategory>())
+                    //{
+                    //    wFwkCategory = new FwkCategory ();
+                    //    wFwkCategory.CategoryId = pCategoryId;
+                    //    wFwkCategory.Name = rule.Name;
+                    //    wFwkCategory.ParentId = rule.ParentCategoryId;
+              
+                    //wCategories.Add(wFwkCategory);
+                    //}
+                    return wCategories.ToList<FwkCategory>();
                 }
-                return wCategories.ToList<FwkCategory>();
+                
             }
             catch (Exception ex)
             {
@@ -256,7 +284,7 @@ namespace Fwk.Security
         /// <param name="pConnectionStringName"></param>
         public static void RemoveCategory(FwkCategory pParentFwkCategory, string pApplicationName, string pConnectionStringName)
         {
-            if (CategoryContainChilds(pParentFwkCategory, pApplicationName)) 
+            if (CategoryContainChilds(pParentFwkCategory, pApplicationName))
             {
                 List<FwkCategory> subCategories = GetSubCategoriesByCategoryId(pParentFwkCategory.CategoryId, pApplicationName, pConnectionStringName);
                 //Remueve recursivamente todos los hijos asta la ultima subcategoria
@@ -264,32 +292,31 @@ namespace Fwk.Security
                 {
                     RemoveCategory(wFwkCategory, pApplicationName, pConnectionStringName);
                 }
+
             }
-            else
+
+            DbCommand wCmd = null;
+            Database wDataBase = null;
+
+            try
             {
 
-                DbCommand wCmd = null;
-                Database wDataBase = null;
+                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
+                StringBuilder str = new StringBuilder(FwkMembershipScripts.Category_d);
 
-                try
-                {
 
-                    wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                    StringBuilder str = new StringBuilder(FwkMembershipScripts.Category_d);
 
-                    str.Append(FwkMembershipScripts.Category_i);
-                  
-                    str.Replace("[CategoryId]", pParentFwkCategory.CategoryId.ToString());
+                str.Replace("[CategoryId]", pParentFwkCategory.CategoryId.ToString());
 
-                    wCmd = wDataBase.GetSqlStringCommand(str.ToString());
-                    wCmd.CommandType = CommandType.Text;
-                    wDataBase.ExecuteNonQuery(wCmd);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                wCmd = wDataBase.GetSqlStringCommand(str.ToString());
+                wCmd.CommandType = CommandType.Text;
+                wDataBase.ExecuteNonQuery(wCmd);
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         /// <summary>

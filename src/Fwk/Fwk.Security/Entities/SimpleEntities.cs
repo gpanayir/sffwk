@@ -7,12 +7,13 @@ using System.Security.Principal;
 
 using System.Windows.Forms;
 using System.Web.Security;
+using System.Xml.Serialization;
 
 
 namespace Fwk.Security.Common
 {
-    
 
+    [XmlInclude(typeof(User)), Serializable]
     public class User
     {
         private String m_AppName;
@@ -150,7 +151,7 @@ namespace Fwk.Security.Common
         }
 
     }
-
+    [XmlRoot("UserList"), SerializableAttribute]
     public class UserList : List<User>
     {
         public String[] GetArraNames()
@@ -165,14 +166,19 @@ namespace Fwk.Security.Common
             return list.ToString().Split(',');
         }
     }
-
-
+    [XmlInclude(typeof(Rol)), Serializable]
     public class Rol
     {
 
+        public Rol(){}
         public Rol(string pname)
         {
             _RolName = pname;
+        }
+        public Rol(string name,string description)
+        {
+            _RolName = name;
+            _Description = description;
         }
         String _RolName;
 
@@ -181,13 +187,20 @@ namespace Fwk.Security.Common
             get { return _RolName; }
             set { _RolName = value; }
         }
+        String _Description;
+        public String Description
+        {
+            get { return _Description; }
+            set { _Description = value; }
+        }
 
         public override string ToString()
         {
             return _RolName;
         }
-    }
 
+    }
+    [XmlRoot("RolList"), SerializableAttribute]
     public class RolList : List<Rol>
     {
         public String[] GetArrayNames()

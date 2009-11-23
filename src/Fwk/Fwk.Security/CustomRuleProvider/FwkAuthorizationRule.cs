@@ -6,6 +6,7 @@ using Microsoft.Practices.EnterpriseLibrary.Security;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using System.Configuration;
 using Fwk.Bases;
+using Fwk.Security.Common;
 
 namespace Fwk.Security
 {
@@ -71,7 +72,10 @@ namespace Fwk.Security
         }
 
 
-
+        public void SetExpression(string newExpresion)
+        {
+            _Expression = newExpresion;
+        }
 
 
     }
@@ -108,19 +112,13 @@ namespace Fwk.Security
                 _Name = value;
             }
         }
-        int _CategoryId;
-        public int CategoryId
-        {
-            get
-            {
-                return _CategoryId;
-            }
-            set
-            {
-                _CategoryId = value;
-            }
-        }
+       
         #endregion
+
+        public void SetExpression(string newExpresion)
+        {
+            _Expression = newExpresion;
+        }
     }
     [Serializable]
     public class FwkCategory:Entity
@@ -159,9 +157,9 @@ namespace Fwk.Security
             }
         }
 
-        List<aspnet_RulesInCategory> _FwkRulesInCategoryList = null;
+        List<FwkAuthorizationRuleAux> _FwkRulesInCategoryList = null;
 
-        public List<aspnet_RulesInCategory> FwkRulesInCategoryList
+        public List<FwkAuthorizationRuleAux> FwkRulesInCategoryList
         {
             get { return _FwkRulesInCategoryList; }
             set { _FwkRulesInCategoryList = value; }
@@ -173,48 +171,6 @@ namespace Fwk.Security
 
 
 
-    [Serializable]
-    public class FwkRulesInCategory
-    {
-        public FwkRulesInCategory() { }
-        public FwkRulesInCategory(string name) { msz_RuleName = name; }
-
-        #region [Private Members]
-        private System.Int32? mi_CategoryId;
-        private System.String msz_RuleName;
-        private System.String msz_ApplicationId;
-
-        #endregion
-
-        #region [Properties]
-
-        #region [CategoryId]
-       
-        public System.Int32? CategoryId
-        {
-            get { return mi_CategoryId; }
-            set { mi_CategoryId = value; }
-        }
-        #endregion
-        #region [RuleName]
-       
-        public System.String RuleName
-        {
-            get { return msz_RuleName; }
-            set { msz_RuleName = value; }
-        }
-        #endregion
-        #region [ApplicationId]
-       
-        public System.String ApplicationId
-        {
-            get { return msz_ApplicationId; }
-            set { msz_ApplicationId = value; }
-        }
-        #endregion
-        #endregion
-
-        
-    }
+    
 
 }

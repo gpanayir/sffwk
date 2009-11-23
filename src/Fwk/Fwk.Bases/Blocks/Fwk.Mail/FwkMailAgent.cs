@@ -179,8 +179,11 @@ namespace Fwk.Mail
             GetFromCache();
 
             if (_ItemCache == null)
-            {   // se lanza evento, solicitando autenticación al usuario
-                RequireAuthentication(this, new EventArgs());
+            {   
+                // se lanza evento, solicitando autenticación al usuario
+                if(RequireAuthentication != null)
+                    RequireAuthentication(this, new EventArgs());
+
                 // Se cancela el inicio del servicio, se deben ingrensar parametros para la autenticacion del usuario
                 return;
             }
@@ -249,7 +252,10 @@ namespace Fwk.Mail
                     // Se lanza el evento, con el posible fallo en el login o el connect
                     // para que se re intente la operacion con nuevos parametros
                     _IsConnected = false;
-                    LoginResponse(this, new LoginEventArgs(wResponse));
+                    
+                    if(LoginResponse != null)
+                        LoginResponse(this, new LoginEventArgs(wResponse));
+
                     return false;
                 }
 
@@ -265,7 +271,8 @@ namespace Fwk.Mail
                     // y solo se muestran cuando hay uno nuevo
                     if ((_UnSeenMessages == 0) || (wNewMail > _UnSeenMessages))
                     {
-                        NewReceivedMail(this, new NewReceivedMailEventArgs(wNewMail, ImapServices.Instance.URLInboxMail));
+                        if(NewReceivedMail != null)
+                            NewReceivedMail(this, new NewReceivedMailEventArgs(wNewMail, ImapServices.Instance.URLInboxMail));
                     }
 
                     _UnSeenMessages = wNewMail;
@@ -288,7 +295,9 @@ namespace Fwk.Mail
                     // Se lanza el evento, con el posible fallo en el login o el connect
                     // para que se re intente la operacion con nuevos parametros
                     _IsConnected = false;
-                    LoginResponse(this, new LoginEventArgs(wResponse));
+                    if (LoginResponse != null)
+                        LoginResponse(this, new LoginEventArgs(wResponse));
+
                     return false;
                 }
 
@@ -304,7 +313,8 @@ namespace Fwk.Mail
                     // y solo se muestran cuando hay uno nuevo
                     if ((_UnSeenMessages == 0) || (wNewMail > _UnSeenMessages))
                     {
-                        NewReceivedMail(this, new NewReceivedMailEventArgs(wNewMail, Pop3Services.Instance.URLInboxMail));
+                        if (NewReceivedMail != null)
+                            NewReceivedMail(this, new NewReceivedMailEventArgs(wNewMail, Pop3Services.Instance.URLInboxMail));
                     }
 
                     _UnSeenMessages = wNewMail;
@@ -339,7 +349,9 @@ namespace Fwk.Mail
                 if (!wIsPop3)
                 {
                     // se lanza evento, solicitando autenticación al usuario
-                    RequireAuthentication(this, new EventArgs());
+                    if (RequireAuthentication != null)
+                        RequireAuthentication(this, new EventArgs());
+
                     // Se cancela el inicio del servicio, se deben ingrensar parametros para la autenticacion del usuario
                     return;
                 }
