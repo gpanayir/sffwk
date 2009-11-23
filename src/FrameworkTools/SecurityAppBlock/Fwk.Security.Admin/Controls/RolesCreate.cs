@@ -40,7 +40,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 try
                 {
-                    FwkMembership.CreateRole(txtRolName.Text,txtDescription.Text);
+                    FwkMembership.CreateRole(txtRolName.Text, txtDescription.Text);
 
                     fwkMessageViewInfo.Show(string.Format(Properties.Resources.RolCreatedMessage, txtRolName.Text));
                     Initialize();
@@ -88,7 +88,7 @@ namespace Fwk.Security.Admin.Controls
         {
             using (frmUserFind frm = new frmUserFind())
             {
-                
+
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
 
@@ -98,5 +98,39 @@ namespace Fwk.Security.Admin.Controls
                 }
             }
         }
+
+        private void grdUsers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                RemoveItem();
+            }
+        }
+       
+        private void RemoveItem()
+        {
+            MessageViewInfo.MessageBoxButtons = MessageBoxButtons.YesNo;
+            MessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question;
+            if (MessageViewInfo.Show("Are you sure to remove selected users from current role : " + selectedRol.RolName) == DialogResult.Yes)
+            {
+
+                UserList removedUsersList = new UserList();
+              
+                foreach (DataGridViewRow row in grdUsers.SelectedRows)
+                {
+                    removedUsersList.Remove(((User)row.DataBoundItem));
+                }
+
+                FwkMembership.RemoveUsersFromRole(removedUsersList.GetArraNames(), selectedRol.RolName);
+           
+                grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName);
+                grdUsers.Refresh();
+
+    
+            }
+            SetMessageViewToDefault();
+        }
+
+
     }
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{27D62BF8-5321-428B-93CE-98CFB8F6223E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -117,30 +117,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\frmRolesFind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\frmRolesFind.Designer.cs">
+      <DependentUpon>frmRolesFind.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\frmUserFind.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\frmUserFind.Designer.cs">
       <DependentUpon>frmUserFind.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RuleObjetoSource.cs" />
-    <Compile Include="Controls\CategoryCreate.cs">
+    <Compile Include="Controls\RolesGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CategoryCreate.Designer.cs">
-      <DependentUpon>CategoryCreate.cs</DependentUpon>
+    <Compile Include="Controls\RolesGrid.Designer.cs">
+      <DependentUpon>RolesGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RuleObjetoSource.cs" />
     <Compile Include="Controls\RulesEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\RulesEditControl.Designer.cs">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RulesInCategory.cs">
+    <Compile Include="Controls\CategoryCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\RulesInCategory.Designer.cs">
-      <DependentUpon>RulesInCategory.cs</DependentUpon>
+    <Compile Include="Controls\CategoryCreate.Designer.cs">
+      <DependentUpon>CategoryCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserAssingRoles.cs">
       <SubType>UserControl</SubType>
@@ -154,11 +160,11 @@
     <Compile Include="Controls\RulesAssingControl.Designer.cs">
       <DependentUpon>RulesAssingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CheckRulesControl.cs">
+    <Compile Include="Controls\RulesCheckControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CheckRulesControl.Designer.cs">
-      <DependentUpon>CheckRulesControl.cs</DependentUpon>
+    <Compile Include="Controls\RulesCheckControl.Designer.cs">
+      <DependentUpon>RulesCheckControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ControlsFactory.cs" />
     <Compile Include="Controls\RolesCreate.cs">
@@ -199,20 +205,22 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\CategoryCreate.resx">
-      <DependentUpon>CategoryCreate.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Controls\frmRolesFind.resx">
+      <DependentUpon>frmRolesFind.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\frmUserFind.resx">
       <DependentUpon>frmUserFind.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RolesGrid.resx">
+      <DependentUpon>RolesGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\RulesEditControl.resx">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\RulesInCategory.resx">
-      <DependentUpon>RulesInCategory.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\CategoryCreate.resx">
+      <DependentUpon>CategoryCreate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserAssingRoles.resx">
@@ -223,8 +231,8 @@
       <DependentUpon>RulesAssingControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CheckRulesControl.resx">
-      <DependentUpon>CheckRulesControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\RulesCheckControl.resx">
+      <DependentUpon>RulesCheckControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\RolesCreate.resx">
@@ -317,6 +325,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="group_16.ico" />
+    <None Include="Resources\search_32.png" />
+    <None Include="Resources\search_24.png" />
+    <None Include="Resources\search_16.png" />
+    <None Include="Resources\refresh_16.png" />
     <None Include="Properties\DataSources\Fwk.Security.aspnet_RulesInCategory.datasource" />
     <None Include="Resources\application_list_add_32.png" />
     <None Include="Resources\admin_24.png" />

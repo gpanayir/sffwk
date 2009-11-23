@@ -17,11 +17,17 @@ namespace Fwk.Security.Admin.Controls
         }
         public virtual void Initialize()
         {
-           
+
         }
         public SecurityControlBase()
         {
             InitializeComponent();
+        }
+
+        protected void SetMessageViewToDefault()
+        {
+            MessageViewInfo.MessageBoxButtons = MessageBoxButtons.OK;
+            MessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Exclamation;
         }
     }
 }

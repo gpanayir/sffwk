@@ -77,7 +77,7 @@
             this.grdUsers.Name = "grdUsers";
             this.grdUsers.Size = new System.Drawing.Size(608, 382);
             this.grdUsers.TabIndex = 17;
-            this.grdUsers.MultiSelectChanged += new System.EventHandler(this.grdUsers_MultiSelectChanged);
+            
             this.grdUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUsers_CellClick);
             // 
             // userNameDataGridViewTextBoxColumn

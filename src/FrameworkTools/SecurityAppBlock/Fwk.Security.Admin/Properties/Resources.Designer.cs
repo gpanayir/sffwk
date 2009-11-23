@@ -1005,6 +1005,13 @@ namespace Fwk.Security.Admin.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap refresh_16 {
+            get {
+                object obj = ResourceManager.GetObject("refresh_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Cannot retrieve identity because the token doesn&apos;t exist..
         /// </summary>
@@ -1150,6 +1157,27 @@ namespace Fwk.Security.Admin.Properties {
         internal static System.Drawing.Bitmap save_as_48 {
             get {
                 object obj = ResourceManager.GetObject("save_as_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap search_16 {
+            get {
+                object obj = ResourceManager.GetObject("search_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap search_24 {
+            get {
+                object obj = ResourceManager.GetObject("search_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap search_32 {
+            get {
+                object obj = ResourceManager.GetObject("search_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

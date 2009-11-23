@@ -51,12 +51,12 @@
             this.btnAsignarRoles = new System.Windows.Forms.Button();
             this.grdAssignedRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdAllRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolAssignedBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
@@ -67,9 +67,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAllUser)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAssignedRoles)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).BeginInit();
             this.tabControl2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // rolAssignedBindingSource
@@ -282,13 +282,27 @@
             this.grdAssignedRoles.Name = "grdAssignedRoles";
             this.grdAssignedRoles.Size = new System.Drawing.Size(299, 368);
             this.grdAssignedRoles.TabIndex = 11;
-        
+            this.grdAssignedRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAssignedRoles_MouseDown);
             // 
             // rolNameDataGridViewTextBoxColumn1
             // 
             this.rolNameDataGridViewTextBoxColumn1.DataPropertyName = "RolName";
             this.rolNameDataGridViewTextBoxColumn1.HeaderText = "RolName";
             this.rolNameDataGridViewTextBoxColumn1.Name = "rolNameDataGridViewTextBoxColumn1";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeSelectedsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
+            // 
+            // removeSelectedsToolStripMenuItem
+            // 
+            this.removeSelectedsToolStripMenuItem.Name = "removeSelectedsToolStripMenuItem";
+            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.removeSelectedsToolStripMenuItem.Text = "Remove selecteds";
+            this.removeSelectedsToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedsToolStripMenuItem_Click);
             // 
             // grdAllRoles
             // 
@@ -303,6 +317,7 @@
             this.grdAllRoles.Name = "grdAllRoles";
             this.grdAllRoles.Size = new System.Drawing.Size(260, 368);
             this.grdAllRoles.TabIndex = 10;
+            this.grdAllRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAllRoles_MouseDown);
             this.grdAllRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdAllRoles_CellClick);
             // 
             // rolNameDataGridViewTextBoxColumn
@@ -335,20 +350,6 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Expression";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeSelectedsToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
-            // 
-            // removeSelectedsToolStripMenuItem
-            // 
-            this.removeSelectedsToolStripMenuItem.Name = "removeSelectedsToolStripMenuItem";
-            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.removeSelectedsToolStripMenuItem.Text = "Remove selecteds";
-            this.removeSelectedsToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedsToolStripMenuItem_Click);
-            // 
             // RulesAssingControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -371,9 +372,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAllUser)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdAssignedRoles)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).EndInit();
             this.tabControl2.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -45,10 +45,10 @@ namespace Fwk.Security.Admin
             this.navBarItem_CreateRule = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_Check = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_CategoryCreate = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem_RulesEdit = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_CreateUser = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_AddRoles = new DevExpress.XtraNavBar.NavBarItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.navBarItem_RulesEdit = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.SuspendLayout();
@@ -151,7 +151,7 @@ namespace Fwk.Security.Admin
             // 
             // navBarGroup_Groups
             // 
-            this.navBarGroup_Groups.Caption = "Groups";
+            this.navBarGroup_Groups.Caption = "Roles";
             this.navBarGroup_Groups.Expanded = true;
             this.navBarGroup_Groups.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.SmallIconsText;
             this.navBarGroup_Groups.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -170,7 +170,7 @@ namespace Fwk.Security.Admin
             // 
             // navBarGroup_Rules
             // 
-            this.navBarGroup_Rules.Caption = "rules";
+            this.navBarGroup_Rules.Caption = "Rules & categories ";
             this.navBarGroup_Rules.Expanded = true;
             this.navBarGroup_Rules.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup_Rules.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -194,15 +194,23 @@ namespace Fwk.Security.Admin
             this.navBarItem_Check.Caption = "Check rule";
             this.navBarItem_Check.LargeImage = global::Fwk.Security.Admin.Properties.Resources.access_control_ok_32;
             this.navBarItem_Check.Name = "navBarItem_Check";
-            this.navBarItem_Check.Tag = "Fwk.Security.Admin.Controls.CheckRulesControl, Fwk.Security.Admin";
+            this.navBarItem_Check.Tag = "Fwk.Security.Admin.Controls.RulesCheckControl, Fwk.Security.Admin";
             // 
             // navBarItem_CategoryCreate
             // 
-            this.navBarItem_CategoryCreate.Caption = "Create category";
+            this.navBarItem_CategoryCreate.Caption = "Organize category";
             this.navBarItem_CategoryCreate.LargeImage = global::Fwk.Security.Admin.Properties.Resources.map_32;
             this.navBarItem_CategoryCreate.Name = "navBarItem_CategoryCreate";
             this.navBarItem_CategoryCreate.SmallImage = global::Fwk.Security.Admin.Properties.Resources.map_16;
             this.navBarItem_CategoryCreate.Tag = "Fwk.Security.Admin.Controls.CategoryCreate, Fwk.Security.Admin";
+            // 
+            // navBarItem_RulesEdit
+            // 
+            this.navBarItem_RulesEdit.Caption = "Edit";
+            this.navBarItem_RulesEdit.LargeImage = global::Fwk.Security.Admin.Properties.Resources.file_edit_32;
+            this.navBarItem_RulesEdit.Name = "navBarItem_RulesEdit";
+            this.navBarItem_RulesEdit.SmallImage = global::Fwk.Security.Admin.Properties.Resources.file_edit_16;
+            this.navBarItem_RulesEdit.Tag = "Fwk.Security.Admin.Controls.RulesEditControl, Fwk.Security.Admin";
             // 
             // navBarItem_CreateUser
             // 
@@ -226,14 +234,6 @@ namespace Fwk.Security.Admin
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(783, 561);
             this.panelControl1.TabIndex = 5;
-            // 
-            // navBarItem_RulesEdit
-            // 
-            this.navBarItem_RulesEdit.Caption = "Edit";
-            this.navBarItem_RulesEdit.LargeImage = global::Fwk.Security.Admin.Properties.Resources.file_edit_32;
-            this.navBarItem_RulesEdit.Name = "navBarItem_RulesEdit";
-            this.navBarItem_RulesEdit.SmallImage = global::Fwk.Security.Admin.Properties.Resources.file_edit_16;
-            this.navBarItem_RulesEdit.Tag = "Fwk.Security.Admin.Controls.RulesEditControl, Fwk.Security.Admin";
             // 
             // frmAdmin
             // 

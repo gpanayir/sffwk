@@ -35,23 +35,18 @@ namespace Fwk.Security.Admin.Controls
                 return typeof(RulesEditControl).AssemblyQualifiedName;
             }
         }
-     
+
         public override void Initialize()
         {
             //txtRuleName.Focus();
             using (new WaitCursorHelper(this))
             {
-                //userBindingSource.DataSource = FwkMembership.GetAllUsers();
-                rolBindingSource.DataSource = FwkMembership.GetAllRoles();
-                grdRoles.Refresh();
-       
-        
-            
+
 
 
                 _CategoryList = FwkMembership.GetAllCategories(Membership.ApplicationName);
                 treeList1.BeginUnboundLoad();
-                
+
                 this.fwkCategoryBindingSource.DataSource = _CategoryList;
                 treeList1.RefreshDataSource();
                 treeList1.EndUnboundLoad();
@@ -143,7 +138,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 _ParentFwkCategory = (FwkCategory)treeList1.GetDataRecordByNode(treeList1.FocusedNode);
                 aspnetRulesInCategoryBindingSource.DataSource = _ParentFwkCategory.FwkRulesInCategoryList;
-               
+
 
                 grdRulesByCategory.RefreshDataSource();
             }
@@ -153,31 +148,88 @@ namespace Fwk.Security.Admin.Controls
         {
 
             aspnet_RulesInCategory rule = (aspnet_RulesInCategory)((BindingSource)grdRulesByCategory.DataSource).Current;
-
+            if (rule == null) return;
             _CurrentRule = FwkMembership.GetRule(rule.RuleName, Membership.ApplicationName);
-            _AssignedRolList = new RolList();
-           _ExcludeUserList = new UserList();
-            FwkMembershipScripts.BuildRolesAndUsersFromRuleExpression(_CurrentRule.expression, out _AssignedRolList, out _ExcludeUserList);
-       
-            rolBindingSource.DataSource = _AssignedRolList;
-            grdRoles.Refresh();
+            if (_CurrentRule == null)
+            {
+                MessageViewInfo.Show("Esta regla y fue eliminada .- Es posible que la categoria seleccionada no esta sincronizada con las reglas.-");
+                rolBindingSource.DataSource = null;
+            }
+            else
+            {
+                _AssignedRolList = new RolList();
+                _ExcludeUserList = new UserList();
+                FwkMembershipScripts.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.expression, out _AssignedRolList, out _ExcludeUserList);
+                rolBindingSource.DataSource = _AssignedRolList;
+            }
+
+            grdRoles.RefreshDataSource();
         }
 
         private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-         
+            RemoveItem();
 
-            foreach (DataGridViewRow row in grdRoles.SelectedRows)
+        }
+
+        private void btnFindRoles_Click(object sender, EventArgs e)
+        {
+            using (frmRolesFind frm = new frmRolesFind())
             {
-                _AssignedRolList.Remove(((Rol)row.DataBoundItem));
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    //Rol addedRole;
+                    foreach (Rol rol in frm.SelectedRoleList)
+                    {
+                        if (!_AssignedRolList.Any(r => r.RolName.Trim().Equals(rol.RolName.Trim(), StringComparison.OrdinalIgnoreCase)))
+                        {
+                             //addedRole = new Rol(rol.RolName);
+                            _AssignedRolList.Add(rol);
+                        }
+                    }
+                    _CurrentRule.expression = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+                    FwkMembership.UpdateRule(_CurrentRule, Membership.ApplicationName);
+
+
+                    rolBindingSource.DataSource = _AssignedRolList;
+                    grdRoles.RefreshDataSource();
+                }
+
+
+
             }
-            _CurrentRule.expression = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
-          
+        }
 
-            rolBindingSource.DataSource = null;
-            rolBindingSource.DataSource = _AssignedRolList;
-            grdRoles.Refresh();
+        private void grdRoles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                RemoveItem();
+            }
+        }
 
+        void RemoveItem()
+        {
+            MessageViewInfo.MessageBoxButtons = MessageBoxButtons.YesNo;
+            MessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question;
+            if (MessageViewInfo.Show("Are you sure to remove selected roles from current rule : " + _CurrentRule.name) == DialogResult.Yes)
+            {
+               
+            
+                foreach (int wFila in grdViewRoles.GetSelectedRows())
+                {
+                    _AssignedRolList.Remove((Rol)grdViewRoles.GetRow(wFila));
+                }
+
+                _CurrentRule.expression = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+
+
+                rolBindingSource.DataSource = null;
+                rolBindingSource.DataSource = _AssignedRolList;
+                grdRoles.RefreshDataSource();
+            }
+            SetMessageViewToDefault();
         }
     }
 }

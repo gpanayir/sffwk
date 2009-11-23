@@ -132,7 +132,7 @@ namespace Fwk.Security.Admin.Controls
                 FwkAuthorizationRule wFwkAuthorizationRule = new FwkAuthorizationRule();
                 wFwkAuthorizationRule.Name = txtRuleName.Text;
                 wFwkAuthorizationRule.Expression = txtRuleExpression.Text;
-                FwkMembership.CreateRules(wFwkAuthorizationRule, Membership.ApplicationName);
+                FwkMembership.CreateRule(wFwkAuthorizationRule, Membership.ApplicationName);
                 MessageViewInfo.Show(String.Format(Properties.Resources.RuleCreatedMessage, txtRuleName.Text));
                 NewSecurityInfoCreatedHandler();
             }
@@ -187,6 +187,16 @@ namespace Fwk.Security.Admin.Controls
             grdAssignedRoles.DataSource = null;
             grdAssignedRoles.DataSource = _AssignedRolList;
             txtRuleExpression.Text = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+        }
+
+        private void grdAssignedRoles_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void grdAllRoles_MouseDown(object sender, MouseEventArgs e)
+        {
+
         }
 
        

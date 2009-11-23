@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Fwk.Security.Common;
+using Fwk.Security.Admin.Controls;
 
 namespace Fwk.Security.Admin
 {
     public delegate void UserChangeHandler(User user, RolList roles);
     [DefaultEvent("OnUserChange")]
-    public partial class UsersGrid : UserControl
+    public partial class UsersGrid : SecurityControlBase
     {
         public User CurrentUser;
         public event UserChangeHandler OnUserChange;
@@ -53,7 +54,7 @@ namespace Fwk.Security.Admin
             
         }
 
-        public void Initialize()
+        public override void Initialize()
         {
 
             userList = FwkMembership.GetAllUsers();
@@ -92,9 +93,6 @@ namespace Fwk.Security.Admin
             
         }
 
-        private void grdUsers_MultiSelectChanged(object sender, EventArgs e)
-        {
-            DataGridViewSelectedRowCollection ss = grdUsers.SelectedRows;
-        }
+       
     }
 }

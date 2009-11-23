@@ -149,6 +149,7 @@
             this.grdUsers.Name = "grdUsers";
             this.grdUsers.Size = new System.Drawing.Size(306, 350);
             this.grdUsers.TabIndex = 22;
+            this.grdUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdUsers_KeyDown);
             // 
             // userNameDataGridViewTextBoxColumn
             // 
@@ -220,7 +221,7 @@
             // 
             this.btnFindUsers.BackColor = System.Drawing.Color.White;
             this.btnFindUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFindUsers.Image = global::Fwk.Security.Admin.Properties.Resources.file_find_16;
+            this.btnFindUsers.Image = global::Fwk.Security.Admin.Properties.Resources.search_16;
             this.btnFindUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFindUsers.Location = new System.Drawing.Point(472, 95);
             this.btnFindUsers.Name = "btnFindUsers";
