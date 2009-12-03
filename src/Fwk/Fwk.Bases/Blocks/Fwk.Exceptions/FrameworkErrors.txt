@@ -49,3 +49,9 @@ FunctionalExceptionEnums.MsgErrorInConfigMannagerNotFount;
 
 3000
 
+
+
+--------------------------------   Fwk.Security -----------------------------------
+ErrorId = 4000
+
+Usuario no existe.-

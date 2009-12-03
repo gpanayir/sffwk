@@ -523,7 +523,7 @@ namespace Fwk.Bases.FrontEnd.Controls.Test
             this.fwkFlatTextBox1.RequiredErrorText = "dasdasdasdsa";
             this.fwkFlatTextBox1.Size = new System.Drawing.Size(274, 21);
             this.fwkFlatTextBox1.TabIndex = 25;
-            this.fwkFlatTextBox1.TextBoxType = Fwk.Bases.FrontEnd.Controls.FlatTextBoxTypeEnum.AlphaNumeric;
+            this.fwkFlatTextBox1.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.AlphaNumericNotAllowSimbols;
             // 
             // fwkMessageViewComponent1
             // 

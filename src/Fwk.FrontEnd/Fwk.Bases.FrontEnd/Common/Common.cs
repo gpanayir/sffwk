@@ -55,19 +55,21 @@ namespace Fwk.Bases.FrontEnd.Controls
 
         
     }
-    
+ 
+
     #region--[Enums]--
     public enum ValidationStyle
     {
         NumericInt, NumericDouble, Email, Date
     }
-    public enum FlatTextBoxTypeEnum
+    public enum TextBoxTypeEnum
     {
         Nothing = 0,
-        AlphaNumeric = 1,
+        AlphaNumericNotAllowSimbols = 1,
         Numeric = 2,
         NumericDecimal = 3,
-        NumericDecimalWhitchPoint = 4
+        NumericDecimalWhitchPoint = 4,
+        Email = 5
     }
     public class ControlChars
     {
@@ -152,7 +154,7 @@ namespace Fwk.Bases.FrontEnd.Controls
 
 
     }
-    
+
     
     #endregion
 }

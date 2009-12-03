@@ -228,21 +228,27 @@ namespace Fwk.Security
         {
             MembershipUser wUser = Membership.GetUser(pUserName);
             // block the user
-            if (wUser == null)
-            {
-                return null;
-            }
-            else
+            if (wUser != null)
             {
                 return new User(wUser);
             }
+            else
+            {
+                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
+                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, pUserName)
+                    );
+                te.ErrorId = "4000";
+                throw te;
+            }
+
+          
         }
 
         /// <summary>
         /// Bloquea un Usuario
         /// </summary>
         /// <param name="pUserName">Nombre del usuario que se desea bloquear</param>
-        public static void UnApproved(String pUserName)
+        public static void UnApproveUser(String pUserName)
         {
             MembershipUser wUser = Membership.GetUser(pUserName);
 
@@ -251,6 +257,14 @@ namespace Fwk.Security
             {
                 wUser.IsApproved = false;
                 Membership.UpdateUser(wUser);
+            }
+            else
+            {
+                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
+                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, pUserName)
+                    );
+                te.ErrorId = "4000";
+                throw te;
             }
 
         }
@@ -269,9 +283,54 @@ namespace Fwk.Security
             {
                 wUser.IsApproved = true;
                 Membership.UpdateUser(wUser);
+
+            }
+            else
+            {
+                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
+                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, pUserName)
+                    );
+                te.ErrorId = "4000";
+                throw te;
             }
         }
+        /// <summary>
+        /// Toma como entrada un nombre de usuario y actualiza el campo en el origen de datos que asigna a la propiedad 
+        /// IsLockedOut el valor false. 
+        /// El método UnlockUser devuelve true si el registro para el usuario suscrito se actualiza correctamente; de lo contrario, false.
+        /// </summary>
+        /// <param name="pUserName">Nombre del usuario a desbloquear</param>
+        public static bool UnlockUser(String pUserName)
+        {
 
+            MembershipUser wUser = Membership.GetUser(pUserName);
+            
+          
+            // block the user
+            if (wUser != null)
+            {
+                return wUser.UnlockUser();
+            }
+            else
+            {
+                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
+                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, pUserName)
+                    );
+                te.ErrorId = "4000";
+                throw te;
+            }
+            
+        }
+
+        static Fwk.Exceptions.TechnicalException GetTechnicalException(string msg)
+        {
+            Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(msg);
+            te.Assembly = typeof(FwkMembership).GetType().Namespace;
+            te.Class = typeof(FwkMembership).GetType().Name;
+            te.Source = "Security";
+            te.UserName = Environment.UserName;
+            return te;
+        }
         /// <summary>
         /// Resetea el Password de un usuario
         /// </summary>
@@ -284,9 +343,17 @@ namespace Fwk.Security
             MembershipUser wUser = Membership.GetUser(pUserName);
             // block the user
             if (wUser != null)
+            {
                 wNewPassword = wUser.ResetPassword();
+            }
             else
-                wNewPassword = String.Empty;
+            {
+                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
+                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, pUserName)
+                    );
+                te.ErrorId = "4000";
+                throw te;
+            }
 
             return wNewPassword;
         }
@@ -419,7 +486,7 @@ namespace Fwk.Security
             {
                 foreach (Rol rol in pRolList)
                 {
-                    if (!Roles.IsUserInRole(pUserName, rol.RolName))
+                    if (Roles.IsUserInRole(pUserName, rol.RolName))
                         Roles.RemoveUserFromRoles(pUserName, new string[] { rol.RolName });
 
                 }

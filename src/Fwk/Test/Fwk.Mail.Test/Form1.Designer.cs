@@ -78,6 +78,9 @@
             // fwkMailAgent1
             // 
             this.fwkMailAgent1.Provider = null;
+            this.fwkMailAgent1.LoginResponse += new System.EventHandler<Fwk.Mail.LoginEventArgs>(this.fwkMailAgent1_LoginResponse);
+            this.fwkMailAgent1.RequireAuthentication += new System.EventHandler<System.EventArgs>(this.fwkMailAgent1_RequireAuthentication);
+            this.fwkMailAgent1.NewReceivedMail += new System.EventHandler<Fwk.Mail.NewReceivedMailEventArgs>(this.fwkMailAgent1_NewReceivedMail);
             // 
             // Form1
             // 

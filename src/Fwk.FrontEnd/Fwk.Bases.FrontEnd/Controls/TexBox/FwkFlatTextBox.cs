@@ -32,7 +32,7 @@ namespace Fwk.Bases.FrontEnd.Controls
         private Color _InactiveBorderColor = SystemColors.ControlDark;
         private Color _BorderColor;
         private bool IAmOn;
-        private FlatTextBoxTypeEnum _TextBoxType;
+        private TextBoxTypeEnum _TextBoxType;
         private string _AllowedCharacters;
         private bool _CapitalOnly = false;
         private bool _Required = false;
@@ -79,7 +79,7 @@ namespace Fwk.Bases.FrontEnd.Controls
             set { _InactiveBorderColor = value; }
         }
         [CategoryAttribute("Factory Tools"), Description("Tipo de text box")]
-        public FlatTextBoxTypeEnum TextBoxType
+        public TextBoxTypeEnum TextBoxType
         {
             get
             { return _TextBoxType; }
@@ -179,7 +179,7 @@ namespace Fwk.Bases.FrontEnd.Controls
         {
             base.OnKeyPress(e);
 
-            if (_TextBoxType == FlatTextBoxTypeEnum.Nothing)
+            if (_TextBoxType == TextBoxTypeEnum.Nothing)
                 return;
 
             if (e.KeyChar == ControlChars.Back)
@@ -276,25 +276,25 @@ namespace Fwk.Bases.FrontEnd.Controls
         }
         #endregion
 
-      
+
 
         private void UpdateControl()
         {
             switch (_TextBoxType)
             {
-                case FlatTextBoxTypeEnum.AlphaNumeric:
+                case TextBoxTypeEnum.AlphaNumericNotAllowSimbols:
                     _AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
                     break;
 
-                case FlatTextBoxTypeEnum.Numeric:
+                case TextBoxTypeEnum.Numeric:
                     _AllowedCharacters = "0123456789";
                     break;
 
-                case FlatTextBoxTypeEnum.NumericDecimal:
+                case TextBoxTypeEnum.NumericDecimal:
                     _AllowedCharacters = "0123456789" + CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator;
                     break;
 
-                case FlatTextBoxTypeEnum.NumericDecimalWhitchPoint:
+                case TextBoxTypeEnum.NumericDecimalWhitchPoint:
                     _AllowedCharacters = "0123456789.";
                     break;
             }
@@ -323,7 +323,7 @@ namespace Fwk.Bases.FrontEnd.Controls
             {
                 foreach (char s in this.Text.ToCharArray())
                 {
-                    if (_AllowedCharacters.Contains(s.ToString()))
+                    if (_NotAllowedCharactersErrorText.Contains(s.ToString()))
                     {
                         errorProvider1.SetError(this, _NotAllowedCharactersErrorText);
                         return false;

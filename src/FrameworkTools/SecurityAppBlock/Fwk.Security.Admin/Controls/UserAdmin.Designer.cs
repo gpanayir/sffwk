@@ -49,6 +49,8 @@
             this.usersGrid1 = new Fwk.Security.Admin.UsersGrid();
             this.label5 = new System.Windows.Forms.Label();
             this.txtComments = new DevExpress.XtraEditors.TextEdit();
+            this.btnchangePwd = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuest.Properties)).BeginInit();
@@ -281,10 +283,25 @@
             this.txtComments.Size = new System.Drawing.Size(593, 22);
             this.txtComments.TabIndex = 29;
             // 
+            // btnchangePwd
+            // 
+            this.btnchangePwd.BackColor = System.Drawing.Color.White;
+            this.btnchangePwd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnchangePwd.Image = global::Fwk.Security.Admin.Properties.Resources.lock_16;
+            this.btnchangePwd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnchangePwd.Location = new System.Drawing.Point(317, 3);
+            this.btnchangePwd.Name = "btnchangePwd";
+            this.btnchangePwd.Size = new System.Drawing.Size(100, 26);
+            this.btnchangePwd.TabIndex = 31;
+            this.btnchangePwd.Text = "Change password";
+            this.btnchangePwd.UseVisualStyleBackColor = false;
+            this.btnchangePwd.Click += new System.EventHandler(this.btnchangePwd_Click);
+            // 
             // UserAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnchangePwd);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtComments);
             this.Controls.Add(this.usersGrid1);
@@ -296,6 +313,7 @@
             this.Controls.Add(this.btnUsersList);
             this.Name = "UserAdmin";
             this.Size = new System.Drawing.Size(654, 646);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
@@ -332,5 +350,6 @@
         private System.Windows.Forms.CheckBox chkApproved;
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.TextEdit txtComments;
+        private System.Windows.Forms.Button btnchangePwd;
     }
 }

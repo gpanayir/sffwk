@@ -150,6 +150,18 @@ namespace Fwk.Security.Admin.Controls
             }
         }
 
+        private void btnchangePwd_Click(object sender, EventArgs e)
+        {
+            if (usersGrid1.CurrentUser == null) return;
+            using (frmChangePwd frm = new frmChangePwd(usersGrid1.CurrentUser))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    MessageViewInfo.Show("User password was successfully updated");
+                }
+            }
+        }
+
     
 
     }

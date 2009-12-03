@@ -47,6 +47,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Allus.Libs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\AllusFwk\Libraries\Allus.Libs.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
     <Reference Include="DevExpress.Utils.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
     <Reference Include="DevExpress.XtraBars.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
@@ -63,6 +67,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraNavBar.v9.1.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraRichEdit.v9.1.Extensions, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraSpellChecker.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraSpellChecker.v9.1.Core, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
     <Reference Include="DevExpress.XtraTreeList.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraTreeList.v9.1.dll</HintPath>
@@ -117,6 +125,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\frmChangePwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\frmChangePwd.Designer.cs">
+      <DependentUpon>frmChangePwd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\frmRolesFind.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +219,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\frmChangePwd.resx">
+      <DependentUpon>frmChangePwd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\frmRolesFind.resx">
       <DependentUpon>frmRolesFind.cs</DependentUpon>
     </EmbeddedResource>
