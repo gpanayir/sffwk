@@ -175,6 +175,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fwk.DataBase\Fwk.DataBase.csproj">
+      <Project>{87C826E0-D87A-4C89-94ED-3B1044746A34}</Project>
+      <Name>Fwk.DataBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

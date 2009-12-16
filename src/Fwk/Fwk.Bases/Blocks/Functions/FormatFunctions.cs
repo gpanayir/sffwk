@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Collections;
 
 
 namespace Fwk.HelperFunctions
@@ -234,7 +235,13 @@ namespace Fwk.HelperFunctions
             return wLetter;
         }
 
-
+        /// <summary>
+        /// Retorna un array de string sobre una propiedad de la clase en cuestion
+        /// </summary>
+        /// <param name="propertieName">Propiedad del objeto sobre la q se quiere reliazar el array de strings</param>
+        /// <param name="list">lista de enumeraciones</param>
+        /// <param name="separator">Caracter separadors</param>
+        /// <returns>EJ "1,2,3"</returns>
         public static StringBuilder GetStringBuilderWhitSeparator<T>(IList<T> list, char separator, string propertieName)
         {
             StringBuilder strIn = new StringBuilder();
@@ -243,7 +250,58 @@ namespace Fwk.HelperFunctions
 
                 foreach (T t in list)
                 {
-                    string val = Fwk.HelperFunctions.ReflectionFunctions.GetPropertieValue<string>(t, propertieName);
+                    string val = Fwk.HelperFunctions.ReflectionFunctions.GetPropertieValue(t, propertieName);
+                    strIn.Append(val);
+                    strIn.Append(",");
+                }
+            }
+            if (strIn.Length > 0)
+                strIn.Remove(strIn.Length - 1, 1);
+
+            return strIn;
+        }
+        /// <summary>
+        /// Retorna un array de string sobre una propiedad de la clase en cuestion.-
+        /// Realiza Convert.ToString(t) de cada uno de los elementos de la lista tipo T;
+        /// </summary>
+        /// <typeparam name="T">Tipo del elemento en la lista</typeparam>
+        /// <param name="list">Lsita de elementos T</param>
+        /// <param name="separator">Caracter separadors</param>
+        /// <returns>EJ "Lu,Ma,Mi"</returns>
+        public static StringBuilder GetStringBuilderWhitSeparator<T>(IList<T> list, char separator)
+        {
+            StringBuilder strIn = new StringBuilder();
+            if (list != null)
+            {
+
+                foreach (T t in list)
+                {
+                    string val = Convert.ToString(t);
+                    strIn.Append(val);
+                    strIn.Append(",");
+                }
+            }
+            if (strIn.Length > 0)
+                strIn.Remove(strIn.Length - 1, 1);
+
+            return strIn;
+        }
+        /// <summary>
+        /// Retorna un array de string separados por "separator" de una enumeracion.- 
+        /// Utiliza la porcion nunmerica de la enumeracion.- es decir su valor numerico no el valor de nombre
+        /// </summary>
+        /// <param name="list">lista de enumeraciones</param>
+        /// <param name="separator">Caracter separadors</param>
+        /// <returns>EJ "1,2,3"</returns>
+        public static StringBuilder GetStringBuilderWhitSeparatorFromEnum(IList list, char separator)
+        {
+            StringBuilder strIn = new StringBuilder();
+            if (list != null)
+            {
+
+                foreach (object t in list)
+                {
+                    int val = (int)t;
                     strIn.Append(val);
                     strIn.Append(",");
                 }

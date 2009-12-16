@@ -34,6 +34,7 @@ namespace TestDataBases
         private BindingSource treeViewStoreProceduresBindingSource;
         private RichTextBox richTextBox1;
         private Button button4;
+        private Button button5;
         private IContainer components;
 
 		public frmTest()
@@ -91,6 +92,7 @@ namespace TestDataBases
             this.treeViewTables1 = new Fwk.DataBase.CustomControls.TreeViewTables();
             this.treeViewStoreProcedures1 = new Fwk.DataBase.CustomControls.TreeViewStoreProcedures();
             this.treeViewStoreProceduresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -290,7 +292,7 @@ namespace TestDataBases
             this.cnnDataBaseForm1.ButtonsBackColor = System.Drawing.Color.SlateGray;
             this.cnnDataBaseForm1.ButtonsFlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cnnDataBaseForm1.ButtonsFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cnnDataBaseForm1.Connection = null;
+
             this.cnnDataBaseForm1.LabelsForeColor = System.Drawing.Color.SteelBlue;
             this.cnnDataBaseForm1.Location = new System.Drawing.Point(10, 12);
             this.cnnDataBaseForm1.Name = "cnnDataBaseForm1";
@@ -306,7 +308,7 @@ namespace TestDataBases
             this.treeViewTables1.Location = new System.Drawing.Point(202, 35);
             this.treeViewTables1.Name = "treeViewTables1";
             this.treeViewTables1.SelectedTable = null;
-            this.treeViewTables1.SelectedTableName = String.Empty;
+            this.treeViewTables1.SelectedTableName = "";
             this.treeViewTables1.Size = new System.Drawing.Size(310, 415);
             this.treeViewTables1.TabIndex = 23;
             this.treeViewTables1.Tablas = null;
@@ -319,7 +321,7 @@ namespace TestDataBases
             this.treeViewStoreProcedures1.Location = new System.Drawing.Point(179, 35);
             this.treeViewStoreProcedures1.Name = "treeViewStoreProcedures1";
             this.treeViewStoreProcedures1.SelectedStoreProcedure = null;
-            this.treeViewStoreProcedures1.SelectedStoreProcedureName = String.Empty;
+            this.treeViewStoreProcedures1.SelectedStoreProcedureName = "";
             this.treeViewStoreProcedures1.Size = new System.Drawing.Size(234, 420);
             this.treeViewStoreProcedures1.StoreProcedures = null;
             this.treeViewStoreProcedures1.TabIndex = 23;
@@ -329,10 +331,20 @@ namespace TestDataBases
             // 
             this.treeViewStoreProceduresBindingSource.DataSource = typeof(Fwk.DataBase.CustomControls.TreeViewStoreProcedures);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(36, 384);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(215, 22);
+            this.button5.TabIndex = 28;
+            this.button5.Text = "DataBaseConection Clear";
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // frmTest
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(956, 524);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.cnnDataBaseForm1);
             this.Controls.Add(this.tabControl1);
@@ -629,6 +641,12 @@ namespace TestDataBases
             _DataBaseConnections.Connections.Add(X1);
 
             _DataBaseConnections.Save();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DataBaseConnections _DataBaseConnections = new DataBaseConnections();
+            _DataBaseConnections.Clear();
         }
 
 	}

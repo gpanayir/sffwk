@@ -6,6 +6,8 @@ using Fwk.HelperFunctions;
 using System.Xml.Serialization;
 using Fwk.Bases;
 using System.IO;
+using System.IO.IsolatedStorage;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Fwk.DataBase
 {
@@ -23,56 +25,126 @@ namespace Fwk.DataBase
         /// <summary>
         /// Contiene las conecciones a bases de datos
         /// </summary>
-
         public CnnStringList Connections
         {
             get { return _Connections; }
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Save()
-        {
-            if (_Connections.Count >10)
-            { 
-              _Connections.Remove(_Connections[0]);
-            }
-
-
-            String wDataBaseConfigFullName = AppDomain.CurrentDomain.BaseDirectory + System.IO.Path.DirectorySeparatorChar + DATABASE_CONFIG_FILE;
-            FileFunctions.SaveTextFile(wDataBaseConfigFullName, _Connections.GetXml(),false);
-
-
-
-        }
+       
         internal void Load()
         {
-            String wDataBaseConfigFullName = AppDomain.CurrentDomain.BaseDirectory + System.IO.Path.DirectorySeparatorChar + DATABASE_CONFIG_FILE;
+         
+
 
             try
             {
-                String xml = FileFunctions.OpenTextFile(wDataBaseConfigFullName);
-                _Connections = CnnStringList.GetCnnStringListFromXml(xml);
+                IsolatedStorageFile userStore = IsolatedStorageFile.GetUserStoreForAssembly();
+
+                //Si no hay datos para este usuario
+                if (userStore.GetFileNames(DATABASE_CONFIG_FILE).Length == 0)
+                {
+                    //Limpio el diccionario por si contien algo
+                    //_Connections.Clear();
+                    return;
+
+                }
+                //Abro el stream con la informacion serializada del diccionario desde el IsolatedStorage
+                IsolatedStorageFileStream userStream = new IsolatedStorageFileStream(DATABASE_CONFIG_FILE, FileMode.Open, userStore);
+                _Connections = DeSerializeDictionary(userStream);
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException)//si ocurre algun error construyo una coneccion por defecto
             {
                 CnnString cnn = new CnnString();
                 cnn.DataSource = "DataSourceEmty";
-                cnn.Name = "ConnactionName";
+                cnn.Name = "ConnectionName";
                 cnn.Password = String.Empty;
                 cnn.User = "sa";
                 cnn.WindowsAutentification = true;
                 cnn.InitialCatalog = String.Empty;
 
                 _Connections.Add(cnn);
-                FileFunctions.SaveTextFile(wDataBaseConfigFullName, _Connections.GetXml());
+                Save();
+              
             }
-           
-        }
-    }
 
+        }
+
+        public void Clear()
+        {
+            _Connections = new CnnStringList();
+            Save();
+        }
+
+        /// <summary>
+        /// Crear in IsolatedStorageFile con la serializacion en binario del diccionario .-
+        /// Este diccionario contiene el par [NombreArchivo,Ruta]
+        //// </summary>
+        public void Save()
+        {
+
+            // Crear archivo que se pueda almacenar en el Isolated Storage
+            IsolatedStorageFile userStore = IsolatedStorageFile.GetUserStoreForAssembly();
+
+            IsolatedStorageFileStream userStream = new IsolatedStorageFileStream(DATABASE_CONFIG_FILE, FileMode.Create, userStore);
+
+            //Serializa el diccionario y guarda el contenido binario en el stream
+            SerializeDictionary(userStream, _Connections);
+
+        }
+
+        /// <summary>
+        /// Deserializa: Convierte el stream a una lista de coneciones
+        /// </summary>
+        /// <param name="fs"></param>
+        /// <param name="dict"></param>
+        CnnStringList DeSerializeDictionary(FileStream fs)
+        {
+
+            CnnStringList wCnnStringList;
+
+            // Crea  un BinaryFormatter para realizar la serializacion
+            BinaryFormatter bf = new BinaryFormatter();
+
+            try
+            {
+                //Convierte el stream a un CnnStringList
+                wCnnStringList = (CnnStringList)bf.Deserialize(fs);
+
+            }
+
+            catch (System.Runtime.Serialization.SerializationException)
+            {
+
+                wCnnStringList = new CnnStringList();
+
+            }
+
+            finally
+            {
+
+                fs.Close();
+            }
+
+            return wCnnStringList;
+
+        }
+        /// <summary>
+        /// Serializa en binario el la lista de conecciones
+        /// </summary>
+        /// <param name="fs"></param>
+        /// <param name="dict"></param>
+        private static void SerializeDictionary(FileStream fs, CnnStringList dict)
+        {
+            // Create a BinaryFormatter object to perform the serialization
+            BinaryFormatter bf = new BinaryFormatter();
+            // Use the BinaryFormatter object to serialize the data to the file
+            bf.Serialize(fs, dict);
+            // Close the file
+            fs.Close();
+        }
+         
+    }
 
     /// <summary>
     /// Clase que reprecenta una conexión
@@ -106,8 +178,9 @@ namespace Fwk.DataBase
             ParceCnnString(pConnectionString);
 
         }
+
         /// <summary>
-        /// 
+        /// Establece si la conexion admitira autorizacion integrada (true) o no (false)
         /// </summary>
         [Description("Establece si la conexion admitira autorizacion integrada (true) o no (false)")]
         public System.Boolean WindowsAutentification
@@ -117,7 +190,7 @@ namespace Fwk.DataBase
         }
 
         /// <summary>
-        /// 
+        /// Nombre de server de datos
         /// </summary>
         [Description("Nombre de server de datos")]
         public string DataSource
@@ -150,8 +223,20 @@ namespace Fwk.DataBase
         [Description("Nombre de la cadena de conexion")]
         public string Name
         {
-            get { return _Name; }
-            set { _Name = value; }
+            get
+            {
+                
+                if (string.IsNullOrEmpty(_Name))
+                    _Name = string.Concat("Server: ", _InitialCatalog, "DB: ", _DataSource);
+                return _Name;
+            }
+            set {
+                if (string.IsNullOrEmpty(value))
+                    _Name = string.Concat("Server: ", _InitialCatalog, "DB: ", _DataSource);
+                else
+                    _Name = value;
+            
+            }
         }
 
         /// <summary>
@@ -251,19 +336,11 @@ namespace Fwk.DataBase
     }
 
     /// <summary>
-    /// 
+    /// Lista de cadenas de conección.-
     /// </summary>
     [XmlRoot("CnnStringList"), SerializableAttribute]
     public class CnnStringList : Entities<CnnString>
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pXml"></param>
-        /// <returns></returns>
-        public static CnnStringList GetCnnStringListFromXml(String pXml)
-        {
-            return CnnStringList.GetFromXml<CnnStringList>(pXml);
-        }
+        
     }
 }

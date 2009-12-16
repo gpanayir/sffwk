@@ -21,17 +21,17 @@ namespace Fwk.Blocking
     public class BlockingMarkBase : IBlockingMark
     {
         #region Private members
-        private Boolean m_AlreadyExists;
+        private Boolean _AlreadyExists;
         private DateTime? m_DueDate;
-        private String msz_Process;
-        private Guid? m_FwkGuid;
+        private String _Process;
+        private Guid? _FwkGuid;
         private Int32? m_BlockingId;
         //private Int32? m_BlockingTime;
-        private String m_User;
-        private Int32? m_TTL;
-        private String m_TableName = "BlockingMarks";
-        private String m_Attribute;
-        private String m_AttValue;
+        private String _User;
+        private Int32? _TTL;
+        private String _TableName = "BlockingMarks";
+        private String _Attribute;
+        private String _AttValue;
 
        
         #endregion
@@ -39,14 +39,14 @@ namespace Fwk.Blocking
         #region Constructors
         public String AttValue
         {
-            get { return m_AttValue; }
-            set { m_AttValue = value; }
+            get { return _AttValue; }
+            set { _AttValue = value; }
         }
 
         public String Attribute
         {
-            get { return m_Attribute; }
-            set { m_Attribute = value; }
+            get { return _Attribute; }
+            set { _Attribute = value; }
         }
         /// <summary>
         /// Constructor que asigna un nombre de tabla de modo de tratar con una tabla que no 
@@ -56,8 +56,8 @@ namespace Fwk.Blocking
         /// <param name="pTableName">Nombre de tabla de marcas personalizadas.-</param>
         public BlockingMarkBase(String pTableName)
         {
-            m_TableName = pTableName;
-            m_FwkGuid = Guid.NewGuid();
+            _TableName = pTableName;
+            _FwkGuid = Guid.NewGuid();
             //Set default values
             SetValues();
         }
@@ -71,8 +71,8 @@ namespace Fwk.Blocking
         /// </param>
         public BlockingMarkBase(Guid? pGuid, String pTableName)
        {
-           m_TableName = pTableName;
-           m_FwkGuid = pGuid;
+           _TableName = pTableName;
+           _FwkGuid = pGuid;
            SetValues();
        }
 
@@ -85,7 +85,7 @@ namespace Fwk.Blocking
         /// </param>
         public BlockingMarkBase(Guid pGuid)
         {
-            m_FwkGuid = pGuid;
+            _FwkGuid = pGuid;
             SetValues();
         }
 
@@ -96,7 +96,7 @@ namespace Fwk.Blocking
         /// </summary>
         public BlockingMarkBase()
         {
-            m_FwkGuid = Guid.NewGuid();
+            _FwkGuid = Guid.NewGuid();
             SetValues();
         }
 
@@ -117,8 +117,8 @@ namespace Fwk.Blocking
         /// </summary>
         public String Process
         {
-            get { return msz_Process; }
-            set { msz_Process = value; }
+            get { return _Process; }
+            set { _Process = value; }
         }
 
         /// <summary>
@@ -126,8 +126,8 @@ namespace Fwk.Blocking
         /// </summary>
         public Guid? FwkGuid
         {
-            get { return m_FwkGuid; }
-            set { m_FwkGuid = value; }
+            get { return _FwkGuid; }
+            set { _FwkGuid = value; }
         }
 
         /// <summary>
@@ -144,8 +144,8 @@ namespace Fwk.Blocking
         /// </summary>
         public Boolean AlreadyExists
         {
-            get { return m_AlreadyExists; }
-            set { m_AlreadyExists = value; }
+            get { return _AlreadyExists; }
+            set { _AlreadyExists = value; }
         }
 
         /// <summary>
@@ -153,11 +153,11 @@ namespace Fwk.Blocking
         /// </summary>
         public Int32? TTL
         {
-            get { return m_TTL; }
+            get { return _TTL; }
             set
             {
-                m_TTL = value;
-                m_DueDate = System.DateTime.Now.AddSeconds(Convert.ToDouble(m_TTL));
+                _TTL = value;
+                m_DueDate = System.DateTime.Now.AddSeconds(Convert.ToDouble(_TTL));
             }
         }
 
@@ -176,8 +176,8 @@ namespace Fwk.Blocking
         /// </summary>
         public string User
         {
-            get { return m_User; }
-            set { m_User = value; }
+            get { return _User; }
+            set { _User = value; }
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Fwk.Blocking
         /// </summary>
         public string TableName
         {
-            get { return m_TableName; }
+            get { return _TableName; }
         }
 
         
@@ -197,9 +197,9 @@ namespace Fwk.Blocking
         /// </summary>
         private void SetValues()
         {
-            m_TTL = 15; /* Seconds */
+            _TTL = 15; /* Seconds */
             //m_BlockingTime = 0;
-            m_User = String.Empty;
+            _User = String.Empty;
            
         }
         #endregion

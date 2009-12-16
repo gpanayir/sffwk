@@ -28,6 +28,7 @@ namespace Fwk.DataBase.CustomControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbConnections = new Fwk.Bases.FrontEnd.Controls.FwkAutoComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,7 +44,9 @@ namespace Fwk.DataBase.CustomControls
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnTestConnection = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.cnnStringListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cnnStringListBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -69,7 +72,11 @@ namespace Fwk.DataBase.CustomControls
             this.cmbConnections.ActiveArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(142)))));
             this.cmbConnections.ActiveBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
             this.cmbConnections.ActiveButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
+            this.cmbConnections.AllowEmptyTextValue = false;
             this.cmbConnections.AutoComplete = true;
+            this.cmbConnections.DataSource = this.cnnStringListBindingSource;
+            this.cmbConnections.DisplayMember = "Name";
+            this.cmbConnections.ErrorIconRightToLeft = false;
             this.cmbConnections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbConnections.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbConnections.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
@@ -79,11 +86,14 @@ namespace Fwk.DataBase.CustomControls
             this.cmbConnections.InactiveButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(251)))));
             this.cmbConnections.Location = new System.Drawing.Point(120, 11);
             this.cmbConnections.Name = "cmbConnections";
+            this.cmbConnections.NullTextValue = null;
             this.cmbConnections.ReadOnly = false;
             this.cmbConnections.ReadOnlyColor = System.Drawing.SystemColors.Control;
             this.cmbConnections.Required = true;
+            this.cmbConnections.RequiredErrorText = null;
             this.cmbConnections.Size = new System.Drawing.Size(192, 21);
             this.cmbConnections.TabIndex = 63;
+            this.cmbConnections.ValueMember = "Name";
             this.cmbConnections.SelectedValueChanged += new System.EventHandler(this.cmbConnections_SelectedValueChanged);
             // 
             // label3
@@ -220,6 +230,10 @@ namespace Fwk.DataBase.CustomControls
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // cnnStringListBindingSource
+            // 
+            this.cnnStringListBindingSource.DataSource = typeof(Fwk.DataBase.CnnStringList);
+            // 
             // CnnDataBaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,6 +247,7 @@ namespace Fwk.DataBase.CustomControls
             this.Size = new System.Drawing.Size(348, 217);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cnnStringListBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,5 +270,6 @@ namespace Fwk.DataBase.CustomControls
        
         private System.Windows.Forms.Label label3;
         private Fwk.Bases.FrontEnd.Controls.FwkAutoComboBox cmbConnections;
+        private System.Windows.Forms.BindingSource cnnStringListBindingSource;
     }
 }

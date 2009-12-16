@@ -572,6 +572,8 @@ namespace Fwk.HelperFunctions
 
 
         }
+
+       
         /// <summary>
         /// Give a string representation of a object, with use of reflection.
         /// </summary>

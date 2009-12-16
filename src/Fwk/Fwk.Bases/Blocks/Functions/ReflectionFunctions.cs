@@ -51,34 +51,52 @@ namespace Fwk.HelperFunctions
             return wResult;
 
         }
+        /// <summary>
+        /// Crea instancia de un objetos a partir de de su nombre largo
+        /// 
+        /// </summary>
+        /// <param name="pAssemblyString">String separado por comas "Type.FullName,Assembly.Name"</param>
+        /// <returns>Instancia del objeto</returns>
+        static public object CreateInstance(string pAssemblyString)
+        {
+           return CreateInstance (pAssemblyString,null);
+        }
 
         /// <summary>
-        /// Carga un ensamblado a partir de su nombre largo.
+        /// El método CreateInstance crea una instancia de un tipo definido en un ensamblado llamando al constructor que mejor coincida con los argumentos especificados. Si no se ha especificado 
+        /// ningún argumento, se llama al constructor que no toma parámetros, es decir, el constructor predeterminado.
         /// </summary>
-        /// <param name="pAssemblyString"></param>
-        /// <returns></returns>
-	    static public object CreateInstance(string pAssemblyString)
+        /// <param name="pAssemblyString">String separado por comas "Type.FullName,Assembly.Name"</param>
+        /// <param name="constructorParams">An array of arguments that match in number, order, and type the parameters of the constructor to invoke. 
+        /// If args is an empty array or nullNothingnullptra null reference (Nothing in Visual Basic), 
+        /// the constructor that takes no parameters (the default constructor) is invoked. </param>
+        /// <returns>Instancia del objeto</returns>
+        public static object CreateInstance(string pAssemblyString, object[] constructorParams)
         {
             string wClassName;
             string wAssembly;
-
+           
             ExtractTypeInformation(pAssemblyString, out wClassName, out wAssembly);
 
             // crea el objeto dinámicamente
-            object wResult = CreateInstanceLoad(wClassName,  wAssembly);
+            object wResult;
+            if (constructorParams == null)
+                wResult = CreateInstanceLoad(wClassName, wAssembly);
+            else
+                wResult = CreateInstanceLoad(wClassName, wAssembly, constructorParams);
 
             return wResult;
-
 
         }
 
         /// <summary>
-        /// Carga un ensamblado a partir de su nombre largo.
+        /// Crea instancia de un objetos a partir de de su nombre largo y sus parametros.
+        /// Efectua load assembly
         /// </summary>
-        /// <param name="pClassName">Nombre de la clase</param>
-        /// <param name="pAssemblyName">Nombre del ensamblado</param>
+        /// <param name="pClassName">Nombre de la clase (Type.FullName)</param>
+        /// <param name="pAssemblyName">Nombre del ensamblado (Assembly.Name)</param>
         /// <returns>Instancia del objeto</returns>
-        static public object CreateInstanceLoad(string pClassName, string pAssemblyName)
+        public static  object CreateInstanceLoad(string pClassName, string pAssemblyName)
         {
             Assembly wAssembly = Assembly.Load(pAssemblyName);
             object wResult = wAssembly.CreateInstance(pClassName, true);
@@ -86,7 +104,28 @@ namespace Fwk.HelperFunctions
             return wResult;
         }
 
-    
+
+
+
+        /// <summary>
+        /// Crea instancia de un objetos a partir de de su nombre largo y sus parametros.
+        /// Efectua load assembly
+        /// <param name="pClassName">Nombre de la clase (Type.FullName)</param>
+        /// <param name="pAssemblyName">Nombre del ensamblado (Assembly.Name)</param>
+        /// <param name="constructorParams">An array of arguments that match in number, order, and type the parameters of the constructor to invoke. 
+        /// If args is an empty array or nullNothingnullptra null reference (Nothing in Visual Basic), 
+        /// the constructor that takes no parameters (the default constructor) is invoked. </param>
+        /// <returns></returns>
+       public  static  object CreateInstanceLoad(string pClassName, string pAssemblyName, object[] constructorParams)
+        {
+
+            Type wType = CreateType(pClassName, pAssemblyName);
+
+            return  Activator.CreateInstance(wType, constructorParams);
+
+        }
+          
+           
 
 		private static void ExtractTypeInformation(string pAssemblyString, out string pClassName, out string pAssembly)
 		{
@@ -112,9 +151,9 @@ namespace Fwk.HelperFunctions
 		}
 
         /// <summary>
-        /// 
+        /// Crea un typo cualquiera 
         /// </summary>
-        /// <param name="pAssemblyString"></param>
+        /// <param name="pAssemblyString">String separado por comas "Type.FullName,Assembly.Name"</param>
         /// <returns></returns>
         static public Type CreateType(string pAssemblyString)
         {
@@ -130,11 +169,11 @@ namespace Fwk.HelperFunctions
             return wResult;
         }
         /// <summary>
-        /// 
+        /// Crea un typo cualquiera 
         /// </summary>
-        /// <param name="pClassName"></param>
-        /// <param name="pAssemblyName"></param>
-        /// <returns></returns>
+        /// <param name="pClassName">Type.FullName</param>
+        /// <param name="pAssemblyName">Assembly.Name</param>
+        /// <returns>Type</returns>
 		static public Type CreateType(string pClassName, string pAssemblyName)
 		{
 			Assembly wAssembly = Assembly.Load(pAssemblyName);
@@ -193,6 +232,30 @@ namespace Fwk.HelperFunctions
 
 
             return (T)wPropValue;
+        }
+        /// <summary>
+        /// Retorna el valor de una propiedad.-
+        /// Generalmente utilizado cuando el nombre de la propiedad es generada dinamicamente y no se sabe en 
+        /// desing time que propiedad sera utilizada de un objeto.-
+        /// </summary>
+   
+        /// <param name="pSourceObject">Objeto que contiene la propiedad</param>
+        /// <param name="pPropertyName">Nombre de la propiedad</param>
+        /// <returns>Valor de la propiedad en string</returns>
+        public static string GetPropertieValue(object pSourceObject, string pPropertyName)
+        {
+            object wPropValue = null;
+            PropertyDescriptorCollection pProperties = TypeDescriptor.GetProperties(pSourceObject, true);
+            PropertyDescriptor pPropDesc;
+
+            pPropDesc = pProperties.Find(pPropertyName, true);
+            if (pPropDesc != null)
+            {
+                wPropValue = pPropDesc.GetValue(pSourceObject);
+            }
+
+
+            return wPropValue.ToString();
         }
 
         /// <summary>

@@ -6,6 +6,9 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Fwk.Bases;
+using System.Collections;
+using System.Xml.Serialization;
+using System.Linq;
 namespace Fwk.DataBase.CustomControls
 {
     /// <summary>
@@ -120,8 +123,8 @@ namespace Fwk.DataBase.CustomControls
         #endregion
 
         #region [Propieades]
-        private CnnString _CurrentConnection = null;
-
+        //private CnnString wDataBaseServer.CurrentCnnString = null;
+        DataBaseServer _DataBaseServer = null;
         /// <summary>
         /// Determina si la cadena de coneccion a cambiado.-
         /// </summary>
@@ -150,8 +153,8 @@ namespace Fwk.DataBase.CustomControls
         [Browsable(false)]
         public CnnString Connection
         {
-            get { return _CurrentConnection; }
-            set { _CurrentConnection = value; }
+            get { return _DataBaseServer.CurrentCnnString; }
+            //set { wDataBaseServer.CurrentCnnString = value; }
         }
 
         /// <summary>
@@ -254,22 +257,23 @@ namespace Fwk.DataBase.CustomControls
         /// </summary>
         public void InitialiceControl()
         {
-            DataBaseServer wDataBaseServer = null;
+            
             try
             {
-                wDataBaseServer = new DataBaseServer(true);
+                _DataBaseServer = new DataBaseServer(true);
+                if (_DataBaseServer.CnnString == null) return;
+                txtServer.Text = _DataBaseServer.CnnString.DataSource;
 
-                txtServer.Text = wDataBaseServer.CnnString.DataSource;
+                cnnStringListBindingSource.DataSource = _DataBaseServer.CnnStringList;
                 
-                cmbConnections.DataSource = wDataBaseServer.CnnStringList;
-                cmbConnections.ValueMember = "Name";
-                cmbConnections.DisplayMember = "Name";
                 cmbConnections.SelectedIndex = 0;
-                WindowsAutentificaction.Checked = wDataBaseServer.CnnString.WindowsAutentification;
-                if (!wDataBaseServer.CnnString.WindowsAutentification)
+                cmbConnections.Refresh();
+
+                WindowsAutentificaction.Checked = _DataBaseServer.CnnString.WindowsAutentification;
+                if (!_DataBaseServer.CnnString.WindowsAutentification)
                 {
-                    txtUserName.Text = wDataBaseServer.CnnString.User;
-                    txtPassword.Text = wDataBaseServer.CnnString.Password;
+                    txtUserName.Text = _DataBaseServer.CnnString.User;
+                    txtPassword.Text = _DataBaseServer.CnnString.Password;
                 }
                 else
                 {
@@ -277,8 +281,8 @@ namespace Fwk.DataBase.CustomControls
                     txtPassword.Text = String.Empty;
                 }
 
-                cmbDataBases.Items.Add(wDataBaseServer.CnnString.InitialCatalog);
-                cmbDataBases.Text = wDataBaseServer.CnnString.InitialCatalog;
+                cmbDataBases.Items.Add(_DataBaseServer.CnnString.InitialCatalog);
+                cmbDataBases.Text = _DataBaseServer.CnnString.InitialCatalog;
 
             }
 
@@ -332,7 +336,7 @@ namespace Fwk.DataBase.CustomControls
 
         private void btnGuardar_Click(object sender, System.EventArgs e)
         {
-            DataBaseServer wDataBaseServer = null;
+            //DataBaseServer wDataBaseServer = null;
             if (String.IsNullOrEmpty(txtServer.Text))
             {
                 MessageBox.Show("Falta ingresar nombre del servidor");
@@ -348,26 +352,19 @@ namespace Fwk.DataBase.CustomControls
                 }
             try
             {
-                wDataBaseServer = new DataBaseServer(true);
+                _DataBaseServer = new DataBaseServer(true);
                 CnnString wCnnString = GetAuxiliarCnnString();
                 //Pregunto si los datos ingresados dan OK a una coneccion antes de
                 //guardar la configuracion.-
                 if (DataBaseServer.TestConnection(wCnnString))
                 {
-                    MappingTextBoxToProperties();
-                    List<CnnString> listAux = (List < CnnString > )wDataBaseServer.CnnStringList.FindAll(new SearchEntityArg("Name", cmbConnections.Text));
-
-                    if (listAux.Count == 0)
+                    FillCurrentCnnString();
+                    //wDataBaseServer.SaveSetting(wCnnString);
+                    if (_DataBaseServer.SaveSetting(wCnnString))
                     {
-                        _CurrentConnection.Name = cmbConnections.Text;
-                        //Almaceno la configuracion .-
-                        wDataBaseServer.SaveSetting(_CurrentConnection, true);
+                       //wDataBaseServer.CurrentCnnString.Name = cmbConnections.Text;
                     }
-                    else
-                    {
-                        //modifico la configuracion .-
-                        wDataBaseServer.SaveSetting(_CurrentConnection, false);
-                    }
+                    
                     ConnectionOK = true;
                 }
                 else
@@ -402,13 +399,13 @@ namespace Fwk.DataBase.CustomControls
             }
         }
 
-        private void MappingTextBoxToProperties()
+        private void FillCurrentCnnString()
         {
-            if (_CurrentConnection == null)
-                _CurrentConnection = new CnnString();
+            if (_DataBaseServer.CurrentCnnString == null)
+                _DataBaseServer.CurrentCnnString = new CnnString();
 
-            if (_CurrentConnection.InitialCatalog != cmbDataBases.Text.Trim() ||
-                _CurrentConnection.DataSource != txtServer.Text.Trim())
+            if (_DataBaseServer.CurrentCnnString.InitialCatalog != cmbDataBases.Text.Trim() ||
+                _DataBaseServer.CurrentCnnString.DataSource != txtServer.Text.Trim())
             {
                 CnnStringChange = true;
             }
@@ -416,33 +413,26 @@ namespace Fwk.DataBase.CustomControls
             {
                 CnnStringChange = false;
             }
-            _CurrentConnection.InitialCatalog = cmbDataBases.Text.Trim();
-            _CurrentConnection.DataSource  = txtServer.Text.Trim();
-            _CurrentConnection.User = txtUserName.Text.Trim();
-            _CurrentConnection.Password = txtPassword.Text.Trim();
-            _CurrentConnection.WindowsAutentification = WindowsAutentificaction.Checked;
+            _DataBaseServer.CurrentCnnString.InitialCatalog = cmbDataBases.Text.Trim();
+            _DataBaseServer.CurrentCnnString.DataSource  = txtServer.Text.Trim();
+            _DataBaseServer.CurrentCnnString.User = txtUserName.Text.Trim();
+            _DataBaseServer.CurrentCnnString.Password = txtPassword.Text.Trim();
+            _DataBaseServer.CurrentCnnString.WindowsAutentification = WindowsAutentificaction.Checked;
         }
-        private void MappingPropertiesToTextBox()
-        {
-       
 
-            //if (_CurrentConnection.InitialCatalog != cmbDataBases.Text.Trim() ||
-            //    _CurrentConnection.DataSource != txtServer.Text.Trim())
-            //{
-            //    CnnStringChange = true;
-            //}
-            //else
-            //{
-            //    CnnStringChange = false;
-            //}
+        private void FillControls()
+        {
+
+            if (_DataBaseServer.CurrentCnnString == null) return;
             CnnStringChange = true;
 
-            cmbDataBases.Text = _CurrentConnection.InitialCatalog;
-            txtServer.Text = _CurrentConnection.DataSource;
-            txtUserName.Text = _CurrentConnection.User;
-            txtPassword.Text = _CurrentConnection.Password;
-            WindowsAutentificaction.Checked = _CurrentConnection.WindowsAutentification;
+            cmbDataBases.Text = _DataBaseServer.CurrentCnnString.InitialCatalog;
+            txtServer.Text = _DataBaseServer.CurrentCnnString.DataSource;
+            txtUserName.Text = _DataBaseServer.CurrentCnnString.User;
+            txtPassword.Text = _DataBaseServer.CurrentCnnString.Password;
+            WindowsAutentificaction.Checked = _DataBaseServer.CurrentCnnString.WindowsAutentification;
         }
+
         private CnnString GetAuxiliarCnnString()
         {
             CnnString wCnnString = new CnnString();
@@ -488,8 +478,11 @@ namespace Fwk.DataBase.CustomControls
                     if (DataBaseServer.TestConnection(txtServer.Text.Trim(), txtUserName.Text.Trim(), txtPassword.Text.Trim(), WindowsAutentificaction.Checked))
                     {
                         cmbDataBases.Items.Clear();
-                        
 
+                        if (wDataBaseServer.CnnString == null)
+                        {
+                            wDataBaseServer.CreateConnection();
+                        }
                         wDataBaseServer.CnnString.DataSource = txtServer.Text.Trim();
                         wDataBaseServer.CnnString.User = txtUserName.Text.Trim();
                         wDataBaseServer.CnnString.Password = txtPassword.Text.Trim();
@@ -562,8 +555,12 @@ namespace Fwk.DataBase.CustomControls
 
         private void cmbConnections_SelectedValueChanged(object sender, EventArgs e)
         {
-            _CurrentConnection  = (CnnString)cmbConnections.SelectedItem;
-            MappingPropertiesToTextBox();
+            if (_DataBaseServer != null)
+            {
+                _DataBaseServer.CurrentCnnString = (CnnString)cmbConnections.SelectedItem;
+
+                FillControls();
+            }
         }
 
        

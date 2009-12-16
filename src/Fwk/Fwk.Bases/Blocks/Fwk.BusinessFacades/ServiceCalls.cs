@@ -22,7 +22,11 @@ namespace Fwk.BusinessFacades.Utils
         /// <returns>XML que representa el resultado de la  ejecución del servicio.</returns>
         /// <date>2007-08-07T00:00:00</date>
         /// <author>moviedo</author>
-        public static IServiceContract RunService(IServiceContract pRequest, ServiceConfiguration pServiceConfiguration, out ServiceError pserviError)
+        public static IServiceContract 
+            RunService
+            (IServiceContract pRequest, 
+            ServiceConfiguration pServiceConfiguration, 
+            out ServiceError pserviError)
         {
             IServiceContract wResponse = null;
 
@@ -31,7 +35,7 @@ namespace Fwk.BusinessFacades.Utils
                 pRequest.InitializeServerContextInformation();
                 // obtención del Response.
                 Type wServiceType = ReflectionFunctions.CreateType(pServiceConfiguration.Handler);
-
+                
                 object wServiceInstance = Activator.CreateInstance(wServiceType);
                 wResponse =
                     (wServiceType.GetMethod("Execute").Invoke(wServiceInstance, new object[] { pRequest }) as

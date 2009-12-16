@@ -11,6 +11,10 @@ using Fwk.HelperFunctions;
 using System.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Security.Cryptography;
 
+using System.Collections;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using System.Linq;
 namespace Fwk.DataBase 
 {
 	/// <summary>
@@ -25,9 +29,15 @@ namespace Fwk.DataBase
 
         private const string symmProvider = "CnnCryptProvider";
 		private  SqlConnection _Cnn = new SqlConnection ();
-    
 
-        private CnnString _CnnString = null;
+
+        private CnnString _CurrentCnnString = null;
+
+        public CnnString CurrentCnnString
+        {
+            get { return _CurrentCnnString; }
+            set { _CurrentCnnString = value; }
+        }
       
 
         public CnnStringList CnnStringList
@@ -67,72 +77,19 @@ namespace Fwk.DataBase
                 InitializeConfig();
 
         }
+
+        public CnnString CreateConnection()
+        {
+
+            _CurrentCnnString = new CnnString();
+
+            _DataBaseConnections.Connections.Add(_CurrentCnnString);
+
+            return _CurrentCnnString;
+        }
+
 		#region [Propiedades]
 
-        /////// <summary>
-        /////// Reprecenta si la coneccion usa autentificacion de windows o no.-
-        /////// </summary>
-        ////public  bool WindowsAutChecked
-        ////{
-        ////    get
-        ////    {
-        ////        return _WindowsAutChecked ;
-        ////    }
-        ////}
-        ///// <summary>
-        ///// Password para la coneccion .-
-        ///// </summary>
-        ////public  string Password
-        ////{
-        ////    set
-        ////    {
-        ////        try
-        ////        {
-        ////            _Password = value.Trim();//Cryptographer.EncryptSymmetric(symmProvider, value.Trim());
-        ////        }
-
-        ////        catch (Exception ex)
-        ////        {
-        ////            throw new DataBaseExeption(ex, DataBaseExeption.ExeptionsEnums.CryptographicFile);
-        ////        }
-        ////    }
-        ////    get 
-        ////    {
-        ////        return  _Password.Trim();
-               
-        ////    }
-        ////}
-
-        /////// <summary>
-        /////// Nombre de la instancio de SQL.-
-        /////// </summary>
-        ////public  string SQLServer
-        ////{
-        ////    get
-        ////    {
-        ////        return  _SQLServer;
-        ////    }
-        ////    set
-        ////    {
-        ////        _SQLServer = value.Trim();
-        ////    }
-        ////}
-
-        ///// <summary>
-        /////// Nombre de usuario.-
-        /////// </summary>
-        ////public string UserName
-        ////{
-        ////    get
-        ////    {
-        ////        return  _UserName; //_Node.SelectSingleNode("User").InnerXml;
-
-        ////    }
-        ////    set
-        ////    {
-        ////        _UserName = value.Trim();
-        ////    }
-        ////}
 
         public int ServerVersion
         {
@@ -155,27 +112,13 @@ namespace Fwk.DataBase
 
         }
 
-        ///// <summary>
-        ///// Nombre de Base de datos.-
-        ///// </summary>
-        //public  string DataBaseName
-        //{
-        //    get
-        //    {
-        //        return  _DataBase;
-        //    }
-        //    set
-        //    {
-        //        _DataBase = value.Trim();
-        //    }
-        //}
 
         /// <summary>
         /// Cadena de coneccion actual
         /// </summary>
         public CnnString CnnString
         {
-            get { return _CnnString; }
+            get { return _CurrentCnnString; }
         }
 		
         /// <summary>
@@ -203,7 +146,7 @@ namespace Fwk.DataBase
 			}
             catch (Exception ex)
             {
-                throw new DataBaseExeption(ex, _CnnString);
+                throw new DataBaseExeption(ex, _CurrentCnnString);
             }
 		}
 
@@ -286,7 +229,8 @@ namespace Fwk.DataBase
             try
             {
                 _DataBaseConnections.Load();
-                _CnnString = _DataBaseConnections.Connections[0];
+                if(_DataBaseConnections.Connections.Count > 0)
+                    _CurrentCnnString = _DataBaseConnections.Connections[0];
                
             }
 
@@ -298,8 +242,8 @@ namespace Fwk.DataBase
             catch (System.Security.Cryptography.CryptographicException e)
             {
 
-                _CnnString.Password = String.Empty;
-                throw new DataBaseExeption(e, _CnnString);
+                _CurrentCnnString.Password = String.Empty;
+                throw new DataBaseExeption(e, _CurrentCnnString);
             }
             catch (Exception)
             {
@@ -317,30 +261,42 @@ namespace Fwk.DataBase
 		
 
         /// <summary>
-        /// Almacena la configuracion cun los datos que se pasan como parametros.-
+        /// Almacena la configuracion con los datos que se pasan como parametros.-
         /// </summary>
         /// <param name="pCnnString">Coneccion</param>
-        ///   <param name="pAppend">Agrega nuevo elemento</param>
-        public void SaveSetting(CnnString pCnnString,bool pAppend)
+        ///<param name="pAppend">Agrega nuevo elemento</param>
+        public bool SaveSetting(CnnString pCnnString)
 		{
-            _CnnString = pCnnString;
-            if (pAppend)
-                _DataBaseConnections.Connections.Add(pCnnString);
+            bool isNew = false;
+            if (_DataBaseConnections.Connections.Any<CnnString>(c => c.Name.Equals(pCnnString.Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                //modifico la configuracion .-
+                CnnString cnn = _DataBaseConnections.Connections.First<CnnString>(c => c.Name.Equals(pCnnString.Name, StringComparison.OrdinalIgnoreCase));
+
+                if (cnn.Name != null)
+                {
+                    cnn.Password = pCnnString.Password;
+                    cnn.DataSource = pCnnString.DataSource;
+                    cnn.User = pCnnString.User;
+                    cnn.WindowsAutentification = pCnnString.WindowsAutentification;
+                    cnn.InitialCatalog = pCnnString.InitialCatalog;
+                }
+                isNew =false;
+            }
             else
             {
-                foreach (CnnString cnn in _DataBaseConnections.Connections)
-                {
-                    if (cnn.Name == pCnnString.Name)
-                    {
-                        cnn.Password = pCnnString.Password;
-                        cnn.DataSource = pCnnString.DataSource;
-                        cnn.User = pCnnString.User;
-                        cnn.WindowsAutentification = pCnnString.WindowsAutentification;
-                        cnn.InitialCatalog = pCnnString.InitialCatalog; 
-                    }
-                }
+                
+                //Almaceno la configuracion .-
+                _DataBaseConnections.Connections.Add(pCnnString);
+                isNew = true;
             }
+
+
+
+        
+            _CurrentCnnString = pCnnString;
             _DataBaseConnections.Save();
+            return isNew;
 			
 		}
 
@@ -350,88 +306,13 @@ namespace Fwk.DataBase
 		/// <param name="pWindowsAutChecked">Determina si la configuracion debe alamacenartce en un App.config o en un archivo xml externo</param>
 		public  void SaveSetting(bool pWindowsAutChecked)
 		{
-            _CnnString.WindowsAutentification = pWindowsAutChecked;
+            _CurrentCnnString.WindowsAutentification = pWindowsAutChecked;
             _DataBaseConnections.Save();
             
 			
 		}
 
-        /// <summary>
-        /// Almacena la configuracion cun los datos que se pasan como parametros.-
-        /// </summary>
-        /// <param name="pSQLServer">Nombre de la instancio de SQL.-</param>
-        /// <param name="pDataBaseName">Nombre de Base de datos.-</param>
-        /// <param name="pUserName">Nombre de usuario.-</param>
-        /// <param name="pPassword">Password para la coneccion .-</param>
-        /// <param name="pWindowsAutChecked">Determina si la configuracion debe alamacenartce en un App.config o en un archivo xml externo</param>
-        private void SaveSettingExternalXML(string pSQLServer, string pDataBaseName, string pUserName, string pPassword, bool pWindowsAutChecked)
-        {
-
-            //StringBuilder str = new StringBuilder();
-            //if (pWindowsAutChecked)//Autentificacion de Windows
-            //{
-            //    str.Append("Persist Security Info=False; Integrated Security=SSPI;Data Source= [SERVER];Initial Catalog=[DATABASE]");
-            //    pPassword = String.Empty;
-            //    pUserName = String.Empty;
-            //}
-            //else //Autentificacion de SQL Server
-            //{
-            //    str.Append("Data Source=[SERVER];Initial Catalog=[DATABASE];User ID=[USER];Password=[PASSWORD]");
-
-            //    str.Replace("[USER]", pUserName);
-            //    str.Replace("[PASSWORD]", pPassword);
-
-            //}
-
-            //str.Replace("[SERVER]", pSQLServer);
-            //str.Replace("[DATABASE]", pDataBaseName);
-
-            //String wDataBaseConfig = ConfigurationManager.AppSettings["DataBaseConfig"];
-            //if (string.IsNullOrEmpty(wDataBaseConfig))
-            //{
-            //    string msg = "Verifique que el archivo de configuracion tiene seteado el archivo de conecciones a la base de datos.-";
-            //    throw new System.Exception(msg);
-            //}
-
-
-            //String wDataBaseConfigFullName = AppDomain.CurrentDomain.BaseDirectory + System.IO.Path.DirectorySeparatorChar + wDataBaseConfig;
-            //if (!File.Exists(wDataBaseConfigFullName))
-            //{
-            //    return;
-            //}
-            //doc.Load(wDataBaseConfigFullName);
-
-            //_Node = doc.DocumentElement;
-
-            //XmlNode oNewChild = _Node.SelectSingleNode("ConnectionString");
-            //oNewChild.InnerXml = str.ToString();
-
-            //oNewChild = _Node.SelectSingleNode("DataBase");
-            //oNewChild.InnerXml = pDataBaseName;
-
-            //oNewChild = _Node.SelectSingleNode("SQLServer");
-            //oNewChild.InnerXml = pSQLServer;
-
-            //oNewChild = _Node.SelectSingleNode("User");
-            //oNewChild.InnerXml = pUserName;
-
-            //oNewChild = _Node.SelectSingleNode("Password");
-            //try
-            //{
-            //    oNewChild.InnerXml = pPassword.Trim();//Cryptographer.EncryptSymmetric(symmProvider, pPassword.Trim());
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new DataBaseExeption(ex, DataBaseExeption.ExeptionsEnums.CryptographicFile);
-            //}
-
-            //oNewChild = _Node.SelectSingleNode("WindowsAutChecked");
-            //oNewChild.InnerXml = pWindowsAutChecked.ToString();
-
-            //doc.Save(AppDomain.CurrentDomain.BaseDirectory + System.IO.Path.DirectorySeparatorChar + System.Configuration.ConfigurationManager.AppSettings["DataBaseConfig"]);
-        }
-
-		
+    
 		#endregion
 
         /// <summary>
@@ -440,7 +321,7 @@ namespace Fwk.DataBase
         /// <returns></returns>
 		public  DataTable GetDataBases()
 		{
-            CnnString cnn = GetCnnStringToMaster(_CnnString);
+            CnnString cnn = GetCnnStringToMaster(_CurrentCnnString);
             using (SqlConnection wCnn = new SqlConnection(cnn.ToString()))
             using (SqlCommand wCmd = new SqlCommand())
             {
@@ -472,7 +353,7 @@ namespace Fwk.DataBase
         public void ConnectDatabase()
         {
             InitializeConfig();
-            using (SqlConnection wCnn = new SqlConnection(_CnnString.ToString()))
+            using (SqlConnection wCnn = new SqlConnection(_CurrentCnnString.ToString()))
             {
                 try
                 {
@@ -492,7 +373,7 @@ namespace Fwk.DataBase
         public void SetServerInfo()
         {
 
-            using (SqlConnection wCnn = new SqlConnection(_CnnString.ToString()))
+            using (SqlConnection wCnn = new SqlConnection(_CurrentCnnString.ToString()))
             using (SqlCommand wCmd = new SqlCommand())
             {
                 try

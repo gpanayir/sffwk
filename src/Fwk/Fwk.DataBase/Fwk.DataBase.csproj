@@ -99,10 +99,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=2.0.0.0, Culture=neutral, PublicKeyToken=dca1ca083630319b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
-    </Reference>
     <Reference Include="Fwk.Bases.FrontEnd, Version=2.0.0.0, Culture=neutral, PublicKeyToken=dca1ca083630319b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
@@ -120,6 +116,9 @@
     </Reference>
     <Reference Include="System.Data">
       <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing">
       <Name>System.Drawing</Name>
@@ -219,6 +218,7 @@
     <None Include="App.config" />
     <None Include="Cryptography\CnnCrypt.key" />
     <None Include="fwk.snk" />
+    <None Include="Properties\DataSources\CnnStringList.datasource" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -236,6 +236,12 @@
       <ProductName>.NET Framework 3.5</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fwk.Bases\Fwk.Bases.csproj">
+      <Project>{1654A893-0408-474E-873C-E79F00D7587C}</Project>
+      <Name>Fwk.Bases</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

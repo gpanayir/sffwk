@@ -265,8 +265,9 @@ namespace Fwk.BusinessFacades.Utils
         /// <param name="pServiceConfiguration">configuración del servicio.</param>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public static void ValidateAvailability(ServiceConfiguration pServiceConfiguration)
+        public static void ValidateAvailability(ServiceConfiguration pServiceConfiguration, out IServiceContract result)
         {
+            result = null;
             // Validación de disponibilidad del servicio.
             if (!pServiceConfiguration.Available)
             {
@@ -274,15 +275,26 @@ namespace Fwk.BusinessFacades.Utils
                 Audit.LogNotAvailableExcecution(pServiceConfiguration);
                 #endregion
 
-                TechnicalException te = new TechnicalException("Se ha intentado ejecutar un servicio que está configurado como no disponible.");
-                te.ErrorId = "7006";
-                te.Assembly = "Fwk.BusinessFacades";
-                te.Class = "FacadeHelper";
-                te.Namespace = "Fwk.BusinessFacades";
-                throw te;
+                //TechnicalException te = new TechnicalException("Se ha intentado ejecutar un servicio que está configurado como no disponible.");
+              
+               
+                result = TryGetResultInstance(pServiceConfiguration);
+                result.Error = new ServiceError();
+                result.Error.Type = typeof(TechnicalException).Name;
+                
+                result.Error.ErrorId = "7006";
+                result.Error.Assembly = "Fwk.BusinessFacades";
+                result.Error.Class = "FacadeHelper";
+                result.Error.Namespace = "Fwk.BusinessFacades";
+                result.Error.Message = "Se ha intentado ejecutar un servicio que está configurado como no disponible.";
+               
+                
             }
         }
-
+        static IServiceContract TryGetResultInstance(ServiceConfiguration pServiceConfiguration)
+        {
+            return (IServiceContract)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(pServiceConfiguration.Response);
+        }
         #region private methods
         /// <summary>
         /// Crea un ámbito de transacción en base a la configuración del servicio de negocio.

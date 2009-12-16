@@ -50,8 +50,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\Fwk.Bases.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -174,6 +173,7 @@
     <Compile Include="Classes\EntityHistory\ModificationHistory.cs" />
     <Compile Include="Classes\EntityHistory\PropertyValue.cs" />
     <Compile Include="Classes\FwkRemoteObject.cs" />
+    <Compile Include="Classes\SingletonFactory.cs" />
     <Compile Include="DialogDebuggerVisualizer\IEntityVisualizer.cs" />
     <Compile Include="DialogDebuggerVisualizer\IEntityVisualizerForm.cs">
       <SubType>Form</SubType>

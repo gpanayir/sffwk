@@ -82,8 +82,9 @@ namespace Fwk.BusinessFacades
 
 
                 // Validación de disponibilidad del servicio.
-                FacadeHelper.ValidateAvailability(wServiceConfiguration);
-
+                FacadeHelper.ValidateAvailability(wServiceConfiguration, out wResult);
+                if(wResult !=null)
+                    if (wResult.Error != null) return wResult;
 
                 // Caching del servicio.
                 if (req.CacheSettings != null && req.CacheSettings.CacheOnServerSide) //--------->>> Implement the cache factory
@@ -110,13 +111,14 @@ namespace Fwk.BusinessFacades
             }
             catch (Exception ex)
             {
+                
                 throw ExceptionHelper.ProcessException(ex);
             }
            
         }
 
-     
 
+       
        
 
      
