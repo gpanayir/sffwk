@@ -1,8 +1,8 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{19BEB34B-6D55-4CCB-8ACC-DA835AC53DE4}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -20,6 +20,27 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Fwk.Wizard/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,38 +61,93 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.RegSvrEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.ServiceBrokerEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SmoExtended, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SqlWmiManagement, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.WmiEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CnnString.cs" />
+    <Compile Include="ctrlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlBase.Designer.cs">
+      <DependentUpon>ctrlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlDBSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlDBSelect.Designer.cs">
+      <DependentUpon>ctrlDBSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlTablesTreeSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlTablesTreeSelector.Designer.cs">
+      <DependentUpon>ctrlTablesTreeSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmBusinessComponents.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmBusinessComponents.Designer.cs">
       <DependentUpon>FrmBusinessComponents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SipleArchitectWizard.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ctrlBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ctrlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlDBSelect.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ctrlDBSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlTablesTreeSelector.resx">
+      <DependentUpon>ctrlTablesTreeSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmBusinessComponents.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FrmBusinessComponents.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="FrameworkProjectWizard.snk" />
-    <None Include="WizardInstallFiles\Templates\BusinessComponentsProject.zip">
+    <None Include="WizardInstallFiles\Templates\old\BusinessComponentsProject.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="WizardInstallFiles\Templates\BusinessEntitiesProject.zip">
+    <None Include="WizardInstallFiles\Templates\old\BusinessEntitiesProject.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="WizardInstallFiles\Templates\BusinessServicesProject.zip">
+    <None Include="WizardInstallFiles\Templates\old\BusinessServicesProject.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="WizardInstallFiles\gacutil.exe.config">
@@ -80,13 +156,13 @@
     <Content Include="WizardInstallFiles\Install.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="WizardInstallFiles\Templates\DataAccessComponentsProject.zip">
+    <None Include="WizardInstallFiles\Templates\old\DataAccessComponentsProject.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="WizardInstallFiles\Templates\InterfaceServicesProject.zip">
+    <None Include="WizardInstallFiles\Templates\old\InterfaceServicesProject.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="WizardInstallFiles\Templates\FrameworkProjectTemplate.vscontent">
+    <None Include="WizardInstallFiles\Templates\old\FrameworkProjectTemplate.vscontent">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="WizardInstallFiles\Templates.vsi">
@@ -105,7 +181,43 @@
     <None Include="WizardInstallFiles\ComoInstalarlo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\applications_32.png" />
+    <None Include="WizardInstallFiles\Templates\Projects\FrameworkProjectTemplate.vscontent" />
+    <None Include="WizardInstallFiles\Templates\Projects\FwkTemplate.BE.zip" />
+    <None Include="WizardInstallFiles\Templates\Projects\FwkTemplate.ISVC.zip" />
+    <None Include="WizardInstallFiles\Templates\Projects\FwkTemplate.SVC.zip" />
     <Content Include="WizardInstallFiles\Readme.txt" />
+    <Content Include="WizardInstallFiles\Templates\Projects\ProjectGroup.vstemplate" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WizardInstallFiles\Templates\Items\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
