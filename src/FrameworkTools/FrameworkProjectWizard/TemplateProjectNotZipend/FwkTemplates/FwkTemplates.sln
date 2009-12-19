@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FwkTemplate.SVC", "FwkTemplates.SVC\FwkTemplate.SVC.csproj", "{8E64353C-4D56-45B0-BA61-4586AFE8C402}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FwkTemplate.ISVC", "FwkTemplate.ISVC\FwkTemplate.ISVC.csproj", "{0B8BFC97-7097-4E5B-A770-380EFEFBCACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FwkTemplate.BE", "FwkTemplate.BE\FwkTemplate.BE.csproj", "{881E2856-5746-47A1-8F93-9EA0FCBB8D21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E64353C-4D56-45B0-BA61-4586AFE8C402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E64353C-4D56-45B0-BA61-4586AFE8C402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E64353C-4D56-45B0-BA61-4586AFE8C402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E64353C-4D56-45B0-BA61-4586AFE8C402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B8BFC97-7097-4E5B-A770-380EFEFBCACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B8BFC97-7097-4E5B-A770-380EFEFBCACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B8BFC97-7097-4E5B-A770-380EFEFBCACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B8BFC97-7097-4E5B-A770-380EFEFBCACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{881E2856-5746-47A1-8F93-9EA0FCBB8D21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{881E2856-5746-47A1-8F93-9EA0FCBB8D21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{881E2856-5746-47A1-8F93-9EA0FCBB8D21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{881E2856-5746-47A1-8F93-9EA0FCBB8D21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
