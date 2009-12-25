@@ -30,12 +30,32 @@
         {
             this.SuspendLayout();
             // 
+            // label1
+            // 
+            this.label1.Size = new System.Drawing.Size(619, 75);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(819, 456);
+            // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(710, 456);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(523, 438);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(422, 438);
+            // 
             // ctrlTablesTreeSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "ctrlTablesTreeSelector";
-            this.Size = new System.Drawing.Size(436, 394);
+            this.Size = new System.Drawing.Size(619, 465);
             this.ResumeLayout(false);
 
         }
