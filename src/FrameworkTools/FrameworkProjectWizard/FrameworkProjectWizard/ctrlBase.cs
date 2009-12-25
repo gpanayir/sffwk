@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Fwk.Wizard
 {
-    public delegate void OnWizardFinalizeHandler(object arg, WizartBotoon result);
+    public delegate void OnWizardFinalizeHandler(object arg, WizardBotoon result);
     [DefaultEvent("OnWizardFinalizeEvent")]
     public partial class ctrlWizBase : UserControl
     {
@@ -34,7 +34,7 @@ namespace Fwk.Wizard
             set { btnBack.Visible = value; }
         }
         public event OnWizardFinalizeHandler OnWizardFinalizeEvent;
-        public void DoEvent(object o, WizartBotoon r)
+        public void DoEvent(object o, WizardBotoon r)
         {
             if (OnWizardFinalizeEvent != null)
                 OnWizardFinalizeEvent(o,r);

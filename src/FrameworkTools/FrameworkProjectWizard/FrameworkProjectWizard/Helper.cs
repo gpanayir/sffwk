@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Fwk.Wizard
 {
-    public enum WizartBotoon
+    /// <summary>
+    /// Boton del wizard
+    /// </summary>
+    public enum WizardBotoon
     { 
         Ok =0,
         Cancel =1,

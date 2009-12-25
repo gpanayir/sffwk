@@ -52,10 +52,18 @@
             this.btnCancel.Location = new System.Drawing.Point(572, 437);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnAceptar
+            // btnOk
             // 
             this.btnOk.Location = new System.Drawing.Point(486, 437);
             this.btnOk.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(400, 437);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(299, 437);
             // 
             // cmbServer
             // 
@@ -70,6 +78,7 @@
             // 
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtPassword);
+            this.groupBox1.Controls.Add(this.btnTestConnection);
             this.groupBox1.Controls.Add(this.txtUserName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label4);
@@ -166,7 +175,7 @@
             this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTestConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTestConnection.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnTestConnection.Location = new System.Drawing.Point(121, 437);
+            this.btnTestConnection.Location = new System.Drawing.Point(460, 85);
             this.btnTestConnection.Name = "btnTestConnection";
             this.btnTestConnection.Size = new System.Drawing.Size(112, 24);
             this.btnTestConnection.TabIndex = 60;
@@ -180,13 +189,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.WindowsAutentificaction);
-            this.Controls.Add(this.btnTestConnection);
             this.Name = "ctrlDBSelect";
             this.Size = new System.Drawing.Size(718, 477);
+            this.Controls.SetChildIndex(this.btnNext, 0);
+            this.Controls.SetChildIndex(this.btnBack, 0);
             this.Controls.SetChildIndex(this.btnOk, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
             this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.btnTestConnection, 0);
             this.Controls.SetChildIndex(this.WindowsAutentificaction, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.groupBox1.ResumeLayout(false);

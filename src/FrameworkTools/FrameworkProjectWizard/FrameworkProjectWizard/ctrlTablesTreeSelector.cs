@@ -21,5 +21,9 @@ namespace Fwk.Wizard
         { 
         
         }
+
+        public void Populate()
+        { }
+
     }
 }

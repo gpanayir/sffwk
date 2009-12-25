@@ -158,7 +158,7 @@ namespace Fwk.Wizard
 
            
 
-            if (_cnn.WindowsAutentification)
+            if (!_cnn.WindowsAutentification)
             {
                 if (string.IsNullOrEmpty(_cnn.User))
                 {
@@ -193,12 +193,12 @@ namespace Fwk.Wizard
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
-            base.DoEvent(_cnn, WizartBotoon.Ok);
+            base.DoEvent(_cnn, WizardBotoon.Ok);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            base.DoEvent(null, WizartBotoon.Cancel);
+            base.DoEvent(null, WizardBotoon.Cancel);
         }
 
      

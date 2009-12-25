@@ -102,6 +102,13 @@
     <Compile Include="ctrlTablesTreeSelector.Designer.cs">
       <DependentUpon>ctrlTablesTreeSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="ctrlTreeViewTables.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlTreeViewTables.Designer.cs">
+      <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataObjects.cs" />
     <Compile Include="FrmBusinessComponents.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,7 +122,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SipleArchitectWizard.cs" />
+    <Compile Include="SimpleArchitectWizard.cs" />
+    <Compile Include="TreeViewHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ctrlBase.resx">
@@ -128,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlTablesTreeSelector.resx">
       <DependentUpon>ctrlTablesTreeSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlTreeViewTables.resx">
+      <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmBusinessComponents.resx">
       <SubType>Designer</SubType>
