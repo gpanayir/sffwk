@@ -1,6 +1,6 @@
 ﻿namespace Fwk.Wizard
 {
-    partial class ctrlDBSelect
+    partial class wizDBSelect
     {
         /// <summary> 
         /// Variable del diseñador requerida.
@@ -32,20 +32,19 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.btnTestConnection = new System.Windows.Forms.Button();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbDataBases = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.WindowsAutentificaction = new System.Windows.Forms.CheckBox();
-            this.btnTestConnection = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // lblTitle
             // 
-            this.label1.Size = new System.Drawing.Size(718, 75);
-            this.label1.Text = "Fwk entity item";
+            this.lblTitle.Size = new System.Drawing.Size(718, 75);
             // 
             // btnCancel
             // 
@@ -54,16 +53,20 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(486, 437);
+            this.btnOk.Location = new System.Drawing.Point(301, 437);
+            this.btnOk.Visible = false;
             this.btnOk.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(400, 437);
+            this.btnNext.Location = new System.Drawing.Point(469, 437);
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(299, 437);
+            this.btnBack.Location = new System.Drawing.Point(211, 437);
+            this.btnBack.Visible = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // cmbServer
             // 
@@ -110,6 +113,21 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(192, 20);
             this.txtPassword.TabIndex = 57;
+            // 
+            // btnTestConnection
+            // 
+            this.btnTestConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTestConnection.BackColor = System.Drawing.Color.SlateGray;
+            this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTestConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTestConnection.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnTestConnection.Location = new System.Drawing.Point(460, 85);
+            this.btnTestConnection.Name = "btnTestConnection";
+            this.btnTestConnection.Size = new System.Drawing.Size(112, 24);
+            this.btnTestConnection.TabIndex = 60;
+            this.btnTestConnection.Text = "Testear Coneccion";
+            this.btnTestConnection.UseVisualStyleBackColor = false;
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // txtUserName
             // 
@@ -168,34 +186,20 @@
             this.WindowsAutentificaction.Text = "Usar autentificacion de windows";
             this.WindowsAutentificaction.CheckedChanged += new System.EventHandler(this.WindowsAutentificaction_CheckedChanged);
             // 
-            // btnTestConnection
-            // 
-            this.btnTestConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTestConnection.BackColor = System.Drawing.Color.SlateGray;
-            this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTestConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTestConnection.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnTestConnection.Location = new System.Drawing.Point(460, 85);
-            this.btnTestConnection.Name = "btnTestConnection";
-            this.btnTestConnection.Size = new System.Drawing.Size(112, 24);
-            this.btnTestConnection.TabIndex = 60;
-            this.btnTestConnection.Text = "Testear Coneccion";
-            this.btnTestConnection.UseVisualStyleBackColor = false;
-            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
-            // 
-            // ctrlDBSelect
+            // wizDBSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.WindowsAutentificaction);
-            this.Name = "ctrlDBSelect";
+            this.Name = "wizDBSelect";
             this.Size = new System.Drawing.Size(718, 477);
+            this.Title = "Fwk entity item";
+            this.Controls.SetChildIndex(this.lblTitle, 0);
             this.Controls.SetChildIndex(this.btnNext, 0);
             this.Controls.SetChildIndex(this.btnBack, 0);
             this.Controls.SetChildIndex(this.btnOk, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.WindowsAutentificaction, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.groupBox1.ResumeLayout(false);

@@ -1,6 +1,6 @@
 ﻿namespace Fwk.Wizard
 {
-    partial class ctrlWizBase
+    partial class wizBase
     {
         /// <summary> 
         /// Variable del diseñador requerida.
@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lblTitle
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Image = global::Fwk.Wizard.Properties.Resources.applications_32;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(748, 75);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Title";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitle.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblTitle.Image = global::Fwk.Wizard.Properties.Resources.applications_32;
+            this.lblTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(748, 75);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Title";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCancel
             // 
@@ -65,7 +65,7 @@
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = false;
             // 
-            // btnAceptar
+            // btnOk
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.Color.SlateGray;
@@ -73,7 +73,7 @@
             this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.SystemColors.Info;
             this.btnOk.Location = new System.Drawing.Point(527, 385);
-            this.btnOk.Name = "btnAceptar";
+            this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(80, 24);
             this.btnOk.TabIndex = 65;
             this.btnOk.Text = "Aceptar";
@@ -107,7 +107,7 @@
             this.btnBack.Text = "Atras";
             this.btnBack.UseVisualStyleBackColor = false;
             // 
-            // ctrlWizBase
+            // wizBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -115,16 +115,17 @@
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.label1);
-            this.Name = "ctrlWizBase";
+            this.Controls.Add(this.lblTitle);
+            this.Name = "wizBase";
             this.Size = new System.Drawing.Size(748, 412);
+           
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label lblTitle;
         public System.Windows.Forms.Button btnCancel;
         public System.Windows.Forms.Button btnOk;
         public System.Windows.Forms.Button btnNext;

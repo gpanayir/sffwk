@@ -9,17 +9,17 @@ using System.Windows.Forms;
 
 namespace Fwk.Wizard
 {
-    public partial class ctrlTablesTreeSelector : ctrlWizBase
+    public partial class wizTablesTreeSelector : wizBase
     {
-        CnnString _cnn;
-        public ctrlTablesTreeSelector()
+        
+        public wizTablesTreeSelector()
         {
             InitializeComponent();
         }
 
         public void Populate(CnnString pCnn)
-        { 
-        
+        {
+            this.ctrlTreeViewTables1.Populate(pCnn);
         }
 
         public void Populate()

@@ -6,6 +6,8 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.SqlServer.Management.Smo;
+using System.Data.SqlClient;
+using Microsoft.SqlServer.Management.Common;
 
 namespace Fwk.Wizard
 {
@@ -55,25 +57,23 @@ namespace Fwk.Wizard
         /// <summary>
         /// Metodo que permite cargar las tablas en el arbol.
         /// </summary>
-        public void LoadTreeView()
+        public void Populate(CnnString pCnn)
         {
             if (_Tables == null)
-                LoadFromDataBase();
+                LoadTables(pCnn);
 
           
-            //TreeViewHelper.AddElementEvent += new AddElementHandler(TreeViewHelper_AddElementEvent);
-
-            //lblTreeViewSelected.Text = "Generando arbol..";
+            
             if (_Tables == null)
             {
                 this.tvwChilds.Nodes.Clear();
-                //TreeViewHelper.AddElementEvent -= new AddElementHandler(TreeViewHelper_AddElementEvent);
+              
                 return;
             }
             if (_Tables.Count == 0)
             {
                 this.tvwChilds.Nodes.Clear();
-                //TreeViewHelper.AddElementEvent -= new AddElementHandler(TreeViewHelper_AddElementEvent);
+                
                 return;
             }
 
@@ -88,28 +88,27 @@ namespace Fwk.Wizard
          
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Clear()
+       
+
+        private void LoadTables(CnnString cnn)
         {
-            this.tvwChilds.Nodes.Clear();
-        
-        }
+            
 
-        private void LoadFromDataBase()
-        {
-            //lblTreeViewSelected.Text = "Cargando tables desde la base de datos..";
-    
+            SqlConnection sqlConnection = new SqlConnection(cnn.ToString());
 
-            //Fwk.DataBase.Metadata Metadata = new Metadata();
-            //Metadata.AddElementEvent += new AddElementHandler(Metadata_AddElementEvent);
-            //Metadata.LoadTables();
-            //this._Tables = Metadata.Tables;
+            ServerConnection serverConnection = new ServerConnection(sqlConnection);
 
-
-
-            //Metadata.AddElementEvent -= new AddElementHandler(Metadata_AddElementEvent);
+            try
+            {
+                Server wServer = new Server(serverConnection);
+                Database db = new Database(wServer, cnn.InitialCatalog);
+                db.Tables.Refresh();
+                _Tables = db.Tables;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Helper.GetAllMessageException(ex));
+            }
         }
 
         ///// <summary>

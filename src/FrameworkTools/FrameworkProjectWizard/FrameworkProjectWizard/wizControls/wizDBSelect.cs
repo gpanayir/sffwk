@@ -13,15 +13,21 @@ using Microsoft.SqlServer.Management.Common;
 namespace Fwk.Wizard
 {
     
-    public partial class ctrlDBSelect : ctrlWizBase
+    public partial class wizDBSelect : wizBase
     {
         bool onInitServerCollection = true;
         CnnString _cnn = new CnnString();
 
+        public CnnString Cnn
+        {
+            get { return _cnn; }
+            set { _cnn = value; }
+        }
+
         DataTable _AvailableSqlServers;
         Server _Server;
         
-        public ctrlDBSelect()
+        public wizDBSelect()
         {
             InitializeComponent();
         }
@@ -199,6 +205,17 @@ namespace Fwk.Wizard
         private void btnCancel_Click(object sender, EventArgs e)
         {
             base.DoEvent(null, WizardBotoon.Cancel);
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+             _cnn = GetAuxiliarCnnString();
+            base.DoEvent(null, WizardBotoon.Next);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            base.DoEvent(null, WizardBotoon.Back);
         }
 
      

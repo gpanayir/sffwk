@@ -59,7 +59,7 @@ namespace Fwk.Wizard
                 TreeNode wTreeNode = new TreeNode();
                 wTreeNode.Checked = false;
                 wTreeNode.Text = string.Concat(wColumn.Name, " ", wColumn.DataType.Name , " " + nullable);
-                wTreeNode.Tag = wColumn.Name;
+                wTreeNode.Tag = wColumn;
                 wTreeNode.ImageIndex = 5;
                 wTreeNode.SelectedImageIndex = 5;
                 pParentNode.Nodes.Add(wTreeNode);

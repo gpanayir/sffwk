@@ -1,6 +1,6 @@
 ﻿namespace Fwk.Wizard
 {
-    partial class ctrlTablesTreeSelector
+    partial class wizTablesTreeSelector
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,7 +33,7 @@
             // 
             // label1
             // 
-            this.label1.Size = new System.Drawing.Size(619, 75);
+            this.lblTitle.Size = new System.Drawing.Size(619, 75);
             // 
             // btnCancel
             // 
@@ -70,7 +70,7 @@
             this.Size = new System.Drawing.Size(619, 465);
             this.Controls.SetChildIndex(this.ctrlTreeViewTables1, 0);
             this.Controls.SetChildIndex(this.btnBack, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.lblTitle, 0);
             this.Controls.SetChildIndex(this.btnOk, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
             this.Controls.SetChildIndex(this.btnNext, 0);

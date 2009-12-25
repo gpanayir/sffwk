@@ -50,7 +50,7 @@ namespace Fwk.Wizard
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(266, 204);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(136, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Ok";
             this.button1.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@ namespace Fwk.Wizard
             this.groupBox1.ForeColor = System.Drawing.Color.SaddleBrown;
             this.groupBox1.Location = new System.Drawing.Point(12, 60);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(325, 110);
+            this.groupBox1.Size = new System.Drawing.Size(386, 110);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Namespase";
@@ -115,7 +115,7 @@ namespace Fwk.Wizard
             this.txtModule.ForeColor = System.Drawing.Color.SlateGray;
             this.txtModule.Location = new System.Drawing.Point(96, 78);
             this.txtModule.Name = "txtModule";
-            this.txtModule.Size = new System.Drawing.Size(195, 20);
+            this.txtModule.Size = new System.Drawing.Size(256, 20);
             this.txtModule.TabIndex = 11;
             this.txtModule.TextChanged += new System.EventHandler(this.txtModule_TextChanged);
             // 
@@ -138,7 +138,7 @@ namespace Fwk.Wizard
             this.txtApp.ForeColor = System.Drawing.Color.SlateGray;
             this.txtApp.Location = new System.Drawing.Point(96, 52);
             this.txtApp.Name = "txtApp";
-            this.txtApp.Size = new System.Drawing.Size(195, 20);
+            this.txtApp.Size = new System.Drawing.Size(256, 20);
             this.txtApp.TabIndex = 10;
             this.txtApp.TextChanged += new System.EventHandler(this.txtApp_TextChanged);
             // 
@@ -161,7 +161,7 @@ namespace Fwk.Wizard
             this.txtCompanyName.ForeColor = System.Drawing.Color.SlateGray;
             this.txtCompanyName.Location = new System.Drawing.Point(96, 21);
             this.txtCompanyName.Name = "txtCompanyName";
-            this.txtCompanyName.Size = new System.Drawing.Size(195, 20);
+            this.txtCompanyName.Size = new System.Drawing.Size(256, 20);
             this.txtCompanyName.TabIndex = 9;
             this.txtCompanyName.TextChanged += new System.EventHandler(this.txtCompanyName_TextChanged);
             // 
@@ -179,12 +179,12 @@ namespace Fwk.Wizard
             this.lblNamesPase.TabIndex = 35;
             this.lblNamesPase.Text = "                                    ";
             // 
-            // FrmSipleArchitectWizar
+            // FrmBusinessComponents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Ivory;
-            this.ClientSize = new System.Drawing.Size(349, 239);
+            this.ClientSize = new System.Drawing.Size(410, 309);
             this.Controls.Add(this.lblNamesPase);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblProjectName);
@@ -193,7 +193,7 @@ namespace Fwk.Wizard
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmSipleArchitectWizar";
+            this.Name = "FrmBusinessComponents";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Business component project  ";
             this.groupBox1.ResumeLayout(false);
