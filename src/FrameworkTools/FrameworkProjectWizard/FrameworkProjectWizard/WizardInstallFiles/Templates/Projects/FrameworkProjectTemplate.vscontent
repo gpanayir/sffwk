@@ -2,11 +2,10 @@
 <VSContent xmlns="http://schemas.microsoft.com/developer/vscontent/2005"> 
     <Content>
         <FileName>FwkTemplate.BE.zip</FileName>
-		<FileName>FwkTemplate.SVC.zip</FileName>
-		<FileName>FwkTemplate.ISVC.zip</FileName>
-
-        <DisplayName>Fwk Project Template para Arquitectura Simple</DisplayName>
-        <Description>Set de Project Template para Arquitectura </Description>
+		    <FileName>FwkTemplate.SVC.zip</FileName>
+		    <FileName>FwkTemplate.ISVC.zip</FileName>
+        <DisplayName>Fwk Project Template </DisplayName>
+        <Description>Set de Project Template para Arquitectura Allus Fwk</Description>
         <FileContentType>VSTemplate</FileContentType>
         <ContentVersion>1.0</ContentVersion>
 		<Attributes>

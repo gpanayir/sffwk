@@ -22,11 +22,11 @@ Como instalar el wizard:
 
 
 
-1)Instalar el ensamblado en la cach� de ensamblados global
+1)Instalar el ensamblado en la cache de ensamblados global
  El ensamblado que implementa IWizard se debe:
 	a) firmar con un nombre seguro .-
 		Esto se puede hacer desde propiedades del VS-->Signing
-	b) Instalarse en la cach� de ensamblados global. 
+	b) Instalarse en la cache de ensamblados global. 
 		Utilizando Gacutil.exe .
 		En este mismo proyecto existen dos archivos  Install.bat y UnInstall.bat que permiten agregar y quitar, respectivamente,
 		el assembly en la GAC.

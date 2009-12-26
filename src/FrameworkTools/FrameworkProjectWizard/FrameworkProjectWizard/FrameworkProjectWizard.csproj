@@ -83,7 +83,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IWizards\wizEntityItem.cs" />
+    <Compile Include="IWizards\wizProjects.cs" />
     <Compile Include="wizControls\CnnString.cs" />
+    <Compile Include="wizGenerators\CommonConstants.cs" />
+    <Compile Include="wizGenerators\FwkGeneratorHelper.cs" />
     <Compile Include="wizControls\wizBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,22 +112,39 @@
     <Compile Include="wizControls\ctrlTreeViewTables.Designer.cs">
       <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
     </Compile>
-    <Compile Include="wizControls\DataObjects.cs" />
     <Compile Include="FrmBusinessComponents.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmBusinessComponents.Designer.cs">
       <DependentUpon>FrmBusinessComponents.cs</DependentUpon>
     </Compile>
-    <Compile Include="wizControls\Helper.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SimpleArchitectWizard.cs" />
+    <Compile Include="IWizards\SimpleArchitectWizard.cs" />
     <Compile Include="WizardInstallFiles\TreeViewHelper.cs" />
+    <Compile Include="wizForms\frmWizBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wizForms\frmWizBase.Designer.cs">
+      <DependentUpon>frmWizBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wizForms\frmWizEntity_1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wizForms\frmWizEntity_1.Designer.cs">
+      <DependentUpon>frmWizEntity_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wizForms\frmWizEntity_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wizForms\frmWizEntity_2.Designer.cs">
+      <DependentUpon>frmWizEntity_2.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="wizControls\wizBase.resx">
@@ -148,6 +169,15 @@
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizForms\frmWizBase.resx">
+      <DependentUpon>frmWizBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizForms\frmWizEntity_1.resx">
+      <DependentUpon>frmWizEntity_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizForms\frmWizEntity_2.resx">
+      <DependentUpon>frmWizEntity_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +227,15 @@
     <None Include="WizardInstallFiles\Templates\Projects\FwkTemplate.BE.zip" />
     <None Include="WizardInstallFiles\Templates\Projects\FwkTemplate.ISVC.zip" />
     <None Include="WizardInstallFiles\Templates\Projects\FwkTemplate.SVC.zip" />
+    <Content Include="TemplateFiles\Entity.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TemplateFiles\Property.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TemplateFiles\Property_Binary.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="WizardInstallFiles\Readme.txt" />
     <Content Include="WizardInstallFiles\Templates\Projects\ProjectGroup.vstemplate" />
   </ItemGroup>
@@ -228,9 +267,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="TemplateFiles\" />
     <Folder Include="WizardInstallFiles\Templates\Items\" />
-    <Folder Include="wizForms\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
