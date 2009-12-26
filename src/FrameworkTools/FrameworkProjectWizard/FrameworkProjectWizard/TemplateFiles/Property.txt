@@ -1,0 +1,7 @@
+﻿#region [[Property_Name]]
+   public [TYPENAME][NullToken] [Property_Name]
+     {
+      get { return _[Property_Name]; }
+      set { _[Property_Name] = value;  }
+     }
+#endregion

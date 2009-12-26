@@ -1,0 +1,10 @@
+﻿
+
+  #region [[Property_Name]]
+   [System.Xml.Serialization.XmlElementAttribute("[Property_Name]",DataType = "[SCHEMATYPENAME]")]
+   public Byte[NullToken] [Property_Name]
+    {
+      get { return _[Property_Name]; }
+      set { _[Property_Name] = value;  }
+    }
+ #endregion
