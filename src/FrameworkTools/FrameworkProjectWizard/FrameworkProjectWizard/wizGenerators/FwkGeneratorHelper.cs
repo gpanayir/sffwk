@@ -12,6 +12,7 @@ namespace Fwk.Wizard
 
     public static class FwkGeneratorHelper
     {
+        public static UserDefinedTypes UserDefinedTypes;
         public static string NotSupportTypes_ToIncludeInBackEnd;
         private static string _Entity_Property_tt;
         private static string _Entity_Member_tt;
@@ -35,21 +36,14 @@ namespace Fwk.Wizard
             string wPrivateMembers_BODY = String.Empty;
             string wPublicProperty_BODY = String.Empty;
 
-
             wClassContainer.Append(_Entity_Envelope_tt);
             wClassContainer.Replace(CommonConstants.CONST_ENTITY_NAME, pTable.Name);
-            
-            
 
             GenerateDataBaseProperttyBody(pTable, out  wPublicProperty_BODY, out wPrivateMembers_BODY);
             //Inserta miembros privados
             wClassContainer.Replace(CommonConstants.CONST_ENTITY_PRIVATE_MEMBERS_BODY, wPrivateMembers_BODY);
             //Inserta los atributos publicos
-            wClassContainer.Replace(CommonConstants.CONST_ENTITY_PUBLIC_PROPERTY_BODY,
-                                                    wPublicProperty_BODY);
-
-
-
+            wClassContainer.Replace(CommonConstants.CONST_ENTITY_PUBLIC_PROPERTY_BODY,   wPublicProperty_BODY);
 
             return wClassContainer.ToString();
         }
@@ -115,12 +109,21 @@ namespace Fwk.Wizard
         /// <returns>string</returns>
          static string GetCsharpProperty(Column pColumn)
         {
-            System.Text.StringBuilder str = new System.Text.StringBuilder(_Entity_Property_tt);
-
-            switch (pColumn.DataType.Name.ToUpper())
+            string wTypeName = pColumn.DataType.Name.ToUpper();
+            if (pColumn.DataType.SqlDataType.ToString().Equals("UserDefinedDataType"))
             {
+                wTypeName = UserDefinedTypes.GetUserDefinedType(pColumn.DataType.Name).SystemType.ToUpper();
+            }
+            System.Text.StringBuilder str = new System.Text.StringBuilder(_Entity_Property_tt);
+           
+
+            switch (wTypeName)
+            {
+                case "UNIQUEIDENTIFIER":
+                    str.Replace(CommonConstants.CONST_TYPENAME, "Guid");
+                    break;
                 case "BIT":
-                    str = new System.Text.StringBuilder(_Entity_Property_tt);
+               
                     str.Replace(CommonConstants.CONST_TYPENAME, "bool");
                     break;
                 case "REAL":
@@ -129,25 +132,28 @@ namespace Fwk.Wizard
                 case "SMALLINT":
                 case "INT":
                 case "TINYINT":
-                    str = new System.Text.StringBuilder(_Entity_Property_tt);
+                  
                     str.Replace(CommonConstants.CONST_TYPENAME, "int");
                     break;
                 case "MONEY":
                 case "SMALLMONEY":
                 case "DECIMAL":
                 case "FLOAT":
-                    str = new System.Text.StringBuilder(_Entity_Property_tt);
+                   
                     str.Replace(CommonConstants.CONST_TYPENAME, "decimal");
                     break;
                 case "SMALLDATETIME":
                 case "DATETIME":
+                   
                     str.Replace(CommonConstants.CONST_TYPENAME, "datetime");
                     break;
                 case "TEXT":
+                case "NTEXT":
                 case "CHAR":
+                case "NCHAR":
                 case "VARCHAR":
                 case "NVARCHAR":
-                    str = new System.Text.StringBuilder(_Entity_Property_tt);
+                    
                     str.Replace(CommonConstants.CONST_TYPENAME, "string");
                     break;
                 case "IMAGE":
@@ -155,8 +161,8 @@ namespace Fwk.Wizard
                 case "BINARY":
                 case "TINYUNT":
                     str = new System.Text.StringBuilder(_Entity_Property_TemplateBinary_tt);
-                    
-               
+
+                    str.Replace(CommonConstants.CONST_TYPENAME, "Byte[]");
                     break;
 
             }
@@ -169,10 +175,23 @@ namespace Fwk.Wizard
 
          static string GetCsharpMember( Column pColumn)
         {
+            string wTypeName = pColumn.DataType.Name.ToUpper();
+            if (pColumn.DataType.SqlDataType.ToString().Equals("UserDefinedDataType"))
+            {
+               wTypeName =  UserDefinedTypes.GetUserDefinedType(pColumn.DataType.Name).SystemType.ToUpper();
+            }
+            
+
+
             System.Text.StringBuilder str = new System.Text.StringBuilder(_Entity_Member_tt);
 
-            switch (pColumn.DataType.Name.ToUpper())
+
+           
+            switch (wTypeName)
             {
+                case "UNIQUEIDENTIFIER":
+                    str.Replace(CommonConstants.CONST_TYPENAME, "Guid");
+                    break;
                 case "BIT":
 
                     str.Replace(CommonConstants.CONST_TYPENAME, "bool");
@@ -196,7 +215,9 @@ namespace Fwk.Wizard
                     str.Replace(CommonConstants.CONST_TYPENAME, "datetime");
                     break;
                 case "TEXT":
+                case "NTEXT":
                 case "CHAR":
+                case "NCHAR":
                 case "VARCHAR":
                 case "NVARCHAR":
                     str.Replace(CommonConstants.CONST_TYPENAME, "String");
@@ -220,9 +241,17 @@ namespace Fwk.Wizard
         {
             if (!pColumn.Nullable)
                 return string.Empty;
-
-            switch (pColumn.DataType.Name.ToUpper())
+            string wTypeName = pColumn.DataType.Name.ToUpper();
+            if (pColumn.DataType.SqlDataType.ToString().Equals("UserDefinedDataType"))
             {
+                wTypeName = UserDefinedTypes.GetUserDefinedType(pColumn.DataType.Name).SystemType.ToUpper();
+            }
+          
+
+            switch (wTypeName)
+            {
+                case "UNIQUEIDENTIFIER":
+            
                 case "BIT":
                 case "REAL":
                 case "NUMERIC":
@@ -237,9 +266,11 @@ namespace Fwk.Wizard
                 case "SMALLDATETIME":
                 case "DATETIME":
                     return "?";
-        
+
                 case "TEXT":
+                case "NTEXT":
                 case "CHAR":
+                case "NCHAR":
                 case "VARCHAR":
                 case "NVARCHAR":
                     return String.Empty;
