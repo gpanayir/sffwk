@@ -78,7 +78,7 @@ namespace Fwk.Wizard
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Helper.GetAllMessageException(ex));
+                MessageBox.Show(HelperFunctions.GetAllMessageException(ex));
             }
         }
 
@@ -192,7 +192,7 @@ namespace Fwk.Wizard
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Helper.GetAllMessageException(ex), "Fwk wizard");
+                MessageBox.Show(HelperFunctions.GetAllMessageException(ex), "Fwk wizard");
             }
         }
 

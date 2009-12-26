@@ -64,6 +64,7 @@
             this.btnCancel.TabIndex = 66;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = false;
+            
             // 
             // btnOk
             // 
@@ -78,6 +79,7 @@
             this.btnOk.TabIndex = 65;
             this.btnOk.Text = "Aceptar";
             this.btnOk.UseVisualStyleBackColor = false;
+
             // 
             // btnNext
             // 
@@ -92,6 +94,7 @@
             this.btnNext.TabIndex = 67;
             this.btnNext.Text = "Siguiente";
             this.btnNext.UseVisualStyleBackColor = false;
+           
             // 
             // btnBack
             // 
@@ -106,6 +109,7 @@
             this.btnBack.TabIndex = 68;
             this.btnBack.Text = "Atras";
             this.btnBack.UseVisualStyleBackColor = false;
+            
             // 
             // wizBase
             // 
@@ -118,7 +122,6 @@
             this.Controls.Add(this.lblTitle);
             this.Name = "wizBase";
             this.Size = new System.Drawing.Size(748, 412);
-           
             this.ResumeLayout(false);
 
         }

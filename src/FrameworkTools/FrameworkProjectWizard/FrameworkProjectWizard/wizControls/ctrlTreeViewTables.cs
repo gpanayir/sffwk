@@ -26,10 +26,11 @@ namespace Fwk.Wizard
         /// <summary>
         /// Indica la tabla seleccionada en el arbol .-
         /// </summary>
+        [Browsable(false)]
         public Table SelectedTable
         {
             get { return _SelectedTable; }
-            set { _SelectedTable = value; }
+       
         }
         
         
@@ -37,6 +38,7 @@ namespace Fwk.Wizard
         /// <summary>
         /// Conjunto de tablas en el arbol.-
         /// </summary>
+        [Browsable(false)]
         public TableCollection Tablas
         {
             get { return _Tables; }
@@ -107,7 +109,7 @@ namespace Fwk.Wizard
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Helper.GetAllMessageException(ex));
+                MessageBox.Show(HelperFunctions.GetAllMessageException(ex));
             }
         }
 
