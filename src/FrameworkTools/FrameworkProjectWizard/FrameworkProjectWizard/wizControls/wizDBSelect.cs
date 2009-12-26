@@ -198,7 +198,9 @@ namespace Fwk.Wizard
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
+            UserDefinedTypesBack wUserDefinedTypesBack = new UserDefinedTypesBack(_cnn);
+            FwkGeneratorHelper.UserDefinedTypes = wUserDefinedTypesBack.UserDefinedTypes;
+            _cnn = GetAuxiliarCnnString();
             base.DoEvent(_cnn, WizardBotoon.Ok);
         }
 
@@ -209,7 +211,10 @@ namespace Fwk.Wizard
 
         private void btnNext_Click(object sender, EventArgs e)
         {
+           
              _cnn = GetAuxiliarCnnString();
+             UserDefinedTypesBack wUserDefinedTypesBack = new UserDefinedTypesBack(_cnn);
+             FwkGeneratorHelper.UserDefinedTypes = wUserDefinedTypesBack.UserDefinedTypes;
             base.DoEvent(null, WizardBotoon.Next);
         }
 

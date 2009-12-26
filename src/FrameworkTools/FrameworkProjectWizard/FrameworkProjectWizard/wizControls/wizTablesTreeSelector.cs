@@ -12,8 +12,7 @@ namespace Fwk.Wizard
 {
     public partial class wizTablesTreeSelector : wizBase
     {
-        Table _SelectedTable;
-
+     
         public Table SelectedTable
         {
             get { return ctrlTreeViewTables1.SelectedTable; }
