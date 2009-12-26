@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-
+using Fwk.Wizard;
 namespace FrameworkProjectWizard.Test
 {
     static class Program
@@ -15,7 +15,7 @@ namespace FrameworkProjectWizard.Test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmWizEntity_1());
         }
     }
 }
