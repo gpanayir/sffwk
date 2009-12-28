@@ -34,12 +34,16 @@ namespace Fwk.Wizard
             this.lblProjectName = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtModule = new System.Windows.Forms.TextBox();
+            this.txtBC = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtApp = new System.Windows.Forms.TextBox();
-            this.lblCompanyName = new System.Windows.Forms.Label();
-            this.txtCompanyName = new System.Windows.Forms.TextBox();
-            this.lblNamesPase = new System.Windows.Forms.Label();
+            this.txtDAC = new System.Windows.Forms.TextBox();
+            this.lblBENamespace = new System.Windows.Forms.Label();
+            this.txtBE = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtISVC = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSVC = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,9 +52,9 @@ namespace Fwk.Wizard
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(266, 204);
+            this.button1.Location = new System.Drawing.Point(449, 347);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 23);
+            this.button1.Size = new System.Drawing.Size(151, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Ok";
             this.button1.UseVisualStyleBackColor = true;
@@ -62,8 +66,9 @@ namespace Fwk.Wizard
             this.txtProjectName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtProjectName.Location = new System.Drawing.Point(12, 27);
             this.txtProjectName.Name = "txtProjectName";
-            this.txtProjectName.Size = new System.Drawing.Size(217, 20);
+            this.txtProjectName.Size = new System.Drawing.Size(358, 20);
             this.txtProjectName.TabIndex = 33;
+            this.txtProjectName.TextChanged += new System.EventHandler(this.txtProjectName_TextChanged);
             // 
             // lblProjectName
             // 
@@ -75,23 +80,28 @@ namespace Fwk.Wizard
             this.lblProjectName.Size = new System.Drawing.Size(92, 15);
             this.lblProjectName.TabIndex = 3;
             this.lblProjectName.Text = "Project name";
+    
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.txtSVC);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.txtISVC);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtModule);
+            this.groupBox1.Controls.Add(this.txtBC);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtApp);
-            this.groupBox1.Controls.Add(this.lblCompanyName);
-            this.groupBox1.Controls.Add(this.txtCompanyName);
+            this.groupBox1.Controls.Add(this.txtDAC);
+            this.groupBox1.Controls.Add(this.lblBENamespace);
+            this.groupBox1.Controls.Add(this.txtBE);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.groupBox1.Location = new System.Drawing.Point(12, 60);
+            this.groupBox1.Location = new System.Drawing.Point(12, 81);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(386, 110);
+            this.groupBox1.Size = new System.Drawing.Size(588, 226);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Namespase";
@@ -102,22 +112,23 @@ namespace Fwk.Wizard
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(8, 80);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 13);
+            this.label2.Size = new System.Drawing.Size(21, 13);
             this.label2.TabIndex = 14;
-            this.label2.Text = "Module name";
+            this.label2.Text = "BC";
             // 
-            // txtModule
+            // txtBC
             // 
-            this.txtModule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.txtBC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtModule.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtModule.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtModule.ForeColor = System.Drawing.Color.SlateGray;
-            this.txtModule.Location = new System.Drawing.Point(96, 78);
-            this.txtModule.Name = "txtModule";
-            this.txtModule.Size = new System.Drawing.Size(256, 20);
-            this.txtModule.TabIndex = 11;
-            this.txtModule.TextChanged += new System.EventHandler(this.txtModule_TextChanged);
+            this.txtBC.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtBC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBC.ForeColor = System.Drawing.Color.SlateGray;
+            this.txtBC.Location = new System.Drawing.Point(96, 78);
+            this.txtBC.Name = "txtBC";
+            this.txtBC.ReadOnly = true;
+            this.txtBC.Size = new System.Drawing.Size(458, 20);
+            this.txtBC.TabIndex = 11;
             // 
             // label1
             // 
@@ -125,67 +136,113 @@ namespace Fwk.Wizard
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(8, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 13;
-            this.label1.Text = "App name";
+            this.label1.Text = "DAC";
             // 
-            // txtApp
+            // txtDAC
             // 
-            this.txtApp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.txtDAC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtApp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApp.ForeColor = System.Drawing.Color.SlateGray;
-            this.txtApp.Location = new System.Drawing.Point(96, 52);
-            this.txtApp.Name = "txtApp";
-            this.txtApp.Size = new System.Drawing.Size(256, 20);
-            this.txtApp.TabIndex = 10;
-            this.txtApp.TextChanged += new System.EventHandler(this.txtApp_TextChanged);
+            this.txtDAC.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtDAC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDAC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDAC.ForeColor = System.Drawing.Color.SlateGray;
+            this.txtDAC.Location = new System.Drawing.Point(96, 52);
+            this.txtDAC.Name = "txtDAC";
+            this.txtDAC.ReadOnly = true;
+            this.txtDAC.Size = new System.Drawing.Size(458, 20);
+            this.txtDAC.TabIndex = 10;
             // 
-            // lblCompanyName
+            // lblBENamespace
             // 
-            this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompanyName.Location = new System.Drawing.Point(8, 24);
-            this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(80, 13);
-            this.lblCompanyName.TabIndex = 12;
-            this.lblCompanyName.Text = "Company name";
+            this.lblBENamespace.AutoSize = true;
+            this.lblBENamespace.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBENamespace.Location = new System.Drawing.Point(8, 24);
+            this.lblBENamespace.Name = "lblBENamespace";
+            this.lblBENamespace.Size = new System.Drawing.Size(21, 13);
+            this.lblBENamespace.TabIndex = 12;
+            this.lblBENamespace.Text = "BE";
             // 
-            // txtCompanyName
+            // txtBE
             // 
-            this.txtCompanyName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.txtBE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCompanyName.ForeColor = System.Drawing.Color.SlateGray;
-            this.txtCompanyName.Location = new System.Drawing.Point(96, 21);
-            this.txtCompanyName.Name = "txtCompanyName";
-            this.txtCompanyName.Size = new System.Drawing.Size(256, 20);
-            this.txtCompanyName.TabIndex = 9;
-            this.txtCompanyName.TextChanged += new System.EventHandler(this.txtCompanyName_TextChanged);
+            this.txtBE.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtBE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBE.ForeColor = System.Drawing.Color.SlateGray;
+            this.txtBE.Location = new System.Drawing.Point(96, 21);
+            this.txtBE.Name = "txtBE";
+            this.txtBE.ReadOnly = true;
+            this.txtBE.Size = new System.Drawing.Size(458, 20);
+            this.txtBE.TabIndex = 9;
             // 
-            // lblNamesPase
+            // label3
             // 
-            this.lblNamesPase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(411, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "Ingrese aqui";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(8, 115);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "ISVC";
+            // 
+            // txtISVC
+            // 
+            this.txtISVC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNamesPase.AutoSize = true;
-            this.lblNamesPase.BackColor = System.Drawing.Color.Cornsilk;
-            this.lblNamesPase.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNamesPase.ForeColor = System.Drawing.Color.SlateGray;
-            this.lblNamesPase.Location = new System.Drawing.Point(12, 183);
-            this.lblNamesPase.Name = "lblNamesPase";
-            this.lblNamesPase.Size = new System.Drawing.Size(115, 13);
-            this.lblNamesPase.TabIndex = 35;
-            this.lblNamesPase.Text = "                                    ";
+            this.txtISVC.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtISVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtISVC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtISVC.ForeColor = System.Drawing.Color.SlateGray;
+            this.txtISVC.Location = new System.Drawing.Point(96, 113);
+            this.txtISVC.Name = "txtISVC";
+            this.txtISVC.ReadOnly = true;
+            this.txtISVC.Size = new System.Drawing.Size(458, 20);
+            this.txtISVC.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(8, 141);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "SVC";
+            // 
+            // txtSVC
+            // 
+            this.txtSVC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSVC.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtSVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSVC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSVC.ForeColor = System.Drawing.Color.SlateGray;
+            this.txtSVC.Location = new System.Drawing.Point(96, 139);
+            this.txtSVC.Name = "txtSVC";
+            this.txtSVC.ReadOnly = true;
+            this.txtSVC.Size = new System.Drawing.Size(458, 20);
+            this.txtSVC.TabIndex = 17;
             // 
             // FrmBusinessComponents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Ivory;
-            this.ClientSize = new System.Drawing.Size(410, 309);
-            this.Controls.Add(this.lblNamesPase);
+            this.ClientSize = new System.Drawing.Size(612, 404);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblProjectName);
             this.Controls.Add(this.txtProjectName);
@@ -196,6 +253,7 @@ namespace Fwk.Wizard
             this.Name = "FrmBusinessComponents";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Business component project  ";
+            this.Load += new System.EventHandler(this.FrmBusinessComponents_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -210,11 +268,15 @@ namespace Fwk.Wizard
         private System.Windows.Forms.Label lblProjectName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtModule;
+        private System.Windows.Forms.TextBox txtBC;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtApp;
-        private System.Windows.Forms.Label lblCompanyName;
-        private System.Windows.Forms.TextBox txtCompanyName;
-        private System.Windows.Forms.Label lblNamesPase;
+        private System.Windows.Forms.TextBox txtDAC;
+        private System.Windows.Forms.Label lblBENamespace;
+        private System.Windows.Forms.TextBox txtBE;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtSVC;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtISVC;
     }
 }

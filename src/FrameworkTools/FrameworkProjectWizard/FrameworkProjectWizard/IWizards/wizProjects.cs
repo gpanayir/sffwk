@@ -10,31 +10,31 @@ namespace Fwk.Wizard
     public class wizProjects : IWizard
     {
         FrmBusinessComponents inputForm; 
+      
+
         #region IWizard Members
 
-        public void BeforeOpeningFile(EnvDTE.ProjectItem projectItem)
+        void IWizard.BeforeOpeningFile(EnvDTE.ProjectItem projectItem)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void ProjectFinishedGenerating(EnvDTE.Project project)
+        void IWizard.ProjectFinishedGenerating(EnvDTE.Project project)
         {
-            throw new NotImplementedException();
+           
         }
 
-        public void ProjectItemFinishedGenerating(EnvDTE.ProjectItem projectItem)
+        void IWizard.ProjectItemFinishedGenerating(EnvDTE.ProjectItem projectItem)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void RunFinished()
+        void IWizard.RunFinished()
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void RunStarted(object automationObject,
-        Dictionary<string, string> replacementsDictionary,
-        WizardRunKind runKind, object[] customParams)
+        void IWizard.RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
 
             try
@@ -44,11 +44,15 @@ namespace Fwk.Wizard
                 InitializeWizard(replacementsDictionary);
 
 
-
+               
 
                 if (inputForm.ShowDialog() == DialogResult.Cancel)
                 { return; }
-
+           
+                replacementsDictionary["$projectname$"] = inputForm.ProjectName;
+              
+                MessageBox.Show(replacementsDictionary["$projectname$"].ToString());
+    
 
                 // Add custom parameters.
                 //replacementsDictionary.Add("$Company$", inputForm.Company);
@@ -71,27 +75,24 @@ namespace Fwk.Wizard
             {
                 MessageBox.Show(ex.ToString());
             }
-
-
         }
+
+        bool IWizard.ShouldAddProjectItem(string filePath)
+        {
+            return true;
+        }
+
+        #endregion
 
         private void InitializeWizard(Dictionary<string, string> pReplacementsDictionary)
         {
             inputForm = new FrmBusinessComponents();
-            //inputForm.LongModuleName = GetLongModuleName(pReplacementsDictionary);
+        
 
 
-           
+
             inputForm.ProjectName = pReplacementsDictionary["$projectname$"].ToString();
-            
+
         }
-
-
-        public bool ShouldAddProjectItem(string filePath)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }

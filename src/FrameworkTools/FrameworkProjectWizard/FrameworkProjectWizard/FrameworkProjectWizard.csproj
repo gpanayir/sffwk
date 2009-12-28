@@ -183,13 +183,10 @@
   <ItemGroup>
     <None Include="FrameworkProjectWizard.snk" />
     <None Include="WizardInstallFiles\Templates\old\BusinessComponentsProject.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="WizardInstallFiles\Templates\old\BusinessEntitiesProject.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="WizardInstallFiles\Templates\old\BusinessServicesProject.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Content Include="WizardInstallFiles\gacutil.exe.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -198,17 +195,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="WizardInstallFiles\Templates\old\DataAccessComponentsProject.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="WizardInstallFiles\Templates\old\InterfaceServicesProject.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="WizardInstallFiles\Templates\old\FrameworkProjectTemplate.vscontent">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="WizardInstallFiles\Templates.vsi">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="WizardInstallFiles\UnInstall.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

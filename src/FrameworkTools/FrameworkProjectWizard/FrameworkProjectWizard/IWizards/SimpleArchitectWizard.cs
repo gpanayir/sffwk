@@ -100,20 +100,20 @@ namespace Fwk.Wizard.SilpleArq
                 
                 
                 // Add custom parameters.
-                replacementsDictionary.Add("$Company$", inputForm.Company);
-                replacementsDictionary.Add("$App$", inputForm.App);
-                replacementsDictionary.Add("$Module$", inputForm.Module);
+                //replacementsDictionary.Add("$Company$", inputForm.Company);
+                //replacementsDictionary.Add("$App$", inputForm.App);
+                replacementsDictionary.Add("$projectname$", inputForm.ProjectName);
 
                 //Reemplazo valores de parametros
-                if (replacementsDictionary.ContainsKey("$BackendNamespace$"))
-                    replacementsDictionary["$BackendNamespace$"] = inputForm.BackendNamespaceTemplate;
+                //if (replacementsDictionary.ContainsKey("$BackendNamespace$"))
+                //    replacementsDictionary["$BackendNamespace$"] = inputForm.BackendNamespaceTemplate;
 
-                //Ej ElMercurio.SCA.Common.Entorno.Cobertura.InterfaceServices
-                if (replacementsDictionary.ContainsKey("$CommonNamespace$"))
-                    replacementsDictionary["$CommonNamespace$"] = inputForm.CommonNamespaceTemplate;
+                ////Ej ElMercurio.SCA.Common.Entorno.Cobertura.InterfaceServices
+                //if (replacementsDictionary.ContainsKey("$CommonNamespace$"))
+                //    replacementsDictionary["$CommonNamespace$"] = inputForm.CommonNamespaceTemplate;
 
 
-
+               MessageBox.Show(replacementsDictionary["$projectname$"].ToString());
 
             }
             catch (Exception ex)
@@ -127,65 +127,65 @@ namespace Fwk.Wizard.SilpleArq
         private void InitializeWizard(Dictionary<string, string> pReplacementsDictionary)
         {
             inputForm = new FrmBusinessComponents();
-            inputForm.LongModuleName = GetLongModuleName(pReplacementsDictionary);
+            //inputForm.LongModuleName = GetLongModuleName(pReplacementsDictionary);
            
 
-            if (pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "ISVC")
-            {
-                inputForm.CommonNamespaceTemplate = pReplacementsDictionary["$CommonNamespace$"].ToString();
-                inputForm.Text = "Interfase Services Project Template";
-            }
+            //if (pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "ISVC")
+            //{
+            //    inputForm.CommonNamespaceTemplate = pReplacementsDictionary["$CommonNamespace$"].ToString();
+            //    inputForm.Text = "Interfase Services Project Template";
+            //}
 
-            if (pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "SVC")
-            {
-                inputForm.CommonNamespaceTemplate = pReplacementsDictionary["$CommonNamespace$"].ToString();
-                inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
-                inputForm.Text = "Business Services Project Template";
-            }
+            //if (pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "SVC")
+            //{
+            //    inputForm.CommonNamespaceTemplate = pReplacementsDictionary["$CommonNamespace$"].ToString();
+            //    inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
+            //    inputForm.Text = "Business Services Project Template";
+            //}
 
-            if (pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "BC" ||
-                pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "BE" ||
-                pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "DAC")
-            {
-                inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
-            }
+            //if (pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "BC" ||
+            //    pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "BE" ||
+            //    pReplacementsDictionary["$ComponentType$"].Trim().ToUpper() == "DAC")
+            //{
+            //    inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
+            //}
 
-            switch(pReplacementsDictionary["$ComponentType$"].Trim().ToUpper())
-            {
-                case  "ISVC":
-                    {
-                        inputForm.CommonNamespaceTemplate = pReplacementsDictionary["$CommonNamespace$"].ToString();
-                        inputForm.Text = "Interfase Services Project";
-                        break;
-                    }
-                case "SVC":
-                    {
-                        inputForm.CommonNamespaceTemplate = pReplacementsDictionary["$CommonNamespace$"].ToString();
-                        inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
-                        inputForm.Text = "Business Services Project";
+            //switch(pReplacementsDictionary["$ComponentType$"].Trim().ToUpper())
+            //{
+            //    case  "ISVC":
+            //        {
+            //            inputForm.CommonNamespaceTemplate = pReplacementsDictionary["$CommonNamespace$"].ToString();
+            //            inputForm.Text = "Interfase Services Project";
+            //            break;
+            //        }
+            //    case "SVC":
+            //        {
+            //            inputForm.CommonNamespaceTemplate = pReplacementsDictionary["$CommonNamespace$"].ToString();
+            //            inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
+            //            inputForm.Text = "Business Services Project";
 
-                        break;
-                    }
-                case "BC":
-                    {
-                        inputForm.Text = "Business Component Project ";
-                        inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
-                        break;
-                    }
-                case "BE":
-                    {
-                        inputForm.Text = "Business Entities Project";
-                        inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
-                        break;
-                    }
+            //            break;
+            //        }
+            //    case "BC":
+            //        {
+            //            inputForm.Text = "Business Component Project ";
+            //            inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
+            //            break;
+            //        }
+            //    case "BE":
+            //        {
+            //            inputForm.Text = "Business Entities Project";
+            //            inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
+            //            break;
+            //        }
 
-                case "DAC":
-                    {
-                        inputForm.Text = "Data Access Components Project";
-                        inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
-                        break;
-                    }
-            }
+            //    case "DAC":
+            //        {
+            //            inputForm.Text = "Data Access Components Project";
+            //            inputForm.BackendNamespaceTemplate = pReplacementsDictionary["$BackendNamespace$"].ToString();
+            //            break;
+            //        }
+            //}
 
             inputForm.ProjectName = pReplacementsDictionary["$projectname$"].ToString();
         }
