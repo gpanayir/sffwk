@@ -1,2 +1,2 @@
-gacutil -u ..\FwkWizard
+gacutil -u ..\Fwk.Wizard
 pause
