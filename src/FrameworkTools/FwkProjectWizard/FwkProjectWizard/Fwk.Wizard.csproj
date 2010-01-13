@@ -227,7 +227,9 @@
   <ItemGroup>
     <None Include="FrameworkProjectWizard.snk" />
     <None Include="Resources\applications_32.png" />
+    <None Include="WizardInstallFiles\Templates\FwkBakcendProjects.vscontent" />
     <None Include="WizardInstallFiles\Templates\Items\dac.zip" />
+    <None Include="WizardInstallFiles\Templates\template_installer.vsi" />
     <Content Include="tt\DAC.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
