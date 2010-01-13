@@ -222,8 +222,7 @@ namespace CodeGenerator.Back.Entities
                         //Privados
                         wPrivateMembers_BODY.Append(GenEngineBase.GeneratePrivateMembers(wColumn.Name, wColumn.Type));
                         //Publicos (con Get y Set)
-                        wPublicProperty_BODY.Append(
-                            GenEngineBase.GenerateProperties(pTable.Name, wColumn.Name, wColumn.Type));
+                        wPublicProperty_BODY.Append(GenEngineBase.GenerateProperties(pTable.Name, wColumn.Name, wColumn.Type));
                     }
                 }
             }

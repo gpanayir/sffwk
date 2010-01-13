@@ -37,7 +37,7 @@ namespace CodeGenerator
             this.cnnDataBaseForm1.ButtonsBackColor = System.Drawing.Color.SteelBlue;
             this.cnnDataBaseForm1.ButtonsFlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cnnDataBaseForm1.ButtonsFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cnnDataBaseForm1.Connection = null;
+       
             this.cnnDataBaseForm1.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cnnDataBaseForm1.LabelsForeColor = System.Drawing.Color.MintCream;
             this.cnnDataBaseForm1.Location = new System.Drawing.Point(-1, -1);

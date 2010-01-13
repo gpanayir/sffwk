@@ -151,7 +151,7 @@ namespace CodeGenerator.Back.DataAccess
                     wBuilder = new StringBuilder(_DACTemplate.Keys.GetKey ("Method").TextContent);
 
 
-                    wBuilder.Replace(CommonConstants.CONST_BACK_END_METHOD_NAME, pMethodInfo.Name +"Batch");
+                    wBuilder.Replace(CommonConstants.CONST_BACK_END_METHOD_NAME, pMethodInfo.Name + "Batch");
 
                     if (pMethodInfo.ReturnType == MethodReturnType.Void)
                     {
@@ -526,93 +526,90 @@ namespace CodeGenerator.Back.DataAccess
 
             }
 
-            /// <summary>
-            /// Genera código de parámetros de llamado a un método.
-            /// </summary>
-            /// <param name="pMethodInfo">información sobre el método a generar.</param>
-            /// <param name="pTemplates">XML con templates para generar código.</param>
-            /// <returns>Código que representa los parámetros para ejecutar el método.</returns>
-            /// <author>Marcelo Oviedo</author>
-            private static string GenMethodParameters(MethodInfo pMethodInfo, bool pPerformBatch)
-            {
-                StringBuilder wBuilder = null;
-                StringBuilder wParamBuilder = null;
-
-                try
+                /// <summary>
+                /// Genera código de parámetros de llamado a un método.
+                /// </summary>
+                /// <param name="pMethodInfo">información sobre el método a generar.</param>
+                /// <param name="pTemplates">XML con templates para generar código.</param>
+                /// <returns>Código que representa los parámetros para ejecutar el método.</returns>
+                /// <author>Marcelo Oviedo</author>
+                private static string GenMethodParameters(MethodInfo pMethodInfo, bool pPerformBatch)
                 {
-                    wBuilder = new StringBuilder();
+                    StringBuilder wBuilder = null;
+                    StringBuilder wParamBuilder = null;
 
-                    if (pMethodInfo.ParameterType == MethodParameterType.SimpleValues)
+                    try
                     {
-                        foreach (ParameterInfo wParameterInfo in pMethodInfo.Parameters)
+                        wBuilder = new StringBuilder();
 
+                        if (pMethodInfo.ParameterType == MethodParameterType.SimpleValues)
                         {
-                            if (wParameterInfo.Selected)
+                            foreach (ParameterInfo wParameterInfo in pMethodInfo.Parameters)
+
                             {
-                                wParamBuilder = new StringBuilder();
-                                wParamBuilder.Append(_DACTemplate.Keys.GetKey("SimpleValueParameter").TextContent);
-                                wParamBuilder.Append(", ");
+                                if (wParameterInfo.Selected)
+                                {
+                                    wParamBuilder = new StringBuilder();
+                                    wParamBuilder.Append(_DACTemplate.Keys.GetKey("SimpleValueParameter").TextContent);
+                                    wParamBuilder.Append(", ");
 
-                                wParamBuilder.Replace("[Direction]",
-                                                      (wParameterInfo.Direction == ParameterDirection.Output)
-                                                          ? "out"
-                                                          : string.Empty);
-                                wParamBuilder.Replace("[TypeName]", ParametersDAC.GetTargetType(wParameterInfo.Type));
-                                wParamBuilder.Replace("[MethodParameterName]",
-                                                      _DACTemplate.Keys.GetKey("MethodParameterName").TextContent);
-                                wParamBuilder.Replace("[ParameterName]", wParameterInfo.Name);
+                                    wParamBuilder.Replace("[Direction]",(wParameterInfo.Direction == ParameterDirection.Output) ? "out": string.Empty);
+                                    wParamBuilder.Replace("[TypeName]", ParametersDAC.GetTargetType(wParameterInfo.Type));
+                                    wParamBuilder.Replace("[MethodParameterName]",
+                                                          _DACTemplate.Keys.GetKey("MethodParameterName").TextContent);
+                                    wParamBuilder.Replace("[ParameterName]", wParameterInfo.Name);
 
-                                wBuilder.Append(wParamBuilder.ToString());
+                                    wBuilder.Append(wParamBuilder.ToString());
+                                }
                             }
-                        }
 
-                        if (wBuilder.Length != 0)
-                        {
-                            wBuilder.Remove(wBuilder.Length - 2, 2);
-                        }
+                            if (wBuilder.Length != 0)
+                            {
+                                wBuilder.Remove(wBuilder.Length - 2, 2);
+                            }
 
 
-                    }
-                    else
-                    {
-                        wParamBuilder = new StringBuilder();
-                        if (pPerformBatch)
-                        {
-                           
-                            wParamBuilder.Append(_DACTemplate.Keys.GetKey ("SBEParameter").TextContent);
-                            wParamBuilder.Replace("[MethodParameterName]", _DACTemplate.Keys.GetKey ("MethodParameterName").TextContent);
-                            wParamBuilder.Replace("[ParameterName]", _PatternsTemplate.Keys.GetKey("CollectionNamePattern").TextContent.Replace(CommonConstants.CONST_ENTITY_NAME, pMethodInfo.Entity.Name));
-                           
                         }
                         else
                         {
-                            wParamBuilder.Append(_DACTemplate.Keys.GetKey ("BEParameter").TextContent);
-                            wParamBuilder.Replace("[MethodParameterName]", _DACTemplate.Keys.GetKey ("MethodParameterName").TextContent);
-                            wParamBuilder.Replace("[ParameterName]", _PatternsTemplate.Keys.GetKey("NamePattern").TextContent.Replace(CommonConstants.CONST_ENTITY_NAME, pMethodInfo.Entity.Name));
-                            
+                            wParamBuilder = new StringBuilder();
+                            if (pPerformBatch)
+                            {
+                               
+                                wParamBuilder.Append(_DACTemplate.Keys.GetKey ("SBEParameter").TextContent);
+                                wParamBuilder.Replace("[MethodParameterName]", _DACTemplate.Keys.GetKey ("MethodParameterName").TextContent);
+                                wParamBuilder.Replace("[ParameterName]", _PatternsTemplate.Keys.GetKey("CollectionNamePattern").TextContent.Replace(CommonConstants.CONST_ENTITY_NAME, pMethodInfo.Entity.Name));
+                               
+                            }
+                            else
+                            {
+                                wParamBuilder.Append(_DACTemplate.Keys.GetKey ("BEParameter").TextContent);
+                                wParamBuilder.Replace("[MethodParameterName]", _DACTemplate.Keys.GetKey ("MethodParameterName").TextContent);
+                                wParamBuilder.Replace("[ParameterName]", _PatternsTemplate.Keys.GetKey("NamePattern").TextContent.Replace(CommonConstants.CONST_ENTITY_NAME, pMethodInfo.Entity.Name));
+                                
+                            }
+                            wBuilder.Append(wParamBuilder.ToString());
                         }
-                        wBuilder.Append(wParamBuilder.ToString());
-                    }
 
-                    if (pMethodInfo.Action == MethodActionType.GetAllPaginated)
-                    {
-                        if (wBuilder.Length != 0)
+                        if (pMethodInfo.Action == MethodActionType.GetAllPaginated)
                         {
-                            wBuilder.Append(", ");
+                            if (wBuilder.Length != 0)
+                            {
+                                wBuilder.Append(", ");
+                            }
+
+                            wBuilder.Append(_DACTemplate.Keys.GetKey ("PaginationParameters").TextContent);
                         }
 
-                        wBuilder.Append(_DACTemplate.Keys.GetKey ("PaginationParameters").TextContent);
+                        return wBuilder.ToString();
+                    }
+                    finally
+                    {
+                        wBuilder = null;
+                        wParamBuilder = null;
                     }
 
-                    return wBuilder.ToString();
                 }
-                finally
-                {
-                    wBuilder = null;
-                    wParamBuilder = null;
-                }
-
-            }
 
             #endregion
 
