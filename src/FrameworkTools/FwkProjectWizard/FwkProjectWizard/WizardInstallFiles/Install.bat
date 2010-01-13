@@ -1,2 +1,2 @@
-gacutil -i ..\Fwk.Wizard.dll
+gacutil -i Fwk.Wizard.dll
 pause

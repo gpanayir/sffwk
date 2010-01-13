@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0E041115ACD44FA3BDE74B8540A6C647"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3437114EFD22014A926DF416DA11D60E"
         "OwnerKey" = "8:_54C5A50A802D4F3CBECEFC243A738E07"
         "MsmSig" = "8:_UNDEFINED"
@@ -147,6 +153,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_59BC09A3AC9845CE9011D197C200F809"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_72836854F1F9266CD154216BAE6C94A6"
         "OwnerKey" = "8:_54C5A50A802D4F3CBECEFC243A738E07"
         "MsmSig" = "8:_UNDEFINED"
@@ -195,6 +207,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9A47BB0700A84DA99492B0E79D8D96D5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9DDC317AD0716D257049FE5F896E1F50"
         "OwnerKey" = "8:_54C5A50A802D4F3CBECEFC243A738E07"
         "MsmSig" = "8:_UNDEFINED"
@@ -203,6 +221,12 @@
         {
         "MsmKey" = "8:_9DDC317AD0716D257049FE5F896E1F50"
         "OwnerKey" = "8:_AEB5E3B576BEC13B3A278DDD514DE48B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A2F4C7BD773F47A4A18953B8216B17C7"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -249,7 +273,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BE69FFDA8516432FB9EF71EFDC992D73"
+        "MsmKey" = "8:_B871A96E0970407FA5B53E5E6BD57733"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -263,6 +287,18 @@
         {
         "MsmKey" = "8:_C50804074F45C2540FA98740B1B55C02"
         "OwnerKey" = "8:_54C5A50A802D4F3CBECEFC243A738E07"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C7C97C4697A24705990ED42D38A3F97A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EEE7D4E1CE5F424AB620CEC1A4593B7C"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -368,6 +404,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    {
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -392,6 +441,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    {
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -457,6 +519,26 @@
             {
             "SourcePath" = "8:..\\FwkProjectWizard\\WizardInstallFiles\\gacutil.exe.config"
             "TargetName" = "8:gacutil.exe.config"
+            "Tag" = "8:"
+            "Folder" = "8:_5E4B8C815328419BAF75DCF8BDE0D4F2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0E041115ACD44FA3BDE74B8540A6C647"
+            {
+            "SourcePath" = "8:..\\FwkProjectWizard\\WizardInstallFiles\\Templates\\template_installer.vsi"
+            "TargetName" = "8:template_installer.vsi"
             "Tag" = "8:"
             "Folder" = "8:_5E4B8C815328419BAF75DCF8BDE0D4F2"
             "Condition" = "8:"
@@ -617,6 +699,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59BC09A3AC9845CE9011D197C200F809"
+            {
+            "SourcePath" = "8:..\\FwkProjectWizard\\tt\\MappingType.xml"
+            "TargetName" = "8:MappingType.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_D0009A84E52E4851B1E9CD1C1DA6DF43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_72836854F1F9266CD154216BAE6C94A6"
             {
             "AssemblyRegister" = "3:1"
@@ -770,6 +872,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A47BB0700A84DA99492B0E79D8D96D5"
+            {
+            "SourcePath" = "8:..\\FwkProjectWizard\\tt\\Svc.txt"
+            "TargetName" = "8:Svc.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_D0009A84E52E4851B1E9CD1C1DA6DF43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9DDC317AD0716D257049FE5F896E1F50"
             {
             "AssemblyRegister" = "3:1"
@@ -799,6 +921,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A2F4C7BD773F47A4A18953B8216B17C7"
+            {
+            "SourcePath" = "8:..\\FwkProjectWizard\\tt\\DAC.txt"
+            "TargetName" = "8:DAC.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_D0009A84E52E4851B1E9CD1C1DA6DF43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A695392C9805905B4A565E088A12023A"
@@ -863,12 +1005,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE69FFDA8516432FB9EF71EFDC992D73"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B871A96E0970407FA5B53E5E6BD57733"
             {
-            "SourcePath" = "8:..\\FwkProjectWizard\\WizardInstallFiles\\Templates\\Projects\\FwkProjectsTemplate.vsi"
-            "TargetName" = "8:FwkProjectsTemplate.vsi"
+            "SourcePath" = "8:..\\FwkProjectWizard\\tt\\Isvc.txt"
+            "TargetName" = "8:Isvc.txt"
             "Tag" = "8:"
-            "Folder" = "8:_5E4B8C815328419BAF75DCF8BDE0D4F2"
+            "Folder" = "8:_D0009A84E52E4851B1E9CD1C1DA6DF43"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -912,6 +1054,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C7C97C4697A24705990ED42D38A3F97A"
+            {
+            "SourcePath" = "8:..\\FwkProjectWizard\\tt\\Entity.txt"
+            "TargetName" = "8:Entity.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_D0009A84E52E4851B1E9CD1C1DA6DF43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EEE7D4E1CE5F424AB620CEC1A4593B7C"
+            {
+            "SourcePath" = "8:..\\FwkProjectWizard\\tt\\Templates.xml"
+            "TargetName" = "8:Templates.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_D0009A84E52E4851B1E9CD1C1DA6DF43"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -982,7 +1164,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FwkTemplates"
         "ProductCode" = "8:{7D50E9DE-B0A8-43AD-AD38-4E8F096C3F0C}"
-        "PackageCode" = "8:{B68DDA4F-4D4F-4309-B363-3067FF8CFC00}"
+        "PackageCode" = "8:{09EF719A-3F7C-4D2F-A1EB-6CFC96D36D02}"
         "UpgradeCode" = "8:{27D9B2C6-06A6-4A68-84D5-11FDA112F1AD}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
