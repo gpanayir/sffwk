@@ -1,0 +1,73 @@
+
+El Fwk Project Wizart para arquitectura  consta de dos partes fundamentales:
+
+
+Wizard:
+
+	Asistenete que nos permitira, desde el Id de Visual Studio generar los proyectos.-
+
+	El wizard esta contenido en el siguiente asembly: Fwk.Wizard.dll
+
+
+	Como generar el wizard:
+
+
+	 El ensamblado que implementa IWizard se debe:
+		a) Firmar con un nombre seguro .-
+			Esto se puede hacer desde propiedades del VS-->Signing
+		b) Instalarse en la cache de ensamblados global. 
+			Utilizando Gacutil.exe .
+			En este mismo proyecto existen dos archivos  Install.bat y UnInstall.bat que permiten agregar y quitar, respectivamente,
+			el assembly en la GAC.
+			Deben estar en el mismo directorio las *.dll los *.bat y el gacutil.exe:
+			
+		  Contenido de la carpeta de archivos de instalacion:
+		  i)gacutil.exe
+		  ii)Install.bat
+		  iii)UnInstall.bat
+
+      
+
+Templates:
+
+		1) Ubique en la carpeta FwkProjectsTemplate.zip\
+		2) Seleccione las carpetas y archivo :
+
+
+			FwkTemplate.BE
+			FwkTemplate.ISVC
+			FwkTemplate.SVC
+			FwkTemplate.BC
+			FwkTemplate.DAC
+			FwkTemplate.Test
+			FwkBakcendProjects.vstemplate
+			FwkBakcendProjects.ico
+		3) Genere un zip llamado FwkProjectsTemplate.zip con las carpetas seleccionadas
+
+		4)Luego de la generacion del archivo FwkProjectsTemplate.zip seleccionar este con  FwkBakcendProjects.vscontent
+
+				FwkProjectsTemplate.zip
+				FwkBakcendProjects.vscontent
+			  Comprima estos archivos y renombrelo con la extencion .vsi:
+				
+				FwkBakcendProjects.vsi
+		
+		
+		
+Instalar los templates projects :
+
+		
+		Doble click sobre el archivo FwkBakcendProjects.vsi
+		Se instalaran los templates en la carpeta :
+
+		C:\Documents and Settings\[username]\Mis documentos\Visual Studio 2008\Templates\ProjectTemplates\Visual C#\
+	   
+
+	   
+	 
+	   
+	   
+	    
+    
+	
+	
