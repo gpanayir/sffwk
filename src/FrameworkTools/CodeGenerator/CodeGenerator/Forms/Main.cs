@@ -5,19 +5,19 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using CodeGenerator.Back.Common;
-using CodeGenerator.Bases;
-using CodeGenerator.Forms;
+using Fwk.CodeGenerator.Common;
 
-namespace CodeGenerator
+
+
+namespace Fwk.CodeGenerator
 {
     public partial class Main : Form
     {
         private WorkSpace _WorkSpace = new WorkSpace();
         private TemplateSettingObject _TemplateSettingObject  = null;
-        private DACClasses.frm_DACGenerator ofrmDACGenerator = null;
-        EntityClasses.frm_DataEntityGenerator ofrmDataEntityGenerator = null;
-        ServicesClasess.frm_ServicesGenerator ofrmServicesGenerator = null;
+        private frm_DACGenerator ofrmDACGenerator = null;
+        frm_DataEntityGenerator ofrmDataEntityGenerator = null;
+        //frm_ServicesGenerator ofrmServicesGenerator = null;
         private LastAccessStorage _LastAccessStorage = null;
 
         public Main()
@@ -69,8 +69,7 @@ namespace CodeGenerator
         {
             FrmTemplateSetting _FrmTemplateSetting = new FrmTemplateSetting();
 
-            _FrmTemplateSetting.PropertyChange +=
-                new Controls.PropertyChangeHandler(_FrmTemplateSetting_PropertyChange);
+            _FrmTemplateSetting.PropertyChange += new PropertyChangeHandler(_FrmTemplateSetting_PropertyChange);
 
             if (!String.IsNullOrEmpty(_LastAccessStorage.LastAccess.LastTemplateSettingFileName))
                 _FrmTemplateSetting.FullFileName = _LastAccessStorage.LastAccess.LastTemplateSettingFileName;
@@ -115,8 +114,8 @@ namespace CodeGenerator
                 ofrmDACGenerator.TemplateSettingObject = _TemplateSettingObject;
             if (ofrmDataEntityGenerator != null)
                 ofrmDataEntityGenerator.TemplateSettingObject = _TemplateSettingObject;
-            if (ofrmServicesGenerator != null)
-                ofrmServicesGenerator.TemplateSettingObject = _TemplateSettingObject;
+            //if (ofrmServicesGenerator != null)
+            //    ofrmServicesGenerator.TemplateSettingObject = _TemplateSettingObject;
 
             _LastAccessStorage.Save();
             
@@ -149,19 +148,19 @@ namespace CodeGenerator
 
         private void ShowBackEndForm()
         {
-            if(_WorkSpace.Contains(Common.GeneratorsType.BackEnd)) return;
+            if(_WorkSpace.Contains(GeneratorsType.BackEnd)) return;
             
             
 
             try
             {
-                ofrmDACGenerator = new DACClasses.frm_DACGenerator();
+                ofrmDACGenerator = new frm_DACGenerator();
                 ofrmDACGenerator.Closing += new CancelEventHandler(ofrmDACGenerator_Closing);
                 ofrmDACGenerator.LastAccessStorage = _LastAccessStorage;
                 ofrmDACGenerator.TemplateSettingObject = _TemplateSettingObject;
 
                 ofrmDACGenerator.MdiParent = this;
-                _WorkSpace.Add(ofrmDACGenerator,Common.GeneratorsType.BackEnd);
+                _WorkSpace.Add(ofrmDACGenerator,GeneratorsType.BackEnd);
                 
                 ShowFrm(ofrmDACGenerator);
             }
@@ -176,42 +175,42 @@ namespace CodeGenerator
 
         void ofrmDACGenerator_Closing(object sender, CancelEventArgs e)
         {
-            _WorkSpace.Remove(Common.GeneratorsType.BackEnd);
+            _WorkSpace.Remove(GeneratorsType.BackEnd);
         }
 
         private void ShowEntityForm()
         {
-            if (_WorkSpace.Contains(Common.GeneratorsType.Entities)) return;
+            if (_WorkSpace.Contains(GeneratorsType.Entities)) return;
 
-             ofrmDataEntityGenerator = new EntityClasses.frm_DataEntityGenerator();
+             ofrmDataEntityGenerator = new frm_DataEntityGenerator();
             ofrmDataEntityGenerator.Closing += new CancelEventHandler(ofrmDataEntityGenerator_Closing);
             ofrmDataEntityGenerator.LastAccessStorage = _LastAccessStorage;
             ofrmDataEntityGenerator.TemplateSettingObject = _TemplateSettingObject;
 
             ofrmDataEntityGenerator.MdiParent = this;
-            _WorkSpace.Add(ofrmDataEntityGenerator, Common.GeneratorsType.Entities);
+            _WorkSpace.Add(ofrmDataEntityGenerator, GeneratorsType.Entities);
             ShowFrm(ofrmDataEntityGenerator);
         }
 
         void ofrmDataEntityGenerator_Closing(object sender, CancelEventArgs e)
         {
-            _WorkSpace.Remove(Common.GeneratorsType.Entities);
+            _WorkSpace.Remove(GeneratorsType.Entities);
         }
         private void ShowServiceForm()
         {
-            if (_WorkSpace.Contains(Common.GeneratorsType.Services)) return;
-             ofrmServicesGenerator = new CodeGenerator.ServicesClasess.frm_ServicesGenerator();
-            ofrmServicesGenerator.Closing += new CancelEventHandler(ofrmServicesGenerator_Closing);
-            ofrmServicesGenerator.LastAccessStorage = _LastAccessStorage;
-            ofrmServicesGenerator.TemplateSettingObject = _TemplateSettingObject;
-            ofrmServicesGenerator.MdiParent = this;
-            _WorkSpace.Add(ofrmServicesGenerator,Common.GeneratorsType.Services);
-            ShowFrm(ofrmServicesGenerator);
+            //if (_WorkSpace.Contains(GeneratorsType.Services)) return;
+            // ofrmServicesGenerator = new frm_ServicesGenerator();
+            //ofrmServicesGenerator.Closing += new CancelEventHandler(ofrmServicesGenerator_Closing);
+            //ofrmServicesGenerator.LastAccessStorage = _LastAccessStorage;
+            //ofrmServicesGenerator.TemplateSettingObject = _TemplateSettingObject;
+            //ofrmServicesGenerator.MdiParent = this;
+            //_WorkSpace.Add(ofrmServicesGenerator,GeneratorsType.Services);
+            //ShowFrm(ofrmServicesGenerator);
         }
 
         void ofrmServicesGenerator_Closing(object sender, CancelEventArgs e)
         {
-            _WorkSpace.Remove(Common.GeneratorsType.Services);
+            _WorkSpace.Remove(GeneratorsType.Services);
         }
     }
 }

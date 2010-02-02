@@ -1,4 +1,4 @@
-namespace CodeGenerator.DACClasses
+namespace Fwk.CodeGenerator
 {
     partial class frm_DACGenerator
     {
@@ -31,7 +31,6 @@ namespace CodeGenerator.DACClasses
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_DACGenerator));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.treeViewTables1 = new Fwk.DataBase.CustomControls.TreeViewTables();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.treeViewStoreProcedures1 = new Fwk.DataBase.CustomControls.TreeViewStoreProcedures();
             this.btnGenerate2 = new System.Windows.Forms.Button();
@@ -46,8 +45,9 @@ namespace CodeGenerator.DACClasses
             this.toolStripButtonGenerate = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor();
-            this.listViewCodeGenerated1 = new CodeGenerator.Controls.ListViewCodeGenerated();
+            this.listViewCodeGenerated1 = new ListViewCodeGenerated();
             this.txtSPName = new System.Windows.Forms.TextBox();
+            this.ctrlTreeViewTables1 = new Fwk.CodeGenerator.ctrlTreeViewTables();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -71,13 +71,12 @@ namespace CodeGenerator.DACClasses
             this.tabControl1.Size = new System.Drawing.Size(216, 494);
             this.tabControl1.TabIndex = 21;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
-         
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.SteelBlue;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage1.Controls.Add(this.treeViewTables1);
+            this.tabPage1.Controls.Add(this.ctrlTreeViewTables1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -85,20 +84,6 @@ namespace CodeGenerator.DACClasses
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Tag = "0";
             this.tabPage1.Text = "From tables";
-        
-            // 
-            // treeViewTables1
-            // 
-            this.treeViewTables1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.treeViewTables1.Location = new System.Drawing.Point(-1, 1);
-            this.treeViewTables1.Name = "treeViewTables1";
-            this.treeViewTables1.SelectedTable = null;
-            this.treeViewTables1.SelectedTableName = "";
-            this.treeViewTables1.Size = new System.Drawing.Size(205, 466);
-            this.treeViewTables1.TabIndex = 0;
-            this.treeViewTables1.Tablas = null;
             // 
             // tabPage2
             // 
@@ -121,7 +106,7 @@ namespace CodeGenerator.DACClasses
             this.treeViewStoreProcedures1.Location = new System.Drawing.Point(0, 3);
             this.treeViewStoreProcedures1.Name = "treeViewStoreProcedures1";
             this.treeViewStoreProcedures1.SelectedStoreProcedure = null;
-            this.treeViewStoreProcedures1.SelectedStoreProcedureName = "";
+            this.treeViewStoreProcedures1.SelectedStoreProcedureName = global::CodeGenerator.Properties.Resources.AppIcon;
             this.treeViewStoreProcedures1.Size = new System.Drawing.Size(207, 451);
             this.treeViewStoreProcedures1.StoreProcedures = null;
             this.treeViewStoreProcedures1.TabIndex = 0;
@@ -255,8 +240,8 @@ namespace CodeGenerator.DACClasses
             this.listViewCodeGenerated1.ForeColorDAC = System.Drawing.Color.Empty;
             this.listViewCodeGenerated1.ForeColorSP = System.Drawing.Color.Empty;
             this.listViewCodeGenerated1.ForeColorSVC = System.Drawing.Color.Empty;
-            this.listViewCodeGenerated1.ForeColorTDG = System.Drawing.Color.Empty;
-            this.listViewCodeGenerated1.GeneratedBECodeList = null;
+     
+            this.listViewCodeGenerated1.NodeBE = null;
             this.listViewCodeGenerated1.Location = new System.Drawing.Point(3, -7);
             this.listViewCodeGenerated1.Name = "listViewCodeGenerated1";
             this.listViewCodeGenerated1.NodeCustomSVC = null;
@@ -266,11 +251,11 @@ namespace CodeGenerator.DACClasses
             this.listViewCodeGenerated1.NodeTDG = null;
             this.listViewCodeGenerated1.Size = new System.Drawing.Size(209, 493);
             this.listViewCodeGenerated1.TabIndex = 0;
-            this.listViewCodeGenerated1.ServiceCodeGeneratedSelectEvent += new CodeGenerator.Controls.ServiceCodeGeneratedSelectHandler(this.listViewCodeGenerated1_ServiceCodeGeneratedSelectEvent);
-            this.listViewCodeGenerated1.DACCodeGeneratedSelectEvent += new CodeGenerator.Controls.DACCodeGeneratedSelectHandler(this.listViewCodeGenerated1_DACCodeGeneratedSelectEvent);
-            this.listViewCodeGenerated1.BECodeGeneratedSelectEvent += new CodeGenerator.Controls.BECodeGeneratedSelectHandler(this.listViewCodeGenerated1_BECodeGeneratedSelectEvent);
-            this.listViewCodeGenerated1.StoredProcedureCodeGeneratedSelectEvent += new CodeGenerator.Controls.StoredProcedureCodeGeneratedSelectHandler(this.listViewCodeGenerated1_StoreProcedureCodeGeneratedSelectEvent);
-            this.listViewCodeGenerated1.TDGCodeGeneratedSelectEvent += new CodeGenerator.Controls.TDGCodeGeneratedSelectHandler(this.listViewCodeGenerated1_TDGCodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.StoredProcedureCodeGeneratedSelectEvent += new StoredProcedureCodeGeneratedSelectHandler(this.listViewCodeGenerated1_StoreProcedureCodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.ServiceCodeGeneratedSelectEvent += new ServiceCodeGeneratedSelectHandler(this.listViewCodeGenerated1_ServiceCodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.DACCodeGeneratedSelectEvent += new DACCodeGeneratedSelectHandler(this.listViewCodeGenerated1_DACCodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.BECodeGeneratedSelectEvent += new BECodeGeneratedSelectHandler(this.listViewCodeGenerated1_BECodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.TDGCodeGeneratedSelectEvent += new TDGCodeGeneratedSelectHandler(this.listViewCodeGenerated1_TDGCodeGeneratedSelectEvent);
             // 
             // txtSPName
             // 
@@ -279,6 +264,15 @@ namespace CodeGenerator.DACClasses
             this.txtSPName.Name = "txtSPName";
             this.txtSPName.Size = new System.Drawing.Size(137, 20);
             this.txtSPName.TabIndex = 2;
+            // 
+            // ctrlTreeViewTables1
+            // 
+            this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ctrlTreeViewTables1.CheckBoxes = true;
+            this.ctrlTreeViewTables1.Location = new System.Drawing.Point(2, 2);
+            this.ctrlTreeViewTables1.Name = "ctrlTreeViewTables1";
+            this.ctrlTreeViewTables1.Size = new System.Drawing.Size(198, 458);
+            this.ctrlTreeViewTables1.TabIndex = 0;
             // 
             // frm_DACGenerator
             // 
@@ -295,7 +289,6 @@ namespace CodeGenerator.DACClasses
             this.Name = "frm_DACGenerator";
             this.TabText = "Back End :.";
             this.Text = "Back End components code generator";
-
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -322,17 +315,17 @@ namespace CodeGenerator.DACClasses
         private System.Windows.Forms.ToolStripLabel lblServer;
         private System.Windows.Forms.ToolStripLabel lblDatabase;
         private System.Windows.Forms.ToolStripButton btnRefresh;
-        private Fwk.DataBase.CustomControls.TreeViewTables treeViewTables1;
         private Fwk.DataBase.CustomControls.TreeViewStoreProcedures treeViewStoreProcedures1;
         private System.Windows.Forms.SplitContainer splitContainer1;
 
-        private CodeGenerator.Controls.ListViewCodeGenerated listViewCodeGenerated1;
+        private ListViewCodeGenerated listViewCodeGenerated1;
     
         private System.Windows.Forms.TextBox txtSPName;
         private System.Windows.Forms.ToolStripButton toolStripButtonGenerate;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private Fwk.Controls.Win32.TextCodeEditor textCodeEditor1;
+        private Fwk.CodeGenerator.ctrlTreeViewTables ctrlTreeViewTables1;
       
     }
 }

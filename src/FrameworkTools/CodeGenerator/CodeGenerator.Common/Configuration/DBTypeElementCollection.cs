@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 
-namespace CodeGenerator.Back.Common
+namespace Fwk.CodeGenerator.Common
 {
 	/// <summary>
 	/// Colección de reglas de mapeo.

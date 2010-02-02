@@ -1,4 +1,5 @@
-namespace CodeGenerator.Forms
+using Fwk.CodeGenerator.Common;
+namespace Fwk.CodeGenerator
 {
     partial class FrmTemplateSetting
     {
@@ -28,13 +29,14 @@ namespace CodeGenerator.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            CodeGenerator.Back.Common.TemplateSettingObject templateSettingObject1 = new CodeGenerator.Back.Common.TemplateSettingObject();
-            CodeGenerator.Back.Common.Entities entities1 = new CodeGenerator.Back.Common.Entities();
-            CodeGenerator.Back.Common.Methods methods1 = new CodeGenerator.Back.Common.Methods();
-            CodeGenerator.Back.Common.MethodsName methodsName1 = new CodeGenerator.Back.Common.MethodsName();
-            CodeGenerator.Back.Common.NamespacesPattern NamespacesPattern1 = new CodeGenerator.Back.Common.NamespacesPattern();
-            CodeGenerator.Back.Common.StoreProceduresPattern storeProceduresPattern1 = new CodeGenerator.Back.Common.StoreProceduresPattern();
-            this.genTemplateSetting1 = new CodeGenerator.Controls.GenTemplateSetting();
+            Fwk.CodeGenerator.Common.TemplateSettingObject templateSettingObject1 = new Fwk.CodeGenerator.Common.TemplateSettingObject();
+            Fwk.CodeGenerator.Common.Entities entities1 = new Fwk.CodeGenerator.Common.Entities();
+            Fwk.CodeGenerator.Common.Methods methods1 = new Fwk.CodeGenerator.Common.Methods();
+            Fwk.CodeGenerator.Common.MethodsName methodsName1 = new Fwk.CodeGenerator.Common.MethodsName();
+            Fwk.CodeGenerator.Common.Project namespacesPattern1 = new Fwk.CodeGenerator.Common.Project();
+            Fwk.CodeGenerator.Common.Others others1 = new Fwk.CodeGenerator.Common.Others();
+            Fwk.CodeGenerator.Common.StoreProceduresPattern storeProceduresPattern1 = new Fwk.CodeGenerator.Common.StoreProceduresPattern();
+            this.genTemplateSetting1 = new Fwk.CodeGenerator.TemplateSettingControl();
             this.SuspendLayout();
             // 
             // genTemplateSetting1
@@ -44,49 +46,48 @@ namespace CodeGenerator.Forms
             this.genTemplateSetting1.FullFileName = global::CodeGenerator.Properties.Resources.AppIcon;
             this.genTemplateSetting1.Location = new System.Drawing.Point(0, 0);
             this.genTemplateSetting1.Name = "genTemplateSetting1";
-            this.genTemplateSetting1.Size = new System.Drawing.Size(607, 440);
+            this.genTemplateSetting1.Size = new System.Drawing.Size(806, 721);
             this.genTemplateSetting1.TabIndex = 0;
+            entities1.BusinessDataCollectionSufix = "List";
+            entities1.BusinessDataSufix = "Collection";
             entities1.CollectionsSufix = "List";
             entities1.EntitySufix = "BE";
             templateSettingObject1.Entities = entities1;
             templateSettingObject1.FullFileName = "TemplateSetting.cgt";
             methods1.GenerateBatch = true;
             methods1.IncludeDelete = true;
-            methods1.IncludeGetAll = true;
-            methods1.IncludeGetByParam = true;
-            methods1.IncludeGetPaginated = true;
+         
+            methods1.IncludeSearchByParam = true;
+ 
             methods1.IncludeInsert = true;
             methods1.IncludeUpdate = true;
             templateSettingObject1.Methods = methods1;
             methodsName1.Delete = "Delete";
-            methodsName1.GetAll = "GetAll";
-            methodsName1.GetAllPaginated = "GetAllPaginated";
-            methodsName1.GetByParam = "GetByParam";
+   
+            methodsName1.SearchByParam = "SearchByParam";
             methodsName1.Insert = "Insert";
             methodsName1.Update = "Update";
             templateSettingObject1.MethodsName = methodsName1;
-            NamespacesPattern1.BusinessComponents = "BackEnd.BusinessComponents";
-            NamespacesPattern1.BusinessEntities = "BackEnd.BusinessEntities";
-            NamespacesPattern1.BusinessService = "BackEnd.BusinessService";
-            NamespacesPattern1.DataAccessComponent = "BackEnd.DataAccessComponents";
-            NamespacesPattern1.InterfaceServices = "InterfaceServices";
-            NamespacesPattern1.TableDataGateway = "BackEnd.TableDataGateway";
-            templateSettingObject1.Namespaces = NamespacesPattern1;
+          
+    
+ 
+         
+            templateSettingObject1.Project = namespacesPattern1;
+            others1.ConnectionStringKey = "ConnectionStringKey";
+            templateSettingObject1.OthersSettings = others1;
             storeProceduresPattern1.DeleteSufix = "_d";
-            storeProceduresPattern1.GetAllPaginated = "_sp";
-            storeProceduresPattern1.GetAllSufix = "_s";
-            storeProceduresPattern1.GetByParamSufix = "_g";
+    
             storeProceduresPattern1.InsertSufix = "_i";
             storeProceduresPattern1.UpdateSufix = "_u";
             templateSettingObject1.StoreProcedures = storeProceduresPattern1;
             this.genTemplateSetting1.TemplateSettingObject = templateSettingObject1;
-            this.genTemplateSetting1.PropertyChange += new CodeGenerator.Controls.PropertyChangeHandler(this.genTemplateSetting1_PropertyChange);
+            this.genTemplateSetting1.PropertyChange += new Fwk.CodeGenerator.PropertyChangeHandler(this.genTemplateSetting1_PropertyChange);
             // 
             // FrmTemplateSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 440);
+            this.ClientSize = new System.Drawing.Size(806, 721);
             this.Controls.Add(this.genTemplateSetting1);
             this.Name = "FrmTemplateSetting";
             this.TabText = "Template Setting";
@@ -97,6 +98,6 @@ namespace CodeGenerator.Forms
 
         #endregion
 
-        private CodeGenerator.Controls.GenTemplateSetting genTemplateSetting1;
+        private TemplateSettingControl genTemplateSetting1;
     }
 }

@@ -9,11 +9,12 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using System.Windows.Forms;
-using CodeGenerator.Back;
-using CodeGenerator.Back.Common;
-using CodeGenerator.Bases;
 
-namespace CodeGenerator
+using Fwk.CodeGenerator.Common;
+using Fwk.DataBase;
+
+
+namespace Fwk.CodeGenerator
 {
 
 
@@ -110,6 +111,11 @@ namespace CodeGenerator
             get { return _ConnectionOk; }
             set { _ConnectionOk = value; }
         }
+     
+        public CnnString CnnString
+        {
+            get { return _Metadata.CnnString; }
+        }
 
         protected string SchemaPath
         {
@@ -133,7 +139,7 @@ namespace CodeGenerator
                 _CnnStringChange = oConnectionForm.CnnStringChange;
                 //Actualizo la coneccion por si se modifico por medio de el componente de coneccion
                 _Metadata.RefreshConnection();
-
+                
                 //TODO: Ver ReloadObjects
                 _Metadata.ReloadObjects = true;
             }
@@ -174,7 +180,7 @@ namespace CodeGenerator
                 _Metadata = (Fwk.DataBase.Metadata)oSerializer.Deserialize(oFileStream);
 
                 this.ConnectionOk = true;
-                
+
                 IsLoadedMetaDataFromXML = true;
 
                 this.RefreshMetadata();
@@ -183,7 +189,7 @@ namespace CodeGenerator
             {
                 MessageView wMessageView = new MessageView();
                 wMessageView.Message = ex.Message;
-                wMessageView.ShowDialog();                
+                wMessageView.ShowDialog();
             }
             finally
             {
@@ -238,7 +244,7 @@ namespace CodeGenerator
 
                 message.Append(Environment.NewLine);
 
-                message.Append("AllMessageException: " + Environment.NewLine + CodeGeneratorCommon.GetAllMessageException(ex));
+                message.Append("AllMessageException: " + Environment.NewLine + Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
 
 
                 wMessageView.Message = message.ToString();

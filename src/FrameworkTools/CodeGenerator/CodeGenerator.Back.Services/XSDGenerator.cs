@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Data;
 using System.Text;
 using System.IO;
-using CodeGenerator.Back.Common;
+using Fwk.CodeGenerator.Common;
 using Fwk.DataBase.DataEntities;
 
 namespace CodeGenerator.Back.Services 
@@ -57,9 +57,7 @@ namespace CodeGenerator.Back.Services
                 TemplateProvider.Templates.GetTemplate(TemplateProviderEnum.ServiceTemplate).Keys.GetKey("GetByParam").
                     TextContent;
             
-            _GetAllServiceName =
-                TemplateProvider.Templates.GetTemplate(TemplateProviderEnum.ServiceTemplate).Keys.GetKey("GetAll").
-                    TextContent;
+         
             _BussinessDataCollectionNamePattern =
                 TemplateProvider.Templates.GetTemplate(TemplateProviderEnum.Patterns).Keys.GetKey("BussinessDataCollectionNamePattern").
                     TextContent;
@@ -172,7 +170,7 @@ namespace CodeGenerator.Back.Services
             pServiceName = _GetByParamServiceName.Replace(CommonConstants.CONST_ENTITY_NAME, pTable.Name);
 
             #region Request
-            wSecuence = GenAllSequenceElements(pTable, MethodActionType.GetByParam, false);
+            wSecuence = GenAllSequenceElements(pTable, MethodActionType.SearchByParam, false);
             if (wSecuence.Length == 0)
             {
                 sdCode.Clear();
@@ -187,7 +185,7 @@ namespace CodeGenerator.Back.Services
             #endregion
 
             #region Response
-            wSecuence = GenAllSequenceElements(pTable, MethodActionType.GetByParam, true);
+            wSecuence = GenAllSequenceElements(pTable, MethodActionType.SearchByParam, true);
             if (wSecuence.Length == 0)
             {
                 sdCode.Clear();
@@ -223,7 +221,7 @@ namespace CodeGenerator.Back.Services
             #endregion
 
             #region Response
-            wSecuence = GenAllSequenceElements(pTable, MethodActionType.GetAll, true);
+            wSecuence = GenAllSequenceElements(pTable, MethodActionType.SearchByParam, true);
             if (wSecuence.Length == 0)
             {
                 sdCode.Clear();
@@ -409,7 +407,7 @@ namespace CodeGenerator.Back.Services
             sdCode.Add("Request", schemRequest); //Request en indice [0]
             ///Inserto en el envelope del esquema los atributos
 
-            sdCode["Request"] = sdCode["Request"].Replace("[sequence]", GenAllSequenceElements(pStoreProcedure, MethodActionType.GetByParam,false));
+            sdCode["Request"] = sdCode["Request"].Replace("[sequence]", GenAllSequenceElements(pStoreProcedure, MethodActionType.SearchByParam,false));
 
             #endregion
 
@@ -417,7 +415,7 @@ namespace CodeGenerator.Back.Services
 
             sdCode.Add("Response", schemResponse); //Response en indice [1]
             ///Inserto en el envelope del esquema los atributos
-            sdCode["Response"] = sdCode["Response"] = sdCode["Response"].Replace("[sequence]", GenAllSequenceElements(pStoreProcedure, MethodActionType.GetByParam,true));
+            sdCode["Response"] = sdCode["Response"] = sdCode["Response"].Replace("[sequence]", GenAllSequenceElements(pStoreProcedure, MethodActionType.SearchByParam,true));
             #endregion
 
             SetRequestResponse(sdCode, pServiceName, pStoreProcedure.Name);
@@ -444,7 +442,7 @@ namespace CodeGenerator.Back.Services
             #region Response
             sdCode.Add("Response", schemResponse); //Response en indice [1]
             ///Inserto en el envelope del esquema los atributos
-            sdCode["Response"] = sdCode["Response"].Replace("[sequence]", GenAllSequenceElements(pStoreProcedure,MethodActionType.GetAll,true));
+            sdCode["Response"] = sdCode["Response"].Replace("[sequence]", GenAllSequenceElements(pStoreProcedure,MethodActionType.SearchByParam,true));
             #endregion
 
             SetRequestResponse(sdCode, pServiceName, pStoreProcedure.Name);

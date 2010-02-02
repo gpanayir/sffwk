@@ -63,6 +63,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Bases.FrontEnd, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
+    </Reference>
     <Reference Include="Fwk.Controls.Win32, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fwk.Controls.Win32.TextCodeEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -70,6 +74,11 @@
     </Reference>
     <Reference Include="Fwk.DataBase, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.TextEditor, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SmoEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.WmiEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -110,6 +119,10 @@
     <Compile Include="Bases\MessageViewWait.Designer.cs">
       <DependentUpon>MessageViewWait.cs</DependentUpon>
     </Compile>
+    <Compile Include="DACGenController.cs" />
+    <Compile Include="No_Used\DataEntityGenEngine.cs" />
+    <Compile Include="Forms\DACClasses\BEGenerator.cs" />
+    <Compile Include="Forms\DACClasses\DACGenerator.cs" />
     <Compile Include="Forms\DACClasses\frm_DACGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +147,23 @@
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjectModel\TemplateSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectModel\TemplateSettingControl.Designer.cs">
+      <DependentUpon>TemplateSettingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectModel\Helper.cs" />
+    <Compile Include="ObjectModel\ListViewCodeGenDraw.cs" />
+    <Compile Include="ObjectModel\ListViewCodeGenerated.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectModel\ListViewCodeGenerated.Designer.cs">
+      <DependentUpon>ListViewCodeGenerated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectModel\EntityInfo.cs" />
+    <Compile Include="ObjectModel\GeneratedCode.cs" />
+    <Compile Include="ObjectModel\TemplateSettingObject.cs" />
     <Compile Include="Properties\GlobalAssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -180,19 +210,50 @@
     <Compile Include="Forms\ServicesClasess\frm_ServicesGenerator.Designer.cs">
       <DependentUpon>frm_ServicesGenerator.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkSpace.cs" />
+    <Compile Include="No_Used\ServiceControlle.cs" />
+    <Compile Include="ObjectModel\Storage.cs" />
+    <Compile Include="ObjectModel\TreeViewHelper.cs" />
+    <Compile Include="wizControls\CnnString.cs" />
+    <Compile Include="wizControls\ctrlNewService.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="wizControls\ctrlNewService.Designer.cs">
+      <DependentUpon>ctrlNewService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wizControls\ctrlTreeViewTables.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="wizControls\ctrlTreeViewTables.Designer.cs">
+      <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wizControls\wizBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="wizControls\wizBase.Designer.cs">
+      <DependentUpon>wizBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wizControls\wizDBSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="wizControls\wizDBSelect.Designer.cs">
+      <DependentUpon>wizDBSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wizControls\wizTablesTreeSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="wizControls\wizTablesTreeSelector.Designer.cs">
+      <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectModel\CommonConstants.cs" />
+    <Compile Include="ObjectModel\FwkGeneratorHelper.cs" />
+    <Compile Include="wizGenerators\GenDAC.cs" />
+    <Compile Include="wizGenerators\GenEntity.cs" />
+    <Compile Include="wizGenerators\GenSVC.cs" />
+    <Compile Include="wizGenerators\GenSP.cs" />
+    <Compile Include="wizGenerators\Template.cs" />
+    <Compile Include="ObjectModel\WorkSpace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\CodeGenerator.Common\Templates\Templates.xml">
-      <Link>Templates\Templates.xml</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ExternalTools\ConfigurationApp\ConfigurationApp.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ExternalTools\ConfigurationApp\Templates.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ExternalTools\TextToStringBuilder\Fwk.Bases.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -206,9 +267,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Files\DataBaseConfig.xml">
-    </None>
-    <None Include="ExternalTools\ConfigurationApp\ConfigurationApp.exe.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\serviceunknown.ico" />
     <None Include="Resources\servicepaused.ico" />
@@ -236,6 +294,34 @@
     <EmbeddedResource Include="Forms\FrmTemplateSetting.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FrmTemplateSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectModel\TemplateSettingControl.resx">
+      <DependentUpon>TemplateSettingControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectModel\ListViewCodeGenerated.resx">
+      <DependentUpon>ListViewCodeGenerated.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\ctrlNewService.resx">
+      <DependentUpon>ctrlNewService.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\ctrlTreeViewTables.resx">
+      <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\wizBase.resx">
+      <DependentUpon>wizBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\wizDBSelect.resx">
+      <DependentUpon>wizDBSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\wizTablesTreeSelector.resx">
+      <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="Files\Images\56.ICO" />
     <Content Include="Files\Images\ArrangeWindowsHS.png" />
@@ -274,6 +360,29 @@
     <Content Include="Files\Images\Web_WebConfig.ico" />
     <Content Include="Files\Images\WindowsHS.png" />
     <Content Include="Piezas.ico" />
+    <None Include="Resources\filesaveas2.ico" />
+    <None Include="Resources\mail_small.gif" />
+    <None Include="Resources\Project2.ico" />
+    <None Include="Resources\Project3.ico" />
+    <None Include="Resources\Project4.ico" />
+    <Content Include="Templates\DAC.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Entity.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Isvc.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\MappingType.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Svc.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Templates.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\SchemaDataSourceOk2.ico" />
     <None Include="Resources\Asp Page 16.ico" />
     <None Include="Resources\WinXPSetV4 Icon 60.ico" />
@@ -286,17 +395,9 @@
     <None Include="Resources\Piezas.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeGenerator.Back\CodeGenerator.Back.csproj">
-      <Project>{2096F683-37F1-45CD-B60C-F43826E39EAA}</Project>
-      <Name>CodeGenerator.Back</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CodeGenerator.Common\CodeGenerator.Back.Common.csproj">
       <Project>{2A1C7DDF-418E-4116-9B8A-8EC01E3BF9A1}</Project>
       <Name>CodeGenerator.Back.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CodeGenerator.Controllers\CodeGenerator.Controllers.csproj">
-      <Project>{D5FC280E-83C3-44AD-A9DB-EABCCCDD2C6F}</Project>
-      <Name>CodeGenerator.Controllers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -317,127 +418,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.AppSettings.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Database.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Common.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.HostAdapter.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.UI.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Configuration.EnvironmentalOverrides.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Data.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Logging.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Validation.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.ObjectBuilder.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    
-    <Component Include="ExternalTools\ConfigurationApp\Fwk.Configuration.Common.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Fwk.Security.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
     <Component Include="ExternalTools\TextToStringBuilder\CSharpBinding.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Component>

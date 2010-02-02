@@ -5,8 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using CodeGenerator.Back;
-namespace CodeGenerator
+using Fwk.CodeGenerator.Common;
+using Fwk.DataBase;
+namespace Fwk.CodeGenerator
 {
     public partial class ConnectionForm : Form
     {
@@ -20,19 +21,13 @@ namespace CodeGenerator
             get { return this.cnnDataBaseForm1.CnnStringChange; }
 
         }
-        public string ServerName
+        
+        public CnnString CnnString
         {
-            get { return this.cnnDataBaseForm1.Connection.DataSource; }
-        }
-        public string DataBaseName
-        {
-            get { return this.cnnDataBaseForm1.Connection.InitialCatalog; }
+            get { return this.cnnDataBaseForm1.Connection; }
         }
 
-        public string UserName
-        {
-            get { return this.cnnDataBaseForm1.Connection.User; }
-        }
+       
         public ConnectionForm()
         {
             InitializeComponent();

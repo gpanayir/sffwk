@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using CodeGenerator.Back.ObjectModel;
-using CodeGenerator.Back.Common;
+using Fwk.CodeGenerator.Common;
 namespace CodeGenerator.Controllers
 {
     public class ControllerBase

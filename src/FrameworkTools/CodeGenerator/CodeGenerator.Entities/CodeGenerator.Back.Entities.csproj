@@ -77,10 +77,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeGenerator.Back\CodeGenerator.Back.csproj">
-      <Project>{2096F683-37F1-45CD-B60C-F43826E39EAA}</Project>
-      <Name>CodeGenerator.Back</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CodeGenerator.Common\CodeGenerator.Back.Common.csproj">
       <Project>{2A1C7DDF-418E-4116-9B8A-8EC01E3BF9A1}</Project>
       <Name>CodeGenerator.Back.Common</Name>

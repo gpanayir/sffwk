@@ -1,13 +1,13 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
-using CodeGenerator.Controllers;
 
-namespace CodeGenerator.EntityClasses
+
+namespace Fwk.CodeGenerator
 {
     public partial class frm_DataEntityGenerator : CodeGenerator.FrmBase 
     {
-        DACGenController wDACGenController = null;
+        BakcEndGenController wDACGenController = null;
         private string LastParentKey = string.Empty;
         private string LastEntityName = string.Empty;
 
@@ -199,10 +199,10 @@ namespace CodeGenerator.EntityClasses
         {
            
 
-            wDACGenController = new DACGenController();
-            wDACGenController.TemplateSettingObject = base.TemplateSettingObject;
+            wDACGenController = new BakcEndGenController();
+            FwkGeneratorHelper.TemplateSetting = base.TemplateSettingObject;
           
-            wDACGenController.UserDefinedTypes = base.Metadata.UserDefinedTypes;
+            //wDACGenController.UserDefinedTypes = base.Metadata.UserDefinedTypes;
             wDACGenController.SelectedObject = Enum.GetName (typeof(CodeGeneratorCommon.SelectedObject), _SelectedObject);
             wDACGenController.ListViewCodeGenerated = listViewCodeGenerated1;
 
@@ -213,7 +213,7 @@ namespace CodeGenerator.EntityClasses
                     {
                         if (treeViewTables1.SelectedTable != null)
                         {
-                            wDACGenController.Tables = treeViewTables1.GetSelectedTables();
+                            //wDACGenController.Tables = treeViewTables1.GetSelectedTables();
 
                             wDACGenController.GenerateBEOnly();
                         }
@@ -223,24 +223,24 @@ namespace CodeGenerator.EntityClasses
                 case CodeGeneratorCommon.SelectedObject.StoreProcedures:
                     {
                         if (treeViewStoreProcedures1.SelectedStoreProcedure == null) return;
-                        wDACGenController.StoreProcedures = treeViewStoreProcedures1.GetSelectedStoreProcedures();
+                        //wDACGenController.StoreProcedures = treeViewStoreProcedures1.GetSelectedStoreProcedures();
                         wDACGenController.GenerateBEOnly();
                         break;
                     }
                 case CodeGeneratorCommon.SelectedObject.Schema:
                     {
                         
-                        textCodeEditor1.Text = string.Empty;
-                        if (tvwSchema.Nodes.Count > 0)
-                        {
-                            //List<GlobalElementComplexType> wGlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
-                            wDACGenController.GlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
+                        //textCodeEditor1.Text = string.Empty;
+                        //if (tvwSchema.Nodes.Count > 0)
+                        //{
+                        //    //List<GlobalElementComplexType> wGlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
+                        //    wDACGenController.GlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
 
-                            //wEntityGenerationInfo.Entities = DACControllers.GenerateEntityInfo(wGlobalElementComplexTypeList, null, string.Empty);//SchemEntityGenEngine.GeneratesSchemaCode(wListTables);
-                            //textCodeEditor1.Text = ServiceControlle.BEFromSchemaGenerator_GenerateCode(wEntityGenerationInfo);
-                            wDACGenController.GlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
-                            textCodeEditor1.Text = wDACGenController.GenerateBEFromSchema();
-                        }
+                        //    //wEntityGenerationInfo.Entities = DACControllers.GenerateEntityInfo(wGlobalElementComplexTypeList, null, string.Empty);//SchemEntityGenEngine.GeneratesSchemaCode(wListTables);
+                        //    //textCodeEditor1.Text = ServiceControlle.BEFromSchemaGenerator_GenerateCode(wEntityGenerationInfo);
+                        //    wDACGenController.GlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
+                        //    textCodeEditor1.Text = wDACGenController.GenerateBEFromSchema();
+                        //}
                         break;
                     }
 

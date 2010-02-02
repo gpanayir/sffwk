@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 
-namespace CodeGenerator.Back.Common
+namespace Fwk.CodeGenerator.Common
 {
     /// <summary>
     /// Regla de mapeo de tipo de dato de base de datos.

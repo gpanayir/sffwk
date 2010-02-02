@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Schema;
 using System.Windows.Forms;
-using CodeGenerator.Back.Schema;
-using CodeGenerator.Back.Common;
+//using CodeGenerator.Back.Schema;
+//using CodeGenerator.Back.Common;
 using CodeGenerator.Back;
+using Fwk.CodeGenerator.Common;
 
 namespace CodeGenerator.Back.Entities
 {

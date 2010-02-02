@@ -6,20 +6,17 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using CodeGenerator.Back;
-using CodeGenerator.Bases;
 using  Fwk.DataBase.DataEntities ;
-using CodeGenerator.Controllers;
-using CodeGenerator.Controls;
+using  Fwk.CodeGenerator.Common;
 
-namespace CodeGenerator.DACClasses
+namespace Fwk.CodeGenerator
 {
     public partial class frm_DACGenerator : CodeGenerator.FrmBase
     {
         #region Private members 
         private string LastParentKey = string.Empty;
         private string LastEntityName = string.Empty;
-        private DACGenController _DACGenController;
+        private BakcEndGenController _DACGenController;
         #endregion
 
         public frm_DACGenerator()
@@ -40,7 +37,7 @@ namespace CodeGenerator.DACClasses
             {
                 if (base.CnnStringChange)
                 {
-                    treeViewTables1.Clear();
+                    //treeViewTables1.Clear();
                     treeViewStoreProcedures1.Clear();
                 }
                 RefreshDataObject();
@@ -102,12 +99,14 @@ namespace CodeGenerator.DACClasses
 
         private void toolStripButtonGenerate_Click(object sender, EventArgs e)
         {
-            
+           
 
             
-            _DACGenController = new DACGenController();
-            _DACGenController.UserDefinedTypes = base.Metadata.UserDefinedTypes;
-            _DACGenController.TemplateSettingObject = base.TemplateSettingObject;
+            _DACGenController = new BakcEndGenController();
+
+            ///TODO: ver estos valores estaticos
+            FwkGeneratorHelper.UserDefinedTypes = base.Metadata.UserDefinedTypes;
+            FwkGeneratorHelper.TemplateSetting = base.TemplateSettingObject;
 
 
             _DACGenController.SelectedObject = Enum.GetName(typeof(CodeGeneratorCommon.SelectedObject), _SelectedObject);
@@ -117,9 +116,12 @@ namespace CodeGenerator.DACClasses
             {
                 case CodeGeneratorCommon.SelectedObject.Tables:
                     {
-                        if (treeViewTables1.SelectedTable == null) return;
-                        _DACGenController.Tables = treeViewTables1.GetSelectedTables();
+                        if (ctrlTreeViewTables1.SelectedTable == null) return;
+                     
 
+                            _DACGenController.Tables = ctrlTreeViewTables1.CheckedTables;
+                        
+                       
                         break;
                     }
 
@@ -127,7 +129,7 @@ namespace CodeGenerator.DACClasses
                 case CodeGeneratorCommon.SelectedObject.StoreProcedures:
                     {
                         if (treeViewStoreProcedures1.SelectedStoreProcedure == null) return;
-                        _DACGenController.StoreProcedures = treeViewStoreProcedures1.GetSelectedStoreProcedures();
+                        //_DACGenController.StoreProcedures = treeViewStoreProcedures1.GetSelectedStoreProcedures();
 
                         break;
                     }
@@ -164,8 +166,8 @@ namespace CodeGenerator.DACClasses
                 //Esta seleccionado Tables
                 if (_SelectedObject == CodeGeneratorCommon.SelectedObject.Tables)
                 {
-                    treeViewTables1.Tablas = base.Metadata.Tables;
-                    treeViewTables1.LoadTreeView();
+                    ctrlTreeViewTables1.Populate(base.CnnString);
+                
                 }
                 //Esta seleccionado StoreProcedures
                 if (_SelectedObject == CodeGeneratorCommon.SelectedObject.StoreProcedures)

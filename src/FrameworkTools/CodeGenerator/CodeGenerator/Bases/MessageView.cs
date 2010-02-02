@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace CodeGenerator
+namespace Fwk.CodeGenerator
 {
     public partial class MessageView : Form
     {
