@@ -354,32 +354,7 @@ namespace Fwk.CodeGenerator
 
         #region [-- generación de código --]
 
-        static void GenCodeGetAll(Table pTable, string pSpBody, MethodActionType action, List<GeneratedCode> pProceduresCode)
-        {
-            StringBuilder wBuilder = null;
-            GeneratedCode wCode = null;
-            try
-            {
-                wBuilder = GenCodeCommon(pTable, pSpBody);
-
-                wBuilder.Replace("[Parameters]", string.Empty);
-                wBuilder.Replace("[SelectList]", GenCodeGetSelectList(pTable));
-               
-                wBuilder.Replace(CommonConstants.CONST_STOREDPROCEDURE_NAME, GetStoredProcedureName(pTable.Name, pTable.Schema, action));
-
-                wCode = new GeneratedCode();
-                wCode.Id = pTable.Name;
-                wCode.Code.Append(wBuilder.ToString());
-                wCode.MethodActionType = action;
-                pProceduresCode.Add(wCode);
-            }
-            finally
-            {
-                wBuilder = null;
-                wCode = null;
-            }
-
-        }
+        
 
         static void GenCodeGetByParam(Table pTable, string pSpBody, MethodActionType action, List<GeneratedCode> pProceduresCode)
         {
@@ -599,12 +574,12 @@ namespace Fwk.CodeGenerator
         static string GenCodeInsertParameters(Table pTable, MethodActionType action)
         {
             StringBuilder wBuilder = new StringBuilder();
-
+            StringBuilder wParamBuilder;
             foreach (Column c in pTable.Columns)
             {
                 if (IsColumnValidToInsert(c) )
                 {
-                    StringBuilder wParamBuilder = BuildParameter(c, action, true, true);
+                     wParamBuilder = BuildParameter(c, action, true, true);
                     wBuilder.Append(wParamBuilder.ToString());
                 }
             }
@@ -851,20 +826,16 @@ namespace Fwk.CodeGenerator
                         if (wColumn.DataType.SqlDataType.ToString().ToUpper().Contains("DATETIME"))
                         {
                             //Solo  para parametros tipo fechas ya que se atiende de manera especial este tipo de dato.-
-                            szParametro =
-                                BuildParameter(wColumn, MethodActionType.SearchByParam, true, true).Replace(wColumn.Name, wColumn.Name + "Desde").ToString();
+                            szParametro = BuildParameter(wColumn, MethodActionType.SearchByParam, true, true).Replace(wColumn.Name, wColumn.Name + "Desde").ToString();
                             szParametro += Environment.NewLine;
-                            szParametro +=
-                                BuildParameter(wColumn, MethodActionType.SearchByParam, true, true).Replace(wColumn.Name, wColumn.Name + "Hasta").ToString();
-                            szParametro =
-                                szParametro.Replace("@",                         "--" + "@");
+                            szParametro += BuildParameter(wColumn, MethodActionType.SearchByParam, true, true).Replace(wColumn.Name, wColumn.Name + "Hasta").ToString();
+                            szParametro =szParametro.Replace("@","--" + "@");
 
-                            szParametro +=                                BuildParameter(wColumn, MethodActionType.SearchByParam, true, true).ToString();
+                            szParametro +=BuildParameter(wColumn, MethodActionType.SearchByParam, true, true).ToString();
                         }
                         else
                         {
-                            szParametro =
-                                BuildParameter(wColumn, MethodActionType.SearchByParam, true, true).ToString();
+                            szParametro = BuildParameter(wColumn, MethodActionType.SearchByParam, true, true).ToString();
                         }
 
                         sbParametros.AppendLine(szParametro);

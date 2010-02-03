@@ -74,7 +74,7 @@ namespace Fwk.CodeGenerator
         /// </summary>
         public void Populate(CnnString pCnn)
         {
-            if (_Tables == null)
+            //if (_Tables == null)
                 LoadTables(pCnn);
 
           
