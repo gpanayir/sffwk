@@ -320,48 +320,16 @@
       <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Content Include="Files\Images\56.ICO" />
-    <Content Include="Files\Images\ArrangeWindowsHS.png" />
-    <Content Include="Files\Images\arrowb.gif" />
-    <Content Include="Files\Images\Asp Page.ico" />
-    <Content Include="Files\Images\Code_ClassCS.ico" />
-    <Content Include="Files\Images\Code_CodeFile.ico" />
-    <Content Include="Files\Images\Code_CodeFileCS.ico" />
-    <Content Include="Files\Images\Configure 16x16.ico" />
-    <Content Include="Files\Images\Data_Schema.ico" />
-    <Content Include="Files\Images\db.ico" />
-    <Content Include="Files\Images\dbs.ico" />
-    <Content Include="Files\Images\Delete.Ico" />
-    <Content Include="Files\Images\delete_16x.ico" />
-    <Content Include="Files\Images\document.ico" />
-    <Content Include="Files\Images\error.ico" />
-    <Content Include="Files\Images\forum_search.gif" />
-    <Content Include="Files\Images\item-lista.gif" />
-    <Content Include="Files\Images\mail_small.gif" />
-    <Content Include="Files\Images\Main.ico" />
-    <Content Include="Files\Images\news_answer.gif" />
-    <Content Include="Files\Images\news_info.gif" />
-    <Content Include="Files\Images\otheroptions.ico" />
-    <Content Include="Files\Images\Refresh.ico" />
-    <Content Include="Files\Images\RelationshipsHS.png" />
-    <Content Include="Files\Images\SaveAllHS.png" />
-    <Content Include="Files\Images\saveHS.png" />
-    <Content Include="Files\Images\search.ico" />
-    <Content Include="Files\Images\SearchFolderHS.png" />
-    <Content Include="Files\Images\TableHS.png" />
-    <Content Include="Files\Images\TortoiseInSubVersion.ico" />
-    <Content Include="Files\Images\vb2005.png" />
-    <Content Include="Files\Images\warning.ico" />
-    <Content Include="Files\Images\Web.png" />
-    <Content Include="Files\Images\Web_HTML.ico" />
-    <Content Include="Files\Images\Web_WebConfig.ico" />
-    <Content Include="Files\Images\WindowsHS.png" />
     <Content Include="Piezas.ico" />
     <None Include="Resources\filesaveas2.ico" />
     <None Include="Resources\mail_small.gif" />
     <None Include="Resources\Project2.ico" />
     <None Include="Resources\Project3.ico" />
     <None Include="Resources\Project4.ico" />
+    <None Include="Resources\web_16.png" />
+    <None Include="Resources\apps_16.gif" />
+    <None Include="Resources\tools_24.gif" />
+    <None Include="Resources\tools_16.gif" />
     <Content Include="Templates\DAC.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -439,6 +407,9 @@
     <Component Include="ExternalTools\TextToStringBuilder\WeifenLuo.WinFormsUI.Docking.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Component>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Files\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
