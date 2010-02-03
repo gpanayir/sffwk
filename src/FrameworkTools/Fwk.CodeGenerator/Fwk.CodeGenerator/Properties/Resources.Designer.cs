@@ -69,10 +69,17 @@ namespace Fwk.CodeGenerator.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Asp_Page_16 {
+        internal static System.Drawing.Bitmap apps_16 {
             get {
-                object obj = ResourceManager.GetObject("Asp Page 16", resourceCulture);
+                object obj = ResourceManager.GetObject("apps_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon Asp_Page_16 {
+            get {
+                object obj = ResourceManager.GetObject("Asp_Page_16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -83,10 +90,10 @@ namespace Fwk.CodeGenerator.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Configure_16x16 {
+        internal static System.Drawing.Icon Configure_16x16 {
             get {
-                object obj = ResourceManager.GetObject("Configure 16x16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("Configure_16x16", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -195,6 +202,20 @@ namespace Fwk.CodeGenerator.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap tools_16 {
+            get {
+                object obj = ResourceManager.GetObject("tools_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap web_16 {
+            get {
+                object obj = ResourceManager.GetObject("web_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Web_HTML {
             get {
                 object obj = ResourceManager.GetObject("Web_HTML", resourceCulture);
@@ -212,13 +233,6 @@ namespace Fwk.CodeGenerator.Properties {
         internal static System.Drawing.Bitmap WindowsHS {
             get {
                 object obj = ResourceManager.GetObject("WindowsHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap WinXPSetV4_Icon_60 {
-            get {
-                object obj = ResourceManager.GetObject("WinXPSetV4 Icon 60", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
