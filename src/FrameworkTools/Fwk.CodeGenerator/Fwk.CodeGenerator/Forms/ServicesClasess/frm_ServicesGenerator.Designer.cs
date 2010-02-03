@@ -118,7 +118,7 @@
 //            this.toolStripButtonGenerate.BackColor = System.Drawing.Color.Transparent;
 //            this.toolStripButtonGenerate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
 //            this.toolStripButtonGenerate.ForeColor = System.Drawing.Color.Black;
-//            this.toolStripButtonGenerate.Image = global::CodeGenerator.Properties.Resources.servicerunning;
+//            this.toolStripButtonGenerate.Image = global::Fwk.CodeGenerator.Properties.Resources.servicerunning;
 //            this.toolStripButtonGenerate.ImageTransparentColor = System.Drawing.Color.Transparent;
 //            this.toolStripButtonGenerate.Name = "toolStripButtonGenerate";
 //            this.toolStripButtonGenerate.Size = new System.Drawing.Size(80, 22);

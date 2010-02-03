@@ -99,17 +99,13 @@ namespace Fwk.CodeGenerator
 
         private void toolStripButtonGenerate_Click(object sender, EventArgs e)
         {
-           
-
-            
             _DACGenController = new BakcEndGenController();
 
             ///TODO: ver estos valores estaticos
             FwkGeneratorHelper.UserDefinedTypes = base.Metadata.UserDefinedTypes;
             FwkGeneratorHelper.TemplateSetting = base.TemplateSettingObject;
-
-
-            _DACGenController.SelectedObject = Enum.GetName(typeof(CodeGeneratorCommon.SelectedObject), _SelectedObject);
+            
+            _DACGenController.SelectedObject = _SelectedObject;
 
             _DACGenController.ListViewCodeGenerated = this.listViewCodeGenerated1;
             switch (_SelectedObject)
@@ -117,20 +113,13 @@ namespace Fwk.CodeGenerator
                 case CodeGeneratorCommon.SelectedObject.Tables:
                     {
                         if (ctrlTreeViewTables1.SelectedTable == null) return;
-                     
-
                             _DACGenController.Tables = ctrlTreeViewTables1.CheckedTables;
-                        
-                       
                         break;
                     }
-
-
                 case CodeGeneratorCommon.SelectedObject.StoreProcedures:
                     {
                         if (treeViewStoreProcedures1.SelectedStoreProcedure == null) return;
                         //_DACGenController.StoreProcedures = treeViewStoreProcedures1.GetSelectedStoreProcedures();
-
                         break;
                     }
             }

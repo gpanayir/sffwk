@@ -21,22 +21,11 @@ namespace Fwk.CodeGenerator
         /// Hace uso de templates para efectuar reemplazos en tags. Crea una clase y sus métodos.
         /// </remarks>
         /// <author>Marcelo Oviedo</author>
-        public class DACGenerator
+        internal class DACGenerator
         {
-            public static bool PerformBatch;
-
-          
            
 
-          
 
-            static DACGenerator()
-            {
-             
-            }
-
-
-            #region [Public methods]
 
             /// <summary>
             /// Inicia la generación de código fuente de un componente de acceso a datos
@@ -45,7 +34,7 @@ namespace Fwk.CodeGenerator
             /// <returns>Código fuente.</returns>
             /// <date>2006-03-29T00:00:00</date>
             /// <author>Marcelo Oviedo</author>
-            public static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.Table> pTables)
+            internal static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.Table> pTables)
             {
                 List<GeneratedCode> wGeneratedCodeResult = new List<GeneratedCode>();
                 GeneratedCode wGeneratedCode;
@@ -55,7 +44,9 @@ namespace Fwk.CodeGenerator
                     wGeneratedCode = new GeneratedCode();
                     wGeneratedCode.Id = t.Name;
                     ///TODO: Ver parametros Gen_DAC
-                    wGeneratedCode.Code.Append(GenDAC.Gen_DAC(t, FwkGeneratorHelper.TemplateSetting.Methods.GenerateBatch, FwkGeneratorHelper.TemplateSetting.Project.ProjectName));
+                    wGeneratedCode.Code.Append(GenDAC.Gen_DAC(t,
+                        FwkGeneratorHelper.TemplateSetting.Methods.GenerateBatch,
+                        FwkGeneratorHelper.TemplateSetting.Project.ProjectName));
                     wGeneratedCodeResult.Add(wGeneratedCode);
                 }
 
@@ -65,9 +56,8 @@ namespace Fwk.CodeGenerator
 
         
 
-            #endregion
+           
 
-            #region [Private methods
 
             private static TreeNode BuildTreeNode(List<GeneratedCode> pGeneratedCodeResult)
             {
@@ -95,7 +85,6 @@ namespace Fwk.CodeGenerator
 
 
 
-            #endregion
 
         }
     }

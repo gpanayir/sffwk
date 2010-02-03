@@ -9,105 +9,29 @@ using Microsoft.SqlServer.Management.Smo;
 using Fwk.CodeGenerator;
 using System.Windows.Forms;
 
-namespace CodeGenerator.Back.StoreProcedures
+namespace Fwk.CodeGenerator
 {
     /// <summary>
     /// Generador de codigo especializado para generar Store procedures apartir de Objetos Tablas
     /// </summary>
-    public class SPCodeGenerator
+    public class GenSP
     {
         static String _CommonTemplate = String.Empty;
         static String _CommonTemplateExecuteSQL = String.Empty;
 
-
-
-        static SPCodeGenerator()
+        static GenSP()
         {
-            
-
-        }
-
-        /// <summary>
-        /// Genera el código fuente de un conjunto de procedimientos almacenados.
-        /// </summary>
-        /// <seealso cref="GenStoredProcedures"/>
-        /// <param name="pEntityGenerationInfo">información de generación de entidad para creación de procedimientos almacenados.</param>
-        /// <returns>Código fuente.</returns>
-        /// <date>2007-5-25T00:00:00</date>
-        /// <author>Marcelo Oviedo</author>
-        public static TreeNode GenCode(List<Table> pTables)
-        {
-
-            List<GeneratedCode> wGeneratedCodeResult = new List<GeneratedCode>();
-
 
             _CommonTemplate = FwkGeneratorHelper.TemplateDocument.GetTemplate("SP_Common").Content;
             _CommonTemplateExecuteSQL = FwkGeneratorHelper.TemplateDocument.GetTemplate("SP_Search_DefinicionGlobal").Content;
 
             _CommonTemplate = _CommonTemplate.Replace("<DROP>", GetDROP());
             _CommonTemplateExecuteSQL = _CommonTemplateExecuteSQL.Replace("<DROP>", GetDROP());
-
-            foreach (Table t in pTables)
-            {
-                GenStoredProcedures(t, wGeneratedCodeResult);
-            }
-            return BuildTreeNode(wGeneratedCodeResult);
-
         }
 
+        
+      
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pGeneratedCodeResult"></param>
-        /// <returns></returns>
-        private static TreeNode BuildTreeNode(List<GeneratedCode> pGeneratedCodeResult)
-        {
-            int wiIndex = 0;
-            string wzsAux = String.Empty;
-            TreeNode wNodeSP = new TreeNode("SP");
-            TreeNode wTreeNodeEntitySp = null;
-            TreeNode wTreeNodeSpActions = null;
-
-
-
-            //Carga los nodos  con los nombres de las entidades
-            foreach (GeneratedCode wGeneratedCode in pGeneratedCodeResult)
-            {
-                if (wzsAux != wGeneratedCode.Id)
-                {
-                    wzsAux = wGeneratedCode.Id;
-
-                    wTreeNodeEntitySp = new TreeNode(wGeneratedCode.Id);
-                    wTreeNodeEntitySp.Text = wGeneratedCode.Id;
-                    wTreeNodeEntitySp.Name = wGeneratedCode.Id;
-                    wTreeNodeEntitySp.Tag = "EntitySP";
-
-
-                    wNodeSP.Nodes.Add(wTreeNodeEntitySp);
-                }
-
-            }
-            //Carga los nodos  con los nombres de los metodos por cada entidad
-            foreach (GeneratedCode wGeneratedCode in pGeneratedCodeResult)
-            {
-                if (wzsAux != wGeneratedCode.Id)
-                {
-                    wzsAux = wGeneratedCode.Id;
-                    wiIndex = wNodeSP.Nodes.IndexOfKey(wGeneratedCode.Id);
-                    wTreeNodeEntitySp = wNodeSP.Nodes[wiIndex];
-                }
-                wTreeNodeSpActions = new TreeNode();
-                wTreeNodeSpActions.Name = wGeneratedCode.MethodActionType.ToString();
-                wTreeNodeSpActions.Text = wGeneratedCode.MethodActionType.ToString();
-                wTreeNodeSpActions.Tag = wGeneratedCode;
-
-
-                wTreeNodeEntitySp.Nodes.Add(wTreeNodeSpActions);
-            }
-
-            return wNodeSP;
-        }
 
         /// <summary>
         /// Genera el código fuente de un conjunto de procedimientos almacenados.
@@ -120,7 +44,7 @@ namespace CodeGenerator.Back.StoreProcedures
         /// <param name="pProceduresCode">Lista de código generado.</param>
         /// <date>2006-03-20T00:00:00</date>
         /// <author>Marcelo Oviedo</author>
-        static List<GeneratedCode> GenStoredProcedures(Table pTable, List<GeneratedCode> pProceduresCode)
+        internal static List<GeneratedCode> GenCode(Table pTable, List<GeneratedCode> pProceduresCode)
         {
 
             string wSPBodyCode;
@@ -235,7 +159,7 @@ namespace CodeGenerator.Back.StoreProcedures
             wBuilder.Append(FwkGeneratorHelper.GetParameterPattern(pColumn));
             //@Nombre
             wBuilder.Replace("[Name]", "@" + pColumn.Name);
-            if (pColumn.DataType.Name.ToLower().Contains("image"))
+            if (pColumn.DataType.SqlDataType.ToString().ToLower().Contains("image"))
 
                 wBuilder.Replace("[Type]", "varbinary");
             else
@@ -746,7 +670,7 @@ namespace CodeGenerator.Back.StoreProcedures
             foreach (Column wColumn in pTable.Columns)
             {
                 //wColumn.Selected 
-                if (!IsColumnValidToInsert(wColumn))
+                if (IsColumnValidToInsert(wColumn))
                 {
                     wBuilder.AppendLine(string.Concat("@", wColumn.Name));
                 }
@@ -764,14 +688,14 @@ namespace CodeGenerator.Back.StoreProcedures
 
             foreach (Column wColumn in pTable.Columns)
             {
-                //if (wColumn.Autogenerated)
-                //{
+                if (wColumn.Identity)
+                {
                     wBuilder.Append("@");
                     wBuilder.Append(wColumn.Name);
 
                     //wText = Properties.Settings.Default.GetReturnAutogeneratedPattern.Replace("[Name]", wBuilder.ToString());
                     break;
-                //}
+                }
             }
 
             string wOutputIdentitySet = FwkGeneratorHelper.TemplateDocument.GetTemplate("SP_OutputIdentitySet").Content;

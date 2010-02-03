@@ -43,7 +43,7 @@ namespace Fwk.CodeGenerator
             // 
             this.genTemplateSetting1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.genTemplateSetting1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.genTemplateSetting1.FullFileName = global::CodeGenerator.Properties.Resources.AppIcon;
+            this.genTemplateSetting1.FullFileName = global::Fwk.CodeGenerator.Properties.Resources.AppIcon;
             this.genTemplateSetting1.Location = new System.Drawing.Point(0, 0);
             this.genTemplateSetting1.Name = "genTemplateSetting1";
             this.genTemplateSetting1.Size = new System.Drawing.Size(806, 721);

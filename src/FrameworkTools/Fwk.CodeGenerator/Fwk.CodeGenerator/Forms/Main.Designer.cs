@@ -68,14 +68,14 @@ namespace Fwk.CodeGenerator
             this.servicesToolStripMenuItem1});
             this.generatosFormsToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.generatosFormsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.generatosFormsToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.WinXPSetV4_Icon_60;
+            this.generatosFormsToolStripMenuItem.Image = global::Fwk.CodeGenerator.Properties.Resources.WinXPSetV4_Icon_60;
             this.generatosFormsToolStripMenuItem.Name = "generatosFormsToolStripMenuItem";
             this.generatosFormsToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
             this.generatosFormsToolStripMenuItem.Text = "Generatos ";
             // 
             // backEndToolStripMenuItem
             // 
-            this.backEndToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.SchemaDataSourceOk2;
+            this.backEndToolStripMenuItem.Image = global::Fwk.CodeGenerator.Properties.Resources.SchemaDataSourceOk2;
             this.backEndToolStripMenuItem.Name = "backEndToolStripMenuItem";
             this.backEndToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.backEndToolStripMenuItem.Text = "BackEnd";
@@ -83,7 +83,7 @@ namespace Fwk.CodeGenerator
             // 
             // entitiesToolStripMenuItem
             // 
-            this.entitiesToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.WindowsHS;
+            this.entitiesToolStripMenuItem.Image = global::Fwk.CodeGenerator.Properties.Resources.WindowsHS;
             this.entitiesToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.entitiesToolStripMenuItem.Name = "entitiesToolStripMenuItem";
             this.entitiesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
@@ -92,7 +92,7 @@ namespace Fwk.CodeGenerator
             // 
             // servicesToolStripMenuItem1
             // 
-            this.servicesToolStripMenuItem1.Image = global::CodeGenerator.Properties.Resources.Asp_Page_16;
+            this.servicesToolStripMenuItem1.Image = global::Fwk.CodeGenerator.Properties.Resources.Asp_Page_16;
             this.servicesToolStripMenuItem1.Name = "servicesToolStripMenuItem1";
             this.servicesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.servicesToolStripMenuItem1.Text = "Services";
@@ -106,14 +106,14 @@ namespace Fwk.CodeGenerator
             this.customizeTemplateToolStripMenuItem});
             this.toolsToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.toolsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.toolsToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.Configure_16x16;
+            this.toolsToolStripMenuItem.Image = global::Fwk.CodeGenerator.Properties.Resources.Configure_16x16;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // textToStringBuilderToolStripMenuItem
             // 
-            this.textToStringBuilderToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.textdoc;
+            this.textToStringBuilderToolStripMenuItem.Image = global::Fwk.CodeGenerator.Properties.Resources.textdoc;
             this.textToStringBuilderToolStripMenuItem.Name = "textToStringBuilderToolStripMenuItem";
             this.textToStringBuilderToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.textToStringBuilderToolStripMenuItem.Text = "Text to StringBuilder";
@@ -121,7 +121,7 @@ namespace Fwk.CodeGenerator
             // 
             // ConfigurationLibrariesToolStripMenuItem
             // 
-            this.ConfigurationLibrariesToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.Web_XML;
+            this.ConfigurationLibrariesToolStripMenuItem.Image = global::Fwk.CodeGenerator.Properties.Resources.Web_XML;
             this.ConfigurationLibrariesToolStripMenuItem.Name = "ConfigurationLibrariesToolStripMenuItem";
             this.ConfigurationLibrariesToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.ConfigurationLibrariesToolStripMenuItem.Text = " configuration libraries";
@@ -129,7 +129,7 @@ namespace Fwk.CodeGenerator
             // 
             // customizeTemplateToolStripMenuItem
             // 
-            this.customizeTemplateToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.SetDef32;
+            this.customizeTemplateToolStripMenuItem.Image = global::Fwk.CodeGenerator.Properties.Resources.SetDef32;
             this.customizeTemplateToolStripMenuItem.Name = "customizeTemplateToolStripMenuItem";
             this.customizeTemplateToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.customizeTemplateToolStripMenuItem.Text = "Customize Template";
@@ -140,7 +140,7 @@ namespace Fwk.CodeGenerator
             this.toolStripMenuItemDAC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripMenuItemDAC.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.toolStripMenuItemDAC.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.toolStripMenuItemDAC.Image = global::CodeGenerator.Properties.Resources.SchemaDataSourceOk2;
+            this.toolStripMenuItemDAC.Image = global::Fwk.CodeGenerator.Properties.Resources.SchemaDataSourceOk2;
             this.toolStripMenuItemDAC.Name = "toolStripMenuItemDAC";
             this.toolStripMenuItemDAC.Size = new System.Drawing.Size(28, 20);
             this.toolStripMenuItemDAC.Text = "Generate BackEnd";
@@ -152,7 +152,7 @@ namespace Fwk.CodeGenerator
             this.toolStripMenuItemEntity.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripMenuItemEntity.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.toolStripMenuItemEntity.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.toolStripMenuItemEntity.Image = global::CodeGenerator.Properties.Resources.WindowsHS;
+            this.toolStripMenuItemEntity.Image = global::Fwk.CodeGenerator.Properties.Resources.WindowsHS;
             this.toolStripMenuItemEntity.ImageTransparentColor = System.Drawing.Color.Black;
             this.toolStripMenuItemEntity.Name = "toolStripMenuItemEntity";
             this.toolStripMenuItemEntity.Size = new System.Drawing.Size(28, 20);
@@ -165,7 +165,7 @@ namespace Fwk.CodeGenerator
             this.servicesToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.servicesToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.servicesToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.servicesToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.Asp_Page_16;
+            this.servicesToolStripMenuItem.Image = global::Fwk.CodeGenerator.Properties.Resources.Asp_Page_16;
             this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
             this.servicesToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
             this.servicesToolStripMenuItem.Text = "Services";

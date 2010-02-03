@@ -289,7 +289,7 @@
 //            // toolStripButtonGenerate
 //            // 
 //            this.toolStripButtonGenerate.BackColor = System.Drawing.Color.LightSteelBlue;
-//            this.toolStripButtonGenerate.Image = global::CodeGenerator.Properties.Resources.servicerunning;
+//            this.toolStripButtonGenerate.Image = global::Fwk.CodeGenerator.Properties.Resources.servicerunning;
 //            this.toolStripButtonGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
 //            this.toolStripButtonGenerate.Name = "toolStripButtonGenerate";
 //            this.toolStripButtonGenerate.Size = new System.Drawing.Size(72, 22);

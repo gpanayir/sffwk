@@ -251,7 +251,7 @@
       
         <Content>
           <![CDATA[
-          Procedimiento de creación de [TableName].
+         
           INSERT INTO [TableName]
           (
           [Fields]
@@ -290,7 +290,7 @@
       
         <Content>
           <![CDATA[
-          Procedimiento de búsqueda de [TableName] por parámetros.
+         
           SELECT
           [SelectList]
           FROM [TableName]

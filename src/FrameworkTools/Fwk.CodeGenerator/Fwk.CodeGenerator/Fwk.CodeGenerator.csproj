@@ -7,7 +7,7 @@
     <ProjectGuid>{1D25CAB6-E245-40A7-A0F4-DA0879D72849}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeGenerator</RootNamespace>
+    <RootNamespace>Fwk.CodeGenerator</RootNamespace>
     <AssemblyName>CodeGenerator</AssemblyName>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
@@ -116,6 +116,7 @@
       <DependentUpon>MessageViewWait.cs</DependentUpon>
     </Compile>
     <Compile Include="DACGenController.cs" />
+    <Compile Include="Forms\DACClasses\SPGenerator.cs" />
     <Compile Include="No_Used\DataEntityGenEngine.cs" />
     <Compile Include="Forms\DACClasses\BEGenerator.cs" />
     <Compile Include="Forms\DACClasses\DACGenerator.cs" />

@@ -12,7 +12,7 @@ namespace Fwk.CodeGenerator
     {
         #region Private Members
 
-        private String _SelectedObject = "Tables";
+        private CodeGeneratorCommon.SelectedObject _SelectedObject = CodeGeneratorCommon.SelectedObject.Tables; 
         private List<Table> _Tables = null;
         private List<StoredProcedure> _StoreProcedures = null;
         private ListViewCodeGenerated _listViewCodeGenerated = null;
@@ -27,7 +27,7 @@ namespace Fwk.CodeGenerator
             get { return _listViewCodeGenerated; }
             set { _listViewCodeGenerated = value; }
         }
-        public string SelectedObject
+        public CodeGeneratorCommon.SelectedObject SelectedObject
         {
             get { return _SelectedObject; }
             set { _SelectedObject = value; }
@@ -70,11 +70,11 @@ namespace Fwk.CodeGenerator
 
             switch (_SelectedObject)
             {
-                case "Tables":
+                case  CodeGeneratorCommon.SelectedObject.Tables:
                     {
 
-                        //_listViewCodeGenerated.NodeSP = SPFromTableCodeGenerator_GenerateCode();
-                        //_listViewCodeGenerated.NodeSVC = DataServiceGenerator.GenerateCode();
+                        _listViewCodeGenerated.NodeSP = SPGenerator.GenCode(_Tables);
+                       
                         break;
                     }
 

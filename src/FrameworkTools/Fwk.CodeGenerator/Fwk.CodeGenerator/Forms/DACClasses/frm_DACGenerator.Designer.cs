@@ -106,7 +106,7 @@ namespace Fwk.CodeGenerator
             this.treeViewStoreProcedures1.Location = new System.Drawing.Point(0, 3);
             this.treeViewStoreProcedures1.Name = "treeViewStoreProcedures1";
             this.treeViewStoreProcedures1.SelectedStoreProcedure = null;
-            this.treeViewStoreProcedures1.SelectedStoreProcedureName = global::CodeGenerator.Properties.Resources.AppIcon;
+            this.treeViewStoreProcedures1.SelectedStoreProcedureName = global::Fwk.CodeGenerator.Properties.Resources.AppIcon;
             this.treeViewStoreProcedures1.Size = new System.Drawing.Size(207, 451);
             this.treeViewStoreProcedures1.StoreProcedures = null;
             this.treeViewStoreProcedures1.TabIndex = 0;
@@ -191,7 +191,7 @@ namespace Fwk.CodeGenerator
             // toolStripButtonGenerate
             // 
             this.toolStripButtonGenerate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.toolStripButtonGenerate.Image = global::CodeGenerator.Properties.Resources.servicerunning;
+            this.toolStripButtonGenerate.Image = global::Fwk.CodeGenerator.Properties.Resources.servicerunning;
             this.toolStripButtonGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonGenerate.Name = "toolStripButtonGenerate";
             this.toolStripButtonGenerate.Size = new System.Drawing.Size(80, 22);
