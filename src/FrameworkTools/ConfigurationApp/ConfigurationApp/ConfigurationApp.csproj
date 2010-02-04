@@ -31,7 +31,7 @@
     <ManifestCertificateThumbprint>EEC61322099B950A032B3CA952C322600BDF0D26</ManifestCertificateThumbprint>
     <ManifestKeyFile>ConfigurationApp_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <PublishUrl>\\Corrsf71bi01\BigBang\Tools\ConfigurationApp\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
