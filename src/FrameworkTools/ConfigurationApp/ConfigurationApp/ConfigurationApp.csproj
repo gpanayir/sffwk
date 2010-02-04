@@ -265,7 +265,6 @@
     <None Include="Resources\news_info.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ConfigurationApp_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\Fwk.Configuration.Common.Key.datasource" />
     <None Include="Resources\Web_WebConfig.ico" />
     <None Include="Resources\WinXPSetV4 Icon 60.ico" />
@@ -281,13 +280,12 @@
     <None Include="Resources\foldr_16.png" />
     <None Include="Resources\foldr_24.png" />
     <None Include="Resources\foldr_32.png" />
-    <None Include="file_remove_16.png" />
-    <None Include="file_delete_16.png" />
-    <None Include="new_16.png" />
     <None Include="Resources\zoomi_16.png" />
     <None Include="Resources\zoomo_16.png" />
     <None Include="Resources\save_as_large.png" />
     <None Include="Resources\save_large.png" />
+    <None Include="Resources\file_add_16.png" />
+    <None Include="Resources\file_del_16.png" />
     <Content Include="Templates.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
