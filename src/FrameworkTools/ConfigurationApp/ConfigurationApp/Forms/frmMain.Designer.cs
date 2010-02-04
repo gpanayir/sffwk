@@ -140,7 +140,7 @@ namespace ConfigurationApp
             // 
             // newToolStripMenuItem
             // 
-            this.newToolStripMenuItem.Image = global::ConfigurationApp.Properties.Resources.new_16;
+            this.newToolStripMenuItem.Image = global::ConfigurationApp.Properties.Resources.file_add_16;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
@@ -246,7 +246,7 @@ namespace ConfigurationApp
             // quitToolStripButton
             // 
             this.quitToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.quitToolStripButton.Image = global::ConfigurationApp.Properties.Resources.file_delete_16;
+            this.quitToolStripButton.Image = global::ConfigurationApp.Properties.Resources.file_del_16;
             this.quitToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.quitToolStripButton.Name = "quitToolStripButton";
             this.quitToolStripButton.Size = new System.Drawing.Size(23, 22);
