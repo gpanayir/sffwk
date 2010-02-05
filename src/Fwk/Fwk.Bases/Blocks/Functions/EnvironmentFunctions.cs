@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 
 namespace Fwk.HelperFunctions
 {
@@ -65,6 +66,12 @@ namespace Fwk.HelperFunctions
         public static Boolean IsInDesigntime()
         {
             return (System.ComponentModel.LicenseManager.UsageMode == System.ComponentModel.LicenseUsageMode.Designtime ) ? true:false;
+        }
+        public static string GetMachineIp()
+        {
+            IPHostEntry ipEntry = Dns.GetHostEntry(Dns.GetHostName());
+            System.Net.IPEndPoint Address = new IPEndPoint(ipEntry.AddressList[0], 0);
+            return ipEntry.AddressList[1].ToString();
         }
 	}
 
