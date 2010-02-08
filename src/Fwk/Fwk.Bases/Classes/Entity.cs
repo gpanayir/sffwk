@@ -437,6 +437,7 @@ namespace Fwk.Bases
     /// <summary>
     /// 
     /// </summary>
+    [Serializable]
     public abstract class BaseEntity : IBaseEntity
     {
         

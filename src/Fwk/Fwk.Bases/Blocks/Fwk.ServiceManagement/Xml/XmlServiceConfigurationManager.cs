@@ -58,6 +58,7 @@ namespace Fwk.ServiceManagement
             if (!_Services.Contains(pServiceName))
             {
                 Exceptions.TechnicalException ex = new Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                ex.Source = "Despachador de servicios";
                 ex.ErrorId = "7002";
                 ex.Class = "XmlServiceConfigurationManager";
                 ex.Namespace = "Fwk.ServiceManagement";
@@ -75,7 +76,6 @@ namespace Fwk.ServiceManagement
         /// <summary>
         /// Busca el archivo BPConfig y lo carga a _Services que es un ServiceConfigurationCollection
         /// </summary>
-        /// <param name="xmlFilePath">Ruta del archivo de configuracion de servicios.-</param>
         /// <returns></returns>
         /// <date>2007-07-13T00:00:00</date>
         /// <author>moviedo</author>
@@ -85,35 +85,40 @@ namespace Fwk.ServiceManagement
             try
             {
                 _Services = GetServiceConfigurationFromFile();
+
                 return _Services;
             }
             catch (System.IO.IOException ioex)
-            { 
-             
-            
+            {
+
+
                 System.Text.StringBuilder wMessage = new StringBuilder();
                 wMessage.Append("Error al inicializar la metadata de los servicios  \r\n");
                 wMessage.Append("verifique \r\n");
                 wMessage.AppendLine("Archivo de configuracion en la seccion Fwk.Bases.Properties.Settings el ");
-                wMessage.AppendLine("atributo [ServiceConfigurationManagerType] = tipo y [ServiceConfigurationSourceName] = ruta :");
-                wMessage.AppendLine("Si tipo es XML  [XmlServiceConfigurationManager] que la ruta sea correcta ");
-                wMessage.AppendLine("Si tipo es database  [DatabaseServiceConfigurationManager] que el valor apunte a una connnection string correcta. ");
+                wMessage.AppendLine("valor de [ServiceConfigurationSourceName] = ruta,  que la ruta y archivo de metadata sea correcta");
+
 
                 TechnicalException te = new TechnicalException(wMessage.ToString(), ioex);
-
+                te.Source = "Despachador de servicios";
                 te.ErrorId = "7004";
                 te.Assembly = "Fwk.BusinessFacades";
                 te.Class = "FacadeHelper";
                 te.Namespace = "Fwk.BusinessFacades";
                 throw te;
-             
-            
+
+
+            }
+            catch (TechnicalException te)
+            {
+                throw te;
             }
             catch (Exception ex)
             {
                 StringBuilder strError = new StringBuilder("Error al inicializar la metadata de los servicios  \r\n ");
                 strError.AppendLine("Verifique que todos los servicios cuentan con todos los atributos configurados");
                 Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException(strError.ToString(), ex);
+                wTex.Source = "Despachador de servicios";
                 wTex.ErrorId = "7004";
                 wTex.Namespace = "Fwk.ServiceManagement";
                 wTex.Class = "XmlServiceConfigurationManager";
@@ -140,6 +145,7 @@ namespace Fwk.ServiceManagement
                 if (!_Services.Contains(pServiceName))
                 {
                     Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                    wTex.Source = "Despachador de servicios";
                     wTex.ErrorId = "7002";
                     wTex.Namespace = "Fwk.ServiceManagement";
                     wTex.Class = "XmlServiceConfigurationManager";
@@ -302,10 +308,55 @@ namespace Fwk.ServiceManagement
 		/// <returns>Ruta al repositorio XML.</returns>
 		/// <date>2007-07-13T00:00:00</date>
 		/// <author>moviedo</author>
-		private string GetXMLRepositoryPath()
-		{
-            return Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName;
-		}
+        private string GetXMLRepositoryPath()
+        {
+            //Si existe el archivo 
+            if (System.IO.File.Exists(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName))
+                return Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName;
+
+            //Si no existe se puede ser q se trate de un servicio y los servicios no usan la carpeta de ejecucion como entorno de ejecucion
+
+
+            string file =
+              System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
+            System.IO.Path.GetFileName(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName));
+
+            if (System.IO.File.Exists(file))
+                return file;
+
+             System.Text.StringBuilder wMessage = new StringBuilder();
+            wMessage.Append("Error al inicializar la metadata de los servicios  \r\n");
+            
+            //Si no existia por q estaba en blanco
+            if(string.IsNullOrEmpty( Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName))
+
+            {
+                wMessage.Append("verifique \r\n");
+                wMessage.AppendLine("Archivo de configuracion en la seccion Fwk.Bases.Properties.Settings el ");
+                wMessage.AppendLine("valor de [ServiceConfigurationSourceName] no esta confugurado el nombre del archivo de metadata de servicios.-");
+            }
+           
+             //Si llego hasta aqui directamente no existia
+             wMessage.Append("No se puede encontrar el archivo ");
+             wMessage.Append(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName);
+            
+             wMessage.AppendLine("Revice el archivo de configuracion en la seccion Fwk.Bases.Properties.Settings el ");
+             wMessage.AppendLine("valor de [ServiceConfigurationSourceName] no esta confugurado el nombre del archivo de metadata de servicios.-");
+
+
+            TechnicalException te = new TechnicalException(wMessage.ToString());
+
+            te.Source ="Despachador de servicios";
+            te.ErrorId = "7004";
+            te.Assembly = "Fwk.BusinessFacades";
+            te.Class = "FacadeHelper";
+            te.Namespace = "Fwk.BusinessFacades";
+            throw te;
+
+        }
+
+
+        
 
         /// <summary>
         /// 
