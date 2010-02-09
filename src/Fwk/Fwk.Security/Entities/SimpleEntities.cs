@@ -205,12 +205,18 @@ namespace Fwk.Security.Common
     {
         public String[] GetArrayNames()
         {
-            StringBuilder list = new StringBuilder(); ;
+    
+            StringBuilder list = new StringBuilder();
+            if (this == null)
+                return list.ToString().Split(',');
+             if(this.Count ==0)
+                 return list.ToString().Split(',');
             foreach (Rol r in this)
             {
                 list.Append(r.RolName);
                 list.Append(",");
             }
+           
             list.Remove(list.Length - 1, 1);
             return list.ToString().Split(',');
         }
