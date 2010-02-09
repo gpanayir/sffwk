@@ -11,6 +11,7 @@ namespace Fwk.Bases.Connector
     /// <summary>
     /// 
     /// </summary>
+    [Serializable]
     public class RemotingWrapper :IServiceWrapper
     {
         #region IServiceInterfaceWrapper Members

@@ -17,7 +17,6 @@ namespace Fwk.Security
     /// rule that is governed by an 
     /// <see cref="AuthorizationRuleProvider"/>.
     /// </summary>
-
     public class FwkAuthorizationRule : NamedConfigurationElement, IAuthorizationRule
     {
         private string _Expression;
@@ -29,6 +28,7 @@ namespace Fwk.Security
         public FwkAuthorizationRule()
         {
         }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthorizationRuleData"/> class with the specified name and expression.
