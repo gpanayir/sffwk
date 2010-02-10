@@ -34,4 +34,30 @@ namespace TestServicePerformance
 
 
     }
+
+    [Serializable]
+    internal class Store
+    {
+        string _server = string.Empty;
+
+        public string Server
+        {
+            get { return _server; }
+            set { _server = value; }
+        }
+        string _objectUri = string.Empty;
+
+        public string ObjectUri
+        {
+            get { return _objectUri; }
+            set { _objectUri = value; }
+        }
+        string _port = string.Empty;
+
+        public string Port
+        {
+            get { return _port; }
+            set { _port = value; }
+        }
+    }
 }
