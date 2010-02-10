@@ -118,6 +118,7 @@
     <Compile Include="Blocks\Fwk.BusinessFacades\ServiceCalls.cs" />
     <Compile Include="Blocks\Fwk.BusinessFacades\SimpleFacade.cs" />
     <Compile Include="Blocks\Fwk.Caching\ServiceCacheMannager.cs" />
+    <Compile Include="Blocks\Fwk.Caching\FwkSimpleStorageBase.cs" />
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigFileRegistry.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationHolder.cs" />
