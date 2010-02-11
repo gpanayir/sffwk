@@ -1,5 +1,4 @@
-using Fwk.CodeGenerator.Common;
-namespace Fwk.CodeGenerator
+namespace CodeGenerator.EntityClasses
 {
     partial class frm_DataEntityGenerator
     {
@@ -38,7 +37,7 @@ namespace Fwk.CodeGenerator
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.treeViewTables1 = new Fwk.DataBase.CustomControls.TreeViewTables();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tvwSchema = new XSDTreeView();
+            this.tvwSchema = new CodeGenerator.Back.Schema.XSDTreeView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.treeViewStoreProcedures1 = new Fwk.DataBase.CustomControls.TreeViewStoreProcedures();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -53,7 +52,7 @@ namespace Fwk.CodeGenerator
             this.toolStripButtonGenerate = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor();
-            this.listViewCodeGenerated1 = new ListViewCodeGenerated();
+            this.listViewCodeGenerated1 = new CodeGenerator.Controls.ListViewCodeGenerated();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -338,8 +337,8 @@ namespace Fwk.CodeGenerator
             this.listViewCodeGenerated1.ForeColorDAC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listViewCodeGenerated1.ForeColorSP = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listViewCodeGenerated1.ForeColorSVC = System.Drawing.Color.Empty;
-            
-            this.listViewCodeGenerated1.NodeBE = null;
+            this.listViewCodeGenerated1.ForeColorTDG = System.Drawing.Color.Gainsboro;
+            this.listViewCodeGenerated1.GeneratedBECodeList = null;
             this.listViewCodeGenerated1.Location = new System.Drawing.Point(-2, -3);
             this.listViewCodeGenerated1.Name = "listViewCodeGenerated1";
             this.listViewCodeGenerated1.NodeCustomSVC = null;
@@ -349,7 +348,7 @@ namespace Fwk.CodeGenerator
             this.listViewCodeGenerated1.NodeTDG = null;
             this.listViewCodeGenerated1.Size = new System.Drawing.Size(135, 442);
             this.listViewCodeGenerated1.TabIndex = 0;
-            this.listViewCodeGenerated1.BECodeGeneratedSelectEvent += new BECodeGeneratedSelectHandler(this.listViewCodeGenerated1_BECodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.BECodeGeneratedSelectEvent += new CodeGenerator.Controls.BECodeGeneratedSelectHandler(this.listViewCodeGenerated1_BECodeGeneratedSelectEvent);
             // 
             // frm_DataEntityGenerator
             // 
@@ -387,7 +386,7 @@ namespace Fwk.CodeGenerator
 
         private System.Windows.Forms.ToolStripMenuItem getXSDToolStripMenuItem;
         private System.Windows.Forms.ImageList imgImages;
-        private  XSDTreeView tvwSchema;
+        private CodeGenerator.Back .Schema.XSDTreeView tvwSchema;
         private System.Windows.Forms.PropertyGrid ctlProperties;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -402,7 +401,7 @@ namespace Fwk.CodeGenerator
         private System.Windows.Forms.ToolStripButton btnSearchSchema;
         private Fwk.DataBase.CustomControls.TreeViewTables treeViewTables1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private ListViewCodeGenerated listViewCodeGenerated1;
+        private CodeGenerator.Controls.ListViewCodeGenerated listViewCodeGenerated1;
         private System.Windows.Forms.TabPage tabPage3;
         private Fwk.DataBase.CustomControls.TreeViewStoreProcedures treeViewStoreProcedures1;
         private System.Windows.Forms.ToolStripButton toolStripButtonGenerate;

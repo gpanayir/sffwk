@@ -9,12 +9,11 @@ using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 using System.Windows.Forms;
+using CodeGenerator.Back;
+using CodeGenerator.Back.Common;
+using CodeGenerator.Bases;
 
-using Fwk.CodeGenerator.Common;
-using Fwk.DataBase;
-
-
-namespace Fwk.CodeGenerator
+namespace CodeGenerator
 {
 
 
@@ -111,11 +110,6 @@ namespace Fwk.CodeGenerator
             get { return _ConnectionOk; }
             set { _ConnectionOk = value; }
         }
-     
-        public CnnString CnnString
-        {
-            get { return _Metadata.CnnString; }
-        }
 
         protected string SchemaPath
         {
@@ -139,7 +133,7 @@ namespace Fwk.CodeGenerator
                 _CnnStringChange = oConnectionForm.CnnStringChange;
                 //Actualizo la coneccion por si se modifico por medio de el componente de coneccion
                 _Metadata.RefreshConnection();
-                
+
                 //TODO: Ver ReloadObjects
                 _Metadata.ReloadObjects = true;
             }
@@ -180,7 +174,7 @@ namespace Fwk.CodeGenerator
                 _Metadata = (Fwk.DataBase.Metadata)oSerializer.Deserialize(oFileStream);
 
                 this.ConnectionOk = true;
-
+                
                 IsLoadedMetaDataFromXML = true;
 
                 this.RefreshMetadata();
@@ -189,7 +183,7 @@ namespace Fwk.CodeGenerator
             {
                 MessageView wMessageView = new MessageView();
                 wMessageView.Message = ex.Message;
-                wMessageView.ShowDialog();
+                wMessageView.ShowDialog();                
             }
             finally
             {
@@ -244,7 +238,7 @@ namespace Fwk.CodeGenerator
 
                 message.Append(Environment.NewLine);
 
-                message.Append("AllMessageException: " + Environment.NewLine + Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
+                message.Append("AllMessageException: " + Environment.NewLine + CodeGeneratorCommon.GetAllMessageException(ex));
 
 
                 wMessageView.Message = message.ToString();

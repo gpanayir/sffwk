@@ -2,11 +2,11 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using System.Text;
-using Fwk.CodeGenerator.Common;
+using CodeGenerator.Back;
 using Fwk.DataBase;
 
 
-namespace Fwk.CodeGenerator
+namespace CodeGenerator
 {
     
     public delegate void FailWorkHandler(Exception error);
@@ -152,12 +152,12 @@ namespace Fwk.CodeGenerator
                 //_Metadata.RefreshConnection();
                 if (m_SelectedObject == CodeGeneratorCommon.SelectedObject.Tables)
                 {
-                    //_Metadata.LoadTables();
+                    _Metadata.LoadTables();
                 }
 
                 if (m_SelectedObject == CodeGeneratorCommon.SelectedObject.StoreProcedures)
                 {
-                    //_Metadata.LoadStoreProcedures();
+                    _Metadata.LoadStoreProcedures();
                 }
 
                 _Metadata.LoadUserDefinedTypes();

@@ -4,7 +4,7 @@ using System.IO.IsolatedStorage;
 using System.Runtime.Serialization.Formatters.Binary;
 
 
-namespace Fwk.CodeGenerator
+namespace CodeGenerator.Bases
 {
     [Serializable]
     internal  class LastAccess

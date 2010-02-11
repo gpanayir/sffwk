@@ -2,7 +2,7 @@ using System;
 using System.Configuration;
 using System.Collections.Generic;
 
-namespace Fwk.CodeGenerator.Common
+namespace CodeGenerator.Back.Common
 {
 
     /// <summary>

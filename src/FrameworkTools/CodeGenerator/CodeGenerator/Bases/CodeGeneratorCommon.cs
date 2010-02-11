@@ -5,13 +5,38 @@ using System.Text;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Fwk.CodeGenerator
+namespace CodeGenerator
 {
     public class CodeGeneratorCommon
     {
         
 
-      
+        public static string OpenTextFile(string pPath)
+        {
+            FileStream fs = null;
+            StreamReader sr = null;
+            try
+            {
+                fs = new FileStream(pPath, FileMode.Open, FileAccess.Read);
+                sr = new StreamReader(fs);
+                return sr.ReadToEnd();
+            }
+            catch (System.IO.DirectoryNotFoundException )
+            {
+                throw new Exception("Acegurece que esten los templates completos donde se encuentra el ejecutable de la aplicacion");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //finally
+            //{
+            //    fs.Close();
+            //    sr.Close();
+            //}
+        }
+
+
 
         public enum SelectedObject
         {
@@ -40,7 +65,41 @@ namespace Fwk.CodeGenerator
 
         }
 
-      
+        public static void CreateEventLog()
+        {
+            String Source = "CodeGenerator";
+            if (!EventLog.SourceExists(Source, Environment.MachineName))
+            {
+                EventLog.CreateEventSource(Source, Source);
+            }
+
+        }
+
+        public static void WriteEntryEventLog(String pMessage, Exception pException, int pEventID,EventLogEntryType pEventLogEntryType)
+        {
+            String LogName = "CodeGenerator";
+
+            // Insert into event log
+            EventLog Log = new EventLog();
+            Log.Source = LogName;
+
+            pMessage += Environment.NewLine + GetAllMessageException(pException);
+            Log.WriteEntry(pMessage, pEventLogEntryType,pEventID);
+
+        }
+
+        public static String GetAllMessageException(Exception ex)
+        {
+            StringBuilder wMessage = new StringBuilder();
+            wMessage.Append(ex.Message);
+            while (ex.InnerException != null)
+            {
+                ex = ex.InnerException;
+                wMessage.Append(ex.Message);
+            }
+            return wMessage.ToString();
+        }
+
     }
 
 

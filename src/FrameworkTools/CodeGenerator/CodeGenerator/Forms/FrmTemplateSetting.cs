@@ -1,8 +1,8 @@
 using System;
-using Fwk.CodeGenerator.Common;
+using CodeGenerator.Back.Common;
+using CodeGenerator.Controls;
 
-
-namespace Fwk.CodeGenerator
+namespace CodeGenerator.Forms
 {
     public partial class FrmTemplateSetting : Fwk.Controls.Win32.DockContent
     {
@@ -33,7 +33,7 @@ namespace Fwk.CodeGenerator
         /// <summary>
         /// Reinicia los settings templates
         /// </summary>
-        public override void Refresh()
+        public void Refresh()
         {
            genTemplateSetting1.Refresh(); 
         }

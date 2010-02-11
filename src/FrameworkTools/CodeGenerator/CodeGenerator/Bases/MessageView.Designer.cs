@@ -1,4 +1,4 @@
-namespace Fwk.CodeGenerator
+namespace CodeGenerator
 {
     partial class MessageView
     {

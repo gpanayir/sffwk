@@ -7,9 +7,9 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-
+using CodeGenerator.Back.Common;
 using Fwk.HelperFunctions;
-using Fwk.CodeGenerator.Common;
+using CodeGenerator.Back.ObjectModel;
 
 namespace CodeGenerator.Controls
 {
