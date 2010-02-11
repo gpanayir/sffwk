@@ -17,30 +17,54 @@ namespace TestServicePerformance
     {
         ControllerTest Ctrl;
         RemotingWrapper _RemotingWrapper;
-        FwkSimpleStorageBase<Store> _Storage = new FwkSimpleStorageBase<Store>();
+        
         public frmTest()
         {
             InitializeComponent();
             Ctrl = new ControllerTest();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
-            ParamCampaingsList wParamCampaingsList = Ctrl.SearchPredeterminateValueTypes();
 
+            if (_RemotingWrapper == null)
+            {
+                MessageBox.Show("Haga clic en el boton Init");
+                return;
+            }
+            try
+            {
+                
+                _RemotingWrapper.MessageEvent += new CheckEven(_RemotingWrapper_MessageEvent);
+                _RemotingWrapper.Start(txtXmlRequest.Text);
+
+                dataGridView1.DataSource = _RemotingWrapper.RemoteObj.GetServicesList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        void _RemotingWrapper_MessageEvent(string msg, int threadNumber, double average, double totalTime)
+        {
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            _Storage.Load();
-             txtObjectUri.Text= _Storage.StorageObject.ObjectUri;
-             txtServer.Text = _Storage.StorageObject.Server;
-             txtPort.Text =_Storage.StorageObject.Port;
-             txtSvc.Text = _Storage.StorageObject.Svc;
-             numericThread.Value = Convert.ToDecimal(_Storage.StorageObject.Threads);
+            ControllerTest.Storage.Load();
+             txtObjectUri.Text= ControllerTest.Storage.StorageObject.ObjectUri;
+             txtServer.Text = ControllerTest.Storage.StorageObject.Server;
+             txtPort.Text =ControllerTest.Storage.StorageObject.Port;
+             txtSvc.Text = ControllerTest.Storage.StorageObject.Svc;
+             txtXmlRequest.Text = ControllerTest.Storage.StorageObject.XmlRequest;
+             txtSvc.Text = ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Name;
+             numericThread.Value = Convert.ToDecimal(ControllerTest.Storage.StorageObject.Threads);
             
-            txtURL.Text = string.Concat("tcp://", _Storage.StorageObject.Server, ":", _Storage.StorageObject.Port.Trim(), @"/", _Storage.StorageObject.ObjectUri);
+            txtURL.Text = string.Concat("tcp://", ControllerTest.Storage.StorageObject.Server, ":", ControllerTest.Storage.StorageObject.Port.Trim(), @"/", ControllerTest.Storage.StorageObject.ObjectUri);
         }
 
         private void txtServer_TextChanged(object sender, EventArgs e)
@@ -51,7 +75,7 @@ namespace TestServicePerformance
 
         private void txtPort_TextChanged(object sender, EventArgs e)
         {
-            txtURL.Text = string.Concat("tcp://", txtServer.Text, ":", txtPort.Text.Trim(), @"/,", txtObjectUri.Text);
+            txtURL.Text = string.Concat("tcp://", txtServer.Text, ":", txtPort.Text.Trim(), @"/", txtObjectUri.Text);
         }
 
         private void txtObjectUri_TextChanged(object sender, EventArgs e)
@@ -81,12 +105,30 @@ namespace TestServicePerformance
 
         private void frmTest_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _Storage.StorageObject.ObjectUri = txtObjectUri.Text;
-            _Storage.StorageObject.Server = txtServer.Text;
-            _Storage.StorageObject.Port = txtPort.Text;
-            _Storage.StorageObject.Svc = txtSvc.Text ;
-            _Storage.StorageObject.Threads = (int)numericThread.Value  ;
-            _Storage.Save();
+            ControllerTest.Storage.StorageObject.ObjectUri = txtObjectUri.Text;
+            ControllerTest.Storage.StorageObject.Server = txtServer.Text;
+            ControllerTest.Storage.StorageObject.Port = txtPort.Text;
+            ControllerTest.Storage.StorageObject.Svc = txtSvc.Text ;
+            ControllerTest.Storage.StorageObject.Threads = (int)numericThread.Value  ;
+            ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Name=txtSvc.Text;
+            ControllerTest.Storage.Save();
         }
+
+
+   
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            using (frmAssemblyExplorer f = new frmAssemblyExplorer())
+            {
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    txtSvc.Text = f.SelectedServiceConfiguration.Name;
+                    ControllerTest.Storage.StorageObject.SelectedServiceConfiguration = f.SelectedServiceConfiguration;
+                    ControllerTest.Storage.Save();
+                }
+            }
+        }
+
+
     }
 }

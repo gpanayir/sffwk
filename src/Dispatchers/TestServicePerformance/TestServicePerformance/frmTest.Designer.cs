@@ -43,11 +43,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.numericThread = new System.Windows.Forms.NumericUpDown();
             this.txtSvc = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtXmlRequest = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -60,13 +61,13 @@
             // btnStartTest
             // 
             this.btnStartTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartTest.Location = new System.Drawing.Point(315, 83);
+            this.btnStartTest.Location = new System.Drawing.Point(175, 94);
             this.btnStartTest.Name = "btnStartTest";
             this.btnStartTest.Size = new System.Drawing.Size(75, 23);
             this.btnStartTest.TabIndex = 0;
             this.btnStartTest.Text = "Start test";
             this.btnStartTest.UseVisualStyleBackColor = true;
-            this.btnStartTest.Click += new System.EventHandler(this.button1_Click);
+            this.btnStartTest.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // txtPort
             // 
@@ -152,13 +153,11 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 6);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(714, 362);
+            this.dataGridView1.Size = new System.Drawing.Size(717, 368);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -182,6 +181,9 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(12, 137);
@@ -203,11 +205,12 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.numericThread);
             this.tabPage2.Controls.Add(this.txtSvc);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.txtXmlRequest);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.btnStartTest);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -215,8 +218,19 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(723, 374);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Service";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(471, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Find";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // numericThread
             // 
@@ -246,7 +260,6 @@
             this.txtSvc.Name = "txtSvc";
             this.txtSvc.Size = new System.Drawing.Size(337, 20);
             this.txtSvc.TabIndex = 9;
-            this.txtSvc.Text = "8085";
             // 
             // label7
             // 
@@ -266,14 +279,16 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Request xml";
             // 
-            // textBox2
+            // txtXmlRequest
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 129);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(654, 224);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "8085";
+            this.txtXmlRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtXmlRequest.Location = new System.Drawing.Point(6, 129);
+            this.txtXmlRequest.Multiline = true;
+            this.txtXmlRequest.Name = "txtXmlRequest";
+            this.txtXmlRequest.Size = new System.Drawing.Size(654, 224);
+            this.txtXmlRequest.TabIndex = 7;
             // 
             // label5
             // 
@@ -292,6 +307,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmTest";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test disp service";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTest_FormClosing);
@@ -328,8 +344,9 @@
         private System.Windows.Forms.TextBox txtSvc;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtXmlRequest;
         private System.Windows.Forms.NumericUpDown numericThread;
+        private System.Windows.Forms.Button button1;
     }
 }
 
