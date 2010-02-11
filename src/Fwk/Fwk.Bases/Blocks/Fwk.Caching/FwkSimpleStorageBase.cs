@@ -19,7 +19,7 @@ namespace Fwk.Caching
     /// </para> 
     /// <code>
     /// <![CDATA[
-    ///     internal class MyStorageSetting : FwkStorageBase<Cliente>
+    ///     internal class MyStorageSetting : FwkSimpleStorageBase<Cliente>
     ///     {
     ///         public override void InitObject()
     ///         {
@@ -34,7 +34,7 @@ namespace Fwk.Caching
     /// <code>
     /// <![CDATA[
     /// 
-    ///     public FwkStorageBase _Store = new FwkStorageBase<Cliente>();
+    ///     public FwkSimpleStorageBase _Store = new FwkSimpleStorageBase<Cliente>();
     /// ]]>
     /// </code>    
     /// </example>
