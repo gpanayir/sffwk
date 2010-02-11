@@ -37,7 +37,9 @@ namespace TestServicePerformance
              txtObjectUri.Text= _Storage.StorageObject.ObjectUri;
              txtServer.Text = _Storage.StorageObject.Server;
              txtPort.Text =_Storage.StorageObject.Port;
-
+             txtSvc.Text = _Storage.StorageObject.Svc;
+             numericThread.Value = Convert.ToDecimal(_Storage.StorageObject.Threads);
+            
             txtURL.Text = string.Concat("tcp://", _Storage.StorageObject.Server, ":", _Storage.StorageObject.Port.Trim(), @"/", _Storage.StorageObject.ObjectUri);
         }
 
@@ -82,7 +84,8 @@ namespace TestServicePerformance
             _Storage.StorageObject.ObjectUri = txtObjectUri.Text;
             _Storage.StorageObject.Server = txtServer.Text;
             _Storage.StorageObject.Port = txtPort.Text;
-
+            _Storage.StorageObject.Svc = txtSvc.Text ;
+            _Storage.StorageObject.Threads = (int)numericThread.Value  ;
             _Storage.Save();
         }
     }

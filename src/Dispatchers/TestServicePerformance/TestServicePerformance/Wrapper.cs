@@ -38,6 +38,14 @@ namespace TestServicePerformance
     [Serializable]
     internal class Store
     {
+        int _Threads = 1;
+
+        public int Threads
+        {
+            get { return _Threads; }
+            set { _Threads = value; }
+        }
+        
         string _server = string.Empty;
 
         public string Server
@@ -52,12 +60,24 @@ namespace TestServicePerformance
             get { return _objectUri; }
             set { _objectUri = value; }
         }
-        string _port = string.Empty;
+        string _port = "8085";
 
         public string Port
         {
             get { return _port; }
             set { _port = value; }
         }
+
+
+        string _svc = string.Empty;
+
+        public string Svc
+        {
+            get { return _svc; }
+            set { _svc = value; }
+        }
+
+       
+
     }
 }
