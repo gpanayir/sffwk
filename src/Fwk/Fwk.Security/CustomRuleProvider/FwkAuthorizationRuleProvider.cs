@@ -61,12 +61,17 @@ namespace Fwk.Security
         /// otherwise <c>false</c>.</returns>
         public override bool Authorize(IPrincipal principal, string ruleName)
         {
+            
+            
             if (principal == null) throw new ArgumentNullException("principal");
             if (ruleName == null || ruleName.Length == 0) throw new ArgumentNullException("ruleName");
 
-            InstrumentationProvider.FireAuthorizationCheckPerformed(principal.Identity.Name, ruleName);
+            
 
-            BooleanExpression booleanExpression = GetParsedExpression(ruleName);
+            InstrumentationProvider.FireAuthorizationCheckPerformed(principal.Identity.Name, ruleName);
+            bool expressionEmpty = false;
+            BooleanExpression booleanExpression = GetParsedExpression(ruleName, expressionEmpty);
+            if (expressionEmpty) return false;
             if (booleanExpression == null)
             {
                 throw new InvalidOperationException(string.Format(Fwk.Security.Properties.Resource.AuthorizationRuleNotFoundMsg, ruleName));
@@ -81,16 +86,18 @@ namespace Fwk.Security
             return result;
         }
 
-        private BooleanExpression GetParsedExpression(string ruleName)
+        private BooleanExpression GetParsedExpression(string ruleName,bool expEmpty)
         {
+             expEmpty = false;
             IAuthorizationRule rule = null;
             authorizationRules.TryGetValue(ruleName, out rule);
             if (rule == null) return null;
 
-            string expression = rule.Expression;
+            if (string.IsNullOrEmpty(rule.Expression)) expEmpty = true;
+                
             Parser parser = new Parser();
 
-            return parser.Parse(expression);
+            return parser.Parse(rule.Expression);
         }
 
         static IDictionary<string, IAuthorizationRule> CreateRulesDictionary

@@ -1093,6 +1093,10 @@ namespace Fwk.Security
             return ExistRule(pRuleName, pApplicationName, FwkMembership.ConnectionStringName);
         }
 
+
+      
+
+        
         /// <summary>
         /// Insert
         /// </summary>
