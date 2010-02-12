@@ -9,12 +9,16 @@ using System.Threading;
 
 namespace TestServicePerformance
 {
-      public delegate void CheckEven(string msg, int threadNumber,double average,double totalTime);
+    public delegate void CheckEven(string msg, int threadNumber,double average,double totalTime);
+    public delegate void FinalizeHandler(string msg);
+    public delegate void CallHandler();
     internal class RemotingWrapper
     {
         public event CheckEven MessageEvent;
+        public event FinalizeHandler FinalizeEvent;
+        public event CallHandler CallEvent;
         public ManualResetEvent[] doneEvents;
-    
+
         Fwk.Remoting.FwkRemoteObject _RemoteObj;
 
         internal Fwk.Remoting.FwkRemoteObject RemoteObj
@@ -41,45 +45,75 @@ namespace TestServicePerformance
 
         }
 
-       
 
-         internal void Start(string xml)
+
+        internal void Start(string xml)
         {
+            stop = false;
             isvcReq = (Fwk.Bases.IServiceContract)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Request);
             isvcRes = (Fwk.Bases.IServiceContract)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Response);
             isvcReq.SetBusinessDataXml(xml);
-             doneEvents = new ManualResetEvent[ControllerTest.Storage.StorageObject.Threads];
+            isvcReq.InitializeHostContextInformation();
 
-            for (int i = 0; i <= ControllerTest.Storage.StorageObject.Threads; i++)
-            { 
+            doneEvents = new ManualResetEvent[ControllerTest.Storage.StorageObject.Threads];
+
+            for (int i = 0; i <= ControllerTest.Storage.StorageObject.Threads - 1; i++)
+            {
                 doneEvents[i] = new ManualResetEvent(false);
                 ThreadPool.QueueUserWorkItem(new WaitCallback(StartThread), i);
+                if (stop) break;
             }
+
+
         }
+        bool stop = false;
+        private Object thisLock = new Object();
 
         void StartThread(object threadNumber)
         {
+
             double sumTotalMilliseconds = 0;
-            for (int i = 0; i <= ControllerTest.Storage.StorageObject.Calls; i++)
+            for (int i = 0; i <= ControllerTest.Storage.StorageObject.Calls - 1; i++)
             {
+                if (stop) break;
                 Stopwatch watch = new Stopwatch();
                 isvcRes = _RemoteObj.ExecuteService(isvcReq);
+                //System.Threading.Thread.Sleep(300);
+
+
                 watch.Stop();
-                sumTotalMilliseconds  += watch.Elapsed.TotalMilliseconds;
+                if (isvcRes.Error != null)
+                {
+                    if (FinalizeEvent != null)
+                        FinalizeEvent(isvcRes.Error.Message);
+                    lock (thisLock)//seccion critica
+                    {
+                        stop = true;
+                    }
+                }
+                if (CallEvent != null)
+                    CallEvent();
+                sumTotalMilliseconds += watch.Elapsed.TotalMilliseconds;
             }
+            if (stop)
+            {
+                double AVERAGE = sumTotalMilliseconds / ControllerTest.Storage.StorageObject.Calls;
 
-            double AVERAGE = sumTotalMilliseconds / ControllerTest.Storage.StorageObject.Calls;
+                if (MessageEvent != null)
+                    MessageEvent("Thread Nº", (int)threadNumber, AVERAGE, 1);
 
-            if (MessageEvent!=null)
-                MessageEvent("Thread Nº", (int)threadNumber, AVERAGE, sumTotalMilliseconds);
+                doneEvents[(int)threadNumber].Set();
 
-            doneEvents[(int)threadNumber].Set();
+                if ((int)threadNumber + 1 == doneEvents.Length)
+                    if (FinalizeEvent != null)
+                        FinalizeEvent("");
+            }
         }
 
-       
 
 
-      
+
+
 
     }
 
@@ -144,8 +178,8 @@ namespace TestServicePerformance
 
         public string AssemblyPath
         {
-            get { return _svc; }
-            set { _svc = value; }
+            get { return _AssemblyPath; }
+            set { _AssemblyPath = value; }
         }
         private ServiceConfiguration _SelectedServiceConfiguration = new ServiceConfiguration ();
 

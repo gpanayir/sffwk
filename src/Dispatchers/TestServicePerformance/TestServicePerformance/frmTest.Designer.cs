@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnStartTest = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.txtServer = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,12 +37,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtURL = new System.Windows.Forms.TextBox();
-            this.btnPing = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnPing = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.numericCallsNumber = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
             this.numericThread = new System.Windows.Forms.NumericUpDown();
             this.txtSvc = new System.Windows.Forms.TextBox();
@@ -50,24 +53,20 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtXmlRequest = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnStartTest = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtTestResult = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCallsNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericThread)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnStartTest
-            // 
-            this.btnStartTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartTest.Location = new System.Drawing.Point(175, 94);
-            this.btnStartTest.Name = "btnStartTest";
-            this.btnStartTest.Size = new System.Drawing.Size(75, 23);
-            this.btnStartTest.TabIndex = 0;
-            this.btnStartTest.Text = "Start test";
-            this.btnStartTest.UseVisualStyleBackColor = true;
-            this.btnStartTest.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // txtPort
             // 
@@ -84,7 +83,6 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(194, 20);
             this.txtServer.TabIndex = 2;
-            this.txtServer.Text = "santana";
             this.txtServer.TextChanged += new System.EventHandler(this.txtServer_TextChanged);
             // 
             // label1
@@ -111,7 +109,7 @@
             this.txtObjectUri.Name = "txtObjectUri";
             this.txtObjectUri.Size = new System.Drawing.Size(194, 20);
             this.txtObjectUri.TabIndex = 5;
-            this.txtObjectUri.Text = "BigbangDispatcher.rem";
+            this.txtObjectUri.Text = "Dispatcher.rem";
             this.txtObjectUri.TextChanged += new System.EventHandler(this.txtObjectUri_TextChanged);
             // 
             // label3
@@ -139,27 +137,14 @@
             this.txtURL.Size = new System.Drawing.Size(366, 20);
             this.txtURL.TabIndex = 8;
             // 
-            // btnPing
-            // 
-            this.btnPing.BackColor = System.Drawing.Color.White;
-            this.btnPing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPing.Location = new System.Drawing.Point(475, 67);
-            this.btnPing.Name = "btnPing";
-            this.btnPing.Size = new System.Drawing.Size(135, 23);
-            this.btnPing.TabIndex = 9;
-            this.btnPing.Text = "Init ";
-            this.btnPing.UseVisualStyleBackColor = false;
-            this.btnPing.Click += new System.EventHandler(this.button2_Click);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(717, 368);
+            this.dataGridView1.Size = new System.Drawing.Size(733, 368);
             this.dataGridView1.TabIndex = 10;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // groupBox1
             // 
@@ -174,10 +159,25 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(709, 119);
+            this.groupBox1.Size = new System.Drawing.Size(743, 119);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connection setting";
+            // 
+            // btnPing
+            // 
+            this.btnPing.BackColor = System.Drawing.Color.White;
+            this.btnPing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPing.Image = global::TestServicePerformance.Properties.Resources.Ball__Red_;
+            this.btnPing.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPing.Location = new System.Drawing.Point(459, 80);
+            this.btnPing.Name = "btnPing";
+            this.btnPing.Size = new System.Drawing.Size(67, 23);
+            this.btnPing.TabIndex = 9;
+            this.btnPing.Text = "Init ";
+            this.btnPing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPing.UseVisualStyleBackColor = false;
+            this.btnPing.Click += new System.EventHandler(this.btnPing_Click);
             // 
             // tabControl1
             // 
@@ -186,10 +186,11 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 137);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(731, 400);
+            this.tabControl1.Size = new System.Drawing.Size(747, 400);
             this.tabControl1.TabIndex = 12;
             // 
             // tabPage1
@@ -198,13 +199,16 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(723, 374);
+            this.tabPage1.Size = new System.Drawing.Size(739, 374);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Metadata ";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.numericCallsNumber);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.progressBar1);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.numericThread);
             this.tabPage2.Controls.Add(this.txtSvc);
@@ -216,19 +220,62 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(723, 374);
+            this.tabPage2.Size = new System.Drawing.Size(739, 374);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Service";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // numericCallsNumber
+            // 
+            this.numericCallsNumber.Location = new System.Drawing.Point(326, 4);
+            this.numericCallsNumber.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericCallsNumber.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericCallsNumber.Name = "numericCallsNumber";
+            this.numericCallsNumber.Size = new System.Drawing.Size(46, 20);
+            this.numericCallsNumber.TabIndex = 15;
+            this.numericCallsNumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericCallsNumber.ValueChanged += new System.EventHandler(this.numericCallsNumber_ValueChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(213, 8);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Service calls niumber";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(243, 104);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(490, 10);
+            this.progressBar1.TabIndex = 13;
+            // 
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(471, 48);
+            this.button1.Image = global::TestServicePerformance.Properties.Resources.srch_16;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(471, 30);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(83, 23);
             this.button1.TabIndex = 12;
-            this.button1.Text = "Find";
+            this.button1.Text = "Find dll";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -236,7 +283,7 @@
             // 
             this.numericThread.Location = new System.Drawing.Point(117, 6);
             this.numericThread.Maximum = new decimal(new int[] {
-            10,
+            3,
             0,
             0,
             0});
@@ -253,10 +300,11 @@
             0,
             0,
             0});
+            this.numericThread.ValueChanged += new System.EventHandler(this.numericThread_ValueChanged);
             // 
             // txtSvc
             // 
-            this.txtSvc.Location = new System.Drawing.Point(117, 48);
+            this.txtSvc.Location = new System.Drawing.Point(117, 32);
             this.txtSvc.Name = "txtSvc";
             this.txtSvc.Size = new System.Drawing.Size(337, 20);
             this.txtSvc.TabIndex = 9;
@@ -264,7 +312,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 51);
+            this.label7.Location = new System.Drawing.Point(20, 35);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 13);
             this.label7.TabIndex = 10;
@@ -287,7 +335,7 @@
             this.txtXmlRequest.Location = new System.Drawing.Point(6, 129);
             this.txtXmlRequest.Multiline = true;
             this.txtXmlRequest.Name = "txtXmlRequest";
-            this.txtXmlRequest.Size = new System.Drawing.Size(654, 224);
+            this.txtXmlRequest.Size = new System.Drawing.Size(727, 239);
             this.txtXmlRequest.TabIndex = 7;
             // 
             // label5
@@ -298,6 +346,45 @@
             this.label5.Size = new System.Drawing.Size(46, 13);
             this.label5.TabIndex = 6;
             this.label5.Text = "Threads";
+            // 
+            // btnStartTest
+            // 
+            this.btnStartTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartTest.Image = global::TestServicePerformance.Properties.Resources.bt_play;
+            this.btnStartTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStartTest.Location = new System.Drawing.Point(132, 94);
+            this.btnStartTest.Name = "btnStartTest";
+            this.btnStartTest.Size = new System.Drawing.Size(105, 23);
+            this.btnStartTest.TabIndex = 0;
+            this.btnStartTest.Text = "Start test";
+            this.btnStartTest.UseVisualStyleBackColor = true;
+            this.btnStartTest.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.txtTestResult);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(739, 374);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Test result";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // txtTestResult
+            // 
+            this.txtTestResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTestResult.Location = new System.Drawing.Point(6, 25);
+            this.txtTestResult.Multiline = true;
+            this.txtTestResult.Name = "txtTestResult";
+            this.txtTestResult.Size = new System.Drawing.Size(715, 332);
+            this.txtTestResult.TabIndex = 8;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmTest
             // 
@@ -318,7 +405,11 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericCallsNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericThread)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -347,6 +438,12 @@
         private System.Windows.Forms.TextBox txtXmlRequest;
         private System.Windows.Forms.NumericUpDown numericThread;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox txtTestResult;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.NumericUpDown numericCallsNumber;
+        private System.Windows.Forms.Label label8;
     }
 }
 

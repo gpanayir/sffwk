@@ -60,9 +60,44 @@ namespace TestServicePerformance.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap mostrar {
+        internal static System.Drawing.Bitmap Ball__Blue_ {
             get {
-                object obj = ResourceManager.GetObject("mostrar", resourceCulture);
+                object obj = ResourceManager.GetObject("Ball__Blue_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Ball__Green_ {
+            get {
+                object obj = ResourceManager.GetObject("Ball__Green_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Ball__Red_ {
+            get {
+                object obj = ResourceManager.GetObject("Ball__Red_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap bt_play {
+            get {
+                object obj = ResourceManager.GetObject("bt_play", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap opts_16 {
+            get {
+                object obj = ResourceManager.GetObject("opts_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap srch_16 {
+            get {
+                object obj = ResourceManager.GetObject("srch_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
