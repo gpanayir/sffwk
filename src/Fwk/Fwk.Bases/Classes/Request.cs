@@ -118,7 +118,7 @@ namespace Fwk.Bases
         CacheSettings _CacheSettings = new CacheSettings ();
 
         /// <summary>
-        /// 
+        /// Configuracion de cache del request
         /// </summary>
         public CacheSettings CacheSettings
         {
@@ -128,14 +128,20 @@ namespace Fwk.Bases
 
         private Boolean _Encrypt;
 
+        /// <summary>
+        /// Determina si el xml del request esta encriptado
+        /// </summary>
         public Boolean Encrypt
         {
             get { return _Encrypt; }
             set { _Encrypt = value; }
         }
         
-
-        IServiceWrapper _Wrapper = null;
+        /// <summary>
+        /// Con un wrapper estatico evitamos la generacion de multiples instancias del wraper en el cliente atravez de las 
+        /// multipoles llamadas desde la clase que implementa Request> 
+        /// </summary>
+        public static IServiceWrapper Wrapper = null;
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
@@ -149,11 +155,11 @@ namespace Fwk.Bases
         {
             TResponse wResponse = new TResponse();
 
-            if (_Wrapper == null)
+            if (Request<T>.Wrapper == null)
             {
                 try
                 {
-                    _Wrapper =
+                    Request<T>.Wrapper =
                         (IServiceWrapper)
                         ReflectionFunctions.CreateInstance(ConfigurationsHelper.WrapperSetting);
                 }
@@ -167,7 +173,7 @@ namespace Fwk.Bases
             if (wResponse.Error == null)
             {
 
-                wResponse = _Wrapper.ExecuteService<TRequest, TResponse>(req);
+                wResponse = Request<T>.Wrapper.ExecuteService<TRequest, TResponse>(req);
             }
 
             return wResponse;
