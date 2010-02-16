@@ -81,7 +81,7 @@
       ]]>
     </BusinessFacadeSettings>
 
-	
+	  <Fwk.Bases.ApplicationSettings>
 		  <![CDATA[
 		  <Fwk.Bases.Properties.Settings>
 			  <setting name="Wrapper" serializeAs="String">
