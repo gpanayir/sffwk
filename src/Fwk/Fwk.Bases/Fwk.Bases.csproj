@@ -61,6 +61,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dao, Version=10.0.4504.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Archivos de programa\Microsoft Visual Studio 9.0\Visual Studio Tools for Office\PIA\Office12\dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
@@ -106,6 +111,7 @@
     </Compile>
     <Compile Include="Blocks\Functions\CommonConstants.cs" />
     <Compile Include="Blocks\Functions\ExportFunctions.cs" />
+    <Compile Include="Blocks\Functions\ImportFunctions.cs" />
     <Compile Include="Blocks\Fwk.Blocking\BlockingEngineBase.cs" />
     <Compile Include="Blocks\Fwk.Blocking\BlockingEngineDAC.cs" />
     <Compile Include="Blocks\Fwk.Blocking\BlockingMarkBase.cs" />

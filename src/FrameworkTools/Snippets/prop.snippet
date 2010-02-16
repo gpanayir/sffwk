@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>prop</Title>
+			<Shortcut>prop</Shortcut>
+			<Description>snippet para generar una propiedad con su variable privada incluida</Description>
+			<Author>Andrés Aguirre</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>type</ID>
+					<ToolTip>Tipo de la propiedad</ToolTip>
+					<Default>String</Default>
+				</Literal>
+				<Literal>
+					<ID>property</ID>
+					<ToolTip>Nombre de la propiedad</ToolTip>
+					<Default>Mi Propiedad</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+<![CDATA[private $type$ _$property$;
+
+		public $type$ $property$
+		{
+			get
+			{
+				return _$property$;
+			}
+			set
+			{
+				_$property$ = value;
+			}
+		}$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

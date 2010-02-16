@@ -39,8 +39,8 @@ namespace Fwk.HelperFunctions
                 {
                     wWorkSheetBE = new WorkSheet();
                     wWorkSheetBE.SheetOriginalName = wRow["TABLE_NAME"].ToString();
-                    //Validamos si tiene más de Una palabra la workSheet
-                    if (wWorkSheetBE.SheetOriginalName.Split(' ').Count() > 1)
+                    //Validamos si el nombre original fue cambiado y se le agregaron comillas y el signo '$'
+                    if (wWorkSheetBE.SheetOriginalName.Contains("'"))
                     {
                         //Eliminamos el signo pesos del anteúltimo lugar y la comilla simple del último lugar
                         wWorkSheetBE.SheetDisplayName = wWorkSheetBE.SheetOriginalName.Remove(wWorkSheetBE.SheetOriginalName.Length - 2);

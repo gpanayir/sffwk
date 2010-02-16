@@ -1,0 +1,23 @@
+
+Donde guardar los snippet para que la IDE de Visual Studio los lea ?
+
+	C:\Archivos de programa\Microsoft Visual Studio 9.0\VC#\Snippets\1033\Visual C#
+
+
+
+
+Descripcion de los Snippets
+
+	prop		Este es un snippet para hacer propiedades con Get y Set, a la variable privada le pone un _ adelante
+	const_int	Crea una constante de tipo intefer
+	const_str	Crea una constante de tipo string
+	controller	crea el codigo necesario para hacer una llamada a un servicio desde la clase controller
+
+
+
+
+
+
+
+
+ .... y tab tab
