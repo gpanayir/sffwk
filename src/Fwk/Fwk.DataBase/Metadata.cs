@@ -83,6 +83,13 @@ namespace Fwk.DataBase
         {
             get { return _DataBaseServer.CnnString.InitialCatalog; }
         }
+         /// <summary>
+        ///
+        /// </summary>
+        public CnnString CnnString
+        {
+            get { return _DataBaseServer.CnnString; }
+        }
 	
 		/// <summary>
 		/// Obtiene todas las Tables de la Base de datos.-
