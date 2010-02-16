@@ -28,7 +28,19 @@ namespace Fwk.CodeGenerator
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.MessageView = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.SuspendLayout();
+            // 
+            // MessageView
+            // 
+            this.MessageView.BackColor = System.Drawing.Color.White;
+            this.MessageView.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
+            this.MessageView.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
+            this.MessageView.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
+            this.MessageView.TextMessageColor = System.Drawing.Color.White;
+            this.MessageView.TextMessageForeColor = System.Drawing.Color.Black;
+            this.MessageView.Title = "Message";
             // 
             // FrmBase
             // 
@@ -45,6 +57,9 @@ namespace Fwk.CodeGenerator
         }
 
         #endregion
+
+        public Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent MessageView;
+
 
 
 

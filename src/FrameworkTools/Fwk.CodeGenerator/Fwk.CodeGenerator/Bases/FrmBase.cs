@@ -187,9 +187,8 @@ namespace Fwk.CodeGenerator
             }
             catch (Exception ex)
             {
-                MessageView wMessageView = new MessageView();
-                wMessageView.Message = ex.Message;
-                wMessageView.ShowDialog();
+                
+                MessageView.Show(ex);
             }
             finally
             {
@@ -238,7 +237,7 @@ namespace Fwk.CodeGenerator
 
                 //Common.WriteEntryEventLog("Error en InitializeLastAccessSource. Puede que no este bien formado el archivo LastAcces.xml", ex,1000, System.Diagnostics.EventLogEntryType.Error);
 
-                MessageView wMessageView = new MessageView();
+   
                 StringBuilder message = new StringBuilder("Error en InitializeLastAccessSource. ");
                 message.Append(Environment.NewLine);
 
@@ -247,9 +246,9 @@ namespace Fwk.CodeGenerator
                 message.Append("AllMessageException: " + Environment.NewLine + Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
 
 
-                wMessageView.Message = message.ToString();
+        
 
-                wMessageView.Show();
+                MessageView.Show(message.ToString());
             }
 
 
@@ -265,28 +264,35 @@ namespace Fwk.CodeGenerator
         /// <summary>
         /// Inicia LoadFromDAtaBaseWorker para que trabaje ebn un hilo diferente
         /// </summary>
-        protected void RefreshMetadata()
+        protected bool RefreshMetadata()
         {
+            if (_Metadata.CnnString == null)
+            {
+                MessageView.Show("Debe establecer una conexión a la bace dedatos.-");
+                return false;
+            }
             //Si la metadata se abre desde un archivo, no ejecuto este método.
             if (LoadMetaDataFromXML)
             {
                 if (!IsLoadedMetaDataFromXML)
                     this.LoadMetaDataFromXml();
-                return;
+                return true;
             }            
 
 
             try
             {
-                if (!_Metadata.TestConnection())
-                    return;
+                if (_Metadata.TestConnection())
+
+                    return true;
+                else
+                    return false;
             }
             catch (Exception ex)
             {
-                MessageView wMessageView = new MessageView();
-                wMessageView.Message = ex.Message;
-                wMessageView.ShowDialog();
-                return;
+           
+                MessageView.Show(ex);
+                return false;
             }
 
 
@@ -342,10 +348,8 @@ namespace Fwk.CodeGenerator
                 }
                 else
                 {
-                    MessageView wMessageView = new MessageView();
-                    wMessageView.Message = pMessage + Environment.NewLine + pOtherMsg;
-                    wMessageView.btnOkVisible = true;
-                    wMessageView.Show();
+
+                    MessageView.Show(pMessage + Environment.NewLine + pOtherMsg);
                 }
             }
         }
