@@ -147,7 +147,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="editar_documento.gif" />
     <Content Include="NOTE17.ICO" />
   </ItemGroup>
   <ItemGroup>
