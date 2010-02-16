@@ -122,7 +122,7 @@
             this.txtResponse.RequiredErrorText = "Response is required";
             this.txtResponse.Size = new System.Drawing.Size(650, 21);
             this.txtResponse.TabIndex = 72;
-            this.txtResponse.TextBoxType = Fwk.Bases.FrontEnd.Controls.FlatTextBoxTypeEnum.Nothing;
+            
             // 
             // bindingSourceService
             // 
@@ -148,7 +148,7 @@
             this.txtRequest.RequiredErrorText = "Request is required";
             this.txtRequest.Size = new System.Drawing.Size(650, 21);
             this.txtRequest.TabIndex = 71;
-            this.txtRequest.TextBoxType = Fwk.Bases.FrontEnd.Controls.FlatTextBoxTypeEnum.Nothing;
+            
             // 
             // txtHandler
             // 
@@ -170,7 +170,7 @@
             this.txtHandler.RequiredErrorText = "Handler is required";
             this.txtHandler.Size = new System.Drawing.Size(650, 21);
             this.txtHandler.TabIndex = 70;
-            this.txtHandler.TextBoxType = Fwk.Bases.FrontEnd.Controls.FlatTextBoxTypeEnum.Nothing;
+            
             // 
             // txtName
             // 
@@ -193,7 +193,7 @@
             this.txtName.Size = new System.Drawing.Size(653, 21);
             this.txtName.TabIndex = 69;
             this.txtName.TabStop = false;
-            this.txtName.TextBoxType = Fwk.Bases.FrontEnd.Controls.FlatTextBoxTypeEnum.AlphaNumeric;
+            
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // txtDescription
@@ -217,7 +217,7 @@
             this.txtDescription.RequiredErrorText = null;
             this.txtDescription.Size = new System.Drawing.Size(651, 70);
             this.txtDescription.TabIndex = 68;
-            this.txtDescription.TextBoxType = Fwk.Bases.FrontEnd.Controls.FlatTextBoxTypeEnum.Nothing;
+            
             // 
             // chkCacheable
             // 

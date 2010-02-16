@@ -263,7 +263,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.txtAddres.RequiredErrorText = null;
             this.txtAddres.Size = new System.Drawing.Size(446, 21);
             this.txtAddres.TabIndex = 40;
-            this.txtAddres.TextBoxType = Fwk.Bases.FrontEnd.Controls.FlatTextBoxTypeEnum.AlphaNumeric;
+            
             // 
             // btnView
             // 
