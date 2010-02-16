@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneratorDataModel", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security", "..\..\Fwk\Fwk.Security\Fwk.Security.csproj", "{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceManagement", "ServiceManagement", "{5BCC4A07-FA9C-4696-AE44-90F32100F096}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.ServiceManagement.Tools.Win32", "..\ServiceManagement\Fwk.ServiceManagement.Tools.Win32\Fwk.ServiceManagement.Tools.Win32.csproj", "{35C67E35-70D2-4AF0-A937-977CCFAB4346}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,10 @@ Global
 		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C67E35-70D2-4AF0-A937-977CCFAB4346}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C67E35-70D2-4AF0-A937-977CCFAB4346}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C67E35-70D2-4AF0-A937-977CCFAB4346}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C67E35-70D2-4AF0-A937-977CCFAB4346}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,5 +95,6 @@ Global
 		{9155394C-7D3C-4CD0-AA3A-ACD555D1790A} = {ADC2348D-3D6E-44D6-9F8E-C388F8A2F9A3}
 		{27D62BF8-5321-428B-93CE-98CFB8F6223E} = {ADC2348D-3D6E-44D6-9F8E-C388F8A2F9A3}
 		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE} = {ADC2348D-3D6E-44D6-9F8E-C388F8A2F9A3}
+		{35C67E35-70D2-4AF0-A937-977CCFAB4346} = {5BCC4A07-FA9C-4696-AE44-90F32100F096}
 	EndGlobalSection
 EndGlobal

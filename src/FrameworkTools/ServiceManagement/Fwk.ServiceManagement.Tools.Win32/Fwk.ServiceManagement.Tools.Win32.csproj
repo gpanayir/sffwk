@@ -102,13 +102,11 @@
     <Compile Include="CacheObject.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="ctrlService.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ctrlService.Designer.cs">
       <DependentUpon>ctrlService.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAssemblyExplorer.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAssemblyExplorer.Designer.cs">
       <DependentUpon>frmAssemblyExplorer.cs</DependentUpon>
@@ -120,7 +118,6 @@
       <DependentUpon>frmEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="frmServices.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmServices.Designer.cs">
       <DependentUpon>frmServices.cs</DependentUpon>
