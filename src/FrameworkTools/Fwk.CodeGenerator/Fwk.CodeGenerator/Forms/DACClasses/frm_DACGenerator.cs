@@ -11,7 +11,7 @@ using  Fwk.CodeGenerator.Common;
 
 namespace Fwk.CodeGenerator
 {
-    public partial class frm_DACGenerator : CodeGenerator.FrmBase
+    public partial class frm_DACGenerator : FrmBase
     {
         #region Private members 
         private string LastParentKey = string.Empty;
@@ -147,7 +147,7 @@ namespace Fwk.CodeGenerator
             try
             {
                 base._SelectedObject = (CodeGeneratorCommon.SelectedObject)tabControl1.SelectedIndex;
-                base.RefreshMetadata();
+                if (!base.RefreshMetadata()) return;
 
                 
                 
@@ -172,10 +172,8 @@ namespace Fwk.CodeGenerator
             }
             catch (Exception ex)
             {
-                //Common.WriteEntryEventLog("Error al cargar Objetos de base de datos. Puede que no este bien formado el archivo DataBaseConfig.xml", ex, 1001, System.Diagnostics.EventLogEntryType.Error);
-                MessageView wMessageView = new MessageView();
-                wMessageView.Message = ex.Message;
-                wMessageView.ShowDialog();
+
+                base.MessageView.Show(ex);
             }
         }
 

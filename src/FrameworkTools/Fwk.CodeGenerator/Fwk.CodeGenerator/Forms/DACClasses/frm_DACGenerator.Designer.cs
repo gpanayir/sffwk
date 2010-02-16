@@ -31,6 +31,7 @@ namespace Fwk.CodeGenerator
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_DACGenerator));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ctrlTreeViewTables1 = new Fwk.CodeGenerator.ctrlTreeViewTables();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.treeViewStoreProcedures1 = new Fwk.DataBase.CustomControls.TreeViewStoreProcedures();
             this.btnGenerate2 = new System.Windows.Forms.Button();
@@ -45,9 +46,8 @@ namespace Fwk.CodeGenerator
             this.toolStripButtonGenerate = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor();
-            this.listViewCodeGenerated1 = new ListViewCodeGenerated();
+            this.listViewCodeGenerated1 = new Fwk.CodeGenerator.ListViewCodeGenerated();
             this.txtSPName = new System.Windows.Forms.TextBox();
-            this.ctrlTreeViewTables1 = new Fwk.CodeGenerator.ctrlTreeViewTables();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -84,6 +84,15 @@ namespace Fwk.CodeGenerator
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Tag = "0";
             this.tabPage1.Text = "From tables";
+            // 
+            // ctrlTreeViewTables1
+            // 
+            this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ctrlTreeViewTables1.CheckBoxes = true;
+            this.ctrlTreeViewTables1.Location = new System.Drawing.Point(2, 2);
+            this.ctrlTreeViewTables1.Name = "ctrlTreeViewTables1";
+            this.ctrlTreeViewTables1.Size = new System.Drawing.Size(198, 458);
+            this.ctrlTreeViewTables1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -240,10 +249,9 @@ namespace Fwk.CodeGenerator
             this.listViewCodeGenerated1.ForeColorDAC = System.Drawing.Color.Empty;
             this.listViewCodeGenerated1.ForeColorSP = System.Drawing.Color.Empty;
             this.listViewCodeGenerated1.ForeColorSVC = System.Drawing.Color.Empty;
-     
-            this.listViewCodeGenerated1.NodeBE = null;
             this.listViewCodeGenerated1.Location = new System.Drawing.Point(3, -7);
             this.listViewCodeGenerated1.Name = "listViewCodeGenerated1";
+            this.listViewCodeGenerated1.NodeBE = null;
             this.listViewCodeGenerated1.NodeCustomSVC = null;
             this.listViewCodeGenerated1.NodeDAC = null;
             this.listViewCodeGenerated1.NodeSP = null;
@@ -251,11 +259,11 @@ namespace Fwk.CodeGenerator
             this.listViewCodeGenerated1.NodeTDG = null;
             this.listViewCodeGenerated1.Size = new System.Drawing.Size(209, 493);
             this.listViewCodeGenerated1.TabIndex = 0;
-            this.listViewCodeGenerated1.StoredProcedureCodeGeneratedSelectEvent += new StoredProcedureCodeGeneratedSelectHandler(this.listViewCodeGenerated1_StoreProcedureCodeGeneratedSelectEvent);
-            this.listViewCodeGenerated1.ServiceCodeGeneratedSelectEvent += new ServiceCodeGeneratedSelectHandler(this.listViewCodeGenerated1_ServiceCodeGeneratedSelectEvent);
-            this.listViewCodeGenerated1.DACCodeGeneratedSelectEvent += new DACCodeGeneratedSelectHandler(this.listViewCodeGenerated1_DACCodeGeneratedSelectEvent);
-            this.listViewCodeGenerated1.BECodeGeneratedSelectEvent += new BECodeGeneratedSelectHandler(this.listViewCodeGenerated1_BECodeGeneratedSelectEvent);
-            this.listViewCodeGenerated1.TDGCodeGeneratedSelectEvent += new TDGCodeGeneratedSelectHandler(this.listViewCodeGenerated1_TDGCodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.StoredProcedureCodeGeneratedSelectEvent += new Fwk.CodeGenerator.StoredProcedureCodeGeneratedSelectHandler(this.listViewCodeGenerated1_StoreProcedureCodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.ServiceCodeGeneratedSelectEvent += new Fwk.CodeGenerator.ServiceCodeGeneratedSelectHandler(this.listViewCodeGenerated1_ServiceCodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.DACCodeGeneratedSelectEvent += new Fwk.CodeGenerator.DACCodeGeneratedSelectHandler(this.listViewCodeGenerated1_DACCodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.BECodeGeneratedSelectEvent += new Fwk.CodeGenerator.BECodeGeneratedSelectHandler(this.listViewCodeGenerated1_BECodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.TDGCodeGeneratedSelectEvent += new Fwk.CodeGenerator.TDGCodeGeneratedSelectHandler(this.listViewCodeGenerated1_TDGCodeGeneratedSelectEvent);
             // 
             // txtSPName
             // 
@@ -264,15 +272,6 @@ namespace Fwk.CodeGenerator
             this.txtSPName.Name = "txtSPName";
             this.txtSPName.Size = new System.Drawing.Size(137, 20);
             this.txtSPName.TabIndex = 2;
-            // 
-            // ctrlTreeViewTables1
-            // 
-            this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ctrlTreeViewTables1.CheckBoxes = true;
-            this.ctrlTreeViewTables1.Location = new System.Drawing.Point(2, 2);
-            this.ctrlTreeViewTables1.Name = "ctrlTreeViewTables1";
-            this.ctrlTreeViewTables1.Size = new System.Drawing.Size(198, 458);
-            this.ctrlTreeViewTables1.TabIndex = 0;
             // 
             // frm_DACGenerator
             // 
