@@ -251,6 +251,18 @@
     <Compile Include="ObjectModel\WorkSpace.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExternalTools\ConfigurationApp\ConfigurationApp.exe" />
+    <Content Include="ExternalTools\ConfigurationApp\Fwk.Bases.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Fwk.Bases.FrontEnd.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Fwk.Controls.Win32.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Microsoft.Practices.ObjectBuilder2.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Microsoft.Practices.Unity.dll" />
+    <Content Include="ExternalTools\ConfigurationApp\Templates.xml" />
     <Content Include="ExternalTools\TextToStringBuilder\Fwk.Bases.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -263,6 +275,7 @@
     <Content Include="ExternalTools\TextToStringBuilder\TextToStringBuilder.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="ExternalTools\ConfigurationApp\ConfigurationApp.exe.config" />
     <None Include="Files\DataBaseConfig.xml">
     </None>
     <None Include="Resources\serviceunknown.ico" />

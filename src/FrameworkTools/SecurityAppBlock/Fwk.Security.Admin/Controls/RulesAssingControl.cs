@@ -53,9 +53,15 @@ namespace Fwk.Security.Admin.Controls
             txtRuleName.Focus();
             using (new WaitCursorHelper(this))
             {
+                try
+                {
                 userBindingSource.DataSource = FwkMembership.GetAllUsers();
                 rolBindingSource.DataSource = FwkMembership.GetAllRoles();
-                
+                }
+                    catch( Exception es )
+                {
+                    base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(es));
+                    }
                
             }
         }

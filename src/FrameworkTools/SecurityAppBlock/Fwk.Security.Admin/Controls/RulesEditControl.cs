@@ -147,9 +147,9 @@ namespace Fwk.Security.Admin.Controls
         private void grdRulesByCategory_Click(object sender, EventArgs e)
         {
 
-            aspnet_RulesInCategory rule = (aspnet_RulesInCategory)((BindingSource)grdRulesByCategory.DataSource).Current;
+            Fwk.Security.FwkAuthorizationRuleAux rule = (Fwk.Security.FwkAuthorizationRuleAux)((BindingSource)grdRulesByCategory.DataSource).Current;
             if (rule == null) return;
-            _CurrentRule = FwkMembership.GetRule(rule.RuleName, Membership.ApplicationName);
+            _CurrentRule = FwkMembership.GetRule(rule.Name, Membership.ApplicationName);
             if (_CurrentRule == null)
             {
                 MessageViewInfo.Show("Esta regla y fue eliminada .- Es posible que la categoria seleccionada no esta sincronizada con las reglas.-");

@@ -42,7 +42,7 @@ namespace CodeGenerator.DataModelExporter
             this.cnnDataBaseForm1.ButtonsBackColor = System.Drawing.Color.SlateGray;
             this.cnnDataBaseForm1.ButtonsFlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cnnDataBaseForm1.ButtonsFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cnnDataBaseForm1.Connection = null;
+       
             this.cnnDataBaseForm1.LabelsForeColor = System.Drawing.Color.SteelBlue;
             this.cnnDataBaseForm1.Location = new System.Drawing.Point(138, 128);
             this.cnnDataBaseForm1.Name = "cnnDataBaseForm1";
@@ -55,7 +55,7 @@ namespace CodeGenerator.DataModelExporter
             this.cnnDataBaseForm.ButtonsBackColor = System.Drawing.Color.SlateGray;
             this.cnnDataBaseForm.ButtonsFlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cnnDataBaseForm.ButtonsFont = new System.Drawing.Font("Lucida Console", 8.25F);
-            this.cnnDataBaseForm.Connection = null;
+
             this.cnnDataBaseForm.ForeColor = System.Drawing.Color.Black;
             this.cnnDataBaseForm.LabelsForeColor = System.Drawing.Color.MintCream;
             this.cnnDataBaseForm.Location = new System.Drawing.Point(4, 0);

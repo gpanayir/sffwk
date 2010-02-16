@@ -51,6 +51,7 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnFindRoles = new System.Windows.Forms.Button();
+            this.fwkRulesInCategoryListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -63,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkRulesInCategoryListBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // rolBindingSource
@@ -100,7 +102,7 @@
             // 
             this.grdRulesByCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.grdRulesByCategory.DataSource = this.aspnetRulesInCategoryBindingSource;
+            this.grdRulesByCategory.DataSource = this.fwkRulesInCategoryListBindingSource;
             this.grdRulesByCategory.Location = new System.Drawing.Point(313, 60);
             this.grdRulesByCategory.MainView = this.grdViewRulesByCategory;
             this.grdRulesByCategory.Name = "grdRulesByCategory";
@@ -138,7 +140,7 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.FieldName = "RuleName";
+            this.gridColumn1.FieldName = "Name";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.OptionsColumn.ReadOnly = true;
@@ -293,6 +295,11 @@
             this.btnFindRoles.UseVisualStyleBackColor = false;
             this.btnFindRoles.Click += new System.EventHandler(this.btnFindRoles_Click);
             // 
+            // fwkRulesInCategoryListBindingSource
+            // 
+            this.fwkRulesInCategoryListBindingSource.DataMember = "FwkRulesInCategoryList";
+            this.fwkRulesInCategoryListBindingSource.DataSource = this.fwkCategoryBindingSource;
+            // 
             // RulesEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -319,6 +326,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkRulesInCategoryListBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,5 +355,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private System.Windows.Forms.Button btnFindRoles;
+        private System.Windows.Forms.BindingSource fwkRulesInCategoryListBindingSource;
     }
 }

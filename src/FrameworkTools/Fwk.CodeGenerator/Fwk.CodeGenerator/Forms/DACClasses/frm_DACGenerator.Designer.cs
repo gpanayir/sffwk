@@ -326,6 +326,7 @@ namespace Fwk.CodeGenerator
         private System.Windows.Forms.ToolStripButton toolStripButtonGenerate;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        
         private Fwk.Controls.Win32.TextCodeEditor textCodeEditor1;
         private Fwk.CodeGenerator.ctrlTreeViewTables ctrlTreeViewTables1;
       

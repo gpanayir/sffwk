@@ -16,9 +16,7 @@ namespace Fwk.Security.Admin.Controls
   
     public partial class RulesCheckControl : SecurityControlBase
     {
-     
-        private IAuthorizationProvider ruleProvider;
-        //private ISecurityCacheProvider cache;	// Security cache to handle tokens
+
 
         public RulesCheckControl()
         {
@@ -44,7 +42,7 @@ namespace Fwk.Security.Admin.Controls
                 Cursor = System.Windows.Forms.Cursors.WaitCursor;
 
 
-                if (this.ruleProvider != null)
+                if (ControlsFactory.ruleProvider != null)
                 {
 
                     this.DisplayAuthorizationResults(string.Format(Properties.Resources.IdentityRoleMessage, identity, String.Join(",", roles)));
@@ -52,11 +50,18 @@ namespace Fwk.Security.Admin.Controls
                     // Try to authorize using selected rule
                     try
                     {
-                        wAuthorized = this.ruleProvider.Authorize(principal, rule);
+                        wAuthorized = ControlsFactory.ruleProvider.Authorize(principal, rule);
                     }
                     catch (Exception ex)
                     {
-                        fwkMessageViewInfo.Show(ex);
+                        if (string.IsNullOrEmpty(FwkMembership.GetRule(rule).expression.Trim()))
+                        {
+                            wAuthorized = false;
+
+                            fwkMessageViewInfo.Show("Regla no contiene exoprecion o roles asociados");
+                        }
+                        else
+                            fwkMessageViewInfo.Show(ex);
                     }
 
                     if (wAuthorized)
@@ -79,7 +84,7 @@ namespace Fwk.Security.Admin.Controls
         {
             // inicializo Fwk Authorization provider y cathcing security provider
             // ASP.NET Membership y Profile providers no se inicializan de esta manera.
-            this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
+            //this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
             
             //this.cache = SecurityCacheFactory.GetSecurityCacheProvider("ProveedorAlmacenCaching");
 
