@@ -87,6 +87,9 @@ namespace Fwk.CodeGenerator
             // 
             // ctrlTreeViewTables1
             // 
+            this.ctrlTreeViewTables1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ctrlTreeViewTables1.CheckBoxes = true;
             this.ctrlTreeViewTables1.Location = new System.Drawing.Point(2, 2);

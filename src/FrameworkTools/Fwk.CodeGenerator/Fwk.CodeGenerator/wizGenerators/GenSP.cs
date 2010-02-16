@@ -288,7 +288,7 @@ namespace Fwk.CodeGenerator
 
         static String GetDROP()
         {
-            String wStrDrop;
+            //String wStrDrop;
 
             //----------------------------------------------------------------------
             //-- Cargo el pattern segun la version de SQL Server
