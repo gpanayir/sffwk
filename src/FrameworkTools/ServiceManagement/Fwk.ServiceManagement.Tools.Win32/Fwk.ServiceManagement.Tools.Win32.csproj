@@ -248,9 +248,11 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\Entregas\ServiceManagement\*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\Entregas\ServiceManagement\*.pdb" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\Entregas\ServiceManagement\*vshost*.*" &gt;&gt; nul
+    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\*.*" &gt;&gt; nul
+del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\*.pdb" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\*vshost*.*" &gt;&gt; nul
+del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.manifest" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.application" &gt;&gt; nul 
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
