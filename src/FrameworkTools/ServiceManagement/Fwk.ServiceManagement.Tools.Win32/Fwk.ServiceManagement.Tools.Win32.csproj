@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.ServiceManagement.Tools.Win32</RootNamespace>
-    <AssemblyName>Fwk.ServiceManagement.Tools.Win32</AssemblyName>
+    <AssemblyName>Fwk.ServiceManagement</AssemblyName>
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>
@@ -251,8 +251,8 @@
     <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\*.*" &gt;&gt; nul
 del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\*.pdb" &gt;&gt; nul 
 del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\*vshost*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.manifest" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.application" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\$(TargetFileName)manifest" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\$(TargetName).application" &gt;&gt; nul 
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

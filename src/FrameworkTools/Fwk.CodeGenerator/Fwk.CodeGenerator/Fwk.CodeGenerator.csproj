@@ -432,4 +432,13 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*.*" &gt;&gt; nul
+del "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*.pdb" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*vshost*.*" &gt;&gt; nul
+del "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*.manifest" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*.application" &gt;&gt; nul 
+
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

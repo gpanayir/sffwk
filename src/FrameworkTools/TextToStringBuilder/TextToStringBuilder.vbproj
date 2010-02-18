@@ -37,6 +37,7 @@
     <SccProvider>
     </SccProvider>
     <OldToolsVersion>2.0</OldToolsVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>http://localhost/TextToStringBuilder/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -49,7 +50,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -183,7 +183,12 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\Entregas\TextToStringBuilder\*.*" &gt;&gt; nul
+del "$(ProjectDir)..\..\..\Entregas\SecurityApBlock\*.pdb" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\Entregas\TextToStringBuilder\*vshost*.*" &gt;&gt; nul
+del "$(ProjectDir)..\..\..\Entregas\TextToStringBuilder\*.manifest" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\Entregas\TextToStringBuilder\*.application" &gt;&gt; nul 
+
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -329,9 +329,11 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(SolutionDir)..\..\Entregas\ConfigurationApp\*.*" &gt;&gt; nul
-del "$(SolutionDir)..\..\Entregas\ConfigurationApp\*.pdb" &gt;&gt; nul 
-del "$(SolutionDir)..\..\Entregas\ConfigurationApp\*vshost*.*" &gt;&gt; nul
+    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.*" &gt;&gt; nul
+del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.pdb" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.manifest" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.application" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*vshost*.*" &gt;&gt; nul
 
 </PostBuildEvent>
   </PropertyGroup>

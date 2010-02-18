@@ -513,4 +513,11 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*.*" &gt;&gt; nul
+del "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*.pdb" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*vshost*.*" &gt;&gt; nul
+del "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*.manifest" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*.application" &gt;&gt; nul</PostBuildEvent>
+  </PropertyGroup>
 </Project>
