@@ -644,17 +644,20 @@ namespace Fwk.Security
         /// <summary>
         /// Crea un nuevo Rol
         /// </summary>
-        /// <param name="pRoleName"></param>
-        /// <param name="pDescription"></param>
+        /// <param name="pRoleName">Nombre del rol</param>
+        /// <param name="pDescription">Descripcion del rol</param>
         public static void CreateRole(String pRoleName,string pDescription)
         {
             CreateRole(pRoleName, pDescription, Membership.ApplicationName, ConnectionStringName);
         }
-      
-        /// <summary>
-        /// Crea un nuevo Rol
-        /// </summary>
-        /// <param name="pRoleName">Nombre del Rol</param>
+
+       /// <summary>
+       ///  Crea un nuevo Rol
+       /// </summary>
+       /// <param name="pRoleName">Nombre del rol</param>
+       /// <param name="pDescription">Descripcion del rol</param>
+       /// <param name="pApplicationName">Nombre de la aplicaciom</param>
+       /// <param name="pConnectionStringName">Nombre de la cadena de coneccion</param>
         public static void CreateRole(String pRoleName, string pDescription,string pApplicationName, string pConnectionStringName)
         {
             try
@@ -698,12 +701,12 @@ namespace Fwk.Security
         }
 
         /// <summary>
-        /// 
+        /// Actualiza un rol
         /// </summary>
-        /// <param name="pRoleName"></param>
-        /// <param name="pDescription"></param>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
+        /// <param name="pRoleName">Nombre del rol</param>
+        /// <param name="pDescription">Descripcion del rol</param>
+        /// <param name="pApplicationName">Nombre de la aplicaciom</param>
+        /// <param name="pConnectionStringName">Nombre de la cadena de coneccion</param>
         public static void UpdateRole(String pRoleName, string pDescription,string pApplicationName, string pConnectionStringName)
         {
        
@@ -722,19 +725,8 @@ namespace Fwk.Security
                 str.Replace("[RoleName]", pRoleName);
 
                 wCmd = wDataBase.GetSqlStringCommand(str.ToString());
-
-              
-
                 wCmd.CommandType = CommandType.Text;
-
-
                 wDataBase.ExecuteNonQuery(wCmd);
-
-
-
-
-
-
             }
             catch (Exception ex)
             {
