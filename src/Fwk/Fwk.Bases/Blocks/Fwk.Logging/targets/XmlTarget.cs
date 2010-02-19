@@ -61,7 +61,7 @@ namespace Fwk.Logging.Targets
             if (this.FileName.Trim().Length == 0)
             {
                 TechnicalException te = new TechnicalException("Debe especificar un nombre de archivo para guardar el log.");
-                te.Assembly = "Fwk.Logging.Targets";
+                te.Assembly = "Fwk.Logging";
                 te.Class = "XmlTarget";
                 te.ErrorId = "9000";
                 te.Namespace = "Fwk.Logging";

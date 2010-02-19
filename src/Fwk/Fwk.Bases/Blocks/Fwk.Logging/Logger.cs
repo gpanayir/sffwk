@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 using Fwk.Logging.Targets;
 using Fwk.ConfigSection;
+using Fwk.Exceptions;
 
 namespace Fwk.Logging
 {
@@ -26,7 +27,23 @@ namespace Fwk.Logging
         /// </summary>
         public Logger()
         {
-            _LoggingSection = ConfigurationManager.GetSection("FwkLogging") as LoggingSection;
+            try
+            {
+                _LoggingSection = ConfigurationManager.GetSection("FwkLogging") as LoggingSection;
+            }
+            catch (System.Configuration.ConfigurationException ex)
+            {
+
+                TechnicalException te = new
+                    TechnicalException("Hay problemas al intentar cargar la configuracion FwkLogging. \r\n ", ex);
+                te.Assembly = "Fwk.Logging";
+                te.Class = "LoginSection";
+                te.ErrorId = "9002";
+                te.Namespace = "Fwk.Logging";
+                te.UserName = Environment.UserName;
+                te.Machine = Environment.MachineName;
+                throw te;
+            }
         }
         #endregion
 

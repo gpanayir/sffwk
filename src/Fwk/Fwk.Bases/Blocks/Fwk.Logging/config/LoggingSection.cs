@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Configuration;
 using System.Collections.Generic;
 using Fwk.Logging;
+using Fwk.Exceptions;
 
 namespace Fwk.ConfigSection
 {
@@ -50,17 +52,26 @@ namespace Fwk.ConfigSection
         /// <returns>Regla (Rule).</returns>
         public RuleElement GetRuleByEventType(EventType pEventType)
         {
-            foreach (RuleElement wRule in this.Rules)
+            RuleElement wRule = null;
+            foreach (RuleElement r in this.Rules)
             {
-                foreach (EventType wEvent in wRule.Events)
-                {
-                    if (pEventType == wEvent)
-                    {
-                        return wRule;
-                    }
-                }
+                if ( r.Events.Contains<EventType>(pEventType))
+                wRule = r;
+               
             }
-            return null;
+            if(wRule  ==null)
+            {
+
+                TechnicalException te = new TechnicalException(String.Format("No se encuentra configurado el evento {0} en la seccion FwkLogging.", pEventType.ToString()));
+                te.Assembly = "Fwk.Logging";
+                te.Class = "LoginSection";
+                te.ErrorId = "9001";
+                te.Namespace = "Fwk.Logging";
+                te.UserName = Environment.UserName;
+                te.Machine = Environment.MachineName;
+                throw te;
+            }
+            return wRule;
         }
         #endregion
     }

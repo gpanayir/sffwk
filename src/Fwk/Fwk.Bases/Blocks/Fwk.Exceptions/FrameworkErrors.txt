@@ -17,16 +17,15 @@ ErrorId = 7005
 ErrorId = 7006
  Descripcion =  Se ha intentado ejecutar un servicio que está configurado como no disponible.
 Servicio de configuracion
+
+
+
+-------------------------------- Servicio de configuracion  -----------------------------------
+
 ErrorId = 8004
 Descripcion "Error al cargar el archivo de configuracion de servicios " "Verifique que todos los servicios cuentan con todos los atributos confugurados"
 
-
-
-Servicio de configuracion
---------------------------------   Fwk.Logging -----------------------------------
-ErrorId = 8005
-
-ErrorId = 2002
+ErrorId = 
 Descripcion 
 
 --------------------------------   Fwk.Logging -----------------------------------
@@ -34,6 +33,11 @@ Descripcion
 ErrorId = 9000
 Descripcion: Debe especificar un nombre de archivo para guardar el log.
 
+ErrorId = 9001
+Descripcion: No se encuentra configurado el evento {0} en la seccion FwkLogin.
+
+
+ErrorId = 9002  Hay problemas al intentar cargar la configuracion FwkLogging. Puede que la seccion FwkLogging o uno de sus atributos se encuentre con nombre incorrectos
 --------------------------------   Fwk.Exceptions -----------------------------------
 
 
