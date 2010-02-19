@@ -137,11 +137,7 @@ namespace Fwk.Bases
             set { _Encrypt = value; }
         }
         
-        /// <summary>
-        /// Con un wrapper estatico evitamos la generacion de multiples instancias del wraper en el cliente atravez de las 
-        /// multipoles llamadas desde la clase que implementa Request> 
-        /// </summary>
-        public static IServiceWrapper Wrapper = null;
+     
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
@@ -155,13 +151,12 @@ namespace Fwk.Bases
         {
             TResponse wResponse = new TResponse();
 
-            if (Request<T>.Wrapper == null)
+            if (WrapperFactory.Wrapper == null)
             {
                 try
                 {
-                    Request<T>.Wrapper =
-                        (IServiceWrapper)
-                        ReflectionFunctions.CreateInstance(ConfigurationsHelper.WrapperSetting);
+
+                    WrapperFactory.TryCreateWrapper();
                 }
                 catch (Exception ex)
                 {
@@ -173,7 +168,7 @@ namespace Fwk.Bases
             if (wResponse.Error == null)
             {
 
-                wResponse = Request<T>.Wrapper.ExecuteService<TRequest, TResponse>(req);
+                wResponse = WrapperFactory.Wrapper.ExecuteService<TRequest, TResponse>(req);
             }
 
             return wResponse;

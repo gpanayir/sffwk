@@ -17,7 +17,7 @@ namespace Fwk.Bases
 
 	{
         /// <summary>
-        /// 
+        /// Interfaz de entidad 
         /// </summary>
         IEntity IEntity
         {

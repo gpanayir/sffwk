@@ -46,6 +46,9 @@
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -57,15 +60,12 @@
             this.loadingResultsTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtFilePrefix = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.txtFilePrefix = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemsCount)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -285,6 +285,40 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "No Static use";
             // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(16, 145);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(857, 209);
+            this.textBox1.TabIndex = 12;
+            // 
+            // button8
+            // 
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button8.Location = new System.Drawing.Point(213, 97);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(86, 25);
+            this.button8.TabIndex = 11;
+            this.button8.Text = "Open Log";
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button7.Location = new System.Drawing.Point(213, 37);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(86, 25);
+            this.button7.TabIndex = 10;
+            this.button7.Text = "Open Log";
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // label7
             // 
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -411,6 +445,45 @@
             this.tabPage3.Text = "Static Loguer";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "FilePrefix";
+            // 
+            // txtFilePrefix
+            // 
+            this.txtFilePrefix.Location = new System.Drawing.Point(135, 12);
+            this.txtFilePrefix.Name = "txtFilePrefix";
+            this.txtFilePrefix.Size = new System.Drawing.Size(208, 20);
+            this.txtFilePrefix.TabIndex = 14;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(16, 150);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(857, 227);
+            this.textBox2.TabIndex = 13;
+            // 
+            // button9
+            // 
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button9.Location = new System.Drawing.Point(213, 54);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(86, 25);
+            this.button9.TabIndex = 11;
+            this.button9.Text = "Open Log";
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // button4
             // 
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -432,79 +505,6 @@
             this.button3.TabIndex = 1;
             this.button3.Text = "Warning";
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button7
-            // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button7.Location = new System.Drawing.Point(213, 37);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(86, 25);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "Open Log";
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button8
-            // 
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button8.Location = new System.Drawing.Point(213, 97);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(86, 25);
-            this.button8.TabIndex = 11;
-            this.button8.Text = "Open Log";
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(16, 145);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(857, 209);
-            this.textBox1.TabIndex = 12;
-            // 
-            // button9
-            // 
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button9.Location = new System.Drawing.Point(213, 54);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(86, 25);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "Open Log";
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(16, 150);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(857, 227);
-            this.textBox2.TabIndex = 13;
-            // 
-            // txtFilePrefix
-            // 
-            this.txtFilePrefix.Location = new System.Drawing.Point(135, 12);
-            this.txtFilePrefix.Name = "txtFilePrefix";
-            this.txtFilePrefix.Size = new System.Drawing.Size(208, 20);
-            this.txtFilePrefix.TabIndex = 14;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "FilePrefix";
             // 
             // frmLoggingTest
             // 
