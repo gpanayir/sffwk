@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E882C6F7-0C02-4014-B5E0-BEFD20756C07}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -265,6 +265,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Combo\FwkFlatComboBox.resx">
       <DependentUpon>FwkFlatComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Connectors\FormConnector.resx">
       <DependentUpon>FormConnector.cs</DependentUpon>
@@ -280,9 +281,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MessageViewer\FwkExceptionView.resx">
       <DependentUpon>FwkExceptionView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MessageViewer\FwkMessageView.resx">
       <DependentUpon>FwkMessageView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TexBox\FwkNumericTextBox.resx">
       <DependentUpon>FwkNumericTextBox.cs</DependentUpon>
@@ -376,9 +379,11 @@
     <None Include="Resources\Control_DateTimePicker.bmp" />
     <EmbeddedResource Include="Classes\FrmBase.resx">
       <DependentUpon>FrmBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Classes\FwkUserControlBase.resx">
       <DependentUpon>FwkUserControlBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Design\GridCellSyle\FwkCellStyleGreenFlat.resx">
       <DependentUpon>FwkCellStyleGreenFlat.cs</DependentUpon>
@@ -407,6 +412,7 @@
     <EmbeddedResource Include="ImagesResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ImagesResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Control_ComboBox.bmp" />
   </ItemGroup>
