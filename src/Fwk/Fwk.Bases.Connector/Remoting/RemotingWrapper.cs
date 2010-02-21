@@ -55,7 +55,7 @@ namespace Fwk.Bases.Connector
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-            FwkRemoteObject wFwkRemoteObject = CreateClaseRemota();
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
             return (TResponse)wFwkRemoteObject.ExecuteService(pData);
         }
@@ -111,7 +111,7 @@ namespace Fwk.Bases.Connector
         /// Crea en este caso SimpleFacaddeRemoteObject .-
         /// </summary>
         /// <returns>Instancia de SimpleFacaddeRemoteObject</returns>
-        private static FwkRemoteObject CreateClaseRemota()
+        private static FwkRemoteObject CreateRemoteObject()
 		{
             LoadRemotingConfigSettings();
 
@@ -135,7 +135,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public ServiceConfigurationCollection GetAllServices()
         {
-            FwkRemoteObject wFwkRemoteObject = CreateClaseRemota();
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
             return wFwkRemoteObject.GetServicesList();
           
@@ -150,7 +150,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public ServiceConfiguration GetServiceConfiguration(String pServiceName)
         {
-            FwkRemoteObject wFwkRemoteObject = CreateClaseRemota();
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
             return wFwkRemoteObject.GetServiceConfiguration(pServiceName);
            
         }
@@ -182,7 +182,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void DeleteServiceConfiguration(String  pServiceName)
         {
-            FwkRemoteObject wFwkRemoteObject = CreateClaseRemota();
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
         }
         #endregion [ServiceConfiguration]

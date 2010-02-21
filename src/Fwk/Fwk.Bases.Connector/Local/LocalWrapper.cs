@@ -7,7 +7,7 @@ using Fwk.Exceptions;
 
 namespace Fwk.Bases.Connector
 {
-    class LocalWrapper : IServiceWrapper
+    public class LocalWrapper : IServiceWrapper
     {
 
         /// <summary>
