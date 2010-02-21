@@ -63,7 +63,7 @@ namespace Fwk.Security.ActiveDirectory
 
         public const String DIRECTREPORTS = "directReports";
 
-        public const String NAME = "name";
+        public const String NAME = "name";//Nombre completo
 
         public const String OBJECTGUID = "objectGUID";
 
@@ -101,7 +101,7 @@ namespace Fwk.Security.ActiveDirectory
 
         public const String LEGACYEXCHANGEDN = "legacyExchangeDN";
 
-        public const String USERPRINCIPALNAME = "userPrincipalName";
+        public const String USERPRINCIPALNAME = "userPrincipalName";//Nombre usuario como aaguirre@actionline.com
 
         public const String EXTENSION = "ipPhone";
 

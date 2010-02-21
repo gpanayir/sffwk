@@ -22,8 +22,6 @@ namespace Fwk.Security.ActiveDirectory
             }
         }
 
-
-
         /// <summary>
         ///LDAPUser property
         ///This property is reading the LDAP user from the config file.
@@ -36,8 +34,6 @@ namespace Fwk.Security.ActiveDirectory
             }
         }
 
-
-
         /// <summary>
         /// LDAPPassword property
         ///This property is reading the LDAP Password from the config file.
@@ -49,48 +45,43 @@ namespace Fwk.Security.ActiveDirectory
                 return System.Configuration.ConfigurationManager.AppSettings["LDAPPassword"];
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         private String LDAPDomain
         {
-
             get
             {
-
                 return System.Configuration.ConfigurationManager.AppSettings["LDAPDomain"];
-
             }
-
         }
-
- 
 
         /// <summary>
         /// Search Root Property
-        ///This Property is initializing the Directory entry by passing the LDAPUser, LDAPPAth, and LDAPPassword.  This property is creating a new instance DirectoryEntry and returning that.
+        ///This Property is initializing the Directory entry by passing the LDAPUser, LDAPPAth, and LDAPPassword.  
+        ///This property is creating a new instance DirectoryEntry and returning that.
         /// </summary>
         private DirectoryEntry SearchRoot
         {
             get
             {
-
                 if (_directoryEntry == null)
                 {
-
                     _directoryEntry = new DirectoryEntry(LDAPPath, LDAPUser, LDAPPassword, AuthenticationTypes.Secure);
-
                 }
                 return _directoryEntry;
-
             }
 
         }
 
+        #region users
 
         /// <summary>
         /// This function will take a full name as input parameter and return AD user corresponding to that. 
         /// </summary>
-        /// <param name="userName"></param>
+        /// <param name="userName">Nombre completo del usuario</param>
         /// <returns></returns>
-        public ADUserDetail GetUserByFullName(String userName)
+        public ADUser User_GetByFullName(String userName)
         {
             try
             {
@@ -102,7 +93,7 @@ namespace Fwk.Security.ActiveDirectory
                 if (results != null)
                 {
                     DirectoryEntry user = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword);
-                    return ADUserDetail.GetUser(user);
+                    return ADUser.GetUser(user);
                 }
                 else
                 {
@@ -110,66 +101,23 @@ namespace Fwk.Security.ActiveDirectory
                 }
 
             }
-
             catch (Exception ex)
             {
                 return null;
             }
 
         }
-
-        ///// <summary>
-        ///// This function will return AD user. This takes Login name as input parameter. 
-        ///// </summary>
-        ///// <param name="userName"></param>
-        ///// <returns></returns>
-        //public ADUserDetail GetUserByLoginName(String userName)
-        //{
-
-        //    try
-        //    {
-
-        //        _directoryEntry = null;
-
-        //        DirectorySearcher directorySearch = new DirectorySearcher(SearchRoot);
-
-        //        directorySearch.Filter = "(&(objectClass=user)(SAMAccountName=" + userName + "))";
-
-        //        SearchResult results = directorySearch.FindOne();
-
-
-
-        //        if (results != null)
-        //        {
-
-        //            DirectoryEntry user = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword);
-
-        //            return ADUserDetail.GetUser(user);
-
-        //        }
-
-        //        return null;
-
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-
-        //        return null;
-
-        //    }
-
-        //}
+    
 
         /// <summary>
         /// This function will take a group name as input and return list of AD User in that group.
         /// </summary>
-        /// <param name="groupName"></param>
+        /// <param name="groupName">Nombre del grupo</param>
         /// <returns></returns>
-        public List<ADUserDetail> GetUserFromGroup(String groupName)
+        public List<ADUser> Users_GetFromGroup(String groupName)
         {
 
-            List<ADUserDetail> userlist = new List<ADUserDetail>();
+            List<ADUser> userlist = new List<ADUser>();
 
             try
             {
@@ -185,15 +133,11 @@ namespace Fwk.Security.ActiveDirectory
                 if (results != null)
                 {
 
-
-
                     DirectoryEntry deGroup = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword);
 
                     System.DirectoryServices.PropertyCollection pColl = deGroup.Properties;
 
                     int count = pColl["member"].Count;
-
-
 
 
 
@@ -210,13 +154,9 @@ namespace Fwk.Security.ActiveDirectory
 
                         string path = respath + objpath;
 
-
-
-
-
                         DirectoryEntry user = new DirectoryEntry(path, LDAPUser, LDAPPassword);
 
-                        ADUserDetail userobj = ADUserDetail.GetUser(user);
+                        ADUser userobj = ADUser.GetUser(user);
 
                         userlist.Add(userobj);
 
@@ -246,12 +186,12 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="fName"></param>
         /// <returns></returns>
-        public List<ADUserDetail> GetUsersByFirstName(string fName)
+        public List<ADUser> User_GetByFirstName(string fName)
         {
 
             //UserProfile user;
 
-            List<ADUserDetail> userlist = new List<ADUserDetail>();
+            List<ADUser> userlist = new List<ADUser>();
 
             string filter = "";
 
@@ -272,29 +212,15 @@ namespace Fwk.Security.ActiveDirectory
             //filter = "(&(objectClass=user)(objectCategory=person)" + filter + ")";
 
             filter = "(&(objectClass=user)(objectCategory=person)(givenName=" + fName + "*))";
-
-
-
-
-
+           
             directorySearch.Filter = filter;
-
-
 
             SearchResultCollection userCollection = directorySearch.FindAll();
 
             foreach (SearchResult users in userCollection)
             {
-
                 DirectoryEntry userEntry = new DirectoryEntry(users.Path, LDAPUser, LDAPPassword);
-
-                ADUserDetail userInfo = ADUserDetail.GetUser(userEntry);
-
-
-
-
-
-                userlist.Add(userInfo);
+                userlist.Add(new ADUser(userEntry));
 
             }
 
@@ -311,7 +237,7 @@ namespace Fwk.Security.ActiveDirectory
                     DirectoryEntry deGroup = new DirectoryEntry(r.Path, LDAPUser, LDAPPassword);
 
                     // ADUserDetail dhan = new ADUserDetail();
-                    ADUserDetail agroup = ADUserDetail.GetUser(deGroup);
+                    ADUser agroup = ADUser.GetUser(deGroup);
                     userlist.Add(agroup);
                 }
             }
@@ -325,7 +251,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="userlogin"></param>
         /// <param name="groupName"></param>
         /// <returns></returns>
-        public bool AddUserToGroup(string userlogin, string groupName)
+        public bool User_AddToGroup(string userlogin, string groupName)
         {
 
             try
@@ -351,6 +277,32 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
+        /// <summary>
+        /// Obtiene todo los usuarios pertenecientes al dominio.-
+        /// Busca por cn nombre@mail retorna el sAMAccountName ejemplo: moviedo
+        /// </summary>
+        List<String> User_GetGroups(String pUserName)
+        {
+            List<String> list = new List<String>();
+            DirectorySearcher directorySearch = new DirectorySearcher(SearchRoot);
+
+            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", pUserName);
+
+
+            directorySearch.Filter = filter;
+            SearchResult result = directorySearch.FindOne();
+            DirectoryEntry directoryEntryUser = result.GetDirectoryEntry();
+
+            ///TODO:Ver grupos de usuarios
+            foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
+            {
+                list.Add(grouInfo);
+            }
+            directoryEntryUser.Close();
+            return list;
+        }
+
+
 
         /// <summary>
         /// This function will take a user login name and remove this to a group of AD.
@@ -358,7 +310,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="userlogin"></param>
         /// <param name="groupName"></param>
         /// <returns></returns>
-        public bool RemoveUserToGroup(string userlogin, string groupName)
+        public bool User_RemoveToGroup(string userlogin, string groupName)
         {
 
             try
@@ -378,6 +330,55 @@ namespace Fwk.Security.ActiveDirectory
             {
 
                 return false;
+
+            }
+
+        }
+
+        #endregion
+
+        #region Groups
+        /// <summary>
+        /// Obtiene un FwkIdentity que reprecenta un grupo 
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <returns></returns>
+        public ObjectDomainGroup GetGroup(String pName)
+        {
+            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "group", pName);
+
+
+            _Searcher.Filter = filter;
+            SearchResult result = _Searcher.FindOne();
+            if (result == null) return null;
+            DirectoryEntry directoryEntry = result.GetDirectoryEntry();
+
+            Fwk.Security.Common.ObjectDomainGroup wObjectDomainGroup = new ObjectDomainGroup(directoryEntry);
+            wObjectDomainGroup.Domain = _Domain;
+            return wObjectDomainGroup;
+
+        }
+
+
+        #endregion
+
+
+
+
+        private static String GetProperty(DirectoryEntry userDetail, String propertyName)
+        {
+
+            if (userDetail.Properties.Contains(propertyName))
+            {
+
+                return userDetail.Properties[propertyName][0].ToString();
+
+            }
+
+            else
+            {
+
+                return string.Empty;
 
             }
 

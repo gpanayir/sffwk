@@ -15,7 +15,7 @@ namespace Fwk.Security.ActiveDirectory
     /// 5.       Get Property is returning a string which holds property of AD User.
     /// 6.       GetUser static function is returning an ADUser. 
     /// </summary>
-    public class ADUserDetail
+    public class ADUser
     {
 
         private String _firstName;
@@ -58,124 +58,62 @@ namespace Fwk.Security.ActiveDirectory
 
         private String _department;
 
-
-
         public String Department
         {
-
             get { return _department; }
-
         }
-
-
-
         public String FirstName
         {
-
             get { return _firstName; }
-
         }
-
-
 
         public String MiddleName
         {
-
             get { return _middleName; }
-
         }
-
-
 
         public String LastName
         {
-
             get { return _lastName; }
-
         }
-
-
 
         public String LoginName
         {
-
-            get { return _loginName; }
-
+           get { return _loginName; }
         }
-
-
-
         public String LoginNameWithDomain
         {
-
-            get { return _loginNameWithDomain; }
-
-        }
-
-
-
+           get { return _loginNameWithDomain; }
+       }
         public String StreetAddress
         {
-
-            get { return _streetAddress; }
-
+           get { return _streetAddress; }
         }
-
-
 
         public String City
         {
-
             get { return _city; }
-
         }
-
-
-
         public String State
         {
-
             get { return _state; }
-
         }
-
-
-
         public String PostalCode
         {
-
             get { return _postalCode; }
-
         }
-
-
-
         public String Country
         {
-
             get { return _country; }
-
         }
-
-
-
         public String HomePhone
         {
-
             get { return _homePhone; }
-
         }
-
-
-
-        public String Extension
+       public String Extension
         {
-
             get { return _extension; }
-
         }
-
-
 
         public String Mobile
         {
@@ -183,75 +121,62 @@ namespace Fwk.Security.ActiveDirectory
             get { return _mobile; }
 
         }
-
-
-
         public String Fax
         {
-
-            get { return _fax; }
-
+           get { return _fax; }
         }
-
-
-
         public String EmailAddress
         {
-
             get { return _emailAddress; }
-
-        }
-
-
+       }
 
         public String Title
         {
-
             get { return _title; }
-
         }
-
-
 
         public String Company
         {
-
             get { return _company; }
-
         }
 
+        //public ADUser Manager
+        //{
+        //    get
+        //    {
+        //        if (!String.IsNullOrEmpty(_managerName))
+        //        {
+        //            ADHelper ad = new ADHelper();
+        //            return ad.GetUserByFullName(_managerName);
+        //        }
 
+        //        return null;
 
-        public ADUserDetail Manager
+        //    }
+
+        //}
+        List<string> _Groups;
+        public List<string> _Groups
         {
-
             get
             {
-
-                if (!String.IsNullOrEmpty(_managerName))
-                {
-
-                    ADHelper ad = new ADHelper();
-
-                    return ad.GetUserByFullName(_managerName);
-
-                }
-
-                return null;
-
+                    return _Groups;
             }
+            
 
         }
-
 
 
         public String ManagerName
         {
-
             get { return _managerName; }
 
         }
-        private ADUserDetail(DirectoryEntry directoryUser)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="directoryUser"></param>
+        private ADUser(DirectoryEntry directoryUser)
         {
 
 
@@ -272,19 +197,12 @@ namespace Fwk.Security.ActiveDirectory
 
             if (!string.IsNullOrEmpty(userPrincipalName))
             {
-
                 domainAddress = userPrincipalName.Split('@')[1];
-
             }
-
             else
             {
-
                 domainAddress = String.Empty;
-
             }
-
-
 
             if (!string.IsNullOrEmpty(domainAddress))
             {
@@ -339,40 +257,75 @@ namespace Fwk.Security.ActiveDirectory
 
             }
 
+
+
         }
 
 
 
 
 
-        private static String GetProperty(DirectoryEntry userDetail, String propertyName)
+        
+
+
+
+
+    }
+
+
+    public class ADGroup
+    {
+        string _CN;
+        List<String> _OU;
+        public string CN
         {
+            get { return _CN; }
+            set { _CN = value; }
+        }
 
-            if (userDetail.Properties.Contains(propertyName))
+
+
+        public List<String> OU
+        {
+            get { return _OU; }
+            set { _OU = value; }
+        }
+        List<ADUser> _Users;
+        public List<ADUser> Users
+        {
+            get
             {
-
-                return userDetail.Properties[propertyName][0].ToString();
-
+                if (_Users == null)
+                   
+                return _Users;
             }
 
-            else
-            {
+        }
 
-                return string.Empty;
+
+        void SetNameInfo(string pNameInfo)
+        {
+            int i = 0;
+            string[] propAux;
+            _OU = new List<String>();
+            foreach (string prop in pNameInfo.Split(','))
+            {
+                propAux = prop.Split('=');
+                //if (propAux[0].CompareTo("CN") == 0)
+                //{
+                //    base.Name = propAux[1];
+                //    _CN = base.Name;
+
+                //}
+                if (propAux[0].CompareTo("OU") == 0)
+                {
+                    _OU.Add(propAux[1]);
+                    i++;
+                }
 
             }
-
         }
-
-
-
-        public static ADUserDetail GetUser(DirectoryEntry directoryUser)
-        {
-
-            return new ADUserDetail(directoryUser);
-
-        }
-
+        
     }
 
 }

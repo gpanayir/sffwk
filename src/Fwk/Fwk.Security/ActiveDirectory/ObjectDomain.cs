@@ -63,10 +63,9 @@ namespace Fwk.Security.Common
 
         }
     }
-
     public class ObjectDomainGroup : ObjectDomain
     {
-
+        private List<FwkIdentity> _ActiveDirectoryUsers = null;
         List<ObjectDomainGroup> _ActiveDirectoryMembersGroups = null;
 
         public List<ObjectDomainGroup> ActiveDirectoryMembersGroups
@@ -79,9 +78,8 @@ namespace Fwk.Security.Common
                 _ActiveDirectoryMembersGroups = value;
             }
         }
-        private List<FwkIdentity> _ActiveDirectoryUsers = null;
-
-        public List<FwkIdentity> ActiveDirectoryUsers
+    
+        public List<FwkIdentity> Users
         {
             get
             {

@@ -58,7 +58,7 @@ namespace Fwk.Security.Common
             Fwk.Security.Common.ObjectDomainGroup wObjectDomainGroup = new ObjectDomainGroup(directoryEntry);
             wObjectDomainGroup.Domain = _Domain;
             return wObjectDomainGroup;
-
+           
         }
 
         /// <summary>
@@ -128,8 +128,12 @@ namespace Fwk.Security.Common
             }
 
         }
-
-        ArrayList GetADGroupUsers(string groupName)
+        /// <summary>
+        /// Lista simple de grupos de usuario
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <returns></returns>
+        List<string> GetADGroupUsers(string groupName)
         {
             SearchResult result;
             DirectorySearcher search = new DirectorySearcher();
@@ -137,7 +141,7 @@ namespace Fwk.Security.Common
             search.PropertiesToLoad.Add("member");
             result = search.FindOne();
 
-            ArrayList userNames = new ArrayList();
+            List<string> userNames = new List<string>();
             if (result != null)
             {
                 foreach (string strMember in result.Properties["member"])
