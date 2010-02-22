@@ -7,32 +7,44 @@ using Fwk.Configuration;
 
 namespace Fwk.Security.ActiveDirectory
 {
+    
+
     public class ADHelper
     {
+
         DirectoryEntry _directoryEntry;
+        string _LDAPPath;
         /// <summary>
-        /// LDAPPath property
-        ///This property is reading the LDAPPath from config file. 
+        ///Ej: LDAP://domain/DC=xxx,DC=com
         /// </summary>
         private String LDAPPath
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["LDAPPath"];
+                return _LDAPPath;
+            }
+            set
+            {
+                _LDAPPath = value;
             }
         }
 
+        string _LDAPUser;
         /// <summary>
         ///LDAPUser property
-        ///This property is reading the LDAP user from the config file.
         /// </summary>
         private String LDAPUser
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["LDAPUser"];
+                return _LDAPUser;
+            }
+            set
+            {
+                _LDAPUser = value;
             }
         }
+        string _LDAPPassword;
 
         /// <summary>
         /// LDAPPassword property
@@ -42,24 +54,35 @@ namespace Fwk.Security.ActiveDirectory
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["LDAPPassword"];
+                return _LDAPPassword;
+            }
+            set
+            {
+                _LDAPPassword = value;
             }
         }
+
+        string _LDAPDomain;
+
         /// <summary>
-        /// 
+        /// Dominio
         /// </summary>
         private String LDAPDomain
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["LDAPDomain"];
+                return _LDAPDomain;
+            }
+            set
+            {
+                _LDAPDomain = value;
             }
         }
 
         /// <summary>
         /// Search Root Property
-        ///This Property is initializing the Directory entry by passing the LDAPUser, LDAPPAth, and LDAPPassword.  
-        ///This property is creating a new instance DirectoryEntry and returning that.
+        /// Es una DirectoryEntry a la raiz del active directory 
+        /// Utiliza par ala coneccion LDAPUser, LDAPPAth, and LDAPPassword.  
         /// </summary>
         private DirectoryEntry SearchRoot
         {
@@ -83,17 +106,18 @@ namespace Fwk.Security.ActiveDirectory
         /// <returns></returns>
         public ADUser User_GetByFullName(String userName)
         {
+            _directoryEntry = null;
             try
             {
-                _directoryEntry = null;
+                
                 DirectorySearcher directorySearch = new DirectorySearcher(SearchRoot);
                 directorySearch.Filter = "(&(objectClass=user)(cn=" + userName + "))";
                 SearchResult results = directorySearch.FindOne();
 
                 if (results != null)
                 {
-                    DirectoryEntry user = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword);
-                    return ADUser.GetUser(user);
+                    DirectoryEntry userDirectoryEntry = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword);
+                    return new ADUser(userDirectoryEntry);
                 }
                 else
                 {
@@ -103,33 +127,27 @@ namespace Fwk.Security.ActiveDirectory
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
 
         }
     
 
         /// <summary>
-        /// This function will take a group name as input and return list of AD User in that group.
+        /// Retorna la lista de usuarios pertenecientes a un determinado grupo
         /// </summary>
         /// <param name="groupName">Nombre del grupo</param>
         /// <returns></returns>
-        public List<ADUser> Users_GetFromGroup(String groupName)
+        public List<ADUser> Users_SearchByGroup(String groupName)
         {
 
             List<ADUser> userlist = new List<ADUser>();
-
+            _directoryEntry = null;
             try
             {
-
-                _directoryEntry = null;
-
                 DirectorySearcher directorySearch = new DirectorySearcher(SearchRoot);
-
                 directorySearch.Filter = "(&(objectClass=group)(SAMAccountName=" + groupName + "))";
-
                 SearchResult results = directorySearch.FindOne();
-
                 if (results != null)
                 {
 
@@ -156,7 +174,7 @@ namespace Fwk.Security.ActiveDirectory
 
                         DirectoryEntry user = new DirectoryEntry(path, LDAPUser, LDAPPassword);
 
-                        ADUser userobj = ADUser.GetUser(user);
+                        ADUser userobj = new ADUser(user);
 
                         userlist.Add(userobj);
 
@@ -182,19 +200,17 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// This function will return Users and Group information from AD on basis of first characters. Wild character * is used to filter the criteria. 
+        /// Retorna una lista de usuarios cuyo nombre comiense con fname.-
+        /// Ejemplo: evel*
         /// </summary>
         /// <param name="fName"></param>
         /// <returns></returns>
-        public List<ADUser> User_GetByFirstName(string fName)
+        public List<ADUser> Users_Search_StarName(string fName)
         {
 
             //UserProfile user;
 
             List<ADUser> userlist = new List<ADUser>();
-
-            string filter = "";
-
 
 
             _directoryEntry = null;
@@ -207,7 +223,7 @@ namespace Fwk.Security.ActiveDirectory
 
             //directorySearch.Filter = "(&(objectClass=user)(SAMAccountName=" + userName + "))";
 
-            filter = string.Format("(givenName={0}*", fName);
+            string filter = string.Format("(givenName={0}*", fName);
 
             //filter = "(&(objectClass=user)(objectCategory=person)" + filter + ")";
 
@@ -237,7 +253,7 @@ namespace Fwk.Security.ActiveDirectory
                     DirectoryEntry deGroup = new DirectoryEntry(r.Path, LDAPUser, LDAPPassword);
 
                     // ADUserDetail dhan = new ADUserDetail();
-                    ADUser agroup = ADUser.GetUser(deGroup);
+                    ADUser agroup = new ADUser(deGroup);
                     userlist.Add(agroup);
                 }
             }
@@ -335,6 +351,134 @@ namespace Fwk.Security.ActiveDirectory
 
         }
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <returns></returns>
+        public  bool User_Exists(string UserName)
+        {
+
+            
+
+            //create instance fo the direcory searcher
+            DirectorySearcher deSearch = new DirectorySearcher(SearchRoot);
+
+            //set the search filter
+            deSearch.Filter = "(&(objectClass=user) (cn=" + UserName + "))";
+
+            //find the first instance
+            SearchResultCollection results = deSearch.FindAll();
+
+            //if the username and password do match, then this implies a valid login
+            //if so then return the DirectoryEntry object
+            if (results.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+
+        /// <summary>
+        /// This method will not actually log a user in, but will perform tests to ensure
+        /// that the user account exists (matched by both the username and password), and also
+        /// checks if the account is active.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public LoginResult User_Login(string userName, string password)
+        {
+            //first, check if the logon exists based on the username and password
+            //DirectoryEntry de = GetUser(UserName,Password);
+
+            if (User_IsValid(userName, password))
+            {
+                ADUser de = User_GetByFullName(userName);
+       
+                if (de != null)
+                {
+                    
+                    //convert the accountControl value so that a logical operation can be performed
+                    //to check of the Disabled option exists.
+                    int userAccountControl = Convert.ToInt32(de.UserAccountControl);
+                  
+
+                    //if the disabled item does not exist then the account is active
+                    if (!User_IsAccountActive(userAccountControl))
+                    {
+                        return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+                    }
+                    else
+                    {
+                        return LoginResult.LOGIN_OK;
+                    }
+
+                }
+                else
+                {
+                    return LoginResult.LOGIN_USER_DOESNT_EXIST;
+                }
+            }
+            else
+            {
+                return LoginResult.LOGIN_USER_DOESNT_EXIST;
+            }
+        }
+
+        /// <summary>
+        /// This will perfrom a logical operation on the userAccountControl values
+        /// to see if the user account is enabled or disabled.  The flag for determining if the
+        /// account is active is a bitwise value (decimal =2)
+        /// </summary>
+        /// <param name="userAccountControl"></param>
+        /// <returns></returns>
+        public  bool User_IsAccountActive(int userAccountControl)
+        {
+            int userAccountControl_Disabled = Convert.ToInt32(ADAccountOptions.UF_ACCOUNTDISABLE);
+            int flagExists = userAccountControl & userAccountControl_Disabled;
+            //if a match is found, then the disabled flag exists within the control flags
+            if (flagExists > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// This method will attempt to log in a user based on the username and password
+        /// to ensure that they have been set up within the Active Directory.  This is the basic UserName, Password
+        /// check.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public  bool User_IsValid(string userName, string password)
+        {
+            try
+            {
+                //if the object can be created then return true
+                DirectoryEntry deUser = User_Get(userName, password);
+                deUser.Close();
+                return true;
+            }
+            catch (Exception)
+            {
+                //otherwise return false
+                return false;
+            }
+        }
+
+
         #endregion
 
         #region Groups
@@ -343,18 +487,18 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="pName"></param>
         /// <returns></returns>
-        public ObjectDomainGroup GetGroup(String pName)
+        public ADGroup GetGroup(String pName)
         {
             string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "group", pName);
 
-
-            _Searcher.Filter = filter;
-            SearchResult result = _Searcher.FindOne();
+            DirectorySearcher directorySearch = new DirectorySearcher(SearchRoot);
+            directorySearch.Filter = filter;
+            SearchResult result = directorySearch.FindOne();
             if (result == null) return null;
             DirectoryEntry directoryEntry = result.GetDirectoryEntry();
 
-            Fwk.Security.Common.ObjectDomainGroup wObjectDomainGroup = new ObjectDomainGroup(directoryEntry);
-            wObjectDomainGroup.Domain = _Domain;
+            ADGroup wObjectDomainGroup = new ADGroup(directoryEntry, LDAPDomain);
+        
             return wObjectDomainGroup;
 
         }
@@ -362,10 +506,87 @@ namespace Fwk.Security.ActiveDirectory
 
         #endregion
 
+        /// <summary>
+        /// This will return a DirectoryEntry object if the user does exist
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <returns></returns>
+        public DirectoryEntry User_Get(string UserName)
+        {
+            //create an instance of the DirectoryEntry
+            DirectoryEntry de = GetDirectoryObject();
+
+            //create instance fo the direcory searcher
+            DirectorySearcher deSearch = new DirectorySearcher();
+
+            deSearch.SearchRoot = de;
+            //set the search filter
+            deSearch.Filter = "(&(objectClass=user)(cn=" + UserName + "))";
+            deSearch.SearchScope = SearchScope.Subtree;
+
+            //find the first instance
+            SearchResult results = deSearch.FindOne();
+
+            //if found then return, otherwise return Null
+            if (results != null)
+            {
+                de = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword, AuthenticationTypes.Secure);
+                //if so then return the DirectoryEntry object
+                return de;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Override method which will perfrom query based on combination of username and password
+        /// This is used with the login process to validate the user credentials and return a user
+        /// object for further validation.  This is slightly different from the other GetUser... methods as this
+        /// will use the UserName and Password supplied as the authentication to check if the user exists, if so then
+        /// the users object will be queried using these credentials.s
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public DirectoryEntry User_Get(string UserName, string Password)
+        {
+            
+            //create an instance of the DirectoryEntry
+            DirectoryEntry de = GetDirectoryObject(UserName, Password);
+
+            //create instance fo the direcory searcher
+            DirectorySearcher deSearch = new DirectorySearcher();
+
+            deSearch.SearchRoot = de;
+            //set the search filter
+            deSearch.Filter = "(&(objectClass=user)(cn=" + UserName + "))";
+            deSearch.SearchScope = SearchScope.Subtree;
+
+            //set the property to return
+            //deSearch.PropertiesToLoad.Add("givenName");
+
+            //find the first instance
+            SearchResult results = deSearch.FindOne();
+
+            //if a match is found, then create directiry object and return, otherwise return Null
+            if (results != null)
+            {
+                //create the user object based on the admin priv.
+                de = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword, AuthenticationTypes.Secure);
+                return de;
+            }
+            else
+            {
+                return null;
+            }
 
 
+        }
 
-        private static String GetProperty(DirectoryEntry userDetail, String propertyName)
+
+        public static String GetProperty(DirectoryEntry userDetail, String propertyName)
         {
 
             if (userDetail.Properties.Contains(propertyName))
@@ -383,5 +604,99 @@ namespace Fwk.Security.ActiveDirectory
             }
 
         }
+
+        /// <summary>
+        /// This is an internal method for retreiving a new directoryentry object
+        /// </summary>
+        /// <returns></returns>
+        private  DirectoryEntry GetDirectoryObject()
+        {
+            DirectoryEntry oDE;
+
+            oDE = new DirectoryEntry(LDAPPath, LDAPUser, LDAPPassword, AuthenticationTypes.Secure);
+
+            return oDE;
+        }
+
+        /// <summary>
+        /// Override function that that will attempt a logon based on the users credentials
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
+        private  DirectoryEntry GetDirectoryObject(string UserName, string Password)
+        {
+            DirectoryEntry oDE;
+
+            oDE = new DirectoryEntry(LDAPPath, UserName, Password, AuthenticationTypes.Secure);
+
+            return oDE;
+        }
+
+        /// <summary>
+        /// This will create the directory entry based on the domain object to return
+        /// The DomainReference will contain the qualified syntax for returning an entry
+        /// at the location rather than returning the root.  
+        /// i.e. /CN=Users,DC=creditsights, DC=cyberelves, DC=Com
+        /// </summary>
+        /// <param name="DomainReference"></param>
+        /// <returns></returns>
+        private  DirectoryEntry GetDirectoryObject(string DomainReference)
+        {
+            DirectoryEntry oDE;
+
+            oDE = new DirectoryEntry(LDAPPath + DomainReference, LDAPUser, LDAPPassword, AuthenticationTypes.Secure);
+
+            return oDE;
+        }
+
+        /// <summary>
+        /// Addition override that will allow ovject to be created based on the users credentials.
+        /// This is useful for instances such as setting password etc.
+        /// </summary>
+        /// <param name="DomainReference"></param>
+        /// <param name="UserName"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
+        private  DirectoryEntry GetDirectoryObject(string DomainReference, string UserName, string Password)
+        {
+            DirectoryEntry oDE;
+
+            oDE = new DirectoryEntry(LDAPPath + DomainReference, UserName, Password, AuthenticationTypes.Secure);
+
+            return oDE;
+        }
+
     }
+
+
+    #region Enumerations
+    public enum ADAccountOptions
+    {
+        UF_TEMP_DUPLICATE_ACCOUNT = 0x0100,
+        UF_NORMAL_ACCOUNT = 0x0200,
+        UF_INTERDOMAIN_TRUST_ACCOUNT = 0x0800,
+        UF_WORKSTATION_TRUST_ACCOUNT = 0x1000,
+        UF_SERVER_TRUST_ACCOUNT = 0x2000,
+        UF_DONT_EXPIRE_PASSWD = 0x10000,
+        UF_SCRIPT = 0x0001,
+        UF_ACCOUNTDISABLE = 0x0002,
+        UF_HOMEDIR_REQUIRED = 0x0008,
+        UF_LOCKOUT = 0x0010,
+        UF_PASSWD_NOTREQD = 0x0020,
+        UF_PASSWD_CANT_CHANGE = 0x0040,
+        UF_ACCOUNT_LOCKOUT = 0X0010,
+        UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED = 0X0080,
+    }
+
+
+    public enum LoginResult
+    {
+        LOGIN_OK = 0,
+        LOGIN_USER_DOESNT_EXIST,
+        LOGIN_USER_ACCOUNT_INACTIVE
+    }
+
+    #endregion
+    
 }

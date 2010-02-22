@@ -11,11 +11,17 @@ namespace Fwk.Security.Common
     {
         string _Name, _FullName, _Category ;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public String Name
         {
             get { return _Name; }
             set { _Name = value; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Category
         {
             get { return _Category; }
@@ -120,6 +126,9 @@ namespace Fwk.Security.Common
             set { _Description = value; }
         }
 
+        /// <summary>
+        /// CN=GS_CalidadTP_R,OU=Avanzados,OU=Analistas,OU=Seguridad,DC=actionlinecba,DC=org
+        /// </summary>
         public string DistinguishedName
         {
             get { return _DistinguishedName; }
@@ -129,7 +138,8 @@ namespace Fwk.Security.Common
        
 
         /// <summary>
-        /// Nombre usuario como moviedo@actionline.com
+        /// Nombre usuario como moviedo@actionline.com.- A munudo abreviado como UPN y se ve como 
+        /// un e-mail.- Este valor debe ser unico en el Arbol (Forest) y es usado para loguearce en este.- 
         /// </summary>
         public string UserPrincipalName
         {

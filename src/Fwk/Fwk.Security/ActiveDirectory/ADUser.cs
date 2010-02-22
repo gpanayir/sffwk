@@ -7,7 +7,7 @@ using System.DirectoryServices;
 namespace Fwk.Security.ActiveDirectory
 {
     /// <summary>
-    /// This class will have the properties corresponding to the information of the AD User. 
+    /// Clase que reprecenta un usuario de active directory.- 
     /// 1.       This class has read only properties for fetching First Name, Last Name, City, Login Name etc.
     /// 2.       Constructor of the class is taking one parameter of type DirectoryEntry class.
     /// 3.       In Constructor all the information about ADUser is getting fetched using static class ADProperties.
@@ -17,6 +17,7 @@ namespace Fwk.Security.ActiveDirectory
     /// </summary>
     public class ADUser
     {
+        #region Properties 
 
         private String _firstName;
 
@@ -57,7 +58,17 @@ namespace Fwk.Security.ActiveDirectory
         private String _managerName;
 
         private String _department;
+        private String _UserAccountControl;
 
+        /// <summary>
+        /// Reprecenta la propiedad: userAccountControl Se utiliza para dehabilitar una cuenta.-
+        /// Valor 514 dehabilita, mientras 512 mantiene la cuenta lista para logon.-
+        /// </summary>
+        public String UserAccountControl
+        {
+            get { return _UserAccountControl; }
+        }
+        
         public String Department
         {
             get { return _department; }
@@ -140,31 +151,9 @@ namespace Fwk.Security.ActiveDirectory
             get { return _company; }
         }
 
-        //public ADUser Manager
-        //{
-        //    get
-        //    {
-        //        if (!String.IsNullOrEmpty(_managerName))
-        //        {
-        //            ADHelper ad = new ADHelper();
-        //            return ad.GetUserByFullName(_managerName);
-        //        }
-
-        //        return null;
-
-        //    }
-
-        //}
+      
         List<string> _Groups;
-        public List<string> _Groups
-        {
-            get
-            {
-                    return _Groups;
-            }
-            
-
-        }
+       
 
 
         public String ManagerName
@@ -172,11 +161,13 @@ namespace Fwk.Security.ActiveDirectory
             get { return _managerName; }
 
         }
+        #endregion
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="directoryUser"></param>
-        private ADUser(DirectoryEntry directoryUser)
+        public ADUser(DirectoryEntry directoryUser)
         {
 
 
@@ -184,16 +175,16 @@ namespace Fwk.Security.ActiveDirectory
             String domainAddress;
 
             String domainName;
+            _UserAccountControl = ADHelper.GetProperty(directoryUser, ADProperties.USERACCOUNTCONTROL);
+            _firstName = ADHelper.GetProperty(directoryUser, ADProperties.FIRSTNAME);
 
-            _firstName = GetProperty(directoryUser, ADProperties.FIRSTNAME);
+            _middleName = ADHelper.GetProperty(directoryUser, ADProperties.MIDDLENAME);
 
-            _middleName = GetProperty(directoryUser, ADProperties.MIDDLENAME);
+            _lastName = ADHelper.GetProperty(directoryUser, ADProperties.LASTNAME);
 
-            _lastName = GetProperty(directoryUser, ADProperties.LASTNAME);
+            _loginName = ADHelper.GetProperty(directoryUser, ADProperties.LOGINNAME);
 
-            _loginName = GetProperty(directoryUser, ADProperties.LOGINNAME);
-
-            String userPrincipalName = GetProperty(directoryUser, ADProperties.USERPRINCIPALNAME);
+            String userPrincipalName = ADHelper.GetProperty(directoryUser, ADProperties.USERPRINCIPALNAME);
 
             if (!string.IsNullOrEmpty(userPrincipalName))
             {
@@ -220,33 +211,33 @@ namespace Fwk.Security.ActiveDirectory
 
             _loginNameWithDomain = String.Format(@"{0}\{1}", domainName, _loginName);
 
-            _streetAddress = GetProperty(directoryUser, ADProperties.STREETADDRESS);
+            _streetAddress = ADHelper.GetProperty(directoryUser, ADProperties.STREETADDRESS);
 
-            _city = GetProperty(directoryUser, ADProperties.CITY);
+            _city = ADHelper.GetProperty(directoryUser, ADProperties.CITY);
 
-            _state = GetProperty(directoryUser, ADProperties.STATE);
+            _state = ADHelper.GetProperty(directoryUser, ADProperties.STATE);
 
-            _postalCode = GetProperty(directoryUser, ADProperties.POSTALCODE);
+            _postalCode = ADHelper.GetProperty(directoryUser, ADProperties.POSTALCODE);
 
-            _country = GetProperty(directoryUser, ADProperties.COUNTRY);
+            _country = ADHelper.GetProperty(directoryUser, ADProperties.COUNTRY);
 
-            _company = GetProperty(directoryUser, ADProperties.COMPANY);
+            _company = ADHelper.GetProperty(directoryUser, ADProperties.COMPANY);
 
-            _department = GetProperty(directoryUser, ADProperties.DEPARTMENT);
+            _department = ADHelper.GetProperty(directoryUser, ADProperties.DEPARTMENT);
 
-            _homePhone = GetProperty(directoryUser, ADProperties.HOMEPHONE);
+            _homePhone = ADHelper.GetProperty(directoryUser, ADProperties.HOMEPHONE);
 
-            _extension = GetProperty(directoryUser, ADProperties.EXTENSION);
+            _extension = ADHelper.GetProperty(directoryUser, ADProperties.EXTENSION);
 
-            _mobile = GetProperty(directoryUser, ADProperties.MOBILE);
+            _mobile = ADHelper.GetProperty(directoryUser, ADProperties.MOBILE);
 
-            _fax = GetProperty(directoryUser, ADProperties.FAX);
+            _fax = ADHelper.GetProperty(directoryUser, ADProperties.FAX);
 
-            _emailAddress = GetProperty(directoryUser, ADProperties.EMAILADDRESS);
+            _emailAddress = ADHelper.GetProperty(directoryUser, ADProperties.EMAILADDRESS);
 
-            _title = GetProperty(directoryUser, ADProperties.TITLE);
+            _title = ADHelper.GetProperty(directoryUser, ADProperties.TITLE);
 
-            _manager = GetProperty(directoryUser, ADProperties.MANAGER);
+            _manager = ADHelper.GetProperty(directoryUser, ADProperties.MANAGER);
 
             if (!String.IsNullOrEmpty(_manager))
             {
@@ -261,72 +252,8 @@ namespace Fwk.Security.ActiveDirectory
 
         }
 
-
-
-
-
-        
-
-
-
-
     }
 
-
-    public class ADGroup
-    {
-        string _CN;
-        List<String> _OU;
-        public string CN
-        {
-            get { return _CN; }
-            set { _CN = value; }
-        }
-
-
-
-        public List<String> OU
-        {
-            get { return _OU; }
-            set { _OU = value; }
-        }
-        List<ADUser> _Users;
-        public List<ADUser> Users
-        {
-            get
-            {
-                if (_Users == null)
-                   
-                return _Users;
-            }
-
-        }
-
-
-        void SetNameInfo(string pNameInfo)
-        {
-            int i = 0;
-            string[] propAux;
-            _OU = new List<String>();
-            foreach (string prop in pNameInfo.Split(','))
-            {
-                propAux = prop.Split('=');
-                //if (propAux[0].CompareTo("CN") == 0)
-                //{
-                //    base.Name = propAux[1];
-                //    _CN = base.Name;
-
-                //}
-                if (propAux[0].CompareTo("OU") == 0)
-                {
-                    _OU.Add(propAux[1]);
-                    i++;
-                }
-
-            }
-        }
-        
-    }
 
 }
 

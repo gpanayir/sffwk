@@ -7,6 +7,9 @@ using System.Security.Principal;
 
 namespace Fwk.Security.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class FwkPrincipal : IPrincipal
     {
         private IIdentity _identity;
