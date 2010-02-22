@@ -46,7 +46,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
             if (_CurrentGroup == null)
             {
-                throw new Exception("El dominio no fue inicializado.");
+                //throw new Exception("El dominio no fue inicializado.");
             }
 
             //_DomainGoups = _FwkActyveDirectory.GetAllGroups();
@@ -73,7 +73,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
             using (new WaitCursorHelper(this))
             {
-               // objectDomainGroupBindingSource.DataSource = ObjectDomain.FilterByName(txtDomainGroupName.Text, _DomainGoups);
+                objectDomainGroupBindingSource.DataSource = ADGroup.FilterByName(txtDomainGroupName.Text, _DomainGoups);
             }
         }
 

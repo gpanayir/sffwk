@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.domainGoups2 = new Fwk.Security.ActiveDirectory.Test.DomainGoups();
             this.txtDomain = new System.Windows.Forms.TextBox();
             this.btnSearchInDomain = new System.Windows.Forms.Button();
             this.grdGroupInfo = new System.Windows.Forms.DataGridView();
@@ -47,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.domainGoups1 = new Fwk.Security.ActiveDirectory.Test.DomainGoups();
             this.domainUsers1 = new Fwk.Security.ActiveDirectory.Test.DomainUsers();
+            this.domainGoups2 = new Fwk.Security.ActiveDirectory.Test.DomainGoups();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroupInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDomainGroupBindingSource)).BeginInit();
@@ -64,24 +64,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Domain Info";
             // 
-            // domainGoups2
-            // 
-            this.domainGoups2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.domainGoups2.Location = new System.Drawing.Point(7, 46);
-            this.domainGoups2.Name = "domainGoups2";
-            this.domainGoups2.Size = new System.Drawing.Size(319, 471);
-            this.domainGoups2.TabIndex = 21;
-            this.domainGoups2.DomainGroupChangeEvent += new Fwk.Security.ActiveDirectory.Test.DomainGroupChangeHandler(this.domainGoups2_DomainGroupChangeEvent);
-            // 
             // txtDomain
             // 
             this.txtDomain.Location = new System.Drawing.Point(12, 3);
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(180, 20);
             this.txtDomain.TabIndex = 13;
-            this.txtDomain.Text = "Alco";
+            this.txtDomain.Text = "Allus-ar";
             // 
             // btnSearchInDomain
             // 
@@ -207,6 +196,17 @@
             this.domainUsers1.Name = "domainUsers1";
             this.domainUsers1.Size = new System.Drawing.Size(689, 296);
             this.domainUsers1.TabIndex = 22;
+            // 
+            // domainGoups2
+            // 
+            this.domainGoups2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.domainGoups2.Location = new System.Drawing.Point(7, 46);
+            this.domainGoups2.Name = "domainGoups2";
+            this.domainGoups2.Size = new System.Drawing.Size(319, 471);
+            this.domainGoups2.TabIndex = 21;
+            this.domainGoups2.DomainGroupChangeEvent += new Fwk.Security.ActiveDirectory.Test.DomainGroupChangeHandler(this.domainGoups2_DomainGroupChangeEvent);
             // 
             // frmTestGroups
             // 
