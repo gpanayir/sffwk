@@ -188,11 +188,14 @@ namespace Fwk.Security.ActiveDirectory
         public static List<ADGroup> FilterByName(String pName, List<ADGroup> pSource)
         {
             if (pSource == null) return null;
+            
+            IEnumerable<ADGroup> list = from s in pSource
+                                  where
+                                      (s.Name.StartsWith(pName, StringComparison.OrdinalIgnoreCase) || String.IsNullOrEmpty(pName))
 
-            return (List<ADGroup>)
-                pSource.Where<ADGroup>(p => (
-                    p.Name.StartsWith(pName, StringComparison.OrdinalIgnoreCase)
-                    || String.IsNullOrEmpty(pName)));
+                                  select s;
+
+            return list.ToList<ADGroup>();
 
         }
 

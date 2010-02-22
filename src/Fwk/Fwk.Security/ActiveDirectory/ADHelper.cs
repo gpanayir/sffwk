@@ -80,6 +80,9 @@ namespace Fwk.Security.ActiveDirectory
            _LDAPPath = string.Concat(@"LDAP://" , domain);
 
            _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
+
+           _LDAPDomain = domain;
+          
         }
         //public ADHelper(string domain,string user,string pwd)
         //{
@@ -97,7 +100,32 @@ namespace Fwk.Security.ActiveDirectory
             _LDAPPassword = pwd;
             _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
             //	= CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
-            _LDAPDomain = GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME);
+            _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
+        }
+        static string GetValue(string str,string nameValue) 
+        {
+            foreach(string s in str.Split(','))
+            {
+                if(s.Contains(nameValue))
+                    return s.Split('=')[1];   
+            }
+            return string.Empty;
+        }
+
+        static string EnlistValue(DirectoryEntry pDirectoryEntry)
+        {
+            StringBuilder slist = new StringBuilder();
+
+            foreach (string s in pDirectoryEntry.Properties.PropertyNames.Cast<string>())
+            {
+                slist.Append(s);
+                slist.Append(" = ");
+                slist.Append(GetProperty(pDirectoryEntry, s));
+                slist.AppendLine(Environment.NewLine);
+                
+            }
+
+            return slist.ToString();
         }
         #region users
         /// <summary>
