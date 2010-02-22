@@ -41,6 +41,7 @@ namespace Fwk.Security.ActiveDirectory.Test
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rolListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblRolesByUser = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtUserFullName = new DevExpress.XtraEditors.TextEdit();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@ namespace Fwk.Security.ActiveDirectory.Test
             this.txtDomain = new System.Windows.Forms.TextBox();
             this.btnSearchInDomain = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.lblRolesByUser = new System.Windows.Forms.Label();
             this.btnUsersList = new System.Windows.Forms.Button();
             this.tabPageRoles = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
@@ -143,7 +143,7 @@ namespace Fwk.Security.ActiveDirectory.Test
             this.groupBox3.Controls.Add(this.lblRolesByUser);
             this.groupBox3.Location = new System.Drawing.Point(344, 192);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(631, 419);
+            this.groupBox3.Size = new System.Drawing.Size(699, 419);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ASP Database";
@@ -198,6 +198,14 @@ namespace Fwk.Security.ActiveDirectory.Test
             // rolListBindingSource
             // 
             this.rolListBindingSource.DataSource = typeof(Fwk.Security.Common.RolList);
+            // 
+            // lblRolesByUser
+            // 
+            this.lblRolesByUser.Location = new System.Drawing.Point(287, 8);
+            this.lblRolesByUser.Name = "lblRolesByUser";
+            this.lblRolesByUser.Size = new System.Drawing.Size(238, 18);
+            this.lblRolesByUser.TabIndex = 9;
+            this.lblRolesByUser.Text = "Roles";
             // 
             // groupBox2
             // 
@@ -355,14 +363,6 @@ namespace Fwk.Security.ActiveDirectory.Test
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // lblRolesByUser
-            // 
-            this.lblRolesByUser.Location = new System.Drawing.Point(287, 8);
-            this.lblRolesByUser.Name = "lblRolesByUser";
-            this.lblRolesByUser.Size = new System.Drawing.Size(238, 18);
-            this.lblRolesByUser.TabIndex = 9;
-            this.lblRolesByUser.Text = "Roles";
-            // 
             // btnUsersList
             // 
             this.btnUsersList.BackColor = System.Drawing.Color.White;
@@ -508,8 +508,9 @@ namespace Fwk.Security.ActiveDirectory.Test
             // fwkMessageViewInfo
             // 
             this.fwkMessageViewInfo.BackColor = System.Drawing.Color.SteelBlue;
-    
+            this.fwkMessageViewInfo.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
             this.fwkMessageViewInfo.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
+            this.fwkMessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
             this.fwkMessageViewInfo.TextMessageColor = System.Drawing.Color.SteelBlue;
             this.fwkMessageViewInfo.TextMessageForeColor = System.Drawing.Color.PaleGoldenrod;
             this.fwkMessageViewInfo.Title = "Message";

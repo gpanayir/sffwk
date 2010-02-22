@@ -34,7 +34,7 @@ namespace Fwk.Security.ActiveDirectory.Test
             objectDomainGroupBindingSource.DataSource = pGroup;
             grdGroupInfo.Refresh();
             domainUsers1.Initialize(txtDomain.Text);
-            domainUsers1.Populate(pGroup.ActiveDirectoryUsers);
+            domainUsers1.Populate(pGroup.Users);
             domainGoups1.Populate(pGroup.ActiveDirectoryMembersGroups);
             System.Threading.Thread.Sleep(100);
             
