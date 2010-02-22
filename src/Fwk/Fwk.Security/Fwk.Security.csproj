@@ -129,7 +129,6 @@
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProvider.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderData.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderPolicyCreator.cs" />
-    <Compile Include="CustomRuleProvider\FwkRuleProviderDAC.cs" />
     <Compile Include="Entities\FwkIdentity.cs" />
     <Compile Include="Entities\FwkPrincipal.cs" />
     <Compile Include="Entities\SimpleEntities.cs" />

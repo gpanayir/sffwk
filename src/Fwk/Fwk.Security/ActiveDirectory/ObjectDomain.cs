@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Fwk.Security.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class ObjectDomain:Fwk.Bases.Entity
     {
@@ -241,7 +244,7 @@ namespace Fwk.Security.Common
         {
 
             FwkActyveDirectory _FwkActyveDirectory = new FwkActyveDirectory(_Domain);
-            _FwkActyveDirectory.GetUsersForGroup(this.Name, out _ActiveDirectoryUsers,out _ActiveDirectoryMembersGroups);
+            //_FwkActyveDirectory.GetUsersForGroup(this.Name, out _ActiveDirectoryUsers,out _ActiveDirectoryMembersGroups);
         }
 
         /// <summary>

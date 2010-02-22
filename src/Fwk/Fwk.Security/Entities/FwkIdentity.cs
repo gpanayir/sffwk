@@ -159,7 +159,7 @@ namespace Fwk.Security.Common
         public void  RefreshADGroups()
         {
             FwkActyveDirectory _FwkActyveDirectory = new FwkActyveDirectory(this.Domain);
-            _ActiveDirectoryGroups = _FwkActyveDirectory.GetGroupForUser(this.Name);
+            //_ActiveDirectoryGroups = _FwkActyveDirectory.GetGroupForUser(this.Name);
         }
     }
 

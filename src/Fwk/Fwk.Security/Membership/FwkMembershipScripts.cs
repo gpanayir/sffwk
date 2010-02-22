@@ -7,7 +7,9 @@ using Microsoft.Practices.EnterpriseLibrary.Security;
 
 namespace Fwk.Security
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public  static class FwkMembershipScripts
     {
         static string _RuleInCategory_i;

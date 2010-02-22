@@ -173,7 +173,7 @@ namespace Fwk.Security.ActiveDirectory
 
 
             String domainAddress;
-
+            String userPrincipalName = ADHelper.GetProperty(directoryUser, ADProperties.USERPRINCIPALNAME);
             String domainName;
             _UserAccountControl = ADHelper.GetProperty(directoryUser, ADProperties.USERACCOUNTCONTROL);
             _firstName = ADHelper.GetProperty(directoryUser, ADProperties.FIRSTNAME);
@@ -184,7 +184,7 @@ namespace Fwk.Security.ActiveDirectory
 
             _loginName = ADHelper.GetProperty(directoryUser, ADProperties.LOGINNAME);
 
-            String userPrincipalName = ADHelper.GetProperty(directoryUser, ADProperties.USERPRINCIPALNAME);
+            
 
             if (!string.IsNullOrEmpty(userPrincipalName))
             {
@@ -252,6 +252,19 @@ namespace Fwk.Security.ActiveDirectory
 
         }
 
+
+        public static List<ADUser> FilterByName(String pName, List<ADUser> pSource) 
+        {
+            if (pSource == null) return null;
+
+            return (List<ADUser>)
+                pSource.Where<ADUser>(p => (
+                    p.LoginName.StartsWith(pName, StringComparison.OrdinalIgnoreCase) 
+                    || String.IsNullOrEmpty(pName)));
+                     
+        }
+
+        
     }
 
 

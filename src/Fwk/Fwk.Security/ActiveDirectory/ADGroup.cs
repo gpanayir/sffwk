@@ -9,7 +9,7 @@ namespace Fwk.Security.ActiveDirectory
 {
 
     /// <summary>
-    /// 
+    /// Grupo de Active Directory
     /// </summary>
     public class ADGroup
     {
@@ -18,22 +18,32 @@ namespace Fwk.Security.ActiveDirectory
         List<String> _Users;
         string _Name, _FirstName, _Category, _Domain, _DistinguishedName, _Description, _CN;
 
+        /// <summary>
+        /// Nombre del domijio al que pertenece el grupo
+        /// </summary>
         public string Domain
         {
             get { return _Domain; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name
         {
             get { return _Name; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string FirstName
         {
             get { return _FirstName; }
         }
        
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Description
         {
             get { return _Description; }
@@ -59,7 +69,7 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        ///  	Common Name
+        ///Common Name
         /// </summary>
         public string CN
         {
@@ -77,6 +87,9 @@ namespace Fwk.Security.ActiveDirectory
             set { _OU = value; }
         }
 
+        /// <summary>
+        /// Lista de usuarios del grupo
+        /// </summary>
         public List<String> Users
         {
             get { return _Users; }
@@ -84,17 +97,24 @@ namespace Fwk.Security.ActiveDirectory
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ADGroup()
         { }
 
-        public ADGroup(DirectoryEntry directoryGroup, string domain)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="directoryGroup"></param>
+        public ADGroup(DirectoryEntry directoryGroup)
         {
 
             String domainAddress;
-            String domainName;
+          
             String userPrincipalName = ADHelper.GetProperty(directoryGroup, ADProperties.USERPRINCIPALNAME);
 
-            _Domain = domain;
+       
             _Name = ADHelper.GetProperty(directoryGroup, ADProperties.NAME);
 
             _DistinguishedName = ADHelper.GetProperty(directoryGroup, ADProperties.DISTINGUISHEDNAME);
@@ -116,14 +136,7 @@ namespace Fwk.Security.ActiveDirectory
             if (!string.IsNullOrEmpty(domainAddress))
             {
 
-                domainName = domainAddress.Split('.').First();
-
-            }
-
-            else
-            {
-
-                domainName = String.Empty;
+                _Domain = domainAddress.Split('.').First();
 
             }
 
@@ -171,6 +184,16 @@ namespace Fwk.Security.ActiveDirectory
                 }
 
             }
+        }
+        public static List<ADGroup> FilterByName(String pName, List<ADGroup> pSource)
+        {
+            if (pSource == null) return null;
+
+            return (List<ADGroup>)
+                pSource.Where<ADGroup>(p => (
+                    p.Name.StartsWith(pName, StringComparison.OrdinalIgnoreCase)
+                    || String.IsNullOrEmpty(pName)));
+
         }
 
     }

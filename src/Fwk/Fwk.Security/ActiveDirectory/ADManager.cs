@@ -6,7 +6,9 @@ using System.DirectoryServices.AccountManagement;
 
 namespace Fwk.Security.ActiveDirectory
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class ADManager
     {
 

@@ -10,6 +10,7 @@ using System.Web.Security;
 using Fwk.Security.Common;
 using System.DirectoryServices;
 using System.Collections;
+using Fwk.Security.ActiveDirectory;
 
 
 
@@ -45,7 +46,7 @@ namespace Fwk.Security.Common
         /// </summary>
         /// <param name="pName"></param>
         /// <returns></returns>
-        public ObjectDomainGroup GetGroup(String pName)
+        public ADGroup GetGroup(String pName)
         {
             string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "group", pName);
 
@@ -55,18 +56,18 @@ namespace Fwk.Security.Common
             if (result == null) return null;
             DirectoryEntry directoryEntry = result.GetDirectoryEntry();
 
-            Fwk.Security.Common.ObjectDomainGroup wObjectDomainGroup = new ObjectDomainGroup(directoryEntry);
-            wObjectDomainGroup.Domain = _Domain;
-            return wObjectDomainGroup;
+            ADGroup wADGroup = new ADGroup(directoryEntry);
+
+            return wADGroup;
            
         }
 
         /// <summary>
         /// Obtiene todo los grupos pertenecientes al dominio.-
         /// </summary>
-        public List<ObjectDomainGroup> GetAllGroups()
+        public List<ADGroup> GetAllGroups()
         {
-            List<ObjectDomainGroup> pList = null;
+            List<ADGroup> pList = null;
             ExecutepQuery("(&(objectClass=group))", "sAMAccountName", out pList);
             return pList;
         }
@@ -75,11 +76,11 @@ namespace Fwk.Security.Common
         /// Obtiene todo los usuarios pertenecientes al dominio.-
         /// Busca por cn nombre@mail retorna el sAMAccountName ejemplo: moviedo
         /// </summary>
-        public void GetUsersForGroup(String pGroupName, out List<FwkIdentity> pDomainUserList, out List<ObjectDomainGroup> pDomainGrouplist)
+        public void GetUsersForGroup(String pGroupName, out List<FwkIdentity> pDomainUserList, out List<ADGroup> pDomainGrouplist)
         {
 
             pDomainUserList = new List<FwkIdentity>();
-            pDomainGrouplist = new List<ObjectDomainGroup>();
+            pDomainGrouplist = new List<ADGroup>();
             string filter = string.Format("(&(ObjectClass=group)(sAMAccountName={0}))", pGroupName);
 
             _Searcher.Filter = filter;
@@ -92,7 +93,7 @@ namespace Fwk.Security.Common
             if (result != null)
             {
                 FwkIdentity wFwkIdentity;
-                ObjectDomainGroup wObjectDomainGroup;
+                ADGroup wADGroup;
                 DirectoryEntry directoryEntryGroup = result.GetDirectoryEntry();
 
 
@@ -112,9 +113,9 @@ namespace Fwk.Security.Common
                     if (wFwkIdentity != null)
                         pDomainUserList.Add(wFwkIdentity);
 
-                    wObjectDomainGroup = GetGroup(wName);
-                    if (wObjectDomainGroup != null)
-                        pDomainGrouplist.Add(wObjectDomainGroup);
+                    wADGroup = GetGroup(wName);
+                    if (wADGroup != null)
+                        pDomainGrouplist.Add(wADGroup);
 
                     //intentar buscar usuario por nombre completo
                     if (wFwkIdentity == null)
@@ -226,9 +227,9 @@ namespace Fwk.Security.Common
         /// Obtiene todo los usuarios pertenecientes al dominio.-
         /// Busca por cn nombre@mail retorna el sAMAccountName ejemplo: moviedo
         /// </summary>
-        public List<ObjectDomainGroup> GetGroupForUser(String pUserName)
+        public List<ADGroup> GetGroupForUser(String pUserName)
         {
-            List<ObjectDomainGroup> list = new List<ObjectDomainGroup>();
+            List<ADGroup> list = new List<ADGroup>();
 
             string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", pUserName);
 
@@ -236,10 +237,10 @@ namespace Fwk.Security.Common
             SearchResult result = _Searcher.FindOne();
             DirectoryEntry directoryEntryUser = result.GetDirectoryEntry();
 
-            foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
-            {
-                list.Add(new ObjectDomainGroup(grouInfo));
-            }
+            //////foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
+            //////{
+            //////    list.Add(new ADGroup(grouInfo));
+            //////}
 
             return list;
         }
@@ -340,10 +341,10 @@ namespace Fwk.Security.Common
             }
 
         }
-        void ExecutepQuery(String pQuery, string pSortPropertyName, out List<ObjectDomainGroup> pObjectDomainGroup)
+        void ExecutepQuery(String pQuery, string pSortPropertyName, out List<ADGroup> pADGroup)
         {
-            ObjectDomainGroup group = null;
-            pObjectDomainGroup = new List<ObjectDomainGroup>();
+            ADGroup group = null;
+            pADGroup = new List<ADGroup>();
             DirectoryEntry wDirectoryEntry = null;
 
             _Searcher.Filter = pQuery;
@@ -358,9 +359,9 @@ namespace Fwk.Security.Common
                 //GetProperties(wDirectoryEntry, "pQuery");
                 if (wDirectoryEntry.Properties.Contains("sAMAccountName"))
                 {
-                    group = new ObjectDomainGroup(wDirectoryEntry);
-                    group.Domain = _Domain;
-                    pObjectDomainGroup.Add(group);
+                    group = new ADGroup(wDirectoryEntry);
+                    //group.Domain = _Domain;
+                    pADGroup.Add(group);
                 }
 
 
