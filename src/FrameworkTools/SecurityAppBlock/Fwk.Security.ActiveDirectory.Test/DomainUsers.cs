@@ -10,21 +10,21 @@ using Fwk.Security.Common;
 
 namespace Fwk.Security.ActiveDirectory.Test
 {
-    public delegate void ObjectDomainChangeHandler(FwkIdentity pFwkIdentity);
-
+    public delegate void ObjectDomainChangeHandler(ADUser user);
+    
     [DefaultEvent("ObjectDomainChangeEvent")]
     public partial class DomainUsers : UserControl
     {
 
-        FwkActyveDirectory _FwkActyveDirectory;
+        ADHelper _ADHelper;
         public event ObjectDomainChangeHandler ObjectDomainChangeEvent;
         void OnObjectDomainChange()
         {
             if (ObjectDomainChangeEvent != null)
-                ObjectDomainChangeEvent(_FwkIdentityCurrent);
+                ObjectDomainChangeEvent(_CurrentUserName);
         }
-        List<FwkIdentity> _DomainUsers;
-        FwkIdentity _FwkIdentityCurrent;
+        List<ADUser> _DomainUsers;
+        ADUser _CurrentUserName;
        
         
 
@@ -36,28 +36,28 @@ namespace Fwk.Security.ActiveDirectory.Test
 
         public void Initialize(String pDomainName)
         {
-            _FwkActyveDirectory = new FwkActyveDirectory(pDomainName);
+            _ADHelper = new ADHelper(pDomainName);
         }
 
         public void Populate()
         {
-            if (_FwkActyveDirectory == null)
+            if (_ADHelper == null)
             {
                 throw new Exception("El dominio no fue inicializado. ");
             }
 
-           _DomainUsers = _FwkActyveDirectory.GetAllUsers();
+           _DomainUsers = _ADHelper.Users_SearchByGroup("");
 
            fwkIdentityBindingSource.DataSource = _DomainUsers;
         }
-        public void Populate(List<FwkIdentity> pDomainUsers)
+        public void Populate(string groupName)
         {
-            if (_FwkActyveDirectory == null)
+            if (_ADHelper == null)
             {
                 throw new Exception("El dominio no fue inicializado. ");
             }
 
-            _DomainUsers = pDomainUsers;
+            _DomainUsers = _ADHelper.Users_SearchByGroup(groupName); ;
 
             fwkIdentityBindingSource.DataSource = _DomainUsers;
         }
@@ -68,7 +68,7 @@ namespace Fwk.Security.ActiveDirectory.Test
                 {
                     using (new WaitCursorHelper(this))
                     {
-                        fwkIdentityBindingSource.DataSource = ObjectDomain.FilterByName(txDomainUserName.Text, _DomainUsers);
+                        //fwkIdentityBindingSource.DataSource = ObjectDomain.FilterByName(txDomainUserName.Text, _DomainUsers);
                     }
                 }
         }
@@ -77,7 +77,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
             using (new WaitCursorHelper(this))
             {
-                fwkIdentityBindingSource.DataSource = ObjectDomain.FilterByName(txDomainUserName.Text, _DomainUsers);
+                //fwkIdentityBindingSource.DataSource = ObjectDomain.FilterByName(txDomainUserName.Text, _DomainUsers);
             }
             
         }
@@ -93,7 +93,7 @@ namespace Fwk.Security.ActiveDirectory.Test
             if (grdDomainUsers.CurrentRow == null) return;
             if (grdDomainUsers.CurrentRow.DataBoundItem == null) return;
 
-            _FwkIdentityCurrent = (FwkIdentity)grdDomainUsers.CurrentRow.DataBoundItem;
+            _CurrentUserName = (ADUser)grdDomainUsers.CurrentRow.DataBoundItem;
             OnObjectDomainChange();
         }
 

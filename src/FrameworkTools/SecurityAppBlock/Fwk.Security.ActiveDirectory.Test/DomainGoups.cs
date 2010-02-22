@@ -10,21 +10,22 @@ using Fwk.Security.Common;
 
 namespace Fwk.Security.ActiveDirectory.Test
 {
-    public delegate void DomainGroupChangeHandler(ObjectDomainGroup pGroup);
+    public delegate void DomainGroupChangeHandler(ADGroup pGroup);
 
     [DefaultEvent("DomainGroupChangeEvent")]
     public partial class DomainGoups : UserControl
     {
-        FwkActyveDirectory _FwkActyveDirectory;
+        //FwkActyveDirectory _FwkActyveDirectory;
+        ADHelper _ADHelper;
         public event DomainGroupChangeHandler DomainGroupChangeEvent;
 
         void OnObjectDomainChange()
         {
             if (DomainGroupChangeEvent != null)
-                DomainGroupChangeEvent(_FwkIdentityCurrent);
+                DomainGroupChangeEvent(_CurrentGroup);
         }
-        List<ObjectDomainGroup> _DomainGoups;
-        ObjectDomainGroup _FwkIdentityCurrent;
+        List<ADGroup> _DomainGoups;
+        ADGroup _CurrentGroup;
 
         public DomainGoups()
         {
@@ -36,23 +37,26 @@ namespace Fwk.Security.ActiveDirectory.Test
 
         public void Initialize(String pDomainName)
         {
-            _FwkActyveDirectory = new FwkActyveDirectory(pDomainName);
+            //_FwkActyveDirectory = new FwkActyveDirectory(pDomainName);
+            _ADHelper = new ADHelper(pDomainName);
+   
         }
 
         public void Populate()
         {
-            if (_FwkActyveDirectory == null)
+            if (_CurrentGroup == null)
             {
                 throw new Exception("El dominio no fue inicializado.");
             }
 
-            _DomainGoups = _FwkActyveDirectory.GetAllGroups();
+            //_DomainGoups = _FwkActyveDirectory.GetAllGroups();
+            _DomainGoups = _ADHelper.Groups_GetAll();
             objectDomainGroupBindingSource.DataSource = _DomainGoups;
 
         }
-        public void Populate(List<ObjectDomainGroup> pObjectDomainGroup)
+        public void Populate(List<ADGroup> pGroup)
         {
-            _DomainGoups = pObjectDomainGroup;
+            _DomainGoups = pGroup;
             objectDomainGroupBindingSource.DataSource = _DomainGoups;
         }
         private void grdDomainGroups_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -61,7 +65,7 @@ namespace Fwk.Security.ActiveDirectory.Test
             if (grdDomainGroups.CurrentRow == null) return;
             if (grdDomainGroups.CurrentRow.DataBoundItem == null) return;
 
-            _FwkIdentityCurrent = ((ObjectDomainGroup)grdDomainGroups.CurrentRow.DataBoundItem);
+            _CurrentGroup = ((ADGroup)grdDomainGroups.CurrentRow.DataBoundItem);
             OnObjectDomainChange();
         }
 
@@ -69,7 +73,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
             using (new WaitCursorHelper(this))
             {
-                objectDomainGroupBindingSource.DataSource = ObjectDomain.FilterByName(txtDomainGroupName.Text, _DomainGoups);
+               // objectDomainGroupBindingSource.DataSource = ObjectDomain.FilterByName(txtDomainGroupName.Text, _DomainGoups);
             }
         }
 
@@ -79,7 +83,7 @@ namespace Fwk.Security.ActiveDirectory.Test
             {
                 using (new WaitCursorHelper(this))
                 {
-                    objectDomainGroupBindingSource.DataSource = ObjectDomain.FilterByName(txtDomainGroupName.Text, _DomainGoups);
+                    objectDomainGroupBindingSource.DataSource = ADGroup.FilterByName(txtDomainGroupName.Text, _DomainGoups);
                 }
             }
         }

@@ -73,7 +73,7 @@
             // 
             // objectDomainGroupBindingSource
             // 
-            this.objectDomainGroupBindingSource.DataSource = typeof(Fwk.Security.Common.ObjectDomainGroup);
+            this.objectDomainGroupBindingSource.DataSource = typeof(Fwk.Security.ActiveDirectory.ADGroup);
             // 
             // label1
             // 

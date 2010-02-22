@@ -19,8 +19,8 @@ namespace Fwk.Security.ActiveDirectory.Test
     {
 
         //String[] _SelectedGroups;
-        ObjectDomainGroup _CurrentObjectDomainGroup;
-        FwkIdentity _FwkIdentityCurrent;
+        ADGroup _CurrentGroup;
+        ADUser _CurrentUser;
        
 
         public frmTest()
@@ -49,7 +49,7 @@ namespace Fwk.Security.ActiveDirectory.Test
             {
                 try
                 {
-                    FwkMembership.CreateUser(_FwkIdentityCurrent.Name, txtPassword.Text,String.Empty);
+                    FwkMembership.CreateUser(_CurrentUser.LoginName, txtPassword.Text,String.Empty);
                 }
                 catch (Exception ex)
                 {
@@ -74,25 +74,25 @@ namespace Fwk.Security.ActiveDirectory.Test
             }
         }
 
-        private void domainGoups2_ObjectDomainChangeEvent(ObjectDomainGroup pObjectDomainGroup)
+        private void domainGoups2_ObjectDomainChangeEvent(ADGroup pObjectDomainGroup)
         {
-            _CurrentObjectDomainGroup = pObjectDomainGroup;
+            _CurrentGroup = pObjectDomainGroup;
         }
 
-        private void domainUsers1_ObjectDomainChangeEvent(FwkIdentity pFwkIdentity)
+        private void domainUsers1_ObjectDomainChangeEvent(ADUser user)
         {
-            _FwkIdentityCurrent = pFwkIdentity;
+            _CurrentUser = user;
 
-            txtUserFullName.Text = pFwkIdentity.FullName;
-            txtUserName.Text = pFwkIdentity.Name; 
+            txtUserFullName.Text = string .Concat (user.FirstName , " " , user.LastName);
+            txtUserName.Text = user.LoginName; 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FwkActyveDirectory _FwkActyveDirectory = new FwkActyveDirectory("Alco");
+            //FwkActyveDirectory _FwkActyveDirectory = new FwkActyveDirectory("Alco");
 
            
-            Int32 CA =_FwkIdentityCurrent.ActiveDirectoryGroups.Count;
+            //Int32 CA =_CurrentUser.ActiveDirectoryGroups.Count;
             
             
         }
@@ -100,7 +100,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         private void button1_Click(object sender, EventArgs e)
         {
             
-            this.dataGridView1.DataSource = _FwkIdentityCurrent.ActiveDirectoryGroups;
+            //this.dataGridView1.DataSource = _CurrentUser.ActiveDirectoryGroups;
 
         }
 

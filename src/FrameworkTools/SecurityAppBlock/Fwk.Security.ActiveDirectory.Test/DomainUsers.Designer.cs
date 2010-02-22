@@ -31,19 +31,19 @@
             this.components = new System.ComponentModel.Container();
             this.txDomainUserName = new System.Windows.Forms.TextBox();
             this.grdDomainUsers = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.distinguishedNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userPrincipalNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fwkIdentityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnFilterUsers = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.fwkIdentityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userPrincipalNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.distinguishedNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdDomainUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkIdentityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkIdentityBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txDomainUserName
@@ -52,7 +52,6 @@
             this.txDomainUserName.Name = "txDomainUserName";
             this.txDomainUserName.Size = new System.Drawing.Size(178, 20);
             this.txDomainUserName.TabIndex = 23;
-
             this.txDomainUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txDomainUserName_KeyDown);
             // 
             // grdDomainUsers
@@ -60,7 +59,6 @@
             this.grdDomainUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdDomainUsers.AutoGenerateColumns = false;
             this.grdDomainUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDomainUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
@@ -69,53 +67,11 @@
             this.fullNameDataGridViewTextBoxColumn,
             this.userPrincipalNameDataGridViewTextBoxColumn,
             this.categoryDataGridViewTextBoxColumn});
-            this.grdDomainUsers.DataSource = this.fwkIdentityBindingSource;
             this.grdDomainUsers.Location = new System.Drawing.Point(3, 32);
             this.grdDomainUsers.Name = "grdDomainUsers";
             this.grdDomainUsers.Size = new System.Drawing.Size(311, 375);
             this.grdDomainUsers.TabIndex = 21;
             this.grdDomainUsers.Click += new System.EventHandler(this.grdDomainUsers_Click);
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mailDataGridViewTextBoxColumn
-            // 
-            this.mailDataGridViewTextBoxColumn.DataPropertyName = "Mail";
-            this.mailDataGridViewTextBoxColumn.HeaderText = "Mail";
-            this.mailDataGridViewTextBoxColumn.Name = "mailDataGridViewTextBoxColumn";
-            // 
-            // distinguishedNameDataGridViewTextBoxColumn
-            // 
-            this.distinguishedNameDataGridViewTextBoxColumn.DataPropertyName = "DistinguishedName";
-            this.distinguishedNameDataGridViewTextBoxColumn.HeaderText = "DistinguishedName";
-            this.distinguishedNameDataGridViewTextBoxColumn.Name = "distinguishedNameDataGridViewTextBoxColumn";
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            // 
-            // userPrincipalNameDataGridViewTextBoxColumn
-            // 
-            this.userPrincipalNameDataGridViewTextBoxColumn.DataPropertyName = "UserPrincipalName";
-            this.userPrincipalNameDataGridViewTextBoxColumn.HeaderText = "UserPrincipalName";
-            this.userPrincipalNameDataGridViewTextBoxColumn.Name = "userPrincipalNameDataGridViewTextBoxColumn";
-            // 
-            // categoryDataGridViewTextBoxColumn
-            // 
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
-            // 
-            // fwkIdentityBindingSource
-            // 
-            this.fwkIdentityBindingSource.DataSource = typeof(Fwk.Security.Common.FwkIdentity);
             // 
             // btnFilterUsers
             // 
@@ -142,7 +98,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 25;
             this.pictureBox1.TabStop = false;
-            
             // 
             // label1
             // 
@@ -154,7 +109,47 @@
             this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 42;
             this.label1.Text = "Users";
-          
+            // 
+            // fwkIdentityBindingSource
+            // 
+            this.fwkIdentityBindingSource.DataSource = typeof(Fwk.Security.ActiveDirectory.ADUser);
+            // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
+            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            // 
+            // userPrincipalNameDataGridViewTextBoxColumn
+            // 
+            this.userPrincipalNameDataGridViewTextBoxColumn.DataPropertyName = "UserPrincipalName";
+            this.userPrincipalNameDataGridViewTextBoxColumn.HeaderText = "UserPrincipalName";
+            this.userPrincipalNameDataGridViewTextBoxColumn.Name = "userPrincipalNameDataGridViewTextBoxColumn";
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            // 
+            // distinguishedNameDataGridViewTextBoxColumn
+            // 
+            this.distinguishedNameDataGridViewTextBoxColumn.DataPropertyName = "DistinguishedName";
+            this.distinguishedNameDataGridViewTextBoxColumn.HeaderText = "DistinguishedName";
+            this.distinguishedNameDataGridViewTextBoxColumn.Name = "distinguishedNameDataGridViewTextBoxColumn";
+            // 
+            // mailDataGridViewTextBoxColumn
+            // 
+            this.mailDataGridViewTextBoxColumn.DataPropertyName = "Mail";
+            this.mailDataGridViewTextBoxColumn.HeaderText = "Mail";
+            this.mailDataGridViewTextBoxColumn.Name = "mailDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // DomainUsers
             // 
@@ -168,8 +163,8 @@
             this.Name = "DomainUsers";
             this.Size = new System.Drawing.Size(317, 410);
             ((System.ComponentModel.ISupportInitialize)(this.grdDomainUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkIdentityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkIdentityBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,12 +177,12 @@
         private System.Windows.Forms.DataGridView grdDomainUsers;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.BindingSource fwkIdentityBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn distinguishedNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userPrincipalNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource fwkIdentityBindingSource;
     }
 }
