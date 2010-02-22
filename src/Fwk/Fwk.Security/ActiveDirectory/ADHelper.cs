@@ -14,6 +14,9 @@ namespace Fwk.Security.ActiveDirectory
 
         DirectoryEntry _directoryEntry;
         string _LDAPPath;
+        string _LDAPDomain;
+        string _LDAPUser;
+
         /// <summary>
         ///Ej: LDAP://domain/DC=xxx,DC=com
         /// </summary>
@@ -29,7 +32,7 @@ namespace Fwk.Security.ActiveDirectory
             }
         }
 
-        string _LDAPUser;
+        
         /// <summary>
         ///LDAPUser property
         /// </summary>
@@ -62,7 +65,6 @@ namespace Fwk.Security.ActiveDirectory
             }
         }
 
-        string _LDAPDomain;
 
         /// <summary>
         /// Dominio
