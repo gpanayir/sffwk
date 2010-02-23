@@ -7,7 +7,7 @@ namespace Fwk.Security.ActiveDirectory.Test
 {
     internal class StaticAD
     {
-        static Fwk.Bases.SingletonFactory<ADHelper> factory = null;
+        //static Fwk.Bases.SingletonFactory<ADHelper> factory = null;
 
         static ADHelper _ADHelper;
 

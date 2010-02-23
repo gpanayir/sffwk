@@ -45,23 +45,23 @@ namespace Fwk.Security.ActiveDirectory.Test
         
         public void Populate()
         {
-            if (_ADHelper == null)
+            if (StaticAD.ADHelper == null)
             {
                 throw new Exception("El dominio no fue inicializado. ");
             }
 
-           _DomainUsers = _ADHelper.Users_SearchByGroupName("");
+            _DomainUsers = StaticAD.ADHelper.Users_SearchByGroupName("");
 
            aDUserBindingSource.DataSource = _DomainUsers;
         }
         public void Populate(string groupName)
         {
-            if (_ADHelper == null)
+            if (StaticAD.ADHelper == null)
             {
                 throw new Exception("El dominio no fue inicializado. ");
             }
 
-            _DomainUsers = _ADHelper.Users_SearchByGroupName(groupName); ;
+            _DomainUsers = StaticAD.ADHelper.Users_SearchByGroupName(groupName); ;
             
             aDUserBindingSource.DataSource = _DomainUsers;
         }

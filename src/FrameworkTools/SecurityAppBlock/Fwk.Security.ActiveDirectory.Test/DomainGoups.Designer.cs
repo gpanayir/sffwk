@@ -53,7 +53,7 @@
             this.grdDomainGroups.DataSource = this.objectDomainGroupBindingSource;
             this.grdDomainGroups.Location = new System.Drawing.Point(3, 26);
             this.grdDomainGroups.Name = "grdDomainGroups";
-            this.grdDomainGroups.Size = new System.Drawing.Size(320, 432);
+            this.grdDomainGroups.Size = new System.Drawing.Size(303, 568);
             this.grdDomainGroups.TabIndex = 23;
             this.grdDomainGroups.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDomainGroups_CellClick);
             // 
@@ -62,6 +62,7 @@
             this.cNDataGridViewTextBoxColumn.DataPropertyName = "CN";
             this.cNDataGridViewTextBoxColumn.HeaderText = "CN";
             this.cNDataGridViewTextBoxColumn.Name = "cNDataGridViewTextBoxColumn";
+            this.cNDataGridViewTextBoxColumn.ReadOnly = true;
             this.cNDataGridViewTextBoxColumn.Visible = false;
             // 
             // nameDataGridViewTextBoxColumn
@@ -69,6 +70,7 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 300;
             // 
             // objectDomainGroupBindingSource
@@ -98,7 +100,7 @@
             // 
             this.btnFilterGroup.BackColor = System.Drawing.Color.White;
             this.btnFilterGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFilterGroup.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.fwk_find;
+            this.btnFilterGroup.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.srch_16;
             this.btnFilterGroup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFilterGroup.Location = new System.Drawing.Point(260, 2);
             this.btnFilterGroup.Name = "btnFilterGroup";
@@ -118,7 +120,7 @@
             this.Controls.Add(this.btnFilterGroup);
             this.Controls.Add(this.grdDomainGroups);
             this.Name = "DomainGoups";
-            this.Size = new System.Drawing.Size(326, 461);
+            this.Size = new System.Drawing.Size(309, 597);
             ((System.ComponentModel.ISupportInitialize)(this.grdDomainGroups)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDomainGroupBindingSource)).EndInit();
             this.ResumeLayout(false);

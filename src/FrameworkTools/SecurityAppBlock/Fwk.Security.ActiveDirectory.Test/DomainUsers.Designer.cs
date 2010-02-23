@@ -268,7 +268,7 @@
             // pictureBox1
             // 
             this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources._161;
+            this.pictureBox1.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.users;
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(3, 9);
             this.pictureBox1.Name = "pictureBox1";

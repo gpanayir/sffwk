@@ -64,7 +64,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
             using (frmUserDetails frm = new frmUserDetails())
             {
-
+                frm.user = user;
                 frm.ShowDialog();
             }
         }
