@@ -253,18 +253,17 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-        public static List<ADUser> FilterByName(String pName, List<ADUser> pSource) 
+       
+        public static List<ADUser> FilterByName(String pName, List<ADUser> pSource)
         {
             if (pSource == null) return null;
 
             return (List<ADUser>)
                 pSource.Where<ADUser>(p => (
-                    p.LoginName.StartsWith(pName, StringComparison.OrdinalIgnoreCase) 
+                    p.LoginName.StartsWith(pName, StringComparison.OrdinalIgnoreCase)
                     || String.IsNullOrEmpty(pName)));
-                     
-        }
 
-        
+        }
     }
 
 
