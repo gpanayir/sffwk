@@ -65,7 +65,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         private void btnSearchInDomain_Click(object sender, EventArgs e)
         {
             domainGoups2.Initialize(txtDomain.Text);
-            domainUsers1.Initialize(txtDomain.Text);
+            StaticAD.LoadDomain(txtDomain.Text);
             
             using (new WaitCursorHelper(this))
             {

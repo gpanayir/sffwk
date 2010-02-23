@@ -16,9 +16,7 @@ namespace Fwk.Security.ActiveDirectory.Test
 {
     public partial class frmTestGroups : Form
     {
-        //String[] _SelectedGroups;
-    
-        //FwkIdentity _FwkIdentityCurrent;
+      
 
         public frmTestGroups()
         {
@@ -33,10 +31,11 @@ namespace Fwk.Security.ActiveDirectory.Test
           
             objectDomainGroupBindingSource.DataSource = pGroup;
             grdGroupInfo.Refresh();
-            domainUsers1.Initialize(txtDomain.Text);
+            StaticAD.LoadDomain(txtDomain.Text);
+            
             domainUsers1.Populate(pGroup.Name);
             //domainGoups1.Populate(pGroup.ActiveDirectoryMembersGroups);
-            System.Threading.Thread.Sleep(100);
+            //System.Threading.Thread.Sleep(100);
             
         }
 
@@ -54,9 +53,20 @@ namespace Fwk.Security.ActiveDirectory.Test
             }
         }
 
-        private void domainUsers1_ObjectDomainChangeEvent(FwkIdentity pFwkIdentity)
-        {
+      
 
+        private void domainUsers1_ObjectDomainChangeEvent(ADUser user)
+        {
+            
+        }
+
+        private void domainUsers1_ObjectDomainDoubleClickEvent(ADUser user)
+        {
+            using (frmUserDetails frm = new frmUserDetails())
+            {
+
+                frm.ShowDialog();
+            }
         }
     }
 }

@@ -31,10 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.txDomainUserName = new System.Windows.Forms.TextBox();
             this.grdDomainUsers = new System.Windows.Forms.DataGridView();
-            this.btnFilterUsers = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.aDUserBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.loginNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.middleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,9 +51,13 @@
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.managerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aDUserBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnFilterUsers = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdDomainUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aDUserBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txDomainUserName
@@ -104,48 +104,8 @@
             this.grdDomainUsers.ReadOnly = true;
             this.grdDomainUsers.Size = new System.Drawing.Size(905, 375);
             this.grdDomainUsers.TabIndex = 21;
+            this.grdDomainUsers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdDomainUsers_CellDoubleClick);
             this.grdDomainUsers.Click += new System.EventHandler(this.grdDomainUsers_Click);
-            // 
-            // btnFilterUsers
-            // 
-            this.btnFilterUsers.BackColor = System.Drawing.Color.White;
-            this.btnFilterUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFilterUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFilterUsers.Location = new System.Drawing.Point(250, 6);
-            this.btnFilterUsers.Name = "btnFilterUsers";
-            this.btnFilterUsers.Size = new System.Drawing.Size(59, 22);
-            this.btnFilterUsers.TabIndex = 24;
-            this.btnFilterUsers.Text = "Filter";
-            this.btnFilterUsers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFilterUsers.UseVisualStyleBackColor = false;
-            this.btnFilterUsers.Click += new System.EventHandler(this.btnFilterUsers_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources._161;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 18);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 25;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(27, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
-            this.label1.TabIndex = 42;
-            this.label1.Text = "Users";
-            // 
-            // aDUserBindingSource
-            // 
-            this.aDUserBindingSource.DataSource = typeof(Fwk.Security.ActiveDirectory.ADUser);
             // 
             // loginNameDataGridViewTextBoxColumn
             // 
@@ -287,6 +247,47 @@
             this.managerNameDataGridViewTextBoxColumn.Name = "managerNameDataGridViewTextBoxColumn";
             this.managerNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // aDUserBindingSource
+            // 
+            this.aDUserBindingSource.DataSource = typeof(Fwk.Security.ActiveDirectory.ADUser);
+            // 
+            // btnFilterUsers
+            // 
+            this.btnFilterUsers.BackColor = System.Drawing.Color.White;
+            this.btnFilterUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFilterUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFilterUsers.Location = new System.Drawing.Point(250, 6);
+            this.btnFilterUsers.Name = "btnFilterUsers";
+            this.btnFilterUsers.Size = new System.Drawing.Size(59, 22);
+            this.btnFilterUsers.TabIndex = 24;
+            this.btnFilterUsers.Text = "Filter";
+            this.btnFilterUsers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFilterUsers.UseVisualStyleBackColor = false;
+            this.btnFilterUsers.Click += new System.EventHandler(this.btnFilterUsers_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ErrorImage = null;
+            this.pictureBox1.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources._161;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 18);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 25;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label1.Location = new System.Drawing.Point(27, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "Users";
+            // 
             // DomainUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -299,8 +300,8 @@
             this.Name = "DomainUsers";
             this.Size = new System.Drawing.Size(911, 410);
             ((System.ComponentModel.ISupportInitialize)(this.grdDomainUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aDUserBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

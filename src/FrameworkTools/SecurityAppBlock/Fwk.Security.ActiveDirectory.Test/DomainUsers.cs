@@ -11,6 +11,7 @@ using Fwk.Security.Common;
 namespace Fwk.Security.ActiveDirectory.Test
 {
     public delegate void ObjectDomainChangeHandler(ADUser user);
+    public delegate void ObjectDomainDoubleClickHandler(ADUser user);
     
     [DefaultEvent("ObjectDomainChangeEvent")]
     public partial class DomainUsers : UserControl
@@ -18,10 +19,16 @@ namespace Fwk.Security.ActiveDirectory.Test
 
         ADHelper _ADHelper;
         public event ObjectDomainChangeHandler ObjectDomainChangeEvent;
+        public event ObjectDomainDoubleClickHandler ObjectDomainDoubleClickEvent;
         void OnObjectDomainChange()
         {
             if (ObjectDomainChangeEvent != null)
                 ObjectDomainChangeEvent(_CurrentUserName);
+        }
+        void OnObjectDomainDoubleClick()
+        {
+            if (ObjectDomainDoubleClickEvent != null)
+                ObjectDomainDoubleClickEvent(_CurrentUserName);
         }
         List<ADUser> _DomainUsers;
         ADUser _CurrentUserName;
@@ -31,14 +38,11 @@ namespace Fwk.Security.ActiveDirectory.Test
         public DomainUsers()
         {
             InitializeComponent();
+           
         }
 
 
-        public void Initialize(String pDomainName)
-        {
-            _ADHelper = new ADHelper(pDomainName);
-        }
-
+        
         public void Populate()
         {
             if (_ADHelper == null)
@@ -46,9 +50,9 @@ namespace Fwk.Security.ActiveDirectory.Test
                 throw new Exception("El dominio no fue inicializado. ");
             }
 
-           _DomainUsers = _ADHelper.Users_SearchByGroup("");
+           _DomainUsers = _ADHelper.Users_SearchByGroupName("");
 
-           fwkIdentityBindingSource.DataSource = _DomainUsers;
+           aDUserBindingSource.DataSource = _DomainUsers;
         }
         public void Populate(string groupName)
         {
@@ -57,9 +61,9 @@ namespace Fwk.Security.ActiveDirectory.Test
                 throw new Exception("El dominio no fue inicializado. ");
             }
 
-            _DomainUsers = _ADHelper.Users_SearchByGroup(groupName); ;
-
-            fwkIdentityBindingSource.DataSource = _DomainUsers;
+            _DomainUsers = _ADHelper.Users_SearchByGroupName(groupName); ;
+            
+            aDUserBindingSource.DataSource = _DomainUsers;
         }
 
         private void txDomainUserName_KeyDown(object sender, KeyEventArgs e)
@@ -68,7 +72,7 @@ namespace Fwk.Security.ActiveDirectory.Test
                 {
                     using (new WaitCursorHelper(this))
                     {
-                        //fwkIdentityBindingSource.DataSource = ObjectDomain.FilterByName(txDomainUserName.Text, _DomainUsers);
+                        aDUserBindingSource.DataSource = ADUser.FilterByName(txDomainUserName.Text, _DomainUsers);
                     }
                 }
         }
@@ -77,7 +81,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
             using (new WaitCursorHelper(this))
             {
-                //fwkIdentityBindingSource.DataSource = ObjectDomain.FilterByName(txDomainUserName.Text, _DomainUsers);
+                aDUserBindingSource.DataSource = ADUser.FilterByName(txDomainUserName.Text, _DomainUsers);
             }
             
         }
@@ -95,6 +99,17 @@ namespace Fwk.Security.ActiveDirectory.Test
 
             _CurrentUserName = (ADUser)grdDomainUsers.CurrentRow.DataBoundItem;
             OnObjectDomainChange();
+        }
+
+        private void grdDomainUsers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ObjectDomainChangeEvent == null) return;
+
+            if (grdDomainUsers.CurrentRow == null) return;
+            if (grdDomainUsers.CurrentRow.DataBoundItem == null) return;
+
+            _CurrentUserName = (ADUser)grdDomainUsers.CurrentRow.DataBoundItem;
+            OnObjectDomainDoubleClick();
         }
 
       

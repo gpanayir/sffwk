@@ -30,7 +30,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         public DomainGoups()
         {
             InitializeComponent();
-
+            _ADHelper = StaticAD.ADHelper;
           
         }
 
@@ -38,8 +38,8 @@ namespace Fwk.Security.ActiveDirectory.Test
         public void Initialize(String pDomainName)
         {
             //_FwkActyveDirectory = new FwkActyveDirectory(pDomainName);
-            _ADHelper = new ADHelper(pDomainName);
-   
+            StaticAD.LoadDomain(pDomainName);
+            _ADHelper = StaticAD.ADHelper;
         }
 
         public void Populate()
