@@ -121,24 +121,11 @@
   <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
-  <data name="UDDI Server Search 16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UDDI Server Search 16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fwk_find" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fwk_find.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="TortoiseAdded" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TortoiseAdded.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fwk_Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fwk_Refresh.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="UDDI Server Search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UDDI Server Search.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="161" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\161.ICO;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DataBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DataBase.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -149,5 +136,20 @@
   <data name="MessageBoxTitle" xml:space="preserve">
     <value>Security fwk admin</value>
     <comment>Security fwk admin</comment>
+  </data>
+  <data name="apply_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apply_16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="srch_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\srch_16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="users" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\users.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_lock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lock.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
