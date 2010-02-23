@@ -81,6 +81,20 @@ namespace Fwk.Security.ActiveDirectory.Test.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap calendar_16 {
+            get {
+                object obj = ResourceManager.GetObject("calendar_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap contacts_16 {
+            get {
+                object obj = ResourceManager.GetObject("contacts_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap DataBase {
             get {
                 object obj = ResourceManager.GetObject("DataBase", resourceCulture);
