@@ -155,6 +155,7 @@
     <None Include="Resources\DataBase.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\Fwk.Security.ActiveDirectory.ADUser.datasource" />
     <None Include="Properties\DataSources\Fwk.Security.Common.FwkIdentity.datasource" />
     <None Include="Properties\DataSources\Fwk.Security.Common.ObjectDomainGroup.datasource" />
     <None Include="Resources\DeleteXP.ico" />

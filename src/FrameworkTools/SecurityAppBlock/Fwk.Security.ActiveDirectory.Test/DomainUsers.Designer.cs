@@ -34,16 +34,30 @@
             this.btnFilterUsers = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.fwkIdentityBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userPrincipalNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.distinguishedNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aDUserBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.loginNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.middleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userAccountControlDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departmentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loginNameWithDomainDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.streetAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postalCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.homePhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.extensionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.faxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.managerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdDomainUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkIdentityBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aDUserBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txDomainUserName
@@ -56,20 +70,39 @@
             // 
             // grdDomainUsers
             // 
+            this.grdDomainUsers.AllowUserToAddRows = false;
+            this.grdDomainUsers.AllowUserToDeleteRows = false;
             this.grdDomainUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdDomainUsers.AutoGenerateColumns = false;
             this.grdDomainUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDomainUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.mailDataGridViewTextBoxColumn,
-            this.distinguishedNameDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn,
-            this.userPrincipalNameDataGridViewTextBoxColumn,
-            this.categoryDataGridViewTextBoxColumn});
+            this.loginNameDataGridViewTextBoxColumn,
+            this.firstNameDataGridViewTextBoxColumn,
+            this.middleNameDataGridViewTextBoxColumn,
+            this.lastNameDataGridViewTextBoxColumn,
+            this.emailAddressDataGridViewTextBoxColumn,
+            this.userAccountControlDataGridViewTextBoxColumn,
+            this.departmentDataGridViewTextBoxColumn,
+            this.loginNameWithDomainDataGridViewTextBoxColumn,
+            this.streetAddressDataGridViewTextBoxColumn,
+            this.cityDataGridViewTextBoxColumn,
+            this.stateDataGridViewTextBoxColumn,
+            this.postalCodeDataGridViewTextBoxColumn,
+            this.countryDataGridViewTextBoxColumn,
+            this.homePhoneDataGridViewTextBoxColumn,
+            this.extensionDataGridViewTextBoxColumn,
+            this.mobileDataGridViewTextBoxColumn,
+            this.faxDataGridViewTextBoxColumn,
+            this.titleDataGridViewTextBoxColumn,
+            this.companyDataGridViewTextBoxColumn,
+            this.managerNameDataGridViewTextBoxColumn});
+            this.grdDomainUsers.DataSource = this.aDUserBindingSource;
             this.grdDomainUsers.Location = new System.Drawing.Point(3, 32);
             this.grdDomainUsers.Name = "grdDomainUsers";
-            this.grdDomainUsers.Size = new System.Drawing.Size(311, 375);
+            this.grdDomainUsers.ReadOnly = true;
+            this.grdDomainUsers.Size = new System.Drawing.Size(905, 375);
             this.grdDomainUsers.TabIndex = 21;
             this.grdDomainUsers.Click += new System.EventHandler(this.grdDomainUsers_Click);
             // 
@@ -110,46 +143,149 @@
             this.label1.TabIndex = 42;
             this.label1.Text = "Users";
             // 
-            // fwkIdentityBindingSource
+            // aDUserBindingSource
             // 
-            this.fwkIdentityBindingSource.DataSource = typeof(Fwk.Security.ActiveDirectory.ADUser);
+            this.aDUserBindingSource.DataSource = typeof(Fwk.Security.ActiveDirectory.ADUser);
             // 
-            // categoryDataGridViewTextBoxColumn
+            // loginNameDataGridViewTextBoxColumn
             // 
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            this.loginNameDataGridViewTextBoxColumn.DataPropertyName = "LoginName";
+            this.loginNameDataGridViewTextBoxColumn.HeaderText = "LoginName";
+            this.loginNameDataGridViewTextBoxColumn.Name = "loginNameDataGridViewTextBoxColumn";
+            this.loginNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // userPrincipalNameDataGridViewTextBoxColumn
+            // firstNameDataGridViewTextBoxColumn
             // 
-            this.userPrincipalNameDataGridViewTextBoxColumn.DataPropertyName = "UserPrincipalName";
-            this.userPrincipalNameDataGridViewTextBoxColumn.HeaderText = "UserPrincipalName";
-            this.userPrincipalNameDataGridViewTextBoxColumn.Name = "userPrincipalNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // fullNameDataGridViewTextBoxColumn
+            // middleNameDataGridViewTextBoxColumn
             // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.middleNameDataGridViewTextBoxColumn.DataPropertyName = "MiddleName";
+            this.middleNameDataGridViewTextBoxColumn.HeaderText = "MiddleName";
+            this.middleNameDataGridViewTextBoxColumn.Name = "middleNameDataGridViewTextBoxColumn";
+            this.middleNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // distinguishedNameDataGridViewTextBoxColumn
+            // lastNameDataGridViewTextBoxColumn
             // 
-            this.distinguishedNameDataGridViewTextBoxColumn.DataPropertyName = "DistinguishedName";
-            this.distinguishedNameDataGridViewTextBoxColumn.HeaderText = "DistinguishedName";
-            this.distinguishedNameDataGridViewTextBoxColumn.Name = "distinguishedNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // mailDataGridViewTextBoxColumn
+            // emailAddressDataGridViewTextBoxColumn
             // 
-            this.mailDataGridViewTextBoxColumn.DataPropertyName = "Mail";
-            this.mailDataGridViewTextBoxColumn.HeaderText = "Mail";
-            this.mailDataGridViewTextBoxColumn.Name = "mailDataGridViewTextBoxColumn";
+            this.emailAddressDataGridViewTextBoxColumn.DataPropertyName = "EmailAddress";
+            this.emailAddressDataGridViewTextBoxColumn.HeaderText = "EmailAddress";
+            this.emailAddressDataGridViewTextBoxColumn.Name = "emailAddressDataGridViewTextBoxColumn";
+            this.emailAddressDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // nameDataGridViewTextBoxColumn
+            // userAccountControlDataGridViewTextBoxColumn
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userAccountControlDataGridViewTextBoxColumn.DataPropertyName = "UserAccountControl";
+            this.userAccountControlDataGridViewTextBoxColumn.HeaderText = "UserAccountControl";
+            this.userAccountControlDataGridViewTextBoxColumn.Name = "userAccountControlDataGridViewTextBoxColumn";
+            this.userAccountControlDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // departmentDataGridViewTextBoxColumn
+            // 
+            this.departmentDataGridViewTextBoxColumn.DataPropertyName = "Department";
+            this.departmentDataGridViewTextBoxColumn.HeaderText = "Department";
+            this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
+            this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // loginNameWithDomainDataGridViewTextBoxColumn
+            // 
+            this.loginNameWithDomainDataGridViewTextBoxColumn.DataPropertyName = "LoginNameWithDomain";
+            this.loginNameWithDomainDataGridViewTextBoxColumn.HeaderText = "LoginNameWithDomain";
+            this.loginNameWithDomainDataGridViewTextBoxColumn.Name = "loginNameWithDomainDataGridViewTextBoxColumn";
+            this.loginNameWithDomainDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // streetAddressDataGridViewTextBoxColumn
+            // 
+            this.streetAddressDataGridViewTextBoxColumn.DataPropertyName = "StreetAddress";
+            this.streetAddressDataGridViewTextBoxColumn.HeaderText = "StreetAddress";
+            this.streetAddressDataGridViewTextBoxColumn.Name = "streetAddressDataGridViewTextBoxColumn";
+            this.streetAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cityDataGridViewTextBoxColumn
+            // 
+            this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
+            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
+            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
+            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // stateDataGridViewTextBoxColumn
+            // 
+            this.stateDataGridViewTextBoxColumn.DataPropertyName = "State";
+            this.stateDataGridViewTextBoxColumn.HeaderText = "State";
+            this.stateDataGridViewTextBoxColumn.Name = "stateDataGridViewTextBoxColumn";
+            this.stateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // postalCodeDataGridViewTextBoxColumn
+            // 
+            this.postalCodeDataGridViewTextBoxColumn.DataPropertyName = "PostalCode";
+            this.postalCodeDataGridViewTextBoxColumn.HeaderText = "PostalCode";
+            this.postalCodeDataGridViewTextBoxColumn.Name = "postalCodeDataGridViewTextBoxColumn";
+            this.postalCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // countryDataGridViewTextBoxColumn
+            // 
+            this.countryDataGridViewTextBoxColumn.DataPropertyName = "Country";
+            this.countryDataGridViewTextBoxColumn.HeaderText = "Country";
+            this.countryDataGridViewTextBoxColumn.Name = "countryDataGridViewTextBoxColumn";
+            this.countryDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // homePhoneDataGridViewTextBoxColumn
+            // 
+            this.homePhoneDataGridViewTextBoxColumn.DataPropertyName = "HomePhone";
+            this.homePhoneDataGridViewTextBoxColumn.HeaderText = "HomePhone";
+            this.homePhoneDataGridViewTextBoxColumn.Name = "homePhoneDataGridViewTextBoxColumn";
+            this.homePhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // extensionDataGridViewTextBoxColumn
+            // 
+            this.extensionDataGridViewTextBoxColumn.DataPropertyName = "Extension";
+            this.extensionDataGridViewTextBoxColumn.HeaderText = "Extension";
+            this.extensionDataGridViewTextBoxColumn.Name = "extensionDataGridViewTextBoxColumn";
+            this.extensionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // mobileDataGridViewTextBoxColumn
+            // 
+            this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
+            this.mobileDataGridViewTextBoxColumn.HeaderText = "Mobile";
+            this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
+            this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // faxDataGridViewTextBoxColumn
+            // 
+            this.faxDataGridViewTextBoxColumn.DataPropertyName = "Fax";
+            this.faxDataGridViewTextBoxColumn.HeaderText = "Fax";
+            this.faxDataGridViewTextBoxColumn.Name = "faxDataGridViewTextBoxColumn";
+            this.faxDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // companyDataGridViewTextBoxColumn
+            // 
+            this.companyDataGridViewTextBoxColumn.DataPropertyName = "Company";
+            this.companyDataGridViewTextBoxColumn.HeaderText = "Company";
+            this.companyDataGridViewTextBoxColumn.Name = "companyDataGridViewTextBoxColumn";
+            this.companyDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // managerNameDataGridViewTextBoxColumn
+            // 
+            this.managerNameDataGridViewTextBoxColumn.DataPropertyName = "ManagerName";
+            this.managerNameDataGridViewTextBoxColumn.HeaderText = "ManagerName";
+            this.managerNameDataGridViewTextBoxColumn.Name = "managerNameDataGridViewTextBoxColumn";
+            this.managerNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // DomainUsers
             // 
@@ -161,10 +297,10 @@
             this.Controls.Add(this.btnFilterUsers);
             this.Controls.Add(this.grdDomainUsers);
             this.Name = "DomainUsers";
-            this.Size = new System.Drawing.Size(317, 410);
+            this.Size = new System.Drawing.Size(911, 410);
             ((System.ComponentModel.ISupportInitialize)(this.grdDomainUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkIdentityBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aDUserBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,12 +313,26 @@
         private System.Windows.Forms.DataGridView grdDomainUsers;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn distinguishedNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userPrincipalNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource fwkIdentityBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn loginNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn middleNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailAddressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userAccountControlDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn departmentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn loginNameWithDomainDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn streetAddressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn postalCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn countryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn homePhoneDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn extensionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn faxDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn companyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn managerNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource aDUserBindingSource;
     }
 }
