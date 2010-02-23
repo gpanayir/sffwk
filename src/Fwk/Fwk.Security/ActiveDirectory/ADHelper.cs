@@ -106,10 +106,15 @@ namespace Fwk.Security.ActiveDirectory
             //	= CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
             _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
         }
-<<<<<<< .mine
+
         #endregion
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="nameValue"></param>
+        /// <returns></returns>
         static string GetValue(string str,string nameValue) 
         {
             foreach(string s in str.Split(','))
@@ -120,6 +125,11 @@ namespace Fwk.Security.ActiveDirectory
             return string.Empty;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pDirectoryEntry"></param>
+        /// <returns></returns>
         static string EnlistValue(DirectoryEntry pDirectoryEntry)
         {
             StringBuilder slist = new StringBuilder();
@@ -136,40 +146,32 @@ namespace Fwk.Security.ActiveDirectory
             return slist.ToString();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="memberOf"></param>
+        /// <returns></returns>
+        public static List<string> GetGroupFromMemberOf(string memberOf)
+        {
+            int i = 0;
+            string[] propAux;
+            List<String> list = new List<String>();
+            foreach (string prop in memberOf.Split(','))
+            {
+                propAux = prop.Split('=');
+
+                if (propAux[0].CompareTo("CN") == 0)
+                {
+                    list.Add(propAux[1]);
+                    i++;
+                }
+
+            }
+            return list;
+        }
+
         #region users
-        ///// <summary>
-        ///// This will return a DirectoryEntry object if the user does exist
-        ///// </summary>
-        ///// <param name="userName"></param>
-        ///// <returns></returns>
-        //public DirectoryEntry User_Get(string userName)
-        //{
-        //    //create an instance of the DirectoryEntry
-        //    DirectoryEntry de = GetDirectoryObject();
-
-        //    //create instance fo the direcory searcher
-        //    DirectorySearcher deSearch = new DirectorySearcher();
-
-        //    deSearch.SearchRoot = de;
-        //    //set the search filter
-        //    deSearch.Filter = "(&(objectClass=user)(cn=" + userName + "))";
-        //    deSearch.SearchScope = SearchScope.Subtree;
-
-        //    //find the first instance
-        //    SearchResult results = deSearch.FindOne();
-
-        //    //if found then return, otherwise return Null
-        //    if (results != null)
-        //    {
-        //        de = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword, AuthenticationTypes.Secure);
-        //        //if so then return the DirectoryEntry object
-        //        return de;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
+        
 
         /// <summary>
         /// Override method which will perfrom query based on combination of username and password
@@ -185,32 +187,55 @@ namespace Fwk.Security.ActiveDirectory
         {
 
             DirectoryEntry userDirectoryEntry = null;
-            //create instance fo the direcory searcher
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-            //set the search filter
-            // string filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", pFullName); ---> Full Name
-            // string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", pUserName); --User name
+
             deSearch.Filter = "(&(objectClass=user)(cn=" + userName + "))";
             deSearch.SearchScope = SearchScope.Subtree;
 
-            //set the property to return
-            //deSearch.PropertiesToLoad.Add("givenName");
 
-            //find the first instance
             SearchResult results = deSearch.FindOne();
 
-            //if a match is found, then create directiry object and return, otherwise return Null
+            //si result no es nulo se puede crear una DirectoryEntry
             if (results != null)
-            {
-                //create the user object based on the admin priv.
-                 userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
-                
-            }
+                userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
+            
            
             return userDirectoryEntry;
 
         }
 
+        /// <summary>
+        /// Obtiene un usuario 
+        /// </summary>
+        /// <param name="domain"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        static DirectoryEntry User_Get(string domain ,string userName, string password)
+        {
+
+
+            DirectoryEntry root = new DirectoryEntry(string.Concat(@"LDAP://", domain), userName, password, AuthenticationTypes.Secure);
+
+
+            DirectoryEntry userDirectoryEntry = null;
+
+            DirectorySearcher deSearch = new DirectorySearcher(root);
+
+            deSearch.Filter = "(&(objectClass=user)(cn=" + userName + "))";
+            deSearch.SearchScope = SearchScope.Subtree;
+
+
+            SearchResult results = deSearch.FindOne();
+
+            //si result no es nulo se puede crear una DirectoryEntry
+            if (results != null)
+                userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
+
+            root.Close();
+            return userDirectoryEntry;
+
+        }
    
         /// <summary>
         /// This function will take a full name as input parameter and return AD user corresponding to that. 
@@ -284,7 +309,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <returns></returns>
         public List<ADGroup> User_SearchGroupList(String userName)
         {
-            
+
             try
             {
 
@@ -294,20 +319,25 @@ namespace Fwk.Security.ActiveDirectory
                 DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
                 directorySearch.Filter = filter;
                 SearchResult result = directorySearch.FindOne();
-                
+
 
 
                 if (result != null)
                 {
                     DirectoryEntry directoryEntryUser = result.GetDirectoryEntry();
                     list = new List<ADGroup>();
+                    ADGroup aDGroup;
                     foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
                     {
-                        ADGroup g= Group_GetByName(grouInfo);
-                        list.Add(g);
+                        foreach (string g in GetGroupFromMemberOf(grouInfo))
+                        {
+                            aDGroup = Group_GetByName(g);
+                            if (aDGroup != null)
+                                list.Add(aDGroup);
+                        }
                     }
                     directoryEntryUser.Close();
-                   
+
                 }
 
                 return list;
@@ -319,7 +349,39 @@ namespace Fwk.Security.ActiveDirectory
             }
 
         }
-    
+
+        /// <summary>
+        /// Obtiene todo los usuarios pertenecientes al dominio.-
+        /// Busca por cn nombre@mail retorna el sAMAccountName ejemplo: moviedo
+        /// </summary>
+        List<String> User_SearchGroupStringList(String pUserName)
+        {
+            DirectoryEntry directoryEntryUser;
+            List<String> list =null;
+            DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
+
+            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", pUserName);
+
+
+            directorySearch.Filter = filter;
+            SearchResult result = directorySearch.FindOne();
+
+
+            if (result != null)
+            {
+                directoryEntryUser = result.GetDirectoryEntry();
+                list = new List<String>();
+                foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
+                {
+                    foreach (string g in GetGroupFromMemberOf(grouInfo))
+                    {
+                        list.Add(g);
+                    }
+                }
+                directoryEntryUser.Close();
+            }
+            return list;
+        }
 
         /// <summary>
         /// Retorna la lista de usuarios pertenecientes a un determinado grupo
@@ -472,30 +534,7 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-        /// <summary>
-        /// Obtiene todo los usuarios pertenecientes al dominio.-
-        /// Busca por cn nombre@mail retorna el sAMAccountName ejemplo: moviedo
-        /// </summary>
-        List<String> User_GetGroups(String pUserName)
-        {
-            List<String> list = new List<String>();
-            DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
-
-            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", pUserName);
-
-
-            directorySearch.Filter = filter;
-            SearchResult result = directorySearch.FindOne();
-            DirectoryEntry directoryEntryUser = result.GetDirectoryEntry();
-
-            ///TODO:Ver grupos de usuarios
-            foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
-            {
-                list.Add(grouInfo);
-            }
-            directoryEntryUser.Close();
-            return list;
-        }
+      
 
 
 
@@ -583,8 +622,8 @@ namespace Fwk.Security.ActiveDirectory
                 if (de != null)
                 {
                     
-                    //convert the accountControl value so that a logical operation can be performed
-                    //to check of the Disabled option exists.
+                    
+                    //Convierte UserAccountControl a la operacion logica
                     int userAccountControl = Convert.ToInt32(de.UserAccountControl);
                   
 
@@ -609,7 +648,52 @@ namespace Fwk.Security.ActiveDirectory
                 return LoginResult.LOGIN_USER_DOESNT_EXIST;
             }
         }
+        /// <summary>
+        /// This method will not actually log a user in, but will perform tests to ensure
+        /// that the user account exists (matched by both the username and password), and also
+        /// checks if the account is active.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public static LoginResult User_Login(string domain,string userName, string password)
+        {
+            //first, check if the logon exists based on the username and password
+            //DirectoryEntry de = GetUser(UserName,Password);
 
+            //if (User_IsValid(domain,userName, password))
+            //{
+                DirectoryEntry de = User_Get(domain, userName, password);
+
+                if (de != null)
+                {
+
+                    
+                    //Convierte UserAccountControl a la operacion logica
+                    int userAccountControl = Convert.ToInt32(GetProperty(de, ADProperties.USERACCOUNTCONTROL));
+
+
+                    //if the disabled item does not exist then the account is active
+                    if (!User_IsAccountActive(userAccountControl))
+                    {
+                        return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+                    }
+                    else
+                    {
+                        return LoginResult.LOGIN_OK;
+                    }
+
+                }
+                else
+                {
+                    return LoginResult.LOGIN_USER_DOESNT_EXIST;
+                }
+            //}
+            //else
+            //{
+            //    return LoginResult.LOGIN_USER_DOESNT_EXIST;
+            //}
+        }
         /// <summary>
         /// This will perfrom a logical operation on the userAccountControl values
         /// to see if the user account is enabled or disabled.  The flag for determining if the
@@ -617,7 +701,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="userAccountControl"></param>
         /// <returns></returns>
-        public  bool User_IsAccountActive(int userAccountControl)
+        public static  bool User_IsAccountActive(int userAccountControl)
         {
             int userAccountControl_Disabled = Convert.ToInt32(ADAccountOptions.UF_ACCOUNTDISABLE);
             int flagExists = userAccountControl & userAccountControl_Disabled;
@@ -676,7 +760,7 @@ namespace Fwk.Security.ActiveDirectory
             DirectoryEntry directoryEntry = result.GetDirectoryEntry();
 
             ADGroup wADGroup = new ADGroup(directoryEntry);
-        
+            directoryEntry.Close();
             return wADGroup;
 
         }
