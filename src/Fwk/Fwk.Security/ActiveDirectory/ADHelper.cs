@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.DirectoryServices;
 using Fwk.Configuration;
+using System.Runtime.InteropServices;
+using System.Collections.Specialized;
+using System.DirectoryServices.Protocols;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace Fwk.Security.ActiveDirectory
 {
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -31,10 +35,10 @@ namespace Fwk.Security.ActiveDirectory
             {
                 return _LDAPPath;
             }
-          
+
         }
 
-        
+
         /// <summary>
         ///LDAPUser property
         /// </summary>
@@ -44,7 +48,7 @@ namespace Fwk.Security.ActiveDirectory
             {
                 return _LDAPUser;
             }
-           
+
         }
         string _LDAPPassword;
 
@@ -58,7 +62,7 @@ namespace Fwk.Security.ActiveDirectory
             {
                 return _LDAPPassword;
             }
-         
+
         }
 
 
@@ -71,25 +75,25 @@ namespace Fwk.Security.ActiveDirectory
             {
                 return _LDAPDomain;
             }
-           
+
         }
         #endregion
 
         #region Constructors
         /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="domain"></param>
+        /// 
+        /// </summary>
+        /// <param name="domain"></param>
         public ADHelper(string domain)
         {
-           _LDAPPath = string.Concat(@"LDAP://" , domain);
+            _LDAPPath = string.Concat(@"LDAP://", domain);
 
-           _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
+            _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
 
-           _LDAPDomain = domain;
-          
+            _LDAPDomain = domain;
+
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -99,7 +103,7 @@ namespace Fwk.Security.ActiveDirectory
         public ADHelper(string path, string user, string pwd)
         {
             _LDAPPath = path;
-           
+
             _LDAPUser = user;
             _LDAPPassword = pwd;
             _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
@@ -109,69 +113,9 @@ namespace Fwk.Security.ActiveDirectory
 
         #endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="str"></param>
-        /// <param name="nameValue"></param>
-        /// <returns></returns>
-        static string GetValue(string str,string nameValue) 
-        {
-            foreach(string s in str.Split(','))
-            {
-                if(s.Contains(nameValue))
-                    return s.Split('=')[1];   
-            }
-            return string.Empty;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pDirectoryEntry"></param>
-        /// <returns></returns>
-        static string EnlistValue(DirectoryEntry pDirectoryEntry)
-        {
-            StringBuilder slist = new StringBuilder();
-
-            foreach (string s in pDirectoryEntry.Properties.PropertyNames.Cast<string>())
-            {
-                slist.Append(s);
-                slist.Append(" = ");
-                slist.Append(GetProperty(pDirectoryEntry, s));
-                slist.AppendLine(Environment.NewLine);
-                
-            }
-
-            return slist.ToString();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="memberOf"></param>
-        /// <returns></returns>
-        public static List<string> GetGroupFromMemberOf(string memberOf)
-        {
-            int i = 0;
-            string[] propAux;
-            List<String> list = new List<String>();
-            foreach (string prop in memberOf.Split(','))
-            {
-                propAux = prop.Split('=');
-
-                if (propAux[0].CompareTo("CN") == 0)
-                {
-                    list.Add(propAux[1]);
-                    i++;
-                }
-
-            }
-            return list;
-        }
 
         #region users
-        
+
 
         /// <summary>
         /// Override method which will perfrom query based on combination of username and password
@@ -190,7 +134,7 @@ namespace Fwk.Security.ActiveDirectory
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
 
             deSearch.Filter = "(&(objectClass=user)(cn=" + userName + "))";
-            deSearch.SearchScope = SearchScope.Subtree;
+            deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
 
 
             SearchResult results = deSearch.FindOne();
@@ -198,8 +142,8 @@ namespace Fwk.Security.ActiveDirectory
             //si result no es nulo se puede crear una DirectoryEntry
             if (results != null)
                 userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
-            
-           
+
+            deSearch.Dispose();
             return userDirectoryEntry;
 
         }
@@ -211,9 +155,9 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        static DirectoryEntry User_Get(string domain ,string userName, string password)
+        static DirectoryEntry User_Get(string domain, string userName, string password)
         {
-
+            SearchResult results = null;
 
             DirectoryEntry root = new DirectoryEntry(string.Concat(@"LDAP://", domain), userName, password, AuthenticationTypes.Secure);
 
@@ -223,20 +167,29 @@ namespace Fwk.Security.ActiveDirectory
             DirectorySearcher deSearch = new DirectorySearcher(root);
 
             deSearch.Filter = "(&(objectClass=user)(cn=" + userName + "))";
-            deSearch.SearchScope = SearchScope.Subtree;
+            deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
 
-
-            SearchResult results = deSearch.FindOne();
+            try
+            {
+                results = deSearch.FindOne();
+            }
+            catch (Exception ex)
+            {
+                // {"El servidor no es operacional.\r\n"}
+                throw ProcessActiveDirectoryException(ex);
+            }
 
             //si result no es nulo se puede crear una DirectoryEntry
             if (results != null)
                 userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
 
             root.Close();
+            root.Dispose();
+            deSearch.Dispose();
             return userDirectoryEntry;
 
         }
-   
+
         /// <summary>
         /// This function will take a full name as input parameter and return AD user corresponding to that. 
         /// </summary>
@@ -244,22 +197,26 @@ namespace Fwk.Security.ActiveDirectory
         /// <returns></returns>
         public ADUser User_Get_ByFullName(String userFullName)
         {
-            
+
             ADUser wADUser = null;
+            DirectoryEntry userDirectoryEntry = null;
             try
             {
-                
-                DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
-                directorySearch.Filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", userFullName); 
-                SearchResult results = directorySearch.FindOne();
+
+                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+                deSearch.Filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", userFullName);
+
+                SearchResult results = deSearch.FindOne();
 
                 if (results != null)
                 {
-                    DirectoryEntry userDirectoryEntry = new DirectoryEntry(results.Path);
+                    userDirectoryEntry = new DirectoryEntry(results.Path);
                     wADUser = new ADUser(userDirectoryEntry);
                     userDirectoryEntry.Close();
+                    userDirectoryEntry.Dispose();
                 }
 
+                deSearch.Dispose();
                 return wADUser;
             }
             catch (Exception ex)
@@ -278,20 +235,22 @@ namespace Fwk.Security.ActiveDirectory
         {
 
             ADUser wADUser = null;
+            DirectoryEntry userDirectoryEntry = null;
             try
             {
 
-                DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
-                directorySearch.Filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", userName);
-                SearchResult results = directorySearch.FindOne();
+                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+                deSearch.Filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", userName);
+                SearchResult results = deSearch.FindOne();
 
                 if (results != null)
                 {
-                    DirectoryEntry userDirectoryEntry = new DirectoryEntry(results.Path, userName, null);
+                    userDirectoryEntry = new DirectoryEntry(results.Path, userName, null);
                     wADUser = new ADUser(userDirectoryEntry);
                     userDirectoryEntry.Close();
+                    userDirectoryEntry.Dispose();
                 }
-
+                deSearch.Dispose();
                 return wADUser;
             }
             catch (Exception ex)
@@ -309,22 +268,19 @@ namespace Fwk.Security.ActiveDirectory
         /// <returns></returns>
         public List<ADGroup> User_SearchGroupList(String userName)
         {
-
+            List<ADGroup> list = null;
+            DirectoryEntry directoryEntryUser = null;
+            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
+            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+            deSearch.Filter = filter;
             try
             {
 
-                List<ADGroup> list = null;
-
-                string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
-                DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
-                directorySearch.Filter = filter;
-                SearchResult result = directorySearch.FindOne();
-
-
+                SearchResult result = deSearch.FindOne();
 
                 if (result != null)
                 {
-                    DirectoryEntry directoryEntryUser = result.GetDirectoryEntry();
+                    directoryEntryUser = result.GetDirectoryEntry();
                     list = new List<ADGroup>();
                     ADGroup aDGroup;
                     foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
@@ -337,9 +293,9 @@ namespace Fwk.Security.ActiveDirectory
                         }
                     }
                     directoryEntryUser.Close();
-
+                    directoryEntryUser.Dispose();
                 }
-
+                deSearch.Dispose();
                 return list;
 
             }
@@ -356,31 +312,39 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         List<String> User_SearchGroupStringList(String pUserName)
         {
-            DirectoryEntry directoryEntryUser;
-            List<String> list =null;
-            DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
+            DirectoryEntry directoryEntryUser = null;
+            List<String> list = null;
+            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
 
             string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", pUserName);
-
-
-            directorySearch.Filter = filter;
-            SearchResult result = directorySearch.FindOne();
-
-
-            if (result != null)
+            try
             {
-                directoryEntryUser = result.GetDirectoryEntry();
-                list = new List<String>();
-                foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
+
+                deSearch.Filter = filter;
+                SearchResult result = deSearch.FindOne();
+
+
+                if (result != null)
                 {
-                    foreach (string g in GetGroupFromMemberOf(grouInfo))
+                    directoryEntryUser = result.GetDirectoryEntry();
+                    list = new List<String>();
+                    foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
                     {
-                        list.Add(g);
+                        foreach (string g in GetGroupFromMemberOf(grouInfo))
+                        {
+                            list.Add(g);
+                        }
                     }
+                    directoryEntryUser.Close();
+                    directoryEntryUser.Dispose();
                 }
-                directoryEntryUser.Close();
+                deSearch.Dispose();
+                return list;
             }
-            return list;
+            catch (Exception ex)
+            {
+                throw ProcessActiveDirectoryException(ex);
+            }
         }
 
         /// <summary>
@@ -393,11 +357,12 @@ namespace Fwk.Security.ActiveDirectory
 
             List<ADUser> userlist = new List<ADUser>();
             ADUser wADUser = null;
+            DirectoryEntry directoryEntryUser = null;
             try
             {
-                DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
-                directorySearch.Filter = "(&(objectClass=group)(SAMAccountName=" + groupName + "))";
-                SearchResult results = directorySearch.FindOne();
+                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+                deSearch.Filter = "(&(objectClass=group)(SAMAccountName=" + groupName + "))";
+                SearchResult results = deSearch.FindOne();
                 if (results != null)
                 {
 
@@ -420,29 +385,30 @@ namespace Fwk.Security.ActiveDirectory
 
                         string objpath = pColl["member"][i].ToString();
 
-                        string path = string.Concat(respath , objpath);
+                        string path = string.Concat(respath, objpath);
 
-                        DirectoryEntry user = new DirectoryEntry(path, LDAPUser, LDAPPassword);
+                        directoryEntryUser = new DirectoryEntry(path, LDAPUser, LDAPPassword);
 
-                        wADUser = new ADUser(user);
+                        wADUser = new ADUser(directoryEntryUser);
 
                         userlist.Add(wADUser);
 
-                        user.Close();
+                        directoryEntryUser.Close();
+                        directoryEntryUser.Dispose();
 
                     }
+                    deGroup.Close();
+                    deGroup.Dispose();
 
                 }
-
+                deSearch.Dispose();
                 return userlist;
 
             }
 
             catch (Exception ex)
             {
-
                 throw ProcessActiveDirectoryException(ex);
-
             }
 
 
@@ -458,47 +424,51 @@ namespace Fwk.Security.ActiveDirectory
         public List<ADUser> Users_Search_StarName(string fName)
         {
             List<ADUser> userlist = new List<ADUser>();
-            DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
-            directorySearch.Asynchronous = true;
-            directorySearch.CacheResults = true;
+            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+            deSearch.Asynchronous = true;
+            deSearch.CacheResults = true;
 
-            //directorySearch.Filter = "(&(objectClass=user)(SAMAccountName=" + userName + "))";
 
-            string filter = string.Format("(givenName={0}*", fName);
+
+            //string filter = string.Format("(givenName={0}*", fName);
 
             //filter = "(&(objectClass=user)(objectCategory=person)" + filter + ")";
+            string filter = "(&(objectClass=user)(objectCategory=person)(givenName=" + fName + "*))";
 
-            filter = "(&(objectClass=user)(objectCategory=person)(givenName=" + fName + "*))";
-           
-            directorySearch.Filter = filter;
-
-            SearchResultCollection userCollection = directorySearch.FindAll();
-
-            foreach (SearchResult users in userCollection)
+            deSearch.Filter = filter;
+            try
             {
-                DirectoryEntry userEntry = new DirectoryEntry(users.Path, LDAPUser, LDAPPassword);
-                userlist.Add(new ADUser(userEntry));
+                SearchResultCollection userCollection = deSearch.FindAll();
 
-            }
-
-
-
-            directorySearch.Filter = "(&(objectClass=group)(SAMAccountName=" + fName + "*))";
-
-            SearchResultCollection results = directorySearch.FindAll();
-
-            if (results != null)
-            {
-                foreach (SearchResult r in results)
+                foreach (SearchResult users in userCollection)
                 {
-                    DirectoryEntry deGroup = new DirectoryEntry(r.Path, LDAPUser, LDAPPassword);
+                    DirectoryEntry userEntry = new DirectoryEntry(users.Path, LDAPUser, LDAPPassword);
+                    userlist.Add(new ADUser(userEntry));
 
-                    // ADUserDetail dhan = new ADUserDetail();
-                    ADUser agroup = new ADUser(deGroup);
-                    userlist.Add(agroup);
                 }
+
+                //deSearch.Filter = "(&(objectClass=group)(SAMAccountName=" + fName + "*))";
+
+                //SearchResultCollection results = deSearch.FindAll();
+
+                //if (results != null)
+                //{
+                //    foreach (SearchResult r in results)
+                //    {
+                //        DirectoryEntry deGroup = new DirectoryEntry(r.Path, LDAPUser, LDAPPassword);
+
+                //        // ADUserDetail dhan = new ADUserDetail();
+                //        ADUser agroup = new ADUser(deGroup);
+                //        userlist.Add(agroup);
+                //    }
+                //}
+                deSearch.Dispose();
+                return userlist;
             }
-            return userlist;
+            catch (Exception ex)
+            {
+                throw ProcessActiveDirectoryException(ex);
+            }
         }
 
 
@@ -514,7 +484,7 @@ namespace Fwk.Security.ActiveDirectory
             try
             {
 
-                
+
 
                 ADManager admanager = new ADManager(LDAPDomain, LDAPUser, LDAPPassword);
 
@@ -524,7 +494,7 @@ namespace Fwk.Security.ActiveDirectory
 
             }
 
-            catch (Exception )
+            catch (Exception)
             {
 
                 return false;
@@ -534,7 +504,7 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-      
+
 
 
 
@@ -550,12 +520,12 @@ namespace Fwk.Security.ActiveDirectory
             try
             {
 
-           
+
                 ADManager admanager = new ADManager("xxx", LDAPUser, LDAPPassword);
 
                 admanager.RemoveUserFromGroup(userlogin, groupName);
 
-               
+
 
             }
 
@@ -575,10 +545,10 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="UserName"></param>
         /// <returns></returns>
-        public  bool User_Exists(string UserName)
+        public bool User_Exists(string UserName)
         {
 
-            
+
 
             //create instance fo the direcory searcher
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
@@ -618,14 +588,14 @@ namespace Fwk.Security.ActiveDirectory
             if (User_IsValid(userName, password))
             {
                 ADUser de = User_Get_ByName(userName);
-       
+
                 if (de != null)
                 {
-                    
-                    
+
+
                     //Convierte UserAccountControl a la operacion logica
                     int userAccountControl = Convert.ToInt32(de.UserAccountControl);
-                  
+
 
                     //if the disabled item does not exist then the account is active
                     if (!User_IsAccountActive(userAccountControl))
@@ -656,43 +626,46 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static LoginResult User_Login(string domain,string userName, string password)
+        public static LoginResult User_Login(string domain, string userName, string password)
         {
             //first, check if the logon exists based on the username and password
-            //DirectoryEntry de = GetUser(UserName,Password);
+            DirectoryEntry de = null;
 
             //if (User_IsValid(domain,userName, password))
             //{
-                DirectoryEntry de = User_Get(domain, userName, password);
+            try
+            {
+                de = User_Get(domain, userName, password);
+            }
+            catch (System.DirectoryServices.DirectoryServicesCOMException)
+            {
+                //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
+                return LoginResult.LOGIN_USER_DOESNT_EXIST;
+            }
+            if (de != null)
+            {
 
-                if (de != null)
+
+                //Convierte UserAccountControl a la operacion logica
+                int userAccountControl = Convert.ToInt32(GetProperty(de, ADProperties.USERACCOUNTCONTROL));
+
+
+                //if the disabled item does not exist then the account is active
+                if (!User_IsAccountActive(userAccountControl))
                 {
-
-                    
-                    //Convierte UserAccountControl a la operacion logica
-                    int userAccountControl = Convert.ToInt32(GetProperty(de, ADProperties.USERACCOUNTCONTROL));
-
-
-                    //if the disabled item does not exist then the account is active
-                    if (!User_IsAccountActive(userAccountControl))
-                    {
-                        return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
-                    }
-                    else
-                    {
-                        return LoginResult.LOGIN_OK;
-                    }
-
+                    return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
                 }
                 else
                 {
-                    return LoginResult.LOGIN_USER_DOESNT_EXIST;
+                    return LoginResult.LOGIN_OK;
                 }
-            //}
-            //else
-            //{
-            //    return LoginResult.LOGIN_USER_DOESNT_EXIST;
-            //}
+
+            }
+            else
+            {
+                return LoginResult.LOGIN_USER_DOESNT_EXIST;
+            }
+
         }
         /// <summary>
         /// This will perfrom a logical operation on the userAccountControl values
@@ -701,7 +674,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="userAccountControl"></param>
         /// <returns></returns>
-        public static  bool User_IsAccountActive(int userAccountControl)
+        public static bool User_IsAccountActive(int userAccountControl)
         {
             int userAccountControl_Disabled = Convert.ToInt32(ADAccountOptions.UF_ACCOUNTDISABLE);
             int flagExists = userAccountControl & userAccountControl_Disabled;
@@ -724,13 +697,14 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public  bool User_IsValid(string userName, string password)
+        public bool User_IsValid(string userName, string password)
         {
             try
             {
                 //if the object can be created then return true
                 DirectoryEntry deUser = User_Get(userName, password);
                 deUser.Close();
+                deUser.Dispose();
                 return true;
             }
             catch (Exception)
@@ -753,14 +727,16 @@ namespace Fwk.Security.ActiveDirectory
         {
             string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "group", pName);
 
-            DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
-            directorySearch.Filter = filter;
-            SearchResult result = directorySearch.FindOne();
+            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+            deSearch.Filter = filter;
+            SearchResult result = deSearch.FindOne();
             if (result == null) return null;
             DirectoryEntry directoryEntry = result.GetDirectoryEntry();
 
             ADGroup wADGroup = new ADGroup(directoryEntry);
             directoryEntry.Close();
+            directoryEntry.Dispose();
+            deSearch.Dispose();
             return wADGroup;
 
         }
@@ -772,19 +748,19 @@ namespace Fwk.Security.ActiveDirectory
         public List<ADGroup> Groups_GetAll()
         {
             List<ADGroup> pList = null;
-          
+
 
             ADGroup group = null;
             pList = new List<ADGroup>();
             DirectoryEntry wDirectoryEntry = null;
-            DirectorySearcher directorySearch = new DirectorySearcher(_directoryEntrySearchRoot);
-            directorySearch.Filter = "(&(objectClass=group))";
-            directorySearch.Sort.PropertyName = "sAMAccountName";
-            directorySearch.Sort.Direction = System.DirectoryServices.SortDirection.Ascending;
+            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+            deSearch.Filter = "(&(objectClass=group))";
+            deSearch.Sort.PropertyName = "sAMAccountName";
+            deSearch.Sort.Direction = System.DirectoryServices.SortDirection.Ascending;
 
             try
             {
-                foreach (SearchResult result in directorySearch.FindAll())
+                foreach (SearchResult result in deSearch.FindAll())
                 {
                     wDirectoryEntry = result.GetDirectoryEntry();
 
@@ -794,12 +770,11 @@ namespace Fwk.Security.ActiveDirectory
                         group = new ADGroup(wDirectoryEntry);
                         pList.Add(group);
                     }
-
-
                 }
 
-
                 wDirectoryEntry.Close();
+                wDirectoryEntry.Dispose();
+                deSearch.Dispose();
                 return pList;
             }
             catch (Exception ex)
@@ -808,15 +783,7 @@ namespace Fwk.Security.ActiveDirectory
             }
 
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="ex"></param>
-        /// <returns></returns>
-        private Exception ProcessActiveDirectoryException(Exception ex)
-        {
-            throw ex;
-        }
+
         /// <summary>
         /// Lista simple de grupos de usuario
         /// </summary>
@@ -850,12 +817,227 @@ namespace Fwk.Security.ActiveDirectory
         #endregion
 
         #region Functions
+        /// <summary>
+        /// Obtiene la lista de dominios
+        /// </summary>
+        /// <returns></returns>
+        public  StringCollection Domain_GetList()
+        {
+            StringCollection domainList = new StringCollection();
+           
+            try
+            {
+
+
+
+               
+
+                // Search for objectCategory type "Domain"
+                DirectorySearcher srch = new DirectorySearcher(_directoryEntrySearchRoot ,"objectCategory=Domain");
+                SearchResultCollection coll = srch.FindAll();
+                // Enumerate over each returned domain.
+                foreach (SearchResult rs in coll)
+                {
+                    ResultPropertyCollection resultPropColl = rs.Properties;
+                    foreach (object domainName in resultPropColl["name"])
+                    {
+                        domainList.Add(domainName.ToString());
+                    }
+                }
+            
+            }
+            catch (Exception ex)
+            {
+                ProcessActiveDirectoryException(ex);
+            }
+            return domainList;
+        }
+        /// <summary>
+        /// Obtiene la lista de dominios
+        /// </summary>
+        /// <returns></returns>
+        public static StringCollection Domain_GetList()
+        {
+            StringCollection domainList = new StringCollection();
+            SearchResultEntry entry;
+            try
+            {
+                //String[] Arr = new String[]{"dnsHostName", "configurationNamingContext", "defaultNamingContext", 
+                //                            "rootDomainNamingContext", "isGlobalCatalogReady", "dsServiceName"};
+                //SearchRequest req = new SearchRequest ();
+                //SearchResponse res;
+                ////http://itchanged.com/FindingAllDomainsInAnActiveDirectoryForest.html
+                //LdapDirectoryIdentifier id = new LdapDirectoryIdentifier("", 389, false, false);
+                //LdapConnection ldap = new LdapConnection(id);
+
+                //req.Attributes.AddRange(Arr);
+                //req.Filter = "objectClass=*";
+
+                ////An empty string is required to query the rootDSE.
+                //req.DistinguishedName = "";
+
+                ////An empty Must set scope to Base to query rootDSE.
+                //req.Scope = System.DirectoryServices.Protocols.SearchScope.Base;
+
+                //res = (SearchResponse)ldap.SendRequest(req);
+
+                //if (res.ResultCode == ResultCode.Success)
+                //{
+                //    entry = res.Entries[0];
+
+                //    //foreach (string strAttributeName in Arr)
+                //    //{
+
+                //    if (entry.Attributes.Contains("dnsHostName"))
+                //        {
+                //            //each attribute is returned as an array of values
+                //            domainList.Add(entry.Attributes["dnsHostName"][0].ToString());
+                //           
+                //            //Debug.Write (entry.Attributes(strAttributeName)(0))
+                //        }
+                //    //}
+                //}
+
+                DomainCollection domains = Forest.GetCurrentForest().Domains;
+
+                foreach (Domain domain in domains)
+                {
+                    domainList.Add(domain.Name);
+                }
+                //foreach (GlobalCatalog gc in Forest.GetCurrentForest().GlobalCatalogs)
+                //{
+                //    domainList.Add(gc.Name);
+                //}
+
+
+
+                //DirectoryEntry en = new DirectoryEntry("LDAP://");
+
+                //// Search for objectCategory type "Domain"
+                //DirectorySearcher srch = new DirectorySearcher("objectCategory=Domain");
+                //SearchResultCollection coll = srch.FindAll();
+                //// Enumerate over each returned domain.
+                //foreach (SearchResult rs in coll)
+                //{
+                //    ResultPropertyCollection resultPropColl = rs.Properties;
+                //    foreach (object domainName in resultPropColl["name"])
+                //    {
+                //        domainList.Add(domainName.ToString());
+                //    }
+                //}
+                //en.Close();
+            }
+            catch (Exception ex)
+            {
+                ProcessActiveDirectoryException(ex);
+            }
+            return domainList;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cnnStringName"></param>
+        /// <returns></returns>
+        public static StringCollection Domain_GetList_FromDB(string cnnStringName)
+        {
+            return new StringCollection();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
+        public static Exception ProcessActiveDirectoryException(Exception ex)
+        {
+            Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(ex.Message, ex);
+
+            switch (ex.GetType().Name)
+            {
+                case "System.Runtime.InteropServices.COMException"://((System.Runtime.InteropServices.COMException)(ex)) "El servidor no es operacional.\r\n"
+                    {
+                        te.ErrorId = "15001";
+                        break;
+                    }
+                default:
+                    {
+                        te.ErrorId = "15000";
+                        break;
+                    }
+
+            }
+
+            return te;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="nameValue"></param>
+        /// <returns></returns>
+        static string GetValue(string str, string nameValue)
+        {
+            foreach (string s in str.Split(','))
+            {
+                if (s.Contains(nameValue))
+                    return s.Split('=')[1];
+            }
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pDirectoryEntry"></param>
+        /// <returns></returns>
+        static string EnlistValue(DirectoryEntry pDirectoryEntry)
+        {
+            StringBuilder slist = new StringBuilder();
+
+            foreach (string s in pDirectoryEntry.Properties.PropertyNames.Cast<string>())
+            {
+                slist.Append(s);
+                slist.Append(" = ");
+                slist.Append(GetProperty(pDirectoryEntry, s));
+                slist.AppendLine(Environment.NewLine);
+
+            }
+
+            return slist.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="memberOf"></param>
+        /// <returns></returns>
+        public static List<string> GetGroupFromMemberOf(string memberOf)
+        {
+            int i = 0;
+            string[] propAux;
+            List<String> list = new List<String>();
+            foreach (string prop in memberOf.Split(','))
+            {
+                propAux = prop.Split('=');
+
+                if (propAux[0].CompareTo("CN") == 0)
+                {
+                    list.Add(propAux[1]);
+                    i++;
+                }
+
+            }
+            return list;
+        }
+
 
         /// <summary>
         /// This is an internal method for retreiving a new directoryentry object
         /// </summary>
         /// <returns></returns>
-        private  DirectoryEntry GetDirectoryObject()
+        private DirectoryEntry GetDirectoryObject()
         {
             DirectoryEntry oDE;
 
@@ -870,7 +1052,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="UserName"></param>
         /// <param name="Password"></param>
         /// <returns></returns>
-        private  DirectoryEntry GetDirectoryObject(string UserName, string Password)
+        private DirectoryEntry GetDirectoryObject(string UserName, string Password)
         {
             DirectoryEntry oDE;
 
@@ -887,7 +1069,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="DomainReference"></param>
         /// <returns></returns>
-        private  DirectoryEntry GetDirectoryObject(string DomainReference)
+        private DirectoryEntry GetDirectoryObject(string DomainReference)
         {
             DirectoryEntry oDE;
 
@@ -904,7 +1086,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="UserName"></param>
         /// <param name="Password"></param>
         /// <returns></returns>
-        private  DirectoryEntry GetDirectoryObject(string DomainReference, string UserName, string Password)
+        private DirectoryEntry GetDirectoryObject(string DomainReference, string UserName, string Password)
         {
             DirectoryEntry oDE;
 
@@ -1014,5 +1196,5 @@ namespace Fwk.Security.ActiveDirectory
     }
 
     #endregion
-    
+
 }
