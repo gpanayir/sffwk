@@ -27,6 +27,54 @@ namespace Fwk.Security.ActiveDirectory.Test
             {
                 _ADHelper = new ADHelper(txtPath.Text, txtLoginName.Text, txtPassword.Text);
                 lstDomains.DataSource = _ADHelper.Domain_GetList1();
+                label4.Text = _ADHelper.LDAPPath;
+            }
+            catch (Exception ex)
+            {
+                lblResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _ADHelper = new ADHelper(txtPath2.Text, txtLoginName.Text, txtPassword.Text);
+                lstDomains.DataSource = _ADHelper.Domain_GetList1();
+                label4.Text = _ADHelper.LDAPPath;
+            }
+            catch (Exception ex)
+            {
+                lblResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _ADHelper = new ADHelper(txtPath3.Text, txtLoginName.Text, txtPassword.Text);
+                lstDomains.DataSource = _ADHelper.Domain_GetList1();
+                label4.Text = _ADHelper.LDAPPath;
+            }
+            catch (Exception ex)
+            {
+                lblResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _ADHelper = new ADHelper(txtDomain.Text);
+                lstDomains.DataSource = _ADHelper.Domain_GetList1();
+                label4.Text = _ADHelper.LDAPPath;
             }
             catch (Exception ex)
             {

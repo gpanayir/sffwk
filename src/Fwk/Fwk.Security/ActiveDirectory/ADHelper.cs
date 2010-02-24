@@ -29,7 +29,7 @@ namespace Fwk.Security.ActiveDirectory
         ///LDAP://CORRSF71NT13.actionlinecba.org/DC=actionlinecba,DC=org
         ///LDAP://Corba362nt01.alcomovistar.com.ar/OU=Movistar Sabattini,dc=alcomovistar,dc=com,dc=ar
         /// </summary>
-        private String LDAPPath
+        public String LDAPPath
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         ///LDAPUser property
         /// </summary>
-        private String LDAPUser
+        public String LDAPUser
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Fwk.Security.ActiveDirectory
         /// LDAPPassword property
         ///This property is reading the LDAP Password from the config file.
         /// </summary>
-        private String LDAPPassword
+        public String LDAPPassword
         {
             get
             {
@@ -69,7 +69,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// Dominio
         /// </summary>
-        private String LDAPDomain
+        public String LDAPDomain
         {
             get
             {
