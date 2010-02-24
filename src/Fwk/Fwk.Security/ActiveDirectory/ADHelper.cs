@@ -821,17 +821,12 @@ namespace Fwk.Security.ActiveDirectory
         /// Obtiene la lista de dominios
         /// </summary>
         /// <returns></returns>
-        public  StringCollection Domain_GetList()
+        public  StringCollection Domain_GetList1()
         {
             StringCollection domainList = new StringCollection();
            
             try
             {
-
-
-
-               
-
                 // Search for objectCategory type "Domain"
                 DirectorySearcher srch = new DirectorySearcher(_directoryEntrySearchRoot ,"objectCategory=Domain");
                 SearchResultCollection coll = srch.FindAll();
@@ -852,6 +847,7 @@ namespace Fwk.Security.ActiveDirectory
             }
             return domainList;
         }
+
         /// <summary>
         /// Obtiene la lista de dominios
         /// </summary>
@@ -943,6 +939,7 @@ namespace Fwk.Security.ActiveDirectory
         {
             return new StringCollection();
         }
+
         /// <summary>
         /// 
         /// </summary>
