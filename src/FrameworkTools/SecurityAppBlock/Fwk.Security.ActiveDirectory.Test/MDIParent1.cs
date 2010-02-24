@@ -63,5 +63,10 @@ namespace Fwk.Security.ActiveDirectory.Test
             OpenForm( new frmTestGroups());
             
         }
+
+        private void openToolStripButton_Click(object sender, EventArgs e)
+        {
+            OpenForm(new frmTestLDAPconnections());
+        }
     }
 }
