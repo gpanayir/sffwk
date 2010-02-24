@@ -36,7 +36,6 @@
             this.grdGroupInfo = new System.Windows.Forms.DataGridView();
             this.objectDomainGroupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.domainUsers1 = new Fwk.Security.ActiveDirectory.Test.DomainUsers();
-            this.btnCheck = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroupInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDomainGroupBindingSource)).BeginInit();
@@ -110,26 +109,11 @@
             this.domainUsers1.ObjectDomainDoubleClickEvent += new Fwk.Security.ActiveDirectory.Test.ObjectDomainDoubleClickHandler(this.domainUsers1_ObjectDomainDoubleClickEvent);
             this.domainUsers1.ObjectDomainChangeEvent += new Fwk.Security.ActiveDirectory.Test.ObjectDomainChangeHandler(this.domainUsers1_ObjectDomainChangeEvent);
             // 
-            // btnCheck
-            // 
-            this.btnCheck.BackColor = System.Drawing.Color.White;
-            this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCheck.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
-            this.btnCheck.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCheck.Location = new System.Drawing.Point(422, 13);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(178, 25);
-            this.btnCheck.TabIndex = 25;
-            this.btnCheck.Text = "Test ahutentication";
-            this.btnCheck.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCheck.UseVisualStyleBackColor = false;
-            // 
             // frmTestGroups
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1099, 712);
-            this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.btnSearchInDomain);
             this.Controls.Add(this.txtDomain);
             this.Controls.Add(this.grdGroupInfo);
@@ -163,6 +147,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn domainDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnCheck;
     }
 }

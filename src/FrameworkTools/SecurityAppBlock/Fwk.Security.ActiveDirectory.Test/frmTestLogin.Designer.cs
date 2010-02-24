@@ -35,7 +35,9 @@
             this.lblCheckResult = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.cmbAllDomains = new System.Windows.Forms.ComboBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // btnCheck
@@ -44,10 +46,10 @@
             this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheck.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
             this.btnCheck.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCheck.Location = new System.Drawing.Point(142, 171);
+            this.btnCheck.Location = new System.Drawing.Point(142, 221);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(112, 25);
-            this.btnCheck.TabIndex = 17;
+            this.btnCheck.TabIndex = 4;
             this.btnCheck.Text = "Ahutenticate";
             this.btnCheck.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCheck.UseVisualStyleBackColor = false;
@@ -55,10 +57,10 @@
             // 
             // txtDomain
             // 
-            this.txtDomain.Location = new System.Drawing.Point(142, 126);
+            this.txtDomain.Location = new System.Drawing.Point(142, 187);
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(178, 20);
-            this.txtDomain.TabIndex = 16;
+            this.txtDomain.TabIndex = 3;
             this.txtDomain.Text = "Allus-ar";
             // 
             // txtPassword
@@ -66,14 +68,14 @@
             this.txtPassword.Location = new System.Drawing.Point(142, 86);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
-            this.txtPassword.TabIndex = 18;
+            this.txtPassword.TabIndex = 2;
             // 
             // txtLoginName
             // 
             this.txtLoginName.Location = new System.Drawing.Point(142, 54);
             this.txtLoginName.Name = "txtLoginName";
             this.txtLoginName.Size = new System.Drawing.Size(178, 20);
-            this.txtLoginName.TabIndex = 19;
+            this.txtLoginName.TabIndex = 1;
             // 
             // lblCheckResult
             // 
@@ -102,21 +104,44 @@
             this.label1.TabIndex = 56;
             this.label1.Text = "Password";
             // 
-            // label2
+            // cmbAllDomains
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 133);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 57;
-            this.label2.Text = "Domain";
+            this.cmbAllDomains.FormattingEnabled = true;
+            this.cmbAllDomains.Location = new System.Drawing.Point(142, 139);
+            this.cmbAllDomains.Name = "cmbAllDomains";
+            this.cmbAllDomains.Size = new System.Drawing.Size(178, 21);
+            this.cmbAllDomains.TabIndex = 58;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(4, 187);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(132, 17);
+            this.radioButton1.TabIndex = 59;
+            this.radioButton1.Text = "Coustom domain name";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(4, 143);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(133, 17);
+            this.radioButton2.TabIndex = 60;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Selected domain name";
+            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // frmTestLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(376, 295);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.cmbAllDomains);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblCheckResult);
@@ -129,6 +154,7 @@
             this.Name = "frmTestLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmTestLogin";
+            this.Load += new System.EventHandler(this.frmTestLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,6 +169,8 @@
         private System.Windows.Forms.Label lblCheckResult;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbAllDomains;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }
