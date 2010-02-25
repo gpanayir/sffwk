@@ -177,7 +177,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(39, 386);
+            this.button2.Location = new System.Drawing.Point(0, 386);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(167, 25);
             this.button2.TabIndex = 74;

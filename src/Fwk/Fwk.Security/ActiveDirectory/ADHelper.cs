@@ -428,10 +428,7 @@ namespace Fwk.Security.ActiveDirectory
             deSearch.Asynchronous = true;
             deSearch.CacheResults = true;
 
-
-
             //string filter = string.Format("(givenName={0}*", fName);
-
             //filter = "(&(objectClass=user)(objectCategory=person)" + filter + ")";
             string filter = "(&(objectClass=user)(objectCategory=person)(givenName=" + fName + "*))";
 
@@ -444,24 +441,7 @@ namespace Fwk.Security.ActiveDirectory
                 {
                     DirectoryEntry userEntry = new DirectoryEntry(users.Path, LDAPUser, LDAPPassword);
                     userlist.Add(new ADUser(userEntry));
-
                 }
-
-                //deSearch.Filter = "(&(objectClass=group)(SAMAccountName=" + fName + "*))";
-
-                //SearchResultCollection results = deSearch.FindAll();
-
-                //if (results != null)
-                //{
-                //    foreach (SearchResult r in results)
-                //    {
-                //        DirectoryEntry deGroup = new DirectoryEntry(r.Path, LDAPUser, LDAPPassword);
-
-                //        // ADUserDetail dhan = new ADUserDetail();
-                //        ADUser agroup = new ADUser(deGroup);
-                //        userlist.Add(agroup);
-                //    }
-                //}
                 deSearch.Dispose();
                 return userlist;
             }
@@ -473,34 +453,23 @@ namespace Fwk.Security.ActiveDirectory
 
 
         /// <summary>
-        ///  This function will take a user login name and add this to a group of AD.
+        ///  Agrega un usuario a un grupoThis function will take a user login name and add this to a group of AD.
         /// </summary>
-        /// <param name="userlogin"></param>
-        /// <param name="groupName"></param>
+        /// <param name="userlogin">Nuevo usuario</param>
+        /// <param name="groupName">Grupo donde agregar el usuario</param>
         /// <returns></returns>
         public bool User_AddToGroup(string userlogin, string groupName)
         {
-
             try
             {
-
-
-
                 ADManager admanager = new ADManager(LDAPDomain, LDAPUser, LDAPPassword);
-
                 admanager.AddUserToGroup(userlogin, groupName);
-
                 return true;
-
             }
-
             catch (Exception)
             {
-
                 return false;
-
             }
-
         }
 
 
@@ -573,91 +542,93 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// This method will not actually log a user in, but will perform tests to ensure
-        /// that the user account exists (matched by both the username and password), and also
-        /// checks if the account is active.
+        /// Este metodo permite determinar si un usuario puede loguearce en un dominio
+        /// tambien chequea si la cuenta esta activa
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
+        /// <param name="userName">Nombre de usuario a autenticar</param>
+        /// <param name="password">Password del usuario.-</param>
         /// <returns></returns>
-        public LoginResult User_Login(string userName, string password)
+        public LoginResult User_CheckLogin(string userName, string password)
         {
-            //first, check if the logon exists based on the username and password
-            //DirectoryEntry de = GetUser(UserName,Password);
-
-            if (User_IsValid(userName, password))
-            {
-                ADUser de = User_Get_ByName(userName);
-
-                if (de != null)
-                {
-
-
-                    //Convierte UserAccountControl a la operacion logica
-                    int userAccountControl = Convert.ToInt32(de.UserAccountControl);
-
-
-                    //if the disabled item does not exist then the account is active
-                    if (!User_IsAccountActive(userAccountControl))
-                    {
-                        return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
-                    }
-                    else
-                    {
-                        return LoginResult.LOGIN_OK;
-                    }
-
-                }
-                else
-                {
-                    return LoginResult.LOGIN_USER_DOESNT_EXIST;
-                }
-            }
-            else
-            {
-                return LoginResult.LOGIN_USER_DOESNT_EXIST;
-            }
-        }
-        /// <summary>
-        /// This method will not actually log a user in, but will perform tests to ensure
-        /// that the user account exists (matched by both the username and password), and also
-        /// checks if the account is active.
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public static LoginResult User_Login(string domain, string userName, string password)
-        {
-            //first, check if the logon exists based on the username and password
-            DirectoryEntry de = null;
-
-            //if (User_IsValid(domain,userName, password))
-            //{
+            DirectoryEntry de;
+            
             try
             {
-                de = User_Get(domain, userName, password);
+                de = this.User_Get(userName, password);
             }
-            catch (System.DirectoryServices.DirectoryServicesCOMException)
+            catch (Fwk.Exceptions.TechnicalException te)
             {
-                //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
-                return LoginResult.LOGIN_USER_DOESNT_EXIST;
+                if (te.ErrorId == "15002")
+                    //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
+                    return LoginResult.LOGIN_USER_DOESNT_EXIST;
+                else
+                    throw te;
             }
+
             if (de != null)
             {
 
 
                 //Convierte UserAccountControl a la operacion logica
-                int userAccountControl = Convert.ToInt32(GetProperty(de, ADProperties.USERACCOUNTCONTROL));
+                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
 
-
-                //if the disabled item does not exist then the account is active
-                if (!User_IsAccountActive(userAccountControl))
+                if (User_IsAccountActive(userAccountControl))
                 {
-                    return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+                    return LoginResult.LOGIN_OK;
                 }
                 else
                 {
+                    return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+
+                }
+
+            }
+            else
+            {
+                return LoginResult.LOGIN_USER_DOESNT_EXIST;
+            }
+
+           
+        }
+
+        /// <summary>
+        /// Este metodo permite determinar si un usuario puede loguearce en un dominio
+        /// tambien chequea si la cuenta esta activa
+        /// </summary>
+        /// <param name="domain">Dominio contra el cual chequear </param>
+        /// <param name="userName">Nombre de usuario a autenticar</param>
+        /// <param name="password">Password del usuario.-</param>
+        /// <returns></returns>
+        public static LoginResult User_CheckLogin(string domain, string userName, string password)
+        {
+            //first, check if the logon exists based on the username and password
+            DirectoryEntry de = null;
+
+            try
+            {
+                de = ADHelper.User_Get(domain, userName, password);
+            }
+            catch (Fwk.Exceptions.TechnicalException te)
+            {
+                if (te.ErrorId == "15002")
+                    //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
+                    return LoginResult.LOGIN_USER_DOESNT_EXIST;
+                else
+                    throw te;
+            }
+            if (de != null)
+            {
+                //Convierte UserAccountControl a la operacion logica
+                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
+                
+                if (User_IsAccountActive(userAccountControl))
+                {
                     return LoginResult.LOGIN_OK;
+                }
+                else
+                {
+                    return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+                    
                 }
 
             }
@@ -667,10 +638,11 @@ namespace Fwk.Security.ActiveDirectory
             }
 
         }
+
         /// <summary>
-        /// This will perfrom a logical operation on the userAccountControl values
-        /// to see if the user account is enabled or disabled.  The flag for determining if the
-        /// account is active is a bitwise value (decimal =2)
+        /// Este metodo realiza una aperacion logica con el valor userAccountControl para deternçminar si la cuenta de usuario 
+        /// esta abilitada o no.-
+        /// La bandera para determinar si la cuenta está activa es un valor binario (decimal =2)
         /// </summary>
         /// <param name="userAccountControl"></param>
         /// <returns></returns>
@@ -678,7 +650,7 @@ namespace Fwk.Security.ActiveDirectory
         {
             int userAccountControl_Disabled = Convert.ToInt32(ADAccountOptions.UF_ACCOUNTDISABLE);
             int flagExists = userAccountControl & userAccountControl_Disabled;
-            //if a match is found, then the disabled flag exists within the control flags
+            //Si coinciden, la bandera indicara Dehabilitao como indicador de control
             if (flagExists > 0)
             {
                 return false;
@@ -689,30 +661,6 @@ namespace Fwk.Security.ActiveDirectory
             }
         }
 
-        /// <summary>
-        /// This method will attempt to log in a user based on the username and password
-        /// to ensure that they have been set up within the Active Directory.  This is the basic UserName, Password
-        /// check.
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public bool User_IsValid(string userName, string password)
-        {
-            try
-            {
-                //if the object can be created then return true
-                DirectoryEntry deUser = User_Get(userName, password);
-                deUser.Close();
-                deUser.Dispose();
-                return true;
-            }
-            catch (Exception)
-            {
-                //otherwise return false
-                return false;
-            }
-        }
 
 
         #endregion
@@ -949,11 +897,16 @@ namespace Fwk.Security.ActiveDirectory
         {
             Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(ex.Message, ex);
 
-            switch (ex.GetType().Name)
+            switch (ex.GetType().FullName)
             {
                 case "System.Runtime.InteropServices.COMException"://((System.Runtime.InteropServices.COMException)(ex)) "El servidor no es operacional.\r\n"
                     {
                         te.ErrorId = "15001";
+                        break;
+                    }
+                case "System.DirectoryServices.DirectoryServicesCOMException": //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
+                    {
+                        te.ErrorId = "15002";
                         break;
                     }
                 default:
