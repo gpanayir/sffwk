@@ -151,6 +151,7 @@ namespace Fwk.DataBase.CustomControls
         /// </summary>
         [Description("Cadebna de conección")]
         [Browsable(false)]
+        [Category("Fwk Factoy")]
         public CnnString Connection
         {
             get { return _DataBaseServer.CurrentCnnString; }
@@ -161,6 +162,7 @@ namespace Fwk.DataBase.CustomControls
         /// Indica si el boton es visible.-
         /// </summary>
         [Description("Indica si el boton es visible.-")]
+        [Category("Fwk Factoy")]
         public System.Boolean TestBottonVisible
         {
             set { this.btnTestConnection.Visible = value; }
@@ -171,6 +173,7 @@ namespace Fwk.DataBase.CustomControls
         /// Indica el color de los botones del formulario de coneccion
         /// </summary>
         [Description("Indica el color de los botones del formulario de coneccion")]
+        [Category("Fwk Factoy")]
         public Color ButtonsBackColor
         {
             get
@@ -189,6 +192,7 @@ namespace Fwk.DataBase.CustomControls
         /// Indica la fuente de los botones del formulario de coneccion
         /// </summary>
         [Description("Indica la fuente de los botones del formulario de coneccion")]
+        [Category("Fwk Factoy")]
         public Font ButtonsFont
         {
             get
@@ -204,9 +208,29 @@ namespace Fwk.DataBase.CustomControls
         }
 
         /// <summary>
+        /// Indica la fuente de los botones del formulario de coneccion
+        /// </summary>
+        [Description("Indica la fuente de los botones del formulario de coneccion")]
+        [Category("Fwk Factoy")]
+        public Color ButtonsForeColor
+        {
+            get
+            {
+                return btnAceptar.ForeColor;
+            }
+            set
+            {
+                btnAceptar.ForeColor = value;
+                btnTestConnection.ForeColor = value;
+                btnCancelar.ForeColor = value;
+            }
+        }
+
+        /// <summary>
         /// Especifica la apariencia plana de los botones.-
         /// </summary>
         [Description("Especifica la apariencia plana de los botones.-")]
+        [Category("Fwk Factoy")]
         public FlatStyle ButtonsFlatStyle
         {
             get
@@ -225,6 +249,7 @@ namespace Fwk.DataBase.CustomControls
         /// Especifica el color de las etiquetas (titulos)
         /// </summary>
         [Description("Especifica el color de las etiquetas (titulos)-")]
+        [Category("Fwk Factoy")]
         public Color LabelsForeColor
         {
             get
