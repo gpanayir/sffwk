@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Fwk.Mail
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Message
     {
 

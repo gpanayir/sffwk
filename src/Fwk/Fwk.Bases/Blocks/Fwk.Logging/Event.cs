@@ -18,13 +18,16 @@ namespace Fwk.Logging
     public class Event:Fwk.Bases.Entity
     {
         #region <private members>
+        private String _AppId;
+
+      
         private String _Source;
-        private EventType _Type;
+        private EventType _LogType;
         private Guid _Id;
-        private string _User;
+        private string _UserLoginName;
         private string _Machine;
         private CData _Message = new CData ();
-        private DateTime _DateAndTime;
+        private DateTime _LogDate;
         #endregion
 
         #region <constructor>
@@ -41,12 +44,12 @@ namespace Fwk.Logging
         public Event(EventType pType, string pSource, string pMessage)
         {
             _Id = Guid.NewGuid();
-            _Type = pType;
+            _LogType = pType;
             _Source = pSource;
             _Message.Text = pMessage;
             _Machine = Environment.MachineName;
-            _User = Environment.UserName;
-            _DateAndTime = DateTime.Now;
+            _UserLoginName = Environment.UserName;
+            _LogDate = DateTime.Now;
         }
         #endregion
 
@@ -63,11 +66,11 @@ namespace Fwk.Logging
         /// <summary>
         /// Fecha y hora en la que se produce el evento.
         /// </summary>
-        [XmlAttribute("DateAndTime")]
-        public DateTime DateAndTime
+        [XmlAttribute("LogDate")]
+        public DateTime LogDate
         {
-            get { return _DateAndTime; }
-            set { _DateAndTime = value; }
+            get { return _LogDate; }
+            set { _LogDate = value; }
         }
         /// <summary>
         /// Equipo donde se origina el evento.
@@ -82,11 +85,11 @@ namespace Fwk.Logging
         /// <summary>
         /// Usuario que origina el evento.
         /// </summary>
-        [XmlAttribute("User")]
-        public string User
+        [XmlAttribute("UserLoginName")]
+        public string UserLoginName
         {
-            get { return _User; }
-            set { _User = value; }
+            get { return _UserLoginName; }
+            set { _UserLoginName = value; }
         }
 
         /// <summary>
@@ -102,11 +105,11 @@ namespace Fwk.Logging
         /// <summary>
         /// Tipo de evento.
         /// </summary>
-        [XmlAttribute("Type")]
-        public EventType Type
+        [XmlAttribute("LogType")]
+        public EventType LogType
         {
-            get { return _Type; }
-            set { _Type = value; }
+            get { return _LogType; }
+            set { _LogType = value; }
         }
 
         /// <summary>
@@ -118,8 +121,15 @@ namespace Fwk.Logging
             get { return _Source; }
             set { _Source = value; }
         }
-
-
+        /// <summary>
+        /// Identificador de la aplicacion o sistema
+        /// </summary>
+        [XmlAttribute("AppId")]
+        public String AppId
+        {
+            get { return _AppId; }
+            set { _AppId = value; }
+        }
         #endregion
 
         #region <public methods>
@@ -135,14 +145,14 @@ namespace Fwk.Logging
             wStringBuilder.AppendLine();
             wStringBuilder.Append(" | Date: ");
             wStringBuilder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-            wStringBuilder.AppendLine(string.Concat(" Type: ",_Type.ToString().ToUpper()));
+            wStringBuilder.AppendLine(string.Concat(" Type: ",_LogType.ToString().ToUpper()));
 
             wStringBuilder.AppendLine("Message: ");
             wStringBuilder.AppendLine(this._Message.Text);
             wStringBuilder.AppendLine(" Source: ");
             wStringBuilder.Append(this._Source);
             wStringBuilder.AppendLine(" User: ");
-            wStringBuilder.Append(this._User);
+            wStringBuilder.Append(this._UserLoginName);
             wStringBuilder.AppendLine(" Machine: ");
             wStringBuilder.Append(this._Machine);
             return wStringBuilder.ToString();

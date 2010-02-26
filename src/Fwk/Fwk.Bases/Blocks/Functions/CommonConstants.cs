@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Fwk.HelperFunctions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Constants
     {
         public static class RegExpConstants

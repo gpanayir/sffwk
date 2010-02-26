@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace Fwk.AssemblyExplorer
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class AssemblyParameterCollection : CollectionBase		
 	
 	{

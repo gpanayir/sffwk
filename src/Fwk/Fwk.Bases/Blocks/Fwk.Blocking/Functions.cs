@@ -6,6 +6,9 @@ using Fwk.Exceptions;
 
 namespace Fwk.Blocking
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class BlockingHelper
 	{
 		public static void WriteLog(string pLog, EventLogEntryType pType)

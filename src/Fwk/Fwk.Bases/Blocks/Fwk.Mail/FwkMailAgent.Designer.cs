@@ -1,5 +1,8 @@
 ﻿namespace Fwk.Mail
 {
+    /// <summary>
+    /// 
+    /// </summary>
     partial class FwkMailAgent
     {
         /// <summary>

@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 
 namespace Fwk.Mail.Pop3
-{
+{  
+    /// <summary>
+    /// 
+    /// </summary>
     public class Pop3Exception : System.ApplicationException
     {
         public Pop3Exception(string str)

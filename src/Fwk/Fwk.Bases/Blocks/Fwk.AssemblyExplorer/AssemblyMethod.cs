@@ -3,6 +3,9 @@ using System.Collections ;
 using System.Reflection;
 namespace Fwk.AssemblyExplorer
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class AssemblyMethodCollection:CollectionBase 
 	{
 		public AssemblyMethod this[ int index ]  

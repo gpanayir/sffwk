@@ -30,7 +30,7 @@ namespace Fwk.Logging.Targets
         /// <param name="pEvent">Evento a loguear.</param>
         public override void Write(Event pEvent)
         {
-            EventLog.WriteEntry(pEvent.Source, pEvent.ToString(), GetWindowsEventType(pEvent.Type));
+            EventLog.WriteEntry(pEvent.Source, pEvent.ToString(), GetWindowsEventType(pEvent.LogType));
         }
         #endregion
 

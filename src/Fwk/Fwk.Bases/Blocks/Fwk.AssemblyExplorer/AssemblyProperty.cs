@@ -4,7 +4,9 @@ using System.Collections ;
 using System.Reflection;
 namespace Fwk.AssemblyExplorer
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
 	public class AssemblyPropertyCollection:CollectionBase
 	{
 		public AssemblyProperty this[ int index ]  

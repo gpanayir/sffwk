@@ -28,7 +28,7 @@ namespace Fwk.Logging.Targets
         /// <summary>
         /// Representa una Consola.
         /// </summary>
-        Console,
+        //Console,
         /// <summary>
         /// Representa la ausencia del tipo de destino.
         /// </summary>

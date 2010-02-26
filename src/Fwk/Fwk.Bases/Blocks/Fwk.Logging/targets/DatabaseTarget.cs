@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Collections.Generic;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Fwk.Exceptions;
+using System.Data;
 
 namespace Fwk.Logging.Targets
 {
@@ -56,17 +57,79 @@ namespace Fwk.Logging.Targets
             {
                 throw new TechnicalException("Debe especificar cnnStringName en el archivo de configuración.");
             }
-            Database wDataBase = DatabaseFactory.CreateDatabase(this._CnnStringName);
+            Database wDataBase = DatabaseFactory.CreateDatabase(_CnnStringName);
             DbCommand wCmd = wDataBase.GetStoredProcCommand("Logs_i");
-            wDataBase.AddInParameter(wCmd, "@Id", System.Data.DbType.String, pEvent.Id.ToString());
-            wDataBase.AddInParameter(wCmd, "@Message", System.Data.DbType.String, pEvent.Message);
+            wDataBase.AddInParameter(wCmd, "@Id", System.Data.DbType.Guid, pEvent.Id);
+            wDataBase.AddInParameter(wCmd, "@Message", System.Data.DbType.String, pEvent.Message.Text);
             wDataBase.AddInParameter(wCmd, "@Source", System.Data.DbType.String, pEvent.Source);
-            wDataBase.AddInParameter(wCmd, "@Type", System.Data.DbType.String, pEvent.Type.ToString().ToUpper());
+            wDataBase.AddInParameter(wCmd, "@LogType", System.Data.DbType.String, pEvent.LogType.ToString());
             wDataBase.AddInParameter(wCmd, "@Machine", System.Data.DbType.String, pEvent.Machine);
-            wDataBase.AddInParameter(wCmd, "@DateTime", System.Data.DbType.DateTime, pEvent.DateAndTime.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-            wDataBase.AddInParameter(wCmd, "@User", System.Data.DbType.String, pEvent.User);
+            wDataBase.AddInParameter(wCmd, "@LogDate", System.Data.DbType.DateTime, pEvent.LogDate);
+            wDataBase.AddInParameter(wCmd, "@UserLoginName", System.Data.DbType.String, pEvent.UserLoginName);
+
             wDataBase.ExecuteNonQuery(wCmd);
         }
+
+        /// <summary>
+        /// SearchByParam
+        /// </summary>
+        ///<param name="pEvent">Event</param>
+        /// <returns>LogsList</returns>
+        /// <Date>2010-02-26T10:05:27</Date>
+        /// <Author>moviedo</Author>
+        public  List<Event> SearchByParam(Event pEvent)
+        {
+            Database wDataBase = null;
+            DbCommand wCmd = null;
+
+
+            List<Event> wEventList = new List<Event>();
+            Event wEvent;
+
+
+            try
+            {
+                wDataBase = DatabaseFactory.CreateDatabase(_CnnStringName);
+                wCmd = wDataBase.GetStoredProcCommand("Logs_sp");
+
+                wDataBase.AddInParameter(wCmd, "Message", System.Data.DbType.String, pEvent.Message);
+
+                wDataBase.AddInParameter(wCmd, "Source", System.Data.DbType.String, pEvent.Source);
+
+                wDataBase.AddInParameter(wCmd, "LogType", System.Data.DbType.String, pEvent.LogType);
+
+                wDataBase.AddInParameter(wCmd, "Machine", System.Data.DbType.String, pEvent.Machine);
+
+                wDataBase.AddInParameter(wCmd, "LogDate", System.Data.DbType.DateTime, pEvent.LogDate);
+
+                wDataBase.AddInParameter(wCmd, "UserLoginName", System.Data.DbType.String, pEvent.UserLoginName);
+
+                using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
+                {
+                    while (reader.Read())
+                    {
+                        wEvent = new Event();
+
+                        wEvent.Message.Text = reader["Message"].ToString();
+                        wEvent.Source = reader["Source"].ToString();
+                        wEvent.LogType = (EventType)reader["LogType"];
+                        wEvent.Machine = reader["Machine"].ToString();
+                        wEvent.LogDate = Convert.ToDateTime(reader["Machine"]);
+                        wEvent.UserLoginName = reader["UserLoginName"].ToString();
+                        wEventList.Add(wEvent);
+                    }
+                }
+
+                return wEventList;
+
+            }
+            catch (Exception ex)
+            {
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+            }
+
+        }
+
         #endregion
     }
 }

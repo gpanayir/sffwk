@@ -105,7 +105,7 @@ namespace Fwk.Logging
             WriteLog(EventType.Audit, pSource, pText);
             // Crea un nuevo Event.
             Event wEvent = new Event( EventType.Audit   , pSource, pText);
-            wEvent.User = pUserName;
+            wEvent.UserLoginName = pUserName;
             wEvent.Machine = pMachine;
             WriteLog(wEvent);
      
@@ -136,7 +136,7 @@ namespace Fwk.Logging
         private void WriteLog(Event pEvent)
         {
             // Obtiene la Rule asociada al EventType.
-            RuleElement wRule = _LoggingSection.GetRuleByEventType(pEvent.Type);
+            RuleElement wRule = _LoggingSection.GetRuleByEventType(pEvent.LogType);
 
             // Escribe el log según la Rule.
             Target wTarget = GetTargetByRule(wRule);
@@ -149,10 +149,7 @@ namespace Fwk.Logging
         {
             switch (pRule.Target)
             {
-                case TargetType.Console:
-                    {
-                        return new ConsoleTarget();
-                    }
+               
                 case TargetType.Database:
                     {
                         DatabaseTarget wDatabase = new DatabaseTarget();

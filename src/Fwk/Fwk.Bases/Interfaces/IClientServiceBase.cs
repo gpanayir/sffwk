@@ -2,6 +2,9 @@ using System;
 using Fwk.Bases;
 namespace Fwk.Bases
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IClientServiceBase : IServiceWrapper
     {
 
