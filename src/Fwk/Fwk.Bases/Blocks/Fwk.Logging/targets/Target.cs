@@ -11,7 +11,7 @@ namespace Fwk.Logging.Targets
     /// </summary>
     /// <date>2006/09/02</date>
     /// <author>moviedo</author>
-    public abstract class Target
+    public abstract class Target : Fwk.Logging.Targets.ITarget
     {
         #region <private members>
         private TargetType _Type;
@@ -45,6 +45,17 @@ namespace Fwk.Logging.Targets
         /// </summary>
         /// <param name="pEvent">Evento a loguear.</param>
         public abstract void Write(Event pEvent);
+
+        /// <summary>
+        /// Busca eventos bajo los parametros indicadosdesde el origen de datos 
+        /// que puede ser un Xml o una bas d edatos .-
+        /// No es aplicable a eventos provenientes de visor de evento
+        /// </summary>
+        /// <param name="pEvent">Event como parametro de filtros</param>
+        /// <returns></returns>
+        public abstract Events SearchByParam(Event pEvent);
         #endregion
+
+       
     }
 }

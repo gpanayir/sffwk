@@ -21,6 +21,7 @@ namespace Fwk.Logging.Viewer
         private void btnGetLoggingConfiguration_Click(object sender, EventArgs e)
         {
             Logger wLogger = new Logger();
+           
             wLogger.Debug("FRM_Main.btnGettLoggingConfiguration", "Este es un texto de prueba.");
             MessageBox.Show("Archivo Log generado correctamente.");
             wLogger.Error("FRM_Main.btnGettLoggingConfiguration", "Este es un texto de prueba.");

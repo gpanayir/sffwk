@@ -68,7 +68,7 @@ namespace Fwk.Logging.Viewer
         
         private void mnuOpen_Click(object sender, EventArgs e)
         {
-            string wFileName = GetFileName();
+            string wFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(Fwk.HelperFunctions.FileFunctions.OpenFilterEnums.OpenXmlFilter);
             if (!string.IsNullOrEmpty(wFileName))
             {
                 CreateTabDocument(wFileName);
@@ -117,57 +117,48 @@ namespace Fwk.Logging.Viewer
             this.Activate();
         }
 
-        private string GetFileName()
-        {
-            OpenFileDialog wDialog = new OpenFileDialog();
-            wDialog.Filter = "Log files (*.log)|*.log|Xml files (*.xml)|*.xml";
-            wDialog.Title = "Open file";
-
-            if (wDialog.ShowDialog() != DialogResult.Cancel)
-            {
-                return wDialog.FileName;
-            }
-            return String.Empty;
-        }
-
+       
         private void CreateTabDocumentFromDB()
         {
-            FRM_Document wForm = new FRM_Document();
-            DataSet wDataSet = null;
+
+            using (ConnectionForm frm = new ConnectionForm())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    if (frm.ConnectionOK)
+                    { 
+                        Fwk.Logging.Targets.Target t = new  Fwk.Logging.Targets .DatabaseTarget();
+                        ((Fwk.Logging.Targets.DatabaseTarget)t).ConnectionString = frm.CnnString.ToString();
+
+                        Load_FRM_Document(t);
+                        
+                    }
+                }
+            }
             
-            // Creación de la base de datos.
-            Database wDatabase = DatabaseFactory.CreateDatabase("LogsDB");
-            ConnectionStringSettings wSettings = ConfigurationManager.ConnectionStrings["LogsDB"];
+           
 
-            wDataSet = wDatabase.ExecuteDataSet("Logs_s");
-            List<Event> wEvents = ParseDB(wDataSet);
-
-            //foreach (Event wEvent in wEvents)
-            //{
-            //    wForm.AddEventLog(wEvent);
-            //}
-
-            //MagicControls.TabPage wTab = new MagicControls.TabPage("DB: LogsDB", wForm);
-            //if (ctlTabs.TabPages.Count == 0)
-            //{
-            //    ctlTabs.Visible = true;
-            //}
-            
-            //ctlTabs.TabPages.Add(wTab);
+          
         }
 
         private void CreateTabDocument(string pFileName)
         {
-            FRM_Document wForm = new FRM_Document();
- 
-            string xml = FileFunctions.OpenTextFile(pFileName);
-            Events wEvents = Fwk.Logging.Events.GetFromXml<Events>(xml);
-         
+           
+           
+  
+            Fwk.Logging.Targets.Target t = new Fwk.Logging.Targets.XmlTarget();
+            t.FileName = pFileName;
+            Load_FRM_Document(t);
 
-            wForm.Populate(wEvents);
+          
+        }
+
+        void Load_FRM_Document(Fwk.Logging.Targets.Target t)
+        {
+            FRM_Document wForm = new FRM_Document();
+            wForm.Populate(t);
             wForm.MdiParent = this;
             wForm.Show();
-
             //MagicControls.TabPage wTab = new MagicControls.TabPage(System.IO.Path.GetFileName(pFileName) , wForm);
             //if (ctlTabs.TabPages.Count == 0)
             //{
@@ -176,7 +167,6 @@ namespace Fwk.Logging.Viewer
             //wTab.Tag = pFileName;
             //ctlTabs.TabPages.Add(wTab);
         }
-
         private void RefreshTabDocument()
         {
             //if (ctlTabs.SelectedTab == null) return;
@@ -191,24 +181,12 @@ namespace Fwk.Logging.Viewer
             //wTab.Tag = wFile.Name;
             //ctlTabs.SelectedTab = wTab;
         }
-
+        
         private List<Event> ParseDB(DataSet pLogs)
         {
             List<Event> wEvents = new List<Event>();
-            Event wEvent = null;
 
-            foreach (DataRow wRow in pLogs.Tables[0].Rows)
-            {
-                wEvent = new Event();
-                wEvent.Id = new Guid(wRow["Id"].ToString());
-                wEvent.DateAndTime = Convert.ToDateTime(wRow["DateTime"]);
-                wEvent.Type = (EventType)System.Enum.Parse(typeof(EventType), wRow["Type"].ToString(), true);
-                wEvent.Message.Text = wRow["Message"].ToString();
-                wEvent.Source = wRow["Source"].ToString();
-                wEvent.User = wRow["User"].ToString();
-                wEvent.Machine = wRow["Machine"].ToString();
-                wEvents.Add(wEvent);
-            }
+          
             return wEvents;
         }
 
@@ -238,11 +216,11 @@ namespace Fwk.Logging.Viewer
                 wLineContent = wReader.ReadLine();
                 string[] wStringSections = wLineContent.Split('|');
                 wEvent.Id = new Guid(wStringSections[0].Trim().Replace("Log Id: ", ""));
-                wEvent.DateAndTime = Convert.ToDateTime(wStringSections[1].Trim().Replace("Date: ", ""));
-                wEvent.Type = (EventType)System.Enum.Parse(typeof(EventType), wStringSections[2].Trim().Replace("Type: ", ""), true);
+                wEvent.LogDate = Convert.ToDateTime(wStringSections[1].Trim().Replace("Date: ", ""));
+                wEvent.LogType = (EventType)System.Enum.Parse(typeof(EventType), wStringSections[2].Trim().Replace("Type: ", ""), true);
                 wEvent.Message.Text = wStringSections[3].Trim().Replace("Message: ", "");
                 wEvent.Source = wStringSections[4].Trim().Replace("Source: ", "");
-                wEvent.User = wStringSections[5].Trim().Replace("User : ", "");
+                wEvent.UserLoginName = wStringSections[5].Trim().Replace("User : ", "");
                 wEvent.Machine = wStringSections[6].Trim().Replace("Machine : ", "");
                 wEvents.Add(wEvent);
             }
@@ -252,21 +230,9 @@ namespace Fwk.Logging.Viewer
         private List<Event> ParseXmlFile(string pFileName)
         {
             List<Event> wEvents = new List<Event>();
-            Event wEvent = null;
-            XmlDocument wDoc = new XmlDocument();
-            wDoc.Load(pFileName);
-            foreach (XmlNode wNode in wDoc.SelectSingleNode("Logs").ChildNodes)
-            {
-                wEvent = new Event();
-                wEvent.Id = new Guid(NodeAttribute.AttributeGet(wNode, "id"));
-                wEvent.DateAndTime = Convert.ToDateTime(NodeAttribute.AttributeGet(wNode, "dateTime"));
-                wEvent.Type = (EventType)System.Enum.Parse(typeof(EventType), NodeAttribute.AttributeGet(wNode, "type"), true);
-                wEvent.Message.Text = wNode.SelectSingleNode("Message").InnerText;
-                wEvent.Source = NodeAttribute.AttributeGet(wNode, "source");
-                wEvent.User = NodeAttribute.AttributeGet(wNode, "user");
-                wEvent.Machine = NodeAttribute.AttributeGet(wNode, "machine");
-                wEvents.Add(wEvent);
-            }
+          
+           
+            
 
             return wEvents;
         }

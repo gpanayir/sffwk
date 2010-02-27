@@ -13,6 +13,7 @@ namespace Fwk.Logging.Viewer
 {
     public partial class FRM_Document : Form
     {
+        Fwk.Logging.Targets.Target _Target;
         public FRM_Document()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace Fwk.Logging.Viewer
         #region <public methods>
         public void AddImages()
         {
-            //grdLogs.Rows.Add(GetImageByType(pEvent.Type), pEvent.Id, pEvent.DateAndTime, pEvent.Message, pEvent.Source, pEvent.Machine, pEvent.User);
+            //grdLogs.Rows.Add(GetImageByType(pEvent.LogType), pEvent.Id, pEvent.DateAndTime, pEvent.Message, pEvent.Source, pEvent.Machine, pEvent.User);
 
 
             foreach (DataGridViewRow row in grdLogs.Rows)
@@ -35,13 +36,19 @@ namespace Fwk.Logging.Viewer
                 row.Cells["Logtype"].ToolTipText = wEventType.ToString();
             }
         }
-        public void Populate(List<Event> pEvenList)
+        public void Populate(Fwk.Logging.Targets.Target target)
         {
+
+            _Target = target;
             grdLogs.BindingContextChanged += new EventHandler(grdLogs_BindingContextChanged);
-            this.eventBindingSource.DataSource = pEvenList;
+
+            ///Carrga todos los eventos
+            this.eventBindingSource.DataSource = _Target.SearchByParam(new Event());
+
             grdLogs.Refresh();
-           
+
         }
+       
 
         void grdLogs_BindingContextChanged(object sender, EventArgs e)
         {
@@ -49,8 +56,8 @@ namespace Fwk.Logging.Viewer
             foreach (DataGridViewRow row in grdLogs.Rows)
             {
                 Event x = (Event)row.DataBoundItem;
-                row.Cells[0].Value = GetImageByType(x.Type);
-                row.Cells[0].ToolTipText = x.Type.ToString();
+                row.Cells[0].Value = GetImageByType(x.LogType);
+                row.Cells[0].ToolTipText = x.LogType.ToString();
             }
         }
         

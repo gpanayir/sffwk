@@ -38,12 +38,12 @@ namespace Fwk.Logging.Viewer
             this.lblMessage1 = new System.Windows.Forms.Label();
             this.lblMessage2 = new System.Windows.Forms.Label();
             this.colImg = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dateAndTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.machineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sourceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LogDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserLoginName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LogType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -62,12 +62,12 @@ namespace Fwk.Logging.Viewer
             this.grdLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdLogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colImg,
-            this.dateAndTimeDataGridViewTextBoxColumn,
             this.machineDataGridViewTextBoxColumn,
-            this.userDataGridViewTextBoxColumn,
-            this.typeDataGridViewTextBoxColumn,
             this.sourceDataGridViewTextBoxColumn,
-            this.idDataGridViewTextBoxColumn});
+            this.LogDate,
+            this.UserLoginName,
+            this.LogType,
+            this.Source});
             this.grdLogs.DataSource = this.eventBindingSource;
             this.grdLogs.Location = new System.Drawing.Point(0, -1);
             this.grdLogs.Name = "grdLogs";
@@ -75,7 +75,7 @@ namespace Fwk.Logging.Viewer
             this.grdLogs.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdLogs.RowHeadersVisible = false;
             this.grdLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdLogs.Size = new System.Drawing.Size(889, 375);
+            this.grdLogs.Size = new System.Drawing.Size(1095, 375);
             this.grdLogs.TabIndex = 0;
             this.grdLogs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLogs_CellClick);
             this.grdLogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLogs_CellContentClick);
@@ -148,34 +148,12 @@ namespace Fwk.Logging.Viewer
             this.colImg.ReadOnly = true;
             this.colImg.Width = 5;
             // 
-            // dateAndTimeDataGridViewTextBoxColumn
-            // 
-            this.dateAndTimeDataGridViewTextBoxColumn.DataPropertyName = "DateAndTime";
-            this.dateAndTimeDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateAndTimeDataGridViewTextBoxColumn.Name = "dateAndTimeDataGridViewTextBoxColumn";
-            this.dateAndTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // machineDataGridViewTextBoxColumn
             // 
             this.machineDataGridViewTextBoxColumn.DataPropertyName = "Machine";
             this.machineDataGridViewTextBoxColumn.HeaderText = "Machine";
             this.machineDataGridViewTextBoxColumn.Name = "machineDataGridViewTextBoxColumn";
             this.machineDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // userDataGridViewTextBoxColumn
-            // 
-            this.userDataGridViewTextBoxColumn.DataPropertyName = "User";
-            this.userDataGridViewTextBoxColumn.HeaderText = "User";
-            this.userDataGridViewTextBoxColumn.Name = "userDataGridViewTextBoxColumn";
-            this.userDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // typeDataGridViewTextBoxColumn
-            // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.typeDataGridViewTextBoxColumn.Visible = false;
             // 
             // sourceDataGridViewTextBoxColumn
             // 
@@ -184,19 +162,40 @@ namespace Fwk.Logging.Viewer
             this.sourceDataGridViewTextBoxColumn.Name = "sourceDataGridViewTextBoxColumn";
             this.sourceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // idDataGridViewTextBoxColumn
+            // LogDate
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.LogDate.DataPropertyName = "LogDate";
+            this.LogDate.HeaderText = "LogDate";
+            this.LogDate.Name = "LogDate";
+            this.LogDate.ReadOnly = true;
+            // 
+            // UserLoginName
+            // 
+            this.UserLoginName.DataPropertyName = "UserLoginName";
+            this.UserLoginName.HeaderText = "UserLoginName";
+            this.UserLoginName.Name = "UserLoginName";
+            this.UserLoginName.ReadOnly = true;
+            // 
+            // LogType
+            // 
+            this.LogType.DataPropertyName = "LogType";
+            this.LogType.HeaderText = "LogType";
+            this.LogType.Name = "LogType";
+            this.LogType.ReadOnly = true;
+            // 
+            // Source
+            // 
+            this.Source.DataPropertyName = "Source";
+            this.Source.HeaderText = "Source";
+            this.Source.Name = "Source";
+            this.Source.ReadOnly = true;
             // 
             // FRM_Document
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(901, 665);
+            this.ClientSize = new System.Drawing.Size(1107, 665);
             this.Controls.Add(this.lblMessage2);
             this.Controls.Add(this.lblMessage1);
             this.Controls.Add(this.txtMessage2);
@@ -222,13 +221,16 @@ namespace Fwk.Logging.Viewer
         private System.Windows.Forms.Label lblMessage1;
         private System.Windows.Forms.Label lblMessage2;
         private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn colImg;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateAndTimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn machineDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn colImg;
+        private System.Windows.Forms.DataGridViewTextBoxColumn machineDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sourceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LogDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserLoginName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LogType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
 
     }
 }

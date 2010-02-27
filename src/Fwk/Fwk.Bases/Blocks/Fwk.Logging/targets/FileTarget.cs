@@ -66,5 +66,15 @@ namespace Fwk.Logging.Targets
             return wStreamWriter;
         }
         #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pEvent"></param>
+        /// <returns></returns>
+        public override Events SearchByParam(Event pEvent)
+        {
+            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente un archivo comun.- Solo de xml");
+        }
     }
 }

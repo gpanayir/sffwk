@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Fwk.Exceptions;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Fwk.Logging.Targets
 {
@@ -18,6 +19,7 @@ namespace Fwk.Logging.Targets
     {
         #region <private members>
         private string _CnnStringName;
+        string _ConnectionString;
         #endregion
 
         #region <constructor>
@@ -45,6 +47,15 @@ namespace Fwk.Logging.Targets
         }
         #endregion
 
+        /// <summary>
+        /// Cadena de conexión
+        /// </summary>
+        public string ConnectionString
+        {
+            get { return _ConnectionString; }
+            set { _ConnectionString = value; }
+
+        }
         #region <public overrides>
         /// <summary>
         /// Implementación de la escritura del log del evento
@@ -53,23 +64,75 @@ namespace Fwk.Logging.Targets
         /// <param name="pEvent">Evento a loguear.</param>
         public override void Write(Event pEvent)
         {
-            if (this.CnnStringName.Trim().Length == 0)
+
+
+            using (SqlConnection wCnn = new SqlConnection(GetCnnString()))
+            using (SqlCommand wCmd = new SqlCommand())
             {
-                throw new TechnicalException("Debe especificar cnnStringName en el archivo de configuración.");
+                try
+                {
+                    wCnn.Open();
+                    wCmd.Connection = wCnn;
+                    wCmd.CommandType = CommandType.StoredProcedure;
+                    wCmd.CommandText = "Logs_i";
+                    SqlParameter wParam = null;
+
+                    wParam = wCmd.Parameters.Add("Id", SqlDbType.UniqueIdentifier);
+                    wParam.Value = pEvent.Message;
+
+                    wParam = wCmd.Parameters.Add("Message", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.Message;
+
+                    wParam = wCmd.Parameters.Add("Source", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.Source;
+
+                    wParam = wCmd.Parameters.Add("LogType", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.LogType;
+
+                    wParam = wCmd.Parameters.Add("Machine", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.Machine;
+
+                    wParam = wCmd.Parameters.Add("LogDate", SqlDbType.DateTime);
+                    wParam.Value = pEvent.LogDate;
+
+                    wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.UserLoginName;
+
+
+                    wCmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    ///TODO: Ver ex loging
+                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                }
             }
-            Database wDataBase = DatabaseFactory.CreateDatabase(_CnnStringName);
-            DbCommand wCmd = wDataBase.GetStoredProcCommand("Logs_i");
-            wDataBase.AddInParameter(wCmd, "@Id", System.Data.DbType.Guid, pEvent.Id);
-            wDataBase.AddInParameter(wCmd, "@Message", System.Data.DbType.String, pEvent.Message.Text);
-            wDataBase.AddInParameter(wCmd, "@Source", System.Data.DbType.String, pEvent.Source);
-            wDataBase.AddInParameter(wCmd, "@LogType", System.Data.DbType.String, pEvent.LogType.ToString());
-            wDataBase.AddInParameter(wCmd, "@Machine", System.Data.DbType.String, pEvent.Machine);
-            wDataBase.AddInParameter(wCmd, "@LogDate", System.Data.DbType.DateTime, pEvent.LogDate);
-            wDataBase.AddInParameter(wCmd, "@UserLoginName", System.Data.DbType.String, pEvent.UserLoginName);
-
-            wDataBase.ExecuteNonQuery(wCmd);
         }
+        ///// <summary>
+        ///// Implementación de la escritura del log del evento
+        ///// en base de datos.
+        ///// </summary>
+        ///// <param name="pEvent">Evento a loguear.</param>
+        //public  void Write(Event pEvent)
+        //{
+        //    if (this.CnnStringName.Trim().Length == 0)
+        //    {
+        //        throw new TechnicalException("Debe especificar cnnStringName en el archivo de configuración.");
+        //    }
+        //    Database wDataBase = DatabaseFactory.CreateDatabase(_CnnStringName);
+        //    DbCommand wCmd = wDataBase.GetStoredProcCommand("Logs_i");
 
+
+        //    wDataBase.AddInParameter(wCmd, "@Id", System.Data.DbType.Guid, pEvent.Id);
+        //    wDataBase.AddInParameter(wCmd, "@Message", System.Data.DbType.String, pEvent.Message.Text);
+        //    wDataBase.AddInParameter(wCmd, "@Source", System.Data.DbType.String, pEvent.Source);
+        //    wDataBase.AddInParameter(wCmd, "@LogType", System.Data.DbType.String, pEvent.LogType.ToString());
+        //    wDataBase.AddInParameter(wCmd, "@Machine", System.Data.DbType.String, pEvent.Machine);
+        //    wDataBase.AddInParameter(wCmd, "@LogDate", System.Data.DbType.DateTime, pEvent.LogDate);
+        //    wDataBase.AddInParameter(wCmd, "@UserLoginName", System.Data.DbType.String, pEvent.UserLoginName);
+
+        //    wDataBase.ExecuteNonQuery(wCmd);
+        //}
         /// <summary>
         /// SearchByParam
         /// </summary>
@@ -77,59 +140,94 @@ namespace Fwk.Logging.Targets
         /// <returns>LogsList</returns>
         /// <Date>2010-02-26T10:05:27</Date>
         /// <Author>moviedo</Author>
-        public  List<Event> SearchByParam(Event pEvent)
+        public override  Events SearchByParam(Event pEvent)
         {
-            Database wDataBase = null;
-            DbCommand wCmd = null;
-
-
-            List<Event> wEventList = new List<Event>();
+            Events wEventList = new Events();
             Event wEvent;
-
-
-            try
+            using (SqlConnection wCnn = new SqlConnection(GetCnnString()))
+            using (SqlCommand wCmd = new SqlCommand())
             {
-                wDataBase = DatabaseFactory.CreateDatabase(_CnnStringName);
-                wCmd = wDataBase.GetStoredProcCommand("Logs_sp");
-
-                wDataBase.AddInParameter(wCmd, "Message", System.Data.DbType.String, pEvent.Message);
-
-                wDataBase.AddInParameter(wCmd, "Source", System.Data.DbType.String, pEvent.Source);
-
-                wDataBase.AddInParameter(wCmd, "LogType", System.Data.DbType.String, pEvent.LogType);
-
-                wDataBase.AddInParameter(wCmd, "Machine", System.Data.DbType.String, pEvent.Machine);
-
-                wDataBase.AddInParameter(wCmd, "LogDate", System.Data.DbType.DateTime, pEvent.LogDate);
-
-                wDataBase.AddInParameter(wCmd, "UserLoginName", System.Data.DbType.String, pEvent.UserLoginName);
-
-                using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
+                try
                 {
-                    while (reader.Read())
+                    wCnn.Open();
+                    wCmd.Connection = wCnn;
+                    wCmd.CommandType = CommandType.StoredProcedure;
+                    wCmd.CommandText = "Logs_sp";
+                    SqlParameter wParam = null;
+                   
+                    wParam = wCmd.Parameters.Add("Message", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.Message;
+
+                    wParam = wCmd.Parameters.Add("Source", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.Source;
+
+                    wParam = wCmd.Parameters.Add("LogType", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.LogType;
+
+                    wParam = wCmd.Parameters.Add("Machine", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.Machine;
+
+                    wParam = wCmd.Parameters.Add("LogDate", SqlDbType.DateTime);
+                    wParam.Value = pEvent.LogDate;
+
+                    wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.UserLoginName;
+
+
+                    
+
+                    using (IDataReader reader = wCmd.ExecuteReader())
                     {
-                        wEvent = new Event();
+                        while (reader.Read())
+                        {
+                            wEvent = new Event();
 
-                        wEvent.Message.Text = reader["Message"].ToString();
-                        wEvent.Source = reader["Source"].ToString();
-                        wEvent.LogType = (EventType)reader["LogType"];
-                        wEvent.Machine = reader["Machine"].ToString();
-                        wEvent.LogDate = Convert.ToDateTime(reader["Machine"]);
-                        wEvent.UserLoginName = reader["UserLoginName"].ToString();
-                        wEventList.Add(wEvent);
+                            wEvent.Message.Text = reader["Message"].ToString();
+                            wEvent.Source = reader["Source"].ToString();
+                            wEvent.LogType = (EventType)reader["LogType"];
+                            wEvent.Machine = reader["Machine"].ToString();
+                            wEvent.LogDate = Convert.ToDateTime(reader["Machine"]);
+                            wEvent.UserLoginName = reader["UserLoginName"].ToString();
+                            wEventList.Add(wEvent);
+                        }
                     }
+
+                    return wEventList;
+
                 }
-
-                return wEventList;
-
+                catch (Exception ex)
+                {
+                    ///TODO: Ver ex loging
+                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                }
             }
-            catch (Exception ex)
+           
+
+        }
+        string strDb;
+        string GetCnnString()
+        {
+            if (!String.IsNullOrEmpty(strDb)) return strDb;
+
+            if (!String.IsNullOrEmpty(_CnnStringName))
             {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                strDb = System.Configuration.ConfigurationManager.ConnectionStrings[_CnnStringName].ConnectionString;
+            }
+            else
+            {
+                strDb = _ConnectionString;
             }
 
+            if (String.IsNullOrEmpty(strDb))
+            {
+                ///TODO: Ver ex loging
+                throw new TechnicalException("Debe especificar cnnStringName en el archivo de configuración.");
+            }
+            return strDb;
         }
 
         #endregion
+
+       
     }
 }

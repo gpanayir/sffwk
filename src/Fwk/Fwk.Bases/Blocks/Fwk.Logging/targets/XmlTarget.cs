@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.IO;
 using System.Xml;
 using System.Text;
@@ -83,5 +84,55 @@ namespace Fwk.Logging.Targets
         }
 
         #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pEvent"></param>
+        /// <returns></returns>
+         public override Events SearchByParam(Event pEvent)
+         {
+             Events list = null;
+             try
+             {
+                 list = (Events)Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(FileName));
+                 var lisToReturn = from s in list
+                                   where
+                                       (String.IsNullOrEmpty(s.Machine) || s.Machine.StartsWith(pEvent.Machine))
+                                       &&
+                                       (String.IsNullOrEmpty(s.UserLoginName) || s.Machine.StartsWith(pEvent.UserLoginName))
+                                       &&
+                                       (s.LogType == null || s.LogType == pEvent.LogType)
+                                       &&
+                                       (s.LogDate == null || s.LogDate >= pEvent.LogDate)
+                                   select s;
+                 Events list2 = new Events();
+
+                 //Events lisToReturn = from s in list
+                 //                  where
+                 //                      (String.IsNullOrEmpty(s.Machine) || s.Machine.StartsWith(pEvent.Machine))
+                 //                      &&
+                 //                      (String.IsNullOrEmpty(s.UserLoginName) || s.Machine.StartsWith(pEvent.UserLoginName))
+                 //                      &&
+                 //                      (s.LogType == null || s.LogType == pEvent.LogType)
+                 //                      &&
+                 //                      (s.LogDate == null || s.LogDate >= pEvent.LogDate)
+                 //                  select (;
+                                  
+                 //string filename = string.Concat(this.FileName);
+                 //filename = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
+                 Fwk.HelperFunctions.TypeFunctions.SetEntitiesFromIenumerable <Events,Event>(list2,lisToReturn);
+
+                 list = null;
+                 return new Events();
+           
+             }
+             catch (Exception ex)
+             {
+                // throw new Fwk.Exceptions.TechnicalException(ex);
+                 throw ex;
+
+             }
+         }
     }
 }

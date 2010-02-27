@@ -140,6 +140,7 @@
     <Compile Include="Blocks\Fwk.Logging\config\LoggingSection.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElement.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElementCollection.cs" />
+    <Compile Include="Blocks\Fwk.Logging\targets\ITarget.cs" />
     <Compile Include="Blocks\Fwk.Mail\config\MailAgentFactory.cs" />
     <Compile Include="Blocks\Fwk.Mail\config\MailAgentSection.cs" />
     <Compile Include="Blocks\Fwk.Mail\config\MailAgentElement.cs" />
