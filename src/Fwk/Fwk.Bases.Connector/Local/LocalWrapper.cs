@@ -9,7 +9,7 @@ namespace Fwk.Bases.Connector
 {
     public class LocalWrapper : IServiceWrapper
     {
-
+        SimpleFacade _SimpleFacade;
         /// <summary>
         /// Implementa la llamada al backend atravez de la ejecucion de la SimpleFacade. 
         /// Al llamar directamente a la SimpleFacade funciona como un despachador de servicios, esto lo hace
@@ -20,8 +20,13 @@ namespace Fwk.Bases.Connector
         /// <returns>Response con los resultados del servicio</returns>
         private IServiceContract ExecuteService(IServiceContract pReq)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
-            IServiceContract wResponse = wSimpleFacade.ExecuteService(pReq);
+            if (_SimpleFacade == null)
+                _SimpleFacade = new SimpleFacade();
+
+            pReq.InitializeHostContextInformation();
+            IServiceContract wResponse = _SimpleFacade.ExecuteService(pReq);
+            wResponse.InitializeHostContextInformation();
+
             return wResponse;
         }
 
@@ -37,12 +42,11 @@ namespace Fwk.Bases.Connector
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-            pReq.InitializeHostContextInformation();
-
+           
             pReq.ServiceName = pServiceName;
+            
             TResponse wResponse = (TResponse)this.ExecuteService(pReq);
           
-            wResponse.InitializeHostContextInformation();
 
 
             return wResponse;
@@ -59,13 +63,11 @@ namespace Fwk.Bases.Connector
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-            pReq.InitializeHostContextInformation();
+           
 
-            TResponse wResponse = (TResponse)this.ExecuteService(pReq);
+           return (TResponse)this.ExecuteService(pReq);
 
-            wResponse.InitializeHostContextInformation();
 
-            return wResponse;
         }
         /// <summary>
         /// Este metodo no esta implementado para un wrapper local.-

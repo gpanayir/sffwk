@@ -51,13 +51,17 @@ namespace Fwk.Bases.Connector
         /// <typeparam name="TResponse"></typeparam>
         /// <param name="pData"></param>
         /// <returns></returns>
-        public TResponse ExecuteService<TRequest, TResponse>(TRequest pData)
+        public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
-            return (TResponse)wFwkRemoteObject.ExecuteService(pData);
+            pReq.InitializeHostContextInformation();
+            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(pReq);
+            response.InitializeHostContextInformation();
+
+            return response;
         }
 
 

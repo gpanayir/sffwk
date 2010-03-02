@@ -105,8 +105,10 @@ namespace Fwk.Bases.Connector
             try
             {
                 pReq.ServiceName = pServiceName;
+                pReq.InitializeHostContextInformation();
                 string wResult = ExecuteService(pServiceName ,pReq.GetXml());
                 wResponse.SetXml(wResult);
+                wResponse.InitializeHostContextInformation();
             }
             catch(Exception ex)
             {
@@ -140,8 +142,10 @@ namespace Fwk.Bases.Connector
 
             try
             {
+                pReq.InitializeHostContextInformation();
                 string wResult = ExecuteService(pReq.ServiceName, pReq.GetXml());
                 wResponse.SetXml(wResult);
+                wResponse.InitializeHostContextInformation();
             }
             catch (Exception ex)
             {
