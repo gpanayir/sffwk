@@ -9,11 +9,26 @@ namespace Fwk.HelperFunctions
 	/// </summary>
 	public class DateFunctions
 	{
+        /// <summary>
+        /// 
+        /// </summary>
         public enum TimeMeasuresEnum
         {
+            /// <summary>
+            /// 
+            /// </summary>
             FromDays,
+            /// <summary>
+            /// 
+            /// </summary>
             FromHours,
+            /// <summary>
+            /// 
+            /// </summary>
             FromMinutes,
+            /// <summary>
+            /// 
+            /// </summary>
             FromSeconds
         }
 		/// <summary>
@@ -183,7 +198,13 @@ namespace Fwk.HelperFunctions
         {
             return string.Format("{0:s}", pDateTime);
         }
-
+        /// <summary>
+        /// Valor constante que reoprecenta el separador '.'
+        /// </summary>
+        public static DateTime NullDateTime
+        {
+            get { return new DateTime(1, 1, 1, 0, 0, 0); }
+        }
 	}
 
 }

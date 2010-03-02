@@ -11,14 +11,18 @@ namespace Fwk.Bases
 
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         IBaseEntity EntityResult
         {
             get;
             set;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         IBaseEntity EntityParam
         {
             get;

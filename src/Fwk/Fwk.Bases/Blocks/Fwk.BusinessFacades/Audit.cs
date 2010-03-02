@@ -16,27 +16,32 @@ namespace Fwk.BusinessFacades.Utils
         /// un servicio que está deshabilitado.
         /// </summary>
         /// <param name="pConfig">configuración del servicio.</param>
-        public static void LogNotAvailableExcecution(ServiceConfiguration pConfig)
+        /// <param name="pServiceError">pServiceError </param> 
+        public static void LogNotAvailableExcecution(ServiceConfiguration pConfig, out ServiceError pServiceError)
         {
-            //Logger wLogger = new Logger();
-            //wLogger.Warning("Serive Dispatcher", "Se ha intentado ejecutar un servicio que está configurado como no disponible.");
-            //wLogger = null;
+             pServiceError = new ServiceError();
 
 
             StringBuilder s = new StringBuilder();
-            s.AppendLine("<AnyMessage>");
+     
             s.AppendLine("Se ha intentado ejecutar un servicio que está configurado como no disponible.");
             s.AppendLine("Service :");
             s.AppendLine(pConfig.Handler);
-            s.AppendLine("</AnyMessage>");
-
+            pServiceError.Type = typeof(TechnicalException).Name;
+            pServiceError.Message = s.ToString();
+            pServiceError.ErrorId = "7006";
+            pServiceError.Assembly = "Fwk.BusinessFacades";
+            pServiceError.Class = "FacadeHelper";
+            pServiceError.Namespace = "Fwk.BusinessFacades";
+            pServiceError.UserName = Environment.UserName;
+            pServiceError.Machine = Environment.MachineName;
             try
             {
-                Fwk.Logging.StaticLogger.Warning("Serive Dispatcher", s.ToString());
+                Fwk.Logging.StaticLogger.Log(EventType.Error, "Serive Dispatcher", pServiceError.GetXml(),
+                  pServiceError.UserName, pServiceError.Machine);
             }
             catch { }
-            finally
-            { s = null; }
+           
         }
 
 
@@ -49,24 +54,12 @@ namespace Fwk.BusinessFacades.Utils
         /// <param name="pConfig">configuración del servicio.</param>
         public static void LogNonSucessfulExecution(Exception pException, ServiceConfiguration pConfig)
         {
-            //Logger wLogger = new Logger();
-            //wLogger.Error("Serive Dispatcher", Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException));
-            //wLogger = null;
+            ServiceError pServiceError = new ServiceError();
+            pServiceError.Message = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException);
+            
 
-            StringBuilder s = new StringBuilder();
-            s.AppendLine("<AnyMessage>");
-            s.AppendLine(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException));
-            s.AppendLine("</AnyMessage>");
-
-            try
-            {
-                Fwk.Logging.StaticLogger.Error(
-                "Serive Dispatcher",
-                  s.ToString());
-            }
-            catch { }
-            finally
-            { s = null; }
+            LogNonSucessfulExecution(pServiceError,pConfig);
+      
         }
 
         /// <summary>
@@ -77,22 +70,16 @@ namespace Fwk.BusinessFacades.Utils
         /// <param name="pConfig">configuración del servicio.</param>
         public static void LogNonSucessfulExecution(ServiceError pServiceError, ServiceConfiguration pConfig)
         {
-            StringBuilder s = new StringBuilder();
-            s.AppendLine("<AnyMessage>");
-            s.AppendLine(pServiceError.Message);
-            s.AppendLine("</AnyMessage>");
-
             try
             {
-                Fwk.Logging.StaticLogger.Audit(
-                pServiceError.Source,
-                  s.ToString(),
+                Fwk.Logging.StaticLogger.Log(EventType.Error,
+                "Serive Dispatcher",
+                  pServiceError.GetXml(),
                 pServiceError.UserName,
                 pServiceError.Machine);
             }
             catch { }
-            finally
-            { s = null; }
+          
           
 
         }
@@ -116,7 +103,7 @@ namespace Fwk.BusinessFacades.Utils
 
             try
             {
-                Fwk.Logging.StaticLogger.Audit(
+                Fwk.Logging.StaticLogger.Log(EventType .Audit,
                     pRequest.ContextInformation.HostName,
                     s.ToString(),
                     pRequest.ContextInformation.UserName,

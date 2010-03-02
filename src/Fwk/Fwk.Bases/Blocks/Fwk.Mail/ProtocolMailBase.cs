@@ -7,6 +7,9 @@ using System.Configuration;
 
 namespace Fwk.Mail
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class ProtocolMailBase
     {
         private String _UserMail;

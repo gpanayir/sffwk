@@ -16,6 +16,9 @@ namespace Fwk.Logging.Targets
     /// <author>moviedo</author>
     public class XmlTarget : Target
     {
+        /// <summary>
+        /// Listado de eventos de logueo correspondientes a este Target.-
+        /// </summary>
         public  static Events Logs;
        
         #region <constructor>
@@ -98,13 +101,13 @@ namespace Fwk.Logging.Targets
                  list = (Events)Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(FileName));
                  var lisToReturn = from s in list
                                    where
-                                       (String.IsNullOrEmpty(s.Machine) || s.Machine.StartsWith(pEvent.Machine))
+                                       (String.IsNullOrEmpty(pEvent.Machine) || s.Machine.StartsWith(pEvent.Machine))
                                        &&
-                                       (String.IsNullOrEmpty(s.UserLoginName) || s.Machine.StartsWith(pEvent.UserLoginName))
+                                       (String.IsNullOrEmpty(pEvent.UserLoginName) || s.Machine.StartsWith(pEvent.UserLoginName))
                                        &&
-                                       (s.LogType == null || s.LogType == pEvent.LogType)
+                                       (pEvent.LogType == EventType.None || s.LogType == pEvent.LogType)
                                        &&
-                                       (s.LogDate == null || s.LogDate >= pEvent.LogDate)
+                                       (pEvent.LogDate == HelperFunctions.DateFunctions.NullDateTime || s.LogDate >= pEvent.LogDate)
                                    select s;
                  Events list2 = new Events();
 
@@ -124,7 +127,7 @@ namespace Fwk.Logging.Targets
                  Fwk.HelperFunctions.TypeFunctions.SetEntitiesFromIenumerable <Events,Event>(list2,lisToReturn);
 
                  list = null;
-                 return new Events();
+                 return list2;
            
              }
              catch (Exception ex)

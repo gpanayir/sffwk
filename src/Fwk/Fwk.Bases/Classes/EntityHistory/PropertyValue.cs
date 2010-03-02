@@ -16,6 +16,9 @@ namespace Fwk.Bases
 			PropName = propName;
 			PropVal = propVal;
 		}
+        /// <summary>
+        /// 
+        /// </summary>
 		public string PropertyName
 		{
 			get
@@ -27,6 +30,9 @@ namespace Fwk.Bases
 				PropName = value;
 			}
 		}
+        /// <summary>
+        /// 
+        /// </summary>
 		public object Value
 		{
 			get

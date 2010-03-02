@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 using Fwk.Exceptions;
+using Fwk.Bases;
 
 
 
@@ -13,7 +14,7 @@ namespace Fwk.Exceptions
     /// Contiene informacion del error de un servicio.-
     /// </summary>
     [XmlRoot("Error"), SerializableAttribute]
-    public class ServiceError
+    public class ServiceError : BaseEntity
     {
         #region --[Protected Vars]--
         private String _Message;

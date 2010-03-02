@@ -12,7 +12,7 @@ namespace Fwk.Configuration
     /// <summary>
     /// Clase que permite obtener informacion de un archivo de configuracion ubicado localmente donde la aplicacion
     /// esta corriendo sin nececidad de configurar y tener disponible los servicios de configuracion :
-    /// < Configuration Provider (Win Service que hostea la clase remota ConfigurationHolder<see cref="ConfigurationHolder"/>)
+    /// <Configuration Provider (Win Service que hostea la clase remota ConfigurationHolder<see cref="ConfigurationHolder"/>)
     /// Configuration Service (Web Service)
     /// <remarks>
     /// Es necesario para que funcione la configuracion local tener en la aplicacion cliente un archivo de configuracion valido en disco

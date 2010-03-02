@@ -9,6 +9,11 @@ namespace Fwk.AssemblyExplorer
     /// </summary>
 	public class AssemblyCollection:CollectionBase
 	{
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
 		public Assembly this[ int index ]  
 		{
 			get  

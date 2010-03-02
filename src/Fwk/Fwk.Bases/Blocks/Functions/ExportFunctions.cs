@@ -9,7 +9,9 @@ using System.Data;
 namespace Fwk.HelperFunctions
 {
   
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class ExportFunctions
     {
         //<summary>

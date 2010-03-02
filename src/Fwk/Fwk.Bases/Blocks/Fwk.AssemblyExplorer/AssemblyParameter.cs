@@ -10,6 +10,11 @@ namespace Fwk.AssemblyExplorer
 	public class AssemblyParameterCollection : CollectionBase		
 	
 	{
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
 		public AssemblyParameter this[ int index ]  
 		{
 			get  

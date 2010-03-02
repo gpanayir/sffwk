@@ -7,6 +7,9 @@ using System.Text;
 
 namespace Fwk.ConfigSection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MailAgentFactory
     {
         static MailAgentSection _MailAgentSection;

@@ -20,6 +20,7 @@ namespace Fwk.HelperFunctions
             get { return EnvironmentFunctions._Dot; }
             set { EnvironmentFunctions._Dot = value; }
         }
+        
         /// <summary>
         /// /// Valor constante que reoprecenta el separador ','
         /// </summary>

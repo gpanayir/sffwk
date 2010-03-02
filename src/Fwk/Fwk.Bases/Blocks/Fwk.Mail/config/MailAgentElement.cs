@@ -8,7 +8,6 @@ using Fwk.Logging;
 namespace Fwk.ConfigSection
 {
     /// <summary>
-
     /// </summary>
     /// <date>2009/08/31</date>
     /// <author>moviedo</author>

@@ -5,15 +5,38 @@ using System.Text;
 
 namespace Fwk.Mail.Common
 {  
-
+    /// <summary>
+    /// 
+    /// </summary>
     public enum LoginResponseEnum
     {
+        /// <summary>
+        /// 
+        /// </summary>
         USER_ALREADY_CONNECT,
+        /// <summary>
+        /// 
+        /// </summary>
         LOGIN_SUCCESS,
+        /// <summary>
+        /// 
+        /// </summary>
         LOGIN_FAIL,
+        /// <summary>
+        /// 
+        /// </summary>
         CONNECTION_FAIL,
+        /// <summary>
+        /// 
+        /// </summary>
         CONNECTION_SUCCESS,
+        /// <summary>
+        /// 
+        /// </summary>
         DISCONNECTION_FAIL,
+        /// <summary>
+        /// 
+        /// </summary>
         DISCONNECTION_SUCCESS
     }
 

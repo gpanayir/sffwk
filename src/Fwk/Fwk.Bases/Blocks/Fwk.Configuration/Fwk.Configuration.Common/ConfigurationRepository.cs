@@ -374,10 +374,17 @@ namespace Fwk.Configuration.Common
  
 
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlRoot("Keys"), SerializableAttribute]
     public class Keys : Fwk.Bases.Entities<Key>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <returns></returns>
         public Key GetFirstByName(string pName)
         {
 
@@ -386,6 +393,11 @@ namespace Fwk.Configuration.Common
 
             return wItem.First<Key>();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <returns></returns>
         public int GetCountByName(string pName)
         {
             IEnumerable<Key> wItem = this.Where(p => p.Name == pName);

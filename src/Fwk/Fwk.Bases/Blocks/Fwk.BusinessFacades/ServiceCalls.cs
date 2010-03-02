@@ -155,12 +155,11 @@ namespace Fwk.BusinessFacades.Utils
 
             if (pServiceConfiguration.Audit == true)
             {
-                if (pserviError == null)
-                    Audit.LogSuccessfulExecution(pRequest, wResponse);
-                else
-                    Audit.LogNonSucessfulExecution(pserviError, pServiceConfiguration);
-
+                   Audit.LogSuccessfulExecution(pRequest, wResponse);
             }
+            //Si ocurre un error cualquiera se loguea el mismo
+            if (pserviError != null)
+                Audit.LogNonSucessfulExecution(pserviError, pServiceConfiguration);
             #endregion
 
 

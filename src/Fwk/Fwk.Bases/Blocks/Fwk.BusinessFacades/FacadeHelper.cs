@@ -271,24 +271,15 @@ namespace Fwk.BusinessFacades.Utils
             // Validación de disponibilidad del servicio.
             if (!pServiceConfiguration.Available)
             {
+                result = TryGetResultInstance(pServiceConfiguration);
+                ServiceError wServiceError;
+
                 #region < Log >
-                Audit.LogNotAvailableExcecution(pServiceConfiguration);
+                Audit.LogNotAvailableExcecution(pServiceConfiguration, out wServiceError);
+
                 #endregion
 
-                //TechnicalException te = new TechnicalException("Se ha intentado ejecutar un servicio que está configurado como no disponible.");
-              
-               
-                result = TryGetResultInstance(pServiceConfiguration);
-                result.Error = new ServiceError();
-                result.Error.Type = typeof(TechnicalException).Name;
-                
-                result.Error.ErrorId = "7006";
-                result.Error.Assembly = "Fwk.BusinessFacades";
-                result.Error.Class = "FacadeHelper";
-                result.Error.Namespace = "Fwk.BusinessFacades";
-                result.Error.Message = "Se ha intentado ejecutar un servicio que está configurado como no disponible.";
-               
-                
+                result.Error = wServiceError;
             }
         }
         static IServiceContract TryGetResultInstance(ServiceConfiguration pServiceConfiguration)

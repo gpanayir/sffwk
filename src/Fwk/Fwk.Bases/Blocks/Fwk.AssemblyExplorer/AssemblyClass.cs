@@ -8,6 +8,11 @@ namespace Fwk.AssemblyExplorer
     /// </summary>
 	public class AssemblyClassCollection:CollectionBase
 	{
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
 		public AssemblyClass this[ int index ]  
 		{
 			get  
@@ -19,6 +24,11 @@ namespace Fwk.AssemblyExplorer
 				List[index] = value;
 			}
 		}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public int Add( AssemblyClass value )  
 		{
 			return( List.Add( value ) );

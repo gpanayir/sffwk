@@ -6,7 +6,9 @@ using Fwk.Bases;
 namespace Fwk.HelperFunctions.Caching
 {
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ServiceCacheMannager
     {
        

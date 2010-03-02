@@ -17,7 +17,9 @@ namespace Fwk.Mail
         private String mBody;
         private String mURL;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public String URL
         {
             get
@@ -29,7 +31,9 @@ namespace Fwk.Mail
                 mURL = value;
             }
         }       
-
+        /// <summary>
+        /// 
+        /// </summary>
         public String Body
         {
             get

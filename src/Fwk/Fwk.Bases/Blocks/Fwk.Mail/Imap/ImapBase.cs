@@ -13,6 +13,9 @@ using System.Collections.Generic;
 
 namespace Fwk.Mail.Imap
 {
+    /// <summary>
+    /// 
+    /// </summary>
 	public class ImapBase
 	{
         

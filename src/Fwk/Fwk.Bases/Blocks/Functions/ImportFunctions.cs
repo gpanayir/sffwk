@@ -14,6 +14,9 @@ using System.Xml.Serialization;
 
 namespace Fwk.HelperFunctions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ImportFunctions
     {
         public static WorkSheets SearchWorkSheets(String pPath)

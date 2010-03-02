@@ -6,10 +6,16 @@ using Fwk.Bases;
 using System.Xml.Serialization;
 namespace Fwk.Configuration.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlInclude(typeof(ConfigFileRegistry)), Serializable]
     public class ConfigFileRegistry :Entity
     {
         string _name;
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlAttribute("name")]
         public string Name
         {
@@ -17,7 +23,9 @@ namespace Fwk.Configuration.Common
             set { _name = value; }
         }
         string _CurrentVersion;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string CurrentVersion
         {
             get { return _CurrentVersion; }
@@ -25,6 +33,9 @@ namespace Fwk.Configuration.Common
         }
         bool _Available = true;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool Available
         {
             get { return _Available; }

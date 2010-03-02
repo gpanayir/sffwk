@@ -34,7 +34,14 @@ namespace Fwk.Logging
         /// <summary>
         /// Constructor de Event.
         /// </summary>
-        public Event(){}
+        public Event()
+        {
+            _Id = Guid.NewGuid();
+            //_Machine = Environment.MachineName;
+            //_UserLoginName = Environment.UserName;
+            _LogDate = Fwk.HelperFunctions.DateFunctions.NullDateTime;
+            _LogType = EventType.None;
+        }
         /// <summary>
         /// Constructor de Event.
         /// </summary>
@@ -66,8 +73,8 @@ namespace Fwk.Logging
         /// <summary>
         /// Fecha y hora en la que se produce el evento.
         /// </summary>
-        [XmlAttribute("LogDate")]
-        public DateTime LogDate
+       [XmlAttribute("LogDate")]
+       public DateTime LogDate
         {
             get { return _LogDate; }
             set { _LogDate = value; }

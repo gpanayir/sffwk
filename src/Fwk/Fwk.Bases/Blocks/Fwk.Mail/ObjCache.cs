@@ -6,6 +6,9 @@ using Fwk.Mail.Common;
 
 namespace Fwk.Mail
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class ObjCache
     {
@@ -13,7 +16,9 @@ namespace Fwk.Mail
         private String mUserPassword;
         private ConnectionTypeEnum mConnectionType;
         
-
+        /// <summary>
+        /// 
+        /// </summary>
         public ConnectionTypeEnum ConnectionType
         {
             get
@@ -25,6 +30,9 @@ namespace Fwk.Mail
                 mConnectionType = value;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String UserPassword
         {
             get
@@ -36,6 +44,9 @@ namespace Fwk.Mail
                 mUserPassword = value;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String UserMail
         {
             get

@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 namespace Fwk.Remoting
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class FwkRemoteObject : MarshalByRefObject
     {
         public IServiceContract ExecuteService(IServiceContract pReq)

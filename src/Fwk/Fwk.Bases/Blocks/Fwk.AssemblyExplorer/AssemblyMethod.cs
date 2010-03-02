@@ -8,6 +8,11 @@ namespace Fwk.AssemblyExplorer
     /// </summary>
 	public class AssemblyMethodCollection:CollectionBase 
 	{
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
 		public AssemblyMethod this[ int index ]  
 		{
 			get  
@@ -19,27 +24,48 @@ namespace Fwk.AssemblyExplorer
 				List[index] = value;
 			}
 		}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public int Add( AssemblyMethod value )  
 		{
 			return( List.Add( value ) );
 		}
 
-		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public int IndexOf( AssemblyMethod value )  
 		{
 			return( List.IndexOf( value ) );
 		}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="value"></param>
 		public void Insert( int index, AssemblyMethod value )  
 		{
 			List.Insert( index, value );
 		}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
 		public void Remove( AssemblyMethod value )  
 		{
 			List.Remove( value );
 		}
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
 		public bool Contains( AssemblyMethod value )  
 		{
 			// If value is not of type Int16, this will return false.
