@@ -17,7 +17,7 @@ namespace Fwk.Logging.Viewer
         public FRM_Document()
         {
             InitializeComponent();
-            txtMessage1.Width = (this.Width / 2) - 5;
+         
         }
 
         #region <public methods>
@@ -28,8 +28,7 @@ namespace Fwk.Logging.Viewer
 
             foreach (DataGridViewRow row in grdLogs.Rows)
             {
-                //DataGridViewImageColumn dataGridViewColumn =
-                //                        new DataGridViewImageColumn();
+
 
                 EventType wEventType =  (EventType)row.Cells["Type"].Value;
                 row.Cells["Logtype"].Value = GetImageByType(wEventType);
@@ -42,8 +41,9 @@ namespace Fwk.Logging.Viewer
             _Target = target;
             grdLogs.BindingContextChanged += new EventHandler(grdLogs_BindingContextChanged);
 
-            ///Carrga todos los eventos
-            this.eventBindingSource.DataSource = _Target.SearchByParam(new Event());
+            Event ev =new Event();
+          
+            this.eventBindingSource.DataSource = _Target.SearchByParam(ev);
 
             grdLogs.Refresh();
 
@@ -68,23 +68,20 @@ namespace Fwk.Logging.Viewer
             {
                 case EventType.Error:
                     {
-                        return ctlImages.Images["delete.ico"];
+                        return (Image)Fwk.Logging.Viewer.Properties.Resources.Error;
                     }
                 case EventType.Information:
                     {
-                        return ctlImages.Images["info.ico"];
+                        return (Image)Fwk.Logging.Viewer.Properties.Resources.Information;
                     }
                 case EventType.Warning:
                     {
-                        return ctlImages.Images["alert.ico"];
+                        return (Image)Fwk.Logging.Viewer.Properties.Resources.Warning;
                     }
-                case EventType.Debug:
-                    {
-                        return ctlImages.Images["search_16.png"];
-                    }
+              
                 case EventType.Audit:
                     {
-                        return ctlImages.Images["search_16.png"];
+                        return (Image)Fwk.Logging.Viewer.Properties.Resources.audit;
                     }
             }
             return ctlImages.Images[4];
@@ -116,21 +113,27 @@ namespace Fwk.Logging.Viewer
                
                 node = Fwk.Xml.Node.NodeGet(doc.FirstChild, "Request");
                 if (node != null)
-                    msg.Request = node.InnerXml;
+                {
 
+                    msg.Request = node.InnerXml;
+                    msg.MessageContenType = MessageContenType.Service;
+                }
                 node = Fwk.Xml.Node.NodeGet(doc.FirstChild, "Response");
                 if (node != null)
                     msg.Response = node.InnerXml;
 
-                node = Fwk.Xml.Node.NodeGet(doc.FirstChild, "AnyMessage");
+                node = Fwk.Xml.Node.NodeGet(doc.FirstChild, "Error");
                 if (node != null)
-                    msg.AnyMessage = node.InnerXml;
-
+                {
+                    msg.AnyMessage = node.OuterXml;
+                    msg.MessageContenType = MessageContenType.ServiceError;
+                }
                 if (string.IsNullOrEmpty(msg.AnyMessage) &&
                     string.IsNullOrEmpty(msg.Request) &&
                     string.IsNullOrEmpty(msg.Response))
                 {
                     msg.AnyMessage = pMessage;
+                    msg.MessageContenType = MessageContenType.Other;
                 }
 
                 
@@ -152,53 +155,60 @@ namespace Fwk.Logging.Viewer
         {
 
         }
-
+        ServiceErrorView _ServiceErrorView;
+        ServicesView _ServicesView;
+        OtherView _OtherView;
         private void grdLogs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             
 
             if (grdLogs.CurrentRow == null) return;
             Event x = (Event)((System.Windows.Forms.BindingSource)grdLogs.DataSource).Current;
-            //Event x = (Event)grdLogs.CurrentRow.DataBoundItem;
+       
             Message wMessage = LoadMessage(x.Message.Text);
-            if (!string.IsNullOrEmpty(wMessage.AnyMessage))
+
+            if (wMessage.MessageContenType == MessageContenType.ServiceError)
             {
-                lblMessage1.Text = "Message";
-                txtMessage1.Text = wMessage.AnyMessage;
+                if( _ServiceErrorView == null)
+                    _ServiceErrorView = new ServiceErrorView ();
+                _ServiceErrorView.Populate(wMessage);
 
-                lblMessage1.Visible = true;
-                lblMessage2.Visible = false;
-                txtMessage2.Visible = false;
-
+                AddtoPanel(_ServiceErrorView);
             }
 
-            if (!string.IsNullOrEmpty(wMessage.Request))
+            if (wMessage.MessageContenType == MessageContenType.Service)
             {
-                lblMessage1.Text = "Request";
-                txtMessage1.Text = wMessage.Request;
+                if (_ServicesView == null)
+                    _ServicesView = new ServicesView();
+                _ServicesView.Populate(wMessage);
+
+                AddtoPanel(_ServicesView);
+            }
+            if (wMessage.MessageContenType == MessageContenType.Other)
+            {
+                if (_OtherView == null)
+                    _OtherView = new OtherView();
+                _OtherView.Populate(wMessage);
+
+                AddtoPanel(_OtherView);
             }
 
-            if (!string.IsNullOrEmpty(wMessage.Response))
-            {
-                lblMessage2.Visible = true;
-                txtMessage2.Visible = true;
-                txtMessage2.Text = wMessage.Response;
-            }
-            txtMessage1.Anchor = AnchorStyles.None;
-            txtMessage1.Anchor = AnchorStyles.Top;
+           
+        }
+        public void AddtoPanel(Control pControlToAdd)
+        {
 
-            //Mostrar ambos
-            if (string.IsNullOrEmpty(wMessage.AnyMessage) && !string.IsNullOrEmpty(wMessage.Response))
-            {
-                txtMessage1.Width = (this.Width / 2) - 5;
-                txtMessage2.Left = (this.Width / 2) + 5;
-                txtMessage2.Width = (this.Width / 2) - 10;
-            }
-            else
-            {
-                txtMessage1.Width = grdLogs.Width;
-                txtMessage1.Anchor = AnchorStyles.Right;
-            }
+            if (panel1.Contains(pControlToAdd)) return;
+
+            pControlToAdd.Location = new System.Drawing.Point(1, 1);
+            pControlToAdd.Width = panel1.Width - 60;
+            pControlToAdd.Height = panel1.Height - 60;
+            pControlToAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                   | System.Windows.Forms.AnchorStyles.Left)
+                   | System.Windows.Forms.AnchorStyles.Right)));
+            panel1.Controls.Clear();
+            panel1.Controls.Add(pControlToAdd);
+
         }
 
        
@@ -208,6 +218,13 @@ namespace Fwk.Logging.Viewer
     [XmlInclude(typeof(Message)), Serializable]
     public class Message
     {
+        MessageContenType _MessageContenType = MessageContenType.Other;
+
+        internal MessageContenType MessageContenType
+        {
+            get { return _MessageContenType; }
+            set { _MessageContenType = value; }
+        }
         private String _Request;
        
         
@@ -262,5 +279,12 @@ namespace Fwk.Logging.Viewer
         //}
     }
 
+
+    internal enum MessageContenType
+    { 
+        Service ,
+        ServiceError,
+        Other
+    }
 
 }

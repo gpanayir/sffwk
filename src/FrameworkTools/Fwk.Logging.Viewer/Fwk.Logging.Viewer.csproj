@@ -105,6 +105,12 @@
     <Compile Include="FRM_Test.Designer.cs">
       <DependentUpon>FRM_Test.cs</DependentUpon>
     </Compile>
+    <Compile Include="OtherView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherView.Designer.cs">
+      <DependentUpon>OtherView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConnectionForm.resx">
@@ -122,10 +128,19 @@
       <SubType>Designer</SubType>
       <DependentUpon>FRM_Test.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OtherView.resx">
+      <DependentUpon>OtherView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServiceErrorView.resx">
+      <DependentUpon>ServiceErrorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServicesView.resx">
+      <DependentUpon>ServicesView.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -144,9 +159,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ServiceErrorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ServiceErrorView.Designer.cs">
+      <DependentUpon>ServiceErrorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServicesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ServicesView.Designer.cs">
+      <DependentUpon>ServicesView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contents 16x16.ico" />
+    <None Include="Resources\srch_16.gif" />
+    <None Include="Resources\Zoom In.png" />
+    <None Include="Resources\Warning.png" />
+    <None Include="Resources\Warning %28Alt 2%29.png" />
+    <None Include="Resources\Information.png" />
+    <None Include="Resources\Cancel_2_16.png" />
     <None Include="Resources\Refresh.ico" />
   </ItemGroup>
   <ItemGroup>

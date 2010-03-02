@@ -31,12 +31,6 @@ namespace Fwk.Logging.Viewer
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_Document));
             this.grdLogs = new System.Windows.Forms.DataGridView();
-            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ctlImages = new System.Windows.Forms.ImageList(this.components);
-            this.txtMessage1 = new System.Windows.Forms.TextBox();
-            this.txtMessage2 = new System.Windows.Forms.TextBox();
-            this.lblMessage1 = new System.Windows.Forms.Label();
-            this.lblMessage2 = new System.Windows.Forms.Label();
             this.colImg = new System.Windows.Forms.DataGridViewImageColumn();
             this.machineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sourceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +38,10 @@ namespace Fwk.Logging.Viewer
             this.UserLoginName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LogType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ctlImages = new System.Windows.Forms.ImageList(this.components);
+            this.lblMessage1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -75,67 +73,10 @@ namespace Fwk.Logging.Viewer
             this.grdLogs.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdLogs.RowHeadersVisible = false;
             this.grdLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdLogs.Size = new System.Drawing.Size(1095, 375);
+            this.grdLogs.Size = new System.Drawing.Size(1053, 375);
             this.grdLogs.TabIndex = 0;
             this.grdLogs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLogs_CellClick);
             this.grdLogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLogs_CellContentClick);
-            // 
-            // eventBindingSource
-            // 
-            this.eventBindingSource.DataSource = typeof(Fwk.Logging.Event);
-            // 
-            // ctlImages
-            // 
-            this.ctlImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ctlImages.ImageStream")));
-            this.ctlImages.TransparentColor = System.Drawing.Color.Transparent;
-            this.ctlImages.Images.SetKeyName(0, "folder-closed_16.png");
-            this.ctlImages.Images.SetKeyName(1, "search_16.png");
-            this.ctlImages.Images.SetKeyName(2, "confirm_16.png");
-            this.ctlImages.Images.SetKeyName(3, "info.ico");
-            this.ctlImages.Images.SetKeyName(4, "alert.ico");
-            this.ctlImages.Images.SetKeyName(5, "delete.ico");
-            // 
-            // txtMessage1
-            // 
-            this.txtMessage1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMessage1.Location = new System.Drawing.Point(4, 394);
-            this.txtMessage1.Multiline = true;
-            this.txtMessage1.Name = "txtMessage1";
-            this.txtMessage1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtMessage1.Size = new System.Drawing.Size(453, 259);
-            this.txtMessage1.TabIndex = 1;
-            // 
-            // txtMessage2
-            // 
-            this.txtMessage2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMessage2.Location = new System.Drawing.Point(464, 397);
-            this.txtMessage2.Multiline = true;
-            this.txtMessage2.Name = "txtMessage2";
-            this.txtMessage2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtMessage2.Size = new System.Drawing.Size(424, 259);
-            this.txtMessage2.TabIndex = 2;
-            // 
-            // lblMessage1
-            // 
-            this.lblMessage1.AutoSize = true;
-            this.lblMessage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage1.Location = new System.Drawing.Point(6, 381);
-            this.lblMessage1.Name = "lblMessage1";
-            this.lblMessage1.Size = new System.Drawing.Size(57, 13);
-            this.lblMessage1.TabIndex = 4;
-            this.lblMessage1.Text = "Message";
-            // 
-            // lblMessage2
-            // 
-            this.lblMessage2.AutoSize = true;
-            this.lblMessage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage2.Location = new System.Drawing.Point(461, 381);
-            this.lblMessage2.Name = "lblMessage2";
-            this.lblMessage2.Size = new System.Drawing.Size(63, 13);
-            this.lblMessage2.TabIndex = 5;
-            this.lblMessage2.Text = "Response";
             // 
             // colImg
             // 
@@ -190,16 +131,51 @@ namespace Fwk.Logging.Viewer
             this.Source.Name = "Source";
             this.Source.ReadOnly = true;
             // 
+            // eventBindingSource
+            // 
+            this.eventBindingSource.DataSource = typeof(Fwk.Logging.Event);
+            // 
+            // ctlImages
+            // 
+            this.ctlImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ctlImages.ImageStream")));
+            this.ctlImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.ctlImages.Images.SetKeyName(0, "folder-closed_16.png");
+            this.ctlImages.Images.SetKeyName(1, "search_16.png");
+            this.ctlImages.Images.SetKeyName(2, "confirm_16.png");
+            this.ctlImages.Images.SetKeyName(3, "info.ico");
+            this.ctlImages.Images.SetKeyName(4, "alert.ico");
+            this.ctlImages.Images.SetKeyName(5, "delete.ico");
+            // 
+            // lblMessage1
+            // 
+            this.lblMessage1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblMessage1.AutoSize = true;
+            this.lblMessage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage1.Location = new System.Drawing.Point(6, 385);
+            this.lblMessage1.Name = "lblMessage1";
+            this.lblMessage1.Size = new System.Drawing.Size(57, 13);
+            this.lblMessage1.TabIndex = 4;
+            this.lblMessage1.Text = "Message";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Location = new System.Drawing.Point(11, 403);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1042, 246);
+            this.panel1.TabIndex = 5;
+            // 
             // FRM_Document
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1107, 665);
-            this.Controls.Add(this.lblMessage2);
+            this.ClientSize = new System.Drawing.Size(1065, 661);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblMessage1);
-            this.Controls.Add(this.txtMessage2);
-            this.Controls.Add(this.txtMessage1);
             this.Controls.Add(this.grdLogs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRM_Document";
@@ -216,10 +192,7 @@ namespace Fwk.Logging.Viewer
         private System.Windows.Forms.DataGridView grdLogs;
         private System.Windows.Forms.ImageList ctlImages;
         private System.Windows.Forms.BindingSource eventBindingSource;
-        private System.Windows.Forms.TextBox txtMessage1;
-        private System.Windows.Forms.TextBox txtMessage2;
         private System.Windows.Forms.Label lblMessage1;
-        private System.Windows.Forms.Label lblMessage2;
         private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateAndTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userDataGridViewTextBoxColumn;
@@ -231,6 +204,7 @@ namespace Fwk.Logging.Viewer
         private System.Windows.Forms.DataGridViewTextBoxColumn UserLoginName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LogType;
         private System.Windows.Forms.DataGridViewTextBoxColumn Source;
+        private System.Windows.Forms.Panel panel1;
 
     }
 }
