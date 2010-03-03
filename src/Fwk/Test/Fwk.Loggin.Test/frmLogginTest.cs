@@ -77,7 +77,10 @@ namespace Fwk.Logging.Test
             for (int i = 0; i < 100; i++)
             {
 
-                Fwk.Logging.StaticLogger.Log(EventType.Warning, "test login" + i.ToString(), "aaaaaaaaaaaaaaaa", AppDomain.CurrentDomain.BaseDirectory, txtFilePrefix.Text);
+                Fwk.Logging.StaticLogger.Log(EventType.Warning,
+                    "test login" + i.ToString(), "aaaaaaaaaaaaaaaa",
+                    Environment.UserName,Environment.MachineName, 
+                    AppDomain.CurrentDomain.BaseDirectory, txtFilePrefix.Text);
             }
 
         }
