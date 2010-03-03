@@ -54,8 +54,19 @@ namespace Fwk.Logging.Targets
         /// <param name="pEvent">Event como parametro de filtros</param>
         /// <returns></returns>
         public abstract Events SearchByParam(Event pEvent);
+        /// <summary>
+        /// Busca eventos bajo los parametros indicadosdesde el origen de datos 
+        /// que puede ser un Xml o una bas d edatos .-
+        /// No es aplicable a eventos provenientes de visor de evento
+        /// </summary>
+        /// <param name="pEvent">Event como parametro de filtros</param>
+        /// <param name="pEndDate">Fecha limite de fin de busqueda</param>
+        /// <returns></returns>
+        public abstract Events SearchByParam(Event pEvent, DateTime pEndDate);
         #endregion
 
-       
+
+
+      
     }
 }

@@ -76,5 +76,16 @@ namespace Fwk.Logging.Targets
         {
             throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente un archivo comun.- Solo de xml");
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pEvent"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public override Events SearchByParam(Event pEvent,DateTime t)
+        {
+            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente un archivo comun.- Solo de xml");
+        }
     }
 }

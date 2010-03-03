@@ -70,5 +70,9 @@ namespace Fwk.Logging.Targets
         {
             throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows");
         }
+        public override Events SearchByParam(Event pEvent,DateTime t)
+        {
+            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows");
+        }
     }
 }

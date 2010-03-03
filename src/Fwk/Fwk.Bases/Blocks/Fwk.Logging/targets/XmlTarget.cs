@@ -111,19 +111,7 @@ namespace Fwk.Logging.Targets
                                    select s;
                  Events list2 = new Events();
 
-                 //Events lisToReturn = from s in list
-                 //                  where
-                 //                      (String.IsNullOrEmpty(s.Machine) || s.Machine.StartsWith(pEvent.Machine))
-                 //                      &&
-                 //                      (String.IsNullOrEmpty(s.UserLoginName) || s.Machine.StartsWith(pEvent.UserLoginName))
-                 //                      &&
-                 //                      (s.LogType == null || s.LogType == pEvent.LogType)
-                 //                      &&
-                 //                      (s.LogDate == null || s.LogDate >= pEvent.LogDate)
-                 //                  select (;
-                                  
-                 //string filename = string.Concat(this.FileName);
-                 //filename = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
+       
                  Fwk.HelperFunctions.TypeFunctions.SetEntitiesFromIenumerable <Events,Event>(list2,lisToReturn);
 
                  list = null;
@@ -132,7 +120,47 @@ namespace Fwk.Logging.Targets
              }
              catch (Exception ex)
              {
-                // throw new Fwk.Exceptions.TechnicalException(ex);
+               
+                 throw ex;
+
+             }
+         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pEvent"></param>
+        /// <param name="pEndDate"></param>
+        /// <returns></returns>
+         public override Events SearchByParam(Event pEvent, DateTime pEndDate)
+         {
+             Events list = null;
+             try
+             {
+                 list = (Events)Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(FileName));
+                 var lisToReturn = from s in list
+                                   where
+                                       (String.IsNullOrEmpty(pEvent.Machine) || s.Machine.StartsWith(pEvent.Machine))
+                                       &&
+                                       (String.IsNullOrEmpty(pEvent.UserLoginName) || s.Machine.StartsWith(pEvent.UserLoginName))
+                                       &&
+                                       (pEvent.LogType == EventType.None || s.LogType == pEvent.LogType)
+                                       &&
+                                       (s.LogDate >= pEvent.LogDate || s.LogDate <= pEvent.LogDate) // Fdesde >= Fecha <= FHasta
+
+                                   select s;
+                 Events list2 = new Events();
+
+
+                 Fwk.HelperFunctions.TypeFunctions.SetEntitiesFromIenumerable<Events, Event>(list2, lisToReturn);
+
+                 list = null;
+                 return list2;
+
+             }
+             catch (Exception ex)
+             {
+
                  throw ex;
 
              }

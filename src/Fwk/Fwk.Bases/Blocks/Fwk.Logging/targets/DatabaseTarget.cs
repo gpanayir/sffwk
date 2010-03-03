@@ -78,10 +78,10 @@ namespace Fwk.Logging.Targets
                     SqlParameter wParam = null;
 
                     wParam = wCmd.Parameters.Add("Id", SqlDbType.UniqueIdentifier);
-                    wParam.Value = pEvent.Message;
+                    wParam.Value = pEvent.Id;
 
                     wParam = wCmd.Parameters.Add("Message", SqlDbType.NVarChar);
-                    wParam.Value = pEvent.Message;
+                    wParam.Value = pEvent.Message.Text;
 
                     wParam = wCmd.Parameters.Add("Source", SqlDbType.NVarChar);
                     wParam.Value = pEvent.Source;
@@ -108,31 +108,7 @@ namespace Fwk.Logging.Targets
                 }
             }
         }
-        ///// <summary>
-        ///// Implementación de la escritura del log del evento
-        ///// en base de datos.
-        ///// </summary>
-        ///// <param name="pEvent">Evento a loguear.</param>
-        //public  void Write(Event pEvent)
-        //{
-        //    if (this.CnnStringName.Trim().Length == 0)
-        //    {
-        //        throw new TechnicalException("Debe especificar cnnStringName en el archivo de configuración.");
-        //    }
-        //    Database wDataBase = DatabaseFactory.CreateDatabase(_CnnStringName);
-        //    DbCommand wCmd = wDataBase.GetStoredProcCommand("Logs_i");
-
-
-        //    wDataBase.AddInParameter(wCmd, "@Id", System.Data.DbType.Guid, pEvent.Id);
-        //    wDataBase.AddInParameter(wCmd, "@Message", System.Data.DbType.String, pEvent.Message.Text);
-        //    wDataBase.AddInParameter(wCmd, "@Source", System.Data.DbType.String, pEvent.Source);
-        //    wDataBase.AddInParameter(wCmd, "@LogType", System.Data.DbType.String, pEvent.LogType.ToString());
-        //    wDataBase.AddInParameter(wCmd, "@Machine", System.Data.DbType.String, pEvent.Machine);
-        //    wDataBase.AddInParameter(wCmd, "@LogDate", System.Data.DbType.DateTime, pEvent.LogDate);
-        //    wDataBase.AddInParameter(wCmd, "@UserLoginName", System.Data.DbType.String, pEvent.UserLoginName);
-
-        //    wDataBase.ExecuteNonQuery(wCmd);
-        //}
+       
         /// <summary>
         /// SearchByParam
         /// </summary>
@@ -140,7 +116,7 @@ namespace Fwk.Logging.Targets
         /// <returns>LogsList</returns>
         /// <Date>2010-02-26T10:05:27</Date>
         /// <Author>moviedo</Author>
-        public override  Events SearchByParam(Event pEvent)
+        public override Events SearchByParam(Event pEvent)
         {
             Events wEventList = new Events();
             Event wEvent;
@@ -152,26 +128,135 @@ namespace Fwk.Logging.Targets
                     wCnn.Open();
                     wCmd.Connection = wCnn;
                     wCmd.CommandType = CommandType.StoredProcedure;
-                    wCmd.CommandText = "Logs_sp";
+                    wCmd.CommandText = "Logs_s";
                     SqlParameter wParam = null;
-                   
-                    wParam = wCmd.Parameters.Add("Message", SqlDbType.NVarChar);
-                    wParam.Value = pEvent.Message;
 
-                    wParam = wCmd.Parameters.Add("Source", SqlDbType.NVarChar);
-                    wParam.Value = pEvent.Source;
 
-                    wParam = wCmd.Parameters.Add("LogType", SqlDbType.NVarChar);
-                    wParam.Value = pEvent.LogType;
 
-                    wParam = wCmd.Parameters.Add("Machine", SqlDbType.NVarChar);
-                    wParam.Value = pEvent.Machine;
+                    if (!string.IsNullOrEmpty(pEvent.Source))
+                    {
+                        wParam = wCmd.Parameters.Add("Source", SqlDbType.NVarChar);
+                        wParam.Value = string.Concat("%", pEvent.Source, "%");
+                    }
 
-                    wParam = wCmd.Parameters.Add("LogDate", SqlDbType.DateTime);
-                    wParam.Value = pEvent.LogDate;
+                    if (pEvent.LogType != EventType.None)
+                    {
+                        wParam = wCmd.Parameters.Add("LogType", SqlDbType.NVarChar);
+                        wParam.Value = pEvent.LogType;
+                    }
+                    if (pEvent.LogDate != Fwk.HelperFunctions.DateFunctions.NullDateTime)
+                    {
+                        wParam = wCmd.Parameters.Add("LogDateDesde", SqlDbType.DateTime);
+                        wParam.Value = pEvent.LogDate;
+                        
+                    }
+                  
 
-                    wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
-                    wParam.Value = pEvent.UserLoginName;
+                    if (!string.IsNullOrEmpty(pEvent.Machine))
+                    {
+                        wParam = wCmd.Parameters.Add("Machine", SqlDbType.NVarChar);
+                        wParam.Value = string.Concat("%", pEvent.Machine, "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(pEvent.UserLoginName))
+                    {
+                        wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
+                        wParam.Value = string.Concat("%", pEvent.UserLoginName, "%");
+                    }
+
+                    
+
+
+
+
+                    using (IDataReader reader = wCmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            wEvent = new Event();
+
+                            wEvent.Message.Text = reader["Message"].ToString();
+                            wEvent.Source = reader["Source"].ToString();
+                            wEvent.LogType = (EventType)reader["LogType"];
+                            wEvent.Machine = reader["Machine"].ToString();
+                            wEvent.LogDate = Convert.ToDateTime(reader["Machine"]);
+                            wEvent.UserLoginName = reader["UserLoginName"].ToString();
+                            wEventList.Add(wEvent);
+                        }
+                    }
+
+                    return wEventList;
+
+                }
+                catch (Exception ex)
+                {
+                    ///TODO: Ver ex loging
+                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                }
+            }
+        }
+
+        /// <summary>
+        /// SearchByParam
+        /// </summary>
+        ///<param name="pEvent">Event</param>
+        ///<param name="pEndDate">pEndDate</param>
+        /// <returns>LogsList</returns>
+        /// <Date>2010-02-26T10:05:27</Date>
+        /// <Author>moviedo</Author>
+        public override  Events SearchByParam(Event pEvent,DateTime pEndDate)
+        {
+            Events wEventList = new Events();
+            Event wEvent;
+            using (SqlConnection wCnn = new SqlConnection(GetCnnString()))
+            using (SqlCommand wCmd = new SqlCommand())
+            {
+                try
+                {
+                    wCnn.Open();
+                    wCmd.Connection = wCnn;
+                    wCmd.CommandType = CommandType.StoredProcedure;
+                    wCmd.CommandText = "Logs_s";
+                    SqlParameter wParam = null;
+
+
+                    if (!string.IsNullOrEmpty(pEvent.Source))
+                    {
+                        wParam = wCmd.Parameters.Add("Source", SqlDbType.NVarChar);
+                        wParam.Value = string.Concat("%", pEvent.Source, "%");
+                    }
+             
+
+               
+                    if (pEvent.LogType != EventType.None)
+                    {
+                        wParam = wCmd.Parameters.Add("LogType", SqlDbType.NVarChar);
+                        wParam.Value = pEvent.LogType;
+                    }
+                    if (pEvent.LogDate != Fwk.HelperFunctions.DateFunctions.NullDateTime)
+                    {
+                        wParam = wCmd.Parameters.Add("LogDateDesde", SqlDbType.DateTime);
+                        wParam.Value = pEvent.LogDate;
+
+                    }
+
+                    if (pEndDate != Fwk.HelperFunctions.DateFunctions.NullDateTime)
+                    {
+                        wParam = wCmd.Parameters.Add("LogDateHasta", SqlDbType.DateTime);
+                        wParam.Value = pEndDate;
+                    }
+
+                    if (!string.IsNullOrEmpty(pEvent.Machine))
+                    {
+                        wParam = wCmd.Parameters.Add("Machine", SqlDbType.NVarChar);
+                        wParam.Value = string.Concat("%", pEvent.Machine, "%");
+                    }
+
+                    if (!string.IsNullOrEmpty(pEvent.UserLoginName))
+                    {
+                        wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
+                        wParam.Value = string.Concat("%", pEvent.UserLoginName, "%");
+                    }
 
 
                     
@@ -201,7 +286,6 @@ namespace Fwk.Logging.Targets
                     throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
                 }
             }
-           
 
         }
         string strDb;
