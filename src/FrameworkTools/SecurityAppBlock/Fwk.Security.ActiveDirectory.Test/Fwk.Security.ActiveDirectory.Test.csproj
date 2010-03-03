@@ -222,6 +222,7 @@
     <None Include="Resources\calendar_16.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\System.DirectoryServices.ActiveDirectory.GlobalCatalogCollection.datasource" />
     <None Include="Resources\contacts_16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -104,7 +104,7 @@ namespace Fwk.Security.ActiveDirectory
         {
             _LDAPPath = path;
 
-            _LDAPUser = user;
+            _LDAPUser = FilterOutDomain(user);
             _LDAPPassword = pwd;
             _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
             //	= CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
@@ -133,7 +133,7 @@ namespace Fwk.Security.ActiveDirectory
             DirectoryEntry userDirectoryEntry = null;
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
 
-            deSearch.Filter = "(&(objectClass=user)(cn=" + userName + "))";
+            deSearch.Filter = "(&(objectClass=user)(cn=" + FilterOutDomain(userName) + "))";
             deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
 
 
@@ -141,7 +141,8 @@ namespace Fwk.Security.ActiveDirectory
 
             //si result no es nulo se puede crear una DirectoryEntry
             if (results != null)
-                userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
+                userDirectoryEntry = new DirectoryEntry(results.Path, password, null);
+                
 
             deSearch.Dispose();
             return userDirectoryEntry;
@@ -159,14 +160,14 @@ namespace Fwk.Security.ActiveDirectory
         {
             SearchResult results = null;
 
-            DirectoryEntry root = new DirectoryEntry(string.Concat(@"LDAP://", domain), userName, password, AuthenticationTypes.Secure);
+            DirectoryEntry root = new DirectoryEntry(string.Concat(@"LDAP://", domain), FilterOutDomain(userName), password, AuthenticationTypes.Secure);
 
 
             DirectoryEntry userDirectoryEntry = null;
 
             DirectorySearcher deSearch = new DirectorySearcher(root);
 
-            deSearch.Filter = "(&(objectClass=user)(cn=" + userName + "))";
+            deSearch.Filter = "(&(objectClass=user)(cn=" + FilterOutDomain(userName) + "))";
             deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
 
             try
@@ -181,7 +182,7 @@ namespace Fwk.Security.ActiveDirectory
 
             //si result no es nulo se puede crear una DirectoryEntry
             if (results != null)
-                userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
+                userDirectoryEntry = new DirectoryEntry(results.Path, FilterOutDomain(userName), password);
 
             root.Close();
             root.Dispose();
@@ -190,41 +191,8 @@ namespace Fwk.Security.ActiveDirectory
 
         }
 
-        /// <summary>
-        /// This function will take a full name as input parameter and return AD user corresponding to that. 
-        /// </summary>
-        /// <param name="userFullName">Nombre completo del usuario</param>
-        /// <returns></returns>
-        public ADUser User_Get_ByFullName(String userFullName)
-        {
 
-            ADUser wADUser = null;
-            DirectoryEntry userDirectoryEntry = null;
-            try
-            {
-
-                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-                deSearch.Filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", userFullName);
-
-                SearchResult results = deSearch.FindOne();
-
-                if (results != null)
-                {
-                    userDirectoryEntry = new DirectoryEntry(results.Path);
-                    wADUser = new ADUser(userDirectoryEntry);
-                    userDirectoryEntry.Close();
-                    userDirectoryEntry.Dispose();
-                }
-
-                deSearch.Dispose();
-                return wADUser;
-            }
-            catch (Exception ex)
-            {
-                throw ProcessActiveDirectoryException(ex);
-            }
-
-        }
+       
 
         /// <summary>
         /// 
@@ -239,18 +207,18 @@ namespace Fwk.Security.ActiveDirectory
             try
             {
 
-                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-                deSearch.Filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", userName);
-                SearchResult results = deSearch.FindOne();
-
-                if (results != null)
+                //DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+                //deSearch.Filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", FilterOutDomain(userName));
+                //SearchResult results = deSearch.FindOne();
+                userDirectoryEntry =  this.User_Get(userName,null);
+                if (userDirectoryEntry != null)
                 {
-                    userDirectoryEntry = new DirectoryEntry(results.Path, userName, null);
+                    //userDirectoryEntry = new DirectoryEntry(results.Path, userName, null);
                     wADUser = new ADUser(userDirectoryEntry);
-                    userDirectoryEntry.Close();
-                    userDirectoryEntry.Dispose();
+                    //userDirectoryEntry.Close();
+                    //userDirectoryEntry.Dispose();
                 }
-                deSearch.Dispose();
+                //deSearch.Dispose();
                 return wADUser;
             }
             catch (Exception ex)
@@ -260,6 +228,37 @@ namespace Fwk.Security.ActiveDirectory
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="UserName"></param>
+        /// <returns></returns>
+        public bool User_Exists(string userName)
+        {
+
+
+
+            //create instance fo the direcory searcher
+            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+
+            //set the search filter
+            deSearch.Filter = "(&(objectClass=user) (cn=" + FilterOutDomain(userName) + "))";
+
+            //find the first instance
+            SearchResultCollection results = deSearch.FindAll();
+
+            //if the username and password do match, then this implies a valid login
+            //if so then return the DirectoryEntry object
+            if (results.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
 
         /// <summary>
         /// This function will take a full name as input parameter and return AD user corresponding to that. 
@@ -421,7 +420,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="fName"></param>
         /// <returns></returns>
-        public List<ADUser> Users_Search_StarName(string fName)
+        public List<ADUser> Users_Search_StartName(string fName)
         {
             List<ADUser> userlist = new List<ADUser>();
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
@@ -473,10 +472,6 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-
-
-
-
         /// <summary>
         /// This function will take a user login name and remove this to a group of AD.
         /// </summary>
@@ -489,12 +484,8 @@ namespace Fwk.Security.ActiveDirectory
             try
             {
 
-
                 ADManager admanager = new ADManager("xxx", LDAPUser, LDAPPassword);
-
                 admanager.RemoveUserFromGroup(userlogin, groupName);
-
-
 
             }
 
@@ -509,37 +500,7 @@ namespace Fwk.Security.ActiveDirectory
 
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="UserName"></param>
-        /// <returns></returns>
-        public bool User_Exists(string UserName)
-        {
-
-
-
-            //create instance fo the direcory searcher
-            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-
-            //set the search filter
-            deSearch.Filter = "(&(objectClass=user) (cn=" + UserName + "))";
-
-            //find the first instance
-            SearchResultCollection results = deSearch.FindAll();
-
-            //if the username and password do match, then this implies a valid login
-            //if so then return the DirectoryEntry object
-            if (results.Count == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
-        }
+       
 
         /// <summary>
         /// Este metodo permite determinar si un usuario puede loguearce en un dominio
@@ -551,10 +512,11 @@ namespace Fwk.Security.ActiveDirectory
         public LoginResult User_CheckLogin(string userName, string password)
         {
             DirectoryEntry de;
-            
+            int userAccountControl;
             try
             {
                 de = this.User_Get(userName, password);
+                
             }
             catch (Fwk.Exceptions.TechnicalException te)
             {
@@ -568,10 +530,19 @@ namespace Fwk.Security.ActiveDirectory
             if (de != null)
             {
 
-
-                //Convierte UserAccountControl a la operacion logica
-                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
-
+                try
+                {
+                    //Convierte UserAccountControl a la operacion logica
+                     userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
+                }
+                catch (Fwk.Exceptions.TechnicalException te)
+                {
+                    if (te.ErrorId == "15002")
+                        //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
+                        return LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
+                    else
+                        throw te;
+                }
                 if (User_IsAccountActive(userAccountControl))
                 {
                     return LoginResult.LOGIN_OK;
@@ -843,9 +814,10 @@ namespace Fwk.Security.ActiveDirectory
                 //}
 
                 DomainCollection domains = Forest.GetCurrentForest().Domains;
-
+                
                 foreach (Domain domain in domains)
                 {
+                    
                     domainList.Add(domain.Name);
                 }
                 //foreach (GlobalCatalog gc in Forest.GetCurrentForest().GlobalCatalogs)
@@ -857,25 +829,34 @@ namespace Fwk.Security.ActiveDirectory
 
                 //DirectoryEntry en = new DirectoryEntry("LDAP://");
 
-                //// Search for objectCategory type "Domain"
-                //DirectorySearcher srch = new DirectorySearcher("objectCategory=Domain");
-                //SearchResultCollection coll = srch.FindAll();
-                //// Enumerate over each returned domain.
-                //foreach (SearchResult rs in coll)
-                //{
-                //    ResultPropertyCollection resultPropColl = rs.Properties;
-                //    foreach (object domainName in resultPropColl["name"])
-                //    {
-                //        domainList.Add(domainName.ToString());
-                //    }
-                //}
-                //en.Close();
+                
             }
             catch (Exception ex)
             {
                 ProcessActiveDirectoryException(ex);
             }
             return domainList;
+        }
+
+        public static GlobalCatalogCollection GlobalCatalogs(string DomainName)
+        {
+            Forest f =  Forest.GetCurrentForest();
+
+           return  f.GlobalCatalogs;
+            //StringCollection domainList = new StringCollection ();
+            ////// Search for objectCategory type "Domain"
+            //DirectorySearcher srch = new DirectorySearcher("objectCategory=Domain");
+            //SearchResultCollection coll = srch.FindAll();
+            //// Enumerate over each returned domain.
+            //foreach (SearchResult rs in coll)
+            //{
+            //    ResultPropertyCollection resultPropColl = rs.Properties;
+            //    foreach (object domainName in resultPropColl["name"])
+            //    {
+            //        domainList.Add(domainName.ToString());
+            //    }
+            //}
+            //return domainList;
         }
 
         /// <summary>
@@ -1053,16 +1034,54 @@ namespace Fwk.Security.ActiveDirectory
         /// <returns></returns>
         public static String GetProperty(DirectoryEntry userDetail, String propertyName)
         {
-            if (userDetail.Properties.Contains(propertyName))
+            try
             {
-                return userDetail.Properties[propertyName][0].ToString();
+                if (userDetail.Properties.Contains(propertyName))
+                {
+                    return userDetail.Properties[propertyName][0].ToString();
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            
+            catch (Exception ex)
+            {
+                throw ProcessActiveDirectoryException(ex);
+            }
+        }
+        /// <summary>
+        /// Filters out the domain if one is passed in
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public static string FilterOutDomain(string userName)
+        {
+            if (String.IsNullOrEmpty(userName)) return string.Empty;
+            string result = string.Empty;
+
+            if (userName.IndexOf("\\") > 0)
+            {
+                string UserName = string.Empty;
+                int SlashSpot = 0;
+                int NameLen = 0;
+
+                SlashSpot = userName.IndexOf(@"\") + 1;
+
+                NameLen = userName.Length - SlashSpot;
+
+                UserName = userName.Substring(SlashSpot, NameLen);
+
+                result = UserName;
             }
             else
             {
-                return string.Empty;
+                result = userName;
             }
-        }
 
+            return result;
+        }
         #endregion
     }
 
@@ -1142,7 +1161,11 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// 
         /// </summary>
-        LOGIN_USER_ACCOUNT_INACTIVE
+        LOGIN_USER_ACCOUNT_INACTIVE,
+        /// <summary>
+        /// 
+        /// </summary>
+        LOGIN_USER_OR_PASSWORD_INCORRECT
     }
 
     #endregion
