@@ -1,6 +1,52 @@
 USE [Logs]
 GO
-/****** Object:  StoredProcedure [dbo].[Logs_s]    Script Date: 02/26/2010 12:44:40 ******/
+/****** Object:  StoredProcedure [dbo].[Logs_g]    Script Date: 03/03/2010 09:46:31 ******/
+DROP PROCEDURE [dbo].[Logs_g]
+GO
+/****** Object:  StoredProcedure [dbo].[Logs_s]    Script Date: 03/03/2010 09:46:31 ******/
+DROP PROCEDURE [dbo].[Logs_s]
+GO
+/****** Object:  StoredProcedure [dbo].[Logs_i]    Script Date: 03/03/2010 09:46:31 ******/
+DROP PROCEDURE [dbo].[Logs_i]
+GO
+/****** Object:  StoredProcedure [dbo].[Logs_d]    Script Date: 03/03/2010 09:46:30 ******/
+DROP PROCEDURE [dbo].[Logs_d]
+GO
+/****** Object:  Table [dbo].[Logs]    Script Date: 03/03/2010 09:46:33 ******/
+DROP TABLE [dbo].[Logs]
+GO
+/****** Object:  StoredProcedure [dbo].[Logs_g]    Script Date: 03/03/2010 09:46:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[Logs_g]
+(
+	@Id int 
+
+)
+AS
+				
+-- Description : Procedimiento búsqueda de Logs por clave primaria.
+-- Author      : moviedo
+-- Date        : 2006-11-16T11:59:20
+				
+
+SELECT
+	Id,
+		LogDate,
+		Message,
+		Source,
+		LogType,
+		Machine,
+		UserLoginName
+
+
+FROM Logs
+WHERE
+Id = @Id
+GO
+/****** Object:  StoredProcedure [dbo].[Logs_s]    Script Date: 03/03/2010 09:46:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -19,12 +65,12 @@ GO
 	-- Lista de Parámetros
 	
 	
-	@Source NVarChar(20) ,
-	@LogType NVarChar(20) ,
-	@Machine NVarChar(50) ,
-	@LogDateDesde DateTime ,
-	@LogDateHasta DateTime ,
-	@UserLoginName NVarChar(100) 
+	@Source NVarChar(20) = null,
+	@LogType NVarChar(20) = null,
+	@Machine NVarChar(50) = null,
+	@LogDateDesde DateTime = null,
+	@LogDateHasta DateTime = null,
+	@UserLoginName NVarChar(100) = null
 --	@AppId NVarChar(100)
 
 	AS
@@ -49,7 +95,7 @@ GO
 	-- LogType = TYPE NVarChar
 	IF (@LogType IS NOT NULL)
 	BEGIN
-	SET @sql = @sql + ' AND LogType  LIKE  @LogType '
+	SET @sql = @sql + ' AND LogType  =  @LogType '
 	END
 	
 	-- Machine = TYPE NVarChar
@@ -58,12 +104,18 @@ GO
 	SET @sql = @sql + ' AND Machine  LIKE  @Machine '
 	END
 	
-	-- LogDate = TYPE DateTime
-	 IF (@LogDateDesde IS NOT NULL AND @LogDateDesde <> '' AND
-	          @LogDateHasta IS NOT NULL AND @LogDateHasta <> '')
+ --------------  Fechas ---------------------------------------
+	 IF (@LogDateHasta IS NULL)
+		BEGIN
+			SET @sql = @sql + ' AND (LogDate >= @LogDateDesde)'
+		END
+	
+	 IF (@LogDateDesde IS NOT NULL  AND  @LogDateHasta IS NOT NULL )
 	BEGIN
 	  SET @sql = @sql + ' AND (LogDate >= @LogDateDesde AND LogDate <= @LogDateHasta)'
 	END
+--------------  Fechas ---------------------------------------
+
 
 	
 	-- UserLoginName = TYPE NVarChar
@@ -92,7 +144,7 @@ GO
 					   @Source, @LogType, @Machine,@LogDateDesde,@LogDateHasta, @UserLoginName
 	END
 GO
-/****** Object:  Table [dbo].[Logs]    Script Date: 02/26/2010 12:44:42 ******/
+/****** Object:  Table [dbo].[Logs]    Script Date: 03/03/2010 09:46:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -116,7 +168,7 @@ CREATE TABLE [dbo].[Logs](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  StoredProcedure [dbo].[Logs_d]    Script Date: 02/26/2010 12:44:39 ******/
+/****** Object:  StoredProcedure [dbo].[Logs_d]    Script Date: 03/03/2010 09:46:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -136,7 +188,7 @@ AS
 DELETE FROM Logs
 WHERE Id = @Id
 GO
-/****** Object:  StoredProcedure [dbo].[Logs_i]    Script Date: 02/26/2010 12:44:39 ******/
+/****** Object:  StoredProcedure [dbo].[Logs_i]    Script Date: 03/03/2010 09:46:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
