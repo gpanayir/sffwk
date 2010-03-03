@@ -10,9 +10,9 @@ using Fwk.Security.ActiveDirectory;
 
 namespace Fwk.Security.AD.TestLogin
 {
-    public partial class Form1 : Form
+    public partial class frmStatic : Form
     {
-        public Form1()
+        public frmStatic()
         {
             InitializeComponent();
         }
@@ -27,6 +27,41 @@ namespace Fwk.Security.AD.TestLogin
             {
                 lblCheckResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
+
+        }
+
+        private void lblCheckResult_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDomain_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtLoginName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
