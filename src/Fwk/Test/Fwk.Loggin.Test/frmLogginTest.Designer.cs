@@ -488,7 +488,7 @@
             // 
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button4.Location = new System.Drawing.Point(16, 88);
+            this.button4.Location = new System.Drawing.Point(16, 101);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(154, 31);
             this.button4.TabIndex = 2;

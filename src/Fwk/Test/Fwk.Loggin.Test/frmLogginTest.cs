@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Fwk.Logging;
 using Fwk.Configuration;
 using Fwk.ConfigSection;
+using Fwk.Logging.Targets;
 namespace Fwk.Logging.Test
 {
     public partial class frmLoggingTest : Form
@@ -85,9 +86,14 @@ namespace Fwk.Logging.Test
         {
             try
             {
-                string filename = string.Concat(txtFilePrefix.Text, _LoggingSection.GetRuleByEventType(EventType.Warning).FileName);
-                filename = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
-                Events _Logs = Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(filename));
+
+                ITarget target = GetTarget(EventType.Warning);
+                //string filename = string.Concat(txtFilePrefix.Text, _LoggingSection.GetRuleByEventType(EventType.Warning).FileName);
+                //filename = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
+                //Events _Logs = Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(filename));
+                Event ee = new Event();
+
+                Events _Logs = target.SearchByParam(ee);
                 textBox2.Text = _Logs.GetXml();
             }
             catch(Exception ex)
@@ -97,5 +103,28 @@ namespace Fwk.Logging.Test
             }
             
         }
+        ITarget GetTarget(EventType type)
+        {
+            ITarget target = null ;
+            RuleElement rule = _LoggingSection.GetRuleByEventType(type);
+            switch (rule.Target)
+            {
+                case TargetType.Database:
+                    {
+                        target = new DatabaseTarget();
+                        ((DatabaseTarget)target).CnnStringName = rule.CnnStringName;
+                     
+                        break;
+                    }
+                case TargetType.Xml:
+                    {
+                        target = new XmlTarget();
+                        ((XmlTarget)target).FileName = rule.FileName;
+                        break;
+                    }
+            }
+            return target;
+        }
+
     }
 }
