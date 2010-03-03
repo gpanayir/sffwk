@@ -1,6 +1,6 @@
 USE [Logs]
 GO
-/****** Object:  StoredProcedure [dbo].[Logs_s]    Script Date: 03/03/2010 10:21:55 ******/
+/****** Object:  StoredProcedure [dbo].[Logs_s]    Script Date: 03/03/2010 10:57:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8,9 +8,6 @@ GO
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Logs_s]') AND type in (N'P', N'PC'))
 BEGIN
 EXEC dbo.sp_executesql @statement = N'
-
-
-
 --------------------------------------------------------------------------------------------
 	-- Autor:		moviedo
 	-- Creacion:		26/02/2010 10:05:27
@@ -65,7 +62,7 @@ EXEC dbo.sp_executesql @statement = N'
 	END
 	
  --------------  Fechas ---------------------------------------
-	 IF (@LogDateHasta IS NULL)
+	 IF (@LogDateDesde IS NOT NULL AND @LogDateHasta IS NULL)
 		BEGIN
 			SET @sql = @sql + '' AND (LogDate >= @LogDateDesde)''
 		END
@@ -85,12 +82,7 @@ EXEC dbo.sp_executesql @statement = N'
 	END
 
 	
---	-- AppId = TYPE NVarChar
---	IF (@AppId IS NOT NULL)
---	BEGIN
---	SET @sql = @sql + '' AND AppId  LIKE  @AppId ''
---	END
-	
+
 
 	SELECT @parametros = ''	
 	@Source NVarChar(20) ,
@@ -103,12 +95,12 @@ EXEC dbo.sp_executesql @statement = N'
 	EXEC sp_executesql @sql, @parametros, 
 					   @Source, @LogType, @Machine,@LogDateDesde,@LogDateHasta, @UserLoginName
 	END
-
 	
-	' 
+	
+' 
 END
 GO
-/****** Object:  Table [dbo].[Logs]    Script Date: 03/03/2010 10:21:57 ******/
+/****** Object:  Table [dbo].[Logs]    Script Date: 03/03/2010 10:57:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -135,7 +127,7 @@ END
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  StoredProcedure [dbo].[Logs_i]    Script Date: 03/03/2010 10:21:54 ******/
+/****** Object:  StoredProcedure [dbo].[Logs_i]    Script Date: 03/03/2010 10:57:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -190,7 +182,7 @@ VALUES
 ' 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[Logs_d]    Script Date: 03/03/2010 10:21:54 ******/
+/****** Object:  StoredProcedure [dbo].[Logs_d]    Script Date: 03/03/2010 10:57:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
