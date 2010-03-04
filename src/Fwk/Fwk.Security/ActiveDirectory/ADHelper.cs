@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Specialized;
 using System.DirectoryServices.Protocols;
 using System.DirectoryServices.ActiveDirectory;
+using Fwk.Exceptions;
 
 namespace Fwk.Security.ActiveDirectory
 {
@@ -113,7 +114,7 @@ namespace Fwk.Security.ActiveDirectory
 
             _LDAPUser = FilterOutDomain(user);
             _LDAPPassword = pwd;
-          
+
             try
             {
 
@@ -121,67 +122,69 @@ namespace Fwk.Security.ActiveDirectory
                 //	= CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
                 _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
             }
-            catch (Fwk.Exceptions.TechnicalException te)// Cuando el usuario no existe o clave erronea
+            catch (Exception e)// Cuando el usuario no existe o clave erronea
             {
-                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
+                StringBuilder strErrMessage = new StringBuilder("Error de impersonalizacion de active directory.- Detalle del problema : ");
 
 
-
-
-
-
-                DirectoryEntry userDirectoryEntry = null;
-                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-                deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(_LDAPUser) + "))";
-               
-
-                deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
-
-
-                SearchResult results = deSearch.FindOne();
-
-                //si result no es nulo se puede crear una DirectoryEntry
-                if (results != null)
-                    userDirectoryEntry = new DirectoryEntry(results.Path, null, null);
-
-
-                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(userDirectoryEntry, ADProperties.USERACCOUNTCONTROL));
-                //userAccountControl: 66050 this is a disabled email account in AD
-                //userAccountControl: 512 this is an enabled email account in AD
-
-                User_IsAccountActive(userAccountControl);
-
-                if (te.ErrorId == "15002")
+                DirectoryEntry userDirectoryEntry = GetUser(_LDAPUser);
+                if (userDirectoryEntry == null)
                 {
-                    te = new Fwk.Exceptions.TechnicalException("Error de impersonalizacion de active directory.- Detalle del problema : ", te.InnerException);
-                    te.ErrorId = "15003";
-                    
-                }
-                throw te;
-            }
-
-            catch (System.DirectoryServices.DirectoryServicesCOMException ex)
-            {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error de impersonalisacion de active directory.- Detalle del problema: ", ex);
-                te.ErrorId = "15003";
-
-                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(_directoryEntrySearchRoot, ADProperties.USERACCOUNTCONTROL));
-                LoginResult r;
-                if (User_IsAccountActive(userAccountControl))
-                {
-                    r = LoginResult.LOGIN_OK;
+                    strErrMessage.AppendLine(LoginResult.LOGIN_USER_DOESNT_EXIST.ToString());
                 }
                 else
                 {
-                    r= LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+                    int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(userDirectoryEntry, ADProperties.USERACCOUNTCONTROL));
+                    if (User_IsAccountActive(userAccountControl))
+                        strErrMessage.AppendLine(LoginResult.LOGIN_USER_ACCOUNT_INACTIVE.ToString());
 
+                    if (User_IsAccountLockout(userAccountControl))
+                        strErrMessage.AppendLine(LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT.ToString());
                 }
+                TechnicalException te = new TechnicalException(strErrMessage.ToString(), e.InnerException);
+
+                SetError(te);
+                te.ErrorId = "15003";
+
+
+
+
+
                 throw te;
             }
-         
-            
+
+
+
         }
 
+        /// <summary>
+        /// Obtiene un usuario sin pasar clave,.- solo con la url _LDAPPath 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        DirectoryEntry GetUser(string userName)
+        {
+            DirectoryEntry d = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
+            DirectoryEntry userDirectoryEntry = null;
+            DirectorySearcher deSearch = new DirectorySearcher(d);
+            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
+
+
+            deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
+
+
+            SearchResult results = deSearch.FindOne();
+
+         
+            if (results != null)
+            {
+                 userDirectoryEntry = new DirectoryEntry(results.Path, null, null);
+            }
+            d.Close();
+            d.Dispose();
+            deSearch.Dispose();
+            return userDirectoryEntry;
+        }
         #endregion
 
 
@@ -694,16 +697,30 @@ namespace Fwk.Security.ActiveDirectory
             int userAccountControl_Disabled = Convert.ToInt32(ADAccountOptions.UF_ACCOUNTDISABLE);
             int flagExists = userAccountControl & userAccountControl_Disabled;
             //Si coinciden, la bandera indicara Dehabilitao como indicador de control
-            if (flagExists > 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            //if (flagExists > 0)
+            //{
+            //    return false;
+            //}
+            //else
+            //{
+            //    return true;
+            //}
+            return flagExists != 2;//Si es = a 2 es por que esta DESHABILITADO (512 - 2)
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userAccountControl"></param>
+        /// <returns></returns>
+        public static bool User_IsAccountLockout(int userAccountControl)
+        {
+           
+            int flag= userAccountControl & Convert.ToInt32(ADAccountOptions.UF_LOCKOUT);
+
+            return (flag == 16);// UF_LOCKOUT = 16 en Decimal
+            
+        }
 
 
         #endregion
@@ -849,41 +866,7 @@ namespace Fwk.Security.ActiveDirectory
             SearchResultEntry entry;
             try
             {
-                //String[] Arr = new String[]{"dnsHostName", "configurationNamingContext", "defaultNamingContext", 
-                //                            "rootDomainNamingContext", "isGlobalCatalogReady", "dsServiceName"};
-                //SearchRequest req = new SearchRequest ();
-                //SearchResponse res;
-                ////http://itchanged.com/FindingAllDomainsInAnActiveDirectoryForest.html
-                //LdapDirectoryIdentifier id = new LdapDirectoryIdentifier("", 389, false, false);
-                //LdapConnection ldap = new LdapConnection(id);
-
-                //req.Attributes.AddRange(Arr);
-                //req.Filter = "objectClass=*";
-
-                ////An empty string is required to query the rootDSE.
-                //req.DistinguishedName = "";
-
-                ////An empty Must set scope to Base to query rootDSE.
-                //req.Scope = System.DirectoryServices.Protocols.SearchScope.Base;
-
-                //res = (SearchResponse)ldap.SendRequest(req);
-
-                //if (res.ResultCode == ResultCode.Success)
-                //{
-                //    entry = res.Entries[0];
-
-                //    //foreach (string strAttributeName in Arr)
-                //    //{
-
-                //    if (entry.Attributes.Contains("dnsHostName"))
-                //        {
-                //            //each attribute is returned as an array of values
-                //            domainList.Add(entry.Attributes["dnsHostName"][0].ToString());
-                //           
-                //            //Debug.Write (entry.Attributes(strAttributeName)(0))
-                //        }
-                //    //}
-                //}
+                
 
                 DomainCollection domains = Forest.GetCurrentForest().Domains;
                 
@@ -892,14 +875,7 @@ namespace Fwk.Security.ActiveDirectory
                     
                     domainList.Add(domain.Name);
                 }
-                //foreach (GlobalCatalog gc in Forest.GetCurrentForest().GlobalCatalogs)
-                //{
-                //    domainList.Add(gc.Name);
-                //}
-
-
-
-                //DirectoryEntry en = new DirectoryEntry("LDAP://");
+               
 
                 
             }
@@ -1116,11 +1092,11 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         UF_NORMAL_ACCOUNT = 0x0200,
         /// <summary>
-        /// 
+        /// Dec = 512 
         /// </summary>
         UF_INTERDOMAIN_TRUST_ACCOUNT = 0x0800,
         /// <summary>
-        /// 
+        /// Dec =2048
         /// </summary>
         UF_WORKSTATION_TRUST_ACCOUNT = 0x1000,
         /// <summary>
@@ -1136,7 +1112,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         UF_SCRIPT = 0x0001,
         /// <summary>
-        /// ACCOUNTDISABLE: la cuenta de usuario está desactivada. (512)
+        /// ACCOUNTDISABLE: la cuenta de usuario está desactivada. (dec = 2)
         /// </summary>
         UF_ACCOUNTDISABLE = 0x0002,
         /// <summary>
@@ -1144,7 +1120,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         UF_HOMEDIR_REQUIRED = 0x0008,
         /// <summary>
-        /// 
+        /// 16
         /// </summary>
         UF_LOCKOUT = 0x0010,
         /// <summary>
@@ -1156,7 +1132,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         UF_PASSWD_CANT_CHANGE = 0x0040,
         /// <summary>
-        /// 
+        /// 16
         /// </summary>
         UF_ACCOUNT_LOCKOUT = 0X0010,
         /// <summary>
@@ -1183,7 +1159,11 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// 
         /// </summary>
-        LOGIN_USER_OR_PASSWORD_INCORRECT
+        LOGIN_USER_OR_PASSWORD_INCORRECT,
+        /// <summary>
+        /// 
+        /// </summary>
+        LOGIN_USER_ACCOUNT_LOCKOUT,
     }
 
     #endregion
