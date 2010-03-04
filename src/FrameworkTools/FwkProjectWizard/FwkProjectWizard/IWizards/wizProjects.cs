@@ -32,18 +32,20 @@ namespace Fwk.Wizard
 
         void IWizard.RunFinished()
         {
-            if (useStatics)
-            {
-                string statics = string.Concat( destinationdirectory , @"..\..\..\" , @"StaticLibs");
-                string libs = string.Concat( destinationdirectory , @"..\..\..\" , @"Libraries");
+         
+                if (useStatics)
+                {
+                    string statics = string.Concat(destinationdirectory, @"..\..\..\", @"StaticLibs");
+                    string libs = string.Concat(destinationdirectory, @"..\..\..\", @"Libraries");
 
-                if (!System.IO.Directory.Exists(statics))
-                    System.IO.Directory.CreateDirectory(statics);
-                if (!System.IO.Directory.Exists(libs))
-                    System.IO.Directory.CreateDirectory(libs);
-            }
+                    if (!System.IO.Directory.Exists(statics))
+                        System.IO.Directory.CreateDirectory(statics);
+                    if (!System.IO.Directory.Exists(libs))
+                        System.IO.Directory.CreateDirectory(libs);
+                }
+            
         }
-        
+        bool _Cancel = true;
         void IWizard.RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {
 
@@ -57,6 +59,7 @@ namespace Fwk.Wizard
                 {
                     if (inputForm.ShowDialog() == DialogResult.Cancel)
                     { return; }
+                    _Cancel = false;
                     fwkprojectname = inputForm.ProjectName;
                     useStatics = inputForm.UseStatics;
                     destinationdirectory = replacementsDictionary["$destinationdirectory$"];
