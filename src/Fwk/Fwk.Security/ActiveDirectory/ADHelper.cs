@@ -88,7 +88,14 @@ namespace Fwk.Security.ActiveDirectory
         {
             _LDAPPath = string.Concat(@"LDAP://", domain);
 
-            _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
+            try
+            {
+                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
+            }
+            catch(Exception ex)
+            {
+                throw ex; 
+            }
 
             _LDAPDomain = domain;
 
@@ -106,9 +113,33 @@ namespace Fwk.Security.ActiveDirectory
 
             _LDAPUser = FilterOutDomain(user);
             _LDAPPassword = pwd;
-            _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
-            //	= CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
-            _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
+          
+            try
+            {
+
+                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
+                //	= CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
+                _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
+            }
+            catch (System.DirectoryServices.DirectoryServicesCOMException ex)
+            {
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error de impersonalisacion de active directory", ex);
+                te.ErrorId = "15003";
+
+                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(_directoryEntrySearchRoot, ADProperties.USERACCOUNTCONTROL));
+                LoginResult r;
+                if (User_IsAccountActive(userAccountControl))
+                {
+                    r = LoginResult.LOGIN_OK;
+                }
+                else
+                {
+                    r= LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+
+                }
+            }
+         
+            
         }
 
         #endregion
@@ -168,7 +199,7 @@ namespace Fwk.Security.ActiveDirectory
 
             DirectorySearcher deSearch = new DirectorySearcher(root);
 
-            deSearch.Filter = "(&(objectClass=user)(cn=" + FilterOutDomain(userName) + "))";
+            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
             deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
 
             try
