@@ -121,9 +121,48 @@ namespace Fwk.Security.ActiveDirectory
                 //	= CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
                 _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
             }
+            catch (Fwk.Exceptions.TechnicalException te)// Cuando el usuario no existe o clave erronea
+            {
+                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
+
+
+
+
+
+
+                DirectoryEntry userDirectoryEntry = null;
+                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+                deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(_LDAPUser) + "))";
+               
+
+                deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
+
+
+                SearchResult results = deSearch.FindOne();
+
+                //si result no es nulo se puede crear una DirectoryEntry
+                if (results != null)
+                    userDirectoryEntry = new DirectoryEntry(results.Path, null, null);
+
+
+                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(userDirectoryEntry, ADProperties.USERACCOUNTCONTROL));
+                //userAccountControl: 66050 this is a disabled email account in AD
+                //userAccountControl: 512 this is an enabled email account in AD
+
+                User_IsAccountActive(userAccountControl);
+
+                if (te.ErrorId == "15002")
+                {
+                    te = new Fwk.Exceptions.TechnicalException("Error de impersonalizacion de active directory.- Detalle del problema : ", te.InnerException);
+                    te.ErrorId = "15003";
+                    
+                }
+                throw te;
+            }
+
             catch (System.DirectoryServices.DirectoryServicesCOMException ex)
             {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error de impersonalisacion de active directory", ex);
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error de impersonalisacion de active directory.- Detalle del problema: ", ex);
                 te.ErrorId = "15003";
 
                 int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(_directoryEntrySearchRoot, ADProperties.USERACCOUNTCONTROL));
@@ -137,6 +176,7 @@ namespace Fwk.Security.ActiveDirectory
                     r= LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
 
                 }
+                throw te;
             }
          
             
@@ -906,7 +946,7 @@ namespace Fwk.Security.ActiveDirectory
          static Exception ProcessActiveDirectoryException(Exception ex)
         {
             Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(ex.Message, ex);
-
+            SetError(te);
             switch (ex.GetType().FullName)
             {
                 case "System.Runtime.InteropServices.COMException"://((System.Runtime.InteropServices.COMException)(ex)) "El servidor no es operacional.\r\n"
@@ -928,6 +968,13 @@ namespace Fwk.Security.ActiveDirectory
             }
 
             return te;
+        }
+        static void SetError(Fwk.Exceptions.TechnicalException te)
+        {
+            te.Namespace = typeof(ADHelper).Namespace;
+            te.Source = "Constructor fwk active directory component";
+            te.UserName = Environment.UserName;
+            te.UserName = Environment.MachineName;
         }
 
 
@@ -1089,11 +1136,11 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         UF_SCRIPT = 0x0001,
         /// <summary>
-        /// 
+        /// ACCOUNTDISABLE: la cuenta de usuario está desactivada. (512)
         /// </summary>
         UF_ACCOUNTDISABLE = 0x0002,
         /// <summary>
-        /// 
+        /// HOMEDIR_REQUIRED: se requiere la carpeta principal. 
         /// </summary>
         UF_HOMEDIR_REQUIRED = 0x0008,
         /// <summary>
