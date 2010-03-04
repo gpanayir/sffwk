@@ -903,7 +903,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="ex"></param>
         /// <returns></returns>
-        public static Exception ProcessActiveDirectoryException(Exception ex)
+         static Exception ProcessActiveDirectoryException(Exception ex)
         {
             Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(ex.Message, ex);
 
@@ -993,67 +993,9 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-        ///// <summary>
-        ///// This is an internal method for retreiving a new directoryentry object
-        ///// </summary>
-        ///// <returns></returns>
-        //private DirectoryEntry GetDirectoryObject()
-        //{
-        //    DirectoryEntry oDE;
 
-        //    oDE = new DirectoryEntry(LDAPPath, null, null, AuthenticationTypes.Secure);
+       
 
-        //    return oDE;
-        //}
-
-        /// <summary>
-        /// Override function that that will attempt a logon based on the users credentials
-        /// </summary>
-        /// <param name="UserName"></param>
-        /// <param name="Password"></param>
-        /// <returns></returns>
-        private DirectoryEntry GetDirectoryObject(string UserName, string Password)
-        {
-            DirectoryEntry oDE;
-
-            oDE = new DirectoryEntry(LDAPPath, UserName, Password, AuthenticationTypes.Secure);
-
-            return oDE;
-        }
-
-        /// <summary>
-        /// This will create the directory entry based on the domain object to return
-        /// The DomainReference will contain the qualified syntax for returning an entry
-        /// at the location rather than returning the root.  
-        /// i.e. /CN=Users,DC=creditsights, DC=cyberelves, DC=Com
-        /// </summary>
-        /// <param name="DomainReference"></param>
-        /// <returns></returns>
-        private DirectoryEntry GetDirectoryObject(string DomainReference)
-        {
-            DirectoryEntry oDE;
-
-            oDE = new DirectoryEntry(LDAPPath + DomainReference, null, null, AuthenticationTypes.Secure);
-
-            return oDE;
-        }
-
-        /// <summary>
-        /// Addition override that will allow ovject to be created based on the users credentials.
-        /// This is useful for instances such as setting password etc.
-        /// </summary>
-        /// <param name="DomainReference"></param>
-        /// <param name="UserName"></param>
-        /// <param name="Password"></param>
-        /// <returns></returns>
-        private DirectoryEntry GetDirectoryObject(string DomainReference, string UserName, string Password)
-        {
-            DirectoryEntry oDE;
-
-            oDE = new DirectoryEntry(LDAPPath + DomainReference, UserName, Password, AuthenticationTypes.Secure);
-
-            return oDE;
-        }
 
         /// <summary>
         /// 
