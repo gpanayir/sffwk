@@ -25,29 +25,33 @@ namespace Fwk.Security.AD.TestLogin
         {
             try
             {
-               if (SetAD())
-                lblCheckResult.Text = _ADHelper.User_CheckLogin(txtLoginName.Text, txtPassword.Text).ToString();
+                if (SetAD())
+                {
+                    lblCheckResult.Text = _ADHelper.User_CheckLogin(txtLoginName.Text, txtPassword.Text).ToString();
+                 
+                }
             }
             catch (Exception ex)
             {
                 lblCheckResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-                DomainsUrl wDomainsUrl = urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
-                _ADHelper = new ADHelper (wDomainsUrl.LDAPPAth,txtLoginName.Text, txtPassword.Text);
-                //_ADHelper.User_Exists(txtLoginName.Text);
-                lblCheckResult.Text = _ADHelper.User_CheckLogin(txtLoginName.Text, txtPassword.Text).ToString();
+                
+      
             }
         }
 
         bool SetAD()
         {
-            DomainsUrl wDomainsUrl = urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
-            
+            lblURL.Text = string.Empty;
+
+            DomainsUrl wDomainsUrl = (DomainsUrl)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
+            //lblURL.Text = wDomainsUrl.LDAPPath;
             if (wDomainsUrl == null)
             {
                 lblCheckResult.Text = "Nombre de dominio incorrecto";
                 return false;
             }
-            _ADHelper = new ADHelper(wDomainsUrl.LDAPPAth, wDomainsUrl.Usr, wDomainsUrl.Pwd);
+            _ADHelper = new ADHelper(wDomainsUrl.LDAPPath, wDomainsUrl.Usr, wDomainsUrl.Pwd);
+            
             return true;
         }
         
@@ -55,26 +59,57 @@ namespace Fwk.Security.AD.TestLogin
         {
             urls = new List<DomainsUrl>();
             DomainsUrl wDomainsUrl = new DomainsUrl();
+
+
+            wDomainsUrl.DomainName = "allus-ar";
+            //wDomainsUrl.Usr = "ReseteoClaveWeb";
+            //wDomainsUrl.Pwd = " R3s3t30W3b";
+            //wDomainsUrl.Usr = "moviedo";
+            //wDomainsUrl.Pwd = "Lincelin8";
+
+            wDomainsUrl.LDAPPath = "LDAP://172.22.12.142:389/DC=allus,DC=ar";
+            //wDomainsUrl.LDAPPAth = "LDAP://172.22.12.141/DC=allus,DC=ar";
+            urls.Add(wDomainsUrl);
+            wDomainsUrl.Usr = "pruebadesarrollo";
+            wDomainsUrl.Pwd = "Prueba+456";
+
+
+            wDomainsUrl = new DomainsUrl();
             wDomainsUrl.DomainName = "alco";
-            wDomainsUrl.LDAPPAth = "LDAP://172.22.12.109/DC=actionlinecba,DC=org";
+            wDomainsUrl.LDAPPath = "LDAP://172.22.12.109/DC=actionlinecba,DC=org";
+            wDomainsUrl.Usr = "pruebadesarrollo";
+            wDomainsUrl.Pwd = "Prueba+456";
             urls.Add(wDomainsUrl);
 
             wDomainsUrl = new DomainsUrl();
             wDomainsUrl.DomainName = "movistar";
-            wDomainsUrl.LDAPPAth = "LDAP://10.64.27.5/DC=alcomovistar,DC=com,DC=ar";
+            wDomainsUrl.LDAPPath = "LDAP://10.64.27.5/DC=alcomovistar,DC=com,DC=ar";
+            wDomainsUrl.Usr = "pruebadesarrollo";
+            wDomainsUrl.Pwd = "Prueba+456";
             urls.Add(wDomainsUrl);
 
-            wDomainsUrl = new DomainsUrl();
-            wDomainsUrl.DomainName = "allus-ar";
-            //wDomainsUrl.Usr = "ReseteoClaveWeb";
-            //wDomainsUrl.Pwd = " R3s3t30W3b";
-            wDomainsUrl.Usr = "moviedo";
-            wDomainsUrl.Pwd = "Lincelin8";
-            //wDomainsUrl.LDAPPAth = "LDAP://172.22.12.142/DC=allus,DC=ar";
-            wDomainsUrl.LDAPPAth = "LDAP://172.22.12.142:389/DC=allus,DC=ar";
-            //wDomainsUrl.LDAPPAth = "LDAP://172.22.12.141/DC=allus,DC=ar";
             
-            urls.Add(wDomainsUrl); 
+         
+
+            wDomainsUrl = new DomainsUrl();
+            wDomainsUrl.DomainName = "allus.pe";
+            wDomainsUrl.LDAPPath = "LDAP://10.200.154.5:389/DC=allus,DC=pe";
+            wDomainsUrl.Usr = "pruebadesarrollo";
+            wDomainsUrl.Pwd = "Prueba+456";
+            urls.Add(wDomainsUrl);
+
+            domainsUrlBindingSource.DataSource = urls;
+            comboBox1.SelectedIndex =0;
+
+            lblURL.Text = ((DomainsUrl)comboBox1.SelectedItem).LDAPPath;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DomainsUrl wDomainsUrl = (DomainsUrl)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
+            if (wDomainsUrl == null) return;
+            lblURL.Text = wDomainsUrl.LDAPPath;
+
         }
 
 
@@ -90,12 +125,12 @@ namespace Fwk.Security.AD.TestLogin
             get { return _DomainName; }
             set { _DomainName = value; }
         }
-        string _LDAPPAth;
+        string _LDAPPath;
 
-        public string LDAPPAth
+        public string LDAPPath
         {
-            get { return _LDAPPAth; }
-            set { _LDAPPAth = value; }
+            get { return _LDAPPath; }
+            set { _LDAPPath = value; }
         }
         string usr;
 

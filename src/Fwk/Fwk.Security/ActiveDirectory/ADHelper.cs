@@ -132,8 +132,9 @@ namespace Fwk.Security.ActiveDirectory
 
             DirectoryEntry userDirectoryEntry = null;
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
+            //deSearch.Filter = "(&(objectClass=user)(cn=" + FilterOutDomain(userName) + "))";
 
-            deSearch.Filter = "(&(objectClass=user)(cn=" + FilterOutDomain(userName) + "))";
             deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
 
 
@@ -141,7 +142,7 @@ namespace Fwk.Security.ActiveDirectory
 
             //si result no es nulo se puede crear una DirectoryEntry
             if (results != null)
-                userDirectoryEntry = new DirectoryEntry(results.Path, password, null);
+                userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
                 
 
             deSearch.Dispose();
@@ -838,25 +839,22 @@ namespace Fwk.Security.ActiveDirectory
             return domainList;
         }
 
-        public static GlobalCatalogCollection GlobalCatalogs(string DomainName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="domainName"></param>
+        /// <returns></returns>
+        public  GlobalCatalogCollection GlobalCatalogs(string domainName)
         {
-            Forest f =  Forest.GetCurrentForest();
+            Forest f3 =  Forest.GetCurrentForest();
 
-           return  f.GlobalCatalogs;
-            //StringCollection domainList = new StringCollection ();
-            ////// Search for objectCategory type "Domain"
-            //DirectorySearcher srch = new DirectorySearcher("objectCategory=Domain");
-            //SearchResultCollection coll = srch.FindAll();
-            //// Enumerate over each returned domain.
-            //foreach (SearchResult rs in coll)
-            //{
-            //    ResultPropertyCollection resultPropColl = rs.Properties;
-            //    foreach (object domainName in resultPropColl["name"])
-            //    {
-            //        domainList.Add(domainName.ToString());
-            //    }
-            //}
-            //return domainList;
+           //return  f.GlobalCatalogs;
+            DirectoryContext context = new DirectoryContext(DirectoryContextType.Domain, domainName, LDAPUser, LDAPPassword);
+           Forest f = Forest.GetForest(context);
+           
+            //DomainController controller = System.DirectoryServices.ActiveDirectory.DomainController.FindOne(context);
+
+           return f.GlobalCatalogs;
         }
 
         /// <summary>
@@ -964,18 +962,18 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-        /// <summary>
-        /// This is an internal method for retreiving a new directoryentry object
-        /// </summary>
-        /// <returns></returns>
-        private DirectoryEntry GetDirectoryObject()
-        {
-            DirectoryEntry oDE;
+        ///// <summary>
+        ///// This is an internal method for retreiving a new directoryentry object
+        ///// </summary>
+        ///// <returns></returns>
+        //private DirectoryEntry GetDirectoryObject()
+        //{
+        //    DirectoryEntry oDE;
 
-            oDE = new DirectoryEntry(LDAPPath, null, null, AuthenticationTypes.Secure);
+        //    oDE = new DirectoryEntry(LDAPPath, null, null, AuthenticationTypes.Secure);
 
-            return oDE;
-        }
+        //    return oDE;
+        //}
 
         /// <summary>
         /// Override function that that will attempt a logon based on the users credentials

@@ -91,11 +91,24 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
          FwkGlobalCatalog wFwkGlobalCatalog = new FwkGlobalCatalog ();
          List<FwkGlobalCatalog> list = new List<FwkGlobalCatalog>();
-         foreach (GlobalCatalog gc in ADHelper.GlobalCatalogs(""))
+         GlobalCatalogCollection cataloglist = null;
+
+         try
+         {
+              cataloglist = _ADHelper.GlobalCatalogs(txtDomainC.Text);
+         }
+         catch (Exception ex)
+         {
+             lblResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+             return;
+         }
+         foreach (GlobalCatalog gc in cataloglist)
          { 
              wFwkGlobalCatalog = new FwkGlobalCatalog ();
              wFwkGlobalCatalog.IPAddress = gc.IPAddress;
              wFwkGlobalCatalog.Name = gc.Name;
+             wFwkGlobalCatalog.DomainName = gc.Domain.Name;
+             
              list.Add(wFwkGlobalCatalog);
          }
          
@@ -124,6 +137,13 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
             get { return _Name; }
             set { _Name = value; }
+        }
+        string _DomainName;
+
+        public string DomainName
+        {
+            get { return _DomainName; }
+            set { _DomainName = value; }
         }
        
     }

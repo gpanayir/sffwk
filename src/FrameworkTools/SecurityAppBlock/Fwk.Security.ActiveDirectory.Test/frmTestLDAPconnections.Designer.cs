@@ -49,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtDomainC = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -106,7 +107,7 @@
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(525, 20);
             this.txtPath.TabIndex = 68;
-            this.txtPath.Text = "LDAP://";
+            this.txtPath.Text = "LDAP://172.22.12.142:389/DC=allus,DC=ar";
             // 
             // lstDomains
             // 
@@ -224,15 +225,15 @@
             this.txtPath2.Name = "txtPath2";
             this.txtPath2.Size = new System.Drawing.Size(525, 20);
             this.txtPath2.TabIndex = 71;
-            this.txtPath2.Text = "LDAP://";
+            this.txtPath2.Text = "LDAP://172.22.12.141:389/DC=allus,DC=ar";
             // 
             // lblResult
             // 
             this.lblResult.BackColor = System.Drawing.Color.White;
             this.lblResult.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.lblResult.Location = new System.Drawing.Point(451, 407);
+            this.lblResult.Location = new System.Drawing.Point(494, 373);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(519, 219);
+            this.lblResult.Size = new System.Drawing.Size(432, 219);
             this.lblResult.TabIndex = 72;
             this.lblResult.Text = "label3";
             // 
@@ -260,7 +261,7 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(12, 402);
+            this.button6.Location = new System.Drawing.Point(173, 402);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(167, 25);
             this.button6.TabIndex = 79;
@@ -272,16 +273,25 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 462);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 433);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(400, 220);
             this.dataGridView1.TabIndex = 80;
+            // 
+            // txtDomainC
+            // 
+            this.txtDomainC.Location = new System.Drawing.Point(12, 404);
+            this.txtDomainC.Name = "txtDomainC";
+            this.txtDomainC.Size = new System.Drawing.Size(138, 20);
+            this.txtDomainC.TabIndex = 81;
+            this.txtDomainC.Text = "allus";
             // 
             // frmTestLDAPconnections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1001, 665);
+            this.Controls.Add(this.txtDomainC);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label5);
@@ -322,5 +332,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtDomainC;
     }
 }

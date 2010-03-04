@@ -5,5 +5,10 @@
 <LDAP_mx02_movistarSab>LDAP://Corba362mx02.alcomovistar.com.ar/OU,dc=alcomovistar,dc=com,dc=ar</LDAP_mx02_movistarSab>
 <LDAP_nt13_alco>LDAP://CORRSF71NT13.actionlinecba.org/DC=actionlinecba,DC=org</LDAP_nt13_alco>
 
-	LDAP://172.22.12.142:389/DC=allus,DC=ar
+	<LDAP_mx02_movistarSab>	LDAP://172.22.12.142:389/DC=allus,DC=ar</LDAP_mx02_movistarSab>
+	<usuarios>
+		<Usuario>pruebadesarrollo Prueba+456</Usuario>
+
+	</usuarios>
 </root>
+

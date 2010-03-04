@@ -28,15 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDinamic));
             this.label2 = new System.Windows.Forms.Label();
             this.lblCheckResult = new System.Windows.Forms.Label();
             this.btnCheck = new System.Windows.Forms.Button();
-            this.txtDomain = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtLoginName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.lblURL = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.domainsUrlBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.domainsUrlBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -71,14 +75,6 @@
             this.btnCheck.UseVisualStyleBackColor = false;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
-            // txtDomain
-            // 
-            this.txtDomain.Location = new System.Drawing.Point(128, 100);
-            this.txtDomain.Name = "txtDomain";
-            this.txtDomain.Size = new System.Drawing.Size(178, 20);
-            this.txtDomain.TabIndex = 69;
-            this.txtDomain.Text = "Allus-ar";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -111,16 +107,42 @@
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
             this.txtPassword.TabIndex = 66;
             // 
+            // lblURL
+            // 
+            this.lblURL.BackColor = System.Drawing.Color.White;
+            this.lblURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
+            this.lblURL.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblURL.Location = new System.Drawing.Point(9, 245);
+            this.lblURL.Name = "lblURL";
+            this.lblURL.Size = new System.Drawing.Size(408, 24);
+            this.lblURL.TabIndex = 73;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DataSource = this.domainsUrlBindingSource;
+            this.comboBox1.DisplayMember = "DomainName";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(128, 99);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(178, 21);
+            this.comboBox1.TabIndex = 74;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // domainsUrlBindingSource
+            // 
+            this.domainsUrlBindingSource.DataSource = typeof(Fwk.Security.AD.TestLogin.DomainsUrl);
+            // 
             // frmDinamic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(506, 273);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lblURL);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblCheckResult);
             this.Controls.Add(this.btnCheck);
-            this.Controls.Add(this.txtDomain);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtLoginName);
@@ -131,6 +153,7 @@
             this.Name = "frmDinamic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDinamic";
+            ((System.ComponentModel.ISupportInitialize)(this.domainsUrlBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,10 +164,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCheckResult;
         private System.Windows.Forms.Button btnCheck;
-        private System.Windows.Forms.TextBox txtDomain;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtLoginName;
         private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label lblURL;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.BindingSource domainsUrlBindingSource;
     }
 }
