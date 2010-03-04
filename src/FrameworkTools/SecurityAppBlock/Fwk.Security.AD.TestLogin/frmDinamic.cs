@@ -14,7 +14,7 @@ namespace Fwk.Security.AD.TestLogin
     {
         ADHelper _ADHelper;
         List<DomainsUrl> urls;
-        SingletonFactoryArray<DomainsUrl> domainFactory = new SingletonFactoryArray<DomainsUrl>();
+       
         public frmDinamic()
         {
             InitializeComponent();
