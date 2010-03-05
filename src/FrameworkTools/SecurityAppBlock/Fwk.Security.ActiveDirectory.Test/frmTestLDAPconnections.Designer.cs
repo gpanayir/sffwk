@@ -78,6 +78,7 @@
             this.txtLoginName.Name = "txtLoginName";
             this.txtLoginName.Size = new System.Drawing.Size(178, 20);
             this.txtLoginName.TabIndex = 61;
+            this.txtLoginName.Text = "pruebadesarrollo";
             // 
             // txtPassword
             // 
@@ -85,6 +86,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
             this.txtPassword.TabIndex = 62;
+            this.txtPassword.Text = "Prueba+456";
             // 
             // btnCheck
             // 
