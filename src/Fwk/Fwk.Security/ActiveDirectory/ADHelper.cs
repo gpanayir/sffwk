@@ -93,9 +93,9 @@ namespace Fwk.Security.ActiveDirectory
             {
                 _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw ex; 
+                throw ex;
             }
 
             _LDAPDomain = domain;
@@ -139,7 +139,7 @@ namespace Fwk.Security.ActiveDirectory
                     if (!User_IsAccountActive(userAccountControl))
                     {
                         strErrMessage.AppendLine(LoginResult.LOGIN_USER_ACCOUNT_INACTIVE.ToString());
-                       
+
                     }
                     if (User_IsAccountLockout(userAccountControl))
                         strErrMessage.AppendLine(LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT.ToString());
@@ -178,10 +178,10 @@ namespace Fwk.Security.ActiveDirectory
 
             SearchResult results = deSearch.FindOne();
 
-         
+
             if (results != null)
             {
-                 userDirectoryEntry = new DirectoryEntry(results.Path, null, null);
+                userDirectoryEntry = new DirectoryEntry(results.Path, null, null);
             }
             d.Close();
             d.Dispose();
@@ -189,7 +189,6 @@ namespace Fwk.Security.ActiveDirectory
             return userDirectoryEntry;
         }
         #endregion
-
 
         #region users
 
@@ -220,57 +219,15 @@ namespace Fwk.Security.ActiveDirectory
             //si result no es nulo se puede crear una DirectoryEntry
             if (results != null)
                 userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
-                
+
 
             deSearch.Dispose();
             return userDirectoryEntry;
 
         }
-
-        /// <summary>
-        /// Obtiene un usuario 
-        /// </summary>
-        /// <param name="domain"></param>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        static DirectoryEntry User_Get(string domain, string userName, string password)
-        {
-            SearchResult results = null;
-
-            DirectoryEntry root = new DirectoryEntry(string.Concat(@"LDAP://", domain), FilterOutDomain(userName), password, AuthenticationTypes.Secure);
-
-
-            DirectoryEntry userDirectoryEntry = null;
-
-            DirectorySearcher deSearch = new DirectorySearcher(root);
-
-            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
-            deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
-
-            try
-            {
-                results = deSearch.FindOne();
-            }
-            catch (Exception ex)
-            {
-                // {"El servidor no es operacional.\r\n"}
-                throw ProcessActiveDirectoryException(ex);
-            }
-
-            //si result no es nulo se puede crear una DirectoryEntry
-            if (results != null)
-                userDirectoryEntry = new DirectoryEntry(results.Path, FilterOutDomain(userName), password);
-
-            root.Close();
-            root.Dispose();
-            deSearch.Dispose();
-            return userDirectoryEntry;
-
-        }
-
 
        
+
 
         /// <summary>
         /// 
@@ -288,7 +245,7 @@ namespace Fwk.Security.ActiveDirectory
                 //DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
                 //deSearch.Filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", FilterOutDomain(userName));
                 //SearchResult results = deSearch.FindOne();
-                userDirectoryEntry =  this.User_Get(userName,null);
+                userDirectoryEntry = this.User_Get(userName, null);
                 if (userDirectoryEntry != null)
                 {
                     //userDirectoryEntry = new DirectoryEntry(results.Path, userName, null);
@@ -529,56 +486,11 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-        /// <summary>
-        ///  Agrega un usuario a un grupoThis function will take a user login name and add this to a group of AD.
-        /// </summary>
-        /// <param name="userlogin">Nuevo usuario</param>
-        /// <param name="groupName">Grupo donde agregar el usuario</param>
-        /// <returns></returns>
-        public bool User_AddToGroup(string userlogin, string groupName)
-        {
-            try
-            {
-                ADManager admanager = new ADManager(LDAPDomain, LDAPUser, LDAPPassword);
-                admanager.AddUserToGroup(userlogin, groupName);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-
-        /// <summary>
-        /// This function will take a user login name and remove this to a group of AD.
-        /// </summary>
-        /// <param name="userlogin"></param>
-        /// <param name="groupName"></param>
-        /// <returns></returns>
-        public void User_RemoveToGroup(string userlogin, string groupName)
-        {
-
-            try
-            {
-
-                ADManager admanager = new ADManager("xxx", LDAPUser, LDAPPassword);
-                admanager.RemoveUserFromGroup(userlogin, groupName);
-
-            }
-
-            catch (Exception ex)
-            {
-
-                throw ProcessActiveDirectoryException(ex);
-
-            }
-
-        }
 
 
 
-       
+
+
 
         /// <summary>
         /// Este metodo permite determinar si un usuario puede loguearce en un dominio
@@ -594,7 +506,7 @@ namespace Fwk.Security.ActiveDirectory
             try
             {
                 de = this.User_Get(userName, password);
-                
+
             }
             catch (Fwk.Exceptions.TechnicalException te)
             {
@@ -611,7 +523,7 @@ namespace Fwk.Security.ActiveDirectory
                 try
                 {
                     //Convierte UserAccountControl a la operacion logica
-                     userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
+                    userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
                 }
                 catch (Fwk.Exceptions.TechnicalException te)
                 {
@@ -637,7 +549,56 @@ namespace Fwk.Security.ActiveDirectory
                 return LoginResult.LOGIN_USER_DOESNT_EXIST;
             }
 
-           
+
+        }
+
+     
+
+   
+
+        #endregion
+
+        #region users statics
+        /// <summary>
+        /// Obtiene un usuario 
+        /// </summary>
+        /// <param name="domain"></param>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        static DirectoryEntry User_Get(string domain, string userName, string password)
+        {
+            SearchResult results = null;
+
+            DirectoryEntry root = new DirectoryEntry(string.Concat(@"LDAP://", domain), FilterOutDomain(userName), password, AuthenticationTypes.Secure);
+
+
+            DirectoryEntry userDirectoryEntry = null;
+
+            DirectorySearcher deSearch = new DirectorySearcher(root);
+
+            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
+            deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
+
+            try
+            {
+                results = deSearch.FindOne();
+            }
+            catch (Exception ex)
+            {
+                // {"El servidor no es operacional.\r\n"}
+                throw ProcessActiveDirectoryException(ex);
+            }
+
+            //si result no es nulo se puede crear una DirectoryEntry
+            if (results != null)
+                userDirectoryEntry = new DirectoryEntry(results.Path, FilterOutDomain(userName), password);
+
+            root.Close();
+            root.Dispose();
+            deSearch.Dispose();
+            return userDirectoryEntry;
+
         }
 
         /// <summary>
@@ -669,7 +630,7 @@ namespace Fwk.Security.ActiveDirectory
             {
                 //Convierte UserAccountControl a la operacion logica
                 int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
-                
+
                 if (User_IsAccountActive(userAccountControl))
                 {
                     return LoginResult.LOGIN_OK;
@@ -677,7 +638,7 @@ namespace Fwk.Security.ActiveDirectory
                 else
                 {
                     return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
-                    
+
                 }
 
             }
@@ -688,10 +649,12 @@ namespace Fwk.Security.ActiveDirectory
 
         }
 
+
         /// <summary>
         /// Este metodo realiza una aperacion logica con el valor userAccountControl para deternçminar si la cuenta de usuario 
         /// esta abilitada o no.-
-        /// La bandera para determinar si la cuenta está activa es un valor binario (decimal =2)
+        /// La bandera para determinar si la cuenta está activa es un valor binario (decimal = 2)
+        /// Los valores predeterminados de UserAccountControl para  Usuario normal: 0x200 (512)
         /// </summary>
         /// <param name="userAccountControl"></param>
         /// <returns></returns>
@@ -712,7 +675,12 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// 
+        /// Este metodo realiza una aperacion logica con el valor userAccountControl para deternçminar si la cuenta de usuario 
+        /// esta habilitada o no.-
+        /// La bandera para determinar si la cuenta está bloqueada es un valor binario (decimal = 16)
+        /// Los valores predeterminados de UserAccountControl para  Usuario normal: 0x200 (512)
+        /// En un dominio basado en Windows Server 2003, LOCK_OUT y 
+        /// PASSWORD_EXPIRED han sido reemplazados con un nuevo atributo denominado ms-DS-User-Account-Control-Computed
         /// </summary>
         /// <param name="userAccountControl"></param>
         /// <returns></returns>
@@ -725,15 +693,14 @@ namespace Fwk.Security.ActiveDirectory
             //    return false;
             //else
             //    return true; 
-            
-            
+
+
             // UF_LOCKOUT = 16 en Decimal
 
             return !(flag == 0); // No estoy seguro de utilizar la return (flag == 16);  sentencia q apareentenmete seria =  ()
         }
-
-
         #endregion
+
 
         #region Groups
         /// <summary>
@@ -839,14 +806,14 @@ namespace Fwk.Security.ActiveDirectory
         /// Obtiene la lista de dominios
         /// </summary>
         /// <returns></returns>
-        public  StringCollection Domain_GetList1()
+        public StringCollection Domain_GetList1()
         {
             StringCollection domainList = new StringCollection();
-           
+
             try
             {
                 // Search for objectCategory type "Domain"
-                DirectorySearcher srch = new DirectorySearcher(_directoryEntrySearchRoot ,"objectCategory=Domain");
+                DirectorySearcher srch = new DirectorySearcher(_directoryEntrySearchRoot, "objectCategory=Domain");
                 SearchResultCollection coll = srch.FindAll();
                 // Enumerate over each returned domain.
                 foreach (SearchResult rs in coll)
@@ -857,7 +824,7 @@ namespace Fwk.Security.ActiveDirectory
                         domainList.Add(domainName.ToString());
                     }
                 }
-            
+
             }
             catch (Exception ex)
             {
@@ -876,18 +843,18 @@ namespace Fwk.Security.ActiveDirectory
             SearchResultEntry entry;
             try
             {
-                
+
 
                 DomainCollection domains = Forest.GetCurrentForest().Domains;
-                
+
                 foreach (Domain domain in domains)
                 {
-                    
+
                     domainList.Add(domain.Name);
                 }
-               
 
-                
+
+
             }
             catch (Exception ex)
             {
@@ -901,27 +868,62 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="domainName"></param>
         /// <returns></returns>
-        public  GlobalCatalogCollection GlobalCatalogs(string domainName)
+        public GlobalCatalogCollection GlobalCatalogs(string domainName)
         {
-            Forest f3 =  Forest.GetCurrentForest();
+            Forest f3 = Forest.GetCurrentForest();
 
-           //return  f.GlobalCatalogs;
+            //return  f.GlobalCatalogs;
             DirectoryContext context = new DirectoryContext(DirectoryContextType.Domain, domainName, LDAPUser, LDAPPassword);
-           Forest f = Forest.GetForest(context);
-           
+            Forest f = Forest.GetForest(context);
+
             //DomainController controller = System.DirectoryServices.ActiveDirectory.DomainController.FindOne(context);
 
-           return f.GlobalCatalogs;
+            return f.GlobalCatalogs;
         }
 
+        
         /// <summary>
-        /// 
+        /// Busca la lista de dominios en una base de datos
         /// </summary>
-        /// <param name="cnnStringName"></param>
-        /// <returns></returns>
-        public static StringCollection Domain_GetList_FromDB(string cnnStringName)
+        /// <param name="cnnStringName">Nombre de la cadena de coneccion configurada</param>
+        /// <returns>Lista de DomainsUrl</returns>
+        public static List<DomainUrlInfo> DomainsUrl_GetList(string cnnStringName)
         {
-            return new StringCollection();
+            return DomainsUrl_GetList2(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString);
+        }
+        /// <summary>
+        /// Busca la lista de dominios en una base de datos.- A diferencia de DomainsUrl_GetList. Este metodo recive como parametro 
+        /// la cadena de coneccion y no su nombre de App.config
+        /// </summary>
+        /// <param name="cnnString">Cadena de coneccion</param>
+        /// <returns>Lista de DomainsUrl</returns>
+        public static List<DomainUrlInfo> DomainsUrl_GetList2(string cnnString)
+        {
+            try
+            {
+                using (SqlDomainURLDataContext dc = new SqlDomainURLDataContext(cnnString))
+                {
+                    IEnumerable<DomainUrlInfo> list = from s in dc.DomainsUrls
+                                                   select
+                                                       new DomainUrlInfo
+                                                       {
+                                                           DomainName = s.DomainName,
+                                                           LDAPPath = s.LDAPPath,
+                                                           Usr = s.Usr,
+                                                           Pwd = s.Pwd
+                                                       };
+
+                    return list.ToList<DomainUrlInfo>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al intentar obtener la lista de dominios desde la base de datos: ", ex);
+                ADHelper.SetError(te);
+                te.ErrorId = "15004";
+                throw te;
+            }
+
         }
 
         /// <summary>
@@ -929,7 +931,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="ex"></param>
         /// <returns></returns>
-         static Exception ProcessActiveDirectoryException(Exception ex)
+        static Exception ProcessActiveDirectoryException(Exception ex)
         {
             Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(ex.Message, ex);
             SetError(te);
@@ -955,6 +957,11 @@ namespace Fwk.Security.ActiveDirectory
 
             return te;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="te"></param>
         static void SetError(Fwk.Exceptions.TechnicalException te)
         {
             te.Namespace = typeof(ADHelper).Namespace;
@@ -962,7 +969,6 @@ namespace Fwk.Security.ActiveDirectory
             te.UserName = Environment.UserName;
             te.UserName = Environment.MachineName;
         }
-
 
         /// <summary>
         /// 
@@ -1025,11 +1031,6 @@ namespace Fwk.Security.ActiveDirectory
             return list;
         }
 
-
-
-       
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -1049,12 +1050,13 @@ namespace Fwk.Security.ActiveDirectory
                     return string.Empty;
                 }
             }
-            
+
             catch (Exception ex)
             {
                 throw ProcessActiveDirectoryException(ex);
             }
         }
+
         /// <summary>
         /// Filters out the domain if one is passed in
         /// </summary>
@@ -1151,27 +1153,33 @@ namespace Fwk.Security.ActiveDirectory
         UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED = 0X0080,
     }
 
-
+    /// <summary>
+    /// Determina el resultado de loging de usuario
+    /// </summary>
     public enum LoginResult
     {
         /// <summary>
-        /// 
+        /// Logoing exitoso
         /// </summary>
         LOGIN_OK = 0,
+
         /// <summary>
-        /// 
+        /// Uario no existe
         /// </summary>
         LOGIN_USER_DOESNT_EXIST,
+
         /// <summary>
-        /// 
+        /// Cuenta inactiva
         /// </summary>
         LOGIN_USER_ACCOUNT_INACTIVE,
+
         /// <summary>
-        /// 
+        /// Clave incorrecta
         /// </summary>
         LOGIN_USER_OR_PASSWORD_INCORRECT,
+
         /// <summary>
-        /// 
+        /// Cuenta de usuario bloqueada
         /// </summary>
         LOGIN_USER_ACCOUNT_LOCKOUT,
     }

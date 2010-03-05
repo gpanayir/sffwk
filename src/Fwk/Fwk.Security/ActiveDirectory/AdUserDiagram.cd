@@ -7,5 +7,40 @@
       <FileName>ActiveDirectory\ADUser.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Fwk.Security.ActiveDirectory.ADGroup">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAAAAgEYAAgAEAYAQAAiQARAAEgAAAAAAACAA=</HashCode>
+      <FileName>ActiveDirectory\ADGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fwk.Security.ActiveDirectory.ADHelper">
+    <Position X="3.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECAA4AAAIAIQMGAAECEgAQIQAAQAAAICMCAACgIMBIA=</HashCode>
+      <FileName>ActiveDirectory\ADHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fwk.Security.ActiveDirectory.DomainsUrl">
+    <Position X="10.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAMAAAEgAAABIAAAAAEAAA=</HashCode>
+      <FileName>ActiveDirectory\DomainsUrl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Fwk.Security.ActiveDirectory.ADAccountOptions">
+    <Position X="1" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIEAAAAAAAAEACAFAQAgMAAAAABACAAAAAgAABAA=</HashCode>
+      <FileName>ActiveDirectory\ADHelper.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Fwk.Security.ActiveDirectory.LoginResult">
+    <Position X="0.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAgACA=</HashCode>
+      <FileName>ActiveDirectory\ADHelper.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Tahoma" Size="8.25" />
 </ClassDiagram>

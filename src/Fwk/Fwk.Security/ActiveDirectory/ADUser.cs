@@ -251,9 +251,13 @@ namespace Fwk.Security.ActiveDirectory
 
 
         }
-
       
-       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <param name="pSource"></param>
+        /// <returns></returns>
         public static List<ADUser> FilterByName(String pName, List<ADUser> pSource)
         {
             if (pSource == null) return null;
@@ -265,7 +269,6 @@ namespace Fwk.Security.ActiveDirectory
 
         }
     }
-
 
 }
 

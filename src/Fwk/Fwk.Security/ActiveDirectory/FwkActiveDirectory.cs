@@ -16,13 +16,17 @@ using Fwk.Security.ActiveDirectory;
 
 namespace Fwk.Security.Common
 {
-    public class FwkActyveDirectory
+    /// <summary>
+    /// 
+    /// </summary>
+    [Obsolete("Esta clase no se utiliza ")]
+    class FwkActyveDirectory
     {
         private string[] _Properties = new string[] { "fullname" };
         String _Domain;
         DirectorySearcher _Searcher = null;
 
-
+        [Obsolete("Esta clase no se utiliza ")]
         public FwkActyveDirectory(String pDomain)
         {
             _Domain = pDomain;

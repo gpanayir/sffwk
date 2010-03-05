@@ -129,6 +129,7 @@
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProvider.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderData.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderPolicyCreator.cs" />
+    <Compile Include="ActiveDirectory\DomainUrl.cs" />
     <Compile Include="Entities\FwkIdentity.cs" />
     <Compile Include="Entities\FwkPrincipal.cs" />
     <Compile Include="Entities\SimpleEntities.cs" />
@@ -154,6 +155,11 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ActiveDirectory\SqlDomainURL.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SqlDomainURL.dbml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -197,13 +203,22 @@
     <None Include="Membership\RuleProvider.dbml.layout">
       <DependentUpon>RuleProvider.dbml</DependentUpon>
     </None>
+    <None Include="ActiveDirectory\SqlDomainURL.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>SqlDomainURL.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="ActiveDirectory\SqlDomainURL.dbml.layout">
+      <DependentUpon>SqlDomainURL.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ActiveDirectory\DomainsUrlScript.sql" />
     <Content Include="ActiveDirectory\LDAP.Connections.xml" />
     <Content Include="ActiveDirectory\LDAP_Query_AllUsers.txt" />
     <Content Include="ActiveDirectory\LDAP_Query_Group.txt" />
