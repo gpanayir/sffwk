@@ -39,8 +39,8 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblURL = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.domainsUrlBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.domainsUrlBindingSource)).BeginInit();
+            this.domainUrlInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.domainUrlInfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -114,23 +114,23 @@
             this.lblURL.ForeColor = System.Drawing.Color.SteelBlue;
             this.lblURL.Location = new System.Drawing.Point(9, 245);
             this.lblURL.Name = "lblURL";
-            this.lblURL.Size = new System.Drawing.Size(408, 24);
+            this.lblURL.Size = new System.Drawing.Size(485, 24);
             this.lblURL.TabIndex = 73;
             // 
             // comboBox1
             // 
-            this.comboBox1.DataSource = this.domainsUrlBindingSource;
+            this.comboBox1.DataSource = this.domainUrlInfoBindingSource;
             this.comboBox1.DisplayMember = "DomainName";
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(128, 99);
+            this.comboBox1.Location = new System.Drawing.Point(130, 109);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(178, 21);
+            this.comboBox1.Size = new System.Drawing.Size(175, 21);
             this.comboBox1.TabIndex = 74;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // domainsUrlBindingSource
+            // domainUrlInfoBindingSource
             // 
-            this.domainsUrlBindingSource.DataSource = typeof(Fwk.Security.AD.TestLogin.DomainsUrl);
+            this.domainUrlInfoBindingSource.DataSource = typeof(Fwk.Security.ActiveDirectory.DomainUrlInfo);
             // 
             // frmDinamic
             // 
@@ -153,7 +153,7 @@
             this.Name = "frmDinamic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDinamic";
-            ((System.ComponentModel.ISupportInitialize)(this.domainsUrlBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.domainUrlInfoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,6 +170,7 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblURL;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.BindingSource domainsUrlBindingSource;
+        private System.Windows.Forms.BindingSource domainUrlInfoBindingSource;
+        
     }
 }

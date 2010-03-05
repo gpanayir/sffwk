@@ -13,7 +13,7 @@ namespace Fwk.Security.AD.TestLogin
     public partial class frmDinamic : Form
     {
         ADHelper _ADHelper;
-        List<DomainsUrl> urls;
+        List<DomainUrlInfo> urls;
        
         public frmDinamic()
         {
@@ -43,108 +43,78 @@ namespace Fwk.Security.AD.TestLogin
         {
             lblURL.Text = string.Empty;
 
-            DomainsUrl wDomainsUrl = (DomainsUrl)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
-            //lblURL.Text = wDomainsUrl.LDAPPath;
-            if (wDomainsUrl == null)
+            DomainUrlInfo wDomainUrlInfo = (DomainUrlInfo)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
+            //lblURL.Text = wDomainUrlInfo.LDAPPath;
+            if (wDomainUrlInfo == null)
             {
                 lblCheckResult.Text = "Nombre de dominio incorrecto";
                 return false;
             }
-            _ADHelper = new ADHelper(wDomainsUrl.LDAPPath, wDomainsUrl.Usr, wDomainsUrl.Pwd);
+            _ADHelper = new ADHelper(wDomainUrlInfo.LDAPPath, wDomainUrlInfo.Usr, wDomainUrlInfo.Pwd);
             
             return true;
         }
         
         void init()
         {
-            urls = new List<DomainsUrl>();
-            DomainsUrl wDomainsUrl = new DomainsUrl();
+            //urls = new List<DomainUrlInfo>();
+            //DomainUrlInfo wDomainUrlInfo = new DomainUrlInfo();
+
+            urls = ADHelper.DomainsUrl_GetList("testActiveDirectory");//@"Data Source=SANTANA\SQLEXPRESS;Initial Catalog=Logs;Integrated Security=True");
+
+            //wDomainUrlInfo.DomainName = "allus-ar";
+            ////wDomainUrlInfo.Usr = "ReseteoClaveWeb";
+            ////wDomainUrlInfo.Pwd = " R3s3t30W3b";
+            ////wDomainUrlInfo.Usr = "moviedo";
+            ////wDomainUrlInfo.Pwd = "Lincelin8";
+
+            //wDomainUrlInfo.LDAPPath = "LDAP://172.22.12.142:389/DC=allus,DC=ar";
+            ////wDomainUrlInfo.LDAPPAth = "LDAP://172.22.12.141/DC=allus,DC=ar";
+            //urls.Add(wDomainUrlInfo);
+            //wDomainUrlInfo.Usr = "pruebadesarrollo";
+            //wDomainUrlInfo.Pwd = "Prueba+456";
 
 
-            wDomainsUrl.DomainName = "allus-ar";
-            //wDomainsUrl.Usr = "ReseteoClaveWeb";
-            //wDomainsUrl.Pwd = " R3s3t30W3b";
-            //wDomainsUrl.Usr = "moviedo";
-            //wDomainsUrl.Pwd = "Lincelin8";
+            //wDomainUrlInfo = new DomainUrlInfo();
+            //wDomainUrlInfo.DomainName = "alco";
+            //wDomainUrlInfo.LDAPPath = "LDAP://172.22.12.109/DC=actionlinecba,DC=org";
+            //wDomainUrlInfo.Usr = "pruebadesarrollo";
+            //wDomainUrlInfo.Pwd = "Prueba+456";
+            //urls.Add(wDomainUrlInfo);
 
-            wDomainsUrl.LDAPPath = "LDAP://172.22.12.142:389/DC=allus,DC=ar";
-            //wDomainsUrl.LDAPPAth = "LDAP://172.22.12.141/DC=allus,DC=ar";
-            urls.Add(wDomainsUrl);
-            wDomainsUrl.Usr = "pruebadesarrollo";
-            wDomainsUrl.Pwd = "Prueba+456";
+            //wDomainUrlInfo = new DomainUrlInfo();
+            //wDomainUrlInfo.DomainName = "movistar";
+            //wDomainUrlInfo.LDAPPath = "LDAP://10.64.27.5/DC=alcomovistar,DC=com,DC=ar";
+            //wDomainUrlInfo.Usr = "pruebadesarrollo";
+            //wDomainUrlInfo.Pwd = "Prueba+456";
+            //urls.Add(wDomainUrlInfo);
 
 
-            wDomainsUrl = new DomainsUrl();
-            wDomainsUrl.DomainName = "alco";
-            wDomainsUrl.LDAPPath = "LDAP://172.22.12.109/DC=actionlinecba,DC=org";
-            wDomainsUrl.Usr = "pruebadesarrollo";
-            wDomainsUrl.Pwd = "Prueba+456";
-            urls.Add(wDomainsUrl);
 
-            wDomainsUrl = new DomainsUrl();
-            wDomainsUrl.DomainName = "movistar";
-            wDomainsUrl.LDAPPath = "LDAP://10.64.27.5/DC=alcomovistar,DC=com,DC=ar";
-            wDomainsUrl.Usr = "pruebadesarrollo";
-            wDomainsUrl.Pwd = "Prueba+456";
-            urls.Add(wDomainsUrl);
 
-            
-         
+            //wDomainUrlInfo = new DomainUrlInfo();
+            //wDomainUrlInfo.DomainName = "allus.pe";
+            //wDomainUrlInfo.LDAPPath = "LDAP://10.200.154.5:389/DC=allus,DC=pe";
+            //wDomainUrlInfo.Usr = "pruebadesarrollo";
+            //wDomainUrlInfo.Pwd = "Prueba+456";
+            //urls.Add(wDomainUrlInfo);
 
-            wDomainsUrl = new DomainsUrl();
-            wDomainsUrl.DomainName = "allus.pe";
-            wDomainsUrl.LDAPPath = "LDAP://10.200.154.5:389/DC=allus,DC=pe";
-            wDomainsUrl.Usr = "pruebadesarrollo";
-            wDomainsUrl.Pwd = "Prueba+456";
-            urls.Add(wDomainsUrl);
+            domainUrlInfoBindingSource.DataSource = urls;
+            comboBox1.SelectedIndex = 0;
 
-            domainsUrlBindingSource.DataSource = urls;
-            comboBox1.SelectedIndex =0;
-
-            lblURL.Text = ((DomainsUrl)comboBox1.SelectedItem).LDAPPath;
+            lblURL.Text = ((DomainUrlInfo)comboBox1.SelectedItem).LDAPPath;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DomainsUrl wDomainsUrl = (DomainsUrl)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
-            if (wDomainsUrl == null) return;
-            lblURL.Text = wDomainsUrl.LDAPPath;
+            DomainUrlInfo wDomainUrlInfo = (DomainUrlInfo)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
+            if (wDomainUrlInfo == null) return;
+            lblURL.Text = wDomainUrlInfo.LDAPPath;
 
         }
 
 
     }
 
-    internal class DomainsUrl 
-
-    {
-        string _DomainName;
-
-        public string DomainName
-        {
-            get { return _DomainName; }
-            set { _DomainName = value; }
-        }
-        string _LDAPPath;
-
-        public string LDAPPath
-        {
-            get { return _LDAPPath; }
-            set { _LDAPPath = value; }
-        }
-        string usr;
-
-        public string Usr
-        {
-            get { return usr; }
-            set { usr = value; }
-        }
-        string pwd;
-
-        public string Pwd
-        {
-            get { return pwd; }
-            set { pwd = value; }
-        }
-    }
+   
 }
