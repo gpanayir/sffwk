@@ -218,7 +218,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ActiveDirectory\DomainsUrlScript.sql" />
+    <Content Include="ActiveDirectory\DomainsUrlScript.txt" />
     <Content Include="ActiveDirectory\LDAP.Connections.xml" />
     <Content Include="ActiveDirectory\LDAP_Query_AllUsers.txt" />
     <Content Include="ActiveDirectory\LDAP_Query_Group.txt" />
