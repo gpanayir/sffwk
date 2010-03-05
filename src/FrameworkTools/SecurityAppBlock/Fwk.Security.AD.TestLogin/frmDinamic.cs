@@ -44,7 +44,7 @@ namespace Fwk.Security.AD.TestLogin
             lblURL.Text = string.Empty;
 
             DomainUrlInfo wDomainUrlInfo = (DomainUrlInfo)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
-            //lblURL.Text = wDomainUrlInfo.LDAPPath;
+            
             if (wDomainUrlInfo == null)
             {
                 lblCheckResult.Text = "Nombre de dominio incorrecto";
@@ -57,11 +57,22 @@ namespace Fwk.Security.AD.TestLogin
         
         void init()
         {
+           
+            try
+            {
+                urls = ADHelper.DomainsUrl_GetList("testActiveDirectory");//@"Data Source=SANTANA\SQLEXPRESS;Initial Catalog=Logs;Integrated Security=True");
+                domainUrlInfoBindingSource.DataSource = urls;
+                comboBox1.SelectedIndex = 0;
+
+                lblURL.Text = ((DomainUrlInfo)comboBox1.SelectedItem).LDAPPath;
+            }
+            catch (Exception ex)
+            {
+                lblCheckResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException( ex);
+                btnCheck.Enabled = false;
+            }
             //urls = new List<DomainUrlInfo>();
             //DomainUrlInfo wDomainUrlInfo = new DomainUrlInfo();
-
-            urls = ADHelper.DomainsUrl_GetList("testActiveDirectory");//@"Data Source=SANTANA\SQLEXPRESS;Initial Catalog=Logs;Integrated Security=True");
-
             //wDomainUrlInfo.DomainName = "allus-ar";
             ////wDomainUrlInfo.Usr = "ReseteoClaveWeb";
             ////wDomainUrlInfo.Pwd = " R3s3t30W3b";
@@ -99,10 +110,7 @@ namespace Fwk.Security.AD.TestLogin
             //wDomainUrlInfo.Pwd = "Prueba+456";
             //urls.Add(wDomainUrlInfo);
 
-            domainUrlInfoBindingSource.DataSource = urls;
-            comboBox1.SelectedIndex = 0;
-
-            lblURL.Text = ((DomainUrlInfo)comboBox1.SelectedItem).LDAPPath;
+           
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

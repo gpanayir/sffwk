@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDinamic));
             this.label2 = new System.Windows.Forms.Label();
-            this.lblCheckResult = new System.Windows.Forms.Label();
             this.btnCheck = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -40,6 +39,7 @@
             this.lblURL = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.domainUrlInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblCheckResult = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.domainUrlInfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,15 +51,6 @@
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 72;
             this.label2.Text = "Domain";
-            // 
-            // lblCheckResult
-            // 
-            this.lblCheckResult.BackColor = System.Drawing.Color.White;
-            this.lblCheckResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCheckResult.Location = new System.Drawing.Point(11, 167);
-            this.lblCheckResult.Name = "lblCheckResult";
-            this.lblCheckResult.Size = new System.Drawing.Size(408, 77);
-            this.lblCheckResult.TabIndex = 71;
             // 
             // btnCheck
             // 
@@ -132,16 +123,27 @@
             // 
             this.domainUrlInfoBindingSource.DataSource = typeof(Fwk.Security.ActiveDirectory.DomainUrlInfo);
             // 
+            // lblCheckResult
+            // 
+            this.lblCheckResult.BackColor = System.Drawing.Color.White;
+            this.lblCheckResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCheckResult.Location = new System.Drawing.Point(12, 164);
+            this.lblCheckResult.Multiline = true;
+            this.lblCheckResult.Name = "lblCheckResult";
+            this.lblCheckResult.ReadOnly = true;
+            this.lblCheckResult.Size = new System.Drawing.Size(482, 77);
+            this.lblCheckResult.TabIndex = 75;
+            // 
             // frmDinamic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(506, 273);
+            this.Controls.Add(this.lblCheckResult);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblURL);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblCheckResult);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label9);
@@ -162,7 +164,6 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblCheckResult;
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label9;
@@ -171,6 +172,7 @@
         private System.Windows.Forms.Label lblURL;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.BindingSource domainUrlInfoBindingSource;
+        private System.Windows.Forms.TextBox lblCheckResult;
         
     }
 }
