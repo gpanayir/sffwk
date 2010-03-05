@@ -128,6 +128,7 @@ namespace Fwk.Security.ActiveDirectory
 
 
                 DirectoryEntry userDirectoryEntry = GetUser(_LDAPUser);
+
                 if (userDirectoryEntry == null)
                 {
                     strErrMessage.AppendLine(LoginResult.LOGIN_USER_DOESNT_EXIST.ToString());
@@ -135,9 +136,11 @@ namespace Fwk.Security.ActiveDirectory
                 else
                 {
                     int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(userDirectoryEntry, ADProperties.USERACCOUNTCONTROL));
-                    if (User_IsAccountActive(userAccountControl))
+                    if (!User_IsAccountActive(userAccountControl))
+                    {
                         strErrMessage.AppendLine(LoginResult.LOGIN_USER_ACCOUNT_INACTIVE.ToString());
-
+                       
+                    }
                     if (User_IsAccountLockout(userAccountControl))
                         strErrMessage.AppendLine(LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT.ToString());
                 }
@@ -705,7 +708,7 @@ namespace Fwk.Security.ActiveDirectory
             //{
             //    return true;
             //}
-            return flagExists != 2;//Si es = a 2 es por que esta DESHABILITADO (512 - 2)
+            return flagExists == 0;//Si es = a 2 es por que esta DESHABILITADO (512 - 2) 
         }
 
         /// <summary>
@@ -715,11 +718,18 @@ namespace Fwk.Security.ActiveDirectory
         /// <returns></returns>
         public static bool User_IsAccountLockout(int userAccountControl)
         {
-           
-            int flag= userAccountControl & Convert.ToInt32(ADAccountOptions.UF_LOCKOUT);
 
-            return (flag == 16);// UF_LOCKOUT = 16 en Decimal
+            int flag = userAccountControl & Convert.ToInt32(ADAccountOptions.UF_LOCKOUT);
+            //int flag2 = 528 & Convert.ToInt32(ADAccountOptions.UF_LOCKOUT); -- solo para test
+            //if (flag == 0)
+            //    return false;
+            //else
+            //    return true; 
             
+            
+            // UF_LOCKOUT = 16 en Decimal
+
+            return !(flag == 0); // No estoy seguro de utilizar la return (flag == 16);  sentencia q apareentenmete seria =  ()
         }
 
 
