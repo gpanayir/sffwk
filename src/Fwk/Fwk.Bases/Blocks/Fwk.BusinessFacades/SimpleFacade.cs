@@ -102,7 +102,6 @@ namespace Fwk.BusinessFacades
                         wResult = FacadeHelper.RunNonTransactionalProcess(pRequest, wServiceConfiguration);
                     else
                         wResult = FacadeHelper.RunTransactionalProcess(pRequest, wServiceConfiguration);
-
                     
                 }
 

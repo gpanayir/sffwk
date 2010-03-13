@@ -8,10 +8,15 @@ using System.Diagnostics;
 namespace Fwk.Remoting
 {
     /// <summary>
-    /// 
+    /// Clase remota que se ejecuta en el servicio remoting dispatcher
     /// </summary>
     public class FwkRemoteObject : MarshalByRefObject
     {
+        /// <summary>
+        /// Ejecuta un servicio 
+        /// </summary>
+        /// <param name="pReq">Interfaz de contrato de servicio.- interfaz que implementan todos los request y responsees</param>
+        /// <returns><see cref="IServiceContract"/></returns>
         public IServiceContract ExecuteService(IServiceContract pReq)
         {
 
@@ -21,6 +26,12 @@ namespace Fwk.Remoting
 
         }
 
+        /// <summary>
+        /// Ejecuta un servicio 
+        /// </summary>
+        /// <param name="pServiceName">Nombre del servicio</param>
+        /// <param name="pReq">Interfaz de contrato de servicio.- interfaz que implementan todos los request y responsees</param>
+        /// <returns><see cref="IServiceContract"/></returns>
         public IServiceContract ExecuteService(string pServiceName,IServiceContract pReq)
         {
             pReq.ServiceName = pServiceName;
@@ -28,10 +39,10 @@ namespace Fwk.Remoting
         }
 
         /// <summary>
-        /// 
+        /// Obtiene la metadata de un servicio 
         /// </summary>
-        /// <param name="pServiceName"></param>
-        /// <returns></returns>
+        /// <param name="pServiceName">Nombre del servicio</param>
+        /// <returns><see cref="ServiceConfiguration"/></returns>
         public  ServiceConfiguration GetServiceConfiguration(string pServiceName)
         {
             SimpleFacade wSimpleFacade = new SimpleFacade();
@@ -41,7 +52,7 @@ namespace Fwk.Remoting
         }
 
         /// <summary>
-        /// 
+        /// Obtiene una lista de servicios
         /// </summary>
         /// <returns></returns>
         public ServiceConfigurationCollection GetServicesList()
