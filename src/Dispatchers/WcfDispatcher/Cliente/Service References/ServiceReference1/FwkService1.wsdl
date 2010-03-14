@@ -39,6 +39,8 @@
       <xsd:import schemaLocation="http://localhost:8731/WcfDispatcher/Service1/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Fwk.HelperFunctions.Caching" />
       <xsd:import schemaLocation="http://localhost:8731/WcfDispatcher/Service1/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Microsoft.Practices.EnterpriseLibrary.Caching" />
       <xsd:import schemaLocation="http://localhost:8731/WcfDispatcher/Service1/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Fwk.HelperFunctions" />
+      <xsd:import schemaLocation="http://localhost:8731/WcfDispatcher/Service1/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/WcfCommon" />
+      <xsd:import schemaLocation="http://localhost:8731/WcfDispatcher/Service1/?xsd=xsd8" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IFwkService1_ExecuteService_InputMessage">

@@ -12,11 +12,46 @@ namespace WcfDispatcher_Host
     {
         static void Main(string[] args)
         {
-            ServiceHost host = new ServiceHost(typeof(FwkService1));
-            host.Open(); 
-            Console.WriteLine("the host is open");
-            Console.ReadLine();
 
+
+            //Uri wUri = new Uri("net.tcp://santana:8001/FwkService1");
+
+            //using (ServiceHost host = new ServiceHost(typeof(FwkService1), wUri))
+            //{
+            //    host.Open();
+
+            //    Console.Write("OLECRAM SERVICE...");
+            //    Console.ReadLine();
+            //}
+            //using (ServiceHost host = new ServiceHost(typeof(FwkService1)))
+            //{
+            //    host.Open();
+
+            //    Console.Write("OLECRAM SERVICE...1");
+            //    Console.ReadLine();
+            //}
+
+            using (ServiceHost host = new ServiceHost(typeof(FwkService2)))
+            {
+                host.Open();
+
+                Console.Write("OLECRAM SERVICE...2");
+                Console.ReadLine();
+            }
         }
+
+        void SetNetTcpBinding(ServiceHost host)
+        {
+
+            NetTcpBinding tcpBinding = new NetTcpBinding();
+            Uri wUri = new Uri("net.tcp://santana:8001/FwkService1");
+            tcpBinding.TransactionFlow = true;
+
+            host.AddServiceEndpoint(typeof(IFwkService1), tcpBinding, wUri);
+            host.Open();
+        }
+
     }
+
+
 }

@@ -6,16 +6,12 @@ using System.ServiceModel;
 using System.Text;
 using Fwk.HelperFunctions.Caching;
 using Fwk.Bases;
+using WcfCommon;
 
 namespace WcfDispatcher
 {
     // NOTE: If you change the interface name "IService1" here, you must also update the reference to "IService1" in App.config.
-    [ServiceContract]
-    public interface IFwkService2
-    {
-        [OperationContract]
-        IServiceContract ExecuteService(IServiceContract pReq);
-    }
+    
 
 
     [ServiceContract]
@@ -25,8 +21,9 @@ namespace WcfDispatcher
         CompositeType ExecuteService(CompositeType composite);
     }
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations
+
     [DataContract]
+    [KnownType(typeof(Survey))]
     public class CompositeType
     {
  
@@ -43,7 +40,7 @@ namespace WcfDispatcher
         }
 
 
-        [DataMember(IsRequired = false, Name = "Entity", Order = 1)]
+        [DataMember()]
         public IEntity EntityField
         {
             get { return _EntityField; }

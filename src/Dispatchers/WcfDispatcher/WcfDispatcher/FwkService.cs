@@ -10,30 +10,40 @@ namespace WcfDispatcher
     // NOTE: If you change the class name "Service1" here, you must also update the reference to "Service1" in App.config.
     public class FwkService1 : IFwkService1
     {
-       
 
-        #region IFwkService1 Members
+            Fwk.BusinessFacades.SimpleFacade fw = new Fwk.BusinessFacades.SimpleFacade();
 
-        public CompositeType ExecuteService(CompositeType composite)
+
+
+
+        CompositeType IFwkService1.ExecuteService(CompositeType composite)
         {
-            throw new NotImplementedException();
+            CompositeType r = new CompositeType();
+            //fw.ExecuteService(
+            return r;
         }
 
-        #endregion
+
     }
+
+
     public class FwkService2 : IFwkService2
     {
 
 
-        
-
         #region IFwkService2 Members
 
-        public Fwk.Bases.IServiceContract ExecuteService(Fwk.Bases.IServiceContract pReq)
+        public T ExecuteService<T>(T pReq)
         {
-            throw new NotImplementedException();
+            object x = null;
+            T data = (T)x;
+            return data;
         }
 
         #endregion
+
+        
     }
+
+
 }

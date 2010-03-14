@@ -56,12 +56,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="IFwkService.cs" />
+    <Compile Include="IfwkService2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FwkService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WcfCommonTest\WcfCommon.csproj">
+      <Project>{8CEAEEBE-58C4-49EB-B5FE-CD480CA40419}</Project>
+      <Name>WcfCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
