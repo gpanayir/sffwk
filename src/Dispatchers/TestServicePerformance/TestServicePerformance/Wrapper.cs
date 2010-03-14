@@ -77,12 +77,12 @@ namespace TestServicePerformance
             {
                 if (stop) break;
                 Stopwatch watch = new Stopwatch();
+                watch.Start();
                 isvcRes = _RemoteObj.ExecuteService(isvcReq);
                 //System.Threading.Thread.Sleep(300);
-
-
                 watch.Stop();
-                if (isvcRes.Error != null)
+
+                if (isvcRes.Error != null)//--->  error FIN
                 {
                     if (FinalizeEvent != null)
                         FinalizeEvent(isvcRes.Error.Message);
@@ -91,23 +91,26 @@ namespace TestServicePerformance
                         stop = true;
                     }
                 }
-                if (CallEvent != null)
+                if (CallEvent != null)// avisa que se ejecuto una llamada
                     CallEvent();
                 sumTotalMilliseconds += watch.Elapsed.TotalMilliseconds;
+
+
             }
-            if (stop)
-            {
+
+            //if (stop)
+            //{
                 double AVERAGE = sumTotalMilliseconds / ControllerTest.Storage.StorageObject.Calls;
 
                 if (MessageEvent != null)
-                    MessageEvent("Thread Nº", (int)threadNumber, AVERAGE, 1);
+                    MessageEvent("Thread Nº", (int)threadNumber, AVERAGE, sumTotalMilliseconds);
 
                 doneEvents[(int)threadNumber].Set();
 
                 if ((int)threadNumber + 1 == doneEvents.Length)
                     if (FinalizeEvent != null)
                         FinalizeEvent("");
-            }
+            //}
         }
 
 

@@ -22,11 +22,13 @@ namespace TestServicePerformance
         {
             InitializeComponent();
             Ctrl = new ControllerTest();
+           
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             strResult = new StringBuilder();
+       
             txtTestResult.Text = string.Empty;
             if (_RemotingWrapper == null)
             {
@@ -66,9 +68,7 @@ namespace TestServicePerformance
             else
             {
                 if (progressBar1.Value == progressBar1.Maximum) return;
-              
                 progressBar1.Value++;
-
             }
         }
 
@@ -90,25 +90,25 @@ namespace TestServicePerformance
                     _RemotingWrapper.FinalizeEvent -= new FinalizeHandler(_RemotingWrapper_FinalizeEvent);
                     _RemotingWrapper.CallEvent -= new CallHandler(_RemotingWrapper_CallEvent);
                 }
-                    txtTestResult.Text = strResult.ToString();
-                    progressBar1.Visible = false;
-                    progressBar1.Value = progressBar1.Minimum;
-                    tabControl1.TabIndex = 2;
-                    btnStartTest.Enabled = true;
-                
-                
-                
+                txtTestResult.Text = strResult.ToString();
+                progressBar1.Visible = false;
+                progressBar1.Value = progressBar1.Minimum;
+                tabControl1.TabIndex = 2;
+                btnStartTest.Enabled = true;
+
+
+
             }
-          
+
         }
- 
+
         void _RemotingWrapper_MessageEvent(string msg, int threadNumber, double average, double totalTime)
         {
-           
+
             if (this.InvokeRequired)
             {
                 CheckEven d = new CheckEven(_RemotingWrapper_MessageEvent);
-                this.Invoke(d, new object[] {  msg,  threadNumber,  average,  totalTime});
+                this.Invoke(d, new object[] { msg, threadNumber, average, totalTime });
             }
             else
             {
@@ -116,9 +116,10 @@ namespace TestServicePerformance
                 string str = string.Concat(msg, threadNumber, average, totalTime);
 
                 strResult.Append(msg);
-                strResult.Append( threadNumber);
-                strResult.Append( string.Concat("   AVG time : ", average ," ms"));
-                strResult.Append(string.Concat("    Total time : ", totalTime," ms"));
+                strResult.Append(threadNumber);
+                strResult.Append(string.Concat("   Date : ", System.DateTime.Now));
+                strResult.Append(string.Concat("   AVG time : ", average, " ms"));
+                strResult.Append(string.Concat("    Total time : ", totalTime, " ms"));
                 strResult.AppendLine(Environment.NewLine);
 
 
