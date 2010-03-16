@@ -95,5 +95,18 @@ namespace Fwk.Security.Admin.Controls
 
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            if (FwkMembership.ValidateUser(txtUserName.Text, txtPassword.Text))
+            {
+                MessageViewInfo.Show("Log sussefully");
+            }
+            else
+            {
+                MessageViewInfo.Show("Log not sussefully");
+            }
+        }
     }
 }

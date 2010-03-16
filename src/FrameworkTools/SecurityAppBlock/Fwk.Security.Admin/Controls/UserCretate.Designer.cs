@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtComments = new DevExpress.XtraEditors.TextEdit();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtQuest = new DevExpress.XtraEditors.TextEdit();
@@ -43,23 +45,24 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCreateUser = new System.Windows.Forms.Button();
-            this.txtComments = new DevExpress.XtraEditors.TextEdit();
-            this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComments.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuest.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAnsw.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComments.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
             this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl1.Controls.Add(this.button1);
             this.groupControl1.Controls.Add(this.label5);
             this.groupControl1.Controls.Add(this.txtComments);
             this.groupControl1.Controls.Add(this.label4);
@@ -81,6 +84,25 @@
             this.groupControl1.Size = new System.Drawing.Size(609, 300);
             this.groupControl1.TabIndex = 23;
             this.groupControl1.Text = "User properties";
+            // 
+            // label5
+            // 
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(322, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 16);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Comments";
+            // 
+            // txtComments
+            // 
+            this.txtComments.Location = new System.Drawing.Point(325, 86);
+            this.txtComments.Name = "txtComments";
+            this.txtComments.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtComments.Properties.Appearance.Options.UseBackColor = true;
+            this.txtComments.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.txtComments.Size = new System.Drawing.Size(279, 22);
+            this.txtComments.TabIndex = 24;
             // 
             // label4
             // 
@@ -220,24 +242,17 @@
             this.btnCreateUser.UseVisualStyleBackColor = false;
             this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
             // 
-            // txtComments
+            // button1
             // 
-            this.txtComments.Location = new System.Drawing.Point(325, 86);
-            this.txtComments.Name = "txtComments";
-            this.txtComments.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtComments.Properties.Appearance.Options.UseBackColor = true;
-            this.txtComments.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-            this.txtComments.Size = new System.Drawing.Size(279, 22);
-            this.txtComments.TabIndex = 24;
-            // 
-            // label5
-            // 
-            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(322, 67);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 16);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "Comments";
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(252, 255);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 26);
+            this.button1.TabIndex = 26;
+            this.button1.Text = "test log";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // UserCretate
             // 
@@ -246,16 +261,17 @@
             this.Controls.Add(this.groupControl1);
             this.Name = "UserCretate";
             this.Size = new System.Drawing.Size(631, 324);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtComments.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuest.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAnsw.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtComments.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -279,5 +295,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.TextEdit txtComments;
+        private System.Windows.Forms.Button button1;
     }
 }
