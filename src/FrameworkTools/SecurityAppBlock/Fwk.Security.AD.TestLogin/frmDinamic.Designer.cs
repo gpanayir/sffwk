@@ -155,6 +155,7 @@
             this.Name = "frmDinamic";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmDinamic";
+            this.Load += new System.EventHandler(this.frmDinamic_Load);
             ((System.ComponentModel.ISupportInitialize)(this.domainUrlInfoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

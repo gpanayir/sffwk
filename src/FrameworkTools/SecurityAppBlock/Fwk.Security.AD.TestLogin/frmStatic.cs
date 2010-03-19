@@ -21,7 +21,7 @@ namespace Fwk.Security.AD.TestLogin
         {
             try
             {
-                lblCheckResult.Text = ADHelper.User_CheckLogin(txtDomain.Text, txtLoginName.Text, txtPassword.Text).ToString();
+                //lblCheckResult.Text = ADHelper.User_CheckLogin(txtDomain.Text, txtLoginName.Text, txtPassword.Text).ToString();
             }
             catch (Exception ex)
             {

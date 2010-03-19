@@ -28,6 +28,7 @@ namespace Fwk.Security.AD.TestLogin
                 if (SetAD())
                 {
                     lblCheckResult.Text = _ADHelper.User_CheckLogin(txtLoginName.Text, txtPassword.Text).ToString();
+                    //_ADHelper.User_CheckLogin2(txtLoginName.Text, txtPassword.Text);
                  
                 }
             }
@@ -118,6 +119,11 @@ namespace Fwk.Security.AD.TestLogin
             DomainUrlInfo wDomainUrlInfo = (DomainUrlInfo)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
             if (wDomainUrlInfo == null) return;
             lblURL.Text = wDomainUrlInfo.LDAPPath;
+
+        }
+
+        private void frmDinamic_Load(object sender, EventArgs e)
+        {
 
         }
 

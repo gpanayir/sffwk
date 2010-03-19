@@ -120,6 +120,21 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
 
         }
+
+        private void btnUser_Get_ByName_Click(object sender, EventArgs e)
+        {
+            StringBuilder str = new StringBuilder();
+            ADUser user = _ADHelper.User_Get_ByName(txtUserName.Text);
+
+            str.AppendLine(user.LoginName);
+            str.AppendLine("UserAccountControl: " + user.UserAccountControl);
+            str.AppendLine("FullName: " + user.FirstName + " " + user.LastName);
+            str.AppendLine("LoginResult: " + user.LoginResult);
+
+            
+
+            lblResult.Text = str.ToString(); 
+        }
     }
 
     public class FwkGlobalCatalog

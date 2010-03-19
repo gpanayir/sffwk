@@ -18,10 +18,10 @@ namespace Fwk.Security.ActiveDirectory.Test
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
-                lblCheckResult.Text = ADHelper.User_CheckLogin(txtDomain.Text, txtLoginName.Text, txtPassword.Text).ToString();
-            else
-                lblCheckResult.Text = ADHelper.User_CheckLogin(cmbAllDomains.Text, txtLoginName.Text, txtPassword.Text).ToString();
+            //if (radioButton1.Checked)
+            //    lblCheckResult.Text = ADHelper.User_CheckLogin(txtDomain.Text, txtLoginName.Text, txtPassword.Text).ToString();
+            //else
+            //    lblCheckResult.Text = ADHelper.User_CheckLogin(cmbAllDomains.Text, txtLoginName.Text, txtPassword.Text).ToString();
 
         }
 

@@ -43,13 +43,16 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.txtPath3 = new System.Windows.Forms.TextBox();
-            this.txtPath2 = new System.Windows.Forms.TextBox();
-            this.lblResult = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtPath2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblResult = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtDomainC = new System.Windows.Forms.TextBox();
+            this.btnUser_Get_ByName = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtUserName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -78,7 +81,7 @@
             this.txtLoginName.Name = "txtLoginName";
             this.txtLoginName.Size = new System.Drawing.Size(178, 20);
             this.txtLoginName.TabIndex = 61;
-            this.txtLoginName.Text = "pruebadesarrollo";
+            this.txtLoginName.Text = "pdesarrollo2";
             // 
             // txtPassword
             // 
@@ -86,7 +89,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
             this.txtPassword.TabIndex = 62;
-            this.txtPassword.Text = "Prueba+456";
+            this.txtPassword.Text = "Allus+123";
             // 
             // btnCheck
             // 
@@ -94,7 +97,7 @@
             this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheck.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
             this.btnCheck.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCheck.Location = new System.Drawing.Point(638, 158);
+            this.btnCheck.Location = new System.Drawing.Point(638, 146);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(98, 25);
             this.btnCheck.TabIndex = 63;
@@ -105,7 +108,7 @@
             // 
             // txtPath
             // 
-            this.txtPath.Location = new System.Drawing.Point(107, 160);
+            this.txtPath.Location = new System.Drawing.Point(107, 148);
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(525, 20);
             this.txtPath.TabIndex = 68;
@@ -137,7 +140,9 @@
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.txtPath3);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtPath2);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtPath);
             this.groupBox1.Controls.Add(this.label1);
@@ -145,7 +150,7 @@
             this.groupBox1.Controls.Add(this.txtLoginName);
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Controls.Add(this.btnCheck);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(759, 312);
             this.groupBox1.TabIndex = 71;
@@ -154,7 +159,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 275);
+            this.label3.Location = new System.Drawing.Point(24, 263);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 77;
@@ -166,7 +171,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(638, 267);
+            this.button5.Location = new System.Drawing.Point(638, 255);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(98, 25);
             this.button5.TabIndex = 76;
@@ -177,7 +182,7 @@
             // 
             // txtDomain
             // 
-            this.txtDomain.Location = new System.Drawing.Point(107, 272);
+            this.txtDomain.Location = new System.Drawing.Point(107, 260);
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(525, 20);
             this.txtDomain.TabIndex = 75;
@@ -189,7 +194,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(638, 225);
+            this.button4.Location = new System.Drawing.Point(638, 213);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(98, 25);
             this.button4.TabIndex = 74;
@@ -204,7 +209,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(638, 192);
+            this.button3.Location = new System.Drawing.Point(638, 180);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(98, 25);
             this.button3.TabIndex = 73;
@@ -215,47 +220,47 @@
             // 
             // txtPath3
             // 
-            this.txtPath3.Location = new System.Drawing.Point(107, 230);
+            this.txtPath3.Location = new System.Drawing.Point(107, 218);
             this.txtPath3.Name = "txtPath3";
             this.txtPath3.Size = new System.Drawing.Size(525, 20);
             this.txtPath3.TabIndex = 72;
             this.txtPath3.Text = "LDAP://";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 291);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.TabIndex = 78;
+            this.label5.Text = "Connected path";
+            // 
             // txtPath2
             // 
-            this.txtPath2.Location = new System.Drawing.Point(107, 194);
+            this.txtPath2.Location = new System.Drawing.Point(107, 182);
             this.txtPath2.Name = "txtPath2";
             this.txtPath2.Size = new System.Drawing.Size(525, 20);
             this.txtPath2.TabIndex = 71;
             this.txtPath2.Text = "LDAP://172.22.12.141:389/DC=allus,DC=ar";
             // 
-            // lblResult
-            // 
-            this.lblResult.BackColor = System.Drawing.Color.White;
-            this.lblResult.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.lblResult.Location = new System.Drawing.Point(494, 373);
-            this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(432, 219);
-            this.lblResult.TabIndex = 72;
-            this.lblResult.Text = "label3";
-            // 
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.label4.Location = new System.Drawing.Point(229, 339);
+            this.label4.Location = new System.Drawing.Point(108, 290);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(519, 16);
             this.label4.TabIndex = 75;
             // 
-            // label5
+            // lblResult
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 342);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 13);
-            this.label5.TabIndex = 78;
-            this.label5.Text = "Connected path";
+            this.lblResult.BackColor = System.Drawing.Color.White;
+            this.lblResult.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.lblResult.Location = new System.Drawing.Point(512, 433);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(432, 219);
+            this.lblResult.TabIndex = 72;
+            this.lblResult.Text = "label3";
             // 
             // button6
             // 
@@ -288,16 +293,49 @@
             this.txtDomainC.TabIndex = 81;
             this.txtDomainC.Text = "allus";
             // 
+            // btnUser_Get_ByName
+            // 
+            this.btnUser_Get_ByName.BackColor = System.Drawing.Color.White;
+            this.btnUser_Get_ByName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUser_Get_ByName.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
+            this.btnUser_Get_ByName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUser_Get_ByName.Location = new System.Drawing.Point(23, 335);
+            this.btnUser_Get_ByName.Name = "btnUser_Get_ByName";
+            this.btnUser_Get_ByName.Size = new System.Drawing.Size(314, 25);
+            this.btnUser_Get_ByName.TabIndex = 82;
+            this.btnUser_Get_ByName.Text = "ADUSer = User_Get_ByName(name)";
+            this.btnUser_Get_ByName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnUser_Get_ByName.UseVisualStyleBackColor = false;
+            this.btnUser_Get_ByName.Click += new System.EventHandler(this.btnUser_Get_ByName_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(346, 338);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 13);
+            this.label6.TabIndex = 84;
+            this.label6.Text = "Login name";
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.AcceptsReturn = true;
+            this.txtUserName.Location = new System.Drawing.Point(428, 337);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(178, 20);
+            this.txtUserName.TabIndex = 83;
+            // 
             // frmTestLDAPconnections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1001, 665);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtUserName);
+            this.Controls.Add(this.btnUser_Get_ByName);
             this.Controls.Add(this.txtDomainC);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lstDomains);
@@ -335,5 +373,8 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtDomainC;
+        private System.Windows.Forms.Button btnUser_Get_ByName;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtUserName;
     }
 }
