@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Fwk.HelperFunctions;
 using System.Text;
 using System.Collections.Generic;
+using Fwk.Bases.FrontEnd.Controls;
 namespace EasyDirectoryReplace
 {
     public partial class frmEasyReplace : Form
@@ -55,7 +56,7 @@ namespace EasyDirectoryReplace
             }
             catch (Exception ex)
             {
-                Fwk.Bases.FrontEnd.UserControls.FwkMessageView.Show(ex, "Error", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.UserControls.MessageBoxIcon.Error);
+                FwkMessageView.Show(ex, "Error", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
             }
         }
 
