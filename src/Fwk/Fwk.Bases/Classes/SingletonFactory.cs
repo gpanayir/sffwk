@@ -16,6 +16,9 @@ namespace Fwk.Bases
     {
         T _SomeObject;
         object[] _ConstructorParams = null;
+        /// <summary>
+        /// 
+        /// </summary>
         public SingletonFactory()
         { 
 
@@ -24,11 +27,15 @@ namespace Fwk.Bases
         /// <summary>
         /// Constructor con parametros que inicializaran la clase T
         /// </summary>
-        /// <param name="constructorParams">Parametros de la clase T</param>
+        /// <param name="constructorParams">Parametros del contructor la clase T</param>
         public SingletonFactory(object[] constructorParams)
         {
             _ConstructorParams = constructorParams;
         }
+        /// <summary>
+        /// Retorna un objeto tipo T.-
+        /// </summary>
+        /// <returns></returns>
         public T GetObject()
         {
             if (_SomeObject == null)
@@ -39,6 +46,11 @@ namespace Fwk.Bases
                     _SomeObject = (T)ReflectionFunctions.CreateInstance(string.Concat(typeof(T).FullName, ",", typeof(T).Assembly.FullName), _ConstructorParams);
             }
             return _SomeObject;
+        }
+
+        public void  SetObject(T someObject)
+        {
+            _SomeObject = someObject;
         }
     }
 

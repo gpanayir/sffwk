@@ -265,6 +265,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SingletonFactoryArray.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
