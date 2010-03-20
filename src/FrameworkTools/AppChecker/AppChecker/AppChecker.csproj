@@ -181,7 +181,7 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\AppChecker\*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\SecurityApBlock\*.pdb" &gt;&gt; nul 
+del "$(ProjectDir)..\..\..\..\Entregas\AppChecker\*.pdb" &gt;&gt; nul 
 del "$(ProjectDir)..\..\..\..\Entregas\AppChecker\*vshost*.*" &gt;&gt; nul
 del "$(ProjectDir)..\..\..\..\Entregas\AppChecker\*.manifest" &gt;&gt; nul 
 del "$(ProjectDir)..\..\..\..\Entregas\AppChecker\*.application" &gt;&gt; nul 
