@@ -9,11 +9,14 @@ using System.Collections.Specialized;
 using System.DirectoryServices.Protocols;
 using System.DirectoryServices.ActiveDirectory;
 using Fwk.Exceptions;
-
+using System.DirectoryServices.AccountManagement;
+using System.Runtime.InteropServices;
+using System.Reflection;
 namespace Fwk.Security.ActiveDirectory
 {
 
     /// <summary>
+    /// Wrapper de Active Directory con funcionalidades para interactuar contra un controlador de dominio .-
     /// 
     /// </summary>
     public class ADHelper
@@ -117,93 +120,116 @@ namespace Fwk.Security.ActiveDirectory
 
             try
             {
-
                 _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
-                //	= CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
+             
                 _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
             }
-            catch (Exception e)// Cuando el usuario no existe o clave erronea
+            catch (TechnicalException e)// Cuando el usuario no existe o clave erronea
             {
-                StringBuilder strErrMessage = new StringBuilder("Error de impersonalizacion de active directory.- Detalle del problema : ");
-
-
-                DirectoryEntry userDirectoryEntry = GetUser(_LDAPUser);
-
-                if (userDirectoryEntry == null)
-                {
-                    strErrMessage.AppendLine(LoginResult.LOGIN_USER_DOESNT_EXIST.ToString());
-                }
-                else
-                {
-                    int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(userDirectoryEntry, ADProperties.USERACCOUNTCONTROL));
-                    if (!User_IsAccountActive(userAccountControl))
-                    {
-                        strErrMessage.AppendLine(LoginResult.LOGIN_USER_ACCOUNT_INACTIVE.ToString());
-
-                    }
-                    if (User_IsAccountLockout(userAccountControl))
-                        strErrMessage.AppendLine(LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT.ToString());
-                }
-                TechnicalException te = new TechnicalException(strErrMessage.ToString(), e.InnerException);
-
+                Exception te1 = ProcessActiveDirectoryException(e);
+                TechnicalException te = new TechnicalException("Error de impersonalizacion de active directory.- Detalle del problema : ", te1.InnerException);
                 SetError(te);
                 te.ErrorId = "15003";
-
-
-
-
-
                 throw te;
             }
 
-
-
         }
 
-        /// <summary>
-        /// Obtiene un usuario sin pasar clave,.- solo con la url _LDAPPath 
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <returns></returns>
-        DirectoryEntry GetUser(string userName)
-        {
-            DirectoryEntry d = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
-            DirectoryEntry userDirectoryEntry = null;
-            DirectorySearcher deSearch = new DirectorySearcher(d);
-            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
-
-
-            deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
-
-
-            SearchResult results = deSearch.FindOne();
-
-
-            if (results != null)
-            {
-                userDirectoryEntry = new DirectoryEntry(results.Path, null, null);
-            }
-            d.Close();
-            d.Dispose();
-            deSearch.Dispose();
-            return userDirectoryEntry;
-        }
+       
         #endregion
 
         #region users
+        ///// <summary>
+        ///// Obtiene un usuario sin pasar clave.-
+        ///// </summary>
+        ///// <param name="userName"></param>
+        ///// <returns></returns>
+        SearchResult User_Get_Result(string userName)
+        {
+            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
+            deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
+            SearchResult rs = deSearch.FindOne();
+            deSearch.Dispose();
+            return rs;
 
+        }
 
         /// <summary>
-        /// Override method which will perfrom query based on combination of username and password
-        /// This is used with the login process to validate the user credentials and return a user
-        /// object for further validation.  This is slightly different from the other GetUser... methods as this
-        /// will use the UserName and Password supplied as the authentication to check if the user exists, if so then
-        /// the users object will be queried using these credentials.s
+        /// Busca un usuario con autenticacion 
+        /// Returna como parametro el resultado de loging
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        DirectoryEntry User_Get(string userName, string password)
+        /// <param name="userName">nombre de loging de usuario</param>
+        /// <param name="password">password</param>
+        /// <param name="loginResult">resultado de loging</param>
+        /// <returns>DirectoryEntry</returns>
+        DirectoryEntry User_Get(string userName, string password, out LoginResult loginResult)
+        {
+
+            DirectoryEntry userDirectoryEntry = null;
+            loginResult = LoginResult.LOGIN_OK; 
+            SearchResult result = this.User_Get_Result(userName);
+
+            //Si esl resultado de busqueda en nodes es nulo el usuario no exisate en el dominio
+            if (result == null)
+            {
+                loginResult = LoginResult.LOGIN_USER_DOESNT_EXIST;
+                return null;
+            }
+
+            //PasswordExpired
+            if (ADHelper.GetProperty(result, ADProperties.PWDLASTSET) == "0")
+            {
+                loginResult = LoginResult.ERROR_PASSWORD_MUST_CHANGE;
+                return null;
+            }
+            
+          
+
+            
+            //string str = EnlistValue(results);
+            //si result no es nulo se puede crear una DirectoryEntry
+            if (result != null)
+                 userDirectoryEntry = new DirectoryEntry(result.Path, userName, password);
+
+            //Intenta obtener una propiedad para determinar si el usuario se logueo con clave correcta o no.-
+            try
+            {
+                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(userDirectoryEntry, ADProperties.USERACCOUNTCONTROL));
+            }
+            catch (TechnicalException te)
+            {
+                if (te.ErrorId == "15002")
+                {
+                    loginResult = LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
+                    return userDirectoryEntry;
+                }
+            }
+           
+            if (User_IsAccountActive(userDirectoryEntry) == false)
+            {
+                loginResult = LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+                return userDirectoryEntry;
+            }
+
+            if (User_IsAccountLockout(userDirectoryEntry))
+            {
+                loginResult = LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT;
+                return userDirectoryEntry;
+            }
+
+
+            return userDirectoryEntry;
+        }
+
+
+        
+       /// <summary>
+        /// Obtiene un usuario por nombre sin tener en cuenta las credenciales del usuario
+       /// </summary>
+       /// <param name="userName"></param>
+       /// <returns></returns>
+        DirectoryEntry User_Get(string userName)
         {
 
             DirectoryEntry userDirectoryEntry = null;
@@ -212,25 +238,22 @@ namespace Fwk.Security.ActiveDirectory
             //deSearch.Filter = "(&(objectClass=user)(cn=" + FilterOutDomain(userName) + "))";
 
             deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
-
-
             SearchResult results = deSearch.FindOne();
-
+           
             //si result no es nulo se puede crear una DirectoryEntry
             if (results != null)
-                userDirectoryEntry = new DirectoryEntry(results.Path, userName, password);
-
+                userDirectoryEntry = new DirectoryEntry(results.Path);
+            
 
             deSearch.Dispose();
             return userDirectoryEntry;
 
         }
-
        
 
 
         /// <summary>
-        /// 
+        /// Obtiene un usuario por nombre sin tener en cuenta las credenciales del usuario
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
@@ -241,19 +264,12 @@ namespace Fwk.Security.ActiveDirectory
             DirectoryEntry userDirectoryEntry = null;
             try
             {
-
-                //DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-                //deSearch.Filter = string.Format("(&(ObjectClass={0})(name={1}))", "person", FilterOutDomain(userName));
-                //SearchResult results = deSearch.FindOne();
-                userDirectoryEntry = this.User_Get(userName, null);
+                userDirectoryEntry = this.User_Get(userName);
                 if (userDirectoryEntry != null)
                 {
-                    //userDirectoryEntry = new DirectoryEntry(results.Path, userName, null);
                     wADUser = new ADUser(userDirectoryEntry);
-                    //userDirectoryEntry.Close();
-                    //userDirectoryEntry.Dispose();
                 }
-                //deSearch.Dispose();
+                
                 return wADUser;
             }
             catch (Exception ex)
@@ -264,14 +280,12 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// 
+        /// Verifica si el usuario existe.- 
         /// </summary>
-        /// <param name="UserName"></param>
+        /// <param name="userName">Nombre de loging de usuario</param>
         /// <returns></returns>
         public bool User_Exists(string userName)
         {
-
-
 
             //create instance fo the direcory searcher
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
@@ -296,7 +310,7 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// This function will take a full name as input parameter and return AD user corresponding to that. 
+        /// Retorna los grupos a los que pertenece el usuario .-
         /// </summary>
         /// <param name="userName">Nombre completo del usuario</param>
         /// <returns></returns>
@@ -486,12 +500,6 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-
-
-
-
-
-
         /// <summary>
         /// Este metodo permite determinar si un usuario puede loguearce en un dominio
         /// tambien chequea si la cuenta esta activa
@@ -501,154 +509,20 @@ namespace Fwk.Security.ActiveDirectory
         /// <returns></returns>
         public LoginResult User_CheckLogin(string userName, string password)
         {
-            DirectoryEntry de;
-            int userAccountControl;
-            try
-            {
-                de = this.User_Get(userName, password);
 
-            }
-            catch (Fwk.Exceptions.TechnicalException te)
-            {
-                if (te.ErrorId == "15002")
-                    //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
-                    return LoginResult.LOGIN_USER_DOESNT_EXIST;
-                else
-                    throw te;
-            }
+            LoginResult rs;
+            this.User_Get(userName, password, out rs);
 
-            if (de != null)
-            {
-
-                try
-                {
-                    //Convierte UserAccountControl a la operacion logica
-                    userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
-                }
-                catch (Fwk.Exceptions.TechnicalException te)
-                {
-                    if (te.ErrorId == "15002")
-                        //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
-                        return LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
-                    else
-                        throw te;
-                }
-                if (User_IsAccountActive(userAccountControl))
-                {
-                    return LoginResult.LOGIN_OK;
-                }
-                else
-                {
-                    return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
-
-                }
-
-            }
-            else
-            {
-                return LoginResult.LOGIN_USER_DOESNT_EXIST;
-            }
-
+            return rs;
 
         }
-
-     
-
-   
+        
+       
 
         #endregion
 
         #region users statics
-        /// <summary>
-        /// Obtiene un usuario 
-        /// </summary>
-        /// <param name="domain"></param>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        static DirectoryEntry User_Get(string domain, string userName, string password)
-        {
-            SearchResult results = null;
-
-            DirectoryEntry root = new DirectoryEntry(string.Concat(@"LDAP://", domain), FilterOutDomain(userName), password, AuthenticationTypes.Secure);
-
-
-            DirectoryEntry userDirectoryEntry = null;
-
-            DirectorySearcher deSearch = new DirectorySearcher(root);
-
-            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
-            deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
-
-            try
-            {
-                results = deSearch.FindOne();
-            }
-            catch (Exception ex)
-            {
-                // {"El servidor no es operacional.\r\n"}
-                throw ProcessActiveDirectoryException(ex);
-            }
-
-            //si result no es nulo se puede crear una DirectoryEntry
-            if (results != null)
-                userDirectoryEntry = new DirectoryEntry(results.Path, FilterOutDomain(userName), password);
-
-            root.Close();
-            root.Dispose();
-            deSearch.Dispose();
-            return userDirectoryEntry;
-
-        }
-
-        /// <summary>
-        /// Este metodo permite determinar si un usuario puede loguearce en un dominio
-        /// tambien chequea si la cuenta esta activa
-        /// </summary>
-        /// <param name="domain">Dominio contra el cual chequear </param>
-        /// <param name="userName">Nombre de usuario a autenticar</param>
-        /// <param name="password">Password del usuario.-</param>
-        /// <returns></returns>
-        public static LoginResult User_CheckLogin(string domain, string userName, string password)
-        {
-            //first, check if the logon exists based on the username and password
-            DirectoryEntry de = null;
-
-            try
-            {
-                de = ADHelper.User_Get(domain, userName, password);
-            }
-            catch (Fwk.Exceptions.TechnicalException te)
-            {
-                if (te.ErrorId == "15002")
-                    //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
-                    return LoginResult.LOGIN_USER_DOESNT_EXIST;
-                else
-                    throw te;
-            }
-            if (de != null)
-            {
-                //Convierte UserAccountControl a la operacion logica
-                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
-
-                if (User_IsAccountActive(userAccountControl))
-                {
-                    return LoginResult.LOGIN_OK;
-                }
-                else
-                {
-                    return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
-
-                }
-
-            }
-            else
-            {
-                return LoginResult.LOGIN_USER_DOESNT_EXIST;
-            }
-
-        }
-
+        
 
         /// <summary>
         /// Este metodo realiza una aperacion logica con el valor userAccountControl para deternçminar si la cuenta de usuario 
@@ -656,10 +530,14 @@ namespace Fwk.Security.ActiveDirectory
         /// La bandera para determinar si la cuenta está activa es un valor binario (decimal = 2)
         /// Los valores predeterminados de UserAccountControl para  Usuario normal: 0x200 (512)
         /// </summary>
-        /// <param name="userAccountControl"></param>
+        /// <param name="de"></param>
         /// <returns></returns>
-        public static bool User_IsAccountActive(int userAccountControl)
+        public static bool User_IsAccountActive(DirectoryEntry de)
         {
+
+            //Convierte UserAccountControl a la operacion logica
+            int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
+
             int userAccountControl_Disabled = Convert.ToInt32(ADAccountOptions.UF_ACCOUNTDISABLE);
             int flagExists = userAccountControl & userAccountControl_Disabled;
             //Si coinciden, la bandera indicara Dehabilitao como indicador de control
@@ -671,7 +549,7 @@ namespace Fwk.Security.ActiveDirectory
             //{
             //    return true;
             //}
-            return flagExists == 0;//Si es = a 2 es por que esta DESHABILITADO (512 - 2) 
+          return flagExists == 0;//Si es = a 2 es por que esta DESHABILITADO (512 - 2) 
         }
 
         /// <summary>
@@ -682,11 +560,12 @@ namespace Fwk.Security.ActiveDirectory
         /// En un dominio basado en Windows Server 2003, LOCK_OUT y 
         /// PASSWORD_EXPIRED han sido reemplazados con un nuevo atributo denominado ms-DS-User-Account-Control-Computed
         /// </summary>
-        /// <param name="userAccountControl"></param>
+        /// <param name="de"></param>
         /// <returns></returns>
-        public static bool User_IsAccountLockout(int userAccountControl)
+        public static bool User_IsAccountLockout(DirectoryEntry de)
         {
-
+            //Convierte UserAccountControl a la operacion logica
+            int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(de, ADProperties.USERACCOUNTCONTROL));
             int flag = userAccountControl & Convert.ToInt32(ADAccountOptions.UF_LOCKOUT);
             //int flag2 = 528 & Convert.ToInt32(ADAccountOptions.UF_LOCKOUT); -- solo para test
             //if (flag == 0)
@@ -699,12 +578,15 @@ namespace Fwk.Security.ActiveDirectory
 
             return !(flag == 0); // No estoy seguro de utilizar la return (flag == 16);  sentencia q apareentenmete seria =  ()
         }
+
+     
+
         #endregion
 
 
         #region Groups
         /// <summary>
-        /// Obtiene un FwkIdentity que reprecenta un grupo 
+        /// Obtiene un ADGroup que reprecenta un grupo 
         /// </summary>
         /// <param name="pName"></param>
         /// <returns></returns>
@@ -840,20 +722,14 @@ namespace Fwk.Security.ActiveDirectory
         public static StringCollection Domain_GetList()
         {
             StringCollection domainList = new StringCollection();
-            SearchResultEntry entry;
             try
             {
-
-
                 DomainCollection domains = Forest.GetCurrentForest().Domains;
 
                 foreach (Domain domain in domains)
                 {
-
                     domainList.Add(domain.Name);
                 }
-
-
 
             }
             catch (Exception ex)
@@ -870,6 +746,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <returns></returns>
         public GlobalCatalogCollection GlobalCatalogs(string domainName)
         {
+            
             Forest f3 = Forest.GetCurrentForest();
 
             //return  f.GlobalCatalogs;
@@ -959,7 +836,7 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// 
+        /// Establece los valores basicos de error producido en el componente ADHelper
         /// </summary>
         /// <param name="te"></param>
         static void SetError(Fwk.Exceptions.TechnicalException te)
@@ -987,11 +864,11 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// 
+        /// Obtiene un string con todas las propiedades de un objeto de AD
         /// </summary>
         /// <param name="pDirectoryEntry"></param>
         /// <returns></returns>
-        static string EnlistValue(DirectoryEntry pDirectoryEntry)
+        static string GetStringProperties(DirectoryEntry pDirectoryEntry)
         {
             StringBuilder slist = new StringBuilder();
 
@@ -1000,6 +877,26 @@ namespace Fwk.Security.ActiveDirectory
                 slist.Append(s);
                 slist.Append(" = ");
                 slist.Append(GetProperty(pDirectoryEntry, s));
+                slist.AppendLine(Environment.NewLine);
+
+            }
+
+            return slist.ToString();
+        }
+        /// <summary>
+        /// Obtiene un string con todas las propiedades de un objeto de AD
+        /// </summary>
+        /// <param name="pDirectoryEntry"></param>
+        /// <returns></returns>
+        static string GetStringProperties(SearchResult pSearchResult)
+        {
+            StringBuilder slist = new StringBuilder();
+
+            foreach (string s in pSearchResult.Properties.PropertyNames.Cast<string>())
+            {
+                slist.Append(s);
+                slist.Append(" = ");
+                slist.Append(GetProperty(pSearchResult, s));
                 slist.AppendLine(Environment.NewLine);
 
             }
@@ -1032,7 +929,7 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// 
+        /// Obtiene una propiedad del objeto de active directory .-
         /// </summary>
         /// <param name="userDetail"></param>
         /// <param name="propertyName"></param>
@@ -1058,7 +955,34 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// Filters out the domain if one is passed in
+        /// Obtiene una propiedad del objeto de active directory .-
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public static String GetProperty(SearchResult result, String propertyName)
+        {
+            try
+            {
+                if (result.Properties.Contains(propertyName))
+                {
+                    return result.Properties[propertyName][0].ToString();
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ProcessActiveDirectoryException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Quita el dominio en la especificacion del nombre de usuario, si es 
+        /// que existe tal valor.-
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
@@ -1093,6 +1017,10 @@ namespace Fwk.Security.ActiveDirectory
 
 
     #region Enumerations
+
+    /// <summary>
+    /// 
+    /// </summary>
     public enum ADAccountOptions
     {
         /// <summary>
@@ -1116,6 +1044,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         UF_SERVER_TRUST_ACCOUNT = 0x2000,
         /// <summary>
+        /// Cuenta de usuario no expiro &h10000 = (dec = 65536)
         /// 
         /// </summary>
         UF_DONT_EXPIRE_PASSWD = 0x10000,
@@ -1151,6 +1080,9 @@ namespace Fwk.Security.ActiveDirectory
         /// 
         /// </summary>
         UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED = 0X0080,
+       
+
+
     }
 
     /// <summary>
@@ -1182,6 +1114,10 @@ namespace Fwk.Security.ActiveDirectory
         /// Cuenta de usuario bloqueada
         /// </summary>
         LOGIN_USER_ACCOUNT_LOCKOUT,
+
+        ERROR_PASSWORD_MUST_CHANGE = 1907,
+        ERROR_PASSWORD_EXPIRED = 1330
+
     }
 
     #endregion

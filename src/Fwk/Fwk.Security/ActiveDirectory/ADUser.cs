@@ -18,7 +18,13 @@ namespace Fwk.Security.ActiveDirectory
     public class ADUser
     {
         #region Properties 
+        private LoginResult _LoginResult;
 
+        public LoginResult LoginResult
+        {
+            get { return _LoginResult; }
+            set { _LoginResult = value; }
+        }
         private String _firstName;
 
         private String _middleName;
@@ -248,10 +254,99 @@ namespace Fwk.Security.ActiveDirectory
 
             }
 
-
+            //_LoginResult = ADHelper.User_Get_LoginResult(directoryUser);
 
         }
-      
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="resultUserUser"></param>
+        public ADUser(SearchResult resultUser)
+        {
+
+
+
+            String domainAddress;
+            String userPrincipalName = ADHelper.GetProperty(resultUser, ADProperties.USERPRINCIPALNAME);
+            String domainName;
+            _UserAccountControl = ADHelper.GetProperty(resultUser, ADProperties.USERACCOUNTCONTROL);
+            _firstName = ADHelper.GetProperty(resultUser, ADProperties.FIRSTNAME);
+
+            _middleName = ADHelper.GetProperty(resultUser, ADProperties.MIDDLENAME);
+
+            _lastName = ADHelper.GetProperty(resultUser, ADProperties.LASTNAME);
+
+            _loginName = ADHelper.GetProperty(resultUser, ADProperties.LOGINNAME);
+
+
+
+            if (!string.IsNullOrEmpty(userPrincipalName))
+            {
+                domainAddress = userPrincipalName.Split('@')[1];
+            }
+            else
+            {
+                domainAddress = String.Empty;
+            }
+
+            if (!string.IsNullOrEmpty(domainAddress))
+            {
+
+                domainName = domainAddress.Split('.').First();
+
+            }
+
+            else
+            {
+
+                domainName = String.Empty;
+
+            }
+
+            _loginNameWithDomain = String.Format(@"{0}\{1}", domainName, _loginName);
+
+            _streetAddress = ADHelper.GetProperty(resultUser, ADProperties.STREETADDRESS);
+
+            _city = ADHelper.GetProperty(resultUser, ADProperties.CITY);
+
+            _state = ADHelper.GetProperty(resultUser, ADProperties.STATE);
+
+            _postalCode = ADHelper.GetProperty(resultUser, ADProperties.POSTALCODE);
+
+            _country = ADHelper.GetProperty(resultUser, ADProperties.COUNTRY);
+
+            _company = ADHelper.GetProperty(resultUser, ADProperties.COMPANY);
+
+            _department = ADHelper.GetProperty(resultUser, ADProperties.DEPARTMENT);
+
+            _homePhone = ADHelper.GetProperty(resultUser, ADProperties.HOMEPHONE);
+
+            _extension = ADHelper.GetProperty(resultUser, ADProperties.EXTENSION);
+
+            _mobile = ADHelper.GetProperty(resultUser, ADProperties.MOBILE);
+
+            _fax = ADHelper.GetProperty(resultUser, ADProperties.FAX);
+
+            _emailAddress = ADHelper.GetProperty(resultUser, ADProperties.EMAILADDRESS);
+
+            _title = ADHelper.GetProperty(resultUser, ADProperties.TITLE);
+
+            _manager = ADHelper.GetProperty(resultUser, ADProperties.MANAGER);
+
+            if (!String.IsNullOrEmpty(_manager))
+            {
+
+                String[] managerArray = _manager.Split(',');
+
+                _managerName = managerArray[0].Replace("CN=", "");
+
+            }
+
+            //_LoginResult = ADHelper.User_Get_LoginResult(resultUser);
+
+        }
+
         /// <summary>
         /// 
         /// </summary>
