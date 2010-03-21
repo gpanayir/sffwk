@@ -57,7 +57,11 @@ namespace Fwk.DataBase.CustomControls
         /// <returns>DialogResult</returns>
         public DialogResult Show()
         {
-            return _ConnectionForm.ShowDialog();
+             _ConnectionForm.ShowDialog();
+             if (_ConnectionForm.ConnectionOK)
+                 return DialogResult.OK;
+             else
+                 return DialogResult.Cancel;
         }
 
     }
