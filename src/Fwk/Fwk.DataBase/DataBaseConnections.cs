@@ -227,12 +227,12 @@ namespace Fwk.DataBase
             {
                 
                 if (string.IsNullOrEmpty(_Name))
-                    _Name = string.Concat("Server: ", _InitialCatalog, "DB: ", _DataSource);
+                    _Name = string.Concat("Server: ", _DataSource, "DB: ", _InitialCatalog);
                 return _Name;
             }
             set {
                 if (string.IsNullOrEmpty(value))
-                    _Name = string.Concat("Server: ", _InitialCatalog, "DB: ", _DataSource);
+                    _Name = string.Concat("Server: ", _DataSource, "DB: ", _InitialCatalog);
                 else
                     _Name = value;
             

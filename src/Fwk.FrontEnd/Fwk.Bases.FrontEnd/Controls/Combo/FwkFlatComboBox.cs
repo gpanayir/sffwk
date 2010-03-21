@@ -344,8 +344,8 @@ namespace Fwk.Bases.FrontEnd.Controls
                     //de tipo booleano que haga de semáforo.
                     _AutoComplete = false;
                     this.SelectedIndex = Index;
-                    if (this.SelectedItem != null && this.SelectedItem.GetType().BaseType == (typeof(Entity)))
-                        _SelectedEntity = (IEntity)this.SelectedItem;
+                    if (this.SelectedItem != null && this.SelectedValue.GetType().BaseType == (typeof(Entity)))
+                        _SelectedEntity = (IEntity)this.SelectedValue;
                     _AutoComplete = true;
 
                     //Al ir autocompletando mantenemos seleccionado
@@ -361,8 +361,8 @@ namespace Fwk.Bases.FrontEnd.Controls
         protected override void OnSelectedIndexChanged(EventArgs e)
         {
 
-            if (this.SelectedItem != null && this.SelectedItem.GetType().BaseType == (typeof(Entity)))
-                _SelectedEntity = (IEntity)this.SelectedItem;
+            if (this.SelectedValue != null && this.SelectedValue.GetType().BaseType == (typeof(Entity)))
+                _SelectedEntity = (IEntity)this.SelectedValue;
 
             base.OnSelectedIndexChanged(e);
         }
