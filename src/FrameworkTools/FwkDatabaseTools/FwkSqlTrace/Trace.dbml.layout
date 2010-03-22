@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Trace">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 11.375" name="Trace">
   <DataContextMoniker Name="/TraceDataContext" />
   <nestedChildShapes>
-    <classShape Id="106d6f77-a7e1-4889-91d9-beaa5d3b51c9" absoluteBounds="1.125, 0.875, 2, 3.0683211263020831">
+    <classShape Id="2c40a09a-c9ff-4ae0-9bee-ce79c67ad0ac" absoluteBounds="2.375, 0.625, 2, 10.463951009114583">
       <DataClassMoniker Name="/TraceDataContext/Trace" />
       <nestedChildShapes>
-        <elementListCompartment Id="dfef5732-9f82-4676-b014-7fba13e20e2f" absoluteBounds="1.1400000000000001, 1.335, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c803f81f-8d78-4a60-994c-a8e5194a167a" absoluteBounds="2.3899999999999997, 1.085, 1.9700000000000002, 9.9039510091145821" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -26,10 +26,21 @@ namespace FwkSqlTrace.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MOVIEDO\\SQLEXPRESS;Initial Catalog=Gastos;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=KATY\\SQLEXPRESS;Initial Catalog=FWKTRACE;Integrated Security=True")]
         public string GastosConnectionString {
             get {
                 return ((string)(this["GastosConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MOVIEDO\\SQLEXPRESS;Initial Catalog=ProfileData;Integrated Security=Tr" +
+            "ue")]
+        public string ProfileDataConnectionString {
+            get {
+                return ((string)(this["ProfileDataConnectionString"]));
             }
         }
     }

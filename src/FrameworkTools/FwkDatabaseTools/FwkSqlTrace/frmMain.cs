@@ -14,7 +14,7 @@ namespace FwkSqlTrace
     {
 
         CnnString _CnnString = new CnnString();
-        List<TraceView> _TraceList;
+        List<Trace> _TraceList;
         public frmMain()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace FwkSqlTrace
         void Init()
         {
             TraceDAL.Connection = _CnnString;
-            _TraceList = TraceDAL.GetAll();
+            _TraceList = TraceDAL.GetAllFromDB();
             traceBindingSource.DataSource = _TraceList;
             btnRefresh.Enabled = true;
         }
@@ -43,7 +43,7 @@ namespace FwkSqlTrace
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            _TraceList = TraceDAL.GetAll();
+            _TraceList = TraceDAL.GetAllFromDB();
             traceBindingSource.DataSource = _TraceList;
             gridControl1.RefreshDataSource();
         }

@@ -22,7 +22,7 @@ namespace FwkSqlTrace
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Gastos")]
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="ProfileData")]
 	public partial class TraceDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,7 +36,7 @@ namespace FwkSqlTrace
     #endregion
 		
 		public TraceDataContext() : 
-				base(global::FwkSqlTrace.Properties.Settings.Default.GastosConnectionString, mappingSource)
+				base(global::FwkSqlTrace.Properties.Settings.Default.ProfileDataConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -74,7 +74,7 @@ namespace FwkSqlTrace
 		}
 	}
 	
-	[Table(Name="dbo.trace")]
+	[Table(Name="dbo.Trace")]
 	public partial class Trace : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -108,6 +108,96 @@ namespace FwkSqlTrace
 		
 		private System.Nullable<System.DateTime> _EndTime;
 		
+		private System.Data.Linq.Binary _BinaryData;
+		
+		private System.Nullable<int> _DatabaseID;
+		
+		private string _DatabaseName;
+		
+		private System.Nullable<long> _EventSequence;
+		
+		private string _HostName;
+		
+		private System.Nullable<int> _IsSystem;
+		
+		private System.Data.Linq.Binary _LoginSid;
+		
+		private string _NTDomainName;
+		
+		private string _ServerName;
+		
+		private System.Nullable<long> _RowCounts;
+		
+		private string _SessionLoginName;
+		
+		private System.Nullable<long> _TransactionID;
+		
+		private System.Nullable<long> _XactSequence;
+		
+		private System.Nullable<int> _EventSubClass;
+		
+		private System.Nullable<int> _IntegerData;
+		
+		private System.Nullable<int> _ObjectID;
+		
+		private System.Nullable<int> _Error;
+		
+		private System.Nullable<System.Guid> _GUID;
+		
+		private string _ObjectName;
+		
+		private string _DBUserName;
+		
+		private string _FileName;
+		
+		private string _MethodName;
+		
+		private string _OwnerName;
+		
+		private string _ProviderName;
+		
+		private string _RoleName;
+		
+		private string _TargetLoginName;
+		
+		private string _TargetUserName;
+		
+		private System.Nullable<int> _Severity;
+		
+		private System.Nullable<int> _State;
+		
+		private System.Nullable<long> _BigintData1;
+		
+		private System.Nullable<int> _IndexID;
+		
+		private System.Nullable<int> _Success;
+		
+		private string _LinkedServerName;
+		
+		private string _ParentName;
+		
+		private System.Nullable<long> _BigintData2;
+		
+		private System.Nullable<int> _IntegerData2;
+		
+		private System.Nullable<int> _Handle;
+		
+		private System.Nullable<int> _RequestID;
+		
+		private System.Nullable<int> _LineNumber;
+		
+		private System.Nullable<int> _NestLevel;
+		
+		private System.Nullable<int> _Offset;
+		
+		private System.Nullable<int> _ObjectType;
+		
+		private System.Data.Linq.Binary _SqlHandle;
+		
+		private System.Nullable<int> _SourceDatabaseID;
+		
+		private string _EventClassName;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -140,6 +230,96 @@ namespace FwkSqlTrace
     partial void OnStartTimeChanged();
     partial void OnEndTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnEndTimeChanged();
+    partial void OnBinaryDataChanging(System.Data.Linq.Binary value);
+    partial void OnBinaryDataChanged();
+    partial void OnDatabaseIDChanging(System.Nullable<int> value);
+    partial void OnDatabaseIDChanged();
+    partial void OnDatabaseNameChanging(string value);
+    partial void OnDatabaseNameChanged();
+    partial void OnEventSequenceChanging(System.Nullable<long> value);
+    partial void OnEventSequenceChanged();
+    partial void OnHostNameChanging(string value);
+    partial void OnHostNameChanged();
+    partial void OnIsSystemChanging(System.Nullable<int> value);
+    partial void OnIsSystemChanged();
+    partial void OnLoginSidChanging(System.Data.Linq.Binary value);
+    partial void OnLoginSidChanged();
+    partial void OnNTDomainNameChanging(string value);
+    partial void OnNTDomainNameChanged();
+    partial void OnServerNameChanging(string value);
+    partial void OnServerNameChanged();
+    partial void OnRowCountsChanging(System.Nullable<long> value);
+    partial void OnRowCountsChanged();
+    partial void OnSessionLoginNameChanging(string value);
+    partial void OnSessionLoginNameChanged();
+    partial void OnTransactionIDChanging(System.Nullable<long> value);
+    partial void OnTransactionIDChanged();
+    partial void OnXactSequenceChanging(System.Nullable<long> value);
+    partial void OnXactSequenceChanged();
+    partial void OnEventSubClassChanging(System.Nullable<int> value);
+    partial void OnEventSubClassChanged();
+    partial void OnIntegerDataChanging(System.Nullable<int> value);
+    partial void OnIntegerDataChanged();
+    partial void OnObjectIDChanging(System.Nullable<int> value);
+    partial void OnObjectIDChanged();
+    partial void OnErrorChanging(System.Nullable<int> value);
+    partial void OnErrorChanged();
+    partial void OnGUIDChanging(System.Nullable<System.Guid> value);
+    partial void OnGUIDChanged();
+    partial void OnObjectNameChanging(string value);
+    partial void OnObjectNameChanged();
+    partial void OnDBUserNameChanging(string value);
+    partial void OnDBUserNameChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
+    partial void OnMethodNameChanging(string value);
+    partial void OnMethodNameChanged();
+    partial void OnOwnerNameChanging(string value);
+    partial void OnOwnerNameChanged();
+    partial void OnProviderNameChanging(string value);
+    partial void OnProviderNameChanged();
+    partial void OnRoleNameChanging(string value);
+    partial void OnRoleNameChanged();
+    partial void OnTargetLoginNameChanging(string value);
+    partial void OnTargetLoginNameChanged();
+    partial void OnTargetUserNameChanging(string value);
+    partial void OnTargetUserNameChanged();
+    partial void OnSeverityChanging(System.Nullable<int> value);
+    partial void OnSeverityChanged();
+    partial void OnStateChanging(System.Nullable<int> value);
+    partial void OnStateChanged();
+    partial void OnBigintData1Changing(System.Nullable<long> value);
+    partial void OnBigintData1Changed();
+    partial void OnIndexIDChanging(System.Nullable<int> value);
+    partial void OnIndexIDChanged();
+    partial void OnSuccessChanging(System.Nullable<int> value);
+    partial void OnSuccessChanged();
+    partial void OnLinkedServerNameChanging(string value);
+    partial void OnLinkedServerNameChanged();
+    partial void OnParentNameChanging(string value);
+    partial void OnParentNameChanged();
+    partial void OnBigintData2Changing(System.Nullable<long> value);
+    partial void OnBigintData2Changed();
+    partial void OnIntegerData2Changing(System.Nullable<int> value);
+    partial void OnIntegerData2Changed();
+    partial void OnHandleChanging(System.Nullable<int> value);
+    partial void OnHandleChanged();
+    partial void OnRequestIDChanging(System.Nullable<int> value);
+    partial void OnRequestIDChanged();
+    partial void OnLineNumberChanging(System.Nullable<int> value);
+    partial void OnLineNumberChanged();
+    partial void OnNestLevelChanging(System.Nullable<int> value);
+    partial void OnNestLevelChanged();
+    partial void OnOffsetChanging(System.Nullable<int> value);
+    partial void OnOffsetChanged();
+    partial void OnObjectTypeChanging(System.Nullable<int> value);
+    partial void OnObjectTypeChanged();
+    partial void OnSqlHandleChanging(System.Data.Linq.Binary value);
+    partial void OnSqlHandleChanged();
+    partial void OnSourceDatabaseIDChanging(System.Nullable<int> value);
+    partial void OnSourceDatabaseIDChanged();
+    partial void OnEventClassNameChanging(string value);
+    partial void OnEventClassNameChanged();
     #endregion
 		
 		public Trace()
@@ -423,6 +603,906 @@ namespace FwkSqlTrace
 					this._EndTime = value;
 					this.SendPropertyChanged("EndTime");
 					this.OnEndTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BinaryData", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary BinaryData
+		{
+			get
+			{
+				return this._BinaryData;
+			}
+			set
+			{
+				if ((this._BinaryData != value))
+				{
+					this.OnBinaryDataChanging(value);
+					this.SendPropertyChanging();
+					this._BinaryData = value;
+					this.SendPropertyChanged("BinaryData");
+					this.OnBinaryDataChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DatabaseID", DbType="Int")]
+		public System.Nullable<int> DatabaseID
+		{
+			get
+			{
+				return this._DatabaseID;
+			}
+			set
+			{
+				if ((this._DatabaseID != value))
+				{
+					this.OnDatabaseIDChanging(value);
+					this.SendPropertyChanging();
+					this._DatabaseID = value;
+					this.SendPropertyChanged("DatabaseID");
+					this.OnDatabaseIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DatabaseName", DbType="NVarChar(128)")]
+		public string DatabaseName
+		{
+			get
+			{
+				return this._DatabaseName;
+			}
+			set
+			{
+				if ((this._DatabaseName != value))
+				{
+					this.OnDatabaseNameChanging(value);
+					this.SendPropertyChanging();
+					this._DatabaseName = value;
+					this.SendPropertyChanged("DatabaseName");
+					this.OnDatabaseNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EventSequence", DbType="BigInt")]
+		public System.Nullable<long> EventSequence
+		{
+			get
+			{
+				return this._EventSequence;
+			}
+			set
+			{
+				if ((this._EventSequence != value))
+				{
+					this.OnEventSequenceChanging(value);
+					this.SendPropertyChanging();
+					this._EventSequence = value;
+					this.SendPropertyChanged("EventSequence");
+					this.OnEventSequenceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HostName", DbType="NVarChar(128)")]
+		public string HostName
+		{
+			get
+			{
+				return this._HostName;
+			}
+			set
+			{
+				if ((this._HostName != value))
+				{
+					this.OnHostNameChanging(value);
+					this.SendPropertyChanging();
+					this._HostName = value;
+					this.SendPropertyChanged("HostName");
+					this.OnHostNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsSystem", DbType="Int")]
+		public System.Nullable<int> IsSystem
+		{
+			get
+			{
+				return this._IsSystem;
+			}
+			set
+			{
+				if ((this._IsSystem != value))
+				{
+					this.OnIsSystemChanging(value);
+					this.SendPropertyChanging();
+					this._IsSystem = value;
+					this.SendPropertyChanged("IsSystem");
+					this.OnIsSystemChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoginSid", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary LoginSid
+		{
+			get
+			{
+				return this._LoginSid;
+			}
+			set
+			{
+				if ((this._LoginSid != value))
+				{
+					this.OnLoginSidChanging(value);
+					this.SendPropertyChanging();
+					this._LoginSid = value;
+					this.SendPropertyChanged("LoginSid");
+					this.OnLoginSidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_NTDomainName", DbType="NVarChar(128)")]
+		public string NTDomainName
+		{
+			get
+			{
+				return this._NTDomainName;
+			}
+			set
+			{
+				if ((this._NTDomainName != value))
+				{
+					this.OnNTDomainNameChanging(value);
+					this.SendPropertyChanging();
+					this._NTDomainName = value;
+					this.SendPropertyChanged("NTDomainName");
+					this.OnNTDomainNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ServerName", DbType="NVarChar(128)")]
+		public string ServerName
+		{
+			get
+			{
+				return this._ServerName;
+			}
+			set
+			{
+				if ((this._ServerName != value))
+				{
+					this.OnServerNameChanging(value);
+					this.SendPropertyChanging();
+					this._ServerName = value;
+					this.SendPropertyChanged("ServerName");
+					this.OnServerNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_RowCounts", DbType="BigInt")]
+		public System.Nullable<long> RowCounts
+		{
+			get
+			{
+				return this._RowCounts;
+			}
+			set
+			{
+				if ((this._RowCounts != value))
+				{
+					this.OnRowCountsChanging(value);
+					this.SendPropertyChanging();
+					this._RowCounts = value;
+					this.SendPropertyChanged("RowCounts");
+					this.OnRowCountsChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SessionLoginName", DbType="NVarChar(128)")]
+		public string SessionLoginName
+		{
+			get
+			{
+				return this._SessionLoginName;
+			}
+			set
+			{
+				if ((this._SessionLoginName != value))
+				{
+					this.OnSessionLoginNameChanging(value);
+					this.SendPropertyChanging();
+					this._SessionLoginName = value;
+					this.SendPropertyChanged("SessionLoginName");
+					this.OnSessionLoginNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TransactionID", DbType="BigInt")]
+		public System.Nullable<long> TransactionID
+		{
+			get
+			{
+				return this._TransactionID;
+			}
+			set
+			{
+				if ((this._TransactionID != value))
+				{
+					this.OnTransactionIDChanging(value);
+					this.SendPropertyChanging();
+					this._TransactionID = value;
+					this.SendPropertyChanged("TransactionID");
+					this.OnTransactionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_XactSequence", DbType="BigInt")]
+		public System.Nullable<long> XactSequence
+		{
+			get
+			{
+				return this._XactSequence;
+			}
+			set
+			{
+				if ((this._XactSequence != value))
+				{
+					this.OnXactSequenceChanging(value);
+					this.SendPropertyChanging();
+					this._XactSequence = value;
+					this.SendPropertyChanged("XactSequence");
+					this.OnXactSequenceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EventSubClass", DbType="Int")]
+		public System.Nullable<int> EventSubClass
+		{
+			get
+			{
+				return this._EventSubClass;
+			}
+			set
+			{
+				if ((this._EventSubClass != value))
+				{
+					this.OnEventSubClassChanging(value);
+					this.SendPropertyChanging();
+					this._EventSubClass = value;
+					this.SendPropertyChanged("EventSubClass");
+					this.OnEventSubClassChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IntegerData", DbType="Int")]
+		public System.Nullable<int> IntegerData
+		{
+			get
+			{
+				return this._IntegerData;
+			}
+			set
+			{
+				if ((this._IntegerData != value))
+				{
+					this.OnIntegerDataChanging(value);
+					this.SendPropertyChanging();
+					this._IntegerData = value;
+					this.SendPropertyChanged("IntegerData");
+					this.OnIntegerDataChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ObjectID", DbType="Int")]
+		public System.Nullable<int> ObjectID
+		{
+			get
+			{
+				return this._ObjectID;
+			}
+			set
+			{
+				if ((this._ObjectID != value))
+				{
+					this.OnObjectIDChanging(value);
+					this.SendPropertyChanging();
+					this._ObjectID = value;
+					this.SendPropertyChanged("ObjectID");
+					this.OnObjectIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Error", DbType="Int")]
+		public System.Nullable<int> Error
+		{
+			get
+			{
+				return this._Error;
+			}
+			set
+			{
+				if ((this._Error != value))
+				{
+					this.OnErrorChanging(value);
+					this.SendPropertyChanging();
+					this._Error = value;
+					this.SendPropertyChanged("Error");
+					this.OnErrorChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_GUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> GUID
+		{
+			get
+			{
+				return this._GUID;
+			}
+			set
+			{
+				if ((this._GUID != value))
+				{
+					this.OnGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._GUID = value;
+					this.SendPropertyChanged("GUID");
+					this.OnGUIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ObjectName", DbType="NVarChar(128)")]
+		public string ObjectName
+		{
+			get
+			{
+				return this._ObjectName;
+			}
+			set
+			{
+				if ((this._ObjectName != value))
+				{
+					this.OnObjectNameChanging(value);
+					this.SendPropertyChanging();
+					this._ObjectName = value;
+					this.SendPropertyChanged("ObjectName");
+					this.OnObjectNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DBUserName", DbType="NVarChar(128)")]
+		public string DBUserName
+		{
+			get
+			{
+				return this._DBUserName;
+			}
+			set
+			{
+				if ((this._DBUserName != value))
+				{
+					this.OnDBUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._DBUserName = value;
+					this.SendPropertyChanged("DBUserName");
+					this.OnDBUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="NVarChar(128)")]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MethodName", DbType="NVarChar(128)")]
+		public string MethodName
+		{
+			get
+			{
+				return this._MethodName;
+			}
+			set
+			{
+				if ((this._MethodName != value))
+				{
+					this.OnMethodNameChanging(value);
+					this.SendPropertyChanging();
+					this._MethodName = value;
+					this.SendPropertyChanged("MethodName");
+					this.OnMethodNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_OwnerName", DbType="NVarChar(128)")]
+		public string OwnerName
+		{
+			get
+			{
+				return this._OwnerName;
+			}
+			set
+			{
+				if ((this._OwnerName != value))
+				{
+					this.OnOwnerNameChanging(value);
+					this.SendPropertyChanging();
+					this._OwnerName = value;
+					this.SendPropertyChanged("OwnerName");
+					this.OnOwnerNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProviderName", DbType="NVarChar(128)")]
+		public string ProviderName
+		{
+			get
+			{
+				return this._ProviderName;
+			}
+			set
+			{
+				if ((this._ProviderName != value))
+				{
+					this.OnProviderNameChanging(value);
+					this.SendPropertyChanging();
+					this._ProviderName = value;
+					this.SendPropertyChanged("ProviderName");
+					this.OnProviderNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_RoleName", DbType="NVarChar(128)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this.OnRoleNameChanging(value);
+					this.SendPropertyChanging();
+					this._RoleName = value;
+					this.SendPropertyChanged("RoleName");
+					this.OnRoleNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TargetLoginName", DbType="NVarChar(128)")]
+		public string TargetLoginName
+		{
+			get
+			{
+				return this._TargetLoginName;
+			}
+			set
+			{
+				if ((this._TargetLoginName != value))
+				{
+					this.OnTargetLoginNameChanging(value);
+					this.SendPropertyChanging();
+					this._TargetLoginName = value;
+					this.SendPropertyChanged("TargetLoginName");
+					this.OnTargetLoginNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TargetUserName", DbType="NVarChar(128)")]
+		public string TargetUserName
+		{
+			get
+			{
+				return this._TargetUserName;
+			}
+			set
+			{
+				if ((this._TargetUserName != value))
+				{
+					this.OnTargetUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._TargetUserName = value;
+					this.SendPropertyChanged("TargetUserName");
+					this.OnTargetUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Severity", DbType="Int")]
+		public System.Nullable<int> Severity
+		{
+			get
+			{
+				return this._Severity;
+			}
+			set
+			{
+				if ((this._Severity != value))
+				{
+					this.OnSeverityChanging(value);
+					this.SendPropertyChanging();
+					this._Severity = value;
+					this.SendPropertyChanged("Severity");
+					this.OnSeverityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_State", DbType="Int")]
+		public System.Nullable<int> State
+		{
+			get
+			{
+				return this._State;
+			}
+			set
+			{
+				if ((this._State != value))
+				{
+					this.OnStateChanging(value);
+					this.SendPropertyChanging();
+					this._State = value;
+					this.SendPropertyChanged("State");
+					this.OnStateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BigintData1", DbType="BigInt")]
+		public System.Nullable<long> BigintData1
+		{
+			get
+			{
+				return this._BigintData1;
+			}
+			set
+			{
+				if ((this._BigintData1 != value))
+				{
+					this.OnBigintData1Changing(value);
+					this.SendPropertyChanging();
+					this._BigintData1 = value;
+					this.SendPropertyChanged("BigintData1");
+					this.OnBigintData1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_IndexID", DbType="Int")]
+		public System.Nullable<int> IndexID
+		{
+			get
+			{
+				return this._IndexID;
+			}
+			set
+			{
+				if ((this._IndexID != value))
+				{
+					this.OnIndexIDChanging(value);
+					this.SendPropertyChanging();
+					this._IndexID = value;
+					this.SendPropertyChanged("IndexID");
+					this.OnIndexIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Success", DbType="Int")]
+		public System.Nullable<int> Success
+		{
+			get
+			{
+				return this._Success;
+			}
+			set
+			{
+				if ((this._Success != value))
+				{
+					this.OnSuccessChanging(value);
+					this.SendPropertyChanging();
+					this._Success = value;
+					this.SendPropertyChanged("Success");
+					this.OnSuccessChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LinkedServerName", DbType="NVarChar(128)")]
+		public string LinkedServerName
+		{
+			get
+			{
+				return this._LinkedServerName;
+			}
+			set
+			{
+				if ((this._LinkedServerName != value))
+				{
+					this.OnLinkedServerNameChanging(value);
+					this.SendPropertyChanging();
+					this._LinkedServerName = value;
+					this.SendPropertyChanged("LinkedServerName");
+					this.OnLinkedServerNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ParentName", DbType="NVarChar(128)")]
+		public string ParentName
+		{
+			get
+			{
+				return this._ParentName;
+			}
+			set
+			{
+				if ((this._ParentName != value))
+				{
+					this.OnParentNameChanging(value);
+					this.SendPropertyChanging();
+					this._ParentName = value;
+					this.SendPropertyChanged("ParentName");
+					this.OnParentNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BigintData2", DbType="BigInt")]
+		public System.Nullable<long> BigintData2
+		{
+			get
+			{
+				return this._BigintData2;
+			}
+			set
+			{
+				if ((this._BigintData2 != value))
+				{
+					this.OnBigintData2Changing(value);
+					this.SendPropertyChanging();
+					this._BigintData2 = value;
+					this.SendPropertyChanged("BigintData2");
+					this.OnBigintData2Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_IntegerData2", DbType="Int")]
+		public System.Nullable<int> IntegerData2
+		{
+			get
+			{
+				return this._IntegerData2;
+			}
+			set
+			{
+				if ((this._IntegerData2 != value))
+				{
+					this.OnIntegerData2Changing(value);
+					this.SendPropertyChanging();
+					this._IntegerData2 = value;
+					this.SendPropertyChanged("IntegerData2");
+					this.OnIntegerData2Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_Handle", DbType="Int")]
+		public System.Nullable<int> Handle
+		{
+			get
+			{
+				return this._Handle;
+			}
+			set
+			{
+				if ((this._Handle != value))
+				{
+					this.OnHandleChanging(value);
+					this.SendPropertyChanging();
+					this._Handle = value;
+					this.SendPropertyChanged("Handle");
+					this.OnHandleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_RequestID", DbType="Int")]
+		public System.Nullable<int> RequestID
+		{
+			get
+			{
+				return this._RequestID;
+			}
+			set
+			{
+				if ((this._RequestID != value))
+				{
+					this.OnRequestIDChanging(value);
+					this.SendPropertyChanging();
+					this._RequestID = value;
+					this.SendPropertyChanged("RequestID");
+					this.OnRequestIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LineNumber", DbType="Int")]
+		public System.Nullable<int> LineNumber
+		{
+			get
+			{
+				return this._LineNumber;
+			}
+			set
+			{
+				if ((this._LineNumber != value))
+				{
+					this.OnLineNumberChanging(value);
+					this.SendPropertyChanging();
+					this._LineNumber = value;
+					this.SendPropertyChanged("LineNumber");
+					this.OnLineNumberChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_NestLevel", DbType="Int")]
+		public System.Nullable<int> NestLevel
+		{
+			get
+			{
+				return this._NestLevel;
+			}
+			set
+			{
+				if ((this._NestLevel != value))
+				{
+					this.OnNestLevelChanging(value);
+					this.SendPropertyChanging();
+					this._NestLevel = value;
+					this.SendPropertyChanged("NestLevel");
+					this.OnNestLevelChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Offset", DbType="Int")]
+		public System.Nullable<int> Offset
+		{
+			get
+			{
+				return this._Offset;
+			}
+			set
+			{
+				if ((this._Offset != value))
+				{
+					this.OnOffsetChanging(value);
+					this.SendPropertyChanging();
+					this._Offset = value;
+					this.SendPropertyChanged("Offset");
+					this.OnOffsetChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ObjectType", DbType="Int")]
+		public System.Nullable<int> ObjectType
+		{
+			get
+			{
+				return this._ObjectType;
+			}
+			set
+			{
+				if ((this._ObjectType != value))
+				{
+					this.OnObjectTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ObjectType = value;
+					this.SendPropertyChanged("ObjectType");
+					this.OnObjectTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SqlHandle", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary SqlHandle
+		{
+			get
+			{
+				return this._SqlHandle;
+			}
+			set
+			{
+				if ((this._SqlHandle != value))
+				{
+					this.OnSqlHandleChanging(value);
+					this.SendPropertyChanging();
+					this._SqlHandle = value;
+					this.SendPropertyChanged("SqlHandle");
+					this.OnSqlHandleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SourceDatabaseID", DbType="Int")]
+		public System.Nullable<int> SourceDatabaseID
+		{
+			get
+			{
+				return this._SourceDatabaseID;
+			}
+			set
+			{
+				if ((this._SourceDatabaseID != value))
+				{
+					this.OnSourceDatabaseIDChanging(value);
+					this.SendPropertyChanging();
+					this._SourceDatabaseID = value;
+					this.SendPropertyChanged("SourceDatabaseID");
+					this.OnSourceDatabaseIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EventClassName", DbType="NVarChar(128)")]
+		public string EventClassName
+		{
+			get
+			{
+				return this._EventClassName;
+			}
+			set
+			{
+				if ((this._EventClassName != value))
+				{
+					this.OnEventClassNameChanging(value);
+					this.SendPropertyChanging();
+					this._EventClassName = value;
+					this.SendPropertyChanged("EventClassName");
+					this.OnEventClassNameChanged();
 				}
 			}
 		}

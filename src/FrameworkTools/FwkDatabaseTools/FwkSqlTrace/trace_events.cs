@@ -7,8 +7,26 @@ using Fwk.Bases;
 
 namespace FwkSqlTrace
 {
-    internal class trace_events
+    internal class sys_databases
     {
+
+        string name;
+
+        public int Name
+        {
+            get { return Name; }
+            set { Name = value; }
+        }
+        int database_id;
+
+        public int Database_id
+        {
+            get { return database_id; }
+            set { database_id = value; }
+        }
+    }
+    internal class trace_events
+    { 
 
         int trace_event_id;
 
