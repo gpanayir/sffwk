@@ -88,7 +88,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="Gastos.rar" />
+    <None Include="fwktrace.rar" />
     <None Include="Properties\DataSources\Trace.datasource" />
     <None Include="Trace.dbml.layout">
       <DependentUpon>Trace.dbml</DependentUpon>

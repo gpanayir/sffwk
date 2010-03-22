@@ -23,7 +23,8 @@ namespace FwkSqlTrace
         void Init()
         {
             TraceDAL.Connection = _CnnString;
-            TraceDAL.GetAll();
+            _TraceList = TraceDAL.GetAll();
+            traceBindingSource.DataSource = _TraceList;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -35,6 +36,7 @@ namespace FwkSqlTrace
                     _CnnString = connictionFormComponent1.CnnString.Clone<CnnString>();
                 }
             }
+            Init();
         }
     }
 }

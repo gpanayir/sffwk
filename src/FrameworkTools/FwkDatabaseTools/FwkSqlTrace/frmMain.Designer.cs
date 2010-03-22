@@ -56,11 +56,14 @@
             // 
             // gridControl1
             // 
+            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl1.DataSource = this.traceBindingSource;
             this.gridControl1.Location = new System.Drawing.Point(12, 38);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(841, 423);
+            this.gridControl1.Size = new System.Drawing.Size(872, 433);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -88,12 +91,17 @@
             this.colEndTime,
             this.colBinaryData});
             this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Duration", this.colDuration, "")});
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
             // 
             // colRowNumber
             // 
             this.colRowNumber.FieldName = "RowNumber";
             this.colRowNumber.Name = "colRowNumber";
+            this.colRowNumber.OptionsColumn.AllowEdit = false;
             this.colRowNumber.Visible = true;
             this.colRowNumber.VisibleIndex = 0;
             // 
@@ -101,6 +109,8 @@
             // 
             this.colEventClass.FieldName = "EventClass";
             this.colEventClass.Name = "colEventClass";
+            this.colEventClass.OptionsColumn.AllowEdit = false;
+            this.colEventClass.OptionsColumn.ReadOnly = true;
             this.colEventClass.Visible = true;
             this.colEventClass.VisibleIndex = 1;
             // 
@@ -108,6 +118,8 @@
             // 
             this.colTextData.FieldName = "TextData";
             this.colTextData.Name = "colTextData";
+            this.colTextData.OptionsColumn.AllowEdit = false;
+            this.colTextData.OptionsColumn.ReadOnly = true;
             this.colTextData.Visible = true;
             this.colTextData.VisibleIndex = 2;
             // 
@@ -115,6 +127,8 @@
             // 
             this.colApplicationName.FieldName = "ApplicationName";
             this.colApplicationName.Name = "colApplicationName";
+            this.colApplicationName.OptionsColumn.AllowEdit = false;
+            this.colApplicationName.OptionsColumn.ReadOnly = true;
             this.colApplicationName.Visible = true;
             this.colApplicationName.VisibleIndex = 3;
             // 
@@ -122,6 +136,8 @@
             // 
             this.colNTUserName.FieldName = "NTUserName";
             this.colNTUserName.Name = "colNTUserName";
+            this.colNTUserName.OptionsColumn.AllowEdit = false;
+            this.colNTUserName.OptionsColumn.ReadOnly = true;
             this.colNTUserName.Visible = true;
             this.colNTUserName.VisibleIndex = 4;
             // 
@@ -129,6 +145,8 @@
             // 
             this.colLoginName.FieldName = "LoginName";
             this.colLoginName.Name = "colLoginName";
+            this.colLoginName.OptionsColumn.AllowEdit = false;
+            this.colLoginName.OptionsColumn.ReadOnly = true;
             this.colLoginName.Visible = true;
             this.colLoginName.VisibleIndex = 5;
             // 
@@ -136,6 +154,8 @@
             // 
             this.colCPU.FieldName = "CPU";
             this.colCPU.Name = "colCPU";
+            this.colCPU.OptionsColumn.AllowEdit = false;
+            this.colCPU.OptionsColumn.ReadOnly = true;
             this.colCPU.Visible = true;
             this.colCPU.VisibleIndex = 6;
             // 
@@ -143,6 +163,8 @@
             // 
             this.colReads.FieldName = "Reads";
             this.colReads.Name = "colReads";
+            this.colReads.OptionsColumn.AllowEdit = false;
+            this.colReads.OptionsColumn.ReadOnly = true;
             this.colReads.Visible = true;
             this.colReads.VisibleIndex = 7;
             // 
@@ -150,6 +172,8 @@
             // 
             this.colWrites.FieldName = "Writes";
             this.colWrites.Name = "colWrites";
+            this.colWrites.OptionsColumn.AllowEdit = false;
+            this.colWrites.OptionsColumn.ReadOnly = true;
             this.colWrites.Visible = true;
             this.colWrites.VisibleIndex = 8;
             // 
@@ -157,6 +181,8 @@
             // 
             this.colDuration.FieldName = "Duration";
             this.colDuration.Name = "colDuration";
+            this.colDuration.OptionsColumn.AllowEdit = false;
+            this.colDuration.OptionsColumn.ReadOnly = true;
             this.colDuration.Visible = true;
             this.colDuration.VisibleIndex = 9;
             // 
@@ -164,6 +190,8 @@
             // 
             this.colClientProcessID.FieldName = "ClientProcessID";
             this.colClientProcessID.Name = "colClientProcessID";
+            this.colClientProcessID.OptionsColumn.AllowEdit = false;
+            this.colClientProcessID.OptionsColumn.ReadOnly = true;
             this.colClientProcessID.Visible = true;
             this.colClientProcessID.VisibleIndex = 10;
             // 
@@ -171,6 +199,8 @@
             // 
             this.colSPID.FieldName = "SPID";
             this.colSPID.Name = "colSPID";
+            this.colSPID.OptionsColumn.AllowEdit = false;
+            this.colSPID.OptionsColumn.ReadOnly = true;
             this.colSPID.Visible = true;
             this.colSPID.VisibleIndex = 11;
             // 
@@ -178,6 +208,8 @@
             // 
             this.colStartTime.FieldName = "StartTime";
             this.colStartTime.Name = "colStartTime";
+            this.colStartTime.OptionsColumn.AllowEdit = false;
+            this.colStartTime.OptionsColumn.ReadOnly = true;
             this.colStartTime.Visible = true;
             this.colStartTime.VisibleIndex = 12;
             // 
@@ -185,6 +217,8 @@
             // 
             this.colEndTime.FieldName = "EndTime";
             this.colEndTime.Name = "colEndTime";
+            this.colEndTime.OptionsColumn.AllowEdit = false;
+            this.colEndTime.OptionsColumn.ReadOnly = true;
             this.colEndTime.Visible = true;
             this.colEndTime.VisibleIndex = 13;
             // 
@@ -192,8 +226,8 @@
             // 
             this.colBinaryData.FieldName = "BinaryData";
             this.colBinaryData.Name = "colBinaryData";
-            this.colBinaryData.Visible = true;
-            this.colBinaryData.VisibleIndex = 14;
+            this.colBinaryData.OptionsColumn.AllowEdit = false;
+            this.colBinaryData.OptionsColumn.ReadOnly = true;
             // 
             // btnConnect
             // 
