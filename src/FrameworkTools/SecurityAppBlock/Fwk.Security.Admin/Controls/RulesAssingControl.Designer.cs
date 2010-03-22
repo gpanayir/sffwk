@@ -183,20 +183,24 @@
             this.grdUserExcluded.DataSource = this.userExcludedBindingSource;
             this.grdUserExcluded.Location = new System.Drawing.Point(422, 40);
             this.grdUserExcluded.Name = "grdUserExcluded";
+            this.grdUserExcluded.ReadOnly = true;
             this.grdUserExcluded.Size = new System.Drawing.Size(253, 377);
             this.grdUserExcluded.TabIndex = 14;
+            
             // 
             // userNameDataGridViewTextBoxColumn1
             // 
             this.userNameDataGridViewTextBoxColumn1.DataPropertyName = "UserName";
             this.userNameDataGridViewTextBoxColumn1.HeaderText = "UserName";
             this.userNameDataGridViewTextBoxColumn1.Name = "userNameDataGridViewTextBoxColumn1";
+            this.userNameDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // appNameDataGridViewTextBoxColumn1
             // 
             this.appNameDataGridViewTextBoxColumn1.DataPropertyName = "AppName";
             this.appNameDataGridViewTextBoxColumn1.HeaderText = "AppName";
             this.appNameDataGridViewTextBoxColumn1.Name = "appNameDataGridViewTextBoxColumn1";
+            this.appNameDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // grdAllUser
             // 
@@ -210,6 +214,7 @@
             this.grdAllUser.DataSource = this.userBindingSource;
             this.grdAllUser.Location = new System.Drawing.Point(15, 40);
             this.grdAllUser.Name = "grdAllUser";
+            this.grdAllUser.ReadOnly = true;
             this.grdAllUser.Size = new System.Drawing.Size(292, 381);
             this.grdAllUser.TabIndex = 13;
             this.grdAllUser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdAllUser_CellClick);
@@ -219,12 +224,14 @@
             this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
             this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
             this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // appNameDataGridViewTextBoxColumn
             // 
             this.appNameDataGridViewTextBoxColumn.DataPropertyName = "AppName";
             this.appNameDataGridViewTextBoxColumn.HeaderText = "AppName";
             this.appNameDataGridViewTextBoxColumn.Name = "appNameDataGridViewTextBoxColumn";
+            this.appNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tabPage2
             // 
@@ -280,6 +287,7 @@
             this.grdAssignedRoles.DataSource = this.rolAssignedBindingSource;
             this.grdAssignedRoles.Location = new System.Drawing.Point(377, 40);
             this.grdAssignedRoles.Name = "grdAssignedRoles";
+            this.grdAssignedRoles.ReadOnly = true;
             this.grdAssignedRoles.Size = new System.Drawing.Size(299, 368);
             this.grdAssignedRoles.TabIndex = 11;
             this.grdAssignedRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAssignedRoles_MouseDown);
@@ -289,6 +297,7 @@
             this.rolNameDataGridViewTextBoxColumn1.DataPropertyName = "RolName";
             this.rolNameDataGridViewTextBoxColumn1.HeaderText = "RolName";
             this.rolNameDataGridViewTextBoxColumn1.Name = "rolNameDataGridViewTextBoxColumn1";
+            this.rolNameDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // contextMenuStrip1
             // 
@@ -315,6 +324,8 @@
             this.grdAllRoles.DataSource = this.rolBindingSource;
             this.grdAllRoles.Location = new System.Drawing.Point(6, 40);
             this.grdAllRoles.Name = "grdAllRoles";
+            this.grdAllRoles.ReadOnly = true;
+            this.grdAllRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdAllRoles.Size = new System.Drawing.Size(260, 368);
             this.grdAllRoles.TabIndex = 10;
             this.grdAllRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAllRoles_MouseDown);
@@ -325,6 +336,7 @@
             this.rolNameDataGridViewTextBoxColumn.DataPropertyName = "RolName";
             this.rolNameDataGridViewTextBoxColumn.HeaderText = "RolName";
             this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
+            this.rolNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tabControl2
             // 

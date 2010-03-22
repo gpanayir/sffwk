@@ -205,6 +205,10 @@ namespace Fwk.Security.Admin.Controls
 
         }
 
+        private void grdUserExcluded_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
        
     }
 }

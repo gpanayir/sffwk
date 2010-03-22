@@ -35,13 +35,14 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdRulesByCategory = new DevExpress.XtraGrid.GridControl();
-            this.aspnetRulesInCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fwkRulesInCategoryListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fwkCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grdViewRulesByCategory = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.aspnetRulesInCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.colName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.fwkCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -51,20 +52,19 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnFindRoles = new System.Windows.Forms.Button();
-            this.fwkRulesInCategoryListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRulesByCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aspnetRulesInCategoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkRulesInCategoryListBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRulesByCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aspnetRulesInCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkRulesInCategoryListBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // rolBindingSource
@@ -103,7 +103,7 @@
             this.grdRulesByCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.grdRulesByCategory.DataSource = this.fwkRulesInCategoryListBindingSource;
-            this.grdRulesByCategory.Location = new System.Drawing.Point(313, 60);
+            this.grdRulesByCategory.Location = new System.Drawing.Point(311, 60);
             this.grdRulesByCategory.MainView = this.grdViewRulesByCategory;
             this.grdRulesByCategory.Name = "grdRulesByCategory";
             this.grdRulesByCategory.Size = new System.Drawing.Size(272, 380);
@@ -113,9 +113,14 @@
             this.gridView3});
             this.grdRulesByCategory.Click += new System.EventHandler(this.grdRulesByCategory_Click);
             // 
-            // aspnetRulesInCategoryBindingSource
+            // fwkRulesInCategoryListBindingSource
             // 
-            this.aspnetRulesInCategoryBindingSource.DataSource = typeof(Fwk.Security.aspnet_RulesInCategory);
+            this.fwkRulesInCategoryListBindingSource.DataMember = "FwkRulesInCategoryList";
+            this.fwkRulesInCategoryListBindingSource.DataSource = this.fwkCategoryBindingSource;
+            // 
+            // fwkCategoryBindingSource
+            // 
+            this.fwkCategoryBindingSource.DataSource = typeof(Fwk.Security.FwkCategory);
             // 
             // grdViewRulesByCategory
             // 
@@ -152,6 +157,10 @@
             this.gridView3.GridControl = this.grdRulesByCategory;
             this.gridView3.Name = "gridView3";
             // 
+            // aspnetRulesInCategoryBindingSource
+            // 
+            this.aspnetRulesInCategoryBindingSource.DataSource = typeof(Fwk.Security.aspnet_RulesInCategory);
+            // 
             // treeList1
             // 
             this.treeList1.AllowDrop = true;
@@ -187,10 +196,6 @@
             this.colName.VisibleIndex = 0;
             this.colName.Width = 126;
             // 
-            // fwkCategoryBindingSource
-            // 
-            this.fwkCategoryBindingSource.DataSource = typeof(Fwk.Security.FwkCategory);
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -213,7 +218,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(313, 41);
+            this.labelControl2.Location = new System.Drawing.Point(311, 41);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(35, 16);
             this.labelControl2.TabIndex = 33;
@@ -223,7 +228,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(591, 38);
+            this.labelControl3.Location = new System.Drawing.Point(600, 38);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(35, 16);
             this.labelControl3.TabIndex = 34;
@@ -235,10 +240,10 @@
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.grdRoles.ContextMenuStrip = this.contextMenuStrip1;
             this.grdRoles.DataSource = this.rolBindingSource;
-            this.grdRoles.Location = new System.Drawing.Point(596, 60);
+            this.grdRoles.Location = new System.Drawing.Point(600, 60);
             this.grdRoles.MainView = this.grdViewRoles;
             this.grdRoles.Name = "grdRoles";
-            this.grdRoles.Size = new System.Drawing.Size(263, 368);
+            this.grdRoles.Size = new System.Drawing.Size(272, 380);
             this.grdRoles.TabIndex = 35;
             this.grdRoles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdViewRoles,
@@ -288,17 +293,12 @@
             this.btnFindRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFindRoles.Location = new System.Drawing.Point(647, 38);
             this.btnFindRoles.Name = "btnFindRoles";
-            this.btnFindRoles.Size = new System.Drawing.Size(56, 20);
+            this.btnFindRoles.Size = new System.Drawing.Size(95, 20);
             this.btnFindRoles.TabIndex = 36;
             this.btnFindRoles.Text = "...";
             this.btnFindRoles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFindRoles.UseVisualStyleBackColor = false;
             this.btnFindRoles.Click += new System.EventHandler(this.btnFindRoles_Click);
-            // 
-            // fwkRulesInCategoryListBindingSource
-            // 
-            this.fwkRulesInCategoryListBindingSource.DataMember = "FwkRulesInCategoryList";
-            this.fwkRulesInCategoryListBindingSource.DataSource = this.fwkCategoryBindingSource;
             // 
             // RulesEditControl
             // 
@@ -318,15 +318,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdRulesByCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aspnetRulesInCategoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkRulesInCategoryListBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkCategoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRulesByCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aspnetRulesInCategoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkCategoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkRulesInCategoryListBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
