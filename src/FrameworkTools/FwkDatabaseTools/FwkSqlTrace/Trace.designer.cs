@@ -108,8 +108,6 @@ namespace FwkSqlTrace
 		
 		private System.Nullable<System.DateTime> _EndTime;
 		
-		private System.Data.Linq.Binary _BinaryData;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -142,8 +140,6 @@ namespace FwkSqlTrace
     partial void OnStartTimeChanged();
     partial void OnEndTimeChanging(System.Nullable<System.DateTime> value);
     partial void OnEndTimeChanged();
-    partial void OnBinaryDataChanging(System.Data.Linq.Binary value);
-    partial void OnBinaryDataChanged();
     #endregion
 		
 		public Trace()
@@ -427,26 +423,6 @@ namespace FwkSqlTrace
 					this._EndTime = value;
 					this.SendPropertyChanged("EndTime");
 					this.OnEndTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_BinaryData", DbType="Image", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary BinaryData
-		{
-			get
-			{
-				return this._BinaryData;
-			}
-			set
-			{
-				if ((this._BinaryData != value))
-				{
-					this.OnBinaryDataChanging(value);
-					this.SendPropertyChanging();
-					this._BinaryData = value;
-					this.SendPropertyChanged("BinaryData");
-					this.OnBinaryDataChanged();
 				}
 			}
 		}

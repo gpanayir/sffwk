@@ -14,7 +14,7 @@ namespace FwkSqlTrace
     {
 
         CnnString _CnnString = new CnnString();
-        List<Trace> _TraceList;
+        List<TraceView> _TraceList;
         public frmMain()
         {
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace FwkSqlTrace
             TraceDAL.Connection = _CnnString;
             _TraceList = TraceDAL.GetAll();
             traceBindingSource.DataSource = _TraceList;
+            btnRefresh.Enabled = true;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -34,9 +35,22 @@ namespace FwkSqlTrace
                 if (connictionFormComponent1.ConnectionOK)
                 {
                     _CnnString = connictionFormComponent1.CnnString.Clone<CnnString>();
+
                 }
             }
             Init();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            _TraceList = TraceDAL.GetAll();
+            traceBindingSource.DataSource = _TraceList;
+            gridControl1.RefreshDataSource();
+        }
+
+        private void btnColCheser_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
