@@ -159,7 +159,7 @@
             this.colEventClassName.OptionsColumn.ReadOnly = true;
             this.colEventClassName.Visible = true;
             this.colEventClassName.VisibleIndex = 0;
-            this.colEventClassName.Width = 119;
+            this.colEventClassName.Width = 50;
             // 
             // colEventClass
             // 
@@ -176,7 +176,7 @@
             this.colTextData.OptionsColumn.ReadOnly = true;
             this.colTextData.Visible = true;
             this.colTextData.VisibleIndex = 1;
-            this.colTextData.Width = 77;
+            this.colTextData.Width = 32;
             // 
             // colApplicationName
             // 
@@ -186,7 +186,7 @@
             this.colApplicationName.OptionsColumn.ReadOnly = true;
             this.colApplicationName.Visible = true;
             this.colApplicationName.VisibleIndex = 2;
-            this.colApplicationName.Width = 77;
+            this.colApplicationName.Width = 32;
             // 
             // colNTUserName
             // 
@@ -196,7 +196,7 @@
             this.colNTUserName.OptionsColumn.ReadOnly = true;
             this.colNTUserName.Visible = true;
             this.colNTUserName.VisibleIndex = 3;
-            this.colNTUserName.Width = 77;
+            this.colNTUserName.Width = 32;
             // 
             // colLoginName
             // 
@@ -206,7 +206,7 @@
             this.colLoginName.OptionsColumn.ReadOnly = true;
             this.colLoginName.Visible = true;
             this.colLoginName.VisibleIndex = 4;
-            this.colLoginName.Width = 77;
+            this.colLoginName.Width = 32;
             // 
             // colCPU
             // 
@@ -216,7 +216,7 @@
             this.colCPU.OptionsColumn.ReadOnly = true;
             this.colCPU.Visible = true;
             this.colCPU.VisibleIndex = 5;
-            this.colCPU.Width = 77;
+            this.colCPU.Width = 32;
             // 
             // colReads
             // 
@@ -226,7 +226,7 @@
             this.colReads.OptionsColumn.ReadOnly = true;
             this.colReads.Visible = true;
             this.colReads.VisibleIndex = 6;
-            this.colReads.Width = 77;
+            this.colReads.Width = 32;
             // 
             // colWrites
             // 
@@ -236,7 +236,7 @@
             this.colWrites.OptionsColumn.ReadOnly = true;
             this.colWrites.Visible = true;
             this.colWrites.VisibleIndex = 7;
-            this.colWrites.Width = 77;
+            this.colWrites.Width = 44;
             // 
             // colDuration
             // 
@@ -246,7 +246,7 @@
             this.colDuration.OptionsColumn.ReadOnly = true;
             this.colDuration.Visible = true;
             this.colDuration.VisibleIndex = 8;
-            this.colDuration.Width = 77;
+            this.colDuration.Width = 31;
             // 
             // colClientProcessID
             // 
@@ -256,7 +256,7 @@
             this.colClientProcessID.OptionsColumn.ReadOnly = true;
             this.colClientProcessID.Visible = true;
             this.colClientProcessID.VisibleIndex = 9;
-            this.colClientProcessID.Width = 77;
+            this.colClientProcessID.Width = 31;
             // 
             // colSPID
             // 
@@ -266,7 +266,7 @@
             this.colSPID.OptionsColumn.ReadOnly = true;
             this.colSPID.Visible = true;
             this.colSPID.VisibleIndex = 10;
-            this.colSPID.Width = 77;
+            this.colSPID.Width = 31;
             // 
             // colStartTime
             // 
@@ -276,7 +276,7 @@
             this.colStartTime.OptionsColumn.ReadOnly = true;
             this.colStartTime.Visible = true;
             this.colStartTime.VisibleIndex = 11;
-            this.colStartTime.Width = 77;
+            this.colStartTime.Width = 31;
             // 
             // colEndTime
             // 
@@ -286,7 +286,7 @@
             this.colEndTime.OptionsColumn.ReadOnly = true;
             this.colEndTime.Visible = true;
             this.colEndTime.VisibleIndex = 12;
-            this.colEndTime.Width = 93;
+            this.colEndTime.Width = 38;
             // 
             // colBinaryData
             // 
@@ -303,6 +303,7 @@
             this.colDatabaseName.OptionsColumn.ReadOnly = true;
             this.colDatabaseName.Visible = true;
             this.colDatabaseName.VisibleIndex = 13;
+            this.colDatabaseName.Width = 30;
             // 
             // colDBUserName
             // 
@@ -312,6 +313,7 @@
             this.colDBUserName.OptionsColumn.ReadOnly = true;
             this.colDBUserName.Visible = true;
             this.colDBUserName.VisibleIndex = 14;
+            this.colDBUserName.Width = 30;
             // 
             // colError
             // 
@@ -321,6 +323,7 @@
             this.colError.OptionsColumn.ReadOnly = true;
             this.colError.Visible = true;
             this.colError.VisibleIndex = 15;
+            this.colError.Width = 30;
             // 
             // colHostName
             // 
@@ -330,6 +333,7 @@
             this.colHostName.OptionsColumn.ReadOnly = true;
             this.colHostName.Visible = true;
             this.colHostName.VisibleIndex = 16;
+            this.colHostName.Width = 30;
             // 
             // colIsSystem
             // 
@@ -339,6 +343,7 @@
             this.colIsSystem.OptionsColumn.ReadOnly = true;
             this.colIsSystem.Visible = true;
             this.colIsSystem.VisibleIndex = 17;
+            this.colIsSystem.Width = 30;
             // 
             // colObjectID
             // 
@@ -348,6 +353,7 @@
             this.colObjectID.OptionsColumn.ReadOnly = true;
             this.colObjectID.Visible = true;
             this.colObjectID.VisibleIndex = 18;
+            this.colObjectID.Width = 30;
             // 
             // colObjectName
             // 
@@ -357,6 +363,7 @@
             this.colObjectName.OptionsColumn.ReadOnly = true;
             this.colObjectName.Visible = true;
             this.colObjectName.VisibleIndex = 19;
+            this.colObjectName.Width = 30;
             // 
             // colObjectType
             // 
@@ -366,6 +373,7 @@
             this.colObjectType.OptionsColumn.ReadOnly = true;
             this.colObjectType.Visible = true;
             this.colObjectType.VisibleIndex = 20;
+            this.colObjectType.Width = 30;
             // 
             // colNTDomainName
             // 
@@ -375,6 +383,7 @@
             this.colNTDomainName.OptionsColumn.ReadOnly = true;
             this.colNTDomainName.Visible = true;
             this.colNTDomainName.VisibleIndex = 21;
+            this.colNTDomainName.Width = 30;
             // 
             // colRowCounts
             // 
@@ -384,6 +393,7 @@
             this.colRowCounts.OptionsColumn.ReadOnly = true;
             this.colRowCounts.Visible = true;
             this.colRowCounts.VisibleIndex = 22;
+            this.colRowCounts.Width = 30;
             // 
             // colServerName
             // 
@@ -393,6 +403,7 @@
             this.colServerName.OptionsColumn.ReadOnly = true;
             this.colServerName.Visible = true;
             this.colServerName.VisibleIndex = 23;
+            this.colServerName.Width = 30;
             // 
             // colSessionLoginName
             // 
@@ -402,6 +413,7 @@
             this.colSessionLoginName.OptionsColumn.ReadOnly = true;
             this.colSessionLoginName.Visible = true;
             this.colSessionLoginName.VisibleIndex = 24;
+            this.colSessionLoginName.Width = 30;
             // 
             // colSourceDatabaseID
             // 
@@ -411,6 +423,7 @@
             this.colSourceDatabaseID.OptionsColumn.ReadOnly = true;
             this.colSourceDatabaseID.Visible = true;
             this.colSourceDatabaseID.VisibleIndex = 25;
+            this.colSourceDatabaseID.Width = 30;
             // 
             // colSqlHandle
             // 
@@ -420,6 +433,7 @@
             this.colSqlHandle.OptionsColumn.ReadOnly = true;
             this.colSqlHandle.Visible = true;
             this.colSqlHandle.VisibleIndex = 26;
+            this.colSqlHandle.Width = 30;
             // 
             // colState
             // 
@@ -429,6 +443,7 @@
             this.colState.OptionsColumn.ReadOnly = true;
             this.colState.Visible = true;
             this.colState.VisibleIndex = 27;
+            this.colState.Width = 30;
             // 
             // colSuccess
             // 
@@ -438,6 +453,7 @@
             this.colSuccess.OptionsColumn.ReadOnly = true;
             this.colSuccess.Visible = true;
             this.colSuccess.VisibleIndex = 28;
+            this.colSuccess.Width = 30;
             // 
             // colTargetLoginName
             // 
@@ -447,6 +463,7 @@
             this.colTargetLoginName.OptionsColumn.ReadOnly = true;
             this.colTargetLoginName.Visible = true;
             this.colTargetLoginName.VisibleIndex = 29;
+            this.colTargetLoginName.Width = 30;
             // 
             // colTargetUserName
             // 
@@ -456,6 +473,7 @@
             this.colTargetUserName.OptionsColumn.ReadOnly = true;
             this.colTargetUserName.Visible = true;
             this.colTargetUserName.VisibleIndex = 30;
+            this.colTargetUserName.Width = 30;
             // 
             // colTransactionID
             // 
@@ -465,6 +483,7 @@
             this.colTransactionID.OptionsColumn.ReadOnly = true;
             this.colTransactionID.Visible = true;
             this.colTransactionID.VisibleIndex = 31;
+            this.colTransactionID.Width = 71;
             // 
             // btnConnect
             // 

@@ -60,13 +60,6 @@ namespace ProjectReferencesCreator.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap add_16 {
-            get {
-                object obj = ResourceManager.GetObject("add_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap arrow_down_16 {
             get {
                 object obj = ResourceManager.GetObject("arrow_down_16", resourceCulture);
@@ -88,9 +81,58 @@ namespace ProjectReferencesCreator.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap confirm_16 {
+            get {
+                object obj = ResourceManager.GetObject("confirm_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap delete_16 {
+            get {
+                object obj = ResourceManager.GetObject("delete_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Desktop {
+            get {
+                object obj = ResourceManager.GetObject("Desktop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Desktop__Alt_2_ {
+            get {
+                object obj = ResourceManager.GetObject("Desktop__Alt_2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Folder__Add_ {
+            get {
+                object obj = ResourceManager.GetObject("Folder__Add_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap folder_find {
+            get {
+                object obj = ResourceManager.GetObject("folder_find", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap srch_16 {
             get {
                 object obj = ResourceManager.GetObject("srch_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap vcs2005Black {
+            get {
+                object obj = ResourceManager.GetObject("vcs2005Black", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
