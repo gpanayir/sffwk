@@ -15,10 +15,14 @@
     <TargetFrameworkSubset>
     </TargetFrameworkSubset>
     <ApplicationIcon>Button_ok.ico</ApplicationIcon>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,17 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckerBase.cs" />
-    <Compile Include="Check_DoNetFramework.cs" />
-    <Compile Include="Check_SQLServerAccess.cs" />
+    <Compile Include="Checkerslist.cs">
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="ICheckerBase.cs" />
-    <Compile Include="Clases.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
@@ -84,7 +85,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Check_XP_SPK.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\apply.png" />
@@ -164,12 +164,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Button_ok.ico" />
+    <Content Include="checkers.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="CustomAppChecker.doc" />
     <None Include="Resources\save_16.png" />
     <None Include="Resources\del_16.png" />
     <None Include="Resources\stop_16.png" />
     <None Include="Resources\play_16.png" />
     <None Include="Resources\opts_16.png" />
     <None Include="Resources\play_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppChecker.core\AppChecker.core.csproj">
+      <Project>{94CDACBF-864F-4B83-AB95-E20B1F9A14AC}</Project>
+      <Name>AppChecker.core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

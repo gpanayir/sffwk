@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-
 using System.Text;
 using System.Windows.Forms;
 using AppChecker.Properties;
+using AppChecker.core;
 
 namespace AppChecker
 {
@@ -18,17 +18,14 @@ namespace AppChecker
         {
             InitializeComponent();
             checkMesageBindingSource.DataSource = checkMesageList;
-            //dataGridView1.DataSource = checkMesageList;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             button1.Image = Resources.applications_16;
 
-            LoadChecker(new Check_DoNetFramework());
-            LoadChecker(new Check_XP_SPK());
-            LoadChecker(new Check_SQLServerAccess());
-            
+            LoadCheckers();
             foreach (ICheckerBase c in checkers)
             {
                 c.Run();
@@ -39,8 +36,40 @@ namespace AppChecker
             dataGridView1.DataSource = checkMesageList;
         }
 
+        /// <summary>
+        /// Carga todos los checkes a ser ejecutados 
+        /// </summary>
+        void LoadCheckers()
+        {
 
+            #region Cargo los checkers por defecto
+            LoadChecker(new Check_DoNetFramework());
+            LoadChecker(new Check_XP_SPK());
+            LoadChecker(new Check_SQLServerAccess());
+            #endregion
 
+            #region Cargo los checkers por dinamicos
+            CheckersAssemlist list = CheckersAssemlist.Load();
+            if (list != null)
+            {
+                foreach (CheckersAssem assembly in list)
+                {
+                    try
+                    {
+                        if (assembly.Enabled)
+                        {
+                            ICheckerBase checker = (ICheckerBase)Helper.CreateInstance(assembly.Assembly);
+                            LoadChecker(checker);
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+            }
+            #endregion
+        }
         void LoadChecker(ICheckerBase checker)
         {
            

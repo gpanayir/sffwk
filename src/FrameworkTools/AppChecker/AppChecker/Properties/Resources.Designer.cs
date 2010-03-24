@@ -60,79 +60,9 @@ namespace AppChecker.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap about {
-            get {
-                object obj = ResourceManager.GetObject("about", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap applications_16 {
             get {
                 object obj = ResourceManager.GetObject("applications_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap apply {
-            get {
-                object obj = ResourceManager.GetObject("apply", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon db {
-            get {
-                object obj = ResourceManager.GetObject("db", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon db1 {
-            get {
-                object obj = ResourceManager.GetObject("db1", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon db2 {
-            get {
-                object obj = ResourceManager.GetObject("db2", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon db3 {
-            get {
-                object obj = ResourceManager.GetObject("db3", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon db4 {
-            get {
-                object obj = ResourceManager.GetObject("db4", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon db5 {
-            get {
-                object obj = ResourceManager.GetObject("db5", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap del {
-            get {
-                object obj = ResourceManager.GetObject("del", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap file_apply {
-            get {
-                object obj = ResourceManager.GetObject("file_apply", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -147,41 +77,6 @@ namespace AppChecker.Properties {
         internal static System.Drawing.Bitmap save_16 {
             get {
                 object obj = ResourceManager.GetObject("save_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon Server_No {
-            get {
-                object obj = ResourceManager.GetObject("Server_No", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Icon Server_OK {
-            get {
-                object obj = ResourceManager.GetObject("Server_OK", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap stop {
-            get {
-                object obj = ResourceManager.GetObject("stop", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Symbol_Information_2 {
-            get {
-                object obj = ResourceManager.GetObject("Symbol_Information_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap WiteCell {
-            get {
-                object obj = ResourceManager.GetObject("WiteCell", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -129,7 +129,7 @@
             // 
             // checkMesageBindingSource
             // 
-            this.checkMesageBindingSource.DataSource = typeof(AppChecker.CheckMesage);
+            this.checkMesageBindingSource.DataSource = typeof(AppChecker.core.CheckMesage);
             // 
             // btnSaveReport
             // 
