@@ -23,6 +23,7 @@ namespace ProjectReferencesCreator
 
         private void btnFindRootFolder_Click(object sender, EventArgs e)
         {
+            folderBrowserDialog1.SelectedPath = txtRoot.Text;
             if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 txtRoot.Text = folderBrowserDialog1.SelectedPath;
@@ -33,6 +34,7 @@ namespace ProjectReferencesCreator
 
         private void btnFindFolder_Click(object sender, EventArgs e)
         {
+            folderBrowserDialog1.SelectedPath = txtReference.Text;
             if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 txtReference.Text = folderBrowserDialog1.SelectedPath;
