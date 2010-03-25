@@ -84,6 +84,12 @@
     <Compile Include="frmPerform.Designer.cs">
       <DependentUpon>frmPerform.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmShowReferenceFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShowReferenceFile.Designer.cs">
+      <DependentUpon>frmShowReferenceFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
@@ -92,10 +98,16 @@
     <EmbeddedResource Include="frmPerform.resx">
       <DependentUpon>frmPerform.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmShowReferenceFile.resx">
+      <DependentUpon>frmShowReferenceFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateRefVersions.resx">
+      <DependentUpon>UpdateRefVersions.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -112,6 +124,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ReferenceFile.cs" />
+    <Compile Include="UpdateRefVersions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UpdateRefVersions.Designer.cs">
+      <DependentUpon>UpdateRefVersions.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserContent.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +198,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documents.ico" />
+    <None Include="Properties\DataSources\ReferenceFile.datasource" />
+    <None Include="Resources\play_16.gif" />
     <None Include="Resources\delete_16.png" />
     <None Include="Resources\confirm_16.png" />
     <None Include="Properties\DataSources\ReferenceFileList.datasource" />

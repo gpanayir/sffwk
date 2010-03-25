@@ -1,13 +1,13 @@
 ﻿namespace ProjectReferencesCreator
 {
-    partial class frmPerform
+    partial class UpdateRefVersions
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,26 +20,25 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPerform));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.imageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ReferenceType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prjNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrjPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ErrorMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.referenceFileListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.referenceFileListBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -55,6 +54,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.imageDataGridViewImageColumn,
+            this.ReferenceType,
             this.prjNameDataGridViewTextBoxColumn,
             this.PrjPath,
             this.ErrorMessage});
@@ -66,9 +66,11 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(824, 654);
-            this.dataGridView1.TabIndex = 14;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.Size = new System.Drawing.Size(1018, 631);
+            this.dataGridView1.TabIndex = 15;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
             // imageDataGridViewImageColumn
             // 
@@ -76,6 +78,14 @@
             this.imageDataGridViewImageColumn.HeaderText = "";
             this.imageDataGridViewImageColumn.Name = "imageDataGridViewImageColumn";
             this.imageDataGridViewImageColumn.ReadOnly = true;
+            this.imageDataGridViewImageColumn.Width = 50;
+            // 
+            // ReferenceType
+            // 
+            this.ReferenceType.DataPropertyName = "ReferenceType";
+            this.ReferenceType.HeaderText = "ReferenceType";
+            this.ReferenceType.Name = "ReferenceType";
+            this.ReferenceType.ReadOnly = true;
             // 
             // prjNameDataGridViewTextBoxColumn
             // 
@@ -105,46 +115,35 @@
             // 
             this.referenceFileListBindingSource.DataSource = typeof(ProjectReferencesCreator.ReferenceFileList);
             // 
-            // pictureBox1
+            // dataGridViewTextBoxColumn1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(228, 136);
-            this.pictureBox1.MaximumSize = new System.Drawing.Size(180, 180);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(180, 180);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ReferenceType";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ReferenceType";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // frmPerform
+            // UpdateRefVersions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(824, 654);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dataGridView1);
-            this.MinimizeBox = false;
-            this.Name = "frmPerform";
-            this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Load += new System.EventHandler(this.frmPerform_Load);
+            this.Name = "UpdateRefVersions";
+            this.Size = new System.Drawing.Size(1018, 631);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.referenceFileListBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.BindingSource referenceFileListBindingSource;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewImageColumn imageDataGridViewImageColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReferenceType;
         private System.Windows.Forms.DataGridViewTextBoxColumn prjNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrjPath;
         private System.Windows.Forms.DataGridViewTextBoxColumn ErrorMessage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     }
 }

@@ -25,12 +25,12 @@ namespace ProjectReferencesCreator
          void Start()
         {
             ReferenceFileList.FinalizeEvent += new EventHandler(ReferenceFileList_FinalizeEvent);
-            ReferenceFileList.Start(_RootPath, _List);
+            ReferenceFileList.StartReferencePatch(_RootPath, _List);
         }
 
         void ReferenceFileList_FinalizeEvent(object sender, EventArgs e)
         {
-            MessageBox.Show("Fin");
+         
             pictureBox1.Visible = false;
 
             referenceFileListBindingSource.DataSource =((ReferenceFileList)sender);
@@ -44,6 +44,16 @@ namespace ProjectReferencesCreator
         private void frmPerform_Load(object sender, EventArgs e)
         {
             Start();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ReferenceFile rf = (ReferenceFile)((System.Windows.Forms.BindingSource)(dataGridView1.DataSource)).Current;
+            if (rf == null) return;
+            using (frmShowReferenceFile frm = new frmShowReferenceFile(rf))
+            {
+                frm.ShowDialog();
+            }
         }
     }
 }

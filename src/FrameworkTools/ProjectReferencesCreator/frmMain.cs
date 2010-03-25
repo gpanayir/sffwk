@@ -19,7 +19,17 @@ namespace ProjectReferencesCreator
         {
             InitializeComponent();
         }
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            //_list.Add(new Reference(@"C:\Projects\Pruebas\xxx\Libraries\", 0));
+            //_list.Add(new Reference(@"C:\Projects\arquitectura\Fwk\trunk\src\", 1));
+            //_list.Add(new Reference(@"C:\Projects\Pruebas\", 2));
+            clearversions();
+            referenceBindingSource.DataSource = _list;
 
+            dataGridView1.RefreshEdit();
+            dataGridView1.Refresh();
+        }
 
         private void btnFindRootFolder_Click(object sender, EventArgs e)
         {
@@ -30,8 +40,6 @@ namespace ProjectReferencesCreator
             }
         }
 
-
-
         private void btnFindFolder_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.SelectedPath = txtReference.Text;
@@ -40,8 +48,15 @@ namespace ProjectReferencesCreator
                 txtReference.Text = folderBrowserDialog1.SelectedPath;
             }
         }
-
-
+       
+        private void btnFindFolderVersion_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.SelectedPath = txtRootVersion.Text;
+            if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                txtRootVersion.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
 
         bool ValidateFolders()
         {
@@ -72,6 +87,22 @@ namespace ProjectReferencesCreator
             return errCount == 0;
 
         }
+        bool ValidateFolders2()
+        {
+            int errCount = 0;
+            if (!System.IO.Directory.Exists(txtRootVersion.Text))
+            {
+                errorProvider1.SetError(txtRootVersion, "La ruta especificada no existe");
+                errCount++;
+            }
+            else
+            { errorProvider1.SetError(txtRoot, ""); }
+
+
+
+            return errCount == 0;
+
+        }
 
         private void btnAddFolder_Click(object sender, EventArgs e)
         {
@@ -93,20 +124,7 @@ namespace ProjectReferencesCreator
             btnAddFolder.Enabled = !String.IsNullOrEmpty(txtReference.Text);
         }
 
-
-
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            //_list.Add(new Reference(@"C:\Projects\Pruebas\xxx\Libraries\", 0));
-            //_list.Add(new Reference(@"C:\Projects\arquitectura\Fwk\trunk\src\", 1));
-            //_list.Add(new Reference(@"C:\Projects\Pruebas\", 2));
-
-            referenceBindingSource.DataSource = _list;
-
-            dataGridView1.RefreshEdit();
-            dataGridView1.Refresh();
-        }
+    
 
 
 
@@ -244,13 +262,65 @@ namespace ProjectReferencesCreator
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            using (frmPerform frm = new frmPerform(txtRoot.Text.Trim(), _list))
+            if (ValidateFolders())
             {
-    
-                frm.ShowDialog();
-               
+                using (frmPerform frm = new frmPerform(txtRoot.Text.Trim(), _list))
+                {
+                    frm.ShowDialog();
+                }
             }
         }
+
+        private void btnUpdateVersions_Click(object sender, EventArgs e)
+        {
+            if (ValidateFolders2())
+            {
+                string s = txtNewVersion_Fwk.Text;
+                updateRefVersions1.ClearLogs();
+                if (chkFramework.Checked)
+                    updateRefVersions1.Start(txtRootVersion.Text, txtNewVersion_Fwk.Text, ReferenceType.Fwk);
+                if (chkAllusLibs.Checked)
+                    updateRefVersions1.Start(txtRootVersion.Text, txtNewVersion_AllusLibs.Text, ReferenceType.AllusLibs);
+                if (chlEnterpriseLibrary.Checked)
+                    updateRefVersions1.Start(txtRootVersion.Text, txtNewVersion_EnterpriseLibrary.Text, ReferenceType.EnterpriseLibrary);
+
+           
+            }
+        }
+        /// <summary>
+        /// Solo para test
+        /// </summary>
+        void clearversions()
+        {
+            txtRootVersion.Text = string.Empty;
+            txtNewVersion_Fwk.Text = string.Empty;
+            txtNewVersion_EnterpriseLibrary.Text = string.Empty;
+            txtNewVersion_AllusLibs.Text = string.Empty;
+        }
+       
+
+        private void chkFramework_CheckedChanged(object sender, EventArgs e)
+        {
+            txtNewVersion_Fwk.Enabled = chkFramework.Checked;
+        }
+
+        private void chkAllusLibs_CheckedChanged(object sender, EventArgs e)
+        {
+            txtNewVersion_AllusLibs.Enabled = chkAllusLibs.Checked;
+        }
+
+        private void chlEnterpriseLibrary_CheckedChanged(object sender, EventArgs e)
+        {
+            txtNewVersion_EnterpriseLibrary.Enabled = chlEnterpriseLibrary.Checked;
+        }
+
+        
+
+       
+
+     
+
+     
     }
 
     public class Reference : Fwk.Bases.Entity

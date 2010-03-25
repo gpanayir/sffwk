@@ -123,6 +123,13 @@ namespace ProjectReferencesCreator.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap play_16 {
+            get {
+                object obj = ResourceManager.GetObject("play_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap srch_16 {
             get {
                 object obj = ResourceManager.GetObject("srch_16", resourceCulture);
