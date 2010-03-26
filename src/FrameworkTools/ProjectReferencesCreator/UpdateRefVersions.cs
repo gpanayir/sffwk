@@ -44,7 +44,7 @@ namespace ProjectReferencesCreator
      
             ReferenceFileList list = ((ReferenceFileList)sender);
 
-            _ReferenceFileList.AddRange(list.Where<ReferenceFile>(p => p.Udated));
+            _ReferenceFileList.AddRange(list.Where<ReferenceFile>(p => p.Udated || (!p.Udated && p.Error)));
 
             referenceFileListBindingSource.DataSource = null;
             referenceFileListBindingSource.DataSource = _ReferenceFileList;

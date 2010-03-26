@@ -316,6 +316,7 @@ namespace ProjectReferencesCreator
                                         if (fwkList.Exists(p => p.Equals(assemblyName)))
                                         {
                                             Fwk.Xml.NodeAttribute.AttributeSet(xmlNode_Reference, "Include", VERSION_TEMPLATE.Replace("$ASSEMBLY$", assemblyName).Replace("$VERSION$", newVersion));
+                                            //(xmlNode_Reference.Attributes["Include"]).Value = "";
                                             wReferenceFile.Udated = true;
                                         }
                                         break;
