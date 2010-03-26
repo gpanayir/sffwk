@@ -49,6 +49,8 @@
             this.btnAddFolder = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNewVersion_EnterpriseLibrary = new System.Windows.Forms.MaskedTextBox();
+            this.txtNewVersion_AllusLibs = new System.Windows.Forms.MaskedTextBox();
             this.txtNewVersion_Fwk = new System.Windows.Forms.MaskedTextBox();
             this.chlEnterpriseLibrary = new System.Windows.Forms.CheckBox();
             this.chkAllusLibs = new System.Windows.Forms.CheckBox();
@@ -58,8 +60,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtRootVersion = new System.Windows.Forms.TextBox();
             this.btnFindFolderVersion = new System.Windows.Forms.Button();
-            this.txtNewVersion_AllusLibs = new System.Windows.Forms.MaskedTextBox();
-            this.txtNewVersion_EnterpriseLibrary = new System.Windows.Forms.MaskedTextBox();
             this.indexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.referenceBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -88,6 +88,8 @@
             // 
             this.txtReference.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReference.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtReference.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtReference.Location = new System.Drawing.Point(16, 91);
             this.txtReference.Name = "txtReference";
             this.txtReference.Size = new System.Drawing.Size(989, 20);
@@ -98,6 +100,8 @@
             // 
             this.txtRoot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRoot.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtRoot.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtRoot.Location = new System.Drawing.Point(16, 30);
             this.txtRoot.Name = "txtRoot";
             this.txtRoot.Size = new System.Drawing.Size(989, 20);
@@ -299,6 +303,36 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             // 
+            // txtNewVersion_EnterpriseLibrary
+            // 
+            this.txtNewVersion_EnterpriseLibrary.Culture = new System.Globalization.CultureInfo("en-US");
+            this.txtNewVersion_EnterpriseLibrary.Enabled = false;
+            this.txtNewVersion_EnterpriseLibrary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewVersion_EnterpriseLibrary.ForeColor = System.Drawing.Color.Maroon;
+            this.txtNewVersion_EnterpriseLibrary.Location = new System.Drawing.Point(327, 46);
+            this.txtNewVersion_EnterpriseLibrary.Mask = "9.9.9.9";
+            this.txtNewVersion_EnterpriseLibrary.Name = "txtNewVersion_EnterpriseLibrary";
+            this.txtNewVersion_EnterpriseLibrary.ResetOnPrompt = false;
+            this.txtNewVersion_EnterpriseLibrary.ResetOnSpace = false;
+            this.txtNewVersion_EnterpriseLibrary.Size = new System.Drawing.Size(72, 26);
+            this.txtNewVersion_EnterpriseLibrary.TabIndex = 21;
+            this.txtNewVersion_EnterpriseLibrary.Text = "2343";
+            // 
+            // txtNewVersion_AllusLibs
+            // 
+            this.txtNewVersion_AllusLibs.Culture = new System.Globalization.CultureInfo("en-US");
+            this.txtNewVersion_AllusLibs.Enabled = false;
+            this.txtNewVersion_AllusLibs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewVersion_AllusLibs.ForeColor = System.Drawing.Color.Maroon;
+            this.txtNewVersion_AllusLibs.Location = new System.Drawing.Point(100, 87);
+            this.txtNewVersion_AllusLibs.Mask = "9.9.9.9";
+            this.txtNewVersion_AllusLibs.Name = "txtNewVersion_AllusLibs";
+            this.txtNewVersion_AllusLibs.ResetOnPrompt = false;
+            this.txtNewVersion_AllusLibs.ResetOnSpace = false;
+            this.txtNewVersion_AllusLibs.Size = new System.Drawing.Size(72, 26);
+            this.txtNewVersion_AllusLibs.TabIndex = 20;
+            this.txtNewVersion_AllusLibs.Text = "2343";
+            // 
             // txtNewVersion_Fwk
             // 
             this.txtNewVersion_Fwk.Culture = new System.Globalization.CultureInfo("en-US");
@@ -387,6 +421,8 @@
             // 
             this.txtRootVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRootVersion.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtRootVersion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtRootVersion.Location = new System.Drawing.Point(26, 43);
             this.txtRootVersion.Name = "txtRootVersion";
             this.txtRootVersion.Size = new System.Drawing.Size(986, 20);
@@ -403,36 +439,6 @@
             this.btnFindFolderVersion.Text = "...";
             this.btnFindFolderVersion.UseVisualStyleBackColor = true;
             this.btnFindFolderVersion.Click += new System.EventHandler(this.btnFindFolderVersion_Click);
-            // 
-            // txtNewVersion_AllusLibs
-            // 
-            this.txtNewVersion_AllusLibs.Culture = new System.Globalization.CultureInfo("en-US");
-            this.txtNewVersion_AllusLibs.Enabled = false;
-            this.txtNewVersion_AllusLibs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewVersion_AllusLibs.ForeColor = System.Drawing.Color.Maroon;
-            this.txtNewVersion_AllusLibs.Location = new System.Drawing.Point(100, 87);
-            this.txtNewVersion_AllusLibs.Mask = "9.9.9.9";
-            this.txtNewVersion_AllusLibs.Name = "txtNewVersion_AllusLibs";
-            this.txtNewVersion_AllusLibs.ResetOnPrompt = false;
-            this.txtNewVersion_AllusLibs.ResetOnSpace = false;
-            this.txtNewVersion_AllusLibs.Size = new System.Drawing.Size(72, 26);
-            this.txtNewVersion_AllusLibs.TabIndex = 20;
-            this.txtNewVersion_AllusLibs.Text = "2343";
-            // 
-            // txtNewVersion_EnterpriseLibrary
-            // 
-            this.txtNewVersion_EnterpriseLibrary.Culture = new System.Globalization.CultureInfo("en-US");
-            this.txtNewVersion_EnterpriseLibrary.Enabled = false;
-            this.txtNewVersion_EnterpriseLibrary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewVersion_EnterpriseLibrary.ForeColor = System.Drawing.Color.Maroon;
-            this.txtNewVersion_EnterpriseLibrary.Location = new System.Drawing.Point(327, 46);
-            this.txtNewVersion_EnterpriseLibrary.Mask = "9.9.9.9";
-            this.txtNewVersion_EnterpriseLibrary.Name = "txtNewVersion_EnterpriseLibrary";
-            this.txtNewVersion_EnterpriseLibrary.ResetOnPrompt = false;
-            this.txtNewVersion_EnterpriseLibrary.ResetOnSpace = false;
-            this.txtNewVersion_EnterpriseLibrary.Size = new System.Drawing.Size(72, 26);
-            this.txtNewVersion_EnterpriseLibrary.TabIndex = 21;
-            this.txtNewVersion_EnterpriseLibrary.Text = "2343";
             // 
             // indexDataGridViewTextBoxColumn
             // 
