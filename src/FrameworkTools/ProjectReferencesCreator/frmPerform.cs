@@ -31,7 +31,7 @@ namespace ProjectReferencesCreator
         void ReferenceFileList_FinalizeEvent(object sender, EventArgs e)
         {
          
-            pictureBox1.Visible = false;
+            
 
             referenceFileListBindingSource.DataSource =((ReferenceFileList)sender);
             dataGridView1.RefreshEdit();
@@ -46,7 +46,9 @@ namespace ProjectReferencesCreator
             Start();
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+      
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ReferenceFile rf = (ReferenceFile)((System.Windows.Forms.BindingSource)(dataGridView1.DataSource)).Current;
             if (rf == null) return;

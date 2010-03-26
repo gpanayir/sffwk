@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.PrjPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ErrorMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.ReferenceType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prjNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrjPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ErrorMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.referenceFileListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.referenceFileListBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -68,9 +68,32 @@
             this.dataGridView1.RowHeadersWidth = 30;
             this.dataGridView1.Size = new System.Drawing.Size(1018, 631);
             this.dataGridView1.TabIndex = 15;
-            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
+            // 
+            // PrjPath
+            // 
+            this.PrjPath.DataPropertyName = "PrjPath";
+            this.PrjPath.HeaderText = "Path";
+            this.PrjPath.Name = "PrjPath";
+            this.PrjPath.ReadOnly = true;
+            this.PrjPath.Width = 500;
+            // 
+            // ErrorMessage
+            // 
+            this.ErrorMessage.DataPropertyName = "ErrorMessage";
+            this.ErrorMessage.HeaderText = "ErrorMessage";
+            this.ErrorMessage.Name = "ErrorMessage";
+            this.ErrorMessage.ReadOnly = true;
+            this.ErrorMessage.Width = 500;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ReferenceType";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ReferenceType";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // imageDataGridViewImageColumn
             // 
@@ -95,32 +118,9 @@
             this.prjNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.prjNameDataGridViewTextBoxColumn.Width = 150;
             // 
-            // PrjPath
-            // 
-            this.PrjPath.DataPropertyName = "PrjPath";
-            this.PrjPath.HeaderText = "Path";
-            this.PrjPath.Name = "PrjPath";
-            this.PrjPath.ReadOnly = true;
-            this.PrjPath.Width = 500;
-            // 
-            // ErrorMessage
-            // 
-            this.ErrorMessage.DataPropertyName = "ErrorMessage";
-            this.ErrorMessage.HeaderText = "ErrorMessage";
-            this.ErrorMessage.Name = "ErrorMessage";
-            this.ErrorMessage.ReadOnly = true;
-            this.ErrorMessage.Width = 500;
-            // 
             // referenceFileListBindingSource
             // 
             this.referenceFileListBindingSource.DataSource = typeof(ProjectReferencesCreator.ReferenceFileList);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ReferenceType";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ReferenceType";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // UpdateRefVersions
             // 

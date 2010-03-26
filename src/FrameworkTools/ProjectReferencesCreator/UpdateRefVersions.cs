@@ -63,7 +63,9 @@ namespace ProjectReferencesCreator
             e.Cancel = false;
         }
 
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+       
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ReferenceFile rf = (ReferenceFile)((System.Windows.Forms.BindingSource)(dataGridView1.DataSource)).Current;
             if (rf == null) return;
