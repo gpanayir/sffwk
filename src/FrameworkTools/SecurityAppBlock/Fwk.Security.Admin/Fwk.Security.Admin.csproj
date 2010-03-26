@@ -47,10 +47,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Allus.Libs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\AllusFwk\Libraries\Allus.Libs.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.Data.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
     <Reference Include="DevExpress.Utils.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
     <Reference Include="DevExpress.XtraBars.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
@@ -75,10 +71,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraTreeList.v9.1.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, PublicKeyToken=null" />
-    <Reference Include="Fwk.Bases.FrontEnd, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Fwk 3.0\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Bases.FrontEnd, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">

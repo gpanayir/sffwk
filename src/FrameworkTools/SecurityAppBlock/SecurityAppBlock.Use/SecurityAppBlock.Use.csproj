@@ -31,11 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Bigbang\src\Libraries\Fwk.Bases.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases.FrontEnd, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Bases.FrontEnd, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Fwk 3.0\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>

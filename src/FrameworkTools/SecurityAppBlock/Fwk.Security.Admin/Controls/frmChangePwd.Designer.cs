@@ -36,7 +36,7 @@ namespace Fwk.Security.Admin.Controls
             this.brnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnAcept = new DevExpress.XtraEditors.SimpleButton();
             this.lblUser = new System.Windows.Forms.Label();
-            this.exceptionViewComponent1 = new Allus.Libs.Common.ExceptionViewComponent(this.components);
+            
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             this.SuspendLayout();
@@ -111,11 +111,7 @@ namespace Fwk.Security.Admin.Controls
             // 
             // exceptionViewComponent1
             // 
-            this.exceptionViewComponent1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(245)))), ((int)(((byte)(241)))));
-            this.exceptionViewComponent1.ButtonsYesNoVisible = DevExpress.XtraBars.BarItemVisibility.Always;
-            this.exceptionViewComponent1.TextMessageColor = System.Drawing.Color.White;
-            this.exceptionViewComponent1.TextMessageForeColorColor = System.Drawing.Color.Black;
-            this.exceptionViewComponent1.Title = "Fwk security admin";
+         
             // 
             // frmChangePwd
             // 
@@ -151,6 +147,6 @@ namespace Fwk.Security.Admin.Controls
         private DevExpress.XtraEditors.SimpleButton brnCancel;
         private DevExpress.XtraEditors.SimpleButton btnAcept;
         private System.Windows.Forms.Label lblUser;
-        private Allus.Libs.Common.ExceptionViewComponent exceptionViewComponent1;
+        
     }
 }

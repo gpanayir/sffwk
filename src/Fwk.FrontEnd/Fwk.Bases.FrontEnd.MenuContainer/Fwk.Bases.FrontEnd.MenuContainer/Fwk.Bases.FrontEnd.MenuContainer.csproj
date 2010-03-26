@@ -42,11 +42,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.AssemblyExplorer.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases.FrontEnd, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fwk.Bases.FrontEnd, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
     </Reference>

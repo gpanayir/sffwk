@@ -35,7 +35,7 @@ namespace Fwk.Security.Admin.Controls
                 else
                 {
                     this.DialogResult = DialogResult.Cancel;
-                    exceptionViewComponent1.Show(new Exception("Contraseña de usuario anterior no válida"));
+                    MessageBox.Show("Contraseña de usuario anterior no válida");
                     
                 }
                 
@@ -43,7 +43,7 @@ namespace Fwk.Security.Admin.Controls
             catch (Exception ex)
             {
                 this.DialogResult = DialogResult.Cancel;
-                exceptionViewComponent1.Show(ex);
+                MessageBox.Show(ex.Message);
                
                 
             }
