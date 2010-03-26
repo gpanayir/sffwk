@@ -496,13 +496,12 @@ namespace Fwk.HelperFunctions
         {
             DataTable wDt = pDataTable.Clone();
 
+            //Validamos si la cantidad a obtener es mayor que la cantidad de filas del DataTable
+            if (pRowsQuantity > pDataTable.Rows.Count)
+                pRowsQuantity = pDataTable.Rows.Count;
+
             for (int i = 0; i < pRowsQuantity; i++)
             {
-                //Si está en null puede ser porque el parametro de cantidad es mayor a la cantidad de filas que hay en el DataTable, 
-                //entonces retornamos el DataTable como está en ese momento
-                if (pDataTable.Rows[i] == null)
-                    return wDt;
-
                 wDt.ImportRow(pDataTable.Rows[i]);
             }
 
