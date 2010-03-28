@@ -10,11 +10,12 @@ namespace Fwk.Bases
     [Serializable]
 	public class ContextInformation
 	{
-		string m_UserName;
-        string m_HostName;
-        string m_ServerName;
-        DateTime m_ServerTime = new DateTime();
-        DateTime m_HostTime = new DateTime();
+        string _CompanyId;
+		string _UserName;
+        string _HostName;
+        string _ServerName;
+        DateTime _ServerTime = new DateTime();
+        DateTime _HostTime = new DateTime();
 
 
         /// <summary>
@@ -22,8 +23,8 @@ namespace Fwk.Bases
         /// </summary>
         public string HostName
         {
-            get { return m_HostName; }
-            set { m_HostName = value; }
+            get { return _HostName; }
+            set { _HostName = value; }
         }
 
         /// <summary>
@@ -33,8 +34,8 @@ namespace Fwk.Bases
         /// </summary>
         public DateTime HostTime
         {
-            get { return m_HostTime; }
-            set { m_HostTime = value; }
+            get { return _HostTime; }
+            set { _HostTime = value; }
         }
 
         /// <summary>
@@ -42,8 +43,8 @@ namespace Fwk.Bases
         /// </summary>
         public string ServerName
         {
-            get { return m_ServerName; }
-            set { m_ServerName = value; }
+            get { return _ServerName; }
+            set { _ServerName = value; }
         }
 
         /// <summary>
@@ -53,8 +54,8 @@ namespace Fwk.Bases
         /// </summary>
         public DateTime ServerTime
         {
-            get { return m_ServerTime; }
-            set { m_ServerTime = value; }
+            get { return _ServerTime; }
+            set { _ServerTime = value; }
         }
 
 
@@ -63,9 +64,18 @@ namespace Fwk.Bases
         /// </summary>
 		public string UserName
 		{
-			get { return m_UserName; }
-			set { m_UserName = value; }
+			get { return _UserName; }
+			set { _UserName = value; }
 		}
 
+        /// <summary>
+        /// Identificador de empresa, cliente donde este instalado o para quien este instalado.-
+        /// Utiil para identificar logs, discriminar conecciones, etc.-
+        /// </summary>
+        public string CompanyId
+        {
+            get { return _CompanyId; }
+            set { _CompanyId = value; }
+        }
 	}
 }
