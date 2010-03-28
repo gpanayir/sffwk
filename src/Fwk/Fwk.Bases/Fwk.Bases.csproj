@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -167,6 +167,7 @@
     <Compile Include="Blocks\Fwk.ServiceManagement\ObjectProvider.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlConfigSection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlServiceConfigurationManager.cs" />
+    <Compile Include="Classes\BackEndBases.cs" />
     <Compile Include="Classes\BusinessService.cs" />
     <Compile Include="Classes\ClientServiceBase.cs" />
     <Compile Include="Classes\ConfigurationsHelper.cs" />

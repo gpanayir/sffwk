@@ -875,7 +875,7 @@ namespace Fwk.Security
             }
             catch (InvalidOperationException)
             {
-                ///TODO: mejorar manejo de Exception GetRule
+                //TODO: mejorar manejo de Exception GetRule
                 throw new Exception(string.Concat("Error al intentar obtener los valores de la relgla: " + ruleName));
             }
             catch (Exception ex)
@@ -1222,7 +1222,7 @@ namespace Fwk.Security
 
             Fwk.Security.FwkMembershipScripts.BuildRolesAndUsers_FromRuleExpression(pRule.Expression, out rollistAux, out userList);
 
-            ///Agregar el rol a la regla
+            //Agregar el rol a la regla
             rollistAux.Add(pRol);
 
             pRule.SetExpression(Fwk.Security.FwkMembershipScripts.BuildRuleExpression(rollistAux, userList));
