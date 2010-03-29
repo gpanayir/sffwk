@@ -167,7 +167,10 @@ namespace Fwk.Bases.Connector
         /// <date>2008-04-10T00:00:00</date>
         /// <author>moviedo</author>
         public void SetServiceConfiguration(string pServiceName,ServiceConfiguration pServiceConfiguration)
-        { }
+        {
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+            wFwkRemoteObject.SetServiceConfiguration(pServiceName, pServiceConfiguration);
+        }
 
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
@@ -176,7 +179,10 @@ namespace Fwk.Bases.Connector
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
-        { }
+        {
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+            wFwkRemoteObject.AddServiceConfiguration(pServiceConfiguration);
+        }
 
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
@@ -187,7 +193,7 @@ namespace Fwk.Bases.Connector
         public void DeleteServiceConfiguration(String  pServiceName)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-
+            wFwkRemoteObject.DeleteServiceConfiguration(pServiceName);
         }
         #endregion [ServiceConfiguration]
     }
