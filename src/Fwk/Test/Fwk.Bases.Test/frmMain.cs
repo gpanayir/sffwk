@@ -33,5 +33,13 @@ namespace Fwk.Bases.Test
             using (frmUndoRedoEntitiesTest frm = new frmUndoRedoEntitiesTest())
             { frm.ShowDialog(); }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            using (frmHelperFunctions frm = new frmHelperFunctions())
+            { frm.ShowDialog(); }
+
+        }
     }
 }
