@@ -7,6 +7,9 @@ using Fwk.Exceptions;
 
 namespace Fwk.Bases.Connector
 {
+    /// <summary>
+    /// Rapper que realiza la ejecucion de servicios de forma local. Llama directamente al la facada de servicios
+    /// </summary>
     public class LocalWrapper : IServiceWrapper
     {
         SimpleFacade _SimpleFacade;
@@ -21,7 +24,7 @@ namespace Fwk.Bases.Connector
         private IServiceContract ExecuteService(IServiceContract pReq)
         {
             if (_SimpleFacade == null)
-                _SimpleFacade = new SimpleFacade();
+                _SimpleFacade = CreateSimpleFacade();
 
             pReq.InitializeHostContextInformation();
             IServiceContract wResponse = _SimpleFacade.ExecuteService(pReq);
@@ -92,7 +95,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public ServiceConfigurationCollection GetAllServices()
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
 
             String xmlServices = wSimpleFacade.GetServicesList(true);
             ServiceConfigurationCollection wServiceConfigurationCollection = (ServiceConfigurationCollection)
@@ -110,7 +113,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public ServiceConfiguration GetServiceConfiguration(string pServiceName)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
             String xmlServices = wSimpleFacade.GetServiceConfiguration(pServiceName);
             return ServiceConfiguration.GetServiceConfigurationFromXml(xmlServices);
            
@@ -123,7 +126,7 @@ namespace Fwk.Bases.Connector
        /// <param name="pServiceConfiguration"></param>
         public void SetServiceConfiguration(String pServiceName, ServiceConfiguration pServiceConfiguration)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
             wSimpleFacade.SetServiceConfiguration(pServiceName,pServiceConfiguration);
             wSimpleFacade = null;
         }
@@ -136,7 +139,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
             wSimpleFacade.AddServiceConfiguration(pServiceConfiguration);
             wSimpleFacade = null;
         }
@@ -149,9 +152,21 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void DeleteServiceConfiguration(string pServiceName)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
             wSimpleFacade.DeleteServiceConfiguration(pServiceName);
             wSimpleFacade = null;
+        }
+       
+        /// <summary>
+        /// Factory de SimpleFacade
+        /// </summary>
+        /// <returns></returns>
+        SimpleFacade CreateSimpleFacade()
+        {
+            if(_SimpleFacade == null)
+                _SimpleFacade = new SimpleFacade();
+
+            return _SimpleFacade;
         }
         #endregion
     }

@@ -13,6 +13,9 @@ namespace Fwk.Bases.Connector
 	public class WebServiceWrapper : IServiceWrapper
 	{
 	    private string msz_URL = string.Empty;
+        /// <summary>
+        /// Direccion url del servicio web
+        /// </summary>
         public static string _URL;
 		#region IServiceInterfaceWrapper Members 
 

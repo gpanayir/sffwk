@@ -28,7 +28,7 @@ namespace Fwk.Bases.Connector
         }
 
         /// <summary>
-        /// 
+        /// Ejecucion del servicio
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>
@@ -45,11 +45,11 @@ namespace Fwk.Bases.Connector
         }
 
         /// <summary>
-        /// 
+        /// Ejecucion del servicio
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>
-        /// <param name="pData"></param>
+        /// <param name="pReq"></param>
         /// <returns></returns>
         public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
             where TRequest : IServiceContract
@@ -69,7 +69,9 @@ namespace Fwk.Bases.Connector
         #endregion
 
 
-
+        /// <summary>
+        /// Objeto de interbloqueo concurrente
+        /// </summary>
         protected static readonly object singletonLock = new object();
         private static bool IsConfigured()
         {

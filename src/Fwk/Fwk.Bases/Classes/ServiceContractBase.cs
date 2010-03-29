@@ -212,9 +212,21 @@ namespace Fwk.Bases
             m_Context.HostName = Environment.MachineName;
             m_Context.UserName = Environment.UserName;
             m_Context.HostTime = DateTime.Now;
-
+            m_Context.CompanyId = GetCompanyId();
         }
 
+        /// <summary>
+        /// Busca cadenas de coenección en el archivo de configuracion Configuracion mannager del framework
+        /// </summary>
+        /// <param name="pCompayId">Identificador de empresa</param>
+        /// <returns></returns>
+        protected static string GetCompanyId()
+        {
+            string wCompanyId = System.Configuration.ConfigurationManager.AppSettings["CompanyId"];
+            if (string.IsNullOrEmpty(wCompanyId))
+                wCompanyId = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "CompanyId");
+            return wCompanyId;
+        }
 
         /// <summary>
         /// Clona el contrato de servicio
