@@ -1113,14 +1113,14 @@ namespace Fwk.Security
         {
             CreateRule(paspnet_Rules, pApplicationName, FwkMembership.ConnectionStringName);
         }
-
+  
+ 
         /// <summary>
-        /// Insert
+        /// Crea una regla
         /// </summary>
-        ///<param name="paspnet_Rules">aspnet_Rules</param>
-        /// <returns>void</returns>
-        /// <Date>2008-12-22T11:29:57</Date>
-        /// <Author>moviedo</Author>
+        /// <param name="paspnet_Rules"></param>
+        /// <param name="pApplicationName"></param>
+        /// <param name="pConnectionStringName"></param>
         public static void CreateRule(FwkAuthorizationRule paspnet_Rules, string pApplicationName, string pConnectionStringName)
         {
 
@@ -1159,7 +1159,6 @@ namespace Fwk.Security
         /// UpdateRule
         /// </summary>
         /// <param name="paspnet_Rules"></param>
-        /// <param name="pApplicationName"></param>
         public static void UpdateRule(aspnet_Rule paspnet_Rules)
         {
             UpdateRule(paspnet_Rules, Membership.ApplicationName,FwkMembership.ConnectionStringName);
@@ -1240,7 +1239,7 @@ namespace Fwk.Security
 
             Fwk.Security.FwkMembershipScripts.BuildRolesAndUsers_FromRuleExpression(pRule.Expression, out rollistAux, out userList);
 
-            ///Quitar el rol a la regla si es que existe en la regla
+            //Quitar el rol a la regla si es que existe en la regla
             if (rollistAux.Any<Rol>(r => r.RolName.Equals(pRol.RolName)))
             {
                 rollistAux.Remove(rollistAux.First<Rol>(r => r.RolName.Equals(pRol.RolName)));
@@ -1272,7 +1271,7 @@ namespace Fwk.Security
                 wDataBase = DatabaseFactory.CreateDatabase(FwkMembership.ConnectionStringName);
                 wCmd = wDataBase.GetStoredProcCommand("[aspnet_Personalization_GetApplicationId]");
 
-                /// ApplicationName
+                // ApplicationName
                 wDataBase.AddInParameter(wCmd, "ApplicationName", System.Data.DbType.String, pApplicationName);
 
 

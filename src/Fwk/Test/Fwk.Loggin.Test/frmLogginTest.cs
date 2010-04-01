@@ -25,6 +25,7 @@ namespace Fwk.Logging.Test
 
         private void button6_Click(object sender, EventArgs e)
         {
+           
             _loger.Warning("Fwk Loggin test", "Mensage de prueba para Fwk Loggin");
         }
 

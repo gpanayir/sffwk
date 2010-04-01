@@ -11,10 +11,7 @@ namespace Fwk.Logging
     /// <author>moviedo</author>
     public enum EventType
     {
-        /// <summary>
-        /// Representa mensajes útiles para Debug.
-        /// </summary>
-        Debug,
+      
         /// <summary>
         /// Representa mensajes de información.
         /// </summary>

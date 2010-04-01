@@ -45,7 +45,7 @@ namespace Fwk.Logging.Targets
         {
             switch (pEventType)
             {
-                case EventType.Debug:
+                case EventType.Audit:
                     {
                         return EventLogEntryType.FailureAudit;
                     }

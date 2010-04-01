@@ -32,157 +32,10 @@ namespace Fwk.Logging
         #region <public properties>
 
 
-        ///// <summary>
-        ///// Escribe el log de un evento de tipo 'Information'.
-        ///// </summary>
-        ///// <param name="pSource">Origen del evento.</param>
-        ///// <param name="pText">Mensaje descriptivo del evento.</param>        
-        //public static void Information(string pSource, string pText)
-        //{
-        //    // Escribe el log.
-        //    WriteLog(EventType.Information, pSource, pText, string.Empty);
-        //}
-        ///// <summary>
-        ///// Escribe el log de un evento de tipo 'Information'.
-        ///// </summary>
-        ///// <param name="pSource">Origen del evento.</param>
-        ///// <param name="pText">Mensaje descriptivo del evento.</param>   
-        ///// <param name="path">ruta donde se guardaran los logs</param>
-        //public static void Information(string pSource, string pText, string path)
-        //{
-        //    // Escribe el log.---------
-        //    WriteLog(EventType.Information, pSource, pText, path);
-        //}
-        ///// <summary>
-        ///// Escribe el log de un evento de tipo 'Information'.
-        ///// </summary>
-        ///// <param name="pSource">Origen del evento.</param>
-        ///// <param name="pText">Mensaje descriptivo del evento.</param>   
-        ///// <param name="path">ruta donde se guardaran los logs</param>
-        ///// <param name="fileNamePrefix">Prefijo del nombre del archivo que se configuro para el evento
-        ///// Ej si se configuro Log.xml se almacenara bajo el patron:
-        ///// [fileNamePrefix]+Log.xml</param>
-        //public static void Information(string pSource, string pText, string path, string fileNamePrefix)
-        //{
-        //    // Escribe el log.---------
-        //    WriteLog(EventType.Information, pSource, pText, path, fileNamePrefix);
-        //}
-
-        ///// <summary>
-        ///// Escribe el log de un evento de tipo 'Warning'.
-        ///// </summary>
-        ///// <param name="pSource">Origen del evento.</param>
-        ///// <param name="pText">Mensaje descriptivo del evento.</param>        
-        //public static void Warning(string pSource, string pText)
-        //{
-        //    // Escribe el log.
-        //    WriteLog(EventType.Warning, pSource, pText, string.Empty);
-        //}
-
-        ///// <summary>
-        ///// Escribe el log de un evento de tipo 'Warning'.
-        ///// </summary>
-        ///// <param name="pSource">Origen del evento.</param>
-        ///// <param name="pText">Mensaje descriptivo del evento.</param>  
-        ///// <param name="path">ruta donde se guardaran los logs</param>
-        //public static void Warning(string pSource, string pText, string path)
-        //{
-        //    // Escribe el log.
-        //    WriteLog(EventType.Warning, pSource, pText, path);
-        //}
-        ///// <summary>
-        ///// Escribe el log de un evento de tipo 'Warning'.
-        ///// </summary>
-        ///// <param name="pSource">Origen del evento.</param>
-        ///// <param name="pText">Mensaje descriptivo del evento.</param>  
-        ///// <param name="path">ruta donde se guardaran los logs</param>
-        ///// <param name="fileNamePrefix">Prefijo del nombre del archivo que se configuro para el evento
-        ///// Ej si se configuro Log.xml se almacenara bajo el patron:
-        ///// [fileNamePrefix]+Log.xml</param>
-        //public static void Warning(string pSource, string pText, string path, string fileNamePrefix)
-        //{
-        //    // Escribe el log.
-        //    WriteLog(EventType.Warning, pSource, pText, path, fileNamePrefix);
-        //}
+       
 
         /// <summary>
-        /// Escribe el log de un evento de tipo 'Error'.
-        /// </summary>
-        /// <param name="pSource">Origen del evento.</param>
-        /// <param name="pText">Mensaje descriptivo del evento.</param>        
-        //public static void Error(string pSource, string pText)
-        //{
-        //    // Escribe el log.
-        //    WriteLog(EventType.Error, pSource, pText, string.Empty);
-        //}
-
-
-        /// <summary>
-        /// Escribe el log de un evento de tipo 'Error'.
-        /// </summary>
-        /// <param name="pSource">Origen del evento.</param>
-        /// <param name="pText">Mensaje descriptivo del evento.</param>  
-        /// <param name="path">ruta donde se guardaran los logs</param>
-        //public static void Error(string pSource, string pText, string path)
-        //{
-        //    // Escribe el log.
-        //    WriteLog(EventType.Error, pSource, pText, path);
-        //}
-        /// <summary>
-        /// Escribe el log de un evento de tipo 'Error'.
-        /// </summary>
-        /// <param name="pSource">Origen del evento.</param>
-        /// <param name="pText">Mensaje descriptivo del evento.</param>  
-        /// <param name="path">ruta donde se guardaran los logs</param>
-        /// <param name="fileNamePrefix">Prefijo del nombre del archivo que se configuro para el evento
-        /// Ej si se configuro Log.xml se almacenara bajo el patron:
-        /// [fileNamePrefix]+Log.xml</param>
-        //public static void Error(string pSource, string pText, string path, string fileNamePrefix)
-        //{
-        //    // Escribe el log.
-        //    WriteLog(EventType.Error, pSource, pText, path, fileNamePrefix);
-        //}
-
-        /// <summary>
-        /// Escribe el log de un evento de tipo 'Error'.
-        /// </summary>
-        /// <param name="pSource">Origen del evento.</param>
-        /// <param name="pText">Mensaje descriptivo del evento.</param>
-        /// <param name="pUserName">Nombre usuario.</param>
-        ///  <param name="pMachine">Nombre usuario.</param>    
-        //public static void Audit(string pSource, string pText, string pUserName, string pMachine)
-        //{
-        //    // Escribe el log.
-        //    //WriteLog(EventType.Audit, pSource, pText);
-        //    // Crea un nuevo Event.
-        //    Event wEvent = new Event(EventType.Audit, pSource, pText);
-        //    wEvent.UserLoginName = pUserName;
-        //    wEvent.Machine = pMachine;
-        //    WriteLog(wEvent, string.Empty);
-
-        //}
-        /// <summary>
-        /// Escribe el log de un evento de tipo 'Error'.
-        /// </summary>
-        /// <param name="pSource">Origen del evento.</param>
-        /// <param name="pText">Mensaje descriptivo del evento.</param>
-        /// <param name="pUserName">Nombre usuario.</param>
-        ///  <param name="pMachine">Nombre usuario.</param>    
-        /// <param name="path">ruta donde se guardaran los logs</param>
-        //public static void Audit(string pSource, string pText, string pUserName, string pMachine, string path)
-        //{
-        //    // Escribe el log.
-        //    //WriteLog(EventType.Audit, pSource, pText);
-        //    // Crea un nuevo Event.
-        //    Event wEvent = new Event(EventType.Audit, pSource, pText);
-        //    wEvent.UserLoginName = pUserName;
-        //    wEvent.Machine = pMachine;
-        //    WriteLog(wEvent, path);
-
-        //}
-
-        /// <summary>
-        /// Escribe el log de un evento de tipo 'Error'.
+        ///  Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
         /// </summary>
         /// <param name="pSource">Origen del evento.</param>
         /// <param name="pText">Mensaje descriptivo del evento.</param>
@@ -200,7 +53,7 @@ namespace Fwk.Logging
 
         }
         /// <summary>
-        /// Escribe el log de un evento de tipo 'Error'.
+        /// Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
         /// </summary>
         /// <param name="pSource">Origen del evento.</param>
         /// <param name="pText">Mensaje descriptivo del evento.</param>
@@ -217,51 +70,20 @@ namespace Fwk.Logging
             WriteLog(wEvent, path, fileNamePrefix);
 
         }
+
+
         #endregion
 
         #region <private methods>
 
 
+        
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pEventType">tipo de evente <see cref="EventType"/></param>
-        /// <param name="pSource">origen del evento</param>
-        /// <param name="pText">contenido del log</param>
-        /// <param name="path">ruta</param>
-        //private static void WriteLog(EventType pEventType, string pSource, string pText, string path)
-        //{
-        //    WriteLog(pEventType, pSource, pText, path, string.Empty);
-          
-        //}
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pEventType">tipo de evente <see cref="EventType"/></param>
-        /// <param name="pSource">origen del evento</param>
-        /// <param name="pText">contenido del log</param>
-        /// <param name="path">ruta</param>
-        /// <param name="fileNamePrefix">Prefijo del nombre del archivo que se configuro para el evento
-        /// Ej si se configuro Log.xml se almacenara bajo el patron:
-        /// [fileNamePrefix]+Log.xml</param>
-        //private static void WriteLog(EventType pEventType, string pSource, string pText, string path, string fileNamePrefix)
-        //{
-        //    // Crea un nuevo Event.
-        //    Event wEvent = new Event(pEventType, pSource, pText);
-
-        //    // Obtiene la Rule asociada al EventType.
-        //    RuleElement wRule = _LoggingSection.GetRuleByEventType(pEventType);
-
-        //    // Escribe el log según la Rule.
-        //    Target wTarget = GetTargetByRule(wRule, path, fileNamePrefix);
-        //    wTarget.Write(wEvent);
-
-        //    // Limpieza.
-        //    wEvent = null;
-        //    wRule = null;
-        //}
-
+        /// <param name="pEvent"></param>
+        /// <param name="path"></param>
+        /// <param name="fileNamePrefix">Prefijo del nombre de archivo</param>
         private static void WriteLog(Event pEvent, string path, string fileNamePrefix)
         {
             // Obtiene la Rule asociada al EventType.
@@ -276,6 +98,21 @@ namespace Fwk.Logging
         }
 
         /// <summary>
+        /// Escrive un log sin utilizar la configuracion AppSettings
+        /// </summary>
+        /// <param name="pTargetType"></param>
+        /// <param name="fullFileName"></param>
+        /// <param name="pCnnStringName">Prefijo del nombre de archivo</param>
+        private static void WriteLog(TargetType pTargetType, Event pEvent, string fullFileName, string pCnnStringName)
+        {
+            // Escribe el log según la Rule.
+            Target wTarget = GetTargetByRule(pTargetType, fullFileName, pCnnStringName);
+            wTarget.Write(pEvent);
+
+            pEvent = null;
+        }
+
+        /// <summary>
         /// Reinicio los logs para que Xmltarget lo busque 
         /// en el archivo correspondiente o genere uno nuevo
         /// </summary>
@@ -286,6 +123,13 @@ namespace Fwk.Logging
 
         static string currentFileName = string.Empty;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pRule"></param>
+        /// <param name="path"></param>
+        /// <param name="fileNamePrefix"></param>
+        /// <returns></returns>
         private static Target GetTargetByRule(RuleElement pRule, string path, string fileNamePrefix)
         {
             switch (pRule.Target)
@@ -327,6 +171,69 @@ namespace Fwk.Logging
                             wXml.FileName = string.Concat(fileNamePrefix, pRule.FileName);
                         else
                             wXml.FileName = System.IO.Path.Combine(path, string.Concat(fileNamePrefix, pRule.FileName));
+
+                        //Si cambio el nombre del archivo de log reinicio los logs para que Xmltarget lo busque 
+                        // en el archivo correspondiente o genere uno nuevo
+                        if (string.Compare(wXml.FileName, currentFileName) != 0)
+                        {
+                            ClearXmlTargetEvents();
+                            currentFileName = wXml.FileName;
+                        }
+                        return wXml;
+
+
+                    }
+
+
+            }
+            return null;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pTargetType"></param>
+        /// <param name="pFullFileName"></param>
+        /// <param name="pCnnStringName"></param>
+        /// <returns></returns>
+        private static Target GetTargetByRule(TargetType pTargetType, string pFullFileName, string pCnnStringName)
+        {
+            switch (pTargetType)
+            {
+
+                case TargetType.Database:
+                    {
+                        DatabaseTarget wDatabase = new DatabaseTarget();
+                        wDatabase.CnnStringName = pCnnStringName;
+                        return wDatabase;
+                    }
+                case TargetType.File:
+                    {
+                        FileTarget wFile = new FileTarget();
+
+
+                        wFile.FileName = pFullFileName;
+                       
+
+                        //Si cambio el nombre del archivo de log reinicio los logs para que Xmltarget lo busque 
+                        // en el archivo correspondiente o genere uno nuevo
+                        if (string.Compare(wFile.FileName, currentFileName) != 0)
+                        {
+                            ClearXmlTargetEvents();
+                            currentFileName = wFile.FileName;
+
+                        }
+                        return wFile;
+                    }
+                case TargetType.WindowsEvent:
+                    {
+                        return new WindowsEventTarget();
+                    }
+                case TargetType.Xml:
+                    {
+                        XmlTarget wXml = new XmlTarget();
+                       
+                            wXml.FileName = pFullFileName;
+                       
 
                         //Si cambio el nombre del archivo de log reinicio los logs para que Xmltarget lo busque 
                         // en el archivo correspondiente o genere uno nuevo

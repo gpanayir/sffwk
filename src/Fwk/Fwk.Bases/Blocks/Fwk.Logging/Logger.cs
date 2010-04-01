@@ -48,16 +48,7 @@ namespace Fwk.Logging
         #endregion
 
         #region <public properties>
-        /// <summary>
-        /// Escribe el log de un evento de tipo 'Debug'.
-        /// </summary>
-        /// <param name="pSource">Origen del evento.</param>
-        /// <param name="pText">Mensaje descriptivo del evento.</param>
-        public void Debug(string pSource, string pText)
-        {
-            // Escribe el log.
-            WriteLog(EventType.Debug, pSource, pText);
-        }
+       
 
         /// <summary>
         /// Escribe el log de un evento de tipo 'Information'.

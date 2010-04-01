@@ -16,6 +16,7 @@ namespace Fwk.ConfigSection
     /// <author>moviedo</author>
     public class RuleElement : ConfigurationElement
     {
+      
         #region <constructor>
         /// <summary>
         /// Constructor de RuleElement.
@@ -65,11 +66,7 @@ namespace Fwk.ConfigSection
                 {
                     switch (wSingleEvent)
                     {
-                        case "Debug":
-                            {
-                                wEvents.Add(EventType.Debug);
-                                break;
-                            }
+                    
                         case "Error":
                             {
                                 wEvents.Add(EventType.Error);
