@@ -65,11 +65,21 @@ namespace Fwk.Logging.Targets
             return EventLogEntryType.Error;
         }
         #endregion
-
+        /// <summary>
+        /// No se implementa SearchByParam en un evento proveniente del visor de evento de windows
+        /// </summary>
+        /// <param name="pEvent"></param>
+        /// <returns></returns>
         public override Events SearchByParam(Event pEvent)
         {
             throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows");
         }
+        /// <summary>
+        /// No se implementa SearchByParam en un evento proveniente del visor de evento de windows
+        /// </summary>
+        /// <param name="pEvent"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
         public override Events SearchByParam(Event pEvent,DateTime t)
         {
             throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows");

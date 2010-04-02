@@ -78,10 +78,10 @@ namespace Fwk.Logging.Test
             for (int i = 0; i < 100; i++)
             {
 
-                Fwk.Logging.StaticLogger.Log(EventType.Warning,
-                    "test login" + i.ToString(), "aaaaaaaaaaaaaaaa",
-                    Environment.UserName,Environment.MachineName, 
-                    AppDomain.CurrentDomain.BaseDirectory, txtFilePrefix.Text);
+                //Fwk.Logging.StaticLogger.Log(EventType.Warning,
+                //    "test login" + i.ToString(), "aaaaaaaaaaaaaaaa",
+                //    Environment.UserName,Environment.MachineName, 
+                //    AppDomain.CurrentDomain.BaseDirectory, txtFilePrefix.Text);
             }
 
         }
@@ -128,6 +128,12 @@ namespace Fwk.Logging.Test
                     }
             }
             return target;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+            StaticLogger.Log (TargetType.Xml, new Event(EventType.Warning,"Test","Hola mundo"),@"c:\" + HelperFunctions.DateFunctions.Get_Year_Mont_Day_String(DateTime.Now ,'_') + "pepe.xml",string.Empty);   
         }
 
     }

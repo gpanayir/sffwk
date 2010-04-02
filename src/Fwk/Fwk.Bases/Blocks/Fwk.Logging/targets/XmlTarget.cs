@@ -19,7 +19,7 @@ namespace Fwk.Logging.Targets
         /// <summary>
         /// Listado de eventos de logueo correspondientes a este Target.-
         /// </summary>
-        public  static Events Logs;
+        public static Events Logs;
        
         #region <constructor>
         /// <summary>

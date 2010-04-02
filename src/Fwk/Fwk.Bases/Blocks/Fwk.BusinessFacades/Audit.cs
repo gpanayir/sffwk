@@ -37,8 +37,9 @@ namespace Fwk.BusinessFacades.Utils
             pServiceError.Machine = Environment.MachineName;
             try
             {
-                Fwk.Logging.StaticLogger.Log(EventType.Error, "Serive Dispatcher", pServiceError.GetXml(),
-                  pServiceError.UserName, pServiceError.Machine);
+                /// TODO: ver prefijo del log
+                Event ev = new Event(EventType.Error, "Serive Dispatcher", pServiceError.GetXml(), pServiceError.Machine, pServiceError.UserName);
+                Fwk.Logging.StaticLogger.Log(ev);
             }
             catch { }
            
@@ -72,16 +73,10 @@ namespace Fwk.BusinessFacades.Utils
         {
             try
             {
-                Fwk.Logging.StaticLogger.Log(EventType.Error,
-                "Serive Dispatcher",
-                  pServiceError.GetXml(),
-                pServiceError.UserName,
-                pServiceError.Machine);
+                ///TODO: Ver prefijos de logs
+                Fwk.Logging.StaticLogger.Log(new Event(EventType.Error, "Serive Dispatcher", pServiceError.GetXml(), pServiceError.Machine, pServiceError.UserName));
             }
             catch { }
-          
-          
-
         }
 
 
@@ -103,11 +98,10 @@ namespace Fwk.BusinessFacades.Utils
 
             try
             {
-                Fwk.Logging.StaticLogger.Log(EventType .Audit,
-                    pRequest.ContextInformation.HostName,
-                    s.ToString(),
-                    pRequest.ContextInformation.UserName,
-                    pRequest.ContextInformation.HostName);
+                ///TODO: Ver prefijos de logs
+                Event ev = new Event(EventType.Audit,pRequest.ContextInformation.HostName,s.ToString(), pRequest.ContextInformation.HostName,pRequest.ContextInformation.UserName);
+                Fwk.Logging.StaticLogger.Log(ev);
+                    
             }
             catch { }
             finally

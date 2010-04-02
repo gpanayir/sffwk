@@ -66,6 +66,7 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemsCount)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -431,6 +432,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button10);
             this.tabPage3.Controls.Add(this.label1);
             this.tabPage3.Controls.Add(this.txtFilePrefix);
             this.tabPage3.Controls.Add(this.textBox2);
@@ -479,9 +481,9 @@
             this.button9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.button9.Location = new System.Drawing.Point(213, 54);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(86, 25);
+            this.button9.Size = new System.Drawing.Size(130, 25);
             this.button9.TabIndex = 11;
-            this.button9.Text = "Open Log";
+            this.button9.Text = "Open Log (AppSetting)";
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button4
@@ -503,8 +505,19 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(154, 31);
             this.button3.TabIndex = 1;
-            this.button3.Text = "Warning";
+            this.button3.Text = "Warning (AppSetting)";
             this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button10
+            // 
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button10.Location = new System.Drawing.Point(506, 54);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(154, 31);
+            this.button10.TabIndex = 16;
+            this.button10.Text = "Warning (No config)";
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // frmLoggingTest
             // 
@@ -571,6 +584,7 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtFilePrefix;
+        private System.Windows.Forms.Button button10;
     }
 }
 

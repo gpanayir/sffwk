@@ -19,8 +19,6 @@ namespace Fwk.Logging
     {
         #region <private members>
         private String _AppId;
-
-      
         private String _Source;
         private EventType _LogType;
         private Guid _Id;
@@ -58,6 +56,25 @@ namespace Fwk.Logging
             _UserLoginName = Environment.UserName;
             _LogDate = DateTime.Now;
         }
+        /// <summary>
+        /// Constructor de Event.
+        /// </summary>
+        /// <param name="pType">Tipo de evento.</param>
+        /// <param name="pSource">Origen del evento.</param>
+        /// <param name="pMessage">Mensaje descriptivo del evento.</param>
+        /// <param name="pMachine">Equipo donde se origina el evento.</param>
+        /// <param name="pUserName">Usuario que origina el evento.</param>
+        public Event(EventType pType, string pSource, string pMessage, string pMachine, string pUserName)
+        {
+            _Id = Guid.NewGuid();
+            _LogType = pType;
+            _Source = pSource;
+            _Message.Text = pMessage;
+            _Machine = pMachine;
+            _UserLoginName = pUserName;
+            _LogDate = DateTime.Now;
+        }
+
         #endregion
 
         #region <public properties>
@@ -169,6 +186,9 @@ namespace Fwk.Logging
         #endregion
     }
     
+    /// <summary>
+    /// Lista de eventos logs
+    /// </summary>
     [XmlRoot("Events"), SerializableAttribute]
     public class Events : Fwk.Bases.Entities<Event>
     { 

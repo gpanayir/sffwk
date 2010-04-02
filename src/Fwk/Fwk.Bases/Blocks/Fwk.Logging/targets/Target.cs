@@ -14,6 +14,7 @@ namespace Fwk.Logging.Targets
     public abstract class Target : Fwk.Logging.Targets.ITarget
     {
         #region <private members>
+     
         private TargetType _Type;
         private string _FileName;
         #endregion
@@ -65,7 +66,58 @@ namespace Fwk.Logging.Targets
         public abstract Events SearchByParam(Event pEvent, DateTime pEndDate);
         #endregion
 
+        static Target()
+        {
+            _Targets = new Dictionary<string, ITarget>();
+        }
+        static Dictionary<string, ITarget> _Targets;
 
+        /// <summary>
+        /// Fabrica de Itargets 
+        /// </summary>
+        /// <param name="targetType"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static ITarget TargetFactory(TargetType targetType, string key)
+        {
+            ITarget target = null;
+            if(_Targets.ContainsKey(key))
+             target = _Targets[key];
+          
+            //Si no existe se crea
+            if (target == null)
+            {
+                switch (targetType)
+                {
+
+                    case TargetType.Database:
+                        {
+                            target = new DatabaseTarget();
+                            ((DatabaseTarget)target).CnnStringName = key;
+                            break;
+                        }
+                    case TargetType.File:
+                        {
+                            target = new FileTarget();
+                            ((FileTarget)target).FileName = key;//fullFileName;
+
+                            break;
+                        }
+                    case TargetType.WindowsEvent:
+                        {
+                            return new WindowsEventTarget();
+                        }
+                    case TargetType.Xml:
+                        {
+                            target = new XmlTarget();
+                            ((XmlTarget)target).FileName = key;
+                            break;
+                        }
+                }
+              
+            }
+            return target;
+        }
 
       
     }

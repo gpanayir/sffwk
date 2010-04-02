@@ -205,6 +205,19 @@ namespace Fwk.HelperFunctions
         {
             get { return new DateTime(1, 1, 1, 0, 0, 0); }
         }
+
+        /// <summary>
+        /// Retorna la fecha en formato YYYY[sep]MM[sep]dd
+        /// EJ: 2010_11_02
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static string Get_Year_Mont_Day_String(DateTime date , char separator )
+        {
+            return date.ToString("yyyy-MM-dd").Replace('-', separator);
+           
+        }
 	}
 
 }

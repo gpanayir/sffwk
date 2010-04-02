@@ -14,6 +14,7 @@ namespace Fwk.Logging.Targets
     public class FileTarget : Target
     {
         #region <constructor>
+        
         /// <summary>
         /// Constructor de FileTarget.
         /// </summary>
