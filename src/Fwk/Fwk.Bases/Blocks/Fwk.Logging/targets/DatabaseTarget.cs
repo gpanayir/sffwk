@@ -96,7 +96,7 @@ namespace Fwk.Logging.Targets
                     wParam.Value = pEvent.LogDate;
 
                     wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
-                    wParam.Value = pEvent.UserLoginName;
+                    wParam.Value = pEvent.User;
 
 
                     wCmd.ExecuteNonQuery();
@@ -158,10 +158,10 @@ namespace Fwk.Logging.Targets
                         wParam.Value = string.Concat("%", pEvent.Machine, "%");
                     }
 
-                    if (!string.IsNullOrEmpty(pEvent.UserLoginName))
+                    if (!string.IsNullOrEmpty(pEvent.User))
                     {
                         wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
-                        wParam.Value = string.Concat("%", pEvent.UserLoginName, "%");
+                        wParam.Value = string.Concat("%", pEvent.User, "%");
                     }
 
                     
@@ -181,7 +181,7 @@ namespace Fwk.Logging.Targets
                             wEvent.LogType = (EventType)Enum.Parse(typeof(EventType), reader["LogType"].ToString());
                             wEvent.Machine = reader["Machine"].ToString();
                             wEvent.LogDate = Convert.ToDateTime(reader["LogDate"]);
-                            wEvent.UserLoginName = reader["UserLoginName"].ToString();
+                            wEvent.User = reader["UserLoginName"].ToString();
                             wEventList.Add(wEvent);
                         }
                     }
@@ -253,10 +253,10 @@ namespace Fwk.Logging.Targets
                         wParam.Value = string.Concat("%", pEvent.Machine, "%");
                     }
 
-                    if (!string.IsNullOrEmpty(pEvent.UserLoginName))
+                    if (!string.IsNullOrEmpty(pEvent.User))
                     {
                         wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
-                        wParam.Value = string.Concat("%", pEvent.UserLoginName, "%");
+                        wParam.Value = string.Concat("%", pEvent.User, "%");
                     }
 
 
@@ -273,7 +273,7 @@ namespace Fwk.Logging.Targets
                             wEvent.LogType = (EventType)reader["LogType"];
                             wEvent.Machine = reader["Machine"].ToString();
                             wEvent.LogDate = Convert.ToDateTime(reader["Machine"]);
-                            wEvent.UserLoginName = reader["UserLoginName"].ToString();
+                            wEvent.User = reader["UserLoginName"].ToString();
                             wEventList.Add(wEvent);
                         }
                     }

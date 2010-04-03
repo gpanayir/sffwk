@@ -112,7 +112,7 @@ namespace Fwk.Logging
         /// <summary>
         /// Fecha y hora en la que se produce el evento.
         /// </summary>
-       [XmlAttribute("LogDate")]
+       [XmlAttribute("Date")]
        public DateTime LogDate
         {
             get { return _LogDate; }
@@ -131,8 +131,8 @@ namespace Fwk.Logging
         /// <summary>
         /// Usuario que origina el evento.
         /// </summary>
-        [XmlAttribute("UserLoginName")]
-        public string UserLoginName
+        [XmlAttribute("User")]
+        public string User
         {
             get { return _UserLoginName; }
             set { _UserLoginName = value; }

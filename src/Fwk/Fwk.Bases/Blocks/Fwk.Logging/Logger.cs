@@ -96,7 +96,7 @@ namespace Fwk.Logging
             WriteLog(EventType.Audit, pSource, pText);
             // Crea un nuevo Event.
             Event wEvent = new Event( EventType.Audit   , pSource, pText);
-            wEvent.UserLoginName = pUserName;
+            wEvent.User = pUserName;
             wEvent.Machine = pMachine;
             WriteLog(wEvent);
      

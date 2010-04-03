@@ -103,7 +103,7 @@ namespace Fwk.Logging.Targets
                                    where
                                        (String.IsNullOrEmpty(pEvent.Machine) || s.Machine.StartsWith(pEvent.Machine))
                                        &&
-                                       (String.IsNullOrEmpty(pEvent.UserLoginName) || s.Machine.StartsWith(pEvent.UserLoginName))
+                                       (String.IsNullOrEmpty(pEvent.User) || s.Machine.StartsWith(pEvent.User))
                                        &&
                                        (pEvent.LogType == EventType.None || s.LogType == pEvent.LogType)
                                        &&
@@ -142,7 +142,7 @@ namespace Fwk.Logging.Targets
                                    where
                                        (String.IsNullOrEmpty(pEvent.Machine) || s.Machine.StartsWith(pEvent.Machine))
                                        &&
-                                       (String.IsNullOrEmpty(pEvent.UserLoginName) || s.Machine.StartsWith(pEvent.UserLoginName))
+                                       (String.IsNullOrEmpty(pEvent.User) || s.Machine.StartsWith(pEvent.User))
                                        &&
                                        (pEvent.LogType == EventType.None || s.LogType == pEvent.LogType)
                                        &&
