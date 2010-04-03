@@ -56,6 +56,7 @@ namespace Fwk.Logging
             _UserLoginName = Environment.UserName;
             _LogDate = DateTime.Now;
         }
+       
         /// <summary>
         /// Constructor de Event.
         /// </summary>
@@ -67,6 +68,27 @@ namespace Fwk.Logging
         public Event(EventType pType, string pSource, string pMessage, string pMachine, string pUserName)
         {
             _Id = Guid.NewGuid();
+            _LogType = pType;
+            _Source = pSource;
+            _Message.Text = pMessage;
+            _Machine = pMachine;
+            _UserLoginName = pUserName;
+            _LogDate = DateTime.Now;
+        }
+
+        /// <summary>
+        ///  Constructor de Event.
+        /// </summary>
+        /// <param name="pType">Tipo de evento.</param>
+        /// <param name="pSource">Origen del evento.</param>
+        /// <param name="pMessage">Mensaje descriptivo del evento.</param>
+        /// <param name="pMachine">Equipo donde se origina el evento.</param>
+        /// <param name="pUserName">Usuario que origina el evento.</param>
+        /// <param name="appId">Identificador de la aplicación que genera el log</param>
+        public Event(EventType pType, string pSource, string pMessage, string pMachine, string pUserName, string appId)
+        {
+            _Id = Guid.NewGuid();
+            _AppId = appId;
             _LogType = pType;
             _Source = pSource;
             _Message.Text = pMessage;
@@ -146,7 +168,7 @@ namespace Fwk.Logging
             set { _Source = value; }
         }
         /// <summary>
-        /// Identificador de la aplicacion o sistema
+        /// Identificador de la aplicacion o sistema qhe genera el log.-
         /// </summary>
         [XmlAttribute("AppId")]
         public String AppId
