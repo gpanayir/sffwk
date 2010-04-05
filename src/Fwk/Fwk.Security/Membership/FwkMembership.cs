@@ -84,6 +84,19 @@ namespace Fwk.Security
 
         /// <summary>
         /// Crea un usuario
+        /// Si el usuario existe lanza una (System.Web.Security.MembershipCreateUserException ex) 
+        /// </summary>
+        /// <param name="pUsername">Usuario</param>
+        /// <param name="pPassword">Clave</param>        
+        public static void CreateUser(string pUsername, string pPassword)
+        {
+            FwkIdentity wFwkIdentity = new FwkIdentity();            
+            
+            System.Web.Security.Membership.CreateUser(pUsername, pPassword);
+        }
+
+        /// <summary>
+        /// Crea un usuario
         /// </summary>
         /// <param name="pUsername"></param>
         /// <param name="pPassword"></param>
