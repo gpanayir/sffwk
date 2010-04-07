@@ -62,14 +62,22 @@ namespace EasyDirectoryReplace
 
         private void btnOpenSource_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.ShowDialog();
-            txtRuta1.Text = folderBrowserDialog1.SelectedPath;
+
+           folderBrowserDialog1.SelectedPath = txtRuta1.Text;
+            if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                txtRuta1.Text = folderBrowserDialog1.SelectedPath;
+            }
         }
 
         private void btnOpenDest_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.ShowDialog();
-            txtRuta2.Text = folderBrowserDialog1.SelectedPath;
+
+            folderBrowserDialog1.SelectedPath = txtRuta2.Text;
+            if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                txtRuta2.Text = folderBrowserDialog1.SelectedPath;
+            }
         }
 
 

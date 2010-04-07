@@ -51,6 +51,8 @@ namespace EasyDirectoryReplace
             // 
             // txtRuta1
             // 
+            this.txtRuta1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtRuta1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtRuta1.Location = new System.Drawing.Point(14, 30);
             this.txtRuta1.Name = "txtRuta1";
             this.txtRuta1.Size = new System.Drawing.Size(440, 20);
@@ -59,11 +61,13 @@ namespace EasyDirectoryReplace
             // 
             // txtRuta2
             // 
+            this.txtRuta2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtRuta2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtRuta2.Location = new System.Drawing.Point(13, 78);
             this.txtRuta2.Name = "txtRuta2";
             this.txtRuta2.Size = new System.Drawing.Size(440, 20);
             this.txtRuta2.TabIndex = 3;
-            this.txtRuta2.Text = "c:\\SourceCopy";
+            this.txtRuta2.Text = "c:\\";
             // 
             // txtNewText
             // 
@@ -236,7 +240,6 @@ namespace EasyDirectoryReplace
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEasyReplace";
             this.Text = "File system easy replace";
-
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEasyReplace_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
