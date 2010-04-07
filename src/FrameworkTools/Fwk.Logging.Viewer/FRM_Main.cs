@@ -220,7 +220,7 @@ namespace Fwk.Logging.Viewer
                 wEvent.LogType = (EventType)System.Enum.Parse(typeof(EventType), wStringSections[2].Trim().Replace("Type: ", ""), true);
                 wEvent.Message.Text = wStringSections[3].Trim().Replace("Message: ", "");
                 wEvent.Source = wStringSections[4].Trim().Replace("Source: ", "");
-                wEvent.UserLoginName = wStringSections[5].Trim().Replace("User : ", "");
+                wEvent.User = wStringSections[5].Trim().Replace("User : ", "");
                 wEvent.Machine = wStringSections[6].Trim().Replace("Machine : ", "");
                 wEvents.Add(wEvent);
             }
