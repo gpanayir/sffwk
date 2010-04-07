@@ -79,11 +79,7 @@ namespace ProjectReferencesCreator
             else
             { errorProvider1.SetError(txtReference, ""); }
 
-            if (_list.Exists(p => p.Path.Equals(txtReference.Text.Trim())))
-            {
-                errorProvider1.SetError(txtReference, "La ruta especificada ya esta agregada en la lista");
-                errCount++;
-            }
+           
             return errCount == 0;
 
         }
@@ -108,6 +104,14 @@ namespace ProjectReferencesCreator
         {
             if (ValidateFolders())
             {
+                if (_list.Exists(p => p.Path.Equals(txtReference.Text.Trim())))
+                {
+                    errorProvider1.SetError(txtReference, "La ruta especificada ya esta agregada en la lista");
+                    return;
+                }
+                else
+                    errorProvider1.SetError(txtReference, "");
+
                 _list.Add(new Reference(txtReference.Text, _list.Count));
                 indexCounter++;
                 referenceBindingSource.DataSource = null;
