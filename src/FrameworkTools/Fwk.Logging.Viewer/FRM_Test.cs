@@ -22,7 +22,7 @@ namespace Fwk.Logging.Viewer
         {
             Logger wLogger = new Logger();
            
-            wLogger.Debug("FRM_Main.btnGettLoggingConfiguration", "Este es un texto de prueba.");
+          
             MessageBox.Show("Archivo Log generado correctamente.");
             wLogger.Error("FRM_Main.btnGettLoggingConfiguration", "Este es un texto de prueba.");
             MessageBox.Show("Archivo Xml generado correctamente.");
