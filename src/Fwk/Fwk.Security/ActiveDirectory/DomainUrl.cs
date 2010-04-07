@@ -8,7 +8,8 @@ namespace Fwk.Security.ActiveDirectory
 {
     /// <summary>
     /// 
-    /// </summary>
+    /// </summary>    
+    [Serializable]
     public class DomainUrlInfo : Entity
     {
 

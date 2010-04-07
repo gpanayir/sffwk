@@ -167,7 +167,6 @@
     <Content Include="checkers.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="CustomAppChecker.doc" />
     <None Include="Resources\save_16.png" />
     <None Include="Resources\del_16.png" />
     <None Include="Resources\stop_16.png" />
