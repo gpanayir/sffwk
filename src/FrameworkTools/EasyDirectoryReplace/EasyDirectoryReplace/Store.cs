@@ -27,9 +27,9 @@ namespace EasyDirectoryReplace
                 Store wStore = (Store)Store.FwkCache.GetItemFromCache("EasyDirectoryReplace");
                 _Destination = wStore.Destination;
                 _Source = wStore.Source;
-                _NewText = wStore.NewText;
-                _OldText = wStore.OldText;
-                _ReplaceContentFile = wStore.ReplaceContentFile;
+                _ReplacePatternList = wStore.ReplacePatternList;
+                _ReplacePattern = wStore.ReplacePatternDefault;
+                
             }
         }
         public static void Save(Store pStore)
@@ -77,6 +77,21 @@ namespace EasyDirectoryReplace
         {
             get { return _OldText; }
             set { _OldText = value; }
+        }
+
+        ReplacePaternList _ReplacePatternList = new ReplacePaternList();
+
+        public ReplacePaternList ReplacePatternList
+        {
+            get { return _ReplacePatternList; }
+            set { _ReplacePatternList = value; }
+        }
+        ReplacePattern _ReplacePattern = new ReplacePattern();
+
+        public ReplacePattern ReplacePatternDefault
+        {
+            get { return _ReplacePattern; }
+            set { _ReplacePattern = value; }
         }
     }
 }

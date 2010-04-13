@@ -31,21 +31,17 @@ namespace EasyDirectoryReplace
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEasyReplace));
             this.txtRuta1 = new System.Windows.Forms.TextBox();
             this.txtRuta2 = new System.Windows.Forms.TextBox();
-            this.txtNewText = new System.Windows.Forms.TextBox();
-            this.txtOldText = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkReplaceContentFile = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnOpenDest = new System.Windows.Forms.Button();
             this.btnOpenSource = new System.Windows.Forms.Button();
-            this.btnProcess = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.groupBox1.SuspendLayout();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnProcess = new System.Windows.Forms.Button();
+            this.replacePattern1 = new EasyDirectoryReplace.ReplacePatternControl();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,27 +65,13 @@ namespace EasyDirectoryReplace
             this.txtRuta2.TabIndex = 3;
             this.txtRuta2.Text = "c:\\";
             // 
-            // txtNewText
-            // 
-            this.txtNewText.Location = new System.Drawing.Point(268, 32);
-            this.txtNewText.Name = "txtNewText";
-            this.txtNewText.Size = new System.Drawing.Size(153, 20);
-            this.txtNewText.TabIndex = 5;
-            this.txtNewText.Text = "Fwk";
-            // 
-            // txtOldText
-            // 
-            this.txtOldText.Location = new System.Drawing.Point(9, 32);
-            this.txtOldText.Name = "txtOldText";
-            this.txtOldText.Size = new System.Drawing.Size(197, 20);
-            this.txtOldText.TabIndex = 4;
-            this.txtOldText.Text = "PelSoft.Libraries";
-            // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(13, 271);
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar1.Location = new System.Drawing.Point(11, 384);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(491, 15);
+            this.progressBar1.Size = new System.Drawing.Size(1111, 13);
             this.progressBar1.TabIndex = 6;
             this.progressBar1.Visible = false;
             // 
@@ -114,52 +96,6 @@ namespace EasyDirectoryReplace
             this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Destination path";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(6, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Text to replase";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label4.Location = new System.Drawing.Point(265, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "New text";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.chkReplaceContentFile);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtOldText);
-            this.groupBox1.Controls.Add(this.txtNewText);
-            this.groupBox1.Location = new System.Drawing.Point(12, 130);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(492, 87);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            // 
-            // chkReplaceContentFile
-            // 
-            this.chkReplaceContentFile.AutoSize = true;
-            this.chkReplaceContentFile.Location = new System.Drawing.Point(10, 64);
-            this.chkReplaceContentFile.Name = "chkReplaceContentFile";
-            this.chkReplaceContentFile.Size = new System.Drawing.Size(121, 17);
-            this.chkReplaceContentFile.TabIndex = 11;
-            this.chkReplaceContentFile.Text = "Replace content file";
-            this.chkReplaceContentFile.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -209,6 +145,36 @@ namespace EasyDirectoryReplace
             this.btnOpenSource.UseVisualStyleBackColor = true;
             this.btnOpenSource.Click += new System.EventHandler(this.btnOpenSource_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(543, 12);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(579, 366);
+            this.flowLayoutPanel1.TabIndex = 13;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.SlateGray;
+            this.btnAdd.Image = global::EasyDirectoryReplace.Properties.Resources.folder_new_16;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(300, 310);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(211, 25);
+            this.btnAdd.TabIndex = 14;
+            this.btnAdd.Text = "Add new replace pattern -->";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // btnProcess
             // 
             this.btnProcess.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -218,7 +184,7 @@ namespace EasyDirectoryReplace
             this.btnProcess.ForeColor = System.Drawing.Color.SlateGray;
             this.btnProcess.Image = global::EasyDirectoryReplace.Properties.Resources.Untitled__243_;
             this.btnProcess.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProcess.Location = new System.Drawing.Point(14, 223);
+            this.btnProcess.Location = new System.Drawing.Point(12, 329);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(169, 31);
             this.btnProcess.TabIndex = 1;
@@ -227,22 +193,31 @@ namespace EasyDirectoryReplace
             this.btnProcess.UseVisualStyleBackColor = true;
             this.btnProcess.Click += new System.EventHandler(this.button2_Click);
             // 
+            // replacePattern1
+            // 
+            this.replacePattern1.BackColor = System.Drawing.Color.White;
+            this.replacePattern1.Location = new System.Drawing.Point(11, 169);
+            this.replacePattern1.Name = "replacePattern1";
+            this.replacePattern1.RemoveVisible = false;
+            this.replacePattern1.Size = new System.Drawing.Size(502, 98);
+            this.replacePattern1.TabIndex = 15;
+            // 
             // frmEasyReplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(527, 308);
+            this.ClientSize = new System.Drawing.Size(1134, 404);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.replacePattern1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnProcess);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEasyReplace";
             this.Text = "File system easy replace";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEasyReplace_FormClosing);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -254,19 +229,16 @@ namespace EasyDirectoryReplace
         private System.Windows.Forms.Button btnProcess;
         private System.Windows.Forms.TextBox txtRuta1;
         private System.Windows.Forms.TextBox txtRuta2;
-        private System.Windows.Forms.TextBox txtNewText;
-        private System.Windows.Forms.TextBox txtOldText;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnOpenDest;
         private System.Windows.Forms.Button btnOpenSource;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.CheckBox chkReplaceContentFile;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnAdd;
+        private ReplacePatternControl replacePattern1;
     }
 }
 

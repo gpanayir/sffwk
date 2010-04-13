@@ -10,16 +10,19 @@ namespace EasyDirectoryReplace
     public partial class frmEasyReplace : Form
     {
         private Store _Store = new Store();
-
+       
         private static List<String> extencionsListToReplace = new List<string>();
         public frmEasyReplace()
         {
             InitializeComponent();
-            txtNewText.Text = _Store.NewText;
-            txtOldText.Text = _Store.OldText;
+            
+            replacePattern1.Populate(_Store.ReplacePatternDefault);
+            PopulatePanel();
+
+   
             txtRuta1.Text = _Store.Source;
             txtRuta2.Text = _Store.Destination;
-            chkReplaceContentFile.Checked =_Store.ReplaceContentFile  ;
+         
             extencionsListToReplace.Add(".cs");
             extencionsListToReplace.Add(".vb");
             extencionsListToReplace.Add(".cs");
@@ -30,8 +33,8 @@ namespace EasyDirectoryReplace
             extencionsListToReplace.Add(".vspscc");
             extencionsListToReplace.Add(".vbproj");
             extencionsListToReplace.Add(".csproj");
-            
 
+         
         }
 
 
@@ -49,17 +52,19 @@ namespace EasyDirectoryReplace
 
                 progressBar1.Maximum = wFiles.Length + wDirectories.Length + 1;
                 progressBar1.Visible = true;
-
+                FillReplacePaternList(true);
                 //Renombro a nivel de archivo y carpetas
-                RenameFilesAndDirectories(txtRuta1.Text, txtRuta2.Text, "*", txtOldText.Text, txtNewText.Text, chkReplaceContentFile.Checked);
+                //RenameFilesAndDirectories(txtRuta1.Text, txtRuta2.Text, "*", txtOldText.Text, txtNewText.Text, chkReplaceContentFile.Checked);
+                RenameFilesAndDirectories(txtRuta1.Text, txtRuta2.Text, "*",_Store.ReplacePatternList);
 
                 progressBar1.Value = 0;
                 progressBar1.Visible = false;
 
                 DirectoryInfo Sourse = new DirectoryInfo(txtRuta1.Text);
 
-
-                System.Diagnostics.Process.Start("explorer.exe", Path.Combine(txtRuta2.Text, Sourse.Name.Replace(txtOldText.Text, txtNewText.Text)));
+                string newDir = ReplaceNameContainsPattern(txtRuta2.Text, _Store.ReplacePatternList);
+                //System.Diagnostics.Process.Start("explorer.exe", Path.Combine(txtRuta2.Text, Sourse.Name.Replace(txtOldText.Text, txtNewText.Text)));
+                System.Diagnostics.Process.Start("explorer.exe", Path.Combine(txtRuta2.Text, newDir));
             }
             catch (Exception ex)
             {
@@ -113,10 +118,45 @@ namespace EasyDirectoryReplace
                 StringBuilder strErrors = null ;
                 ProcessFile(file, oldText, newText, Path.Combine(destination, destinationDirectoryInfo.Name), replaceContent,out strErrors);
             }
+
             foreach (DirectoryInfo directoryInfo in wDirectories)
             {
                 RenameFilesAndDirectories(directoryInfo.FullName, Path.Combine(destination, destinationDirectoryInfo.Name), searchPattern,
                                           oldText, newText, replaceContent);
+            }
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source">Ruta de origen</param>
+        /// <param name="destination">Ruta destino</param>
+        /// <param name="searchPattern"></param>
+        /// <param name="list"></param>
+        void RenameFilesAndDirectories(string source, string destination, string searchPattern ,ReplacePaternList list)
+        {
+            #region Declarations
+            FileInfo[] wFiles = new DirectoryInfo(source).GetFiles(searchPattern, SearchOption.TopDirectoryOnly);
+            DirectoryInfo[] wDirectories = new DirectoryInfo(source).GetDirectories(searchPattern, SearchOption.TopDirectoryOnly);
+
+            string newDirectoryName = ReplaceNameContainsPattern(source, list);
+
+            DirectoryInfo destinationDirectoryInfo = new DirectoryInfo(newDirectoryName);
+            #endregion
+
+            Directory.CreateDirectory(Path.Combine(destination, destinationDirectoryInfo.Name));
+
+            foreach (FileInfo file in wFiles)
+            {
+                progressBar1.Value++;
+                StringBuilder strErrors = null;
+                ProcessFile(file, list, Path.Combine(destination, destinationDirectoryInfo.Name),  out strErrors);
+            }
+            //por cada subdirectorio
+            foreach (DirectoryInfo directoryInfo in wDirectories)
+            {
+                RenameFilesAndDirectories(directoryInfo.FullName, Path.Combine(destination, destinationDirectoryInfo.Name), searchPattern,
+                                          list);
             }
 
         }
@@ -166,6 +206,64 @@ namespace EasyDirectoryReplace
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="oldText"></param>
+        /// <param name="newText"></param>
+        /// <param name="destination"></param>
+        void ProcessFile(FileInfo file, ReplacePaternList list, String destination, out StringBuilder strErrors)
+        {
+            #region Declarations
+            strErrors = new StringBuilder();
+            String text, newFileName;
+            #endregion
+
+            newFileName = ReplaceNameContainsPattern(file.Name, list);
+
+            try
+            {
+                if (extencionsListToReplace.Contains(file.Extension))
+                {
+                    text = FileFunctions.OpenTextFile(file.FullName);
+                    text = ReplaceContent(text, list);
+                    FileFunctions.SaveTextFile(Path.Combine(destination, newFileName), text, false);
+                }
+                else
+                {
+                    file.CopyTo(Path.Combine(destination, newFileName));
+                }
+
+            }
+            catch (System.IO.IOException ex)
+            {
+                strErrors.AppendLine(ex.Message);
+            }
+
+        }
+
+        string ReplaceNameContainsPattern(string fileName,ReplacePaternList list )
+        {
+            foreach (ReplacePattern pattern in list)
+            {
+               if( fileName.Contains(pattern.TextOld))
+                fileName = fileName.Replace(pattern.TextOld, pattern.TextNew);
+            }
+
+            return fileName;
+        }
+
+        string ReplaceContent(string text, ReplacePaternList list)
+        {
+            foreach (ReplacePattern pattern in list)
+            {
+                if(pattern.ReplaceContent)
+                    text = text.Replace(pattern.TextOld, pattern.TextNew);
+            }
+
+            return text;
+        }
         #endregion
 
        
@@ -175,10 +273,70 @@ namespace EasyDirectoryReplace
 
             _Store.Source = txtRuta1.Text;
             _Store.Destination = txtRuta2.Text;
-            _Store.OldText = txtOldText.Text;
-            _Store.NewText = txtNewText.Text;
-            _Store.ReplaceContentFile = chkReplaceContentFile.Checked;
+
+            FillReplacePaternList(false);
+
             Store.Save(_Store);
+        }
+
+        /// <summary>
+        /// Llena el store
+        /// </summary>
+        void FillReplacePaternList(bool addDefaultToList)
+        {
+            _Store.ReplacePatternList.Clear();
+            foreach (Control c in flowLayoutPanel1.Controls)
+            {
+                _Store.ReplacePatternList.Add(((ReplacePatternControl)c).ReplacePatern);
+            }
+            if (addDefaultToList)
+                _Store.ReplacePatternList.Add(replacePattern1.ReplacePatern);
+            else
+                _Store.ReplacePatternDefault = replacePattern1.ReplacePatern;
+
+        }
+        void PopulatePanel()
+        {
+
+            foreach (ReplacePattern wReplacePattern in _Store.ReplacePatternList)
+            {
+                ReplacePatternControl wReplacePatternControl = new ReplacePatternControl();
+                wReplacePatternControl.Populate(wReplacePattern);
+                AddtoPanel(wReplacePatternControl, flowLayoutPanel1);
+            }
+        }
+
+
+
+        public static void AddtoPanel(Control pControlToAdd, Control pContainerControl)
+        {
+
+            //if (pContainerControl.Contains(pControlToAdd)) return;
+
+            //pControlToAdd.Location = new System.Drawing.Point(1, 1);
+            //pControlToAdd.Width = pContainerControl.Width - 60;
+            //pControlToAdd.Height = pContainerControl.Height - 60;
+            //pControlToAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            //       | System.Windows.Forms.AnchorStyles.Left)
+            //       | System.Windows.Forms.AnchorStyles.Right)));
+         
+            pContainerControl.Controls.Add(pControlToAdd);
+
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            ReplacePatternControl wReplacePatternControl = new ReplacePatternControl();
+
+            wReplacePatternControl.OnRemoveEvent += new EventHandler(wReplacePatternControl_OnRemoveEvent);
+            AddtoPanel(wReplacePatternControl, flowLayoutPanel1);
+        }
+
+        void wReplacePatternControl_OnRemoveEvent(object sender, EventArgs e)
+        {
+            ((ReplacePatternControl)sender).OnRemoveEvent -= new EventHandler(wReplacePatternControl_OnRemoveEvent);
+            flowLayoutPanel1.Controls.Remove((ReplacePatternControl)sender);
+                     
         }
     }
 }

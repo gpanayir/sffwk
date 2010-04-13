@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -97,6 +97,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReplacePatternControl.resx">
+      <DependentUpon>ReplacePatternControl.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -110,6 +113,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ReplacePattern.cs" />
+    <Compile Include="ReplacePatternControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReplacePatternControl.Designer.cs">
+      <DependentUpon>ReplacePatternControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Store.cs" />
   </ItemGroup>
@@ -128,6 +138,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Filesaveas 16x16.ico" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\folder_new_16.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
