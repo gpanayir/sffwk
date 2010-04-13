@@ -41,11 +41,18 @@ namespace EasyDirectoryReplace
         {
             try
             {
+                //cargo todos los archivos del origen
                 String[] wFiles = Directory.GetFiles(txtRuta1.Text, "*", SearchOption.AllDirectories);
+                //cargo todos los directorios del origen
                 String[] wDirectories = Directory.GetDirectories(txtRuta1.Text, "*", SearchOption.AllDirectories);
+
+
                 progressBar1.Maximum = wFiles.Length + wDirectories.Length + 1;
                 progressBar1.Visible = true;
+
+                //Renombro a nivel de archivo y carpetas
                 RenameFilesAndDirectories(txtRuta1.Text, txtRuta2.Text, "*", txtOldText.Text, txtNewText.Text, chkReplaceContentFile.Checked);
+
                 progressBar1.Value = 0;
                 progressBar1.Visible = false;
 
@@ -85,8 +92,8 @@ namespace EasyDirectoryReplace
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="destination"></param>
+        /// <param name="source">Ruta de origen</param>
+        /// <param name="destination">Ruta destino</param>
         /// <param name="searchPattern"></param>
         /// <param name="oldText"></param>
         /// <param name="newText"></param>
