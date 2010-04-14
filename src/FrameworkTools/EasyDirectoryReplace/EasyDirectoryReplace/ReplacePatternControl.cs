@@ -11,7 +11,7 @@ namespace EasyDirectoryReplace
 {
     public partial class ReplacePatternControl : UserControl
     {
-        ReplacePattern _ReplacePaternList = new ReplacePattern();
+        ReplacePattern _ReplacePattern = new ReplacePattern();
         public event EventHandler  OnRemoveEvent;
         protected void OnRemove()
         {
@@ -26,24 +26,24 @@ namespace EasyDirectoryReplace
         }
     
         [Browsable(false)]
-        public ReplacePattern ReplacePatern
+        public ReplacePattern ReplacePattern
         {
             get
             {
-                _ReplacePaternList.TextNew = txtNewText.Text;
-                _ReplacePaternList.TextOld = txtOldText.Text;
-                _ReplacePaternList.ReplaceContent = chkReplaceContentFile.Checked;
+                _ReplacePattern.TextNew = txtNewText.Text;
+                _ReplacePattern.TextOld = txtOldText.Text;
+                _ReplacePattern.ReplaceContent = chkReplaceContentFile.Checked;
 
-                return _ReplacePaternList;
+                return _ReplacePattern;
             }
             
         }
         public void Populate(ReplacePattern pReplacePatern)
         {
-            _ReplacePaternList = pReplacePatern;
-            txtNewText.Text = _ReplacePaternList.TextNew;
-            txtOldText.Text = _ReplacePaternList.TextOld;
-            chkReplaceContentFile.Checked = _ReplacePaternList.ReplaceContent;
+            _ReplacePattern = pReplacePatern;
+            txtNewText.Text = _ReplacePattern.TextNew;
+            txtOldText.Text = _ReplacePattern.TextOld;
+            chkReplaceContentFile.Checked = _ReplacePattern.ReplaceContent;
 
         }
         public ReplacePatternControl()

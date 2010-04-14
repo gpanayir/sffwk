@@ -15,8 +15,10 @@ namespace EasyDirectoryReplace
         public frmEasyReplace()
         {
             InitializeComponent();
-            
-            replacePattern1.Populate(_Store.ReplacePatternDefault);
+         
+            if(_Store.ReplacePatternDefault != null)
+                replacePattern1.Populate(_Store.ReplacePatternDefault);
+           
             PopulatePanel();
 
    
@@ -284,24 +286,27 @@ namespace EasyDirectoryReplace
         /// </summary>
         void FillReplacePaternList(bool addDefaultToList)
         {
-            _Store.ReplacePatternList.Clear();
+            if (_Store.ReplacePatternList == null) return;
+                
             foreach (Control c in flowLayoutPanel1.Controls)
             {
-                _Store.ReplacePatternList.Add(((ReplacePatternControl)c).ReplacePatern);
+                _Store.ReplacePatternList.Add(((ReplacePatternControl)c).ReplacePattern);
             }
             if (addDefaultToList)
-                _Store.ReplacePatternList.Add(replacePattern1.ReplacePatern);
+                _Store.ReplacePatternList.Add(replacePattern1.ReplacePattern);
             else
-                _Store.ReplacePatternDefault = replacePattern1.ReplacePatern;
+                _Store.ReplacePatternDefault = replacePattern1.ReplacePattern;
 
         }
         void PopulatePanel()
         {
-
+            if (_Store.ReplacePatternList == null) return;
             foreach (ReplacePattern wReplacePattern in _Store.ReplacePatternList)
             {
                 ReplacePatternControl wReplacePatternControl = new ReplacePatternControl();
+  
                 wReplacePatternControl.Populate(wReplacePattern);
+               
                 AddtoPanel(wReplacePatternControl, flowLayoutPanel1);
             }
         }
@@ -313,12 +318,12 @@ namespace EasyDirectoryReplace
 
             //if (pContainerControl.Contains(pControlToAdd)) return;
 
-            //pControlToAdd.Location = new System.Drawing.Point(1, 1);
-            //pControlToAdd.Width = pContainerControl.Width - 60;
-            //pControlToAdd.Height = pContainerControl.Height - 60;
-            //pControlToAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            //       | System.Windows.Forms.AnchorStyles.Left)
-            //       | System.Windows.Forms.AnchorStyles.Right)));
+            pControlToAdd.Location = new System.Drawing.Point(1, 1);
+            pControlToAdd.Width = pContainerControl.Width - 60;
+            pControlToAdd.Height = pContainerControl.Height - 60;
+            pControlToAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                   | System.Windows.Forms.AnchorStyles.Left)
+                   | System.Windows.Forms.AnchorStyles.Right)));
          
             pContainerControl.Controls.Add(pControlToAdd);
 

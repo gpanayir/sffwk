@@ -216,6 +216,7 @@ namespace EasyDirectoryReplace
             this.Controls.Add(this.btnProcess);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEasyReplace";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "File system easy replace";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEasyReplace_FormClosing);
             this.groupBox2.ResumeLayout(false);
