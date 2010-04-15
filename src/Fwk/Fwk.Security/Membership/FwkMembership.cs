@@ -17,7 +17,7 @@ namespace Fwk.Security
     /// </summary>
     public partial class FwkMembership
     {
-        static  string fwkAuthorizationProviderName_Default = "RuleProvider_Fwk";
+        //static  string fwkAuthorizationProviderName_Default = "RuleProvider_Fwk";
         static Dictionary<string, string> providerCnnStrings;
       
 
@@ -38,11 +38,12 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pUsername"></param>
         /// <param name="pPassword"></param>
+         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        public static Boolean ValidateUser(string pUsername, string pPassword)
+         public static Boolean ValidateUser(string pUsername, string pPassword, string providerName)
         {
-            
-            return Membership.ValidateUser(pUsername, pPassword);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            return wProvider.ValidateUser(pUsername, pPassword);
         }
 
         /// <summary>
@@ -52,11 +53,14 @@ namespace Fwk.Security
         /// <param name="pUsername">Usuario</param>
         /// <param name="pPassword">Clave</param>
         /// <param name="pEmail">Email</param>
-        public static void CreateUser(string pUsername, string pPassword, string pEmail)
+         /// <param name="providerName">Nombre del proveedor de membership</param>
+            public static void CreateUser(string pUsername, string pPassword, string pEmail, string providerName)
         {
-            FwkIdentity wFwkIdentity = new FwkIdentity();
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            //TODO: Ver por que esta declaracion  FwkIdentity
+            //FwkIdentity wFwkIdentity = new FwkIdentity();
 
-            System.Web.Security.Membership.CreateUser(pUsername, pPassword, pEmail);
+            wProvider.CreateUser(pUsername, pPassword, pEmail);
 
         }
 
@@ -65,23 +69,43 @@ namespace Fwk.Security
         /// Si el usuario existe lanza una (System.Web.Security.MembershipCreateUserException ex) 
         /// </summary>
         /// <param name="pUsername">Usuario</param>
-        /// <param name="pPassword">Clave</param>        
-        public static void CreateUser(string pUsername, string pPassword)
+        /// <param name="pPassword">Clave</param>   
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void CreateUser(string pUsername, string pPassword, string providerName)
         {
-            FwkIdentity wFwkIdentity = new FwkIdentity();            
-            
-            System.Web.Security.Membership.CreateUser(pUsername, pPassword);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+
+            //TODO: Ver por que esta declaracion  FwkIdentity
+            //FwkIdentity wFwkIdentity = new FwkIdentity();            
+
+            wProvider.CreateUser(pUsername, pPassword);
         }
 
+    
         /// <summary>
         /// Crea un usuario
         /// </summary>
         /// <param name="pUsername"></param>
         /// <param name="pPassword"></param>
-        public static User CreateUser(string pUsername, string pPassword, string pEmail, string pPasswordQuestion, string pPasswordAnswer, Boolean pIsApproved, out MembershipCreateStatus pStatus)
+        /// <param name="pEmail"></param>
+        /// <param name="pPasswordQuestion"></param>
+        /// <param name="pPasswordAnswer"></param>
+        /// <param name="pIsApproved"></param>
+        /// <param name="pStatus"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <returns></returns>
+        public static User CreateUser(string pUsername, 
+            string pPassword, 
+            string pEmail, 
+            string pPasswordQuestion, 
+            string pPasswordAnswer, 
+            Boolean pIsApproved, 
+            out MembershipCreateStatus pStatus, string providerName)
         {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+
             User wUsuario = null;
-            MembershipUser newUser = Membership.CreateUser(pUsername, pPassword, pEmail, pPasswordQuestion, pPasswordAnswer, pIsApproved, out pStatus);
+            MembershipUser newUser = wProvider.CreateUser(pUsername, pPassword, pEmail, pPasswordQuestion, pPasswordAnswer, pIsApproved, out pStatus);
          
             if (newUser != null)
                 wUsuario = new User(newUser);
@@ -93,8 +117,8 @@ namespace Fwk.Security
         /// Elimina un usuario de la Base de Datos
         /// </summary>
         /// <param name="pUserName">Nombre de Usuario</param>
-        /// <param name="provider">Nombre de proveedor de memberships</param>
-        public static void DeleteUser(String pUserName, string provider)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void DeleteUser(String pUserName, string providerName)
         {
             if (string.IsNullOrEmpty(provider))
                 Membership.Providers[provider].DeleteUser(pUserName, true);
@@ -107,11 +131,11 @@ namespace Fwk.Security
         /// Actualiza un usuario
         /// </summary>
         /// <param name="pFwkUser">User a eliminar</param>
-        /// <param name="provider">Nombre de proveedor de memberships</param>
-        public static void UpdateUser(User pFwkUser, string provider)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void UpdateUser(User pFwkUser, string providerName)
         {
 
-            SqlMembershipProvider wProvider = GetSqlMembershipProvider(provider);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
 
 
             MembershipUser wUser = wProvider.GetUser(pFwkUser.UserName, false);//Membership.GetUser(pFwkUser.UserName);
@@ -127,36 +151,6 @@ namespace Fwk.Security
 
         }
 
-        static SqlMembershipProvider GetSqlMembershipProvider(string provider)
-        {
-            if (string.IsNullOrEmpty(provider))
-                return (SqlMembershipProvider)Membership.Providers[provider];
-            else
-                return (SqlMembershipProvider)Membership.Provider;
-
-
-        }
-
-
-        static string GetSqlMembershipProvider_ConnectionStringName(string provider)
-        {
-
-            if (wSecuritySettings != null)
-            {
-                Fwk.Security.Configuration.FwkAuthorizationRuleProviderData wProviderData;
-                if (string.IsNullOrEmpty(provider))
-
-                    wProviderData = ((Fwk.Security.Configuration.FwkAuthorizationRuleProviderData)(wSecuritySettings.AuthorizationProviders.Get(provider)));
-                else
-                    wProviderData = ((Fwk.Security.Configuration.FwkAuthorizationRuleProviderData)(wSecuritySettings.AuthorizationProviders.Get(Membership.Provider.Name)));
-
-                if (wProviderData != null)
-                {
-                    return wProviderData.ConnectionStringName;
-                }
-            }
-            return string.Empty;
-        }
         
 
         /// <summary>
@@ -165,6 +159,7 @@ namespace Fwk.Security
         /// <param name="pFwkUser">Usuario con los nuevos datos </param>
         /// <param name="userName">Nombre de usuario a modificar. Nombre del usuario actual</param>
         /// <param name="pConnectionStringName">Cadena de coneccion de las Membership provider</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void UpdateUser(User pFwkUser, string userName, string provider)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(provider);
@@ -207,10 +202,6 @@ namespace Fwk.Security
                 wDataBase.ExecuteNonQuery(wCmd);
 
 
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -223,6 +214,7 @@ namespace Fwk.Security
         /// <summary>
         /// Obtiene una lista de usuarios
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
         public static List<User> GetAllUsers(string providerName)
         {
@@ -254,6 +246,7 @@ namespace Fwk.Security
         /// Obtiene un usuario
         /// </summary>
         /// <param name="pUserName">Nombre del Usuario que se desea obtener</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>User</returns>
         public static User GetUser(String pUserName, string providerName)
         {
@@ -275,6 +268,13 @@ namespace Fwk.Security
 
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUserName"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <returns></returns>
         static MembershipUser GetMembershipUser(String pUserName, string providerName)
         {
             SqlMembershipProvider wRrovider = GetSqlMembershipProvider(providerName);
@@ -300,6 +300,7 @@ namespace Fwk.Security
         /// Bloquea un Usuario
         /// </summary>
         /// <param name="pUserName">Nombre del usuario que se desea bloquear</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void UnApproveUser(String pUserName, string providerName)
         {
             SqlMembershipProvider wRrovider = GetSqlMembershipProvider(providerName);
@@ -326,6 +327,7 @@ namespace Fwk.Security
         /// Desbloquea un usuario
         /// </summary>
         /// <param name="pUserName">Nombre del usuario a desbloquear</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void ApproveUser(String pUserName, string providerName)
         {
             SqlMembershipProvider wRrovider = GetSqlMembershipProvider(providerName);
@@ -347,12 +349,15 @@ namespace Fwk.Security
                 throw te;
             }
         }
+
+
         /// <summary>
         /// Toma como entrada un nombre de usuario y actualiza el campo en el origen de datos que asigna a la propiedad 
         /// IsLockedOut el valor false. 
         /// El método UnlockUser devuelve true si el registro para el usuario suscrito se actualiza correctamente; de lo contrario, false.
         /// </summary>
         /// <param name="pUserName">Nombre del usuario a desbloquear</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         public static bool UnlockUser(String pUserName, string providerName)
         {
 
@@ -375,20 +380,13 @@ namespace Fwk.Security
             
         }
 
-        static Fwk.Exceptions.TechnicalException GetTechnicalException(string msg)
-        {
-            Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(msg);
-            te.Assembly = typeof(FwkMembership).GetType().Namespace;
-            te.Class = typeof(FwkMembership).GetType().Name;
-            te.Source = "Security";
-            te.UserName = Environment.UserName;
-            return te;
-        }
+      
 
         /// <summary>
         /// Resetea el Password de un usuario
         /// </summary>
         /// <param name="pUserName">Nombre del Usuario</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>Password auto generado</returns>
         public static String ResetUserPassword(String pUserName, string providerName)
         {
@@ -418,6 +416,7 @@ namespace Fwk.Security
         /// <param name="pUserName">Nombre del Usuario</param>
         /// <param name="pOldPassword">Password Viejo</param>
         /// <param name="pNewPassword">Password Nuevo</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>Bool indicando el resultado de la operación</returns>
         public static Boolean ChangeUserPassword(String pUserName, String pOldPassword, String pNewPassword, string providerName)
         {
@@ -454,10 +453,12 @@ namespace Fwk.Security
             return wUsersList;
 
         }
+
         /// <summary>
         /// Obtiene una lista de usuarios con sus detalles pertenecientes a un determinado rol
         /// </summary>
         /// <param name="pRoleName">Nombre del rol</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>lista de <see cref="User"/> </returns>
         public static List<User> GetUsersDetailedInRole(String pRoleName, string providerName)
         {
@@ -488,7 +489,8 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pRolList">Lista de roles</param>
         /// <param name="pUserName">Usuario</param>
-        public static void CreateRolesToUser(RolList pRolList, String pUserName)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void CreateRolesToUser(RolList pRolList, String pUserName, string providerName)
         {
 
             try
@@ -516,7 +518,8 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pUserName">Nombre de Usuario</param>
         /// <param name="pRoleName">Nombre de Rol</param>
-        public static void RemoveUserFromRole(String pUserName, String pRoleName)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void RemoveUserFromRole(String pUserName, String pRoleName, string providerName)
         {
             try
             {
@@ -535,7 +538,8 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pUserName">Nombre de Usuario</param>
         /// <param name="pRolList">Lista de Nombres de Roles</param>
-        public static void RemoveUserFromRoles(String pUserName, RolList pRolList)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void RemoveUserFromRoles(String pUserName, RolList pRolList, string providerName)
         {
             try
             {
@@ -557,7 +561,8 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pUsersName">Array de usuario</param>
         /// <param name="pRoleName">Nombre del Rol</param>
-        public static void RemoveUsersFromRole(String[] pUsersName, String pRoleName)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void RemoveUsersFromRole(String[] pUsersName, String pRoleName, string providerName)
         {
             try
             {
@@ -574,7 +579,8 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pUsersName">Array de Nombres</param>
         /// <param name="pRolList">Lista de Roles</param>
-        public static void RemoveUsersFromRoles(String[] pUsersName, RolList pRolList)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void RemoveUsersFromRoles(String[] pUsersName, RolList pRolList, string providerName)
         {
             try
             {
@@ -586,6 +592,32 @@ namespace Fwk.Security
             }
         }
       
+    
+
+
+
+        #endregion
+
+        
+
+        
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        static Fwk.Exceptions.TechnicalException GetTechnicalException(string msg)
+        {
+            Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(msg);
+            te.Assembly = typeof(FwkMembership).GetType().Namespace;
+            te.Class = typeof(FwkMembership).GetType().Name;
+            te.Source = "Security";
+            te.UserName = Environment.UserName;
+            return te;
+        }
+
         /// <summary>
         ///  Obtiene el mensaje de error (Ingles)
         /// </summary>
@@ -629,686 +661,43 @@ namespace Fwk.Security
 
 
 
-        #endregion
-
-        #region [Roles]
-
         /// <summary>
-        /// Obtiene todos los Roles
-        /// The GetAllRoles method calls the RoleProvider.GetAllRoles method of the default role provider to get a list of all the roles from the data source for an application. 
-        /// Only the roles for the application that is specified in the ApplicationName property are retrieved.
+        /// 
         /// </summary>
-        /// <returns>RolList con todos los roles</returns>
-        public static RolList GetAllRoles()
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <returns></returns>
+        static SqlMembershipProvider GetSqlMembershipProvider(string providerName)
         {
-            Rol r;
-            RolList wRoleList = new RolList();
-                
-            try
-            {
-                foreach (string s in Roles.GetAllRoles())
-                {
-                    r = new Rol(s);
-                    wRoleList.Add(r);
-                }
+            if (string.IsNullOrEmpty(providerName))
+                return (SqlMembershipProvider)Membership.Provider;
+            else
+                return (SqlMembershipProvider)Membership.Providers[providerName];
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return wRoleList;
 
         }
 
         /// <summary>
-        /// Obtiene una lista de Roles (RolList) de un usuario
+        /// Obtiene la cadena de coneccion relacionada al proveedor
         /// </summary>
-        /// <param name="pUserName">Nombre de Usuario</param>
-        /// <returns>RolList con los roles del usuario</returns>
-        public static RolList GetRolesForUser(String pUserName)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <returns></returns>
+        static string GetSqlMembershipProvider_ConnectionStringName(string providerName)
         {
-            Rol r;
-            RolList wRoleList = new RolList();
-            try
+
+            if (wSecuritySettings != null)
             {
-                foreach (string s in Roles.GetRolesForUser(pUserName))
-                {
-                    r = new Rol(s);
-                    wRoleList.Add(r);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return wRoleList;
-
-        }
-
-        /// <summary>
-        /// Crea un nuevo Rol
-        /// </summary>
-        /// <param name="pRoleName"></param>
-        public static void CreateRole(String pRoleName)
-        {
-
-            CreateRole(pRoleName,string.Empty,Membership.ApplicationName,ConnectionStringName);
-        }
-
-        /// <summary>
-        /// Crea un nuevo Rol
-        /// </summary>
-        /// <param name="pRoleName">Nombre del rol</param>
-        /// <param name="pDescription">Descripcion del rol</param>
-        public static void CreateRole(String pRoleName,string pDescription)
-        {
-            CreateRole(pRoleName, pDescription, Membership.ApplicationName, ConnectionStringName);
-        }
-
-       /// <summary>
-       ///  Crea un nuevo Rol
-       /// </summary>
-       /// <param name="pRoleName">Nombre del rol</param>
-       /// <param name="pDescription">Descripcion del rol</param>
-       /// <param name="pApplicationName">Nombre de la aplicaciom</param>
-       /// <param name="pConnectionStringName">Nombre de la cadena de coneccion</param>
-        public static void CreateRole(String pRoleName, string pDescription,string pApplicationName, string pConnectionStringName)
-        {
-            try
-            {
-                if (!Roles.RoleExists(pRoleName))
-                {
-                    Roles.CreateRole(pRoleName);
-                    UpdateRole(pRoleName, pDescription, pApplicationName, pConnectionStringName);
-                }
+                Fwk.Security.Configuration.FwkAuthorizationRuleProviderData wProviderData;
+                if (string.IsNullOrEmpty(providerName))
+                    wProviderData = ((Fwk.Security.Configuration.FwkAuthorizationRuleProviderData)(wSecuritySettings.AuthorizationProviders.Get(Membership.Provider.Name)));
                 else
+                    wProviderData = ((Fwk.Security.Configuration.FwkAuthorizationRuleProviderData)(wSecuritySettings.AuthorizationProviders.Get(providerName)));
+
+                if (wProviderData != null)
                 {
-                    throw new Exception(string.Format(Fwk.Security.Properties.Resource.RoleExist, pRoleName));
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Elimina un Rol
-        /// </summary>
-        /// <param name="pRoleName">Nombre del Rol</param>
-        public static void DeleteRole(String pRoleName)
-        {
-            try
-            {
-                if (Roles.GetUsersInRole(pRoleName).Length == 0)
-                    Roles.DeleteRole(pRoleName);
-                else
-                    throw new Exception(string.Format(Fwk.Security.Properties.Resource.RoleNotEmpty, pRoleName));
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Actualiza un rol
-        /// </summary>
-        /// <param name="pRoleName">Nombre del rol</param>
-        /// <param name="pDescription">Descripcion del rol</param>
-        /// <param name="pApplicationName">Nombre de la aplicaciom</param>
-        /// <param name="pConnectionStringName">Nombre de la cadena de coneccion</param>
-        public static void UpdateRole(String pRoleName, string pDescription,string pApplicationName, string pConnectionStringName)
-        {
-       
-  
-            StringBuilder str = new StringBuilder("UPDATE aspnet_Roles SET  Description = '[Description]' WHERE (LoweredRoleName = LOWER('[RoleName]')) AND(ApplicationId = CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]') )");
-            Guid id = GetApplication(pApplicationName, pConnectionStringName);
-            Database wDataBase = null;
-            DbCommand wCmd = null;
-            try
-            {
-              
-                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-
-                str.Replace("[ApplicationId]", id.ToString());
-                str.Replace("[Description]", pDescription);
-                str.Replace("[RoleName]", pRoleName);
-
-                wCmd = wDataBase.GetSqlStringCommand(str.ToString());
-                wCmd.CommandType = CommandType.Text;
-                wDataBase.ExecuteNonQuery(wCmd);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Asigna usuarios a un determinado rol 
-        /// </summary>
-        /// <param name="pRolName">Nombre del rol</param>
-        /// <param name="pUserList">Lista usuarios</param>
-        public static void CreateUsersToRole(string pRolName, List<User> pUserList)
-        {
-
-            try
-            {
-                foreach (User wUser in pUserList)
-                {
-                    if (!Roles.IsUserInRole(wUser.UserName, pRolName))
-                    {
-                        Roles.AddUserToRoles(wUser.UserName, new string[] { pRolName });
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                //FwkMessageView.Show(ex, "CreateRole", System.Windows.Forms.MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
-                throw ex;
-            }
-
-        }
-
-        #endregion
-
-        #region [Rules]
-
-        public static List<FwkAuthorizationRuleAux> GetRulesByRole(string pRoleName)
-        {
-            return GetRulesByRole(pRoleName, Membership.ApplicationName, ConnectionStringName);
-        }
-        public static List<FwkAuthorizationRuleAux> GetRulesByRole(string pRoleName, string pApplicationName)
-        {
-            return GetRulesByRole(pRoleName, pApplicationName, ConnectionStringName);
-        }
-        public static List<FwkAuthorizationRuleAux> GetRulesByRole(string pRoleName, string pApplicationName, string pConnectionStringName)
-        {
-            List<FwkAuthorizationRuleAux> wAllRules = null;
-           
-            try
-            {
-
-               wAllRules =  GetRulesAuxList(pApplicationName, pConnectionStringName);
-
-              var rules_byRol = from s in wAllRules where s.Expression.Contains(string.Concat("R:", pRoleName.Trim())) select s;
-
-              return rules_byRol.ToList<FwkAuthorizationRuleAux>();
-
-            }
-            catch (InvalidOperationException)
-            {
-                ///TODO: mejorar manejo de Exception GetRule
-                throw new Exception(string.Concat("Error al intentar obtener las reglas vinculadas al rol: " + pRoleName));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Verifica si alguna regla en la base de datos esta vinculada al rol
-        /// </summary>
-        /// <param name="pRoleName"></param>
-        /// <returns></returns>
-        public static bool AnyRulesHasRole(string pRoleName)
-        {
-            return AnyRulesHasRole(pRoleName,Membership.ApplicationName,ConnectionStringName);
-        }
-        /// <summary>
-        /// Verifica si alguna regla en la base de datos esta vinculada al rol
-        /// </summary>
-        /// <param name="pRoleName"></param>
-        /// <param name="pApplicationName"></param>
-        /// <returns></returns>
-        public static bool AnyRulesHasRole(string pRoleName, string pApplicationName)
-        {
-            return AnyRulesHasRole(pRoleName, pApplicationName, ConnectionStringName);
-        }
-        /// <summary>
-        /// Verifica si alguna regla en la base de datos esta vinculada al rol
-        /// </summary>
-        /// <param name="pRoleName">Nmbre del rol </param>
-        /// <param name="pApplicationName">App Id</param>
-        /// <param name="pConnectionStringName">nombde de cadena de coneccion</param>
-        /// <returns></returns>
-        public static bool AnyRulesHasRole(string pRoleName, string pApplicationName, string pConnectionStringName)
-        {
-            List<FwkAuthorizationRuleAux> wAllRules = null;
-            try
-            {
-               wAllRules = GetRulesAuxList(pApplicationName, pConnectionStringName);
-
-              return wAllRules .Any<FwkAuthorizationRuleAux>(s=> s.Expression.Contains(string.Concat("R:", pRoleName.Trim())));
-
-                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        public static aspnet_Rule GetRule(string ruleName)
-        {
-            return GetRule(ruleName, Membership.ApplicationName, ConnectionStringName);
-        }
-
-        public static aspnet_Rule GetRule(string ruleName, string pApplicationName)
-        {
-            return GetRule(ruleName,pApplicationName, ConnectionStringName);
-        }
-
-        public static aspnet_Rule GetRule(string ruleName, string pApplicationName, string pConnectionStringName)
-        {
-
-            aspnet_Rule waspnet_Rule= null;
-            try
-            {
-
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
-
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
-                {
-                    if (dc.aspnet_Rules.Any<aspnet_Rule>(s => s.name.Equals(ruleName.Trim()) && s.ApplicationId == wApplicationId))
-                    {
-                        waspnet_Rule = dc.aspnet_Rules.First<aspnet_Rule>(s => s.name.Equals(ruleName.Trim()) && s.ApplicationId == wApplicationId);
-
-                     
-                    }
-                    return waspnet_Rule;
+                    return wProviderData.ConnectionStringName;
                 }
             }
-            catch (InvalidOperationException)
-            {
-                //TODO: mejorar manejo de Exception GetRule
-                throw new Exception(string.Concat("Error al intentar obtener los valores de la relgla: " + ruleName));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return string.Empty;
         }
-
-        /// <summary>
-        /// Obtiene las reglas de una determinada aplicacion
-        /// </summary>
-        /// <returns></returns>
-        public static NamedElementCollection<FwkAuthorizationRule> GetRules()
-        {
-            return GetRules(Membership.ApplicationName, ConnectionStringName);
-        }
-       
-        /// <summary>
-        /// Obtiene las reglas de una determinada aplicacion
-        /// </summary>
-        /// <param name="pConnectionStringName"></param>
-        /// <param name="pApplicationName"></param>
-        /// <returns></returns>
-        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string pApplicationName)
-        {
-            return GetRules(pApplicationName, ConnectionStringName);
-        }
-       
-
-        /// <summary>
-        /// Obtiene las reglas de una determinada aplicacion
-        /// Reemplaza aspnet_Rules_s
-        /// </summary>
-        /// <param name="pConnectionStringName"></param>
-        /// <param name="pApplicationName"></param>
-        /// <returns></returns>
-        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string pApplicationName, string pConnectionStringName)
-        {
-
-     
-           
-            FwkAuthorizationRule rule = null;
-            NamedElementCollection<FwkAuthorizationRule> wRules = null;
-            try
-            {
-
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
-
-                wRules = new NamedElementCollection<FwkAuthorizationRule>();
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
-                {
-                    var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
-
-                    foreach (aspnet_Rule aspnet_Rule in aspnet_Rules.ToList<aspnet_Rule>())
-                    {
-                        rule = new FwkAuthorizationRule();
-                        rule.Name = aspnet_Rule.name.Trim();
-                        rule.Expression = aspnet_Rule.expression;
-
-
-                        wRules.Add(rule);
-                    }
-                }
-              
-
-                return wRules;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-        public static List<AuthorizationRuleData> GetRulesList(string pApplicationName)
-        {
-            return GetRulesList(pApplicationName, ConnectionStringName);
-        }
-
-        /// <summary>
-        /// Retorna una lista de reglas de una determinada coneccion 
-        /// </summary>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
-        /// <returns></returns>
-        public static List<AuthorizationRuleData> GetRulesList(string pApplicationName, string pConnectionStringName)
-        {
-
-           
-            AuthorizationRuleData rule = null;
-            List<AuthorizationRuleData> wRules = null;
-            try
-            {
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
-                wRules = new List<AuthorizationRuleData>();
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
-                {
-                    var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
-
-                    foreach (aspnet_Rule aspnet_Rule in aspnet_Rules.ToList<aspnet_Rule>())
-                    {
-                        rule = new AuthorizationRuleData();
-                        rule.Name = aspnet_Rule.name.Trim();
-                        rule.Expression = aspnet_Rule.expression;
-                        wRules.Add(rule);
-                    }
-                }
-
-
-
-
-                return wRules;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-          /// <summary>
-        /// Retorna una lista de reglas de una determinada coneccion 
-        /// </summary>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
-        /// <returns></returns>
-        public static List<FwkAuthorizationRuleAux> GetRulesAuxList(string pApplicationName)
-
-        {
-            return GetRulesAuxList(pApplicationName, ConnectionStringName);
-        }
-        /// <summary>
-        /// Retorna una lista de reglas de una determinada coneccion 
-        /// </summary>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
-        /// <returns></returns>
-        public static List<FwkAuthorizationRuleAux> GetRulesAuxList(string pApplicationName, string pConnectionStringName)
-        {
-
-
-            FwkAuthorizationRuleAux rule = null;
-            List<FwkAuthorizationRuleAux> wRules = null;
-            try
-            {
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
-                wRules = new List<FwkAuthorizationRuleAux>();
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
-                {
-                    var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
-
-                    foreach (aspnet_Rule aspnet_Rule in aspnet_Rules.ToList<aspnet_Rule>())
-                    {
-                        rule = new FwkAuthorizationRuleAux();
-                        rule.Name = aspnet_Rule.name.Trim();
-                        rule.Expression = aspnet_Rule.expression;
-                        wRules.Add(rule);
-                    }
-                }
-              
-             
-
-                return wRules;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-        /// <summary>
-        /// Determina si existe una regla.-
-        /// </summary>
-        /// <param name="pName">Nombre de la regla</param>
-        /// <param name="pConnectionStringName">Nombre de la regla</param>
-        /// <returns>boolean</returns>
-        public static bool ExistRule(string pRuleName, string pApplicationName, string pConnectionStringName)
-        {
-            bool wExist = false;
-
-            try
-            {
-                
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
-
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
-                {
-                  wExist =   dc.aspnet_Rules.Any( s => s.Equals(pRuleName) && s.ApplicationId == wApplicationId );
-                }
-
-
-                return wExist;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Determina si existe una regla.-
-        /// </summary>
-        /// <param name="pName">Nombre de la regla</param>
-        /// <param name="pConnectionStringName">Nombre de la regla</param>
-        /// <returns>boolean</returns>
-        public static bool ExistRule(string pRuleName, string pApplicationName)
-        {
-            return ExistRule(pRuleName, pApplicationName, FwkMembership.ConnectionStringName);
-        }
-
-
-      
-
-        
-        /// <summary>
-        /// Insert
-        /// </summary>
-        ///<param name="paspnet_Rules">aspnet_Rules</param>
-        /// <returns>void</returns>
-        /// <Date>2008-12-22T11:29:57</Date>
-        /// <Author>moviedo</Author>
-        public static void CreateRule(FwkAuthorizationRule paspnet_Rules)
-        {
-            CreateRule(paspnet_Rules,Membership.ApplicationName, FwkMembership.ConnectionStringName);
-        }
-
-        /// <summary>
-        /// Insert
-        /// </summary>
-        ///<param name="paspnet_Rules">aspnet_Rules</param>
-        /// <returns>void</returns>
-        /// <Date>2008-12-22T11:29:57</Date>
-        /// <Author>moviedo</Author>
-        public static void CreateRule(FwkAuthorizationRule paspnet_Rules, string pApplicationName)
-        {
-            CreateRule(paspnet_Rules, pApplicationName, FwkMembership.ConnectionStringName);
-        }
-  
- 
-        /// <summary>
-        /// Crea una regla
-        /// </summary>
-        /// <param name="paspnet_Rules"></param>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
-        public static void CreateRule(FwkAuthorizationRule paspnet_Rules, string pApplicationName, string pConnectionStringName)
-        {
-
-
-       
-            Database wDataBase = null;
-            DbCommand wCmd = null;
-
-            try
-            {
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
-
-                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                StringBuilder str = new StringBuilder(FwkMembershipScripts.Rule_i);
-                str.Replace("[ApplicationId]", wApplicationId.ToString());
-                str.Replace("[rulename]", paspnet_Rules.Name.Trim());
-                str.Replace("[expression]", paspnet_Rules.Expression);
-
-                wCmd = wDataBase.GetSqlStringCommand(str.ToString());
-                wCmd.CommandType = CommandType.Text;
-
-
-
-                wDataBase.ExecuteNonQuery(wCmd);
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-
-        /// <summary>
-        /// UpdateRule
-        /// </summary>
-        /// <param name="paspnet_Rules"></param>
-        public static void UpdateRule(aspnet_Rule paspnet_Rules)
-        {
-            UpdateRule(paspnet_Rules, Membership.ApplicationName,FwkMembership.ConnectionStringName);
-        }
-
-        /// <summary>
-        /// UpdateRule
-        /// </summary>
-        /// <param name="paspnet_Rules"></param>
-        /// <param name="pApplicationName"></param>
-        public static void UpdateRule(aspnet_Rule paspnet_Rules, string pApplicationName)
-        {
-            UpdateRule(paspnet_Rules, pApplicationName, FwkMembership.ConnectionStringName);
-        }
-
-        /// <summary>
-        /// UpdateRule
-        /// </summary>
-        /// <param name="paspnet_Rules"></param>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
-        private static void UpdateRule(aspnet_Rule paspnet_Rules, string pApplicationName, string pConnectionStringName)
-        {
-            Database wDataBase = null;
-            DbCommand wCmd = null;
-
-            try
-            {
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
-
-                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
-                StringBuilder str = new StringBuilder(FwkMembershipScripts.Rule_u);
-                str.Replace("[ApplicationId]", wApplicationId.ToString());
-                str.Replace("[rulename]", paspnet_Rules.name.Trim());
-                str.Replace("[expression]", paspnet_Rules.expression);
-
-                wCmd = wDataBase.GetSqlStringCommand(str.ToString());
-                wCmd.CommandType = CommandType.Text;
-
-
-
-                wDataBase.ExecuteNonQuery(wCmd);
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
-        /// Agrega un rol a la expresion de la regla.- Modifica Expression
-        /// </summary>
-        /// <param name="pRol"></param>
-        /// <param name="pRule"></param>
-        public static void Rule_AppenRol(Rol pRol, FwkAuthorizationRuleAux pRule)
-        {
-            RolList rollistAux = null;
-            UserList userList = null;
-
-            Fwk.Security.FwkMembershipScripts.BuildRolesAndUsers_FromRuleExpression(pRule.Expression, out rollistAux, out userList);
-
-            //Agregar el rol a la regla
-            rollistAux.Add(pRol);
-
-            pRule.SetExpression(Fwk.Security.FwkMembershipScripts.BuildRuleExpression(rollistAux, userList));
-        }
-
-        /// <summary>
-        ///  Quita un rol de la expresion de la regla.- Modifica Expression
-        /// </summary>
-        /// <param name="pRol"></param>
-        /// <param name="pRule"></param>
-        public static void RuleRemoveRol(Rol pRol, FwkAuthorizationRuleAux pRule)
-        {
-            RolList rollistAux = null;
-            UserList userList = null;
-
-            Fwk.Security.FwkMembershipScripts.BuildRolesAndUsers_FromRuleExpression(pRule.Expression, out rollistAux, out userList);
-
-            //Quitar el rol a la regla si es que existe en la regla
-            if (rollistAux.Any<Rol>(r => r.RolName.Equals(pRol.RolName)))
-            {
-                rollistAux.Remove(rollistAux.First<Rol>(r => r.RolName.Equals(pRol.RolName)));
-               
-                pRule.SetExpression(Fwk.Security.FwkMembershipScripts.BuildRuleExpression(rollistAux, userList));
-            }
-
-
-           
-        }
-        #endregion
-
-        
     }
 }

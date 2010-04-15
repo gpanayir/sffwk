@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data;
 using System.Data.Common;
+using System.Web.Security;
 
 
 namespace Fwk.Security
@@ -12,10 +13,15 @@ namespace Fwk.Security
     public partial class FwkMembership
     {
 
-
-        public static void CreateCategory(FwkCategory pFwkCategory, string pApplicationName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pFwkCategory"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void CreateCategory(FwkCategory pFwkCategory, string providerName)
         {
-             CreateCategory(pFwkCategory, pApplicationName, ConnectionStringName);
+            
+             CreateCategory(pFwkCategory, providerName, GetSqlMembershipProvider_ConnectionStringName(providerName));
         }
 
         /// <summary>
@@ -64,14 +70,20 @@ namespace Fwk.Security
         /// <summary>
         /// Obtiene las Categorias de una determinada aplicacion
         /// </summary>
-        /// <param name="pConnectionStringName"></param>
-        /// <param name="pApplicationName"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        public static List<FwkCategory> GetAllCategories(string pApplicationName)
+        public static List<FwkCategory> GetAllCategories(string providerName)
         {
-            return GetAllCategories(pApplicationName, ConnectionStringName);
+            return GetAllCategories(providerName, GetSqlMembershipProvider_ConnectionStringName(providerName));
         }
 
+      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pApplicationName"></param>
+        /// <param name="pConnectionStringName"></param>
+        /// <returns></returns>
         public static List<FwkCategory> GetAllCategories(string pApplicationName, string pConnectionStringName)
         {
            
@@ -111,13 +123,19 @@ namespace Fwk.Security
             }
         }
 
-        public static List<FwkAuthorizationRuleAux> GetFwkRulesInCategory(int pCategoryId, string pConnectionStringName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pCategoryId"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <returns></returns>
+        public static List<FwkAuthorizationRuleAux> GetFwkRulesInCategory(int pCategoryId, string providerName)
         {
             IEnumerable<FwkAuthorizationRuleAux> rulesinCat = null;
             try
             {
 
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[GetSqlMembershipProvider_ConnectionStringName(providerName)].ConnectionString))
                 {
                     rulesinCat = from s in dc.aspnet_Rules
                                  from p in dc.aspnet_RulesInCategories
@@ -142,9 +160,14 @@ namespace Fwk.Security
             }
         }
 
-        public static void CreateRuleInCategory(FwkCategory pFwkCategory, string pApplicationName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pFwkCategory"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void CreateRuleInCategory(FwkCategory pFwkCategory, string providerName)
         {
-            CreateRuleInCategory(pFwkCategory, pApplicationName, ConnectionStringName);
+            CreateRuleInCategory(pFwkCategory, providerName, GetSqlMembershipProvider_ConnectionStringName(providerName));
         }
 
 
@@ -196,17 +219,16 @@ namespace Fwk.Security
         /// Obtiene las subcategorias de una categoria.-
         /// </summary>
         /// <param name="pCategoryId"></param>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        static List<FwkCategory> GetSubCategoriesByCategoryId(int pCategoryId, string pApplicationName, string pConnectionStringName)
+        static List<FwkCategory> GetSubCategoriesByCategoryId(int pCategoryId, string providerName)
         {
             IEnumerable<FwkCategory> wCategories = null;
             FwkCategory wFwkCategory= new FwkCategory ();
             try
             {
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
+                Guid wApplicationId = GetApplication(pApplicationName, GetSqlMembershipProvider_ConnectionStringName(providerName));
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[GetSqlMembershipProvider_ConnectionStringName(providerName)].ConnectionString))
                 {
                     wCategories = from s in dc.aspnet_RulesCategories
                                   where (s.ParentCategoryId == pCategoryId
@@ -242,11 +264,10 @@ namespace Fwk.Security
         ///  Remueve una categoria y sus subcategorias recursivamente
         /// </summary>
         /// <param name="pParentFwkCategory"></param>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
-        public static void RemoveCategory(FwkCategory pParentFwkCategory, string pApplicationName)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void RemoveCategory(FwkCategory pParentFwkCategory, string providerName)
         {
-            RemoveCategory(pParentFwkCategory,pApplicationName,ConnectionStringName);
+            RemoveCategory(pParentFwkCategory, providerName, GetSqlMembershipProvider_ConnectionStringName(providerName));
         }
 
 
@@ -298,11 +319,11 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pCategoryName">Nombre de la categoria</param>
         /// <param name="pParentCategoryId">Id de la categora padre</param>
-        /// <param name="pApplicationName">Nombre de la app</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        public static bool ExistCategory(string pCategoryName, int pParentCategoryId, string pApplicationName)
+        public static bool ExistCategory(string pCategoryName, int pParentCategoryId, string providerName)
         {
-            return ExistCategory(pCategoryName, pParentCategoryId, pApplicationName, ConnectionStringName);
+            return ExistCategory(pCategoryName, pParentCategoryId, providerName, GetSqlMembershipProvider_ConnectionStringName(providerName));
         }
 
         /// <summary>
@@ -335,15 +356,16 @@ namespace Fwk.Security
                 throw ex;
             }
         }
+       
         /// <summary>
         /// Determina si la categoria contiene subcategorias.-
         /// </summary>
         /// <param name="pParentFwkCategory"></param>
-        /// <param name="pApplicationName"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        public static bool CategoryContainChilds(FwkCategory pParentFwkCategory, string pApplicationName)
+        public static bool CategoryContainChilds(FwkCategory pParentFwkCategory, string providerName)
         {
-            return CategoryContainChilds(pParentFwkCategory, pApplicationName, ConnectionStringName);
+            return CategoryContainChilds(pParentFwkCategory, providerName, GetSqlMembershipProvider_ConnectionStringName(providerName));
         }
 
 
