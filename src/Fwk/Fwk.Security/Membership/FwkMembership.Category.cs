@@ -237,32 +237,6 @@ namespace Fwk.Security
             }
 
         }
-        static Guid GetApplication(string pApplicationName, string pConnectionStringName)
-        {
-
-            Guid wApplicationNameId = new Guid();
-            try
-            {
-
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
-                {
-
-                   aspnet_Application app = dc.aspnet_Applications.First<aspnet_Application>(p=> p.LoweredApplicationName.Equals(pApplicationName.ToLower()));
-
-                    if(app != null)
-                        wApplicationNameId = app.ApplicationId;
-                }
-                
-
-
-
-                return wApplicationNameId;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         /// <summary>
         ///  Remueve una categoria y sus subcategorias recursivamente

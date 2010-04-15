@@ -7,7 +7,9 @@ using Fwk.Bases;
 namespace Fwk.Security.ActiveDirectory
 {
     /// <summary>
-    /// 
+    /// Reprecenta la configuracion de un dominino de active directory.- Esta ta entidad  tiene el esquema de una tabpl de sql server. Esta tabla tiene la informacion de los dominios de la 
+    /// empresa 
+    /// El script de la tabla se encuentra en el archivo DomainsUrlScript.txt
     /// </summary>    
     [Serializable]
     public class DomainUrlInfo : Entity
@@ -36,7 +38,7 @@ namespace Fwk.Security.ActiveDirectory
         string usr;
 
         /// <summary>
-        /// Usuario
+        /// Usuario de impersonalizacion
         /// </summary>
         public string Usr
         {

@@ -739,7 +739,8 @@ namespace Fwk.Security.ActiveDirectory
         }
 
         /// <summary>
-        /// 
+        /// Lista de Global Catalog 
+        /// Global Catalog : es una parte de la base de datos de nuestro Active Directory usado para realizar búsquedas en este.
         /// </summary>
         /// <param name="domainName"></param>
         /// <returns></returns>
