@@ -48,7 +48,7 @@ namespace Fwk.Bases
         protected static string GetCnnstrng_ConfigMng(string pCompayId)
         {
 
-            return Fwk.Configuration.ConfigurationManager.GetProperty("FwkSettings", pCompayId);
+            return Fwk.Configuration.ConfigurationManager.GetProperty("BackFwkSettings", pCompayId);
 
         }
     }

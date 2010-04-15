@@ -10,7 +10,6 @@ using System.DirectoryServices.Protocols;
 using System.DirectoryServices.ActiveDirectory;
 using Fwk.Exceptions;
 using System.DirectoryServices.AccountManagement;
-using System.Runtime.InteropServices;
 using System.Reflection;
 namespace Fwk.Security.ActiveDirectory
 {

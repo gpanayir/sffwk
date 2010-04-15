@@ -79,6 +79,7 @@ namespace Fwk.Bases.Connector
         /// <param name="pServiceName"></param>
         /// <param name="pData"></param>
         /// <returns></returns>
+        [Obsolete("The method or operation is not implemented on local wraper")]
         public string ExecuteService(string pServiceName, string pData)
         {
             throw new Exception("The method or operation is not implemented.");
