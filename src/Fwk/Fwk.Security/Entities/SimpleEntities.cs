@@ -207,10 +207,10 @@ namespace Fwk.Security.Common
         {
     
             StringBuilder list = new StringBuilder();
-            if (this == null)
-                return list.ToString().Split(',');
-             if(this.Count ==0)
-                 return list.ToString().Split(',');
+            if (this == null || this.Count == 0)
+            {
+                return new String[] { };
+            }
             foreach (Rol r in this)
             {
                 list.Append(r.RolName);
