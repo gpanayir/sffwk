@@ -108,7 +108,7 @@ namespace Fwk.Security.Admin.Controls
             try
             {
 
-                _CategoryList = FwkMembership.GetAllCategories(Membership.ApplicationName);
+                _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.Name);
 
             }
             catch (Exception err)

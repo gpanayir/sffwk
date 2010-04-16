@@ -128,15 +128,15 @@ namespace Fwk.Security
         /// 
         /// </summary>
         /// <param name="pCategoryId"></param>
-        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <param name="pConnectionStringName"></param>
         /// <returns></returns>
-        public static List<FwkAuthorizationRuleAux> GetFwkRulesInCategory(int pCategoryId, string providerName)
+        public static List<FwkAuthorizationRuleAux> GetFwkRulesInCategory(int pCategoryId, string pConnectionStringName)
         {
             IEnumerable<FwkAuthorizationRuleAux> rulesinCat = null;
             try
             {
 
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[GetProvider_ConnectionStringName(providerName)].ConnectionString))
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
                     rulesinCat = from s in dc.aspnet_Rules
                                  from p in dc.aspnet_RulesInCategories

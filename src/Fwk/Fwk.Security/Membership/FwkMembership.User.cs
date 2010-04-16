@@ -200,17 +200,26 @@ namespace Fwk.Security
         public static List<User> GetAllUsers(string providerName)
         {
             SqlMembershipProvider provider = GetSqlMembershipProvider(providerName);
-            User wUserByApp;
+          
             List<User> wUsersList = new List<User>();
-            int totalRec = 0;
+            int pageSize = 10;
+            int totalUsers;
+            int totalPages;
+         
+
             try
             {
-
-                foreach (MembershipUser wMembershipUser in provider.GetAllUsers(0, 0, out totalRec))
+                MembershipUserCollection list = provider.GetAllUsers(0, pageSize, out totalUsers);
+                totalPages = ((totalUsers - 1) / pageSize) + 1;
+                AddUsers(wUsersList, list);
+                for (int currentPage = 1; currentPage < totalPages; currentPage++)
                 {
-                    wUserByApp = new User(wMembershipUser);
-                    wUsersList.Add(wUserByApp);
+                    list = provider.GetAllUsers(currentPage, pageSize, out totalUsers);
+                    AddUsers(wUsersList, list);
+                   
                 }
+                
+               
 
             }
 
@@ -221,6 +230,15 @@ namespace Fwk.Security
 
             return wUsersList;
 
+        }
+       static  void AddUsers(List<User> usersList, MembershipUserCollection pMembershipUserCollection)
+        {
+            User wUserByApp;
+            foreach (MembershipUser wMembershipUser in pMembershipUserCollection)
+            {
+                wUserByApp = new User(wMembershipUser);
+                usersList.Add(wUserByApp);
+            }
         }
 
         /// <summary>

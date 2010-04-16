@@ -27,7 +27,7 @@ namespace SecurityAppBlock.Use
         {
 
 
-            NamedElementCollection<FwkAuthorizationRule> rules = FwkMembership.GetRules(Membership.ApplicationName, "FwkSecurityConnectionString");
+            NamedElementCollection<FwkAuthorizationRule> rules = FwkMembership.GetRules(Membership.Provider.Name);
             IDictionary<string, IAuthorizationRule> authorizationRules = CreateRulesDictionary(rules);
 
             Fwk.Security.FwkAuthorizationRuleProvider wFwkAuthorizationRuleProvider = new Fwk.Security.FwkAuthorizationRuleProvider(authorizationRules);

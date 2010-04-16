@@ -29,7 +29,7 @@ namespace Fwk.Security
         {
              _SecuritySettings = (SecuritySettings)System.Configuration.ConfigurationManager.GetSection("securityConfiguration");
              _MembershipSection =               (MembershipSection)System.Configuration.ConfigurationManager.GetSection("system.web/membership");
- 
+             providerCnnStrings = new Dictionary<string, string>();
         }
 
 
@@ -95,7 +95,7 @@ namespace Fwk.Security
                 else
                      wProviderSettings = ((ProviderSettings)(_MembershipSection.Providers[providerName]));
 
-                providerCnnStrings.Add(providerName, wProviderSettings.Parameters["ConnectionStringName"].ToString());
+                providerCnnStrings.Add(providerName, wProviderSettings.Parameters["connectionStringName"].ToString());
 
                 if (wProviderSettings != null)
                 {
