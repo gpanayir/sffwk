@@ -54,7 +54,7 @@ namespace Fwk.Security.Admin.Controls
                     }
                     catch (Exception ex)
                     {
-                        if (string.IsNullOrEmpty(FwkMembership.GetRule(rule).expression.Trim()))
+                        if (string.IsNullOrEmpty(FwkMembership.GetRule(rule,frmAdmin.Provider.Name).expression.Trim()))
                         {
                             wAuthorized = false;
 

@@ -189,7 +189,7 @@ namespace Fwk.Security.Admin.Controls
                         }
                     }
                     _CurrentRule.expression = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
-                    FwkMembership.UpdateRule(_CurrentRule, Membership.ApplicationName);
+                    FwkMembership.UpdateRule(_CurrentRule, frmAdmin.Provider.Name);
 
 
                     rolBindingSource.DataSource = _AssignedRolList;
@@ -223,7 +223,7 @@ namespace Fwk.Security.Admin.Controls
                 }
 
                 _CurrentRule.expression = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
-                FwkMembership.UpdateRule(_CurrentRule);
+                FwkMembership.UpdateRule(_CurrentRule,Membership.Provider.Name);
 
                 rolBindingSource.DataSource = null;
                 rolBindingSource.DataSource = _AssignedRolList;

@@ -47,7 +47,7 @@ namespace Fwk.Security.Admin
 
             if (OnUserChange != null)
             {
-                OnUserChange(CurrentUser, FwkMembership.GetRolesForUser(CurrentUser.UserName));
+                OnUserChange(CurrentUser, FwkMembership.GetRolesForUser(CurrentUser.UserName, frmAdmin.Provider.Name));
             }
 
 
@@ -57,7 +57,7 @@ namespace Fwk.Security.Admin
         public override void Initialize()
         {
 
-            userList = FwkMembership.GetAllUsers();
+            userList = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
             grdUsers.DataSource = userList;
             grdUsers.Refresh();
         }

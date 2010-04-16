@@ -37,7 +37,7 @@ namespace Fwk.Security.Admin.Controls
         public void Initialize()
         {
 
-            rolesList = FwkMembership.GetAllRoles();
+            rolesList = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
             grdUsers.DataSource = rolesList;
             grdUsers.Refresh();
         }

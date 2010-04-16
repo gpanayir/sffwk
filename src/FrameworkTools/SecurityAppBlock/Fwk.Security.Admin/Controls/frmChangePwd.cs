@@ -28,8 +28,8 @@ namespace Fwk.Security.Admin.Controls
         {
             try
             {
-                string strNew = FwkMembership.ResetUserPassword(_User.UserName);
-                if (FwkMembership.ChangeUserPassword(_User.UserName, strNew, txtPassword.Text.Trim()))
+                string strNew = FwkMembership.ResetUserPassword(_User.UserName, frmAdmin.Provider.Name);
+                if (FwkMembership.ChangeUserPassword(_User.UserName, strNew, txtPassword.Text.Trim(), frmAdmin.Provider.Name))
 
                     this.DialogResult = DialogResult.OK;
                 else

@@ -53,17 +53,17 @@ namespace Fwk.Security.ActiveDirectory
             }
 
         }
-        string _LDAPPassword;
+        string _LDApassword;
 
         /// <summary>
-        /// LDAPPassword property
+        /// LDApassword property
         ///This property is reading the LDAP Password from the config file.
         /// </summary>
-        public String LDAPPassword
+        public String LDApassword
         {
             get
             {
-                return _LDAPPassword;
+                return _LDApassword;
             }
 
         }
@@ -115,11 +115,11 @@ namespace Fwk.Security.ActiveDirectory
             _LDAPPath = path;
 
             _LDAPUser = FilterOutDomain(user);
-            _LDAPPassword = pwd;
+            _LDApassword = pwd;
 
             try
             {
-                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
+                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDApassword, AuthenticationTypes.Secure);
              
                 _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
             }
@@ -357,13 +357,13 @@ namespace Fwk.Security.ActiveDirectory
         /// Obtiene todo los usuarios pertenecientes al dominio.-
         /// Busca por cn nombre@mail retorna el sAMAccountName ejemplo: moviedo
         /// </summary>
-        List<String> User_SearchGroupStringList(String pUserName)
+        List<String> User_SearchGroupStringList(String userName)
         {
             DirectoryEntry directoryEntryUser = null;
             List<String> list = null;
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
 
-            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", pUserName);
+            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
             try
             {
 
@@ -413,7 +413,7 @@ namespace Fwk.Security.ActiveDirectory
                 if (results != null)
                 {
 
-                    DirectoryEntry deGroup = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword);
+                    DirectoryEntry deGroup = new DirectoryEntry(results.Path, LDAPUser, LDApassword);
 
                     System.DirectoryServices.PropertyCollection pColl = deGroup.Properties;
 
@@ -434,7 +434,7 @@ namespace Fwk.Security.ActiveDirectory
 
                         string path = string.Concat(respath, objpath);
 
-                        directoryEntryUser = new DirectoryEntry(path, LDAPUser, LDAPPassword);
+                        directoryEntryUser = new DirectoryEntry(path, LDAPUser, LDApassword);
 
                         wADUser = new ADUser(directoryEntryUser);
 
@@ -486,7 +486,7 @@ namespace Fwk.Security.ActiveDirectory
 
                 foreach (SearchResult users in userCollection)
                 {
-                    DirectoryEntry userEntry = new DirectoryEntry(users.Path, LDAPUser, LDAPPassword);
+                    DirectoryEntry userEntry = new DirectoryEntry(users.Path, LDAPUser, LDApassword);
                     userlist.Add(new ADUser(userEntry));
                 }
                 deSearch.Dispose();
@@ -750,7 +750,7 @@ namespace Fwk.Security.ActiveDirectory
             Forest f3 = Forest.GetCurrentForest();
 
             //return  f.GlobalCatalogs;
-            DirectoryContext context = new DirectoryContext(DirectoryContextType.Domain, domainName, LDAPUser, LDAPPassword);
+            DirectoryContext context = new DirectoryContext(DirectoryContextType.Domain, domainName, LDAPUser, LDApassword);
             Forest f = Forest.GetForest(context);
 
             //DomainController controller = System.DirectoryServices.ActiveDirectory.DomainController.FindOne(context);

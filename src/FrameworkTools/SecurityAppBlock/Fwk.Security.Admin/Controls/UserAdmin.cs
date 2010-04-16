@@ -41,7 +41,7 @@ namespace Fwk.Security.Admin.Controls
             using (new WaitCursorHelper(this))
             {
                 usersGrid1.Initialize();
-                bindingSourceRoles1.DataSource = FwkMembership.GetAllRoles();
+                bindingSourceRoles1.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
                 FillRolesByUser();
             }
         }
@@ -78,7 +78,7 @@ namespace Fwk.Security.Admin.Controls
 
             try
             {
-                FwkMembership.DeleteUser(wUserName);
+                FwkMembership.DeleteUser(wUserName, frmAdmin.Provider.Name);
                 MessageViewInfo.Show("User was successfully removed");
             }
             catch (System.Exception ex)

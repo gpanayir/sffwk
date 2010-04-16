@@ -20,6 +20,7 @@ namespace Fwk.Security.Admin
     public partial class frmAdmin : XtraForm
     {
 
+       public static MembershipProvider Provider = Membership.Provider;
         public frmAdmin()
         {
             InitializeComponent();

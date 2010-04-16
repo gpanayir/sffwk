@@ -47,7 +47,7 @@ namespace Fwk.Security.Admin.Controls
                     if (string.IsNullOrEmpty(txtAnsw.Text) && string.IsNullOrEmpty(txtQuest.Text))
                         FwkMembership.CreateUser(txtUserName.Text, txtPassword.Text, txtEmail.Text);
                     else
-                        FwkMembership.CreateUser(txtUserName.Text, txtPassword.Text, txtEmail.Text, txtQuest.Text, txtAnsw.Text, chkApproved.Checked, out wStatus);
+                        FwkMembership.CreateUser(txtUserName.Text, txtPassword.Text, txtEmail.Text, txtQuest.Text, txtAnsw.Text, chkApproved.Checked, out wStatus, frmAdmin.Provider.Name);
 
                     switch (wStatus)
                     {
@@ -98,8 +98,8 @@ namespace Fwk.Security.Admin.Controls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            if (FwkMembership.ValidateUser(txtUserName.Text, txtPassword.Text))
+
+            if (FwkMembership.ValidateUser(txtUserName.Text, txtPassword.Text, frmAdmin.Provider.Name))
             {
                 MessageViewInfo.Show("Log sussefully");
             }

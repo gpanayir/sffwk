@@ -45,14 +45,14 @@ namespace Fwk.Security.Test
 
         }
 
-        public static void CreateUser(string pUsername, string pPassword)
+        public static void CreateUser(string userName, string password)
         {
             try
             {
                 //String app_name = Membership.Provider.ApplicationName;
-                //MembershipUser wMembershipUser = Membership.GetUser(pUsername);
+                //MembershipUser wMembershipUser = Membership.GetUser(userName);
 
-                Membership.CreateUser(pUsername, pPassword);
+                Membership.CreateUser(userName, password);
 
 
             }

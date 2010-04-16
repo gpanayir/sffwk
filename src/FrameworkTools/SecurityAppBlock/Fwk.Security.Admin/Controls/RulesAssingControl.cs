@@ -55,8 +55,8 @@ namespace Fwk.Security.Admin.Controls
             {
                 try
                 {
-                userBindingSource.DataSource = FwkMembership.GetAllUsers();
-                rolBindingSource.DataSource = FwkMembership.GetAllRoles();
+                userBindingSource.DataSource = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
+                rolBindingSource.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
                 }
                     catch( Exception es )
                 {

@@ -50,7 +50,7 @@ namespace SecurityAppBlock.Use
                 {
 
 
-                    _Authenticated = FwkMembership.ValidateUser(this.credentialsForm.Username, this.credentialsForm.Password);
+                    _Authenticated = FwkMembership.ValidateUser(this.credentialsForm.Username, this.credentialsForm.Password, Membership.Provider.Name);
 
                     if (_Authenticated)
                     {

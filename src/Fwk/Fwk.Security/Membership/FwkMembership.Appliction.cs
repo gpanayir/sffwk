@@ -14,8 +14,9 @@ namespace Fwk.Security
         /// Retorna el GUID de la aplicación busca en la bse de datos configurada por defecto 
         /// </summary>
         /// <param name="pCompanyId">Nombre de la aplicación </param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>GUID de la aplicacion</returns>
-        public static string GetApplicationID(String pCompanyId)
+        public static string GetApplicationID(String pCompanyId,string providerName)
         {
 
             String wApplicationId = String.Empty;
@@ -24,7 +25,7 @@ namespace Fwk.Security
 
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(FwkMembership.ConnectionStringName);
+                wDataBase = DatabaseFactory.CreateDatabase(GetProvider_ConnectionStringName(providerName));
                 wCmd = wDataBase.GetStoredProcCommand("[aspnet_Personalization_GetApplicationId]");
 
                 // ApplicationName
@@ -50,20 +51,20 @@ namespace Fwk.Security
         /// <summary>
         /// Obtiene de la bases de datos aspnet y tabla aspnet_Applications el Guid de la Aplicacion
         /// </summary>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pCompanyId"></param>
+        /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
+        /// <param name="companyId"></param>
         /// <returns></returns>
-        public static Guid GetApplication(string pApplicationName, string pCompanyId)
+        public static Guid GetApplication(string applicationName, string companyId)
         {
 
             Guid wApplicationNameId = new Guid();
             try
             {
 
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pCompanyId].ConnectionString))
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[companyId].ConnectionString))
                 {
 
-                    aspnet_Application app = dc.aspnet_Applications.First<aspnet_Application>(p => p.LoweredApplicationName.Equals(pApplicationName.ToLower()));
+                    aspnet_Application app = dc.aspnet_Applications.First<aspnet_Application>(p => p.LoweredApplicationName.Equals(applicationName.ToLower()));
 
                     if (app != null)
                         wApplicationNameId = app.ApplicationId;

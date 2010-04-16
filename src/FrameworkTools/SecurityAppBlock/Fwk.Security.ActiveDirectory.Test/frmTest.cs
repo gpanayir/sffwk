@@ -11,6 +11,7 @@ using System.Threading;
 using System.Security.Permissions;
 using Fwk.Security.Common;
 using Fwk.Bases.FrontEnd.Controls;
+using System.Web.Security;
 
 
 namespace Fwk.Security.ActiveDirectory.Test
@@ -32,8 +33,8 @@ namespace Fwk.Security.ActiveDirectory.Test
             {
                 try
                 {
-                    userByAppBindingSource.DataSource = FwkMembership.GetAllUsers();
-                    rolListBindingSource.DataSource = FwkMembership.GetAllRoles();
+                    userByAppBindingSource.DataSource = FwkMembership.GetAllUsers(Membership.Provider.Name);
+                    rolListBindingSource.DataSource = FwkMembership.GetAllRoles(Membership.Provider.Name);
                 }
                 catch (Exception ex)
                 {
@@ -58,7 +59,7 @@ namespace Fwk.Security.ActiveDirectory.Test
                 }
 
             }
-            userByAppBindingSource.DataSource = FwkMembership.GetAllUsers();
+            userByAppBindingSource.DataSource = FwkMembership.GetAllUsers(Membership.Provider.Name);
         }
 
 

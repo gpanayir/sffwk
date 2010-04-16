@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using System.Data;
+using System.Data.Common;
+using Fwk.Security.Common;
+using System.Web.Security;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 
 namespace Fwk.Security
 {
@@ -12,29 +19,30 @@ namespace Fwk.Security
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pRoleName"></param>
+        /// <param name="pRoleName">Nombre del rol.</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
         public static List<FwkAuthorizationRuleAux> GetRulesByRole(string pRoleName, string providerName)
         {
-            return GetRulesByRole(pRoleName, Membership.ApplicationName, GetSqlMembershipProvider_ConnectionStringName(providerName));
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            return GetRulesByRole(pRoleName, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
         
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pRoleName"></param>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
+        /// <param name="pRoleName">Nombre del rol.</param>
+        /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
+        /// <param name="pConnectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
         /// <returns></returns>
-        public static List<FwkAuthorizationRuleAux> GetRulesByRole(string pRoleName, string pApplicationName, string pConnectionStringName)
+        public static List<FwkAuthorizationRuleAux> GetRulesByRole(string pRoleName, string applicationName, string pConnectionStringName)
         {
             List<FwkAuthorizationRuleAux> wAllRules = null;
 
             try
             {
 
-                wAllRules = GetRulesAuxList(pApplicationName, pConnectionStringName);
+                wAllRules = GetRulesAuxList(applicationName, pConnectionStringName);
 
                 var rules_byRol = from s in wAllRules where s.Expression.Contains(string.Concat("R:", pRoleName.Trim())) select s;
 
@@ -56,26 +64,27 @@ namespace Fwk.Security
         /// <summary>
         /// Verifica si alguna regla en la base de datos esta vinculada al rol
         /// </summary>
-        /// <param name="pRoleName"></param>
+        /// <param name="pRoleName">Nombre del rol.</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
         public static bool AnyRulesHasRole(string pRoleName, string providerName)
         {
-            return AnyRulesHasRole(pRoleName, providerName, GetSqlMembershipProvider_ConnectionStringName(providerName));
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            return AnyRulesHasRole(pRoleName, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
         /// <summary>
         /// Verifica si alguna regla en la base de datos esta vinculada al rol
         /// </summary>
         /// <param name="pRoleName">Nmbre del rol </param>
-        /// <param name="pApplicationName">App Id</param>
+        /// <param name="applicationName">App Id</param>
         /// <param name="pConnectionStringName">nombde de cadena de coneccion</param>
         /// <returns></returns>
-        public static bool AnyRulesHasRole(string pRoleName, string pApplicationName, string pConnectionStringName)
+        public static bool AnyRulesHasRole(string pRoleName, string applicationName, string pConnectionStringName)
         {
             List<FwkAuthorizationRuleAux> wAllRules = null;
             try
             {
-                wAllRules = GetRulesAuxList(pApplicationName, pConnectionStringName);
+                wAllRules = GetRulesAuxList(applicationName, pConnectionStringName);
 
                 return wAllRules.Any<FwkAuthorizationRuleAux>(s => s.Expression.Contains(string.Concat("R:", pRoleName.Trim())));
 
@@ -87,25 +96,34 @@ namespace Fwk.Security
             }
         }
 
-
-        public static aspnet_Rule GetRule(string ruleName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ruleName"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <returns></returns>
+        public static aspnet_Rule GetRule(string ruleName, string providerName)
         {
-            return GetRule(ruleName, Membership.ApplicationName, ConnectionStringName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            return GetRule(ruleName, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
 
-        public static aspnet_Rule GetRule(string ruleName, string pApplicationName)
-        {
-            return GetRule(ruleName, pApplicationName, ConnectionStringName);
-        }
-
-        public static aspnet_Rule GetRule(string ruleName, string pApplicationName, string pConnectionStringName)
+      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ruleName"></param>
+        /// <param name="applicationName"></param>
+        /// <param name="pConnectionStringName"></param>
+        /// <returns></returns>
+        public static aspnet_Rule GetRule(string ruleName, string applicationName, string pConnectionStringName)
         {
 
             aspnet_Rule waspnet_Rule = null;
             try
             {
 
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+                Guid wApplicationId = GetApplication(applicationName, pConnectionStringName);
 
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
@@ -132,32 +150,25 @@ namespace Fwk.Security
         /// <summary>
         /// Obtiene las reglas de una determinada aplicacion
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        public static NamedElementCollection<FwkAuthorizationRule> GetRules()
+        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string providerName)
         {
-            return GetRules(Membership.ApplicationName, ConnectionStringName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            return GetRules(wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
 
-        /// <summary>
-        /// Obtiene las reglas de una determinada aplicacion
-        /// </summary>
-        /// <param name="pConnectionStringName"></param>
-        /// <param name="pApplicationName"></param>
-        /// <returns></returns>
-        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string pApplicationName)
-        {
-            return GetRules(pApplicationName, ConnectionStringName);
-        }
+        
 
 
         /// <summary>
         /// Obtiene las reglas de una determinada aplicacion
         /// Reemplaza aspnet_Rules_s
         /// </summary>
-        /// <param name="pConnectionStringName"></param>
-        /// <param name="pApplicationName"></param>
+        /// <param name="pConnectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
+        /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
         /// <returns></returns>
-        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string pApplicationName, string pConnectionStringName)
+        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string applicationName, string pConnectionStringName)
         {
 
 
@@ -167,7 +178,7 @@ namespace Fwk.Security
             try
             {
 
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+                Guid wApplicationId = GetApplication(applicationName, pConnectionStringName);
 
                 wRules = new NamedElementCollection<FwkAuthorizationRule>();
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
@@ -195,18 +206,24 @@ namespace Fwk.Security
 
         }
 
-        public static List<AuthorizationRuleData> GetRulesList(string pApplicationName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <returns></returns>
+        public static List<AuthorizationRuleData> GetRulesList(string providerName)
         {
-            return GetRulesList(pApplicationName, ConnectionStringName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            return GetRulesList(wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
 
         /// <summary>
         /// Retorna una lista de reglas de una determinada coneccion 
         /// </summary>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
+        /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
+        /// <param name="pConnectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
         /// <returns></returns>
-        public static List<AuthorizationRuleData> GetRulesList(string pApplicationName, string pConnectionStringName)
+        public static List<AuthorizationRuleData> GetRulesList(string applicationName, string pConnectionStringName)
         {
 
 
@@ -214,7 +231,7 @@ namespace Fwk.Security
             List<AuthorizationRuleData> wRules = null;
             try
             {
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+                Guid wApplicationId = GetApplication(applicationName, pConnectionStringName);
                 wRules = new List<AuthorizationRuleData>();
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
@@ -244,20 +261,20 @@ namespace Fwk.Security
         /// <summary>
         /// Retorna una lista de reglas de una determinada coneccion 
         /// </summary>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        public static List<FwkAuthorizationRuleAux> GetRulesAuxList(string pApplicationName)
+        public static List<FwkAuthorizationRuleAux> GetRulesAuxList(string providerName)
         {
-            return GetRulesAuxList(pApplicationName, ConnectionStringName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            return GetRulesAuxList(wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
         /// <summary>
         /// Retorna una lista de reglas de una determinada coneccion 
         /// </summary>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
+        /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
+        /// <param name="pConnectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
         /// <returns></returns>
-        public static List<FwkAuthorizationRuleAux> GetRulesAuxList(string pApplicationName, string pConnectionStringName)
+        public static List<FwkAuthorizationRuleAux> GetRulesAuxList(string applicationName, string pConnectionStringName)
         {
 
 
@@ -265,7 +282,7 @@ namespace Fwk.Security
             List<FwkAuthorizationRuleAux> wRules = null;
             try
             {
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+                Guid wApplicationId = GetApplication(applicationName, pConnectionStringName);
                 wRules = new List<FwkAuthorizationRuleAux>();
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
@@ -290,20 +307,34 @@ namespace Fwk.Security
             }
 
         }
+
+
+        /// <summary>
+        /// Determina si existe una regla.-
+        /// </summary>
+        /// <param name="pRuleName">Nombre de la regla</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <returns>boolean</returns>
+        public static bool ExistRule(string pRuleName, string providerName)
+        {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            return ExistRule(pRuleName, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+        }
+
         /// <summary>
         /// Determina si existe una regla.-
         /// </summary>
         /// <param name="pName">Nombre de la regla</param>
         /// <param name="pConnectionStringName">Nombre de la regla</param>
         /// <returns>boolean</returns>
-        public static bool ExistRule(string pRuleName, string pApplicationName, string pConnectionStringName)
+        public static bool ExistRule(string pRuleName, string applicationName, string pConnectionStringName)
         {
             bool wExist = false;
 
             try
             {
 
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+                Guid wApplicationId = GetApplication(applicationName, pConnectionStringName);
 
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
@@ -319,43 +350,25 @@ namespace Fwk.Security
             }
         }
 
-        /// <summary>
-        /// Determina si existe una regla.-
-        /// </summary>
-        /// <param name="pName">Nombre de la regla</param>
-        /// <param name="pConnectionStringName">Nombre de la regla</param>
-        /// <returns>boolean</returns>
-        public static bool ExistRule(string pRuleName, string pApplicationName)
-        {
-            return ExistRule(pRuleName, pApplicationName, FwkMembership.ConnectionStringName);
-        }
+    
+
 
 
 
 
 
         /// <summary>
-        /// Insert
+        /// crea una regla rule
         /// </summary>
         ///<param name="paspnet_Rules">aspnet_Rules</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>void</returns>
         /// <Date>2008-12-22T11:29:57</Date>
         /// <Author>moviedo</Author>
-        public static void CreateRule(FwkAuthorizationRule paspnet_Rules)
+        public static void CreateRule(FwkAuthorizationRule paspnet_Rules, string providerName)
         {
-            CreateRule(paspnet_Rules, Membership.ApplicationName, FwkMembership.ConnectionStringName);
-        }
-
-        /// <summary>
-        /// Insert
-        /// </summary>
-        ///<param name="paspnet_Rules">aspnet_Rules</param>
-        /// <returns>void</returns>
-        /// <Date>2008-12-22T11:29:57</Date>
-        /// <Author>moviedo</Author>
-        public static void CreateRule(FwkAuthorizationRule paspnet_Rules, string pApplicationName)
-        {
-            CreateRule(paspnet_Rules, pApplicationName, FwkMembership.ConnectionStringName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            CreateRule(paspnet_Rules, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
 
 
@@ -363,9 +376,9 @@ namespace Fwk.Security
         /// Crea una regla
         /// </summary>
         /// <param name="paspnet_Rules"></param>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
-        public static void CreateRule(FwkAuthorizationRule paspnet_Rules, string pApplicationName, string pConnectionStringName)
+        /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
+        /// <param name="pConnectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
+        public static void CreateRule(FwkAuthorizationRule paspnet_Rules, string applicationName, string pConnectionStringName)
         {
 
 
@@ -375,7 +388,7 @@ namespace Fwk.Security
 
             try
             {
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+                Guid wApplicationId = GetApplication(applicationName, pConnectionStringName);
 
                 wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
                 StringBuilder str = new StringBuilder(FwkMembershipScripts.Rule_i);
@@ -399,39 +412,33 @@ namespace Fwk.Security
         }
 
 
+      
+
         /// <summary>
         /// UpdateRule
         /// </summary>
         /// <param name="paspnet_Rules"></param>
-        public static void UpdateRule(aspnet_Rule paspnet_Rules)
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        public static void UpdateRule(aspnet_Rule paspnet_Rules, string providerName)
         {
-            UpdateRule(paspnet_Rules, Membership.ApplicationName, FwkMembership.ConnectionStringName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            UpdateRule(paspnet_Rules, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
 
         /// <summary>
         /// UpdateRule
         /// </summary>
         /// <param name="paspnet_Rules"></param>
-        /// <param name="pApplicationName"></param>
-        public static void UpdateRule(aspnet_Rule paspnet_Rules, string pApplicationName)
-        {
-            UpdateRule(paspnet_Rules, pApplicationName, FwkMembership.ConnectionStringName);
-        }
-
-        /// <summary>
-        /// UpdateRule
-        /// </summary>
-        /// <param name="paspnet_Rules"></param>
-        /// <param name="pApplicationName"></param>
-        /// <param name="pConnectionStringName"></param>
-        private static void UpdateRule(aspnet_Rule paspnet_Rules, string pApplicationName, string pConnectionStringName)
+        /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
+        /// <param name="pConnectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
+        private static void UpdateRule(aspnet_Rule paspnet_Rules, string applicationName, string pConnectionStringName)
         {
             Database wDataBase = null;
             DbCommand wCmd = null;
 
             try
             {
-                Guid wApplicationId = GetApplication(pApplicationName, pConnectionStringName);
+                Guid wApplicationId = GetApplication(applicationName, pConnectionStringName);
 
                 wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
                 StringBuilder str = new StringBuilder(FwkMembershipScripts.Rule_u);

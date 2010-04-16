@@ -231,11 +231,11 @@ namespace Fwk.Security.Common
         /// Obtiene todo los usuarios pertenecientes al dominio.-
         /// Busca por cn nombre@mail retorna el sAMAccountName ejemplo: moviedo
         /// </summary>
-        public List<ADGroup> GetGroupForUser(String pUserName)
+        public List<ADGroup> GetGroupForUser(String userName)
         {
             List<ADGroup> list = new List<ADGroup>();
 
-            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", pUserName);
+            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
 
             _Searcher.Filter = filter;
             SearchResult result = _Searcher.FindOne();
@@ -252,11 +252,11 @@ namespace Fwk.Security.Common
         /// <summary>
         ///  Obtiene un FwkIdentity que reprecenta un usuario 
         /// </summary>
-        /// <param name="pUserName"></param>
+        /// <param name="userName"></param>
         /// <returns></returns>
-        public FwkIdentity GetUserByUserName(String pUserName)
+        public FwkIdentity GetUserByUserName(String userName)
         {
-            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", pUserName);
+            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
 
 
             _Searcher.Filter = filter;
@@ -272,7 +272,7 @@ namespace Fwk.Security.Common
         /// <summary>
         ///  Obtiene un FwkIdentity que reprecenta un usuario 
         /// </summary>
-        /// <param name="pUserName"></param>
+        /// <param name="userName"></param>
         /// <returns></returns>
         public FwkIdentity GetUserByFullName(String pFullName)
         {

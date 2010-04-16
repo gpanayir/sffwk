@@ -40,7 +40,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 try
                 {
-                    FwkMembership.CreateRole(txtRolName.Text, txtDescription.Text);
+                    FwkMembership.CreateRole(txtRolName.Text, txtDescription.Text, frmAdmin.Provider.Name);
 
                     fwkMessageViewInfo.Show(string.Format(Properties.Resources.RolCreatedMessage, txtRolName.Text));
                     Initialize();
@@ -56,7 +56,7 @@ namespace Fwk.Security.Admin.Controls
         {
             using (new WaitCursorHelper(this))
             {
-                rolListBindingSource.DataSource = FwkMembership.GetAllRoles();
+                rolListBindingSource.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
                 grdRoles.Refresh();
             }
         }
@@ -67,7 +67,7 @@ namespace Fwk.Security.Admin.Controls
             selectedRol = (Rol)grdRoles.CurrentRow.DataBoundItem;
             using (new WaitCursorHelper(this))
             {
-                grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName);
+                grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName, frmAdmin.Provider.Name);
                 grdUsers.Refresh();
             }
         }
@@ -92,8 +92,8 @@ namespace Fwk.Security.Admin.Controls
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
 
-                    FwkMembership.CreateUsersToRole(selectedRol.RolName, frm.SelectedUserList);
-                    grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName);
+                    FwkMembership.CreateUsersToRole(selectedRol.RolName, frm.SelectedUserList, frmAdmin.Provider.Name);
+                    grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName, frmAdmin.Provider.Name);
                     grdUsers.Refresh();
                 }
             }
@@ -121,9 +121,9 @@ namespace Fwk.Security.Admin.Controls
                     removedUsersList.Remove(((User)row.DataBoundItem));
                 }
 
-                FwkMembership.RemoveUsersFromRole(removedUsersList.GetArraNames(), selectedRol.RolName);
-           
-                grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName);
+                FwkMembership.RemoveUsersFromRole(removedUsersList.GetArraNames(), selectedRol.RolName, frmAdmin.Provider.Name);
+
+                grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName, frmAdmin.Provider.Name);
                 grdUsers.Refresh();
 
     

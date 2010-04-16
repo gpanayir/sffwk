@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -196,6 +196,7 @@
     <None Include="ActiveDirectory\AdUserDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
     <Compile Include="Membership\FwkMembership.Roles.cs" />
+    <Compile Include="Membership\FwkMembership.User.cs" />
     <None Include="Membership\RuleProvider.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>RuleProvider.designer.cs</LastGenOutput>

@@ -29,7 +29,7 @@ namespace Fwk.Security
 
             try
             {
-                foreach (string s in Roles.GetAllRoles())
+                foreach (string s in Roles.Providers[providerName].GetAllRoles())
                 {
                     r = new Rol(s);
                     wRoleList.Add(r);
@@ -48,16 +48,16 @@ namespace Fwk.Security
         /// <summary>
         /// Obtiene una lista de Roles (RolList) de un usuario
         /// </summary>
-        /// <param name="pUserName">Nombre de Usuario</param>
+        /// <param name="userName">Nombre de Usuario</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>RolList con los roles del usuario</returns>
-        public static RolList GetRolesForUser(String pUserName, string providerName)
+        public static RolList GetRolesForUser(String userName, string providerName)
         {
             Rol r;
             RolList wRoleList = new RolList();
             try
             {
-                foreach (string s in Roles.GetRolesForUser(pUserName))
+                foreach (string s in Roles.Providers[providerName].GetRolesForUser(userName))
                 {
                     r = new Rol(s);
                     wRoleList.Add(r);
@@ -76,7 +76,7 @@ namespace Fwk.Security
         /// <summary>
         /// Crea un nuevo Rol
         /// </summary>
-        /// <param name="pRoleName"></param>
+        /// <param name="pRoleName">Nombre del rol.</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         //public static void CreateRole(String pRoleName)
         //{
@@ -100,7 +100,7 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pRoleName">Nombre del rol</param>
         /// <param name="pDescription">Descripcion del rol</param>
-        /// <param name="pApplicationName">Nombre de la aplicaciom</param>
+        /// <param name="applicationName">Nombre de la aplicaciom</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void CreateRole(String pRoleName, string pDescription, string providerName)
         {
@@ -108,8 +108,8 @@ namespace Fwk.Security
             {
                 if (!Roles.RoleExists(pRoleName))
                 {
-                    Roles.CreateRole(pRoleName);
-                    UpdateRole(pRoleName, pDescription, pApplicationName, pConnectionStringName);
+                    Roles.Providers[providerName].CreateRole(pRoleName);
+                    UpdateRole(pRoleName, pDescription, providerName);
                 }
                 else
                 {
@@ -125,7 +125,7 @@ namespace Fwk.Security
         }
 
         /// <summary>
-        /// Elimina un Rol
+        /// Elimina un Rol.- Lanza exepcion si el rol tiene miembros asociados
         /// </summary>
         /// <param name="pRoleName">Nombre del Rol</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
@@ -133,8 +133,9 @@ namespace Fwk.Security
         {
             try
             {
-                if (Roles.GetUsersInRole(pRoleName).Length == 0)
-                    Roles.DeleteRole(pRoleName);
+                
+                if (Roles.Providers[providerName].GetUsersInRole(pRoleName).Length == 0)
+                    Roles.Providers[providerName].DeleteRole(pRoleName,true);
                 else
                     throw new Exception(string.Format(Fwk.Security.Properties.Resource.RoleNotEmpty, pRoleName));
 
@@ -142,6 +143,7 @@ namespace Fwk.Security
             catch (Exception ex)
             {
                 throw ex;
+                //throw new Exception(string.Format(Fwk.Security.Properties.Resource.RoleNotEmpty, pRoleName));
             }
         }
 
@@ -154,15 +156,15 @@ namespace Fwk.Security
         public static void UpdateRole(String pRoleName, string pDescription, string providerName)
         {
 
-
+           SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             StringBuilder str = new StringBuilder("UPDATE aspnet_Roles SET  Description = '[Description]' WHERE (LoweredRoleName = LOWER('[RoleName]')) AND(ApplicationId = CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]') )");
-            Guid id = GetApplication(pApplicationName, pConnectionStringName);
+            Guid id = GetApplication(wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
             Database wDataBase = null;
             DbCommand wCmd = null;
             try
             {
 
-                wDataBase = DatabaseFactory.CreateDatabase(pConnectionStringName);
+                wDataBase = DatabaseFactory.CreateDatabase(GetProvider_ConnectionStringName(providerName));
 
                 str.Replace("[ApplicationId]", id.ToString());
                 str.Replace("[Description]", pDescription);
@@ -189,11 +191,12 @@ namespace Fwk.Security
 
             try
             {
+                ///var users = from s in pUserList select s.UserName;
                 foreach (User wUser in pUserList)
                 {
-                    if (!Roles.IsUserInRole(wUser.UserName, pRolName))
+                    if (!Roles.Providers[providerName].IsUserInRole(wUser.UserName, pRolName))
                     {
-                        Roles.AddUserToRoles(wUser.UserName, new string[] { pRolName });
+                        Roles.Providers[providerName].AddUsersToRoles(new string[] { wUser.UserName }, new string[] { pRolName });
                     }
                 }
 
