@@ -194,9 +194,9 @@
     <None Include="ActiveDirectory\ClassDiagram1.cd" />
     <None Include="app.config" />
     <None Include="ActiveDirectory\AdUserDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
     <Compile Include="Membership\FwkMembership.Roles.cs" />
     <Compile Include="Membership\FwkMembership.User.cs" />
+    <None Include="FwkMemberships.cd" />
     <None Include="Membership\RuleProvider.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>RuleProvider.designer.cs</LastGenOutput>
