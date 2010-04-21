@@ -24,7 +24,7 @@ using $fwkprojectname$.Common.BE;
 namespace $fwkprojectname$.BackEnd.DAC
 {
 
-    public static class [EntityName]DAC
+    public static class [EntityName]DAC:BaseDAC
     {
         [BODY]
     }     
