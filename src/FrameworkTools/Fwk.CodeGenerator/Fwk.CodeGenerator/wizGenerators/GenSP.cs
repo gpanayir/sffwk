@@ -647,7 +647,7 @@ namespace Fwk.CodeGenerator
                 //wColumn.Selected 
                 if (IsColumnValidToInsert(wColumn))
                 {
-                    wBuilder.AppendLine(string.Concat("@", wColumn.Name));
+                    wBuilder.AppendLine(string.Concat("@", wColumn.Name,","));
                 }
             }
 
