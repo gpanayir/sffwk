@@ -114,7 +114,17 @@ namespace Fwk.Bases
     public abstract class Request<T> : ServiceContractBase<T>, IRequest
 		where T : IEntity, new()
 	{
+        string _SecurityProviderName;
 
+        /// <summary>
+        /// Nombre del proveedor deseguridad
+        /// Si esta en blanco se utilizara el po defecto
+        /// </summary>
+        public string SecurityProviderName
+        {
+            get { return _SecurityProviderName; }
+            set { _SecurityProviderName = value; }
+        }
         CacheSettings _CacheSettings = new CacheSettings ();
 
         /// <summary>

@@ -132,7 +132,15 @@ namespace Fwk.Bases
             get;
             set;
         }
-        
+
+        /// <summary>
+        /// Nmbre del proveedor de seguridad
+        /// </summary>
+        string SecurityProviderName
+        {
+            get;
+            set;
+        }
          
     }
 

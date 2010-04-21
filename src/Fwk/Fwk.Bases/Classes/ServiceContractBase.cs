@@ -213,18 +213,37 @@ namespace Fwk.Bases
             m_Context.UserName = Environment.UserName;
             m_Context.HostTime = DateTime.Now;
             m_Context.CompanyId = GetCompanyId();
+
+            //solo si es un objeto request
+            if (typeof(IRequest).IsInstanceOfType(this))
+            {
+                //Obtener nombre del proveedor de seguridad. Membership,Rol y Autthorization Provider
+                ((IRequest)this).SecurityProviderName = GetSecurtyProviderName();
+            }
         }
 
         /// <summary>
-        /// Busca cadenas de coenección en el archivo de configuracion Configuracion mannager del framework
+        /// Busca el identificador de compañia o compañia-aplicacion en el archivo de configuracion o Configuracion mannager del framework
         /// </summary>
-        /// <param name="pCompayId">Identificador de empresa</param>
         /// <returns></returns>
         protected static string GetCompanyId()
         {
             string wCompanyId = System.Configuration.ConfigurationManager.AppSettings["CompanyId"];
             if (string.IsNullOrEmpty(wCompanyId))
                 wCompanyId = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "CompanyId");
+            return wCompanyId;
+        }
+
+
+        /// <summary>
+        /// Busca cadenas de coenección en el archivo de configuracion Configuracion mannager del framework
+        /// </summary>
+        /// <returns></returns>
+        protected static string GetSecurtyProviderName()
+        {
+            string wCompanyId = System.Configuration.ConfigurationManager.AppSettings["SecurtyProviderName"];
+            if (string.IsNullOrEmpty(wCompanyId))
+                wCompanyId = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "SecurtyProviderName");
             return wCompanyId;
         }
 

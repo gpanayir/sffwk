@@ -11,6 +11,7 @@ namespace Fwk.Bases
 	public class ContextInformation
 	{
         string _CompanyId;
+        
 		string _UserName;
         string _HostName;
         string _ServerName;
