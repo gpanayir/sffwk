@@ -56,6 +56,34 @@ FunctionalExceptionEnums.MsgErrorInConfigMannagerNotFount;
 
 
 --------------------------------   Fwk.Security -----------------------------------
-ErrorId = 4000
+ErrorId = 4000: SecurityGenericError
+There are some problems while trying to eprform some task on security database 
+{0} {1}
 
-Usuario no existe.-
+
+ErrorId = 4001
+
+	Proveedor no existe
+
+ErrorId = 4002: Role_WithoutRules
+
+	No hay reglas para un determinado rol.-
+
+ErrorId = 4003 :Rule_ProblemGetingData
+
+	Error al intentar obtener los valores de la relgla:
+ErrorId = 4004 : Rule_ProblemGetingAlls
+
+	Error al intentar obtener las reglas
+ErrorId = 4005
+
+ Usuario no existe.-
+ErrorId = 4006
+	El rol tiene usuarios asociados
+ 
+--------------------------------   Fwk.Security Active directory-----------------------------------
+ErrorId = 4103 : AD_GetingDomainsURL_Error
+Error al intentar obtener la lista de dominios desde la base de datos:
+
+ErrorId = 4104 : AD_Impersonation_Error
+Error de impersinalizacion de active directory

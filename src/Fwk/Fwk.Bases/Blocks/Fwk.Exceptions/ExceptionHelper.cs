@@ -269,8 +269,19 @@ namespace Fwk.Exceptions
       
         #endregion
 
-     
 
+        /// <summary>
+        /// Establece los valores basicos de error producido en el componente ADHelper
+        /// </summary>
+        /// <param name="te"></param>
+        public static void SetTechnicalException<T>(Fwk.Exceptions.TechnicalException te)
+        {
+            te.Namespace = typeof(T).Namespace;
+            te.Assembly = typeof(T).Assembly.FullName;
+            te.Class = typeof(T).GetType().Name;
+            te.UserName = Environment.UserName;
+            te.Machine = Environment.MachineName;
+        }
 
     }
 }
