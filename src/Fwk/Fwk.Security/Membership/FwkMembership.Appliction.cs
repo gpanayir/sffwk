@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
+using Fwk.Exceptions;
 
 namespace Fwk.Security
 {
@@ -42,7 +43,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
         }
 
@@ -77,7 +81,9 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000"; throw te;
             }
         }
 

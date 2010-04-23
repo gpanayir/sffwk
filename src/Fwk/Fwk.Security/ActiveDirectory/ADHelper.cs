@@ -11,6 +11,7 @@ using System.DirectoryServices.ActiveDirectory;
 using Fwk.Exceptions;
 using System.DirectoryServices.AccountManagement;
 using System.Reflection;
+using Fwk.Security.Properties;
 namespace Fwk.Security.ActiveDirectory
 {
 
@@ -126,9 +127,9 @@ namespace Fwk.Security.ActiveDirectory
             catch (TechnicalException e)// Cuando el usuario no existe o clave erronea
             {
                 Exception te1 = ProcessActiveDirectoryException(e);
-                TechnicalException te = new TechnicalException("Error de impersonalizacion de active directory.- Detalle del problema : ", te1.InnerException);
-                SetError(te);
-                te.ErrorId = "15003";
+                TechnicalException te = new TechnicalException(string.Format(Resource.AD_Impersonation_Error, te1.Message), te1.InnerException);
+                ExceptionHelper.SetTechnicalException<ADHelper>(te);
+                te.ErrorId = "4103";
                 throw te;
             }
 
@@ -198,7 +199,7 @@ namespace Fwk.Security.ActiveDirectory
             }
             catch (TechnicalException te)
             {
-                if (te.ErrorId == "15002")
+                if (te.ErrorId == "4101")
                 {
                     loginResult = LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
                     return userDirectoryEntry;
@@ -733,7 +734,7 @@ namespace Fwk.Security.ActiveDirectory
             }
             catch (Exception ex)
             {
-                ProcessActiveDirectoryException(ex);
+                throw ProcessActiveDirectoryException(ex);
             }
             return domainList;
         }
@@ -795,9 +796,10 @@ namespace Fwk.Security.ActiveDirectory
             }
             catch (Exception ex)
             {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al intentar obtener la lista de dominios desde la base de datos: ", ex);
-                ADHelper.SetError(te);
-                te.ErrorId = "15004";
+                Fwk.Exceptions.TechnicalException te = new 
+                    Fwk.Exceptions.TechnicalException(string .Format(Resource.AD_GetingDomainsURL_Error,cnnString, ex));
+                ExceptionHelper.SetTechnicalException<ADHelper>(te);
+                te.ErrorId = "4103";
                 throw te;
             }
 
@@ -811,22 +813,22 @@ namespace Fwk.Security.ActiveDirectory
         static Exception ProcessActiveDirectoryException(Exception ex)
         {
             Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(ex.Message, ex);
-            SetError(te);
+            ExceptionHelper.SetTechnicalException<ADHelper>(te);
             switch (ex.GetType().FullName)
             {
                 case "System.Runtime.InteropServices.COMException"://((System.Runtime.InteropServices.COMException)(ex)) "El servidor no es operacional.\r\n"
                     {
-                        te.ErrorId = "15001";
+                        te.ErrorId = "4100";
                         break;
                     }
                 case "System.DirectoryServices.DirectoryServicesCOMException": //Error de inicio de sesión: nombre de usuario desconocido o contraseña incorrecta.
                     {
-                        te.ErrorId = "15002";
+                        te.ErrorId = "4101";
                         break;
                     }
                 default:
                     {
-                        te.ErrorId = "15000";
+                        te.ErrorId = "4100";
                         break;
                     }
 
@@ -835,17 +837,7 @@ namespace Fwk.Security.ActiveDirectory
             return te;
         }
 
-        /// <summary>
-        /// Establece los valores basicos de error producido en el componente ADHelper
-        /// </summary>
-        /// <param name="te"></param>
-        static void SetError(Fwk.Exceptions.TechnicalException te)
-        {
-            te.Namespace = typeof(ADHelper).Namespace;
-            te.Source = "Constructor fwk active directory component";
-            te.UserName = Environment.UserName;
-            te.UserName = Environment.MachineName;
-        }
+      
 
         /// <summary>
         /// 

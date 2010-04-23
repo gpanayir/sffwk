@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Common;
 using Fwk.Security.Common;
 using System.Web.Security;
+using Fwk.Exceptions;
 
 namespace Fwk.Security
 {
@@ -38,7 +39,11 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
 
             return wRoleList;
@@ -66,7 +71,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
 
             return wRoleList;
@@ -120,7 +128,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
         }
 
@@ -133,17 +144,24 @@ namespace Fwk.Security
         {
             try
             {
-                
-                if (Roles.Providers[providerName].GetUsersInRole(pRoleName).Length == 0)
-                    Roles.Providers[providerName].DeleteRole(pRoleName,true);
-                else
-                    throw new Exception(string.Format(Fwk.Security.Properties.Resource.RoleNotEmpty, pRoleName));
 
+                if (Roles.Providers[providerName].GetUsersInRole(pRoleName).Length == 0)
+                    Roles.Providers[providerName].DeleteRole(pRoleName, true);
+                else
+                {
+                    TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.RoleNotEmpty, pRoleName));
+                    ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                    te.ErrorId = "4006";
+                    throw te;
+
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
-                //throw new Exception(string.Format(Fwk.Security.Properties.Resource.RoleNotEmpty, pRoleName));
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
         }
 
@@ -176,7 +194,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
         }
 
@@ -203,8 +224,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                //FwkMessageView.Show(ex, "CreateRole", System.Windows.Forms.MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
-                throw ex;
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
 
         }

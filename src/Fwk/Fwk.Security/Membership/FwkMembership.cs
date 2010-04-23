@@ -12,6 +12,8 @@ using System.Text;
 using System.Linq;
 using System.Web.Configuration;
 using System.Configuration;
+using Fwk.Security.Properties;
+using Fwk.Exceptions;
 namespace Fwk.Security
 {
     /// <summary>
@@ -39,17 +41,29 @@ namespace Fwk.Security
 
 
         /// <summary>
-        /// 
+        /// Esta fncion permite encontrar el proveedor Sql configurado por medio de su nombre
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
         static SqlMembershipProvider GetSqlMembershipProvider(string providerName)
         {
-            if (string.IsNullOrEmpty(providerName))
-                return (SqlMembershipProvider)Membership.Provider;
-            else
-                return (SqlMembershipProvider)Membership.Providers[providerName];
+            SqlMembershipProvider wSqlMembershipProvider;
 
+            if (string.IsNullOrEmpty(providerName))
+                wSqlMembershipProvider = (SqlMembershipProvider)Membership.Provider;
+            else
+                wSqlMembershipProvider = (SqlMembershipProvider)Membership.Providers[providerName];
+
+            if (wSqlMembershipProvider == null)
+            {
+                TechnicalException te = new TechnicalException(string.Format(Resource.ProviderNameNotFound, providerName));
+                te.ErrorId = "4001";
+                te.Source = "FwkMembership blok";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
+            }
+
+            return wSqlMembershipProvider;
 
         }
 
@@ -107,21 +121,6 @@ namespace Fwk.Security
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="msg"></param>
-        /// <returns></returns>
-        static Fwk.Exceptions.TechnicalException GetTechnicalException(string msg)
-        {
-            Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(msg);
-            te.Assembly = typeof(FwkMembership).GetType().Namespace;
-            te.Class = typeof(FwkMembership).GetType().Name;
-            te.Source = "Security";
-            te.UserName = Environment.UserName;
-            return te;
-        }
-
-        /// <summary>
         ///  Obtiene el mensaje de error (Ingles)
         /// </summary>
         /// <param name="status">MembershipCreateStatus</param>
@@ -163,6 +162,6 @@ namespace Fwk.Security
         }
 
 
-
+      
     }
 }

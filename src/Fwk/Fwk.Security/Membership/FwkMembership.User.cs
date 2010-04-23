@@ -7,6 +7,8 @@ using System.Data.Common;
 using System.Web.Security;
 using Fwk.Security.Common;
 using System.Data;
+using Fwk.Exceptions;
+using Fwk.Security.Properties;
 
 namespace Fwk.Security
 {
@@ -247,26 +249,25 @@ namespace Fwk.Security
         /// <param name="userName">Nombre del Usuario que se desea obtener</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>User</returns>
-        public static User GetUser(String userName, string providerName)
-        {
+       public static User GetUser(String userName, string providerName)
+       {
 
-            MembershipUser wUser = GetMembershipUser(userName, providerName);
-            // block the user
-            if (wUser != null)
-            {
-                return new User(wUser);
-            }
-            else
-            {
-                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
-                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, userName)
-                    );
-                te.ErrorId = "4000";
-                throw te;
-            }
+           MembershipUser wUser = GetMembershipUser(userName, providerName);
+           // block the user
+           if (wUser != null)
+           {
+               return new User(wUser);
+           }
+           else
+           {
+               Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, userName));
+               ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+               te.ErrorId = "4005";
+               throw te;
+           }
 
 
-        }
+       }
 
         /// <summary>
         /// 
@@ -285,10 +286,9 @@ namespace Fwk.Security
             }
             else
             {
-                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
-                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, userName)
-                    );
-                te.ErrorId = "4000";
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, userName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te); 
+                te.ErrorId = "4005";
                 throw te;
             }
 
@@ -313,10 +313,9 @@ namespace Fwk.Security
             }
             else
             {
-                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
-                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, userName)
-                    );
-                te.ErrorId = "4000";
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, userName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4005";
                 throw te;
             }
 
@@ -341,10 +340,9 @@ namespace Fwk.Security
             }
             else
             {
-                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
-                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, userName)
-                    );
-                te.ErrorId = "4000";
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Format(Resource.User_NotExist, userName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te); 
+                te.ErrorId = "4005";
                 throw te;
             }
         }
@@ -370,10 +368,9 @@ namespace Fwk.Security
             }
             else
             {
-                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
-                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, userName)
-                    );
-                te.ErrorId = "4000";
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, userName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te); 
+                te.ErrorId = "4005";
                 throw te;
             }
 
@@ -399,10 +396,9 @@ namespace Fwk.Security
             }
             else
             {
-                Fwk.Exceptions.TechnicalException te = GetTechnicalException(
-                    string.Format(Fwk.Security.Properties.Resource.UserNotExist, userName)
-                    );
-                te.ErrorId = "4000";
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, userName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te); 
+                te.ErrorId = "4005";
                 throw te;
             }
 
@@ -446,7 +442,11 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError,ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
 
             return wUsersList;
@@ -475,7 +475,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
 
             return wUsersList;
@@ -507,8 +510,11 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                //FwkMessageView.Show(ex, "CreateRole", System.Windows.Forms.MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
-                throw ex;
+              
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
 
         }
@@ -530,7 +536,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
         }
 
@@ -554,7 +563,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
         }
 
@@ -573,7 +585,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
         }
 
@@ -592,7 +607,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
         }
 

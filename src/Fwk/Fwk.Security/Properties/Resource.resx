@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddUserRoleErrorMessage" xml:space="preserve">
+  <data name="User_AddRoleErrorMessage" xml:space="preserve">
     <value>Please select a user name and select or enter a role.</value>
   </data>
-  <data name="AddUserRoleMessage" xml:space="preserve">
+  <data name="User_AddRoleMessage" xml:space="preserve">
     <value>Role {1} added for user {0}.</value>
     <comment>.
  Parameters: 0 - username (string), 1 - role (string) </comment>
@@ -130,15 +130,6 @@
   </data>
   <data name="AuthorizationRuleNotFoundMsg" xml:space="preserve">
     <value>Authorization rule {0} not found in configuration.</value>
-  </data>
-  <data name="AuthorizationRuleNotFoundMsg1" xml:space="preserve">
-    <value>Authorization rule {0} not found in configuration.</value>
-  </data>
-  <data name="AzManResultMessage" xml:space="preserve">
-    <value>Task: {0}
-Result: {1}</value>
-    <comment>.
- Parameters: 0 - task (string), 1 - result (string) </comment>
   </data>
   <data name="CheckingRolesMessage" xml:space="preserve">
     <value>Checking roles for "{0}"</value>
@@ -153,28 +144,25 @@ Result: {1}</value>
   <data name="CreateTokenRequiresIdentityMessage" xml:space="preserve">
     <value>Cannot create a token for non-authenticated user. This scenario requires running the "Authenticate user using credentials" scenario first</value>
   </data>
-  <data name="CreateUserTitleMessage" xml:space="preserve">
+  <data name="User_CreateTitleMessage" xml:space="preserve">
     <value>Create a new user</value>
     <comment> For localizers and UE (These comments will be seen in LocStudio)</comment>
   </data>
-  <data name="DeleteUserErrorMessage" xml:space="preserve">
+  <data name="User_DeleteErrorMessage" xml:space="preserve">
     <value>Please select a user name.</value>
   </data>
-  <data name="DeleteUserMessage" xml:space="preserve">
+  <data name="User_DeleteMessage" xml:space="preserve">
     <value>User {0} deleted.</value>
     <comment>.
  Parameters: 0 - username (string) </comment>
   </data>
-  <data name="DeleteUserRoleErrorMessage" xml:space="preserve">
+  <data name="User_DeleteRoleErrorMessage" xml:space="preserve">
     <value>Please select a user name and a role.</value>
   </data>
-  <data name="DeleteUserRoleMessage" xml:space="preserve">
+  <data name="User_DeleteRoleMessage" xml:space="preserve">
     <value>Role {1} deleted for user {0}.</value>
     <comment>.
  Parameters: 0 - username (string), 1 - role (string) </comment>
-  </data>
-  <data name="ErrorMessage" xml:space="preserve">
-    <value>Error</value>
   </data>
   <data name="ExpiredTokenErrorMessage" xml:space="preserve">
     <value>Failed to retrieve the identity. The supplied token is expired.</value>
@@ -190,21 +178,21 @@ Result: {1}</value>
     <comment>.
  Parameters: 0 - user (string) </comment>
   </data>
-  <data name="IdentityRoleErrorMessage" xml:space="preserve">
+  <data name="User_IdentityRoleErrorMessage" xml:space="preserve">
     <value>Please enter a user name and select a role and a rule.</value>
   </data>
-  <data name="IdentityRoleMessage" xml:space="preserve">
+  <data name="User_IdentityRoleMessage" xml:space="preserve">
     <value>Username: {0}
 Role: {1}</value>
     <comment>.
  Parameters: 0 - identity (string), 1 - role (string) </comment>
   </data>
-  <data name="InvalidCredentialsMessage" xml:space="preserve">
+  <data name="User_InvalidCredentialsMessage" xml:space="preserve">
     <value>Failed to authenticate user {0}. Either the username does not exist in database or the provided password is not correct</value>
     <comment>.
  Parameters: 0 - username (string) </comment>
   </data>
-  <data name="NullIdentityMessage" xml:space="preserve">
+  <data name="User_NullIdentityMessage" xml:space="preserve">
     <value>You should authenticate a user first.</value>
   </data>
   <data name="ProfileNotFoundMessage" xml:space="preserve">
@@ -223,15 +211,12 @@ Role: {1}</value>
     <comment>.
  Parameters: 0 - user (string) </comment>
   </data>
-  <data name="QuickStartErrorMessage" xml:space="preserve">
-    <value>There are some problems while trying to use the Security Quick Start, please check the following error messages: 
+  <data name="MembershipSecurityGenericError" xml:space="preserve">
+    <value>There are some problems while trying to use the Fwk Security Block t, please check the following error messages: 
 
 {0}
 
-This QuickStart requires a database configured with the ASP.NET services schema. Please make sure the database has been initialized using the aspnet_regsql.exe script, and that the QuickStart's app.config file contains the correct database connection string.</value>
-  </data>
-  <data name="QuickStartErrorTitle" xml:space="preserve">
-    <value>Application Error</value>
+This block requires a database configured with the ASP.NET services schema. Please make sure the database has been initialized using the aspnet_regsql.exe script, and the system's app.config file contains the correct database connection string.</value>
   </data>
   <data name="RetrieveIdentityErrorMessage" xml:space="preserve">
     <value>Cannot retrieve identity because the token doesn't exist.</value>
@@ -274,17 +259,17 @@ Result: user is authorized</value>
     <comment>.
  Parameters: 0 - username (string) </comment>
   </data>
-  <data name="UserNotExist" xml:space="preserve">
+  <data name="User_NotExist" xml:space="preserve">
     <value>The user {0} not exist</value>
   </data>
-  <data name="UserProfileMessage" xml:space="preserve">
+  <data name="User_ProfileMessage" xml:space="preserve">
     <value>The following profile has been read for "{0}"
   {1}
 </value>
     <comment>.
  Parameters: 0 - user (string), 1 - profile (string) </comment>
   </data>
-  <data name="UserRoleMessage" xml:space="preserve">
+  <data name="User_RoleMessage" xml:space="preserve">
     <value> Member of role {0}: {1}</value>
     <comment>.
  Parameters: 0 - role (string), 1 - result (string) </comment>
@@ -293,5 +278,26 @@ Result: user is authorized</value>
     <value>Successfully authenticated user {0}</value>
     <comment>.
  Parameters: 0 - username (string) </comment>
+  </data>
+  <data name="ProviderNameNotFound" xml:space="preserve">
+    <value>The security provider {0} not found</value>
+  </data>
+  <data name="Role_WithoutRules" xml:space="preserve">
+    <value>The {0} not contain rules.-</value>
+  </data>
+  <data name="AD_GetingDomainsURL_Error" xml:space="preserve">
+    <value>There are some problems while trying to get domains urls from database. Check the following connectionstring key "{0}"  in the appconfig file.-</value>
+  </data>
+  <data name="Rule_Crate_Error" xml:space="preserve">
+    <value>There are some problems while trying to create rule</value>
+  </data>
+  <data name="Rule_ProblemGetingAlls_Error" xml:space="preserve">
+    <value>There are some problems while trying to get all rule information, please check the application name  "{0}" .</value>
+  </data>
+  <data name="Rule_ProblemGetingData_Error" xml:space="preserve">
+    <value>There are some problems while trying to get rule information, please check the following rule name: {0}</value>
+  </data>
+  <data name="AD_Impersonation_Error" xml:space="preserve">
+    <value>Impersonalization error.- The security Active directory throw  the following error : {0}</value>
   </data>
 </root>

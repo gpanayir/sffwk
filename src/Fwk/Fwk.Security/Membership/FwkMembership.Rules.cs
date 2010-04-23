@@ -9,6 +9,8 @@ using Fwk.Security.Common;
 using System.Web.Security;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
+using Fwk.Security.Properties;
+using Fwk.Exceptions;
 
 namespace Fwk.Security
 {
@@ -51,8 +53,12 @@ namespace Fwk.Security
             }
             catch (InvalidOperationException)
             {
-                ///TODO: mejorar manejo de Exception GetRule
-                throw new Exception(string.Concat("Error al intentar obtener las reglas vinculadas al rol: " + pRoleName));
+             
+                TechnicalException te = new TechnicalException(string.Format(Resource.Role_WithoutRules, pRoleName));
+                te.ErrorId = "4002";
+                te.Source = "FwkMembership blok";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
             }
             catch (Exception ex)
             {
@@ -136,15 +142,16 @@ namespace Fwk.Security
                     return waspnet_Rule;
                 }
             }
-            catch (InvalidOperationException)
-            {
-                //TODO: mejorar manejo de Exception GetRule
-                throw new Exception(string.Concat("Error al intentar obtener los valores de la relgla: " + ruleName));
-            }
             catch (Exception ex)
             {
-                throw ex;
+
+                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingData_Error, ruleName), ex);
+                te.ErrorId = "4003";
+                te.Source = "FwkMembership blok";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
             }
+           
         }
 
         /// <summary>
@@ -201,7 +208,11 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingAlls_Error, applicationName), ex);
+                te.ErrorId = "4003";
+                te.Source = "FwkMembership blok";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
             }
 
         }
@@ -253,7 +264,12 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+
+                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingAlls_Error, applicationName), ex);
+                te.ErrorId = "4004";
+                te.Source = "FwkMembership blok";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
             }
 
         }
@@ -303,7 +319,11 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingAlls_Error, applicationName), ex);
+                te.ErrorId = "4004";
+                te.Source = "FwkMembership blok";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
             }
 
         }
@@ -346,7 +366,11 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingData_Error, pRuleName), ex);
+                te.ErrorId = "4004";
+                te.Source = "FwkMembership blok";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
             }
         }
 
@@ -406,7 +430,11 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_Crate_Error, paspnet_Rules.Name), ex);
+                te.ErrorId = "4005";
+                te.Source = "FwkMembership blok";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
             }
 
         }
