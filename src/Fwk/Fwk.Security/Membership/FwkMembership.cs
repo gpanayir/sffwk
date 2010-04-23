@@ -27,16 +27,28 @@ namespace Fwk.Security
 
         static SecuritySettings _SecuritySettings;
         static MembershipSection _MembershipSection;
-         static FwkMembership()
+        static FwkMembership()
         {
-             _SecuritySettings = (SecuritySettings)System.Configuration.ConfigurationManager.GetSection("securityConfiguration");
-             _MembershipSection =               (MembershipSection)System.Configuration.ConfigurationManager.GetSection("system.web/membership");
-             providerCnnStrings = new Dictionary<string, string>();
+            _SecuritySettings = (SecuritySettings)System.Configuration.ConfigurationManager.GetSection("securityConfiguration");
+            _MembershipSection = (MembershipSection)System.Configuration.ConfigurationManager.GetSection("system.web/membership");
+            providerCnnStrings = new Dictionary<string, string>();
         }
 
 
-        
+        /// <summary>
+        /// Obtiene la lista de proovedores membership
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetAllMembershipProviderNameArray()
+        {
+            List<string> list = new List<string>();
+            foreach (MembershipProvider m in Membership.Providers)
+            {
+                list.Add(m.Name);
+            }
 
+            return list;
+        }
 
 
 
