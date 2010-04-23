@@ -34,7 +34,7 @@ namespace Fwk.Security.Admin
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MembershipUser user = Membership.GetUser();
+            User user = FwkMembership.GetUser(Environment.UserName, frmAdmin.Provider.Name);
         }
 
 
@@ -48,6 +48,18 @@ namespace Fwk.Security.Admin
             //Esto se hace de esta manera ya que el tree listo no se carga correctamente la  primera vez que se levanta el control
            if (currontSecurityControlBase.GetType() == typeof(CategoryCreate))
                ((CategoryCreate)currontSecurityControlBase).PopulateAsync();
+        }
+
+        private void cmbProviders_EditValueChanged(object sender, EventArgs e)
+        {
+            frmAdmin.Provider = Membership.Providers[cmbProviders.Text];
+        }
+
+        private void frmAdmin_Load(object sender, EventArgs e)
+        {
+            cmbProviders.Properties.DataSource = FwkMembership.GetAllMembershipProviderNameArray();
+            cmbProviders.ItemIndex = 0;
+
         }
        
 

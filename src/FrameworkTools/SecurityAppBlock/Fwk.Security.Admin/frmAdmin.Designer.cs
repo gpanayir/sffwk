@@ -49,8 +49,11 @@ namespace Fwk.Security.Admin
             this.navBarItem_CreateUser = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_AddRoles = new DevExpress.XtraNavBar.NavBarItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbProviders = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbProviders.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -235,11 +238,32 @@ namespace Fwk.Security.Admin
             this.panelControl1.Size = new System.Drawing.Size(783, 561);
             this.panelControl1.TabIndex = 5;
             // 
+            // label2
+            // 
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(13, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 16);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Security provide";
+            // 
+            // cmbProviders
+            // 
+            this.cmbProviders.Location = new System.Drawing.Point(16, 33);
+            this.cmbProviders.Name = "cmbProviders";
+            this.cmbProviders.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbProviders.Size = new System.Drawing.Size(243, 20);
+            this.cmbProviders.TabIndex = 20;
+            this.cmbProviders.EditValueChanged += new System.EventHandler(this.cmbProviders_EditValueChanged);
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 651);
+            this.Controls.Add(this.cmbProviders);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.navBarControl1);
             this.Controls.Add(this.lbltitle);
@@ -248,8 +272,10 @@ namespace Fwk.Security.Admin
             this.Name = "frmAdmin";
             this.Text = "Security admin";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbProviders.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,6 +301,8 @@ namespace Fwk.Security.Admin
         private DevExpress.XtraNavBar.NavBarItem navBarItem_AssingRoles;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_Check;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_RulesEdit;
+        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.LookUpEdit cmbProviders;
     }
 }
 
