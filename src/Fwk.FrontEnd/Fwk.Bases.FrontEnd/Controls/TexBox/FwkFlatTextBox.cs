@@ -319,7 +319,7 @@ namespace Fwk.Bases.FrontEnd.Controls
 
                 }
             }
-            if (!String.IsNullOrEmpty(_AllowedCharacters))
+            if (!String.IsNullOrEmpty(_NotAllowedCharactersErrorText))
             {
                 foreach (char s in this.Text.ToCharArray())
                 {
