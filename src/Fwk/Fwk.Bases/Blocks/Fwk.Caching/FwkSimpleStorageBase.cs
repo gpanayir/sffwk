@@ -5,9 +5,61 @@ using System.Text;
 using System.IO.IsolatedStorage;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.InteropServices;
 
 namespace Fwk.Caching
 {
+
+    /// <summary>
+    ///     Enumerates the levels of isolated storage scope that are supported by System.IO.IsolatedStorage.IsolatedStorage.
+    /// </summary>
+    [Serializable]
+    [ComVisible(true)]
+    [Flags]
+    public enum FwkIsolatedStorageScope
+    {
+        /// <summary>
+        ///Obtains machine-scoped isolated storage corresponding to the calling code's
+        ///application identity.
+             /// </summary>
+        MachineStoreForApplication = 0,
+       
+        /// <summary>
+        /// Obtains machine-scoped isolated storage corresponding to the application
+        /// domain identity and the assembly identity.
+        /// </summary>
+        MachineStoreForAssembly = 1,
+  
+        /// <summary>
+        ///Obtains machine-scoped isolated storage corresponding to the application
+        ///domain identity and the assembly identity. 
+        /// </summary>
+        MachineStoreForDomain = 2,
+
+        /// <summary>
+        //Obtains user-scoped isolated storage corresponding to the calling code's
+        //application identity. 
+        /// </summary>
+        UserStoreForApplication = 4,
+      
+        /// <summary>
+        ///Obtains user-scoped isolated storage corresponding to the calling code's
+        ///assembly identity. 
+        /// </summary>
+        UserStoreForAssembly = 8,
+
+        /// <summary>
+        ///Obtains user-scoped isolated storage corresponding to the application domain
+        ///identity and assembly identity. 
+        /// </summary>
+        UserStoreForDomain = 16
+        
+       
+    }
+    
+    
+
+
 
     /// <summary>
     /// Clase base que permite un almacenamiento en el IsolatedStorageFile.- 
@@ -34,7 +86,7 @@ namespace Fwk.Caching
     /// <code>
     /// <![CDATA[
     /// 
-    ///     public FwkSimpleStorageBase _Store = new FwkSimpleStorageBase<Cliente>();
+    ///     public FwkSimpleStorageBase<Cliente> _Store = new FwkSimpleStorageBase<Cliente>();
     /// ]]>
     /// </code>    
     /// </example>
@@ -42,8 +94,24 @@ namespace Fwk.Caching
     public class FwkSimpleStorageBase<T>
     {
         string CONFIG_FILE = AppDomain.CurrentDomain.FriendlyName;
+        FwkIsolatedStorageScope _IsolatedStorageScope = FwkIsolatedStorageScope.UserStoreForApplication;
+       
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public FwkSimpleStorageBase()
+        { }
 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope"></param>
+        public FwkSimpleStorageBase(FwkIsolatedStorageScope scope)
+        {
+            _IsolatedStorageScope = scope;
+        }
 
         T _Object;
 
@@ -52,8 +120,13 @@ namespace Fwk.Caching
         /// </summary>
         public T StorageObject
         {
-            get { return _Object; }
-
+            get
+            {
+                if (_Object == null)
+                    Load();
+                return _Object;
+            }
+            set { _Object = value; }
         }
 
         /// <summary>
@@ -97,6 +170,59 @@ namespace Fwk.Caching
 
         }
 
+        /// <summary>
+        ///Domain 	    Isolated Storage Scoped to Application Domain Identity
+        ///Assembly 	Isolated Storage Scoped to Identity of the Assembly
+        ///Roaming 	The Isolated Storage Can roam.
+        ///Application 	Isolated Storage Scoped to the Application
+        ///
+        /// User 	Isolated Storage scoped to User Identity
+        ///Machine 	Isolated Storage Scoped to the Machine
+        /// </summary>
+        void Get_IsolatedStorageFile()
+        {
+            
+            IsolatedStorageFile wIsolatedStorageFile = IsolatedStorageFile.GetUserStoreForApplication();
+
+           
+            switch (_IsolatedStorageScope)
+            {
+                case FwkIsolatedStorageScope.UserStoreForApplication:
+                    {
+                        wIsolatedStorageFile = IsolatedStorageFile.GetUserStoreForApplication();
+                        break;
+                    }
+                case FwkIsolatedStorageScope.UserStoreForAssembly:
+                    {
+                        wIsolatedStorageFile = IsolatedStorageFile.GetUserStoreForAssembly ();
+                        break;
+                    }
+                case FwkIsolatedStorageScope.UserStoreForDomain:
+                    {
+                        wIsolatedStorageFile = IsolatedStorageFile.GetUserStoreForDomain();
+                        break;
+                    }
+                case FwkIsolatedStorageScope.MachineStoreForApplication:
+                    {
+                        wIsolatedStorageFile = IsolatedStorageFile.GetMachineStoreForApplication();
+                        break;
+                    }
+              case FwkIsolatedStorageScope.MachineStoreForAssembly:
+                    {
+                        wIsolatedStorageFile = IsolatedStorageFile.GetMachineStoreForAssembly();
+                        break;
+                    }
+                    case FwkIsolatedStorageScope.MachineStoreForDomain:
+                    {
+                        wIsolatedStorageFile = IsolatedStorageFile.GetMachineStoreForDomain();
+                        break;
+                    }
+
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public void Clear()
         {
             //_Object = null;
