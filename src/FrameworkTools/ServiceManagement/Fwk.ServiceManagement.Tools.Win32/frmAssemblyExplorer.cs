@@ -19,6 +19,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
     /// </summary>
     public partial class frmAssemblyExplorer : Fwk.Bases.FrontEnd.FrmBase
     {
+        Fwk.Caching.FwkSimpleStorageBase<Storage>  _StorageFactory = new Fwk.Caching.FwkSimpleStorageBase<Storage>();
 
         private ServiceConfiguration _SelectedServiceConfiguration = null;
 
@@ -36,7 +37,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
             InitializeComponent();
 
-            if (!string.IsNullOrEmpty(SettingStorage.Storage.AssemblyPath))
+            if (!string.IsNullOrEmpty(_StorageFactory.StorageObject.AssemblyPath))
             {
                 
                 LoadAssembly();
@@ -58,8 +59,9 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             if (wSchemaDialog.ShowDialog() == DialogResult.OK)
             {
-                SettingStorage.Storage.AssemblyPath = wSchemaDialog.FileName;
-                SettingStorage.Save();
+                _StorageFactory.StorageObject.AssemblyPath = wSchemaDialog.FileName;
+          
+                _StorageFactory.Save();
                 LoadAssembly();
             }
             
@@ -88,10 +90,10 @@ namespace Fwk.ServiceManagement.Tools.Win32
            
             try
             {
-                Assembly wAssembly = new Assembly(SettingStorage.Storage.AssemblyPath);
+                Assembly wAssembly = new Assembly(_StorageFactory.StorageObject.AssemblyPath);
                 Fwk.Bases.ServiceConfiguration s = null;
                 Fwk.Bases.ServiceConfigurationCollection list = new Fwk.Bases.ServiceConfigurationCollection();
-                lblFileName.Text = SettingStorage.Storage.AssemblyPath;
+                lblFileName.Text = _StorageFactory.StorageObject.AssemblyPath;
 
                 foreach (AssemblyClass wAssemblyClass in wAssembly.ClassCollections)
                 {
@@ -119,19 +121,25 @@ namespace Fwk.ServiceManagement.Tools.Win32
             catch (System.Reflection.ReflectionTypeLoadException rx)
             {
                 base.ExceptionViewer.Show(rx.LoaderExceptions, "Service Management:. Loading assembly");
-                SettingStorage.Clear();
+                _StorageFactory.Clear();
             }
             catch (Exception ex)
             {
 
                 base.ExceptionViewer.Show(ex);
-                SettingStorage.Clear();
+
+                _StorageFactory.Clear();
             }
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmAssemblyExplorer_Load(object sender, EventArgs e)
+        {
+            _StorageFactory.Load();
         }
     }
 

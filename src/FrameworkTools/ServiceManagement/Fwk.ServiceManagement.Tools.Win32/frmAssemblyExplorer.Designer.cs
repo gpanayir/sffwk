@@ -153,6 +153,7 @@
             this.Name = "frmAssemblyExplorer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Service Explorer";
+            this.Load += new System.EventHandler(this.frmAssemblyExplorer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.serviceConfigurationCollectionBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
