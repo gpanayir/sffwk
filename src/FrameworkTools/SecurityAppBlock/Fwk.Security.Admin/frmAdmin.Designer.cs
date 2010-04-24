@@ -46,6 +46,8 @@ namespace Fwk.Security.Admin
             this.navBarItem_Check = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_CategoryCreate = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_RulesEdit = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem_Encrypt = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_CreateUser = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_AddRoles = new DevExpress.XtraNavBar.NavBarItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -95,7 +97,8 @@ namespace Fwk.Security.Admin
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup_Users,
             this.navBarGroup_Groups,
-            this.navBarGroup_Rules});
+            this.navBarGroup_Rules,
+            this.navBarGroup1});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem_CreateUser,
             this.navBarItem_AddRoles,
@@ -106,7 +109,8 @@ namespace Fwk.Security.Admin
             this.navBarItem_CategoryCreate,
             this.navBarItem_AssingRoles,
             this.navBarItem_Check,
-            this.navBarItem_RulesEdit});
+            this.navBarItem_RulesEdit,
+            this.navBarItem_Encrypt});
             this.navBarControl1.Location = new System.Drawing.Point(7, 72);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 177;
@@ -174,7 +178,6 @@ namespace Fwk.Security.Admin
             // navBarGroup_Rules
             // 
             this.navBarGroup_Rules.Caption = "Rules & categories ";
-            this.navBarGroup_Rules.Expanded = true;
             this.navBarGroup_Rules.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup_Rules.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CreateRule),
@@ -214,6 +217,20 @@ namespace Fwk.Security.Admin
             this.navBarItem_RulesEdit.Name = "navBarItem_RulesEdit";
             this.navBarItem_RulesEdit.SmallImage = global::Fwk.Security.Admin.Properties.Resources.file_edit_16;
             this.navBarItem_RulesEdit.Tag = "Fwk.Security.Admin.Controls.RulesEditControl, Fwk.Security.Admin";
+            // 
+            // navBarGroup1
+            // 
+            this.navBarGroup1.Caption = "Connections";
+            this.navBarGroup1.Expanded = true;
+            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_Encrypt)});
+            this.navBarGroup1.Name = "navBarGroup1";
+            // 
+            // navBarItem_Encrypt
+            // 
+            this.navBarItem_Encrypt.Caption = "Encrypt";
+            this.navBarItem_Encrypt.Name = "navBarItem_Encrypt";
+            this.navBarItem_Encrypt.Tag = "Fwk.Security.Admin.Controls.ConnectionStringsCrypt,Fwk.Security.Admin";
             // 
             // navBarItem_CreateUser
             // 
@@ -303,6 +320,8 @@ namespace Fwk.Security.Admin
         private DevExpress.XtraNavBar.NavBarItem navBarItem_RulesEdit;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.LookUpEdit cmbProviders;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem_Encrypt;
     }
 }
 
