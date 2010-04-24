@@ -314,7 +314,15 @@ namespace Fwk.Caching
         /// </summary>
         public virtual void InitObject()
         {
+            //if (typeof(T).AssemblyQualifiedName.Contains("mscorlib"))
+            //{
+            //    System.Reflection.Assembly a = System.Reflection.Assembly.Load("Mscorlib.dll");
+            //    _Object = (T)a.CreateInstance(typeof(T).Name, true);
+            //    return;
+            //}
+
             _Object = (T)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(typeof(T).AssemblyQualifiedName);
+          
         }
 
     }
