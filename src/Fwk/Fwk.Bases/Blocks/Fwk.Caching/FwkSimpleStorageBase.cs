@@ -10,6 +10,10 @@ using System.Runtime.InteropServices;
 namespace Fwk.Caching
 {
 
+   
+
+
+
     /// <summary>
     ///     Enumerates the levels of isolated storage scope that are supported by System.IO.IsolatedStorage.IsolatedStorage.
     /// </summary>
@@ -116,7 +120,7 @@ namespace Fwk.Caching
         T _Object;
 
         /// <summary>
-        /// Contiene las conecciones a bases de datos
+        /// Reprecenta el objeto serializable que se almacena en la cache del sistema
         /// </summary>
         public T StorageObject
         {
@@ -130,7 +134,8 @@ namespace Fwk.Caching
         }
 
         /// <summary>
-        /// Generalkmente se usa desde el Load del formulario
+        /// Permite cargar el almacenammiento del objeto.. Este metodo llama al metodo virtual InitObject.
+        /// Generalmente se usa desde el Load del formulario
         /// <example>
         /// <code>
         /// <![CDATA[
