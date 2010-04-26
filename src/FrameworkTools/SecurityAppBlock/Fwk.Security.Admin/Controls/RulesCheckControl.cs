@@ -42,15 +42,15 @@ namespace Fwk.Security.Admin.Controls
                 Cursor = System.Windows.Forms.Cursors.WaitCursor;
 
 
-                if (ControlsFactory.ruleProvider != null)
-                {
+                //if (ControlsFactory.ruleProvider != null)
+                //{
 
                     this.DisplayAuthorizationResults(string.Format(Properties.Resources.IdentityRoleMessage, identity, String.Join(",", roles)));
                     bool wAuthorized = false;
                     // Try to authorize using selected rule
                     try
                     {
-                        wAuthorized = ControlsFactory.ruleProvider.Authorize(principal, rule);
+                        wAuthorized = ControlsFactory.Authorize(principal, rule);
                     }
                     catch (Exception ex)
                     {
@@ -75,7 +75,7 @@ namespace Fwk.Security.Admin.Controls
                     }
 
 
-                }
+                //}
                 Cursor = System.Windows.Forms.Cursors.Arrow;
             }
         }

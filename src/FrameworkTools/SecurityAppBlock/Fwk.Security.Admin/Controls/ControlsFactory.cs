@@ -6,6 +6,7 @@ using System.Text;
 using DevExpress.XtraNavBar;
 using System.Windows.Forms;
 using Microsoft.Practices.EnterpriseLibrary.Security;
+using System.Security.Principal;
 
 
 namespace Fwk.Security.Admin.Controls
@@ -14,12 +15,17 @@ namespace Fwk.Security.Admin.Controls
 
     internal class ControlsFactory
     {
-         
-        public static IAuthorizationProvider ruleProvider;
-        static ControlsFactory()
+
+
+
+        internal static bool Authorize(IPrincipal principal, string context)
         {
-            ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
+            return AuthorizationFactory.GetAuthorizationProvider(frmAdmin.Provider.Name).Authorize(principal, context);
+
         }
+          
+        
+      
 
         static Dictionary<string, SecurityControlBase> _SecurityControlList = new Dictionary<string, SecurityControlBase>();
 

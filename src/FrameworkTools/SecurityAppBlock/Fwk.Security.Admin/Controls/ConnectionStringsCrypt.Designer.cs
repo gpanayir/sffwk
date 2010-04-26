@@ -35,14 +35,14 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.btnFindRoles = new System.Windows.Forms.Button();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
+            this.txtFileName = new DevExpress.XtraEditors.TextEdit();
             this.mnGroupAndKey = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsMenuItemRemoveGrOrKey = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEncrypt = new System.Windows.Forms.Button();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.lblSelectedFile = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).BeginInit();
             this.mnGroupAndKey.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
@@ -116,15 +116,15 @@
             this.labelControl3.TabIndex = 37;
             this.labelControl3.Text = "File";
             // 
-            // txtUserName
+            // txtFileName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(39, 14);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtUserName.Properties.Appearance.Options.UseBackColor = true;
-            this.txtUserName.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-            this.txtUserName.Size = new System.Drawing.Size(278, 22);
-            this.txtUserName.TabIndex = 39;
+            this.txtFileName.Location = new System.Drawing.Point(39, 14);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtFileName.Properties.Appearance.Options.UseBackColor = true;
+            this.txtFileName.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.txtFileName.Size = new System.Drawing.Size(278, 22);
+            this.txtFileName.TabIndex = 39;
             // 
             // mnGroupAndKey
             // 
@@ -181,14 +181,14 @@
             this.Controls.Add(this.lblSelectedFile);
             this.Controls.Add(this.memoEdit1);
             this.Controls.Add(this.btnEncrypt);
-            this.Controls.Add(this.txtUserName);
+            this.Controls.Add(this.txtFileName);
             this.Controls.Add(this.btnFindRoles);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.treeView1);
             this.Name = "ConnectionStringsCrypt";
             this.Size = new System.Drawing.Size(666, 493);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).EndInit();
             this.mnGroupAndKey.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
@@ -202,7 +202,7 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button btnFindRoles;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit txtUserName;
+        private DevExpress.XtraEditors.TextEdit txtFileName;
         private System.Windows.Forms.ContextMenuStrip mnGroupAndKey;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemRemoveGrOrKey;
         private System.Windows.Forms.Button btnEncrypt;

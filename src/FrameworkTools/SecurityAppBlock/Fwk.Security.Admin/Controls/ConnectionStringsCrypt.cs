@@ -22,15 +22,9 @@ namespace Fwk.Security.Admin.Controls
         /// de modo que quede un registro en memoria de los archivos con los cuales se esta trabajando.-
         /// </summary>
         Fwk.Caching.FwkSimpleStorageBase<Dictionary<String, String>> _Storage = new Fwk.Caching.FwkSimpleStorageBase<Dictionary<string, string>>();
-        ///// <summary>
-        ///// Lista de archivos App.Config, en esta lista se almacenan los nombres completo de todos los archivos abiertos 
-        ///// de modo que quede un registro en memoria de los archivos con los cuales se esta trabajando.-
-        ///// </summary>
-        //internal static Dictionary<String,String> _ConfigMannagerFilesList = new Dictionary<String,String>();
-
+        
         /// <summary>
         /// Representa la informacion del tipo de control a instanciar 
-        /// 
         /// </summary>
         public override string AssemblySecurityControl
         {
@@ -107,8 +101,10 @@ namespace Fwk.Security.Admin.Controls
 
                 }
                 memoEdit1.Text = str.ToString();
+                
                 str = null;
                 doc = null;
+
             }
         }
         void Populate()
@@ -123,7 +119,7 @@ namespace Fwk.Security.Admin.Controls
 
         private void btnFindRoles_Click(object sender, EventArgs e)
         {
-            string fullFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open("Xml Files(*.CONFIG;)|*.CONFIG;|All files (*.*)|*.*");
+            string fullFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open("Xml Files(*.CONFIG;)|*.CONFIG;|All files (*.*)|*.*",string.Empty,txtFileName.Text);
             if (string.IsNullOrEmpty(fullFileName)) return;
             if (_Storage.StorageObject.ContainsKey(fullFileName))
             {
@@ -167,8 +163,23 @@ namespace Fwk.Security.Admin.Controls
 
            System.Configuration.Configuration  config = ConfigurationManager.OpenExeConfiguration(fileName);
             ConnectionStringsSection sect = config.ConnectionStrings;
-            sect.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
+            
+            sect.SectionInformation.ForceSave = true;
+            sect.SectionInformation.ProtectSection("RsaProtectedConfigurationProvider");
             config.Save(ConfigurationSaveMode.Minimal,false);
+
+            //XmlDocument doc = new System.Xml.XmlDocument();
+            //doc.Load(string.Concat(fileName,".config"));
+            //XmlNode connectionStringsNode = doc.SelectSingleNode("/configuration/connectionStrings");
+
+            //string xmlCrypted = connectionStringsNode.InnerXml;
+            //doc = null;
+            //doc = new System.Xml.XmlDocument();
+            //doc.Load(fileName);
+            // connectionStringsNode = doc.SelectSingleNode("/configuration/connectionStrings");
+            //connectionStringsNode.InnerXml = xmlCrypted;
+            //doc.Save(fileName);
+            //File.Delete(string.Concat(fileName,".config"));
         }
 
         void DencryptCnnStrings(string fileName)
