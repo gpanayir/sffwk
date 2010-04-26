@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -170,7 +170,7 @@
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\DataBaseUpdate.sql" />
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\Security.rar" />
-    <None Include="Data\Scripts\FwkObjectsOnly_DropExistents.sql" />
+    <None Include="Data\Scripts\Fwk_Security.sql" />
     <None Include="fwk.snk" />
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +229,6 @@
     <Content Include="ActiveDirectory\LDAP_Query_AllUsers.txt" />
     <Content Include="ActiveDirectory\LDAP_Query_Group.txt" />
     <Content Include="ActiveDirectory\Propiedades.txt" />
-    <Content Include="Data\Scripts\FwkObjectsOnly_DropExistents_Report.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

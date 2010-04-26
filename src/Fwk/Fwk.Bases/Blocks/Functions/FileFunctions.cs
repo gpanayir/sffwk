@@ -22,18 +22,35 @@ namespace Fwk.HelperFunctions
         /// </summary>
         /// <param name="pFilter">Filtro ej: "(*.xml)|*.xml"</param>
         /// <param name="pTitle">titulo personalizado del cuadro de diálogo</param>
+        /// <param name="pInitialDirectory">Directorio inicial de FileDialog</param>
         /// <returns></returns>
-        public static String OpenFileDialog_Open(string pFilter, string pTitle)
+        public static String OpenFileDialog_Open(string pFilter, string pTitle, string pInitialDirectory)
         {
             using (OpenFileDialog wDialog = new OpenFileDialog())
             {
                 if (!String.IsNullOrEmpty(pTitle))
                     wDialog.Title = pTitle;
+
+                if (!String.IsNullOrEmpty(pInitialDirectory))
+                    wDialog.InitialDirectory = pInitialDirectory;
+
                 wDialog.CheckFileExists = true;
                 wDialog.Filter = pFilter;// String.Format("Files {0}|All Files (*.*)|*.*", pFilter);
                 if (wDialog.ShowDialog() == DialogResult.OK) return wDialog.FileName;
                 else return String.Empty;
             }
+        }
+
+
+        /// <summary>
+        /// Muestra dialog box para abrir un archivo .-
+        /// </summary>
+        /// <param name="pFilter">Filtro ej: "(*.xml)|*.xml"</param>
+        /// <param name="pTitle">titulo personalizado del cuadro de diálogo</param>
+        /// <returns></returns>
+        public static String OpenFileDialog_Open(string pFilter, string pTitle)
+        {
+            return OpenFileDialog_Open(pFilter, String.Empty, String.Empty);
         }
 
         /// <summary>
