@@ -6,9 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Fwk.HelperFunctions.Caching;
+using Fwk.Caching;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Fwk.HelperFunctions;
+
 namespace Fwk.Cache.Test
 {
     public partial class frmCacheFactoryTest : Form

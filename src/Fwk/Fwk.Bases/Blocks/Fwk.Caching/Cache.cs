@@ -13,9 +13,10 @@ using Microsoft.Practices.EnterpriseLibrary.Caching.BackingStoreImplementations;
 using Microsoft.Practices.ObjectBuilder2;
 using System.Reflection;
 using Microsoft.Practices.EnterpriseLibrary.Caching.Configuration;
+using Fwk.HelperFunctions;
 
 
-namespace Fwk.HelperFunctions.Caching
+namespace Fwk.Caching
 {
     
     /// <summary>

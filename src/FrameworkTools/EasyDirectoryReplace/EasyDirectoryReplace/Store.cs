@@ -8,16 +8,16 @@ namespace EasyDirectoryReplace
     [Serializable]
     public class Store
     {
-        static Fwk.HelperFunctions.Caching.FwkCache _FwkCache;
+        static Fwk.Caching.FwkCache _FwkCache;
 
-        public static Fwk.HelperFunctions.Caching.FwkCache FwkCache
+        public static Fwk.Caching.FwkCache FwkCache
         {
             get { return Store._FwkCache; }
             set { Store._FwkCache = value; }
         }
          static Store()
         {
-            _FwkCache = new Fwk.HelperFunctions.Caching.FwkCache();
+            _FwkCache = new Fwk.Caching.FwkCache();
         }
         public  Store()
         {

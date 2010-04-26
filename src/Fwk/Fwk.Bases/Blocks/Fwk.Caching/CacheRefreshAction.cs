@@ -6,7 +6,7 @@ using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.Practices.EnterpriseLibrary.Common;
 using Microsoft.Practices.EnterpriseLibrary.Caching.Expirations;
 
-namespace Fwk.HelperFunctions.Caching
+namespace Fwk.Caching
 {
     /// <summary>
     /// Clase que Determina la Accion a seguir cuando Cache hace Refresh.

@@ -498,12 +498,12 @@ namespace Fwk.Security
             RolList rollistAux = null;
             UserList userList = null;
 
-            Fwk.Security.FwkMembershipScripts.BuildRolesAndUsers_FromRuleExpression(pRule.Expression, out rollistAux, out userList);
+            BuildRolesAndUsers_FromRuleExpression(pRule.Expression, out rollistAux, out userList);
 
             //Agregar el rol a la regla
             rollistAux.Add(pRol);
 
-            pRule.SetExpression(Fwk.Security.FwkMembershipScripts.BuildRuleExpression(rollistAux, userList));
+            pRule.SetExpression(BuildRuleExpression(rollistAux, userList));
         }
 
         /// <summary>
@@ -516,14 +516,14 @@ namespace Fwk.Security
             RolList rollistAux = null;
             UserList userList = null;
 
-            Fwk.Security.FwkMembershipScripts.BuildRolesAndUsers_FromRuleExpression(pRule.Expression, out rollistAux, out userList);
+            BuildRolesAndUsers_FromRuleExpression(pRule.Expression, out rollistAux, out userList);
 
             //Quitar el rol a la regla si es que existe en la regla
             if (rollistAux.Any<Rol>(r => r.RolName.Equals(pRol.RolName)))
             {
                 rollistAux.Remove(rollistAux.First<Rol>(r => r.RolName.Equals(pRol.RolName)));
 
-                pRule.SetExpression(Fwk.Security.FwkMembershipScripts.BuildRuleExpression(rollistAux, userList));
+                pRule.SetExpression(BuildRuleExpression(rollistAux, userList));
             }
 
 

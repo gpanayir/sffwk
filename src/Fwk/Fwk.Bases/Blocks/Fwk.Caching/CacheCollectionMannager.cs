@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 
 
-namespace Fwk.HelperFunctions.Caching
+namespace Fwk.Caching
 {
     /// <summary>
     /// Calse que mantiene las instancias de las cache manager de la aplicacion.-

@@ -10,7 +10,7 @@ namespace Fwk.Security
     /// <summary>
     /// 
     /// </summary>
-    public  static class FwkMembershipScripts
+    internal  static class FwkMembershipScripts
     {
         static string _RuleInCategory_i;
         static string _Category_d = "DELETE FROM aspnet_RulesCategory WHERE  aspnet_RulesCategory.CategoryId = [CategoryId]";
@@ -194,96 +194,7 @@ namespace Fwk.Security
 
         }
 
-        /// <summary>
-        /// Construye la lista de usuarios y de roles desde la expresion de la regla.-
-        /// </summary>
-        /// <param name="assignedRoleList"></param>
-        /// <param name="excludeUserList"></param>
-        /// <returns></returns>
-        public static string BuildRuleExpression(List<Rol> assignedRoleList, List<User> excludeUserList)
-        {
-            StringBuilder wexpression = new StringBuilder();
-
-            #region included roles
-            if (assignedRoleList.Count != 0)
-            {
-                wexpression.Append("(");
-                foreach (Rol rol in assignedRoleList)
-                {
-                    wexpression.Append("R:");
-                    wexpression.Append(rol.RolName);
-                    wexpression.AppendLine(" OR ");
-                }
-                wexpression.Remove(wexpression.Length - 5, 5);
-                wexpression.Append(")");
-            }
-            #endregion
-
-            #region Excluded users
-            if (excludeUserList.Count != 0)
-            {
-                if (assignedRoleList.Count != 0)
-                    wexpression.Append(" AND ");
-
-                wexpression.Append("NOT (");
-                foreach (User user in excludeUserList)
-                {
-                    wexpression.Append("I:");
-                    wexpression.Append(user.UserName);
-                    wexpression.AppendLine(" OR ");
-                }
-                wexpression.Remove(wexpression.Length - 5, 5);
-                wexpression.Append(")");
-            }
-            #endregion
-
-            return wexpression.ToString();
-        }
-
-     
-        /// <summary>
-        /// Retorba las lista de usuarios y roles desde la expresion de la regla
-        /// </summary>
-        /// <param name="wexpression"></param>
-        /// <param name="assignedRoleList"></param>
-        /// <param name="excludeUserList"></param>
-        public static void BuildRolesAndUsers_FromRuleExpression(string wexpression, out RolList assignedRoleList, out UserList excludeUserList)
-        {
-            Rol wRol;
-            User wUser;
-            assignedRoleList = new RolList();
-            excludeUserList = new UserList();
-
-            StringBuilder exp = new StringBuilder(wexpression);
-
-            exp.Replace("R:", string.Empty);
-            exp.Replace("I:", string.Empty);
-            exp.Replace("(", string.Empty);
-            exp.Replace(")", string.Empty);
-            exp.Replace("AND", string.Empty);
-            String[] wArray = exp.ToString().Split(new string[] { "NOT" }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (wArray.Length > 0)
-            {
-                foreach (string str in wArray[0].Split(new string[] { "OR" }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    wRol = new Rol(str.Trim());
-                    assignedRoleList.Add(wRol);
-                }
-            }
-
-            if (wArray.Length > 1)
-            {
-                foreach (string str in wArray[1].Split(new string[] { "OR" }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    wUser = new User(str.Trim());
-                    excludeUserList.Add(wUser);
-                }
-            }
-
-        }
-
-       
+    
 
 
     }

@@ -17,16 +17,32 @@ using Fwk.Exceptions;
 namespace Fwk.Security
 {
     /// <summary>
+    /// Esta clase contiene metodos estaticos para interactuar con seguridad basada en memberships de asp_netdb 
     /// 
+    /// Permite trabajar con :
+    /// Roles
+    /// Usuarios
+    /// Membership Applications
+    /// Reglas
+    /// Proveedores de autorizacion
+    /// 
+    /// 
+    /// Este componente require que la base de datos a la que el proveedor de membership apunta contenga las tablas que se definene
+    /// en el siguiente script: Fwk_Security.sql
     /// </summary>
     public partial class FwkMembership
     {
-        //static  string fwkAuthorizationProviderName_Default = "RuleProvider_Fwk";
+       
         static Dictionary<string, string> providerCnnStrings;
       
 
         static SecuritySettings _SecuritySettings;
         static MembershipSection _MembershipSection;
+
+        /// <summary>
+        /// Constructor estatico de las FwkMembership
+        /// Inicia las secciones configuradas securityConfiguration y system.web/membership
+        /// </summary>
         static FwkMembership()
         {
             _SecuritySettings = (SecuritySettings)System.Configuration.ConfigurationManager.GetSection("securityConfiguration");
@@ -133,7 +149,7 @@ namespace Fwk.Security
 
 
         /// <summary>
-        ///  Obtiene el mensaje de error (Ingles)
+        ///  Obtiene el mensaje de error para las constantes<see cref="MembershipCreateStatus"/> (Ingles)
         /// </summary>
         /// <param name="status">MembershipCreateStatus</param>
         /// <returns>Mensaje de error</returns>
@@ -173,7 +189,96 @@ namespace Fwk.Security
             }
         }
 
+        /// <summary>
+        /// Construye la lista de usuarios y de roles desde la expresion de la regla.-
+        /// </summary>
+        /// <param name="assignedRoleList"></param>
+        /// <param name="excludeUserList"></param>
+        /// <returns></returns>
+        public static string BuildRuleExpression(List<Rol> assignedRoleList, List<User> excludeUserList)
+        {
+            StringBuilder wexpression = new StringBuilder();
 
+            #region included roles
+            if (assignedRoleList.Count != 0)
+            {
+                wexpression.Append("(");
+                foreach (Rol rol in assignedRoleList)
+                {
+                    wexpression.Append("R:");
+                    wexpression.Append(rol.RolName);
+                    wexpression.AppendLine(" OR ");
+                }
+                wexpression.Remove(wexpression.Length - 5, 5);
+                wexpression.Append(")");
+            }
+            #endregion
+
+            #region Excluded users
+            if (excludeUserList.Count != 0)
+            {
+                if (assignedRoleList.Count != 0)
+                    wexpression.Append(" AND ");
+
+                wexpression.Append("NOT (");
+                foreach (User user in excludeUserList)
+                {
+                    wexpression.Append("I:");
+                    wexpression.Append(user.UserName);
+                    wexpression.AppendLine(" OR ");
+                }
+                wexpression.Remove(wexpression.Length - 5, 5);
+                wexpression.Append(")");
+            }
+            #endregion
+
+            return wexpression.ToString();
+        }
+
+
+        /// <summary>
+        /// Retorba las lista de usuarios y roles desde la expresion de la regla
+        /// </summary>
+        /// <param name="wexpression"></param>
+        /// <param name="assignedRoleList"></param>
+        /// <param name="excludeUserList"></param>
+        public static void BuildRolesAndUsers_FromRuleExpression(string wexpression, out RolList assignedRoleList, out UserList excludeUserList)
+        {
+            Rol wRol;
+            User wUser;
+            assignedRoleList = new RolList();
+            excludeUserList = new UserList();
+
+            StringBuilder exp = new StringBuilder(wexpression);
+
+            exp.Replace("R:", string.Empty);
+            exp.Replace("I:", string.Empty);
+            exp.Replace("(", string.Empty);
+            exp.Replace(")", string.Empty);
+            exp.Replace("AND", string.Empty);
+            String[] wArray = exp.ToString().Split(new string[] { "NOT" }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (wArray.Length > 0)
+            {
+                foreach (string str in wArray[0].Split(new string[] { "OR" }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    wRol = new Rol(str.Trim());
+                    assignedRoleList.Add(wRol);
+                }
+            }
+
+            if (wArray.Length > 1)
+            {
+                foreach (string str in wArray[1].Split(new string[] { "OR" }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    wUser = new User(str.Trim());
+                    excludeUserList.Add(wUser);
+                }
+            }
+
+        }
+
+       
       
     }
 }

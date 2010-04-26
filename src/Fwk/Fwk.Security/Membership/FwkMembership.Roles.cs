@@ -12,7 +12,7 @@ using Fwk.Exceptions;
 namespace Fwk.Security
 {
     public partial class FwkMembership
-	{
+    {
 
         #region [Roles]
 
@@ -81,27 +81,6 @@ namespace Fwk.Security
 
         }
 
-        /// <summary>
-        /// Crea un nuevo Rol
-        /// </summary>
-        /// <param name="pRoleName">Nombre del rol.</param>
-        /// <param name="providerName">Nombre del proveedor de membership</param>
-        //public static void CreateRole(String pRoleName)
-        //{
-
-        //    CreateRole(pRoleName,string.Empty,Membership.ApplicationName,ConnectionStringName);
-        //}
-
-        /// <summary>
-        /// Crea un nuevo Rol
-        /// </summary>
-        /// <param name="pRoleName">Nombre del rol</param>
-        /// <param name="pDescription">Descripcion del rol</param>
-        /// <param name="providerName">Nombre del proveedor de membership</param>
-        //public static void CreateRole(String pRoleName, string pDescription, string providerName)
-        //{
-        //    CreateRole(pRoleName, pDescription, Membership.ApplicationName, ConnectionStringName);
-        //}
 
         /// <summary>
         ///  Crea un nuevo Rol
@@ -174,7 +153,7 @@ namespace Fwk.Security
         public static void UpdateRole(String pRoleName, string pDescription, string providerName)
         {
 
-           SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             StringBuilder str = new StringBuilder("UPDATE aspnet_Roles SET  Description = '[Description]' WHERE (LoweredRoleName = LOWER('[RoleName]')) AND(ApplicationId = CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]') )");
             Guid id = GetApplication(wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
             Database wDataBase = null;
@@ -233,5 +212,5 @@ namespace Fwk.Security
         }
 
         #endregion
-	}
+    }
 }

@@ -2,7 +2,7 @@ using System;
 using Fwk.Bases;
 using System.Collections.Generic;
 using Fwk.HelperFunctions;
-using Fwk.HelperFunctions.Caching;
+using Fwk.Caching;
 using Fwk.Exceptions;
 
 namespace Fwk.Bases

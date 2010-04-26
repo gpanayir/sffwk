@@ -5,7 +5,7 @@ using System.Text;
 using Fwk.HelperFunctions;
 using Fwk.Exceptions;
 using Fwk.Bases;
-using Fwk.HelperFunctions.Caching;
+using Fwk.Caching;
 using Fwk.Bases.FrontEnd;
 namespace Fwk.Cache.Test
 {
@@ -18,7 +18,7 @@ namespace Fwk.Cache.Test
         public static DomainList Cargos;
         public static DomainList Sucursales;
         public static DomainList RelatedDomains;
-        static Fwk.HelperFunctions.Caching.FwkCache cache;
+        static Fwk.Caching.FwkCache cache;
         /// <summary>
         /// busca los dominios relacionados al usuario
         /// </summary>

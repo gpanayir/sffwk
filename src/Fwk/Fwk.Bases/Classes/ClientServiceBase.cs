@@ -6,7 +6,7 @@ using Fwk.Exceptions;
 using Fwk.HelperFunctions;
 using Fwk.Blocking;
 using Fwk.Bases;
-using Fwk.HelperFunctions.Caching;
+using Fwk.Caching;
 
 namespace Fwk.Bases
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Fwk.HelperFunctions.Caching;
+using Fwk.Caching;
 using System.Windows.Forms;
 using System.Reflection;
 

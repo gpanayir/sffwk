@@ -70,15 +70,15 @@ namespace Fwk.Security
         /// <summary>
         /// Crea un usuario
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="password"></param>
-        /// <param name="email"></param>
-        /// <param name="passwordQuestion"></param>
-        /// <param name="passwordAnswer"></param>
-        /// <param name="isApproved"></param>
-        /// <param name="pStatus"></param>
+        /// <param name="userName">Nombre de usuario, nombre de logging</param>
+        /// <param name="password">Clave</param>
+        /// <param name="email">Correo electronico</param>
+        /// <param name="passwordQuestion">Pregunta secreta</param>
+        /// <param name="passwordAnswer">Respuesta secreta</param>
+        /// <param name="isApproved">True si esta aprovado </param>
+        /// <param name="pStatus"><see cref="MembershipCreateStatus"/></param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
-        /// <returns></returns>
+        /// <returns><see cref="User"/></returns>
         public static User CreateUser(string userName,
             string password,
             string email,
@@ -198,7 +198,7 @@ namespace Fwk.Security
         /// Obtiene una lista de usuarios
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
-        /// <returns></returns>
+        /// <returns><see cref="List<User>"/></returns>
         public static List<User> GetAllUsers(string providerName)
         {
             SqlMembershipProvider provider = GetSqlMembershipProvider(providerName);
@@ -248,7 +248,7 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="userName">Nombre del Usuario que se desea obtener</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
-        /// <returns>User</returns>
+       /// <returns><see cref="User"/></returns>
        public static User GetUser(String userName, string providerName)
        {
 

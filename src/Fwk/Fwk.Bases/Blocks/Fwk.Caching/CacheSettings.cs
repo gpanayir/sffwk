@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
+using Fwk.HelperFunctions;
 
-namespace Fwk.HelperFunctions.Caching
+namespace Fwk.Caching
 {
     /// <summary>
     /// Clase Utilizada para Deserializar la configuracion para Cada Servicio Cacheable.

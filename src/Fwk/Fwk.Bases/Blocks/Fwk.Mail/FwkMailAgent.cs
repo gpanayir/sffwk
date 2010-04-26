@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Timers;
-using Fwk.HelperFunctions.Caching;
+using Fwk.Caching;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Fwk.Mail.Common;
 using Fwk.Mail;

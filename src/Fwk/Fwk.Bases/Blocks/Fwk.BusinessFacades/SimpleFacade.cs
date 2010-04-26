@@ -8,7 +8,7 @@ using Fwk.Bases;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.Practices.EnterpriseLibrary.Caching.Expirations;
 using Fwk.HelperFunctions;
-using Fwk.HelperFunctions.Caching;
+using Fwk.Caching;
 using Fwk.Logging;
 using Fwk.Logging.Targets;
 
@@ -102,6 +102,7 @@ namespace Fwk.BusinessFacades
                         wResult = FacadeHelper.RunNonTransactionalProcess(pRequest, wServiceConfiguration);
                     else
                         wResult = FacadeHelper.RunTransactionalProcess(pRequest, wServiceConfiguration);
+
                     
                 }
 

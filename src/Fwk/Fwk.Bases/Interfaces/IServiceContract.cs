@@ -127,7 +127,7 @@ namespace Fwk.Bases
         /// <summary>
         /// 
         /// </summary>
-        Fwk.HelperFunctions.Caching.CacheSettings CacheSettings
+        Fwk.Caching.CacheSettings CacheSettings
         {
             get;
             set;

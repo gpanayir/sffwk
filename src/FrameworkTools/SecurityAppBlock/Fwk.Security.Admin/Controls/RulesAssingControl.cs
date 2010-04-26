@@ -88,7 +88,7 @@ namespace Fwk.Security.Admin.Controls
                     grdAssignedRoles.DataSource = _AssignedRolList;
                 }
             }
-            txtRuleExpression.Text = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+            txtRuleExpression.Text = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
             NewSecurityInfoCreatedHandler();
         }
         
@@ -177,7 +177,7 @@ namespace Fwk.Security.Admin.Controls
 
             }
 
-            txtRuleExpression.Text = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+            txtRuleExpression.Text = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
         }
 
         private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -192,7 +192,7 @@ namespace Fwk.Security.Admin.Controls
             }
             grdAssignedRoles.DataSource = null;
             grdAssignedRoles.DataSource = _AssignedRolList;
-            txtRuleExpression.Text = FwkMembershipScripts.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+            txtRuleExpression.Text = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
         }
 
         private void grdAssignedRoles_MouseDown(object sender, MouseEventArgs e)
