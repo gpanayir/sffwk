@@ -51,17 +51,22 @@ namespace Fwk.Security.Admin.Controls
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
 
-            if (e.Node.Level != 1 || e.Node.Tag == null)
+            if (e.Node.Level != 1 || e.Node.Tag.ToString().StartsWith("-1"))
             {
                 lblSelectedFile.Text = string.Empty;
                 currentFile = string.Empty;
                 currentFileIsEncripted = null;
+                memoEdit1.Text = string.Empty;
                 return;
             }
             
             treeView1.SelectedNode = e.Node;
             lblSelectedFile.Text = e.Node.Text;
-            ShowConnectionData(e.Node.Tag.ToString());
+            try
+            {
+                ShowConnectionData(e.Node.Tag.ToString());
+            }
+            catch (Exception ex) { memoEdit1.Text = ex.Message; }
         }
 
 
@@ -142,7 +147,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 wFileNode.ImageIndex = imgImages.Images.IndexOfKey("WarningHS.png");
                 wFileNode.SelectedImageIndex = imgImages.Images.IndexOfKey("WarningHS.png");
-                wFileNode.Tag = null;
+                wFileNode.Tag = string.Concat("-1",k);
             }
             else
             {
