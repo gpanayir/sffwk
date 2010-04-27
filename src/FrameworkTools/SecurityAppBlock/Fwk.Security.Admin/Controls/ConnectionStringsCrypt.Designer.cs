@@ -35,14 +35,13 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.btnFindRoles = new System.Windows.Forms.Button();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.txtFileName = new DevExpress.XtraEditors.TextEdit();
             this.mnGroupAndKey = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsMenuItemRemoveGrOrKey = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEncrypt = new System.Windows.Forms.Button();
             this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
             this.lblSelectedFile = new System.Windows.Forms.Label();
+            this.txtFileName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).BeginInit();
             this.mnGroupAndKey.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
             this.SuspendLayout();
@@ -94,11 +93,12 @@
             // 
             // btnFindRoles
             // 
+            this.btnFindRoles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFindRoles.BackColor = System.Drawing.Color.White;
             this.btnFindRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFindRoles.Image = global::Fwk.Security.Admin.Properties.Resources.search_16;
             this.btnFindRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFindRoles.Location = new System.Drawing.Point(335, 13);
+            this.btnFindRoles.Location = new System.Drawing.Point(613, 16);
             this.btnFindRoles.Name = "btnFindRoles";
             this.btnFindRoles.Size = new System.Drawing.Size(35, 20);
             this.btnFindRoles.TabIndex = 38;
@@ -115,16 +115,6 @@
             this.labelControl3.Size = new System.Drawing.Size(20, 16);
             this.labelControl3.TabIndex = 37;
             this.labelControl3.Text = "File";
-            // 
-            // txtFileName
-            // 
-            this.txtFileName.Location = new System.Drawing.Point(39, 14);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtFileName.Properties.Appearance.Options.UseBackColor = true;
-            this.txtFileName.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-            this.txtFileName.Size = new System.Drawing.Size(278, 22);
-            this.txtFileName.TabIndex = 39;
             // 
             // mnGroupAndKey
             // 
@@ -162,7 +152,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.memoEdit1.Location = new System.Drawing.Point(275, 100);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(373, 362);
+            this.memoEdit1.Size = new System.Drawing.Size(373, 390);
             this.memoEdit1.TabIndex = 44;
             // 
             // lblSelectedFile
@@ -174,21 +164,31 @@
             this.lblSelectedFile.Size = new System.Drawing.Size(0, 19);
             this.lblSelectedFile.TabIndex = 45;
             // 
+            // txtFileName
+            // 
+            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtFileName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
+            this.txtFileName.Location = new System.Drawing.Point(37, 14);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(568, 21);
+            this.txtFileName.TabIndex = 46;
+            // 
             // ConnectionStringsCrypt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblSelectedFile);
             this.Controls.Add(this.memoEdit1);
-            this.Controls.Add(this.btnEncrypt);
             this.Controls.Add(this.txtFileName);
-            this.Controls.Add(this.btnFindRoles);
+            this.Controls.Add(this.btnEncrypt);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.btnFindRoles);
             this.Name = "ConnectionStringsCrypt";
             this.Size = new System.Drawing.Size(666, 493);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFileName.Properties)).EndInit();
             this.mnGroupAndKey.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
@@ -202,11 +202,11 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Button btnFindRoles;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit txtFileName;
         private System.Windows.Forms.ContextMenuStrip mnGroupAndKey;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemRemoveGrOrKey;
         private System.Windows.Forms.Button btnEncrypt;
         private DevExpress.XtraEditors.MemoEdit memoEdit1;
         private System.Windows.Forms.Label lblSelectedFile;
+        private System.Windows.Forms.TextBox txtFileName;
     }
 }

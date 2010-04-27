@@ -123,7 +123,6 @@ namespace Fwk.Security.Admin
             // navBarGroup_Users
             // 
             this.navBarGroup_Users.Caption = "Users";
-            this.navBarGroup_Users.Expanded = true;
             this.navBarGroup_Users.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup_Users.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_UserCreate),
@@ -159,7 +158,6 @@ namespace Fwk.Security.Admin
             // navBarGroup_Groups
             // 
             this.navBarGroup_Groups.Caption = "Roles";
-            this.navBarGroup_Groups.Expanded = true;
             this.navBarGroup_Groups.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.SmallIconsText;
             this.navBarGroup_Groups.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_RoleCreate)});
@@ -178,6 +176,7 @@ namespace Fwk.Security.Admin
             // navBarGroup_Rules
             // 
             this.navBarGroup_Rules.Caption = "Rules & categories ";
+            this.navBarGroup_Rules.Expanded = true;
             this.navBarGroup_Rules.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup_Rules.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CreateRule),
@@ -225,11 +224,13 @@ namespace Fwk.Security.Admin
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_Encrypt)});
             this.navBarGroup1.Name = "navBarGroup1";
+            this.navBarGroup1.SmallImage = global::Fwk.Security.Admin.Properties.Resources.dbs;
             // 
             // navBarItem_Encrypt
             // 
             this.navBarItem_Encrypt.Caption = "Encrypt";
             this.navBarItem_Encrypt.Name = "navBarItem_Encrypt";
+            this.navBarItem_Encrypt.SmallImage = global::Fwk.Security.Admin.Properties.Resources.admin_16;
             this.navBarItem_Encrypt.Tag = "Fwk.Security.Admin.Controls.ConnectionStringsCrypt,Fwk.Security.Admin";
             // 
             // navBarItem_CreateUser
@@ -257,10 +258,13 @@ namespace Fwk.Security.Admin
             // 
             // label2
             // 
+            this.label2.BackColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.Maroon;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(13, 14);
+            this.label2.Location = new System.Drawing.Point(17, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 16);
+            this.label2.Size = new System.Drawing.Size(171, 16);
             this.label2.TabIndex = 19;
             this.label2.Text = "Security provide";
             // 
