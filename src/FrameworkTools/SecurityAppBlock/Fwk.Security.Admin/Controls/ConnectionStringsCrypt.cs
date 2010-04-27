@@ -17,12 +17,13 @@ namespace Fwk.Security.Admin.Controls
     {
         bool? currentFileIsEncripted = null;
         string currentFile = string.Empty;
+        int currentNodeIndex = 0;
         /// <summary>
         /// Lista de archivos App.Config, en esta lista se almacenan los nombres completo de todos los archivos abiertos 
         /// de modo que quede un registro en memoria de los archivos con los cuales se esta trabajando.-
         /// </summary>
         Fwk.Caching.FwkSimpleStorageBase<Dictionary<String, String>> _Storage = new Fwk.Caching.FwkSimpleStorageBase<Dictionary<string, string>>();
-        
+
         /// <summary>
         /// Representa la informacion del tipo de control a instanciar 
         /// </summary>
@@ -59,9 +60,10 @@ namespace Fwk.Security.Admin.Controls
                 memoEdit1.Text = string.Empty;
                 return;
             }
-            
+
             treeView1.SelectedNode = e.Node;
             lblSelectedFile.Text = e.Node.Text;
+            currentNodeIndex = e.Node.Index;
             try
             {
                 ShowConnectionData(e.Node.Tag.ToString());
@@ -70,7 +72,7 @@ namespace Fwk.Security.Admin.Controls
         }
 
 
- 
+
         void ShowConnectionData(string fullFileName)
         {
             currentFile = fullFileName;
@@ -88,8 +90,23 @@ namespace Fwk.Security.Admin.Controls
             }
 
             StringBuilder str;
+
+            //Verificar si existe el config del exe
+            if (!File.Exists(string.Concat(fullFileName, ".config")))
+            {
+                str = new StringBuilder(".....................................................................");
+                str.AppendLine(Environment.NewLine);
+                str.AppendLine("Este archivo no contiene un archivo de configuracion en el directorio ");
+                str.AppendLine(Environment.NewLine);
+                str.AppendLine("..................................................................... ");
+                str.ToString();
+
+                str = null;
+                return;
+            }
             XmlDocument doc = new System.Xml.XmlDocument();
-            doc.Load(fullFileName);
+
+            doc.Load(string.Concat(fullFileName, ".config"));
             XmlNode connectionStringsNode = doc.SelectSingleNode("/configuration/connectionStrings");
             if (connectionStringsNode != null)
             {
@@ -106,7 +123,7 @@ namespace Fwk.Security.Admin.Controls
 
                 }
                 memoEdit1.Text = str.ToString();
-                
+
                 str = null;
                 doc = null;
 
@@ -115,26 +132,28 @@ namespace Fwk.Security.Admin.Controls
         void Populate()
         {
 
-            foreach (System.Collections.Generic.KeyValuePair<string,string> wKeyValuePair in _Storage.StorageObject)
+            foreach (System.Collections.Generic.KeyValuePair<string, string> wKeyValuePair in _Storage.StorageObject)
             {
-                
+
                 addToTree(wKeyValuePair.Key, wKeyValuePair.Value);
             }
         }
 
         private void btnFindRoles_Click(object sender, EventArgs e)
         {
-            string fullFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open("Xml Files(*.CONFIG;)|*.CONFIG;|All files (*.*)|*.*",string.Empty,txtFileName.Text);
-            if (string.IsNullOrEmpty(fullFileName)) return;
-            if (_Storage.StorageObject.ContainsKey(fullFileName))
+            string executableFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open("EXE Files(*.EXE;)|*.EXE;|All files (*.*)|*.*", string.Empty, txtFileName.Text);
+
+            if (string.IsNullOrEmpty(executableFileName)) return;
+
+            if (_Storage.StorageObject.ContainsKey(executableFileName))
             {
                 this.MessageViewInfo.Show("Ya agrego este archivo");
                 return;
             }
-           
-            _Storage.StorageObject.Add(fullFileName, System.IO.Path.GetFileName(fullFileName));
+
+            _Storage.StorageObject.Add(executableFileName, System.IO.Path.GetFileName(executableFileName));
             _Storage.Save();
-            addToTree(fullFileName, _Storage.StorageObject[fullFileName]);
+            addToTree(executableFileName, _Storage.StorageObject[executableFileName]);
         }
         void addToTree(string k, string value)
         {
@@ -147,7 +166,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 wFileNode.ImageIndex = imgImages.Images.IndexOfKey("WarningHS.png");
                 wFileNode.SelectedImageIndex = imgImages.Images.IndexOfKey("WarningHS.png");
-                wFileNode.Tag = string.Concat("-1",k);
+                wFileNode.Tag = string.Concat("-1", k);
             }
             else
             {
@@ -158,43 +177,33 @@ namespace Fwk.Security.Admin.Controls
 
         private void tsMenuItemRemoveGrOrKey_Click(object sender, EventArgs e)
         {
-          _Storage.StorageObject.Remove(  treeView1.SelectedNode.Tag.ToString());
-          treeView1.SelectedNode.Remove();
-          _Storage.Save();
+            _Storage.StorageObject.Remove(treeView1.SelectedNode.Tag.ToString());
+            treeView1.SelectedNode.Remove();
+            _Storage.Save();
         }
 
-        void EncryptCnnStrings(string fileName)
+        void EncryptCnnStrings(string executableFileName)
         {
 
-           System.Configuration.Configuration  config = ConfigurationManager.OpenExeConfiguration(fileName);
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(executableFileName);
+            config = ConfigurationManager.OpenExeConfiguration(executableFileName);
             ConnectionStringsSection sect = config.ConnectionStrings;
-            
+
             sect.SectionInformation.ForceSave = true;
             sect.SectionInformation.ProtectSection("RsaProtectedConfigurationProvider");
-            config.Save(ConfigurationSaveMode.Minimal,false);
+            config.Save(ConfigurationSaveMode.Minimal, false);
 
-            //XmlDocument doc = new System.Xml.XmlDocument();
-            //doc.Load(string.Concat(fileName,".config"));
-            //XmlNode connectionStringsNode = doc.SelectSingleNode("/configuration/connectionStrings");
 
-            //string xmlCrypted = connectionStringsNode.InnerXml;
-            //doc = null;
-            //doc = new System.Xml.XmlDocument();
-            //doc.Load(fileName);
-            // connectionStringsNode = doc.SelectSingleNode("/configuration/connectionStrings");
-            //connectionStringsNode.InnerXml = xmlCrypted;
-            //doc.Save(fileName);
-            //File.Delete(string.Concat(fileName,".config"));
         }
 
-        void DencryptCnnStrings(string fileName)
+        void DencryptCnnStrings(string executableFileName)
         {
-            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(fileName);
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(executableFileName);
             ConnectionStringsSection sect = config.ConnectionStrings;
             if (sect.SectionInformation.IsProtected)
             {
                 sect.SectionInformation.UnprotectSection();
-                config.Save(ConfigurationSaveMode.Minimal,true);
+                config.Save(ConfigurationSaveMode.Minimal, true);
             }
         }
 
@@ -203,14 +212,15 @@ namespace Fwk.Security.Admin.Controls
             if (currentFileIsEncripted == null) return;
 
             if (currentFileIsEncripted.Value)
-            
+
                 DencryptCnnStrings(currentFile);
-            
+
             else
                 EncryptCnnStrings(currentFile);
 
             currentFileIsEncripted = !currentFileIsEncripted;
-
+            ShowConnectionData(currentFile);
+            treeView1.Focus();
         }
     }
 }
