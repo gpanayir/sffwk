@@ -9,10 +9,10 @@ namespace Fwk.Bases
     /// </summary>
     public interface IEntity : IBaseEntity
     {
-        ///// <summary>
-        ///// Obtiene un System.DataSet 
-        ///// </summary>
-        ///// <returns>System.DataSet</returns>
+        //// <summary>
+        //// Obtiene un System.DataSet 
+        //// </summary>
+        //// <returns>System.DataSet</returns>
         DataSet GetDataSet();
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Fwk.Bases
         /// <summary>
         /// Rellena la clase con los valores del XML 
         /// <param name="pXmlData">Xml con el que se crea el objeto</param>
-        /// <summary>
+        /// </summary>
         void SetXml(string pXmlData);
 
     
@@ -45,29 +45,5 @@ namespace Fwk.Bases
         ///// </summary>
         //EntityState EntityState { get; set; }
     }
-    /// <summary>
-    /// List of possible state for an entity.
-    /// </summary>
-    public enum EntityState
-    {
-        /// <summary>
-        /// Entity is unchanged
-        /// </summary>
-        Unchanged = 0,
-
-        /// <summary>
-        /// Entity is new
-        /// </summary>
-        Added = 1,
-
-        /// <summary>
-        /// Entity has been modified
-        /// </summary>
-        Changed = 2,
-
-        /// <summary>
-        /// Entity has been deleted
-        /// </summary>
-        Deleted = 3
-    }
+   
 }

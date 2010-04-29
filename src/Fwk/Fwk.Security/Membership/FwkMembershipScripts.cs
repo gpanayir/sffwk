@@ -10,7 +10,7 @@ namespace Fwk.Security
     /// <summary>
     /// 
     /// </summary>
-    internal  static class FwkMembershipScripts
+    public  static class FwkMembershipScripts
     {
         static string _RuleInCategory_i;
         static string _Category_d = "DELETE FROM aspnet_RulesCategory WHERE  aspnet_RulesCategory.CategoryId = [CategoryId]";

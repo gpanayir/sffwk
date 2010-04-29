@@ -50,47 +50,63 @@ namespace Fwk.Exceptions
         {
             return ProcessException(pexception, null);
         }
-
         /// <summary>
         /// Procesa la excepcion original y la retorna.
         /// </summary>
-        /// <param name="pexception">Excepcion original.</param>
-        /// <param name="psourceObject">Origen.</param>
+        /// <param name="err"><see cref="ServiceError"/></param>
+        /// <returns></returns>
+        public static Exception ProcessException(ServiceError err)
+        {
+            if (err.Type == "FunctionalException")
+            {
+                return new FunctionalException(err.Message + Environment.NewLine + err.InnerMessageException);
+            }
+            if (err.Type == "TechnicalException")
+            {
+                return new TechnicalException(err.Message + Environment.NewLine + err.InnerMessageException);
+            }
+            return new Exception(err.Message + Environment.NewLine + err.InnerMessageException);
+        }
+        /// <summary>
+        /// Procesa la excepcion original y la retorna.
+        /// </summary>
+        /// <param name="exception">Excepcion original.</param>
+        /// <param name="sourceObject">Origen.</param>
         /// <returns>Excepcion procesada.</returns>
-        public static Exception ProcessException(Exception pexception, object psourceObject)
+        public static Exception ProcessException(Exception exception, object sourceObject)
         {
             // Si la excepcion es de SQL Server evalua si debe retornar
             // una FunctionalException o una TechnicalException.
-            if (pexception is SqlException && ((SqlException)pexception).Number >= 50000)
+            if (exception is SqlException && ((SqlException)exception).Number >= 50000)
             {
                 string[] wParams;
-                string wMsgId = ProcessRaiseErrorMsg(pexception.Message, out wParams);
+                string wMsgId = ProcessRaiseErrorMsg(exception.Message, out wParams);
                 return new FunctionalException(null, wMsgId, wParams);
             }
 
             // Si la excepcion es FunctionalException, o TechnicalException,
             // simplemente la retorna.
-            else if (pexception is FunctionalException || pexception is TechnicalException)
+            else if (exception is FunctionalException || exception is TechnicalException)
             {
-                return pexception;
+                return exception;
             }
 
             // Si es cualquier otro tipo de Excepcion, retorna una
             // TechnicalException.
             else
             {
-                if (psourceObject == null)
+                if (sourceObject == null)
                 {
-                    return new TechnicalException(pexception.Message, pexception.InnerException);
+                    return new TechnicalException(exception.Message, exception.InnerException);
                 }
                 else
                 {
-                    return new TechnicalException(psourceObject.GetType().AssemblyQualifiedName
-                        , psourceObject.GetType().Namespace
-                        , psourceObject.GetType().Name
+                    return new TechnicalException(sourceObject.GetType().AssemblyQualifiedName
+                        , sourceObject.GetType().Namespace
+                        , sourceObject.GetType().Name
                         , Environment.MachineName
                         , Environment.UserName
-                        , pexception);
+                        , exception);
                 }
             }
         }
@@ -283,5 +299,6 @@ namespace Fwk.Exceptions
             te.Machine = Environment.MachineName;
         }
 
+      
     }
 }

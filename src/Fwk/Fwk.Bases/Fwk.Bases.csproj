@@ -109,7 +109,7 @@
     <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Blocks\Functions\CommonConstants.cs" />
+    <Compile Include="Classes\Common.cs" />
     <Compile Include="Blocks\Functions\ExportFunctions.cs" />
     <Compile Include="Blocks\Functions\ImportFunctions.cs" />
     <Compile Include="Blocks\Fwk.Blocking\BlockingEngineBase.cs" />

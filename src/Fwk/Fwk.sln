@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Win32.Test", "Test\Fwk.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Controls.Win32", "..\Fwk.FrontEnd\Fwk.Controls.Win32\Fwk.Controls.Win32.csproj", "{D3C782BA-178E-4235-A3BA-8C11DEBB6BEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service", "..\Services\Fwk.Security.Service\Fwk.Security.Service.csproj", "{5659954E-96C0-4D30-8728-DF8BD381A63D}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -261,6 +263,16 @@ Global
 		{D3C782BA-178E-4235-A3BA-8C11DEBB6BEE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D3C782BA-178E-4235-A3BA-8C11DEBB6BEE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D3C782BA-178E-4235-A3BA-8C11DEBB6BEE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|.NET.ActiveCfg = Release|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -285,5 +297,6 @@ Global
 		{17877545-938E-45FF-BDDC-78E43944CBEE} = {5EA37F54-8BAE-4645-AA21-6CBE0B05BB09}
 		{1478F84E-4F08-40A2-9A2A-B5F8CEF9DDA5} = {5EA37F54-8BAE-4645-AA21-6CBE0B05BB09}
 		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE} = {7D2D5A69-0108-4921-A499-1E55BC2541D5}
+		{5659954E-96C0-4D30-8728-DF8BD381A63D} = {7D2D5A69-0108-4921-A499-1E55BC2541D5}
 	EndGlobalSection
 EndGlobal
