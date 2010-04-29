@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service", "Fwk.Security.Service\Fwk.Security.Service.csproj", "{5659954E-96C0-4D30-8728-DF8BD381A63D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service.Test", "Fwk.Security.Service.Test\Fwk.Security.Service.Test.csproj", "{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
