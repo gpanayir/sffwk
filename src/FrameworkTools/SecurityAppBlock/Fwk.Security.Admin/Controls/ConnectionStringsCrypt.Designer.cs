@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionStringsCrypt));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Config Manager Files");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Config Manager Files");
             this.imgImages = new System.Windows.Forms.ImageList(this.components);
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.btnFindRoles = new System.Windows.Forms.Button();
@@ -79,12 +79,12 @@
             this.treeView1.ImageList = this.imgImages;
             this.treeView1.Location = new System.Drawing.Point(3, 42);
             this.treeView1.Name = "treeView1";
-            treeNode1.ImageKey = "EditInformationHS.png";
-            treeNode1.Name = "Node1";
-            treeNode1.SelectedImageKey = "EditInformationHS.png";
-            treeNode1.Text = "Config Manager Files";
+            treeNode2.ImageKey = "EditInformationHS.png";
+            treeNode2.Name = "Node1";
+            treeNode2.SelectedImageKey = "EditInformationHS.png";
+            treeNode2.Text = "Config Manager Files";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeView1.SelectedImageIndex = 7;
             this.treeView1.ShowNodeToolTips = true;
             this.treeView1.Size = new System.Drawing.Size(266, 448);
@@ -98,9 +98,9 @@
             this.btnFindRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFindRoles.Image = global::Fwk.Security.Admin.Properties.Resources.search_16;
             this.btnFindRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFindRoles.Location = new System.Drawing.Point(613, 16);
+            this.btnFindRoles.Location = new System.Drawing.Point(616, 16);
             this.btnFindRoles.Name = "btnFindRoles";
-            this.btnFindRoles.Size = new System.Drawing.Size(35, 20);
+            this.btnFindRoles.Size = new System.Drawing.Size(32, 20);
             this.btnFindRoles.TabIndex = 38;
             this.btnFindRoles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFindRoles.UseVisualStyleBackColor = false;
@@ -110,11 +110,11 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(3, 16);
+            this.labelControl3.Location = new System.Drawing.Point(3, 15);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(20, 16);
+            this.labelControl3.Size = new System.Drawing.Size(45, 16);
             this.labelControl3.TabIndex = 37;
-            this.labelControl3.Text = "File";
+            this.labelControl3.Text = "Exe file";
             // 
             // mnGroupAndKey
             // 
@@ -152,7 +152,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.memoEdit1.Location = new System.Drawing.Point(275, 100);
             this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(373, 390);
+            this.memoEdit1.Size = new System.Drawing.Size(362, 390);
             this.memoEdit1.TabIndex = 44;
             // 
             // lblSelectedFile
@@ -170,9 +170,9 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFileName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtFileName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
-            this.txtFileName.Location = new System.Drawing.Point(37, 14);
+            this.txtFileName.Location = new System.Drawing.Point(60, 13);
             this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(568, 21);
+            this.txtFileName.Size = new System.Drawing.Size(550, 21);
             this.txtFileName.TabIndex = 46;
             // 
             // ConnectionStringsCrypt
@@ -187,7 +187,7 @@
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.btnFindRoles);
             this.Name = "ConnectionStringsCrypt";
-            this.Size = new System.Drawing.Size(666, 493);
+            this.Size = new System.Drawing.Size(655, 493);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.mnGroupAndKey.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
