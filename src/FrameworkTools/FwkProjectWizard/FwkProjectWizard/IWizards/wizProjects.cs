@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TemplateWizard;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Fwk.Wizard
 {
@@ -22,7 +23,14 @@ namespace Fwk.Wizard
 
         void IWizard.ProjectFinishedGenerating(EnvDTE.Project project)
         {
-           
+
+            //if (project == null)
+            //{
+            //  DirectoryInfo dd = new System.IO.DirectoryInfo(destinationdirectory);
+             
+            
+            //}
+
         }
 
         void IWizard.ProjectItemFinishedGenerating(EnvDTE.ProjectItem projectItem)
@@ -35,8 +43,8 @@ namespace Fwk.Wizard
          
                 if (useStatics)
                 {
-                    string statics = string.Concat(destinationdirectory, @"..\..\..\", @"StaticLibs");
-                    string libs = string.Concat(destinationdirectory, @"..\..\..\", @"Libraries");
+                    string libs = string.Concat(destinationdirectory, @"..\..\..\", @"StaticLibs");
+                    string statics  = string.Concat(destinationdirectory, @"..\..\..\", @"builds");
 
                     if (!System.IO.Directory.Exists(statics))
                         System.IO.Directory.CreateDirectory(statics);
