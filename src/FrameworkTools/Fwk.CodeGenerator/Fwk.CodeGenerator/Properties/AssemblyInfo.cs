@@ -6,7 +6,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CodeGenerator")]
-
+[assembly: AssemblyCompany("pelsoft SA")]
+[assembly: AssemblyDescription("Generador de codigo de clases basicas para backend, interfaces y servicios")]
+[assembly: AssemblyProduct("CodeGenerator")]
+[assembly: AssemblyCopyright("Copyright © Pelsoft SA 2008")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -24,4 +29,6 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
+[assembly: AssemblyVersion("3.1.0.0")]
+[assembly: AssemblyFileVersion("3.1.0.0")]
 
