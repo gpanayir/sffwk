@@ -126,7 +126,6 @@
     <None Include="WizardInstallFiles\Templates\old\DataAccessComponentsProject.zip" />
     <None Include="WizardInstallFiles\Templates\old\FrameworkProjectTemplate.vscontent" />
     <None Include="WizardInstallFiles\Templates\old\InterfaceServicesProject.zip" />
-    <None Include="WizardInstallFiles\Templates\Projects\FwkProjectsTemplate.vsi" />
     <None Include="WizardInstallFiles\Templates\Projects\FwkProjectsTemplate.zip" />
     <None Include="WizardInstallFiles\UnInstall.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -227,7 +226,6 @@
   <ItemGroup>
     <None Include="FrameworkProjectWizard.snk" />
     <None Include="Resources\applications_32.png" />
-    <None Include="VisualStudio_Allus_Software_Factory.docx" />
     <None Include="WizardInstallFiles\Templates\FwkBakcendProjects.vscontent" />
     <None Include="WizardInstallFiles\Templates\Items\dac.zip" />
     <None Include="WizardInstallFiles\Templates\template_installer.vsi" />

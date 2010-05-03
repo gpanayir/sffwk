@@ -17,11 +17,12 @@ using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using System.Data;
+using Fwk.Bases;
 
 using $fwkprojectname$.Common.BE;
 
 
-namespace $fwkprojectname$.BackEnd.DAC
+namespace $fwkprojectname$.BackEnd.DAC : BaseDAC
 {
 
     public static class [EntityName]DAC

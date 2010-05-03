@@ -30,7 +30,7 @@ Wizard:
 
 Templates:
 
-		1) Ubique en la carpeta FwkProjectsTemplate.zip\
+		1) Ubique la carpeta Projects\
 		2) Seleccione las carpetas y archivo :
 
 
@@ -43,12 +43,24 @@ Templates:
 			FwkBakcendProjects.vstemplate
 			FwkBakcendProjects.ico
 		3) Genere un zip llamado FwkProjectsTemplate.zip con las carpetas seleccionadas
-
-		4)Luego de la generacion del archivo FwkProjectsTemplate.zip seleccionar este con  FwkBakcendProjects.vscontent
+		4) Ubique \FwkProjectWizard\FwkProjectWizard\WizardInstallFiles\Templates\Items\ y
+		ponga el archivos anterior junto con estos:
+		
+				dac.zip
+				entity.zip
+				entity.zip
+    
+    
+		4)Luego el resultado sera el de 4 zips y agregue FwkBakcendProjects.vscontent
 
 				FwkProjectsTemplate.zip
+				dac.zip
+				entity.zip
+				entity.zip
+				
 				FwkBakcendProjects.vscontent
-			  Comprima estos archivos y renombrelo con la extencion .vsi:
+				
+		5)	  Comprima estos archivos y renombrelo con la extencion .vsi:
 				
 				FwkBakcendProjects.vsi
 		
@@ -58,6 +70,7 @@ Instalar los templates projects :
 
 		
 		Doble click sobre el archivo FwkBakcendProjects.vsi
+		
 		Se instalaran los templates en la carpeta :
 
 		C:\Documents and Settings\[username]\Mis documentos\Visual Studio 2008\Templates\ProjectTemplates\Visual C#\
