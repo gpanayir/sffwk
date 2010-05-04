@@ -31,7 +31,7 @@ namespace Fwk.Remoting.Listener
             // 
             // RemotingService
             // 
-            this.ServiceName = "EPECDispatcher";
+            this.ServiceName = "TestDispatcher";
 
         }
 

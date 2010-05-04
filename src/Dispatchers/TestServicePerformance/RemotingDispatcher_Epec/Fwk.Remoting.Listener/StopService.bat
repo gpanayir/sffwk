@@ -1,2 +1,2 @@
-net stop EPECDispatcher 
+net stop TestDispatcher 
 pause

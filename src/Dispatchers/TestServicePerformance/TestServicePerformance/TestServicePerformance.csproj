@@ -31,58 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BigBang.BackEnd.Common.BE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.BackEnd.Common.BE.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.BackEnd.Common.ISVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.BackEnd.Common.ISVC.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.BackEnd.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common.Campaing.BE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.Common.Campaing.BE.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.Common.Campaing.ISVC.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common.RecordSet.BE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.Common.RecordSet.BE.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.Common.RecordSet.ISVC.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common.Survey.BE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.Common.Survey.BE.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.Common.Survey.ISVC.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.FrontEnd.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.FrontEnd.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.FrontEnd.Survey.Controller, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.FrontEnd.Survey.Controller.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\BigBang.Security.dll</HintPath>
-    </Reference>
     <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\src\Libraries\Fwk.Bases.dll</HintPath>
@@ -255,6 +203,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Ball %28Red%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\back\back.SVC\back.SVC.csproj">
+      <Project>{78896792-2416-4C36-86C4-427AE8F38A2E}</Project>
+      <Name>back.SVC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
