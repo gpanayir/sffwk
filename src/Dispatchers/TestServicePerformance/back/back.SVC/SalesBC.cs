@@ -22,7 +22,9 @@ namespace back.BackEnd.BC
        
         public SalesOrderDetailList SearchSalesOrderDetail()
         {
-            return SampleDAC.Search(base.CompanyId);
+            double sqlCallTime;
+            double mappingTime;
+            return SampleDAC.Search(base.CompanyId, out mappingTime, out sqlCallTime);
         }
 
     }
