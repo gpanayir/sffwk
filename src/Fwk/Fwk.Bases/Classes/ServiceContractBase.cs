@@ -229,8 +229,18 @@ namespace Fwk.Bases
         protected static string GetCompanyId()
         {
             string wCompanyId = System.Configuration.ConfigurationManager.AppSettings["CompanyId"];
-            if (string.IsNullOrEmpty(wCompanyId))
-                wCompanyId = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "CompanyId");
+            try
+            {
+                if (string.IsNullOrEmpty(wCompanyId))
+                    wCompanyId = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "CompanyId");
+            }
+            catch (System.TypeInitializationException)
+            {
+                return string.Empty;
+            }
+            if (wCompanyId == null)
+                return string.Empty;
+
             return wCompanyId;
         }
 
@@ -241,10 +251,21 @@ namespace Fwk.Bases
         /// <returns></returns>
         protected static string GetSecurtyProviderName()
         {
-            string wCompanyId = System.Configuration.ConfigurationManager.AppSettings["SecurtyProviderName"];
-            if (string.IsNullOrEmpty(wCompanyId))
-                wCompanyId = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "SecurtyProviderName");
-            return wCompanyId;
+
+            string wSecurtyProviderName = System.Configuration.ConfigurationManager.AppSettings["SecurtyProviderName"];
+            try
+            {
+                if (string.IsNullOrEmpty(wSecurtyProviderName))
+                    wSecurtyProviderName = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "SecurtyProviderName");
+            }
+            catch (System.TypeInitializationException)
+            {
+                return string.Empty;
+            }
+            if (wSecurtyProviderName == null)
+                return string.Empty;
+
+            return wSecurtyProviderName;
         }
 
         /// <summary>

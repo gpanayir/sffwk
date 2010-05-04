@@ -51,6 +51,7 @@ namespace Fwk.BusinessFacades.Utils
             {
 
                 wResponse = GetResponse(pServiceConfiguration);// (IServiceContract)ReflectionFunctions.CreateInstance(pServiceConfiguration.Response);
+                
                 wResponse.Error = new ServiceError();
                 System.Text.StringBuilder wMessage = new StringBuilder();
 
@@ -266,10 +267,12 @@ namespace Fwk.BusinessFacades.Utils
         /// <returns>IServiceContract</returns>
         private static IServiceContract GetResponse(ServiceConfiguration pServiceConfiguration)
         {
-            IServiceContract wResponse = (IServiceContract)ReflectionFunctions.CreateInstance(pServiceConfiguration.Response);
-
-            //No se puede cargar el request
-            if (wResponse == null)
+            IServiceContract wResponse;
+            try
+            {
+                 wResponse = (IServiceContract)ReflectionFunctions.CreateInstance(pServiceConfiguration.Response);
+            }
+            catch (Exception ex)
             {
                 System.Text.StringBuilder wMessage = new StringBuilder();
 
@@ -278,8 +281,10 @@ namespace Fwk.BusinessFacades.Utils
                 wMessage.Append(pServiceConfiguration.Response);
                 wMessage.Append(" en el despachador de servicio");
 
-                throw GetTechnicalException(wMessage.ToString(), "7002", null);
+                throw GetTechnicalException(wMessage.ToString(), "7003", ex);
             }
+
+            
             return wResponse;
         }
     }
