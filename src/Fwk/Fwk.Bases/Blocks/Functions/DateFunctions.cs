@@ -218,6 +218,21 @@ namespace Fwk.HelperFunctions
             return date.ToString("yyyy-MM-dd").Replace('-', separator);
            
         }
+          /// <summary>
+        /// Retorna la fecha en formato YYYY[sep]MM[sep]dd
+        /// EJ: 2010_11_02_41_33_1
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static string Get_Year_Mont_Day_Hour_Min_Sec_String(DateTime date , char separator )
+        {
+            return date.ToString("yyyy-MM-dd hh:mm:ss").Replace('-', separator).Replace(':', separator);
+           
+        }
+
+
+        
 	}
 
 }
