@@ -9,6 +9,7 @@ using back.Common.BE;
 
 using System.Data.Common;
 using System.Data;
+using System.Collections;
 
 namespace back.BackEnd.BC
 {
@@ -19,13 +20,25 @@ namespace back.BackEnd.BC
         public SampleBC(string x)
             : base(x)
         { }
-       
-        public SalesOrderDetailList SearchSalesOrderDetail()
+
+        public SalesOrderDetailList SearchSalesOrderDetail(out Measures pTimes)
         {
             double sqlCallTime;
             double mappingTime;
-            return SampleDAC.Search(base.CompanyId, out mappingTime, out sqlCallTime);
-        }
+            Hashtable htStats;
+            SalesOrderDetailList wSalesOrderDetailList = SampleDAC.Search(base.CompanyId, out mappingTime, out sqlCallTime, out htStats);
 
+            pTimes = new Measures();
+            // StringBuilder s = new StringBuilder();
+            foreach (string stat in htStats.Keys)
+            {
+                //s.AppendLine("- " + stat + " = " + htStats[stat].ToString());
+                pTimes.Add(stat, Convert.ToDecimal(htStats[stat]));
+            }
+            pTimes.Add("Sql_Exec_Query_Time", Convert.ToDecimal(sqlCallTime));
+            pTimes.Add("Sql_To_Entity_Mapping_Time", Convert.ToDecimal(mappingTime));
+
+            return wSalesOrderDetailList;
+        }
     }
 }

@@ -37,11 +37,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtURL = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnPing = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.numericCallsNumber = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
@@ -57,15 +55,40 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtTestResult = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnSaveResult = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CalculatedValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.measureNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.measuresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnStartSimpleTest = new System.Windows.Forms.Button();
+            this.txtSimpleResult = new System.Windows.Forms.TextBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericCallsNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericThread)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.tabControl2.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.measuresBindingSource)).BeginInit();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtPort
@@ -137,15 +160,6 @@
             this.txtURL.Size = new System.Drawing.Size(366, 20);
             this.txtURL.TabIndex = 8;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(733, 368);
-            this.dataGridView1.TabIndex = 10;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtPort);
@@ -184,25 +198,13 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(12, 137);
+            this.tabControl1.Location = new System.Drawing.Point(6, 15);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(747, 400);
+            this.tabControl1.Size = new System.Drawing.Size(916, 491);
             this.tabControl1.TabIndex = 12;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(739, 374);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Metadata ";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -220,7 +222,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(739, 374);
+            this.tabPage2.Size = new System.Drawing.Size(908, 465);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Service";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -253,9 +255,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(213, 8);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 13);
+            this.label8.Size = new System.Drawing.Size(105, 13);
             this.label8.TabIndex = 14;
-            this.label8.Text = "Service calls niumber";
+            this.label8.Text = "Service calls number";
             // 
             // progressBar1
             // 
@@ -263,7 +265,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(243, 104);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(490, 10);
+            this.progressBar1.Size = new System.Drawing.Size(659, 10);
             this.progressBar1.TabIndex = 13;
             // 
             // button1
@@ -335,7 +337,7 @@
             this.txtXmlRequest.Location = new System.Drawing.Point(6, 129);
             this.txtXmlRequest.Multiline = true;
             this.txtXmlRequest.Name = "txtXmlRequest";
-            this.txtXmlRequest.Size = new System.Drawing.Size(727, 239);
+            this.txtXmlRequest.Size = new System.Drawing.Size(896, 330);
             this.txtXmlRequest.TabIndex = 7;
             // 
             // label5
@@ -366,7 +368,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(739, 374);
+            this.tabPage3.Size = new System.Drawing.Size(908, 465);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Test result";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -379,30 +381,210 @@
             this.txtTestResult.Location = new System.Drawing.Point(6, 25);
             this.txtTestResult.Multiline = true;
             this.txtTestResult.Name = "txtTestResult";
-            this.txtTestResult.Size = new System.Drawing.Size(715, 332);
+            this.txtTestResult.Size = new System.Drawing.Size(884, 423);
             this.txtTestResult.TabIndex = 8;
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // tabControl2
+            // 
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Location = new System.Drawing.Point(12, 137);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(932, 561);
+            this.tabControl2.TabIndex = 13;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.dataGridView1);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(924, 535);
+            this.tabPage6.TabIndex = 2;
+            this.tabPage6.Text = "Metadata";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ShowEditingIcon = false;
+            this.dataGridView1.Size = new System.Drawing.Size(918, 529);
+            this.dataGridView1.TabIndex = 11;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.btnSaveResult);
+            this.tabPage4.Controls.Add(this.dataGridView3);
+            this.tabPage4.Controls.Add(this.dataGridView2);
+            this.tabPage4.Controls.Add(this.btnStartSimpleTest);
+            this.tabPage4.Controls.Add(this.txtSimpleResult);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(924, 535);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "Simple";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveResult
+            // 
+            this.btnSaveResult.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveResult.Image = global::TestServicePerformance.Properties.Resources.save_as_16;
+            this.btnSaveResult.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveResult.Location = new System.Drawing.Point(183, 24);
+            this.btnSaveResult.Name = "btnSaveResult";
+            this.btnSaveResult.Size = new System.Drawing.Size(105, 23);
+            this.btnSaveResult.TabIndex = 13;
+            this.btnSaveResult.Text = "Save result";
+            this.btnSaveResult.UseVisualStyleBackColor = true;
+            this.btnSaveResult.Click += new System.EventHandler(this.btnSaveResult_Click);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AutoGenerateColumns = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.CalculatedValue});
+            this.dataGridView3.DataSource = this.bindingSource1;
+            this.dataGridView3.Location = new System.Drawing.Point(6, 53);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(384, 147);
+            this.dataGridView3.TabIndex = 12;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "MeasureName";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Object";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Value";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Bytes";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 126;
+            // 
+            // CalculatedValue
+            // 
+            this.CalculatedValue.DataPropertyName = "CalculatedValue";
+            this.CalculatedValue.HeaderText = "Mbytes";
+            this.CalculatedValue.Name = "CalculatedValue";
+            this.CalculatedValue.ReadOnly = true;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(back.Common.BE.Measures);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.measureNameDataGridViewTextBoxColumn,
+            this.valueDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn3});
+            this.dataGridView2.DataSource = this.measuresBindingSource;
+            this.dataGridView2.Location = new System.Drawing.Point(6, 217);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(384, 312);
+            this.dataGridView2.TabIndex = 11;
+            // 
+            // measureNameDataGridViewTextBoxColumn
+            // 
+            this.measureNameDataGridViewTextBoxColumn.DataPropertyName = "MeasureName";
+            this.measureNameDataGridViewTextBoxColumn.HeaderText = "MeasureName";
+            this.measureNameDataGridViewTextBoxColumn.Name = "measureNameDataGridViewTextBoxColumn";
+            this.measureNameDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            this.valueDataGridViewTextBoxColumn.ReadOnly = true;
+            this.valueDataGridViewTextBoxColumn.Width = 126;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "CalculatedValue";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Sec";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // measuresBindingSource
+            // 
+            this.measuresBindingSource.DataSource = typeof(back.Common.BE.Measures);
+            // 
+            // btnStartSimpleTest
+            // 
+            this.btnStartSimpleTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartSimpleTest.Image = global::TestServicePerformance.Properties.Resources.bt_play;
+            this.btnStartSimpleTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStartSimpleTest.Location = new System.Drawing.Point(11, 24);
+            this.btnStartSimpleTest.Name = "btnStartSimpleTest";
+            this.btnStartSimpleTest.Size = new System.Drawing.Size(105, 23);
+            this.btnStartSimpleTest.TabIndex = 10;
+            this.btnStartSimpleTest.Text = "Start test";
+            this.btnStartSimpleTest.UseVisualStyleBackColor = true;
+            this.btnStartSimpleTest.Click += new System.EventHandler(this.btnStartSimpleTest_Click);
+            // 
+            // txtSimpleResult
+            // 
+            this.txtSimpleResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSimpleResult.Location = new System.Drawing.Point(413, 24);
+            this.txtSimpleResult.Multiline = true;
+            this.txtSimpleResult.Name = "txtSimpleResult";
+            this.txtSimpleResult.Size = new System.Drawing.Size(505, 505);
+            this.txtSimpleResult.TabIndex = 9;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.tabControl1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(924, 535);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "Multiple";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
             // frmTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 549);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(956, 723);
+            this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test disp service";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTest_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericCallsNumber)).EndInit();
@@ -410,6 +592,16 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.measuresBindingSource)).EndInit();
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -426,10 +618,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtURL;
         private System.Windows.Forms.Button btnPing;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtSvc;
@@ -444,6 +634,24 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.NumericUpDown numericCallsNumber;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnStartSimpleTest;
+        private System.Windows.Forms.TextBox txtSimpleResult;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.BindingSource measuresBindingSource;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CalculatedValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn measureNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Button btnSaveResult;
     }
 }
 

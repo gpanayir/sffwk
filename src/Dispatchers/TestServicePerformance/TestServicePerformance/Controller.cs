@@ -20,21 +20,15 @@ namespace TestServicePerformance
     public class ControllerTest : Fwk.Bases.ClientServiceBase
     {
         public static FwkSimpleStorageBase<Store> Storage = new FwkSimpleStorageBase<Store>();
-   
 
-        public  SalesOrderDetailList Execute()
+
+        public SearchSalesOrderDetailRes SearchSalesOrderDetailRes()
         {
             SearchSalesOrderDetailReq wRequest = new SearchSalesOrderDetailReq();
-            SearchSalesOrderDetailRes wResponse;
+      
+            return this.ExecuteService<SearchSalesOrderDetailReq, SearchSalesOrderDetailRes>(wRequest);
 
 
-
-            wResponse = this.ExecuteService<SearchSalesOrderDetailReq, SearchSalesOrderDetailRes>(wRequest);
-
-            if (wResponse.Error != null)
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(wResponse.Error);
-
-            return wResponse.BusinessData;
         }
 
       

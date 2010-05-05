@@ -77,14 +77,15 @@ namespace back.BackEnd.DAC
         }
 
 
-        public static SalesOrderDetailList Search(string pcompany, out double mappingTiem, out  double sqlCallTie)
+        public static SalesOrderDetailList Search(string pcompany, out double mappingTiem, out  double sqlCallTie, out Hashtable pRetrieveStatistics)
         {
             SqlConnection conn = new SqlConnection(GetCnnstring_App(pcompany));
             conn.StatisticsEnabled = true;
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
+            SqlCommand cmd = new SqlCommand("SalesOrderDetail_s", conn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "SalesOrderDetail_s";
+            //cmd.Connection = conn;
+            
+            //cmd.CommandText = "SalesOrderDetail_s";
 
             SalesOrderDetailList list;
             SalesOrderDetail sales;
@@ -102,6 +103,7 @@ namespace back.BackEnd.DAC
 
                 watch.Reset();
                 watch.Start();
+                #region DATA Mapping 
                 list = new SalesOrderDetailList();
 
 
@@ -127,17 +129,14 @@ namespace back.BackEnd.DAC
                 }
                 reader.Close();
                 reader.Dispose();
+                #endregion
 
                 watch.Stop();
                 mappingTiem = watch.Elapsed.TotalMilliseconds;
 
                 //Recojo las estadísticas
-                Hashtable htStats = (Hashtable)conn.RetrieveStatistics();
-                StringBuilder s = new StringBuilder();
-                foreach (string stat in htStats.Keys)
-                {
-                    s.AppendLine("- " + stat + " = " + htStats[stat].ToString());
-                }
+                 pRetrieveStatistics = (Hashtable)conn.RetrieveStatistics();
+               
                 return list;
             }
             catch (Exception ex)

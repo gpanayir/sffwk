@@ -10,6 +10,7 @@ using System.Threading;
 namespace TestServicePerformance
 {
     public delegate void CheckEven(string msg, int threadNumber,double average,double totalTime);
+    public delegate void DelegateWithOutAndRefParameters(out Exception ex);
     public delegate void FinalizeHandler(string msg);
     public delegate void CallHandler();
     internal class RemotingWrapper
@@ -100,16 +101,16 @@ namespace TestServicePerformance
 
             //if (stop)
             //{
-                double AVERAGE = sumTotalMilliseconds / ControllerTest.Storage.StorageObject.Calls;
+            double AVERAGE = sumTotalMilliseconds / ControllerTest.Storage.StorageObject.Calls;
 
-                if (MessageEvent != null)
-                    MessageEvent("Thread Nº", (int)threadNumber, AVERAGE, sumTotalMilliseconds);
+            if (MessageEvent != null)
+                MessageEvent("Thread Nº", (int)threadNumber, AVERAGE, sumTotalMilliseconds);
 
-                doneEvents[(int)threadNumber].Set();
+            doneEvents[(int)threadNumber].Set();
 
-                if ((int)threadNumber + 1 == doneEvents.Length)
-                    if (FinalizeEvent != null)
-                        FinalizeEvent("");
+            if ((int)threadNumber + 1 == doneEvents.Length)
+                if (FinalizeEvent != null)
+                    FinalizeEvent("");
             //}
         }
 

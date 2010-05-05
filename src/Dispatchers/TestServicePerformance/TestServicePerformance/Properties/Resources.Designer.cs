@@ -95,6 +95,13 @@ namespace TestServicePerformance.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap save_as_16 {
+            get {
+                object obj = ResourceManager.GetObject("save_as_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap srch_16 {
             get {
                 object obj = ResourceManager.GetObject("srch_16", resourceCulture);

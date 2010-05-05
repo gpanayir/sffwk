@@ -59,12 +59,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Measures.cs" />
     <Compile Include="SalesBC.cs" />
     <Compile Include="SalesBE.cs" />
     <Compile Include="SalesDAC.cs" />
     <Compile Include="SearchSalesOrderDetail.cs" />
     <Compile Include="SearchSalesOrderDetailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="script.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,6 +9,7 @@ using Fwk.Bases;
 using back.Common.BE;
 using back.BackEnd.BC;
 using back.Common.ISVC.SearchSalesOrderDetail;
+using System.Collections;
 
 
 
@@ -23,8 +24,10 @@ namespace back.BackEnd.SVC
 
 
             SampleBC BC = new SampleBC(req.ContextInformation.CompanyId);
-            res.BusinessData = BC.SearchSalesOrderDetail();
+            Measures m = null;
+            res.BusinessData.SalesOrderDetailList = BC.SearchSalesOrderDetail(out m );
 
+            res.BusinessData.Times = m;
             return res;
         }
     }

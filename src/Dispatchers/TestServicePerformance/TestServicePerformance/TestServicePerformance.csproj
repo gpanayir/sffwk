@@ -202,6 +202,7 @@
     <None Include="Resources\Ball %28Green%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\back.Common.BE.Measures.datasource" />
     <None Include="Resources\Ball %28Red%29.png" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +210,9 @@
       <Project>{78896792-2416-4C36-86C4-427AE8F38A2E}</Project>
       <Name>back.SVC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

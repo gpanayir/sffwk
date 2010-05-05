@@ -7,12 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Fwk.Caching;
+using back.Common.ISVC.SearchSalesOrderDetail;
+using System.Reflection;
+using back.Common.BE;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Runtime.Remoting.Messaging;
+using Fwk.HelperFunctions;
+using System.IO;
 
 namespace TestServicePerformance
 {
 
     public partial class frmTest : Form
     {
+        Measures _Sizes = new Measures();
+        ControllerTest _ControllerTest = new ControllerTest();
         ControllerTest Ctrl;
         RemotingWrapper _RemotingWrapper;
         StringBuilder strResult = new StringBuilder();
@@ -20,13 +31,13 @@ namespace TestServicePerformance
         {
             InitializeComponent();
             Ctrl = new ControllerTest();
-           
+
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             strResult = new StringBuilder();
-       
+
             txtTestResult.Text = string.Empty;
             if (_RemotingWrapper == null)
             {
@@ -36,16 +47,16 @@ namespace TestServicePerformance
             btnStartTest.Enabled = false;
             progressBar1.Visible = true;
             progressBar1.Maximum = ControllerTest.Storage.StorageObject.Threads * ControllerTest.Storage.StorageObject.Calls;
-            
+
             try
             {
-                
+
                 _RemotingWrapper.MessageEvent += new CheckEven(_RemotingWrapper_MessageEvent);
                 _RemotingWrapper.FinalizeEvent += new FinalizeHandler(_RemotingWrapper_FinalizeEvent);
-                _RemotingWrapper.CallEvent +=new CallHandler(_RemotingWrapper_CallEvent);
+                _RemotingWrapper.CallEvent += new CallHandler(_RemotingWrapper_CallEvent);
                 _RemotingWrapper.Start(txtXmlRequest.Text);
 
-                //dataGridView1.DataSource = _RemotingWrapper.RemoteObj.GetServicesList();
+
             }
             catch (Exception ex)
             {
@@ -53,7 +64,7 @@ namespace TestServicePerformance
                 progressBar1.Visible = false;
                 btnStartTest.Enabled = true;
             }
-            
+
         }
 
         void _RemotingWrapper_CallEvent()
@@ -124,7 +135,7 @@ namespace TestServicePerformance
             }
         }
 
-      
+
 
 
         private void btnPing_Click(object sender, EventArgs e)
@@ -139,14 +150,15 @@ namespace TestServicePerformance
                 dataGridView1.Refresh();
                 dataGridView1.DataSource = _RemotingWrapper.RemoteObj.GetServicesList();
                 this.btnPing.Image = global::TestServicePerformance.Properties.Resources.Ball__Green_;
+                tabControl2.TabIndex = 0;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-             
+
             }
         }
-     
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -170,12 +182,12 @@ namespace TestServicePerformance
             ControllerTest.Storage.StorageObject.ObjectUri = txtObjectUri.Text;
             ControllerTest.Storage.StorageObject.Server = txtServer.Text;
             ControllerTest.Storage.StorageObject.Port = txtPort.Text;
-            ControllerTest.Storage.StorageObject.Svc = txtSvc.Text ;
+            ControllerTest.Storage.StorageObject.Svc = txtSvc.Text;
             ControllerTest.Storage.StorageObject.XmlRequest = txtXmlRequest.Text;
-            ControllerTest.Storage.StorageObject.Threads = (int)numericThread.Value  ;
+            ControllerTest.Storage.StorageObject.Threads = (int)numericThread.Value;
             ControllerTest.Storage.StorageObject.Calls = (int)numericCallsNumber.Value;
-            
-            ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Name=txtSvc.Text;
+
+            ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Name = txtSvc.Text;
             ControllerTest.Storage.Save();
         }
 
@@ -213,8 +225,8 @@ namespace TestServicePerformance
                     txtSvc.Text = f.SelectedServiceConfiguration.Name;
                     ControllerTest.Storage.StorageObject.SelectedServiceConfiguration = f.SelectedServiceConfiguration;
                     ControllerTest.Storage.Save();
-                   Fwk.Bases.IServiceContract isvcReq = (Fwk.Bases.IServiceContract)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Request);
-                   this.txtXmlRequest.Text = isvcReq.GetBusinessDataXml();
+                    Fwk.Bases.IServiceContract isvcReq = (Fwk.Bases.IServiceContract)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Request);
+                    this.txtXmlRequest.Text = isvcReq.GetBusinessDataXml();
                 }
             }
         }
@@ -226,8 +238,8 @@ namespace TestServicePerformance
 
         private void numericCallsNumber_ValueChanged(object sender, EventArgs e)
         {
-             ControllerTest.Storage.StorageObject.Calls = (int)numericCallsNumber.Value;
-    
+            ControllerTest.Storage.StorageObject.Calls = (int)numericCallsNumber.Value;
+
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -239,11 +251,11 @@ namespace TestServicePerformance
             {
 
                 progressBar1.Value++;
-             System.Threading.Thread.Sleep(369);
+                System.Threading.Thread.Sleep(369);
             }
         }
 
-      
+
         private void txtServer_TextChanged(object sender, EventArgs e)
         {
             txtURL.Text = string.Concat("tcp://", txtServer.Text, ":", txtPort.Text.Trim(), @"/", txtObjectUri.Text);
@@ -260,5 +272,109 @@ namespace TestServicePerformance
             txtURL.Text = string.Concat("tcp://", txtServer.Text, ":", txtPort.Text.Trim(), @"/", txtObjectUri.Text);
         }
 
+
+
+
+
+
+        private void btnStartSimpleTest_Click(object sender, EventArgs e)
+        {
+
+
+            PopulateAsync();
+
+        }
+
+
+
+        public decimal GetSizeOfObject(object obj)
+        {
+            long lSize = 0;
+
+
+
+            System.IO.MemoryStream stream = new System.IO.MemoryStream();
+            BinaryFormatter objFormatter = new BinaryFormatter();
+            objFormatter.Serialize(stream, obj);
+            lSize = stream.Length;
+
+
+
+            return (decimal)lSize;
+        }
+
+        public void PopulateAsync()
+        {
+            Exception ex = null;
+            DelegateWithOutAndRefParameters s = new DelegateWithOutAndRefParameters(Populate);
+            s.BeginInvoke(out ex, new AsyncCallback(EndPopulate), null);
+        }
+
+        void EndPopulate(IAsyncResult res)
+        {
+            Exception ex;
+            if (this.InvokeRequired)
+            {
+                AsyncCallback d = new AsyncCallback(EndPopulate);
+                this.Invoke(d, new object[] { res });
+            }
+            else
+            {
+                AsyncResult result = (AsyncResult)res;
+                DelegateWithOutAndRefParameters del = (DelegateWithOutAndRefParameters)result.AsyncDelegate;
+                del.EndInvoke(out ex, res);
+
+                if (_SearchSalesOrderDetailRes.Error != null)
+                {
+                    txtSimpleResult.Text = _SearchSalesOrderDetailRes.Error.GetXml();
+                    return;
+                }
+                dataGridView2.DataSource = _SearchSalesOrderDetailRes.BusinessData.Times;
+
+                _Sizes = new Measures();
+                _Sizes.Add(new Measure("Result", GetSizeOfObject(_SearchSalesOrderDetailRes), false));
+                _Sizes.Add(new Measure("Entity SalesOrderDetailList", GetSizeOfObject(_SearchSalesOrderDetailRes.BusinessData.SalesOrderDetailList), false));
+                _Sizes.Add(new Measure("Test measures", GetSizeOfObject(_SearchSalesOrderDetailRes.BusinessData.Times), false));
+                _Sizes.Add(new Measure("Result contextInformation", GetSizeOfObject(_SearchSalesOrderDetailRes.ContextInformation), false));
+
+                dataGridView3.DataSource = _Sizes;
+                txtSimpleResult.Text = _SearchSalesOrderDetailRes.BusinessData.SalesOrderDetailList.GetXml();
+
+            }
+
+        }
+
+        SearchSalesOrderDetailRes _SearchSalesOrderDetailRes;
+
+        void Populate(out Exception ex)
+        {
+
+            ex = null;
+            _SearchSalesOrderDetailRes = _ControllerTest.SearchSalesOrderDetailRes();
+
+        }
+
+        private void btnSaveResult_Click(object sender, EventArgs e)
+        {
+            if (_SearchSalesOrderDetailRes == null) return;
+
+            if(!Directory.Exists("Logs"))
+            {
+                Directory.CreateDirectory("Logs");
+            }
+            TestRes wTestRes = new TestRes();
+            wTestRes.Times = _SearchSalesOrderDetailRes.BusinessData.Times;
+            wTestRes.Sizes = _Sizes;
+            string name =string.Concat(@"Logs\R_",DateFunctions.Get_Year_Mont_Day_Hour_Min_Sec_String(_SearchSalesOrderDetailRes.ContextInformation.HostTime, '_'),".xml");
+
+           
+
+            Fwk.HelperFunctions.FileFunctions.SaveTextFile(name, wTestRes.GetXml(), false);
+
+            MessageBox.Show("Test saved successfully");
+        }
+
     }
+
+    
 }
