@@ -132,7 +132,7 @@
             this.txtObjectUri.Name = "txtObjectUri";
             this.txtObjectUri.Size = new System.Drawing.Size(194, 20);
             this.txtObjectUri.TabIndex = 5;
-            this.txtObjectUri.Text = "Dispatcher.rem";
+            this.txtObjectUri.Text = "TestDispatcher.rem";
             this.txtObjectUri.TextChanged += new System.EventHandler(this.txtObjectUri_TextChanged);
             // 
             // label3

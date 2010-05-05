@@ -173,9 +173,11 @@ namespace TestServicePerformance
             numericCallsNumber.Value = Convert.ToDecimal(ControllerTest.Storage.StorageObject.Calls);
 
             txtURL.Text = string.Concat("tcp://", ControllerTest.Storage.StorageObject.Server, ":", ControllerTest.Storage.StorageObject.Port.Trim(), @"/", ControllerTest.Storage.StorageObject.ObjectUri);
-
-            Fwk.Bases.IServiceContract isvcReq = (Fwk.Bases.IServiceContract)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Request);
-            this.txtXmlRequest.Text = isvcReq.GetBusinessDataXml();
+            if (ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Request != null)
+            {
+                Fwk.Bases.IServiceContract isvcReq = (Fwk.Bases.IServiceContract)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(ControllerTest.Storage.StorageObject.SelectedServiceConfiguration.Request);
+                this.txtXmlRequest.Text = isvcReq.GetBusinessDataXml();
+            }
         }
         private void frmTest_FormClosing(object sender, FormClosingEventArgs e)
         {
