@@ -605,4 +605,55 @@ namespace Fwk.Bases
         }
         #endregion 
     }
+
+    [DebuggerVisualizer(typeof(IEntityVisualizer))]
+    [Serializable]
+    public class BaseEntities<T> : List<T>, IBaseEntity where T : BaseEntity
+    {
+        /// <summary>
+        /// Obtine un xml producto de la serializacion de la coleccion Entities.-
+        /// </summary>
+        /// <returns>string con el xml de la serializacion</returns>
+        public string GetXml()
+        {
+            return helper.SerializationFunctions.SerializeToXml(this);
+        }
+
+        /// <summary>
+        /// Rellena la clase con los valores del XML 
+        /// <param name="pXmlData">Xml con el que se crea el objeto</param>
+        /// <summary>
+        public void SetXml(string pXmlData)
+        {
+            helper.SerializationFunctions.DeserializeFromXml(this.GetType(), pXmlData);
+        }
+        #region ICloneable Members
+
+        /// <summary>
+        /// Clona el contrato de servicio
+        /// </summary>
+        /// <typeparam name="TEntities">Tipo de Entities que implementa IEntity </typeparam>
+        /// <returns></returns>
+        public TEntities Clone<TEntities>() where TEntities : BaseEntities<T>
+        {
+            return (TEntities)Fwk.HelperFunctions.SerializationFunctions.Deserialize(this.GetType(), this.GetXml());
+        }
+        /// <summary>
+        /// Crea una copia espejo de la clase.-
+        /// </summary>
+        /// <returns></returns>
+        public BaseEntities<T> Clone()
+        {
+            return (BaseEntities<T>)((ICloneable)this).Clone();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        object ICloneable.Clone()
+        {
+            return this.MemberwiseClone();
+        }
+        #endregion
+    }
 }
