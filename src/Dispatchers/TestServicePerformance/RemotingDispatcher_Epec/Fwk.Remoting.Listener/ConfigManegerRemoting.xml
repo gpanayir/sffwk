@@ -1,4 +1,4 @@
-º<Groups>
+<Groups>
 	<Group name="Config">
 		<Key name="RemotingConfig" encrypted="False">
 			<Value><![CDATA[RemotingHost.config]]></Value>
