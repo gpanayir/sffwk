@@ -155,33 +155,41 @@ namespace Fwk.Bases
         /// <returns>Dataset con datos de respuesta del servicio.</returns>
         /// <date>2007-08-24T00:00:00</date>
         /// <author>moviedo</author>
-        public virtual TResponse ExecuteService<TRequest, TResponse>(TRequest req)
+        public virtual TResponse ExecuteService<TRequest, TResponse>(TRequest pRequest)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-            TResponse wResponse = new TResponse();
 
-            if (WrapperFactory.Wrapper == null)
-            {
-                try
-                {
+            return WrapperFactory.ExecuteService<TRequest, TResponse>(pRequest);
+            //TResponse wResponse = new TResponse();
 
-                    WrapperFactory.TryCreateWrapper();
-                }
-                catch (Exception ex)
-                {
-                    wResponse.Error = ProcessConnectionsException.Process(ex);
-                }
-            }
 
-            //Si no ocurrio algun error
-            if (wResponse.Error == null)
-            {
+            //try
+            //{
 
-                wResponse = WrapperFactory.Wrapper.ExecuteService<TRequest, TResponse>(req);
-            }
+            //    WrapperFactory.TryCreateWrapper();
+            //}
+            //catch (Exception ex)
+            //{
+            //    wResponse.Error = ProcessConnectionsException.Process(ex);
+            //}
 
-            return wResponse;
+
+            ////Si no ocurrio algun error
+            //if (wResponse.Error == null)
+            //{
+            //    try
+            //    {
+            //        wResponse = WrapperFactory.Wrapper.ExecuteService<TRequest, TResponse>(req);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        wResponse.Error = ProcessConnectionsException.Process(ex);
+
+            //    }
+            //}
+
+            //return wResponse;
         }
 
        
