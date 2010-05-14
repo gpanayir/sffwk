@@ -123,6 +123,13 @@ namespace WindowsLogViewer.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap file_edit_16 {
+            get {
+                object obj = ResourceManager.GetObject("file_edit_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap info {
             get {
                 object obj = ResourceManager.GetObject("info", resourceCulture);
@@ -147,6 +154,20 @@ namespace WindowsLogViewer.Properties {
         internal static System.Drawing.Bitmap play_stop {
             get {
                 object obj = ResourceManager.GetObject("play_stop", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap refresh {
+            get {
+                object obj = ResourceManager.GetObject("refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap View {
+            get {
+                object obj = ResourceManager.GetObject("View", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -12,9 +12,9 @@ namespace WindowsLogViewer
 {
     public partial class frmMain : Form
     {
-        
 
-        AuditMachineList _AuditMachineList = new AuditMachineList();
+
+        public static Profile UserProfile = new Profile();
        
         public frmMain()
         {
@@ -41,12 +41,12 @@ namespace WindowsLogViewer
                 {
                     AuditMachine wAuditMachine = new AuditMachine(frm.WinLog, frm.AuditMachineName);
 
-                    if (_AuditMachineList.Exists(p => p.WinLog.Equals(frm.WinLog) && p.MachineName.Equals(frm.AuditMachineName)))
+                    if (UserProfile.AuditMachineList.Exists(p => p.WinLog.Equals(frm.WinLog) && p.MachineName.Equals(frm.AuditMachineName)))
                     {
                         MessageBox.Show("This log already exist.");
                         return;
                     }
-                    _AuditMachineList.Add(wAuditMachine);
+                    UserProfile.AuditMachineList.Add(wAuditMachine);
                     Add_AuditControl(wAuditMachine);
                 }
             }
@@ -83,14 +83,14 @@ namespace WindowsLogViewer
             pAuditControl.MessageSelected -= new EventHandler(wAuditControl_MessageSelected);
             string k = string.Concat(pAuditControl.AuditMachine.MachineName, "_", pAuditControl.AuditMachine.WinLog);
 
-            _AuditMachineList.Remove(pAuditControl.AuditMachine);
+            UserProfile.AuditMachineList.Remove(pAuditControl.AuditMachine);
 
             TabPage wTabPage = tabControl1.TabPages[k];
             wTabPage.Controls.Remove(pAuditControl);
             tabControl1.TabPages.Remove(wTabPage);
 
 
-            Fwk.HelperFunctions.FileFunctions.SaveTextFile("AuditMachineList.xml", _AuditMachineList.GetXml(), false);
+            Fwk.HelperFunctions.FileFunctions.SaveTextFile("AuditMachineList.xml", UserProfile.AuditMachineList.GetXml(), false);
         }
         void wAuditControl_CloseEventLog(object sender, EventArgs e)
         {
@@ -106,12 +106,12 @@ namespace WindowsLogViewer
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            if (System.IO.File.Exists("AuditMachineList.xml"))
+            if (System.IO.File.Exists("Profile.xml"))
             {
-                string filecontent = Fwk.HelperFunctions.FileFunctions.OpenTextFile("AuditMachineList.xml");
+                string filecontent = Fwk.HelperFunctions.FileFunctions.OpenTextFile("Profile.xml");
 
-                _AuditMachineList = AuditMachineList.GetFromXml<AuditMachineList>(filecontent);
-                foreach (AuditMachine wAuditMachine in _AuditMachineList)
+                UserProfile = Profile.GetFromXml<Profile>(filecontent);
+                foreach (AuditMachine wAuditMachine in UserProfile.AuditMachineList)
                 {
                     Add_AuditControl(wAuditMachine);
                 }
@@ -121,12 +121,22 @@ namespace WindowsLogViewer
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Fwk.HelperFunctions.FileFunctions.SaveTextFile("AuditMachineList.xml",_AuditMachineList.GetXml(),false) ;
+            Fwk.HelperFunctions.FileFunctions.SaveTextFile("Profile.xml", UserProfile.GetXml(), false);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            using (frmQuery frm = new frmQuery())
+            {
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                { }
+            }
         }
     }
 }

@@ -35,6 +35,7 @@
             this.txtMsg = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.btnHistory = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.eventLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
@@ -49,7 +50,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(294, 10);
+            this.button1.Location = new System.Drawing.Point(719, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 27);
             this.button1.TabIndex = 1;
@@ -70,7 +71,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(420, 8);
+            this.button2.Location = new System.Drawing.Point(845, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 27);
             this.button2.TabIndex = 3;
@@ -89,6 +90,20 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(953, 448);
             this.tabControl1.TabIndex = 4;
+            // 
+            // btnHistory
+            // 
+            this.btnHistory.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistory.Image = global::WindowsLogViewer.Properties.Resources.View;
+            this.btnHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistory.Location = new System.Drawing.Point(157, 12);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Size = new System.Drawing.Size(105, 23);
+            this.btnHistory.TabIndex = 12;
+            this.btnHistory.Text = "Query";
+            this.btnHistory.UseVisualStyleBackColor = false;
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
             // 
             // btnNew
             // 
@@ -114,6 +129,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(997, 622);
+            this.Controls.Add(this.btnHistory);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button2);
@@ -142,6 +158,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Button btnHistory;
     }
 }
 

@@ -205,20 +205,18 @@ namespace WindowsLogViewer
 
                 wCmd = wDataBase.GetStoredProcCommand(                "EventLog_sp");
 
-                wDataBase.AddInParameter(wCmd,                "Message", System.Data.DbType.String, pEventLog.Message);
+                
 
-                wDataBase.AddInParameter(wCmd,
-                "EventID", System.Data.DbType.Int32, pEventLog.EventID);
-
+                
                 wDataBase.AddInParameter(wCmd,                "Category", System.Data.DbType.String, pEventLog.Category);
 
                 wDataBase.AddInParameter(wCmd,                "MachineName", System.Data.DbType.String, pEventLog.MachineName);
 
                 wDataBase.AddInParameter(wCmd,                "Source", System.Data.DbType.String, pEventLog.Source);
 
-                wDataBase.AddInParameter(wCmd,                "TimeGeneratedStar", System.Data.DbType.DateTime, pEventLog.TimeGenerated);
+                wDataBase.AddInParameter(wCmd,                "TimeGenerated", System.Data.DbType.DateTime, pEventLog.TimeGenerated);
 
-                wDataBase.AddInParameter(wCmd,                "TimeGeneratedEnd", System.Data.DbType.DateTime, pTimeGeneratedEnd);
+         
 
                 wDataBase.AddInParameter(wCmd,                "UserName", System.Data.DbType.String, pEventLog.UserName);
 
@@ -228,19 +226,19 @@ namespace WindowsLogViewer
 
                 wDataBase.AddInParameter(wCmd,                "AuditMachineName", System.Data.DbType.String, pEventLog.AuditMachineName);
 
-                using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
-                {
+                //using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
+                //{
 
-                    while (reader.Read())
-                    {
+                //    while (reader.Read())
+                //    {
 
-                        wEventLog = new EventLog();
+                //        wEventLog = new EventLog();
 
-                        wEventLogList.Add(pEventLog);
+                //        wEventLogList.Add(pEventLog);
 
-                    }
+                //    }
 
-                }
+                //}
 
                 return wEventLogList;
 
