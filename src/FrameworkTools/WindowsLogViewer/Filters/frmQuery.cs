@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using DevExpress.XtraEditors;
 
 namespace WindowsLogViewer
 {
-    public partial class frmQuery : Form
+    public partial class frmQuery : XtraForm
     {
         public frmQuery()
         {

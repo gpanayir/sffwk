@@ -10,11 +10,12 @@ using System.Diagnostics;
 using WindowsLogViewer.Properties;
 using System.Threading;
 using System.Runtime.Remoting.Messaging;
+using DevExpress.XtraEditors;
 
 namespace WindowsLogViewer
 {
     enum ConnectionStatus { Started, Paused, Error }
-    public partial class AuditControl : UserControl
+    public partial class AuditControl : XtraUserControl
     {
         AuditMachine _AuditMachine;
         private bool started = false;

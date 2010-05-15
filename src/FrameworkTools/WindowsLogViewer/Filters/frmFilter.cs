@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using DevExpress.XtraEditors;
 
 namespace WindowsLogViewer
 {
-    public partial class frmFilter : Form
+    public partial class frmFilter : XtraForm
     {
         bool _IsNew = true;
         Filter _Filter;

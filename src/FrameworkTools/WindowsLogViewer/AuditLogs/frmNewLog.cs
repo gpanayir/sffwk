@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 
 namespace WindowsLogViewer
 {
-    public partial class frmNewLog : Form
+    public partial class frmNewLog : XtraForm
     {
 
         public string WinLog

@@ -36,6 +36,7 @@
             this.eventLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colEventImage = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.colEventID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMachineName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -45,12 +46,11 @@
             this.colWinLog = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAuditMachineName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.repositoryItemImageEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLogBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -103,8 +103,8 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemImageEdit1});
-            this.gridControl1.Size = new System.Drawing.Size(902, 664);
+            this.repositoryItemPictureEdit1});
+            this.gridControl1.Size = new System.Drawing.Size(902, 591);
             this.gridControl1.TabIndex = 19;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1,
@@ -132,15 +132,21 @@
             // 
             // colEventImage
             // 
+            this.colEventImage.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colEventImage.FieldName = "EventImage";
             this.colEventImage.Name = "colEventImage";
             this.colEventImage.OptionsColumn.AllowEdit = false;
             this.colEventImage.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.colEventImage.OptionsColumn.AllowSize = false;
             this.colEventImage.OptionsColumn.ReadOnly = true;
             this.colEventImage.OptionsColumn.ShowCaption = false;
             this.colEventImage.Visible = true;
             this.colEventImage.VisibleIndex = 0;
-            this.colEventImage.Width = 87;
+            this.colEventImage.Width = 36;
+            // 
+            // repositoryItemPictureEdit1
+            // 
+            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             // 
             // colEventID
             // 
@@ -151,7 +157,7 @@
             this.colEventID.OptionsColumn.ReadOnly = true;
             this.colEventID.Visible = true;
             this.colEventID.VisibleIndex = 8;
-            this.colEventID.Width = 50;
+            this.colEventID.Width = 67;
             // 
             // colCategory
             // 
@@ -161,7 +167,7 @@
             this.colCategory.OptionsColumn.ReadOnly = true;
             this.colCategory.Visible = true;
             this.colCategory.VisibleIndex = 2;
-            this.colCategory.Width = 83;
+            this.colCategory.Width = 97;
             // 
             // colMachineName
             // 
@@ -171,7 +177,7 @@
             this.colMachineName.OptionsColumn.ReadOnly = true;
             this.colMachineName.Visible = true;
             this.colMachineName.VisibleIndex = 3;
-            this.colMachineName.Width = 136;
+            this.colMachineName.Width = 160;
             // 
             // colSource
             // 
@@ -181,7 +187,7 @@
             this.colSource.OptionsColumn.ReadOnly = true;
             this.colSource.Visible = true;
             this.colSource.VisibleIndex = 4;
-            this.colSource.Width = 74;
+            this.colSource.Width = 87;
             // 
             // colTimeGenerated
             // 
@@ -191,7 +197,7 @@
             this.colTimeGenerated.OptionsColumn.ReadOnly = true;
             this.colTimeGenerated.Visible = true;
             this.colTimeGenerated.VisibleIndex = 5;
-            this.colTimeGenerated.Width = 116;
+            this.colTimeGenerated.Width = 136;
             // 
             // colUserName
             // 
@@ -201,7 +207,7 @@
             this.colUserName.OptionsColumn.ReadOnly = true;
             this.colUserName.Visible = true;
             this.colUserName.VisibleIndex = 6;
-            this.colUserName.Width = 95;
+            this.colUserName.Width = 111;
             // 
             // colWinLog
             // 
@@ -211,7 +217,7 @@
             this.colWinLog.OptionsColumn.ReadOnly = true;
             this.colWinLog.Visible = true;
             this.colWinLog.VisibleIndex = 7;
-            this.colWinLog.Width = 40;
+            this.colWinLog.Width = 47;
             // 
             // colAuditMachineName
             // 
@@ -221,25 +227,17 @@
             this.colAuditMachineName.OptionsColumn.ReadOnly = true;
             this.colAuditMachineName.Visible = true;
             this.colAuditMachineName.VisibleIndex = 1;
-            this.colAuditMachineName.Width = 119;
+            this.colAuditMachineName.Width = 140;
             // 
             // gridView2
             // 
             this.gridView2.GridControl = this.gridControl1;
             this.gridView2.Name = "gridView2";
             // 
-            // repositoryItemImageEdit1
-            // 
-            this.repositoryItemImageEdit1.AutoHeight = false;
-            this.repositoryItemImageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemImageEdit1.Name = "repositoryItemImageEdit1";
-            // 
             // QueryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.btnRefilter);
             this.Controls.Add(this.btnRefresh);
@@ -249,8 +247,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLogBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,6 +271,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colUserName;
         private DevExpress.XtraGrid.Columns.GridColumn colWinLog;
         private DevExpress.XtraGrid.Columns.GridColumn colAuditMachineName;
-        private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repositoryItemImageEdit1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
     }
 }
