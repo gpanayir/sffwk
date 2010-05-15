@@ -174,19 +174,12 @@ namespace WindowsLogViewer
         }
 
         /// <summary>
-
         /// SearchByParam
-
         /// </summary>
-
         ///<param name="pEventLog">EventLog</param>
-
         /// <returns>EventLogList</returns>
-
         /// <Date>2010-04-21T21:13:46</Date>
-
         /// <Author>moviedo</Author>
-
         public static List<EventLog> SearchByParam(EventLog pEventLog, DateTime? pTimeGeneratedEnd)
         {
 
@@ -201,44 +194,73 @@ namespace WindowsLogViewer
             try
             {
 
-                wDataBase =                DatabaseFactory.CreateDatabase("log");
+                wDataBase =DatabaseFactory.CreateDatabase("log");
 
-                wCmd = wDataBase.GetStoredProcCommand(                "EventLog_sp");
+                wCmd = wDataBase.GetStoredProcCommand("EventLog_sp");
 
-                
+                wDataBase.AddInParameter(wCmd,"Category", System.Data.DbType.String, pEventLog.Category);
 
-                
-                wDataBase.AddInParameter(wCmd,                "Category", System.Data.DbType.String, pEventLog.Category);
+                wDataBase.AddInParameter(wCmd,"MachineName", System.Data.DbType.String, pEventLog.MachineName);
 
-                wDataBase.AddInParameter(wCmd,                "MachineName", System.Data.DbType.String, pEventLog.MachineName);
+                wDataBase.AddInParameter(wCmd,"Source", System.Data.DbType.String, pEventLog.Source);
 
-                wDataBase.AddInParameter(wCmd,                "Source", System.Data.DbType.String, pEventLog.Source);
+                wDataBase.AddInParameter(wCmd,"TimeGenerated", System.Data.DbType.DateTime, pEventLog.TimeGenerated);
 
-                wDataBase.AddInParameter(wCmd,                "TimeGenerated", System.Data.DbType.DateTime, pEventLog.TimeGenerated);
+                wDataBase.AddInParameter(wCmd,"UserName", System.Data.DbType.String, pEventLog.UserName);
 
-         
+                wDataBase.AddInParameter(wCmd,"EventLogEntryType", System.Data.DbType.String, pEventLog.EntryType);
 
-                wDataBase.AddInParameter(wCmd,                "UserName", System.Data.DbType.String, pEventLog.UserName);
+                wDataBase.AddInParameter(wCmd,"Winlog", System.Data.DbType.String, pEventLog.WinLog);
 
-                wDataBase.AddInParameter(wCmd,                "EventLogEntryType", System.Data.DbType.String, pEventLog.EntryType);
+                wDataBase.AddInParameter(wCmd,"AuditMachineName", System.Data.DbType.String, pEventLog.AuditMachineName);
 
-                wDataBase.AddInParameter(wCmd,                "Winlog", System.Data.DbType.String, pEventLog.WinLog);
+                using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
+                {
 
-                wDataBase.AddInParameter(wCmd,                "AuditMachineName", System.Data.DbType.String, pEventLog.AuditMachineName);
+                    while (reader.Read())
+                    {
 
-                //using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
-                //{
+                        wEventLog = new EventLog();
 
-                //    while (reader.Read())
-                //    {
+                        if (reader["EventLogEntryType"] != DBNull.Value)
+                            wEventLog.EntryType = (EventLogEntryType)Enum.Parse(typeof(EventLogEntryType), reader["EventLogEntryType"].ToString());
 
-                //        wEventLog = new EventLog();
+                        if (reader["AuditMachineName"] != DBNull.Value)
+                            wEventLog.AuditMachineName = reader["AuditMachineName"].ToString();
 
-                //        wEventLogList.Add(pEventLog);
 
-                //    }
+                        if (reader["Message"] != DBNull.Value)
+                            wEventLog.Message = reader["Message"].ToString();
 
-                //}
+                        if (reader["WinLog"] != DBNull.Value)
+                            wEventLog.WinLog = (WindowsLogsType)Enum.Parse(typeof(WindowsLogsType), reader["WinLog"].ToString()); 
+
+                        if (reader["EventID"] != DBNull.Value)
+                            wEventLog.EventID = Convert.ToInt32(reader["EventID"]);
+
+                        if (reader["Category"] != DBNull.Value)
+                            wEventLog.Category = reader["Category"].ToString();
+
+                        if (reader["MachineName"] != DBNull.Value)
+                            wEventLog.MachineName = reader["MachineName"].ToString();
+
+                        if (reader["Source"] != DBNull.Value)
+                            wEventLog.Source = reader["Source"].ToString();
+
+                        if (reader["TimeGenerated"] != DBNull.Value)
+                            wEventLog.TimeGenerated = Convert.ToDateTime(reader["TimeGenerated"]);
+
+                        if (reader["UserName"] != DBNull.Value)
+                            wEventLog.UserName = reader["UserName"].ToString();
+
+
+
+
+                        wEventLogList.Add(wEventLog);
+
+                    }
+
+                }
 
                 return wEventLogList;
 

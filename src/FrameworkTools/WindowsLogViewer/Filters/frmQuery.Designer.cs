@@ -65,7 +65,7 @@
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(120, 23);
             this.btnNew.TabIndex = 16;
-            this.btnNew.Text = "Add new filtee";
+            this.btnNew.Text = "Add new filter";
             this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 

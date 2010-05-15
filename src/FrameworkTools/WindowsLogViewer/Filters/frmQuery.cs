@@ -12,8 +12,6 @@ namespace WindowsLogViewer
 {
     public partial class frmQuery : Form
     {
-       
-
         public frmQuery()
         {
             InitializeComponent();
@@ -35,13 +33,7 @@ namespace WindowsLogViewer
 
         void Add_FilterControl(Filter pFilter)
         {
-
-            
-
             tabControl1.TabPages.Add(pFilter.Name, pFilter.Name);
-
-           
-
             QueryControl wQueryControl = new QueryControl();
             wQueryControl.MessageSelected += new EventHandler(wQueryControl_MessageSelected);
             wQueryControl.CloseEventLog += new EventHandler(wQueryControl_CloseEventLog);
@@ -58,9 +50,7 @@ namespace WindowsLogViewer
                 Remove_AuditControl(wQueryControl, false);
                 return;
             }
-
             tabControl1.SelectedTab = tabControl1.TabPages[tabControl1.TabPages.Count - 1];
-
         }
 
         void wQueryControl_CloseEventLog(object sender, EventArgs e)
@@ -71,7 +61,6 @@ namespace WindowsLogViewer
         void wQueryControl_MessageSelected(object sender, EventArgs e)
         {
             txtMsg.Text = ((EventLog)sender).Message;
-            
         }
 
         void Remove_AuditControl(QueryControl pQueryControl, bool asck)
@@ -79,9 +68,6 @@ namespace WindowsLogViewer
             if (asck)
                 if (MessageBox.Show("Remove and this filter ?", "Windows event logs", MessageBoxButtons.YesNo) != DialogResult.Yes)
                     return;
-
-
-
 
             frmMain.UserProfile.Filters.Remove(pQueryControl.Filter);
 
@@ -93,10 +79,7 @@ namespace WindowsLogViewer
             Fwk.HelperFunctions.FileFunctions.SaveTextFile("Profile.xml", frmMain.UserProfile.GetXml(), false);
         }
 
-        private void btnHistory_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void frmQuery_Load(object sender, EventArgs e)
         {

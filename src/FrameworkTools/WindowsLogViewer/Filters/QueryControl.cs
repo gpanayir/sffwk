@@ -51,6 +51,7 @@ namespace WindowsLogViewer
             eventLogBindingSource.DataSource = LogDAC.SearchByParam(_Filter.EventLog, null);
 
             gridControl1.RefreshDataSource();
+            gridView1.RefreshData();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -42,7 +42,7 @@ namespace WindowsLogViewer
                 _Filter.EventLog.TimeWritten = dateTimePicker1.Value;
 
                 if (comboBox_Log.SelectedIndex != 0)
-                    _Filter.EventLog.WinLog = comboBox_Log.Text;
+                    _Filter.EventLog.WinLog = (WindowsLogsType)Enum.Parse(typeof(WindowsLogsType), comboBox_Log.Text); 
 
                 if (comboBox_EntryType.SelectedIndex != 0)
                     _Filter.EventLog.EntryType = (EventLogEntryType)Enum.Parse(typeof(EventLogEntryType), comboBox_EntryType.Text);
@@ -56,7 +56,12 @@ namespace WindowsLogViewer
         }
 
         public frmFilter()
-        {  }
+        {
+            InitializeComponent();
+       
+            comboBox_Log.SelectedIndex = 0;
+            comboBox_EntryType.SelectedIndex = 0;
+        }
 
         public frmFilter(bool isNew)
         {
@@ -85,8 +90,8 @@ namespace WindowsLogViewer
             if (_Filter.EventLog.TimeWritten != null)
                 dateTimePicker1.Value = _Filter.EventLog.TimeWritten.Value;
 
-            if (!string.IsNullOrEmpty(_Filter.EventLog.WinLog))
-                comboBox_Log.SelectedIndex = comboBox_Log.FindString(_Filter.EventLog.WinLog);
+            if (_Filter.EventLog.WinLog != null)
+                comboBox_Log.SelectedIndex = comboBox_Log.FindString(_Filter.EventLog.WinLog.Value.ToString());
 
             if (_Filter.EventLog.EntryType != null)
                 comboBox_EntryType.SelectedIndex = comboBox_EntryType.FindString(_Filter.EventLog.EntryType.Value.ToString());

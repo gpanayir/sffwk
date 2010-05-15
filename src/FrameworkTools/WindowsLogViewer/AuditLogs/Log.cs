@@ -46,7 +46,7 @@ namespace WindowsLogViewer
         #region [Private Members]
         string _AuditMachineName;
 
-        string _WinLog;
+        WindowsLogsType? _WinLog;
         int _Index;
 
         private System.String _Message;
@@ -151,7 +151,7 @@ namespace WindowsLogViewer
         }
         #endregion
 
-        public string WinLog
+        public WindowsLogsType? WinLog
         {
             get { return _WinLog; }
             set { _WinLog = value; }
@@ -199,7 +199,16 @@ namespace WindowsLogViewer
 
     }
 
-
+    public enum WindowsLogsType
+    { 
+            Application,
+            ODiag,
+            InternetExplorer,
+            OSession,
+            Security,
+            System,
+            TuneUp
+    }
 }
 
 
