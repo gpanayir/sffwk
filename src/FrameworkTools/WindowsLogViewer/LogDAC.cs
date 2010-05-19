@@ -53,7 +53,8 @@ namespace WindowsLogViewer
                 wDataBase.AddInParameter(wCmd, "Message", System.Data.DbType.String, pEventLog.Message);
                 wDataBase.AddInParameter(wCmd, "Winlog", System.Data.DbType.String, pWinlog);
                 wDataBase.AddInParameter(wCmd, "AuditMachineName", System.Data.DbType.String, pAuditMachineName);
-                wDataBase.AddInParameter(wCmd, "EventID", System.Data.DbType.Int32, pEventLog.EventID);
+
+                wDataBase.AddInParameter(wCmd, "EventID", System.Data.DbType.Decimal, pEventLog.InstanceId);
 
                 wDataBase.AddInParameter(wCmd, "Category", System.Data.DbType.String, pEventLog.Category);
 
@@ -80,19 +81,6 @@ namespace WindowsLogViewer
                 throw ex;
             }
 
-        }
-
-        public static void Insert(List<EventLog> pEventLogList, string pWinlog, string pAuditMachineName)
-        {
-            DateTime wLastLogtime = SelectLastLog(pWinlog, pAuditMachineName);
-
-            foreach (EventLog l in pEventLogList)
-            {
-                //Solo insertar logs posteriores o donde l.TimeGenerated posterior a wLastLogtime
-                //l.TimeGenerated posterior a wLastLogtime
-                if (DateTime.Compare(l.TimeGenerated.Value, wLastLogtime) > 0 || wLastLogtime.CompareTo(Fwk.HelperFunctions.DateFunctions.NullDateTime) == 0)
-                    Insert(l, pWinlog, pAuditMachineName);
-            }
         }
         /// <summary>
         /// Insert
@@ -101,19 +89,22 @@ namespace WindowsLogViewer
         /// <returns>void</returns>
         /// <Date>2010-04-19T19:26:41</Date>
         /// <Author>moviedo</Author>
-        public static void Insert(EventLog pEventLog, string pWinlog, string pAuditMachineName)
+        public static void Insert(EventLog pEventLog)
         {
             Database wDataBase = null;
             DbCommand wCmd = null;
-            
+
             try
             {
                 wDataBase = DatabaseFactory.CreateDatabase("log");
                 wCmd = wDataBase.GetStoredProcCommand("EventLog_i");
 
                 wDataBase.AddInParameter(wCmd, "Message", System.Data.DbType.String, pEventLog.Message);
-                wDataBase.AddInParameter(wCmd, "Winlog", System.Data.DbType.String, pWinlog);
-                wDataBase.AddInParameter(wCmd, "AuditMachineName", System.Data.DbType.String, pAuditMachineName);
+
+                wDataBase.AddInParameter(wCmd, "Winlog", System.Data.DbType.String, pEventLog.WinLog);
+
+                wDataBase.AddInParameter(wCmd, "AuditMachineName", System.Data.DbType.String, pEventLog.AuditMachineName);
+
                 wDataBase.AddInParameter(wCmd, "EventID", System.Data.DbType.Int32, pEventLog.EventID);
 
                 wDataBase.AddInParameter(wCmd, "Category", System.Data.DbType.String, pEventLog.Category);
@@ -142,6 +133,20 @@ namespace WindowsLogViewer
             }
 
         }
+        public static void Insert(List<EventLog> pEventLogList, string pWinlog, string pAuditMachineName)
+        {
+            DateTime wLastLogtime = SelectLastLog(pWinlog, pAuditMachineName);
+
+            foreach (EventLog l in pEventLogList)
+            {
+                //Solo insertar logs posteriores o donde l.TimeGenerated posterior a wLastLogtime
+                //l.TimeGenerated posterior a wLastLogtime
+                if (DateTime.Compare(l.TimeGenerated.Value, wLastLogtime) > 0
+                    || wLastLogtime.CompareTo(Fwk.HelperFunctions.DateFunctions.NullDateTime) == 0)
+                    Insert(l);
+            }
+        }
+     
 
         public static DateTime SelectLastLog(string pWinlog, string pAuditMachineName)
         {
@@ -214,6 +219,8 @@ namespace WindowsLogViewer
 
                 wDataBase.AddInParameter(wCmd,"AuditMachineName", System.Data.DbType.String, pEventLog.AuditMachineName);
 
+                wDataBase.AddInParameter(wCmd, "EventID", System.Data.DbType.String, pEventLog.EventID);
+                 
                 using (IDataReader reader = wDataBase.ExecuteReader(wCmd))
                 {
 
@@ -236,7 +243,7 @@ namespace WindowsLogViewer
                             wEventLog.WinLog = (WindowsLogsType)Enum.Parse(typeof(WindowsLogsType), reader["WinLog"].ToString()); 
 
                         if (reader["EventID"] != DBNull.Value)
-                            wEventLog.EventID = Convert.ToInt32(reader["EventID"]);
+                            wEventLog.EventID = Convert.ToInt64(reader["EventID"]);
 
                         if (reader["Category"] != DBNull.Value)
                             wEventLog.Category = reader["Category"].ToString();

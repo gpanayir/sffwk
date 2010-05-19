@@ -12,7 +12,7 @@ namespace WindowsLogViewer
 {
     public class EventLog
     {
-        public EventLog(System.Diagnostics.EventLogEntry pEventLogEntry)
+        public EventLog(System.Diagnostics.EventLogEntry pEventLogEntry, string pAuditMachineName)
         {
             _Message = pEventLogEntry.Message;
 
@@ -22,12 +22,13 @@ namespace WindowsLogViewer
             _MachineName = pEventLogEntry.MachineName;
             _TimeGenerated = pEventLogEntry.TimeGenerated;
             _TimeWritten = pEventLogEntry.TimeWritten;
-            _MachineName = pEventLogEntry.MachineName;
+
+            _AuditMachineName = pAuditMachineName;
 
             _UserName = pEventLogEntry.UserName;
 
             _Category = pEventLogEntry.Category;
-            //_EventID = pEventLogEntry.EventID;
+            _EventID = pEventLogEntry.InstanceId;
             _Index = pEventLogEntry.Index;
 
         }
@@ -37,11 +38,7 @@ namespace WindowsLogViewer
 
 
 
-        public Image EventImage
-        {
-            get { return GetImage(); }
-
-        }
+  
 
         #region [Private Members]
         string _AuditMachineName;
@@ -51,7 +48,7 @@ namespace WindowsLogViewer
 
         private System.String _Message;
 
-        private System.Int32? _EventID;
+        private System.Int64? _EventID;
 
         private System.String _Category;
 
@@ -78,10 +75,14 @@ namespace WindowsLogViewer
             set { _Message = value; }
         }
         #endregion
+      public Image EventImage
+        {
+            get { return GetImage(); }
 
+        }
 
         #region [EventID]
-        public System.Int32? EventID
+        public System.Int64? EventID
         {
             get { return _EventID; }
             set { _EventID = value; }
@@ -197,6 +198,79 @@ namespace WindowsLogViewer
             return null;
         }
 
+        public override string ToString()
+        {
+            StringBuilder str = new StringBuilder();
+            if (!string.IsNullOrEmpty(_AuditMachineName))
+                str.Append(string.Concat(_AuditMachineName, ":"));
+
+            if (_WinLog != null)
+                str.Append(string.Concat(_WinLog, ":"));
+
+            if (_EntryType != null)
+                str.Append(string.Concat(_EntryType, ":"));
+
+
+            if (_EventID != null)
+                str.Append(string.Concat(" event Id:",_EventID));
+
+            if (!string.IsNullOrEmpty(_MachineName))
+                str.Append(string.Concat(" PC:", _MachineName));
+
+
+            if (!string.IsNullOrEmpty(_UserName))
+                str.Append(string.Concat(" user:", _UserName));
+
+            if (!string.IsNullOrEmpty(_Category))
+                str.Append(string.Concat(" category:", _Category));
+
+
+            if (!string.IsNullOrEmpty(_Source))
+                str.Append(string.Concat(" source:", _Source));
+
+
+
+
+            return str.ToString();
+        }
+
+        public string GetId()
+        {
+            StringBuilder str = new StringBuilder();
+            if (!string.IsNullOrEmpty(_AuditMachineName))
+                str.Append(string.Concat(_AuditMachineName, ":"));
+
+            if (_WinLog != null)
+                str.Append(string.Concat(_WinLog, ":"));
+
+            if (_EntryType != null)
+                str.Append(string.Concat(_EntryType, ":"));
+
+
+            if (_EventID != null)
+                str.Append(string.Concat( _EventID,":"));
+
+            if (!string.IsNullOrEmpty(_MachineName))
+                str.Append(string.Concat( _MachineName,":"));
+
+
+            if (!string.IsNullOrEmpty(_UserName))
+                str.Append(string.Concat(_UserName, ":"));
+
+            if (!string.IsNullOrEmpty(_Category))
+                str.Append(string.Concat(_Category, ":"));
+
+            if (!string.IsNullOrEmpty(_Source))
+                str.Append(string.Concat(_Source, ":"));
+
+
+            if (!string.IsNullOrEmpty(_Source))
+                str.Append(string.Concat(_Source, ":"));
+
+
+
+            return str.ToString();
+        }
     }
 
     public enum WindowsLogsType

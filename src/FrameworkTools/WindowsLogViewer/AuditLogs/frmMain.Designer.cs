@@ -37,6 +37,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.btnHistory = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.eventLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLogBindingSource)).BeginInit();
@@ -119,6 +120,10 @@
             this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
+            // defaultLookAndFeel1
+            // 
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "The Asphalt World";
+            // 
             // eventLogBindingSource
             // 
             this.eventLogBindingSource.DataSource = typeof(WindowsLogViewer.EventLog);
@@ -127,7 +132,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(997, 622);
             this.Controls.Add(this.btnHistory);
             this.Controls.Add(this.btnNew);
@@ -136,6 +140,7 @@
             this.Controls.Add(this.txtMsg);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.LookAndFeel.SkinName = "Blue";
             this.Name = "frmMain";
             this.Text = "Windows event log viewer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -159,6 +164,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnHistory;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
     }
 }
 

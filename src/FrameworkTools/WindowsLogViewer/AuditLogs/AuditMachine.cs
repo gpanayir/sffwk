@@ -8,7 +8,7 @@ using Fwk.Bases;
 namespace WindowsLogViewer
 {
     [XmlInclude(typeof(AuditMachine)), Serializable]
-    public  class AuditMachine :Fwk.Bases.Entity
+    public class AuditMachine : Fwk.Bases.BaseEntity
     {
         public AuditMachine(string pWinlog, string pAuditMachineName)
         {
@@ -39,23 +39,29 @@ namespace WindowsLogViewer
 
 
     [XmlRoot("AuditMachineList"), SerializableAttribute]
-    public class AuditMachineList : Entities<AuditMachine>
+    public class AuditMachineList : BaseEntities<AuditMachine>
     {
     }
     [XmlRoot("Filters"), SerializableAttribute]
-    public class Filters : Entities<Filter>
+    public class Filters : BaseEntities<Filter>
     {
     }
     [XmlInclude(typeof(Filter)), Serializable]
-    public class Filter:Entity
+    public class Filter:BaseEntity
     {
         string _Name ;
 
         public string Name
         {
-            get { return _Name; }
-            set { _Name = value; }
+            get { return _EventLog.ToString(); }
         }
+
+
+        public string Id
+        {
+            get { return _EventLog.GetId(); }
+        }
+
 
         EventLog _EventLog = new EventLog ();
 
@@ -64,17 +70,32 @@ namespace WindowsLogViewer
             get { return _EventLog; }
             set { _EventLog = value; }
         }
+
+        
+
     }
     [XmlInclude(typeof(Profile)), Serializable]
-    public class Profile : Entity
+    public class Profile : BaseEntity
     {
-        AuditMachineList _AuditMachineList = new AuditMachineList ();
+        //AuditMachineList _AuditMachineList = new AuditMachineList ();
 
-        public AuditMachineList AuditMachineList
+        //public AuditMachineList AuditMachineList
+        //{
+        //    get { return _AuditMachineList; }
+        //    set { _AuditMachineList = value; }
+        
+        //}
+
+
+        Filters _AuditMachineList = new Filters();
+
+        public Filters AuditMachineList
         {
             get { return _AuditMachineList; }
             set { _AuditMachineList = value; }
         }
+
+
         Filters _Filters = new Filters ();
 
         public Filters Filters

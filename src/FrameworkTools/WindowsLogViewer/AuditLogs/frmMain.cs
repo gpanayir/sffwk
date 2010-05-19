@@ -40,26 +40,33 @@ namespace WindowsLogViewer
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    AuditMachine wAuditMachine = new AuditMachine(frm.WinLog, frm.AuditMachineName);
-
-                    if (UserProfile.AuditMachineList.Exists(p => p.WinLog.Equals(frm.WinLog) && p.MachineName.Equals(frm.AuditMachineName)))
+                    foreach (Filter filter in frm.AuditMachines)
                     {
-                        MessageBox.Show("This log already exist.");
-                        return;
+                        if (frmMain.UserProfile.AuditMachineList.Exists(p => p.Id.Equals(filter.Id)))
+                        {
+                            MessageBox.Show("This log already exist. " + Environment.NewLine + filter.Name, "Windows event logs");
+
+                        }
+                        else
+                        {
+                            UserProfile.AuditMachineList.Add(filter);
+                            Add_AuditControl(filter);
+                        }
                     }
-                    UserProfile.AuditMachineList.Add(wAuditMachine);
-                    Add_AuditControl(wAuditMachine);
                 }
             }
         }
 
-        void Add_AuditControl(AuditMachine pAuditMachine)
+        void Add_AuditControl(Filter pAuditMachine)
         {
-            tabControl1.TabPages.Add(string.Concat(pAuditMachine.MachineName, "_", pAuditMachine.WinLog), string.Concat(pAuditMachine.MachineName, ": ", pAuditMachine.WinLog));
+           
+            tabControl1.TabPages.Add(pAuditMachine.EventLog.ToString(), pAuditMachine.EventLog.ToString());
+
             AuditControl wAuditControl = new AuditControl();
             wAuditControl.MessageSelected += new EventHandler(wAuditControl_MessageSelected);
             wAuditControl.CloseEventLog += new EventHandler(wAuditControl_CloseEventLog);
-            tabControl1.TabPages[string.Concat(pAuditMachine.MachineName, "_", pAuditMachine.WinLog)].Controls.Add(wAuditControl);
+
+            tabControl1.TabPages[pAuditMachine.EventLog.ToString()].Controls.Add(wAuditControl);
             wAuditControl.BackColor = System.Drawing.Color.White;
             wAuditControl.Dock = System.Windows.Forms.DockStyle.Fill;
             try
@@ -68,7 +75,7 @@ namespace WindowsLogViewer
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Windows event logs");
                 Remove_AuditControl(wAuditControl,false);
             }
 
@@ -82,7 +89,7 @@ namespace WindowsLogViewer
                 return;
 
             pAuditControl.MessageSelected -= new EventHandler(wAuditControl_MessageSelected);
-            string k = string.Concat(pAuditControl.AuditMachine.MachineName, "_", pAuditControl.AuditMachine.WinLog);
+            string k = pAuditControl.AuditMachine.EventLog.ToString();
 
             UserProfile.AuditMachineList.Remove(pAuditControl.AuditMachine);
 
@@ -91,7 +98,7 @@ namespace WindowsLogViewer
             tabControl1.TabPages.Remove(wTabPage);
 
 
-            Fwk.HelperFunctions.FileFunctions.SaveTextFile("AuditMachineList.xml", UserProfile.AuditMachineList.GetXml(), false);
+            Fwk.HelperFunctions.FileFunctions.SaveTextFile("Profile.xml", UserProfile.GetXml(), false);
         }
         void wAuditControl_CloseEventLog(object sender, EventArgs e)
         {
@@ -112,7 +119,7 @@ namespace WindowsLogViewer
                 string filecontent = Fwk.HelperFunctions.FileFunctions.OpenTextFile("Profile.xml");
 
                 UserProfile = Profile.GetFromXml<Profile>(filecontent);
-                foreach (AuditMachine wAuditMachine in UserProfile.AuditMachineList)
+                foreach (Filter wAuditMachine in UserProfile.AuditMachineList)
                 {
                     Add_AuditControl(wAuditMachine);
                 }

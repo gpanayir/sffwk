@@ -123,6 +123,13 @@ namespace WindowsLogViewer.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Expand_16 {
+            get {
+                object obj = ResourceManager.GetObject("Expand_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap file_edit_16 {
             get {
                 object obj = ResourceManager.GetObject("file_edit_16", resourceCulture);
@@ -133,6 +140,20 @@ namespace WindowsLogViewer.Properties {
         internal static System.Drawing.Bitmap info {
             get {
                 object obj = ResourceManager.GetObject("info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap MaxImage {
+            get {
+                object obj = ResourceManager.GetObject("MaxImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap MinImage {
+            get {
+                object obj = ResourceManager.GetObject("MinImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

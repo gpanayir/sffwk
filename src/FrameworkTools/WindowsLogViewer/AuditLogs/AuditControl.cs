@@ -17,7 +17,7 @@ namespace WindowsLogViewer
     enum ConnectionStatus { Started, Paused, Error }
     public partial class AuditControl : XtraUserControl
     {
-        AuditMachine _AuditMachine;
+        Filter _AuditMachine;
         private bool started = false;
         public event EventHandler MessageSelected;
         public event EventHandler CloseEventLog;
@@ -25,7 +25,7 @@ namespace WindowsLogViewer
         List<EventLogEntry> _LogList = new List<EventLogEntry>();
    
         [Browsable(false)]
-        public AuditMachine AuditMachine
+        public Filter AuditMachine
         {
             get { return _AuditMachine; }
             set { _AuditMachine = value; }
@@ -45,6 +45,9 @@ namespace WindowsLogViewer
         /// <param name="e"></param>
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (((System.Windows.Forms.BindingSource)(dataGridView2.DataSource)).Current.GetType() != typeof(EventLogEntry)) 
+                return;
+
             EventLogEntry rf = (EventLogEntry)((System.Windows.Forms.BindingSource)(dataGridView2.DataSource)).Current;
             if (rf == null) return;
             MessageSelected(rf, new EventArgs());
@@ -57,17 +60,49 @@ namespace WindowsLogViewer
         /// <param name="e"></param>
         private void EventLogControl_EntryWritten(object sender, EntryWrittenEventArgs e)
         {
-            //_LogList.Add(new EventLog(e.Entry));
 
-            _LogList.Add(e.Entry);
-            this.eventLogEntryBindingSource.DataSource = null;
-            this.eventLogEntryBindingSource.DataSource = _LogList;
-            PaintUnboundedCells();
-            dataGridView2.RefreshEdit();
-            dataGridView2.Refresh();
+
+            if (IsValidEntry(e.Entry))
+            {
+                _LogList.Add(e.Entry);
+                this.eventLogEntryBindingSource.DataSource = null;
+                this.eventLogEntryBindingSource.DataSource = _LogList;
+                PaintUnboundedCells();
+                dataGridView2.RefreshEdit();
+                dataGridView2.Refresh();
+            }
         }
 
-       
+        /// <summary>
+        /// Determina si la entrada cumple con el filtro 
+        /// </summary>
+        /// <param name="pEntry"></param>
+        /// <returns></returns>
+        bool IsValidEntry(EventLogEntry pEntry)
+        {
+
+            // El filtro por los campos restantes esta implisito en  this.EventLogControl 
+
+            if (_AuditMachine.EventLog.EventID != null)
+                if (_AuditMachine.EventLog.EventID != pEntry.InstanceId) return false;
+
+            if (_AuditMachine.EventLog.EntryType != null)
+                if (_AuditMachine.EventLog.EntryType != pEntry.EntryType) return false;
+            
+            if (!string.IsNullOrEmpty( _AuditMachine.EventLog.Source))
+                if (_AuditMachine.EventLog.Source.Equals(pEntry.Source, StringComparison.OrdinalIgnoreCase)) return false;
+
+            if (!string.IsNullOrEmpty(_AuditMachine.EventLog.Category))
+                if (_AuditMachine.EventLog.Category.Equals(pEntry.Category, StringComparison.OrdinalIgnoreCase)) return false;
+
+
+            if (!string.IsNullOrEmpty(_AuditMachine.EventLog.UserName))
+                if (_AuditMachine.EventLog.UserName.Equals(pEntry.UserName, StringComparison.OrdinalIgnoreCase)) return false;
+
+           
+
+            return true;
+        }
 
 
         public void ClearLogs()
@@ -95,7 +130,8 @@ namespace WindowsLogViewer
                 ClearLogs();
                 try
                 {
-                    PopulateAsync(this.EventLogControl.Entries);
+                   
+                   PopulateAsync(this.EventLogControl.Entries);
                 }
                 catch (Exception)
                 {
@@ -148,20 +184,22 @@ namespace WindowsLogViewer
             }
             started = !started;
         }
-       
-        public void Populate(AuditMachine pAuditMachine)
+
+        public void Populate(Filter pAuditMachine)
         {
             try
             {
                 _AuditMachine = pAuditMachine;
-                this.EventLogControl.Log = _AuditMachine.WinLog;
-                this.EventLogControl.MachineName = _AuditMachine.MachineName;
-                if (_AuditMachine.MachineName.Equals("."))
+                this.EventLogControl.Log = _AuditMachine.EventLog.WinLog.Value.ToString();
+                this.EventLogControl.MachineName = _AuditMachine.EventLog.AuditMachineName;
+                this.EventLogControl.Source = _AuditMachine.EventLog.Source;
+
+                if (_AuditMachine.EventLog.AuditMachineName.Equals("."))
                     this.lblAuditedMachine.Text = "(local)";
                 else
-                    this.lblAuditedMachine.Text = _AuditMachine.MachineName;
+                    this.lblAuditedMachine.Text = _AuditMachine.EventLog.AuditMachineName;
 
-                this.lblWinLog.Text = _AuditMachine.WinLog;
+                this.lblWinLog.Text = _AuditMachine.EventLog.WinLog.Value.ToString();
             }
             catch (Exception ex)
             {
@@ -175,7 +213,7 @@ namespace WindowsLogViewer
         {
             try
             {
-                if (MessageBox.Show("Are you sure you wont to remove all logs from this machineName: " + _AuditMachine.MachineName, "Windows event logs", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you wont to remove all logs from this machineName: " + _AuditMachine.EventLog.AuditMachineName, "Windows event logs", MessageBoxButtons.YesNo) != DialogResult.Yes)
                 return;
 
                 
@@ -240,7 +278,20 @@ namespace WindowsLogViewer
             }
         }
 
-        void Fill(EventLogEntryCollection pEventLogEntryCollection)
+        List<EventLogEntry> GetValidEntries(EventLogEntryCollection entries)
+        {
+            List<EventLogEntry> entriesFiltered = new List<EventLogEntry>();
+            foreach (EventLogEntry entry in entries)
+            {
+                if (IsValidEntry(entry))
+                {
+                    entriesFiltered.Add(entry);
+                }
+                
+            }
+            return entriesFiltered;
+        }
+        void Fill(List<EventLogEntry> pEventLogEntryCollection)
         {
             foreach (EventLogEntry entry in pEventLogEntryCollection)
             {
@@ -256,6 +307,7 @@ namespace WindowsLogViewer
         /// </summary>
         public void PopulateAsync(EventLogEntryCollection entries)
         {
+
             btnStart.Enabled = false;
             btnClearLogs.Enabled = false;
             Exception ex = null;
@@ -320,8 +372,9 @@ namespace WindowsLogViewer
 
             try
             {
- 
-                Fill((EventLogEntryCollection)o);
+                _LogList = GetValidEntries(((EventLogEntryCollection)o));
+                //_((EventLogEntryCollection)o)
+                //Fill((List<EventLogEntry>)o);
 
             }
             catch (Exception err)

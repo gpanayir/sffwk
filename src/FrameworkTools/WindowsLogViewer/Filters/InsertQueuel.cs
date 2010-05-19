@@ -32,7 +32,7 @@ namespace WindowsLogViewer
 
         Queue<task> _Queue = new Queue<task>();
 
-        public void Insert(EventLogEntryCollection pEventLogList, AuditMachine pAuditMachine)
+        public void Insert(EventLogEntryCollection pEventLogList, Filter pAuditMachine)
         {
             task t = new task(pEventLogList, pAuditMachine);
             if (ocuped)
@@ -58,7 +58,7 @@ namespace WindowsLogViewer
             Exception ex = null;
             DelegateWithOutAndRefParameters s = new DelegateWithOutAndRefParameters(Insert);
 
-            s.BeginInvoke(out ex,                t, new AsyncCallback(EndInsert), null);
+            s.BeginInvoke(out ex, t, new AsyncCallback(EndInsert), null);
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace WindowsLogViewer
             task t = (task)o;
             try
             {
-                LogDAC.Insert(t.List, t.AuditMachine.WinLog, t.AuditMachine.MachineName);
+                LogDAC.Insert(t.List, t.AuditMachine.EventLog.WinLog.Value.ToString(), t.AuditMachine.EventLog.AuditMachineName);
 
             }
             catch (Exception err)
@@ -108,7 +108,7 @@ namespace WindowsLogViewer
     public class task
     {
 
-        public task(EventLogEntryCollection pList, AuditMachine pAuditMachine)
+        public task(EventLogEntryCollection pList, Filter pAuditMachine)
         {
 
             _List = pList;
@@ -121,8 +121,8 @@ namespace WindowsLogViewer
             get { return _List; }
 
         }
-        AuditMachine _AuditMachine;
-        public AuditMachine AuditMachine
+        Filter _AuditMachine;
+        public Filter AuditMachine
         {
             get { return _AuditMachine; }
 

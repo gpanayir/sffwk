@@ -14,105 +14,42 @@ namespace WindowsLogViewer
     public partial class frmFilter : XtraForm
     {
         bool _IsNew = true;
-        Filter _Filter;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Filter Filter
         {
             get
             {
-
-                if (_Filter == null)
-                    _Filter = new Filter();
-
-                if (!string.IsNullOrEmpty(txtCategory.Text))
-                    _Filter.EventLog.Category = txtCategory.Text;
-
-                if (!string.IsNullOrEmpty(txtUserName.Text))
-                    _Filter.EventLog.UserName = txtUserName.Text;
-                if (!string.IsNullOrEmpty(txtName.Text))
-                    _Filter.Name = txtName.Text;
-                if (!string.IsNullOrEmpty(txtMachineName.Text))
-                    _Filter.EventLog.MachineName = txtMachineName.Text;
-
-                if (!string.IsNullOrEmpty(txtAuditedPc.Text))
-                    _Filter.EventLog.AuditMachineName = txtAuditedPc.Text;
-
-                if (!string.IsNullOrEmpty(txtSource.Text))
-                    _Filter.EventLog.Source = txtSource.Text;
-
-                _Filter.EventLog.TimeWritten = dateTimePicker1.Value;
-
-                if (comboBox_Log.SelectedIndex != 0)
-                    _Filter.EventLog.WinLog = (WindowsLogsType)Enum.Parse(typeof(WindowsLogsType), comboBox_Log.Text); 
-
-                if (comboBox_EntryType.SelectedIndex != 0)
-                    _Filter.EventLog.EntryType = (EventLogEntryType)Enum.Parse(typeof(EventLogEntryType), comboBox_EntryType.Text);
-
-
-
-                return _Filter;
-
+                return ctrlFilter1.Filters[0];
             }
-            set { _Filter = value; }
+            set { ctrlFilter1.Filters[0] = value; }
         }
 
         public frmFilter()
         {
             InitializeComponent();
-       
-            comboBox_Log.SelectedIndex = 0;
-            comboBox_EntryType.SelectedIndex = 0;
         }
 
         public frmFilter(bool isNew)
         {
             InitializeComponent();
             _IsNew = isNew;
-            comboBox_Log.SelectedIndex = 0;
-            comboBox_EntryType.SelectedIndex = 0;
         }
 
         public void Populate(Filter pFilter)
         {
             if (pFilter == null) return;
-            _Filter = pFilter;
-            
-            txtName.Text = _Filter.Name;
-
-            if (!_IsNew)
-                txtName.Enabled = false;
-
-            txtUserName.Text = _Filter.EventLog.UserName;
-            txtMachineName.Text = _Filter.EventLog.MachineName;
-            txtAuditedPc.Text = _Filter.EventLog.AuditMachineName;
-            txtSource.Text = _Filter.EventLog.Source;
-            txtCategory.Text = _Filter.EventLog.Category;
-
-            if (_Filter.EventLog.TimeWritten != null)
-                dateTimePicker1.Value = _Filter.EventLog.TimeWritten.Value;
-
-            if (_Filter.EventLog.WinLog != null)
-                comboBox_Log.SelectedIndex = comboBox_Log.FindString(_Filter.EventLog.WinLog.Value.ToString());
-
-            if (_Filter.EventLog.EntryType != null)
-                comboBox_EntryType.SelectedIndex = comboBox_EntryType.FindString(_Filter.EventLog.EntryType.Value.ToString());
-
-
-
-
+            ctrlFilter1.Filters.Add( pFilter);
+            ctrlFilter1.Populate(pFilter);
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            
-
-            if (_IsNew && frmMain.UserProfile.Filters.Exists(p => p.Name.Equals(txtName.Text)))
+            if (_IsNew && frmMain.UserProfile.Filters.Exists(p => p.Id.Equals(ctrlFilter1.Filters[0])))
             {
-                MessageBox.Show("The filter named " + txtName.Text + " alredy existe in folter colection");
-                txtName.SelectAll();
-                txtName.Focus();
-                
-                
+                MessageBox.Show("The similar filter " + ctrlFilter1.Filters[0].Name + " alredy existe in tabs colection");
                 return;
             }
             this.Close();

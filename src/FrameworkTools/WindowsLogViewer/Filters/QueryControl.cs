@@ -49,8 +49,9 @@ namespace WindowsLogViewer
         public void Populate(Filter pFilter)
         {
             _Filter = pFilter;
-            eventLogBindingSource.DataSource = LogDAC.SearchByParam(_Filter.EventLog, null);
-
+            List<EventLog> list = LogDAC.SearchByParam(_Filter.EventLog, null);
+            eventLogBindingSource.DataSource = list;
+            lblStatus.Text = list.Count().ToString();
             gridControl1.RefreshDataSource();
             gridView1.RefreshData();
         }
@@ -63,6 +64,7 @@ namespace WindowsLogViewer
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Populate(_Filter);
+            
         }
 
         private void gridControl1_Click(object sender, EventArgs e)
