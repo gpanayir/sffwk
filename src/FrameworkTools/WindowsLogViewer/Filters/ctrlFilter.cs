@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Diagnostics;
+using Fwk.HelperFunctions;
 
 namespace WindowsLogViewer
 {
@@ -45,13 +46,10 @@ namespace WindowsLogViewer
         /// Este campo se utiliza cuando se quiere retornar un filtro solo, por mas que se allan 
         /// ingresado mas de un valor en uno de los campos. 
         /// </summary>
-        [Browsable(false)]
-        public Filter SingleFilter
+        public Filter GetSingleFilter()
         {
-            get
-            {
-                if (!DesignMode)
-                {
+           
+               
 
                     if (_Filter == null)
                         _Filter = new Filter();
@@ -78,17 +76,19 @@ namespace WindowsLogViewer
                     if (!string.IsNullOrEmpty(txtSource.Text))
                         _Filter.EventLog.Source = txtSource.Text;
 
+
                     if (!string.IsNullOrEmpty(txtEventId.Text))
-                        _Filter.EventLog.EventID = Convert.ToInt64(txtEventId.Text);
+                    {
+                        _Filter.EventLog.FillEventId(txtEventId.Lines);
+                    }
 
                     _Filter.EventLog.TimeWritten = dateTimePicker1.Value;
 
-                  
-                }
+
+                
                 return _Filter;
 
-            }
-            set { _Filter = value; }
+           
         }
 
         Filters _Filters;
@@ -142,7 +142,9 @@ namespace WindowsLogViewer
                 _Filter.EventLog.Source = txtSource.Text;
 
             if (!string.IsNullOrEmpty(txtEventId.Text))
-                _Filter.EventLog.EventID = Convert.ToInt64(txtEventId.Text);
+            {
+                _Filter.EventLog.FillEventId(txtEventId.Lines);
+            }
 
             _Filter.EventLog.TimeWritten = dateTimePicker1.Value;
 
@@ -179,6 +181,9 @@ namespace WindowsLogViewer
             txtSource.Text = _Filter.EventLog.Source;
             txtCategory.Text = _Filter.EventLog.Category;
 
+            if (_Filter.EventLog.EventID.Count > 0)
+                txtEventId.Lines = FormatFunctions.GetStringBuilderWhitSeparator<Int64>(_Filter.EventLog.EventID, '\n').ToString().Split('\n');
+           
             if (_Filter.EventLog.TimeWritten != null)
                 dateTimePicker1.Value = _Filter.EventLog.TimeWritten.Value;
 

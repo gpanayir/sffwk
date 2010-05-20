@@ -39,19 +39,19 @@ namespace WindowsLogViewer
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                   _Filter= frm.Filter;
+                   _Filter= frm.GetFilter();
                     Populate(_Filter);
                 }
             }
         }
 
-
+        List<EventLog> evenList;
         public void Populate(Filter pFilter)
         {
             _Filter = pFilter;
-            List<EventLog> list = LogDAC.SearchByParam(_Filter.EventLog, null);
-            eventLogBindingSource.DataSource = list;
-            lblStatus.Text = list.Count().ToString();
+            evenList = LogDAC.SearchByParam(_Filter.EventLog, null);
+            eventLogBindingSource.DataSource = evenList;
+            lblStatus.Text = evenList.Count().ToString();
             gridControl1.RefreshDataSource();
             gridView1.RefreshData();
         }
@@ -74,6 +74,23 @@ namespace WindowsLogViewer
             if(l!= null)
             {
                 MessageSelected(l, new EventArgs());
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+           
+            try
+            {
+                if (MessageBox.Show("Are you sure you wont to remove all logs from database ", "Windows event logs", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                    return;
+
+                   LogDAC.Delete(evenList);
+                Populate(_Filter);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

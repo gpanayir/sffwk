@@ -21,7 +21,7 @@ namespace WindowsLogViewer
         private bool started = false;
         public event EventHandler MessageSelected;
         public event EventHandler CloseEventLog;
-        //List<EventLog> _LogList = new List<EventLog>();
+       
         List<EventLogEntry> _LogList = new List<EventLogEntry>();
    
         [Browsable(false)]
@@ -83,8 +83,8 @@ namespace WindowsLogViewer
 
             // El filtro por los campos restantes esta implisito en  this.EventLogControl 
 
-            if (_AuditMachine.EventLog.EventID != null)
-                if (_AuditMachine.EventLog.EventID != pEntry.InstanceId) return false;
+            if (_AuditMachine.EventLog.EventID.Count > 0)
+                if (!_AuditMachine.EventLog.EventID.Contains<Int64>(pEntry.InstanceId)) return false;
 
             if (_AuditMachine.EventLog.EntryType != null)
                 if (_AuditMachine.EventLog.EntryType != pEntry.EntryType) return false;

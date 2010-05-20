@@ -156,7 +156,7 @@
             this.colEventID.FieldName = "EventID";
             this.colEventID.Name = "colEventID";
             this.colEventID.OptionsColumn.AllowEdit = false;
-            this.colEventID.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.False;
+            this.colEventID.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
             this.colEventID.OptionsColumn.ReadOnly = true;
             this.colEventID.Visible = true;
             this.colEventID.VisibleIndex = 8;
@@ -249,6 +249,7 @@
             this.btnClear.TabIndex = 20;
             this.btnClear.Text = "Remove from storage";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // label2
             // 

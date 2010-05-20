@@ -1,15 +1,18 @@
 USE [WindowsLogs]
 GO
-/****** Objeto:  StoredProcedure [dbo].[EventLog_sp]    Fecha de la secuencia de comandos: 05/18/2010 16:58:22 ******/
+/****** Objeto:  StoredProcedure [dbo].[EventLog_sp]    Fecha de la secuencia de comandos: 05/19/2010 12:32:34 ******/
 DROP PROCEDURE [dbo].[EventLog_sp]
 GO
-/****** Objeto:  Table [dbo].[EventLog]    Fecha de la secuencia de comandos: 05/18/2010 16:58:25 ******/
-DROP TABLE [dbo].[EventLog]
-GO
-/****** Objeto:  StoredProcedure [dbo].[EventLog_i]    Fecha de la secuencia de comandos: 05/18/2010 16:58:21 ******/
+/****** Objeto:  StoredProcedure [dbo].[EventLog_i]    Fecha de la secuencia de comandos: 05/19/2010 12:32:34 ******/
 DROP PROCEDURE [dbo].[EventLog_i]
 GO
-/****** Objeto:  StoredProcedure [dbo].[EventLog_sp]    Fecha de la secuencia de comandos: 05/18/2010 16:58:22 ******/
+/****** Objeto:  StoredProcedure [dbo].[EventLog_d]    Fecha de la secuencia de comandos: 05/19/2010 12:32:33 ******/
+DROP PROCEDURE [dbo].[EventLog_d]
+GO
+/****** Objeto:  Table [dbo].[EventLog]    Fecha de la secuencia de comandos: 05/19/2010 12:32:38 ******/
+DROP TABLE [dbo].[EventLog]
+GO
+/****** Objeto:  StoredProcedure [dbo].[EventLog_sp]    Fecha de la secuencia de comandos: 05/19/2010 12:32:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -25,15 +28,15 @@ GO
 	--
 	--------------------------------------------------------------------------------------------
 	CREATE PROCEDURE [dbo].[EventLog_sp]
-	@Category NVarChar(20)  = NULL,
-	@MachineName NVarChar(20)  = NULL,
-	@Source NVarChar(20)  = NULL,
+	@Category nvarchar(20)  = NULL,
+	@MachineName nvarchar(20)  = NULL,
+	@Source nvarchar(20)  = NULL,
 	@TimeGenerated DateTime  = NULL,
-	@UserName NVarChar(20) = NULL,
-	@EventLogEntryType NVarChar(12)  = NULL,
-	@Winlog NVarChar(12)  = NULL,
-	@AuditMachineName NVarChar(20) = NULL,
-	@EventId BIGINT = null
+	@UserName nvarchar(20) = NULL,
+	@EventLogEntryType nvarchar(12)  = NULL,
+	@Winlog nvarchar(12)  = NULL,
+	@AuditMachineName nvarchar(20) = NULL,
+	@EventId nvarchar(1000)  = null
 	AS
 	BEGIN
 	SET NOCOUNT ON
@@ -47,19 +50,19 @@ GO
 
 	SET @sql = N' SELECT * FROM EventLog  WHERE 1 = 1 '
 	
-	-- Category = TYPE NVarChar
+	-- Category = TYPE nvarchar
 	IF (@Category IS NOT NULL)
 	BEGIN
 	SET @sql = @sql + ' AND Category  LIKE  @Category '
 	END
 		
-	-- MachineName = TYPE NVarChar
+	-- MachineName = TYPE nvarchar
 	IF (@MachineName IS NOT NULL)
 	BEGIN
 	SET @sql = @sql + ' AND MachineName  LIKE  ''%'' + @MachineName + ''%'''
 	END
 	
-	-- Source = TYPE NVarChar
+	-- Source = TYPE nvarchar
 	IF (@Source IS NOT NULL)
 	BEGIN
 	SET @sql = @sql + ' AND Source  LIKE  ''%'' + @Source + ''%'''
@@ -72,25 +75,25 @@ GO
 	  SET @sql = @sql + ' AND (TimeGenerated >= @TimeGeneratedDesde AND TimeGenerated <= )' + CONVERT(DATETIME, CONVERT(VARCHAR(10), getdate(), 103), 103)
 	END
 	
-	-- UserName = TYPE NVarChar
+	-- UserName = TYPE nvarchar
 	IF (@UserName IS NOT NULL)
 	BEGIN
 	SET @sql = @sql + ' AND UserName  LIKE  ''%'' + @UserName + ''%'''
 	END
 	
-	-- EventLogEntryType = TYPE NVarChar
+	-- EventLogEntryType = TYPE nvarchar
 	IF (@EventLogEntryType IS NOT NULL)
 	BEGIN
 	SET @sql = @sql + ' AND EventLogEntryType  =   @EventLogEntryType '
 	END
 	
-	-- Winlog = TYPE NVarChar
+	-- Winlog = TYPE nvarchar
 	IF (@Winlog IS NOT NULL)
 	BEGIN
 	SET @sql = @sql + ' AND Winlog  =  @Winlog '
 	END
 	
-	
+
 
 	
 	-- AuditMachineName = TYPE NChar
@@ -101,21 +104,20 @@ GO
 	
 IF (@EventId IS NOT NULL)
 	BEGIN
-	SET @sql = @sql + ' AND EventId  =  @EventId '
+	SET @sql = @sql + ' AND EventId   IN (' + @EventId + ')'     
 	END
 
---SELECT  @sql
-
+--SELECT @sql 
 	SELECT @parametros = '	
-@Category NVarChar(20) ,
-@MachineName NVarChar(20) ,
-@Source NVarChar(20) ,
+@Category nvarchar(20) ,
+@MachineName nvarchar(20) ,
+@Source nvarchar(20) ,
 @TimeGenerated DateTime ,
-@UserName NVarChar(20)	,
-@EventLogEntryType NVarChar(12) ,
-@Winlog NVarChar(12) ,
-@AuditMachineName NVarChar(20),
-@EventId bigint '
+@UserName nvarchar(20)	,
+@EventLogEntryType nvarchar(12) ,
+@Winlog nvarchar(12) ,
+@AuditMachineName nvarchar(20),
+@EventId nvarchar(1000)  '
 
 	EXEC sp_executesql @sql, @parametros, 
 @Category, 
@@ -129,7 +131,7 @@ IF (@EventId IS NOT NULL)
 @EventId
 	END
 GO
-/****** Objeto:  Table [dbo].[EventLog]    Fecha de la secuencia de comandos: 05/18/2010 16:58:25 ******/
+/****** Objeto:  Table [dbo].[EventLog]    Fecha de la secuencia de comandos: 05/19/2010 12:32:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -145,10 +147,23 @@ CREATE TABLE [dbo].[EventLog](
 	[UserName] [nvarchar](20) NULL,
 	[EventLogEntryType] [nvarchar](12) NOT NULL,
 	[Winlog] [nvarchar](12) NOT NULL,
-	[AuditMachineName] [nvarchar](20) NOT NULL
+	[AuditMachineName] [nvarchar](12) NOT NULL,
+	[EventGuid] [uniqueidentifier] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Objeto:  StoredProcedure [dbo].[EventLog_i]    Fecha de la secuencia de comandos: 05/18/2010 16:58:21 ******/
+/****** Objeto:  StoredProcedure [dbo].[EventLog_d]    Fecha de la secuencia de comandos: 05/19/2010 12:32:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[EventLog_d]
+    
+    @EventGuid UNIQUEIDENTIFIER
+    AS
+    
+    DELETE FROM dbo.EventLog WHERE EventGuid = @EventGuid
+GO
+/****** Objeto:  StoredProcedure [dbo].[EventLog_i]    Fecha de la secuencia de comandos: 05/19/2010 12:32:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -160,7 +175,9 @@ GO
 	--------------------------------------------------------------------------------------------
 	CREATE PROCEDURE [dbo].[EventLog_i]
 	
-	(	@Message NVarChar(1000)= NULL,
+	(
+	@EventGuid AS UNIQUEIDENTIFIER,
+		@Message NVarChar(1000)= NULL,
 	 @EventID bigint = NULL,
 	 @Category NVarChar(20) = NULL,
 	 @MachineName NVarChar(20) = NULL,
@@ -170,7 +187,7 @@ GO
 	 @UserName NVarChar(20)= NULL,
 	 @EventLogEntryType NVarChar(12)= NULL,
 	 @Winlog NVarChar(12)= NULL,
-	 @AuditMachineName NVarChar(20)= NULL
+	 @AuditMachineName NVarChar(12)= NULL
 	)
 	
 	AS
@@ -181,7 +198,8 @@ GO
 	
 	INSERT INTO EventLog
 	(
-		[Message]
+		EventGuid
+		,[Message]
 		,EventID
 		,Category
 		,MachineName
@@ -191,10 +209,11 @@ GO
 		,UserName
 		,EventLogEntryType
 		,Winlog
-	,AuditMachineName
+		,AuditMachineName
 	)
 	VALUES
 	(
+		@EventGuid,
 		@Message,
 		@EventID,
 		@Category,

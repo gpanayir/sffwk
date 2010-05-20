@@ -25,8 +25,8 @@ namespace WindowsLogViewer
                 frm.Populate(null);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    frmMain.UserProfile.Filters.Add(frm.Filter);
-                    Add_FilterControl(frm.Filter);
+                    frmMain.UserProfile.Filters.Add(frm.GetFilter());
+                    Add_FilterControl(frm.GetFilter());
                 }
             }
         }

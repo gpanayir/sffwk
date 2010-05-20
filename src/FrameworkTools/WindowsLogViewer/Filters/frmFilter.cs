@@ -18,13 +18,13 @@ namespace WindowsLogViewer
         /// <summary>
         /// 
         /// </summary>
-        public Filter Filter
+        public Filter GetFilter()
         {
-            get
-            {
-                return ctrlFilter1.Filters[0];
-            }
-            set { ctrlFilter1.Filters[0] = value; }
+            
+                    return ctrlFilter1.GetSingleFilter();
+                
+            
+           
         }
 
         public frmFilter()

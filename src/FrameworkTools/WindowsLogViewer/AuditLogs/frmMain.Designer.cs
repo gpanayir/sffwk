@@ -31,9 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.eventLog1 = new System.Diagnostics.EventLog();
-            this.button1 = new System.Windows.Forms.Button();
             this.txtMsg = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.btnHistory = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
@@ -49,17 +47,6 @@
             this.eventLog1.Log = "Application";
             this.eventLog1.SynchronizingObject = this;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(719, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 27);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // txtMsg
             // 
             this.txtMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
@@ -69,17 +56,6 @@
             this.txtMsg.Name = "txtMsg";
             this.txtMsg.Size = new System.Drawing.Size(953, 115);
             this.txtMsg.TabIndex = 2;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(845, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 27);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // tabControl1
             // 
@@ -136,9 +112,7 @@
             this.Controls.Add(this.btnHistory);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.txtMsg);
-            this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.LookAndFeel.SkinName = "Blue";
             this.Name = "frmMain";
@@ -156,11 +130,10 @@
         #endregion
 
         private System.Diagnostics.EventLog eventLog1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn eventLogEntryTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource eventLogBindingSource;
         private System.Windows.Forms.TextBox txtMsg;
-        private System.Windows.Forms.Button button2;
+
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnHistory;

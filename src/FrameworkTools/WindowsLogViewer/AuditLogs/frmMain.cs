@@ -29,10 +29,7 @@ namespace WindowsLogViewer
 
       
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //LogDAC.Insert(_LogList, eventLog1.Log, eventLog1.MachineName);
-        }
+      
 
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -132,10 +129,7 @@ namespace WindowsLogViewer
             Fwk.HelperFunctions.FileFunctions.SaveTextFile("Profile.xml", UserProfile.GetXml(), false);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btnHistory_Click(object sender, EventArgs e)
         {

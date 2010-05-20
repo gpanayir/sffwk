@@ -63,14 +63,15 @@ namespace WindowsLogViewer
         }
 
 
-        EventLog _EventLog = new EventLog ();
+        EventLogFilter _EventLog = new EventLogFilter();
 
-        public EventLog EventLog
+        public EventLogFilter EventLog
         {
             get { return _EventLog; }
             set { _EventLog = value; }
         }
 
+       
         
 
     }
