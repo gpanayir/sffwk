@@ -26,14 +26,16 @@ namespace WindowsLogViewer
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(ctrlFilter1.Filters[0].EventLog.AuditMachineName))
+            ctrlFilter1.RefreshFilters();
+            if (ctrlFilter1.Filters == null) return;
+            if (ctrlFilter1.Filters.Count == 0)
             {
-                MessageBox.Show("Server name must not be empty ", "Windows event logs");
+                MessageBox.Show("El nombre del server no puede faltar ", "Windows event logs");
                 return;
             }
             if (ctrlFilter1.Filters[0].EventLog.WinLog == null)
             {
-                MessageBox.Show("Select log to audit", "Windows event logs");
+                MessageBox.Show("Seleccione un log para uditar.-", "Windows event logs");
                 return;
             }
             this.DialogResult =DialogResult.OK;

@@ -20,44 +20,46 @@ namespace WindowsLogViewer
         /// </summary>
         public Filter GetFilter()
         {
-            
-                    return ctrlFilter1.GetSingleFilter();
-                
+            return ctrlFilter1.GetSingleFilter();
+        }        
             
            
-        }
+        
 
         public frmFilter()
         {
             InitializeComponent();
         }
-
-        public frmFilter(bool isNew)
+        /// <summary>
+        /// Valido solo para edicion de filtro
+        /// </summary>
+        /// <param name="pFilter"></param>
+        public frmFilter(Filter pFilter)
         {
             InitializeComponent();
-            _IsNew = isNew;
+            if (pFilter == null) return;
+            ctrlFilter1.Populate(pFilter);
+            _IsNew = false;
         }
 
-        public void Populate(Filter pFilter)
-        {
-            if (pFilter == null) return;
-            ctrlFilter1.Filters.Add( pFilter);
-            ctrlFilter1.Populate(pFilter);
-        }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (_IsNew && frmMain.UserProfile.Filters.Exists(p => p.Id.Equals(ctrlFilter1.Filters[0])))
+            ctrlFilter1.RefreshSingleFilter();
+            Filter f = ctrlFilter1.GetSingleFilter();
+            if (f == null) return;
+            if (_IsNew && frmMain.UserProfile.Filters.Exists(p => p.Id.Equals(f.Id)))
             {
-                MessageBox.Show("The similar filter " + ctrlFilter1.Filters[0].Name + " alredy existe in tabs colection");
+                MessageBox.Show("The similar filter " + f.Name + " alredy existe in tabs colection");
                 return;
             }
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+          
         }
 
 

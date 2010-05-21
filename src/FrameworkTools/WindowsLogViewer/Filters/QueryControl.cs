@@ -30,16 +30,18 @@ namespace WindowsLogViewer
         {
 
         }
-
+        /// <summary>
+        /// Edicion del filtro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRefilter_Click(object sender, EventArgs e)
         {
-            using (frmFilter frm = new frmFilter(false))
+            using (frmFilter frm = new frmFilter(_Filter))
             {
-                frm.Populate(_Filter);
-
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                   _Filter= frm.GetFilter();
+                    Filter f = frm.GetFilter();
                     Populate(_Filter);
                 }
             }
@@ -54,6 +56,8 @@ namespace WindowsLogViewer
             lblStatus.Text = evenList.Count().ToString();
             gridControl1.RefreshDataSource();
             gridView1.RefreshData();
+
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)

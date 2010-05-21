@@ -67,7 +67,7 @@
             // ctrlFilter1
             // 
             this.ctrlFilter1.DateVisible = false;
-            this.ctrlFilter1.Filters = null;
+            
             this.ctrlFilter1.GroupUserVisible = true;
             this.ctrlFilter1.Location = new System.Drawing.Point(12, 12);
             this.ctrlFilter1.Name = "ctrlFilter1";

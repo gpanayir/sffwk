@@ -28,12 +28,12 @@ namespace WindowsLogViewer
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.lblDate = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox_EntryType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,12 +48,16 @@ namespace WindowsLogViewer
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtAuditedPc = new DevExpress.XtraEditors.MemoEdit();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.txtEventId = new DevExpress.XtraEditors.MemoEdit();
+            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuditedPc.Properties)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEventId.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label10
@@ -97,24 +101,17 @@ namespace WindowsLogViewer
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(211, 21);
             this.txtCategory.TabIndex = 10;
+            this.txtCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(113, 11);
+            this.dateTimePicker1.Checked = false;
+            this.dateTimePicker1.Enabled = false;
+            this.dateTimePicker1.Location = new System.Drawing.Point(113, 13);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(211, 21);
             this.dateTimePicker1.TabIndex = 4;
-            // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(18, 14);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(71, 18);
-            this.lblDate.TabIndex = 42;
-            this.lblDate.Text = "Start date";
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label5
             // 
@@ -161,6 +158,7 @@ namespace WindowsLogViewer
             this.txtSource.Name = "txtSource";
             this.txtSource.Size = new System.Drawing.Size(211, 21);
             this.txtSource.TabIndex = 9;
+            this.txtSource.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             // 
             // label3
             // 
@@ -181,6 +179,7 @@ namespace WindowsLogViewer
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(211, 21);
             this.txtUserName.TabIndex = 7;
+            this.txtUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             // 
             // label2
             // 
@@ -201,6 +200,7 @@ namespace WindowsLogViewer
             this.txtMachineName.Name = "txtMachineName";
             this.txtMachineName.Size = new System.Drawing.Size(211, 21);
             this.txtMachineName.TabIndex = 8;
+            this.txtMachineName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             // 
             // label1
             // 
@@ -266,25 +266,50 @@ namespace WindowsLogViewer
             this.txtAuditedPc.Name = "txtAuditedPc";
             this.txtAuditedPc.Size = new System.Drawing.Size(209, 49);
             this.txtAuditedPc.TabIndex = 0;
+            this.txtAuditedPc.ToolTip = "Lista de nombres de servers que contienen los log de eventos.- Ingrese uno debajo" +
+                " del otro , sin separadores";
+            this.txtAuditedPc.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
+            this.txtAuditedPc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.checkBox1);
             this.groupBox3.Controls.Add(this.txtEventId);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.dateTimePicker1);
-            this.groupBox3.Controls.Add(this.lblDate);
             this.groupBox3.Location = new System.Drawing.Point(3, 158);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(423, 86);
             this.groupBox3.TabIndex = 51;
             this.groupBox3.TabStop = false;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.checkBox1.Location = new System.Drawing.Point(15, 14);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(92, 22);
+            this.checkBox1.TabIndex = 49;
+            this.checkBox1.Text = "Start date";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // txtEventId
             // 
-            this.txtEventId.Location = new System.Drawing.Point(115, 39);
+            this.txtEventId.Location = new System.Drawing.Point(115, 41);
             this.txtEventId.Name = "txtEventId";
             this.txtEventId.Size = new System.Drawing.Size(209, 42);
             this.txtEventId.TabIndex = 47;
+            this.txtEventId.ToolTip = "Numeros de eventos, ingrese separados por enter loes numeros por los cual desea f" +
+                "iltrar.-";
+            this.txtEventId.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
+            this.txtEventId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
+            // 
+            // dxErrorProvider1
+            // 
+            this.dxErrorProvider1.ContainerControl = this;
             // 
             // ctrlFilter
             // 
@@ -304,6 +329,7 @@ namespace WindowsLogViewer
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEventId.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,7 +341,6 @@ namespace WindowsLogViewer
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCategory;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox_EntryType;
         private System.Windows.Forms.Label label4;
@@ -331,5 +356,8 @@ namespace WindowsLogViewer
         private System.Windows.Forms.GroupBox groupBox3;
         private DevExpress.XtraEditors.MemoEdit txtAuditedPc;
         private DevExpress.XtraEditors.MemoEdit txtEventId;
+        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider dxErrorProvider1;
+        private DevExpress.Utils.ToolTipController toolTipController1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

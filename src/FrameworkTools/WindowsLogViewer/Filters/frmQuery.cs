@@ -22,7 +22,7 @@ namespace WindowsLogViewer
         {
             using (frmFilter frm = new frmFilter())
             {
-                frm.Populate(null);
+               // frm.Populate(null);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     frmMain.UserProfile.Filters.Add(frm.GetFilter());

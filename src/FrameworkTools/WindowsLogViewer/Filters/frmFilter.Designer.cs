@@ -54,7 +54,6 @@
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Image = global::WindowsLogViewer.Properties.Resources.apply_16;
             this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -69,7 +68,6 @@
             // ctrlFilter1
             // 
             this.ctrlFilter1.DateVisible = true;
-            this.ctrlFilter1.Filters = null;
             this.ctrlFilter1.GroupUserVisible = true;
             this.ctrlFilter1.Location = new System.Drawing.Point(22, 22);
             this.ctrlFilter1.Name = "ctrlFilter1";
@@ -80,7 +78,6 @@
             // 
             // frmFilter
             // 
-            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;

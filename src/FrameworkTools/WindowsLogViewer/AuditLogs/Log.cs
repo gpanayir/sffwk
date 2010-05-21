@@ -277,7 +277,8 @@ namespace WindowsLogViewer
             if (!string.IsNullOrEmpty(_Source))
                 str.Append(string.Concat(_Source, ":"));
 
-
+            if (!string.IsNullOrEmpty(_Source))
+                str.Append(string.Concat(_TimeWritten, ":"));
            
             return str.ToString();
         }
@@ -505,6 +506,8 @@ namespace WindowsLogViewer
             if (!string.IsNullOrEmpty(_Source))
                 str.Append(string.Concat(" source:", _Source));
 
+            if (_TimeGenerated != null)
+                str.Append(string.Concat(string.Format("{0:dd-MM-yyy}", _TimeGenerated.Value), ":"));
 
 
 
@@ -541,8 +544,8 @@ namespace WindowsLogViewer
                 str.Append(string.Concat(_Source, ":"));
 
 
-            if (!string.IsNullOrEmpty(_Source))
-                str.Append(string.Concat(_Source, ":"));
+            if (_TimeGenerated != null)
+                str.Append(string.Concat(string.Format("{0:dd-MM-yyy}", _TimeGenerated.Value), ":"));
 
 
 

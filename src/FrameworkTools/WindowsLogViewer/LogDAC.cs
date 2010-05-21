@@ -214,7 +214,8 @@ namespace WindowsLogViewer
 
                 wDataBase.AddInParameter(wCmd, "Source", System.Data.DbType.String, pEventLog.Source);
 
-                wDataBase.AddInParameter(wCmd, "TimeGenerated", System.Data.DbType.DateTime, pEventLog.TimeGenerated);
+                if (pEventLog.TimeGenerated !=null)
+                wDataBase.AddInParameter(wCmd, "TimeGenerated", System.Data.DbType.DateTime, pEventLog.TimeGenerated.Value);
 
                 wDataBase.AddInParameter(wCmd, "UserName", System.Data.DbType.String, pEventLog.UserName);
 
