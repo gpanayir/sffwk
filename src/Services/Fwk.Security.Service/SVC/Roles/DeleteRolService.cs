@@ -1,17 +1,13 @@
-
-
 using System;
 using System.Data;
+using System.Collections.Generic;
+using System.Web.Security;
 using Fwk.Bases;
 using Fwk.Security.BE;
 using Fwk.Security;
 using Fwk.Security.ISVC.DeleteRole;
-using Fwk.Security;
 using Fwk.Exceptions;
 using Fwk.Security.Common;
-using System.Collections.Generic;
-using System.Web.Security;
-
 
 
 namespace Fwk.Security.SVC
@@ -42,6 +38,7 @@ namespace Fwk.Security.SVC
                 waspnet_Rule = new aspnet_Rule();
                 wRol = new Rol(pServiceRequest.BusinessData.RolName);
                 FwkMembership.RuleRemoveRol(wRol, rulesAux);
+                waspnet_Rule.name = rulesAux.Name;
                 waspnet_Rule.expression = rulesAux.Expression;
                 FwkMembership.UpdateRule(waspnet_Rule, pServiceRequest.SecurityProviderName);
             }

@@ -73,7 +73,7 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        static SqlMembershipProvider GetSqlMembershipProvider(string providerName)
+        public static SqlMembershipProvider GetSqlMembershipProvider(string providerName)
         {
             SqlMembershipProvider wSqlMembershipProvider;
 
@@ -100,7 +100,7 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        static string GetProvider_ConnectionStringName(string providerName)
+        public static string GetProvider_ConnectionStringName(string providerName)
         {
 
             //if (_SecuritySettings != null)

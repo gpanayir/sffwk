@@ -16,6 +16,8 @@ using System.Xml.Serialization;
 using System.Xml;
 using Fwk.Security.BE;
 using Fwk.Security.Common;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Fwk.Security.ISVC.CreateUsers
 {
@@ -28,55 +30,55 @@ namespace Fwk.Security.ISVC.CreateUsers
             this.ServiceName = "CreateUsersService";
         }
     }
+
     [XmlInclude(typeof(Param)), Serializable]
     public class Param : Entity
     {
-        #region [Private Members]
-        UsersBE _UsersBE;
+        private User _UsersBE;
         private RolList _RolList = new RolList();
-
-        private System.String _ApplicationName;
-
-
-        #endregion
+        private List<SqlParameter> _CustomParameters;
+        private String _CustomTableName;
+   
 
         #region [Properties]
 
-        #region [Username]
+        public String CustomTableName
+        {
+            get
+            {
+                return _CustomTableName;
+            }
+            set
+            {
+                _CustomTableName = value;
+            }
+        }
 
-        public UsersBE UsersBE
+        public User UsersBE
         {
             get { return _UsersBE; }
             set { _UsersBE = value; }
         }
-        #endregion
-
 
         public RolList RolList
         {
             get { return _RolList; }
             set { _RolList = value; }
         }
-
-
-        #region [ApplicationName]
-        public System.String ApplicationName
+        
+        public List<SqlParameter> CustomParameters
         {
             get
             {
-                return _ApplicationName;
+                return _CustomParameters;
             }
             set
             {
-                _ApplicationName = value;
+                _CustomParameters = value;
             }
         }
-        #endregion
-
 
         #endregion
-
-
 
     }
 
@@ -88,20 +90,11 @@ namespace Fwk.Security.ISVC.CreateUsers
     [XmlInclude(typeof(Result)), Serializable]
     public class Result : Entity
     {
-        private Int32 _NewUserId;
-
-
-		public Int32 NewUserId
-		{
-			get
-			{
-				return _NewUserId;
-			}
-			set
-			{
-				_NewUserId = value;
-			}
-		}
-    }
-    
+        private User _UsersBE;
+        public User UsersBE
+        {
+            get { return _UsersBE; }
+            set { _UsersBE = value; }
+        }
+    }    
 }

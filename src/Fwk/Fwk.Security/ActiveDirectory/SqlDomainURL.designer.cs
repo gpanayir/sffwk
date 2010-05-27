@@ -28,7 +28,7 @@ namespace Fwk.Security.ActiveDirectory
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
-    #region Extensibility Method Definitions
+    #region Extensibility Create Definitions
     partial void OnCreated();
     partial void InsertDomainsUrl(DomainsUrl instance);
     partial void UpdateDomainsUrl(DomainsUrl instance);
@@ -82,7 +82,7 @@ namespace Fwk.Security.ActiveDirectory
 		
 		private string _Pwd;
 		
-    #region Extensibility Method Definitions
+    #region Extensibility Create Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();

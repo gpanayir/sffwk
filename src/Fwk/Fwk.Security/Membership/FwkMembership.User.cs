@@ -46,7 +46,7 @@ namespace Fwk.Security
             //FwkIdentity wFwkIdentity = new FwkIdentity();
             MembershipCreateStatus status;
             //wProvider.CreateUser(userName, password, email, string.Empty, string.Empty, true, status);
-            FwkMembership.CreateUser(userName, password, email, string.Empty, string.Empty, true, out  status, providerName);
+            FwkMembership.CreateUser(userName, password, email, null, null, true, out  status, providerName);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Fwk.Security
             //TODO: Ver por que esta declaracion  FwkIdentity
             //FwkIdentity wFwkIdentity = new FwkIdentity();            
             MembershipCreateStatus s;
-            CreateUser(userName, password, string.Empty, string.Empty, string.Empty, true, out s, providerName);
+            CreateUser(userName, password, string.Empty, null, null, true, out s, providerName);
         }
 
 
@@ -85,13 +85,13 @@ namespace Fwk.Security
             string passwordQuestion,
             string passwordAnswer,
             Boolean isApproved,
-            out MembershipCreateStatus pStatus, 
+            out MembershipCreateStatus pStatus,
             string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
 
             User wUsuario = null;
-            MembershipUser newUser = wProvider.CreateUser(userName, password, email, passwordQuestion, passwordAnswer, isApproved,Guid.NewGuid(), out pStatus);
+            MembershipUser newUser = wProvider.CreateUser(userName, password, email, passwordQuestion, passwordAnswer, isApproved, Guid.NewGuid(), out pStatus);
 
             if (newUser != null)
                 wUsuario = new User(newUser);
@@ -117,25 +117,17 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void UpdateUser(User pFwkUser, string providerName)
         {
-
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-
-
-            MembershipUser wUser = wProvider.GetUser(pFwkUser.UserName, false);//Membership.GetUser(pFwkUser.UserName);
+            
+            MembershipUser wUser = wProvider.GetUser(pFwkUser.UserName, false);
 
             wUser.Comment = pFwkUser.Comment;
             wUser.Email = pFwkUser.Email;
             wUser.IsApproved = pFwkUser.IsApproved;
 
-            //Membership.UpdateUser(wUser);
-
             wProvider.UpdateUser(wUser);
-
-
         }
-
-
-
+        
         /// <summary>
         /// Actualiza informacion de un usuario. Incluso el nombre
         /// </summary>
@@ -149,7 +141,6 @@ namespace Fwk.Security
 
             try
             {
-
                 MembershipUser wUser = wProvider.GetUser(userName, false);
 
                 wUser.Comment = pFwkUser.Comment;
@@ -158,11 +149,10 @@ namespace Fwk.Security
 
                 wProvider.UpdateUser(wUser);
 
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
             ///Actualiza nombre de usuario
@@ -180,18 +170,13 @@ namespace Fwk.Security
                 str.Replace("[userName]", pFwkUser.UserName.ToLower());
 
                 wCmd.CommandType = CommandType.Text;
-
-
+                
                 wDataBase.ExecuteNonQuery(wCmd);
-
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
-
-
         }
 
         /// <summary>
@@ -220,9 +205,6 @@ namespace Fwk.Security
                     AddUsers(wUsersList, list);
                    
                 }
-                
-               
-
             }
 
             catch (Exception ex)
@@ -233,7 +215,8 @@ namespace Fwk.Security
             return wUsersList;
 
         }
-       static  void AddUsers(List<User> usersList, MembershipUserCollection pMembershipUserCollection)
+        
+        static  void AddUsers(List<User> usersList, MembershipUserCollection pMembershipUserCollection)
         {
             User wUserByApp;
             foreach (MembershipUser wMembershipUser in pMembershipUserCollection)
@@ -249,9 +232,8 @@ namespace Fwk.Security
         /// <param name="userName">Nombre del Usuario que se desea obtener</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
        /// <returns><see cref="User"/></returns>
-       public static User GetUser(String userName, string providerName)
+        public static User GetUser(String userName, string providerName)
        {
-
            MembershipUser wUser = GetMembershipUser(userName, providerName);
            // block the user
            if (wUser != null)
@@ -265,8 +247,6 @@ namespace Fwk.Security
                te.ErrorId = "4005";
                throw te;
            }
-
-
        }
 
         /// <summary>
@@ -279,6 +259,7 @@ namespace Fwk.Security
         {
             SqlMembershipProvider wRrovider = GetSqlMembershipProvider(providerName);
             MembershipUser wMembershipUser = wRrovider.GetUser(userName, false);
+            
             // block the user
             if (wMembershipUser != null)
             {
@@ -291,8 +272,6 @@ namespace Fwk.Security
                 te.ErrorId = "4005";
                 throw te;
             }
-
-
         }
 
         /// <summary>
@@ -346,12 +325,11 @@ namespace Fwk.Security
                 throw te;
             }
         }
-
-
+        
         /// <summary>
         /// Toma como entrada un nombre de usuario y actualiza el campo en el origen de datos que asigna a la propiedad 
         /// IsLockedOut el valor false. 
-        /// El método UnlockUser devuelve true si el registro para el usuario suscrito se actualiza correctamente; de lo contrario, false.
+        /// El método UnlockUser devuelve true si el registro para el usuario suscripto se actualiza correctamente; de lo contrario, false.
         /// </summary>
         /// <param name="userName">Nombre del usuario a desbloquear</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
@@ -375,9 +353,7 @@ namespace Fwk.Security
             }
 
         }
-
-
-
+        
         /// <summary>
         /// Resetea el Password de un usuario
         /// </summary>
@@ -484,6 +460,7 @@ namespace Fwk.Security
             return wUsersList;
 
         }
+        
         /// <summary>
         /// Asigna roles a un usuario
         /// </summary>
@@ -518,8 +495,7 @@ namespace Fwk.Security
             }
 
         }
-
-
+        
         /// <summary>
         /// Quita a un usuario de un rol
         /// </summary>
@@ -614,10 +590,9 @@ namespace Fwk.Security
             }
         }
 
-
-
-
-
+        
         #endregion
+
+       
     }
 }

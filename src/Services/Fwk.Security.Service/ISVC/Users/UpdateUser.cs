@@ -16,6 +16,7 @@ using System.Xml.Serialization;
 using System.Xml;
 using Fwk.Security.BE;
 using Fwk.Security.Common;
+using System.Data.SqlClient;
 
 namespace Fwk.Security.ISVC.UpdateUser
 {
@@ -28,72 +29,71 @@ namespace Fwk.Security.ISVC.UpdateUser
             this.ServiceName = "UpdateUserService";
         }
     }
+
+
     [XmlInclude(typeof(Param)), Serializable]
     public class Param : Entity
     {
-        bool _PasswordOnly = false;
+        bool _PasswordOnly = false;       
+        
+        ChangePassword _ChangePassword;                
+        User _UsersBE;
+        private RolList _RolList = new RolList();
+        
+        private String _CustomUserTable;
+        private List<SqlParameter> _CustomParameters;
 
-        public bool PasswordOnly
-        {
-            get { return _PasswordOnly; }
-            set { _PasswordOnly = value; }
-        }
-        #region [Private Members]
 
-        ChangePassword _ChangePassword;
+		public List<SqlParameter> CustomParameters
+		{
+			get
+			{
+				return _CustomParameters;
+			}
+			set
+			{
+				_CustomParameters = value;
+			}
+		}
+        
+		public String CustomUserTable
+		{
+			get
+			{
+				return _CustomUserTable;
+			}
+			set
+			{
+				_CustomUserTable = value;
+			}
+		}
 
         public ChangePassword ChangePassword
         {
             get { return _ChangePassword; }
             set { _ChangePassword = value; }
         }
-        UsersBE _UsersBE;
-        private RolList _RolList = new RolList();
-
-        private System.String _ApplicationName;
-
-
-        #endregion
-
-        #region [Properties]
-
-        #region [Username]
-
-        public UsersBE UsersBE
+        
+        public User UsersBE
         {
             get { return _UsersBE; }
             set { _UsersBE = value; }
         }
-        #endregion
-
 
         public RolList RolList
         {
             get { return _RolList; }
             set { _RolList = value; }
         }
-
-
-        #region [ApplicationName]
-        public System.String ApplicationName
+        
+        public bool PasswordOnly
         {
-            get
-            {
-                return _ApplicationName;
-            }
-            set
-            {
-                _ApplicationName = value;
-            }
-        }
-        #endregion
-
-
-        #endregion
-
-
-
+            get { return _PasswordOnly; }
+            set { _PasswordOnly = value; }
+        }                
     }
+
+
     [Serializable]
     public class UpdateUserRes : Response<Result>
     {
@@ -103,6 +103,7 @@ namespace Fwk.Security.ISVC.UpdateUser
     public class Result : Entity
     {
     }
+
     [Serializable]
     public class ChangePassword
     {

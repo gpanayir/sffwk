@@ -279,10 +279,10 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        public static List<FwkAuthorizationRuleAux> GetRulesAuxList(string providerName)
+        public static List<FwkAuthorizationRuleAux> GetRulesAuxList(string pProviderName)
         {
-            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            return GetRulesAuxList(wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(pProviderName);
+            return GetRulesAuxList(wProvider.ApplicationName, GetProvider_ConnectionStringName(pProviderName));
         }
         /// <summary>
         /// Retorna una lista de reglas de una determinada coneccion 
@@ -298,8 +298,11 @@ namespace Fwk.Security
             List<FwkAuthorizationRuleAux> wRules = null;
             try
             {
+               
+
                 Guid wApplicationId = GetApplication(applicationName, pConnectionStringName);
                 wRules = new List<FwkAuthorizationRuleAux>();
+
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pConnectionStringName].ConnectionString))
                 {
                     var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
@@ -344,7 +347,8 @@ namespace Fwk.Security
         /// <summary>
         /// Determina si existe una regla.-
         /// </summary>
-        /// <param name="pName">Nombre de la regla</param>
+        /// <param name="pRuleName">Nombre de la regla</param>
+        /// <param name="applicationName">Nombre de la aplicación</param>
         /// <param name="pConnectionStringName">Nombre de la regla</param>
         /// <returns>boolean</returns>
         public static bool ExistRule(string pRuleName, string applicationName, string pConnectionStringName)
@@ -368,7 +372,7 @@ namespace Fwk.Security
             {
                 TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingData_Error, pRuleName), ex);
                 te.ErrorId = "4004";
-                te.Source = "FwkMembership blok";
+                te.Source = "FwkMembership block";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 throw te;
             }

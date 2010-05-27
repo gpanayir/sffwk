@@ -12,18 +12,18 @@
 
 using System;
 using System.Data;
+using System.Web.Security;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+using Microsoft.Practices.EnterpriseLibrary.Security;
 using Fwk.Bases;
 using Fwk.Security.BE;
 using Fwk.Security;
-
 using Fwk.Security.ISVC.GetAuthorizationRules;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Fwk.Security;
-using System.Web.Security;
-using System.Collections.Generic;
-using Microsoft.Practices.EnterpriseLibrary.Security;
-using System.Collections;
-using System.Linq;
+
+
 
 namespace Fwk.Security.SVC
 {
@@ -35,7 +35,7 @@ namespace Fwk.Security.SVC
             GetAuthorizationRulesRes wRes = new GetAuthorizationRulesRes();
 
 
-            List<FwkAuthorizationRuleAux> rules = FwkMembership.GetRulesAuxList(Membership.ApplicationName, pServiceRequest.SecurityProviderName);
+            List<FwkAuthorizationRuleAux> rules = FwkMembership.GetRulesAuxList(pServiceRequest.SecurityProviderName);
 
 
 

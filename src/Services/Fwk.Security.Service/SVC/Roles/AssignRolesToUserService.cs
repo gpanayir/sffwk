@@ -1,16 +1,12 @@
 using System;
 using System.Data;
+using System.Web.Security;
+using System.Security.Principal;
 using Fwk.Bases;
 using Fwk.Security.BE;
 using Fwk.Security;
-
 using Fwk.Security.ISVC.AssignRolesToUser;
-
-
-using System.Web.Security;
-using System.Security.Principal;
 using Fwk.Security.Common;
-using Fwk.Security;
 using Fwk.Security.BC;
 
 

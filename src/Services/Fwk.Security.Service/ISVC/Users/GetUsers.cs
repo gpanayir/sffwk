@@ -4,39 +4,51 @@
         using Fwk.Bases;
         using System.Xml.Serialization;
 using Fwk.Security.BE;
+using System.Data;
+using System.Data.SqlClient;
+using Fwk.Security.Common;
 
 namespace Fwk.Security.ISVC.GetUser
 {
 
     [Serializable]
     public class GetUserReq : Request<Param>
-    {
-          
+    {          
         public GetUserReq()
         {
             this.ServiceName = "GetUserService";
         }
     }
+
     [XmlInclude(typeof(Param)), Serializable]
     public class Param : Entity
     {
-        private System.String _Username;
-
-        #region [Username]
+        private System.String _Username;        
+        private List<SqlParameter> _CustomParameters;
+        private String _CustomStoredProcedure;
 
         public System.String Username
         {
             get { return _Username; }
             set { _Username = value; }
         }
-        #endregion
 
-        string _AppName;
-
-        public string ApplicationName
+        public String CustomStoredProcedure
         {
-            get { return _AppName; }
-            set { _AppName = value; }
+            get { return _CustomStoredProcedure; }
+            set { _CustomStoredProcedure = value; }
+        }
+
+        public List<SqlParameter> CustomParameters
+        {
+            get
+            {
+                return _CustomParameters;
+            }
+            set
+            {
+                _CustomParameters = value;
+            }
         }
     }
 
@@ -45,19 +57,32 @@ namespace Fwk.Security.ISVC.GetUser
     {
 
     }
+
     [XmlInclude(typeof(Result)), Serializable]
     public class Result : Entity
     {
-        Fwk.Security.Common.User _User;
+        User _User;
+        private DataSet _CustomUser;
 
-        public Fwk.Security.Common.User User
+
+		public DataSet CustomUser
+		{
+			get
+			{
+				return _CustomUser;
+			}
+			set
+			{
+				_CustomUser = value;
+			}
+		}
+
+        public User User
         {
             get { return _User; }
             set { _User = value; }
         }
     }
-
-
     
 }
          

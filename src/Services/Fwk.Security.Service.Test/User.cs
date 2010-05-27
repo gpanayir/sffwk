@@ -16,16 +16,15 @@ using Fwk.Security.ISVC.GetAllUsers;
 using Fwk.Security.BE;
 using Fwk.Security.ISVC.GetUserInfoByName;
 
-using Fwk.Security.ISVC.UserAdditionalAttributesValues_Exist_ByUserAttributeId;
-using Fwk.Security.ISVC.GetUserAdditionalAttributesValues;
-using Fwk.Security.ISVC.SaveUserAdditionalAttributesValues;
-using Fwk.Security.ISVC.UpdateUserAdditionalAttributesValues;
+
+
 using Fwk.Security.ISVC.UpdateUser;
 using Fwk.Security.ISVC.SearchDomainsUrls;
 
 using Fwk.HelperFunctions;
-using Fwk.Security.ISVC.GetAllActiveUsersInfo;
+
 using Fwk.Security.SVC;
+using Fwk.Security.Common;
 
 namespace ServiceTest
 {
@@ -33,7 +32,7 @@ namespace ServiceTest
     /// Summary description for UnitTest1
     /// </summary>
     [TestClass]
-    public class User
+    public class UserTest
     {
         TransactionScopeHandler _Tx;
         string _StrExceptionMessage = String.Empty;
@@ -41,8 +40,8 @@ namespace ServiceTest
 
         private TestContext testContextInstance;
         ClientServiceBase _ClientServiceBase = null;
-    
-        public User()
+
+        public UserTest()
         {
             _ClientServiceBase = new ClientServiceBase();
 
@@ -88,30 +87,7 @@ namespace ServiceTest
         //
         #endregion
 
-        [TestMethod]
-        public void GetAllActiveUsersInfo()
-        {
-            string strErrorResult = string.Empty;
-
-            try
-            {
-                
-                GetAllActiveUsersInfoService service =
-                   new GetAllActiveUsersInfoService();
-
-                GetAllActiveUsersInfoRequest request =new GetAllActiveUsersInfoRequest();
-
-                GetAllActiveUsersInfoResponse response = new GetAllActiveUsersInfoResponse();
-
-                response = service.Execute(request);
-            }
-            catch (Exception ex)
-            {
-                strErrorResult = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-            }
-
-            Assert.AreEqual<String>(strErrorResult, string.Empty, strErrorResult);
-        }
+ 
 
         [TestMethod]
         public void GetAllUserInfoByName()
@@ -148,7 +124,7 @@ namespace ServiceTest
 
             GetAllUsersReq req = new GetAllUsersReq();
 
-            req.BusinessData.ApplicationName = "xx";
+            
             try
             {
           
@@ -360,12 +336,12 @@ namespace ServiceTest
              _Tx.InitScope();
            
             string wszRandom = GenerarCadenaAleatoria(6);// Para generar un nombre de manera aleatoria
-            UsersBE wUserBe = new UsersBE();
-            wUserBe.Name = wszRandom;
+            User wUserBe = new User();
+            wUserBe.UserName = wszRandom;
             wUserBe.FirstName = "Juan";
             wUserBe.LastName = "Guastini";
             wUserBe.Password = "asd";
-            wUserBe.Mail = "ads@asd.com";
+            wUserBe.Email = "ads@asd.com";
             //wUserBe.PasswordQuestion = "asd";
             //wUserBe.Answer = "asd";
             wUserBe.IsApproved = true;
@@ -384,107 +360,6 @@ namespace ServiceTest
 
         }
 
-        [TestMethod()]
-        public void GetUnassignedUsersByParam()
-        {
-            Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamRequest req = new Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamRequest();
-
-
-            req.BusinessData.LastName = "mono";
-            req.BusinessData.FirstName = "mono";
-            req.BusinessData.Name = "mono";
-            req.BusinessData.SearchtypeName = Fwk.Bases.Enums.SearchtypeEnum.Contain;
-
-            Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamResponse res = _ClientServiceBase.ExecuteService<Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamRequest,
-                Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamResponse>(req);
-        
-        }
-
-        [TestMethod()]
-        public void GetUserAdditionalAttributes_ByParam()
-        {
-            Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamRequest req = new Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamRequest();
-
-
-            req.BusinessData.ActiveFlag = true;
-
-
-            Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamResponse res = _ClientServiceBase.ExecuteService<Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamRequest,
-                Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamResponse>(req);
-
-            if (res.Error != null)
-                res.GetXml();
-        }
-
-        [TestMethod()]
-        public void GetUserAdditionalAttributesValues_Exist_ByUserAttributesId()
-        {
-            UserAdditionalAttributesValues_Exist_ByUserAttributeIdRequest req = new UserAdditionalAttributesValues_Exist_ByUserAttributeIdRequest();
-
-
-            req.BusinessData.UserAttributeId = 1;
-
-
-            UserAdditionalAttributesValues_Exist_ByUserAttributeIdResponse res = _ClientServiceBase.ExecuteService<UserAdditionalAttributesValues_Exist_ByUserAttributeIdRequest,
-            UserAdditionalAttributesValues_Exist_ByUserAttributeIdResponse>(req);
-
-            ///TODO: Ver si realiza unit test
-            if (req.Error != null)
-                res.GetXml();
-        }
-
-        [TestMethod()]
-        public void GetUserAdditionalAttributesValues()
-        {
-            GetUserAdditionalAttributesValues_ByParamRequest req = new GetUserAdditionalAttributesValues_ByParamRequest();
-
-            req.BusinessData.UserId = 132;
-            
-            
-            GetUserAdditionalAttributesValues_ByParamResponse res = _ClientServiceBase.ExecuteService<GetUserAdditionalAttributesValues_ByParamRequest,
-            GetUserAdditionalAttributesValues_ByParamResponse>(req);
-            ///TODO: Ver si realiza unit test
-            if (res.Error != null)
-                res.GetXml();
-        }
-        
-        [TestMethod()]
-        public void SaveUserAdditionalAttributesValues()
-        {
-            SaveUserAdditionalAttributesValuesRequest req = new SaveUserAdditionalAttributesValuesRequest();
-
-            req.BusinessData.AdditionalAttributesValues = new UserAdditionalAttributesValuesBEList();
-            req.BusinessData.AdditionalAttributesValues.Add(new UserAdditionalAttributesValuesBE());
-            req.BusinessData.AdditionalAttributesValues[0].UserId = 132;
-            req.BusinessData.AdditionalAttributesValues[0].Value = "Casado";
-            req.BusinessData.AdditionalAttributesValues[0].UserAttributeId = 71;
-
-
-            SaveUserAdditionalAttributesValuesResponse res = _ClientServiceBase.ExecuteService<SaveUserAdditionalAttributesValuesRequest,
-            SaveUserAdditionalAttributesValuesResponse>(req);
-            ///TODO: Ver si realiza unit test
-            if (res.Error != null)
-                res.GetXml();
-        }
-
-        [TestMethod()]
-        public void UpdateUserAdditionalAttributesValues()
-        {
-            UpdateUserAdditionalAttributesValuesRequest req = new UpdateUserAdditionalAttributesValuesRequest();
-
-            req.BusinessData.AdditionalAttributesValues = new UserAdditionalAttributesValuesBEList();
-            req.BusinessData.AdditionalAttributesValues.Add(new UserAdditionalAttributesValuesBE());
-            req.BusinessData.AdditionalAttributesValues[0].UserId = 132;
-            req.BusinessData.AdditionalAttributesValues[0].Value = "soltero";
-            req.BusinessData.AdditionalAttributesValues[0].UserAttributeId = 71;
-
-
-            UpdateUserAdditionalAttributesValuesResponse res = _ClientServiceBase.ExecuteService<UpdateUserAdditionalAttributesValuesRequest,
-            UpdateUserAdditionalAttributesValuesResponse>(req);
-            ///TODO: Ver si realiza unit test
-            if (res.Error != null)
-                res.GetXml();
-        }
 
         [TestMethod()]
         public void UpdateUser_NO_Service()
@@ -502,8 +377,8 @@ namespace ServiceTest
             req.BusinessData.ChangePassword = new ChangePassword();
             req.BusinessData.ChangePassword.New = "11111";
             req.BusinessData.ChangePassword.Old = "66666";
-            req.BusinessData.UsersBE = new UsersBE();
-            req.BusinessData.UsersBE.Name = "psoliz";
+            req.BusinessData.UsersBE = new User("psoliz");
+            
 
             req.BusinessData.PasswordOnly = true;
 

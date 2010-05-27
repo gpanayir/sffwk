@@ -763,11 +763,12 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// Busca la lista de dominios en una base de datos
         /// </summary>
-        /// <param name="cnnStringName">Nombre de la cadena de coneccion configurada</param>
+        /// <param name="cnnStringName">Nombre del Security Provider</param>
         /// <returns>Lista de DomainsUrl</returns>
-        public static List<DomainUrlInfo> DomainsUrl_GetList(string cnnStringName)
+        public static List<DomainUrlInfo> DomainsUrl_GetList(string pProviderName)
         {
-            return DomainsUrl_GetList2(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString);
+            String wConnectionStringName = FwkMembership.GetProvider_ConnectionStringName(pProviderName);
+            return DomainsUrl_GetList2(System.Configuration.ConfigurationManager.ConnectionStrings[wConnectionStringName].ConnectionString);
         }
         /// <summary>
         /// Busca la lista de dominios en una base de datos.- A diferencia de DomainsUrl_GetList. Este metodo recive como parametro 

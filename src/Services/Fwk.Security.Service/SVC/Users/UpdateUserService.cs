@@ -18,14 +18,13 @@ namespace Fwk.Security.SVC
             UpdateUserRes wRes = new UpdateUserRes();
             UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
             if (pServiceRequest.BusinessData.ChangePassword != null)
-            {
-                wUserBC.ChangePassword(pServiceRequest.BusinessData.UsersBE.Name, pServiceRequest.BusinessData.ChangePassword.Old, pServiceRequest.BusinessData.ChangePassword.New);
+            {                
+                wUserBC.ChangePassword(pServiceRequest.BusinessData.UsersBE.UserName, pServiceRequest.BusinessData.ChangePassword.Old, pServiceRequest.BusinessData.ChangePassword.New);
             }
-            //Si solo se actualiza la password
-            if (!pServiceRequest.BusinessData.PasswordOnly )
+            //Si NO actualiza solo la password
+            if (!pServiceRequest.BusinessData.PasswordOnly)
             {
-
-                wUserBC.Update(pServiceRequest.BusinessData.UsersBE, pServiceRequest.BusinessData.RolList);
+                wUserBC.Update(pServiceRequest.BusinessData.UsersBE, pServiceRequest.BusinessData.CustomParameters, pServiceRequest.BusinessData.RolList, pServiceRequest.BusinessData.CustomUserTable);                
             }
 
             return wRes;

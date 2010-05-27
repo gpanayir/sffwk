@@ -252,7 +252,7 @@ namespace Fwk.HelperFunctions
                 {
                     string val = Fwk.HelperFunctions.ReflectionFunctions.GetPropertieValue(t, propertieName);
                     strIn.Append(val);
-                    strIn.Append(",");
+                    strIn.Append(separator);
                 }
             }
             if (strIn.Length > 0)
@@ -278,7 +278,7 @@ namespace Fwk.HelperFunctions
                 {
                     string val = Convert.ToString(t);
                     strIn.Append(val);
-                    strIn.Append(",");
+                    strIn.Append(separator);
                 }
             }
             if (strIn.Length > 0)
@@ -303,7 +303,7 @@ namespace Fwk.HelperFunctions
                 {
                     int val = (int)t;
                     strIn.Append(val);
-                    strIn.Append(",");
+                    strIn.Append(separator);
                 }
             }
             if (strIn.Length > 0)

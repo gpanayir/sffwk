@@ -19,753 +19,232 @@ using System.Text;
 using Fwk.Bases;
 using Fwk.Security.BE;
 using Fwk.Exceptions;
+using Fwk.Security;
 using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using Unassigned = Fwk.Security.ISVC.GetUnassignedUsersByParam;
+//using Unassigned = Fwk.Security.ISVC.GetUnassignedUsersByParam;
+using System.Web.Security;
+using Fwk.Security.Common;
 
 namespace Fwk.Security.DAC
 {
     /// <summary>
-    /// TableDataGateway para Usuarios.
+    /// Clase DAC para Usuarios.
     /// </summary>
     /// <Date>2008-12-03T14:54</Date>
-    /// <Author>sbiglia</Author>
+    /// <Author>FWK</Author>
     public class UsersDAC : Fwk.Bases.BaseDAC
     {
-        #region [CRUD]
-        public static void Create(UsersBE pUserBE, string pCompanyId)
+        #region [Alta, Baja, Modificación]
+
+        public static void Create(User pUser, List<SqlParameter> pCustomParametersToInsert,
+                                  String pProviderName, String pCustomUserTable)
         {
+            String wConnectionString = FwkMembership.GetProvider_ConnectionStringName(pProviderName);
 
-            Database database = null;
-            DbCommand cmd = null;
-
-
-            try
+            // Se inserta en la Tabla Custom
+            // El usuario custom debe tomar de la tabla membership el GUID para su usuario.
+            using (SqlConnection wCnn = new SqlConnection(wConnectionString))
+            using (SqlCommand wCmd = new SqlCommand(pCustomUserTable + "_i", wCnn))
             {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.User_i");
+                try
+                {
+                    wCmd.CommandType = CommandType.StoredProcedure;
 
-                //In Parameters
-                database.AddInParameter(cmd, "Name", DbType.String, pUserBE.Name);
-                database.AddInParameter(cmd, "ActiveFlag", DbType.Boolean, true); //Se le est� pasando true pq el usuario se crea siempre activo.
-                database.AddInParameter(cmd, "FirstName", DbType.String, pUserBE.FirstName);
-                database.AddInParameter(cmd, "LastName", DbType.String, pUserBE.LastName);
-                database.AddInParameter(cmd, "ModifiedByUserId", DbType.Int32, pUserBE.ModifiedByUserId);
-                database.AddInParameter(cmd, "ModifiedDate", DbType.DateTime, pUserBE.ModifiedDate);
+                    if (pCustomParametersToInsert != null)
+                    {
+                        if (pCustomParametersToInsert.Count != 0)
+                        {
+                            wCmd.Parameters.AddRange(pCustomParametersToInsert.ToArray());
 
-                database.AddInParameter(cmd, "DNI", DbType.String, pUserBE.DNI);
-                database.AddInParameter(cmd, "MustChangePassword", DbType.Boolean, pUserBE.MustChangePassword);
-         
-                //Out Parameters
-                database.AddOutParameter(cmd, "NewUserId", DbType.Int32, 4);
-
-
-
-                database.ExecuteNonQuery(cmd);
-
-                pUserBE.UserId = Convert.ToInt32(database.GetParameterValue(cmd, "NewUserId"));
-
-
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-            }
-
-
-
-
-        }
-
-
-        public static void Update(UsersBE pUserBE, string pCompanyId)
-        {
-            Database database = null;
-            DbCommand cmd = null;
-
-
-
-            try
-            {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.User_u");
-                database.AddInParameter(cmd, "UserId", DbType.Int32, pUserBE.UserId);
-                //In Parameters
-                if (!string.IsNullOrEmpty(pUserBE.Name))
-                    database.AddInParameter(cmd, "Name", DbType.String, pUserBE.Name);
-                database.AddInParameter(cmd, "ModifiedByUserId", DbType.Int32, pUserBE.ModifiedByUserId);
-                database.AddInParameter(cmd, "ModifiedDate", DbType.DateTime, pUserBE.ModifiedDate);
-                database.AddInParameter(cmd, "ActiveFlag", DbType.Boolean, pUserBE.ActiveFlag);
-
-                if (!string.IsNullOrEmpty(pUserBE.FirstName))
-                    database.AddInParameter(cmd, "FirstName", DbType.String, pUserBE.FirstName);
-                if (!string.IsNullOrEmpty(pUserBE.LastName))
-                    database.AddInParameter(cmd, "LastName", DbType.String, pUserBE.LastName);
-                if (!string.IsNullOrEmpty(pUserBE.DNI))
-                    database.AddInParameter(cmd, "DNI", DbType.String, pUserBE.DNI);
-                database.AddInParameter(cmd, "MustChangePassword", DbType.Boolean, pUserBE.MustChangePassword);
-                database.ExecuteNonQuery(cmd);
-
-
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                            wCnn.Open();
+                            wCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                }
             }
         }
 
-        public static void Delete(UsersBE pUserBE, string pCompanyId)
+        public static void Update(User pUserBE, List<SqlParameter> pCustomParametersToUpdate,
+                                  String pProviderName, String pCustomUserTable)
         {
-            Database wDataBase = null;
-            DbCommand wCmd = null;
+            String wConnectionString = FwkMembership.GetProvider_ConnectionStringName(pProviderName);
 
-            try
+            // Se actualiza en la Tabla Custom
+            
+            using (SqlConnection wCnn = new SqlConnection(wConnectionString))
+            using (SqlCommand wCmd = new SqlCommand(pCustomUserTable + "_u", wCnn))
             {
-                wDataBase = DatabaseFactory.CreateDatabase(pCompanyId);
-                wCmd = wDataBase.GetStoredProcCommand("Security.Users_d");
-                wDataBase.AddInParameter(wCmd, "UserId", DbType.Int32, pUserBE.UserId);
+                try
+                {
+                    wCmd.CommandType = CommandType.StoredProcedure;
 
-                wDataBase.ExecuteNonQuery(wCmd);
+                    if (pCustomParametersToUpdate != null)
+                    {
+                        if (pCustomParametersToUpdate.Count != 0)
+                        {
+                            wCmd.Parameters.AddRange(pCustomParametersToUpdate.ToArray());
 
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                            wCnn.Open();
+                            wCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                }
             }
         }
+
         /// <summary>
-        /// Activa o Desactive un Usuario
+        /// Elimina un usuario segun los parametros customizados
         /// </summary>
-        /// <param name="pUserName">Nombre del Usuario</param>
-        /// <param name="pUserApprove">Activar o no Activar</param>
-        internal static void ActiveFlag(string pUserName, bool pIsActive, string pCompanyId)
+        /// <param name="pUserBE">Usuario a eliminar</param>
+        /// <param name="pCustomParameters">Parametros custoizados por los que se borrara al usuario de la tabla custom</param>
+        /// <param name="pProviderName">Nombre del provider</param>
+        /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
+        public static void Delete(User pUserBE, List<SqlParameter> pCustomParameters,
+                                  String pProviderName, String pCustomUserTable)
         {
-            Database wDataBase = null;
-            DbCommand wCmd = null;
-
-            try
+            String wConnectionString = FwkMembership.GetProvider_ConnectionStringName(pProviderName);
+                       
+            
+            using (SqlConnection wCnn = new SqlConnection(wConnectionString))
+            using (SqlCommand wCmd = new SqlCommand(pCustomUserTable + "_d", wCnn))
             {
-                wDataBase = DatabaseFactory.CreateDatabase(pCompanyId);
-                wCmd = wDataBase.GetStoredProcCommand("Security.Users_d");
-                wDataBase.AddInParameter(wCmd, "Name", DbType.String, pUserName);
-                wDataBase.AddInParameter(wCmd, "ActiveFlag", DbType.Boolean, pIsActive);
+                try
+                {
+                    wCmd.CommandType = CommandType.StoredProcedure;
 
-                wDataBase.ExecuteNonQuery(wCmd);
+                    if (pCustomParameters != null)
+                    {
+                        if (pCustomParameters.Count != 0)
+                        {
+                            wCmd.Parameters.AddRange(pCustomParameters.ToArray());
 
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                            wCnn.Open();
+                            wCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                }
             }
         }
+
         #endregion
 
         #region [Search]
-
-        public static UsersBE GetById(int pUserId, string pCompanyId)
+      
+        /// <summary>
+        /// Metodo para Search
+        /// </summary>
+        /// <param name="pUsersBE"></param>
+        /// <param name="pProviderName"></param>
+        /// <param name="pCustomParameters"></param>
+        /// <param name="pCustomUserStoreProcedure"></param>
+        /// <returns></returns>
+        public static DataSet SearchByParams(String pProviderName,
+                                             List<SqlParameter> pCustomParameters, String pCustomUserStoreProcedure)
         {
-            Database database = null;
-            DbCommand cmd = null;
-            UsersBE userBE = null;
-
+            Database wDatabase = null;
+            DbCommand wCmd = null;
+            DataSet wDSResult = null;
 
             try
             {
+                String wConnectionString = FwkMembership.GetProvider_ConnectionStringName(pProviderName);
 
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.SearchUserById");
-                database.AddInParameter(cmd, "SearchUserId", DbType.Int32, pUserId);
-                using (IDataReader reader = database.ExecuteReader(cmd))
-                {
+                wDatabase = DatabaseFactory.CreateDatabase(wConnectionString);
+                wCmd = wDatabase.GetStoredProcCommand(pCustomUserStoreProcedure);
+                wCmd.Parameters.AddRange(pCustomParameters.ToArray());
 
-                    while (reader.Read())
-                    {
+                wDSResult = wDatabase.ExecuteDataSet(wCmd);
 
-                        userBE = new UsersBE();
-                        userBE.Name = reader["Name"].ToString();
-                        userBE.LastName = reader["LastName"].ToString();
-                        userBE.FirstName = reader["FirstName"].ToString();
-                        userBE.Mail = reader["Email"].ToString();
-                        userBE.IsApproved = Convert.ToBoolean(reader["IsApproved"]);
-                        userBE.IsLockedOut = Convert.ToBoolean(reader["IsLockedOut"]);
-                        userBE.UserId = pUserId;
-                        userBE.ActiveFlag = Convert.ToBoolean(reader["ActiveFlag"]);
-                        userBE.ModifiedByUserId = Convert.ToInt32(reader["ModifiedByUserId"]);
-                        userBE.ModifiedDate = Convert.ToDateTime(reader["ModifiedDate"]);
-                        if (reader["DNI"] != DBNull.Value)
-                            userBE.DNI = reader["DNI"].ToString();
-                        userBE.MustChangePassword = Convert.ToBoolean(reader["MustChangePassword"]);
-                        
-                        userBE.Name = Convert.ToString(reader["Name"]);
-                    }
-                }
-
+                return wDSResult;
             }
             catch (Exception ex)
             {
                 throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
             }
+        }
+        
+        #endregion
 
-            return userBE;
+        #region [GET]
 
+        /// <summary>
+        /// Obtiene un usuario segun los parametros
+        /// </summary>
+        /// <param name="pProviderName">Nombre del proveedor de seguridad</param>
+        /// <param name="pCustomParameters"></param>
+        /// <param name="pCustomUserStoreProcedure"></param>
+        /// <returns></returns>
+        public static DataSet GetUser(String pProviderName,List<SqlParameter> pCustomParameters, String pCustomUserStoreProcedure)
+        {
+            Database wDatabase = null;
+            DbCommand wCmd = null;
+            DataSet wDSResult = null;
+            String wConnectionString = String.Empty;
+
+            try
+            {
+                wConnectionString = FwkMembership.GetProvider_ConnectionStringName(pProviderName);
+
+                wDatabase = DatabaseFactory.CreateDatabase(wConnectionString);
+                wCmd = wDatabase.GetStoredProcCommand(pCustomUserStoreProcedure);
+                wCmd.Parameters.AddRange(pCustomParameters.ToArray());
+
+                wDSResult = wDatabase.ExecuteDataSet(wCmd);
+
+                                
+                return wDSResult;
+            }
+            catch (Exception ex)
+            {
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+            }
         }
 
-        public static UsersBE GetByName(string pUserName, string pCompanyId)
+        /// <summary>
+        /// Obtiene todos los usuarios Custom
+        /// </summary>
+        /// <param name="pProviderName">Nombre del proveedor de seguridad</param>
+        /// <param name="pCustomUserStoreProcedure">Nombre del Store procedure que se debe ejecutar</param>
+        /// <returns></returns>
+        public static DataSet GetAllUsers(String pProviderName,String pCustomUserStoreProcedure)
         {
-            Database database = null;
-            DbCommand cmd = null;
-            UsersBE userBE = null;
-
+            Database wDatabase = null;
+            DbCommand wCmd = null;
+            DataSet wDSResult = null;
+            String wConnectionString = String.Empty;
 
             try
             {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.User_g_Name");
+                wConnectionString = FwkMembership.GetProvider_ConnectionStringName(pProviderName);
 
-                database.AddInParameter(cmd, "SearchName", DbType.String, pUserName);
-                using (IDataReader reader = database.ExecuteReader(cmd))
-                {
-                    while (reader.Read())
-                    {
+                wDatabase = DatabaseFactory.CreateDatabase(wConnectionString);
+                wCmd = wDatabase.GetStoredProcCommand(pCustomUserStoreProcedure);                
 
-                        userBE = new UsersBE();
-
-                        userBE.Name = pUserName;
-                        userBE.LastName = reader["LastName"].ToString();
-                        userBE.FirstName = reader["FirstName"].ToString();
-                        userBE.Mail = reader["Email"].ToString();
-                        userBE.IsApproved = Convert.ToBoolean(reader["IsApproved"]);
-                        userBE.IsLockedOut = Convert.ToBoolean(reader["IsLockedOut"]);
-                        userBE.UserId = Convert.ToInt32(reader["UserId"]);
-                        userBE.ActiveFlag = Convert.ToBoolean(reader["ActiveFlag"]);
-                        userBE.ModifiedByUserId = Convert.ToInt32(reader["ModifiedByUserId"]);
-                        userBE.ModifiedDate = Convert.ToDateTime(reader["ModifiedDate"]);
-                        userBE.MustChangePassword = Convert.ToBoolean(reader["MustChangePassword"]);
-
-                    }
-
-
-
-                }
-
+                wDSResult = wDatabase.ExecuteDataSet(wCmd);
+                
+                return wDSResult;
             }
             catch (Exception ex)
             {
                 throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
             }
-
-            return userBE;
-
-        }
-
-        public static UsersBEList SearchByParams(UsersBE pUsersBE,string pCompanyId)
-        {
-            Database database = null;
-            DbCommand cmd = null;
-            UsersBE userBE = null;
-            UsersBEList wUsersBEList = new UsersBEList();
-
-
-            try
-            {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.User_s_ByParams");
-                database.AddInParameter(cmd, "ActiveFlag", DbType.Boolean, pUsersBE.ActiveFlag);
-
-                using (IDataReader reader = database.ExecuteReader(cmd))
-                {
-                    wUsersBEList = new UsersBEList();
-                    while (reader.Read())
-                    {
-
-                        userBE = new UsersBE();
-                        userBE.ActiveFlag = Convert.ToBoolean(reader["ActiveFlag"]);
-
-                        userBE.Name = reader["Name"].ToString();
-                        userBE.LastName = reader["LastName"].ToString();
-                        userBE.FirstName = reader["FirstName"].ToString();
-                        userBE.Mail = reader["Email"].ToString();
-                        userBE.IsApproved = Convert.ToBoolean(reader["IsApproved"]);
-                        userBE.IsLockedOut = Convert.ToBoolean(reader["IsLockedOut"]);
-                        userBE.UserId = Convert.ToInt32(reader["UserId"]);
-                        userBE.ActiveFlag = Convert.ToBoolean(reader["ActiveFlag"]);
-                        userBE.DNI = reader["DNI"].ToString();
-                        userBE.MustChangePassword = Convert.ToBoolean(reader["MustChangePassword"]);
-
-                        wUsersBEList.Add(userBE);
-                    }
-                }
-                return wUsersBEList;
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-            }
-
-
-
-        }
-
-        public static UserInfo GetUserInfoByName(string pUserName, string pCompanyId)
-        {
-            UserInfo userInfo = null;
-
-            Database database;
-            DbCommand cmd;
-            try
-            {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.User_s_InfoByName");
-                database.AddInParameter(cmd, "UserName", DbType.String, pUserName);
-
-                using (IDataReader dr = database.ExecuteReader(cmd))
-                {
-
-                    while (dr.Read())
-                    {
-                        userInfo = new UserInfo();
-                        userInfo.Name = Convert.ToString(dr["Name"]);
-                        userInfo.FullName = Convert.ToString(dr["FullName"]);
-                        userInfo.UserId = Convert.ToInt32(dr["UserId"]);
-                        userInfo.ActiveFlag = Convert.ToBoolean(dr["ActiveFlag"]);
-                        userInfo.MustChangePassword = Convert.ToBoolean(dr["MustChangePassword"]);
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-            }
-
-            return userInfo;
-
         }
 
         #endregion
-
-        #region Exists
-        public static bool ExistsWithName(string pUserName, string pCompanyId)
-        {
-            Database database = null;
-            DbCommand cmd = null;
-            bool exists = false;
-
-
-
-            try
-            {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.ExistsUserWithName");
-                //In Parameters
-                database.AddInParameter(cmd, "SearchName", DbType.String, pUserName);
-
-                //Out Parameters
-                database.AddOutParameter(cmd, "Exists", DbType.Boolean, 1);
-
-                database.ExecuteNonQuery(cmd);
-                exists = Convert.ToBoolean(database.GetParameterValue(cmd, "Exists"));
-
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-            }
-
-            return exists;
-
-        }
-
-        #endregion
-
-        public static IDataReader GetAllActiveUsersInfo(string pCompanyId)
-        {
-            IDataReader dataReader = null;
-
-            Database database = DatabaseFactory.CreateDatabase(pCompanyId);
-
-            DbCommand command = database.GetStoredProcCommand("Security.Users_GetAllActivesInfo");
-            dataReader = database.ExecuteReader(command);
-
-            return dataReader;
-        }
-
-        public static UsersBEList SearchUnassignedUsers(string pCompanyId)
-        {
-            Database database = null;
-            DbCommand cmd = null;
-
-
-            UsersBEList wUsersBEList;
-
-            try
-            {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.UsersUnassigned_s");
-
-                //Obtenemos un DataReader de la BD
-                IDataReader wDr = database.ExecuteReader(cmd);
-
-                //Mapeamos el DataReader con la BE  y la agregamos a la BEList
-                wUsersBEList = new UsersBEList();
-                while (wDr.Read())
-                {
-                    UsersBE wUsersBE = new UsersBE();
-                    wUsersBE.Name = wDr["UserName"].ToString();
-                    wUsersBE.FirstName = wDr["FirstName"].ToString();
-                    wUsersBE.LastName = wDr["LastName"].ToString();
-                    wUsersBE.StartDate = Convert.ToDateTime(wDr["StartDate"]);
-                    wUsersBE.UserId = Convert.ToInt32(wDr["UserId"]);
-                    wUsersBE.ActiveFlag = Convert.ToBoolean(wDr["ActiveFlag"]);
-                    wUsersBEList.Add(wUsersBE);
-                }
-
-                return wUsersBEList;
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-
-            }
-
-        }
-
-        internal static UsersBEList GetUnassignedUsersByParam(Unassigned.UsersBE pUsersBE, string pCompanyId)
-        {
-            Database database = null;
-            DbCommand cmd = null;
-            UsersBEList wUsersBEList;
-
-            try
-            {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.UsersUnassigned_g_ByParam");
-
-                database.AddInParameter(cmd, "UserName", DbType.String, pUsersBE.Name);
-                database.AddInParameter(cmd, "FirstName", DbType.String, pUsersBE.FirstName);
-                database.AddInParameter(cmd, "LastName", DbType.String, pUsersBE.LastName);
-
-                using (IDataReader wDr = database.ExecuteReader(cmd))
-                {
-                    //Mapeamos el DataReader con la BE  y la agregamos a la BEList
-                    wUsersBEList = new UsersBEList();
-                    while (wDr.Read())
-                    {
-                        UsersBE wUsersBE = new UsersBE();
-                        wUsersBE.Name = wDr["UserName"].ToString();
-                        wUsersBE.FirstName = wDr["FirstName"].ToString();
-                        wUsersBE.LastName = wDr["LastName"].ToString();
-                        wUsersBE.StartDate = Convert.ToDateTime(wDr["StartDate"]);
-                        wUsersBE.UserId = Convert.ToInt32(wDr["UserId"]);
-                        wUsersBE.ActiveFlag = Convert.ToBoolean(wDr["ActiveFlag"]);
-                        wUsersBEList.Add(wUsersBE);
-                    }
-                }
-                return wUsersBEList;
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-            }
-        }
-
-        internal static UserAdditionalAttributesBEList GetUserAdditionalAttributes_ByParam(bool? pActiveFlag, string pCompanyId)
-        {
-            Database database = null;
-            DbCommand cmd = null;
-            UserAdditionalAttributesBEList wBEList;
-
-            try
-            {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.UsersAttributes_g_ByParam");
-
-                database.AddInParameter(cmd, "ActiveFlag", DbType.Boolean, pActiveFlag);
-              
-                using (IDataReader wDr = database.ExecuteReader(cmd))
-                {
-                    //Mapeamos el DataReader con la BE  y la agregamos a la BEList
-                    wBEList = new UserAdditionalAttributesBEList();
-                    while (wDr.Read())
-                    {
-                        UserAdditionalAttributesBE wBE = new UserAdditionalAttributesBE();
-                        wBE.UserAttributeId = Convert.ToInt32(wDr["UserAttributeId"]);
-                        wBE.Name = wDr["Name"].ToString();
-                        wBE.ModifiedByUserId = Convert.ToInt32(wDr["ModifiedByUserId"]);
-                        wBE.ModifiedDate = Convert.ToDateTime(wDr["ModifiedDate"]);
-                        wBE.Order = Convert.ToInt32(wDr["Order"]);
-                        wBE.Required = Convert.ToBoolean(wDr["Required"]);
-                        wBE.ActiveFlag = Convert.ToBoolean(wDr["ActiveFlag"]);
-                        wBEList.Add(wBE);
-                    }
-                }
-                return wBEList;
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-            }
-        }
-
-        internal static void UserAdditionalAttributes_InsertBatch(List<UserAdditionalAttributesBE> wNew, string pCompanyId)
-        {
-            StringBuilder sqlBatch = new StringBuilder();
-            Database database = DatabaseFactory.CreateDatabase(pCompanyId);
-            DbCommand command;
-
-            foreach (UserAdditionalAttributesBE wBE in wNew)
-            {
-                sqlBatch.Append("EXEC [Security].UsersAttributes_i ");
-
-                sqlBatch.Append("@Required = ");
-                sqlBatch.Append(wBE.Required);
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@Order = ");
-                sqlBatch.Append(Convert.ToString(wBE.Order));
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@Name = ");
-                sqlBatch.Append("'");
-                sqlBatch.Append(wBE.Name);
-                sqlBatch.Append("'");
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@ModifiedDate = ");
-                sqlBatch.Append("'");
-                sqlBatch.Append(DateTime.Now.ToString("yyyyMMdd HH:mm:ss"));
-                sqlBatch.Append("'");
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@ModifiedByUserId = ");
-                sqlBatch.Append(Convert.ToString(wBE.ModifiedByUserId));
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@ActiveFlag = ");
-                sqlBatch.Append(wBE.ActiveFlag);
-                
-
-                sqlBatch.AppendLine();
-            }
-
-            if (sqlBatch.Length > 0)
-            {
-                command = database.GetSqlStringCommand(sqlBatch.ToString());
-                database.ExecuteNonQuery(command);
-                command.Dispose();
-            }
-        }
-
-        internal static void UserAdditionalAttributes_DeleteBatch(List<UserAdditionalAttributesBE> wDeleted, string pCompanyId)
-        {
-            StringBuilder sqlBatch = new StringBuilder();
-            Database database = DatabaseFactory.CreateDatabase(pCompanyId);
-            DbCommand command;
-
-            foreach (UserAdditionalAttributesBE wBE in wDeleted)
-            {
-                sqlBatch.Append("EXEC [Security].UsersAttributes_d ");
-
-                sqlBatch.Append("@UserAttributeId = ");
-                sqlBatch.Append(Convert.ToString(wBE.UserAttributeId));     
-               
-                sqlBatch.AppendLine();
-            }
-
-            if (sqlBatch.Length > 0)
-            {
-                command = database.GetSqlStringCommand(sqlBatch.ToString());
-                database.ExecuteNonQuery(command);
-                command.Dispose();
-            }
-        }
-
-        internal static void UserAdditionalAttributes_UpdateBatch(List<UserAdditionalAttributesBE> wChanged, string pCompanyId)
-        {
-            StringBuilder sqlBatch = new StringBuilder();
-            Database database = DatabaseFactory.CreateDatabase(pCompanyId);
-            DbCommand command;
-
-            foreach (UserAdditionalAttributesBE wBE in wChanged)
-            {
-                sqlBatch.Append("EXEC [Security].UsersAttributes_u ");
-
-                sqlBatch.Append("@UserAttributeId = ");
-                sqlBatch.Append(Convert.ToString(wBE.UserAttributeId));
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@Required = ");
-                sqlBatch.Append(wBE.Required);
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@Order = ");
-                sqlBatch.Append(Convert.ToString(wBE.Order));
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@Name = ");
-                sqlBatch.Append("'");
-                sqlBatch.Append(wBE.Name);
-                sqlBatch.Append("'");
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@ModifiedDate = ");
-                sqlBatch.Append("'");
-                sqlBatch.Append(DateTime.Now.ToString("yyyyMMdd HH:mm:ss"));
-                sqlBatch.Append("'");
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@ModifiedByUserId = ");
-                sqlBatch.Append(Convert.ToString(wBE.ModifiedByUserId));
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@ActiveFlag = ");
-                sqlBatch.Append(wBE.ActiveFlag);                
-                sqlBatch.AppendLine();
-            }
-
-            if (sqlBatch.Length > 0)
-            {
-                command = database.GetSqlStringCommand(sqlBatch.ToString());
-                database.ExecuteNonQuery(command);
-                command.Dispose();
-            }
-        }
-
-        internal static UserAdditionalAttributesValuesBEList GetUserAdditionalAttributesValues_ByParam(int? pUserAttributeId, int? pUserId, Boolean? pActiveFlag, string pCompanyId)
-        {
-            Database database = null;
-            DbCommand cmd = null;
-            UserAdditionalAttributesValuesBEList wBEList;
-
-            try
-            {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.UsersAttributesValues_g_ByParam");
-
-                database.AddInParameter(cmd, "UserId", DbType.Int32, pUserId);
-                database.AddInParameter(cmd, "UserAttributesId", DbType.Int32, pUserAttributeId);
-                database.AddInParameter(cmd, "ActiveFlag", DbType.Boolean, pActiveFlag);
-
-                using (IDataReader wDr = database.ExecuteReader(cmd))
-                {
-                    //Mapeamos el DataReader con la BE  y la agregamos a la BEList
-                    wBEList = new UserAdditionalAttributesValuesBEList();
-                    while (wDr.Read())
-                    {
-                        UserAdditionalAttributesValuesBE wBE = new UserAdditionalAttributesValuesBE();
-                        wBE.UserAttributeId = Convert.ToInt32(wDr["UserAttributeId"]);
-                        wBE.UserId = wDr["UserId"] == System.DBNull.Value ? 0 : Convert.ToInt32(wDr["UserId"]);
-                        wBE.Value = wDr["Value"] == System.DBNull.Value ? String.Empty : Convert.ToString(wDr["Value"]);
-                        wBE.Required = Convert.ToBoolean(wDr["Required"]);
-                        wBE.Order = wDr["Order"] == System.DBNull.Value ? 0 : Convert.ToInt32(wDr["Order"]);
-                        wBE.Name = wDr["Name"] == System.DBNull.Value ? String.Empty : Convert.ToString(wDr["Name"]);
-                        wBE.ActiveFlag = Convert.ToBoolean(wDr["ActiveFlag"]);
-                        wBEList.Add(wBE);
-                    }
-                }
-                return wBEList;
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-            }
-        }
-
-        internal static Boolean UserAdditionalAttributesValues_Exist_ByUserAttributeId(int? pUserAttributeId, string pCompanyId)
-        {
-            Database database = null;
-            DbCommand cmd = null;            
-            Boolean wExist = false;
-
-            try
-            {
-                database = DatabaseFactory.CreateDatabase(pCompanyId);
-                cmd = database.GetStoredProcCommand("Security.ExistsUsersAttributesValues_ByUserAttributesId");
-
-                database.AddInParameter(cmd, "UserAttributesId", DbType.Int32, pUserAttributeId);
-                database.AddOutParameter(cmd, "Exists", DbType.Boolean, 4);
-
-
-                database.ExecuteScalar(cmd);
-
-                wExist = Convert.ToBoolean(database.GetParameterValue(cmd, "Exists"));
-                
-                return wExist;
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-            }
-        }
-
-        internal static void SaveUserAdditionalAttributesValuesBatch(UserAdditionalAttributesValuesBEList pNew, string pCompanyId)
-        {
-            StringBuilder sqlBatch = new StringBuilder();
-            Database database = DatabaseFactory.CreateDatabase(pCompanyId);
-            DbCommand command;
-
-            foreach (UserAdditionalAttributesValuesBE wBE in pNew)
-            {
-                sqlBatch.Append("EXEC [Security].UsersAttributesValues_i ");
-
-                sqlBatch.Append("@UserAttributesId = ");
-                sqlBatch.Append(Convert.ToString(wBE.UserAttributeId));
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@UserID = ");
-                sqlBatch.Append(Convert.ToString(wBE.UserId));
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@Value = ");
-                sqlBatch.Append("'");
-                sqlBatch.Append(wBE.Value);
-                sqlBatch.Append("'");
-                
-                sqlBatch.AppendLine();
-            }
-
-            if (sqlBatch.Length > 0)
-            {
-                command = database.GetSqlStringCommand(sqlBatch.ToString());
-                database.ExecuteNonQuery(command);
-                command.Dispose();
-            }
-        }
-
-        internal static void UpdateUserAdditionalAttributesValuesBatch(UserAdditionalAttributesValuesBEList pNew, string pCompanyId)
-        {
-            StringBuilder sqlBatch = new StringBuilder();
-            Database database = DatabaseFactory.CreateDatabase(pCompanyId);
-            DbCommand command;
-
-            foreach (UserAdditionalAttributesValuesBE wBE in pNew)
-            {
-                sqlBatch.Append("EXEC [Security].UsersAttributesValues_u ");
-
-                sqlBatch.Append("@UserAttributesId = ");
-                sqlBatch.Append(Convert.ToString(wBE.UserAttributeId));
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@UserID = ");
-                sqlBatch.Append(Convert.ToString(wBE.UserId));
-                sqlBatch.Append(",");
-
-                sqlBatch.Append("@Value = ");
-                sqlBatch.Append("'");
-                sqlBatch.Append(wBE.Value);                
-                sqlBatch.Append("'");
-
-                sqlBatch.AppendLine();
-            }
-
-            if (sqlBatch.Length > 0)
-            {
-                command = database.GetSqlStringCommand(sqlBatch.ToString());
-                database.ExecuteNonQuery(command);
-                command.Dispose();
-            }
-        }
     }
 }

@@ -8,7 +8,7 @@ using Fwk.Security;
 using Fwk.Security.BC;
 
 
-namespace Fwk.Security
+namespace Fwk.Security.SVC
 {
     public class GetUserAdditionalAttributes_ByParamService : BusinessService<GetUserAdditionalAttributes_ByParamRequest, GetUserAdditionalAttributes_ByParamResponse>
     {

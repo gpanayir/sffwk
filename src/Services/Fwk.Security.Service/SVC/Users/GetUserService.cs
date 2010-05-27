@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Security;
 using Fwk.Bases;
 using Fwk.Security.ISVC.GetUser;
-
-using Fwk.Security;
 using Fwk.Security;
 using Fwk.Security.Common;
-using System.Web.Security;
+using Fwk.Security.BC;
 
 namespace Fwk.Security.SVC
 {
@@ -18,14 +17,21 @@ namespace Fwk.Security.SVC
     {
         public override GetUserRes Execute(GetUserReq pServiceRequest)
         {
-            GetUserRes res = new GetUserRes();
+            GetUserRes wRes = new GetUserRes();
+            UserBC wBC = new UserBC(pServiceRequest.ContextInformation.CompanyId,pServiceRequest.SecurityProviderName);
+            User wUser = new User(pServiceRequest.BusinessData.Username);
+            
+            //if (string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
+            //    pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;
 
-            if (string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
-                pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;
+            wRes.BusinessData.CustomUser = wBC.GetUser(pServiceRequest.BusinessData.Username,
+                                                pServiceRequest.BusinessData.CustomParameters,
+                                                pServiceRequest.BusinessData.CustomStoredProcedure,
+                                                wUser);
 
-            res.BusinessData.User = FwkMembership.GetUser(pServiceRequest.BusinessData.Username, pServiceRequest.ContextInformation.CompanyId);
+            wRes.BusinessData.User = wUser;
 
-            return res;
+            return wRes;
         }
     }
 }

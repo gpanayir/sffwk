@@ -26,7 +26,7 @@ namespace Fwk.Security
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
-    #region Extensibility Method Definitions
+    #region Extensibility Create Definitions
     partial void OnCreated();
     partial void Insertaspnet_RulesCategory(Fwk.Security.aspnet_RulesCategory instance);
     partial void Updateaspnet_RulesCategory(Fwk.Security.aspnet_RulesCategory instance);
@@ -247,7 +247,7 @@ namespace Fwk.Security
 		
 		private System.Nullable<System.Guid> _ApplicationId;
 		
-    #region Extensibility Method Definitions
+    #region Extensibility Create Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
@@ -381,7 +381,7 @@ namespace Fwk.Security
 		
 		private string _Description;
 		
-    #region Extensibility Method Definitions
+    #region Extensibility Create Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();

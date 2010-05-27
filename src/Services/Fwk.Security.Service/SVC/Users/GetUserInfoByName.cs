@@ -7,6 +7,7 @@ using Fwk.Security.ISVC.GetUserInfoByName;
 
 using Fwk.Security;
 using Fwk.Security.BC;
+using Fwk.Security.Common;
 
 namespace Fwk.Security.SVC
 {
@@ -14,12 +15,18 @@ namespace Fwk.Security.SVC
     {
         public override GetUserInfoByNameResponse Execute(GetUserInfoByNameRequest pServiceRequest)
         {
-            GetUserInfoByNameResponse response = new GetUserInfoByNameResponse();
+            GetUserInfoByNameResponse wRes = new GetUserInfoByNameResponse();
             UserBC userBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
 
-            response.BusinessData = userBC.GetUserInfoByName(pServiceRequest.BusinessData.Name);
-
-            return response;
+            RolList wRolList = new RolList();
+          
+            wRes.BusinessData.UserCustomInfo = userBC.GetUserInfoByName(pServiceRequest.BusinessData.Name,
+                                                                         pServiceRequest.BusinessData.CustomParameters,
+                                                                         pServiceRequest.BusinessData.CustomStoredProcedure,
+                                                                         out wRolList,wRes.BusinessData.UserInfo);
+            wRes.BusinessData.RolList = wRolList;
+            
+            return wRes;
         }
     }
 }

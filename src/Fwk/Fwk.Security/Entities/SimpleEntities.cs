@@ -12,10 +12,15 @@ using System.Xml.Serialization;
 
 namespace Fwk.Security.Common
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlInclude(typeof(User)), Serializable]
     public class User
     {
+        private Int32? _UserId = 0;
+
+       
         private String m_AppName;
         private String m_UserName;
         private DateTime m_LastActivityDate;
@@ -26,7 +31,46 @@ namespace Fwk.Security.Common
         private String m_Password;
         private String m_QuestionPassword;
         private String m_AnswerPassword;
-        
+        string _FirstName;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string FirstName
+        {
+            get { return _FirstName; }
+            set { _FirstName = value; }
+        }
+        string _LastName;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string LastName
+        {
+            get { return _LastName; }
+            set { _LastName = value; }
+        }
+        string[] _Roles;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string[] Roles
+        {
+            get { return _Roles; }
+            set { _Roles = value; }
+        }
+        /// <summary>
+        /// Identificador de usuario int 32. No es la clave GUID. 
+        /// Este valor es para comp'atibilidad con sistenmas existentes
+        /// 
+        /// </summary>
+        public Int32? UserId
+        {
+            get { return _UserId; }
+            set { _UserId = value; }
+        }
         /// <summary>
         /// Answer security password
         /// </summary>
@@ -131,7 +175,10 @@ namespace Fwk.Security.Common
             set{m_Email = value;}
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pMembershipUser"></param>
         public User(MembershipUser pMembershipUser)
         {
             m_UserName = pMembershipUser.UserName;
@@ -144,13 +191,26 @@ namespace Fwk.Security.Common
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUserName"></param>
         public User(string pUserName)
         {
             m_UserName = pUserName;
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public User()
+        {}
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlRoot("UserList"), SerializableAttribute]
     public class UserList : List<User>
     {
@@ -166,6 +226,10 @@ namespace Fwk.Security.Common
             return list.ToString().Split(',');
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlInclude(typeof(Rol)), Serializable]
     public class Rol
     {

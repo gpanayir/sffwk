@@ -5,6 +5,8 @@ using System.Text;
 using Fwk.Bases;
 using Fwk.Security.BE;
 using System.Xml.Serialization;
+using System.Data.SqlClient;
+using Fwk.Security.Common;
 
 
 
@@ -31,6 +33,9 @@ namespace Fwk.Security.ISVC.AuthenticateUser
         AuthenticationModeEnum _AuthenticationMode;
         bool _IsEnvironmentUser;
         string _Domain;
+        private List<SqlParameter> _CustomParameters;
+        private String _CustomStoredProcedure;
+        
 
         public string Name
         {
@@ -87,7 +92,18 @@ namespace Fwk.Security.ISVC.AuthenticateUser
                 _Domain = value;
             }
         }
+        
+        public List<SqlParameter> CustomParameters
+        {
+            get { return _CustomParameters; }
+            set { _CustomParameters = value; }
+        }
 
+        public String CustomStoredProcedure
+        {
+            get { return _CustomStoredProcedure; }
+            set { _CustomStoredProcedure = value; }
+        }
 
 
     }
@@ -99,32 +115,69 @@ namespace Fwk.Security.ISVC.AuthenticateUser
 
     [XmlInclude(typeof(Result)), Serializable]
     public class Result : Entity
-    {
-        #region Members
+    {        
+
         private System.Boolean _IsAuthenticated;
-        UserInfo _UserInfo;
-        #endregion
+        private System.Data.DataSet _UserCustomInfo;
+        private Fwk.Security.Common.RolList _RolList;
+        private User _UserInfo;
+        private AuthenticationModeEnum _AuthenticationMode;
 
-        #region Properties
 
-        #region [IsAuthenticated]
+		public AuthenticationModeEnum AuthenticationMode
+		{
+			get
+			{
+				return _AuthenticationMode;
+			}
+			set
+			{
+				_AuthenticationMode = value;
+			}
+		}    
 
+        public User UserInfo
+        {
+            get
+            {
+                return _UserInfo;
+            }
+            set
+            {
+                _UserInfo = value;
+            }
+        }
+
+        public Fwk.Security.Common.RolList RolList
+        {
+            get
+            {
+                return _RolList;
+            }
+            set
+            {
+                _RolList = value;
+            }
+        }
+
+        public System.Data.DataSet UserCustomInfo
+        {
+            get
+            {
+                return _UserCustomInfo;
+            }
+            set
+            {
+                _UserCustomInfo = value;
+            }
+        }
+        
         public bool IsAuthenticated
         {
             get { return _IsAuthenticated; }
             set { _IsAuthenticated = value; }
         }
-        #endregion
 
-        #region UserInfo
-        public UserInfo UserInfo
-        {
-            get { return _UserInfo; }
-            set { _UserInfo = value; }
-        }
-        #endregion
-
-        #endregion
     }
 }
 

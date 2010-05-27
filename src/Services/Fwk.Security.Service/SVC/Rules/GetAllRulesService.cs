@@ -1,13 +1,13 @@
 
 using System;
 using System.Data;
+using System.Web.Security;
+using System.Collections.Generic;
 using Fwk.Bases;
 using Fwk.Security;
 using Fwk.Security.BE;
-using Fwk.Security;
-using  Fwk.Security.ISVC.GetAllRules;
-using System.Web.Security;
-using System.Collections.Generic;
+using Fwk.Security.ISVC.GetAllRules;
+
 
 
 
@@ -20,10 +20,10 @@ namespace Fwk.Security.SVC
         {
             GetAllRulesRes wRes = new GetAllRulesRes();
 
-            if(string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
-                pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;
+            //if(string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
+            //    pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;
 
-            List<FwkAuthorizationRuleAux> rules = FwkMembership.GetRulesAuxList(pServiceRequest.BusinessData.ApplicationName, pServiceRequest.SecurityProviderName);
+            List<FwkAuthorizationRuleAux> rules = FwkMembership.GetRulesAuxList(pServiceRequest.SecurityProviderName);
             RulesBE wRulesBE;
              wRes.BusinessData = new RulesBEList();
             foreach (FwkAuthorizationRuleAux rule in rules)
