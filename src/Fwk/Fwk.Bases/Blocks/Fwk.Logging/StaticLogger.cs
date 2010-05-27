@@ -51,43 +51,7 @@ namespace Fwk.Logging
             WriteLog(ev, path, fileNamePrefix);
         }
 
-        ///// <summary>
-        /////  Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
-        ///// </summary>
-        ///// <param name="pSource">Origen del evento.</param>
-        ///// <param name="pText">Mensaje descriptivo del evento.</param>
-        ///// <param name="userName">Nombre usuario.</param>
-        /////  <param name="machine">Nombre pc.</param>    
-        //public static void Log(EventType eventType, string pSource, string pText, string userName, string machine)
-        //{
-        //    Event wEvent = new Event(eventType, pSource, pText);
-        //    wEvent.UserLoginName = userName;
-        //    wEvent.Machine = machine;
-        //    WriteLog(wEvent, string.Empty, string.Empty);
-        //}
-
-
-        /// <summary>
-        ///  Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
-        /// </summary>
-        /// <param name="type">Tupo de evento <see cref="EventType"/></param>
-        /// <param name="pSource">Origen del evento.</param>
-        /// <param name="pText">Mensaje descriptivo del evento.</param>
-        /// <param name="userName">Nombre usuario.</param>
-        ///  <param name="machine">Nombre pc.</param> 
-        /// <param name="path">Ruta donde se desea almacenar el log</param>
-        /// <param name="fileNamePrefix">prefijo (obcional) del archivo </param>
-        //public static void Log(EventType type, string pSource, string pText, string userName, string machine, string path, string fileNamePrefix)
-        //{
-
-        //    Event wEvent = new Event(type, pSource, pText);
-        //    wEvent.UserLoginName = userName;
-        //    wEvent.Machine = machine;
-        //    WriteLog(wEvent, path, fileNamePrefix);
-
-        //}
-
-
+  
         #endregion
 
         #region Metodos para generar log directamente sin usar AppSetting
@@ -96,12 +60,12 @@ namespace Fwk.Logging
         /// Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
         /// </summary>
         /// <param name="targetType">Objetivo de log.</param>
-        /// <param name="eventType"></param>
+        /// <param name="eventLog"><see cref="Event"/></param>
         /// <param name="fullFileName">Nombre completo del archivo</param>
         /// <param name="cnnStringName">Prefijo del nombre de archivo</param>
-        public static void Log(TargetType targetType, Event eventType, string fullFileName, string cnnStringName)
+        public static void Log(TargetType targetType, Event eventLog, string fullFileName, string cnnStringName)
         {
-            WriteLogNoConfig(targetType, eventType, fullFileName, cnnStringName);
+            WriteLogNoConfig(targetType, eventLog, fullFileName, cnnStringName);
         }
 
         /// <summary>

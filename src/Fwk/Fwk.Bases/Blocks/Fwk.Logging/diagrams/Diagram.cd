@@ -1,101 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Font Name="Tahoma" Size="8.25" />
   <Class Name="Fwk.Logging.Event">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <FileName>Event.cs</FileName>
-      <HashCode>AAADAAAAAgAAAIAEAAABAAAAAFAAAAABBQAAICAEBQA=</HashCode>
+      <HashCode>AAoDAgAAAgACAAAEAAABACAAAFAAAAAAAIAAIAQEAAA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\Event.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fwk.Logging.Logger">
     <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <FileName>Logger.cs</FileName>
-      <HashCode>AAAAGAAAAAAAAYAAAEAAABAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <HashCode>AAAAGAAAAIAAAQAAAEAAABAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\Logger.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fwk.Logging.Targets.Target">
     <Position X="7.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <FileName>targets\Target.cs</FileName>
-      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAACAAAAAQAAQAAAAFABAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAQAAQAEAQFABAA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\targets\Target.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="Fwk.Logging.Targets.ConsoleTarget" Collapsed="true">
-    <Position X="4.5" Y="3.25" Width="1.25" />
-    <TypeIdentifier>
-      <FileName>targets\ConsoleTarget.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
-    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Fwk.Logging.Targets.DatabaseTarget" Collapsed="true">
     <Position X="6" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <FileName>targets\DatabaseTarget.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AgAAAAAAAAAAAAAAgAAAAAAAAAAiAAAAACAGAAEAAAA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\targets\DatabaseTarget.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fwk.Logging.Targets.FileTarget" Collapsed="true">
     <Position X="7.75" Y="3.25" Width="1.25" />
     <TypeIdentifier>
-      <FileName>targets\FileTarget.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAEAAEAAAA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\targets\FileTarget.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fwk.Logging.Targets.WindowsEventTarget" Collapsed="true">
     <Position X="9.25" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <FileName>targets\WindowsEventTarget.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAEAAAA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\targets\WindowsEventTarget.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Fwk.Logging.Targets.XmlTarget" Collapsed="true">
     <Position X="11.25" Y="3.25" Width="1.25" />
     <TypeIdentifier>
-      <FileName>targets\XmlTarget.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAEAAAA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\targets\XmlTarget.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Fwk.Logging.Config.LoggingSection">
-    <Position X="4.5" Y="4.5" Width="1.5" />
+  <Class Name="Fwk.Logging.StaticLogger">
+    <Position X="2.25" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <FileName>config\LoggingSection.cs</FileName>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAABAAQAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAACAIAAAAAABAAAEAAAAAAAAoAAAAAAAAAAQAAAgA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\StaticLogger.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="RuleElementCollection" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="Fwk.Logging.Config.RuleElement">
-    <Position X="11" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <FileName>config\RuleElement.cs</FileName>
-      <HashCode>AIAAAAAACAAAAAAAAAAAACQAAgAAAAAAAAAAAABAAAg=</HashCode>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Fwk.Logging.Config.RuleElementCollection">
-    <Position X="7.75" Y="4.5" Width="2" />
-    <TypeIdentifier>
-      <FileName>config\RuleElementCollection.cs</FileName>
-      <HashCode>AEACAAAAAAAAAAAACAAAAAQIAAABAAAAAAAAAAAAAAA=</HashCode>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="RuleElement" />
-    </ShowAsAssociation>
   </Class>
   <Enum Name="Fwk.Logging.EventType">
-    <Position X="0.5" Y="4.75" Width="1.5" />
+    <Position X="1" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <FileName>EventType.cs</FileName>
-      <HashCode>AAAAEAAAAAAAAYAAAAAAABAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAEAAAAIAAAQAAAAAAABAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\EventType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Fwk.Logging.Targets.TargetType">
-    <Position X="2.25" Y="4.75" Width="1.5" />
+    <Position X="3.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <FileName>targets\TargetType.cs</FileName>
-      <HashCode>AACACAAAAEAAAAAAAAAAAAAAAAAEAAAAAAAAAAEBAAA=</HashCode>
+      <HashCode>AAAACAAAAEAAAAAAAAAAAAAAAAAEAAAAAAAAAAEBAAA=</HashCode>
+      <FileName>Blocks\Fwk.Logging\targets\TargetType.cs</FileName>
     </TypeIdentifier>
   </Enum>
+  <Font Name="Tahoma" Size="8.25" />
 </ClassDiagram>
