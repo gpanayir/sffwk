@@ -18,7 +18,7 @@ namespace Fwk.Bases
         /// <summary>
         /// Returns one of EntityState enum values 
         /// </summary>
-        EntityState EntityState { get; set; }
+        //EntityState EntityState { get; set; }
     }
     /// <summary>
     /// Define la interfaz de todas las Entidades tipo coleccion y escalares.
@@ -40,10 +40,6 @@ namespace Fwk.Bases
 
     
 
-        ///// <summary>
-        ///// Returns one of EntityState enum values 
-        ///// </summary>
-        //EntityState EntityState { get; set; }
     }
    
 }
