@@ -65,19 +65,19 @@ namespace Fwk.Security.ISVC.GetAllUsers
     public class Result : Entity
     {
         private UserList _UserList;        
-        private DataSet _UsersCustom;
+        //private DataSet _UsersCustom;
 
-		public DataSet UsersCustom
-		{
-			get
-			{
-				return _UsersCustom;
-			}
-			set
-			{
-				_UsersCustom = value;
-			}
-		}
+        //public DataSet UsersCustom
+        //{
+        //    get
+        //    {
+        //        return _UsersCustom;
+        //    }
+        //    set
+        //    {
+        //        _UsersCustom = value;
+        //    }
+        //}
 
         public UserList UserList
         {

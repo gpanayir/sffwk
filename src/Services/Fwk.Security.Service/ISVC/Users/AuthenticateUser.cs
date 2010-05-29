@@ -37,7 +37,7 @@ namespace Fwk.Security.ISVC.AuthenticateUser
         private String _CustomStoredProcedure;
         
 
-        public string Name
+        public string UserName
         {
             get
             {

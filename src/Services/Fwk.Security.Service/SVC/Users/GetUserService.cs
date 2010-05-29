@@ -18,18 +18,15 @@ namespace Fwk.Security.SVC
         public override GetUserRes Execute(GetUserReq pServiceRequest)
         {
             GetUserRes wRes = new GetUserRes();
-            UserBC wBC = new UserBC(pServiceRequest.ContextInformation.CompanyId,pServiceRequest.SecurityProviderName);
-            User wUser = new User(pServiceRequest.BusinessData.Username);
-            
+            UserBC wBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+           wRes.BusinessData.User  = new User(pServiceRequest.BusinessData.Username);
+
             //if (string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
             //    pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;
 
-            wRes.BusinessData.CustomUser = wBC.GetUser(pServiceRequest.BusinessData.Username,
-                                                pServiceRequest.BusinessData.CustomParameters,
-                                                pServiceRequest.BusinessData.CustomStoredProcedure,
-                                                wUser);
+            wRes.BusinessData.User = wBC.GetUser(pServiceRequest.BusinessData.Username);
 
-            wRes.BusinessData.User = wUser;
+           
 
             return wRes;
         }

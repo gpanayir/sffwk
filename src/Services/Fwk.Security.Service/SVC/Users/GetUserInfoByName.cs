@@ -16,12 +16,18 @@ namespace Fwk.Security.SVC
         public override GetUserInfoByNameResponse Execute(GetUserInfoByNameRequest pServiceRequest)
         {
             GetUserInfoByNameResponse wRes = new GetUserInfoByNameResponse();
+
             UserBC userBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
 
-            RolList wRolList = new RolList();
 
-            userBC.GetUserInfoByName(pServiceRequest.BusinessData.UserName, out wRes.BusinessData.UserInfo, out wRolList);
+            RolList wRolList = new RolList();
+            User wUser = new User();
+
+            userBC.GetUserInfoByName(pServiceRequest.BusinessData.UserName, out wUser, out wRolList);
+
+            wRes.BusinessData.UserInfo = wUser;
             wRes.BusinessData.RolList = wRolList;
+         
             
             return wRes;
         }

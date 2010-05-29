@@ -19,41 +19,32 @@ namespace Fwk.Security.SVC
             AuthenticateUserRes wRes = new AuthenticateUserRes();
             UserBC userBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
             RolList wRolList = new RolList();
-
+            User wUser = new User();
             if (pServiceRequest.BusinessData.AuthenticationMode == AuthenticationModeEnum.WindowsIntegrated)
             {
                 // el modo de autenticación es integrada de windows (usuario por defecto o validación LDAP)
                 if (pServiceRequest.BusinessData.IsEnvironmentUser)
                 {
+
+                    //TODO: ver AuthenticateUser sin pwd
                     // el usuario se toma por defecto del environment por tanto se recupera el user info sin necesidad de validar
-                    wRes.BusinessData.UserCustomInfo = userBC.AuthenticateUser(pServiceRequest.BusinessData.Name,
-                                                                               pServiceRequest.BusinessData.CustomParameters,
-                                                                               pServiceRequest.BusinessData.CustomStoredProcedure,
-                                                                               out wRolList,
-                                                                               wRes.BusinessData.UserInfo);
+                    ///wRes.BusinessData.UserCustomInfo = userBC.AuthenticateUser(pServiceRequest.BusinessData.UserName,out wRes.BusinessData.UserInfo);
                 }
                 else
                 {
                     //Se debe validar el usuario en LDAP contra el dominio seleccionado
-                     wRes.BusinessData.UserCustomInfo = userBC.AuthenticateUser(pServiceRequest.BusinessData.Name,
+                      userBC.AuthenticateUser_AD(pServiceRequest.BusinessData.UserName,
                                                                           pServiceRequest.BusinessData.Password,
                                                                           pServiceRequest.BusinessData.Domain,
-                                                                          pServiceRequest.BusinessData.CustomParameters,
-                                                                          pServiceRequest.BusinessData.CustomStoredProcedure,
-                                                                          out wRolList,
-                                                                          wRes.BusinessData.UserInfo);
+                                                                          out wRes.BusinessData.UserInfo );
                 }
                 
             }
             else
             {
                 //utiliza autenticación mixta. Valida contra el usuario de bigbang
-                wRes.BusinessData.UserCustomInfo = userBC.AuthenticateUser(pServiceRequest.BusinessData.Name,
-                                                                      pServiceRequest.BusinessData.Password,
-                                                                      pServiceRequest.BusinessData.CustomParameters,
-                                                                      pServiceRequest.BusinessData.CustomStoredProcedure,
-                                                                      out wRolList,
-                                                                      wRes.BusinessData.UserInfo);
+                wRes.BusinessData.UserCustomInfo = userBC.AuthenticateUser(pServiceRequest.BusinessData.UserName,
+                                                                      pServiceRequest.BusinessData.Password,out wRes.BusinessData.UserInfo);
             }
              wRes.BusinessData.AuthenticationMode = pServiceRequest.BusinessData.AuthenticationMode;
              wRes.BusinessData.RolList = wRolList;

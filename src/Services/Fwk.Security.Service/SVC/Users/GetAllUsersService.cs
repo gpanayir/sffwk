@@ -23,7 +23,7 @@ namespace Fwk.Security.SVC
             //if (string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
             //    pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;
 
-            wRes.BusinessData.UsersCustom = wBC.GetAllUser(wRes.BusinessData.UserList, pServiceRequest.BusinessData.CustomStoredProcedure);
+            wRes.BusinessData.UserList = wBC.GetAllUser();
             
 
             return wRes;
