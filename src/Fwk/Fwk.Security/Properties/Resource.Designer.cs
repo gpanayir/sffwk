@@ -22,7 +22,7 @@ namespace Fwk.Security.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource {
+    public class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Fwk.Security.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fwk.Security.Properties.Resource", typeof(Resource).Assembly);
@@ -51,7 +51,7 @@ namespace Fwk.Security.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There are some problems while trying to get domains urls from database. Check the following connectionstring key &quot;{0}&quot;  in the appconfig file.-.
         /// </summary>
-        internal static string AD_GetingDomainsURL_Error {
+        public static string AD_GetingDomainsURL_Error {
             get {
                 return ResourceManager.GetString("AD_GetingDomainsURL_Error", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Impersonalization error.- The security Active directory throw  the following error : {0}.
         /// </summary>
-        internal static string AD_Impersonation_Error {
+        public static string AD_Impersonation_Error {
             get {
                 return ResourceManager.GetString("AD_Impersonation_Error", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Authenticate user.
         /// </summary>
-        internal static string AuthenticateTitleMessage {
+        public static string AuthenticateTitleMessage {
             get {
                 return ResourceManager.GetString("AuthenticateTitleMessage", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Authorization rule {0} not found in configuration..
         /// </summary>
-        internal static string AuthorizationRuleNotFoundMsg {
+        public static string AuthorizationRuleNotFoundMsg {
             get {
                 return ResourceManager.GetString("AuthorizationRuleNotFoundMsg", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Checking roles for &quot;{0}&quot;.
         /// </summary>
-        internal static string CheckingRolesMessage {
+        public static string CheckingRolesMessage {
             get {
                 return ResourceManager.GetString("CheckingRolesMessage", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The identity was added to the cache and can be retrieved using the token {0}.
         /// </summary>
-        internal static string CreateTokenMessage {
+        public static string CreateTokenMessage {
             get {
                 return ResourceManager.GetString("CreateTokenMessage", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cannot create a token for non-authenticated user. This scenario requires running the &quot;Authenticate user using credentials&quot; scenario first.
         /// </summary>
-        internal static string CreateTokenRequiresIdentityMessage {
+        public static string CreateTokenRequiresIdentityMessage {
             get {
                 return ResourceManager.GetString("CreateTokenRequiresIdentityMessage", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Failed to retrieve the identity. The supplied token is expired..
         /// </summary>
-        internal static string ExpiredTokenErrorMessage {
+        public static string ExpiredTokenErrorMessage {
             get {
                 return ResourceManager.GetString("ExpiredTokenErrorMessage", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cannot expire token because it couldn&apos;t be created..
         /// </summary>
-        internal static string ExpireTokenErrorMessage {
+        public static string ExpireTokenErrorMessage {
             get {
                 return ResourceManager.GetString("ExpireTokenErrorMessage", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Token was expired..
         /// </summary>
-        internal static string ExpireTokenMessage {
+        public static string ExpireTokenMessage {
             get {
                 return ResourceManager.GetString("ExpireTokenMessage", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Identity: {0}.
         /// </summary>
-        internal static string IdentityMessage {
+        public static string IdentityMessage {
             get {
                 return ResourceManager.GetString("IdentityMessage", resourceCulture);
             }
@@ -166,7 +166,7 @@ namespace Fwk.Security.Properties {
         ///
         ///This block requires a database configured with the ASP.NET services schema. Please make sure the database has been initialized using the aspnet_regsql.exe script, and the system&apos;s app.config file contains the correct database connection string..
         /// </summary>
-        internal static string MembershipSecurityGenericError {
+        public static string MembershipSecurityGenericError {
             get {
                 return ResourceManager.GetString("MembershipSecurityGenericError", resourceCulture);
             }
@@ -175,7 +175,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Unable to find a profile for current user. You can create a profile by using the &quot;Write profile information about a user&quot; button..
         /// </summary>
-        internal static string ProfileNotFoundMessage {
+        public static string ProfileNotFoundMessage {
             get {
                 return ResourceManager.GetString("ProfileNotFoundMessage", resourceCulture);
             }
@@ -186,7 +186,7 @@ namespace Fwk.Security.Properties {
         ///  Last Name: {1}
         ///  Preferred Theme: {2}.
         /// </summary>
-        internal static string ProfileStringMessage {
+        public static string ProfileStringMessage {
             get {
                 return ResourceManager.GetString("ProfileStringMessage", resourceCulture);
             }
@@ -196,7 +196,7 @@ namespace Fwk.Security.Properties {
         ///   Looks up a localized string similar to The profile has been saved for &quot;{0}&quot;
         ///.
         /// </summary>
-        internal static string ProfileUpdatedMessage {
+        public static string ProfileUpdatedMessage {
             get {
                 return ResourceManager.GetString("ProfileUpdatedMessage", resourceCulture);
             }
@@ -205,7 +205,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The security provider {0} not found.
         /// </summary>
-        internal static string ProviderNameNotFound {
+        public static string ProviderNameNotFound {
             get {
                 return ResourceManager.GetString("ProviderNameNotFound", resourceCulture);
             }
@@ -214,7 +214,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cannot retrieve identity because the token doesn&apos;t exist..
         /// </summary>
-        internal static string RetrieveIdentityErrorMessage {
+        public static string RetrieveIdentityErrorMessage {
             get {
                 return ResourceManager.GetString("RetrieveIdentityErrorMessage", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace Fwk.Security.Properties {
         ///	Name: {0}
         ///	Authorization Type: {1}.
         /// </summary>
-        internal static string RetrieveIdentityMessage {
+        public static string RetrieveIdentityMessage {
             get {
                 return ResourceManager.GetString("RetrieveIdentityMessage", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Role {0} created..
         /// </summary>
-        internal static string RolCreatedMessage {
+        public static string RolCreatedMessage {
             get {
                 return ResourceManager.GetString("RolCreatedMessage", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The {0} not contain rules.-.
         /// </summary>
-        internal static string Role_WithoutRules {
+        public static string Role_WithoutRules {
             get {
                 return ResourceManager.GetString("Role_WithoutRules", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Role {0} already exists..
         /// </summary>
-        internal static string RoleExist {
+        public static string RoleExist {
             get {
                 return ResourceManager.GetString("RoleExist", resourceCulture);
             }
@@ -261,7 +261,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Role {0} is not empty, have users associates..
         /// </summary>
-        internal static string RoleNotEmpty {
+        public static string RoleNotEmpty {
             get {
                 return ResourceManager.GetString("RoleNotEmpty", resourceCulture);
             }
@@ -270,7 +270,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There are some problems while trying to create rule.
         /// </summary>
-        internal static string Rule_Crate_Error {
+        public static string Rule_Crate_Error {
             get {
                 return ResourceManager.GetString("Rule_Crate_Error", resourceCulture);
             }
@@ -279,7 +279,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There are some problems while trying to get all rule information, please check the application name  &quot;{0}&quot; ..
         /// </summary>
-        internal static string Rule_ProblemGetingAlls_Error {
+        public static string Rule_ProblemGetingAlls_Error {
             get {
                 return ResourceManager.GetString("Rule_ProblemGetingAlls_Error", resourceCulture);
             }
@@ -288,7 +288,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to There are some problems while trying to get rule information, please check the following rule name: {0}.
         /// </summary>
-        internal static string Rule_ProblemGetingData_Error {
+        public static string Rule_ProblemGetingData_Error {
             get {
                 return ResourceManager.GetString("Rule_ProblemGetingData_Error", resourceCulture);
             }
@@ -297,7 +297,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The rule {0} created.-.
         /// </summary>
-        internal static string RuleCreatedMessage {
+        public static string RuleCreatedMessage {
             get {
                 return ResourceManager.GetString("RuleCreatedMessage", resourceCulture);
             }
@@ -307,7 +307,7 @@ namespace Fwk.Security.Properties {
         ///   Looks up a localized string similar to Rule: {0}
         ///Result: user is not authorized.
         /// </summary>
-        internal static string RuleResultFalseMessage {
+        public static string RuleResultFalseMessage {
             get {
                 return ResourceManager.GetString("RuleResultFalseMessage", resourceCulture);
             }
@@ -317,7 +317,7 @@ namespace Fwk.Security.Properties {
         ///   Looks up a localized string similar to Rule: {0}
         ///Result: user is authorized.
         /// </summary>
-        internal static string RuleResultTrueMessage {
+        public static string RuleResultTrueMessage {
             get {
                 return ResourceManager.GetString("RuleResultTrueMessage", resourceCulture);
             }
@@ -326,7 +326,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please select a user name and select or enter a role..
         /// </summary>
-        internal static string User_AddRoleErrorMessage {
+        public static string User_AddRoleErrorMessage {
             get {
                 return ResourceManager.GetString("User_AddRoleErrorMessage", resourceCulture);
             }
@@ -335,16 +335,25 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Role {1} added for user {0}..
         /// </summary>
-        internal static string User_AddRoleMessage {
+        public static string User_AddRoleMessage {
             get {
                 return ResourceManager.GetString("User_AddRoleMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User {0} created..
+        /// </summary>
+        public static string User_CreatedMessage {
+            get {
+                return ResourceManager.GetString("User_CreatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a new user.
         /// </summary>
-        internal static string User_CreateTitleMessage {
+        public static string User_CreateTitleMessage {
             get {
                 return ResourceManager.GetString("User_CreateTitleMessage", resourceCulture);
             }
@@ -353,7 +362,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please select a user name..
         /// </summary>
-        internal static string User_DeleteErrorMessage {
+        public static string User_DeleteErrorMessage {
             get {
                 return ResourceManager.GetString("User_DeleteErrorMessage", resourceCulture);
             }
@@ -362,7 +371,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to User {0} deleted..
         /// </summary>
-        internal static string User_DeleteMessage {
+        public static string User_DeleteMessage {
             get {
                 return ResourceManager.GetString("User_DeleteMessage", resourceCulture);
             }
@@ -371,7 +380,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Please select a user name and a role..
         /// </summary>
-        internal static string User_DeleteRoleErrorMessage {
+        public static string User_DeleteRoleErrorMessage {
             get {
                 return ResourceManager.GetString("User_DeleteRoleErrorMessage", resourceCulture);
             }
@@ -380,16 +389,25 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Role {1} deleted for user {0}..
         /// </summary>
-        internal static string User_DeleteRoleMessage {
+        public static string User_DeleteRoleMessage {
             get {
                 return ResourceManager.GetString("User_DeleteRoleMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User {0} already exists..
+        /// </summary>
+        public static string User_Existe {
+            get {
+                return ResourceManager.GetString("User_Existe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a user name and select a role and a rule..
         /// </summary>
-        internal static string User_IdentityRoleErrorMessage {
+        public static string User_IdentityRoleErrorMessage {
             get {
                 return ResourceManager.GetString("User_IdentityRoleErrorMessage", resourceCulture);
             }
@@ -399,25 +417,34 @@ namespace Fwk.Security.Properties {
         ///   Looks up a localized string similar to Username: {0}
         ///Role: {1}.
         /// </summary>
-        internal static string User_IdentityRoleMessage {
+        public static string User_IdentityRoleMessage {
             get {
                 return ResourceManager.GetString("User_IdentityRoleMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to authenticate user {0}. Either the username does not exist in database or the provided password is not correct.
+        ///   Looks up a localized string similar to Failed to authenticate user {0}. Either the username does not exist in database or the provided password is not correct. Or user is not aproved.-.
         /// </summary>
-        internal static string User_InvalidCredentialsMessage {
+        public static string User_InvalidCredentialsMessage {
             get {
                 return ResourceManager.GetString("User_InvalidCredentialsMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User {0} already exists..
+        /// </summary>
+        public static string User_NoApproved {
+            get {
+                return ResourceManager.GetString("User_NoApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The user {0} not exist.
         /// </summary>
-        internal static string User_NotExist {
+        public static string User_NotExist {
             get {
                 return ResourceManager.GetString("User_NotExist", resourceCulture);
             }
@@ -426,7 +453,7 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You should authenticate a user first..
         /// </summary>
-        internal static string User_NullIdentityMessage {
+        public static string User_NullIdentityMessage {
             get {
                 return ResourceManager.GetString("User_NullIdentityMessage", resourceCulture);
             }
@@ -437,7 +464,7 @@ namespace Fwk.Security.Properties {
         ///  {1}
         ///.
         /// </summary>
-        internal static string User_ProfileMessage {
+        public static string User_ProfileMessage {
             get {
                 return ResourceManager.GetString("User_ProfileMessage", resourceCulture);
             }
@@ -446,25 +473,16 @@ namespace Fwk.Security.Properties {
         /// <summary>
         ///   Looks up a localized string similar to  Member of role {0}: {1}.
         /// </summary>
-        internal static string User_RoleMessage {
+        public static string User_RoleMessage {
             get {
                 return ResourceManager.GetString("User_RoleMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User {0} created..
-        /// </summary>
-        internal static string UserCreatedMessage {
-            get {
-                return ResourceManager.GetString("UserCreatedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Successfully authenticated user {0}.
         /// </summary>
-        internal static string ValidCredentialsMessage {
+        public static string ValidCredentialsMessage {
             get {
                 return ResourceManager.GetString("ValidCredentialsMessage", resourceCulture);
             }

@@ -24,21 +24,8 @@ namespace Fwk.Security.ISVC.GetUserInfoByName
         /// No utilizado para la llamada al servicio solo se pone
         /// por que se debe utilizar si o si una clase en el request.
         /// </summary>
-        public string Name;
-        private List<SqlParameter> _CustomParameters;
-        private String _CustomStoredProcedure;
-        
-        public List<SqlParameter> CustomParameters
-        {
-            get { return _CustomParameters; }
-            set { _CustomParameters = value; }
-        }        
-
-        public String CustomStoredProcedure
-        {
-            get { return _CustomStoredProcedure; }
-            set { _CustomStoredProcedure = value; }
-        }
+        public string UserName;
+     
 
     }
 

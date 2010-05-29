@@ -80,6 +80,9 @@ ErrorId = 4005
  Usuario no existe.-
 ErrorId = 4006
 	El rol tiene usuarios asociados
+
+ErrorId = 4007
+	El usuario Ya Exisate
  
 --------------------------------   Fwk.Security Active directory-----------------------------------
 ErrorId = 4103 : AD_GetingDomainsURL_Error

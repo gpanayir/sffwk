@@ -34,7 +34,7 @@ namespace Fwk.Security.ISVC.CreateUsers
     [XmlInclude(typeof(Param)), Serializable]
     public class Param : Entity
     {
-        private User _UsersBE;
+        private User _User;
         private RolList _RolList = new RolList();
         private List<SqlParameter> _CustomParameters;
         private String _CustomTableName;
@@ -54,10 +54,10 @@ namespace Fwk.Security.ISVC.CreateUsers
             }
         }
 
-        public User UsersBE
+        public User User
         {
-            get { return _UsersBE; }
-            set { _UsersBE = value; }
+            get { return _User; }
+            set { _User = value; }
         }
 
         public RolList RolList
@@ -90,11 +90,11 @@ namespace Fwk.Security.ISVC.CreateUsers
     [XmlInclude(typeof(Result)), Serializable]
     public class Result : Entity
     {
-        private User _UsersBE;
-        public User UsersBE
+        private User _UserBE;
+        public User UserBE
         {
-            get { return _UsersBE; }
-            set { _UsersBE = value; }
+            get { return _UserBE; }
+            set { _UserBE = value; }
         }
     }    
 }

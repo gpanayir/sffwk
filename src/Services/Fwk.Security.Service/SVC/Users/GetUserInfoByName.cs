@@ -19,11 +19,8 @@ namespace Fwk.Security.SVC
             UserBC userBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
 
             RolList wRolList = new RolList();
-          
-            wRes.BusinessData.UserCustomInfo = userBC.GetUserInfoByName(pServiceRequest.BusinessData.Name,
-                                                                         pServiceRequest.BusinessData.CustomParameters,
-                                                                         pServiceRequest.BusinessData.CustomStoredProcedure,
-                                                                         out wRolList,wRes.BusinessData.UserInfo);
+
+            userBC.GetUserInfoByName(pServiceRequest.BusinessData.UserName, out wRes.BusinessData.UserInfo, out wRolList);
             wRes.BusinessData.RolList = wRolList;
             
             return wRes;

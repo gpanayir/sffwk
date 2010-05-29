@@ -8,6 +8,7 @@ using System.Security.Principal;
 using System.Windows.Forms;
 using System.Web.Security;
 using System.Xml.Serialization;
+using Fwk.Bases;
 
 
 namespace Fwk.Security.Common
@@ -19,8 +20,6 @@ namespace Fwk.Security.Common
     public class User
     {
         private Int32? _UserId = 0;
-
-       
         private String m_AppName;
         private String m_UserName;
         private DateTime m_LastActivityDate;
@@ -31,6 +30,36 @@ namespace Fwk.Security.Common
         private String m_Password;
         private String m_QuestionPassword;
         private String m_AnswerPassword;
+        bool? _MustChangePassword;
+        Int32? _ModifiedByUserId;
+        DateTime? _ModifiedDate;
+        AuthenticationModeEnum _AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime? ModifiedDate
+        {
+            get { return _ModifiedDate; }
+            set { _ModifiedDate = value; }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int32? ModifiedByUserId
+        {
+            get { return _ModifiedByUserId; }
+            set { _ModifiedByUserId = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool? MustChangePassword
+        {
+            get { return _MustChangePassword; }
+            set { _MustChangePassword = value; }
+        }
         string _FirstName;
 
         /// <summary>
@@ -173,6 +202,13 @@ namespace Fwk.Security.Common
         {
             get{return m_Email;}
             set{m_Email = value;}
+        }
+    
+
+        public AuthenticationModeEnum AuthenticationMode
+        {
+            get { return _AuthenticationMode; }
+            set { _AuthenticationMode = value; }
         }
 
         /// <summary>

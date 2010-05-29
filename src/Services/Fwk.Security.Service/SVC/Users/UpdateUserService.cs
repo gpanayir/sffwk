@@ -24,7 +24,7 @@ namespace Fwk.Security.SVC
             //Si NO actualiza solo la password
             if (!pServiceRequest.BusinessData.PasswordOnly)
             {
-                wUserBC.Update(pServiceRequest.BusinessData.UsersBE, pServiceRequest.BusinessData.CustomParameters, pServiceRequest.BusinessData.RolList, pServiceRequest.BusinessData.CustomUserTable);                
+                wUserBC.Update(pServiceRequest.BusinessData.UsersBE, pServiceRequest.BusinessData.RolList);                
             }
 
             return wRes;

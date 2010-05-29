@@ -37,13 +37,14 @@ namespace Fwk.Security.BC
         /// <param name="pRolList">Roles del usuario</param>
         /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
         /// <returns>UserId del nuevo usuario.</returns>
-        public void Create(User pUserBE, List<SqlParameter> CustomParameters, RolList pRolList, String pCustomUserTable)
+        public void Create(User pUserBE,RolList pRolList)
         {
             SqlMembershipProvider wProvider = FwkMembership.GetSqlMembershipProvider(_ProviderName);
                         
 
             // nuevo GUID para el usuario
             Guid wUserGUID = Guid.NewGuid();
+
             MembershipCreateStatus pStatus = MembershipCreateStatus.UserRejected;
 
             // se inserta en las membership el nuevo usuario
@@ -51,17 +52,17 @@ namespace Fwk.Security.BC
                                                           pUserBE.QuestionPassword, pUserBE.AnswerPassword,
                                                           pUserBE.IsApproved, wUserGUID, out pStatus);
 
-
             // se inserta el usuario custom
             if (pStatus == MembershipCreateStatus.Success)
             {
-                UsersDAC.Create(pUserBE, CustomParameters, _ProviderName, pCustomUserTable);
+                //UsersDAC.Create(pUserBE, CustomParameters, _ProviderName, pCustomUserTable);
                 // se insertan los roles
                 if (pRolList != null)
                     FwkMembership.CreateRolesToUser(pRolList, pUserBE.UserName, _ProviderName);
             }
             else
             {
+                //TODO: Revisar MUI 
                 String wError = String.Format("No se puede crear el usuario \'{0}\': {1}", pUserBE.UserName, FwkMembership.GetErrorMessage(pStatus));
                 throw new FunctionalException(wError);
             }
@@ -74,12 +75,11 @@ namespace Fwk.Security.BC
         /// <param name="CustomParameters">Parametros para la tabla customizada</param>
         /// <param name="pRolList">Lista de roles para actualizar</param>
         /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
-        public void Update(User pUserBE, List<SqlParameter> CustomParameters, RolList pRolList, String pCustomUserTable)
+        public void Update(User pUserBE,  RolList pRolList)
         {
             Validate(pUserBE, false);
             
-            ///Update Bigbang Security.User
-            UsersDAC.Update(pUserBE, CustomParameters, _ProviderName, pCustomUserTable);
+           
             // Actualizacion del usuario de las membership
             FwkMembership.UpdateUser(pUserBE, _ProviderName);
             
@@ -122,7 +122,12 @@ namespace Fwk.Security.BC
                 pOldPassword,
                 pNewPassword, _ProviderName))
             {
-                throw new Fwk.Exceptions.FunctionalException("La contraseña anterior es incorrecta .-");
+                
+                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_InvalidCredentialsMessage, pUserName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4007";
+                throw te;
+
             }
 
             //UsersBE wUserBE = UsersDAC.GetByName(pUserName, _ProviderName);
@@ -131,11 +136,11 @@ namespace Fwk.Security.BC
         }
         
         /// <summary>
-        /// Valida si el usuario existe.
+        /// Valida si el usuario existe. y si no le falta el nombre
         /// </summary>
         /// <param name="pUserBE">UsersBE a validar.</param>
         /// <param name="pIsNewUser">Si es nuevo se verifica de otra forma</param>
-        private void Validate(User pUserBE,Boolean pIsNewUser)
+        void Validate(User pUserBE,Boolean pIsNewUser)
         {
             //Validación de existencia de usuario
             //Nombre vacio
@@ -145,92 +150,84 @@ namespace Fwk.Security.BC
             }
 
             if (pIsNewUser)
-            {   //Nombre ya existente
-
+            { 
+                //Nombre ya existente
                 User wUser = FwkMembership.GetUser(pUserBE.UserName, _ProviderName);
-                // si el usuario es != null entonces existe.
-                if (wUser == null)
-                    throw new FunctionalException(String.Format("Ya existe un usuario con el nombre \'{0}\'", pUserBE.UserName));
+                
+                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, pUserBE.UserName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4007";
+                throw te;
+
+                
+                
             }
         }
 
         /// <summary>
         /// Obtiene la informacion de un usuario y su Custom de un usuario, junto a sus roles
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="CustomParameters"></param>
-        /// <param name="pCustomUserStoreProcedure"></param>
+        /// <param name="pUserName"></param>
         /// <param name="pRolList"></param>
         /// <returns></returns>
-        public DataSet GetUserInfoByName(String pUserName, List<SqlParameter> CustomParameters,
-                                         String pCustomUserStoreProcedure, out RolList pRolList, User pUser)
+        public void GetUserInfoByName(String pUserName,out User pUser  , out RolList pRolList)
         {
-            DataSet wUserInfo = null;
+           
 
             pUser = FwkMembership.GetUser(pUserName, _ProviderName);
 
-            if (CustomParameters != null)
-            {
-                if (CustomParameters.Count > 0)
-                {
-                    wUserInfo = UsersDAC.GetUser(_ProviderName, CustomParameters, pCustomUserStoreProcedure);
+            //if (CustomParameters != null)
+            //{
+            //    if (CustomParameters.Count > 0)
+            //    {
+            //        wUserInfo = UsersDAC.GetUser(_ProviderName, CustomParameters, pCustomUserStoreProcedure);
 
-                    if (wUserInfo == null)
-                    {
-                        throw new FunctionalException("No se encontró ningún usuario");
-                    }
-                }
-            }
+            //        if (wUserInfo == null)
+            //        {
+            //            throw new FunctionalException("No se encontró ningún usuario");
+            //        }
+            //    }
+            //}
             pRolList = FwkMembership.GetRolesForUser(pUserName, _ProviderName);
 
-            return wUserInfo;
+          
         }
 
+     
+        
         /// <summary>
-        ///  Este metodo es usa cuando la autenticacion es integrada (con windows)
-        /// </summary>
-        /// <param name="userName"></param>
-        /// <returns></returns>        
-        public DataSet AuthenticateUser(String pUserName, List<SqlParameter> CustomParameters,
-                                         String pCustomUserStoreProcedure, out RolList pRolList, User pUser)
-        {
-            //UserInfo wUserInfo = null;
-            User wUser = Fwk.Security.FwkMembership.GetUser(pUserName,_ProviderName);
-            DataSet wUserCustom;
-
-            if (wUser == null)
-                throw new FunctionalException("No es un usuario registrado para ingresar al sistema.");
-
-            if (!wUser.IsApproved)
-                throw new FunctionalException(string.Format("El usuario '{0}' no es un usuario aprobado. Pongase en contacto con su administrador.", pUserName));
-
-            wUserCustom = GetUserInfoByName(pUserName, CustomParameters,
-                                            pCustomUserStoreProcedure, out pRolList, pUser);
-
-            pRolList = FwkMembership.GetRolesForUser(pUserName, _ProviderName);
-
-            return wUserCustom;
-        }
-
-        /// <summary>
-        /// Este metodo es para se usado cuano la autenticacion es solo de bigbang
+        /// 
         /// </summary>
         /// <param name="pUserName"></param>
         /// <param name="pPassword"></param>
+        /// <param name="pUser"></param>
         /// <returns></returns>
-        public DataSet AuthenticateUser(String pUserName, String pPassword, List<SqlParameter> CustomParameters,
-                                         String pCustomUserStoreProcedure, out RolList pRolList, User pUser)
+        public bool AuthenticateUser(String pUserName, String pPassword, out User pUser)
         {
-            
-            bool wValidateUser = Fwk.Security.FwkMembership.ValidateUser(pUserName, pPassword,_ProviderName);
+            pUser = Fwk.Security.FwkMembership.GetUser(pUserName, _ProviderName);
+
+
+            if (pUser == null)
+            {
+                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, pUserName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4007";
+                throw te;
+
+            }
+
+
+            bool wValidateUser = Fwk.Security.FwkMembership.ValidateUser(pUserName, pPassword, _ProviderName);
 
             if (wValidateUser == false)
             {
-                throw new FunctionalException("Nombre de usuario o contraseña no válida. Verifique sus datos por favor, e intentelo nuevamente.");
+
+                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_InvalidCredentialsMessage, pUserName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4007";
+                throw te;
             }
-
-            return this.AuthenticateUser(pUserName,CustomParameters,pCustomUserStoreProcedure, out pRolList, pUser);
-
+            return wValidateUser;
         }
 
         /// <summary>
@@ -240,8 +237,7 @@ namespace Fwk.Security.BC
         /// <param name="pPassword"></param>
         /// <param name="pDomain"></param>
         /// <returns></returns>
-        public DataSet AuthenticateUser(String pUserName, String pPassword, String pDomain,List<SqlParameter> pCustomParameters,
-                                         String pCustomUserStoreProcedure, out RolList pRolList, User pUser)
+        public bool AuthenticateUser_AD(String pUserName, String pPassword, String pDomain, out User pUser)
         {
 
             ADHelper wADHelper = new Fwk.Security.ActiveDirectory.ADHelper(pDomain);
@@ -274,7 +270,7 @@ namespace Fwk.Security.BC
                     break;
             }
 
-            return this.AuthenticateUser(pUserName, pCustomParameters, pCustomUserStoreProcedure, out pRolList, pUser);
+            return true;//this.AuthenticateUser(pUserName,pUserName,out pUser);
 
             //// Se baja el Flag MustChangePassword porque es solo para autenticación Mixta, no importa el valor que tenga
             //wUserInfo.MustChangePassword = false;
@@ -294,37 +290,37 @@ namespace Fwk.Security.BC
             return wDomainNamesList;
         }
 
-        
-        public DataSet GetUser(String pUserName,List<SqlParameter> pCustomParameters,
-                                         String pCustomUserStoreProcedure, User pUser)
+
+        public User GetUser(String pUserName)
         {
-            DataSet wResult = null;
-            pUser =FwkMembership.GetUser(pUserName, _ProviderName);
+
+            User wUser = FwkMembership.GetUser(pUserName, _ProviderName);
 
             // Verficación de parametros customizables
-            if (pCustomParameters != null)
-            {
-                if (pCustomParameters.Count > 0)
-                {
-                    wResult = UsersDAC.GetUser(_ProviderName, pCustomParameters, pCustomUserStoreProcedure);
-                }
-            }
-            
-            return wResult;
+            //if (pCustomParameters != null)
+            //{
+            //    if (pCustomParameters.Count > 0)
+            //    {
+            //        wResult = UsersDAC.GetUser(_ProviderName, pCustomParameters, pCustomUserStoreProcedure);
+            //    }
+            //}
+
+            return wUser;
         }
 
-        public DataSet GetAllUser(UserList pUserList, String pCustomUserStoreProcedure)
+        public UserList GetAllUser()
         {
-            DataSet wResult = null;
+          
 
             // Se obtienen los usuarios de las memberships
+            UserList pUserList = new UserList();
             pUserList.AddRange(FwkMembership.GetAllUsers(_ProviderName));
 
             // Se obtienen los usuarios Custom
-            if(pCustomUserStoreProcedure != String.Empty)
-                wResult = UsersDAC.GetAllUsers(_ProviderName, pCustomUserStoreProcedure);
+            //if(pCustomUserStoreProcedure != String.Empty)
+            //    wResult = UsersDAC.GetAllUsers(_ProviderName, pCustomUserStoreProcedure);
 
-            return wResult;
+            return pUserList;
         }
     }
 }

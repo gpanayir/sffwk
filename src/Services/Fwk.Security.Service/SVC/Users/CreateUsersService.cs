@@ -31,10 +31,11 @@ namespace Fwk.Security.SVC
             CreateUsersResponse wRes = new CreateUsersResponse();
             UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
 
-            wUserBC.Create(pServiceRequest.BusinessData.UsersBE, pServiceRequest.BusinessData.CustomParameters,
+            wUserBC.Create(pServiceRequest.BusinessData.User, pServiceRequest.BusinessData.CustomParameters,
                            pServiceRequest.BusinessData.RolList, pServiceRequest.BusinessData.CustomTableName);
 
-            wRes.BusinessData.UsersBE = pServiceRequest.BusinessData.UsersBE;
+            wRes.BusinessData.UserBE = pServiceRequest.BusinessData.User;
+            
 
             return wRes;
         }
