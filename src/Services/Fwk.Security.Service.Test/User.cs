@@ -200,7 +200,7 @@ namespace ServiceTest
 
             AuthenticateUserReq req = new AuthenticateUserReq();
             req.BusinessData.AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
-            req.BusinessData.Name = pUserName;
+            req.BusinessData.UserName = pUserName;
             req.BusinessData.IsEnvironmentUser = true;
             AuthenticateUserRes res = _ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(req);
 
@@ -247,7 +247,7 @@ namespace ServiceTest
 
             AuthenticateUserReq req = new AuthenticateUserReq();
             req.BusinessData.AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
-            req.BusinessData.Name = pUserName;
+            req.BusinessData.UserName = pUserName;
             req.BusinessData.Password = pPassword;
             req.BusinessData.Domain = pDomain;
             req.BusinessData.IsEnvironmentUser = false;
@@ -290,7 +290,7 @@ namespace ServiceTest
 
             AuthenticateUserReq req = new AuthenticateUserReq();
             req.BusinessData.AuthenticationMode = AuthenticationModeEnum.Mixed;
-            req.BusinessData.Name = pUserName;
+            req.BusinessData.UserName = pUserName;
             req.BusinessData.Password = pPassword;
             AuthenticateUserRes res = _ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(req);
 
