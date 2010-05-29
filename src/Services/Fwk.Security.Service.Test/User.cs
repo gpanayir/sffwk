@@ -103,7 +103,7 @@ namespace ServiceTest
 
                 GetUserInfoByNameResponse response =new GetUserInfoByNameResponse();
 
-                request.BusinessData.Name = "sbiglia";
+                request.BusinessData.UserName = "sbiglia";
 
                 response = service.Execute(request);
 
@@ -149,7 +149,7 @@ namespace ServiceTest
 
             GetUserInfoByNameRequest req = new GetUserInfoByNameRequest();
 
-            req.BusinessData.Name = "moviedo";
+            req.BusinessData.UserName = "moviedo";
             try
             {
 
@@ -347,7 +347,7 @@ namespace ServiceTest
             wUserBe.IsApproved = true;
 
 
-            wRequest.BusinessData.UsersBE = wUserBe;
+            wRequest.BusinessData.User = wUserBe;
             wResponse = wRequest.ExecuteService<CreateUsersRequest, CreateUsersResponse>(wRequest);
             _Tx.Abort();
 
@@ -413,20 +413,19 @@ namespace ServiceTest
             req.BusinessData.ChangePassword.New = "hola";
             req.BusinessData.ChangePassword.Old = string.Empty;
 
-            req.BusinessData.UsersBE = new UsersBE();
+            req.BusinessData.UsersBE = new User();
             //BusinessData.UsersBE.Name = String.Format("lenny{0}", GenerarCadenaAleatoria(6));
             req.BusinessData.UsersBE.UserId = 234;
-            req.BusinessData.UsersBE.Name = "charly";
+            req.BusinessData.UsersBE.UserName = "charly";
             req.BusinessData.UsersBE.FirstName = "sarasa";
             req.BusinessData.UsersBE.LastName = "sarasa";
 
 
-            req.BusinessData.UsersBE.DNI = "123456";
-            req.BusinessData.UsersBE.Mail = "sarasa@b.com";
+            req.BusinessData.UsersBE.Email = "sarasa@b.com";
             req.BusinessData.UsersBE.IsApproved = true;
-            req.BusinessData.UsersBE.ActiveFlag = true;
-            req.BusinessData.UsersBE.ModifiedByUserId = 224;
-            req.BusinessData.UsersBE.ModifiedDate = System.DateTime.Now;
+            
+           
+           
 
             req.BusinessData.RolList = new Fwk.Security.Common.RolList();
 
