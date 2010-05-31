@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Controls.Win32", "..\Fw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service", "..\Services\Fwk.Security.Service\Fwk.Security.Service.csproj", "{5659954E-96C0-4D30-8728-DF8BD381A63D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service.Test", "..\Services\Fwk.Security.Service.Test\Fwk.Security.Service.Test.csproj", "{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -273,6 +275,16 @@ Global
 		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Release|.NET.ActiveCfg = Release|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -298,5 +310,6 @@ Global
 		{1478F84E-4F08-40A2-9A2A-B5F8CEF9DDA5} = {5EA37F54-8BAE-4645-AA21-6CBE0B05BB09}
 		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE} = {7D2D5A69-0108-4921-A499-1E55BC2541D5}
 		{5659954E-96C0-4D30-8728-DF8BD381A63D} = {7D2D5A69-0108-4921-A499-1E55BC2541D5}
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264} = {7D2D5A69-0108-4921-A499-1E55BC2541D5}
 	EndGlobalSection
 EndGlobal
