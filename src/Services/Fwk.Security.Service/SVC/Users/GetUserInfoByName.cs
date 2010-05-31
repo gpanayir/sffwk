@@ -11,6 +11,11 @@ using Fwk.Security.Common;
 
 namespace Fwk.Security.SVC
 {
+    /// <summary>
+    /// Obtiene info del usuario :
+    /// 
+    /// intenta obtener el usuario en la membership 
+    /// </summary>
     public class GetUserInfoByName : BusinessService<GetUserInfoByNameRequest, GetUserInfoByNameResponse>
     {
         public override GetUserInfoByNameResponse Execute(GetUserInfoByNameRequest pServiceRequest)

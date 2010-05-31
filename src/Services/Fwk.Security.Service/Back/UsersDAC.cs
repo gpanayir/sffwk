@@ -24,7 +24,6 @@ using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-//using Unassigned = Fwk.Security.ISVC.GetUnassignedUsersByParam;
 using System.Web.Security;
 using Fwk.Security.Common;
 

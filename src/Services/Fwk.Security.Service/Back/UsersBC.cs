@@ -39,32 +39,32 @@ namespace Fwk.Security.BC
         /// <returns>UserId del nuevo usuario.</returns>
         public void Create(User pUserBE,RolList pRolList)
         {
-            SqlMembershipProvider wProvider = FwkMembership.GetSqlMembershipProvider(_ProviderName);
                         
-
-            // nuevo GUID para el usuario
-            Guid wUserGUID = Guid.NewGuid();
+            //TODO: Ver tema de nuevo GUID para el usuario 
+            //Guid wUserGUID = Guid.NewGuid();
 
             MembershipCreateStatus pStatus = MembershipCreateStatus.UserRejected;
 
             // se inserta en las membership el nuevo usuario
-            MembershipUser wNewUser = wProvider.CreateUser(pUserBE.UserName, pUserBE.Password, pUserBE.Email,
+            User wNewUser = FwkMembership.CreateUser(pUserBE.UserName, pUserBE.Password, pUserBE.Email,
                                                           pUserBE.QuestionPassword, pUserBE.AnswerPassword,
-                                                          pUserBE.IsApproved, wUserGUID, out pStatus);
+                                                          pUserBE.IsApproved, out pStatus,_ProviderName);
 
             // se inserta el usuario custom
             if (pStatus == MembershipCreateStatus.Success)
             {
                 //UsersDAC.Create(pUserBE, CustomParameters, _ProviderName, pCustomUserTable);
-                // se insertan los roles
+                // Se insertan los roles
                 if (pRolList != null)
                     FwkMembership.CreateRolesToUser(pRolList, pUserBE.UserName, _ProviderName);
             }
             else
             {
-                //TODO: Revisar MUI 
-                String wError = String.Format("No se puede crear el usuario \'{0}\': {1}", pUserBE.UserName, FwkMembership.GetErrorMessage(pStatus));
-                throw new FunctionalException(wError);
+                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_Created_Error_Message, pUserBE.UserName,pStatus));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4008";
+                throw te;
+
             }
         }
 
@@ -237,40 +237,44 @@ namespace Fwk.Security.BC
         /// <param name="pPassword"></param>
         /// <param name="pDomain"></param>
         /// <returns></returns>
-        public bool AuthenticateUser_AD(String pUserName, String pPassword, String pDomain, out User pUser)
+        public LoginResult AuthenticateUser_AD(String pUserName, String pPassword, String pDomain)
         {
 
-            ADHelper wADHelper = new Fwk.Security.ActiveDirectory.ADHelper(pDomain);
-            LoginResult wLoginResult = wADHelper.User_CheckLogin(pUserName, pPassword);
-            switch (wLoginResult)
-            {
-                //case LoginResult.LOGIN_OK:
-                //    //pasa
-                //    break;
-                case LoginResult.ERROR_PASSWORD_EXPIRED:
-                    throw new AuthenticationException("La clave ha expirado.");
-                    break;
-                case LoginResult.ERROR_PASSWORD_MUST_CHANGE:
-                    throw new AuthenticationException("El usuario debe cambiar la clave.");
-                    break;
-                case LoginResult.LOGIN_USER_ACCOUNT_INACTIVE:
-                    throw new AuthenticationException("La cuenta se encuentra deshabilitada.");
-                    break;
-                case LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT:
-                    throw new AuthenticationException("La cuenta se encuentra bloqueada.");
-                    break;
-                case LoginResult.LOGIN_USER_DOESNT_EXIST:
-                    throw new AuthenticationException("Error en nombre de usuario y/o clave.");
-                    break;
-                case LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT:
-                    throw new AuthenticationException("Error en nombre de usuario y/o clave.");
-                    break;
-                default:
-                    throw new FunctionalException("Error desconocido.");
-                    break;
-            }
 
-            return true;//this.AuthenticateUser(pUserName,pUserName,out pUser);
+            ADHelper wADHelper = StaticsValues.Find_ADHelper(pDomain);
+           
+            LoginResult wLoginResult = wADHelper.User_CheckLogin(pUserName, pPassword);
+            return wADHelper.User_CheckLogin(pUserName, pPassword);
+
+            //switch (wLoginResult)
+            //{
+            //    //case LoginResult.LOGIN_OK:
+            //    //    //pasa
+            //    //    break;
+            //    case LoginResult.ERROR_PASSWORD_EXPIRED:
+            //        throw new AuthenticationException("La clave ha expirado.");
+            //        break;
+            //    case LoginResult.ERROR_PASSWORD_MUST_CHANGE:
+            //        throw new AuthenticationException("El usuario debe cambiar la clave.");
+            //        break;
+            //    case LoginResult.LOGIN_USER_ACCOUNT_INACTIVE:
+            //        throw new AuthenticationException("La cuenta se encuentra deshabilitada.");
+            //        break;
+            //    case LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT:
+            //        throw new AuthenticationException("La cuenta se encuentra bloqueada.");
+            //        break;
+            //    case LoginResult.LOGIN_USER_DOESNT_EXIST:
+            //        throw new AuthenticationException("Error en nombre de usuario y/o clave.");
+            //        break;
+            //    case LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT:
+            //        throw new AuthenticationException("Error en nombre de usuario y/o clave.");
+            //        break;
+            //    default:
+            //        throw new FunctionalException("Error desconocido.");
+            //        break;
+            //}
+
+            //return true;//this.AuthenticateUser(pUserName,pUserName,out pUser);
 
             //// Se baja el Flag MustChangePassword porque es solo para autenticación Mixta, no importa el valor que tenga
             //wUserInfo.MustChangePassword = false;

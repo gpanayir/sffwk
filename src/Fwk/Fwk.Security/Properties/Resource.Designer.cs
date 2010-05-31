@@ -79,6 +79,15 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Domain {0} not exist .
+        /// </summary>
+        public static string AD_NotExistDomainsURL {
+            get {
+                return ResourceManager.GetString("AD_NotExistDomainsURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authenticate user.
         /// </summary>
         public static string AuthenticateTitleMessage {
@@ -338,6 +347,15 @@ namespace Fwk.Security.Properties {
         public static string User_AddRoleMessage {
             get {
                 return ResourceManager.GetString("User_AddRoleMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are some problems while trying to create user {0}.  Status: {1}.
+        /// </summary>
+        public static string User_Created_Error_Message {
+            get {
+                return ResourceManager.GetString("User_Created_Error_Message", resourceCulture);
             }
         }
         

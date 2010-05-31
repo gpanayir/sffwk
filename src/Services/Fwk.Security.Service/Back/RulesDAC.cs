@@ -144,7 +144,7 @@ namespace Fwk.Security.DAC
             String wQuery = "SELECT CategoryId FROM dbo.aspnet_RulesInCategory WHERE RuleName = @RuleName";
             Object wCategoryId = null;
 
-          
+
 
             try
             {
@@ -158,7 +158,7 @@ namespace Fwk.Security.DAC
             }
             catch (Exception ex)
             {
-              throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
             }
 
             return wCategoryId;

@@ -250,9 +250,9 @@ namespace Fwk.Security
        }
 
         /// <summary>
-        /// 
+        /// Obtiene un objeto <see cref="MembershipUser"/> por medio del SqlMembershipProvider correspondiente
         /// </summary>
-        /// <param name="userName"></param>
+        /// <param name="userName">Nombre de usuario</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
         static MembershipUser GetMembershipUser(String userName, string providerName)

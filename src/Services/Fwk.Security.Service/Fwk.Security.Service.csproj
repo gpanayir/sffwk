@@ -35,7 +35,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\StaticLibs\Fwk.Bases.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Security, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\StaticLibs\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -84,6 +83,7 @@
     <Compile Include="ISVC\Users\UsersBE.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Statics.cs" />
     <Compile Include="SVC\SearchDomainsUrlsService.cs" />
     <Compile Include="ISVC\Users\UpdateUser.cs" />
     <Compile Include="ISVC\Users\GetUsers.cs" />
@@ -133,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="metadata\ServiceMetadataConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Fwk\Fwk.Security\Fwk.Security.csproj">
+      <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
+      <Name>Fwk.Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ISVC\Team\" />

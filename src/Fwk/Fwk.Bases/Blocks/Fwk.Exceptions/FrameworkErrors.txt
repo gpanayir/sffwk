@@ -83,6 +83,9 @@ ErrorId = 4006
 
 ErrorId = 4007
 	El usuario Ya Exisate
+	
+ErrorId = 4008
+	No se puede crear el usuario en las membership.-
  
 --------------------------------   Fwk.Security Active directory-----------------------------------
 ErrorId = 4103 : AD_GetingDomainsURL_Error
@@ -90,3 +93,6 @@ Error al intentar obtener la lista de dominios desde la base de datos:
 
 ErrorId = 4104 : AD_Impersonation_Error
 Error de impersinalizacion de active directory
+
+ErrorId = 4106 : AD_NotExistDomainsURL
+No existe el dominio solicitado.- La tabla domains url no contiene el Domain Url que se intenta obtener.-

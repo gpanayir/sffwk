@@ -9,8 +9,6 @@
 //
 //</auto-generated>
 //------------------------------------------------------------------------------
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +21,8 @@ using System.Data;
 using Fwk.Security.Common;
 using BE = Fwk.Security.BE;
 using Fwk.Security.ISVC.GetAllRules;
-
-
 using UPDRule = Fwk.Security.ISVC.UpdateRules;
 using System.Data.Common;
-
 using Fwk.Security.BE;
 using Fwk.Security.DAC;
 
@@ -41,52 +36,50 @@ namespace Fwk.Security.BC
     public class RulesBC : Fwk.Bases.BaseBC
     {
         string _ProviderName;
-        public RulesBC(string pCompanyId,string pProviderName) : base(pCompanyId) { _ProviderName = pProviderName; }
+        public RulesBC(string pCompanyId, string pProviderName) : base(pCompanyId) { _ProviderName = pProviderName; }
 
         /// <summary>
         /// Insert
         /// </summary>
         ///<param name="paspnet_RulesBE">aspnet_RulesBE</param>
         /// <returns>void</returns>
-          public  void Insert(RulesBE pRulesBE)
+        public void Insert(RulesBE pRulesBE)
         {
-        
-            RulesDAC.Insert(pRulesBE,_ProviderName);
+            RulesDAC.Insert(pRulesBE, _ProviderName);
         }
 
-       
+
 
         // Actualiza una Regla Pura (Sin CAtegoria)
-        private  void Update(BE.RulesBE pRulesBE)
-        {           
+        private void Update(BE.RulesBE pRulesBE)
+        {
             // Update de la Regla
-            RulesDAC.Update(pRulesBE,_ProviderName);
+            RulesDAC.Update(pRulesBE, _ProviderName);
         }
 
-    
+
 
         /// <summary>
         /// Verifica si una regla tiene categoria
         /// </summary>
         /// <param name="pRuleName">Nombre de la Regla para Verificar</param>
         /// <returns>Retorna Verdadero o Falso si existe una regla vinculada con la categoria</returns>
-        private  bool ExistRulesInCategory(string pRuleName)
+        private bool ExistRulesInCategory(string pRuleName)
         {
             Object wCategoryId = null;
 
-            wCategoryId = RulesDAC.ExistRulesInCategory(pRuleName,_ProviderName);
+            wCategoryId = RulesDAC.ExistRulesInCategory(pRuleName, _ProviderName);
 
             if (wCategoryId == null)
                 return false;
             else
                 return true;
-
         }
-     
-       
 
-      
-      
+
+
+
+
 
         ///TODO: ver por que se traen reglas con su categoria: Las reglas no estan en una determinada categoria 
         ///sino la categoria contiene reglas
@@ -121,6 +114,6 @@ namespace Fwk.Security.BC
 
         //    return wRBList;
         //}
-               
+
     }
 }

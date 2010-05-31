@@ -86,7 +86,7 @@ namespace Fwk.Security
             {
                 TechnicalException te = new TechnicalException(string.Format(Resource.ProviderNameNotFound, providerName));
                 te.ErrorId = "4001";
-                te.Source = "FwkMembership blok";
+                te.Source = "FwkMembership block";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 throw te;
             }
