@@ -6,6 +6,7 @@ ECHO cd C:\Projects\Fwk 3.0\Libraries\Framework
 
 del *.pdb 
 del Fwk.*.xml
+del Fwk.*.XML
 del *.config 
 
 @ECHO OFF
