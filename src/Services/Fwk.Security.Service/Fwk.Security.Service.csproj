@@ -76,6 +76,7 @@
     <Compile Include="Back\RulesDAC.cs" />
     <Compile Include="Back\UsersBC.cs" />
     <Compile Include="Back\UsersDAC.cs" />
+    <Compile Include="ISVC\ActiveDirectory\GetAllUsers.cs" />
     <Compile Include="ISVC\SearchDomainsUrls\SearchDomainsUrls.cs" />
     <Compile Include="ISVC\Users\UserInfo.cs">
       <SubType>Code</SubType>
@@ -139,10 +140,6 @@
       <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
       <Name>Fwk.Security</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ISVC\Team\" />
-    <Folder Include="SVC\Teams\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
