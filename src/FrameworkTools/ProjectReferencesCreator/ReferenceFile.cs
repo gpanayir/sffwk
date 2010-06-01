@@ -146,6 +146,7 @@ namespace ProjectReferencesCreator
             fwkList.Add("Fwk.DataBase");
             fwkList.Add("Fwk.Controls.Win32");
             fwkList.Add("Fwk.Bases.FrontEnd");
+            fwkList.Add("Fwk.Security.Service");
   
         }
 
@@ -322,7 +323,7 @@ namespace ProjectReferencesCreator
                                     }
                                 case ReferenceType.EnterpriseLibrary:
                                     {
-                                        if (assemblyName.Contains(EnterpriseLibrary) )
+                                        if (assemblyName.Contains(EnterpriseLibrary))
                                         {
                                             Fwk.Xml.NodeAttribute.AttributeSet(xmlNode_Reference, "Include", VERSION_TEMPLATE.Replace("$ASSEMBLY$", assemblyName).Replace("$VERSION$", newVersion));
                                             wReferenceFile.Udated = true;

@@ -309,14 +309,12 @@
             this.txtNewVersion_EnterpriseLibrary.Enabled = false;
             this.txtNewVersion_EnterpriseLibrary.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNewVersion_EnterpriseLibrary.ForeColor = System.Drawing.Color.Maroon;
-            this.txtNewVersion_EnterpriseLibrary.Location = new System.Drawing.Point(327, 46);
-            this.txtNewVersion_EnterpriseLibrary.Mask = "9.9.9.9";
+            this.txtNewVersion_EnterpriseLibrary.Location = new System.Drawing.Point(387, 45);
             this.txtNewVersion_EnterpriseLibrary.Name = "txtNewVersion_EnterpriseLibrary";
             this.txtNewVersion_EnterpriseLibrary.ResetOnPrompt = false;
             this.txtNewVersion_EnterpriseLibrary.ResetOnSpace = false;
-            this.txtNewVersion_EnterpriseLibrary.Size = new System.Drawing.Size(72, 26);
+            this.txtNewVersion_EnterpriseLibrary.Size = new System.Drawing.Size(153, 26);
             this.txtNewVersion_EnterpriseLibrary.TabIndex = 21;
-            this.txtNewVersion_EnterpriseLibrary.Text = "2343";
             // 
             // txtNewVersion_AllusLibs
             // 
@@ -352,7 +350,7 @@
             // 
             this.chlEnterpriseLibrary.AutoSize = true;
             this.chlEnterpriseLibrary.ForeColor = System.Drawing.Color.Blue;
-            this.chlEnterpriseLibrary.Location = new System.Drawing.Point(214, 55);
+            this.chlEnterpriseLibrary.Location = new System.Drawing.Point(274, 52);
             this.chlEnterpriseLibrary.Name = "chlEnterpriseLibrary";
             this.chlEnterpriseLibrary.Size = new System.Drawing.Size(107, 17);
             this.chlEnterpriseLibrary.TabIndex = 18;
@@ -390,7 +388,7 @@
             this.btnUpdateVersions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateVersions.Image = global::ProjectReferencesCreator.Properties.Resources.play_16;
             this.btnUpdateVersions.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdateVersions.Location = new System.Drawing.Point(221, 90);
+            this.btnUpdateVersions.Location = new System.Drawing.Point(281, 87);
             this.btnUpdateVersions.Name = "btnUpdateVersions";
             this.btnUpdateVersions.Size = new System.Drawing.Size(178, 26);
             this.btnUpdateVersions.TabIndex = 11;
