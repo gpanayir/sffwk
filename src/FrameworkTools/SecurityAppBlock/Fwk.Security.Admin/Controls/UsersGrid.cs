@@ -56,8 +56,9 @@ namespace Fwk.Security.Admin
 
         public override void Initialize()
         {
-
-            userList = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
+          
+                userList = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
+          
             grdUsers.DataSource = userList;
             grdUsers.Refresh();
         }

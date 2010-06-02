@@ -17,37 +17,36 @@ using Fwk.Security.Admin.Controls;
 
 namespace Fwk.Security.Admin 
 {
-    public partial class frmAdmin : XtraForm
+    public partial class frmAdmin : frmSecBase
     {
-
-       public static MembershipProvider Provider = Membership.Provider;
+       SecurityControlBase currontSecurityControlBase;
+        public static MembershipProvider Provider = Membership.Provider;
+        
         public frmAdmin()
         {
             InitializeComponent();
-        
-
-         
         }
-
-        
-
 
         private void button2_Click(object sender, EventArgs e)
         {
             User user = FwkMembership.GetUser(Environment.UserName, frmAdmin.Provider.Name);
         }
-
-
-
-
-
-        SecurityControlBase currontSecurityControlBase;
+        
         private void navBarControl1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-           currontSecurityControlBase =  ControlsFactory.Show(e.Link, this.panelControl1);
-            //Esto se hace de esta manera ya que el tree listo no se carga correctamente la  primera vez que se levanta el control
-           if (currontSecurityControlBase.GetType() == typeof(CategoryCreate))
-               ((CategoryCreate)currontSecurityControlBase).PopulateAsync();
+            try
+            {
+                currontSecurityControlBase = ControlsFactory.Show(e.Link, this.panelControl1);
+                //Esto se hace de esta manera ya que el tree listo no se carga correctamente la  primera vez que se levanta el control
+                if (currontSecurityControlBase.GetType() == typeof(CategoryCreate))
+                    ((CategoryCreate)currontSecurityControlBase).PopulateAsync();
+            }
+            catch (Exception ex)
+            {
+                base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
+            }
+            
+           
         }
 
         private void cmbProviders_EditValueChanged(object sender, EventArgs e)
@@ -61,11 +60,12 @@ namespace Fwk.Security.Admin
             cmbProviders.ItemIndex = 0;
 
         }
-       
 
-       
-        
+        private void navBarControl1_Click(object sender, EventArgs e)
+        {
 
+        }
+       
        
     }
 }

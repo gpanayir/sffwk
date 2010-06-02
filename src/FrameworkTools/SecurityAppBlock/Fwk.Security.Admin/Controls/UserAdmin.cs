@@ -10,6 +10,7 @@ using Fwk.Security.Common;
 using Fwk.Security;
 using System.Web.Security;
 using System.Web.Profile;
+using Fwk.Bases.FrontEnd.Controls;
 
 namespace Fwk.Security.Admin.Controls
 {
@@ -35,13 +36,15 @@ namespace Fwk.Security.Admin.Controls
             InitializeComponent();
         }
 
-       
+
         public override void Initialize()
         {
             using (new WaitCursorHelper(this))
             {
                 usersGrid1.Initialize();
-                bindingSourceRoles1.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
+               
+                    bindingSourceRoles1.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
+                
                 FillRolesByUser();
             }
         }

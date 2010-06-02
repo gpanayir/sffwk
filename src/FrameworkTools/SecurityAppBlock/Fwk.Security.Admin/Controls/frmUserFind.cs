@@ -11,12 +11,21 @@ using DevExpress.XtraEditors;
 
 namespace Fwk.Security.Admin.Controls
 {
-    public partial class frmUserFind : XtraForm
+    public partial class frmUserFind : frmSecBase
     {
         public frmUserFind()
         {
             InitializeComponent();
-            this.usersGrid1.Initialize();
+            try
+            {
+                this.usersGrid1.Initialize();
+            }
+            catch (Exception ex)
+            {
+
+                base.MessageViewInfo.Show(ex);
+                this.Close();
+            }
         }
 
         [Browsable(false)]

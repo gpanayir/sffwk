@@ -21,7 +21,7 @@ namespace Fwk.Security.Admin.Controls
         internal static bool Authorize(IPrincipal principal, string context)
         {
             return AuthorizationFactory.GetAuthorizationProvider(frmAdmin.Provider.Name).Authorize(principal, context);
-
+            FwkAuthorizationRuleProvider 
         }
           
         
@@ -71,7 +71,18 @@ namespace Fwk.Security.Admin.Controls
             SecurityControlBase wSecurityControl  = Get(pItem);
             
             AddtoPanel(wSecurityControl, pContainer);
-            wSecurityControl.Initialize();
+            try
+            {
+                wSecurityControl.Initialize();
+            }
+            catch (Exception ex)
+            {
+                pContainer.Controls.Clear();
+                throw ex;
+               
+                
+            }
+            
 
             return wSecurityControl;
         }

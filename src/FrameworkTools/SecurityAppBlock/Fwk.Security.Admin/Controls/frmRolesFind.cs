@@ -10,12 +10,23 @@ using Fwk.Security.Common;
 
 namespace Fwk.Security.Admin.Controls
 {
-    public partial class frmRolesFind : Form
+    public partial class frmRolesFind : frmSecBase
     {
         public frmRolesFind()
         {
             InitializeComponent();
-            this.rolesGrid1.Initialize();
+
+            try
+            {
+                this.rolesGrid1.Initialize();
+            }
+            catch (Exception ex)
+            {
+
+                base.MessageViewInfo.Show(ex);
+                this.Close();
+            }
+            
         }
 
         [Browsable(false)]

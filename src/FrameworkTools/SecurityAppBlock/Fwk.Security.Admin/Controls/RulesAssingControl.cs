@@ -55,14 +55,15 @@ namespace Fwk.Security.Admin.Controls
             {
                 try
                 {
-                userBindingSource.DataSource = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
-                rolBindingSource.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
+                    userBindingSource.DataSource = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
+                    rolBindingSource.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
                 }
-                    catch( Exception es )
+                catch (Exception es)
                 {
-                    base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(es));
-                    }
-               
+                    ///base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(es));
+                    throw es;
+                }
+
             }
         }
 
