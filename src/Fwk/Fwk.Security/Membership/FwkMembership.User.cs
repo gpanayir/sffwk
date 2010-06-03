@@ -110,73 +110,52 @@ namespace Fwk.Security
             wProvider.DeleteUser(userName, true);
         }
 
-        /// <summary>
-        /// Actualiza un usuario
-        /// </summary>
-        /// <param name="pFwkUser">User a eliminar</param>
-        /// <param name="providerName">Nombre del proveedor de membership</param>
-        public static void UpdateUser(User pFwkUser, string providerName)
-        {
-            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            
-            MembershipUser wUser = wProvider.GetUser(pFwkUser.UserName, false);
-
-            wUser.Comment = pFwkUser.Comment;
-            wUser.Email = pFwkUser.Email;
-            wUser.IsApproved = pFwkUser.IsApproved;
-
-            wProvider.UpdateUser(wUser);
-        }
+        
         
         /// <summary>
         /// Actualiza informacion de un usuario. Incluso el nombre
         /// </summary>
-        /// <param name="pFwkUser">Usuario con los nuevos datos </param>
+        /// <param name="fwkUser">Usuario con los nuevos datos </param>
         /// <param name="userName">Nombre de usuario a modificar. Nombre del usuario actual</param>
-        /// <param name="pConnectionStringName">Cadena de coneccion de las Membership provider</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
-        public static void UpdateUser(User pFwkUser, string userName, string providerName)
+        public static void UpdateUser(User fwkUser, string userName, string providerName)
         {
+            #region usa el provider
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
 
-            try
-            {
-                MembershipUser wUser = wProvider.GetUser(userName, false);
 
-                wUser.Comment = pFwkUser.Comment;
-                wUser.Email = pFwkUser.Email;
-                wUser.IsApproved = pFwkUser.IsApproved;
+            MembershipUser wUser = wProvider.GetUser(userName, false);
 
-                wProvider.UpdateUser(wUser);
+            wUser.Comment = fwkUser.Comment;
+            wUser.Email = fwkUser.Email;
+            wUser.IsApproved = fwkUser.IsApproved;
 
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            wProvider.UpdateUser(wUser);
+            #endregion
 
-            ///Actualiza nombre de usuario
-            StringBuilder str = new StringBuilder("UPDATE aspnet_Users SET  UserName = '[newUserName]',  LoweredUserName = '[loweredNewUserName]'  WHERE (UserName = '[userName]')");
+            #region actualizacion personalizada
+
+            StringBuilder str = new StringBuilder(FwkMembershipScripts.User_u);
 
             Database wDataBase = null;
             DbCommand wCmd = null;
-            try
-            {
 
-                wDataBase = DatabaseFactory.CreateDatabase(GetProvider_ConnectionStringName(wProvider.Name));
-                wCmd = wDataBase.GetSqlStringCommand(str.ToString());
-                str.Replace("[newUserName]", pFwkUser.UserName);
-                str.Replace("[loweredNewUserName]", pFwkUser.UserName.ToLower());
-                str.Replace("[userName]", pFwkUser.UserName.ToLower());
 
-                wCmd.CommandType = CommandType.Text;
-                
-                wDataBase.ExecuteNonQuery(wCmd);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            wDataBase = DatabaseFactory.CreateDatabase(GetProvider_ConnectionStringName(wProvider.Name));
+            str.Replace("[newUserName]", fwkUser.UserName);
+            str.Replace("[loweredNewUserName]", fwkUser.UserName.ToLower());
+            str.Replace("[userName]", userName.ToLower());
+
+            wCmd = wDataBase.GetSqlStringCommand(str.ToString());
+
+
+            wCmd.CommandType = CommandType.Text;
+
+            wDataBase.ExecuteNonQuery(wCmd);
+            str = null;
+            #endregion
+
+
         }
 
         /// <summary>
@@ -206,7 +185,6 @@ namespace Fwk.Security
                    
                 }
             }
-
             catch (Exception ex)
             {
                 throw ex;
@@ -400,16 +378,16 @@ namespace Fwk.Security
         /// <summary>
         /// Obtiene una lista de usuarios de un determinado rol.- Solo obtiene nombre de usuario
         /// </summary>
-        /// <param name="pRoleName">Nombre del rol</param>
+        /// <param name="roleName">Nombre del rol</param>
         /// <returns>lista de <see cref="User"/> </returns>
-        public static List<User> GetUsersInRole(String pRoleName, string providerName)
+        public static List<User> GetUsersInRole(String roleName, string providerName)
         {
             
             User wUserByApp;
             List<User> wUsersList = new List<User>();
             try
             {
-                foreach (string s in Roles.Providers[providerName].GetUsersInRole(pRoleName))
+                foreach (string s in Roles.Providers[providerName].GetUsersInRole(roleName))
                 {
                     wUserByApp = new User(s);
                     wUsersList.Add(wUserByApp);
@@ -432,17 +410,17 @@ namespace Fwk.Security
         /// <summary>
         /// Obtiene una lista de usuarios con sus detalles pertenecientes a un determinado rol
         /// </summary>
-        /// <param name="pRoleName">Nombre del rol</param>
+        /// <param name="roleName">Nombre del rol</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>lista de <see cref="User"/> </returns>
-        public static List<User> GetUsersDetailedInRole(String pRoleName, string providerName)
+        public static List<User> GetUsersDetailedInRole(String roleName, string providerName)
         {
 
             User wUserByApp;
             List<User> wUsersList = new List<User>();
             try
             {
-                foreach (string userName in Roles.Providers[providerName].GetUsersInRole(pRoleName))
+                foreach (string userName in Roles.Providers[providerName].GetUsersInRole(roleName))
                 {
                     wUserByApp = FwkMembership.GetUser(userName, providerName);
                     wUsersList.Add(wUserByApp);
@@ -500,14 +478,14 @@ namespace Fwk.Security
         /// Quita a un usuario de un rol
         /// </summary>
         /// <param name="userName">Nombre de Usuario</param>
-        /// <param name="pRoleName">Nombre de Rol</param>
+        /// <param name="roleName">Nombre de Rol</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
-        public static void RemoveUserFromRole(String userName, String pRoleName, string providerName)
+        public static void RemoveUserFromRole(String userName, String roleName, string providerName)
         {
             try
             {
-                if (!String.IsNullOrEmpty(pRoleName))
-                    Roles.Providers[providerName].RemoveUsersFromRoles(new string[] { userName }, new string[] { pRoleName });
+                if (!String.IsNullOrEmpty(roleName))
+                    Roles.Providers[providerName].RemoveUsersFromRoles(new string[] { userName }, new string[] { roleName });
 
             }
             catch (Exception ex)
@@ -550,14 +528,14 @@ namespace Fwk.Security
         /// Quita un array de usuarios de un Rol
         /// </summary>
         /// <param name="pUsersName">Array de usuario</param>
-        /// <param name="pRoleName">Nombre del Rol</param>
+        /// <param name="roleName">Nombre del Rol</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
-        public static void RemoveUsersFromRole(String[] pUsersName, String pRoleName, string providerName)
+        public static void RemoveUsersFromRole(String[] pUsersName, String roleName, string providerName)
         {
             try
             {
-               // Roles.RemoveUsersFromRole(pUsersName, pRoleName);
-                Roles.Providers[providerName].RemoveUsersFromRoles(pUsersName, new string[] { pRoleName });
+               // Roles.RemoveUsersFromRole(pUsersName, roleName);
+                Roles.Providers[providerName].RemoveUsersFromRoles(pUsersName, new string[] { roleName });
             }
             catch (Exception ex)
             {

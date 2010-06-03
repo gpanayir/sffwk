@@ -55,12 +55,13 @@ namespace Fwk.Security
         /// Obtiene la lista de proovedores membership
         /// </summary>
         /// <returns></returns>
-        public static List<string> GetAllMembershipProviderNameArray()
+        public static List<string> GetAllMembershiproviderNameArray()
         {
             List<string> list = new List<string>();
             foreach (MembershipProvider m in Membership.Providers)
             {
-                list.Add(m.Name);
+                if(!m.Name.Equals("AspNetSqlMembershipProvider"))
+                    list.Add(m.Name);
             }
 
             return list;

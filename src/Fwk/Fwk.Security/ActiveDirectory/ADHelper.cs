@@ -765,9 +765,9 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="cnnStringName">Nombre del Security Provider</param>
         /// <returns>Lista de DomainsUrl</returns>
-        public static List<DomainUrlInfo> DomainsUrl_GetList(string pProviderName)
+        public static List<DomainUrlInfo> DomainsUrl_GetList(string providerName)
         {
-            String wConnectionStringName = FwkMembership.GetProvider_ConnectionStringName(pProviderName);
+            String wConnectionStringName = FwkMembership.GetProvider_ConnectionStringName(providerName);
             return DomainsUrl_GetList2(System.Configuration.ConfigurationManager.ConnectionStrings[wConnectionStringName].ConnectionString);
         }
         /// <summary>

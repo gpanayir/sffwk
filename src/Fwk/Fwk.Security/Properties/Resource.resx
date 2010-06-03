@@ -314,4 +314,7 @@ Result: user is authorized</value>
     <comment>.
  Parameters: 0 - username (string), 1 -creation status(MembershipCreateStatus)</comment>
   </data>
+  <data name="RuleProvider_NotExist" xml:space="preserve">
+    <value>The rule provider fot provider named {0} not exist in config file.-  Check the following rule provider named  "{0}"  in the appconfig file.-</value>
+  </data>
 </root>

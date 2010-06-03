@@ -1,16 +1,17 @@
 ﻿
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Security.Principal;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Security;
+using System.Collections.Specialized;
 using Fwk.Security.Configuration;
 
 namespace Fwk.Security
-{
-    /// <summary>
+{/// <summary>
     /// Represents an authorization provider that evaluates
     /// boolean expressions to determine whether 
     /// <see cref="System.Security.Principal.IPrincipal"/> objects
@@ -22,6 +23,18 @@ namespace Fwk.Security
         private readonly IDictionary<string, IAuthorizationRule> authorizationRules;
 
         /// <summary>
+        /// Esta sobrecarga obtiene las reglas atravez de la base de datos. 
+        /// Para obtener el origen de datos utiliza la configuracion del membership provider configurado
+        /// </summary>
+        /// <param name="proividerName">Nombre del membership provider</param>
+        public FwkAuthorizationRuleProvider(string proividerName)
+        {
+            List<AuthorizationRuleData> authorizationRules = FwkMembership.GetRulesList(proividerName);
+
+            this.authorizationRules = CreateRulesDictionary<AuthorizationRuleData>(authorizationRules);
+        }
+
+        /// <summary>
         /// Initialize an instance of the <see cref="AuthorizationRuleProvider"/> class.
         /// </summary>
         /// <param name="authorizationRules">The collection of rules.</param>
@@ -30,26 +43,6 @@ namespace Fwk.Security
             if (authorizationRules == null) throw new ArgumentNullException("authorizationRules");
 
             this.authorizationRules = authorizationRules;
-        }
-        /// <summary>
-        /// Initialize an instance of the <see cref="AuthorizationRuleProvider"/> class.
-        /// </summary>
-        /// <param name="authorizationRules">The collection of rules.</param>
-        public FwkAuthorizationRuleProvider(List<IAuthorizationRule> authorizationRules)
-        {
-            if (authorizationRules == null) throw new ArgumentNullException("authorizationRules");
-
-            this.authorizationRules = CreateRulesDictionary(authorizationRules); ;
-        }
-        /// <summary>
-        /// Initialize an instance of the <see cref="AuthorizationRuleProvider"/> class.
-        /// </summary>
-        /// <param name="authorizationRules">The collection of rules.</param>
-        public FwkAuthorizationRuleProvider(List<FwkAuthorizationRuleAux> authorizationRules)
-        {
-            if (authorizationRules == null) throw new ArgumentNullException("authorizationRules");
-
-            this.authorizationRules = CreateRulesDictionary(authorizationRules); ;
         }
 
         /// <summary>
@@ -61,12 +54,12 @@ namespace Fwk.Security
         /// otherwise <c>false</c>.</returns>
         public override bool Authorize(IPrincipal principal, string ruleName)
         {
-            
-            
+
+
             if (principal == null) throw new ArgumentNullException("principal");
             if (ruleName == null || ruleName.Length == 0) throw new ArgumentNullException("ruleName");
 
-            
+
 
             InstrumentationProvider.FireAuthorizationCheckPerformed(principal.Identity.Name, ruleName);
             bool expressionEmpty = false;
@@ -86,37 +79,34 @@ namespace Fwk.Security
             return result;
         }
 
-        private BooleanExpression GetParsedExpression(string ruleName,bool expEmpty)
+        /// <summary>
+        /// Obtiele la lista de reglas relacionadas al proveedor 
+        /// </summary>
+        /// <returns></returns>
+        public List<FwkAuthorizationRule> GetAuthorizationRules()
         {
-             expEmpty = false;
+            if (authorizationRules == null) return null;
+            if (authorizationRules.Count == 0) return new List<FwkAuthorizationRule>();
+
+            var a = from s in authorizationRules.Values select new FwkAuthorizationRule { Name = s.Name, Expression = s.Expression };
+            return a.ToList<FwkAuthorizationRule>();
+        }
+
+        BooleanExpression GetParsedExpression(string ruleName, bool expEmpty)
+        {
+            expEmpty = false;
             IAuthorizationRule rule = null;
             authorizationRules.TryGetValue(ruleName, out rule);
             if (rule == null) return null;
 
             if (string.IsNullOrEmpty(rule.Expression)) expEmpty = true;
-                
+
             Parser parser = new Parser();
 
             return parser.Parse(rule.Expression);
         }
 
-        static IDictionary<string, IAuthorizationRule> CreateRulesDictionary
-            (IEnumerable<IAuthorizationRule> rulesCollection)
-        {
-            IDictionary<string, IAuthorizationRule> authorizationRules = new Dictionary<string, IAuthorizationRule>();
-
-
-            foreach (FwkAuthorizationRule ruleData in rulesCollection)
-            {
-                authorizationRules.Add(ruleData.Name, ruleData);
-            }
-
-            return authorizationRules;
-        }
-
-
-        static IDictionary<string, IAuthorizationRule> CreateRulesDictionary
-           (List<IAuthorizationRule> rulesCollection)
+        static IDictionary<string, IAuthorizationRule> CreateRulesDictionary<T>(IEnumerable<T> rulesCollection) where T : IAuthorizationRule
         {
             IDictionary<string, IAuthorizationRule> authorizationRules = new Dictionary<string, IAuthorizationRule>();
 
@@ -129,15 +119,12 @@ namespace Fwk.Security
             return authorizationRules;
         }
 
-
-
-        static IDictionary<string, IAuthorizationRule> CreateRulesDictionary
-         (List<FwkAuthorizationRuleAux> rulesCollection)
+        static IDictionary<string, IAuthorizationRule> CreateRulesList<T>(IEnumerable<T> rulesCollection) where T : IAuthorizationRule
         {
             IDictionary<string, IAuthorizationRule> authorizationRules = new Dictionary<string, IAuthorizationRule>();
 
 
-            foreach (FwkAuthorizationRuleAux ruleData in rulesCollection)
+            foreach (IAuthorizationRule ruleData in rulesCollection)
             {
                 authorizationRules.Add(ruleData.Name, ruleData);
             }

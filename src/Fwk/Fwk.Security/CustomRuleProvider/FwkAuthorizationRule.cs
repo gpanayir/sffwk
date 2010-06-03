@@ -7,6 +7,7 @@ using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using System.Configuration;
 using Fwk.Bases;
 using Fwk.Security.Common;
+using System.Xml.Serialization;
 
 namespace Fwk.Security
 {
@@ -17,9 +18,13 @@ namespace Fwk.Security
     /// rule that is governed by an 
     /// <see cref="AuthorizationRuleProvider"/>.
     /// </summary>
-    public class FwkAuthorizationRule : NamedConfigurationElement, IAuthorizationRule
+    [Serializable]
+    public class FwkAuthorizationRule :  NamedConfigurationElement, IAuthorizationRule,Fwk.Bases.IEntity
     {
         private string _Expression;
+        private System.String _ApplicationId;
+        private System.String _ApplicationName;
+       
 
         /// <summary>
         /// Initializes a new instance of the 
@@ -70,55 +75,108 @@ namespace Fwk.Security
                 _CategoryId = value;
             }
         }
+        public System.String ApplicationId
+        {
+            get { return _ApplicationId; }
+            set { _ApplicationId = value; }
+        }
 
 
+        public System.String ApplicationName
+        {
+            get { return _ApplicationName; }
+            set { _ApplicationName = value; }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newExpresion"></param>
         public void SetExpression(string newExpresion)
         {
             _Expression = newExpresion;
         }
 
 
-    }
 
-    [Serializable]
-    public class FwkAuthorizationRuleAux : Fwk.Bases.Entity, IAuthorizationRule
-    {
+        #region IEntity Members IBaseEntity Members
 
-        public FwkAuthorizationRuleAux()
-        { }
-        public FwkAuthorizationRuleAux(string name, string expression)
+        public System.Data.DataSet GetDataSet()
         {
-            _Name = name;
-            _Expression = expression;
+            throw new NotImplementedException("No se implementa GetDataSet en esta entidad");
         }
 
-        string _Expression;
-        #region IAuthorizationRule Members
+      
 
-        public string Expression
+        
+
+        public string GetXml()
         {
-            get { return _Expression; }
-            set
-            {
-                _Expression = value;
-            }
+            throw new NotImplementedException("No se implementa GetXml en esta entidad");
         }
-        string _Name;
-        public string Name
+
+        public void SetXml(string pXmlData)
         {
-            get { return _Name; }
-            set
-            {
-                _Name = value;
-            }
+            throw new NotImplementedException("No se implementa SetXml en esta entidad");
         }
-       
+
         #endregion
 
-        public void SetExpression(string newExpresion)
+        #region ICloneable Members
+
+        /// <summary>
+        /// Crea una copia espejo de la clase.-
+        /// </summary>
+        /// <returns></returns>
+        public FwkAuthorizationRule Clone()
         {
-            _Expression = newExpresion;
+            return (FwkAuthorizationRule)((ICloneable)this).Clone();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+         object ICloneable.Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
+        #endregion
+    }
+
+    [XmlRoot("FwkAuthorizationRuleList"), SerializableAttribute]
+    public class FwkAuthorizationRuleList : List<FwkAuthorizationRule>, IEntity
+    {
+        #region IEntity Members
+
+        public System.Data.DataSet GetDataSet()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region IBaseEntity Members
+
+        public string GetXml()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetXml(string pXmlData)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region ICloneable Members
+
+        public object Clone()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
     [Serializable]
     public class FwkCategory:Entity
@@ -157,9 +215,9 @@ namespace Fwk.Security
             }
         }
 
-        List<FwkAuthorizationRuleAux> _FwkRulesInCategoryList = null;
+        List<FwkAuthorizationRule> _FwkRulesInCategoryList = null;
 
-        public List<FwkAuthorizationRuleAux> FwkRulesInCategoryList
+        public List<FwkAuthorizationRule> FwkRulesInCategoryList
         {
             get { return _FwkRulesInCategoryList; }
             set { _FwkRulesInCategoryList = value; }

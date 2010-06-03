@@ -313,6 +313,15 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The rule provider fot provider named {0} not exist in config file.-  Check the following rule provider named  &quot;{0}&quot;  in the appconfig file.-.
+        /// </summary>
+        public static string RuleProvider_NotExist {
+            get {
+                return ResourceManager.GetString("RuleProvider_NotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rule: {0}
         ///Result: user is not authorized.
         /// </summary>

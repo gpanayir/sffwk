@@ -15,7 +15,13 @@ namespace Fwk.Security
         static string _RuleInCategory_i;
         static string _Category_d = "DELETE FROM aspnet_RulesCategory WHERE  aspnet_RulesCategory.CategoryId = [CategoryId]";
         static string _RulesCategory_d = "DELETE FROM aspnet_RulesInCategory WHERE  aspnet_RulesInCategory.CategoryId = [CategoryId]";
+        static string _User_u = "UPDATE aspnet_Users SET  UserName = '[newUserName]',  LoweredUserName = '[loweredNewUserName]'  WHERE (UserName = '[userName]')";
 
+        public static string User_u
+        {
+            get { return FwkMembershipScripts._User_u; }
+            set { FwkMembershipScripts._User_u = value; }
+        }
         public static string RuleInCategory_i
         {
             get

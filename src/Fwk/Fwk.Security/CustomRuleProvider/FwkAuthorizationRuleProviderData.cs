@@ -47,7 +47,7 @@ namespace Fwk.Security.Configuration
             : base(name, typeof(FwkAuthorizationRuleProviderData))
         {
             if (_Rules == null)
-                _Rules = FwkMembership.GetRules( Membership.ApplicationName);
+                _Rules = FwkMembership.GetRules(name);
 
         }
 
@@ -55,7 +55,6 @@ namespace Fwk.Security.Configuration
         /// <summary>
         /// Database connection string for rules
         /// </summary>
-
         [ConfigurationProperty("connectionStringName", IsKey = true, DefaultValue = "", IsRequired = true)]
         public string ConnectionStringName
         {
@@ -82,8 +81,7 @@ namespace Fwk.Security.Configuration
             {
                 if (_Rules.Count == 0 && !String.IsNullOrEmpty((string)this["connectionStringName"]))
                 {
-                    //FwkMembership.ConnectionStringName = this["connectionStringName"].ToString().Trim();
-                    _Rules = FwkMembership.GetRules( Membership.ApplicationName);
+                    _Rules = FwkMembership.GetRules((string)this["name"]);
                 }
                 return _Rules;
             }

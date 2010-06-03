@@ -204,9 +204,9 @@ namespace Fwk.Security.Common
         /// </summary>
         public List<FwkIdentity> GetAllUsers()
         {
-            List<FwkIdentity> pUserList = null;
-            ExecutepQuery("(&(objectClass=person))", "sAMAccountName", out pUserList);
-            return pUserList;
+            List<FwkIdentity> userList = null;
+            ExecutepQuery("(&(objectClass=person))", "sAMAccountName", out userList);
+            return userList;
         }
 
         /// <summary>
@@ -220,10 +220,10 @@ namespace Fwk.Security.Common
 
             //_Searcher.Filter = String.Format("(&(objectClass=user) | (cn={0}*))", pName);//(cn=andy*)(cn=steve*)(cn=margaret*))";
             //_Searcher.Filter = String.Format("(&(objectClass=user)(userPrincipalName={0}*))", pName);
-            List<ObjectDomain> pUserList = null;
-            ExecutepQuery(String.Format("(&(objectClass=user)(cn={0}*))", pName), "sAMAccountName", out pUserList);
+            List<ObjectDomain> userList = null;
+            ExecutepQuery(String.Format("(&(objectClass=user)(cn={0}*))", pName), "sAMAccountName", out userList);
 
-            return pUserList;
+            return userList;
 
         }
 
