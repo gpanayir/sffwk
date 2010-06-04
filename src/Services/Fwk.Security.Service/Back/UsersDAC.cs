@@ -70,7 +70,7 @@ namespace Fwk.Security.DAC
             }
         }
 
-        public static void Update(User pUserBE, List<SqlParameter> pCustomParametersToUpdate,
+        public static void Update(User pUser, List<SqlParameter> pCustomParametersToUpdate,
                                   String pProviderName, String pCustomUserTable)
         {
             String wConnectionString = FwkMembership.GetProvider_ConnectionStringName(pProviderName);
@@ -105,11 +105,11 @@ namespace Fwk.Security.DAC
         /// <summary>
         /// Elimina un usuario segun los parametros customizados
         /// </summary>
-        /// <param name="pUserBE">Usuario a eliminar</param>
+        /// <param name="pUser">Usuario a eliminar</param>
         /// <param name="pCustomParameters">Parametros custoizados por los que se borrara al usuario de la tabla custom</param>
         /// <param name="pProviderName">Nombre del provider</param>
         /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
-        public static void Delete(User pUserBE, List<SqlParameter> pCustomParameters,
+        public static void Delete(User pUser, List<SqlParameter> pCustomParameters,
                                   String pProviderName, String pCustomUserTable)
         {
             String wConnectionString = FwkMembership.GetProvider_ConnectionStringName(pProviderName);

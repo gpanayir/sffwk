@@ -22,21 +22,19 @@ namespace Fwk.Security.ISVC.CreateRulesCategory
 {
 
     [Serializable]
-    public class CreateRulesCategoryRequest : Request<RulesCategoryBE>
+    public class CreateRulesCategoryReq : Request<FwkCategory>
     {
-        public CreateRulesCategoryRequest()
+        public CreateRulesCategoryReq()
         {
             this.ServiceName = "CreateRulesCategoryService";
         }
     }
     [Serializable]
-    public class CreateRulesCategoryResponse : Response<Result>
+    public class CreateRulesCategoryRes : Response<DummyContract>
     {
     }
 
-    [XmlInclude(typeof(Result)), Serializable]
-    public class Result : Entity
-    { }
+   
 
 
 }

@@ -14,8 +14,13 @@ using Fwk.Security.ISVC.GetAllRules;
 
 namespace Fwk.Security.SVC
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class GetAllRulesService : BusinessService<GetAllRulesReq, GetAllRulesRes>
     {
+        //TODO:Limpiar este codigo
         public override GetAllRulesRes Execute(GetAllRulesReq pServiceRequest)
         {
             GetAllRulesRes wRes = new GetAllRulesRes();
@@ -23,16 +28,16 @@ namespace Fwk.Security.SVC
             //if(string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
             //    pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;
 
-            List<FwkAuthorizationRuleAux> rules = FwkMembership.GetRulesAuxList(pServiceRequest.SecurityProviderName);
-            RulesBE wRulesBE;
-             wRes.BusinessData = new RulesBEList();
-            foreach (FwkAuthorizationRuleAux rule in rules)
-            {
-                wRulesBE = new RulesBE();
-                wRulesBE.expression = rule.Expression;
-                wRulesBE.Name = rule.Name;
-                 wRes.BusinessData.Add(wRulesBE);
-            }
+            FwkAuthorizationRuleList rules = FwkMembership.GetRulesAuxList(pServiceRequest.SecurityProviderName);
+            
+            wRes.BusinessData = rules;
+            // foreach (FwkAuthorizationRule rule in rules)
+            //{
+            //    wRulesBE = new RulesBE();
+            //    wRulesBE.expression = rule.Expression;
+            //    wRulesBE.Name = rule.Name;
+            //     wRes.BusinessData.Add(wRulesBE);
+            //}
 
             
             return wRes;

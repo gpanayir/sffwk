@@ -10,37 +10,19 @@ namespace Fwk.Security.ISVC.GetAllRulesCategory
 {
 
     [Serializable]
-    public class GetAllRulesCategoryRequest : Request<Param>
+    public class GetAllRulesCategoryReq : Request<DummyContract>
     {
-        public GetAllRulesCategoryRequest()
+        public GetAllRulesCategoryReq()
         {
             this.ServiceName = "GetAllRulesCategoryService";
         }
     }
 
 
-    #region [BussinesData]
-
-    [XmlRoot("Param"), SerializableAttribute]
-    public class Param : Entity
-    {
-        private System.String _ApplicationName;
-
-        public System.String ApplicationName
-        {
-            get { return _ApplicationName; }
-            set { _ApplicationName = value; }
-        }
-        
-    }
-
- 
-
-    #endregion
 
 
     [Serializable]
-    public class GetAllRulesCategoryResponse : Response<RulesCategoryBEList>
+    public class GetAllRulesCategoryRes : Response<FwkCategoryList>
     {
     }
 }

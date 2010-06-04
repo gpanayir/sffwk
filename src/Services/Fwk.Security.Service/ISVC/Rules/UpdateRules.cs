@@ -7,11 +7,12 @@ using Fwk.Security.BE;
 namespace Fwk.Security.ISVC.UpdateRules
 {
     [Serializable]
-    public class UpdateRulesRequest : Request<Param>
+    public class UpdateRulesReq : Request<Param>
     {
-        public UpdateRulesRequest()
+        public UpdateRulesReq()
 		{
             this.ServiceName = "UpdateRulesService";
+
 		}
     }
 
@@ -21,18 +22,12 @@ namespace Fwk.Security.ISVC.UpdateRules
     [XmlInclude(typeof(Param)), Serializable]
     public class Param:Entity
     {
-        RulesBEList _RulesBEList = new RulesBEList();
-        string _ApplicationName;
-
-        public string ApplicationName
+        FwkAuthorizationRuleList _Rules = new FwkAuthorizationRuleList();
+        
+        public FwkAuthorizationRuleList FwkAuthorizationRuleList
         {
-            get { return _ApplicationName; }
-            set { _ApplicationName = value; }
-        }
-        public RulesBEList RulesBEList
-        {
-            get { return _RulesBEList; }
-            set { _RulesBEList = value; }
+            get { return _Rules; }
+            set { _Rules = value; }
         }
 
     }
@@ -42,12 +37,9 @@ namespace Fwk.Security.ISVC.UpdateRules
 
 
     [Serializable]
-    public class UpdateRulesResponse : Response<Result>
+    public class UpdateRulesRes : Response<DummyContract>
     {
 
     }
-    [XmlInclude(typeof(Result)), Serializable]
-    public class Result : Entity
-    {
-    }
+    
 }

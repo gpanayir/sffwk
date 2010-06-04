@@ -9,30 +9,32 @@
           //
         //</auto-generated>
         //------------------------------------------------------------------------------
-
-
+        
 using System;
 using System.Data;
 using Fwk.Bases;
+using  Fwk.Security.ISVC.UpdateRulesCategory;
+
 using Fwk.Security.BE;
-using Fwk.Security.ISVC.DeleteRulesCategory;
-using Fwk.Security;
-using Fwk.Security.BC;
+
 
 namespace Fwk.Security.SVC
 {
-
-    public class DeleteRulesCategoryService : BusinessService<DeleteRulesCategoryRequest, DeleteRulesCategoryResponse>
+    /// <summary>
+    /// 
+    /// </summary>
+    public class UpdateRulesCategoryService : BusinessService<UpdateRulesCategoryRequest, UpdateRulesCategoryResponse>
     {
-
-        public override DeleteRulesCategoryResponse Execute(DeleteRulesCategoryRequest pServiceRequest)
+        public override UpdateRulesCategoryResponse Execute(UpdateRulesCategoryRequest pServiceRequest)
         {
+            UpdateRulesCategoryResponse wRes = new UpdateRulesCategoryResponse();
+            //TOD0: terminar desarrollor de UpdateRulesCategoryService 
+           /// RulesCategoryBE wRC = new RulesCategoryBE();
+
+            ///wRC = RulesCategoryBE.GetFromXml < RulesCategoryBE>(pServiceRequest.BusinessData.GetXml());
+
+           
             
-            DeleteRulesCategoryResponse wRes = new DeleteRulesCategoryResponse();
-
-            RulesCategoryBC wRulesCategoryBC = new RulesCategoryBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
-            wRulesCategoryBC.Delete(pServiceRequest.BusinessData.CategoryId.Value);
-
             return wRes;
         }
     }

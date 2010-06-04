@@ -20,7 +20,7 @@ namespace Fwk.Security.ISVC.UpdateRulesCategory
 {
 
     [Serializable]
-    public class UpdateRulesCategoryRequest : Request<RulesCategoryBE>
+    public class UpdateRulesCategoryRequest : Request<FwkCategory>
     {
         public UpdateRulesCategoryRequest()
         {
@@ -31,7 +31,7 @@ namespace Fwk.Security.ISVC.UpdateRulesCategory
 
 
     [Serializable]
-    public class UpdateRulesCategoryResponse : Response<RulesCategoryBE>
+    public class UpdateRulesCategoryResponse : Response<DummyContract>
     {
     }
      

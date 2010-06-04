@@ -20,9 +20,9 @@ namespace Fwk.Security.ISVC.GetRulesCategoryByParam
 {
 
     [Serializable]
-    public class GetRulesCategoryByParamRequest : Request<RulesCategoryBE>
+    public class GetRulesCategoryByParamReq : Request<FwkCategory>
     {
-        public GetRulesCategoryByParamRequest()
+        public GetRulesCategoryByParamReq()
         {
             this.ServiceName = "GetRulesCategoryByParamService";
         }
@@ -32,7 +32,7 @@ namespace Fwk.Security.ISVC.GetRulesCategoryByParam
     
 
     [Serializable]
-    public class GetRulesCategoryByParamResponse : Response<RulesCategoryBEList>
+    public class GetRulesCategoryByParamRes : Response<FwkCategoryList>
     {
     }
 

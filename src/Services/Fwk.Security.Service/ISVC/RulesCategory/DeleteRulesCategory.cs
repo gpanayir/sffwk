@@ -87,18 +87,12 @@ namespace Fwk.Security.ISVC.DeleteRulesCategory
         #endregion
     }
     [Serializable]
-    public class DeleteRulesCategoryResponse : Response<RulesCategoryBE>
+    public class DeleteRulesCategoryResponse : Response<DummyContract>
     {
     }
 
 
 
-        #region [BussinesData]
-
-
-
-
-        #endregion
-
+     
 }
         

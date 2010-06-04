@@ -33,9 +33,9 @@ namespace Fwk.Security.ISVC.GetAuthorizationRules
     {
         #region [Private Members]
 
-        private List<FwkAuthorizationRuleAux> _Rules;
+        private FwkAuthorizationRuleList _Rules;
 
-        public List<FwkAuthorizationRuleAux> Rules
+        public FwkAuthorizationRuleList Rules
         {
             get { return _Rules; }
             set { _Rules = value; }

@@ -35,36 +35,27 @@ namespace Fwk.Security.ISVC.UpdateUser
     public class Param : Entity
     {
         bool _PasswordOnly = false;       
-        
         ChangePassword _ChangePassword;                
         User _UsersBE;
-        private RolList _RolList = new RolList();
-        
-        private String _CustomUserTable;
-        private List<SqlParameter> _CustomParameters;
+        RolList _RolList = new RolList();
+        String _UserName;
+       
 
 
-		public List<SqlParameter> CustomParameters
+        /// <summary>
+        /// Nombre de usuario a modificar. Nombre del usuario actual
+        /// Si no se espesçifica se toma que el nobre de usuario no se modifica y se utilizara el username de 
+        /// la clase UsersBE
+        /// </summary>
+        public String UserName
 		{
 			get
 			{
-				return _CustomParameters;
+				return _UserName;
 			}
 			set
 			{
-				_CustomParameters = value;
-			}
-		}
-        
-		public String CustomUserTable
-		{
-			get
-			{
-				return _CustomUserTable;
-			}
-			set
-			{
-				_CustomUserTable = value;
+				_UserName = value;
 			}
 		}
 

@@ -37,7 +37,9 @@ namespace Fwk.Security.ISVC.GetAllRules
     #endregion
 
     [Serializable]
-    public class GetAllRulesRes : Response<RulesBEList>
+    public class GetAllRulesRes : Response<FwkAuthorizationRuleList>
     {
     }
+
+   
 }

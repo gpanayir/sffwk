@@ -23,11 +23,11 @@ namespace Fwk.Security.ISVC.CreateUsers
 {
 
     [Serializable]
-    public class CreateUsersRequest : Request<Param>
+    public class CreateUserReq : Request<Param>
     {
-        public CreateUsersRequest()
+        public CreateUserReq()
         {
-            this.ServiceName = "CreateUsersService";
+            this.ServiceName = "CreateUserService";
         }
     }
 
@@ -36,23 +36,9 @@ namespace Fwk.Security.ISVC.CreateUsers
     {
         private User _User;
         private RolList _RolList = new RolList();
-        private List<SqlParameter> _CustomParameters;
-        private String _CustomTableName;
-   
+
 
         #region [Properties]
-
-        public String CustomTableName
-        {
-            get
-            {
-                return _CustomTableName;
-            }
-            set
-            {
-                _CustomTableName = value;
-            }
-        }
 
         public User User
         {
@@ -66,24 +52,14 @@ namespace Fwk.Security.ISVC.CreateUsers
             set { _RolList = value; }
         }
         
-        public List<SqlParameter> CustomParameters
-        {
-            get
-            {
-                return _CustomParameters;
-            }
-            set
-            {
-                _CustomParameters = value;
-            }
-        }
+       
 
         #endregion
 
     }
 
     [Serializable]
-    public class CreateUsersResponse : Response<Result>
+    public class CreateUserRes : Response<Result>
     {
     }
 

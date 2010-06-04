@@ -8,15 +8,15 @@ namespace Fwk.Security.ISVC.CreateRules
 {
 	
 	[Serializable]
-    public class CreateRulesRequest : Request<RulesBE>
+    public class CreateRuleReq : Request<FwkAuthorizationRule>
 	{
-		public CreateRulesRequest()
+        public CreateRuleReq()
 		{
-			this.ServiceName = "CreateRulesService";
+			this.ServiceName = "CreateRuleService";
 		}
 	}
     [Serializable]
-    public class CreateRulesResponse : Response<RulesBE>
+    public class CreateRuleRes : Response<DummyContract>
     {
     }
 

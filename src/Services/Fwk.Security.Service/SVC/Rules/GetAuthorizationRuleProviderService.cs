@@ -28,14 +28,17 @@ using Fwk.Security.ISVC.GetAuthorizationRules;
 namespace Fwk.Security.SVC
 {
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class GetAuthorizationRulesService : BusinessService<GetAuthorizationRulesReq, GetAuthorizationRulesRes>
     {
         public override GetAuthorizationRulesRes Execute(GetAuthorizationRulesReq pServiceRequest)
         {
             GetAuthorizationRulesRes wRes = new GetAuthorizationRulesRes();
 
-
-            List<FwkAuthorizationRuleAux> rules = FwkMembership.GetRulesAuxList(pServiceRequest.SecurityProviderName);
+            //TODO: Determonar correcto nombre del servicio ..parece el mismo qu e GetAllRulesService.cs
+            FwkAuthorizationRuleList rules = FwkMembership.GetRulesAuxList(pServiceRequest.SecurityProviderName);
 
 
 

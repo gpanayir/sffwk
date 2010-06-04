@@ -9,23 +9,18 @@ using Fwk.Security;
 
 namespace Fwk.Security.SVC
 {
-
-    public class UpdateRulesService : BusinessService<UpdateRulesRequest, UpdateRulesResponse>
+    /// <summary>
+    /// Actualiza una coleccion de reglas
+    /// </summary>
+    public class UpdateRulesService : BusinessService<UpdateRulesReq, UpdateRulesRes>
     {
-        public override UpdateRulesResponse Execute(UpdateRulesRequest pServiceRequest)
+        public override UpdateRulesRes Execute(UpdateRulesReq pServiceRequest)
         {
-            UpdateRulesResponse wRes = new UpdateRulesResponse();
+            UpdateRulesRes wRes = new UpdateRulesRes();
 
-
-
-            foreach (RulesBE item in pServiceRequest.BusinessData.RulesBEList)
+           foreach (FwkAuthorizationRule rule in pServiceRequest.BusinessData.FwkAuthorizationRuleList)
             {
-                aspnet_Rule waspRule = new aspnet_Rule();
-
-                waspRule.expression = item.expression;
-                waspRule.name = item.Name;
-                // Update de la Regla
-                FwkMembership.UpdateRule(waspRule, pServiceRequest.BusinessData.ApplicationName);
+                FwkMembership.UpdateRule(rule, pServiceRequest.SecurityProviderName);
             }
 
 

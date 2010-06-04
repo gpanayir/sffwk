@@ -11,20 +11,32 @@ using Fwk.Security.BC;
 
 namespace Fwk.Security.SVC
 {
+
+    /// <summary>
+    /// Este servicio permite: 
+    /// 1 - Actualizar informacion del usuario en las memberships
+    /// 2 - Cambiar la clave del usuario
+    /// </summary>
     public class UpdateUserService : BusinessService<UpdateUserReq, UpdateUserRes>
     {
         public override UpdateUserRes Execute(UpdateUserReq pServiceRequest)
         {
             UpdateUserRes wRes = new UpdateUserRes();
             UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+           
+            if (string.IsNullOrEmpty(pServiceRequest.BusinessData.UserName))
+                pServiceRequest.BusinessData.UserName = pServiceRequest.BusinessData.UsersBE.UserName;
+
+            //ChangePassword != null indica la intencion de cambio de clave
             if (pServiceRequest.BusinessData.ChangePassword != null)
             {                
                 wUserBC.ChangePassword(pServiceRequest.BusinessData.UsersBE.UserName, pServiceRequest.BusinessData.ChangePassword.Old, pServiceRequest.BusinessData.ChangePassword.New);
             }
-            //Si NO actualiza solo la password
-            if (!pServiceRequest.BusinessData.PasswordOnly)
+
+            //Si PasswordOnly = true pasa por alto la actuaizacion del usuario
+            if (pServiceRequest.BusinessData.PasswordOnly == true)
             {
-                wUserBC.Update(pServiceRequest.BusinessData.UsersBE, pServiceRequest.BusinessData.RolList);                
+                wUserBC.Update(pServiceRequest.BusinessData.UsersBE,pServiceRequest.BusinessData.UserName, pServiceRequest.BusinessData.RolList);                
             }
 
             return wRes;

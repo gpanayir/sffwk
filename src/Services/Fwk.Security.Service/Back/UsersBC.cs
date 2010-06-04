@@ -32,12 +32,12 @@ namespace Fwk.Security.BC
         /// <summary>
         /// Crea un nuevo usuario.
         /// </summary>
-        /// <param name="pUserBE">UsuarioBE a crear</param>
+        /// <param name="pUser">UsuarioBE a crear</param>
         /// <param name="CustomParameters">Lista de parametros customizados</param>        
         /// <param name="pRolList">Roles del usuario</param>
         /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
         /// <returns>UserId del nuevo usuario.</returns>
-        public void Create(User pUserBE,RolList pRolList)
+        public void Create(User pUser,RolList pRolList)
         {
                         
             //TODO: Ver tema de nuevo GUID para el usuario 
@@ -46,21 +46,21 @@ namespace Fwk.Security.BC
             MembershipCreateStatus pStatus = MembershipCreateStatus.UserRejected;
 
             // se inserta en las membership el nuevo usuario
-            User wNewUser = FwkMembership.CreateUser(pUserBE.UserName, pUserBE.Password, pUserBE.Email,
-                                                          pUserBE.QuestionPassword, pUserBE.AnswerPassword,
-                                                          pUserBE.IsApproved, out pStatus,_ProviderName);
+            User wNewUser = FwkMembership.CreateUser(pUser.UserName, pUser.Password, pUser.Email,
+                                                          pUser.QuestionPassword, pUser.AnswerPassword,
+                                                          pUser.IsApproved, out pStatus,_ProviderName);
 
             // se inserta el usuario custom
             if (pStatus == MembershipCreateStatus.Success)
             {
-                //UsersDAC.Create(pUserBE, CustomParameters, _ProviderName, pCustomUserTable);
+                //UsersDAC.Create(pUser, CustomParameters, _ProviderName, pCustomUserTable);
                 // Se insertan los roles
                 if (pRolList != null)
-                    FwkMembership.CreateRolesToUser(pRolList, pUserBE.UserName, _ProviderName);
+                    FwkMembership.CreateRolesToUser(pRolList, pUser.UserName, _ProviderName);
             }
             else
             {
-                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_Created_Error_Message, pUserBE.UserName,pStatus));
+                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_Created_Error_Message, pUser.UserName,pStatus));
                 ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 te.ErrorId = "4008";
                 throw te;
@@ -71,24 +71,25 @@ namespace Fwk.Security.BC
         /// <summary>
         /// Actualiza los datos del usuario.
         /// </summary>
-        /// <param name="pUserBE">Usuario que se desea actualizar</param>
-        /// <param name="CustomParameters">Parametros para la tabla customizada</param>
+        /// <param name="pUser">Usuario que se desea actualizar.</param>
+        /// <param name="userName">Nombre no modificado del usuario.- El nuevo nombre de usuario en caso de modifucacion 
+        /// va en el parametro pUser </param>
         /// <param name="pRolList">Lista de roles para actualizar</param>
         /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
-        public void Update(User pUserBE,  RolList pRolList)
+        public void Update(User pUser,string userName,  RolList pRolList)
         {
-            Validate(pUserBE, false);
+            Validate(pUser, false);
             
            
             // Actualizacion del usuario de las membership
-            FwkMembership.UpdateUser(pUserBE, _ProviderName);
+            FwkMembership.UpdateUser(pUser,userName, _ProviderName);
             
             // Se actualizan los roles que posee el usuario
             if (pRolList != null)
             {
-                RolList usrRoles = FwkMembership.GetRolesForUser(pUserBE.UserName,_ProviderName);
-                FwkMembership.RemoveUserFromRoles(pUserBE.UserName, usrRoles, _ProviderName);
-                FwkMembership.CreateRolesToUser(pRolList, pUserBE.UserName, _ProviderName);
+                RolList usrRoles = FwkMembership.GetRolesForUser(pUser.UserName,_ProviderName);
+                FwkMembership.RemoveUserFromRoles(pUser.UserName, usrRoles, _ProviderName);
+                FwkMembership.CreateRolesToUser(pRolList, pUser.UserName, _ProviderName);
             }
         }             
 
@@ -138,13 +139,13 @@ namespace Fwk.Security.BC
         /// <summary>
         /// Valida si el usuario existe. y si no le falta el nombre
         /// </summary>
-        /// <param name="pUserBE">UsersBE a validar.</param>
+        /// <param name="pUser">UsersBE a validar.</param>
         /// <param name="pIsNewUser">Si es nuevo se verifica de otra forma</param>
-        void Validate(User pUserBE,Boolean pIsNewUser)
+        void Validate(User pUser,Boolean pIsNewUser)
         {
             //Validación de existencia de usuario
             //Nombre vacio
-            if (String.IsNullOrEmpty(pUserBE.UserName))
+            if (String.IsNullOrEmpty(pUser.UserName))
             {
                 throw new FunctionalException(null, "NullOrEmptyField", "ValidationExceptionMessage", "Nombre de usuario");
             }
@@ -152,9 +153,9 @@ namespace Fwk.Security.BC
             if (pIsNewUser)
             { 
                 //Nombre ya existente
-                User wUser = FwkMembership.GetUser(pUserBE.UserName, _ProviderName);
+                User wUser = FwkMembership.GetUser(pUser.UserName, _ProviderName);
                 
-                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, pUserBE.UserName));
+                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, pUser.UserName));
                 ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 te.ErrorId = "4007";
                 throw te;
