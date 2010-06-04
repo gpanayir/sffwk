@@ -19,7 +19,7 @@ using Fwk.Security.Common;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Fwk.Security.ISVC.CreateUsers
+namespace Fwk.Security.ISVC.CreateUser
 {
 
     [Serializable]

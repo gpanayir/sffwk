@@ -88,6 +88,7 @@
     <Compile Include="SVC\SearchDomainsUrlsService.cs" />
     <Compile Include="ISVC\Users\UpdateUser.cs" />
     <Compile Include="ISVC\Users\GetUsers.cs" />
+    <Compile Include="SVC\Users\CreateUserService.cs" />
     <Compile Include="SVC\Users\GetUserService.cs" />
     <Compile Include="ISVC\Users\RemoveUsersFromRol.cs" />
     <Compile Include="SVC\Roles\AssignRolesToUserService.cs" />
