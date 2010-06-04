@@ -56,7 +56,7 @@ FunctionalExceptionEnums.MsgErrorInConfigMannagerNotFount;
 
 
 --------------------------------   Fwk.Security -----------------------------------
-ErrorId = 4000: SecurityGenericError
+ErrorId = 4000: SecurityGenericError (Error generico de seguridad)
 There are some problems while trying to eprform some task on security database 
 {0} {1}
 

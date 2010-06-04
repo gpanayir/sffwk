@@ -297,6 +297,7 @@ namespace Fwk.Exceptions
             te.Class = typeof(T).GetType().Name;
             te.UserName = Environment.UserName;
             te.Machine = Environment.MachineName;
+            
         }
 
       

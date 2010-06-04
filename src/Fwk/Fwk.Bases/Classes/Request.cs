@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Fwk.HelperFunctions;
 using Fwk.Caching;
 using Fwk.Exceptions;
+using System.Xml.Serialization;
 
 namespace Fwk.Bases
 {
@@ -193,5 +194,11 @@ namespace Fwk.Bases
         }
 
        
+    }
+
+
+    [XmlInclude(typeof(DummyContract)), Serializable]
+    public class DummyContract:Entity
+    { 
     }
 }
