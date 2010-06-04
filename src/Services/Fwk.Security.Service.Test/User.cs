@@ -10,7 +10,7 @@ using Fwk.Caching;
 using Fwk.Transaction;
 using Fwk.Security.ISVC.AuthenticateUser;
 using Fwk.Security.ISVC.GetAuthorizationRules;
-using Fwk.Security.ISVC.CreateUsers;
+using Fwk.Security.ISVC.CreateUser;
 using Fwk.Bases;
 using Fwk.Security.ISVC.GetAllUsers;
 using Fwk.Security.BE;
@@ -87,21 +87,21 @@ namespace ServiceTest
         //
         #endregion
 
- 
+
 
         [TestMethod]
-        public void GetAllUserInfoByName()
+        public void GetAllUserInfoByName_NoService()
         {
             string strErrorResult = string.Empty;
 
             try
             {
 
-                GetUserInfoByName service =new GetUserInfoByName();
+                GetUserInfoByName service = new GetUserInfoByName();
 
-             GetUserInfoByNameRequest request =new GetUserInfoByNameRequest();
+                GetUserInfoByNameRequest request = new GetUserInfoByNameRequest();
 
-                GetUserInfoByNameResponse response =new GetUserInfoByNameResponse();
+                GetUserInfoByNameResponse response = new GetUserInfoByNameResponse();
 
                 request.BusinessData.UserName = "sbiglia";
 
@@ -117,13 +117,11 @@ namespace ServiceTest
         }
 
         [TestMethod]
-        public void GetAllUsersService()
+        public void GetAllUsers_NoService()
         {
             string strErrorResult = string.Empty;
             GetAllUsersService service = new GetAllUsersService();
-
             GetAllUsersReq req = new GetAllUsersReq();
-
             
             try
             {
@@ -142,17 +140,14 @@ namespace ServiceTest
         }
 
         [TestMethod]
-        public void GetUserInfoByNameService()
+        public void GetUserInfoByName_NoService()
         {
             string strErrorResult = string.Empty;
             Fwk.Security.SVC.GetUserInfoByName service = new Fwk.Security.SVC.GetUserInfoByName();
-
             GetUserInfoByNameRequest req = new GetUserInfoByNameRequest();
-
             req.BusinessData.UserName = "moviedo";
             try
             {
-
 
                 GetUserInfoByNameResponse res = service.Execute(req);
 
@@ -307,31 +302,37 @@ namespace ServiceTest
 
         #endregion
 
-        
+
         [TestMethod()]
-        public void GetAuthorizationRulesService()
+        public void GetAuthorizationRules_NoService()
         {
             String strErrorResut = String.Empty;
 
             GetAuthorizationRulesReq req = new GetAuthorizationRulesReq();
-
-            GetAuthorizationRulesRes res = _ClientServiceBase.ExecuteService<GetAuthorizationRulesReq, GetAuthorizationRulesRes>(req);
-
-            if (res.Error != null)
+            GetAuthorizationRulesService svc = new GetAuthorizationRulesService();
+            try
             {
-                strErrorResut = Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message;
+
+                GetAuthorizationRulesRes res = svc.Execute(req);
+
+            }
+            catch (Exception ex)
+            {
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
 
-            Assert.AreEqual<Fwk.Exceptions.ServiceError>(res.Error, null, strErrorResut);
+
+            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
         }
 
         [TestMethod()]
-        public void InsertUser()
+        public void CreeateUser_NoService()
         {
             _Tx = new TransactionScopeHandler(TransactionalBehaviour.Suppres, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
             String strErrorResut = String.Empty;
-            CreateUsersRequest wRequest = new CreateUsersRequest();
-            CreateUsersResponse wResponse = new CreateUsersResponse();
+            CreateUserReq wRequest = new CreateUserReq();
+            CreateUserRes wResponse = new CreateUserRes();
+            CreateUserService svc = new CreateUserService();
 
              _Tx.InitScope();
            
@@ -348,15 +349,21 @@ namespace ServiceTest
 
 
             wRequest.BusinessData.User = wUserBe;
-            wResponse = wRequest.ExecuteService<CreateUsersRequest, CreateUsersResponse>(wRequest);
+            try
+            {
+            wResponse = svc.Execute(wRequest);
             _Tx.Abort();
 
-            if (wResponse.Error != null)
+            }
+            catch (Exception ex)
             {
-                strErrorResut =Fwk.Exceptions.ExceptionHelper.ProcessException(wResponse.Error).Message;
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
 
-            Assert.AreEqual<Fwk.Exceptions.ServiceError>(wResponse.Error, null, strErrorResut);
+
+            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
+
+            
 
         }
 

@@ -10,6 +10,7 @@ using Fwk.Security.ISVC;
 using Fwk.Security.BE;
 
 using Fwk.Security.ISVC.GetRulesCategoryByParam;
+using Fwk.Security;
 
 namespace Security
 {
@@ -67,15 +68,15 @@ namespace Security
         #endregion
 
         [TestMethod]
-        public void TestGetAll()
+        public void GetAllRulesCategoryService()
         {            
             String strErrorResut = String.Empty;
 
-            GetAllRulesCategoryRequest wReq = new GetAllRulesCategoryRequest();
-            GetAllRulesCategoryResponse wRes = new GetAllRulesCategoryResponse();
+            GetAllRulesCategoryReq wReq = new GetAllRulesCategoryReq();
+            GetAllRulesCategoryRes wRes;
 
             // se llama al servicio
-            wRes = wReq.ExecuteService<GetAllRulesCategoryRequest, GetAllRulesCategoryResponse>(wReq);
+            wRes = wReq.ExecuteService<GetAllRulesCategoryReq, GetAllRulesCategoryRes>(wReq);
 
 
             if (wRes.Error != null)
@@ -95,19 +96,19 @@ namespace Security
         }
 
         [TestMethod]
-        public void TestGetByParam()
+        public void GetRulesCategoryByParamService()
         {
             
             String strErrorResut = String.Empty;
 
-         GetRulesCategoryByParamRequest wReq = new GetRulesCategoryByParamRequest();
-            GetRulesCategoryByParamResponse wRes = new GetRulesCategoryByParamResponse();
+         GetRulesCategoryByParamReq wReq = new GetRulesCategoryByParamReq();
+            GetRulesCategoryByParamRes wRes = new GetRulesCategoryByParamRes();
 
 
             wReq.BusinessData.CategoryId = 3;
 
             // se llama al servicio
-            wRes = wReq.ExecuteService<Fwk.Security.ISVC.GetRulesCategoryByParam.GetRulesCategoryByParamRequest, Fwk.Security.ISVC.GetRulesCategoryByParam.GetRulesCategoryByParamResponse>(wReq);
+            wRes = wReq.ExecuteService<Fwk.Security.ISVC.GetRulesCategoryByParam.GetRulesCategoryByParamReq, Fwk.Security.ISVC.GetRulesCategoryByParam.GetRulesCategoryByParamRes>(wReq);
 
 
             if (wRes.Error != null)
@@ -127,28 +128,25 @@ namespace Security
         }
                 
         [TestMethod]
-        public void TestCreate()
-        {   
+        public void CreateRulesCategoryService()
+        {
 
-            RulesCategoryBE wRC = new RulesCategoryBE();
+            FwkCategory wRC = new FwkCategory();
             String strErrorResut = String.Empty;
 
 
-            wRC.CategoryId = 0;
-            wRC.ApplicationName = "bigbang";
-            wRC.Name = "TEstCategory";
-            wRC.ParentCategoryId = 0;            
+                  
 
 
 
-            Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryRequest wReq = new Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryRequest();
-            Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryResponse wRes = new Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryResponse();
+            Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryReq wReq = new Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryReq();
+            Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryRes wRes = new Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryRes();
 
 
 
 
             // se llama al servicio
-            wRes = wReq.ExecuteService<Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryRequest, Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryResponse>(wReq);
+            wRes = wReq.ExecuteService<CreateRulesCategoryReq,CreateRulesCategoryRes>(wReq);
 
 
             if (wRes.Error != null)

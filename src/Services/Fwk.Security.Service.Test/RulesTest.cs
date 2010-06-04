@@ -81,13 +81,13 @@ namespace Security
 
 
 
-             wRes.ContextInformation.CompanyId ="bigbang";
+            wRes.ContextInformation.CompanyId = "bigbang";
 
 
 
 
 
-             if (wRes.Error != null)
+            if (wRes.Error != null)
             {
                 if (typeof(Fwk.Exceptions.FunctionalException).Name.CompareTo(wRes.Error.Type) != 0)
                 {
@@ -95,7 +95,7 @@ namespace Security
                 }
             }
 
-             Assert.AreEqual<Fwk.Exceptions.ServiceError>(wRes.Error, null, strErrorResut);
+            Assert.AreEqual<Fwk.Exceptions.ServiceError>(wRes.Error, null, strErrorResut);
 
         }
 
