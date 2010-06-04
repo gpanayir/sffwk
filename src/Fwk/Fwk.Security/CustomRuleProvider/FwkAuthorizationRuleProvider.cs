@@ -7,8 +7,8 @@ using System.Security.Principal;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Security;
-using System.Collections.Specialized;
 using Fwk.Security.Configuration;
+using System.Collections.Specialized;
 
 namespace Fwk.Security
 {/// <summary>
@@ -21,6 +21,18 @@ namespace Fwk.Security
     public class FwkAuthorizationRuleProvider : AuthorizationProvider
     {
         private readonly IDictionary<string, IAuthorizationRule> authorizationRules;
+      
+
+        /// <summary>
+        /// Initialize an instance of the <see cref="AuthorizationRuleProvider"/> class.
+        /// </summary>
+        /// <param name="authorizationRules">The collection of rules.</param>
+        public FwkAuthorizationRuleProvider(IDictionary<string, IAuthorizationRule> authorizationRules)
+        {
+            if (authorizationRules == null) throw new ArgumentNullException("authorizationRules");
+
+            this.authorizationRules = authorizationRules;
+        }
 
         /// <summary>
         /// Esta sobrecarga obtiene las reglas atravez de la base de datos. 
@@ -32,17 +44,6 @@ namespace Fwk.Security
             List<AuthorizationRuleData> authorizationRules = FwkMembership.GetRulesList(proividerName);
 
             this.authorizationRules = CreateRulesDictionary<AuthorizationRuleData>(authorizationRules);
-        }
-
-        /// <summary>
-        /// Initialize an instance of the <see cref="AuthorizationRuleProvider"/> class.
-        /// </summary>
-        /// <param name="authorizationRules">The collection of rules.</param>
-        public FwkAuthorizationRuleProvider(IDictionary<string, IAuthorizationRule> authorizationRules)
-        {
-            if (authorizationRules == null) throw new ArgumentNullException("authorizationRules");
-
-            this.authorizationRules = authorizationRules;
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Fwk.Security
         }
 
         /// <summary>
-        /// Obtiele la lista de reglas relacionadas al proveedor 
+        /// Obtiele la lista de reglas relacionadas al proveedor
         /// </summary>
         /// <returns></returns>
         public List<FwkAuthorizationRule> GetAuthorizationRules()
@@ -90,7 +91,7 @@ namespace Fwk.Security
 
             var a = from s in authorizationRules.Values select new FwkAuthorizationRule { Name = s.Name, Expression = s.Expression };
             return a.ToList<FwkAuthorizationRule>();
-        }
+        } 
 
         BooleanExpression GetParsedExpression(string ruleName, bool expEmpty)
         {

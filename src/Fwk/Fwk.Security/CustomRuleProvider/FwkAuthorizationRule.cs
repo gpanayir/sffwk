@@ -22,7 +22,7 @@ namespace Fwk.Security
     public class FwkAuthorizationRule :  NamedConfigurationElement, IAuthorizationRule,Fwk.Bases.IEntity
     {
         private string _Expression;
-        private System.String _ApplicationId;
+        private System.Guid _ApplicationId;
         private System.String _ApplicationName;
        
 
@@ -46,7 +46,19 @@ namespace Fwk.Security
             _Expression = expression;
 
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthorizationRuleData"/> class with the specified name and expression.
+        /// </summary>
+        /// <param name="name">The name of the rule</param>
+        /// <param name="expression">The expression to evaluate.</param>
+        /// <param name="applicationId">Apliocacion  la que pertenece.</param>
+        public FwkAuthorizationRule(string name, string expression, Guid applicationId)
+            : base(name)
+        {
+            _Expression = expression;
+            _ApplicationId = applicationId;
 
+        }
         /// <summary>
         /// Gets or sets the expression associated with
         /// this rule.
@@ -75,7 +87,7 @@ namespace Fwk.Security
                 _CategoryId = value;
             }
         }
-        public System.String ApplicationId
+        public System.Guid ApplicationId
         {
             get { return _ApplicationId; }
             set { _ApplicationId = value; }
@@ -183,12 +195,19 @@ namespace Fwk.Security
     {
         int? _ParentCategoryId =0;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int? ParentId
         {
             get { return _ParentCategoryId; }
             set { _ParentCategoryId = value; }
         }
         int _CategoryId;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int CategoryId
         {
             get
@@ -203,6 +222,9 @@ namespace Fwk.Security
 
         string _Name;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name
         {
             get
@@ -215,9 +237,12 @@ namespace Fwk.Security
             }
         }
 
-        List<FwkAuthorizationRule> _FwkRulesInCategoryList = null;
+        FwkAuthorizationRuleList _FwkRulesInCategoryList = null;
 
-        public List<FwkAuthorizationRule> FwkRulesInCategoryList
+        /// <summary>
+        /// 
+        /// </summary>
+        public FwkAuthorizationRuleList FwkRulesInCategoryList
         {
             get { return _FwkRulesInCategoryList; }
             set { _FwkRulesInCategoryList = value; }
@@ -225,6 +250,14 @@ namespace Fwk.Security
 
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    [XmlRoot("FwkCategoryList"), SerializableAttribute]
+    public class FwkCategoryList : Entities<FwkCategory>
+    {
+      
+    }
 
 
 

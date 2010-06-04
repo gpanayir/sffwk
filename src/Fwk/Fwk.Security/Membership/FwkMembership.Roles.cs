@@ -87,6 +87,31 @@ namespace Fwk.Security
             return wRoleList;
 
         }
+        /// <summary>
+        /// Obtiene una lista de Roles  de un usuario
+        /// </summary>
+        /// <param name="userName">Nombre de Usuario</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <returns>String[] con los roles del usuario</returns>
+        public static String[] GetRolesForUser_StringArray(String userName, string providerName)
+        {
+            
+            try
+            {
+                return  Roles.Providers[providerName].GetRolesForUser(userName);
+                
+            }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
+            }
+
+
+        }
+
 
 
         /// <summary>

@@ -113,7 +113,7 @@ namespace Fwk.Security
         /// <param name="ruleName"></param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        public static aspnet_Rule GetRule(string ruleName, string providerName)
+        public static FwkAuthorizationRule GetRule(string ruleName, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             return GetRule(ruleName, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
@@ -127,7 +127,7 @@ namespace Fwk.Security
         /// <param name="applicationName"></param>
         /// <param name="connectionStringName"></param>
         /// <returns></returns>
-        public static aspnet_Rule GetRule(string ruleName, string applicationName, string connectionStringName)
+        public static FwkAuthorizationRule GetRule(string ruleName, string applicationName, string connectionStringName)
         {
 
             aspnet_Rule waspnet_Rule = null;
@@ -144,7 +144,7 @@ namespace Fwk.Security
 
 
                     }
-                    return waspnet_Rule;
+                    return new FwkAuthorizationRule(waspnet_Rule.name,waspnet_Rule.expression,waspnet_Rule.ApplicationId.Value);
                 }
             }
             catch (Exception ex)
@@ -390,28 +390,26 @@ namespace Fwk.Security
         /// <summary>
         /// crea una regla rule
         /// </summary>
-        ///<param name="paspnet_Rules">aspnet_Rules</param>
+        ///<param name="rule">aspnet_Rules</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>void</returns>
         /// <Date>2008-12-22T11:29:57</Date>
         /// <Author>moviedo</Author>
-        public static void CreateRule(FwkAuthorizationRule paspnet_Rules, string providerName)
+        public static void CreateRule(FwkAuthorizationRule rule, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            CreateRule(paspnet_Rules, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            CreateRule(rule, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
 
 
         /// <summary>
         /// Crea una regla
         /// </summary>
-        /// <param name="paspnet_Rules"></param>
+        /// <param name="rule"></param>
         /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
         /// <param name="connectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
-        public static void CreateRule(FwkAuthorizationRule paspnet_Rules, string applicationName, string connectionStringName)
+        public static void CreateRule(FwkAuthorizationRule rule, string applicationName, string connectionStringName)
         {
-
-
 
             Database wDataBase = null;
             DbCommand wCmd = null;
@@ -423,8 +421,8 @@ namespace Fwk.Security
                 wDataBase = DatabaseFactory.CreateDatabase(connectionStringName);
                 StringBuilder str = new StringBuilder(FwkMembershipScripts.Rule_i);
                 str.Replace("[ApplicationId]", wApplicationId.ToString());
-                str.Replace("[rulename]", paspnet_Rules.Name.Trim());
-                str.Replace("[expression]", paspnet_Rules.Expression);
+                str.Replace("[rulename]", rule.Name.Trim());
+                str.Replace("[expression]", rule.Expression);
 
                 wCmd = wDataBase.GetSqlStringCommand(str.ToString());
                 wCmd.CommandType = CommandType.Text;
@@ -436,7 +434,7 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_Crate_Error, paspnet_Rules.Name), ex);
+                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_Crate_Error, rule.Name), ex);
                 te.ErrorId = "4005";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 throw te;
@@ -450,21 +448,21 @@ namespace Fwk.Security
         /// <summary>
         /// UpdateRule
         /// </summary>
-        /// <param name="paspnet_Rules"></param>
+        /// <param name="rule"></param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
-        public static void UpdateRule(aspnet_Rule paspnet_Rules, string providerName)
+        public static void UpdateRule(FwkAuthorizationRule rule, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            UpdateRule(paspnet_Rules, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            UpdateRule(rule, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
         }
 
         /// <summary>
         /// UpdateRule
         /// </summary>
-        /// <param name="paspnet_Rules"></param>
+        /// <param name="rule"></param>
         /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
         /// <param name="connectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
-        private static void UpdateRule(aspnet_Rule paspnet_Rules, string applicationName, string connectionStringName)
+        private static void UpdateRule(FwkAuthorizationRule rule, string applicationName, string connectionStringName)
         {
             Database wDataBase = null;
             DbCommand wCmd = null;
@@ -476,8 +474,8 @@ namespace Fwk.Security
                 wDataBase = DatabaseFactory.CreateDatabase(connectionStringName);
                 StringBuilder str = new StringBuilder(FwkMembershipScripts.Rule_u);
                 str.Replace("[ApplicationId]", wApplicationId.ToString());
-                str.Replace("[rulename]", paspnet_Rules.name.Trim());
-                str.Replace("[expression]", paspnet_Rules.expression);
+                str.Replace("[rulename]", rule.Name.Trim());
+                str.Replace("[expression]", rule.Expression);
 
                 wCmd = wDataBase.GetSqlStringCommand(str.ToString());
                 wCmd.CommandType = CommandType.Text;
@@ -519,7 +517,7 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pRol"></param>
         /// <param name="pRule"></param>
-        public static void RuleRemoveRol(Rol pRol, FwkAuthorizationRule pRule)
+        public static void RemoveRol_From_Rule(Rol pRol, FwkAuthorizationRule pRule)
         {
             RolList rollistAux = null;
             UserList userList = null;
