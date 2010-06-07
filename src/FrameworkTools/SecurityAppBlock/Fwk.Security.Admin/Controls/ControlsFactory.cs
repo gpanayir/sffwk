@@ -20,14 +20,47 @@ namespace Fwk.Security.Admin.Controls
 
         internal static bool Authorize(IPrincipal principal, string context)
         {
-            return AuthorizationFactory.GetAuthorizationProvider(frmAdmin.Provider.Name).Authorize(principal, context);
-            FwkAuthorizationRuleProvider 
+            if (_SecurityRuleProviderList.Count  == 0)
+            {
+                throw new Exception("Debe crear al menos un proiveedor ");
+            }
+            if (!_SecurityRuleProviderList.ContainsKey(frmAdmin.Provider.Name))
+            {
+                throw new Exception(string.Concat("ControlsFactory no contiene el ", frmAdmin.Provider.Name));
+            }
+            //return AuthorizationFactory.GetAuthorizationProvider(frmAdmin.Provider.Name).Authorize(principal, context);
+
+
+            return _SecurityRuleProviderList[frmAdmin.Provider.Name].Authorize(principal, context);
+
         }
-          
-        
-      
+
+
+        static Dictionary<string, IAuthorizationProvider> _SecurityRuleProviderList = new Dictionary<string, IAuthorizationProvider>();
+
+        internal static IAuthorizationProvider CreateAuthorizationProvider(string providerName)
+        {
+            FwkAuthorizationRuleProvider wSecurityProvider;
+            if (_SecurityRuleProviderList.ContainsKey(providerName))
+            {
+                wSecurityProvider = (FwkAuthorizationRuleProvider)_SecurityRuleProviderList[providerName];
+            }
+            else
+            {
+                wSecurityProvider = new FwkAuthorizationRuleProvider(providerName);
+                _SecurityRuleProviderList.Add(providerName, wSecurityProvider);
+
+            }
+            return wSecurityProvider;
+
+        }
+
+
 
         static Dictionary<string, SecurityControlBase> _SecurityControlList = new Dictionary<string, SecurityControlBase>();
+
+
+
 
         internal static SecurityControlBase Get(NavBarItemLink pItem)
         {
@@ -64,7 +97,11 @@ namespace Fwk.Security.Admin.Controls
             return wSecurityControl;
         }
 
-
+        internal static void  RomoveAllControls()
+        {
+            
+            _SecurityControlList.Clear ();
+        }
 
         internal static SecurityControlBase Show(NavBarItemLink pItem, Control pContainer)
         {

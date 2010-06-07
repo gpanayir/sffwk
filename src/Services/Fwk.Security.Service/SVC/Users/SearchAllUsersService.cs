@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Fwk.Bases;
 using Fwk.Security.BE;
 using Fwk.Security;
-using Fwk.Security.ISVC.GetAllUsers;
+using Fwk.Security.ISVC.SearchAllUsers;
 using Fwk.Security.Common;
 using Fwk.Security.DAC;
 using Fwk.Security.BC;
@@ -13,11 +13,11 @@ using Fwk.Security.BC;
 
 namespace Fwk.Security.SVC
 {
-    public class GetAllUsersService : BusinessService<GetAllUsersReq, GetAllUsersRes>
+    public class SearchAllUsersService : BusinessService<SearchAllUsersReq, SearchAllUsersRes>
     {
-        public override GetAllUsersRes Execute(GetAllUsersReq pServiceRequest)
+        public override SearchAllUsersRes Execute(SearchAllUsersReq pServiceRequest)
         {
-            GetAllUsersRes wRes = new GetAllUsersRes();
+            SearchAllUsersRes wRes = new SearchAllUsersRes();
             UserBC wBC = new UserBC(pServiceRequest.ContextInformation.CompanyId,pServiceRequest.SecurityProviderName);
 
             //if (string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))

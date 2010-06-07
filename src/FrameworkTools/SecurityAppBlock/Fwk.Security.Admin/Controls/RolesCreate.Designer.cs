@@ -35,17 +35,16 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtRolName = new DevExpress.XtraEditors.TextEdit();
             this.btnCreateNewRol = new System.Windows.Forms.Button();
-            this.fwkMessageViewInfo = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.grdUsers = new System.Windows.Forms.DataGridView();
-            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grdRoles = new System.Windows.Forms.DataGridView();
-            this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rolListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblusers = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFindUsers = new System.Windows.Forms.Button();
+            this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -125,21 +124,13 @@
             this.btnCreateNewRol.UseVisualStyleBackColor = false;
             this.btnCreateNewRol.Click += new System.EventHandler(this.btnCreateNewRol_Click);
             // 
-            // fwkMessageViewInfo
-            // 
-            this.fwkMessageViewInfo.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.fwkMessageViewInfo.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
-            this.fwkMessageViewInfo.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
-            this.fwkMessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
-            this.fwkMessageViewInfo.TextMessageColor = System.Drawing.Color.White;
-            this.fwkMessageViewInfo.TextMessageForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.fwkMessageViewInfo.Title = "Security admin";
-            // 
             // grdUsers
             // 
+            this.grdUsers.AllowUserToAddRows = false;
             this.grdUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.grdUsers.AutoGenerateColumns = false;
+            this.grdUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.grdUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.userNameDataGridViewTextBoxColumn,
@@ -151,27 +142,17 @@
             this.grdUsers.TabIndex = 22;
             this.grdUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdUsers_KeyDown);
             // 
-            // userNameDataGridViewTextBoxColumn
-            // 
-            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
-            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
-            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            // 
             // userBindingSource
             // 
             this.userBindingSource.DataSource = typeof(Fwk.Security.Common.User);
             // 
             // grdRoles
             // 
+            this.grdRoles.AllowUserToAddRows = false;
             this.grdRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.grdRoles.AutoGenerateColumns = false;
+            this.grdRoles.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.grdRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rolNameDataGridViewTextBoxColumn});
@@ -181,12 +162,6 @@
             this.grdRoles.Size = new System.Drawing.Size(302, 350);
             this.grdRoles.TabIndex = 20;
             this.grdRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdRoles2_CellClick);
-            // 
-            // rolNameDataGridViewTextBoxColumn
-            // 
-            this.rolNameDataGridViewTextBoxColumn.DataPropertyName = "RolName";
-            this.rolNameDataGridViewTextBoxColumn.HeaderText = "RolName";
-            this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
             // 
             // rolListBindingSource
             // 
@@ -232,6 +207,27 @@
             this.btnFindUsers.UseVisualStyleBackColor = false;
             this.btnFindUsers.Click += new System.EventHandler(this.btnFindUsers_Click);
             // 
+            // rolNameDataGridViewTextBoxColumn
+            // 
+            this.rolNameDataGridViewTextBoxColumn.DataPropertyName = "RolName";
+            this.rolNameDataGridViewTextBoxColumn.HeaderText = "Rol name";
+            this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
+            this.rolNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "User name";
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // RolesCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,18 +259,17 @@
         private System.Windows.Forms.Label label13;
         private DevExpress.XtraEditors.TextEdit txtRolName;
         private System.Windows.Forms.Button btnCreateNewRol;
-        private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewInfo;
         private System.Windows.Forms.DataGridView grdUsers;
         private System.Windows.Forms.DataGridView grdRoles;
         private System.Windows.Forms.BindingSource rolListBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rolNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lblusers;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.MemoExEdit txtDescription;
         private System.Windows.Forms.Button btnFindUsers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rolNameDataGridViewTextBoxColumn;
     }
 }

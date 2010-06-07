@@ -20,10 +20,10 @@ namespace Fwk.Security.Admin.Controls
         User _SelectedUser = null;
         UserList _ExcludeUserList = new UserList();
         RolList _AssignedRolList = new RolList();
-        List<FwkCategory> _CategoryList;
+        FwkCategoryList _CategoryList;
         FwkCategory _ParentFwkCategory;
         List<AuthorizationRuleData> _RuleList;
-        aspnet_Rule _CurrentRule;
+        FwkAuthorizationRule _CurrentRule;
         /// <summary>
         /// Representa la informacion del tipo de control a instanciar 
         /// 
@@ -147,7 +147,7 @@ namespace Fwk.Security.Admin.Controls
         private void grdRulesByCategory_Click(object sender, EventArgs e)
         {
 
-            Fwk.Security.FwkAuthorizationRuleAux rule = (Fwk.Security.FwkAuthorizationRuleAux)((BindingSource)grdRulesByCategory.DataSource).Current;
+            Fwk.Security.FwkAuthorizationRule rule = (Fwk.Security.FwkAuthorizationRule)((BindingSource)grdRulesByCategory.DataSource).Current;
             if (rule == null) return;
             _CurrentRule = FwkMembership.GetRule(rule.Name, Membership.ApplicationName);
             if (_CurrentRule == null)
@@ -159,7 +159,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 _AssignedRolList = new RolList();
                 _ExcludeUserList = new UserList();
-                FwkMembership.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.expression, out _AssignedRolList, out _ExcludeUserList);
+                FwkMembership.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.Expression, out _AssignedRolList, out _ExcludeUserList);
                 rolBindingSource.DataSource = _AssignedRolList;
             }
 
@@ -188,7 +188,7 @@ namespace Fwk.Security.Admin.Controls
                             _AssignedRolList.Add(rol);
                         }
                     }
-                    _CurrentRule.expression = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+                    _CurrentRule.Expression = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
                     FwkMembership.UpdateRule(_CurrentRule, frmAdmin.Provider.Name);
 
 
@@ -213,7 +213,7 @@ namespace Fwk.Security.Admin.Controls
         {
             MessageViewInfo.MessageBoxButtons = MessageBoxButtons.YesNo;
             MessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question;
-            if (MessageViewInfo.Show("Are you sure to remove selected roles from current rule : " + _CurrentRule.name) == DialogResult.Yes)
+            if (MessageViewInfo.Show("Are you sure to remove selected roles from current rule : " + _CurrentRule.Name) == DialogResult.Yes)
             {
                
             
@@ -222,7 +222,7 @@ namespace Fwk.Security.Admin.Controls
                     _AssignedRolList.Remove((Rol)grdViewRoles.GetRow(wFila));
                 }
 
-                _CurrentRule.expression = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+                _CurrentRule.Expression = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
                 FwkMembership.UpdateRule(_CurrentRule,Membership.Provider.Name);
 
                 rolBindingSource.DataSource = null;

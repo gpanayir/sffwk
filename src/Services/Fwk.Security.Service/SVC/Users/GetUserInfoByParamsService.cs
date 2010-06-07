@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Fwk.Bases;
-using Fwk.Security.ISVC.GetUserInfoByName;
+using Fwk.Security.ISVC.GetUserInfoByParams;
 
 using Fwk.Security;
 using Fwk.Security.BC;
@@ -16,11 +16,11 @@ namespace Fwk.Security.SVC
     /// 
     /// intenta obtener el usuario en la membership 
     /// </summary>
-    public class GetUserInfoByName : BusinessService<GetUserInfoByNameRequest, GetUserInfoByNameResponse>
+    public class GetUserInfoByParamsService : BusinessService<GetUserInfoByParamsReq, GetUserInfoByParamsRes>
     {
-        public override GetUserInfoByNameResponse Execute(GetUserInfoByNameRequest pServiceRequest)
+        public override GetUserInfoByParamsRes Execute(GetUserInfoByParamsReq pServiceRequest)
         {
-            GetUserInfoByNameResponse wRes = new GetUserInfoByNameResponse();
+            GetUserInfoByParamsRes wRes = new GetUserInfoByParamsRes();
 
             UserBC userBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
 
@@ -28,7 +28,7 @@ namespace Fwk.Security.SVC
             RolList wRolList = new RolList();
             User wUser = new User();
 
-            userBC.GetUserInfoByName(pServiceRequest.BusinessData.UserName, out wUser, out wRolList);
+            userBC.GetUserByParams(pServiceRequest.BusinessData.UserName, out wUser, out wRolList);
 
             wRes.BusinessData.UserInfo = wUser;
             wRes.BusinessData.RolList = wRolList;

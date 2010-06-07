@@ -119,7 +119,7 @@ namespace Fwk.Security.Admin
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinExplorerBarViewInfoRegistrator("Money Twins");
             this.navBarControl1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarControl1_LinkClicked);
-            this.navBarControl1.Click += new System.EventHandler(this.navBarControl1_Click);
+
             // 
             // navBarGroup_Users
             // 

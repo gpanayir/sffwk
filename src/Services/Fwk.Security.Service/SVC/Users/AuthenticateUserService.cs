@@ -37,7 +37,7 @@ namespace Fwk.Security.SVC
                 if (pServiceRequest.BusinessData.IsEnvironmentUser)
                 {
                     // El usuario se toma por defecto del environment por tanto se recupera el user info sin necesidad de validar
-                    wUserBC.GetUserInfoByName(pServiceRequest.BusinessData.UserName, out wUser, out wRolList);
+                    wUserBC.GetUserByParams(pServiceRequest.BusinessData.UserName, out wUser, out wRolList);
                 }
                 else
                 {
@@ -47,7 +47,7 @@ namespace Fwk.Security.SVC
                                                  pServiceRequest.BusinessData.Domain)
                        == Fwk.Security.ActiveDirectory.LoginResult.LOGIN_OK)
                     {
-                        wUserBC.GetUserInfoByName(pServiceRequest.BusinessData.UserName, out wUser, out wRolList);
+                        wUserBC.GetUserByParams(pServiceRequest.BusinessData.UserName, out wUser, out wRolList);
                     }
 
 

@@ -42,7 +42,7 @@ namespace Fwk.Security.Admin.Controls
                 {
                     FwkMembership.CreateRole(txtRolName.Text, txtDescription.Text, frmAdmin.Provider.Name);
 
-                    fwkMessageViewInfo.Show(string.Format(Properties.Resources.RolCreatedMessage, txtRolName.Text));
+                    base.MessageViewInfo.Show(string.Format(Properties.Resources.RolCreatedMessage, txtRolName.Text));
                     Initialize();
                     NewSecurityInfoCreatedHandler();
                 }
@@ -63,8 +63,9 @@ namespace Fwk.Security.Admin.Controls
 
         private void grdRoles2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (grdRoles.CurrentRow == null) return;
+            if (grdRoles.CurrentRow == null || grdRoles.CurrentRow.DataBoundItem == null) return;
             selectedRol = (Rol)grdRoles.CurrentRow.DataBoundItem;
+
             using (new WaitCursorHelper(this))
             {
                 grdUsers.DataSource = FwkMembership.GetUsersDetailedInRole(selectedRol.RolName, frmAdmin.Provider.Name);

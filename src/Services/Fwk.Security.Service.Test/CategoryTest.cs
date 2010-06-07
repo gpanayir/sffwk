@@ -5,12 +5,13 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fwk.Security.ISVC.CreateRulesCategory;
 
-using  Fwk.Security.ISVC.GetAllRulesCategory;
+using  Fwk.Security.ISVC.SearchAllRulesCategory;
 using Fwk.Security.ISVC;
 using Fwk.Security.BE;
 
 using Fwk.Security.ISVC.GetRulesCategoryByParam;
 using Fwk.Security;
+using Fwk.Security.SVC;
 
 namespace Security
 {
@@ -18,9 +19,9 @@ namespace Security
     /// Summary description for GroupsTest
     /// </summary>
     [TestClass]
-    public class GroupsTest
+    public class CategoryTest
     {
-        public GroupsTest()
+        public CategoryTest()
         {
             //
             // TODO: Add constructor logic here
@@ -68,30 +69,30 @@ namespace Security
         #endregion
 
         [TestMethod]
-        public void GetAllRulesCategoryService()
-        {            
+        public void GetAllRulesCategory_No_Service()
+        {
             String strErrorResut = String.Empty;
 
-            GetAllRulesCategoryReq wReq = new GetAllRulesCategoryReq();
-            GetAllRulesCategoryRes wRes;
-
-            // se llama al servicio
-            wRes = wReq.ExecuteService<GetAllRulesCategoryReq, GetAllRulesCategoryRes>(wReq);
+            SearchAllRulesCategoryReq wReq = new SearchAllRulesCategoryReq();
+            SearchAllRulesCategoryRes wRes;
+            SearchAllRulesCategoryService svc = new SearchAllRulesCategoryService();
 
 
-            if (wRes.Error != null)
+            try
             {
-                if (typeof(Fwk.Exceptions.FunctionalException).Name.CompareTo(wRes.Error.Type) != 0)
-                {
-                    strErrorResut = Fwk.Exceptions.ExceptionHelper.ProcessException(wRes.Error).Message;
-                }
-                else
-                {
-                    wRes.Error = null;
-                }
+
+                wRes = wReq.ExecuteService<SearchAllRulesCategoryReq, SearchAllRulesCategoryRes>(wReq);
+
+            }
+            catch (Exception ex)
+            {
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
 
-            Assert.AreEqual<Fwk.Exceptions.ServiceError>(wRes.Error, null, strErrorResut);
+
+            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
+
+
 
         }
 

@@ -6,18 +6,18 @@ using System.Collections.Generic;
 using Fwk.Bases;
 using Fwk.Security;
 using Fwk.Security.BE;
-using Fwk.Security.ISVC.GetAllRoles;
+using Fwk.Security.ISVC.SearchAllRoles;
 
 
 
 
 namespace Fwk.Security.SVC
 {
-    public class GetAllRolesService : BusinessService<GetAllRolesReq, GetAllRolesRes>
+    public class SearchAllRolesService : BusinessService<SearchAllRolesReq, SearchAllRolesRes>
     {
-        public override GetAllRolesRes Execute(GetAllRolesReq pServiceRequest)
+        public override SearchAllRolesRes Execute(SearchAllRolesReq pServiceRequest)
         {
-            GetAllRolesRes wRes = new GetAllRolesRes();
+            SearchAllRolesRes wRes = new SearchAllRolesRes();
 
        
 

@@ -34,8 +34,7 @@ namespace Fwk.Security.Admin.Controls
             if (NewSecurityInfoCreated != null)
                 NewSecurityInfoCreated(this);
         }
-        //private ISecurityCacheProvider cache;	// Security cache to handle tokens
-        //private IAuthorizationProvider ruleProvider;
+
         Rol _SelectedRol = null;
         User _SelectedUser = null;
 
@@ -57,10 +56,13 @@ namespace Fwk.Security.Admin.Controls
                 {
                     userBindingSource.DataSource = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
                     rolBindingSource.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
+
+                    if (userBindingSource.Count == 0) throw new Exception(string .Concat("La aplicaión ", frmAdmin.Provider.ApplicationName, " no contiene usuarios.-"));
+                    if (rolBindingSource.Count == 0) throw new Exception(string .Concat("La aplicaión ", frmAdmin.Provider.ApplicationName, " no contiene roles.-"));
                 }
                 catch (Exception es)
                 {
-                    ///base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(es));
+             
                     throw es;
                 }
 

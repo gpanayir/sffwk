@@ -33,8 +33,9 @@ namespace Fwk.Security.Admin.Controls
                 string rule = ((Microsoft.Practices.EnterpriseLibrary.Security.Configuration.AuthorizationRuleData)
                     this.rulesComboBox.SelectedItem).Name;
 
-                // Get the roles for the current user and create an IPrincipal
-                string[] roles = Roles.GetRolesForUser(identity);
+
+                string[] roles = FwkMembership.GetRolesForUser_StringArray(identity, frmAdmin.Provider.Name);
+
                 IPrincipal principal = new GenericPrincipal(new GenericIdentity(identity), roles);
 
 
@@ -54,7 +55,7 @@ namespace Fwk.Security.Admin.Controls
                     }
                     catch (Exception ex)
                     {
-                        if (string.IsNullOrEmpty(FwkMembership.GetRule(rule,frmAdmin.Provider.Name).expression.Trim()))
+                        if (string.IsNullOrEmpty(FwkMembership.GetRule(rule,frmAdmin.Provider.Name).Expression.Trim()))
                         {
                             wAuthorized = false;
 
@@ -79,18 +80,19 @@ namespace Fwk.Security.Admin.Controls
                 Cursor = System.Windows.Forms.Cursors.Arrow;
             }
         }
-
+        IAuthorizationProvider ruleProvider;
         public override void Initialize()
         {
             // inicializo Fwk Authorization provider y cathcing security provider
             // ASP.NET Membership y Profile providers no se inicializan de esta manera.
-            //this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider("RuleProvider_Fwk");
-            
-            //this.cache = SecurityCacheFactory.GetSecurityCacheProvider("ProveedorAlmacenCaching");
+            //this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider(frmAdmin.Provider.Name);
 
+            //this.cache = SecurityCacheFactory.GetSecurityCacheProvider("ProveedorAlmacenCaching");
+            this.ruleProvider  = ControlsFactory.CreateAuthorizationProvider(frmAdmin.Provider.Name);
+            
 
             rulesComboBox.DataSource = FwkMembership.GetRulesList(Membership.ApplicationName);
-        
+
         }
 
 

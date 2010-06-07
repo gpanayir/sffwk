@@ -9,15 +9,15 @@ using System.Data.SqlClient;
 using Fwk.Security.ActiveDirectory;
 
 
-namespace Fwk.Security.ISVC.GetAllUsers_AD_Req
+namespace Fwk.Security.ISVC.SearchAllUsers_AD_Req
 {
 
     [Serializable]
-    public class GetAllUsers_AD_Req : Request<Param>
+    public class SearchAllUsers_AD_Req : Request<Param>
     {
-        public GetAllUsers_AD_Req()
+        public SearchAllUsers_AD_Req()
         {
-            this.ServiceName = "GetAllUsers_AD_ReqService";
+            this.ServiceName = "SearchAllUsers_AD_ReqService";
         }
     }
 
@@ -44,7 +44,7 @@ namespace Fwk.Security.ISVC.GetAllUsers_AD_Req
 
 
     [Serializable]
-    public class GetAllUsersRes : Response<Result>
+    public class SearchAllUsersRes : Response<Result>
     {
 
     }

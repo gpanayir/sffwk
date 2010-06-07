@@ -42,9 +42,9 @@ namespace Fwk.Security.Admin.Controls
             using (new WaitCursorHelper(this))
             {
                 usersGrid1.Initialize();
-               
-                    bindingSourceRoles1.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
-                
+
+                bindingSourceRoles1.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
+
                 FillRolesByUser();
             }
         }
@@ -76,18 +76,12 @@ namespace Fwk.Security.Admin.Controls
                 return;
             }
             String wUserName = usersGrid1.CurrentUser.UserName;
-            
 
 
-            try
-            {
-                FwkMembership.DeleteUser(wUserName, frmAdmin.Provider.Name);
-                MessageViewInfo.Show("User was successfully removed");
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;
-            }
+
+            FwkMembership.DeleteUser(wUserName, frmAdmin.Provider.Name);
+            MessageViewInfo.Show("User was successfully removed");
+
 
 
             lblRolesByUser.Text = string.Empty;
@@ -99,12 +93,12 @@ namespace Fwk.Security.Admin.Controls
 
         }
 
-       
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
             User wUser = usersGrid1.CurrentUser;
-            
+
 
             User wpdatedUser = new User(txtUserName.Text);
             wpdatedUser.Email = txtEmail.Text;
@@ -114,16 +108,12 @@ namespace Fwk.Security.Admin.Controls
             wpdatedUser.AnswerPassword = txtAnsw.Text;
             wpdatedUser.QuestionPassword = txtQuest.Text;
 
-            try
-            {
-                FwkMembership.UpdateUser(wpdatedUser, wUser.UserName);
-                MessageViewInfo.Show("User was successfully updated");
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
 
+
+            FwkMembership.UpdateUser(wpdatedUser, wUser.UserName, frmAdmin.Provider.Name);
+            MessageViewInfo.Show("User was successfully updated");
+
+            usersGrid1.Initialize();
         }
 
         private void usersGrid1_OnUserChange(User user, RolList roles)

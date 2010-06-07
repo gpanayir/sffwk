@@ -95,6 +95,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpBinding, Version=2.1.0.2429, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\CSharpBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.Core, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\ICSharpCode.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\ICSharpCode.NRefactory.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\ICSharpCode.SharpDevelop.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop.Dom, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\ICSharpCode.SharpDevelop.Dom.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop.Sda, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\ICSharpCode.SharpDevelop.Sda.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop.Widgets, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\ICSharpCode.SharpDevelop.Widgets.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -310,6 +342,13 @@
     <Compile Include="DockPanel\Win32\User32.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TextCodeEditor\TextCodeControlEventsArgs.cs" />
+    <Compile Include="TextCodeEditor\TextCodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextCodeEditor\TextCodeEditor.Designer.cs">
+      <DependentUpon>TextCodeEditor.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="PropertyWrapper\PropertyWraperControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PropertyWraperControl.cs</DependentUpon>
@@ -346,6 +385,9 @@
     <EmbeddedResource Include="Resources\MdiClientController.bmp" />
     <EmbeddedResource Include="Strings.resx">
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextCodeEditor\TextCodeEditor.resx">
+      <DependentUpon>TextCodeEditor.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="DockPanel\Controls\CodeDoc\InertButton.xml" />
     <Content Include="DockPanel\Docking\CodeDoc\AutoHidePane.xml" />
@@ -397,6 +439,27 @@
       <ProductName>.NET Framework 3.5</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TextCodeEditor\data\modes\ASPX.xshd" />
+    <None Include="TextCodeEditor\data\modes\BAT-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\C64CSharp.xshd" />
+    <None Include="TextCodeEditor\data\modes\CPP-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\CSharp-Mode-VSEnh.xshd.alternateMode" />
+    <None Include="TextCodeEditor\data\modes\CSharp-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\Default-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\HTML-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\Java-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\JavaScript-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\Mode.xsd" />
+    <None Include="TextCodeEditor\data\modes\Mode.xsx">
+      <DependentUpon>Mode.xsd</DependentUpon>
+    </None>
+    <None Include="TextCodeEditor\data\modes\PHP-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\Tex-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\VBNET-Mode.xshd" />
+    <None Include="TextCodeEditor\data\modes\vssver.scc" />
+    <None Include="TextCodeEditor\data\modes\XML-Mode.xshd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

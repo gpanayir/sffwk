@@ -152,7 +152,7 @@
             // 
             // fwkAuthorizationRuleBindingSource
             // 
-            this.fwkAuthorizationRuleBindingSource.DataSource = typeof(Fwk.Security.FwkAuthorizationRuleAux);
+            this.fwkAuthorizationRuleBindingSource.DataSource = typeof(Fwk.Security.FwkAuthorizationRule);
             // 
             // grdViewRules
             // 

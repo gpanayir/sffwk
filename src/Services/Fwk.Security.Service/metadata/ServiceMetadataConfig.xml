@@ -130,12 +130,12 @@
 		<Timeout>0</Timeout>
 		<Cacheable>false</Cacheable>
 	</ServiceConfiguration>
-	<ServiceConfiguration name="GetAllRolesService">
+	<ServiceConfiguration name="SearchAllRolesService">
 		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-15T15:11:03.481398-03:00</CreatedDateTime>
-		<Handler>Fwk.Security.SVC.GetAllRolesService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-		<Request>Fwk.Security.ISVC.GetAllRoles.GetAllRolesReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
-		<Response>Fwk.Security.ISVC.GetAllRoles.GetAllRolesRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
+		<Handler>Fwk.Security.SVC.SearchAllRolesService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+		<Request>Fwk.Security.ISVC.SearchAllRoles.SearchAllRolesReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
+		<Response>Fwk.Security.ISVC.SearchAllRoles.SearchAllRolesRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
 		<Available>true</Available>
 		<Audit>false</Audit>
 		<TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -237,10 +237,10 @@
 		<Timeout>0</Timeout>
 		<Cacheable>false</Cacheable>
 	</ServiceConfiguration>
-	<ServiceConfiguration name="GetAllUsersService">
+	<ServiceConfiguration name="SearchAllUsers">
 		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-11-19T11:33:05.632228-03:00</CreatedDateTime>
-		<Handler>Fwk.Security.SVC.GetAllUsersService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+		<Handler>Fwk.Security.SVC.SearchAllUsers, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetAllUsers.GetAllUsersReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
 		<Response>Fwk.Security.ISVC.GetAllUsers.GetAllUsersRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
 		<Available>true</Available>

@@ -4,14 +4,14 @@ using Fwk.Bases;
 using System.Xml.Serialization;
 
 
-namespace Fwk.Security.ISVC.GetAllRoles
+namespace Fwk.Security.ISVC.SearchAllRoles
 {
     [Serializable]
-    public class GetAllRolesReq : Request<Param>
+    public class SearchAllRolesReq : Request<Param>
     {
-        public GetAllRolesReq()
+        public SearchAllRolesReq()
 		{
-            this.ServiceName = "GetAllRolesService";
+            this.ServiceName = "SearchAllRolesService";
 		}
     }
 
@@ -43,7 +43,7 @@ namespace Fwk.Security.ISVC.GetAllRoles
     #endregion
 
     [Serializable]
-    public class GetAllRolesRes : Response<Result>
+    public class SearchAllRolesRes : Response<Result>
     {
     }
 

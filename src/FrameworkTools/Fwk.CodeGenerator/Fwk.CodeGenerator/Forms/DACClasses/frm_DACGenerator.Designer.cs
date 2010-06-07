@@ -1,3 +1,4 @@
+using Fwk.Controls.Win32.TextCodeEditor;
 namespace Fwk.CodeGenerator
 {
     partial class frm_DACGenerator
@@ -45,7 +46,7 @@ namespace Fwk.CodeGenerator
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonGenerate = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor();
+            this.textCodeEditor1 = new TextCodeEditor();
             this.listViewCodeGenerated1 = new Fwk.CodeGenerator.ListViewCodeGenerated();
             this.txtSPName = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
@@ -327,7 +328,7 @@ namespace Fwk.CodeGenerator
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         
-        private Fwk.Controls.Win32.TextCodeEditor textCodeEditor1;
+        private TextCodeEditor textCodeEditor1;
         private Fwk.CodeGenerator.ctrlTreeViewTables ctrlTreeViewTables1;
       
     }

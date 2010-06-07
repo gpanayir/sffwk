@@ -9,12 +9,11 @@ using ISVC = Fwk.Security.ISVC;
 using Fwk.Caching;
 using Fwk.Transaction;
 using Fwk.Security.ISVC.AuthenticateUser;
-using Fwk.Security.ISVC.GetAuthorizationRules;
-using Fwk.Security.ISVC.CreateUser;
+using Fwk.Security.ISVC.CreateUsers;
 using Fwk.Bases;
-using Fwk.Security.ISVC.GetAllUsers;
+using Fwk.Security.ISVC.SearchAllUsers;
 using Fwk.Security.BE;
-using Fwk.Security.ISVC.GetUserInfoByName;
+using Fwk.Security.ISVC.GetUserInfoByParams;
 
 
 
@@ -89,47 +88,17 @@ namespace ServiceTest
 
 
 
+     
         [TestMethod]
-        public void GetAllUserInfoByName_NoService()
+        public void SearchAllUsers_NoService()
         {
             string strErrorResult = string.Empty;
-
-            try
-            {
-
-                GetUserInfoByName service = new GetUserInfoByName();
-
-                GetUserInfoByNameRequest request = new GetUserInfoByNameRequest();
-
-                GetUserInfoByNameResponse response = new GetUserInfoByNameResponse();
-
-                request.BusinessData.UserName = "sbiglia";
-
-                response = service.Execute(request);
-
-            }
-            catch (Exception ex)
-            {
-                strErrorResult = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-            }
-
-            Assert.AreEqual<String>(strErrorResult, string.Empty, strErrorResult);
-        }
-
-        [TestMethod]
-        public void GetAllUsers_NoService()
-        {
-            string strErrorResult = string.Empty;
-            GetAllUsersService service = new GetAllUsersService();
-            GetAllUsersReq req = new GetAllUsersReq();
+            SearchAllUsersService svc = new SearchAllUsersService();
+            SearchAllUsersReq req = new SearchAllUsersReq();
             
             try
             {
-          
-
-                GetAllUsersRes res = service.Execute(req);
-
-               
+               SearchAllUsersRes res = svc.Execute(req);
             }
             catch (Exception ex)
             {
@@ -140,16 +109,16 @@ namespace ServiceTest
         }
 
         [TestMethod]
-        public void GetUserInfoByName_NoService()
+        public void GetUserInfoByParams_NoService()
         {
             string strErrorResult = string.Empty;
-            Fwk.Security.SVC.GetUserInfoByName service = new Fwk.Security.SVC.GetUserInfoByName();
-            GetUserInfoByNameRequest req = new GetUserInfoByNameRequest();
+            Fwk.Security.SVC.GetUserInfoByParamsService service = new Fwk.Security.SVC.GetUserInfoByParamsService();
+            GetUserInfoByParamsReq req = new GetUserInfoByParamsReq();
             req.BusinessData.UserName = "moviedo";
             try
             {
 
-                GetUserInfoByNameResponse res = service.Execute(req);
+                GetUserInfoByParamsRes res = service.Execute(req);
 
 
             }
@@ -191,20 +160,28 @@ namespace ServiceTest
 
         public void AuthenticateUserReq_WindowsAuthenticationDefaultUser(string pUserName)
         {
-            String wErrorResult;
 
+            String strErrorResut = String.Empty;
             AuthenticateUserReq req = new AuthenticateUserReq();
+            AuthenticateUserService svc = new AuthenticateUserService();
             req.BusinessData.AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
             req.BusinessData.UserName = pUserName;
             req.BusinessData.IsEnvironmentUser = true;
-            AuthenticateUserRes res = _ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(req);
 
-            if (res.Error != null)
-                wErrorResult = Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message;
-            else
-                wErrorResult = String.Empty;
+            try
+            {
+                AuthenticateUserRes res = svc.Execute(req);
 
-            Assert.AreEqual<Fwk.Exceptions.ServiceError>(res.Error, null, wErrorResult);
+
+            }
+            catch (Exception ex)
+            {
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
+
+
+            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
+
 
         }
 
@@ -303,27 +280,6 @@ namespace ServiceTest
         #endregion
 
 
-        [TestMethod()]
-        public void GetAuthorizationRules_NoService()
-        {
-            String strErrorResut = String.Empty;
-
-            GetAuthorizationRulesReq req = new GetAuthorizationRulesReq();
-            GetAuthorizationRulesService svc = new GetAuthorizationRulesService();
-            try
-            {
-
-                GetAuthorizationRulesRes res = svc.Execute(req);
-
-            }
-            catch (Exception ex)
-            {
-                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-            }
-
-
-            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
-        }
 
         [TestMethod()]
         public void CreeateUser_NoService()
@@ -334,8 +290,8 @@ namespace ServiceTest
             CreateUserRes wResponse = new CreateUserRes();
             CreateUserService svc = new CreateUserService();
 
-             _Tx.InitScope();
-           
+            _Tx.InitScope();
+
             string wszRandom = GenerarCadenaAleatoria(6);// Para generar un nombre de manera aleatoria
             User wUserBe = new User();
             wUserBe.UserName = wszRandom;
@@ -351,8 +307,8 @@ namespace ServiceTest
             wRequest.BusinessData.User = wUserBe;
             try
             {
-            wResponse = svc.Execute(wRequest);
-            _Tx.Abort();
+                wResponse = svc.Execute(wRequest);
+                _Tx.Abort();
 
             }
             catch (Exception ex)
@@ -363,7 +319,7 @@ namespace ServiceTest
 
             Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
 
-            
+
 
         }
 
@@ -407,41 +363,63 @@ namespace ServiceTest
             Assert.AreEqual<String>(_StrExceptionMessage, String.Empty, _StrExceptionMessage);
         }
 
+        //[TestMethod]
+        //public void UpdateUserService()
+        //{
+            
+        //    UpdateUserReq req = new UpdateUserReq();
+        //    UpdateUserService svc = new UpdateUserService();
+
+        //    req.BusinessData.PasswordOnly = false;
+
+        //    req.BusinessData.ChangePassword = new ChangePassword();
+        //    req.BusinessData.ChangePassword.New = "hola";
+        //    req.BusinessData.ChangePassword.Old = string.Empty;
+
+        //    req.BusinessData.UsersBE = new User();
+        //    //BusinessData.UsersBE.Name = String.Format("lenny{0}", GenerarCadenaAleatoria(6));
+        //    req.BusinessData.UsersBE.UserId = 234;
+        //    req.BusinessData.UsersBE.UserName = "charly";
+        //    req.BusinessData.UsersBE.FirstName = "sarasa";
+        //    req.BusinessData.UsersBE.LastName = "sarasa";
+
+
+        //    req.BusinessData.UsersBE.Email = "sarasa@b.com";
+        //    req.BusinessData.UsersBE.IsApproved = true;
+            
+           
+           
+
+        //    req.BusinessData.RolList = new Fwk.Security.Common.RolList();
+
+        //    try
+        //    {
+                
+        //        _ClientServiceBase.ExecuteService<UpdateUserReq, UpdateUserRes>(req);
+                
+                
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+        //    }
+
+        //    Assert.AreEqual<String>(_StrExceptionMessage, String.Empty, _StrExceptionMessage);
+
+        //}
+
         [TestMethod]
-        public void UpdateUserService()
+        public void SearchDomainsUrls_NO_Service()
         {
-            
-            UpdateUserReq req = new UpdateUserReq();
-            UpdateUserService svc = new UpdateUserService();
+          
 
-            req.BusinessData.PasswordOnly = false;
-
-            req.BusinessData.ChangePassword = new ChangePassword();
-            req.BusinessData.ChangePassword.New = "hola";
-            req.BusinessData.ChangePassword.Old = string.Empty;
-
-            req.BusinessData.UsersBE = new User();
-            //BusinessData.UsersBE.Name = String.Format("lenny{0}", GenerarCadenaAleatoria(6));
-            req.BusinessData.UsersBE.UserId = 234;
-            req.BusinessData.UsersBE.UserName = "charly";
-            req.BusinessData.UsersBE.FirstName = "sarasa";
-            req.BusinessData.UsersBE.LastName = "sarasa";
-
-
-            req.BusinessData.UsersBE.Email = "sarasa@b.com";
-            req.BusinessData.UsersBE.IsApproved = true;
-            
-           
-           
-
-            req.BusinessData.RolList = new Fwk.Security.Common.RolList();
+            SearchDomainsUrlsRequest wRequest = new SearchDomainsUrlsRequest();
+            wRequest.BusinessData.ConnectionString = "BigBangConnectionString";
+            SearchDomainsUrlsService svc = new SearchDomainsUrlsService();
 
             try
             {
-                
-                _ClientServiceBase.ExecuteService<UpdateUserReq, UpdateUserRes>(req);
-                
-                
+                SearchDomainsUrlsResponse wResponse = svc.Execute(wRequest);
             }
             catch (Exception ex)
             {
@@ -449,24 +427,6 @@ namespace ServiceTest
             }
 
             Assert.AreEqual<String>(_StrExceptionMessage, String.Empty, _StrExceptionMessage);
-
-        }
-
-        [TestMethod]
-        public void SearchDomainsUrlsServiceTest()
-        {
-            String wErrorResult;
-
-            SearchDomainsUrlsRequest wRequest = new SearchDomainsUrlsRequest();
-            wRequest.BusinessData.ConnectionString = "BigBangConnectionString";
-            SearchDomainsUrlsResponse wResponse = _ClientServiceBase.ExecuteService<SearchDomainsUrlsRequest, SearchDomainsUrlsResponse>(wRequest);
-
-            if (wResponse.Error != null)
-                wErrorResult =Fwk.Exceptions.ExceptionHelper.ProcessException(wRequest.Error).Message;
-            else
-                wErrorResult = String.Empty;
-
-            Assert.AreEqual<Fwk.Exceptions.ServiceError>(wResponse.Error, null, wErrorResult);
         }
 
         public string GenerarCadenaAleatoria(int longitudCadena)

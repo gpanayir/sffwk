@@ -72,7 +72,7 @@
     </Compile>
     <Compile Include="Back\UsersBC.cs" />
     <Compile Include="Back\UsersDAC.cs" />
-    <Compile Include="ISVC\ActiveDirectory\GetAllUsers.cs" />
+    <Compile Include="ISVC\ActiveDirectory\SearchAllUsers.cs" />
     <Compile Include="ISVC\SearchDomainsUrls\SearchDomainsUrls.cs" />
     <Compile Include="ISVC\Users\UserInfo.cs">
       <SubType>Code</SubType>
@@ -81,15 +81,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Statics.cs" />
-    <Compile Include="SVC\Category\CreateRulesCategoryService.cs" />
-    <Compile Include="SVC\Category\DeleteRulesCategoryService.cs" />
-    <Compile Include="SVC\Category\GetAllRulesCategoryService.cs" />
-    <Compile Include="SVC\Category\UpdateRulesCategoryService.cs" />
     <Compile Include="SVC\SearchDomainsUrlsService.cs" />
     <Compile Include="ISVC\Users\UpdateUser.cs" />
-    <Compile Include="ISVC\Users\GetUsers.cs" />
-    <Compile Include="SVC\Users\CreateUserService.cs" />
-    <Compile Include="SVC\Users\GetUserService.cs" />
     <Compile Include="ISVC\Users\RemoveUsersFromRol.cs" />
     <Compile Include="SVC\Roles\AssignRolesToUserService.cs" />
     <Compile Include="SVC\Roles\DeleteRolService.cs" />
@@ -101,25 +94,29 @@
     <Compile Include="ISVC\RulesCategory\DeleteRulesCategory.cs" />
     <Compile Include="ISVC\RulesCategory\UpdateRulesCategory.cs" />
     <Compile Include="ISVC\Users\AuthenticateUser.cs" />
-    <Compile Include="ISVC\RulesCategory\GetAllRulesCategory.cs" />
+    <Compile Include="ISVC\RulesCategory\SearchAllRuleCategory.cs" />
     <Compile Include="ISVC\RulesCategory\CreateRulesCategory.cs" />
     <Compile Include="ISVC\Users\GetUserInfoByName.cs" />
     <Compile Include="ISVC\RulesCategory\GetRulesCategoryByParam.cs" />
     <Compile Include="ISVC\Rules\CreateRules.cs" />
-    <Compile Include="ISVC\Rules\GetAllRules.cs" />
+    <Compile Include="ISVC\Rules\SearchAllRules.cs" />
     <Compile Include="ISVC\Rules\UpdateRules.cs" />
     <Compile Include="ISVC\Roles\AssignRolesToUser.cs" />
     <Compile Include="ISVC\Roles\GetRolesForUser.cs" />
     <Compile Include="SVC\Roles\GetRolesForUserService.cs" />
-    <Compile Include="SVC\Rules\GetAllRulesService.cs" />
+    <Compile Include="SVC\Rules\CreateRuleService.cs" />
+    <Compile Include="SVC\Rules\SearchAllRulesService.cs" />
+    <Compile Include="SVC\Category\UpdateRulesCategoryService.cs" />
     <Compile Include="SVC\Users\AuthenticateUserService.cs" />
+    <Compile Include="SVC\Category\DeleteRulesCategoryService.cs" />
+    <Compile Include="SVC\Category\CreateRulesCategoryService.cs" />
     <Compile Include="ISVC\Users\CreateUsers.cs" />
-    <Compile Include="ISVC\Users\GetAllUsers.cs" />
-    <Compile Include="ISVC\Users\SearchUserByParam.cs" />
-    <Compile Include="ISVC\Rules\GetAuthorizationRuleProvider.cs" />
-    <Compile Include="SVC\Users\GetUserInfoByName.cs" />
-    <Compile Include="SVC\Rules\GetAuthorizationRuleProviderService.cs" />
-    <Compile Include="SVC\Users\GetAllUsersService.cs" />
+    <Compile Include="ISVC\Users\SearchAllUsers.cs" />
+    <Compile Include="ISVC\Users\SearchUsersByParam.cs" />
+    <Compile Include="SVC\Users\GetUserInfoByParamsService.cs" />
+    <Compile Include="SVC\Users\SearchAllUsersService.cs" />
+    <Compile Include="SVC\Users\CreateUserService.cs" />
+    <Compile Include="SVC\Category\SearchAllRuleCategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SVC\Rules\UpdateRulesService.cs" />
     <Compile Include="SVC\Rules\UpdateRulesWithCategoryService.cs" />

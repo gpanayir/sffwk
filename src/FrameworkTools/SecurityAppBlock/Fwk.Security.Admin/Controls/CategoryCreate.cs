@@ -23,7 +23,7 @@ namespace Fwk.Security.Admin.Controls
     {
         List<FwkCategory> _CategoryList;
         FwkCategory _ParentFwkCategory;
-        List<FwkAuthorizationRuleAux> _RuleList;
+        List<FwkAuthorizationRule> _RuleList;
       
         public override string AssemblySecurityControl
         {
@@ -156,14 +156,14 @@ namespace Fwk.Security.Admin.Controls
             {
                 if (_GridHitInfo.InRowCell)
                 {
-                    FwkAuthorizationRuleAux rule = null;
-                    List<FwkAuthorizationRuleAux> wRuleList = new List<FwkAuthorizationRuleAux>();
+                    FwkAuthorizationRule rule = null;
+                    List<FwkAuthorizationRule> wRuleList = new List<FwkAuthorizationRule>();
                     //Recorro todas las filas seleccionadas y obtengo el UserId y el Name y los agrego a la lista de usuarios
                     foreach (int wFila in grdViewRules.GetSelectedRows())
                     {
                         //rule = new FwkRulesInCategory(((NamedConfigurationElement)(grdViewRules.GetRow(wFila))).Name);
-                        rule = (FwkAuthorizationRuleAux)(grdViewRules.GetRow(wFila));
-                        wRuleList.Add(rule.Clone < FwkAuthorizationRuleAux>());
+                        rule = (FwkAuthorizationRule)(grdViewRules.GetRow(wFila));
+                        wRuleList.Add(rule.Clone ());
                     }
 
                     grdRules.DoDragDrop(wRuleList, DragDropEffects.Move);
@@ -188,22 +188,22 @@ namespace Fwk.Security.Admin.Controls
             if (wHitInfo.Node != null)
                 wOverNode = wHitInfo.Node;
 
-            List<FwkAuthorizationRuleAux> wRuleList = (List<FwkAuthorizationRuleAux>)e.Data.GetData(typeof(List<FwkAuthorizationRuleAux>));
+            List<FwkAuthorizationRule> wRuleList = (List<FwkAuthorizationRule>)e.Data.GetData(typeof(List<FwkAuthorizationRule>));
 
             if (wRuleList != null)
             {
-                //FwkAuthorizationRuleAux wRule2;
+                //FwkAuthorizationRule wRule2;
                 _ParentFwkCategory = (FwkCategory)treeList1.GetDataRecordByNode(wHitInfo.Node);
 
                 #region Add Rules to Category
-                foreach (FwkAuthorizationRuleAux rule in wRuleList)
+                foreach (FwkAuthorizationRule rule in wRuleList)
                 {
-                    if (!_ParentFwkCategory.FwkRulesInCategoryList.Any<FwkAuthorizationRuleAux>(p => p.Name == rule.Name))
+                    if (!_ParentFwkCategory.FwkRulesInCategoryList.Any<FwkAuthorizationRule>(p => p.Name == rule.Name))
                     {
-                        //wRule2 = new FwkAuthorizationRuleAux();
+                        //wRule2 = new FwkAuthorizationRule();
                         //wRule2.Name = rule.Name;
                         //wRule2.CategoryId = _ParentFwkCategory.CategoryId;
-                        _ParentFwkCategory.FwkRulesInCategoryList.Add(rule.Clone < FwkAuthorizationRuleAux>());
+                        _ParentFwkCategory.FwkRulesInCategoryList.Add(rule.Clone());
                         _ParentFwkCategory.EntityState = Fwk.Bases.EntityState.Changed;
                     }
                 }
@@ -257,7 +257,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 DialogResult d = DialogResult.Yes;
                 
-                if (FwkMembership.CategoryContainChilds(_ParentFwkCategory, Membership.ApplicationName))
+                if (FwkMembership.CategoryContainChilds(_ParentFwkCategory.CategoryId,frmAdmin.Provider.Name))
                 {
                     MessageViewInfo.MessageBoxButtons = MessageBoxButtons.YesNo;
                     MessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question;
@@ -266,7 +266,7 @@ namespace Fwk.Security.Admin.Controls
                 }
                 if (d == DialogResult.Yes)
                 {
-                    FwkMembership.RemoveCategory(_ParentFwkCategory, Membership.ApplicationName);
+                    FwkMembership.RemoveCategory(_ParentFwkCategory.CategoryId, frmAdmin.Provider.Name);
                     MessageViewInfo.Show("Category was successfully removed");
                     
 
@@ -374,7 +374,7 @@ namespace Fwk.Security.Admin.Controls
                        where u.Name.ToUpper().Contains(txtrulenameEdit.Text.ToUpper())
                        select u;
 
-            fwkAuthorizationRuleBindingSource.DataSource = list.ToList<FwkAuthorizationRuleAux>();
+            fwkAuthorizationRuleBindingSource.DataSource = list.ToList<FwkAuthorizationRule>();
             grdRules.RefreshDataSource();
         }
 

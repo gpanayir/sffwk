@@ -1,4 +1,5 @@
 Imports System.Text
+Imports Fwk.Controls.Win32.TextCodeEditor
 
 Public Class FrmMain
     Inherits System.Windows.Forms.Form
@@ -39,7 +40,7 @@ Public Class FrmMain
     Friend WithEvents rbCSharp As System.Windows.Forms.RadioButton
 
     Friend WithEvents tbSource As System.Windows.Forms.TextBox
-    Friend WithEvents tbResult As Fwk.Controls.Win32.TextCodeEditor
+    Friend WithEvents tbResult As TextCodeEditor
     Friend WithEvents Splitter1 As System.Windows.Forms.Splitter
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
@@ -51,7 +52,7 @@ Public Class FrmMain
         Me.btnGenerate = New System.Windows.Forms.Button
         Me.Splitter1 = New System.Windows.Forms.Splitter
         Me.tbSource = New System.Windows.Forms.TextBox
-        Me.tbResult = New Fwk.Controls.Win32.TextCodeEditor
+        Me.tbResult = New TextCodeEditor
         Me.pnlButtons.SuspendLayout()
         Me.SuspendLayout()
         '

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fwk.Bases;
-
-using Fwk.Security.ISVC.GetAllRules;
-using Fwk.Bases;
+using Fwk.Security.ISVC.SearchAllRules;
 using Fwk.Transaction;
 using Fwk.Exceptions;
+using Fwk.Security.SVC;
+
 
 
 
@@ -48,6 +48,8 @@ namespace Security
             }
         }
 
+   
+
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
@@ -70,34 +72,40 @@ namespace Security
         //
         #endregion
 
+
+        #region service test
+ 
+
         [TestMethod]
-        public void GetAllRulesService()
+        public void SearchAllRulesService_No_Service()
         {
             String strErrorResut = String.Empty;
 
-
-            GetAllRulesReq wReq = new GetAllRulesReq();
-            GetAllRulesRes wRes = new GetAllRulesRes();
-
-
-
-            wRes.ContextInformation.CompanyId = "bigbang";
+            SearchAllRulesReq req = new SearchAllRulesReq();
+            SearchAllRulesRes res = new SearchAllRulesRes();
+            SearchAllRulesService svc = new SearchAllRulesService();
+            res.ContextInformation.CompanyId = "bigbang";
+            req.SecurityProviderName = "tesa";
 
 
-
-
-
-            if (wRes.Error != null)
+            try
             {
-                if (typeof(Fwk.Exceptions.FunctionalException).Name.CompareTo(wRes.Error.Type) != 0)
-                {
-                    strErrorResut = ExceptionHelper.ProcessException(wRes.Error).Message;
-                }
+
+                res = svc.Execute(req);
+
+
+            }
+            catch (Exception ex)
+            {
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
 
-            Assert.AreEqual<Fwk.Exceptions.ServiceError>(wRes.Error, null, strErrorResut);
+
+            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
+
 
         }
+        #endregion
 
     }
 }

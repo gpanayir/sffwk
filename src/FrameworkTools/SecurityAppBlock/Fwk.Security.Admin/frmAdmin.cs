@@ -56,15 +56,12 @@ namespace Fwk.Security.Admin
 
         private void frmAdmin_Load(object sender, EventArgs e)
         {
-            cmbProviders.Properties.DataSource = FwkMembership.GetAllMembershipProviderNameArray();
+            cmbProviders.Properties.DataSource = FwkMembership.GetAllMembershiproviderNameArray();
             cmbProviders.ItemIndex = 0;
 
         }
 
-        private void navBarControl1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
        
        
     }

@@ -39,6 +39,7 @@
             this.isApprovedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.userByAppBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userByAppBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -59,6 +60,8 @@
             // 
             // grdUsers
             // 
+            this.grdUsers.AllowUserToAddRows = false;
+            this.grdUsers.AllowUserToDeleteRows = false;
             this.grdUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -74,35 +77,40 @@
             this.isApprovedDataGridViewCheckBoxColumn});
             this.grdUsers.DataSource = this.userByAppBindingSource;
             this.grdUsers.Location = new System.Drawing.Point(0, 60);
+            this.grdUsers.MultiSelect = false;
             this.grdUsers.Name = "grdUsers";
+            this.grdUsers.ReadOnly = true;
             this.grdUsers.Size = new System.Drawing.Size(608, 382);
             this.grdUsers.TabIndex = 17;
-            
             this.grdUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUsers_CellClick);
             // 
             // userNameDataGridViewTextBoxColumn
             // 
             this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
-            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "User name";
             this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // appNameDataGridViewTextBoxColumn
             // 
             this.appNameDataGridViewTextBoxColumn.DataPropertyName = "AppName";
             this.appNameDataGridViewTextBoxColumn.HeaderText = "AppName";
             this.appNameDataGridViewTextBoxColumn.Name = "appNameDataGridViewTextBoxColumn";
+            this.appNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // lastActivityDateDataGridViewTextBoxColumn
             // 
             this.lastActivityDateDataGridViewTextBoxColumn.DataPropertyName = "LastActivityDate";
             this.lastActivityDateDataGridViewTextBoxColumn.HeaderText = "LastActivityDate";
             this.lastActivityDateDataGridViewTextBoxColumn.Name = "lastActivityDateDataGridViewTextBoxColumn";
+            this.lastActivityDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // isLockedOutDataGridViewCheckBoxColumn
             // 
@@ -116,6 +124,7 @@
             this.isApprovedDataGridViewCheckBoxColumn.DataPropertyName = "IsApproved";
             this.isApprovedDataGridViewCheckBoxColumn.HeaderText = "IsApproved";
             this.isApprovedDataGridViewCheckBoxColumn.Name = "isApprovedDataGridViewCheckBoxColumn";
+            this.isApprovedDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // userByAppBindingSource
             // 
@@ -138,6 +147,7 @@
             this.Controls.Add(this.grdUsers);
             this.Name = "UsersGrid";
             this.Size = new System.Drawing.Size(611, 445);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userByAppBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();

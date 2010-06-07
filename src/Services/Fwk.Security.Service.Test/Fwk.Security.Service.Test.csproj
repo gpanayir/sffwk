@@ -67,7 +67,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GroupsTest.cs" />
+    <Compile Include="CategoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RulesTest.cs" />
     <Compile Include="User.cs" />

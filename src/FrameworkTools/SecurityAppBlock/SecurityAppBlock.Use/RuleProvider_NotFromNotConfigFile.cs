@@ -27,15 +27,15 @@ namespace SecurityAppBlock.Use
         {
 
 
-            NamedElementCollection<FwkAuthorizationRule> rules = FwkMembership.GetRules(Membership.Provider.Name);
-            IDictionary<string, IAuthorizationRule> authorizationRules = CreateRulesDictionary(rules);
+            //NamedElementCollection<FwkAuthorizationRule> rules = FwkMembership.GetRules(Membership.Provider.Name);
+            //IDictionary<string, IAuthorizationRule> authorizationRules = CreateRulesDictionary(rules);
 
-            Fwk.Security.FwkAuthorizationRuleProvider wFwkAuthorizationRuleProvider = new Fwk.Security.FwkAuthorizationRuleProvider(authorizationRules);
+            Fwk.Security.FwkAuthorizationRuleProvider wFwkAuthorizationRuleProvider = new Fwk.Security.FwkAuthorizationRuleProvider(Membership.Provider.Name);
 
             ruleProvider = wFwkAuthorizationRuleProvider;
 
             //Estas reglas podrian venir de un servicio
-            rulesComboBox.DataSource = rules.ToList <FwkAuthorizationRule>();// FwkMembership.GetRulesList(Membership.ApplicationName);
+            rulesComboBox.DataSource = wFwkAuthorizationRuleProvider.GetAuthorizationRules();// FwkMembership.GetRulesList(Membership.ApplicationName);
 
         }
 
@@ -63,7 +63,8 @@ namespace SecurityAppBlock.Use
                     this.rulesComboBox.SelectedItem).Name;
 
                 // Get the roles for the current user and create an IPrincipal
-                string[] roles = Roles.GetRolesForUser(identity);
+                
+                string[] roles = FwkMembership.GetRolesForUser_StringArray(identity, "tesa");
                 IPrincipal principal = new GenericPrincipal(new GenericIdentity(identity), roles);
 
 

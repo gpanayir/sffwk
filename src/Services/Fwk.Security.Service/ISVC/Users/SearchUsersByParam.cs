@@ -20,9 +20,9 @@ namespace Fwk.Security.ISVC.SearchUsersByParam
 {
 
     [Serializable]
-    public class SearchUsersByParamRequest : Request<UsersBE>
+    public class SearchUsersByParamReq : Request<UsersBE>
     {
-        public SearchUsersByParamRequest()
+        public SearchUsersByParamReq()
         {
             this.ServiceName = "SearchUsersByParamService";
         }
@@ -159,7 +159,7 @@ namespace Fwk.Security.ISVC.SearchUsersByParam
     #endregion
 
     [Serializable]
-    public class SearchUsersByParamResponse : Response<UsersBEList>
+    public class SearchUsersByParamRes : Response<UsersBEList>
     {
     }
     

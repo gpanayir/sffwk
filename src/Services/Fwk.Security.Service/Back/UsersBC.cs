@@ -171,7 +171,7 @@ namespace Fwk.Security.BC
         /// <param name="pUserName"></param>
         /// <param name="pRolList"></param>
         /// <returns></returns>
-        public void GetUserInfoByName(String pUserName,out User pUser  , out RolList pRolList)
+        public void GetUserByParams(String pUserName,out User pUser  , out RolList pRolList)
         {
            
 
@@ -323,7 +323,7 @@ namespace Fwk.Security.BC
 
             // Se obtienen los usuarios Custom
             //if(pCustomUserStoreProcedure != String.Empty)
-            //    wResult = UsersDAC.GetAllUsers(_ProviderName, pCustomUserStoreProcedure);
+            //    wResult = UsersDAC.SearchAllUsers(_ProviderName, pCustomUserStoreProcedure);
 
             return pUserList;
         }

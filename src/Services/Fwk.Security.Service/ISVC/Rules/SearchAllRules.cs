@@ -5,14 +5,14 @@ using System.Xml.Serialization;
 using Fwk.Security.BE;
 
 
-namespace Fwk.Security.ISVC.GetAllRules
+namespace Fwk.Security.ISVC.SearchAllRules
 {
     [Serializable]
-    public class GetAllRulesReq : Request<Param>
+    public class SearchAllRulesReq : Request<Param>
     {
-        public GetAllRulesReq()
+        public SearchAllRulesReq()
 		{
-			this.ServiceName = "GetAllRulesService";
+            this.ServiceName = "SearchAllRulesService";
 		}
     }
 
@@ -37,7 +37,7 @@ namespace Fwk.Security.ISVC.GetAllRules
     #endregion
 
     [Serializable]
-    public class GetAllRulesRes : Response<FwkAuthorizationRuleList>
+    public class SearchAllRulesRes : Response<FwkAuthorizationRuleList>
     {
     }
 
