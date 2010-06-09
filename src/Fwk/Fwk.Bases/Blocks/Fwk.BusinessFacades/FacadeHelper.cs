@@ -45,13 +45,71 @@ namespace Fwk.BusinessFacades.Utils
     public sealed class FacadeHelper
     {
         private static IServiceConfigurationManager _ServiceConfigurationManager;
-
+        private static System.IO.FileSystemWatcher watcher;
         static FacadeHelper()
         {
             // instanciación del ServiceConfigurationManager.
-            _ServiceConfigurationManager = ObjectProvider.GetServiceConfigurationManager();
+            try
+            {
+                _ServiceConfigurationManager = ObjectProvider.GetServiceConfigurationManager();
+            }
+            catch (TechnicalException ex)
+            {
+                Fwk.Logging.Event ev = new Event();
+                ev.LogType = EventType.Error;
+                ev.Machine = ex.Machine;
+                ev.User = ex.UserName;
+                ev.Source = "Service Dispatcher";
+
+                ev.Message.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+
+                Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
+                ev = null;
+                throw ex;
+            }
+
+
+
+            if (_ServiceConfigurationManager.GetType() == typeof(XmlServiceConfigurationManager))
+            {
+                watcher = new System.IO.FileSystemWatcher();
+
+                watcher.Filter = Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName;
+                watcher.Path = Environment.CurrentDirectory;
+                watcher.EnableRaisingEvents = true;
+
+                watcher.Changed += new FileSystemEventHandler(fileSystemWatcher1_Changed);
+            }
         }
 
+        static void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
+        {
+
+            try
+            {
+                _ServiceConfigurationManager = ObjectProvider.GetServiceConfigurationManager();
+            }
+            catch (TechnicalException ex)
+            {
+                Fwk.Logging.Event ev = new Event();
+                ev.LogType = EventType.Error;
+                ev.Machine = ex.Machine;
+                ev.User = ex.UserName;
+                ev.Source = "Service Dispatcher";
+                String str = string.Concat(
+                    "Se intento modificar la metadata de servicios y se arrojo el siguiente error ",
+                    Environment.NewLine,
+                    Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex),
+                    Environment.NewLine,
+                    " la metadata se encuentra en: ",
+                    Environment.NewLine, e.FullPath);
+
+                ev.Message.Text = str;
+
+                Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
+
+            }
+        }
         #region Run services
         /// <summary>
         /// Ejecuta un servicio de negocio dentro de un ámbito transaccional.

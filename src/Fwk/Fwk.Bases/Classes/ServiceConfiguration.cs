@@ -55,14 +55,18 @@ namespace Fwk.Bases
         bool _Cacheable;
         private string _FolderRepositoryKey;
         private string _CreatedUserName;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string CreatedUserName
         {
             get { return _CreatedUserName; }
             set { _CreatedUserName = value; }
         }
         private DateTime _CreatedDateTime;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public DateTime CreatedDateTime
         {
             get { return _CreatedDateTime; }

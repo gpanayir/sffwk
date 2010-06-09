@@ -181,7 +181,7 @@ namespace Fwk.Logging
                     }
                 case TargetType.WindowsEvent:
                     {
-                        target = Target.TargetFactory(TargetType.File, "WindowsEvent");
+                        target = Target.TargetFactory(TargetType.WindowsEvent, "WindowsEvent");
                         break;
                     }
                 case TargetType.Xml:
@@ -238,7 +238,7 @@ namespace Fwk.Logging
                     }
                 case TargetType.WindowsEvent:
                     {
-                        target = Target.TargetFactory(TargetType.File, "WindowsEvent");
+                        target = Target.TargetFactory(TargetType.WindowsEvent, "WindowsEvent");
                         break;
                     }
                 case TargetType.Xml:

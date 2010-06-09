@@ -57,13 +57,13 @@ namespace Fwk.ServiceManagement
             
             if (!_Services.Contains(pServiceName))
             {
-                Exceptions.TechnicalException ex = new Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
-                ex.Source = "Despachador de servicios";
-                ex.ErrorId = "7002";
-                ex.Class = "XmlServiceConfigurationManager";
-                ex.Namespace = "Fwk.ServiceManagement";
-                ex.Assembly = "Fwk.ServiceManagement.dll";
-                throw ex;
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                te.Source = "Despachador de servicios";
+                te.ErrorId = "7002";
+                te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
+                te.Class = typeof(XmlServiceConfigurationManager).Name;
+                te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
+                throw te;
             }
         
             wResult = _Services[pServiceName];
@@ -92,19 +92,19 @@ namespace Fwk.ServiceManagement
             {
 
 
-                System.Text.StringBuilder wMessage = new StringBuilder();
-                wMessage.Append("Error al inicializar la metadata de los servicios  \r\n");
-                wMessage.Append("verifique \r\n");
-                wMessage.AppendLine("Archivo de configuracion en la seccion Fwk.Bases.Properties.Settings el ");
-                wMessage.AppendLine("valor de [ServiceConfigurationSourceName] = ruta,  que la ruta y archivo de metadata sea correcta");
+                string wMessage = string.Concat(
+                "Error al inicializar la metadata de los servicios  \r\n",
+                "Verifique: \r\n ",
+                "Archivo de .config en la seccion Fwk.Bases.Properties.Settings el ",Environment.NewLine,
+                "valor de [ServiceConfigurationSourceName],  que la ruta y archivo de metadata sea correcta");
 
 
-                TechnicalException te = new TechnicalException(wMessage.ToString(), ioex);
+                TechnicalException te = new TechnicalException(wMessage, ioex);
                 te.Source = "Despachador de servicios";
                 te.ErrorId = "7004";
-                te.Assembly = "Fwk.BusinessFacades";
-                te.Class = "FacadeHelper";
-                te.Namespace = "Fwk.BusinessFacades";
+                te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
+                te.Class = typeof(XmlServiceConfigurationManager).Name;
+                te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
                 throw te;
 
 
@@ -115,15 +115,16 @@ namespace Fwk.ServiceManagement
             }
             catch (Exception ex)
             {
-                StringBuilder strError = new StringBuilder("Error al inicializar la metadata de los servicios  \r\n ");
-                strError.AppendLine("Verifique que todos los servicios cuentan con todos los atributos configurados");
-                Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException(strError.ToString(), ex);
-                wTex.Source = "Despachador de servicios";
-                wTex.ErrorId = "7004";
-                wTex.Namespace = "Fwk.ServiceManagement";
-                wTex.Class = "XmlServiceConfigurationManager";
-                wTex.Assembly = "Fwk.ServiceManagement";
-                throw wTex;
+                string strError = string.Concat("Error al inicializar la metadata de los servicios  \r\n "                ,
+                "Metadata :", Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName,Environment.NewLine);
+
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(strError.ToString(), ex);
+                te.Source = "Despachador de servicios";
+                te.ErrorId = "7004";
+                te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
+                te.Class = typeof(XmlServiceConfigurationManager).Name;
+                te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
+                throw te;
             }
             
         }
@@ -144,13 +145,13 @@ namespace Fwk.ServiceManagement
 
                 if (!_Services.Contains(pServiceName))
                 {
-                    Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
-                    wTex.Source = "Despachador de servicios";
-                    wTex.ErrorId = "7002";
-                    wTex.Namespace = "Fwk.ServiceManagement";
-                    wTex.Class = "XmlServiceConfigurationManager";
-                    wTex.Assembly = "Fwk.ServiceManagement";
-                    throw wTex;
+                    Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                    te.Source = "Despachador de servicios";
+                    te.ErrorId = "7002";
+                    te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
+                    te.Class = typeof(XmlServiceConfigurationManager).Name;
+                    te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
+                    throw te;
                 }
 
 
@@ -173,31 +174,31 @@ namespace Fwk.ServiceManagement
 		/// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
 		/// <date>2007-07-13T00:00:00</date>
 		/// <author>moviedo</author>
-		public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
-		{
-			
-			try
-			{
-               
+        public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
+        {
+
+            //try
+            //{
+
                 if (_Services.Contains(pServiceConfiguration.Name))
                 {
-                    Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " ya existe.");
-                    wTex.ErrorId = "7002";
-                    wTex.Namespace = "Fwk.ServiceManagement";
-                    wTex.Class = "XmlServiceConfigurationManager";
-                    wTex.Assembly = "Fwk.ServiceManagement";
-                    throw wTex;
+                    Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " ya existe.");
+                    te.ErrorId = "7002";
+                    te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
+                    te.Class = typeof(XmlServiceConfigurationManager).Name;
+                    te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
+                    throw te;
                 }
 
                 _Services.Add(pServiceConfiguration);
                 SaveServiceConfigFile();
-			}
-            //TODO: controlar errores de carga de wServiceConfigurationEnDisco
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-		}
+            //}
+            ///TODO: controlar errores de carga de wServiceConfigurationEnDisco
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+        }
 
 		/// <summary>
 		/// Elimina la configuración de un servicio de negocio.
@@ -208,30 +209,30 @@ namespace Fwk.ServiceManagement
 		public void DeleteServiceConfiguration(string pServiceName)
         {
             ServiceConfiguration wServiceConfigurationEnDisco = null;
-			try
-			{
+            //try
+            //{
                 
                 if (!_Services.Contains(pServiceName))
 				{
-                    Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                    Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
 
-                    wTex.ErrorId = "7002";
-                    wTex.Class = "XmlServiceConfigurationManager";
-                    wTex.Namespace = "Fwk.ServiceManagement";
-                    wTex.Assembly = "Fwk.ServiceManagement.dll";
+                    te.ErrorId = "7002";
+                    te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
+                    te.Class = typeof(XmlServiceConfigurationManager).Name;
+                    te.Namespace = typeof(XmlServiceConfigurationManager).Namespace; 
                     
-                    throw wTex;
+                    throw te;
 				}
                  wServiceConfigurationEnDisco = _Services[pServiceName];
                 _Services.Remove(wServiceConfigurationEnDisco);
                 
                 SaveServiceConfigFile();
-			}
-            //TODO: controlar errores de carga de wServiceConfigurationEnDisco
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            ///TODO: controlar errores de carga de wServiceConfigurationEnDisco
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
 
 		}
 
@@ -256,14 +257,14 @@ namespace Fwk.ServiceManagement
 
 			if (wNode == null)
 			{
-                Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
-				
-                wTex.ErrorId = "7002";
-                wTex.Class = "XmlServiceConfigurationManager";
-                wTex.Namespace = "Fwk.ServiceManagement";
-                wTex.Assembly = "Fwk.ServiceManagement.dll";
-                
-                throw wTex;
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+
+                te.ErrorId = "7002";
+                te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
+                te.Class = typeof(XmlServiceConfigurationManager).Name;
+                te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
+
+                throw te;
 			}
 
 			return wNode;
@@ -308,7 +309,7 @@ namespace Fwk.ServiceManagement
 		/// <returns>Ruta al repositorio XML.</returns>
 		/// <date>2007-07-13T00:00:00</date>
 		/// <author>moviedo</author>
-        private string GetXMLRepositoryPath()
+        public static string GetXMLRepositoryPath()
         {
             //Si existe el archivo 
             if (System.IO.File.Exists(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName))
@@ -341,16 +342,16 @@ namespace Fwk.ServiceManagement
              wMessage.Append(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName);
             
              wMessage.AppendLine("Revice el archivo de configuracion en la seccion Fwk.Bases.Properties.Settings el ");
-             wMessage.AppendLine("valor de [ServiceConfigurationSourceName] no esta confugurado el nombre del archivo de metadata de servicios.-");
+             wMessage.AppendLine("valor de [ServiceConfigurationSourceName].-");
 
 
             TechnicalException te = new TechnicalException(wMessage.ToString());
 
             te.Source ="Despachador de servicios";
             te.ErrorId = "7004";
-            te.Assembly = "Fwk.BusinessFacades";
-            te.Class = "FacadeHelper";
-            te.Namespace = "Fwk.BusinessFacades";
+            te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
+            te.Class = typeof(XmlServiceConfigurationManager).Name;
+            te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
             throw te;
 
         }

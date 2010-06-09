@@ -45,13 +45,21 @@ namespace Fwk.ServiceManagement
                 wMessage.AppendLine("Si tipo es database  [DatabaseServiceConfigurationManager] ");
 
                 TechnicalException te = new TechnicalException(wMessage.ToString(), e1);
-             
                 te.ErrorId = "7004";
-                te.Assembly = "Fwk.BusinessFacades";
-                te.Class = "FacadeHelper";
-                te.Namespace = "Fwk.BusinessFacades";
+                te.Assembly = typeof(ObjectProvider).AssemblyQualifiedName;
+                te.Class = typeof(ObjectProvider).Name;
+                te.Namespace = typeof(ObjectProvider).Namespace;
+               
                 throw te;
-             
+            }
+           
+            catch (System.Reflection.TargetInvocationException e3)
+            {
+                if (e3.InnerException.GetType() == typeof(TechnicalException))
+                {
+                    throw (TechnicalException)e3.InnerException;
+                }
+                throw e3;
             }
 		}
 	}
