@@ -28,6 +28,8 @@ namespace TestServicePerformance
         RemotingWrapper _RemotingWrapper;
         RemotingWrapper_config _RemotingWrapper_config;
         StringBuilder strResult = new StringBuilder();
+        SearchSalesOrderDetailRes _SearchSalesOrderDetailRes;
+
         public frmTest()
         {
             InitializeComponent();
@@ -68,6 +70,7 @@ namespace TestServicePerformance
 
         }
 
+        #region wrapper events
         void _RemotingWrapper_CallEvent()
         {
             if (this.InvokeRequired)
@@ -136,8 +139,7 @@ namespace TestServicePerformance
             }
         }
 
-
-
+        #endregion
 
         private void btnPing_Click(object sender, EventArgs e)
         {
@@ -180,6 +182,7 @@ namespace TestServicePerformance
                 this.txtXmlRequest.Text = isvcReq.GetBusinessDataXml();
             }
         }
+
         private void frmTest_FormClosing(object sender, FormClosingEventArgs e)
         {
             ControllerTest.Storage.StorageObject.ObjectUri = txtObjectUri.Text;
@@ -194,30 +197,7 @@ namespace TestServicePerformance
             ControllerTest.Storage.Save();
         }
 
-
-        bool ValidateInit()
-        {
-            if (string.IsNullOrEmpty(txtPort.Text))
-            {
-                errorProvider1.SetError(txtPort, "No puede faltar este valor");
-                txtPort.Focus();
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtObjectUri.Text))
-            {
-                errorProvider1.SetError(txtObjectUri, "No puede faltar este valor");
-                txtObjectUri.Focus();
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtServer.Text))
-            {
-                errorProvider1.SetError(txtServer, "No puede faltar este valor");
-                txtServer.Focus();
-                return false;
-            }
-
-            return true;
-        }
+       
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -258,7 +238,6 @@ namespace TestServicePerformance
             }
         }
 
-
         private void txtServer_TextChanged(object sender, EventArgs e)
         {
             txtURL.Text = string.Concat("tcp://", txtServer.Text, ":", txtPort.Text.Trim(), @"/", txtObjectUri.Text);
@@ -274,14 +253,6 @@ namespace TestServicePerformance
         {
             txtURL.Text = string.Concat("tcp://", txtServer.Text, ":", txtPort.Text.Trim(), @"/", txtObjectUri.Text);
         }
-
-
-
-
-
-
-
-
 
         public decimal GetSizeOfObject(object obj)
         {
@@ -299,7 +270,8 @@ namespace TestServicePerformance
             return (decimal)lSize;
         }
 
-        public void PopulateAsync()
+        #region populate async 
+        void PopulateAsync()
         {
             Exception ex = null;
             DelegateWithOutAndRefParameters s = new DelegateWithOutAndRefParameters(Populate);
@@ -334,13 +306,13 @@ namespace TestServicePerformance
                 _Sizes.Add(new Measure("Result contextInformation", GetSizeOfObject(_SearchSalesOrderDetailRes.ContextInformation), false));
 
                 dataGridView3.DataSource = _Sizes;
-                txtSimpleResult.Text = _SearchSalesOrderDetailRes.GetXml();
+
+                string info = Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(_SearchSalesOrderDetailRes.ContextInformation);
+                txtSimpleResult.Text = string.Concat(info,Environment.NewLine,Environment.NewLine + "Bussiness data ",Environment.NewLine, _SearchSalesOrderDetailRes.BusinessData.SalesOrderDetailList.GetXml());
 
             }
 
         }
-
-        SearchSalesOrderDetailRes _SearchSalesOrderDetailRes;
 
         void Populate(out Exception ex)
         {
@@ -349,6 +321,7 @@ namespace TestServicePerformance
             _SearchSalesOrderDetailRes = _ControllerTest.SearchSalesOrderDetailRes();
 
         }
+        #endregion
 
         private void btnSaveResult_Click(object sender, EventArgs e)
         {
@@ -369,8 +342,7 @@ namespace TestServicePerformance
 
             MessageBox.Show("Test saved successfully");
         }
-
-       
+  
 
         private void btn_InitConfigFile_Click(object sender, EventArgs e)
         {
@@ -399,6 +371,29 @@ namespace TestServicePerformance
             PopulateAsync();
         }
 
+        bool ValidateInit()
+        {
+            if (string.IsNullOrEmpty(txtPort.Text))
+            {
+                errorProvider1.SetError(txtPort, "No puede faltar este valor");
+                txtPort.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtObjectUri.Text))
+            {
+                errorProvider1.SetError(txtObjectUri, "No puede faltar este valor");
+                txtObjectUri.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtServer.Text))
+            {
+                errorProvider1.SetError(txtServer, "No puede faltar este valor");
+                txtServer.Focus();
+                return false;
+            }
+
+            return true;
+        }
     }
 
     
