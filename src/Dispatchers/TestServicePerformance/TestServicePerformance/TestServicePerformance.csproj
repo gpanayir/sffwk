@@ -31,10 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\Fwk.Bases.dll</HintPath>
-    </Reference>
+    <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fwk.Bases.Connector, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\src\Libraries\Fwk.Bases.Connector.dll</HintPath>
@@ -182,6 +179,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Wrapper.cs" />
+    <Compile Include="Wrapper_configFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mostrar.gif" />
@@ -212,6 +210,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="RemotingConfigFile_2_.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="RemotingConfigFile_2.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\save_as_16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

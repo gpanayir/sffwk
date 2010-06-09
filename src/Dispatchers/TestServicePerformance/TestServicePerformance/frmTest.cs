@@ -26,6 +26,7 @@ namespace TestServicePerformance
         ControllerTest _ControllerTest = new ControllerTest();
         ControllerTest Ctrl;
         RemotingWrapper _RemotingWrapper;
+        RemotingWrapper_config _RemotingWrapper_config;
         StringBuilder strResult = new StringBuilder();
         public frmTest()
         {
@@ -279,13 +280,6 @@ namespace TestServicePerformance
 
 
 
-        private void btnStartSimpleTest_Click(object sender, EventArgs e)
-        {
-
-
-            PopulateAsync();
-
-        }
 
 
 
@@ -340,7 +334,7 @@ namespace TestServicePerformance
                 _Sizes.Add(new Measure("Result contextInformation", GetSizeOfObject(_SearchSalesOrderDetailRes.ContextInformation), false));
 
                 dataGridView3.DataSource = _Sizes;
-                txtSimpleResult.Text = _SearchSalesOrderDetailRes.BusinessData.SalesOrderDetailList.GetXml();
+                txtSimpleResult.Text = _SearchSalesOrderDetailRes.GetXml();
 
             }
 
@@ -374,6 +368,35 @@ namespace TestServicePerformance
             Fwk.HelperFunctions.FileFunctions.SaveTextFile(name, wTestRes.GetXml(), false);
 
             MessageBox.Show("Test saved successfully");
+        }
+
+       
+
+        private void btn_InitConfigFile_Click(object sender, EventArgs e)
+        {
+            this.btn_InitConfigFile.Image = global::TestServicePerformance.Properties.Resources.Ball__Red_;
+            //if (!ValidateInit()) return;
+            _RemotingWrapper_config = new RemotingWrapper_config();
+            try
+            {
+                _RemotingWrapper_config.Init();
+                dataGridView1.DataSource = null;
+                dataGridView1.Refresh();
+                dataGridView1.DataSource = _RemotingWrapper_config.RemoteObj.GetServicesList();
+                this.btn_InitConfigFile.Image = global::TestServicePerformance.Properties.Resources.Ball__Green_;
+                tabControl2.TabIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+
+        }
+
+        private void btnStartSimpleTest_Click_1(object sender, EventArgs e)
+        {
+            PopulateAsync();
         }
 
     }

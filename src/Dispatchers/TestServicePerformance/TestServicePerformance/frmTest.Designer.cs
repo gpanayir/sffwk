@@ -29,16 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtPort = new System.Windows.Forms.TextBox();
-            this.txtServer = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtObjectUri = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtURL = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnPing = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.numericCallsNumber = new System.Windows.Forms.NumericUpDown();
@@ -58,22 +48,34 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.measuresBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_InitConfigFile = new System.Windows.Forms.Button();
+            this.btnPing = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtPort = new System.Windows.Forms.TextBox();
+            this.txtServer = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtURL = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtObjectUri = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
             this.btnSaveResult = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CalculatedValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.measureNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.measuresBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnStartSimpleTest = new System.Windows.Forms.Button();
             this.txtSimpleResult = new System.Windows.Forms.TextBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericCallsNumber)).BeginInit();
@@ -83,115 +85,16 @@
             this.tabControl2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.measuresBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.measuresBindingSource)).BeginInit();
+            this.tabControl3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtPort
-            // 
-            this.txtPort.Location = new System.Drawing.Point(252, 34);
-            this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(194, 20);
-            this.txtPort.TabIndex = 1;
-            this.txtPort.Text = "8085";
-            this.txtPort.TextChanged += new System.EventHandler(this.txtPort_TextChanged);
-            // 
-            // txtServer
-            // 
-            this.txtServer.Location = new System.Drawing.Point(28, 34);
-            this.txtServer.Name = "txtServer";
-            this.txtServer.Size = new System.Drawing.Size(194, 20);
-            this.txtServer.TabIndex = 2;
-            this.txtServer.TextChanged += new System.EventHandler(this.txtServer_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Server";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(249, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Port";
-            // 
-            // txtObjectUri
-            // 
-            this.txtObjectUri.Location = new System.Drawing.Point(485, 34);
-            this.txtObjectUri.Name = "txtObjectUri";
-            this.txtObjectUri.Size = new System.Drawing.Size(194, 20);
-            this.txtObjectUri.TabIndex = 5;
-            this.txtObjectUri.Text = "TestDispatcher.rem";
-            this.txtObjectUri.TextChanged += new System.EventHandler(this.txtObjectUri_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(482, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Object URI";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 67);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "URL: ";
-            // 
-            // txtURL
-            // 
-            this.txtURL.Location = new System.Drawing.Point(28, 83);
-            this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(366, 20);
-            this.txtURL.TabIndex = 8;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtPort);
-            this.groupBox1.Controls.Add(this.btnPing);
-            this.groupBox1.Controls.Add(this.txtServer);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtURL);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtObjectUri);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(743, 119);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Connection setting";
-            // 
-            // btnPing
-            // 
-            this.btnPing.BackColor = System.Drawing.Color.White;
-            this.btnPing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPing.Image = global::TestServicePerformance.Properties.Resources.Ball__Red_;
-            this.btnPing.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPing.Location = new System.Drawing.Point(459, 80);
-            this.btnPing.Name = "btnPing";
-            this.btnPing.Size = new System.Drawing.Size(67, 23);
-            this.btnPing.TabIndex = 9;
-            this.btnPing.Text = "Init ";
-            this.btnPing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPing.UseVisualStyleBackColor = false;
-            this.btnPing.Click += new System.EventHandler(this.btnPing_Click);
             // 
             // tabControl1
             // 
@@ -203,7 +106,7 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 15);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(916, 491);
+            this.tabControl1.Size = new System.Drawing.Size(921, 462);
             this.tabControl1.TabIndex = 12;
             // 
             // tabPage2
@@ -222,7 +125,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(908, 465);
+            this.tabPage2.Size = new System.Drawing.Size(913, 436);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Service";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -265,7 +168,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(243, 104);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(659, 10);
+            this.progressBar1.Size = new System.Drawing.Size(664, 10);
             this.progressBar1.TabIndex = 13;
             // 
             // button1
@@ -337,7 +240,7 @@
             this.txtXmlRequest.Location = new System.Drawing.Point(6, 129);
             this.txtXmlRequest.Multiline = true;
             this.txtXmlRequest.Name = "txtXmlRequest";
-            this.txtXmlRequest.Size = new System.Drawing.Size(896, 330);
+            this.txtXmlRequest.Size = new System.Drawing.Size(901, 301);
             this.txtXmlRequest.TabIndex = 7;
             // 
             // label5
@@ -368,7 +271,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(908, 465);
+            this.tabPage3.Size = new System.Drawing.Size(913, 436);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Test result";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -381,7 +284,7 @@
             this.txtTestResult.Location = new System.Drawing.Point(6, 25);
             this.txtTestResult.Multiline = true;
             this.txtTestResult.Name = "txtTestResult";
-            this.txtTestResult.Size = new System.Drawing.Size(884, 423);
+            this.txtTestResult.Size = new System.Drawing.Size(889, 409);
             this.txtTestResult.TabIndex = 8;
             // 
             // errorProvider1
@@ -394,12 +297,11 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl2.Controls.Add(this.tabPage6);
-            this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage5);
-            this.tabControl2.Location = new System.Drawing.Point(12, 137);
+            this.tabControl2.Location = new System.Drawing.Point(3, 146);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(932, 561);
+            this.tabControl2.Size = new System.Drawing.Size(937, 532);
             this.tabControl2.TabIndex = 13;
             // 
             // tabPage6
@@ -408,7 +310,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(924, 535);
+            this.tabPage6.Size = new System.Drawing.Size(929, 506);
             this.tabPage6.TabIndex = 2;
             this.tabPage6.Text = "Metadata";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -420,33 +322,190 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(918, 529);
+            this.dataGridView1.Size = new System.Drawing.Size(923, 500);
             this.dataGridView1.TabIndex = 11;
             // 
-            // tabPage4
+            // tabPage5
             // 
-            this.tabPage4.Controls.Add(this.btnSaveResult);
-            this.tabPage4.Controls.Add(this.dataGridView3);
-            this.tabPage4.Controls.Add(this.dataGridView2);
-            this.tabPage4.Controls.Add(this.btnStartSimpleTest);
-            this.tabPage4.Controls.Add(this.txtSimpleResult);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(924, 535);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "Simple";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPage5.Controls.Add(this.tabControl1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(929, 506);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "Multiple";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(back.Common.BE.Measures);
+            // 
+            // measuresBindingSource
+            // 
+            this.measuresBindingSource.DataSource = typeof(back.Common.BE.Measures);
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Controls.Add(this.tabPage1);
+            this.tabControl3.Controls.Add(this.tabPage7);
+            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl3.Location = new System.Drawing.Point(0, 0);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(956, 723);
+            this.tabControl3.TabIndex = 14;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btn_InitConfigFile);
+            this.tabPage1.Controls.Add(this.btnPing);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.tabControl2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(948, 697);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_InitConfigFile
+            // 
+            this.btn_InitConfigFile.BackColor = System.Drawing.Color.White;
+            this.btn_InitConfigFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_InitConfigFile.Image = global::TestServicePerformance.Properties.Resources.Ball__Red_;
+            this.btn_InitConfigFile.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_InitConfigFile.Location = new System.Drawing.Point(7, 16);
+            this.btn_InitConfigFile.Name = "btn_InitConfigFile";
+            this.btn_InitConfigFile.Size = new System.Drawing.Size(120, 23);
+            this.btn_InitConfigFile.TabIndex = 14;
+            this.btn_InitConfigFile.Text = "Config File";
+            this.btn_InitConfigFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_InitConfigFile.UseVisualStyleBackColor = false;
+            this.btn_InitConfigFile.Click += new System.EventHandler(this.btn_InitConfigFile_Click);
+            // 
+            // btnPing
+            // 
+            this.btnPing.BackColor = System.Drawing.Color.White;
+            this.btnPing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPing.Image = global::TestServicePerformance.Properties.Resources.Ball__Red_;
+            this.btnPing.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPing.Location = new System.Drawing.Point(6, 45);
+            this.btnPing.Name = "btnPing";
+            this.btnPing.Size = new System.Drawing.Size(115, 23);
+            this.btnPing.TabIndex = 9;
+            this.btnPing.Text = " Activator";
+            this.btnPing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPing.UseVisualStyleBackColor = false;
+            this.btnPing.Click += new System.EventHandler(this.btnPing_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtPort);
+            this.groupBox1.Controls.Add(this.txtServer);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.txtURL);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtObjectUri);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(131, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(743, 119);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Connection setting";
+            // 
+            // txtPort
+            // 
+            this.txtPort.Location = new System.Drawing.Point(252, 34);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.Size = new System.Drawing.Size(194, 20);
+            this.txtPort.TabIndex = 1;
+            this.txtPort.Text = "8085";
+            // 
+            // txtServer
+            // 
+            this.txtServer.Location = new System.Drawing.Point(28, 34);
+            this.txtServer.Name = "txtServer";
+            this.txtServer.Size = new System.Drawing.Size(194, 20);
+            this.txtServer.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Server";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 67);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "URL: ";
+            // 
+            // txtURL
+            // 
+            this.txtURL.Location = new System.Drawing.Point(28, 83);
+            this.txtURL.Name = "txtURL";
+            this.txtURL.Size = new System.Drawing.Size(366, 20);
+            this.txtURL.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(249, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Port";
+            // 
+            // txtObjectUri
+            // 
+            this.txtObjectUri.Location = new System.Drawing.Point(485, 34);
+            this.txtObjectUri.Name = "txtObjectUri";
+            this.txtObjectUri.Size = new System.Drawing.Size(194, 20);
+            this.txtObjectUri.TabIndex = 5;
+            this.txtObjectUri.Text = "TestDispatcher.rem";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(482, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Object URI";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.btnSaveResult);
+            this.tabPage7.Controls.Add(this.dataGridView3);
+            this.tabPage7.Controls.Add(this.dataGridView2);
+            this.tabPage7.Controls.Add(this.btnStartSimpleTest);
+            this.tabPage7.Controls.Add(this.txtSimpleResult);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(948, 697);
+            this.tabPage7.TabIndex = 1;
+            this.tabPage7.Text = "tabPage7";
+            this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // btnSaveResult
             // 
             this.btnSaveResult.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveResult.Image = global::TestServicePerformance.Properties.Resources.save_as_16;
             this.btnSaveResult.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveResult.Location = new System.Drawing.Point(183, 24);
+            this.btnSaveResult.Location = new System.Drawing.Point(183, 21);
             this.btnSaveResult.Name = "btnSaveResult";
             this.btnSaveResult.Size = new System.Drawing.Size(105, 23);
-            this.btnSaveResult.TabIndex = 13;
+            this.btnSaveResult.TabIndex = 18;
             this.btnSaveResult.Text = "Save result";
             this.btnSaveResult.UseVisualStyleBackColor = true;
             this.btnSaveResult.Click += new System.EventHandler(this.btnSaveResult_Click);
@@ -460,10 +519,10 @@
             this.dataGridViewTextBoxColumn2,
             this.CalculatedValue});
             this.dataGridView3.DataSource = this.bindingSource1;
-            this.dataGridView3.Location = new System.Drawing.Point(6, 53);
+            this.dataGridView3.Location = new System.Drawing.Point(6, 50);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(384, 147);
-            this.dataGridView3.TabIndex = 12;
+            this.dataGridView3.TabIndex = 17;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -487,10 +546,6 @@
             this.CalculatedValue.Name = "CalculatedValue";
             this.CalculatedValue.ReadOnly = true;
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(back.Common.BE.Measures);
-            // 
             // dataGridView2
             // 
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -502,10 +557,10 @@
             this.valueDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn3});
             this.dataGridView2.DataSource = this.measuresBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 217);
+            this.dataGridView2.Location = new System.Drawing.Point(6, 214);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(384, 312);
-            this.dataGridView2.TabIndex = 11;
+            this.dataGridView2.Size = new System.Drawing.Size(384, 459);
+            this.dataGridView2.TabIndex = 16;
             // 
             // measureNameDataGridViewTextBoxColumn
             // 
@@ -530,60 +585,42 @@
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Visible = false;
             // 
-            // measuresBindingSource
-            // 
-            this.measuresBindingSource.DataSource = typeof(back.Common.BE.Measures);
-            // 
             // btnStartSimpleTest
             // 
             this.btnStartSimpleTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStartSimpleTest.Image = global::TestServicePerformance.Properties.Resources.bt_play;
             this.btnStartSimpleTest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStartSimpleTest.Location = new System.Drawing.Point(11, 24);
+            this.btnStartSimpleTest.Location = new System.Drawing.Point(11, 21);
             this.btnStartSimpleTest.Name = "btnStartSimpleTest";
             this.btnStartSimpleTest.Size = new System.Drawing.Size(105, 23);
-            this.btnStartSimpleTest.TabIndex = 10;
+            this.btnStartSimpleTest.TabIndex = 15;
             this.btnStartSimpleTest.Text = "Start test";
             this.btnStartSimpleTest.UseVisualStyleBackColor = true;
-            this.btnStartSimpleTest.Click += new System.EventHandler(this.btnStartSimpleTest_Click);
+            this.btnStartSimpleTest.Click += new System.EventHandler(this.btnStartSimpleTest_Click_1);
             // 
             // txtSimpleResult
             // 
             this.txtSimpleResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSimpleResult.Location = new System.Drawing.Point(413, 24);
+            this.txtSimpleResult.Location = new System.Drawing.Point(413, 21);
             this.txtSimpleResult.Multiline = true;
             this.txtSimpleResult.Name = "txtSimpleResult";
-            this.txtSimpleResult.Size = new System.Drawing.Size(505, 505);
-            this.txtSimpleResult.TabIndex = 9;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.tabControl1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(924, 535);
-            this.tabPage5.TabIndex = 1;
-            this.tabPage5.Text = "Multiple";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.txtSimpleResult.Size = new System.Drawing.Size(519, 652);
+            this.txtSimpleResult.TabIndex = 14;
             // 
             // frmTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(956, 723);
-            this.Controls.Add(this.tabControl2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tabControl3);
             this.Name = "frmTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test disp service";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTest_FormClosing);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -595,13 +632,17 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.measuresBindingSource)).EndInit();
             this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.measuresBindingSource)).EndInit();
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -609,16 +650,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnStartTest;
-        private System.Windows.Forms.TextBox txtPort;
-        private System.Windows.Forms.TextBox txtServer;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtObjectUri;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtURL;
-        private System.Windows.Forms.Button btnPing;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label5;
@@ -635,23 +666,36 @@
         private System.Windows.Forms.NumericUpDown numericCallsNumber;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnStartSimpleTest;
-        private System.Windows.Forms.TextBox txtSimpleResult;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource measuresBindingSource;
-        private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtPort;
+        private System.Windows.Forms.Button btnPing;
+        private System.Windows.Forms.TextBox txtServer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtURL;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtObjectUri;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button btnSaveResult;
+        private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn CalculatedValue;
+        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn measureNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.Button btnSaveResult;
+        private System.Windows.Forms.Button btnStartSimpleTest;
+        private System.Windows.Forms.TextBox txtSimpleResult;
+        private System.Windows.Forms.Button btn_InitConfigFile;
     }
 }
 

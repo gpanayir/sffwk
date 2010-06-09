@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Runtime.Remoting;
-using Fwk.Bases;
-using System.Diagnostics;
 using System.Threading;
+using System.Diagnostics;
+using System.Runtime.Remoting;
+using Fwk.Remoting;
 
 namespace TestServicePerformance
 {
-    //public delegate void CheckEven(string msg, int threadNumber,double average,double totalTime);
-    //public delegate void DelegateWithOutAndRefParameters(out Exception ex);
-    //public delegate void FinalizeHandler(string msg);
-    //public delegate void CallHandler();
-    internal class RemotingWrapper
+    public delegate void CheckEven(string msg, int threadNumber, double average, double totalTime);
+    public delegate void DelegateWithOutAndRefParameters(out Exception ex);
+    public delegate void FinalizeHandler(string msg);
+    public delegate void CallHandler();
+
+    internal class RemotingWrapper_config
     {
         #region members & properties
         bool stop = false;
@@ -34,30 +35,57 @@ namespace TestServicePerformance
         Fwk.Bases.IServiceContract isvcRes;
         #endregion
 
-        #region Init --> Activator.GetObject
-        internal void Init(string server, string port, string objectUri)
-        {
+        #region Init -->
 
-            string url = string.Concat("tcp://", server, ":", port, @"/", objectUri);
-            Init(url);
-        }
-
-        internal void Init(string url)
-        {
-            if (_RemoteObj != null)
-                _RemoteObj = null;
-
-            _RemoteObj = (Fwk.Remoting.FwkRemoteObject)Activator.GetObject(typeof(Fwk.Remoting.FwkRemoteObject), url);
-
-
-        }
-
-        #endregion
 
         internal void Init()
         {
 
+            _RemoteObj = CreateRemoteObject();
+
         }
+        /// <summary>
+        /// Crea en este caso SimpleFacaddeRemoteObject .-
+        /// </summary>
+        /// <returns>Instancia de SimpleFacaddeRemoteObject</returns>
+        private static FwkRemoteObject CreateRemoteObject()
+        {
+            LoadRemotingConfigSettings();
+
+            FwkRemoteObject wFwkRemoteObject = new FwkRemoteObject();
+            return wFwkRemoteObject;
+        }
+
+        /// <summary>
+        /// Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile_2
+        /// </summary>
+        private static void LoadRemotingConfigSettings()
+        {
+            if (!IsConfigured())
+            {
+                RemotingConfiguration.Configure("RemotingConfigFile_2.config", false);
+            }
+        }
+
+        private static bool IsConfigured()
+        {
+
+            bool wResult = false;
+
+            foreach (WellKnownClientTypeEntry wEntry in RemotingConfiguration.GetRegisteredWellKnownClientTypes())
+            {
+                if (wEntry.TypeName == typeof(FwkRemoteObject).FullName)
+                {
+                    wResult = true;
+                    break;
+                }
+            }
+
+            return wResult;
+
+        }
+        #endregion
+
 
         internal void Start(string xml)
         {
@@ -109,8 +137,7 @@ namespace TestServicePerformance
 
             }
 
-            //if (stop)
-            //{
+         
             double AVERAGE = sumTotalMilliseconds / ControllerTest.Storage.StorageObject.Calls;
 
             if (MessageEvent != null)
@@ -121,87 +148,8 @@ namespace TestServicePerformance
             if ((int)threadNumber + 1 == doneEvents.Length)
                 if (FinalizeEvent != null)
                     FinalizeEvent("");
-            //}
-        }
-
-
-
-
-
-
-    }
-
-    [Serializable]
-    public class Store
-    {
-        int _Threads = 1;
-
-        public int Threads
-        {
-            get { return _Threads; }
-            set { _Threads = value; }
-        }
-         int _Calls = 1;
-
-        public int Calls
-        {
-            get { return _Calls; }
-            set { _Calls = value; }
-        }
-
-
-        string _XmlRequest = string.Empty;
-
-             public string XmlRequest
-        {
-            get { return _XmlRequest; }
-            set { _XmlRequest = value; }
-        }
-        string _server = string.Empty;
-
-        public string Server
-        {
-            get { return _server; }
-            set { _server = value; }
-        }
-        string _objectUri = string.Empty;
-
-        public string ObjectUri
-        {
-            get { return _objectUri; }
-            set { _objectUri = value; }
-        }
-        string _port = "8085";
-
-        public string Port
-        {
-            get { return _port; }
-            set { _port = value; }
-        }
-
-
-        string _svc = string.Empty;
-
-        public string Svc
-        {
-            get { return _svc; }
-            set { _svc = value; }
-        }
-
-        string _AssemblyPath = string.Empty;
-
-        public string AssemblyPath
-        {
-            get { return _AssemblyPath; }
-            set { _AssemblyPath = value; }
-        }
-        private ServiceConfiguration _SelectedServiceConfiguration = new ServiceConfiguration ();
-
-     
-        public ServiceConfiguration SelectedServiceConfiguration
-        {
-            get { return _SelectedServiceConfiguration; }
-            set { _SelectedServiceConfiguration = value; }
+            
         }
     }
 }
+
