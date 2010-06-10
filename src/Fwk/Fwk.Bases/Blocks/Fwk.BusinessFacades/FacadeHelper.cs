@@ -1,5 +1,4 @@
 using System;
-
 using System.IO;
 using System.Text;
 using System.Data;
@@ -69,7 +68,7 @@ namespace Fwk.BusinessFacades.Utils
             }
 
 
-
+            //Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
             if (_ServiceConfigurationManager.GetType() == typeof(XmlServiceConfigurationManager))
             {
                 watcher = new System.IO.FileSystemWatcher();
@@ -78,11 +77,15 @@ namespace Fwk.BusinessFacades.Utils
                 watcher.Path = Environment.CurrentDirectory;
                 watcher.EnableRaisingEvents = true;
 
-                watcher.Changed += new FileSystemEventHandler(fileSystemWatcher1_Changed);
+                watcher.Changed += new FileSystemEventHandler(watcher_Changed);
             }
         }
-
-        static void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
+        /// <summary>
+        /// Si algun cambio ocurre en el archivo de metadata
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        static void watcher_Changed(object sender, FileSystemEventArgs e)
         {
 
             try

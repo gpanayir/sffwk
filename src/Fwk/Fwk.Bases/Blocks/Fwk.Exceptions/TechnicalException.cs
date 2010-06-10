@@ -7,6 +7,7 @@ using System.Text;
 using System.Web.Services.Protocols;
 using System.Xml;
 using Fwk.Configuration;
+using Fwk.Bases;
 
 
 namespace Fwk.Exceptions
@@ -151,6 +152,7 @@ namespace Fwk.Exceptions
             mClass = pinfo.GetString("mClass");
             mMachine = pinfo.GetString("mMachine");
             mUserName = pinfo.GetString("mUserName");
+            this.Source = ConfigurationsHelper.HostApplicationNname;
         }
 
         /// <summary>
@@ -160,6 +162,7 @@ namespace Fwk.Exceptions
         public TechnicalException(string pmsg): base(pmsg)
         {
             mMsg = pmsg;
+            this.Source = ConfigurationsHelper.HostApplicationNname;
         }
 
         /// <summary>
@@ -171,7 +174,7 @@ namespace Fwk.Exceptions
         /// <param name="pmachine">Equipo donde se produce el error.</param>
         /// <param name="puserName">Nombre de usuario.</param>
         public TechnicalException(string passembly, string pnamespace, string pclass, string pmachine, string puserName): this(passembly, pnamespace, pclass, pmachine, puserName, "")
-        { }
+        { this.Source = ConfigurationsHelper.HostApplicationNname; }
 
         /// <summary>
         /// Excepcion tecnica.
@@ -184,7 +187,7 @@ namespace Fwk.Exceptions
         /// <param name="pmsg">Mensaje del error.</param>
         public TechnicalException(string passembly, string pnamespace, string pclass, string pmachine, string puserName, string pmsg)
             : this(passembly, pnamespace, pclass, pmachine, puserName, pmsg, null)
-        { }
+        { this.Source = ConfigurationsHelper.HostApplicationNname; }
 
         /// <summary>
         /// Excepcion tecnica.
@@ -198,6 +201,7 @@ namespace Fwk.Exceptions
         public TechnicalException(string passembly, string pnamespace, string pclass, string pmachine, string puserName, Exception pinner)
             : this(passembly, pnamespace, pclass, pmachine, puserName, String.Empty, pinner)
         {
+            this.Source = ConfigurationsHelper.HostApplicationNname;
             try
             {
                 mMsg = ConfigurationManager.GetProperty(EXCEPTIONSMESSAGES_GROUPNAME, TECHNICALMESSAGE_ATTRIBUTENAME);
@@ -227,6 +231,7 @@ namespace Fwk.Exceptions
             mMachine = pmachine;
             mUserName = puserName;
             mMsg = pmsg;
+            this.Source = ConfigurationsHelper.HostApplicationNname;
         }
 
         /// <summary>
@@ -237,6 +242,7 @@ namespace Fwk.Exceptions
         public TechnicalException(string pmsg, Exception pinner): base(pmsg, pinner)
         {
             mMsg = pmsg;
+            this.Source = ConfigurationsHelper.HostApplicationNname;
         }
         #endregion
 

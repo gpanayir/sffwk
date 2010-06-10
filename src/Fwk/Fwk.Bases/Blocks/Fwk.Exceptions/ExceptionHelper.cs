@@ -4,6 +4,7 @@ using System.Runtime.Remoting;
 using System.Web.Services.Protocols;
 using System.Xml;
 using System.Text;
+using Fwk.Bases;
 
 namespace Fwk.Exceptions
 {
@@ -57,16 +58,43 @@ namespace Fwk.Exceptions
         /// <returns></returns>
         public static Exception ProcessException(ServiceError err)
         {
-            if (err.Type == "FunctionalException")
+            Exception ex;
+            switch (err.Type)
             {
-                return new FunctionalException(err.Message + Environment.NewLine + err.InnerMessageException);
+                case "FunctionalException":
+                    {
+                        ex = new FunctionalException(err.Message + Environment.NewLine + err.InnerMessageException);
+                        ex.Source = err.Source;
+                        ((FunctionalException)ex).ErrorId = err.ErrorId;
+                        //((FunctionalException)ex).StackTrace = err.StackTrace;
+                        break;
+                    }
+                case "TechnicalException":
+                    {
+                        ex = new TechnicalException(err.Message + Environment.NewLine + err.InnerMessageException);
+                        ex.Source = err.Source;
+                        ((TechnicalException)ex).ErrorId = err.ErrorId;
+                        ((TechnicalException)ex).Machine = err.Machine;
+                        ((TechnicalException)ex).UserName = err.UserName;
+                        ((TechnicalException)ex).Namespace = err.Namespace;
+                        ((TechnicalException)ex).Class = err.Class;
+                        ((TechnicalException)ex).Assembly = err.Assembly;
+                        //((TechnicalException)ex).StackTrace = err.StackTrace;
+                        break;
+                    }
+                default:
+                    {
+                        ex = new Exception(err.Message + Environment.NewLine + err.InnerMessageException);
+                        //ex.StackTrace = err.StackTrace;
+                        break;
+                    }
             }
-            if (err.Type == "TechnicalException")
-            {
-                return new TechnicalException(err.Message + Environment.NewLine + err.InnerMessageException);
-            }
-            return new Exception(err.Message + Environment.NewLine + err.InnerMessageException);
+           
+           
+
+            return    ex;
         }
+
         /// <summary>
         /// Procesa la excepcion original y la retorna.
         /// </summary>
@@ -297,7 +325,7 @@ namespace Fwk.Exceptions
             te.Class = typeof(T).GetType().Name;
             te.UserName = Environment.UserName;
             te.Machine = Environment.MachineName;
-            
+            te.Source = ConfigurationsHelper.HostApplicationNname;
         }
 
       

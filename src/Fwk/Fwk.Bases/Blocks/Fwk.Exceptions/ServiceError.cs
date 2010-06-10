@@ -23,7 +23,17 @@ namespace Fwk.Exceptions
         private String _ErrorId;
         private String _Severity;
         private String _Type;
+        private string _StackTrace;
 
+        /// <summary>
+        ///    Gets a string representation of the frames on the call stack at the time
+        //     the current exception was thrown.
+        /// </summary>
+        public string StackTrace
+        {
+            get { return _StackTrace; }
+            set { _StackTrace = value; }
+        }
         /// <summary>
         /// Retorna el tipo de excepcion 
         /// </summary>
