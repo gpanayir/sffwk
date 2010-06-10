@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0C493F24-E959-49A0-B337-818A3D39AF7F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -134,12 +134,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AuditLogs\AuditControl.resx">
       <DependentUpon>AuditControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters\ctrlFilter.resx">
       <DependentUpon>ctrlFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters\frmFilter.resx">
       <DependentUpon>frmFilter.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AuditLogs\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -147,9 +149,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AuditLogs\frmNewLog.resx">
       <DependentUpon>frmNewLog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters\frmQuery.resx">
       <DependentUpon>frmQuery.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Filters\frmRemoveEventsfromDatabase.resx">
       <DependentUpon>frmRemoveEventsfromDatabase.cs</DependentUpon>
@@ -162,6 +166,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Filters\QueryControl.resx">
       <DependentUpon>QueryControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
