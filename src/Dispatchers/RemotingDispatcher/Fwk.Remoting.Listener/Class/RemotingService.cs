@@ -8,6 +8,9 @@ using System.Text;
 using System.Runtime.Remoting;
 using Fwk.Configuration;
 using System.Runtime.Remoting.Channels;
+using Fwk.Logging.Targets;
+using Fwk.Logging;
+using Fwk.Bases;
 
 namespace Fwk.Remoting.Listener
 {
@@ -71,10 +74,16 @@ namespace Fwk.Remoting.Listener
         #region ---[OnStart]---
         protected override void OnStart(string[] args)
         {
+            ConfigurationsHelper.HostApplicationNname = string.Concat("Fwk remoting ", this.ServiceName);
             RemotingConfiguration.Configure(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, false);
             
-            RemotingHelper.WriteLog("Servicio de host de Remoting iniciado.", EventLogEntryType.Information);
-
+            //RemotingHelper.WriteLog("Servicio de host de Remoting iniciado.", EventLogEntryType.Information);
+            Fwk.Logging.Event ev = new Event();
+            ev.LogType = EventType.Information;
+            ev.Machine = ex.Machine;
+            ev.User = ex.UserName;
+            ev.Message = "Servicio de host de Remoting iniciado.";
+            StaticLogger.Log(TargetType.WindowsEvent, ev, null, null);
         }
         #endregion
 
@@ -85,8 +94,13 @@ namespace Fwk.Remoting.Listener
             {
                 ChannelServices.UnregisterChannel(wChannel);
             }
-
-            RemotingHelper.WriteLog("Servicio de host de Remoting Detenido.", EventLogEntryType.Information);
+            Fwk.Logging.Event ev = new Event();
+            ev.LogType = EventType.Information;
+            ev.Machine = ex.Machine;
+            ev.User = ex.UserName;
+            ev.Message = "Servicio de host de Remoting detenido.";
+            StaticLogger.Log(TargetType.WindowsEvent, ev, null, null);
+           
         }
         #endregion
         
