@@ -5,7 +5,7 @@ using System.Text;
 namespace Fwk.Bases
 {
     /// <summary>
-    /// 
+    /// Clase que expone atributos de configuracion utilizados por el framework.-
     /// </summary>
     public static class ConfigurationsHelper
     {
@@ -24,7 +24,7 @@ namespace Fwk.Bases
         }
 
         /// <summary>
-        /// 
+        /// Indica la configuracion del wrapper en el .config .-
         /// </summary>
         public static String WrapperSetting
         {
@@ -35,7 +35,7 @@ namespace Fwk.Bases
 
         
         /// <summary>
-        /// 
+        /// Indica el nombre del archivo de remoting que utiliza el cliente en el .config .-
         /// </summary>
         public static String RemotingConfigFilePathSetting
         {
@@ -43,7 +43,7 @@ namespace Fwk.Bases
             
         }
         /// <summary>
-        /// 
+        /// Indica direccion URL para conectarce a un servicio web que utiliza .-
         /// </summary>
         public static String WebServiceDispatcherUrlSetting
         {
