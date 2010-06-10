@@ -58,7 +58,7 @@ namespace Fwk.BusinessFacades.Utils
                 ev.LogType = EventType.Error;
                 ev.Machine = ex.Machine;
                 ev.User = ex.UserName;
-                ev.Source = "Service Dispatcher";
+                
 
                 ev.Message.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
 
@@ -98,7 +98,7 @@ namespace Fwk.BusinessFacades.Utils
                 ev.LogType = EventType.Error;
                 ev.Machine = ex.Machine;
                 ev.User = ex.UserName;
-                ev.Source = "Service Dispatcher";
+                //ev.Source = "Service Dispatcher";
                 String str = string.Concat(
                     "Se intento modificar la metadata de servicios y se arrojo el siguiente error ",
                     Environment.NewLine,

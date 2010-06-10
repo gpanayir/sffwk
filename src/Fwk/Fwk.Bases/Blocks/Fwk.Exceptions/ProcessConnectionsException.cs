@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using Fwk.Bases;
 
 namespace Fwk.Exceptions
 {
@@ -68,8 +69,12 @@ namespace Fwk.Exceptions
             wServiceError.UserName = Environment.UserName;
             wServiceError.Machine = Environment.MachineName;
 
+            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationNname))
+                wServiceError.Source = "Cliente " + Environment.MachineName;
+            else
+                wServiceError.Source = ConfigurationsHelper.HostApplicationNname;
 
-            wServiceError.Source = "Cliente " + Environment.MachineName;
+           
             wServiceError.Type = pEx.GetType().FullName;
 
             return wServiceError;

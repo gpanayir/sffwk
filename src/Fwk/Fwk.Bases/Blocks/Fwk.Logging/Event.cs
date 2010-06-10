@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Fwk.Xml;
+using Fwk.Bases;
 
 
 namespace Fwk.Logging
@@ -90,6 +91,7 @@ namespace Fwk.Logging
             _Id = Guid.NewGuid();
             _AppId = appId;
             _LogType = pType;
+            
             _Source = pSource;
             _Message.Text = pMessage;
             _Machine = pMachine;
@@ -164,7 +166,13 @@ namespace Fwk.Logging
         [XmlAttribute("Source")]
         public String Source
         {
-            get { return _Source; }
+            get
+            {
+                if (string.IsNullOrEmpty(_Source))
+                    _Source = ConfigurationsHelper.HostApplicationNname;
+
+                return _Source;
+            }
             set { _Source = value; }
         }
         /// <summary>

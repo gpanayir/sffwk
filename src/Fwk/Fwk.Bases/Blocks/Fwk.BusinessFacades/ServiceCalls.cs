@@ -223,15 +223,21 @@ namespace Fwk.BusinessFacades.Utils
         private static void FillServiceError(ServiceError pServiceError, Exception pException)
         {
             pServiceError.Type = pException.GetType().Name;
-            pServiceError.Assembly = "Fwk.BusinessFacades";
-            pServiceError.Class = "FacadeHelper";
-            pServiceError.Namespace = "Fwk.BusinessFacades.Utils";
+
+            //pServiceError.Assembly = "Fwk.BusinessFacades";
+            //pServiceError.Class = "FacadeHelper";
+            //pServiceError.Namespace = "Fwk.BusinessFacades.Utils";
 
             pServiceError.UserName = Environment.UserName;
             pServiceError.Machine = Environment.MachineName;
-            pServiceError.Source = "Despachador de servicios en " + Environment.MachineName;
+
+            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationNname))
+                pServiceError.Source = "Despachador de servicios en " + Environment.MachineName;
+            else
+                pServiceError.Source = ConfigurationsHelper.HostApplicationNname;
+
             if (pException.InnerException != null)
-                pServiceError.InnerMessageException =    Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException.InnerException);
+                pServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException.InnerException);
         }
         /// <summary>
         /// Completa el error del que va dentro del Request con informacion de :
@@ -253,9 +259,11 @@ namespace Fwk.BusinessFacades.Utils
 
             //te.UserName = Environment.UserName;
             te.Machine = Environment.MachineName;
-            te.Source = "Despachador de servicios en " + Environment.MachineName;
 
-           
+            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationNname))
+                te.Source = "Despachador de servicios en " + Environment.MachineName;
+            else
+                te.Source = ConfigurationsHelper.HostApplicationNname;
 
             return te;
         }
