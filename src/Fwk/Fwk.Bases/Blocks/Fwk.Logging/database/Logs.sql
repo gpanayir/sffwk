@@ -142,7 +142,8 @@ EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[Logs_i]
 	@Source nvarchar(20) ,
 	@LogType nvarchar(20) ,
 	@Machine nvarchar(100) ,
-	@UserLoginName nvarchar(100) 
+	@UserLoginName nvarchar(100) ,
+	@AppId nvarchar(100) = null
 
 
 )
@@ -150,7 +151,7 @@ AS
 				
 -- Description : Procedimiento de creación de Logs.
 -- Author      : moviedo
--- Date        : 2006-11-16T11:59:20
+-- Date        : 2010-06-14
 				
 
 INSERT INTO Logs
@@ -161,8 +162,8 @@ INSERT INTO Logs
 	Source,
 	LogType,
 	Machine,
-	UserLoginName
-
+	UserLoginName,
+	AppId
 )
 VALUES
 (
@@ -172,7 +173,8 @@ VALUES
 	@Source,
 	@LogType,
 	@Machine,
-	@UserLoginName
+	@UserLoginName,
+	@AppId
 
 
 )

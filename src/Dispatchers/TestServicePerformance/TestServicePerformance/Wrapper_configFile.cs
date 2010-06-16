@@ -13,7 +13,7 @@ namespace TestServicePerformance
     public delegate void DelegateWithOutAndRefParameters(out Exception ex);
     public delegate void FinalizeHandler(string msg);
     public delegate void CallHandler();
-
+    
     internal class RemotingWrapper_config
     {
         #region members & properties
@@ -23,8 +23,8 @@ namespace TestServicePerformance
         public event FinalizeHandler FinalizeEvent;
         public event CallHandler CallEvent;
         public ManualResetEvent[] doneEvents;
-
-        Fwk.Remoting.FwkRemoteObject _RemoteObj;
+        
+        FwkRemoteObject _RemoteObj;
 
         internal Fwk.Remoting.FwkRemoteObject RemoteObj
         {
@@ -48,18 +48,18 @@ namespace TestServicePerformance
         /// Crea en este caso SimpleFacaddeRemoteObject .-
         /// </summary>
         /// <returns>Instancia de SimpleFacaddeRemoteObject</returns>
-        private static FwkRemoteObject CreateRemoteObject()
+        FwkRemoteObject CreateRemoteObject()
         {
             LoadRemotingConfigSettings();
-
-            FwkRemoteObject wFwkRemoteObject = new FwkRemoteObject();
-            return wFwkRemoteObject;
+            if (_RemoteObj == null)
+                _RemoteObj = new FwkRemoteObject();
+            return _RemoteObj;
         }
 
         /// <summary>
         /// Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile_2
         /// </summary>
-        private static void LoadRemotingConfigSettings()
+        void LoadRemotingConfigSettings()
         {
             if (!IsConfigured())
             {
@@ -67,7 +67,7 @@ namespace TestServicePerformance
             }
         }
 
-        private static bool IsConfigured()
+        bool IsConfigured()
         {
 
             bool wResult = false;

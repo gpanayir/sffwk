@@ -64,10 +64,6 @@
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
     </Reference>
     <Reference Include="Fwk.Controls.Win32, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Fwk.Controls.Win32.TextCodeEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Framework\Fwk.Controls.Win32.TextCodeEditor.dll</HintPath>
-    </Reference>
     <Reference Include="Fwk.DataBase, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.TextEditor, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />

@@ -358,8 +358,36 @@ namespace Fwk.Blocking
                         if (pCustomParametersGetByParam.Count != 0)
                             wCmd.Parameters.AddRange(pCustomParametersGetByParam.ToArray());
 
+                    //BlockingId
+                    wParam = wCmd.Parameters.Add("@BlockingId", SqlDbType.Int, 4);
+                    wParam.Value = pIBlockingMark.BlockingId;
+
+                    //TableName
+                    wParam = wCmd.Parameters.Add("@TableName", SqlDbType.VarChar, 100);
+                    wParam.Value = pIBlockingMark.TableName;
+
+                    //Attribute
+                    wParam = wCmd.Parameters.Add("@Attribute", SqlDbType.VarChar, 100);
+                    wParam.Value = pIBlockingMark.Attribute;
+
+                    //TTL
+                    wParam = wCmd.Parameters.Add("@TTL", SqlDbType.Int, 4);
+                    wParam.Value = pIBlockingMark.TTL;
+
+                    //UserName
+                    wParam = wCmd.Parameters.Add("@UserName", SqlDbType.VarChar, 32);
+                    wParam.Value = pIBlockingMark.User;
+
+                    //FwkGuid
+                    wParam = wCmd.Parameters.Add("@FwkGuid", SqlDbType.UniqueIdentifier);
+                    wParam.Value = pIBlockingMark.FwkGuid;
+
+                    //DueDate
+                    wParam = wCmd.Parameters.Add("@DueDate", SqlDbType.DateTime);
+                    wParam.Value = pIBlockingMark.DueDate;
+
                     //Process
-                    wParam = wCmd.Parameters.Add("@Process", SqlDbType.VarChar, 100);
+                    wParam = wCmd.Parameters.Add("@Process", SqlDbType.VarChar, 50);
                     wParam.Value = pIBlockingMark.Process;
 
                     SqlDataAdapter wDA = new SqlDataAdapter(wCmd);

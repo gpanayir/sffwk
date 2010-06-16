@@ -1,6 +1,6 @@
 using System;
 
-namespace Pelsoft.Controls.TextCodeEditor
+namespace Fwk.Controls.Win32.TextCodeEditor
 {
 	/// <summary>
 	/// Summary description for TextCodeControlEventsArgs.

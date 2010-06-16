@@ -212,6 +212,9 @@ namespace TestServicePerformance
                     this.txtXmlRequest.Text = isvcReq.GetBusinessDataXml();
                 }
             }
+
+    
+
         }
 
         private void numericThread_ValueChanged(object sender, EventArgs e)
@@ -347,8 +350,8 @@ namespace TestServicePerformance
         private void btn_InitConfigFile_Click(object sender, EventArgs e)
         {
             this.btn_InitConfigFile.Image = global::TestServicePerformance.Properties.Resources.Ball__Red_;
-            //if (!ValidateInit()) return;
-            _RemotingWrapper_config = new RemotingWrapper_config();
+            if (_RemotingWrapper_config == null)
+                _RemotingWrapper_config = new RemotingWrapper_config();
             try
             {
                 _RemotingWrapper_config.Init();
@@ -361,7 +364,7 @@ namespace TestServicePerformance
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
+                _RemotingWrapper_config = null;
             }
 
         }
