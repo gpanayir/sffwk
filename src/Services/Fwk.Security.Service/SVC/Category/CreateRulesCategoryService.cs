@@ -20,7 +20,7 @@ namespace Fwk.Security.SVC
             CreateRulesCategoryRes wRes = new CreateRulesCategoryRes();
 
             FwkMembership.CreateCategory(pServiceRequest.BusinessData, pServiceRequest.SecurityProviderName);
-
+            wRes.BusinessData.Id=  pServiceRequest.BusinessData.CategoryId;
             return wRes;
         }
     }

@@ -31,64 +31,11 @@ namespace ServiceTest
     /// Summary description for UnitTest1
     /// </summary>
     [TestClass]
-    public class UserTest
+    public class UserTest : Fwk.Bases.Test.UnitTestBase
     {
-        TransactionScopeHandler _Tx;
-        string _StrExceptionMessage = String.Empty;
-        String xmlPath = @"\\Corrsf71bi01\BigBang\test";
-
-        private TestContext testContextInstance;
-        ClientServiceBase _ClientServiceBase = null;
-
-        public UserTest()
-        {
-            _ClientServiceBase = new ClientServiceBase();
-
-
-        }
-
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
-
-
-
-     
+       
+       
+   
         [TestMethod]
         public void SearchAllUsers_NoService()
         {
@@ -223,7 +170,7 @@ namespace ServiceTest
             req.BusinessData.Password = pPassword;
             req.BusinessData.Domain = pDomain;
             req.BusinessData.IsEnvironmentUser = false;
-            AuthenticateUserRes res = _ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(req);
+            AuthenticateUserRes res = base.ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(req);
 
             if (res.Error != null)
                 wErrorResult = Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message;
@@ -264,7 +211,7 @@ namespace ServiceTest
             req.BusinessData.AuthenticationMode = AuthenticationModeEnum.Mixed;
             req.BusinessData.UserName = pUserName;
             req.BusinessData.Password = pPassword;
-            AuthenticateUserRes res = _ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(req);
+            AuthenticateUserRes res = base.ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(req);
 
             if (res.Error != null)
                 wErrorResult = Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message;
@@ -282,15 +229,15 @@ namespace ServiceTest
 
 
         [TestMethod()]
-        public void CreeateUser_NoService()
+        public void CreeateUser_No_Service()
         {
-            _Tx = new TransactionScopeHandler(TransactionalBehaviour.Suppres, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
+            base.Tx = new TransactionScopeHandler(TransactionalBehaviour.Suppres, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
             String strErrorResut = String.Empty;
             CreateUserReq wRequest = new CreateUserReq();
             CreateUserRes wResponse = new CreateUserRes();
             CreateUserService svc = new CreateUserService();
 
-            _Tx.InitScope();
+            base.Tx.InitScope();
 
             string wszRandom = GenerarCadenaAleatoria(6);// Para generar un nombre de manera aleatoria
             User wUserBe = new User();
@@ -308,7 +255,7 @@ namespace ServiceTest
             try
             {
                 wResponse = svc.Execute(wRequest);
-                _Tx.Abort();
+                base.Tx.Abort();
 
             }
             catch (Exception ex)
@@ -331,7 +278,7 @@ namespace ServiceTest
 
 
           
-            _Tx = new TransactionScopeHandler(TransactionalBehaviour.RequiresNew, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
+            base.Tx = new TransactionScopeHandler(TransactionalBehaviour.RequiresNew, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
 
             UpdateUserReq req = new UpdateUserReq();
             UpdateUserService svc = new UpdateUserService();
@@ -347,20 +294,20 @@ namespace ServiceTest
 
             try
             {
-                _Tx.InitScope();
+                base.Tx.InitScope();
 
                 UpdateUserRes res = svc.Execute(req);
-                _Tx.Abort();
+                base.Tx.Abort();
             }
             catch (Exception ex)
             {
-                _StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+                base.StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
 
 
 
 
-            Assert.AreEqual<String>(_StrExceptionMessage, String.Empty, _StrExceptionMessage);
+            Assert.AreEqual<String>(base.StrExceptionMessage, String.Empty, base.StrExceptionMessage);
         }
 
         //[TestMethod]
@@ -395,16 +342,16 @@ namespace ServiceTest
         //    try
         //    {
                 
-        //        _ClientServiceBase.ExecuteService<UpdateUserReq, UpdateUserRes>(req);
+        //        base.ClientServiceBase.ExecuteService<UpdateUserReq, UpdateUserRes>(req);
                 
                 
         //    }
         //    catch (Exception ex)
         //    {
-        //        _StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+        //        base.StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
         //    }
 
-        //    Assert.AreEqual<String>(_StrExceptionMessage, String.Empty, _StrExceptionMessage);
+        //    Assert.AreEqual<String>(base.StrExceptionMessage, String.Empty, base.StrExceptionMessage);
 
         //}
 
@@ -423,10 +370,10 @@ namespace ServiceTest
             }
             catch (Exception ex)
             {
-                _StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+                base.StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
 
-            Assert.AreEqual<String>(_StrExceptionMessage, String.Empty, _StrExceptionMessage);
+            Assert.AreEqual<String>(base.StrExceptionMessage, String.Empty, base.StrExceptionMessage);
         }
 
         public string GenerarCadenaAleatoria(int longitudCadena)

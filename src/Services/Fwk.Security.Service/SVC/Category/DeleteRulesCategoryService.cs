@@ -14,12 +14,14 @@ namespace Fwk.Security.SVC
     /// <summary>
     /// Elimina una categoriua y sus subvategorias asocoadas de forma recursiva
     /// </summary>
-    public class DeleteRulesCategoryService : BusinessService<DeleteRulesCategoryRequest, DeleteRulesCategoryResponse>
+    public class DeleteRulesCategoryService : BusinessService<DeleteRulesCategoryReq, DeleteRulesCategoryRes>
     {
-        public override DeleteRulesCategoryResponse Execute(DeleteRulesCategoryRequest pServiceRequest)
+        public override DeleteRulesCategoryRes Execute(DeleteRulesCategoryReq pServiceRequest)
         {
-            DeleteRulesCategoryResponse wRes = new DeleteRulesCategoryResponse();
+            DeleteRulesCategoryRes wRes = new DeleteRulesCategoryRes();
+
             FwkMembership.RemoveCategory(pServiceRequest.BusinessData.CategoryId, pServiceRequest.SecurityProviderName);  
+
             return wRes;
         }
     }

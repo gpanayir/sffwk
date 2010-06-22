@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-
       <HintPath>..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -97,7 +96,7 @@
     <Compile Include="ISVC\RulesCategory\SearchAllRuleCategory.cs" />
     <Compile Include="ISVC\RulesCategory\CreateRulesCategory.cs" />
     <Compile Include="ISVC\Users\GetUserInfoByName.cs" />
-    <Compile Include="ISVC\RulesCategory\GetRulesCategoryByParam.cs" />
+    <Compile Include="ISVC\RulesCategory\SearchRulesCategoryByParam.cs" />
     <Compile Include="ISVC\Rules\CreateRules.cs" />
     <Compile Include="ISVC\Rules\SearchAllRules.cs" />
     <Compile Include="ISVC\Rules\UpdateRules.cs" />
