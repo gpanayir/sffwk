@@ -19,7 +19,7 @@ namespace Fwk.Security.SVC
         public override DeleteRulesCategoryResponse Execute(DeleteRulesCategoryRequest pServiceRequest)
         {
             DeleteRulesCategoryResponse wRes = new DeleteRulesCategoryResponse();
-            FwkMembership.RemoveCategory(pServiceRequest.BusinessData.CategoryId.Value, pServiceRequest.SecurityProviderName);  
+            FwkMembership.RemoveCategory(pServiceRequest.BusinessData.CategoryId, pServiceRequest.SecurityProviderName);  
             return wRes;
         }
     }

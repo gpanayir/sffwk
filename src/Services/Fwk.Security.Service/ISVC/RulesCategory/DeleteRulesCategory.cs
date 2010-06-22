@@ -19,7 +19,7 @@ namespace Fwk.Security.ISVC.DeleteRulesCategory
 {
 
     [Serializable]
-    public class DeleteRulesCategoryRequest : Request<RulesCategoryBE>
+    public class DeleteRulesCategoryRequest : Request<Fwk.Security.FwkCategory>
     {
         public DeleteRulesCategoryRequest()
         {
@@ -27,65 +27,7 @@ namespace Fwk.Security.ISVC.DeleteRulesCategory
         }
     }
 
-    [XmlInclude(typeof(RulesCategoryBE)), Serializable]
-    public class RulesCategoryBE : Entity
-    {
-        #region [Private Members]
-        private System.Int32? _CategoryId;
-        private System.Int32? _ParentCategoryId;
-        private System.String _Name;
-        private System.String _ApplicationId;
-
-        #endregion
-
-        #region [Properties]
-
-        #region [CategoryId]
-        [XmlElement(ElementName = "CategoryId", DataType = "int")]
-        public System.Int32? CategoryId
-        {
-            get { return _CategoryId; }
-            set { _CategoryId = value; }
-        }
-        #endregion
-        #region [ParentCategoryId]
-        [XmlElement(ElementName = "ParentCategoryId", DataType = "int")]
-        public System.Int32? ParentCategoryId
-        {
-            get { return _ParentCategoryId; }
-            set { _ParentCategoryId = value; }
-        }
-        #endregion
-        #region [Name]
-        [XmlElement(ElementName = "Name", DataType = "string")]
-        public System.String Name
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
-        #endregion
-        #region [ApplicationId]
-        [XmlElement(ElementName = "ApplicationId", DataType = "string")]
-        public System.String ApplicationId
-        {
-            get { return _ApplicationId; }
-            set { _ApplicationId = value; }
-        }
-        #endregion
-        #endregion
-
-        #region [Methods]
-        /// <summary>
-        /// Metodo estatico que retorna un objeto aspnet_RulesCategoryBE apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>aspnet_RulesCategoryBE</returns>
-        public static RulesCategoryBE Getaspnet_RulesCategoryBEFromXml(String pXml)
-        {
-            return GetFromXml<RulesCategoryBE>( pXml);
-        }
-        #endregion
-    }
+   
     [Serializable]
     public class DeleteRulesCategoryResponse : Response<DummyContract>
     {

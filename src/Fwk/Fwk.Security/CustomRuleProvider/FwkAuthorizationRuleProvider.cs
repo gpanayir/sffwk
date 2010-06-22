@@ -33,6 +33,16 @@ namespace Fwk.Security
 
             this.authorizationRules = authorizationRules;
         }
+        /// <summary>
+        /// Initialize an instance of the <see cref="AuthorizationRuleProvider"/> class.
+        /// </summary>
+        /// <param name="authorizationRules">The collection of rules.</param>
+        public FwkAuthorizationRuleProvider(FwkAuthorizationRuleList authorizationRules)
+        {
+            if (authorizationRules == null) throw new ArgumentNullException("authorizationRules");
+
+            this.authorizationRules = CreateRulesDictionary<FwkAuthorizationRule>(authorizationRules); 
+        }
 
         /// <summary>
         /// Esta sobrecarga obtiene las reglas atravez de la base de datos. 
@@ -84,13 +94,15 @@ namespace Fwk.Security
         /// Obtiele la lista de reglas relacionadas al proveedor
         /// </summary>
         /// <returns></returns>
-        public List<FwkAuthorizationRule> GetAuthorizationRules()
+        public FwkAuthorizationRuleList GetAuthorizationRules()
         {
+            FwkAuthorizationRuleList list = new FwkAuthorizationRuleList();
             if (authorizationRules == null) return null;
-            if (authorizationRules.Count == 0) return new List<FwkAuthorizationRule>();
+            if (authorizationRules.Count == 0) return list;
 
             var a = from s in authorizationRules.Values select new FwkAuthorizationRule { Name = s.Name, Expression = s.Expression };
-            return a.ToList<FwkAuthorizationRule>();
+            list.AddRange(a.ToList<FwkAuthorizationRule>());
+            return list;
         } 
 
         BooleanExpression GetParsedExpression(string ruleName, bool expEmpty)
