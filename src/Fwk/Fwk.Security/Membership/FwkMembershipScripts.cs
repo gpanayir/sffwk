@@ -14,7 +14,7 @@ namespace Fwk.Security
     {
         static string _RuleInCategory_i;
         static string _Category_d = "DELETE FROM aspnet_RulesCategory WHERE  aspnet_RulesCategory.CategoryId = [CategoryId]";
-        static string _RulesCategory_d = "DELETE FROM aspnet_RulesInCategory WHERE  aspnet_RulesInCategory.CategoryId = [CategoryId]";
+        static string _RulesInCategory_d = "DELETE FROM aspnet_RulesInCategory WHERE  aspnet_RulesInCategory.CategoryId = [CategoryId]";
         static string _User_u = "UPDATE aspnet_Users SET  UserName = '[newUserName]',  LoweredUserName = '[loweredNewUserName]'  WHERE (UserName = '[userName]')";
 
         public static string User_u
@@ -54,11 +54,11 @@ namespace Fwk.Security
 
         }
      
-        public static string RulesCategory_d
+        public static string RulesInCategory_d
         {
             get
             {
-                return FwkMembershipScripts._RulesCategory_d;
+                return FwkMembershipScripts._RulesInCategory_d;
             }
 
         }

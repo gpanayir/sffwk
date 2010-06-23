@@ -14,14 +14,9 @@ using Fwk.Bases;
 using Fwk.Security.ISVC.SearchAllUsers;
 using Fwk.Security.BE;
 using Fwk.Security.ISVC.GetUserInfoByParams;
-
-
-
 using Fwk.Security.ISVC.UpdateUser;
 using Fwk.Security.ISVC.SearchDomainsUrls;
-
 using Fwk.HelperFunctions;
-
 using Fwk.Security.SVC;
 using Fwk.Security.Common;
 
@@ -231,7 +226,7 @@ namespace ServiceTest
         [TestMethod()]
         public void CreeateUser_No_Service()
         {
-            base.Tx = new TransactionScopeHandler(TransactionalBehaviour.Suppres, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
+            base.Tx = new TransactionScopeHandler(TransactionalBehaviour.RequiresNew, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
             String strErrorResut = String.Empty;
             CreateUserReq wRequest = new CreateUserReq();
             CreateUserRes wResponse = new CreateUserRes();

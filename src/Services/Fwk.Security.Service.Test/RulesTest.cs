@@ -10,6 +10,8 @@ using Fwk.Exceptions;
 using Fwk.Security.SVC;
 using Fwk.Bases.Test;
 using Fwk.Security.ISVC.CreateRules;
+using Fwk.Security.ISVC.UpdateRules;
+using Fwk.Security;
 
 
 
@@ -24,33 +26,42 @@ namespace Security
     [TestClass]
     public class RulesTest : UnitTestBase
     {
-     
 
+
+        [TestMethod]
+        public void Rules_CRUD_No_Service()
+        {
+            base.Tx = new TransactionScopeHandler(TransactionalBehaviour.RequiresNew, IsolationLevel.ReadCommitted, new TimeSpan(0, 1, 15));
+            CreateRule_No_Service();
+           
+            UpdateRules_No_Service();
+            SearchAllRulesRes res = SearchAllRules();
+            bool updateOK = res.BusinessData.Any<FwkAuthorizationRule>(r=> r.Name.Equals("rule_1",StringComparison.OrdinalIgnoreCase)
+                && r.Expression.Equals ("(R:Admin OR R:User)",StringComparison.OrdinalIgnoreCase));
+
+            Assert.AreEqual<bool>(updateOK, true, "No se actualizo correctamente la regla");
+
+            base.Tx.Abort();
+        }
         
+      
 
-
-        #region service test
+     
+        //[TestMethod]
         public void CreateRule_No_Service()
         {
-
             String strErrorResut = String.Empty;
-            base.Tx = new TransactionScopeHandler(TransactionalBehaviour.Suppres, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
+          
             CreateRuleService svc = new CreateRuleService();
             CreateRuleReq req = new CreateRuleReq();
 
-            req.BusinessData.Name = "rule 1";
-
+            req.BusinessData.Name = "rule_1";
             req.BusinessData.Expression = "(R:Admin)";
-
-
-            base.Tx.InitScope();
-
 
             try
             {
                 CreateRuleRes res = svc.Execute(req);
-                base.Tx.Abort();
-
+                
             }
             catch (Exception ex)
             {
@@ -62,6 +73,33 @@ namespace Security
 
         }
 
+        public void UpdateRules_No_Service()
+        {
+            String strErrorResut = String.Empty;
+
+            UpdateRulesService svc = new UpdateRulesService();
+            UpdateRulesReq req = new UpdateRulesReq();
+
+            req.BusinessData.FwkAuthorizationRuleList = new Fwk.Security.FwkAuthorizationRuleList();
+
+            req.BusinessData.FwkAuthorizationRuleList.Add(new Fwk.Security.FwkAuthorizationRule("rule_1", "(R:Admin OR R:User)"));
+            //req.BusinessData.FwkAuthorizationRuleList.Add(new Fwk.Security.FwkAuthorizationRule("rule_2", "(R:Admin OR R:User)"));
+
+
+            try
+            {
+                UpdateRulesRes res = svc.Execute(req);
+
+            }
+            catch (Exception ex)
+            {
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
+
+
+            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
+
+        }
         [TestMethod]
         public void SearchAllRulesService_No_Service()
         {
@@ -70,8 +108,8 @@ namespace Security
             SearchAllRulesReq req = new SearchAllRulesReq();
             SearchAllRulesRes res = new SearchAllRulesRes();
             SearchAllRulesService svc = new SearchAllRulesService();
-            res.ContextInformation.CompanyId = "bigbang";
-            req.SecurityProviderName = "tesa";
+            //res.ContextInformation.CompanyId = "bigbang";
+            //req.SecurityProviderName = "tesa";
 
 
             try
@@ -91,7 +129,35 @@ namespace Security
 
 
         }
-        #endregion
 
+
+        public SearchAllRulesRes SearchAllRules()
+        {
+            String strErrorResut = String.Empty;
+
+            SearchAllRulesReq req = new SearchAllRulesReq();
+            SearchAllRulesRes res = new SearchAllRulesRes();
+            SearchAllRulesService svc = new SearchAllRulesService();
+            //res.ContextInformation.CompanyId = "bigbang";
+            //req.SecurityProviderName = "tesa";
+
+
+            try
+            {
+
+                res = svc.Execute(req);
+                
+
+            }
+            catch (Exception ex)
+            {
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
+
+
+            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
+
+            return res;
+        }
     }
 }

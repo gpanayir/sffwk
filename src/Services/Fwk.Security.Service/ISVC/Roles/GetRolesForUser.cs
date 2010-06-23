@@ -4,19 +4,19 @@ using Fwk.Bases;
 using System.Xml.Serialization;
 using Fwk.Security.Common;
 
-namespace Fwk.Security.ISVC.GetRolesForUser
+namespace Fwk.Security.ISVC.SearchRolesForUser
 {
 
     [Serializable]
-    public class GetRolesForUserReq : Request<Param>
+    public class SearchRolesForUserReq : Request<Param>
     {
-        public GetRolesForUserReq()
+        public SearchRolesForUserReq()
         {
-            this.ServiceName = "GetRolesForUserService";
+            this.ServiceName = "SearchRolesForUserService";
         }
     }
     [Serializable]
-    public class GetRolesForUserRes : Response<Result>
+    public class SearchRolesForUserRes : Response<Result>
     {
 
     }

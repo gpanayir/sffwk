@@ -16,16 +16,16 @@ using System.Web.Security;
 using Fwk.Bases;
 using Fwk.Security.BE;
 using Fwk.Security;
-using Fwk.Security.ISVC.GetRolesForUser;
+using Fwk.Security.ISVC.SearchRolesForUser;
 
 
 namespace Fwk.Security.SVC
 {
-    public class GetRolesForUserService : BusinessService<GetRolesForUserReq, GetRolesForUserRes>
+    public class SearchRolesForUserService : BusinessService<SearchRolesForUserReq, SearchRolesForUserRes>
     {
-        public override GetRolesForUserRes Execute(GetRolesForUserReq pServiceRequest)
+        public override SearchRolesForUserRes Execute(SearchRolesForUserReq pServiceRequest)
         {
-            GetRolesForUserRes wRes = new GetRolesForUserRes ();
+            SearchRolesForUserRes wRes = new SearchRolesForUserRes();
      
 
             wRes.BusinessData.RolList = FwkMembership.GetRolesForUser(pServiceRequest.BusinessData.Username, pServiceRequest.SecurityProviderName); 

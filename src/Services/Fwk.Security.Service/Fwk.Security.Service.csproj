@@ -80,6 +80,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Statics.cs" />
+    <Compile Include="SVC\Category\SearchRulesCategoryByParamService.cs" />
     <Compile Include="SVC\SearchDomainsUrlsService.cs" />
     <Compile Include="ISVC\Users\UpdateUser.cs" />
     <Compile Include="ISVC\Users\RemoveUsersFromRol.cs" />
@@ -88,7 +89,7 @@
     <Compile Include="ISVC\Roles\CreateRoles.cs" />
     <Compile Include="ISVC\Roles\DeleteRole.cs" />
     <Compile Include="SVC\Roles\CreateRoleService.cs" />
-    <Compile Include="SVC\Roles\GetAllRolesService.cs" />
+    <Compile Include="SVC\Roles\SearchAllRolesService.cs" />
     <Compile Include="ISVC\Roles\GetAllRoles.cs" />
     <Compile Include="ISVC\RulesCategory\DeleteRulesCategory.cs" />
     <Compile Include="ISVC\RulesCategory\UpdateRulesCategory.cs" />
@@ -102,7 +103,7 @@
     <Compile Include="ISVC\Rules\UpdateRules.cs" />
     <Compile Include="ISVC\Roles\AssignRolesToUser.cs" />
     <Compile Include="ISVC\Roles\GetRolesForUser.cs" />
-    <Compile Include="SVC\Roles\GetRolesForUserService.cs" />
+    <Compile Include="SVC\Roles\SearchRolesForUserService.cs" />
     <Compile Include="SVC\Rules\CreateRuleService.cs" />
     <Compile Include="SVC\Rules\SearchAllRulesService.cs" />
     <Compile Include="SVC\Category\UpdateRulesCategoryService.cs" />
@@ -118,7 +119,7 @@
     <Compile Include="SVC\Category\SearchAllRuleCategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SVC\Rules\UpdateRulesService.cs" />
-    <Compile Include="SVC\Rules\UpdateRulesWithCategoryService.cs" />
+    <Compile Include="SVC\Users\RemoveUserFromRoleService.cs" />
     <Compile Include="SVC\Users\UpdateUserService.cs" />
   </ItemGroup>
   <ItemGroup>

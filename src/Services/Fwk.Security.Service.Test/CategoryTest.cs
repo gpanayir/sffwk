@@ -33,7 +33,7 @@ namespace Security
         [TestMethod]
         public void RulesCategory_Test_CRUD_No_Service()
         {
-            base.Tx = new TransactionScopeHandler(TransactionalBehaviour.Suppres, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
+            base.Tx = new TransactionScopeHandler(TransactionalBehaviour.Suppres , IsolationLevel.ReadCommitted, new TimeSpan(0, 1, 15));
 
             base.Tx.InitScope();
             int? id = CreateRulesCategory_No_Service();
@@ -41,6 +41,7 @@ namespace Security
                 UpdateRulesCategory_No_Service(id.Value);
             if (id != null)
                 DeleteRulesCategory_No_Service(id.Value);
+
             base.Tx.Abort();
 
         }
@@ -54,38 +55,33 @@ namespace Security
             CreateRulesCategoryReq req = new CreateRulesCategoryReq();
             CreateRulesCategoryRes res = new Fwk.Security.ISVC.CreateRulesCategory.CreateRulesCategoryRes();
 
-
             req.BusinessData.Name = "Categorytest_1";
             req.BusinessData.ParentId = 0;
             req.BusinessData.FwkRulesInCategoryList = new FwkAuthorizationRuleList();
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule ("Rule_1",""));
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_2", ""));
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_3", ""));
-            
-
-
+            Int32? id = null;
             try
             {
                 res = svc.Execute(req);
-                return res.BusinessData.Id;
+                id =  res.BusinessData.Id;
                 //base.Tx.Abort();
-
             }
             catch (Exception ex)
             {
                 strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-                return null;
+               
             }
 
-
-
-
+            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
+            return id;
         }
 
         //[TestMethod]
         public void UpdateRulesCategory_No_Service(int id)
         {
-            //base.Tx = new TransactionScopeHandler(TransactionalBehaviour.Suppres, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
+     
         
             String strErrorResut = String.Empty;
             UpdateRulesCategoryService svc = new UpdateRulesCategoryService();
@@ -93,23 +89,17 @@ namespace Security
             UpdateRulesCategoryRes res = new UpdateRulesCategoryRes();
 
             req.BusinessData.CategoryId = id;
-            req.BusinessData.Name = "Categorytest_1";
+            req.BusinessData.Name = "CategoryXtest_1";
             req.BusinessData.ParentId = 0;
             req.BusinessData.FwkRulesInCategoryList = new FwkAuthorizationRuleList();
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_1", ""));
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_3", ""));
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_4", ""));
 
-            //base.Tx.InitScope();
-
-            // se llama al servicio
-            res = svc.Execute(req);
 
             try
             {
                 res = svc.Execute(req);
-                //base.Tx.Abort();
-
             }
             catch (Exception ex)
             {
@@ -123,10 +113,9 @@ namespace Security
         }
 
 
-        //[TestMethod]
         public void DeleteRulesCategory_No_Service(int id)
         {
-            //base.Tx = new TransactionScopeHandler(TransactionalBehaviour.Suppres, IsolationLevel.ReadCommitted, new TimeSpan(0, 0, 15));
+     
            
             String strErrorResut = String.Empty;
             DeleteRulesCategoryService svc = new DeleteRulesCategoryService();
@@ -134,12 +123,12 @@ namespace Security
             DeleteRulesCategoryRes res = new DeleteRulesCategoryRes();
 
             req.BusinessData.CategoryId = id;
-            //base.Tx.InitScope();
+    
 
             try
             {
                 res = svc.Execute(req);
-                base.Tx.Abort();
+               
             }
             catch (Exception ex)
             {
@@ -156,15 +145,14 @@ namespace Security
         {
             String strErrorResut = String.Empty;
 
-            SearchAllRulesCategoryReq wReq = new SearchAllRulesCategoryReq();
-            SearchAllRulesCategoryRes wRes;
+            SearchAllRulesCategoryReq req = new SearchAllRulesCategoryReq();
+            SearchAllRulesCategoryRes res;
             SearchAllRulesCategoryService svc = new SearchAllRulesCategoryService();
 
 
             try
             {
-
-                wRes = wReq.ExecuteService<SearchAllRulesCategoryReq, SearchAllRulesCategoryRes>(wReq);
+                res = svc.Execute(req);
 
             }
             catch (Exception ex)
@@ -172,46 +160,60 @@ namespace Security
                 strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
 
-
             Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
 
 
 
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void SearchRulesCategoryByParam_No_Service()
         {
             
             String strErrorResut = String.Empty;
-        
-            //SearchRulesCategoryByParamReq wReq = new SearchRulesCategoryByParamReq();
-            //SearchRulesCategoryByParamRes wRes = new SearchRulesCategoryByParamRes();
+            SearchRulesCategoryByParamService svc = new SearchRulesCategoryByParamService();
+            SearchRulesCategoryByParamReq req = new SearchRulesCategoryByParamReq();
+            SearchRulesCategoryByParamRes res = null;
 
+            req.BusinessData.CategoryId = 1;
 
-            //wReq.BusinessData.CategoryId = 3;
+ 
+            try
+            {
+                res = svc.Execute(req);
 
-            //// se llama al servicio
-            //wRes = wReq.ExecuteService<Fwk.Security.ISVC.SearchRulesCategoryByParam.SearchRulesCategoryByParamReq, Fwk.Security.ISVC.SearchRulesCategoryByParam.SearchRulesCategoryByParamRes>(wReq);
+            }
+            catch (Exception ex)
+            {
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
 
-
-            //if (wRes.Error != null)
-            //{
-            //    if (typeof(Fwk.Exceptions.FunctionalException).Name.CompareTo(wRes.Error.Type) != 0)
-            //    {
-            //        strErrorResut =Fwk.Exceptions.ExceptionHelper.ProcessException(wRes.Error).Message;
-            //    }
-            //    else
-            //    {
-            //        wRes.Error = null;
-            //    }
-            //}
-
-            Assert.AreEqual<Fwk.Exceptions.ServiceError>(null, null, strErrorResut);
-
+            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
         }
-           
-   
+
+
+        //public void SearchRulesCategoryByParam_No_Service(SearchRulesCategoryByParamReq req )
+        //{
+
+        //    String strErrorResut = String.Empty;
+        //    SearchAllRulesCategoryService svc = new SearchAllRulesCategoryService();
        
+        //    SearchRulesCategoryByParamRes res;
+
+          
+
+
+        //    try
+        //    {
+        //        res = svc.Execute(req);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+        //    }
+
+        //    Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
+        //}
     }
 }

@@ -11,7 +11,7 @@ using Fwk.Security.ISVC.RemoveUserFromRole;
 
 namespace Fwk.Security.SVC
 {
-    class RemoveUserFromRoleService : BusinessService<RemoveUserFromRoleReq, RemoveUserFromRoleRes>
+    public class RemoveUserFromRoleService : BusinessService<RemoveUserFromRoleReq, RemoveUserFromRoleRes>
     {
         public override RemoveUserFromRoleRes Execute(RemoveUserFromRoleReq pServiceRequest)
         {

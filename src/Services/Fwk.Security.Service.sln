@@ -6,10 +6,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service.Test",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security", "..\Fwk\Fwk.Security\Fwk.Security.csproj", "{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{435B8254-0C90-4ED2-94BA-1426B021C2BE}"
+	ProjectSection(SolutionItems) = preProject
+		Fwk.Security.Service.vsmdi = Fwk.Security.Service.vsmdi
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
 		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Fwk.Security.Service.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

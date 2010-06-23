@@ -22,7 +22,7 @@ namespace Fwk.Security
         public static void CreateCategory(FwkCategory pFwkCategory, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            CreateCategory(pFwkCategory, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            CreateCategory(pFwkCategory, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Fwk.Security
         public static FwkCategoryList GetAllCategories(string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            return GetAllCategories(wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            return GetAllCategories(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
 
@@ -183,7 +183,7 @@ namespace Fwk.Security
         public static void CreateRuleInCategory(FwkCategory pFwkCategory, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            CreateRuleInCategory(pFwkCategory, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            CreateRuleInCategory(pFwkCategory, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
 
@@ -203,7 +203,7 @@ namespace Fwk.Security
             try
             {
                 wDataBase = DatabaseFactory.CreateDatabase(connectionStringName);
-                StringBuilder str = new StringBuilder(FwkMembershipScripts.RulesCategory_d);
+                StringBuilder str = new StringBuilder(FwkMembershipScripts.RulesInCategory_d);
 
                 foreach (FwkAuthorizationRule rule in pFwkCategory.FwkRulesInCategoryList)
                 {
@@ -235,7 +235,7 @@ namespace Fwk.Security
         static List<FwkCategory> GetSubCategoriesByCategoryId(int pCategoryId, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            return GetSubCategoriesByCategoryId(pCategoryId, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            return GetSubCategoriesByCategoryId(pCategoryId, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
         /// <summary>
@@ -296,7 +296,7 @@ namespace Fwk.Security
         public static void RemoveCategory(int parentFwkCategoryId, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            RemoveCategory(parentFwkCategoryId, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            RemoveCategory(parentFwkCategoryId, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
 
@@ -304,11 +304,12 @@ namespace Fwk.Security
         /// Remueve una categoria y sus subcategorias recursivamente
         /// </summary>
         /// <param name="parentFwkCategoryId"></param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
         /// <param name="connectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
-        public static void RemoveCategory(Int32 parentFwkCategoryId, string applicationName, string connectionStringName)
+        public static void RemoveCategory(Int32 parentFwkCategoryId,string applicationName, string connectionStringName)
         {
-            if (CategoryContainChilds(parentFwkCategoryId, applicationName))
+            if (CategoryContainChilds(parentFwkCategoryId,applicationName, connectionStringName))
             {
                 List<FwkCategory> subCategories = GetSubCategoriesByCategoryId(parentFwkCategoryId, applicationName, connectionStringName);
                 //Remueve recursivamente todos los hijos asta la ultima subcategoria
@@ -324,7 +325,10 @@ namespace Fwk.Security
             try
             {
                 wDataBase = DatabaseFactory.CreateDatabase(connectionStringName);
-                StringBuilder str = new StringBuilder(FwkMembershipScripts.Category_d);
+                //Elimina Rules in categoria (tabla nav entre categoria y reglas)
+                StringBuilder str = new StringBuilder(FwkMembershipScripts.RulesInCategory_d);
+                //Elimina la categoria en si
+                str.AppendLine(FwkMembershipScripts.Category_d);
 
                 str.Replace("[CategoryId]", parentFwkCategoryId.ToString());
 
@@ -353,7 +357,7 @@ namespace Fwk.Security
         public static bool ExistCategory(string pCategoryName, int pParentCategoryId, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            return ExistCategory(pCategoryName, pParentCategoryId, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            return ExistCategory(pCategoryName, pParentCategoryId, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
         /// <summary>
@@ -400,7 +404,7 @@ namespace Fwk.Security
         public static bool CategoryContainChilds(int parentFwkCategoryId, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            return CategoryContainChilds(parentFwkCategoryId, wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            return CategoryContainChilds(parentFwkCategoryId, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
 
@@ -421,9 +425,11 @@ namespace Fwk.Security
                     new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
 
-                    return dc.aspnet_RulesCategories.Any<aspnet_RulesCategory>
-                        (p => p.ParentCategoryId == parentFwkCategoryId
-                        && p.ApplicationId == wApplicationId);
+                    bool contain = dc.aspnet_RulesCategories.Any<aspnet_RulesCategory>(p => p.ParentCategoryId == parentFwkCategoryId && p.ApplicationId == wApplicationId);
+                    //if (contain == false)
+                    //    contain = dc.aspnet_RulesInCategories.Any<aspnet_RulesInCategory>(p => p.CategoryId == parentFwkCategoryId && p.ApplicationId == wApplicationId);
+
+                    return contain;
 
                 }
 

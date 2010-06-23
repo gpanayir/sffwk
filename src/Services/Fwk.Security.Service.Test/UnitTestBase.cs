@@ -90,12 +90,6 @@ namespace Fwk.Bases.Test
         //
         #endregion
 
-        [TestMethod]
-        public void TestMethod1()
-        {
-            //
-            // TODO: Add test logic	here
-            //
-        }
+     
     }
 }
