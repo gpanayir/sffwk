@@ -20,21 +20,13 @@ namespace Fwk.Security.ISVC.CreateRole
     [XmlInclude(typeof(Param)), Serializable]
     public class Param : Entity
     {
-        Fwk.Security.Common.Rol _Rol;
+        Fwk.Security.Common.Rol _Rol = new Rol ();
 
         public Fwk.Security.Common.Rol Rol
         {
             get { return _Rol; }
             set { _Rol = value; }
         }
-        string _AppName;
-
-        public string ApplicationName
-        {
-            get { return _AppName; }
-            set { _AppName = value; }
-        }
-
     }
 
 

@@ -32,6 +32,8 @@ namespace Security
         public void Rules_CRUD_No_Service()
         {
             base.Tx = new TransactionScopeHandler(TransactionalBehaviour.RequiresNew, IsolationLevel.ReadCommitted, new TimeSpan(0, 1, 15));
+
+            base.Tx.InitScope();
             CreateRule_No_Service();
            
             UpdateRules_No_Service();
@@ -45,8 +47,7 @@ namespace Security
         }
         
       
-
-     
+    
         //[TestMethod]
         public void CreateRule_No_Service()
         {
@@ -57,7 +58,7 @@ namespace Security
 
             req.BusinessData.Name = "rule_1";
             req.BusinessData.Expression = "(R:Admin)";
-
+            req.SecurityProviderName = "providerTest";
             try
             {
                 CreateRuleRes res = svc.Execute(req);
@@ -85,7 +86,7 @@ namespace Security
             req.BusinessData.FwkAuthorizationRuleList.Add(new Fwk.Security.FwkAuthorizationRule("rule_1", "(R:Admin OR R:User)"));
             //req.BusinessData.FwkAuthorizationRuleList.Add(new Fwk.Security.FwkAuthorizationRule("rule_2", "(R:Admin OR R:User)"));
 
-
+            req.SecurityProviderName = "providerTest";
             try
             {
                 UpdateRulesRes res = svc.Execute(req);
@@ -110,7 +111,7 @@ namespace Security
             SearchAllRulesService svc = new SearchAllRulesService();
             //res.ContextInformation.CompanyId = "bigbang";
             //req.SecurityProviderName = "tesa";
-
+            req.SecurityProviderName = "providerTest";
 
             try
             {
@@ -138,8 +139,8 @@ namespace Security
             SearchAllRulesReq req = new SearchAllRulesReq();
             SearchAllRulesRes res = new SearchAllRulesRes();
             SearchAllRulesService svc = new SearchAllRulesService();
-            //res.ContextInformation.CompanyId = "bigbang";
-            //req.SecurityProviderName = "tesa";
+            req.SecurityProviderName = "providerTest";
+  
 
 
             try

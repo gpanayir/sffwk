@@ -286,6 +286,24 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ther rule  {0} already exists..
+        /// </summary>
+        public static string Rule_ExistError {
+            get {
+                return ResourceManager.GetString("Rule_ExistError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The rule {0} not exist.
+        /// </summary>
+        public static string Rule_NotExist {
+            get {
+                return ResourceManager.GetString("Rule_NotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are some problems while trying to get all rule information, please check the application name  &quot;{0}&quot; ..
         /// </summary>
         public static string Rule_ProblemGetingAlls_Error {

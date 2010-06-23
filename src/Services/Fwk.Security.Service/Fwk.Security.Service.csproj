@@ -90,7 +90,7 @@
     <Compile Include="ISVC\Roles\DeleteRole.cs" />
     <Compile Include="SVC\Roles\CreateRoleService.cs" />
     <Compile Include="SVC\Roles\SearchAllRolesService.cs" />
-    <Compile Include="ISVC\Roles\GetAllRoles.cs" />
+    <Compile Include="ISVC\Roles\SearchAllRoles.cs" />
     <Compile Include="ISVC\RulesCategory\DeleteRulesCategory.cs" />
     <Compile Include="ISVC\RulesCategory\UpdateRulesCategory.cs" />
     <Compile Include="ISVC\Users\AuthenticateUser.cs" />
@@ -102,7 +102,7 @@
     <Compile Include="ISVC\Rules\SearchAllRules.cs" />
     <Compile Include="ISVC\Rules\UpdateRules.cs" />
     <Compile Include="ISVC\Roles\AssignRolesToUser.cs" />
-    <Compile Include="ISVC\Roles\GetRolesForUser.cs" />
+    <Compile Include="ISVC\Roles\SearchRolesForUser.cs" />
     <Compile Include="SVC\Roles\SearchRolesForUserService.cs" />
     <Compile Include="SVC\Rules\CreateRuleService.cs" />
     <Compile Include="SVC\Rules\SearchAllRulesService.cs" />

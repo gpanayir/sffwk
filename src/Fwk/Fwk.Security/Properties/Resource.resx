@@ -317,4 +317,10 @@ Result: user is authorized</value>
   <data name="RuleProvider_NotExist" xml:space="preserve">
     <value>The rule provider fot provider named {0} not exist in config file.-  Check the following rule provider named  "{0}"  in the appconfig file.-</value>
   </data>
+  <data name="Rule_ExistError" xml:space="preserve">
+    <value>Ther rule  {0} already exists.</value>
+  </data>
+  <data name="Rule_NotExist" xml:space="preserve">
+    <value>The rule {0} not exist</value>
+  </data>
 </root>

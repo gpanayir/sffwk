@@ -18,7 +18,7 @@ namespace Fwk.Security
 
         /// <summary>
         /// Obtiene todos los Roles
-        /// The GetAllRoles method calls the RoleProvider.GetAllRoles method of the default role provider to get a list of all the roles from the data source for an application. 
+        /// The GetAllRoles method calls the RoleProvider.GetAllRoles method of the  role provider to get a list of all the roles from the data source for an application. 
         /// Only the roles for the application that is specified in the ApplicationName property are retrieved.
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
@@ -27,7 +27,9 @@ namespace Fwk.Security
         {
             Rol r;
             RolList wRoleList = new RolList();
-
+            if(string.IsNullOrEmpty(providerName))
+               providerName = GetSqlMembershipProvider( providerName).Name;
+            
             try
             {
                 foreach (string s in Roles.Providers[providerName].GetAllRoles())
@@ -67,6 +69,9 @@ namespace Fwk.Security
         {
             Rol r;
             RolList wRoleList = new RolList();
+            if (string.IsNullOrEmpty(providerName))
+                providerName = GetSqlMembershipProvider(providerName).Name;
+
             try
             {
                 foreach (string s in Roles.Providers[providerName].GetRolesForUser(userName))
@@ -95,9 +100,11 @@ namespace Fwk.Security
         /// <returns>String[] con los roles del usuario</returns>
         public static String[] GetRolesForUser_StringArray(String userName, string providerName)
         {
-            
+            if (string.IsNullOrEmpty(providerName))
+                providerName = GetSqlMembershipProvider(providerName).Name;
             try
             {
+              
                 return  Roles.Providers[providerName].GetRolesForUser(userName);
                 
             }
@@ -122,6 +129,8 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void CreateRole(String roleName, string description, string providerName)
         {
+            if (string.IsNullOrEmpty(providerName))
+                providerName = GetSqlMembershipProvider(providerName).Name;
             try
             {
                 if (!Roles.RoleExists(roleName))
@@ -152,6 +161,10 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void DeleteRole(String roleName, string providerName)
         {
+
+            if (string.IsNullOrEmpty(providerName))
+                providerName = GetSqlMembershipProvider(providerName).Name;
+
             try
             {
 
@@ -186,13 +199,13 @@ namespace Fwk.Security
 
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             StringBuilder str = new StringBuilder("UPDATE aspnet_Roles SET  Description = '[Description]' WHERE (LoweredRoleName = LOWER('[RoleName]')) AND(ApplicationId = CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]') )");
-            Guid id = GetApplication(wProvider.ApplicationName, GetProvider_ConnectionStringName(providerName));
+            Guid id = GetApplication(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
             Database wDataBase = null;
             DbCommand wCmd = null;
             try
             {
 
-                wDataBase = DatabaseFactory.CreateDatabase(GetProvider_ConnectionStringName(providerName));
+                wDataBase = DatabaseFactory.CreateDatabase(GetProvider_ConnectionStringName(wProvider.Name));
 
                 str.Replace("[ApplicationId]", id.ToString());
                 str.Replace("[Description]", description);
@@ -219,7 +232,8 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void CreateUsersToRole(string rolName, List<User> userList, string providerName)
         {
-
+            if (string.IsNullOrEmpty(providerName))
+                providerName = GetSqlMembershipProvider(providerName).Name;
             try
             {
                 ///var users = from s in userList select s.UserName;
