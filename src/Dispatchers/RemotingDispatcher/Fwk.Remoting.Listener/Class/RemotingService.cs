@@ -80,9 +80,9 @@ namespace Fwk.Remoting.Listener
             //RemotingHelper.WriteLog("Servicio de host de Remoting iniciado.", EventLogEntryType.Information);
             Fwk.Logging.Event ev = new Event();
             ev.LogType = EventType.Information;
-            ev.Machine = ex.Machine;
-            ev.User = ex.UserName;
-            ev.Message = "Servicio de host de Remoting iniciado.";
+            ev.Machine = Environment.MachineName;
+            ev.User = Environment.UserName;
+            ev.Message.Text = "Servicio de host de Remoting iniciado.";
             StaticLogger.Log(TargetType.WindowsEvent, ev, null, null);
         }
         #endregion
@@ -96,9 +96,9 @@ namespace Fwk.Remoting.Listener
             }
             Fwk.Logging.Event ev = new Event();
             ev.LogType = EventType.Information;
-            ev.Machine = ex.Machine;
-            ev.User = ex.UserName;
-            ev.Message = "Servicio de host de Remoting detenido.";
+            ev.Machine = Environment.MachineName;
+            ev.User = Environment.UserName;
+            ev.Message.Text = "Servicio de host de Remoting detenido.";
             StaticLogger.Log(TargetType.WindowsEvent, ev, null, null);
            
         }
