@@ -242,6 +242,34 @@ namespace Fwk.Security.Common
         /// </summary>
         public User()
         {}
+        /// <summary>
+        /// Crea el array de roles.- Eleimina los qe exuisten 
+        /// </summary>
+        /// <param name="RolList"><see cref="RolList"/></param>
+        public void AddRoles(RolList rolList)        
+        {
+            _Roles = new String[rolList.Count];
+            int i = 0;
+            foreach (Rol r in rolList)
+            {
+                _Roles[i] = r.RolName;
+                i++;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene la lista de roles de usuarios en formato de RolList
+        /// </summary>
+        /// <returns></returns>
+        public RolList GetRolList()
+        {
+            RolList lst = new RolList();
+            foreach (string r in _Roles)
+            {
+                lst.Add(new Rol (r));
+            }
+            return lst;
+        }
     }
 
     /// <summary>

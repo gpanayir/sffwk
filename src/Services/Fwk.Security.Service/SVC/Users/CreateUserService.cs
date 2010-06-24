@@ -22,10 +22,10 @@ namespace Fwk.Security.SVC
             CreateUserRes wRes = new CreateUserRes();
             UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
 
-            wUserBC.Create(pServiceRequest.BusinessData.User,pServiceRequest.BusinessData.RolList);
+            wUserBC.Create(pServiceRequest.BusinessData.User);
 
             //TODO: Ver por que se çretorna la entidad completa
-            wRes.BusinessData.UserBE = pServiceRequest.BusinessData.User;
+            wRes.BusinessData.UserId = pServiceRequest.BusinessData.User.UserId.Value;
             
 
             return wRes;

@@ -62,7 +62,7 @@ namespace Security
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_2", ""));
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_3", ""));
 
-            req.SecurityProviderName = "providerTest";
+            req.SecurityProviderName = SecurityProviderName;
 
             Int32? id = null;
             try
@@ -98,7 +98,7 @@ namespace Security
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_1", ""));
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_3", ""));
             req.BusinessData.FwkRulesInCategoryList.Add(new FwkAuthorizationRule("Rule_4", ""));
-            req.SecurityProviderName = "providerTest";
+            req.SecurityProviderName = SecurityProviderName;
 
             try
             {
@@ -124,7 +124,7 @@ namespace Security
             DeleteRulesCategoryService svc = new DeleteRulesCategoryService();
             DeleteRulesCategoryReq req = new DeleteRulesCategoryReq();
             DeleteRulesCategoryRes res = new DeleteRulesCategoryRes();
-            req.SecurityProviderName = "providerTest";
+            req.SecurityProviderName = SecurityProviderName;
             req.BusinessData.CategoryId = id;
     
 
@@ -151,7 +151,7 @@ namespace Security
             SearchAllRulesCategoryReq req = new SearchAllRulesCategoryReq();
             SearchAllRulesCategoryRes res;
             SearchAllRulesCategoryService svc = new SearchAllRulesCategoryService();
-            req.SecurityProviderName = "providerTest";
+            req.SecurityProviderName = SecurityProviderName;
 
             try
             {

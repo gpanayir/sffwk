@@ -34,10 +34,9 @@ namespace Fwk.Security.BC
         /// </summary>
         /// <param name="pUser">UsuarioBE a crear</param>
         /// <param name="CustomParameters">Lista de parametros customizados</param>        
-        /// <param name="pRolList">Roles del usuario</param>
         /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
         /// <returns>UserId del nuevo usuario.</returns>
-        public void Create(User pUser,RolList pRolList)
+        public void Create(User pUser)
         {
                         
             //TODO: Ver tema de nuevo GUID para el usuario 
@@ -55,8 +54,12 @@ namespace Fwk.Security.BC
             {
                 //UsersDAC.Create(pUser, CustomParameters, _ProviderName, pCustomUserTable);
                 // Se insertan los roles
-                if (pRolList != null)
-                    FwkMembership.CreateRolesToUser(pRolList, pUser.UserName, _ProviderName);
+                if (pUser.Roles != null)
+                {
+                    RolList roleList = pUser.GetRolList();
+
+                    FwkMembership.CreateRolesToUser(roleList, pUser.UserName, _ProviderName);
+                }
             }
             else
             {
@@ -74,9 +77,8 @@ namespace Fwk.Security.BC
         /// <param name="pUser">Usuario que se desea actualizar.</param>
         /// <param name="userName">Nombre no modificado del usuario.- El nuevo nombre de usuario en caso de modifucacion 
         /// va en el parametro pUser </param>
-        /// <param name="pRolList">Lista de roles para actualizar</param>
         /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
-        public void Update(User pUser,string userName,  RolList pRolList)
+        public void Update(User pUser,string userName)
         {
             Validate(pUser, false);
             
@@ -85,11 +87,12 @@ namespace Fwk.Security.BC
             FwkMembership.UpdateUser(pUser,userName, _ProviderName);
             
             // Se actualizan los roles que posee el usuario
-            if (pRolList != null)
+            if (pUser.Roles != null)
             {
                 RolList usrRoles = FwkMembership.GetRolesForUser(pUser.UserName,_ProviderName);
                 FwkMembership.RemoveUserFromRoles(pUser.UserName, usrRoles, _ProviderName);
-                FwkMembership.CreateRolesToUser(pRolList, pUser.UserName, _ProviderName);
+                RolList newRolList = pUser.GetRolList();
+                FwkMembership.CreateRolesToUser(newRolList, pUser.UserName, _ProviderName);
             }
         }             
 

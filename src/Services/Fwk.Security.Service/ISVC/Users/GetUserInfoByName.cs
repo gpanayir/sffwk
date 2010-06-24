@@ -32,8 +32,14 @@ namespace Fwk.Security.ISVC.GetUserInfoByParams
             get { return _UserName; }
             set { _UserName = value; }
         }
-     
 
+        int? _UserId;
+
+        public int? UserId
+        {
+            get { return _UserId; }
+            set { _UserId = value; }
+        }
     }
 
 

@@ -34,13 +34,6 @@ namespace Fwk.Security.ISVC.RemoveUserFromRole
             set { _UserName = value; }
         }
 
-        string _AppName;
-
-        public string ApplicationName
-        {
-            get { return _AppName; }
-            set { _AppName = value; }
-        }
     }
 
     

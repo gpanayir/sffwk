@@ -58,11 +58,11 @@ namespace Security
 
             req.BusinessData.Name = "rule_1";
             req.BusinessData.Expression = "(R:Admin)";
-            req.SecurityProviderName = "providerTest";
+            req.SecurityProviderName =     SecurityProviderName;
             try
             {
                 CreateRuleRes res = svc.Execute(req);
-                
+
             }
             catch (Exception ex)
             {
@@ -86,7 +86,7 @@ namespace Security
             req.BusinessData.FwkAuthorizationRuleList.Add(new Fwk.Security.FwkAuthorizationRule("rule_1", "(R:Admin OR R:User)"));
             //req.BusinessData.FwkAuthorizationRuleList.Add(new Fwk.Security.FwkAuthorizationRule("rule_2", "(R:Admin OR R:User)"));
 
-            req.SecurityProviderName = "providerTest";
+            req.SecurityProviderName = SecurityProviderName;
             try
             {
                 UpdateRulesRes res = svc.Execute(req);
@@ -111,7 +111,7 @@ namespace Security
             SearchAllRulesService svc = new SearchAllRulesService();
             //res.ContextInformation.CompanyId = "bigbang";
             //req.SecurityProviderName = "tesa";
-            req.SecurityProviderName = "providerTest";
+            req.SecurityProviderName = SecurityProviderName;
 
             try
             {
@@ -139,7 +139,7 @@ namespace Security
             SearchAllRulesReq req = new SearchAllRulesReq();
             SearchAllRulesRes res = new SearchAllRulesRes();
             SearchAllRulesService svc = new SearchAllRulesService();
-            req.SecurityProviderName = "providerTest";
+            req.SecurityProviderName = SecurityProviderName;
   
 
 

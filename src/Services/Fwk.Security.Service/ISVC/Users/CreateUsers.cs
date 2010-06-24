@@ -35,7 +35,7 @@ namespace Fwk.Security.ISVC.CreateUsers
     public class Param : Entity
     {
         private User _User;
-        private RolList _RolList = new RolList();
+
 
 
         #region [Properties]
@@ -46,11 +46,7 @@ namespace Fwk.Security.ISVC.CreateUsers
             set { _User = value; }
         }
 
-        public RolList RolList
-        {
-            get { return _RolList; }
-            set { _RolList = value; }
-        }
+    
         
        
 
@@ -66,11 +62,11 @@ namespace Fwk.Security.ISVC.CreateUsers
     [XmlInclude(typeof(Result)), Serializable]
     public class Result : Entity
     {
-        private User _UserBE;
-        public User UserBE
+        Int32 _UserId;
+        public Int32 UserId
         {
-            get { return _UserBE; }
-            set { _UserBE = value; }
+            get { return _UserId; }
+            set { _UserId = value; }
         }
     }    
 }

@@ -3,13 +3,8 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-
-
 using Fwk.Security.ISVC;
 using Fwk.Security.BE;
-
-
 using Fwk.Security;
 using Fwk.Security.SVC;
 using Fwk.Bases.Test;
@@ -43,24 +38,20 @@ namespace Fwk.Security.Service.Test
         public void Roles_CRUD_No_Service()
         {
             base.Tx = new TransactionScopeHandler(TransactionalBehaviour.RequiresNew, IsolationLevel.ReadCommitted, new TimeSpan(0, 1, 15));
-
             base.Tx.InitScope();
             CreateRole_No_Service("Role_1");
 
-          
+            List<User> userList = Fwk.Security.FwkMembership.GetAllUsers(null);
+            if (userList.Count > 0)
+            {
+                AssignRolesToUser_No_Service(userList[0].UserName, "Role_1");
+            }
+            else
+            {
+                Assert.Inconclusive("No se encontraron usuarios para testear AssignRolesToUser_No_Service");
+            }
 
-           List<User> userList = Fwk.Security.FwkMembership.GetAllUsers(null);
-           if (userList.Count > 0)
-           {
-               AssignRolesToUser_No_Service(userList[0].UserName, "Role_1");
-
-           }
-           else
-           {
-               Assert.Inconclusive("No se encontraron usuarios para testear AssignRolesToUser_No_Service");
-           }
-
-           DeleteRoles_No_Service("Role_1");
+            DeleteRoles_No_Service("Role_1");
             //bool updateOK = res.BusinessData.Any<FwkAuthorizationRole>(r => r.Name.Equals("Role_1", StringComparison.OrdinalIgnoreCase)
             //    && r.Expression.Equals("(R:Admin OR R:User)", StringComparison.OrdinalIgnoreCase));
 
@@ -78,7 +69,7 @@ namespace Fwk.Security.Service.Test
             CreateRoleReq req = new CreateRoleReq();
             
             req.BusinessData.Rol.RolName = rolName;
-            req.SecurityProviderName = "providerTest";
+            req.SecurityProviderName = SecurityProviderName;
 
             try
             {
