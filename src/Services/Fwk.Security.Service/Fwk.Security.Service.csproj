@@ -72,7 +72,7 @@
     <Compile Include="Back\UsersBC.cs" />
     <Compile Include="Back\UsersDAC.cs" />
     <Compile Include="ISVC\ActiveDirectory\SearchAllUsers.cs" />
-    <Compile Include="ISVC\SearchDomainsUrls\SearchDomainsUrls.cs" />
+    <Compile Include="ISVC\ActiveDirectory\SearchDomainsUrls.cs" />
     <Compile Include="ISVC\Users\UserInfo.cs">
       <SubType>Code</SubType>
     </Compile>
