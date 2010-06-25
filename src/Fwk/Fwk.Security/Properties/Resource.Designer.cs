@@ -250,6 +250,15 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role {0} is not empty, have users associates..
+        /// </summary>
+        public static string Role_NotEmpty {
+            get {
+                return ResourceManager.GetString("Role_NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The {0} not contain rules.-.
         /// </summary>
         public static string Role_WithoutRules {
@@ -264,15 +273,6 @@ namespace Fwk.Security.Properties {
         public static string RoleExist {
             get {
                 return ResourceManager.GetString("RoleExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Role {0} is not empty, have users associates..
-        /// </summary>
-        public static string RoleNotEmpty {
-            get {
-                return ResourceManager.GetString("RoleNotEmpty", resourceCulture);
             }
         }
         

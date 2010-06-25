@@ -76,6 +76,9 @@ namespace Fwk.Security
             }
         }
         int _CategoryId;
+        /// <summary>
+        /// 
+        /// </summary>
         public int CategoryId
         {
             get
@@ -87,13 +90,18 @@ namespace Fwk.Security
                 _CategoryId = value;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public System.Guid ApplicationId
         {
             get { return _ApplicationId; }
             set { _ApplicationId = value; }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public System.String ApplicationName
         {
             get { return _ApplicationName; }
@@ -117,15 +125,19 @@ namespace Fwk.Security
             throw new NotImplementedException("No se implementa GetDataSet en esta entidad");
         }
 
-      
 
-        
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string GetXml()
         {
             throw new NotImplementedException("No se implementa GetXml en esta entidad");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void SetXml(string pXmlData)
         {
             throw new NotImplementedException("No se implementa SetXml en esta entidad");
@@ -155,6 +167,9 @@ namespace Fwk.Security
         #endregion
     }
 
+    /// <summary>
+    /// Lista de reglas de autorizacion
+    /// </summary>
     [XmlRoot("FwkAuthorizationRuleList"), SerializableAttribute]
     public class FwkAuthorizationRuleList : List<FwkAuthorizationRule>, IEntity
     {
@@ -190,6 +205,9 @@ namespace Fwk.Security
 
         #endregion
     }
+    /// <summary>
+    /// Categorias de reglass
+    /// </summary>
     [Serializable]
     public class FwkCategory:Entity
     {

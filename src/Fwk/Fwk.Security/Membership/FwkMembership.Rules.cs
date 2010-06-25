@@ -365,7 +365,7 @@ namespace Fwk.Security
 
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
-                    wExist = dc.aspnet_Rules.Any(s => s.Equals(pRuleName) && s.ApplicationId == wApplicationId);
+                    wExist = dc.aspnet_Rules.Any(s => s.name.Equals(pRuleName) && s.ApplicationId == wApplicationId);
                 }
 
 

@@ -34,7 +34,7 @@ namespace Fwk.Security.SVC
             }
 
             //Si PasswordOnly = true pasa por alto la actuaizacion del usuario
-            if (pServiceRequest.BusinessData.PasswordOnly == true)
+            if (pServiceRequest.BusinessData.PasswordOnly == false)
             {
                 wUserBC.Update(pServiceRequest.BusinessData.UsersBE,pServiceRequest.BusinessData.UserName);                
             }

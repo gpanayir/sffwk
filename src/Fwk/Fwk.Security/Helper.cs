@@ -12,7 +12,9 @@ using System.Web.Security;
 namespace Fwk.Security.Common
 {
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class WaitCursorHelper : IDisposable
     {
         

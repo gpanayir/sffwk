@@ -7,12 +7,17 @@ using System.Data;
 
 namespace Fwk.Security.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class FwkIdentity :ObjectDomain, IIdentity
     {
         #region {Declaraciones}
         private List<ObjectDomainGroup> _ActiveDirectoryGroups = null;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public List<ObjectDomainGroup> ActiveDirectoryGroups
         {
             get
@@ -28,19 +33,25 @@ namespace Fwk.Security.Common
         private string  _AuthenticationType;
 
         private string _FirstName, _LastName, _Mail, _UserPrincipalName,  _DistinguishedName, _Description, _Domain;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Domain
         {
             get { return _Domain; }
             set { _Domain = value; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Description
         {
             get { return _Description; }
             set { _Description = value; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string DistinguishedName
         {
             get { return _DistinguishedName; }
@@ -158,7 +169,7 @@ namespace Fwk.Security.Common
         /// </summary>
         public void  RefreshADGroups()
         {
-            FwkActyveDirectory _FwkActyveDirectory = new FwkActyveDirectory(this.Domain);
+            //FwkActyveDirectory _FwkActyveDirectory = new FwkActyveDirectory(this.Domain);
             //_ActiveDirectoryGroups = _FwkActyveDirectory.GetGroupForUser(this.Name);
         }
     }

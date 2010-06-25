@@ -204,7 +204,9 @@ namespace Fwk.Security.Common
             set{m_Email = value;}
         }
     
-
+        /// <summary>
+        /// 
+        /// </summary>
         public AuthenticationModeEnum AuthenticationMode
         {
             get { return _AuthenticationMode; }
@@ -309,19 +311,27 @@ namespace Fwk.Security.Common
             _Description = description;
         }
         String _RolName;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public String RolName
         {
             get { return _RolName; }
             set { _RolName = value; }
         }
         String _Description;
+        /// <summary>
+        /// 
+        /// </summary>
         public String Description
         {
             get { return _Description; }
             set { _Description = value; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return _RolName;

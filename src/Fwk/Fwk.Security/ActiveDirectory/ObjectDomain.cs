@@ -72,11 +72,16 @@ namespace Fwk.Security.Common
 
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public class ObjectDomainGroup : ObjectDomain
     {
         private List<FwkIdentity> _ActiveDirectoryUsers = null;
         List<ObjectDomainGroup> _ActiveDirectoryMembersGroups = null;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public List<ObjectDomainGroup> ActiveDirectoryMembersGroups
         {
             get { return _ActiveDirectoryMembersGroups; }
@@ -87,7 +92,9 @@ namespace Fwk.Security.Common
                 _ActiveDirectoryMembersGroups = value;
             }
         }
-    
+        /// <summary>
+        /// 
+        /// </summary>
         public List<FwkIdentity> Users
         {
             get
@@ -102,6 +109,10 @@ namespace Fwk.Security.Common
         #region Declarations
         string _CN;
         List<String> _OU;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string CN
         {
             get { return _CN; }
@@ -109,20 +120,26 @@ namespace Fwk.Security.Common
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public List<String> OU
         {
             get { return _OU; }
             set { _OU = value; }
         }
         private string _FirstName,  _UserPrincipalName,  _DistinguishedName, _Description, _Domain;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Domain
         {
             get { return _Domain; }
             set { _Domain = value; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Description
         {
             get { return _Description; }
@@ -243,7 +260,7 @@ namespace Fwk.Security.Common
         void FillUsers()
         {
 
-            FwkActyveDirectory _FwkActyveDirectory = new FwkActyveDirectory(_Domain);
+            //FwkActyveDirectory _FwkActyveDirectory = new FwkActyveDirectory(_Domain);
             //_FwkActyveDirectory.GetUsersForGroup(this.Name, out _ActiveDirectoryUsers,out _ActiveDirectoryMembersGroups);
         }
 

@@ -12,23 +12,41 @@ namespace Fwk.Security.ActiveDirectory
     /// </summary>
     public static class ADProperties
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String OBJECTCLASS = "objectClass";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String CONTAINERNAME = "cn";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String LASTNAME = "sn";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String COUNTRYNOTATION = "c";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String CITY = "l";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String STATE = "st";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String TITLE = "title";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String POSTALCODE = "postalCode";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String PHYSICALDELIVERYOFFICENAME = "physicalDeliveryOfficeName";
 
         /// <summary>
@@ -47,34 +65,58 @@ namespace Fwk.Security.ActiveDirectory
         /// CN=GS_CalidadTP_R,OU=Avanzados,OU=Analistas,OU=Seguridad,DC=actionlinecba,DC=org
         /// </summary>
         public const String DISTINGUISHEDNAME = "distinguishedName";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String INSTANCETYPE = "instanceType";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String WHENCREATED = "whenCreated";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String WHENCHANGED = "whenChanged";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String DISPLAYNAME = "displayName";
 
         /// <summary>
         /// uSNCreated
         /// </summary>
         public const String USNCREATED = "uSNCreated";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MEMBEROF = "memberOf";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String USNCHANGED = "uSNChanged";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String COUNTRY = "co";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String DEPARTMENT = "department";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String COMPANY = "company";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String PROXYADDRESSES = "proxyAddresses";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String STREETADDRESS = "streetAddress";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String DIRECTREPORTS = "directReports";
 
         /// <summary>
@@ -160,9 +202,13 @@ namespace Fwk.Security.ActiveDirectory
         /// Reprecenta la propiedad: sAMAccountType
         /// </summary>
         public const String SAMACCOUNTTYPE = "sAMAccountType";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String SHOWINADDRESSBOOK = "showInAddressBook";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String LEGACYEXCHANGEDN = "legacyExchangeDN";
 
         /// <summary>
@@ -170,9 +216,13 @@ namespace Fwk.Security.ActiveDirectory
         ///  Nombre usuario como jhendrix@actionline.com
         /// </summary>
         public const String USERPRINCIPALNAME = "userPrincipalName";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String EXTENSION = "ipPhone";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String SERVICEPRINCIPALNAME = "servicePrincipalName";
         
         /// <summary>
@@ -180,49 +230,93 @@ namespace Fwk.Security.ActiveDirectory
         /// Ej: CN=Group,CN=Schema,CN=Configuration,DC=actionlinecba,DC=org
         /// </summary>
         public const String OBJECTCATEGORY = "objectCategory";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String DSCOREPROPAGATIONDATA = "dSCorePropagationData";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String LASTLOGONTIMESTAMP = "lastLogonTimestamp";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String EMAILADDRESS = "mail";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MANAGER = "manager";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MOBILE = "mobile";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String PAGER = "pager";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String FAX = "facsimileTelephoneNumber";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String HOMEPHONE = "homePhone";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MSEXCHUSERACCOUNTCONTROL = "msExchUserAccountControl";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MDBUSEDEFAULTS = "mDBUseDefaults";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MSEXCHMAILBOXSECURITYDESCRIPTOR = "msExchMailboxSecurityDescriptor";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String HOMEMDB = "homeMDB";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MSEXCHPOLICIESINCLUDED = "msExchPoliciesIncluded";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String HOMEMTA = "homeMTA";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MSEXCHRECIPIENTTYPEDETAILS = "msExchRecipientTypeDetails";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MAILNICKNAME = "mailNickname";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MSEXCHHOMESERVERNAME = "msExchHomeServerName";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MSEXCHVERSION = "msExchVersion";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MSEXCHRECIPIENTDISPLAYTYPE = "msExchRecipientDisplayType";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String MSEXCHMAILBOXGUID = "msExchMailboxGuid";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String NTSECURITYDESCRIPTOR = "nTSecurityDescriptor";
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const String DESCRIPTION = "description";
         
 

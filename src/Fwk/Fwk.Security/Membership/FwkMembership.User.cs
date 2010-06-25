@@ -41,12 +41,12 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void CreateUser(string userName, string password, string email, string providerName)
         {
-            //SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
             //TODO: Ver por que esta declaracion  FwkIdentity
             //FwkIdentity wFwkIdentity = new FwkIdentity();
             MembershipCreateStatus status;
             //wProvider.CreateUser(userName, password, email, string.Empty, string.Empty, true, status);
-            FwkMembership.CreateUser(userName, password, email, null, null, true, out  status, providerName);
+            FwkMembership.CreateUser(userName, password, email, null, null, true, out  status, wProvider.Name);
         }
 
         /// <summary>
@@ -58,12 +58,13 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void CreateUser(string userName, string password, string providerName)
         {
-            //SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
+            
 
             //TODO: Ver por que esta declaracion  FwkIdentity
             //FwkIdentity wFwkIdentity = new FwkIdentity();            
             MembershipCreateStatus s;
-            CreateUser(userName, password, string.Empty, null, null, true, out s, providerName);
+            CreateUser(userName, password, string.Empty, null, null, true, out s, wProvider.Name);
         }
 
 
@@ -162,7 +163,7 @@ namespace Fwk.Security
         /// Obtiene una lista de usuarios
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
-        /// <returns><see cref="List<User>"/></returns>
+        /// <returns>lista de <see cref="User"/></returns>
         public static List<User> GetAllUsers(string providerName)
         {
             SqlMembershipProvider provider = GetSqlMembershipProvider(providerName);
@@ -235,8 +236,8 @@ namespace Fwk.Security
         /// <returns></returns>
         static MembershipUser GetMembershipUser(String userName, string providerName)
         {
-            SqlMembershipProvider wRrovider = GetSqlMembershipProvider(providerName);
-            MembershipUser wMembershipUser = wRrovider.GetUser(userName, false);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
+            MembershipUser wMembershipUser = wProvider.GetUser(userName, false);
             
             // block the user
             if (wMembershipUser != null)
@@ -259,14 +260,14 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void UnApproveUser(String userName, string providerName)
         {
-            SqlMembershipProvider wRrovider = GetSqlMembershipProvider(providerName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
             MembershipUser wUser = GetMembershipUser(userName, providerName);
 
             // block the user
             if (wUser != null)
             {
                 wUser.IsApproved = false;
-                wRrovider.UpdateUser(wUser);
+                wProvider.UpdateUser(wUser);
             }
             else
             {
@@ -285,14 +286,14 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void ApproveUser(String userName, string providerName)
         {
-            SqlMembershipProvider wRrovider = GetSqlMembershipProvider(providerName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
             MembershipUser wUser = GetMembershipUser(userName, providerName);
 
             // block the user
             if (wUser != null)
             {
                 wUser.IsApproved = true;
-                wRrovider.UpdateUser(wUser);
+                wProvider.UpdateUser(wUser);
 
             }
             else
@@ -313,8 +314,8 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static bool UnlockUser(String userName, string providerName)
         {
-
-            MembershipUser wUser = GetMembershipUser(userName, providerName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
+            MembershipUser wUser = GetMembershipUser(userName, wProvider.Name);
 
 
             // block the user
@@ -341,8 +342,8 @@ namespace Fwk.Security
         public static String ResetUserPassword(String userName, string providerName)
         {
             String wNewPassword;
-
-            MembershipUser wUser = GetMembershipUser(userName, providerName);
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
+            MembershipUser wUser = GetMembershipUser(userName, wProvider.Name);
             // block the user
             if (wUser != null)
             {
@@ -379,15 +380,18 @@ namespace Fwk.Security
         /// Obtiene una lista de usuarios de un determinado rol.- Solo obtiene nombre de usuario
         /// </summary>
         /// <param name="roleName">Nombre del rol</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>lista de <see cref="User"/> </returns>
         public static List<User> GetUsersInRole(String roleName, string providerName)
         {
-            
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
+
             User wUserByApp;
             List<User> wUsersList = new List<User>();
+           
             try
             {
-                foreach (string s in Roles.Providers[providerName].GetUsersInRole(roleName))
+                foreach (string s in Roles.Providers[wProvider.Name].GetUsersInRole(roleName))
                 {
                     wUserByApp = new User(s);
                     wUsersList.Add(wUserByApp);
@@ -417,10 +421,11 @@ namespace Fwk.Security
         {
 
             User wUserByApp;
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
             List<User> wUsersList = new List<User>();
             try
             {
-                foreach (string userName in Roles.Providers[providerName].GetUsersInRole(roleName))
+                foreach (string userName in Roles.Providers[wProvider.Name].GetUsersInRole(roleName))
                 {
                     wUserByApp = FwkMembership.GetUser(userName, providerName);
                     wUsersList.Add(wUserByApp);
@@ -447,10 +452,11 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void CreateRolesToUser(RolList pRolList, String userName, string providerName)
         {
-
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
+            
             try
             {
-                Roles.Providers[providerName].AddUsersToRoles(new string[] { userName }, pRolList.GetArrayNames() );
+                Roles.Providers[wProvider.Name].AddUsersToRoles(new string[] { userName }, pRolList.GetArrayNames());
 
                 //foreach (Rol rol in pRolList)
                 //{
@@ -482,10 +488,11 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void RemoveUserFromRole(String userName, String roleName, string providerName)
         {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             try
             {
                 if (!String.IsNullOrEmpty(roleName))
-                    Roles.Providers[providerName].RemoveUsersFromRoles(new string[] { userName }, new string[] { roleName });
+                    Roles.Providers[wProvider.Name].RemoveUsersFromRoles(new string[] { userName }, new string[] { roleName });
 
             }
             catch (Exception ex)
@@ -505,13 +512,14 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void RemoveUserFromRoles(String userName, RolList pRolList, string providerName)
         {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             try
             {
                 foreach (Rol rol in pRolList)
                 {
                     if (Roles.IsUserInRole(userName, rol.RolName))
                         //Roles.RemoveUserFromRoles(userName, new string[] { rol.RolName });
-                        Roles.Providers[providerName].RemoveUsersFromRoles(new string[] { userName }, pRolList.GetArrayNames());
+                        Roles.Providers[wProvider.Name].RemoveUsersFromRoles(new string[] { userName }, pRolList.GetArrayNames());
 
                 }
             }
@@ -532,10 +540,11 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void RemoveUsersFromRole(String[] pUsersName, String roleName, string providerName)
         {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             try
             {
                // Roles.RemoveUsersFromRole(pUsersName, roleName);
-                Roles.Providers[providerName].RemoveUsersFromRoles(pUsersName, new string[] { roleName });
+                Roles.Providers[wProvider.Name].RemoveUsersFromRoles(pUsersName, new string[] { roleName });
             }
             catch (Exception ex)
             {
@@ -554,9 +563,10 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void RemoveUsersFromRoles(String[] pUsersName, RolList pRolList, string providerName)
         {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             try
             {
-                Roles.Providers[providerName].RemoveUsersFromRoles(pUsersName, pRolList.GetArrayNames());
+                Roles.Providers[wProvider.Name].RemoveUsersFromRoles(pUsersName, pRolList.GetArrayNames());
                 
             }
             catch (Exception ex)

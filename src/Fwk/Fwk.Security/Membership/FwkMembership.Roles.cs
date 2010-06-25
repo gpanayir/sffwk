@@ -81,6 +81,10 @@ namespace Fwk.Security
                 }
 
             }
+            catch (TechnicalException err)
+            {
+                throw err;
+            }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
@@ -172,15 +176,20 @@ namespace Fwk.Security
                     Roles.Providers[providerName].DeleteRole(roleName, true);
                 else
                 {
-                    TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.RoleNotEmpty, roleName));
+                    TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.Role_NotEmpty, roleName));
                     ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                     te.ErrorId = "4006";
                     throw te;
 
                 }
             }
+            catch (TechnicalException err)
+            {
+                throw err;
+            }
             catch (Exception ex)
             {
+
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
                 ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 te.ErrorId = "4000";
@@ -215,6 +224,10 @@ namespace Fwk.Security
                 wCmd.CommandType = CommandType.Text;
                 wDataBase.ExecuteNonQuery(wCmd);
             }
+            catch (TechnicalException err)
+            {
+                throw err;
+            }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
@@ -245,6 +258,10 @@ namespace Fwk.Security
                     }
                 }
 
+            }
+            catch (TechnicalException err)
+            {
+                throw err;
             }
             catch (Exception ex)
             {

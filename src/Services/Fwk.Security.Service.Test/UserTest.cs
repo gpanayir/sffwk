@@ -229,47 +229,7 @@ namespace ServiceTest
         public void User_CRUD_No_Service()
         {
             base.Tx = new TransactionScopeHandler(TransactionalBehaviour.RequiresNew, IsolationLevel.ReadCommitted, new TimeSpan(0, 1, 15));
-
             base.Tx.InitScope();
-            User wUserBe = CreeateUser_No_Service();
-            if (wUserBe.UserId != null)
-            {
-                 GetUserInfoByParamsService service = new GetUserInfoByParamsService();
-                 GetUserInfoByParamsReq req = new GetUserInfoByParamsReq();
-                 req.BusinessData.UserName = wUserBe.UserName;
-
-                try
-                {
-                  
-                  GetUserInfoByParamsRes res = service.Execute(req);
-                }
-                catch (Exception ex)
-                {
-                    base.StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-                }
-
-                Assert.AreEqual<String>(base.StrExceptionMessage, string.Empty, base.StrExceptionMessage);
-
-                UpdateUser_NO_Service(wUserBe);
-
-                RemoveUserFromRole_NO_Service(wUserBe.UserName,"role_1");
-            }
-            else
-            {
-                Assert.Inconclusive("No se puede testear UpdateUserService");
-            }
-
-            base.Tx.Abort();
-        }
-
-
-        User CreeateUser_No_Service()
-        {
-            String strErrorResut = String.Empty;
-            CreateUserReq req = new CreateUserReq();
-            CreateUserRes res = new CreateUserRes();
-            CreateUserService svc = new CreateUserService();
-           
 
             string wszRandom = GenerarCadenaAleatoria(6);// Para generar un nombre de manera aleatoria
             User wUserBe = new User();
@@ -280,6 +240,84 @@ namespace ServiceTest
             wUserBe.Email = "ads@asd.com";
 
             wUserBe.IsApproved = true;
+
+
+            CreeateUser_No_Service(wUserBe);
+
+
+            if (wUserBe.UserId != null)
+            {
+                User usr = GetByNAme(wUserBe.UserName);
+                if (usr == null)
+                {
+                    Assert.Fail("No se ccreo el usuario exitosamente");
+                }
+
+
+                UpdateUser_NO_Service(usr);
+
+                try
+                {
+                    //Comprovar si actualizo
+                    usr = GetByNAme(wUserBe.UserName);
+
+                    if (!usr.Email.Equals(string.Concat(wUserBe.Email, ".ar")))
+                        Assert.Fail("No se actualizo exitosamente: Email");
+                    //if (!usr.FirstName.Equals(string.Concat(wUserBe.FirstName, "_updated")))
+                    //    Assert.Fail("No se actualizo exitosamente: FirstName");
+
+                    //if (!usr.LastName.Equals(string.Concat(wUserBe.LastName, "_updated")))
+                    //    Assert.Fail("No se actualizo exitosamente: LastName ");
+
+                    //if (!usr.ModifiedByUserId.Equals(12))
+                    //    Assert.Fail("No se actualizo exitosamente: ModifiedByUserId ");
+
+                }
+                catch (Exception ex)
+                {
+                    base.StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+                }
+
+                RemoveUserFromRole_NO_Service(wUserBe.UserName );
+            }
+            else
+            {
+                Assert.Inconclusive("No se puede testear UpdateUserService");
+            }
+
+            base.Tx.Abort();
+        }
+
+        User GetByNAme(string pUserName)
+        {
+            GetUserInfoByParamsService service = new GetUserInfoByParamsService();
+            GetUserInfoByParamsReq req = new GetUserInfoByParamsReq();
+            req.BusinessData.UserName = pUserName;
+
+            GetUserInfoByParamsRes res = null;
+
+            try
+            {
+                //Comprovar si se creo el usuario
+                res = service.Execute(req);
+                
+            }
+            catch (Exception ex)
+            {
+                base.StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+                return null;
+            }
+          
+           return  res.BusinessData.UserInfo;
+        }
+
+        void CreeateUser_No_Service(User pUserBe)
+        {
+            String strErrorResut = String.Empty;
+            CreateUserReq req = new CreateUserReq();
+            CreateUserRes res = new CreateUserRes();
+            CreateUserService svc = new CreateUserService();
+
             req.SecurityProviderName = SecurityProviderName;
             
             try
@@ -288,13 +326,13 @@ namespace ServiceTest
                 RolList roles = FwkMembership.GetAllRoles(SecurityProviderName);
                   if (roles.Count >= 2)
                   {
-                      wUserBe.Roles = new String[2];
-                      wUserBe.Roles[0] = roles[0].RolName;
-                      wUserBe.Roles[1] = roles[1].RolName;
+                      pUserBe.Roles = new String[2];
+                      pUserBe.Roles[0] = roles[0].RolName;
+                      pUserBe.Roles[1] = roles[1].RolName;
 
                       
                   }
-                req.BusinessData.User = wUserBe;
+                req.BusinessData.User = pUserBe;
                 res = svc.Execute(req);
                 
             }
@@ -303,8 +341,8 @@ namespace ServiceTest
                 strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
             Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
-            wUserBe.UserId = res.BusinessData.UserId;
-            return wUserBe;
+            pUserBe.UserId = res.BusinessData.UserId;
+      
         }
 
 
@@ -345,8 +383,6 @@ namespace ServiceTest
 
             UpdateUserReq req = new UpdateUserReq();
             UpdateUserService svc = new UpdateUserService();
-
-
     
             req.BusinessData.UsersBE = oldUser;
 
@@ -354,6 +390,8 @@ namespace ServiceTest
             req.BusinessData.UsersBE.LastName = oldUser.LastName + "_updated";
             req.BusinessData.UsersBE.ModifiedByUserId = 12;
             req.BusinessData.UsersBE.ModifiedDate = System.DateTime.Now;
+            req.BusinessData.UsersBE.Email = oldUser.Email + ".ar";
+   
 
             req.BusinessData.PasswordOnly = false;
 
@@ -374,33 +412,26 @@ namespace ServiceTest
             Assert.AreEqual<String>(base.StrExceptionMessage, String.Empty, base.StrExceptionMessage);
         }
 
-        void RemoveUserFromRole_NO_Service(string user, string rol)
+        /// <summary>
+        /// Elimina el primer rol
+        /// </summary>
+        /// <param name="user"></param>
+        void RemoveUserFromRole_NO_Service(string user)
         {
-
+            RolList roles = FwkMembership.GetAllRoles(SecurityProviderName);
+            
             RemoveUserFromRoleReq req = new RemoveUserFromRoleReq();
             RemoveUserFromRoleService svc = new RemoveUserFromRoleService();
-
-;
             req.BusinessData.UserName = user;
-
-
-            req.BusinessData.RolName   = rol;
-
+            req.BusinessData.RolName = roles[0].RolName;
             try
             {
-          
-
                 RemoveUserFromRoleRes res = svc.Execute(req);
-            
             }
             catch (Exception ex)
             {
                 base.StrExceptionMessage = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
-
-
-
-
             Assert.AreEqual<String>(base.StrExceptionMessage, String.Empty, base.StrExceptionMessage);
         }
 

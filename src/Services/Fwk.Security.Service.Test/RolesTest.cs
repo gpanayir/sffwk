@@ -15,6 +15,7 @@ using Fwk.Security.ISVC.DeleteRole;
 using Fwk.Security.Common;
 using Fwk.Security.ISVC.SearchAllRoles;
 using Fwk.Security.ISVC.SearchRolesForUser;
+using Fwk.Exceptions;
 
 
 namespace Fwk.Security.Service.Test
@@ -102,7 +103,14 @@ namespace Fwk.Security.Service.Test
             }
             catch (Exception ex)
             {
-                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+                if (typeof(TechnicalException) == ex.GetType())
+                {
+                    Assert.AreEqual<String>("4006", ((TechnicalException)ex).ErrorId, "No se esta validando Rol no vasio");
+                }
+                else
+                {
+                    strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+                }
             }
 
 

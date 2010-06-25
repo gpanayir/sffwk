@@ -242,7 +242,8 @@ namespace Fwk.Security
         /// Obtiene las subcategorias de una categoria.-
         /// </summary>
         /// <param name="pCategoryId"></param>
-        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <param name="applicationName">Nombre de la aplicacion de membership</param>
+        /// <param name="connectionStringName">Nombre de cadena de coneccion</param>
         /// <returns></returns>
         static List<FwkCategory> GetSubCategoriesByCategoryId(int pCategoryId, string applicationName, string connectionStringName)
         {
@@ -304,7 +305,6 @@ namespace Fwk.Security
         /// Remueve una categoria y sus subcategorias recursivamente
         /// </summary>
         /// <param name="parentFwkCategoryId"></param>
-        /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
         /// <param name="connectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
         public static void RemoveCategory(Int32 parentFwkCategoryId,string applicationName, string connectionStringName)

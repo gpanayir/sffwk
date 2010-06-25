@@ -17,9 +17,11 @@ namespace Fwk.Security.ActiveDirectory
     /// </summary>
     public class ADUser
     {
-        #region Properties 
+        #region Properties
         private LoginResult _LoginResult;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public LoginResult LoginResult
         {
             get { return _LoginResult; }
@@ -74,94 +76,142 @@ namespace Fwk.Security.ActiveDirectory
         {
             get { return _UserAccountControl; }
         }
-        
+        /// <summary>
+        /// 
+        /// </summary>
         public String Department
         {
             get { return _department; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String FirstName
         {
             get { return _firstName; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public String MiddleName
         {
             get { return _middleName; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public String LastName
         {
             get { return _lastName; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public String LoginName
         {
-           get { return _loginName; }
+            get { return _loginName; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String LoginNameWithDomain
         {
-           get { return _loginNameWithDomain; }
-       }
+            get { return _loginNameWithDomain; }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public String StreetAddress
         {
-           get { return _streetAddress; }
+            get { return _streetAddress; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public String City
         {
             get { return _city; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String State
         {
             get { return _state; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String PostalCode
         {
             get { return _postalCode; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String Country
         {
             get { return _country; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String HomePhone
         {
             get { return _homePhone; }
         }
-       public String Extension
+        /// <summary>
+        /// 
+        /// </summary>
+        public String Extension
         {
             get { return _extension; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public String Mobile
         {
 
             get { return _mobile; }
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String Fax
         {
-           get { return _fax; }
+            get { return _fax; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public String EmailAddress
         {
             get { return _emailAddress; }
-       }
-
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public String Title
         {
             get { return _title; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public String Company
         {
             get { return _company; }
         }
 
-      
+
         List<string> _Groups;
-       
 
 
+        /// <summary>
+        /// 
+        /// </summary>
         public String ManagerName
         {
             get { return _managerName; }
@@ -190,7 +240,7 @@ namespace Fwk.Security.ActiveDirectory
 
             _loginName = ADHelper.GetProperty(directoryUser, ADProperties.LOGINNAME);
 
-            
+
 
             if (!string.IsNullOrEmpty(userPrincipalName))
             {
