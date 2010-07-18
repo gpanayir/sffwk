@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyDescription("Data Model Exporter for Code Generator")]
 [assembly: AssemblyProduct("CodeGenerator")]
-[assembly: AssemblyCopyright("Copyright © Prominente SA 2007")]
+[assembly: AssemblyCopyright("Copyright © A 2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
