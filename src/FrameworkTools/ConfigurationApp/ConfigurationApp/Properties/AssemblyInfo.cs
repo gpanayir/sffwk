@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ConfigurationApp")]
 [assembly: AssemblyDescription("Aplicacion destinada a configurar archivos *.config y ConfigurationsManger que son entendidos por el framework de configuracion de prominente.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Prominente SA")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ConfigurationApp")]
 [assembly: AssemblyCopyright("Copyright © Prominente SA 2007")]
 [assembly: AssemblyTrademark("")]

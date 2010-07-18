@@ -2,9 +2,9 @@
 <ArrayOfCnnString>
   <CnnString>
     <WindowsAutentification>false</WindowsAutentification>
-    <DataSource>promidcsf02\sql2005</DataSource>
+    <DataSource>sqlcnn</DataSource>
     <User>sa</User>
-    <InitialCatalog>TestFactura</InitialCatalog>
-    <Password>instsql2005</Password>
+    <InitialCatalog></InitialCatalog>
+    <Password></Password>
   </CnnString>
 </ArrayOfCnnString>

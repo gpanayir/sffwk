@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Prominente SA")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyDescription("Data Model Exporter for Code Generator")]
 [assembly: AssemblyProduct("CodeGenerator")]
 [assembly: AssemblyCopyright("Copyright © Prominente SA 2007")]
