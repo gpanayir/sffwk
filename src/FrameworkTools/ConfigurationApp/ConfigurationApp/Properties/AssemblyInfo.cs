@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ConfigurationApp")]
-[assembly: AssemblyDescription("Aplicacion destinada a configurar archivos *.config y ConfigurationsManger que son entendidos por el framework de configuracion de prominente.")]
+[assembly: AssemblyDescription("Aplicacion destinada a configurar archivos *.config y ConfigurationsManger que son entendidos por el framework de configuracion ")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ConfigurationApp")]
-[assembly: AssemblyCopyright("Copyright © Prominente SA 2007")]
+[assembly: AssemblyCopyright("Copyright 2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
