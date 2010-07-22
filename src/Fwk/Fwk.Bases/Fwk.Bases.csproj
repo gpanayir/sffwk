@@ -109,6 +109,14 @@
     <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Blocks\Fwk.Net\CommonClass.cs" />
+    <Compile Include="Blocks\Fwk.Net\Ftp\FTPComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Net\Ftp\FTPComponent.Designer.cs">
+      <DependentUpon>FTPComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Net\Ftp\FtpUtil.cs" />
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Blocks\Functions\ExportFunctions.cs" />
     <Compile Include="Blocks\Functions\ImportFunctions.cs" />
@@ -286,6 +294,9 @@
     <EmbeddedResource Include="Blocks\Fwk.Mail\FwkMailAgent.resx">
       <DependentUpon>FwkMailAgent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Blocks\Fwk.Net\Ftp\FTPComponent.resx">
+      <DependentUpon>FTPComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DialogDebuggerVisualizer\IEntityVisualizerForm.resx">
       <DependentUpon>IEntityVisualizerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -336,6 +347,7 @@
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />
     <None Include="Blocks\Fwk.ServiceManagement\Xml\app.config" />
     <Content Include="Blocks\Fwk.Exceptions\FrameworkErrors.txt" />
+    <None Include="Resources\db5.png" />
     <None Include="RequestResponse.cd" />
     <None Include="Resources\mail_16.png" />
     <None Include="Resources\cancel.png" />
