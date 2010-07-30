@@ -96,3 +96,18 @@ Error de impersinalizacion de active directory
 
 ErrorId = 4106 : AD_NotExistDomainsURL
 No existe el dominio solicitado.- La tabla domains url no contiene el Domain Url que se intenta obtener.-
+
+
+--------------------------------   Fwk.Security.Cryptography -----------------------------------
+
+ErrorId = 4400 
+Error al intentar crear SymmetricAlgorithmProvider
+
+ErrorId = 4401
+"La clave de encriptacion ", keyFileName, " no existe"
+o
+"La clave de encriptacion no puede ser nula"
+
+
+ErrorId = 4402
+"Clave de encriptacion no es la correcta " Seguramente cambio el archivo .key de encriptaion
