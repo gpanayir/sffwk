@@ -55,5 +55,26 @@ namespace Fwk.Security.ActiveDirectory
             get { return pwd; }
             set { pwd = value; }
         }
+
+        public int Id
+        {
+            get { return _Id; }
+            set { _Id = value; }
+        }
+        int _Id;
+
+        public string SiteName
+        {
+            get { return _SiteName; }
+            set { _SiteName = value; }
+        }
+        string _SiteName;
+
+        public string DomainDN
+        {
+            get { return _DomainDN; }
+            set { _DomainDN = value; }
+        }
+        string _DomainDN;
     }
 }

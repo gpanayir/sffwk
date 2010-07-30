@@ -22,18 +22,19 @@ namespace Fwk.Security.ActiveDirectory
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Logs")]
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="GestionCuentas_Logs")]
 	public partial class SqlDomainURLDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
-    #region Extensibility Create Definitions
+    #region Extensibility Method Definitions
     partial void OnCreated();
     partial void InsertDomainsUrl(DomainsUrl instance);
     partial void UpdateDomainsUrl(DomainsUrl instance);
     partial void DeleteDomainsUrl(DomainsUrl instance);
     #endregion
+		
 		
 		public SqlDomainURLDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -74,6 +75,8 @@ namespace Fwk.Security.ActiveDirectory
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private int _DomainID;
+		
 		private string _DomainName;
 		
 		private string _LDAPPath;
@@ -82,10 +85,20 @@ namespace Fwk.Security.ActiveDirectory
 		
 		private string _Pwd;
 		
-    #region Extensibility Create Definitions
+		private string _DomainDN;
+		
+		private string _SiteName;
+		
+		private EntityRef<DomainsUrl> _DomainsUrl2;
+		
+		private EntityRef<DomainsUrl> _DomainsUrl1;
+		
+    #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnDomainIDChanging(int value);
+    partial void OnDomainIDChanged();
     partial void OnDomainNameChanging(string value);
     partial void OnDomainNameChanged();
     partial void OnLDAPPathChanging(string value);
@@ -94,14 +107,44 @@ namespace Fwk.Security.ActiveDirectory
     partial void OnUsrChanged();
     partial void OnPwdChanging(string value);
     partial void OnPwdChanged();
+    partial void OnDomainDNChanging(string value);
+    partial void OnDomainDNChanged();
+    partial void OnSiteNameChanging(string value);
+    partial void OnSiteNameChanged();
     #endregion
 		
 		public DomainsUrl()
 		{
+			this._DomainsUrl2 = default(EntityRef<DomainsUrl>);
+			this._DomainsUrl1 = default(EntityRef<DomainsUrl>);
 			OnCreated();
 		}
 		
-		[Column(Storage="_DomainName", DbType="NVarChar(8) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[Column(Storage="_DomainID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int DomainID
+		{
+			get
+			{
+				return this._DomainID;
+			}
+			set
+			{
+				if ((this._DomainID != value))
+				{
+					if (this._DomainsUrl1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDomainIDChanging(value);
+					this.SendPropertyChanging();
+					this._DomainID = value;
+					this.SendPropertyChanged("DomainID");
+					this.OnDomainIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DomainName", DbType="NVarChar(16) NOT NULL", CanBeNull=false)]
 		public string DomainName
 		{
 			get
@@ -177,6 +220,109 @@ namespace Fwk.Security.ActiveDirectory
 					this._Pwd = value;
 					this.SendPropertyChanged("Pwd");
 					this.OnPwdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DomainDN", DbType="VarChar(80)")]
+		public string DomainDN
+		{
+			get
+			{
+				return this._DomainDN;
+			}
+			set
+			{
+				if ((this._DomainDN != value))
+				{
+					this.OnDomainDNChanging(value);
+					this.SendPropertyChanging();
+					this._DomainDN = value;
+					this.SendPropertyChanged("DomainDN");
+					this.OnDomainDNChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SiteName", DbType="VarChar(50)")]
+		public string SiteName
+		{
+			get
+			{
+				return this._SiteName;
+			}
+			set
+			{
+				if ((this._SiteName != value))
+				{
+					this.OnSiteNameChanging(value);
+					this.SendPropertyChanging();
+					this._SiteName = value;
+					this.SendPropertyChanged("SiteName");
+					this.OnSiteNameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="DomainsUrl_DomainsUrl", Storage="_DomainsUrl2", ThisKey="DomainID", OtherKey="DomainID", IsUnique=true, IsForeignKey=false)]
+		public DomainsUrl DomainsUrl2
+		{
+			get
+			{
+				return this._DomainsUrl2.Entity;
+			}
+			set
+			{
+				DomainsUrl previousValue = this._DomainsUrl2.Entity;
+				if (((previousValue != value) 
+							|| (this._DomainsUrl2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DomainsUrl2.Entity = null;
+						previousValue.DomainsUrl1 = null;
+					}
+					this._DomainsUrl2.Entity = value;
+					if ((value != null))
+					{
+						value.DomainsUrl1 = this;
+					}
+					this.SendPropertyChanged("DomainsUrl2");
+				}
+			}
+		}
+		
+		[Association(Name="DomainsUrl_DomainsUrl", Storage="_DomainsUrl1", ThisKey="DomainID", OtherKey="DomainID", IsForeignKey=true)]
+		public DomainsUrl DomainsUrl1
+		{
+			get
+			{
+				return this._DomainsUrl1.Entity;
+			}
+			set
+			{
+				DomainsUrl previousValue = this._DomainsUrl1.Entity;
+				if (((previousValue != value) 
+							|| (this._DomainsUrl1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DomainsUrl1.Entity = null;
+						previousValue.DomainsUrl2 = null;
+					}
+					this._DomainsUrl1.Entity = value;
+					if ((value != null))
+					{
+						value.DomainsUrl2 = this;
+						this._DomainID = value.DomainID;
+					}
+					else
+					{
+						this._DomainID = default(int);
+					}
+					this.SendPropertyChanged("DomainsUrl1");
 				}
 			}
 		}

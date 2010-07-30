@@ -35,89 +35,89 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\src\Libraries\Fwk.Bases.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases.Connector, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fwk.Bases.Connector, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\src\Libraries\Fwk.Bases.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases.FrontEnd, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fwk.Bases.FrontEnd, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\src\Libraries\Fwk.Bases.FrontEnd.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching.Database, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Caching.Database.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Configuration.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.PolicyInjection, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cryptography, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\Piloto_1\Piloto_1\Service_1.0.0.5\Microsoft.VisualStudio.DebuggerVisualizers.dll</HintPath>
+      <HintPath>..\..\..\src\Libraries\Microsoft.VisualStudio.DebuggerVisualizers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

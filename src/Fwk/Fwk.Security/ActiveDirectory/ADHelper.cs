@@ -19,70 +19,8 @@ namespace Fwk.Security.ActiveDirectory
     /// Wrapper de Active Directory con funcionalidades para interactuar contra un controlador de dominio .-
     /// 
     /// </summary>
-    public class ADHelper
+    public class ADHelper : DirectoryServicesBase, IDirectoryService
     {
-        #region Properties
-        DirectoryEntry _directoryEntrySearchRoot;
-        string _LDAPPath;
-        string _LDAPDomain;
-        string _LDAPUser;
-
-        /// <summary>
-        ///Ej: 
-        ///LDAP://domain/DC=xxx,DC=com
-        ///LDAP://CORRSF71NT13.actionlinecba.org/DC=actionlinecba,DC=org
-        ///LDAP://Corba362nt01.alcomovistar.com.ar/OU=Movistar Sabattini,dc=alcomovistar,dc=com,dc=ar
-        /// </summary>
-        public String LDAPPath
-        {
-            get
-            {
-                return _LDAPPath;
-            }
-
-        }
-
-
-        /// <summary>
-        ///LDAPUser property
-        /// </summary>
-        public String LDAPUser
-        {
-            get
-            {
-                return _LDAPUser;
-            }
-
-        }
-        string _LDApassword;
-
-        /// <summary>
-        /// LDApassword property
-        ///This property is reading the LDAP Password from the config file.
-        /// </summary>
-        public String LDApassword
-        {
-            get
-            {
-                return _LDApassword;
-            }
-
-        }
-
-
-        /// <summary>
-        /// Dominio
-        /// </summary>
-        public String LDAPDomain
-        {
-            get
-            {
-                return _LDAPDomain;
-            }
-
-        }
-        #endregion
-
         #region Constructors
         /// <summary>
         /// 
@@ -116,11 +54,11 @@ namespace Fwk.Security.ActiveDirectory
             _LDAPPath = path;
 
             _LDAPUser = FilterOutDomain(user);
-            _LDApassword = pwd;
+            _LDAPPassword = pwd;
 
             try
             {
-                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDApassword, AuthenticationTypes.Secure);
+                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
              
                 _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
             }
@@ -414,7 +352,7 @@ namespace Fwk.Security.ActiveDirectory
                 if (results != null)
                 {
 
-                    DirectoryEntry deGroup = new DirectoryEntry(results.Path, LDAPUser, LDApassword);
+                    DirectoryEntry deGroup = new DirectoryEntry(results.Path, LDAPUser, LDAPPassword);
 
                     System.DirectoryServices.PropertyCollection pColl = deGroup.Properties;
 
@@ -435,7 +373,7 @@ namespace Fwk.Security.ActiveDirectory
 
                         string path = string.Concat(respath, objpath);
 
-                        directoryEntryUser = new DirectoryEntry(path, LDAPUser, LDApassword);
+                        directoryEntryUser = new DirectoryEntry(path, LDAPUser, LDAPPassword);
 
                         wADUser = new ADUser(directoryEntryUser);
 
@@ -487,7 +425,7 @@ namespace Fwk.Security.ActiveDirectory
 
                 foreach (SearchResult users in userCollection)
                 {
-                    DirectoryEntry userEntry = new DirectoryEntry(users.Path, LDAPUser, LDApassword);
+                    DirectoryEntry userEntry = new DirectoryEntry(users.Path, LDAPUser, LDAPPassword);
                     userlist.Add(new ADUser(userEntry));
                 }
                 deSearch.Dispose();
@@ -751,59 +689,12 @@ namespace Fwk.Security.ActiveDirectory
             Forest f3 = Forest.GetCurrentForest();
 
             //return  f.GlobalCatalogs;
-            DirectoryContext context = new DirectoryContext(DirectoryContextType.Domain, domainName, LDAPUser, LDApassword);
+            DirectoryContext context = new DirectoryContext(DirectoryContextType.Domain, domainName, LDAPUser, LDAPPassword);
             Forest f = Forest.GetForest(context);
 
             //DomainController controller = System.DirectoryServices.ActiveDirectory.DomainController.FindOne(context);
 
             return f.GlobalCatalogs;
-        }
-
-        
-        /// <summary>
-        /// Busca la lista de dominios en una base de datos
-        /// </summary>
-        /// <param name="cnnStringName">Nombre del Security Provider</param>
-        /// <returns>Lista de DomainsUrl</returns>
-        public static List<DomainUrlInfo> DomainsUrl_GetList(string providerName)
-        {
-            String wConnectionStringName = FwkMembership.GetProvider_ConnectionStringName(providerName);
-            return DomainsUrl_GetList2(System.Configuration.ConfigurationManager.ConnectionStrings[wConnectionStringName].ConnectionString);
-        }
-        /// <summary>
-        /// Busca la lista de dominios en una base de datos.- A diferencia de DomainsUrl_GetList. Este metodo recive como parametro 
-        /// la cadena de coneccion y no su nombre de App.config
-        /// </summary>
-        /// <param name="cnnString">Cadena de coneccion</param>
-        /// <returns>Lista de DomainsUrl</returns>
-        public static List<DomainUrlInfo> DomainsUrl_GetList2(string cnnString)
-        {
-            try
-            {
-                using (SqlDomainURLDataContext dc = new SqlDomainURLDataContext(cnnString))
-                {
-                    IEnumerable<DomainUrlInfo> list = from s in dc.DomainsUrls
-                                                   select
-                                                       new DomainUrlInfo
-                                                       {
-                                                           DomainName = s.DomainName,
-                                                           LDAPPath = s.LDAPPath,
-                                                           Usr = s.Usr,
-                                                           Pwd = s.Pwd
-                                                       };
-
-                    return list.ToList<DomainUrlInfo>();
-                }
-            }
-            catch (Exception ex)
-            {
-                Fwk.Exceptions.TechnicalException te = new 
-                    Fwk.Exceptions.TechnicalException(string .Format(Resource.AD_GetingDomainsURL_Error,cnnString, ex));
-                ExceptionHelper.SetTechnicalException<ADHelper>(te);
-                te.ErrorId = "4103";
-                throw te;
-            }
-
         }
 
         /// <summary>
@@ -1006,113 +897,11 @@ namespace Fwk.Security.ActiveDirectory
             return result;
         }
         #endregion
+
+        public void ResetPwd(string pUserName, string pNewPwd, bool pForceChangeOnFirstLogon, bool pUnlockAccount)
+        {
+            // TODO, implementar reseteo aca, cut & paste from reseteo web
+            throw new NotImplementedException();
+        }
     }
-
-
-    #region Enumerations
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public enum ADAccountOptions
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        UF_TEMP_DUPLICATE_ACCOUNT = 0x0100,
-        /// <summary>
-        /// 
-        /// </summary>
-        UF_NORMAL_ACCOUNT = 0x0200,
-        /// <summary>
-        /// Dec = 512 
-        /// </summary>
-        UF_INTERDOMAIN_TRUST_ACCOUNT = 0x0800,
-        /// <summary>
-        /// Dec =2048
-        /// </summary>
-        UF_WORKSTATION_TRUST_ACCOUNT = 0x1000,
-        /// <summary>
-        /// 
-        /// </summary>
-        UF_SERVER_TRUST_ACCOUNT = 0x2000,
-        /// <summary>
-        /// Cuenta de usuario no expiro &h10000 = (dec = 65536)
-        /// 
-        /// </summary>
-        UF_DONT_EXPIRE_PASSWD = 0x10000,
-        /// <summary>
-        /// 
-        /// </summary>
-        UF_SCRIPT = 0x0001,
-        /// <summary>
-        /// ACCOUNTDISABLE: la cuenta de usuario está desactivada. (dec = 2)
-        /// </summary>
-        UF_ACCOUNTDISABLE = 0x0002,
-        /// <summary>
-        /// HOMEDIR_REQUIRED: se requiere la carpeta principal. 
-        /// </summary>
-        UF_HOMEDIR_REQUIRED = 0x0008,
-        /// <summary>
-        /// 16
-        /// </summary>
-        UF_LOCKOUT = 0x0010,
-        /// <summary>
-        /// 
-        /// </summary>
-        UF_PASSWD_NOTREQD = 0x0020,
-        /// <summary>
-        /// 
-        /// </summary>
-        UF_PASSWD_CANT_CHANGE = 0x0040,
-        /// <summary>
-        /// 16
-        /// </summary>
-        UF_ACCOUNT_LOCKOUT = 0X0010,
-        /// <summary>
-        /// 
-        /// </summary>
-        UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED = 0X0080,
-       
-
-
-    }
-
-    /// <summary>
-    /// Determina el resultado de loging de usuario
-    /// </summary>
-    public enum LoginResult
-    {
-        /// <summary>
-        /// Logoing exitoso
-        /// </summary>
-        LOGIN_OK = 0,
-
-        /// <summary>
-        /// Uario no existe
-        /// </summary>
-        LOGIN_USER_DOESNT_EXIST,
-
-        /// <summary>
-        /// Cuenta inactiva
-        /// </summary>
-        LOGIN_USER_ACCOUNT_INACTIVE,
-
-        /// <summary>
-        /// Clave incorrecta
-        /// </summary>
-        LOGIN_USER_OR_PASSWORD_INCORRECT,
-
-        /// <summary>
-        /// Cuenta de usuario bloqueada
-        /// </summary>
-        LOGIN_USER_ACCOUNT_LOCKOUT,
-
-        ERROR_PASSWORD_MUST_CHANGE = 1907,
-        ERROR_PASSWORD_EXPIRED = 1330
-
-    }
-
-    #endregion
-
 }
