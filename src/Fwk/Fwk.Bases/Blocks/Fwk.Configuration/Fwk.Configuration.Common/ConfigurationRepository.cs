@@ -252,99 +252,7 @@ namespace Fwk.Configuration.Common
             return wItem.First<Group>();
         }
 
-        #region IXmlSerializable Members
-
-        //public System.Xml.Schema.XmlSchema GetSchema()
-        //{
-        //    // A little too complicated for my taste
-        //    return null;
-        //}
-
-        //public void ReadXml(XmlReader reader)
-        //{
-        //    XmlDocument doc = new XmlDocument();
-        //    doc.Load(reader);
-        //    XmlElement docElem = doc.DocumentElement;
-
-        //    // Reflect the [XmlAttribute]'s
-        //    PropertyInfo[] props = this.GetType().GetProperties();
-        //    foreach (PropertyInfo prop in props)
-        //    {
-        //        object[] attrs = prop.GetCustomAttributes(typeof(XmlElementAttribute), false);
-        //        if (attrs != null && attrs.Length == 1)
-        //        {
-        //            string name = (attrs[0] as XmlElementAttribute).ElementName ?? prop.Name;
-
-        //            if (docElem.Attributes[name] != null)
-        //                prop.GetSetMethod().Invoke(this, new object[] { docElem.Attributes[name].Value });
-        //        }
-        //    }
-        //    XmlElement elem ;
-        //    // Deserialize the collection members
-        //    XmlNodeList nodes = docElem.SelectNodes("./*");
-        //    foreach (XmlNode node in nodes)
-        //    {
-        //        // Make sure it isn't a text node or something
-        //        if (node is XmlElement)
-        //        {
-                  
-        //            System.Type wPropType = ReflectionFunctions.GetPropertieType(this, node.Name);
-        //            if(wPropType == null)
-        //                elem = doc.CreateElement(typeof(Group).Name);
-        //            else
-        //             elem = doc.CreateElement(wPropType.Name);
-        //            elem.InnerXml = node.InnerXml;
-        //            //foreach (XmlAttribute xmlAttr in (node as XmlElement).Attributes)
-        //            //{
-        //            //    XmlAttribute newAttr = doc.CreateAttribute(xmlAttr.Name);
-        //            //    newAttr.Value = xmlAttr.Value;
-        //            //    elem.AppendChild(newAttr);
-        //            //}
-
-        //            this.Add(Serializer.DeserializeFromXml<Group>(elem.InnerXml));
-        //        }
-        //    }
-        //}
-
-        //public void WriteXml(XmlWriter writer)
-        //{
-        //    // Reflect the [XmlAttribute]'s
-           
-        //    foreach (PropertyInfo prop in this.GetType().GetProperties())
-        //    {
-        //        //object[] attrs = prop.GetCustomAttributes(typeof(XmlAttributeAttribute), false);
-        //        object[] attrs = prop.GetCustomAttributes(typeof(XmlElementAttribute), false);
-        //        if (attrs != null && attrs.Length == 1)
-        //        {
-        //            string name = (attrs[0] as XmlElementAttribute).ElementName;
-        //            if (name == null) name = prop.Name;
-
-        //            object value = prop.GetGetMethod().Invoke(this, null);
-        //            if (value != null)
-        //                writer.WriteElementString(name, value.ToString());
-        //        }
-        //    }
-
-        //     //Serialize the collection members
-        //    foreach (Group item in this)
-        //    {
-        //        string itemName = arrayItemName ?? typeof(Group).Name;
-
-        //        //XmlElement serializedItem = Serializer.Serialize<Group>(item);
-        //        string serializedItem = Serializer.SerializeToXml<Group>(item);
-                
-        //        //writer.WriteStartElement(itemName);
-        //        //foreach (XmlAttribute xmlAttr in serializedItem.Attributes)
-        //        //{
-        //        //    // We don't want to write the xsd/xsi namespace attributes
-        //        //    if (!(xmlAttr.Name.StartsWith("xmlns:xsd") || xmlAttr.Name.StartsWith("xmlns:xsi")))
-        //        //        writer.WriteElementString(xmlAttr.Name, xmlAttr.Value);
-        //        //}
-        //        writer.WriteRaw(serializedItem);
-        //        //writer.WriteEndElement();
-        //    }
-        //}
-        #endregion
+        
 
     }
 
@@ -424,25 +332,7 @@ namespace Fwk.Configuration.Common
             set { _Encrypted = value; }
         }
 
-        //[XmlIgnore]
-        //public string _Value;
-        //public XmlCDataSection Value
-        //{
-
-        //    get
-        //    {
-        //        XmlDataDocument doc = new XmlDataDocument();
-        //        XmlCDataSection cd = doc.CreateCDataSection(this._Value);
-        //        return cd;
-        //    }
-
-        //    set
-        //    {
-        //        this._Value = value.Value;
-        //    }
-        //}
-
-
+      
 
         Fwk.Xml.CData _Value = new Fwk.Xml.CData();
 
@@ -459,85 +349,7 @@ namespace Fwk.Configuration.Common
 
 
 
-    public static class Serializer
-    {
-        public static T Deserialize<T>(XmlElement node) where T : new()
-        {
-            T customType = new T();
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
 
-            XmlDocument doc = new XmlDocument();
-            //doc.AppendChild(doc.CreateXmlDeclaration("1.0", "utf-8", String.Empty));
-            doc.AppendChild(doc.ImportNode(node, true));
-
-            using (MemoryStream stream = new MemoryStream())
-            using (StreamWriter writer = new StreamWriter(stream))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                doc.Save(writer);
-                stream.Position = 0;
-                customType = (T)serializer.Deserialize(reader);
-            }
-
-            return customType;
-        }
-        public static T DeserializeFromXml<T>(string pXml)
-        {
-            XmlSerializer wSerializer;
-            StringReader wStrSerializado = new StringReader(pXml);
-            XmlTextReader wXmlReader = new XmlTextReader(wStrSerializado);
-         
-            object wResObj = null;
-
-          
-            wSerializer = new XmlSerializer(typeof(T));
-            wResObj = wSerializer.Deserialize(wXmlReader);
-
-            return (T)wResObj;
-        }
-        public static XmlElement Serialize<T>(T t) where T : new()
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(T));
-
-            XmlElement elem;
-            using (MemoryStream stream = new MemoryStream())
-            using (StreamWriter writer = new StreamWriter(stream))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                serializer.Serialize(writer, t);
-
-                XmlDocument doc = new XmlDocument();
-                stream.Position = 0;
-                doc.Load(reader);
-                elem = doc.DocumentElement;
-            }
-
-            return elem;
-        }
-        public static string SerializeToXml<T>(T pObj)
-        {
-
-
-
-            XmlSerializer wSerializer;
-            StringWriter wStrSerializado = new StringWriter();
-            XmlTextWriter wXmlWriter = new XmlTextWriter(wStrSerializado);
-
-            XmlSerializerNamespaces wNameSpaces = new XmlSerializerNamespaces();
-
-            wXmlWriter.Formatting = Formatting.Indented;
-            wNameSpaces.Add(String.Empty, String.Empty);
-            wSerializer = new XmlSerializer(typeof(T));
-            wSerializer.Serialize(wXmlWriter, pObj, wNameSpaces);
-
-
-         
-
-
-
-            return wStrSerializado.ToString().Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", String.Empty);
-        }
-    }
 
    
 
