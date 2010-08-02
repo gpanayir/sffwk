@@ -84,4 +84,29 @@ namespace Fwk.ConfigSection
 
         #endregion
     }
+
+    /// <summary>
+    /// Enumeracion que defino los tipos de 
+    /// </summary>
+    public enum ConfigProviderType
+    { 
+        /// <summary>
+        /// Lee de un archivo local, puede ser carpeta compartida en la red.-
+        /// </summary>
+        local,
+        /// <summary>
+        /// Utiliza la configuracion distribuida provista por el framework
+        /// </summary>
+        remote,
+        /// <summary>
+        /// Consulta por medio de un servicio del dispatcher del framework
+        /// puede ser web service o remoting, 
+        /// </summary>
+        service,
+        /// <summary>
+        /// Consulta directa,mente a una base de datos
+        /// </summary>
+        database
+        
+    }
 }

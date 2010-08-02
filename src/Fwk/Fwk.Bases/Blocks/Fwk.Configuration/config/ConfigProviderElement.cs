@@ -37,14 +37,14 @@ namespace Fwk.ConfigSection
         }
 
         /// <summary>
-        /// Determina si la configuracion se lee localmente
+        /// Determina el tipo de origen de configuracion 
         /// </summary>
-        [ConfigurationProperty("isLocal", IsRequired = true, IsKey = false)]
-        public  Boolean IsLocal
+        [ConfigurationProperty("type", IsRequired = true, IsKey = false)]
+        public ConfigProviderType ConfigProviderType
         {
             get
             {
-                return (bool)this["isLocal"];
+                return (ConfigProviderType)this["type"];
             }
         }
 
@@ -64,8 +64,29 @@ namespace Fwk.ConfigSection
             }
         }
 
- 
-
+        /// <summary>
+        /// Nombre de cadena de coneccion
+        ///  
+        /// </summary>
+        [ConfigurationProperty("cnnStringName", IsRequired = true, IsKey = false),
+         StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        public string CnnStringName
+        {
+            get
+            {
+                return (string)this["cnnStringName"];
+            }
+        }
+        [ConfigurationProperty("applicationId", IsRequired = false, IsKey = false),
+         StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        public string ApplicationId
+        {
+            get
+            {
+                return (string)this["applicationId"];
+            }
+        }
+        
         /// <summary>
         /// En caso de que la configuracion sea remota se debe espesificar el nombre del  
         /// archivo de configuracion de remoting.-
@@ -81,7 +102,7 @@ namespace Fwk.ConfigSection
         }
 
         /// <summary>
-   
+        /// 
         /// </summary>
         [ConfigurationProperty("lifeTime", IsRequired = false, IsKey = false)     ]
         public int LifeTime

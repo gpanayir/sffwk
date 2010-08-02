@@ -109,6 +109,13 @@
     <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager_CRUD.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\DatabaseConfigMannager.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\fwk_ConfigMannager.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>fwk_ConfigMannager.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Blocks\Fwk.Net\CommonClass.cs" />
     <Compile Include="Blocks\Fwk.Net\Ftp\FTPComponent.cs">
       <SubType>Component</SubType>
@@ -130,10 +137,10 @@
     <Compile Include="Blocks\Fwk.Blocking\FwkBlockingEngine.cs" />
     <Compile Include="Blocks\Fwk.Blocking\IBlockingEngine.cs" />
     <Compile Include="Blocks\Fwk.Blocking\IBlockingMark.cs" />
-    <Compile Include="Blocks\Fwk.BusinessFacades\Audit.cs" />
-    <Compile Include="Blocks\Fwk.BusinessFacades\FacadeHelper.cs" />
-    <Compile Include="Blocks\Fwk.BusinessFacades\ServiceCalls.cs" />
-    <Compile Include="Blocks\Fwk.BusinessFacades\SimpleFacade.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\Fwk.BusinessFacades\Audit.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\Fwk.BusinessFacades\FacadeHelper.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\Fwk.BusinessFacades\ServiceCalls.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\Fwk.BusinessFacades\SimpleFacade.cs" />
     <Compile Include="Blocks\Fwk.Caching\ServiceCacheMannager.cs" />
     <Compile Include="Blocks\Fwk.Caching\FwkSimpleStorageBase.cs" />
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager.cs" />
@@ -294,6 +301,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Blocks\Fwk.Configuration\fwk_ConfigMannager.dbml.layout">
+      <DependentUpon>fwk_ConfigMannager.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Blocks\Fwk.Mail\FwkMailAgent.resx">
       <DependentUpon>FwkMailAgent.cs</DependentUpon>
     </EmbeddedResource>
@@ -327,16 +337,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Blocks\Fwk.Blocking\database\FwkBlocking.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Blocks\Fwk.Blocking\database\FwkBlocking_log.LDF">
-      <DependentUpon>FwkBlocking.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Blocks\Fwk.Caching\Configurations.xml" />
-    <Content Include="Blocks\Fwk.Blocking\database\PBlocking2000.sql" />
     <None Include="Blocks\Fwk.Configuration\app.config" />
+    <None Include="Blocks\Fwk.Configuration\fwk_ConfigMannager.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>fwk_ConfigMannager.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\ConfigurationService.disco" />
     <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\ConfigurationService.wsdl" />
     <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\Reference.map">
@@ -346,7 +353,6 @@
     <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
     <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
     <None Include="Blocks\Fwk.ServiceManagement\Database\app.config" />
-    <None Include="Blocks\Fwk.ServiceManagement\Database\BPConfig.rar" />
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />
     <None Include="Blocks\Fwk.ServiceManagement\Xml\app.config" />
     <Content Include="Blocks\Fwk.Exceptions\FrameworkErrors.txt" />
@@ -373,6 +379,9 @@
       <CachedSettingsPropName>
       </CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

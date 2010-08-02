@@ -51,7 +51,7 @@ namespace Fwk.ServiceManagement
             ServiceConfiguration wServiceConfiguration = null; ;
 
             Datablock.Database wBPConfig = Datablock.DatabaseFactory.CreateDatabase(_DatabaseCnnString);
-            System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("Service_g_Name");
+            System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_g_Name");
             wBPConfig.AddInParameter(dbCommand, "Name", System.Data.DbType.String, pServiceName);
             
             using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
@@ -84,7 +84,7 @@ namespace Fwk.ServiceManagement
             Datablock.Database wBPConfig = Datablock.DatabaseFactory.CreateDatabase(_DatabaseCnnString);
          
 			ServiceConfigurationCollection wServiceConfigurationCollection = new ServiceConfigurationCollection();
-            System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("Service_s_All");
+            System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_s_All");
 
 
             using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
@@ -124,7 +124,7 @@ namespace Fwk.ServiceManagement
                 throw wTex;
             }
 
-			using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("Service_u"))
+            using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_u"))
 			{
 
                 wBPConfig.AddInParameter(wCmd, "UpdateServiceName", System.Data.DbType.String, pServiceName);
@@ -162,7 +162,7 @@ namespace Fwk.ServiceManagement
 		{
 			Datablock.Database wBPConfig = Datablock.DatabaseFactory.CreateDatabase(_DatabaseCnnString);
 
-			using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("Service_i"))
+            using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_i"))
 			{
 				wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceConfiguration.Name);
 				wBPConfig.AddInParameter(wCmd, "Description", System.Data.DbType.String, pServiceConfiguration.Description);
@@ -191,7 +191,7 @@ namespace Fwk.ServiceManagement
 		{
 			Datablock.Database wBPConfig = Datablock.DatabaseFactory.CreateDatabase(_DatabaseCnnString);
 
-			using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("Service_d"))
+            using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_d"))
 			{
 				wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceName);
 

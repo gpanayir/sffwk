@@ -13,14 +13,14 @@ using Fwk.HelperFunctions;
 namespace Fwk.Configuration.Common
 {
 
-	
 
-	/// <summary>
-	/// Es una clase de ayuda que abstrae al sistema de configuracion de complejidades tecnicas reutilizables.
-	/// </summary>
+
+    /// <summary>
+    /// Es una clase de ayuda que abstrae al sistema de configuracion de complejidades tecnicas reutilizables.
+    /// </summary>
     /// <Author>Marcelo Oviedo</Author>
     public class Helper
-	{
+    {
         [FlagsAttribute]
         public enum FileVersionStatus
         {
@@ -47,28 +47,28 @@ namespace Fwk.Configuration.Common
         /// BaseConfigFile
         /// Cacheable
         /// </summary>
-        /// <param name="pFileName">Nombre del archivo</param>
-        /// <param name="pPath">Ruta donde se encuentra el archivo</param>
-        /// <param name="pCatalogEntry">XmlElement que contiene informacion del catalogo de arhivos utilizado por el 
+        /// <param name="pFullFileName">Nombre del archivo</param>
+        /// <param name="pConfigFileRegistry">XmlElement que contiene informacion del catalogo de arhivos utilizado por el 
         /// servicio web Configuration Service</param>
-        /// <returns>String con el contenido del archivo xml de configuracion  </returns>
-        /// <Author>Marcelo Oviedo</Author>
+        /// <returns></returns>
         public static ConfigurationFile GetConfig(string pFullFileName, ConfigFileRegistry pConfigFileRegistry)
         {
 
             ConfigurationFile wConfigurationFile;
             string wFileContent = Fwk.HelperFunctions.FileFunctions.OpenTextFile(pFullFileName);
 
-            if (pConfigFileRegistry != null && pConfigFileRegistry.Encrypt)
-            {
-                wFileContent = Fwk.HelperFunctions.CryptographyFunctions.Encrypt(wFileContent);
-                wConfigurationFile = new ConfigurationFile();
-            }
-            else//Si no esta encriptado dezerializa el contenido
-            {
-                wConfigurationFile = ConfigurationFile.GetFromXml<ConfigurationFile>(wFileContent);
-               
-            }
+            ///TODO: Ver encriptacion
+            //if (pConfigFileRegistry != null && pConfigFileRegistry.Encrypt)
+            //{
+            //    wFileContent = Fwk.HelperFunctions.CryptographyFunctions.Encrypt(wFileContent);
+
+            //    wConfigurationFile = ConfigurationFile.GetFromXml<ConfigurationFile>(wFileContent);
+            //}
+            //else//Si no esta encriptado dezerializa el contenido
+            //{
+            wConfigurationFile = ConfigurationFile.GetFromXml<ConfigurationFile>(wFileContent);
+
+            //}
 
             wConfigurationFile.FileName = pFullFileName;
             //wConfigurationFile.FileContent.Text = wFileContent;
@@ -79,17 +79,17 @@ namespace Fwk.Configuration.Common
                 wConfigurationFile.ForceUpdate = pConfigFileRegistry.ForceUpdate;
                 wConfigurationFile.CurrentVersion = pConfigFileRegistry.CurrentVersion;
                 wConfigurationFile.BaseConfigFile = pConfigFileRegistry.BaseConfigFile;
-               
+
             }
             else
             {
                 wConfigurationFile.BaseConfigFile = true;
-             
+
             }
 
             return wConfigurationFile;
         }
 
-   
+
     }
 }

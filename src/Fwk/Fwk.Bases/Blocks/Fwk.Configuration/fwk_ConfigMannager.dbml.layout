@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="fwk_ConfigMannager">
+  <DataContextMoniker Name="/fwk_ConfigMannagerDataContext" />
+  <nestedChildShapes>
+    <classShape Id="fdec1478-0151-49bd-9afb-897a4a7b9b5a" absoluteBounds="1.875, 1.375, 2, 1.75354248046875">
+      <DataClassMoniker Name="/fwk_ConfigMannagerDataContext/fwk_ConfigMannager" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5f2d3d14-4baa-4214-a284-828af6d7d4ce" absoluteBounds="1.8900000000000001, 1.835, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

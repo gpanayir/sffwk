@@ -74,7 +74,7 @@ namespace Fwk.Logging.Targets
                     wCnn.Open();
                     wCmd.Connection = wCnn;
                     wCmd.CommandType = CommandType.StoredProcedure;
-                    wCmd.CommandText = "Logs_i";
+                    wCmd.CommandText = "fwk_Logs_i";
                     SqlParameter wParam = null;
 
                     wParam = wCmd.Parameters.Add("Id", SqlDbType.UniqueIdentifier);
@@ -128,7 +128,7 @@ namespace Fwk.Logging.Targets
                     wCnn.Open();
                     wCmd.Connection = wCnn;
                     wCmd.CommandType = CommandType.StoredProcedure;
-                    wCmd.CommandText = "Logs_s";
+                    wCmd.CommandText = "fwk_Logs_s";
                     SqlParameter wParam = null;
 
 
@@ -217,7 +217,7 @@ namespace Fwk.Logging.Targets
                     wCnn.Open();
                     wCmd.Connection = wCnn;
                     wCmd.CommandType = CommandType.StoredProcedure;
-                    wCmd.CommandText = "Logs_s";
+                    wCmd.CommandText = "fwk_Logs_s";
                     SqlParameter wParam = null;
 
 

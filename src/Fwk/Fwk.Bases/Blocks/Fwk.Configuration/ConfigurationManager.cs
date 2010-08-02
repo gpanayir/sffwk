@@ -22,57 +22,34 @@ namespace Fwk.Configuration
 	{
 
         static ConfigProviderSection _ConfigProvider;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ConfigProviderSection ConfigProvider
+        {
+            get { return _ConfigProvider; }
+           
+        }
         static ConfigProviderElement _DefaultProvider;
 
+        /// <summary>
+        /// Proveedor configurado como por defecto
+        /// </summary>
         public static ConfigProviderElement DefaultProvider
         {
-            get { return ConfigurationManager._DefaultProvider; }
+            get { return _DefaultProvider; }
             
         }
+
         static ConfigurationManager()
         {
             _ConfigProvider = System.Configuration.ConfigurationManager.GetSection("FwkConfigProvider") as ConfigProviderSection;
             _DefaultProvider = _ConfigProvider.DefaultProvider;
-            
+
         }
-        /// <summary>
-        /// Obtener un valor desde el archivo de configuración.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="psz_Group"></param>
-        /// <param name="psz_Key"></param>
-        /// <returns></returns>
-        //private Nullable<T> GetValueFromConfigurationKey<T>(string psz_Group, string psz_Key) where T : struct
-        //{
-        //    string wzs_Value = string.Empty;
 
-        //    try
-        //    {
-        //        wzs_Value = ConfigurationManager.GetProperty(psz_Group, psz_Key);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //Se asume como que el valor no fue establecido.
-        //        //throw new TechnicalException(string.Format(@"Error al obtener la clave ""{1}"" del grupo ""{0}"".", psz_Group, psz_Key), ex);
-        //    }
-
-        //    try
-        //    {
-        //        Nullable<T> wo_Value;
-
-        //        if (!string.IsNullOrEmpty(wzs_Value))
-        //            wo_Value = new Nullable<T>((T)Convert.ChangeType(wzs_Value, typeof(T)));
-        //        else
-        //            wo_Value = new Nullable<T>();
-
-        //        return wo_Value;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new TechnicalException(string.Format(@"Error al obtener la clave ""{1}"" del grupo ""{0}"": No se puede convertir el valor ""{2}"" al tipo ""{3}"".", psz_Group, psz_Key, wzs_Value, typeof(T).ToString()), ex);
-        //    }
-        //}
-
+        
         /// <summary>
         /// Obtiene una propiedad determinada de un archivo de configuracion Usa proveedor de confuiguraciones establecido por defecto.-
         /// </summary>
@@ -84,25 +61,45 @@ namespace Fwk.Configuration
         {
             return GetProperty(string.Empty, pGroupName, pPropertyName);
         }
+
         /// <summary>
         /// Obtiene una propiedad determinada de un archivo de configuracion .-
         /// </summary>
+        /// <param name="pConfigProvider">Nombre del proveedor de configuracion</param>
         /// <param name="pGroupName">Nombre del grupo donde se encuentra la propiedad</param>
         /// <param name="pPropertyName">Nombre de la propiedad a obtener</param>
         /// <returns>String con la propiedad</returns>
         /// <Author>Marcelo Oviedo</Author>
         public static string GetProperty(string pConfigProvider, string pGroupName, string pPropertyName)
         {
-            if (IsLocal())
-            {
-                return LocalConfigurationManager.GetProperty(pConfigProvider,pGroupName, pPropertyName);
-            }
-            else
-            {
-                return RemoteConfigurationManager.GetProperty(pGroupName, pPropertyName);
-            }
-        }
 
+
+
+            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            if (provider == null) return null;
+
+
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        return LocalFileConfigurationManager.GetProperty(pConfigProvider,pGroupName,pPropertyName);
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        return RemoteConfigurationManager.GetProperty(pGroupName, pPropertyName);
+                    }
+                case ConfigProviderType.database:
+                    {
+                        return DatabaseConfigMannager.GetProperty(pConfigProvider ,pGroupName, pPropertyName);
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return null;
+                    }
+            }
+            return null;
+        }
       
 
         /// <summary>
@@ -113,34 +110,77 @@ namespace Fwk.Configuration
         /// <Author>Marcelo Oviedo</Author>
         public static ConfigurationFile GetConfigurationFile(string pFileName)
         {
+         return   GetConfigurationFromProvider(_DefaultProvider.Name);
 
-            if (IsLocal())
-            {
-                return LocalConfigurationManager.GetConfigurationFile(pFileName);
-            }
-            else
-            {
-                return RemoteConfigurationManager.GetConfigurationFile(pFileName);
-            }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pConfigProvider">Nombre del proveedor configurado</param>
+        /// <returns></returns>
+        public static ConfigurationFile GetConfigurationFromProvider(string pConfigProvider)
+        {
+            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            if (provider == null) return null;
+
+
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        return LocalFileConfigurationManager.GetConfigurationFile(provider.BaseConfigFile); 
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        return RemoteConfigurationManager.GetConfigurationFile(provider.BaseConfigFile); 
+                    }
+                case ConfigProviderType.database:
+                    {
+                        return DatabaseConfigMannager.GetConfigurationFile(provider); 
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return null;
+                        
+                    }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Obtiene un grupo determinado en el archivo de configuracion
         /// </summary>
-        /// <param name="pGroupName"></param>
+        /// <param name="pConfigProvider">Nombre del proveedor de configuracion</param>
+        /// <param name="pGroupName">Nombre del grupo a obtener</param>
         /// <returns>Group</returns>
         /// <Author>Marcelo Oviedo</Author>
         public static Group GetGroup(string pConfigProvider, string pGroupName)
         {
-            if (IsLocal())
+
+            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            if (provider == null) return null;
+            switch (provider.ConfigProviderType)
             {
-                return LocalConfigurationManager.GetGroup(pConfigProvider, pGroupName);
+                case ConfigProviderType.local:
+                    {
+                        return LocalFileConfigurationManager.GetGroup(pConfigProvider, pGroupName);
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        ///TODO: Ver esta sobregcarga
+                        return RemoteConfigurationManager.GetGroup(pGroupName);
+                    }
+                case ConfigProviderType.database:
+                    {
+                        return DatabaseConfigMannager.GetGroup(provider.BaseConfigFile, provider.BaseConfigFile);
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return null;
+                    }
             }
-            else
-            {
-                return RemoteConfigurationManager.GetGroup(pGroupName);
-            }
+            return null;
         }
 
         /// <summary>
@@ -151,14 +191,7 @@ namespace Fwk.Configuration
         /// <Author>Marcelo Oviedo</Author>
         public static Group GetGroup(string pGroupName)
         {
-            if (IsLocal())
-            {
-                return LocalConfigurationManager.GetGroup(pGroupName);
-            }
-            else
-            {
-                return RemoteConfigurationManager.GetGroup(pGroupName);
-            }
+            return GetGroup(string.Empty, pGroupName);
         }
 
         #region Operaciones validas solo para configuraciones remotas.-
@@ -169,40 +202,23 @@ namespace Fwk.Configuration
         /// </summary>
         /// <param name="pFileName">Nombre del archivo</param>
         /// <param name="pClientVersion">Version del archivo del lado del cliente</param>
-        /// <returns>FileStatus <see cref="FileStatus"/></returns>
         /// <Author>Marcelo Oviedo</Author>
         public static Helper.FileStatus GetFileVersionStatus(string pFileName, string pClientVersion)
         {
-            if (IsLocal())
-            {
-                throw new Exception("Operacion no valida en un ambito de configuracion local ");
-            }
 
-            return RemoteConfigurationManager.GetFileVersionStatus(pFileName, pClientVersion);
+            if (_DefaultProvider.ConfigProviderType == ConfigProviderType.remote)
+            {
+                return RemoteConfigurationManager.GetFileVersionStatus(pFileName, pClientVersion);
+            }
+            ///TODO: Exception de config
+            else throw new Exception(string.Concat("Operacion no valida en un ambito de configuracion ", _DefaultProvider.ConfigProviderType.ToString()));
+
         }
         #endregion 
 
 
         #region Metodos privados
-        /// <summary>
-        /// Determina si se utilixara onfiguracion del lado del cliente (LOCAL) o atravez de un servicio de configuracion
-        /// remota.
-        /// La opcion local es muy util en el ambiente de desarrollo para que el programador no tenga que lidear 
-        /// con aspectos tecnicos de los servicios de configuracion y deje esta tarea para mas adelante cuando tenga el desarrollo 
-        /// finalizado simplemeto estableciendo la propiedad "IsLocal" iguan a false en el App.config de la aplicacion.
-        /// </summary>
-        /// <returns>True si ya esta configurado o False si no</returns>
-        /// <Author>Marcelo Oviedo</Author>
-        private static bool IsLocal()
-        {
-            return _DefaultProvider.IsLocal;
-            
-        }
-        private static bool IsLocal(string pProviderName)
-        {
-            return _ConfigProvider.GetProvider(pProviderName).IsLocal;
-          
-        }
+       
 
         /// <summary>
         /// Metodo que lee el en el App.Config la Key = BaseConfigFile para obtener el nombre del archivo de configuracion
@@ -215,16 +231,20 @@ namespace Fwk.Configuration
 
             if (_DefaultProvider.BaseConfigFile == string.Empty)
             {
+                ///TODO: Exception de config
                 throw new Exception("No hay un nombre de archivo de configuración.");
             }
 
             return _DefaultProvider.BaseConfigFile;
 
-        }   
+        }
+
+
         /// <summary>
         /// Metodo que lee el en el App.Config la Key = BaseConfigFile para obtener el nombre del archivo de configuracion
         /// utilizado
         /// </summary>
+        /// <param name="pProviderName">Nombre del proveedor de configuracion</param>
         /// <returns>String con el nombre del archivo</returns>
         /// <Author>Marcelo Oviedo</Author>
         internal static string GetBaseConfigFileName(string pProviderName)
@@ -232,14 +252,136 @@ namespace Fwk.Configuration
           
            if (_ConfigProvider.GetProvider(pProviderName).BaseConfigFile == string.Empty)
             {
-                throw new Exception("No hay un nombre de archivo de configuración.");
+                ///TODO: Exception de config
+                throw new Exception(string.Concat("No hay un nombre de archivo de configuración con el nombre: ", pProviderName));
             }
-
+            
             return _ConfigProvider.GetProvider(pProviderName).BaseConfigFile;
 
         }
 	    #endregion
 
+        /// <summary>
+        /// Obtiene uin configuration provider por su nombre
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        internal static ConfigProviderElement GetProvider(string name)
+        {
+           if (string.IsNullOrEmpty(name))
+                return _DefaultProvider;
+            else
+                return _ConfigProvider.GetProvider(name);
+           
+        }
+
+
+
+        internal static void AddProperty(string pConfigProvider, Key key, string groupName)
+        {
+            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            if (provider == null) return ;
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        LocalFileConfigurationManager.AddProperty(provider, key, groupName);
+                        break;
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        RemoteConfigurationManager.AddProperty(provider, key, groupName);
+                        break;
+                    }
+                case ConfigProviderType.database:
+                    {
+                        DatabaseConfigMannager.AddProperty(provider, key, groupName);
+                        break;
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return ;
+                    }
+            }
+        }
+
+        internal static void AddGroup(string pConfigProvider, Group group)
+        {
+            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            if (provider == null) return ;
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        LocalFileConfigurationManager.AddGroup(provider, group); break;
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        RemoteConfigurationManager.AddGroup(provider, group); break;
+                    }
+                case ConfigProviderType.database:
+                    {
+                        DatabaseConfigMannager.AddGroup(provider, group); break;
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return ;
+                    }
+            }
+        }
+
+
+
+
+        internal static void RemoveProperty(string pConfigProvider, string propertyName, string groupName)
+        {
+            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            if (provider == null) return;
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        LocalFileConfigurationManager.RemoveProperty(provider, propertyName, groupName); break;
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        RemoteConfigurationManager.RemoveProperty(provider, propertyName, groupName); break;
+                    }
+                case ConfigProviderType.database:
+                    {
+                        DatabaseConfigMannager.RemoveProperty(provider, propertyName, groupName); break;
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return;
+                    }
+            }
+        }
+
+        internal static void RemoveGroup(string pConfigProvider, string groupName)
+        {
+            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            if (provider == null) return;
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        LocalFileConfigurationManager.RemoveGroup(provider, groupName); break;
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        RemoteConfigurationManager.RemoveGroup(provider, groupName); break;
+                    }
+                case ConfigProviderType.database:
+                    {
+                        DatabaseConfigMannager.RemoveGroup(provider, groupName); break;
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return;
+                    }
+            }
+        }
     }
     
 

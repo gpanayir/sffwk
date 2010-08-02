@@ -7,6 +7,7 @@ using System.Configuration;
 
 using Fwk.Configuration.Common;
 using Fwk.Bases.Properties;
+using Fwk.ConfigSection;
 
 namespace Fwk.Configuration
 {
@@ -145,6 +146,31 @@ namespace Fwk.Configuration
             }
 
             return wGroup;
+        }
+
+        internal static object AddProperty(ConfigProviderElement provider, Key key, string groupName)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static object GetProperty(ConfigProviderElement provider, Group group)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static object AddGroup(ConfigProviderElement provider, Group group)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void RemoveProperty(ConfigProviderElement provider, string propertyName, string groupName)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void RemoveGroup(ConfigProviderElement provider, string groupName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

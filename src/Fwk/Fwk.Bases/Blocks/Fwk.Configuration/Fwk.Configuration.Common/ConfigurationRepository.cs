@@ -12,15 +12,12 @@ using Fwk.HelperFunctions;
 using System.ComponentModel;
 namespace Fwk.Configuration.Common
 {
-
-
-
     /// <summary>
     /// Clase contenedora de archivos de configuracion y sus estados. Esta clase permite cachear en memoria las configuraciones que
     /// son requeridas por las aplicacioenes. 
     /// </summary>
     /// <Author>Marcelo Oviedo</Author>
-    public class ConfigurationRepository
+    class ConfigurationRepository
     {
 
         private System.Collections.Generic.Dictionary<string, ConfigurationFile> _DictionaryFiles;
@@ -31,7 +28,7 @@ namespace Fwk.Configuration.Common
         /// </summary>
         public ConfigurationRepository()
         {
-         
+
             _DictionaryFiles = new System.Collections.Generic.Dictionary<string, ConfigurationFile>();
         }
 
@@ -92,10 +89,11 @@ namespace Fwk.Configuration.Common
 
         public bool ExistConfigurationFile(string pFileName)
         {
-           return _DictionaryFiles.ContainsKey(pFileName);
+            return _DictionaryFiles.ContainsKey(pFileName);
 
         }
     }
+
 
     /// <summary>
     /// Reprecenta un archivo de confuguracion y sus estados en memoria.-
@@ -114,15 +112,7 @@ namespace Fwk.Configuration.Common
        
         string _CurrentVersion;
 
-        //Fwk.Xml.CData _FileContent = new Fwk.Xml.CData();
-
-        //[XmlElement("FileContent", Type = typeof(Fwk.Xml.CData))]
-        //public Fwk.Xml.CData FileContent
-        //{
-        //    get { return _FileContent; }
-        //    set { _FileContent = value; }
-        //}
-      
+ 
       
         public bool Encrypted
         {
@@ -213,8 +203,8 @@ namespace Fwk.Configuration.Common
         /// <returns>bool</returns>
         public bool CheckExpiration()
         {
-            bool wResult = (TTL != 0 && this._TimeStamp.AddSeconds(TTL) < DateTime.Now);
-            return wResult;
+            return (TTL != 0 && this._TimeStamp.AddSeconds(TTL) < DateTime.Now);
+          
         }
 
         /// <summary>
