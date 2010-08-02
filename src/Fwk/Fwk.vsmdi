@@ -3,4 +3,10 @@
   <TestList name="Lists of Tests" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
     <RunConfiguration id="3b96f8df-5e8d-47b7-9361-1cb491b8b26e" name="Local Test Run" storage="localtestrun.testrunconfig" type="Microsoft.VisualStudio.TestTools.Common.TestRunConfiguration, Microsoft.VisualStudio.QualityTools.Common,   PublicKeyToken=b03f5f7f11d50a3a" />
   </TestList>
+  <TestList name="Fwk.ConfigMannager" id="9fb85632-fb74-4ab7-8584-94125f9ec6ff" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+    <TestLinks>
+      <TestLink id="0edc5c31-a571-fd1a-b04c-fa64a3b9399d" name="ConfigurationMannager_File" storage="fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="ab794f51-93ce-29d2-b9d8-851184d0a6e8" name="ConfigurationMannager_Database" storage="fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
 </TestLists>

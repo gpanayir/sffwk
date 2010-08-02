@@ -288,7 +288,15 @@ namespace Fwk.Configuration
         internal static void AddGroup(ConfigProviderElement provider, Group group)
         {
 
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+            
+
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile, provider.ApplicationId, provider.CnnStringName);
+
+            if (!wConfigurationFile.BaseConfigFile)
+            {
+                ///TODO: manejo de exepcion de configuracion
+                throw new Exception("El archivo solicitado no es un archivo de configuración válido.");
+            }
             wConfigurationFile.Groups.Add(group);
 
             Set_INSERT();
