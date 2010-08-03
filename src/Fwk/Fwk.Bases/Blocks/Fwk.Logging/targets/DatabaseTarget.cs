@@ -103,8 +103,10 @@ namespace Fwk.Logging.Targets
                 }
                 catch (Exception ex)
                 {
-                    ///TODO: Ver ex loging
-                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                    TechnicalException te = new TechnicalException("Error de Logging", ex);
+                    te.ErrorId = "9004";
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
+                    throw te;
                 }
             }
         }
@@ -191,8 +193,10 @@ namespace Fwk.Logging.Targets
                 }
                 catch (Exception ex)
                 {
-                    ///TODO: Ver ex loging
-                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                    TechnicalException te = new TechnicalException("Error de Logging", ex);
+                    te.ErrorId = "9004";
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
+                    throw te;
                 }
             }
         }
@@ -283,8 +287,10 @@ namespace Fwk.Logging.Targets
                 }
                 catch (Exception ex)
                 {
-                    ///TODO: Ver ex loging
-                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+                    TechnicalException te = new TechnicalException("Error de Logging", ex);
+                    te.ErrorId = "9004";
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
+                    throw te;
                 }
             }
 
@@ -305,8 +311,10 @@ namespace Fwk.Logging.Targets
 
             if (String.IsNullOrEmpty(strDb))
             {
-                ///TODO: Ver ex loging
-                throw new TechnicalException("Debe especificar cnnStringName en el archivo de configuración.");
+                TechnicalException te = new TechnicalException("Debe especificar cnnStringName en el archivo de configuración.");
+                te.ErrorId = "9003";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
+                throw te;
             }
             return strDb;
         }

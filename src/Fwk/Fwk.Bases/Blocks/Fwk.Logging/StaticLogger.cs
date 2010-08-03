@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Collections.Generic;
 using Fwk.ConfigSection;
 using Fwk.Logging.Targets;
+using Fwk.Exceptions;
 
 namespace Fwk.Logging
 {
@@ -222,6 +223,13 @@ namespace Fwk.Logging
 
                 case TargetType.Database:
                     {
+                        if (String.IsNullOrEmpty(cnnStringName))
+                        {
+                            TechnicalException te= new TechnicalException("Debe especificar el parametro cnnStringName. para identificar la cadena de conexión");
+                            te.ErrorId = "9003";
+                            Fwk.Exceptions.ExceptionHelper.SetTechnicalException<StaticLogger>(te);
+                            throw te;
+                        }
                         target = Target.TargetFactory(TargetType.Database, cnnStringName);
                         break;
                     }

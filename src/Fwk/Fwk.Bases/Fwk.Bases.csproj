@@ -292,8 +292,6 @@
     <None Include="fwk.snk" />
     <None Include="Blocks\Fwk.Caching\Caching.cd" />
     <None Include="Blocks\Fwk.Caching\ConfigCaching_App.config" />
-    <None Include="Blocks\Fwk.Logging\database\Logs" />
-    <None Include="Blocks\Fwk.Logging\database\Logs.sql" />
     <None Include="Blocks\Fwk.Logging\diagrams\Diagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
