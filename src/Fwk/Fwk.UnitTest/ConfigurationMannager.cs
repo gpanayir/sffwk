@@ -202,7 +202,7 @@ namespace Fwk.UnitTest
             Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
 
             if (!string.IsNullOrEmpty(strErrorResut)) return;
-            string kvalue = Fwk.Configuration.ConfigurationManager.GetProperty(providerName, "K03");
+            string kvalue = Fwk.Configuration.ConfigurationManager.GetProperty(providerName,g.Name, "K03");
 
             if (!kvalue.Equals("Value_Key_03", StringComparison.OrdinalIgnoreCase))
                 Assert.Inconclusive("No se pudo obtener correctamente la propiedad", kvalue);
@@ -212,7 +212,7 @@ namespace Fwk.UnitTest
 
             try
             {
-                Fwk.Configuration.ConfigurationManager_CRUD.RemoveProperty(providerName, "K03", g.Name);
+                Fwk.Configuration.ConfigurationManager_CRUD.RemoveProperty(providerName, g.Name, "K03");
             }
             catch (Exception e)
             {
