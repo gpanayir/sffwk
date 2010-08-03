@@ -227,7 +227,8 @@ namespace Fwk.Logging
                         {
                             TechnicalException te= new TechnicalException("Debe especificar el parametro cnnStringName. para identificar la cadena de conexión");
                             te.ErrorId = "9003";
-                            Fwk.Exceptions.ExceptionHelper.SetTechnicalException<StaticLogger>(te);
+
+                            Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(StaticLogger));
                             throw te;
                         }
                         target = Target.TargetFactory(TargetType.Database, cnnStringName);

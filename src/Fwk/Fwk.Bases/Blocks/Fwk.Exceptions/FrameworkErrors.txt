@@ -10,6 +10,9 @@ Descripcion: "El servicio " + [serviceName] + " no se encuentra configurado."
 ErrorId = 7002
 Descripcion: "El servicio " + [serviceName] + " no se puede ejecutar debido a que esta faltando el assembly [AssemblyName] en el despachador de servicio"
 
+ErrorId = 7004
+Descripcion: Error al inicializar la metadata de los servicios  \r\n
+
 ErrorId = 7005
  Descripcion = wMessage.Append("El despachador de servicio no pudo continuar debido  \r\n");
                 wMessage.Append("a que el nombre del servicio no fue establecido");
@@ -20,13 +23,37 @@ Servicio de configuracion
 
 
 
+ErrorId = 7100
+ Descripcion =  No tiene permiso para actualizar el archivo 
+Servicio de configuracion
+
+
 -------------------------------- Servicio de configuracion  -----------------------------------
 
 ErrorId = 8004
 Descripcion "Error al cargar el archivo de configuracion de servicios " "Verifique que todos los servicios cuentan con todos los atributos confugurados"
 
-ErrorId = 
-Descripcion 
+ErrorId = 8005
+Descripcion :El archivo solicitado no es un archivo de configuración válido.
+
+ErrorId = 8006
+Descripcion: No se encuentra el grupo
+
+ErrorId = 8007
+Descripcion: No se encuentra la propiedad 
+
+ErrorId = 8008
+No tiene permiso para actualizar el archivo 
+
+ErrorId = 9010
+Descripcion: Nombre artchivo de configuracion no espesificado en el proveedor de configuracion. Ver archivo .config de la aplicacion
+
+ErrorId = 9200
+Descripcion: Problemas con Fwk.Configuration al realizar operaciones con la base de datos
+
+
+ErrorId = 8100
+No tiene permiso para actualizar el archivo 
 
 --------------------------------   Fwk.Logging -----------------------------------
 
@@ -46,7 +73,7 @@ Descripcion: Debe especificar el parametro cnnStringName. para identificar la ca
 			
 			
 ErrorId = 9004
-Descripcion: Problemas con DatabaseTarget realizar operaciones con la base de datos
+Descripcion: Problemas con Fwk.Logging realizar operaciones con la base de datos
 			
 --------------------------------   Fwk.Exceptions -----------------------------------
 

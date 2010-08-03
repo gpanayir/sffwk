@@ -51,18 +51,29 @@ namespace Fwk.Configuration
 
             if (!wConfigurationFile.BaseConfigFile)
             {
-                throw new Exception("El archivo solicitado no es un archivo de configuración válido.");
+                
+                TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
+                te.ErrorId = "8005";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
             }
 
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             if (wGroup == null)
             {
-                throw new Exception(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", provider.BaseConfigFile }));
+
+                TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", provider.BaseConfigFile }));
+                te.ErrorId = "8006";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
             }
             Key wKey = wGroup.Keys.GetFirstByName(pPropertyName);
             if (wKey == null)
             {
-                throw new Exception(string.Concat(new String[] { "No se encuentra la propiedad ", pPropertyName, " en el grupo de propiedades: ", pGroupName, " del archivo de configuración: ", provider.BaseConfigFile }));
+                TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra la propiedad ", pPropertyName, " en el grupo de propiedades: ", pGroupName, " del archivo de configuración: ", provider.BaseConfigFile }));
+                te.ErrorId = "8007";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
             }
 
 
@@ -124,26 +135,23 @@ namespace Fwk.Configuration
 
             if (!wConfigurationFile.BaseConfigFile)
             {
-                ///TODO: manejo de exepcion de configuracion
-                throw new Exception("El archivo solicitado no es un archivo de configuración válido.");
+                TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
+                te.ErrorId = "8005";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
             }
 
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             if (wGroup == null)
             {
-                ///TODO: manejo de exepcion de configuracion
-                throw new Exception(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", provider.BaseConfigFile }));
+                TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", provider.BaseConfigFile }));
+                te.ErrorId = "8006";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
             }
 
 
-            if (wGroup == null)
-            {
-                ///TODO: manejo de exepcion de configuracion
-                throw new Exception(
-                    "El grupo '" + pGroupName + "'. no se encuentra " +
-                    "configurado en ninguno de los repositorios. " +
-                    "Archivo: '" + provider.BaseConfigFile + "'.");
-            }
+            
 
             return wGroup;
         }
@@ -201,40 +209,49 @@ namespace Fwk.Configuration
             Group g = null;
             Key k = null;
             wConfigurationFile.FileName = pFileName;
-     
-            using (fwk_ConfigMannagerDataContext dc = new fwk_ConfigMannagerDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName].ConnectionString))
+
+            try
             {
-
-                IEnumerable<fwk_ConfigMannager> fwk_ConfigMannagerList = from s in dc.fwk_ConfigMannagers
-                                                                         where s.ConfigurationFileName.Equals(pFileName)
-                                                                         && (String.IsNullOrEmpty(pAppId) || s.ConfigurationFileName.Equals(pAppId))
-
-                                                                        
-                                                                         select s;
-
-
-
-                foreach (fwk_ConfigMannager fwk_Config in fwk_ConfigMannagerList.OrderBy(p => p.group))
+                using (fwk_ConfigMannagerDataContext dc = new fwk_ConfigMannagerDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName].ConnectionString))
                 {
-                    if (!groupAuxiliar.Equals(fwk_Config.group))
+
+                    IEnumerable<fwk_ConfigMannager> fwk_ConfigMannagerList = from s in dc.fwk_ConfigMannagers
+                                                                             where s.ConfigurationFileName.Equals(pFileName)
+                                                                             && (String.IsNullOrEmpty(pAppId) || s.ConfigurationFileName.Equals(pAppId))
+
+
+                                                                             select s;
+
+
+
+                    foreach (fwk_ConfigMannager fwk_Config in fwk_ConfigMannagerList.OrderBy(p => p.group))
                     {
-                        groupAuxiliar = Convert.ToString(fwk_Config.group);
-                        g = new Group();
-                        g.Name = groupAuxiliar;
-                        wConfigurationFile.Groups.Add(g);
+                        if (!groupAuxiliar.Equals(fwk_Config.group))
+                        {
+                            groupAuxiliar = Convert.ToString(fwk_Config.group);
+                            g = new Group();
+                            g.Name = groupAuxiliar;
+                            wConfigurationFile.Groups.Add(g);
+                        }
+
+                        k = new Key();
+                        k.Encrypted = Convert.ToBoolean(fwk_Config.encrypted);
+                        k.Name = Convert.ToString(fwk_Config.key);
+                        k.Value.Text = Convert.ToString(fwk_Config.value);
+
+
+                        g.Keys.Add(k);
                     }
 
-                    k = new Key();
-                    k.Encrypted = Convert.ToBoolean(fwk_Config.encrypted);
-                    k.Name = Convert.ToString(fwk_Config.key);
-                    k.Value.Text = Convert.ToString(fwk_Config.value);
-
-
-                    g.Keys.Add(k);
                 }
-
             }
-
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                te.ErrorId = "9200";
+                throw te;
+            }
 
             return wConfigurationFile;
         }
@@ -279,11 +296,11 @@ namespace Fwk.Configuration
             }
             catch (Exception ex)
             {
-                TechnicalException te = new TechnicalException("", ex);
+                TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
                 ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
-                te.ErrorId = "4000";
+                te.ErrorId = "9200";
                 throw te;
-                ///TODO: ver Ex
+           
             }
         }
 
@@ -334,10 +351,10 @@ namespace Fwk.Configuration
             }
             catch (Exception ex)
             {
-                TechnicalException te = new TechnicalException("", ex);
+                TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
                 ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
-                te.ErrorId = "4000";
-                throw te;///TODO: ver Ex
+                te.ErrorId = "9200";
+                throw te;
             }
         }
 
@@ -431,11 +448,10 @@ namespace Fwk.Configuration
             }
             catch (Exception ex)
             {
-                TechnicalException te = new TechnicalException("", ex);
+                TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
                 ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
-                te.ErrorId = "4000";
+                te.ErrorId = "9200";
                 throw te;
-                ///TODO: ver Ex
             }
 
         }

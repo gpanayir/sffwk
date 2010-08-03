@@ -193,7 +193,7 @@ namespace Fwk.Logging.Targets
                 }
                 catch (Exception ex)
                 {
-                    TechnicalException te = new TechnicalException("Error de Logging", ex);
+                    TechnicalException te = new TechnicalException("Error de Fwk.Logging", ex);
                     te.ErrorId = "9004";
                     Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
                     throw te;
@@ -287,7 +287,7 @@ namespace Fwk.Logging.Targets
                 }
                 catch (Exception ex)
                 {
-                    TechnicalException te = new TechnicalException("Error de Logging", ex);
+                    TechnicalException te = new TechnicalException("Error de Fwk.Logging", ex);
                     te.ErrorId = "9004";
                     Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
                     throw te;

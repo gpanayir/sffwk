@@ -120,9 +120,7 @@ namespace Fwk.AssemblyExplorer
 		#region --[Constructor]--
 		public AssemblyClass()
 		{
-			//
-			// TODO: Add constructor logic here
-			//
+	
 		}
 		public AssemblyClass(Type pClass)
 		{

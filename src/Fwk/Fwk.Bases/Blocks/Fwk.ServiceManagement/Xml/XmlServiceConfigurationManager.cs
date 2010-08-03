@@ -217,10 +217,8 @@ namespace Fwk.ServiceManagement
                     Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
 
                     te.ErrorId = "7002";
-                    te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
-                    te.Class = typeof(XmlServiceConfigurationManager).Name;
-                    te.Namespace = typeof(XmlServiceConfigurationManager).Namespace; 
-                    
+                    ExceptionHelper.SetTechnicalException<XmlServiceConfigurationManager>(te);
+
                     throw te;
 				}
                  wServiceConfigurationEnDisco = _Services[pServiceName];
@@ -260,9 +258,7 @@ namespace Fwk.ServiceManagement
                 Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
 
                 te.ErrorId = "7002";
-                te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
-                te.Class = typeof(XmlServiceConfigurationManager).Name;
-                te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<XmlServiceConfigurationManager>(te);
 
                 throw te;
 			}
@@ -347,11 +343,10 @@ namespace Fwk.ServiceManagement
 
             TechnicalException te = new TechnicalException(wMessage.ToString());
 
-            te.Source ="Despachador de servicios";
+            
             te.ErrorId = "7004";
-            te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
-            te.Class = typeof(XmlServiceConfigurationManager).Name;
-            te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
+            Fwk.Exceptions.ExceptionHelper.SetTechnicalException<XmlServiceConfigurationManager>(te);
+            te.Source = "Despachador de servicios";
             throw te;
 
         }
@@ -365,8 +360,19 @@ namespace Fwk.ServiceManagement
         private void SaveServiceConfigFile()
         {
             String xml = SerializationFunctions.SerializeToXml(_Services);
-            //TODO: Ver errores de permisos de archivo
-            HelperFunctions.FileFunctions.SaveTextFile(GetXMLRepositoryPath(), xml,false);
+            try
+            {
+                HelperFunctions.FileFunctions.SaveTextFile(GetXMLRepositoryPath(), xml, false);
+            }
+              
+            catch (System.UnauthorizedAccessException)
+            {
+
+                TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", GetXMLRepositoryPath()));
+                te.ErrorId = "7100";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<XmlServiceConfigurationManager>(te);
+                throw te;
+            }
         
         }
 		#endregion

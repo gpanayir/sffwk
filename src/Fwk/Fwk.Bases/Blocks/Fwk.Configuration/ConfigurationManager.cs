@@ -3,6 +3,7 @@ using System.Collections;
 using Fwk.Configuration.Common;
 using Fwk.Bases.Properties;
 using Fwk.ConfigSection;
+using Fwk.Exceptions;
 
 namespace Fwk.Configuration
 {
@@ -210,9 +211,14 @@ namespace Fwk.Configuration
             {
                 return RemoteConfigurationManager.GetFileVersionStatus(pFileName, pClientVersion);
             }
-            ///TODO: Exception de config
-            else throw new Exception(string.Concat("Operacion no valida en un ambito de configuracion ", _DefaultProvider.ConfigProviderType.ToString()));
-
+            
+            else 
+            {
+                TechnicalException te = new TechnicalException(string.Concat("Operacion no valida para un proveedor de configuracion del tipo: ", _DefaultProvider.ConfigProviderType.ToString()));
+                te.ErrorId = "8100";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
+            }
         }
         #endregion 
 
@@ -228,15 +234,7 @@ namespace Fwk.Configuration
         /// <Author>Marcelo Oviedo</Author>
         internal static string GetBaseConfigFileName()
         {
-
-            if (_DefaultProvider.BaseConfigFile == string.Empty)
-            {
-                ///TODO: Exception de config
-                throw new Exception("No hay un nombre de archivo de configuración.");
-            }
-
-            return _DefaultProvider.BaseConfigFile;
-
+            return GetBaseConfigFileName(string.Empty);
         }
 
 
@@ -252,8 +250,11 @@ namespace Fwk.Configuration
           
            if (_ConfigProvider.GetProvider(pProviderName).BaseConfigFile == string.Empty)
             {
-                ///TODO: Exception de config
-                throw new Exception(string.Concat("No hay un nombre de archivo de configuración con el nombre: ", pProviderName));
+                TechnicalException te = new TechnicalException(string.Concat("Nombre artchivo de configuracion no espesificado en el proveedor de configuracion ", pProviderName, " . Ver archivo .config de la aplicacion"));
+                te.ErrorId = "8010";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
+
             }
             
             return _ConfigProvider.GetProvider(pProviderName).BaseConfigFile;
