@@ -45,7 +45,7 @@
         </Key>
         <Key name="RecordNotFound" encrypted="false">
           <EntityState>Unchanged</EntityState>
-          <Value><![CDATA[No existe el lote {0}.]]></Value>
+          <Value><![CDATA[  ]]></Value>
         </Key>
         <Key name="LoteDetenidoCaducado" encrypted="false">
           <EntityState>Unchanged</EntityState>
