@@ -137,10 +137,10 @@
     <Compile Include="Blocks\Fwk.Blocking\FwkBlockingEngine.cs" />
     <Compile Include="Blocks\Fwk.Blocking\IBlockingEngine.cs" />
     <Compile Include="Blocks\Fwk.Blocking\IBlockingMark.cs" />
-    <Compile Include="Blocks\Fwk.Blocking\Fwk.BusinessFacades\Audit.cs" />
-    <Compile Include="Blocks\Fwk.Blocking\Fwk.BusinessFacades\FacadeHelper.cs" />
-    <Compile Include="Blocks\Fwk.Blocking\Fwk.BusinessFacades\ServiceCalls.cs" />
-    <Compile Include="Blocks\Fwk.Blocking\Fwk.BusinessFacades\SimpleFacade.cs" />
+    <Compile Include="Blocks\Fwk.BusinessFacades\Audit.cs" />
+    <Compile Include="Blocks\Fwk.BusinessFacades\FacadeHelper.cs" />
+    <Compile Include="Blocks\Fwk.BusinessFacades\ServiceCalls.cs" />
+    <Compile Include="Blocks\Fwk.BusinessFacades\SimpleFacade.cs" />
     <Compile Include="Blocks\Fwk.Caching\ServiceCacheMannager.cs" />
     <Compile Include="Blocks\Fwk.Caching\FwkSimpleStorageBase.cs" />
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager.cs" />
