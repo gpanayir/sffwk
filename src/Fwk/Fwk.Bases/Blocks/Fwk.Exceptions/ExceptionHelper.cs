@@ -327,7 +327,19 @@ namespace Fwk.Exceptions
             te.Machine = Environment.MachineName;
             te.Source = ConfigurationsHelper.HostApplicationNname;
         }
-
-      
+         /// <summary>
+        /// Establece los valores basicos de error producido en el componente ADHelper
+        /// </summary>
+        /// <param name="te"></param>
+        public static void SetTechnicalException(Fwk.Exceptions.TechnicalException te,Type T)
+        {
+            te.Namespace = T.Namespace;
+            te.Assembly = T.Assembly.FullName;
+            te.Class = T.GetType().Name;
+            te.UserName = Environment.UserName;
+            te.Machine = Environment.MachineName;
+            te.Source = ConfigurationsHelper.HostApplicationNname;
+        }
+    
     }
 }
