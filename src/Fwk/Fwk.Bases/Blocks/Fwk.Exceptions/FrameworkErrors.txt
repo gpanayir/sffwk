@@ -38,6 +38,16 @@ Descripcion: No se encuentra configurado el evento {0} en la seccion FwkLogin.
 
 
 ErrorId = 9002  Hay problemas al intentar cargar la configuracion FwkLogging. Puede que la seccion FwkLogging o uno de sus atributos se encuentre con nombre incorrectos
+
+
+ErrorId = 9003
+Descripcion: Debe especificar el parametro cnnStringName. para identificar la cadena de conexión.-
+			o Debe especificar cnnStringName en el archivo de configuración
+			
+			
+ErrorId = 9004
+Descripcion: Problemas con DatabaseTarget realizar operaciones con la base de datos
+			
 --------------------------------   Fwk.Exceptions -----------------------------------
 
 
