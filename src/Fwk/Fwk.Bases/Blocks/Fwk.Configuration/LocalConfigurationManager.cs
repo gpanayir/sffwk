@@ -340,7 +340,7 @@ namespace Fwk.Configuration
 
         }
 
-        internal static void RemoveProperty(ConfigProviderElement provider, string propertyName, string groupName)
+        internal static void RemoveProperty(ConfigProviderElement provider, string groupName, string propertyName)
         {
             ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);

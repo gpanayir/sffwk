@@ -195,19 +195,26 @@ namespace Fwk.Configuration
         static ConfigurationFile GetFromDatabase(string pFileName, string pAppId, string pCnnStringName)
         {
 
-            ConfigurationFile wConfigurationFile = null;
+            ConfigurationFile wConfigurationFile = new ConfigurationFile ();
+            wConfigurationFile.Groups = new Groups();
             string groupAuxiliar = string.Empty;
             Group g = null;
             Key k = null;
-
-            using (fwk_ConfigMannagerDataContext dc = new fwk_ConfigMannagerDataContext(pCnnStringName))
+            wConfigurationFile.FileName = pFileName;
+     
+            using (fwk_ConfigMannagerDataContext dc = new fwk_ConfigMannagerDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName].ConnectionString))
             {
+
                 IEnumerable<fwk_ConfigMannager> fwk_ConfigMannagerList = from s in dc.fwk_ConfigMannagers
-                                                                         where s.ConfigurationFileName.Equals(pFileName, StringComparison.OrdinalIgnoreCase)
-                                                                         && (string.IsNullOrEmpty(pAppId) || s.ConfigurationFileName.Equals(pAppId, StringComparison.OrdinalIgnoreCase))
+                                                                         where s.ConfigurationFileName.Equals(pFileName)
+                                                                         && (String.IsNullOrEmpty(pAppId) || s.ConfigurationFileName.Equals(pAppId))
+
+                                                                        
                                                                          select s;
 
-                foreach (fwk_ConfigMannager fwk_Config in fwk_ConfigMannagerList)
+
+
+                foreach (fwk_ConfigMannager fwk_Config in fwk_ConfigMannagerList.OrderBy(p => p.group))
                 {
                     if (!groupAuxiliar.Equals(fwk_Config.group))
                     {
@@ -353,8 +360,8 @@ namespace Fwk.Configuration
 
                 sb.Append(@"	VALUES (");
 
-                sb.Append(@"		$ConfigurationFileName$,");
-                sb.Append(@"		$AppId$,");
+                sb.Append(@"		'$ConfigurationFileName$',");
+                sb.Append(@"		'$AppId$',");
                 sb.Append(@"		'$group$',");
                 sb.Append(@"		'$key$',");
                 sb.Append(@"		'$encrypted$',");
@@ -370,17 +377,19 @@ namespace Fwk.Configuration
 
         }
 
-        internal static void RemoveProperty(ConfigProviderElement provider, string propertyName, string groupName)
+        internal static void RemoveProperty(ConfigProviderElement provider,  string groupName, string propertyName)
         {
             ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
             Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
 
             wConfigurationFile.Groups.Remove(g);
             System.Text.StringBuilder sqlCommand = new StringBuilder("Delete from [fwk_ConfigMannager] where ");
-            sqlCommand.AppendLine(string.Concat("ConfigurationFileName = '", provider.BaseConfigFile));
-            sqlCommand.AppendLine(string.Concat("group = '", groupName));
-            sqlCommand.AppendLine(string.Concat("key = '", propertyName));
-
+            sqlCommand.AppendLine(string.Concat("ConfigurationFileName = '", provider.BaseConfigFile,"'"));
+            sqlCommand.AppendLine(string.Concat("and [group] = '", groupName,"'"));
+            sqlCommand.AppendLine(string.Concat("and [key] = '", propertyName, "'"));
+            if (!String.IsNullOrEmpty( provider.ApplicationId))
+                sqlCommand.AppendLine(string.Concat("and AppId = '", provider.ApplicationId, "'"));
+            
 
             EexeSqlCommand(sqlCommand.ToString(), provider.CnnStringName);
         }
@@ -396,10 +405,11 @@ namespace Fwk.Configuration
 
 
             System.Text.StringBuilder sqlCommand = new StringBuilder("Delete from [fwk_ConfigMannager] where ");
-            sqlCommand.AppendLine(string.Concat("ConfigurationFileName = '", provider.BaseConfigFile));
-            sqlCommand.AppendLine(string.Concat("group = '", groupName));
+            sqlCommand.AppendLine(string.Concat("ConfigurationFileName = '", provider.BaseConfigFile, "'"));
+            sqlCommand.AppendLine(string.Concat("and [group] = '", groupName, "'"));
 
-
+            if (!String.IsNullOrEmpty(provider.ApplicationId))
+                sqlCommand.AppendLine(string.Concat("and AppId = '", provider.ApplicationId, "'"));
 
             EexeSqlCommand(sqlCommand.ToString(), provider.CnnStringName);
         }

@@ -21,7 +21,7 @@ namespace Fwk.Configuration
         /// <param name="groupName"></param>
         public static void AddProperty(string pConfigProvider, Key property, string groupName)
         {
-            ConfigurationManager.AddProperty(pConfigProvider, property, groupName);
+            ConfigurationManager.AddProperty(pConfigProvider, groupName, property);
             
         }
         /// <summary>
@@ -30,9 +30,9 @@ namespace Fwk.Configuration
         /// <param name="pConfigProvider"></param>
         /// <param name="propertyName"></param>
         /// <param name="groupName"></param>
-        public static void RemoveProperty(string pConfigProvider, string propertyName, string groupName)
+        public static void RemoveProperty(string pConfigProvider,  string groupName,string propertyName)
         {
-            ConfigurationManager.RemoveProperty(pConfigProvider, propertyName, groupName);
+            ConfigurationManager.RemoveProperty(pConfigProvider, groupName, propertyName);
 
         }
 

@@ -277,7 +277,7 @@ namespace Fwk.Configuration
 
 
 
-        internal static void AddProperty(string pConfigProvider, Key key, string groupName)
+        internal static void AddProperty(string pConfigProvider, string groupName,Key key)
         {
             ConfigProviderElement provider = GetProvider(pConfigProvider);
             if (provider == null) return ;
@@ -333,7 +333,7 @@ namespace Fwk.Configuration
 
 
 
-        internal static void RemoveProperty(string pConfigProvider, string propertyName, string groupName)
+        internal static void RemoveProperty(string pConfigProvider, string groupName, string propertyName)
         {
             ConfigProviderElement provider = GetProvider(pConfigProvider);
             if (provider == null) return;
@@ -341,15 +341,15 @@ namespace Fwk.Configuration
             {
                 case ConfigProviderType.local:
                     {
-                        LocalFileConfigurationManager.RemoveProperty(provider, propertyName, groupName); break;
+                        LocalFileConfigurationManager.RemoveProperty(provider, groupName, propertyName); break;
                     }
                 case ConfigProviderType.remote:
                     {
-                        RemoteConfigurationManager.RemoveProperty(provider, propertyName, groupName); break;
+                        RemoteConfigurationManager.RemoveProperty(provider, groupName, propertyName); break;
                     }
                 case ConfigProviderType.database:
                     {
-                        DatabaseConfigMannager.RemoveProperty(provider, propertyName, groupName); break;
+                        DatabaseConfigMannager.RemoveProperty(provider, groupName, propertyName); break;
                     }
                 case ConfigProviderType.service:
                     {

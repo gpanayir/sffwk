@@ -163,7 +163,7 @@ namespace Fwk.Configuration
             throw new NotImplementedException();
         }
 
-        internal static void RemoveProperty(ConfigProviderElement provider, string propertyName, string groupName)
+        internal static void RemoveProperty(ConfigProviderElement provider, string groupName, string propertyName)
         {
             throw new NotImplementedException();
         }
