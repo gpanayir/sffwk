@@ -251,8 +251,8 @@ namespace Fwk.Configuration
             }
 
             //Si se opto por configuracion local no es necesario chequear el stado
-            if (wConfigurationFile.CheckFileStatus() != Helper.FileStatus.Ok)
-            {
+            //if (wConfigurationFile.CheckFileStatus() != Helper.FileStatus.Ok)
+            //{
                 SetConfigurationFile(out wConfigurationFile, pFileName);
 
                 if (wIsNewFile)
@@ -260,7 +260,7 @@ namespace Fwk.Configuration
                     wConfigurationFile.FileName = pFileName;
                     _Repository.AddConfigurationFile(wConfigurationFile);
                 }
-            }
+            //}
 
 
             return wConfigurationFile;
@@ -283,8 +283,9 @@ namespace Fwk.Configuration
             }
             else
             {
+               
                 //Application.StartupPath
-                wFullFileName = System.IO.Path.Combine(Environment.CurrentDirectory, pFileName);
+                wFullFileName = System.IO.Path.Combine(System.Reflection.Assembly.GetExecutingAssembly().Location, pFileName);
             }
 
             pConfigurationFile = Common.Helper.GetConfig(wFullFileName, null);
@@ -300,7 +301,7 @@ namespace Fwk.Configuration
         /// <param name="groupName"></param>
         internal static void AddProperty(ConfigProviderElement provider, Key key, string groupName)
         {
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile);
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
             wGroup.Keys.Add(key);
 
@@ -326,7 +327,7 @@ namespace Fwk.Configuration
         /// <param name="group"></param>
         internal static void AddGroup(ConfigProviderElement provider, Group group)
         {
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile);
             wConfigurationFile.Groups.Add(group);
 
             try
@@ -342,7 +343,7 @@ namespace Fwk.Configuration
 
         internal static void RemoveProperty(ConfigProviderElement provider, string groupName, string propertyName)
         {
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile);
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
             Key k = wGroup.Keys.GetFirstByName(propertyName);
             wGroup.Keys.Remove(k);
