@@ -71,6 +71,7 @@ namespace Fwk.UnitTest
         {
             String strErrorResut = String.Empty;
             String providerName = "database";
+
             Fwk.Configuration.Common.Group g = new Fwk.Configuration.Common.Group();
             g.Name = "Test01";
             Fwk.Configuration.Common.Key k;
@@ -85,8 +86,10 @@ namespace Fwk.UnitTest
             k.Value.Text = "Value_Key_02";
             g.Keys.Add(k);
 
+            
             try
             {
+                Fwk.Configuration.Common.ConfigurationFile wConfigurationFile = Fwk.Configuration.ConfigurationManager.GetConfigurationFile(providerName);
                 Fwk.Configuration.ConfigurationManager_CRUD.AddGroup(providerName, g);
             }
             catch (Exception e)

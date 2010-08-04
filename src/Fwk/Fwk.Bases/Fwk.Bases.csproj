@@ -110,12 +110,12 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager_CRUD.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\DatabaseConfigMannager.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\fwk_ConfigMannager.designer.cs">
+    <Compile Include="Blocks\Fwk.Configuration\config\configdata.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>fwk_ConfigMannager.dbml</DependentUpon>
+      <DependentUpon>configdata.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Blocks\Fwk.Configuration\DatabaseConfigMannager.cs" />
     <Compile Include="Blocks\Fwk.Net\CommonClass.cs" />
     <Compile Include="Blocks\Fwk.Net\Ftp\FTPComponent.cs">
       <SubType>Component</SubType>
@@ -299,8 +299,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Blocks\Fwk.Configuration\fwk_ConfigMannager.dbml.layout">
-      <DependentUpon>fwk_ConfigMannager.dbml</DependentUpon>
+    <None Include="Blocks\Fwk.Configuration\config\configdata.dbml.layout">
+      <DependentUpon>configdata.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="Blocks\Fwk.Mail\FwkMailAgent.resx">
       <DependentUpon>FwkMailAgent.cs</DependentUpon>
@@ -337,9 +337,9 @@
   <ItemGroup>
     <Content Include="Blocks\Fwk.Caching\Configurations.xml" />
     <None Include="Blocks\Fwk.Configuration\app.config" />
-    <None Include="Blocks\Fwk.Configuration\fwk_ConfigMannager.dbml">
+    <None Include="Blocks\Fwk.Configuration\config\configdata.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>fwk_ConfigMannager.designer.cs</LastGenOutput>
+      <LastGenOutput>configdata.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\ConfigurationService.disco" />

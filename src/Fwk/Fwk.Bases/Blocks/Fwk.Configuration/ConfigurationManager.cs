@@ -109,18 +109,18 @@ namespace Fwk.Configuration
         /// <param name="pFileName">Nombre del archivo xml con la configuracion</param>
         /// <returns><see cref="ConfigurationFile"/></returns>
         /// <Author>Marcelo Oviedo</Author>
-        public static ConfigurationFile GetConfigurationFile(string pFileName)
-        {
-         return   GetConfigurationFromProvider(_DefaultProvider.Name);
+        //public static ConfigurationFile GetConfigurationFile(string pFileName)
+        //{
+        // return   GetConfigurationFromProvider(_DefaultProvider.Name);
 
-        }
+        //}
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="pConfigProvider">Nombre del proveedor configurado</param>
         /// <returns></returns>
-        public static ConfigurationFile GetConfigurationFromProvider(string pConfigProvider)
+        public static ConfigurationFile GetConfigurationFile(string pConfigProvider)
         {
             ConfigProviderElement provider = GetProvider(pConfigProvider);
             if (provider == null) return null;

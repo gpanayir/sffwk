@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fwk.Bases.Blocks.Fwk.Configuration
+namespace Fwk.Bases.Blocks.Fwk.Configuration.config
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -22,8 +22,8 @@ namespace Fwk.Bases.Blocks.Fwk.Configuration
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Logs")]
-	public partial class fwk_ConfigMannagerDataContext : System.Data.Linq.DataContext
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="fwktest")]
+	public partial class configdataDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -35,25 +35,31 @@ namespace Fwk.Bases.Blocks.Fwk.Configuration
     partial void Deletefwk_ConfigMannager(fwk_ConfigMannager instance);
     #endregion
 		
-		public fwk_ConfigMannagerDataContext(string connection) : 
+		public configdataDataContext() : 
+				base(global::Fwk.Bases.Properties.Settings.Default.fwktestConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
+		
+		public configdataDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public fwk_ConfigMannagerDataContext(System.Data.IDbConnection connection) : 
+		public configdataDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public fwk_ConfigMannagerDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public configdataDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public fwk_ConfigMannagerDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public configdataDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -129,7 +135,7 @@ namespace Fwk.Bases.Blocks.Fwk.Configuration
 			}
 		}
 		
-		[Column(Storage="_AppId", DbType="NVarChar(20)")]
+		[Column(Storage="_AppId", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string AppId
 		{
 			get
@@ -149,7 +155,7 @@ namespace Fwk.Bases.Blocks.Fwk.Configuration
 			}
 		}
 		
-		[Column(Name="[group]", Storage="_group", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		[Column(Name="[group]", Storage="_group", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string group
 		{
 			get
@@ -169,7 +175,7 @@ namespace Fwk.Bases.Blocks.Fwk.Configuration
 			}
 		}
 		
-		[Column(Name="[key]", Storage="_key", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		[Column(Name="[key]", Storage="_key", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string key
 		{
 			get

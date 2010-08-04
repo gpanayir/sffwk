@@ -13,6 +13,8 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using Fwk.ConfigSection;
 using Fwk.Exceptions;
+using Fwk.Bases.Blocks.Fwk.Configuration;
+using Fwk.Bases.Blocks.Fwk.Configuration.config;
 
 namespace Fwk.Configuration
 {
@@ -193,7 +195,7 @@ namespace Fwk.Configuration
             try
             {
 
-                using (fwk_ConfigMannagerDataContext dc = new fwk_ConfigMannagerDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName].ConnectionString))
+                using (configdataDataContext dc = new configdataDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName].ConnectionString))
                 {
 
                     IEnumerable<fwk_ConfigMannager> fwk_ConfigMannagerList = from s in dc.fwk_ConfigMannagers
