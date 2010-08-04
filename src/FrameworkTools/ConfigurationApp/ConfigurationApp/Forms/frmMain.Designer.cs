@@ -120,7 +120,7 @@ namespace ConfigurationApp
             this.tsMenuItemSave.Name = "tsMenuItemSave";
             this.tsMenuItemSave.Size = new System.Drawing.Size(145, 22);
             this.tsMenuItemSave.Text = "Save";
-            this.tsMenuItemSave.Click += new System.EventHandler(this.tsMenuItemSave_Click);
+            
             // 
             // tsMenuItemSaveAllFiles
             // 
@@ -128,7 +128,7 @@ namespace ConfigurationApp
             this.tsMenuItemSaveAllFiles.Name = "tsMenuItemSaveAllFiles";
             this.tsMenuItemSaveAllFiles.Size = new System.Drawing.Size(145, 22);
             this.tsMenuItemSaveAllFiles.Text = "Save All";
-            this.tsMenuItemSaveAllFiles.Click += new System.EventHandler(this.tsMenuItemSaveAllFiles_Click);
+            
             // 
             // tsMenuItemRefreshAllFiles
             // 
@@ -144,7 +144,7 @@ namespace ConfigurationApp
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            
             // 
             // openToolStripMenuItem
             // 
@@ -152,7 +152,7 @@ namespace ConfigurationApp
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            
             // 
             // toolStripAppClientConfig
             // 
@@ -184,7 +184,7 @@ namespace ConfigurationApp
             this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.saveToolStripButton.Text = "&Save";
             this.saveToolStripButton.ToolTipText = "Save the selected file";
-            this.saveToolStripButton.Click += new System.EventHandler(this.saveToolStripButton_Click);
+            
             // 
             // tsButtonSaveAll
             // 
@@ -194,7 +194,7 @@ namespace ConfigurationApp
             this.tsButtonSaveAll.Name = "tsButtonSaveAll";
             this.tsButtonSaveAll.Size = new System.Drawing.Size(23, 22);
             this.tsButtonSaveAll.Text = "Save all files";
-            this.tsButtonSaveAll.Click += new System.EventHandler(this.tsButtonSaveAll_Click);
+            
             // 
             // tsButtonRefreshAll
             // 
@@ -215,7 +215,7 @@ namespace ConfigurationApp
             this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.newToolStripButton.Text = "&New";
             this.newToolStripButton.ToolTipText = "Create new file";
-            this.newToolStripButton.Click += new System.EventHandler(this.newToolStripButton_Click);
+            
             // 
             // openToolStripButton
             // 
@@ -226,7 +226,7 @@ namespace ConfigurationApp
             this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.openToolStripButton.Text = "&Open";
             this.openToolStripButton.ToolTipText = "Open existent file";
-            this.openToolStripButton.Click += new System.EventHandler(this.openToolStripButton_Click);
+            
             // 
             // printToolStripButton
             // 
@@ -252,7 +252,7 @@ namespace ConfigurationApp
             this.quitToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.quitToolStripButton.Text = "Q&uit";
             this.quitToolStripButton.ToolTipText = "Quit the selected file";
-            this.quitToolStripButton.Click += new System.EventHandler(this.quitToolStripButton_Click);
+            
             // 
             // toolStripSeparator1
             // 

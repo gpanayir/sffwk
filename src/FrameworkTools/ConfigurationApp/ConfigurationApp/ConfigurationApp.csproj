@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -137,8 +137,6 @@
     <None Include="AppConfig.old\WrapperConfig.cs.old" />
     <Compile Include="Class\CnnString.cs" />
     <Compile Include="Class\ConfigManagerSettings.cs" />
-    <Compile Include="Class\Group.cs" />
-    <Compile Include="Class\Key.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\TemplateProvider.cs" />
     <Compile Include="ConfigManager\ConfigManagerControl.cs" />
@@ -316,9 +314,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

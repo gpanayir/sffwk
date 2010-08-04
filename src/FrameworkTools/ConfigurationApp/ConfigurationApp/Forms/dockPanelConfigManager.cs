@@ -80,35 +80,9 @@ namespace ConfigurationApp.Forms
 
         #region Events --> mnCnfgManFile 
 
-        /// <summary>
-        /// Guarda un archivo en disco
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsMenuItemSaveFile_Click(object sender, EventArgs e)
-        {
-            ConfigManagerControl.SaveFile(treeView1.SelectedNode);
-        }
 
-        /// <summary>
-        /// Quita un archivo del tree view
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsMenuItemQuitFile_Click(object sender, EventArgs e)
-        {
-            ConfigManagerControl.QuitFile(treeView1.SelectedNode);
-        }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsMenuItemRefreshFile_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         /// <summary>
         /// Inserta un nuevo grupo en el archivo y el xml
@@ -193,66 +167,66 @@ namespace ConfigurationApp.Forms
         /// <summary>
         /// Guarda el archivo
         /// </summary>
-        public void SaveFile()
-        {
-            if (_CnfgManagerSelectedNodeType == CnfgManagerSelectedNodeType.Root)
-            {
-                MessageBox.Show("Please.. select a file node.","Config manager",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-                return;
-            }
-            TreeNode wFileTreeNode = GetTreeNodeFile();
-            ConfigManagerControl.SaveFile(wFileTreeNode);
-        }
+        //public void SaveFile()
+        //{
+        //    if (_CnfgManagerSelectedNodeType == CnfgManagerSelectedNodeType.Root)
+        //    {
+        //        MessageBox.Show("Please.. select a file node.","Config manager",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+        //        return;
+        //    }
+        //    TreeNode wFileTreeNode = GetTreeNodeFile();
+        //    ConfigManagerControl.SaveFile(wFileTreeNode);
+        //}
         /// <summary>
         /// Quita o remueve el archivo
         /// </summary>
-        public void QuitFile()
-        {
-            if (_CnfgManagerSelectedNodeType == CnfgManagerSelectedNodeType.Root)
-            {
-                MessageBox.Show("Please.. select a file node.", "Config manager", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+        //public void QuitFile()
+        //{
+        //    if (_CnfgManagerSelectedNodeType == CnfgManagerSelectedNodeType.Root)
+        //    {
+        //        MessageBox.Show("Please.. select a file node.", "Config manager", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return;
+        //    }
 
-            TreeNode wFileTreeNode = GetTreeNodeFile();
-            ConfigManagerControl.QuitFile(wFileTreeNode);
-        }
+        //    TreeNode wFileTreeNode = GetTreeNodeFile();
+        //    ConfigManagerControl.QuitFile(wFileTreeNode);
+        //}
         /// <summary>
         /// Carga un archivo Config Mannager en el tree view
         /// </summary>
-        public void LoadFile()
-        {
-            ConfigManagerControl.LoadFile(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey);
-        }
+        //public void LoadFile()
+        //{
+        //    ConfigManagerControl.LoadFile(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey);
+        //}
         /// <summary>
         /// Crea un nuevo archivo
         /// </summary>
-        public void NewFile()
-        {
-            ConfigManagerControl.NewFile(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey);
-        }
+        //public void NewFile()
+        //{
+        //    ConfigManagerControl.NewFile(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey);
+        //}
 
         /// <summary>
         /// Guarda todos los archivos que estan actualmente en el Tree View
         /// </summary>
-        public void SaveAllFiles()
-        {
-            foreach (TreeNode wFileTreeNode in treeView1.Nodes[0].Nodes)
-            {
-                ConfigManagerControl.SaveFile(wFileTreeNode);
-            }
-        }
+        //public void SaveAllFiles()
+        //{
+        //    foreach (TreeNode wFileTreeNode in treeView1.Nodes[0].Nodes)
+        //    {
+        //        ConfigManagerControl.SaveFile(wFileTreeNode);
+        //    }
+        //}
 
         /// <summary>
         /// Quita todos los archivos que estan actualmente en el Tree View
         /// </summary>
-        public void QuitAllFiles()
-        {
-            foreach (TreeNode wFileTreeNode in treeView1.Nodes[0].Nodes)
-            {
-                ConfigManagerControl.QuitFile(wFileTreeNode);
-            }
-        }
+        //public void QuitAllFiles()
+        //{
+        //    foreach (TreeNode wFileTreeNode in treeView1.Nodes[0].Nodes)
+        //    {
+        //        ConfigManagerControl.QuitFile(wFileTreeNode);
+        //    }
+        //}
         public void RefreshAllFiles(Boolean pClear)
         {
             _CnfgManagerSelectedNodeType = CnfgManagerSelectedNodeType.Root;
@@ -260,7 +234,7 @@ namespace ConfigurationApp.Forms
             {
                 treeView1.Nodes[0].Nodes.Clear();
             }
-            ConfigManagerControl.LoadFilesFromIsolatedStorage(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey, _Storage);
+            ConfigManagerControl.LoadFiles(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey, _Storage);
 
             treeView1.Nodes[0].Expand();
             
@@ -418,19 +392,6 @@ namespace ConfigurationApp.Forms
         #region Events --> mnConfigManagerRoot
 
 
-        private void tsMenuItemSaveAllFiles_Click(object sender, EventArgs e)
-        {
-            SaveAllFiles();
-        }
-
-        private void tsMenuItemNewFile_Click(object sender, EventArgs e)
-        {
-            NewFile();
-        }
-        private void tsMenuItemQuitAllFiles_Click(object sender, EventArgs e)
-        {
-            QuitAllFiles();
-        }
 
         private void tsMenuItemRefreshAllFiles_Click(object sender, EventArgs e)
         {

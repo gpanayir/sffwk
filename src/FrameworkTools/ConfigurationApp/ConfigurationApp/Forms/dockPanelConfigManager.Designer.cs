@@ -68,7 +68,6 @@ namespace ConfigurationApp.Forms
             this.tsMenuItemNewFile.Name = "tsMenuItemNewFile";
             this.tsMenuItemNewFile.Size = new System.Drawing.Size(137, 22);
             this.tsMenuItemNewFile.Text = "New";
-            this.tsMenuItemNewFile.Click += new System.EventHandler(this.tsMenuItemNewFile_Click);
             // 
             // tsMenuItemSaveAllFiles
             // 
@@ -77,7 +76,6 @@ namespace ConfigurationApp.Forms
             this.tsMenuItemSaveAllFiles.Name = "tsMenuItemSaveAllFiles";
             this.tsMenuItemSaveAllFiles.Size = new System.Drawing.Size(137, 22);
             this.tsMenuItemSaveAllFiles.Text = "Save All";
-            this.tsMenuItemSaveAllFiles.Click += new System.EventHandler(this.tsMenuItemSaveAllFiles_Click);
             // 
             // tsMenuItemQuitAllFiles
             // 
@@ -85,7 +83,6 @@ namespace ConfigurationApp.Forms
             this.tsMenuItemQuitAllFiles.Name = "tsMenuItemQuitAllFiles";
             this.tsMenuItemQuitAllFiles.Size = new System.Drawing.Size(137, 22);
             this.tsMenuItemQuitAllFiles.Text = "Quit All";
-            this.tsMenuItemQuitAllFiles.Click += new System.EventHandler(this.tsMenuItemQuitAllFiles_Click);
             // 
             // tsMenuItemRefreshAllFiles
             // 
@@ -143,6 +140,7 @@ namespace ConfigurationApp.Forms
             this.imgImages.Images.SetKeyName(13, "ShowAllCommentsHS.png");
             this.imgImages.Images.SetKeyName(14, "TortoiseAdded.ico");
             this.imgImages.Images.SetKeyName(15, "UtilityText.ico");
+            this.imgImages.Images.SetKeyName(16, "alert.png");
             // 
             // mnCnfgManFile
             // 
@@ -168,7 +166,6 @@ namespace ConfigurationApp.Forms
             this.tsMenuItemQuitFile.Name = "tsMenuItemQuitFile";
             this.tsMenuItemQuitFile.Size = new System.Drawing.Size(138, 22);
             this.tsMenuItemQuitFile.Text = "Quit";
-            this.tsMenuItemQuitFile.Click += new System.EventHandler(this.tsMenuItemQuitFile_Click);
             // 
             // tsMenuItemRefreshFile
             // 
@@ -176,7 +173,6 @@ namespace ConfigurationApp.Forms
             this.tsMenuItemRefreshFile.Name = "tsMenuItemRefreshFile";
             this.tsMenuItemRefreshFile.Size = new System.Drawing.Size(138, 22);
             this.tsMenuItemRefreshFile.Text = "Refresh";
-            this.tsMenuItemRefreshFile.Click += new System.EventHandler(this.tsMenuItemRefreshFile_Click);
             // 
             // tsMenuItemNewGroup
             // 

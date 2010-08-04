@@ -56,25 +56,25 @@ namespace ConfigurationApp
         }
 
         #region File methods
-        private void SaveAllFiles()
-        {
+        //private void SaveAllFiles()
+        //{
  
-            _dockPanelConfigManager.SaveAllFiles();
-        }
-        private void LoadFile()
-        {
+        //    _dockPanelConfigManager.SaveAllFiles();
+        //}
+        //private void LoadFile()
+        //{
      
 
-            if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
-                _dockPanelConfigManager.LoadFile();
-        }
-        private void SaveFile()
-        {
+        //    if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
+        //        _dockPanelConfigManager.LoadFile();
+        //}
+        //private void SaveFile()
+        //{
      
 
-            if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
-                _dockPanelConfigManager.SaveFile();
-        }
+        //    if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
+        //        _dockPanelConfigManager.SaveFile();
+        //}
 
         void _dockPanelConfigManager_Enter(object sender, EventArgs e)
         {
@@ -85,24 +85,24 @@ namespace ConfigurationApp
         {
             m_SelectedRoot = SelectedRoot.AppConfigRoot;
         }
-        void NewFile()
-        {
+        //void NewFile()
+        //{
            
 
          
 
-            if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
-                _dockPanelConfigManager.NewFile();
-        }
-        void QuitFile()
-        {
+        //    if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
+        //        _dockPanelConfigManager.NewFile();
+        //}
+        //void QuitFile()
+        //{
             
 
       
 
-            if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
-                _dockPanelConfigManager.QuitFile();
-        }
+        //    if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
+        //        _dockPanelConfigManager.QuitFile();
+        //}
         private void RefreshAllFiles(bool pClear)
         {
 

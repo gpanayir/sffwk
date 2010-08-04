@@ -14,28 +14,15 @@ using ConfigurationApp.IsolatedStorage;
 using System.Linq;
 using Fwk.Exceptions;
 using Fwk.Bases.FrontEnd.Controls;
+using System.Configuration;
+using Fwk.ConfigSection;
 namespace ConfigurationApp
 {
     internal class ConfigManagerControl
     {
-        static Fwk.Configuration.LocalHolder _Holder = null;
+
         static ConfigManagerControl()
         {
-            CreateConfigurationHolder();
-        }
-        /// <summary>
-        /// Operacion que retorna una instancia de la clase <see cref="LocalHolder"/> 
-        /// utilizando un patron Singlenton
-        /// </summary>
-        /// <returns><see cref="LocalHolder"/> </returns>
-        /// <Author>Marcelo Oviedo</Author>
-        private static void CreateConfigurationHolder()
-        {
-            if (_Holder == null)
-            {
-                _Holder = new Fwk.Configuration.LocalHolder();
-
-            }
 
         }
 
@@ -53,19 +40,16 @@ namespace ConfigurationApp
         /// <param name="mnContextCnfgManFile"></param>
         /// <param name="mnGroupOrProperty"></param>
         /// <param name="pStorage"></param>
-        internal static void LoadFilesFromIsolatedStorage(TreeNode pConfigManagerTreeNode,
+        internal static void LoadFiles(TreeNode pConfigManagerTreeNode,
           ContextMenuStrip mnContextCnfgManFile,
           ContextMenuStrip mnGroupOrProperty, Storage pStorage)
         {
             pStorage.LoadStorage();
-            foreach (KeyValuePair<String, String> item in pStorage.ConfigManagerFiles)
+            foreach (ConfigProviderElement provider in Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers)
             {
-                if (System.IO.File.Exists(item.Value))
-                {
-                    LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty, item.Key, item.Value);
-                }
+                LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty, provider);
             }
-            pStorage.ConfigManagerFiles.Clear();
+
         }
 
         /// <summary>
@@ -74,47 +58,47 @@ namespace ConfigurationApp
         /// <param name="pConfigManagerTreeNode"></param>
         /// <param name="mnContextCnfgManFile"></param>
         /// <param name="mnGroupOrProperty"></param>
-        internal static void LoadFile(TreeNode pConfigManagerTreeNode,
-            ContextMenuStrip mnContextCnfgManFile,
-            ContextMenuStrip mnGroupOrProperty)
-        {
-            String strFullFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(Fwk.HelperFunctions.FileFunctions.OpenFilterEnums.OpenXmlFilter);
-            if (strFullFileName.Length == 0)
-                return;
+        //internal static void LoadFile(TreeNode pConfigManagerTreeNode,
+        //    ContextMenuStrip mnContextCnfgManFile,
+        //    ContextMenuStrip mnGroupOrProperty)
+        //{
+        //    String strFullFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(Fwk.HelperFunctions.FileFunctions.OpenFilterEnums.OpenXmlFilter);
+        //    if (strFullFileName.Length == 0)
+        //        return;
 
-            String strFileName = System.IO.Path.GetFileName(strFullFileName);
+        //    String strFileName = System.IO.Path.GetFileName(strFullFileName);
 
 
-            if (_Holder.ExistConfigurationFile(strFileName))
-            {
-                Fwk.Bases.FrontEnd.Controls.FwkMessageView.Show(string.Concat("The file " , strFileName , " exist"),"Config mannager", MessageBoxButtons.OK,Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Exclamation);
+        //    if (_Holder.ExistConfigurationFile(strFileName))
+        //    {
+        //        Fwk.Bases.FrontEnd.Controls.FwkMessageView.Show(string.Concat("The file ", strFileName, " exist"), "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Exclamation);
 
-                return;
-            }
+        //        return;
+        //    }
 
-            LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty, strFileName, strFullFileName);
+        //    LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty, strFileName, strFullFileName);
 
-        }
+        //}
 
         private static void LoadFile(TreeNode pConfigManagerTreeNode,
            ContextMenuStrip mnContextCnfgManFile,
-           ContextMenuStrip mnGroupOrProperty, String strFileName, String strFullFileName)
+           ContextMenuStrip mnGroupOrProperty, ConfigProviderElement provider)
         {
-            //XmlDocument doc = null;
+
             ListDictionary wDictionary = new ListDictionary();
             try
             {
-                ConfigurationFile wConfigurationFile = _Holder.GetConfig_WhihoutAppSetting(strFullFileName);
-                wConfigurationFile.FileName = System.IO.Path.GetFileName(strFullFileName);
+                ConfigurationFile wConfigurationFile = Fwk.Configuration.ConfigurationManager.GetConfigurationFromProvider(provider.Name);
+                wConfigurationFile.FileName = System.IO.Path.GetFileName(provider.BaseConfigFile);
 
 
                 #region [Set to FileNode]
-                TreeNode wFileNode = new TreeNode(strFileName);
+                TreeNode wFileNode = new TreeNode(wConfigurationFile.FileName);
 
-                wFileNode.ToolTipText = strFullFileName;
-                wDictionary.Add("FullFileName", strFullFileName);
+                wFileNode.ToolTipText = string.Concat("Proveedor tipo: ", provider.ConfigProviderType.ToString()); ;
+                wDictionary.Add("FullFileName", wConfigurationFile.BaseConfigFile);
                 wDictionary.Add("ConfigurationFile", wConfigurationFile);
-                wDictionary.Add("Saved", true);
+                wDictionary.Add("provider", provider.Name);
 
                 wFileNode.Tag = wDictionary;
                 wFileNode.ContextMenuStrip = mnContextCnfgManFile;
@@ -134,31 +118,48 @@ namespace ConfigurationApp
             }
             catch (InvalidOperationException er)
             {
-               
+
                 TechnicalException te = new Fwk.Exceptions.TechnicalException("It's not valid configuration manager file", er);
                 FwkMessageView.Show(te, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
-                
+
             }
-            catch (Exception er1)
+            catch (TechnicalException er1)
             {
-        
-                FwkMessageView.Show(er1, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
+                if (er1.ErrorId.Equals("8011") || er1.ErrorId.Equals("9200"))
+                {
+                    TreeNode wFileNode = new TreeNode(provider.BaseConfigFile);
+
+                    wFileNode.ToolTipText = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(er1);
+                    wDictionary.Add("FullFileName", provider.BaseConfigFile);
+                    wDictionary.Add("ConfigurationFile", null);
+                    wDictionary.Add("provider", provider.Name);
+
+                    wFileNode.Tag = wDictionary;
+                    //wFileNode.ContextMenuStrip = mnContextCnfgManFile;
+                    wFileNode.ImageIndex = pConfigManagerTreeNode.TreeView.ImageList.Images.IndexOfKey("alert.png");
+                    wFileNode.SelectedImageIndex = pConfigManagerTreeNode.TreeView.ImageList.Images.IndexOfKey("alert.png");
+                    pConfigManagerTreeNode.Nodes.Add(wFileNode);
+                }
+                else
+                {
+                    FwkMessageView.Show(er1, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
+                }
             }
         }
 
-        internal static void NewFile(TreeNode pConfigManagerTreeNode, ContextMenuStrip mnContextCnfgManFile,
-           ContextMenuStrip mnGroupOrProperty)
-        {
-            ConfigurationFile wConfigurationFile = new ConfigurationFile();
-            String strFullFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_New(wConfigurationFile.GetXml(), Fwk.HelperFunctions.FileFunctions.OpenFilterEnums.OpenXmlFilter, true);
+        //internal static void NewFile(TreeNode pConfigManagerTreeNode, ContextMenuStrip mnContextCnfgManFile,
+        //   ContextMenuStrip mnGroupOrProperty)
+        //{
+        //    ConfigurationFile wConfigurationFile = new ConfigurationFile();
+        //    String strFullFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_New(wConfigurationFile.GetXml(), Fwk.HelperFunctions.FileFunctions.OpenFilterEnums.OpenXmlFilter, true);
 
-            if (strFullFileName.Length == 0) return;
-            String strFileName = System.IO.Path.GetFileName(strFullFileName);
+        //    if (strFullFileName.Length == 0) return;
+        //    String strFileName = System.IO.Path.GetFileName(strFullFileName);
 
-            wConfigurationFile.FileName = strFileName;
+        //    wConfigurationFile.FileName = strFileName;
 
-            LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty, strFileName, strFullFileName);
-        }
+        //    LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty, strFileName, strFullFileName);
+        //}
 
 
 
@@ -167,70 +168,70 @@ namespace ConfigurationApp
         /// Guarda el archivo 
         /// </summary>
         /// <param name="pFileNode">Nombre del archivo</param>
-        internal static void SaveFile(TreeNode pFileNode)
-        {
+        //internal static void SaveFile(TreeNode pFileNode)
+        //{
 
-            ListDictionary dic = (ListDictionary)pFileNode.Tag;
-            String szFullFileName = dic["FullFileName"].ToString();
-            ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-            dic["Saved"] = true;
-            if (System.IO.File.Exists(szFullFileName))
-            {
-                try
-                {
-                    FileFunctions.SaveTextFile(szFullFileName, wConfigurationFile.GetXml(), false);
-                }
-                catch (System.UnauthorizedAccessException)
-                {
-                    throw new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo " , szFullFileName));
-                    
-                }
-            }
-        }
+        //    ListDictionary dic = (ListDictionary)pFileNode.Tag;
+        //    String szFullFileName = dic["FullFileName"].ToString();
+        //    ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
+        //    dic["Saved"] = true;
+        //    if (System.IO.File.Exists(szFullFileName))
+        //    {
+        //        try
+        //        {
+        //            FileFunctions.SaveTextFile(szFullFileName, wConfigurationFile.GetXml(), false);
+        //        }
+        //        catch (System.UnauthorizedAccessException)
+        //        {
+        //            throw new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo " , szFullFileName));
+
+        //        }
+        //    }
+        //}
 
         /// <summary>
         /// Quita un archivo configuration manager.-
         /// </summary>
         /// <param name="pFileNode">Nodo que reprecenta el archivo ConfigurationManager.xml</param>
-        public static void QuitFile(TreeNode pFileNode)
-        {
-            ListDictionary dic = (ListDictionary)pFileNode.Tag;
+        //public static void QuitFile(TreeNode pFileNode)
+        //{
+        //    ListDictionary dic = (ListDictionary)pFileNode.Tag;
 
-            bool wSaved = (bool)dic["Saved"];
+        //    bool wSaved = (bool)dic["Saved"];
 
-            if (wSaved)
-            {
-                SaveFile(pFileNode);
-                pFileNode.Remove();
-                _Holder.RemoveConfigManager(pFileNode.Text);
-            }
-            else
-            {
-            
-
-                DialogResult d = FwkMessageView.Show(string.Concat("Save changes to ", pFileNode.Text, "?"), "Config mannager", MessageBoxButtons.YesNoCancel, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question);
+        //    if (wSaved)
+        //    {
+        //        SaveFile(pFileNode);
+        //        pFileNode.Remove();
+        //        _Holder.RemoveConfigManager(pFileNode.Text);
+        //    }
+        //    else
+        //    {
 
 
-                if (d == DialogResult.Yes)
-                {
-                    SaveFile(pFileNode);
-                    pFileNode.Remove();
-                    _Holder.RemoveConfigManager(pFileNode.Text);
+        //        DialogResult d = FwkMessageView.Show(string.Concat("Save changes to ", pFileNode.Text, "?"), "Config mannager", MessageBoxButtons.YesNoCancel, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question);
 
-                }
-                if (d == DialogResult.No)
-                {
 
-                    pFileNode.Remove();
-                    pFileNode.TreeView.Refresh();
-                    _Holder.RemoveConfigManager(pFileNode.Text);
-                }
+        //        if (d == DialogResult.Yes)
+        //        {
+        //            SaveFile(pFileNode);
+        //            pFileNode.Remove();
+        //            _Holder.RemoveConfigManager(pFileNode.Text);
 
-                if (d == DialogResult.Cancel)
-                { return; }
+        //        }
+        //        if (d == DialogResult.No)
+        //        {
 
-            }
-        }
+        //            pFileNode.Remove();
+        //            pFileNode.TreeView.Refresh();
+        //            _Holder.RemoveConfigManager(pFileNode.Text);
+        //        }
+
+        //        if (d == DialogResult.Cancel)
+        //        { return; }
+
+        //    }
+        //}
 
 
         /// <summary>
@@ -293,7 +294,7 @@ namespace ConfigurationApp
 
                 wFileNode.Nodes.Add(wtvGroupNode);
 
-                
+
 
                 LoadKeysFromGroup(wtvGroupNode, wGroup, mnGroupOrProperty, pConfigManagerTreeNode.TreeView.ImageList);
             }
@@ -304,9 +305,9 @@ namespace ConfigurationApp
         /// Marca las Key que estan repetidas dentro de un grupo
         /// </summary>
         /// <param name="pGroupElement"></param>
-        internal static void SetKeyRepetidos(Groups pGroup, TreeNode treeNodeFile,ImageList img)
+        internal static void SetKeyRepetidos(Groups pGroup, TreeNode treeNodeFile, ImageList img)
         {
-            string strGorupKey ; 
+            string strGorupKey;
             Int32 wCount = 0;
             List<string> wNames = new List<string>();
 
@@ -333,11 +334,11 @@ namespace ConfigurationApp
                 string key = str.Split(',')[1];
                 TreeNode[] trGroup = treeNodeFile.Nodes.Find(group, true);
 
-               
+
 
                 if (trGroup.Length != 0)
                 {
-                    TreeNode[] trKeys = trGroup[0].Nodes.Find( key, false);
+                    TreeNode[] trKeys = trGroup[0].Nodes.Find(key, false);
                     foreach (TreeNode trKey in trKeys)
                     {
                         trKey.ToolTipText = "Clave repetida !!";
@@ -346,7 +347,7 @@ namespace ConfigurationApp
                     }
                 }
             }
-            
+
         }
 
 
@@ -368,7 +369,7 @@ namespace ConfigurationApp
             TreeNode wTreeNodeFileNode = wTreeNodeKey.Parent.Parent;
             ListDictionary dic = (ListDictionary)wTreeNodeFileNode.Tag;
             ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-            dic["Saved"] = false;
+            //dic["Saved"] = false;
 
             wTreeNodeKey.Tag = newKey;
 
@@ -391,11 +392,12 @@ namespace ConfigurationApp
             ListDictionary dic = (ListDictionary)pFileNode.Tag;
             //"Groups"
             ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-            dic["Saved"] = false;
+
 
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             Key wKey = wGroup.Keys.GetFirstByName(pKeyName);
             wGroup.Keys.Remove(wKey);
+            Fwk.Configuration.ConfigurationManager_CRUD.RemoveProperty(dic["provider"].ToString(), wGroup.Name, wKey.Name);
         }
 
         /// <summary>
@@ -414,15 +416,17 @@ namespace ConfigurationApp
            )
         {
             #region Seleccion de Groups Node
-            if (ConfigurationApp.Common.Helper.TreeNodeExist(pTreeNodeGroup, pKeyName))
-            {
-                
-                FwkMessageView.Show("Already exist a propertie witch this name", "Duplicated propertie",MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Warning);
-                return;
-            }
             ListDictionary dic = (ListDictionary)pFileNode.Tag;
             ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-            dic["Saved"] = false;
+            Group wGroup = (Group)pTreeNodeGroup.Tag;
+            if (wGroup.Keys.Exists(k => k.Name.Equals(pKeyName, StringComparison.OrdinalIgnoreCase)))
+            {
+
+                FwkMessageView.Show("Already exist a propertie witch this name", " Duplicated propertie", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Warning);
+                return;
+            }
+            
+     
             #endregion
 
             #region Crea la Key a nivel del TreeView
@@ -440,11 +444,12 @@ namespace ConfigurationApp
             wKey.Name = pKeyName;
 
             wKeyTreeNode.Tag = wKey;
-
-
             pTreeNodeGroup.Nodes.Add(wKeyTreeNode);
-            Group wGroup= (Group)pTreeNodeGroup.Tag;
+            
             wGroup.Keys.Add(wKey);
+
+            Fwk.Configuration.ConfigurationManager_CRUD.AddProperty(dic["provider"].ToString(), wGroup.Name, wKey);
+
             #endregion
 
         }
@@ -478,14 +483,14 @@ namespace ConfigurationApp
         /// <param name="pGroupName">Nombre de grupo</param>
         internal static void RemoveGroup(TreeNode pFileNode, String pGroupName)
         {
-
             ListDictionary dic = (ListDictionary)pFileNode.Tag;
-          
             ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-            dic["Saved"] = false;
-          
+
+
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             wConfigurationFile.Groups.Remove(wGroup);
+
+            Fwk.Configuration.ConfigurationManager_CRUD.RemoveGroup(dic["provider"].ToString(), pGroupName);
         }
 
         /// <summary>
@@ -499,23 +504,14 @@ namespace ConfigurationApp
             ContextMenuStrip mnGroupOrProperty
             )
         {
+            ListDictionary dic = (ListDictionary)pFileNode.Tag;
+            ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
 
-
-            if (ConfigurationApp.Common.Helper.TreeNodeExist(pFileNode, pGroupName))
+            if (wConfigurationFile.Groups.Exists(g => g.Name.Equals(pGroupName, StringComparison.OrdinalIgnoreCase)))
             {
-                
                 FwkMessageView.Show("Already exist a group witch this name", "Duplicated group", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Warning);
-                
                 return;
             }
-
-
-            ListDictionary dic = (ListDictionary)pFileNode.Tag;
-            //"Groups"
-            ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-            dic["Saved"] = false;
-
-
 
 
             TreeNode wtvGroupNode = new TreeNode(pGroupName);
@@ -529,12 +525,13 @@ namespace ConfigurationApp
             wConfigurationFile.Groups.Add(wGroup);
             pFileNode.Nodes.Add(wtvGroupNode);
 
+            Fwk.Configuration.ConfigurationManager_CRUD.AddGroup(dic["provider"].ToString(), wGroup);
         }
 
 
 
         #endregion
 
-      
+
     }
 }
