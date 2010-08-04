@@ -17,9 +17,9 @@ namespace Fwk.Configuration
         /// 
         /// </summary>
         /// <param name="pConfigProvider"></param>
-        /// <param name="key"></param>
         /// <param name="groupName"></param>
-        public static void AddProperty(string pConfigProvider, Key property, string groupName)
+        /// <param name="property"></param>
+        public static void AddProperty(string pConfigProvider,string groupName, Key property)
         {
             ConfigurationManager.AddProperty(pConfigProvider, groupName, property);
             

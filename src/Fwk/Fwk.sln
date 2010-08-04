@@ -192,7 +192,6 @@ Global
 		{AD540E6E-7CCC-45AE-91B3-CD1954FEC9D0}.Debug|.NET.ActiveCfg = Debug
 		{AD540E6E-7CCC-45AE-91B3-CD1954FEC9D0}.Debug|Any CPU.ActiveCfg = Debug
 		{AD540E6E-7CCC-45AE-91B3-CD1954FEC9D0}.Debug|Mixed Platforms.ActiveCfg = Release
-		{AD540E6E-7CCC-45AE-91B3-CD1954FEC9D0}.Debug|Mixed Platforms.Build.0 = Release
 		{AD540E6E-7CCC-45AE-91B3-CD1954FEC9D0}.Release|.NET.ActiveCfg = Release
 		{AD540E6E-7CCC-45AE-91B3-CD1954FEC9D0}.Release|Any CPU.ActiveCfg = Release
 		{AD540E6E-7CCC-45AE-91B3-CD1954FEC9D0}.Release|Mixed Platforms.ActiveCfg = Release

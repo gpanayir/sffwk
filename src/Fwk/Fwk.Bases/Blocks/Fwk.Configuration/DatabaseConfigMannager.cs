@@ -91,32 +91,9 @@ namespace Fwk.Configuration
         /// <Author>Marcelo Oviedo</Author>
         internal static ConfigurationFile GetConfigurationFile(ConfigProviderElement provider)
         {
-            //return _ConfigHolder.GetConfig(pFileName);
-            string wFileContent = string.Empty;
-            bool wIsNewFile = false;
-
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
-
-            if (wConfigurationFile == null)
-            {
-                wConfigurationFile = new ConfigurationFile();
-                wIsNewFile = true;
-            }
-
-            //Si se opto por configuracion local no es necesario chequear el stado
-            if (wConfigurationFile.CheckFileStatus() != Helper.FileStatus.Ok)
-            {
-                wConfigurationFile = GetConfig(provider.BaseConfigFile, provider.ApplicationId, provider.BaseConfigFile);
-
-                if (wIsNewFile)
-                {
-                    wConfigurationFile.FileName = provider.BaseConfigFile;
-                    _Repository.AddConfigurationFile(wConfigurationFile);
-                }
-            }
 
 
-            return wConfigurationFile;
+            return  GetConfig(provider.BaseConfigFile, provider.ApplicationId, provider.CnnStringName); ;
         }
 
 
@@ -174,10 +151,7 @@ namespace Fwk.Configuration
         static ConfigurationFile GetConfig(string pFileName, string pAppId, string pCnnStringName)
         {
 
-            string wFileContent = string.Empty;
-
-
-
+  
             ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(pFileName);
 
             if (wConfigurationFile == null)
@@ -209,9 +183,16 @@ namespace Fwk.Configuration
             Group g = null;
             Key k = null;
             wConfigurationFile.FileName = pFileName;
-
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName] == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", pCnnStringName));
+                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                te.ErrorId = "9200";
+                throw te;
+            }
             try
             {
+
                 using (fwk_ConfigMannagerDataContext dc = new fwk_ConfigMannagerDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName].ConnectionString))
                 {
 
@@ -276,6 +257,13 @@ namespace Fwk.Configuration
 
             Database wDataBase = null;
             DbCommand wCmd = null;
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.CnnStringName] == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.CnnStringName));
+                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                te.ErrorId = "9200";
+                throw te;
+            }
             try
             {
                 wDataBase = DatabaseFactory.CreateDatabase(provider.CnnStringName);
@@ -320,6 +308,13 @@ namespace Fwk.Configuration
             {
                 ///TODO: manejo de exepcion de configuracion
                 throw new Exception("El archivo solicitado no es un archivo de configuración válido.");
+            }
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.CnnStringName] == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.CnnStringName));
+                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                te.ErrorId = "9200";
+                throw te;
             }
             wConfigurationFile.Groups.Add(group);
 
@@ -434,6 +429,14 @@ namespace Fwk.Configuration
 
         static void EexeSqlCommand(string sqlCommand, string cnnStringName)
         {
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName] == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", cnnStringName));
+                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                te.ErrorId = "9200";
+                throw te;
+            }
+
             Database wDataBase = null;
             DbCommand wCmd = null;
             try

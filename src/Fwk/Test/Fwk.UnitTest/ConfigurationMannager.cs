@@ -14,9 +14,7 @@ namespace Fwk.UnitTest
     {
         public ConfigurationMannager()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+
         }
 
         private TestContext testContextInstance;
@@ -106,7 +104,7 @@ namespace Fwk.UnitTest
             k.Value.Text = "Value_Key_03";
             try
             {
-                Fwk.Configuration.ConfigurationManager_CRUD.AddProperty(providerName, k, g.Name);
+                Fwk.Configuration.ConfigurationManager_CRUD.AddProperty(providerName, g.Name, k);
             }
             catch (Exception e)
             {
@@ -192,7 +190,7 @@ namespace Fwk.UnitTest
             k.Value.Text = "Value_Key_03";
             try
             {
-                Fwk.Configuration.ConfigurationManager_CRUD.AddProperty(providerName, k, g.Name);
+                Fwk.Configuration.ConfigurationManager_CRUD.AddProperty(providerName, g.Name, k);
             }
             catch (Exception e)
             {

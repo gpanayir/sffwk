@@ -8,6 +8,9 @@ using System.Net;
 
 namespace Fwk.Net.Ftp
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Util
     {
         public static FwkSimpleStorageBase<SocketClient> storage = new FwkSimpleStorageBase<SocketClient>();

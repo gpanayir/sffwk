@@ -48,17 +48,10 @@ namespace Fwk.Configuration
         {
             string wBaseConfigFile = String.Empty;
 
+            ConfigProviderElement provider = ConfigurationManager.GetProvider(pConfigProvider);
+            
 
-            if (string.IsNullOrEmpty(pConfigProvider))
-                wBaseConfigFile = ConfigurationManager.GetBaseConfigFileName();
-            else
-                wBaseConfigFile = ConfigurationManager.GetBaseConfigFileName(pConfigProvider);
-
-
-            //string strProperty = _ConfigHolder.GetProperty(wBaseConfigFile, pGroupName, pPropertyName); // antes
-
-
-            ConfigurationFile wConfigurationFile = GetConfig(wBaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider);
 
             if (!wConfigurationFile.BaseConfigFile)
             {
@@ -89,41 +82,16 @@ namespace Fwk.Configuration
 
         }
 
-
         /// <summary>
-        /// Obtiene un ConfigurationFile <see cref="ConfigurationFile" atravez de su nombre/>
+        /// Devuelve el contenido completo de un archivo de configuración
+        /// dado el nombre de archivo.
         /// </summary>
-        /// <param name="pFileName">Nombre del archivo xml con la configuracion</param>
-        /// <returns><see cref="ConfigurationFile"/></returns>
+        /// <param name="provider">Proveedor de configuración.</param>
+        /// <returns>ConfigurationFile</returns>
         /// <Author>Marcelo Oviedo</Author>
-        internal static ConfigurationFile GetConfigurationFile(string pFileName)
+        internal static ConfigurationFile GetConfigurationFile(ConfigProviderElement provider)
         {
-            
-            string wFileContent = string.Empty;
-            bool wIsNewFile = false;
-
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(pFileName);
-
-            if (wConfigurationFile == null)
-            {
-                wConfigurationFile = new ConfigurationFile();
-                wIsNewFile = true;
-            }
-
-            //Si se opto por configuracion local no es necesario chequear el stado
-            if (wConfigurationFile.CheckFileStatus() != Helper.FileStatus.Ok)
-            {
-                SetConfigurationFile(out wConfigurationFile, pFileName);
-
-                if (wIsNewFile)
-                {
-                    wConfigurationFile.FileName = pFileName;
-                    _Repository.AddConfigurationFile(wConfigurationFile);
-                }
-            }
-
-
-            return wConfigurationFile;
+            return GetConfig(provider);
         }
 
        
@@ -140,13 +108,10 @@ namespace Fwk.Configuration
 
             string wBaseConfigFile = string.Empty;
 
-            if (string.IsNullOrEmpty(pConfigProvider))
-                wBaseConfigFile = ConfigurationManager.GetBaseConfigFileName();
-            else
-                wBaseConfigFile = ConfigurationManager.GetBaseConfigFileName(pConfigProvider);
+            ConfigProviderElement provider = ConfigurationManager.GetProvider(pConfigProvider);
 
-     
-            ConfigurationFile wConfigurationFile = GetConfig(wBaseConfigFile);
+
+            ConfigurationFile wConfigurationFile = GetConfig(provider);
 
             if (!wConfigurationFile.BaseConfigFile)
             {
@@ -192,35 +157,27 @@ namespace Fwk.Configuration
         /// Devuelve el contenido completo de un archivo de configuración
         /// dado el nombre de archivo.
         /// </summary>
-        /// <param name="pFileName">Nombre de archivo</param>
+        /// <param name="provider">Proveedor de configuración.</param>
         /// <returns>ConfigurationFile</returns>
         /// <Author>Marcelo Oviedo</Author>
-        static ConfigurationFile GetConfig(string pFileName)
+        static ConfigurationFile GetConfig(ConfigProviderElement provider)
         {
 
-            string wFileContent = string.Empty;
-            bool wIsNewFile = false;
-
-
-
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(pFileName);
+            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
 
             if (wConfigurationFile == null)
             {
-                wConfigurationFile = new ConfigurationFile();
-                wIsNewFile = true;
+                wConfigurationFile = SetConfigurationFile(provider);
+                _Repository.AddConfigurationFile(wConfigurationFile);
+                
             }
 
             //Si se opto por configuracion local no es necesario chequear el stado
             //if (wConfigurationFile.CheckFileStatus() != Helper.FileStatus.Ok)
             //{
-                SetConfigurationFile(out wConfigurationFile, pFileName);
-
-                if (wIsNewFile)
-                {
-                    wConfigurationFile.FileName = pFileName;
-                    _Repository.AddConfigurationFile(wConfigurationFile);
-                }
+       
+                  
+        
             //}
 
 
@@ -229,29 +186,121 @@ namespace Fwk.Configuration
         }
 
         /// <summary>
-        /// Agrega nuevamente los gupos al ConfigurationFile
+        /// Obtiene un String con el contenido del archivo xml de configuracion. 
+        /// Si este metodo es accedido desde el servicio web extrae la informacion de estado del archivo:
+        /// Encrypt
+        /// TTL
+        /// ForceUpdate
+        /// CurrentVersion
+        /// BaseConfigFile
+        /// Cacheable
         /// </summary>
-        /// <param name="pConfigurationFile">Objeto a configurar.</param>
-        /// <param name="pFileName">Nombre de archivo.</param>
+        /// <param name="provider">Proveedor de configuración.</param>
         /// <Author>Marcelo Oviedo</Author>
-        static void SetConfigurationFile(out ConfigurationFile pConfigurationFile, string pFileName)
+        static ConfigurationFile SetConfigurationFile(ConfigProviderElement provider)
         {
-
+            ConfigurationFile wConfigurationFile = new ConfigurationFile();
             string wFullFileName;
-            if (System.IO.File.Exists(pFileName))
+            if (System.IO.File.Exists(provider.BaseConfigFile))
             {
-                wFullFileName = pFileName;
+                wFullFileName = provider.BaseConfigFile;
             }
             else
             {
-               
                 //Application.StartupPath
-                wFullFileName = System.IO.Path.Combine(System.Reflection.Assembly.GetExecutingAssembly().Location, pFileName);
+                wFullFileName = System.IO.Path.Combine(System.Reflection.Assembly.GetExecutingAssembly().Location, provider.BaseConfigFile);
+            }
+     
+            if (!System.IO.File.Exists(wFullFileName))
+            {
+                TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuración. ", provider.BaseConfigFile,Environment.NewLine, "Revisar en el archivo .config de la aplicacion la configuración del proveedor ", provider.Name));
+                te.ErrorId = "8011";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
+
             }
 
-            pConfigurationFile = Common.Helper.GetConfig(wFullFileName, null);
+            wConfigurationFile = ConfigurationFile.GetFromXml<ConfigurationFile>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(wFullFileName));
+
+
+
+            wConfigurationFile.FileName = wFullFileName;
+
+            if (wConfigurationFile != null)
+            {
+                wConfigurationFile.TTL = wConfigurationFile.TTL;
+                wConfigurationFile.Encrypted = wConfigurationFile.Encrypted;
+                wConfigurationFile.ForceUpdate = wConfigurationFile.ForceUpdate;
+                wConfigurationFile.CurrentVersion = wConfigurationFile.CurrentVersion;
+                wConfigurationFile.BaseConfigFile = wConfigurationFile.BaseConfigFile;
+
+            }
+            else
+            {
+                wConfigurationFile.BaseConfigFile = true;
+
+            }
+
+            return wConfigurationFile;
 
         }
+
+
+
+        /// <summary>
+        /// Obtiene un String con el contenido del archivo xml de configuracion. 
+        /// Si este metodo es accedido desde el servicio web extrae la informacion de estado del archivo:
+        /// Encrypt
+        /// TTL
+        /// ForceUpdate
+        /// CurrentVersion
+        /// BaseConfigFile
+        /// Cacheable
+        /// </summary>
+        /// <param name="pFullFileName">Nombre del archivo</param>
+        /// <param name="pConfigFileRegistry">XmlElement que contiene informacion del catalogo de arhivos utilizado por el 
+        /// servicio web Configuration Service</param>
+        /// <returns></returns>
+        //static ConfigurationFile GetConfig(ConfigProviderElement provider, ConfigFileRegistry pConfigFileRegistry)
+        //{
+
+        //    ConfigurationFile wConfigurationFile;
+
+        //    if (!System.IO.File.Exists(provider.BaseConfigFile))
+        //    {
+        //        TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuracion espesificado en el proveedor de configuracion ", provider.BaseConfigFile, " . Ver archivo .config de la aplicacion"));
+        //        te.ErrorId = "8010";
+        //        Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+        //        throw te;
+
+        //    }
+        //    string wFileContent = Fwk.HelperFunctions.FileFunctions.OpenTextFile(pFullFileName);
+
+
+        //    wConfigurationFile = ConfigurationFile.GetFromXml<ConfigurationFile>(wFileContent);
+
+
+
+        //    wConfigurationFile.FileName = pFullFileName;
+
+        //    if (pConfigFileRegistry != null)
+        //    {
+        //        wConfigurationFile.TTL = pConfigFileRegistry.TTL;
+        //        wConfigurationFile.Encrypted = pConfigFileRegistry.Encrypt;
+        //        wConfigurationFile.ForceUpdate = pConfigFileRegistry.ForceUpdate;
+        //        wConfigurationFile.CurrentVersion = pConfigFileRegistry.CurrentVersion;
+        //        wConfigurationFile.BaseConfigFile = pConfigFileRegistry.BaseConfigFile;
+
+        //    }
+        //    else
+        //    {
+        //        wConfigurationFile.BaseConfigFile = true;
+
+        //    }
+
+        //    return wConfigurationFile;
+        //}
+
         #endregion
 
         /// <summary>
@@ -262,7 +311,7 @@ namespace Fwk.Configuration
         /// <param name="groupName"></param>
         internal static void AddProperty(ConfigProviderElement provider, Key key, string groupName)
         {
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider);
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
             wGroup.Keys.Add(key);
 
@@ -290,7 +339,7 @@ namespace Fwk.Configuration
         /// <param name="group"></param>
         internal static void AddGroup(ConfigProviderElement provider, Group group)
         {
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider);
             wConfigurationFile.Groups.Add(group);
 
             try
@@ -309,7 +358,7 @@ namespace Fwk.Configuration
 
         internal static void RemoveProperty(ConfigProviderElement provider, string groupName, string propertyName)
         {
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider);
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
             Key k = wGroup.Keys.GetFirstByName(propertyName);
             wGroup.Keys.Remove(k);
@@ -347,6 +396,9 @@ namespace Fwk.Configuration
                 throw te;
             }
         }
+
+
+   
     }
 
     

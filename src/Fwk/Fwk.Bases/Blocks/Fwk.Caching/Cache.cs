@@ -242,7 +242,7 @@ namespace Fwk.Caching
         /// <param name="pCahcheId">Id de item a guardar</param>
         /// <param name="pObject">Ítem a Guardar</param>
         /// <param name="pPriority">Prioridad del Ítem en Caché</param>
-        /// <param name="pDaysFromExpiration">Minutos para que el Ítem Expire</param>
+        /// <param name="pExpirationTime">Minutos para que el Ítem Expire</param>
         /// <param name="pTimeMeasures"></param>
         /// <param name="pRefreshOnExpired">Determina si una ves obtendo el item del cache se renueva la expiracion o no</param>
         /// <returns>Indica si se pudo insertar el Objeto en Caché con el Key especificado</returns>
@@ -337,6 +337,7 @@ namespace Fwk.Caching
         /// <param name="pObject">Ítem a Guardar</param>
         /// <param name="pPriority">Prioridad del Ítem en Caché</param>
         /// <param name="pDateExpiration">Fecha para la cuál el Ítem Expirará</param>
+        /// <param name="pRefreshOnExpired"></param>
         /// <returns>Key Unica con la que se guardó el Ítem</returns>
         /// <author>moviedo</author>
         /// <date>29/11/2007</date>

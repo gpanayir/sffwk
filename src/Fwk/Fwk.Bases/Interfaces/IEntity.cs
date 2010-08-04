@@ -9,10 +9,12 @@ namespace Fwk.Bases
     /// </summary>
     public interface IEntity : IBaseEntity
     {
-        //// <summary>
-        //// Obtiene un System.DataSet 
-        //// </summary>
-        //// <returns>System.DataSet</returns>
+
+
+        /// <summary>
+        ///  Obtiene un System.DataSet 
+        /// </summary>
+        /// <returns></returns>
         DataSet GetDataSet();
 
         /// <summary>

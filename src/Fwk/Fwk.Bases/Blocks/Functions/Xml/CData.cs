@@ -17,11 +17,16 @@ namespace Fwk.Xml
     {
 
         private string text;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public CData()
 
         { }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
         public CData(string text)
         {
 
@@ -29,6 +34,9 @@ namespace Fwk.Xml
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string Text
         {
 
@@ -36,7 +44,10 @@ namespace Fwk.Xml
              set {  text = value; }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         XmlSchema IXmlSerializable.GetSchema()
         {
 

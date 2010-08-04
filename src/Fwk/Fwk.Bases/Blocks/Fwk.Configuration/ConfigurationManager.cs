@@ -130,7 +130,7 @@ namespace Fwk.Configuration
             {
                 case ConfigProviderType.local:
                     {
-                        return LocalFileConfigurationManager.GetConfigurationFile(provider.BaseConfigFile); 
+                        return LocalFileConfigurationManager.GetConfigurationFile(provider); 
                     }
                 case ConfigProviderType.remote:
                     {
@@ -250,7 +250,7 @@ namespace Fwk.Configuration
           
            if (_ConfigProvider.GetProvider(pProviderName).BaseConfigFile == string.Empty)
             {
-                TechnicalException te = new TechnicalException(string.Concat("Nombre artchivo de configuracion no espesificado en el proveedor de configuracion ", pProviderName, " . Ver archivo .config de la aplicacion"));
+                TechnicalException te = new TechnicalException(string.Concat("Falta el nombre artchivo de configuracion no espesificado en el proveedor de configuracion ", pProviderName, " . Ver archivo .config de la aplicacion"));
                 te.ErrorId = "8010";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
                 throw te;

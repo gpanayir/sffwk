@@ -72,7 +72,8 @@ public class ConfigurationService : System.Web.Services.WebService
             {
                 throw new Exception("El archivo de configuración solicitado no está disponible.");
             }
-            return Common.Helper.GetConfig(Server.MapPath(@"~/ConfigurationFiles/" + pFileName), wConfigFileRegistry).GetXml();
+            ///TODO: analisar si se continbua utiilizando esta arquitectura
+            return "";// Common.Helper.GetConfig(Server.MapPath(@"~/ConfigurationFiles/" + pFileName), wConfigFileRegistry).GetXml();
         }
         catch (SoapException soex)
         {

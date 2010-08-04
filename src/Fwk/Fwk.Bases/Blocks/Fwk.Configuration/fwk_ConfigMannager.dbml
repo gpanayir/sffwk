@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="Logs" Class="fwk_ConfigMannagerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="ConnectionString" ConnectionString="Data Source=SANTANA\SQLEXPRESS;Initial Catalog=Logs;Integrated Security=True" Provider="System.Data.SqlClient" />
   <Table Name="dbo.fwk_ConfigMannager" Member="fwk_ConfigMannagers">
     <Type Name="fwk_ConfigMannager">
       <Column Name="ConfigurationFileName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

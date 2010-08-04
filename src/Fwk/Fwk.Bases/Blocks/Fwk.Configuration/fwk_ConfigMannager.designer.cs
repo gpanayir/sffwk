@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fwk.Configuration
+namespace Fwk.Bases.Blocks.Fwk.Configuration
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -23,7 +23,7 @@ namespace Fwk.Configuration
 	
 	
 	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Logs")]
-	internal partial class fwk_ConfigMannagerDataContext : System.Data.Linq.DataContext
+	public partial class fwk_ConfigMannagerDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -34,12 +34,6 @@ namespace Fwk.Configuration
     partial void Updatefwk_ConfigMannager(fwk_ConfigMannager instance);
     partial void Deletefwk_ConfigMannager(fwk_ConfigMannager instance);
     #endregion
-		
-		public fwk_ConfigMannagerDataContext() : 
-				base("Data Source=SANTANA\\SQLEXPRESS;Initial Catalog=Logs;Integrated Security=True", mappingSource)
-		{
-			OnCreated();
-		}
 		
 		public fwk_ConfigMannagerDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -75,7 +69,7 @@ namespace Fwk.Configuration
 	}
 	
 	[Table(Name="dbo.fwk_ConfigMannager")]
-	internal partial class fwk_ConfigMannager : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class fwk_ConfigMannager : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
