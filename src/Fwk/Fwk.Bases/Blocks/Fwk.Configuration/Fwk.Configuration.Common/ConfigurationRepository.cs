@@ -230,9 +230,13 @@ namespace Fwk.Configuration.Common
     
 
     [XmlRoot("Groups"), SerializableAttribute]
-    public class Groups : Entities<Group>
+    public class Groups : BaseEntities<Group>
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <returns></returns>
         public Group GetFirstByName(string pName)
         {
 
@@ -250,7 +254,7 @@ namespace Fwk.Configuration.Common
 
 
     [XmlInclude(typeof(Group)), Serializable]
-    public class Group : Fwk.Bases.Entity
+    public class Group : Fwk.Bases.BaseEntity
     {
         string _name;
         [XmlAttribute("name")]
@@ -276,7 +280,7 @@ namespace Fwk.Configuration.Common
     /// 
     /// </summary>
     [XmlRoot("Keys"), SerializableAttribute]
-    public class Keys : Fwk.Bases.Entities<Key>
+    public class Keys : Fwk.Bases.BaseEntities<Key>
     {
         /// <summary>
         /// 
@@ -304,7 +308,7 @@ namespace Fwk.Configuration.Common
     }
 
     [XmlInclude(typeof(Key)), Serializable]
-    public class Key : Fwk.Bases.Entity
+    public class Key : Fwk.Bases.BaseEntity
     {
         string _Name;
         [XmlAttribute("name")]

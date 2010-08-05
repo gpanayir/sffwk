@@ -22,6 +22,17 @@ namespace Fwk.ServiceManagement
 	{
         string _DatabaseCnnString = String.Empty;
 
+        /// <summary>
+        /// Constructor manual sin archivo de configuracion.- No utiliza ServiceConfigurationSourceName
+        /// </summary>
+        /// <param name="cnnStringName">Nombre de la cadena de conexion</param>
+        /// <date>2008-04-10T00:00:00</date>
+        /// <author>moviedo</author>
+        public DatabaseServiceConfigurationManager(string cnnStringName)
+        {
+
+            _DatabaseCnnString = System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString;
+        }
 		/// <summary>
 		/// Constructor por defecto
 		/// </summary>

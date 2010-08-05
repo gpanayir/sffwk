@@ -173,7 +173,7 @@ namespace Fwk.Configuration.Common
         public void SetConfigurationFile(ConfigurationFile pConfigurationFile, string pFileName)
         {
 
-            pConfigurationFile.Groups = Groups.GetFromXml<Groups>(InvokeService(pFileName));
+            //pConfigurationFile.Groups = Groups.GetFromXml<Groups>(InvokeService(pFileName));
 
 
         }

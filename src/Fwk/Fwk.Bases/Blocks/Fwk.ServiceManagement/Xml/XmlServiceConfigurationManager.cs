@@ -28,6 +28,17 @@ namespace Fwk.ServiceManagement
             set { _Tag = value; }
         }
 
+        /// <summary>
+        /// Constructor que no busca en el .config. Carga todos los servicios directamente del archivo pasado por parametros
+        /// </summary>
+        /// <param name="xmlConfigFile">archivo de servicios</param>
+        /// <date>2007-07-13T00:00:00</date>
+        /// <author>moviedo</author>
+        public XmlServiceConfigurationManager(string xmlConfigFile)
+        {
+            _Services = GetAllServices(xmlConfigFile);
+
+        }
 		/// <summary>
 		/// Constructor por defecto
 		/// </summary>
@@ -71,8 +82,6 @@ namespace Fwk.ServiceManagement
             return wResult;
 
         }
-
-            
         /// <summary>
         /// Busca el archivo BPConfig y lo carga a _Services que es un ServiceConfigurationCollection
         /// </summary>
@@ -81,10 +90,24 @@ namespace Fwk.ServiceManagement
         /// <author>moviedo</author>
         public ServiceConfigurationCollection GetAllServices()
         {
+            return GetAllServices(GetXMLRepositoryPath());
 
+
+        }
+        /// <summary>
+        /// Busca el archivo  lo carga a _Services que es un ServiceConfigurationCollection
+        /// </summary>
+        /// <returns></returns>
+        /// <date>2007-07-13T00:00:00</date>
+        /// <author>moviedo</author>
+        public ServiceConfigurationCollection GetAllServices(string xmlConfigFile)
+        {
             try
             {
-                _Services = GetServiceConfigurationFromFile();
+
+                String xml = FileFunctions.OpenTextFile(xmlConfigFile);
+                _Services = (ServiceConfigurationCollection)SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), xml);
+
 
                 return _Services;
             }
@@ -95,7 +118,7 @@ namespace Fwk.ServiceManagement
                 string wMessage = string.Concat(
                 "Error al inicializar la metadata de los servicios  \r\n",
                 "Verifique: \r\n ",
-                "Archivo de .config en la seccion Fwk.Bases.Properties.Settings el ",Environment.NewLine,
+                "Archivo de .config en la seccion Fwk.Bases.Properties.Settings el ", Environment.NewLine,
                 "valor de [ServiceConfigurationSourceName],  que la ruta y archivo de metadata sea correcta");
 
 
@@ -115,8 +138,8 @@ namespace Fwk.ServiceManagement
             }
             catch (Exception ex)
             {
-                string strError = string.Concat("Error al inicializar la metadata de los servicios  \r\n "                ,
-                "Metadata :", Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName,Environment.NewLine);
+                string strError = string.Concat("Error al inicializar la metadata de los servicios  \r\n ",
+                "Metadata :", Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName, Environment.NewLine);
 
                 Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(strError.ToString(), ex);
                 te.Source = "Despachador de servicios";
@@ -126,8 +149,8 @@ namespace Fwk.ServiceManagement
                 te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
                 throw te;
             }
-            
         }
+       
 
 		/// <summary>
 		/// Actualiza la configuración de un servicio de negocio.
@@ -284,20 +307,7 @@ namespace Fwk.ServiceManagement
 
 			return wDocument;
 		}
-        /// <summary>
-        /// Recupera ServiceConfigurationCollection.
-        /// </summary>
-        /// <returns>Documento con el contenido del repositorio XML.</returns>
-        /// <date>2007-02-10T00:00:00</date>
-        /// <author>moviedo</author>
-        private ServiceConfigurationCollection GetServiceConfigurationFromFile()
-        {
-
-            String xml = FileFunctions.OpenTextFile(GetXMLRepositoryPath());
-            ServiceConfigurationCollection list =
-                (ServiceConfigurationCollection)SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), xml);
-            return list;
-        }
+        
 
 		/// <summary>
 		/// Devuelve la ruta al repositorio XML.
@@ -315,8 +325,7 @@ namespace Fwk.ServiceManagement
 
 
             string file =
-              System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
-            System.IO.Path.GetFileName(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName));
+              System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, System.IO.Path.GetFileName(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName));
 
             if (System.IO.File.Exists(file))
                 return file;
