@@ -50,6 +50,7 @@ namespace ConfigurationApp
             this.quitToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.toolStripAppClientConfig.SuspendLayout();
@@ -71,8 +72,8 @@ namespace ConfigurationApp
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(796, 462);
-            this.splitContainer1.SplitterDistance = 250;
+            this.splitContainer1.Size = new System.Drawing.Size(824, 462);
+            this.splitContainer1.SplitterDistance = 258;
             this.splitContainer1.TabIndex = 0;
             // 
             // dockPanel1
@@ -88,7 +89,7 @@ namespace ConfigurationApp
             this.dockPanel1.Location = new System.Drawing.Point(0, 0);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.ShowDocumentIcon = true;
-            this.dockPanel1.Size = new System.Drawing.Size(250, 462);
+            this.dockPanel1.Size = new System.Drawing.Size(258, 462);
             this.dockPanel1.TabIndex = 6;
             // 
             // clienteDeDespachadorDeServicioToolStripMenuItem
@@ -120,7 +121,6 @@ namespace ConfigurationApp
             this.tsMenuItemSave.Name = "tsMenuItemSave";
             this.tsMenuItemSave.Size = new System.Drawing.Size(145, 22);
             this.tsMenuItemSave.Text = "Save";
-            
             // 
             // tsMenuItemSaveAllFiles
             // 
@@ -128,7 +128,6 @@ namespace ConfigurationApp
             this.tsMenuItemSaveAllFiles.Name = "tsMenuItemSaveAllFiles";
             this.tsMenuItemSaveAllFiles.Size = new System.Drawing.Size(145, 22);
             this.tsMenuItemSaveAllFiles.Text = "Save All";
-            
             // 
             // tsMenuItemRefreshAllFiles
             // 
@@ -144,7 +143,6 @@ namespace ConfigurationApp
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
-            
             // 
             // openToolStripMenuItem
             // 
@@ -152,7 +150,6 @@ namespace ConfigurationApp
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
-            
             // 
             // toolStripAppClientConfig
             // 
@@ -171,7 +168,7 @@ namespace ConfigurationApp
             this.helpToolStripButton});
             this.toolStripAppClientConfig.Location = new System.Drawing.Point(0, 24);
             this.toolStripAppClientConfig.Name = "toolStripAppClientConfig";
-            this.toolStripAppClientConfig.Size = new System.Drawing.Size(239, 25);
+            this.toolStripAppClientConfig.Size = new System.Drawing.Size(47, 25);
             this.toolStripAppClientConfig.TabIndex = 7;
             this.toolStripAppClientConfig.Text = "toolStrip1";
             // 
@@ -184,7 +181,7 @@ namespace ConfigurationApp
             this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.saveToolStripButton.Text = "&Save";
             this.saveToolStripButton.ToolTipText = "Save the selected file";
-            
+            this.saveToolStripButton.Visible = false;
             // 
             // tsButtonSaveAll
             // 
@@ -194,7 +191,7 @@ namespace ConfigurationApp
             this.tsButtonSaveAll.Name = "tsButtonSaveAll";
             this.tsButtonSaveAll.Size = new System.Drawing.Size(23, 22);
             this.tsButtonSaveAll.Text = "Save all files";
-            
+            this.tsButtonSaveAll.Visible = false;
             // 
             // tsButtonRefreshAll
             // 
@@ -215,7 +212,7 @@ namespace ConfigurationApp
             this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.newToolStripButton.Text = "&New";
             this.newToolStripButton.ToolTipText = "Create new file";
-            
+            this.newToolStripButton.Visible = false;
             // 
             // openToolStripButton
             // 
@@ -226,7 +223,7 @@ namespace ConfigurationApp
             this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.openToolStripButton.Text = "&Open";
             this.openToolStripButton.ToolTipText = "Open existent file";
-            
+            this.openToolStripButton.Visible = false;
             // 
             // printToolStripButton
             // 
@@ -237,6 +234,7 @@ namespace ConfigurationApp
             this.printToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.printToolStripButton.Text = "&Print";
             this.printToolStripButton.ToolTipText = "Print selected file";
+            this.printToolStripButton.Visible = false;
             // 
             // toolStripSeparator
             // 
@@ -252,7 +250,7 @@ namespace ConfigurationApp
             this.quitToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.quitToolStripButton.Text = "Q&uit";
             this.quitToolStripButton.ToolTipText = "Quit the selected file";
-            
+            this.quitToolStripButton.Visible = false;
             // 
             // toolStripSeparator1
             // 
@@ -267,13 +265,26 @@ namespace ConfigurationApp
             this.helpToolStripButton.Name = "helpToolStripButton";
             this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.helpToolStripButton.Text = "He&lp";
+            this.helpToolStripButton.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(64, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(778, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Para agregar  un nuevo ConfigManager debe editar el archivo .config de esta aplic" +
+                "acion agregando un nuevo proveedor.-";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(834, 527);
+            this.ClientSize = new System.Drawing.Size(862, 527);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStripAppClientConfig);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -316,6 +327,7 @@ namespace ConfigurationApp
         private System.Windows.Forms.ToolStripButton quitToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
+        private System.Windows.Forms.Label label1;
     }
 }
 
