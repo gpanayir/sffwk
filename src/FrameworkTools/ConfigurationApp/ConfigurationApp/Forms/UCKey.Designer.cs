@@ -110,6 +110,7 @@
             this.txtNewKeyName.Name = "txtNewKeyName";
             this.txtNewKeyName.Size = new System.Drawing.Size(328, 20);
             this.txtNewKeyName.TabIndex = 20;
+            this.txtNewKeyName.TextChanged += new System.EventHandler(this.txtNewKeyName_TextChanged);
             // 
             // keyBindingSource
             // 

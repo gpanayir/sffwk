@@ -163,70 +163,7 @@ namespace ConfigurationApp.Forms
         #region File Methods
 
         
-        
-        /// <summary>
-        /// Guarda el archivo
-        /// </summary>
-        //public void SaveFile()
-        //{
-        //    if (_CnfgManagerSelectedNodeType == CnfgManagerSelectedNodeType.Root)
-        //    {
-        //        MessageBox.Show("Please.. select a file node.","Config manager",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-        //        return;
-        //    }
-        //    TreeNode wFileTreeNode = GetTreeNodeFile();
-        //    ConfigManagerControl.SaveFile(wFileTreeNode);
-        //}
-        /// <summary>
-        /// Quita o remueve el archivo
-        /// </summary>
-        //public void QuitFile()
-        //{
-        //    if (_CnfgManagerSelectedNodeType == CnfgManagerSelectedNodeType.Root)
-        //    {
-        //        MessageBox.Show("Please.. select a file node.", "Config manager", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //        return;
-        //    }
-
-        //    TreeNode wFileTreeNode = GetTreeNodeFile();
-        //    ConfigManagerControl.QuitFile(wFileTreeNode);
-        //}
-        /// <summary>
-        /// Carga un archivo Config Mannager en el tree view
-        /// </summary>
-        //public void LoadFile()
-        //{
-        //    ConfigManagerControl.LoadFile(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey);
-        //}
-        /// <summary>
-        /// Crea un nuevo archivo
-        /// </summary>
-        //public void NewFile()
-        //{
-        //    ConfigManagerControl.NewFile(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey);
-        //}
-
-        /// <summary>
-        /// Guarda todos los archivos que estan actualmente en el Tree View
-        /// </summary>
-        //public void SaveAllFiles()
-        //{
-        //    foreach (TreeNode wFileTreeNode in treeView1.Nodes[0].Nodes)
-        //    {
-        //        ConfigManagerControl.SaveFile(wFileTreeNode);
-        //    }
-        //}
-
-        /// <summary>
-        /// Quita todos los archivos que estan actualmente en el Tree View
-        /// </summary>
-        //public void QuitAllFiles()
-        //{
-        //    foreach (TreeNode wFileTreeNode in treeView1.Nodes[0].Nodes)
-        //    {
-        //        ConfigManagerControl.QuitFile(wFileTreeNode);
-        //    }
-        //}
+  
         public void RefreshAllFiles(Boolean pClear)
         {
             _CnfgManagerSelectedNodeType = CnfgManagerSelectedNodeType.Root;
@@ -250,7 +187,15 @@ namespace ConfigurationApp.Forms
             {
                 case CnfgManagerSelectedNodeType.Key:
                     {
-                        ConfigManagerControl.ChangeKey(ptreeNode,(Key)_UCConfigElement.Get ());
+                        Key updatedK = (Key)_UCConfigElement.Get();
+                        Key currentK = ((Key)ptreeNode.Tag);
+
+                        if (!currentK.Name.Equals(updatedK.Name, StringComparison.OrdinalIgnoreCase)
+                            || !currentK.Value.Text.Equals(updatedK.Value.Text, StringComparison.OrdinalIgnoreCase)
+                            )
+                        {
+                            ConfigManagerControl.ChangeKey(ptreeNode, updatedK);
+                        }
                         break;
                     }
                 case CnfgManagerSelectedNodeType.Group:

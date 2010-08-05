@@ -28,6 +28,12 @@ namespace ConfigurationApp.Forms
              groupKey.Visible = false;
         }
 
+        /// <summary>
+        /// Poblado de Key
+        /// </summary>
+        /// <param name="pKey"></param>
+        /// <param name="fileName"></param>
+        /// <param name="grName"></param>
         public void Populate(Key pKey,string fileName,string grName)
         {
             RefreshData();
@@ -35,11 +41,23 @@ namespace ConfigurationApp.Forms
        
             lblFileName.Text = fileName;
             txtGroupName.Text = grName;
+            _Key = new Key();
+            _Key.Name = pKey.Name;
+            _Key.Encrypted = pKey.Encrypted;
+            _Key.Value.Text = pKey.Value.Text;
 
-            _Key = pKey;
             txtNewValue.Text = _Key.Value.Text;
-            keyBindingSource.DataSource = _Key;
+            txtNewKeyName.Text = _Key.Name;
+
+      
+        
         }
+
+        /// <summary>
+        /// Poblado de grupo
+        /// </summary>
+        /// <param name="pGroup"></param>
+        /// <param name="fileName"></param>
         public void Populate(Group pGroup, string fileName)
         {
             RefreshData();
@@ -47,7 +65,7 @@ namespace ConfigurationApp.Forms
             lblFileName.Text = fileName;
             txtGroupName.Text = pGroup.Name;
        
-           _Group = pGroup;
+           _Group = pGroup.Clone<Group>();
 
             
         }
@@ -75,6 +93,11 @@ namespace ConfigurationApp.Forms
             RefreshData();
 
             lblFileName.Text = fileName;
+        }
+
+        private void txtNewKeyName_TextChanged(object sender, EventArgs e)
+        {
+            _Key.Name = txtNewKeyName.Text;
         }
     }
 }

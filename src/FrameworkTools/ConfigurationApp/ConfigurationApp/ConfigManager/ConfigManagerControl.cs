@@ -88,7 +88,7 @@ namespace ConfigurationApp
             ListDictionary wDictionary = new ListDictionary();
             try
             {
-                ConfigurationFile wConfigurationFile = Fwk.Configuration.ConfigurationManager.GetConfigurationFromProvider(provider.Name);
+                ConfigurationFile wConfigurationFile = Fwk.Configuration.ConfigurationManager.GetConfigurationFile(provider.Name);
                 wConfigurationFile.FileName = System.IO.Path.GetFileName(provider.BaseConfigFile);
 
 
@@ -364,17 +364,36 @@ namespace ConfigurationApp
             }
             return wTreeNodeChilds;
         }
+
+
+        /// <summary>
+        /// Realiza combios en una key. Tanto en treeview como en origen de datos
+        /// </summary>
+        /// <param name="wTreeNodeKey">Nodo que contiene la clave</param>
+        /// <param name="newKey">Valores de nueva clave</param>
         public static void ChangeKey(TreeNode wTreeNodeKey, Key newKey)
         {
             TreeNode wTreeNodeFileNode = wTreeNodeKey.Parent.Parent;
             ListDictionary dic = (ListDictionary)wTreeNodeFileNode.Tag;
             ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-            //dic["Saved"] = false;
 
-            wTreeNodeKey.Tag = newKey;
 
+            //Obtengo la Key sin modificacion
+            Key wKey = ((Key)wTreeNodeKey.Tag);
+            string oldKeyName = wKey.Name;
+
+            //Mapping de nuevos  valores
+            wKey.Name = newKey.Name;
+            wKey.Value = newKey.Value;
+            wKey.Encrypted = newKey.Encrypted;
+     
+            
             wTreeNodeKey.Text = newKey.Name;
 
+            ///Grupo donde se encuentra la key
+            Group wGroup = ((Group)wTreeNodeKey.Parent.Tag);
+
+            Fwk.Configuration.ConfigurationManager_CRUD.ChangeProperty(dic["provider"].ToString(), wGroup.Name, newKey, oldKeyName);
 
         }
 
@@ -390,7 +409,7 @@ namespace ConfigurationApp
         public static void RemoveKey(TreeNode pFileNode, String pGroupName, String pKeyName)
         {
             ListDictionary dic = (ListDictionary)pFileNode.Tag;
-            //"Groups"
+  
             ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
 
 
@@ -466,14 +485,17 @@ namespace ConfigurationApp
             if (newGroup == null) return;
             ListDictionary dic = (ListDictionary)pTreeNodeGroupNode.Parent.Tag;
             ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-            dic["Saved"] = false;
-
+            Group gr = (Group)pTreeNodeGroupNode.Tag;
+            string oldName = gr.Name;
             pTreeNodeGroupNode.Tag = newGroup;
             pTreeNodeGroupNode.Text = newGroup.Name;
             pTreeNodeGroupNode.Name = newGroup.Name;
-            Group gr = wConfigurationFile.Groups.GetFirstByName(pTreeNodeGroupNode.Text);
+            
             pTreeNodeGroupNode.Tag = newGroup;
-            gr.Name = newGroup.Name;
+            //gr.Name = newGroup.Name;
+
+
+            Fwk.Configuration.ConfigurationManager_CRUD.ChangeGroupName(dic["provider"].ToString(), oldName, newGroup.Name);
         }
 
         /// <summary>
