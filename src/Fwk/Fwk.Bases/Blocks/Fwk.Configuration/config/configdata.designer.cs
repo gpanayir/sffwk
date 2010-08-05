@@ -82,8 +82,6 @@ namespace Fwk.Bases.Blocks.Fwk.Configuration.config
 		
 		private string _ConfigurationFileName;
 		
-		private string _AppId;
-		
 		private string _group;
 		
 		private string _key;
@@ -98,8 +96,6 @@ namespace Fwk.Bases.Blocks.Fwk.Configuration.config
     partial void OnCreated();
     partial void OnConfigurationFileNameChanging(string value);
     partial void OnConfigurationFileNameChanged();
-    partial void OnAppIdChanging(string value);
-    partial void OnAppIdChanged();
     partial void OngroupChanging(string value);
     partial void OngroupChanged();
     partial void OnkeyChanging(string value);
@@ -131,26 +127,6 @@ namespace Fwk.Bases.Blocks.Fwk.Configuration.config
 					this._ConfigurationFileName = value;
 					this.SendPropertyChanged("ConfigurationFileName");
 					this.OnConfigurationFileNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_AppId", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string AppId
-		{
-			get
-			{
-				return this._AppId;
-			}
-			set
-			{
-				if ((this._AppId != value))
-				{
-					this.OnAppIdChanging(value);
-					this.SendPropertyChanging();
-					this._AppId = value;
-					this.SendPropertyChanged("AppId");
-					this.OnAppIdChanged();
 				}
 			}
 		}

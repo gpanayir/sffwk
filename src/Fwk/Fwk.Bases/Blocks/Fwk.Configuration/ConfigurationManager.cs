@@ -66,17 +66,17 @@ namespace Fwk.Configuration
         /// <summary>
         /// Obtiene una propiedad determinada de un archivo de configuracion .-
         /// </summary>
-        /// <param name="pConfigProvider">Nombre del proveedor de configuracion</param>
+        /// <param name="configProvider">Nombre del proveedor de configuracion</param>
         /// <param name="pGroupName">Nombre del grupo donde se encuentra la propiedad</param>
         /// <param name="pPropertyName">Nombre de la propiedad a obtener</param>
         /// <returns>String con la propiedad</returns>
         /// <Author>Marcelo Oviedo</Author>
-        public static string GetProperty(string pConfigProvider, string pGroupName, string pPropertyName)
+        public static string GetProperty(string configProvider, string pGroupName, string pPropertyName)
         {
 
 
 
-            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            ConfigProviderElement provider = GetProvider(configProvider);
             if (provider == null) return null;
 
 
@@ -84,7 +84,7 @@ namespace Fwk.Configuration
             {
                 case ConfigProviderType.local:
                     {
-                        return LocalFileConfigurationManager.GetProperty(pConfigProvider,pGroupName,pPropertyName);
+                        return LocalFileConfigurationManager.GetProperty(configProvider,pGroupName,pPropertyName);
                     }
                 case ConfigProviderType.remote:
                     {
@@ -92,7 +92,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.database:
                     {
-                        return DatabaseConfigMannager.GetProperty(pConfigProvider ,pGroupName, pPropertyName);
+                        return DatabaseConfigMannager.GetProperty(configProvider ,pGroupName, pPropertyName);
                     }
                 case ConfigProviderType.service:
                     {
@@ -118,11 +118,11 @@ namespace Fwk.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pConfigProvider">Nombre del proveedor configurado</param>
+        /// <param name="configProvider">Nombre del proveedor configurado</param>
         /// <returns></returns>
-        public static ConfigurationFile GetConfigurationFile(string pConfigProvider)
+        public static ConfigurationFile GetConfigurationFile(string configProvider)
         {
-            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            ConfigProviderElement provider = GetProvider(configProvider);
             if (provider == null) return null;
 
 
@@ -152,20 +152,20 @@ namespace Fwk.Configuration
         /// <summary>
         /// Obtiene un grupo determinado en el archivo de configuracion
         /// </summary>
-        /// <param name="pConfigProvider">Nombre del proveedor de configuracion</param>
+        /// <param name="configProvider">Nombre del proveedor de configuracion</param>
         /// <param name="pGroupName">Nombre del grupo a obtener</param>
         /// <returns>Group</returns>
         /// <Author>Marcelo Oviedo</Author>
-        public static Group GetGroup(string pConfigProvider, string pGroupName)
+        public static Group GetGroup(string configProvider, string pGroupName)
         {
 
-            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            ConfigProviderElement provider = GetProvider(configProvider);
             if (provider == null) return null;
             switch (provider.ConfigProviderType)
             {
                 case ConfigProviderType.local:
                     {
-                        return LocalFileConfigurationManager.GetGroup(pConfigProvider, pGroupName);
+                        return LocalFileConfigurationManager.GetGroup(configProvider, pGroupName);
                     }
                 case ConfigProviderType.remote:
                     {
@@ -265,22 +265,27 @@ namespace Fwk.Configuration
         /// <summary>
         /// Obtiene uin configuration provider por su nombre
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="providerName">Nombre del proveedor de configuracion</param>
         /// <returns></returns>
-        internal static ConfigProviderElement GetProvider(string name)
+        internal static ConfigProviderElement GetProvider(string providerName)
         {
-           if (string.IsNullOrEmpty(name))
+           if (string.IsNullOrEmpty(providerName))
                 return _DefaultProvider;
             else
-                return _ConfigProvider.GetProvider(name);
+                return _ConfigProvider.GetProvider(providerName);
            
         }
 
 
-
-        internal static void AddProperty(string pConfigProvider, string groupName,Key key)
+        /// <summary>
+        /// Crea una propiedad en un grupo determinado
+        /// </summary>
+        /// <param name="configProvider">Nombre del proveedor de configuracion</param>
+        /// <param name="groupName"></param>
+        /// <param name="key"></param>
+        internal static void AddProperty(string configProvider, string groupName,Key key)
         {
-            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            ConfigProviderElement provider = GetProvider(configProvider);
             if (provider == null) return ;
             switch (provider.ConfigProviderType)
             {
@@ -306,9 +311,15 @@ namespace Fwk.Configuration
             }
         }
 
-        internal static void AddGroup(string pConfigProvider, Group group)
+        /// <summary>
+        /// Agrega un grupo al archivo de configuracion.-
+        /// Si el grupo existe se retorna una TecnicalExeption 
+        /// </summary>
+        /// <param name="configProvider">Nombre del proveedor de configuracion</param>
+        /// <param name="group">Objeto tipo Grupo que se agregara</param>
+        internal static void AddGroup(string configProvider, Group group)
         {
-            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            ConfigProviderElement provider = GetProvider(configProvider);
             if (provider == null) return ;
             switch (provider.ConfigProviderType)
             {
@@ -333,10 +344,15 @@ namespace Fwk.Configuration
 
 
 
-
-        internal static void RemoveProperty(string pConfigProvider, string groupName, string propertyName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configProvider">Nombre del proveedor de configuracion</param>
+        /// <param name="groupName"></param>
+        /// <param name="propertyName"></param>
+        internal static void RemoveProperty(string configProvider, string groupName, string propertyName)
         {
-            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            ConfigProviderElement provider = GetProvider(configProvider);
             if (provider == null) return;
             switch (provider.ConfigProviderType)
             {
@@ -359,9 +375,14 @@ namespace Fwk.Configuration
             }
         }
 
-        internal static void RemoveGroup(string pConfigProvider, string groupName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configProvider">Nombre del proveedor de configuracion</param>
+        /// <param name="groupName"></param>
+        internal static void RemoveGroup(string configProvider, string groupName)
         {
-            ConfigProviderElement provider = GetProvider(pConfigProvider);
+            ConfigProviderElement provider = GetProvider(configProvider);
             if (provider == null) return;
             switch (provider.ConfigProviderType)
             {
@@ -376,6 +397,69 @@ namespace Fwk.Configuration
                 case ConfigProviderType.database:
                     {
                         DatabaseConfigMannager.RemoveGroup(provider, groupName); break;
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configProvider">Nombre del proveedor de configuracion</param>
+        /// <param name="groupName"></param>
+        /// <param name="newGroupName"></param>
+        internal static void ChangeGroupName(string configProvider, string groupName, string newGroupName)
+        {
+            ConfigProviderElement provider = GetProvider(configProvider);
+            if (provider == null) return;
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        LocalFileConfigurationManager.ChangeGroupName(provider, groupName, newGroupName); break;
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        RemoteConfigurationManager.ChangeGroupName(provider, groupName, newGroupName); break;
+                    }
+                case ConfigProviderType.database:
+                    {
+                        DatabaseConfigMannager.ChangeGroupName(provider, groupName,newGroupName); break;
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// Realiza cambios a una propiedad.-
+        /// </summary>
+        /// <param name="provider">Nombre del proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo donde se encuentra la propiedad</param>
+        /// <param name="property">Propiedad actualizada. Este objeto puede contener todos sus valores modifcados</param>
+        /// <param name="propertyName">Nombre de la propiedad que se mofdifico.- Este valor es el original sin modificacion</param>
+        internal static void ChangeProperty(string configProvider, string groupName, Key property, string propertyName)
+        {
+            ConfigProviderElement provider = GetProvider(configProvider);
+            if (provider == null) return;
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        LocalFileConfigurationManager.ChangeProperty(provider, groupName, property, propertyName); break;
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        RemoteConfigurationManager.ChangeProperty(provider, groupName, property, propertyName); break;
+                    }
+                case ConfigProviderType.database:
+                    {
+                        DatabaseConfigMannager.ChangeProperty(provider, groupName, property, propertyName); break;
                     }
                 case ConfigProviderType.service:
                     {

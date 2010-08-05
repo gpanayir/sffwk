@@ -39,17 +39,17 @@ namespace Fwk.Configuration
         /// <summary>
         /// Obtiene una propiedad determinada de un archivo de configuracion .-
         /// </summary>
-        /// <param name="pConfigProvider">Proveedor de configuuracion</param>
+        /// <param name="configProvider">Proveedor de configuuracion</param>
         /// <param name="pGroupName">Nombre del grupo donde se encuentra la propiedad</param>
         /// <param name="pPropertyName">Nombre de la propiedad a obtener</param>
         /// <returns>String con la propiedad</returns>
         /// <Author>Marcelo Oviedo</Author>
-        internal static string GetProperty(string pConfigProvider, string pGroupName, string pPropertyName)
+        internal static string GetProperty(string configProvider, string pGroupName, string pPropertyName)
         {
             string wBaseConfigFile = String.Empty;
 
-            ConfigProviderElement provider = ConfigurationManager.GetProvider(pConfigProvider);
-            
+            ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
+
 
             ConfigurationFile wConfigurationFile = GetConfig(provider);
 
@@ -94,21 +94,21 @@ namespace Fwk.Configuration
             return GetConfig(provider);
         }
 
-       
+
 
         /// <summary>
         /// Obtiene un grupo determinado en el archivo de configuracion
         /// </summary>
-        /// <param name="pConfigProvider">Proveedor de configuuracion</param>
+        /// <param name="configProvider">Proveedor de configuuracion</param>
         /// <param name="pGroupName"></param>
         /// <returns>Hashtable con los grupos contenidos en el archivo de configuracion</returns>
         /// <Author>Marcelo Oviedo</Author>
-        internal static Group GetGroup(string pConfigProvider, string pGroupName)
+        internal static Group GetGroup(string configProvider, string pGroupName)
         {
 
             string wBaseConfigFile = string.Empty;
 
-            ConfigProviderElement provider = ConfigurationManager.GetProvider(pConfigProvider);
+            ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
 
 
             ConfigurationFile wConfigurationFile = GetConfig(provider);
@@ -124,8 +124,8 @@ namespace Fwk.Configuration
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             if (wGroup == null)
             {
-          
- 
+
+
                 TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", wBaseConfigFile }));
                 te.ErrorId = "8006";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
@@ -136,11 +136,14 @@ namespace Fwk.Configuration
             return wGroup;
         }
 
-
-        internal static void RemoveConfigManager(string pFileName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="provider"></param>
+        internal static void RemoveConfigManager(ConfigProviderElement provider)
         {
 
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(pFileName);
+            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
             _Repository.RemoveConfigurationFile(wConfigurationFile);
 
         }
@@ -148,7 +151,6 @@ namespace Fwk.Configuration
         internal static bool ExistConfigurationFile(string pFileName)
         {
             return _Repository.ExistConfigurationFile(pFileName);
-
         }
 
         #region [Private members]
@@ -169,15 +171,15 @@ namespace Fwk.Configuration
             {
                 wConfigurationFile = SetConfigurationFile(provider);
                 _Repository.AddConfigurationFile(wConfigurationFile);
-                
+
             }
 
             //Si se opto por configuracion local no es necesario chequear el stado
             //if (wConfigurationFile.CheckFileStatus() != Helper.FileStatus.Ok)
             //{
-       
-                  
-        
+
+
+
             //}
 
 
@@ -210,10 +212,10 @@ namespace Fwk.Configuration
                 //Application.StartupPath
                 wFullFileName = System.IO.Path.Combine(System.Reflection.Assembly.GetExecutingAssembly().Location, provider.BaseConfigFile);
             }
-     
+
             if (!System.IO.File.Exists(wFullFileName))
             {
-                TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuración. ", provider.BaseConfigFile,Environment.NewLine, "Revisar en el archivo .config de la aplicacion la configuración del proveedor ", provider.Name));
+                TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuración. ", provider.BaseConfigFile, Environment.NewLine, "Revisar en el archivo .config de la aplicacion la configuración del proveedor ", provider.Name));
                 te.ErrorId = "8011";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
                 throw te;
@@ -306,7 +308,7 @@ namespace Fwk.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="provider"></param>
+        /// <param name="provider">Proveedor de configuracion</param>
         /// <param name="key"></param>
         /// <param name="groupName"></param>
         internal static void AddProperty(ConfigProviderElement provider, Key key, string groupName)
@@ -335,7 +337,7 @@ namespace Fwk.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="provider"></param>
+        /// <param name="provider">Proveedor de configuracion</param>
         /// <param name="group"></param>
         internal static void AddGroup(ConfigProviderElement provider, Group group)
         {
@@ -356,6 +358,12 @@ namespace Fwk.Configuration
 
         }
 
+        /// <summary>
+        /// Elimina una porpiedad de la cinfuguracion
+        /// </summary>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <param name="groupName">Gupo al que pertenece la propiedad</param>
+        /// <param name="propertyName">Nombre de la propiedad</param>
         internal static void RemoveProperty(ConfigProviderElement provider, string groupName, string propertyName)
         {
             ConfigurationFile wConfigurationFile = GetConfig(provider);
@@ -377,10 +385,16 @@ namespace Fwk.Configuration
             }
         }
 
+        /// <summary>
+        /// Elimina un grupo de la configuracion
+        /// </summary>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo a eliminar</param>
         internal static void RemoveGroup(ConfigProviderElement provider, string groupName)
         {
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
-           Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
+
+            ConfigurationFile wConfigurationFile = GetConfig(provider);
+            Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
 
             wConfigurationFile.Groups.Remove(g);
 
@@ -398,7 +412,63 @@ namespace Fwk.Configuration
         }
 
 
-   
+
+
+        /// <summary>
+        /// Cambia el nombre de un grupo.-
+        /// </summary>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo</param>
+        /// <param name="newGroupName">Nuevo nombre del grupo</param>
+        internal static void ChangeGroupName(ConfigProviderElement provider, string groupName, string newGroupName)
+        {
+            ConfigurationFile wConfigurationFile = GetConfig(provider);
+            Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
+
+            g.Name = newGroupName;
+            try
+            {
+                FileFunctions.SaveTextFile(provider.BaseConfigFile, wConfigurationFile.GetXml(), false);
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", provider.BaseConfigFile));
+                te.ErrorId = "8008";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
+            }
+        }
+
+        /// <summary>
+        /// Realiza cambios a una propiedad.-
+        /// </summary>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo donde se encuentra la propiedad</param>
+        /// <param name="property">Propiedad actualizada. Este objeto puede contener todos sus valores modifcados</param>
+        /// <param name="propertyName">Nombre de la propiedad que se mofdifico.- Este valor es el original sin modificacion</param>
+        internal static void ChangeProperty(ConfigProviderElement provider, string groupName, Key property, string propertyName)
+        {
+            ConfigurationFile wConfigurationFile = GetConfig(provider);
+            Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
+            Key k = wGroup.Keys.GetFirstByName(propertyName);
+
+            k.Name = property.Name;
+            k.Encrypted = property.Encrypted;
+            k.Value.Text = property.Value.Text;
+
+            try
+            {
+                FileFunctions.SaveTextFile(provider.BaseConfigFile, wConfigurationFile.GetXml(), false);
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+
+                TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", provider.BaseConfigFile));
+                te.ErrorId = "8008";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
+            }
+        }
     }
 
     

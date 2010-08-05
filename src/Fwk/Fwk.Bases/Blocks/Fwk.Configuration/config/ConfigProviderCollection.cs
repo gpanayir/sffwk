@@ -70,11 +70,11 @@ namespace Fwk.ConfigSection
         /// <summary>
         /// Retorna el índice del proveedor de configuracion.
         /// </summary>
-        /// <param name="pConfigProviderElement">ConfigProviderElement que se desea conocer su </param>
+        /// <param name="configProviderElement">ConfigProviderElement que se desea conocer su </param>
         /// <returns>índice</returns>
-        public int IndexOf(ConfigProviderElement pConfigProviderElement)
+        public int IndexOf(ConfigProviderElement configProviderElement)
         {
-            return BaseIndexOf(pConfigProviderElement);
+            return BaseIndexOf(configProviderElement);
         }
         #endregion
     }

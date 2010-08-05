@@ -13,7 +13,7 @@ namespace Fwk.Xml
     /// <Author>moviedo</Author>
     /// <Date>28-12-2005</Date>
     [Serializable]
-    public class CData : IXmlSerializable
+    public class CData : IXmlSerializable,ICloneable
     {
 
         private string text;
@@ -92,6 +92,29 @@ namespace Fwk.Xml
         }
         #endregion
 
+
+        #region ICloneable Members
+
+        /// <summary>
+        /// REaliza operacion clone
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return new CData(this.text);
+            
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Sobreescrive tostring
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this.text;
+        }
     }
 
 }

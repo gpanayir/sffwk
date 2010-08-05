@@ -39,17 +39,17 @@ namespace Fwk.Configuration
         /// <summary>
         /// Obtiene una propiedad determinada de un archivo de configuracion .-
         /// </summary>
-        /// <param name="pConfigProvider">Proveedor de configuuracion</param>
+        /// <param name="configProvider">Proveedor de configuuracion</param>
         /// <param name="pGroupName">Nombre del grupo donde se encuentra la propiedad</param>
         /// <param name="pPropertyName">Nombre de la propiedad a obtener</param>
         /// <returns>String con la propiedad</returns>
         /// <Author>Marcelo Oviedo</Author>
-        internal static string GetProperty(string pConfigProvider, string pGroupName, string pPropertyName)
+        internal static string GetProperty(string configProvider, string pGroupName, string pPropertyName)
         {
-            ConfigProviderElement provider = ConfigurationManager.GetProvider(pConfigProvider);
+            ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
 
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile, provider.ApplicationId, provider.CnnStringName);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile, provider.CnnStringName);
 
             if (!wConfigurationFile.BaseConfigFile)
             {
@@ -95,22 +95,22 @@ namespace Fwk.Configuration
         {
 
 
-            return  GetConfig(provider.BaseConfigFile, provider.ApplicationId, provider.CnnStringName); ;
+            return  GetConfig(provider.BaseConfigFile,  provider.CnnStringName); ;
         }
 
 
         /// <summary>
         /// Obtiene un grupo determinado en el archivo de configuracion
         /// </summary>
-        /// <param name="pConfigProvider">Proveedor de configuuracion</param>
+        /// <param name="configProvider">Proveedor de configuuracion</param>
         /// <param name="pGroupName">Nombre del grupo</param>
         /// <returns>Hashtable con los grupos contenidos en el archivo de configuracion</returns>
         /// <Author>Marcelo Oviedo</Author>
-        internal static Group GetGroup(string pConfigProvider, string pGroupName)
+        internal static Group GetGroup(string configProvider, string pGroupName)
         {
-            ConfigProviderElement provider = ConfigurationManager.GetProvider(pConfigProvider);
+            ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile, provider.ApplicationId, provider.CnnStringName);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
 
             if (!wConfigurationFile.BaseConfigFile)
             {
@@ -146,11 +146,10 @@ namespace Fwk.Configuration
         /// dado el nombre de archivo.
         /// </summary>
         /// <param name="pFileName">Nombre de archivo</param>
-        /// <param name="pAppId">Identificador de aplicacion si se espesifica</param>
         /// <param name="pCnnStringName">Nombre de cadena de coneccion.</param>
         /// <returns><see cref="ConfigurationFile"/></returns>
         /// <Author>Marcelo Oviedo</Author>
-        static ConfigurationFile GetConfig(string pFileName, string pAppId, string pCnnStringName)
+        static ConfigurationFile GetConfig(string pFileName, string pCnnStringName)
         {
 
   
@@ -158,7 +157,7 @@ namespace Fwk.Configuration
 
             if (wConfigurationFile == null)
             {
-                wConfigurationFile = GetFromDatabase(pFileName, pAppId, pCnnStringName);
+                wConfigurationFile = GetFromDatabase(pFileName,  pCnnStringName);
                 _Repository.AddConfigurationFile(wConfigurationFile);
 
             }
@@ -172,11 +171,10 @@ namespace Fwk.Configuration
         /// Busca en la base de datos el archivo de configuracion
         /// </summary>
         /// <param name="pFileName">Nombre de archivo.</param>
-        /// <param name="pAppId">Identificador de aplicacion si se espesifica</param>
         /// <param name="pCnnStringName">Nombre de cadena de coneccion.</param>
         /// <returns><see cref="ConfigurationFile"/></returns>
         /// <Author>Marcelo Oviedo</Author>
-        static ConfigurationFile GetFromDatabase(string pFileName, string pAppId, string pCnnStringName)
+        static ConfigurationFile GetFromDatabase(string pFileName,  string pCnnStringName)
         {
 
             ConfigurationFile wConfigurationFile = new ConfigurationFile ();
@@ -200,9 +198,7 @@ namespace Fwk.Configuration
 
                     IEnumerable<fwk_ConfigMannager> fwk_ConfigMannagerList = from s in dc.fwk_ConfigMannagers
                                                                              where s.ConfigurationFileName.Equals(pFileName)
-                                                                             && (String.IsNullOrEmpty(pAppId) || s.ConfigurationFileName.Equals(pAppId))
-
-
+                                                                           
                                                                              select s;
 
 
@@ -245,7 +241,7 @@ namespace Fwk.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="provider"></param>
+        /// <param name="provider">Proveedor de configuracion</param>
         /// <param name="key"></param>
         /// <param name="groupName"></param>
         internal static void AddProperty(ConfigProviderElement provider, Key key, string groupName)
@@ -253,7 +249,7 @@ namespace Fwk.Configuration
             Set_INSERT();
             System.Text.StringBuilder sqlCommand = new StringBuilder();
 
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);  //_Repository.GetConfigurationFile(provider.BaseConfigFile);
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
             wGroup.Keys.Add(key);
 
@@ -277,7 +273,7 @@ namespace Fwk.Configuration
                 sqlCommand.Replace("$value$", key.Value.Text);
 
                 sqlCommand.Replace("$ConfigurationFileName$", provider.BaseConfigFile);
-                sqlCommand.Replace("$AppId$", provider.ApplicationId);
+                //sqlCommand.Replace("$AppId$", provider.ApplicationId);
                 sqlCommand.Replace("$group$", wGroup.Name);
                 wCmd = wDataBase.GetSqlStringCommand(sqlCommand.ToString());
                 wCmd.CommandType = CommandType.Text;
@@ -297,14 +293,14 @@ namespace Fwk.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="provider"></param>
-        /// <param name="group"></param>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <param name="group">Grupo</param>
         internal static void AddGroup(ConfigProviderElement provider, Group group)
         {
 
             
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile, provider.ApplicationId, provider.CnnStringName);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
 
             if (!wConfigurationFile.BaseConfigFile)
             {
@@ -339,7 +335,7 @@ namespace Fwk.Configuration
                     sqlCommand.Replace("$value$", k.Value.Text);
                 }
                 sqlCommand.Replace("$ConfigurationFileName$", provider.BaseConfigFile);
-                sqlCommand.Replace("$AppId$", provider.ApplicationId);
+                //sqlCommand.Replace("$AppId$", provider.ApplicationId);
                 sqlCommand.Replace("$group$", group.Name);
                 wCmd = wDataBase.GetSqlStringCommand(sqlCommand.ToString());
                 wCmd.CommandType = CommandType.Text;
@@ -356,7 +352,7 @@ namespace Fwk.Configuration
         }
 
         static string _INSERT;
-        static string Set_INSERT()
+        static void Set_INSERT()
         {
 
             if (string.IsNullOrEmpty(_INSERT))
@@ -365,7 +361,7 @@ namespace Fwk.Configuration
 
                 sb.Append(@"	INSERT INTO [fwk_ConfigMannager]");
                 sb.Append(@"    ([ConfigurationFileName]");
-                sb.Append(@"     ,[AppId]");
+                //sb.Append(@"     ,[AppId]");
                 sb.Append(@"     ,[group]");
                 sb.Append(@"     ,[key]");
                 sb.Append(@"    ,[encrypted]");
@@ -375,7 +371,7 @@ namespace Fwk.Configuration
                 sb.Append(@"	VALUES (");
 
                 sb.Append(@"		'$ConfigurationFileName$',");
-                sb.Append(@"		'$AppId$',");
+                //sb.Append(@"		'$AppId$',");
                 sb.Append(@"		'$group$',");
                 sb.Append(@"		'$key$',");
                 sb.Append(@"		'$encrypted$',");
@@ -386,14 +382,79 @@ namespace Fwk.Configuration
                 _INSERT = sb.ToString();
             }
 
-            return _INSERT;
+
+
+        }
+        static string _UPDATE_GROUP;
+        static void Set_UPDATE_GROUP()
+        {
+
+            if (string.IsNullOrEmpty(_UPDATE_GROUP))
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder(1000);
+
+                sb.Append(@"	UPDATE  [fwk_ConfigMannager]");
+
+                sb.Append(@" SET   [group] = '$newgroupname$'");
+
+                sb.Append(@"	WHERE ");
+
+                sb.Append(@"[ConfigurationFileName] =	'$ConfigurationFileName$'");
+                //sb.Append(@" AND	[AppId] =	'$AppId$'");
+                sb.Append(@" AND	[group] =	'$group$'");
+
+
+
+
+
+                _UPDATE_GROUP = sb.ToString();
+            }
+
+       
+
+
+        }
+        static string _UPDATE_PROP;
+        static void Set_UPDATE_PROP()
+        {
+
+            if (string.IsNullOrEmpty(_UPDATE_PROP))
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder(1000);
+
+                sb.Append(@"	UPDATE  [fwk_ConfigMannager]");
+
+                
+                sb.Append(@" SET    [key] = '$newkeyname$'");
+                sb.Append(@"    ,[encrypted]= '$encrypted$'");
+                sb.Append(@"    ,[value] = '$value$'");
+
+                sb.Append(@"	WHERE ");
+
+                sb.Append(@" [ConfigurationFileName] =	'$ConfigurationFileName$'");
+                //sb.Append(@" AND	[AppId] =	'$AppId$'");
+                sb.Append(@" AND	[group] =	'$group$'");
+                sb.Append(@" AND	[key] =	    '$key$'");
+
+
+
+
+                _UPDATE_PROP = sb.ToString();
+            }
+
 
 
         }
 
+        /// <summary>
+        /// Elimina una porpiedad de la cinfuguracion
+        /// </summary>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <param name="groupName">Gupo al que pertenece la propiedad</param>
+        /// <param name="propertyName">Nombre de la propiedad</param>
         internal static void RemoveProperty(ConfigProviderElement provider,  string groupName, string propertyName)
         {
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName); //_Repository.GetConfigurationFile(provider.BaseConfigFile);
             Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
 
             wConfigurationFile.Groups.Remove(g);
@@ -401,17 +462,22 @@ namespace Fwk.Configuration
             sqlCommand.AppendLine(string.Concat("ConfigurationFileName = '", provider.BaseConfigFile,"'"));
             sqlCommand.AppendLine(string.Concat("and [group] = '", groupName,"'"));
             sqlCommand.AppendLine(string.Concat("and [key] = '", propertyName, "'"));
-            if (!String.IsNullOrEmpty( provider.ApplicationId))
-                sqlCommand.AppendLine(string.Concat("and AppId = '", provider.ApplicationId, "'"));
+            //if (!String.IsNullOrEmpty( provider.ApplicationId))
+            //    sqlCommand.AppendLine(string.Concat("and AppId = '", provider.ApplicationId, "'"));
             
 
             EexeSqlCommand(sqlCommand.ToString(), provider.CnnStringName);
         }
 
+        /// <summary>
+        /// Elimina un grupo de la configuracion
+        /// </summary>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo a eliminar</param>
         internal static void RemoveGroup(ConfigProviderElement provider, string groupName)
         {
 
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
             Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
 
             wConfigurationFile.Groups.Remove(g);
@@ -422,8 +488,8 @@ namespace Fwk.Configuration
             sqlCommand.AppendLine(string.Concat("ConfigurationFileName = '", provider.BaseConfigFile, "'"));
             sqlCommand.AppendLine(string.Concat("and [group] = '", groupName, "'"));
 
-            if (!String.IsNullOrEmpty(provider.ApplicationId))
-                sqlCommand.AppendLine(string.Concat("and AppId = '", provider.ApplicationId, "'"));
+            //if (!String.IsNullOrEmpty(provider.ApplicationId))
+            //    sqlCommand.AppendLine(string.Concat("and AppId = '", provider.ApplicationId, "'"));
 
             EexeSqlCommand(sqlCommand.ToString(), provider.CnnStringName);
         }
@@ -460,5 +526,110 @@ namespace Fwk.Configuration
             }
 
         }
+
+        /// <summary>
+        /// Cambia el nombre de un grupo.-
+        /// </summary>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo</param>
+        /// <param name="newGroupName">Nuevo nombre del grupo</param>
+        internal static void ChangeGroupName(ConfigProviderElement provider, string groupName, string newGroupName)
+        {
+            Set_UPDATE_GROUP();
+            System.Text.StringBuilder sqlCommand = new StringBuilder();
+
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
+            
+
+            Database wDataBase = null;
+            DbCommand wCmd = null;
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.CnnStringName] == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.CnnStringName));
+                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                te.ErrorId = "9200";
+                throw te;
+            }
+            try
+            {
+                wDataBase = DatabaseFactory.CreateDatabase(provider.CnnStringName);
+
+
+                sqlCommand.Append(_UPDATE_GROUP);
+                sqlCommand.Replace("$newgroupname$", newGroupName);
+                sqlCommand.Replace("$group$", groupName);
+                sqlCommand.Replace("$ConfigurationFileName$", provider.BaseConfigFile);
+                //sqlCommand.Replace("$AppId$", provider.ApplicationId);
+                
+                wCmd = wDataBase.GetSqlStringCommand(sqlCommand.ToString());
+                wCmd.CommandType = CommandType.Text;
+
+                wDataBase.ExecuteNonQuery(wCmd);
+            }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                te.ErrorId = "9200";
+                throw te;
+
+            }
+        }
+
+        /// <summary>
+        /// Realiza cambios a una propiedad.-
+        /// </summary>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo donde se encuentra la propiedad</param>
+        /// <param name="property">Propiedad actualizada. Este objeto puede contener todos sus valores modifcados</param>
+        /// <param name="propertyName">Nombre de la propiedad que se mofdifico.- Este valor es el original sin modificacion</param>
+        internal static void ChangeProperty(ConfigProviderElement provider,  string groupName,Key property, string propertyName)
+        {
+            Set_UPDATE_PROP();
+            System.Text.StringBuilder sqlCommand = new StringBuilder();
+
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
+
+
+            Database wDataBase = null;
+            DbCommand wCmd = null;
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.CnnStringName] == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.CnnStringName));
+                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                te.ErrorId = "9200";
+                throw te;
+            }
+            try
+            {
+                wDataBase = DatabaseFactory.CreateDatabase(provider.CnnStringName);
+
+
+                sqlCommand.Append(_UPDATE_PROP);
+                sqlCommand.Replace("$newkeyname$", property.Name);
+                sqlCommand.Replace("$key$", propertyName);
+                sqlCommand.Replace("$group$", groupName);
+                sqlCommand.Replace("$ConfigurationFileName$", provider.BaseConfigFile);
+                //sqlCommand.Replace("$AppId$", provider.ApplicationId);
+                sqlCommand.Replace("$encrypted$", property.Encrypted.ToString());
+                sqlCommand.Replace("$value$", property.Value.Text );
+
+
+                wCmd = wDataBase.GetSqlStringCommand(sqlCommand.ToString());
+                wCmd.CommandType = CommandType.Text;
+
+                wDataBase.ExecuteNonQuery(wCmd);
+            }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                te.ErrorId = "9200";
+                throw te;
+
+            }
+        }
+
+
     }
 }

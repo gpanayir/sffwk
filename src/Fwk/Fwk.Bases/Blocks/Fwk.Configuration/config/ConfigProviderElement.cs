@@ -77,15 +77,7 @@ namespace Fwk.ConfigSection
                 return (string)this["cnnStringName"];
             }
         }
-        [ConfigurationProperty("applicationId", IsRequired = false, IsKey = false),
-         StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
-        public string ApplicationId
-        {
-            get
-            {
-                return (string)this["applicationId"];
-            }
-        }
+       
         
         /// <summary>
         /// En caso de que la configuracion sea remota se debe espesificar el nombre del  

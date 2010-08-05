@@ -4,7 +4,6 @@
   <Table Name="dbo.fwk_ConfigMannager" Member="fwk_ConfigMannagers">
     <Type Name="fwk_ConfigMannager">
       <Column Name="ConfigurationFileName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="AppId" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="[group]" Member="group" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="[key]" Member="key" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="encrypted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />

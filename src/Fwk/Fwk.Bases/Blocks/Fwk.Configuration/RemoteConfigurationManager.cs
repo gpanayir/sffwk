@@ -172,5 +172,15 @@ namespace Fwk.Configuration
         {
             throw new NotImplementedException();
         }
+
+        internal static void ChangeGroupName(ConfigProviderElement provider, string groupName, string newGroupName)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void ChangeProperty(ConfigProviderElement provider, string groupName, Key property, string propertyName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

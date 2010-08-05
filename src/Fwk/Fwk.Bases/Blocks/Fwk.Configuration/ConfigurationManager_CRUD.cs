@@ -8,31 +8,32 @@ namespace Fwk.Configuration
 {
 
     /// <summary>
-    /// 
+    /// Esta clase fue tiene como objetivo realizar todo tipo de operaciones transaccionales coon los objetos ConfiguracionFile de configuracion
+    /// Dependiendo del tipo de proveedor de configucracion realizara operaciones de IO o DataBase
     /// </summary>
     public class ConfigurationManager_CRUD
     {
 
         /// <summary>
-        /// 
+        /// Agrega una nueva propiedad
         /// </summary>
-        /// <param name="pConfigProvider"></param>
+        /// <param name="configProvider">Proveedor de configuracion</param>
         /// <param name="groupName"></param>
         /// <param name="property"></param>
-        public static void AddProperty(string pConfigProvider,string groupName, Key property)
+        public static void AddProperty(string configProvider,string groupName, Key property)
         {
-            ConfigurationManager.AddProperty(pConfigProvider, groupName, property);
+            ConfigurationManager.AddProperty(configProvider, groupName, property);
             
         }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pConfigProvider"></param>
+        /// <param name="configProvider">Proveedor de configuracion</param>
         /// <param name="propertyName"></param>
         /// <param name="groupName"></param>
-        public static void RemoveProperty(string pConfigProvider,  string groupName,string propertyName)
+        public static void RemoveProperty(string configProvider,  string groupName,string propertyName)
         {
-            ConfigurationManager.RemoveProperty(pConfigProvider, groupName, propertyName);
+            ConfigurationManager.RemoveProperty(configProvider, groupName, propertyName);
 
         }
 
@@ -40,21 +41,46 @@ namespace Fwk.Configuration
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pConfigProvider"></param>
+        /// <param name="configProvider">Proveedor de configuracion</param>
         /// <param name="group"></param>
-        public static void AddGroup(string pConfigProvider, Group group)
+        public static void AddGroup(string configProvider, Group group)
         {
-            ConfigurationManager.AddGroup(pConfigProvider,  group);
+            ConfigurationManager.AddGroup(configProvider,  group);
+        }
+
+ 
+        /// <summary>
+        /// Elimina un grupo compoleto de la configuracion
+        /// </summary>
+        /// <param name="configProvider">Proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo</param>
+        public static void RemoveGroup(string configProvider, string groupName)
+        {
+            ConfigurationManager.RemoveGroup(configProvider, groupName);
         }
 
         /// <summary>
-        /// 
+        /// Cambia el nombre de un grupo.-
         /// </summary>
-        /// <param name="pConfigProvider"></param>
-        /// <param name="groupName"></param>
-        public static void RemoveGroup(string pConfigProvider, string groupName)
+        /// <param name="configProvider">Proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo</param>
+        /// <param name="newGroupName">Nuevo nombre del grupo</param>
+        public static void ChangeGroupName(string configProvider, string groupName, string newGroupName)
         {
-            ConfigurationManager.RemoveGroup(pConfigProvider, groupName);
+            ConfigurationManager.ChangeGroupName(configProvider, groupName, newGroupName);
         }
+
+        /// <summary>
+        /// Realiza cambios a una propiedad.-
+        /// </summary>
+        /// <param name="configProvider">Nombre del proveedor de configuracion</param>
+        /// <param name="groupName">Nombre del grupo donde se encuentra la propiedad</param>
+        /// <param name="property">Propiedad actualizada. Este objeto puede contener todos sus valores modifcados</param>
+        /// <param name="propertyName">Nombre de la propiedad que se mofdifico.- Este valor es el original sin modificacion</param>
+        public static void ChangeProperty(string configProvider, string groupName, Key property, string propertyName)
+        {
+            ConfigurationManager.ChangeProperty(configProvider, groupName, property, propertyName);
+        }
+
     }
 }
