@@ -11,6 +11,8 @@
   <TestList name="Fwk.ConfigMannager" id="9fb85632-fb74-4ab7-8584-94125f9ec6ff" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
     <TestLinks>
       <TestLink id="0edc5c31-a571-fd1a-b04c-fa64a3b9399d" name="ConfigurationMannager_File" storage="test\fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="58b4fe4f-684a-8783-6809-80718dd65e69" name="ChangeProperty_Group_File" storage="test\fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="9a931ec0-4d52-ee0e-c2d0-13e025712753" name="ChangeProperty_Group_Database" storage="test\fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
       <TestLink id="ab794f51-93ce-29d2-b9d8-851184d0a6e8" name="ConfigurationMannager_Database" storage="test\fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>

@@ -236,6 +236,90 @@ namespace Fwk.UnitTest
             Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
         }
 
+
+
+        [TestMethod]
+        public void ChangeProperty_Group_Database()
+        {
+            String strErrorResut = String.Empty;
+            String providerName = "database";
+
+            Fwk.Configuration.Common.Group g = new Fwk.Configuration.Common.Group();
+            g.Name = "Test01_ChangeProperty";
+            Fwk.Configuration.Common.Key k;
+
+            k = new Fwk.Configuration.Common.Key();
+            k.Name = "K01_ChangeProperty";
+            k.Value.Text = "Value_Key_01";
+
+           
+            g.Keys.Add(k);
+
+
+            try
+            {
+                Fwk.Configuration.Common.ConfigurationFile wConfigurationFile = Fwk.Configuration.ConfigurationManager.GetConfigurationFile(providerName);
+                Fwk.Configuration.ConfigurationManager_CRUD.AddGroup(providerName, g);
+
+
+                Fwk.Configuration.ConfigurationManager_CRUD.ChangeGroupName(providerName, g.Name, string.Concat("NEW" + g.Name));
+                k = new Fwk.Configuration.Common.Key();
+                k.Name = "Value_Key_01_Updated";
+                k.Value.Text = "Value_Key_01";
+                Fwk.Configuration.ConfigurationManager_CRUD.ChangeProperty(providerName, string.Concat("NEW" + g.Name),k, "K01_ChangeProperty");
+                Fwk.Configuration.ConfigurationManager_CRUD.RemoveGroup(providerName, string.Concat("NEW" + g.Name));
+
+            }
+            catch (Exception e)
+            {
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
+            }
+
+
+        }
+
+
+
+
+        [TestMethod]
+        public void ChangeProperty_Group_File()
+        {
+            String strErrorResut = String.Empty;
+            String providerName = "localFile";
+
+            Fwk.Configuration.Common.Group g = new Fwk.Configuration.Common.Group();
+            g.Name = "Test01_ChangeProperty";
+            Fwk.Configuration.Common.Key k;
+
+            k = new Fwk.Configuration.Common.Key();
+            k.Name = "K01_ChangeProperty";
+            k.Value.Text = "Value_Key_01";
+
+
+            g.Keys.Add(k);
+
+
+            try
+            {
+                Fwk.Configuration.Common.ConfigurationFile wConfigurationFile = Fwk.Configuration.ConfigurationManager.GetConfigurationFile(providerName);
+                Fwk.Configuration.ConfigurationManager_CRUD.AddGroup(providerName, g);
+
+
+                Fwk.Configuration.ConfigurationManager_CRUD.ChangeGroupName(providerName, g.Name, string.Concat("NEW" + g.Name));
+                k = new Fwk.Configuration.Common.Key();
+                k.Name = "Value_Key_01_Updated";
+                k.Value.Text = "Value_Key_01";
+                Fwk.Configuration.ConfigurationManager_CRUD.ChangeProperty(providerName, string.Concat("NEW" + g.Name), k, "K01_ChangeProperty");
+                Fwk.Configuration.ConfigurationManager_CRUD.RemoveGroup(providerName, string.Concat("NEW" + g.Name));
+
+            }
+            catch (Exception e)
+            {
+                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
+            }
+
+
+        }
        
     }
 }
