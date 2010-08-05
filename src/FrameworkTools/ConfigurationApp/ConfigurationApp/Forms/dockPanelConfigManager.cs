@@ -200,7 +200,10 @@ namespace ConfigurationApp.Forms
                     }
                 case CnfgManagerSelectedNodeType.Group:
                     {
-                        ConfigManagerControl.ChangeGroupName(ptreeNode,(Group)_UCConfigElement.Get ());
+                        Group updatedK = (Group)_UCConfigElement.Get();
+                        Group currentK = ((Group)ptreeNode.Tag);
+                        if (!currentK.Name.Equals(updatedK.Name))
+                            ConfigManagerControl.ChangeGroupName(ptreeNode, updatedK);
                         break;
                     }
             }

@@ -122,6 +122,7 @@
             this.txtGroupName.Name = "txtGroupName";
             this.txtGroupName.Size = new System.Drawing.Size(512, 20);
             this.txtGroupName.TabIndex = 23;
+            this.txtGroupName.TextChanged += new System.EventHandler(this.txtGroupName_TextChanged);
             // 
             // lblFileName
             // 

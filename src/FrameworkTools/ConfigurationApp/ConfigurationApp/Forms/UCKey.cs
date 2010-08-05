@@ -99,5 +99,11 @@ namespace ConfigurationApp.Forms
         {
             _Key.Name = txtNewKeyName.Text;
         }
+
+        private void txtGroupName_TextChanged(object sender, EventArgs e)
+        {
+            if (_Group != null)
+            _Group.Name = txtGroupName.Text;
+        }
     }
 }
