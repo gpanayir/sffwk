@@ -30,6 +30,8 @@ namespace Fwk.Logging.Targets
         /// <param name="pEvent">Evento a loguear.</param>
         public override void Write(Event pEvent)
         {
+            if (string.IsNullOrEmpty(pEvent.Source))
+                pEvent.Source = "Fwk.Logging.Targets";
             EventLog.WriteEntry(pEvent.Source, pEvent.ToString(), GetWindowsEventType(pEvent.LogType));
         }
         #endregion
@@ -49,7 +51,8 @@ namespace Fwk.Logging.Targets
                     {
                         return EventLogEntryType.FailureAudit;
                     }
-                case EventType.Error | EventType.None:
+                case EventType.Error:
+                case EventType.None:
                     {
                         return EventLogEntryType.Error;
                     }

@@ -15,7 +15,7 @@ namespace Fwk.Bases
     /// </summary>
     public class ClientServiceBase 
     {
-        static IServiceWrapper _Wrapper;
+        //static IServiceWrapper _Wrapper;
 
         /// <summary>
         /// 
@@ -127,7 +127,7 @@ namespace Fwk.Bases
         {
           WrapperFactory.InitWrapper();
 
-            return _Wrapper.GetAllServices();
+          return WrapperFactory._Wrapper.GetAllServices();
             
         }
         /// <summary>
@@ -140,7 +140,7 @@ namespace Fwk.Bases
         public ServiceConfiguration GetServiceConfiguration(string pServiceName)
         {
             WrapperFactory.InitWrapper();
-            return _Wrapper.GetServiceConfiguration(pServiceName);
+            return WrapperFactory._Wrapper.GetServiceConfiguration(pServiceName);
         }
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
@@ -152,7 +152,7 @@ namespace Fwk.Bases
         public void SetServiceConfiguration(String  pServiceName ,ServiceConfiguration pServiceConfiguration)
         {
             WrapperFactory.InitWrapper();
-            _Wrapper.SetServiceConfiguration(pServiceName,pServiceConfiguration); 
+            WrapperFactory._Wrapper.SetServiceConfiguration(pServiceName, pServiceConfiguration); 
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Fwk.Bases
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
             WrapperFactory.InitWrapper();
-            _Wrapper.AddServiceConfiguration(pServiceConfiguration); 
+            WrapperFactory._Wrapper.AddServiceConfiguration(pServiceConfiguration); 
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Fwk.Bases
         {
             WrapperFactory.InitWrapper();
 
-            _Wrapper.DeleteServiceConfiguration(pServiceName); 
+            WrapperFactory._Wrapper.DeleteServiceConfiguration(pServiceName); 
         }
         #endregion [ServiceConfiguration]
     }

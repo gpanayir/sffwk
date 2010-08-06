@@ -162,35 +162,7 @@ namespace Fwk.Bases
         {
 
             return WrapperFactory.ExecuteService<TRequest, TResponse>(pRequest);
-            //TResponse wResponse = new TResponse();
-
-
-            //try
-            //{
-
-            //    WrapperFactory.TryCreateWrapper();
-            //}
-            //catch (Exception ex)
-            //{
-            //    wResponse.Error = ProcessConnectionsException.Process(ex);
-            //}
-
-
-            ////Si no ocurrio algun error
-            //if (wResponse.Error == null)
-            //{
-            //    try
-            //    {
-            //        wResponse = WrapperFactory.Wrapper.ExecuteService<TRequest, TResponse>(req);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        wResponse.Error = ProcessConnectionsException.Process(ex);
-
-            //    }
-            //}
-
-            //return wResponse;
+    
         }
 
        
