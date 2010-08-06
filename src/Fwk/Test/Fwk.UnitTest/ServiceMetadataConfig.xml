@@ -1,11 +1,11 @@
 
 <ServiceConfigurationCollection>
   <ServiceConfiguration name="CreateSurveyService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.CreateSurveyService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.CreateSurvey.req.CreateSurveyRequest, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.CreateSurvey.res.CreateSurveyResponse, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.CreateSurveyService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.CreateSurvey.req.CreateSurveyRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.CreateSurvey.res.CreateSurveyResponse, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -14,11 +14,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateSurveyService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.UpdateSurveyService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.UpdateSurvey.UpdateSurveyRequest, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.UpdateSurvey.UpdateSurveyResponse, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.UpdateSurveyService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.UpdateSurvey.UpdateSurveyRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.UpdateSurvey.UpdateSurveyResponse, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -27,11 +27,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchParamsByTypeService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Common.SVC.SearchParamsByTypeService, BigBang.BackEnd.Common.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.BackEnd.Common.ISVC.SearchParamsByType.req.SearchParamsByTypeRequest, BigBang.BackEnd.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.BackEnd.Common.ISVC.SearchParamsByType.res.SearchParamsByTypeResponse, BigBang.BackEnd.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Common.SVC.SearchParamsByTypeService, Test.BackEnd.Common.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.BackEnd.Common.ISVC.SearchParamsByType.req.SearchParamsByTypeRequest, Test.BackEnd.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.BackEnd.Common.ISVC.SearchParamsByType.res.SearchParamsByTypeResponse, Test.BackEnd.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -40,11 +40,11 @@
     <Cacheable>true</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreatePredeterminateValueService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.CreatePredeterminateValueService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.CreatePredeterminateValue.req.CreatePredeterminateValueRequest, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.CreatePredeterminateValue.res.CreatePredeterminateValueResponse, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.CreatePredeterminateValueService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.CreatePredeterminateValue.req.CreatePredeterminateValueRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.CreatePredeterminateValue.res.CreatePredeterminateValueResponse, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -53,11 +53,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchAllPredeterminateValueService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.SearchAllPredeterminateValueService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.SearchAllPredeterminateValue.req.SearchAllPredeterminateValueRequest, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.SearchAllPredeterminateValue.res.SearchAllPredeterminateValueResponse, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.SearchAllPredeterminateValueService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.SearchAllPredeterminateValue.req.SearchAllPredeterminateValueRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.SearchAllPredeterminateValue.res.SearchAllPredeterminateValueResponse, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -66,11 +66,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateSurveyResultService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.CreateSurveyResultService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.CreateSurveyResult.CreateSurveyResultRequest, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.CreateSurveyResult.CreateSurveyResultResponse, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.CreateSurveyResultService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.CreateSurveyResult.CreateSurveyResultRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.CreateSurveyResult.CreateSurveyResultResponse, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -79,12 +79,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateRecordSetService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
     <Description>Crea un nuevo RecordSet</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.CreateRecordSetService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.CreateRecordSet.req.CreateRecordSetRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.CreateRecordSet.res.CreateRecordSetResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.CreateRecordSetService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.CreateRecordSet.req.CreateRecordSetRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.CreateRecordSet.res.CreateRecordSetResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -93,12 +93,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateCampaingService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
     <Description>Crea una nueva campaña.-</Description>
-    <Handler>BigBang.BackEnd.Campaing.SVC.CreateCampaingService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.CreateCampaing.Req.CreateCampaingRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.CreateCampaing.Res.CreateCampaingResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.CreateCampaingService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.CreateCampaing.Req.CreateCampaingRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.CreateCampaing.Res.CreateCampaingResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -107,12 +107,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetCampaingByIdService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
     <Description>Obtiene una campaña por su identificador.</Description>
-    <Handler>BigBang.BackEnd.Campaing.SVC.GetCampaingByIdService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.GetCampaingById.Req.GetCampaingByIdRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.GetCampaingById.Res.GetCampaingByIdResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.GetCampaingByIdService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.GetCampaingById.Req.GetCampaingByIdRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.GetCampaingById.Res.GetCampaingByIdResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -121,12 +121,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordSetByIdService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
     <Description>Obtiene un RecordSet a partir de su identificador.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.GetRecordSetByIdService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.GetRecordSetById.GetRecordSetByIdRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.GetRecordSetById.GetRecordSetByIdResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.GetRecordSetByIdService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.GetRecordSetById.GetRecordSetByIdRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.GetRecordSetById.GetRecordSetByIdResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -135,11 +135,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllCampaingsAndRecordSetsInfoService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.GetAllCampaingsAndRecordSetsInfoService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.GetAllCampaingsAndRecordSetsInfo.req.GetAllCampaingsAndRecordSetsInfoRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.GetAllCampaingsAndRecordSetsInfo.res.GetAllCampaingsAndRecordSetsInfoResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.GetAllCampaingsAndRecordSetsInfoService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.GetAllCampaingsAndRecordSetsInfo.req.GetAllCampaingsAndRecordSetsInfoRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.GetAllCampaingsAndRecordSetsInfo.res.GetAllCampaingsAndRecordSetsInfoResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -148,11 +148,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateRecordService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.CreateRecordService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.CreateRecord.CreateRecordRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.CreateRecord.CreateRecordResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.CreateRecordService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.CreateRecord.CreateRecordRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.CreateRecord.CreateRecordResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -161,11 +161,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordActionResultByCampaingIdService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.GetRecordActionResultByCampaingIdService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.GetRecordActionResultByCampaingId.GetRecordActionResultByCampaingIdReq, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.GetRecordActionResultByCampaingId.GetRecordActionResultByCampaingIdRes, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.GetRecordActionResultByCampaingIdService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.GetRecordActionResultByCampaingId.GetRecordActionResultByCampaingIdReq, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.GetRecordActionResultByCampaingId.GetRecordActionResultByCampaingIdRes, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -174,11 +174,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchSurveyResultByParamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.SearchSurveyResultByParamService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.SearchSurveyResult.SearchSurveyResultByParamRequest, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.SearchSurveyResult.SearchSurveyResultByParamResponse, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.SearchSurveyResultByParamService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.SearchSurveyResult.SearchSurveyResultByParamRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.SearchSurveyResult.SearchSurveyResultByParamResponse, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>true</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -187,11 +187,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetSurveyByParamsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.GetSurveyByParamsService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.GetSurvey.GetSurveyByParamsRequest, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.GetSurvey.GetSurveyByParamsResponse, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.GetSurveyByParamsService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.GetSurvey.GetSurveyByParamsRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.GetSurvey.GetSurveyByParamsResponse, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>true</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -200,11 +200,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchSurveyByParamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.SearchSurveyByParamService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.SearchSurveyByParam.SearchSurveyByParamRequest, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.SearchSurveyByParam.SearchSurveyByParamResponse, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.SearchSurveyByParamService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.SearchSurveyByParam.SearchSurveyByParamRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.SearchSurveyByParam.SearchSurveyByParamResponse, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>true</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -213,12 +213,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllActiveUserAssignmentsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>sbiglia</CreatedUserName>
     <CreatedDateTime>2009-05-14T13:00:45.2971534-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.GetAllActiveUserAssignmentsService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.GetAllActiveUserAssignments.Req.GetAllActiveUserAssignmentsRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.GetAllActiveUserAssignments.Res.GetAllActiveUserAssignmentsResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.GetAllActiveUserAssignmentsService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.GetAllActiveUserAssignments.Req.GetAllActiveUserAssignmentsRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.GetAllActiveUserAssignments.Res.GetAllActiveUserAssignmentsResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -227,12 +227,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetImportStatusById">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>sbiglia</CreatedUserName>
     <CreatedDateTime>2009-06-10T10:41:49.134757-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.GetImportStatusById, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.GetImportStatusById.Req.GetImportStatusByIdRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.GetImportStatusById.Resp.GetImportStatusByIdResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.GetImportStatusById, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.GetImportStatusById.Req.GetImportStatusByIdRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.GetImportStatusById.Resp.GetImportStatusByIdResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -241,12 +241,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="ImportRecords">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>sbiglia</CreatedUserName>
     <CreatedDateTime>2009-06-10T10:27:16.7072985-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.ImportRecords, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.ImportRecords.Req.ImportRecordsRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.ImportRecords.Resp.ImportRecordsResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.ImportRecords, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.ImportRecords.Req.ImportRecordsRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.ImportRecords.Resp.ImportRecordsResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -255,12 +255,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateCampaingService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-06-12T17:24:59.3731491-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.UpdateCampaingService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.UpdateCampaing.Req.UpdateCampaingRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.UpdateCampaing.Res.UpdateCampaingResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.UpdateCampaingService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.UpdateCampaing.Req.UpdateCampaingRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.UpdateCampaing.Res.UpdateCampaingResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -269,12 +269,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRecordSetsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-06-17T10:12:42.8523549-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.UpdateRecordSetsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.UpdateRecordSets.UpdateRecordSetsRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.UpdateRecordSets.UpdateRecordSetsResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.UpdateRecordSetsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.UpdateRecordSets.UpdateRecordSetsRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.UpdateRecordSets.UpdateRecordSetsResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -283,12 +283,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteSurveyService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-06-17T16:36:43.9683917-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.DeleteSurveyService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.DeleteSurvey.DeleteSurveyRequest, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.DeleteSurvey.DeleteSurveyResponse, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.DeleteSurveyService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.DeleteSurvey.DeleteSurveyRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.DeleteSurvey.DeleteSurveyResponse, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -297,12 +297,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SaveUserRecordSetAssignmentLisModificationsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>sbiglia</CreatedUserName>
     <CreatedDateTime>2009-05-18T18:08:34.8724597-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.SaveUserRecordSetAssignmentLisModificationsService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.SaveUserRecordSetAssignmentListModifications.Req.SaveUserRecordSetAssignmentListModificationsRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.SaveUserRecordSetAssignmentListModifications.Res.SaveUserRecordSetAssignmentListModificationsResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.SaveUserRecordSetAssignmentLisModificationsService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.SaveUserRecordSetAssignmentListModifications.Req.SaveUserRecordSetAssignmentListModificationsRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.SaveUserRecordSetAssignmentListModifications.Res.SaveUserRecordSetAssignmentListModificationsResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -311,12 +311,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllActiveUsersInfoService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>sbiglia</CreatedUserName>
     <CreatedDateTime>2009-06-17T17:30:55.55297-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetAllActiveUsersInfoService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetAllActiveUsersInfo.Req.GetAllActiveUsersInfoRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetAllActiveUsersInfo.Res.GetAllActiveUsersInfoResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetAllActiveUsersInfoService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetAllActiveUsersInfo.Req.GetAllActiveUsersInfoRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetAllActiveUsersInfo.Res.GetAllActiveUsersInfoResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -325,12 +325,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRecordSetStateService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>sbiglia</CreatedUserName>
     <CreatedDateTime>2009-06-23T15:27:54.8855485-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.RecordSets.UpdateRecordSetStateService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.UpdateRecordSetState.Req.UpdateRecordSetStateRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.UpdateRecordSetState.Resp.UpdateRecordSetStateResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.RecordSets.UpdateRecordSetStateService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.UpdateRecordSetState.Req.UpdateRecordSetStateRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.UpdateRecordSetState.Resp.UpdateRecordSetStateResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -339,13 +339,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="AuthenticateUserService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-06-24T12:35:47.0558685-03:00</CreatedDateTime>
     <Description>Este servicio permite realizar autenticacion de usuario con seguridad integrada o mixta.- Si la seguridad es mixta no es necesario pasar como parametro el password y hay que establecer el valor WindowsAtentication = true</Description>
-    <Handler>BigBang.BackEnd.Security.AuthenticateUserService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.AuthenticateUser.AuthenticateUserReq, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.AuthenticateUser.AuthenticateUserRes, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.AuthenticateUserService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.AuthenticateUser.AuthenticateUserReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.AuthenticateUser.AuthenticateUserRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -354,12 +354,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAuthorizationRulesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-06-25T17:19:19.9302428-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetAuthorizationRulesService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetAuthorizationRules.GetAuthorizationRulesReq, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetAuthorizationRules.GetAuthorizationRulesRes, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetAuthorizationRulesService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetAuthorizationRules.GetAuthorizationRulesReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetAuthorizationRules.GetAuthorizationRulesRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -368,12 +368,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetUserRecordsByRecordSetIdService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>sbiglia</CreatedUserName>
     <CreatedDateTime>2009-06-26T15:23:24.9810073-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.GetUserRecordsByRecordSetIdService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.GetUserRecordsByRecordSetId.Req.GetUserRecordsByRecordSetIdRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.GetUserRecordsByRecordSetId.Resp.GetUserRecordsByRecordSetIdResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.GetUserRecordsByRecordSetIdService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.GetUserRecordsByRecordSetId.Req.GetUserRecordsByRecordSetIdRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.GetUserRecordsByRecordSetId.Resp.GetUserRecordsByRecordSetIdResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -382,11 +382,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordByParamsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.SearchRecordByParamsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordByParams.SearchRecordByParamsRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordByParams.SearchRecordByParamsResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.SearchRecordByParamsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordByParams.SearchRecordByParamsRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordByParams.SearchRecordByParamsResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -395,12 +395,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordSetsByParamsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
     <Description>Buscar Recordsets</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.SearchRecordSetsByParamsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordSetsByParams.SearchRecordSetsByParamsRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordSetsByParams.SearchRecordSetsByParamsResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.SearchRecordSetsByParamsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordSetsByParams.SearchRecordSetsByParamsRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordSetsByParams.SearchRecordSetsByParamsResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -409,12 +409,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="AssignNewRecordsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-05-28T17:20:43.8485432-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.AssignNewRecordsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.AssignNewRecords.AssignNewRecordsRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.AssignNewRecords.AssignNewRecordsResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.AssignNewRecordsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.AssignNewRecords.AssignNewRecordsRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.AssignNewRecords.AssignNewRecordsResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -423,12 +423,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateRulesCategoryService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-07-06T16:55:52.9605295-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.CreateRulesCategoryService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.CreateRulesCategory.req.CreateRulesCategoryRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.CreateRulesCategory.res.CreateRulesCategoryResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.CreateRulesCategoryService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.CreateRulesCategory.req.CreateRulesCategoryRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.CreateRulesCategory.res.CreateRulesCategoryResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -437,12 +437,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteRulesCategoryService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-07-06T16:56:30.0987067-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.DeleteRulesCategoryService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.DeleteRulesCategory.req.DeleteRulesCategoryRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.DeleteRulesCategory.res.DeleteRulesCategoryResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.DeleteRulesCategoryService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.DeleteRulesCategory.req.DeleteRulesCategoryRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.DeleteRulesCategory.res.DeleteRulesCategoryResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -451,12 +451,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRulesCategoryByParamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-07-06T16:56:54.9616075-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetRulesCategoryByParamService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetRulesCategoryByParam.Req.GetRulesCategoryByParamRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetRulesCategoryByParam.Res.GetRulesCategoryByParamResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetRulesCategoryByParamService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetRulesCategoryByParam.Req.GetRulesCategoryByParamRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetRulesCategoryByParam.Res.GetRulesCategoryByParamResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -465,12 +465,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRulesCategoryService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-07-13T10:27:44.7281542-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.UpdateRulesCategoryService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.UpdateRulesCategory.req.UpdateRulesCategoryRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.UpdateRulesCategory.res.UpdateRulesCategoryResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.UpdateRulesCategoryService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.UpdateRulesCategory.req.UpdateRulesCategoryRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.UpdateRulesCategory.res.UpdateRulesCategoryResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -479,11 +479,11 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordByIdService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.GetRecordByIdService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.GetRecordById.GetRecordByIdRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.GetRecordById.GetRecordByIdResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.GetRecordByIdService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.GetRecordById.GetRecordByIdRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.GetRecordById.GetRecordByIdResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -492,12 +492,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetUserInfoByName">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>sbiglia</CreatedUserName>
     <CreatedDateTime>2009-06-11T09:42:10.2892224-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetUserInfoByName, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetUserInfoByName.Req.GetUserInfoByNameRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetUserInfoByName.Resp.GetUserInfoByNameResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetUserInfoByName, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetUserInfoByName.Req.GetUserInfoByNameRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetUserInfoByName.Resp.GetUserInfoByNameResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -506,12 +506,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetSurveyForWebService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-07-13T15:43:40.4606997-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.GetSurveyForWebService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.GetSurveyForWeb.GetSurveyForWebReq, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.GetSurveyForWeb.GetSurveyForWebRes, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.GetSurveyForWebService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.GetSurveyForWeb.GetSurveyForWebReq, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.GetSurveyForWeb.GetSurveyForWebRes, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -520,12 +520,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateRulesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-07-14T16:30:26.6078968-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.CreateRulesService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.CreateRules.Req.CreateRulesRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.CreateRules.Res.CreateRulesResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.CreateRulesService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.CreateRules.Req.CreateRulesRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.CreateRules.Res.CreateRulesResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -534,12 +534,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllRulesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-07-15T15:11:03.481398-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetAllRulesService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetAllRules.GetAllRulesReq, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetAllRules.GetAllRulesRes, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetAllRulesService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetAllRules.GetAllRulesReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetAllRules.GetAllRulesRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -548,12 +548,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllRolesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-07-15T15:11:03.481398-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetAllRolesService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetAllRoles.GetAllRolesReq, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetAllRoles.GetAllRolesRes, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetAllRolesService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetAllRoles.GetAllRolesReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetAllRoles.GetAllRolesRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -562,12 +562,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRulesWithCategoryService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-07-17T17:59:14.2598717-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.UpdateRulesWithCategoryService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.UpdateRulesWithCategory.Req.UpdateRulesWithCategoryRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.UpdateRulesWithCategory.Res.UpdateRulesWithCategoryResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.UpdateRulesWithCategoryService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.UpdateRulesWithCategory.Req.UpdateRulesWithCategoryRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.UpdateRulesWithCategory.Res.UpdateRulesWithCategoryResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -576,12 +576,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRulesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-07-21T10:26:44.3151955-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.UpdateRulesService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.UpdateRules.UpdateRulesRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.UpdateRules.UpdateRulesResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.UpdateRulesService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.UpdateRules.UpdateRulesRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.UpdateRules.UpdateRulesResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -590,12 +590,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetTeamByParamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-07-28T12:09:44.7064638-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetTeamByParamService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetTeamByParam.Req.GetTeamByParamRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetTeamByParam.Res.GetTeamByParamResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetTeamByParamService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetTeamByParam.Req.GetTeamByParamRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetTeamByParam.Res.GetTeamByParamResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -604,12 +604,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateTeamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-07-28T12:10:10.0461588-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.CreateTeamService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.CreateTeam.Req.CreateTeamRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.CreateTeam.Res.CreateTeamResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.CreateTeamService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.CreateTeam.Req.CreateTeamRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.CreateTeam.Res.CreateTeamResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -618,13 +618,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateUsersService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-08-06T17:07:12.9249876-03:00</CreatedDateTime>
     <Description>Creación usuarios Service.</Description>
-    <Handler>BigBang.BackEnd.Security.CreateUsersService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.CreateUsers.CreateUsersRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.CreateUsers.CreateUsersResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.CreateUsersService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.CreateUsers.CreateUsersRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.CreateUsers.CreateUsersResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -633,13 +633,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteTeamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-08-21T10:48:32.4792168-03:00</CreatedDateTime>
     <Description>Servicio que permite eliminar uno o mas equipos.</Description>
-    <Handler>BigBang.BackEnd.Security.SVC.DeleteTeamService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.DeleteTeam.Req.DeleteTeamRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.DeleteTeam.Res.DeleteTeamResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.SVC.DeleteTeamService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.DeleteTeam.Req.DeleteTeamRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.DeleteTeam.Res.DeleteTeamResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -648,13 +648,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchUnassignedUsersService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-09-11T17:51:43.3280035-03:00</CreatedDateTime>
     <Description>Obtiene los usuarios sin jefe.</Description>
-    <Handler>BigBang.BackEnd.Security.SearchUnassignedUsersService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.SearchUnassignedUsers.SearchUnassignedUsersRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.SearchUnassignedUsers.SearchUnassignedUsersResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.SearchUnassignedUsersService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.SearchUnassignedUsers.SearchUnassignedUsersRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.SearchUnassignedUsers.SearchUnassignedUsersResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -663,12 +663,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="ContainsRecordSetAssosiatedService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-06T11:19:50.6975868-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.ContainsRecordSetAssosiatedService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.ContainsRecordSetAssosiated.ContainsRecordSetAssosiatedReq, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.ContainsRecordSetAssosiated.ContainsRecordSetAssosiatedRes, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.ContainsRecordSetAssosiatedService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.ContainsRecordSetAssosiated.ContainsRecordSetAssosiatedReq, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.ContainsRecordSetAssosiated.ContainsRecordSetAssosiatedRes, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -677,13 +677,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteRecordActionResultService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-11-17T08:26:24.23505-03:00</CreatedDateTime>
     <Description>Servicio que permite eliminar uno o más RecordActionResult.</Description>
-    <Handler>BigBang.BackEnd.Campaing.SVC.DeleteRecordActionResultService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.DeleteRecordActionResult.DeleteRecordActionResultRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.DeleteRecordActionResult.DeleteRecordActionResultResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.DeleteRecordActionResultService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.DeleteRecordActionResult.DeleteRecordActionResultRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.DeleteRecordActionResult.DeleteRecordActionResultResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -692,12 +692,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllUsersService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-19T11:33:05.632228-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetAllUsersService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetAllUsers.GetAllUsersReq, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetAllUsers.GetAllUsersRes, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetAllUsersService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetAllUsers.GetAllUsersReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetAllUsers.GetAllUsersRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -706,12 +706,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllRulesCategoryService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-07-06T16:55:04.1093023-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetAllRulesCategoryService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetAllRulesCategory.req.GetAllRulesCategoryRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetAllRulesCategory.res.GetAllRulesCategoryResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetAllRulesCategoryService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetAllRulesCategory.req.GetAllRulesCategoryRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetAllRulesCategory.res.GetAllRulesCategoryResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -720,12 +720,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetUserService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-19T12:20:24.3416725-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetUserService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetUser.GetUserReq, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetUser.GetUserRes, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetUserService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetUser.GetUserReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetUser.GetUserRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -734,12 +734,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllCampaingWithRecordSetService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-19T16:03:42.5795095-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.GetAllCampaingWithRecordSetService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.GetAllCampaingWithRecordSet.GetAllCampaingWithRecordSetRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.GetAllCampaingWithRecordSet.GetAllCampaingWithRecordSetResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.GetAllCampaingWithRecordSetService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.GetAllCampaingWithRecordSet.GetAllCampaingWithRecordSetRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.GetAllCampaingWithRecordSet.GetAllCampaingWithRecordSetResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
@@ -748,12 +748,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateUserService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-21T10:38:45.4634864-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.UpdateUserService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.UpdateUser.UpdateUserReq, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.UpdateUser.UpdateUserRes, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.UpdateUserService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.UpdateUser.UpdateUserReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.UpdateUser.UpdateUserRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -762,13 +762,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllRecorSetWithSuperiorAndUserAssignedService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2009-11-24T09:41:30.6856408-03:00</CreatedDateTime>
     <Description />
-    <Handler>BigBang.BackEnd.Campaing.SVC.GetAllRecorSetWithSuperiorAndUserAssignedService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.GetAllRecorSetWithSuperiorAndUserAssigned.GetAllRecorSetWithSuperiorAndUserAssignedRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.GetAllRecorSetWithSuperiorAndUserAssigned.GetAllRecorSetWithSuperiorAndUserAssignedResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.GetAllRecorSetWithSuperiorAndUserAssignedService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.GetAllRecorSetWithSuperiorAndUserAssigned.GetAllRecorSetWithSuperiorAndUserAssignedRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.GetAllRecorSetWithSuperiorAndUserAssigned.GetAllRecorSetWithSuperiorAndUserAssignedResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
@@ -777,13 +777,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateAssignementsUserService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-11-27T15:02:27.99-03:00</CreatedDateTime>
     <Description>Serivico que permite borrar e insertar usuarios asignados a lotes.</Description>
-    <Handler>BigBang.BackEnd.Campaing.SVC.UpdateAssignementsUserService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.UpdateAssignementsUser.UpdateAssignementsUserRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.UpdateAssignementsUser.UpdateAssignementsUserResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.UpdateAssignementsUserService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.UpdateAssignementsUser.UpdateAssignementsUserRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.UpdateAssignementsUser.UpdateAssignementsUserResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
@@ -792,13 +792,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CRUDRecordSetAttributeService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-11-27T15:37:00.6842608-03:00</CreatedDateTime>
     <Description>Servicio que permite insertar, actualizar y borrar RecorSetAttributes.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.CRUDRecordSetAttributeService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.CRUDRecordSetAttribute.CRUDRecordSetAttributeRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.CRUDRecordSetAttribute.CRUDRecordSetAttributeResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.CRUDRecordSetAttributeService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.CRUDRecordSetAttribute.CRUDRecordSetAttributeRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.CRUDRecordSetAttribute.CRUDRecordSetAttributeResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -807,12 +807,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordsByFiltersService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>hebraida</CreatedUserName>
     <CreatedDateTime>2009-11-30T11:18:06.8861643-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.SearchRecordsByFiltersService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordsByFilters.Req.SearchRecordsByFiltersRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordsByFilters.Res.SearchRecordsByFiltersResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.SearchRecordsByFiltersService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordsByFilters.Req.SearchRecordsByFiltersRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordsByFilters.Res.SearchRecordsByFiltersResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -821,12 +821,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordsObservationsByParamsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>hebraida</CreatedUserName>
     <CreatedDateTime>2009-11-30T11:18:36.6988551-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.SearchRecordsObservationsByParamsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordsObservationsByParams.SearchRecordsObservationsByParamsRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordsObservationsByParams.SearchRecordsObservationsByParamsResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.SearchRecordsObservationsByParamsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordsObservationsByParams.SearchRecordsObservationsByParamsRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordsObservationsByParams.SearchRecordsObservationsByParamsResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -835,12 +835,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRecordsObservationsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>hebraida</CreatedUserName>
     <CreatedDateTime>2009-11-30T12:20:04.5740932-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.UpdateRecordsObservationsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.UpdateRecordsObservations.UpdateRecordsObservationsRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.UpdateRecordsObservations.UpdateRecordsObservationsResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.UpdateRecordsObservationsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.UpdateRecordsObservations.UpdateRecordsObservationsRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.UpdateRecordsObservations.UpdateRecordsObservationsResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
@@ -849,12 +849,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteRecordsObservationsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>hebraida</CreatedUserName>
     <CreatedDateTime>2009-11-30T12:20:19.4172732-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.DeleteRecordsObservationsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.DeleteRecordsObservations.DeleteRecordsObservationsRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.DeleteRecordsObservations.DeleteRecordsObservationsResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.DeleteRecordsObservationsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.DeleteRecordsObservations.DeleteRecordsObservationsRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.DeleteRecordsObservations.DeleteRecordsObservationsResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
@@ -863,12 +863,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateRecordsObservationsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>hebraida</CreatedUserName>
     <CreatedDateTime>2009-11-30T12:20:34.4635704-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.CreateRecordsObservationsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.CreateRecordsObservations.CreateRecordsObservationsRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.CreateRecordsObservations.CreateRecordsObservationsResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.CreateRecordsObservationsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.CreateRecordsObservations.CreateRecordsObservationsRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.CreateRecordsObservations.CreateRecordsObservationsResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
@@ -877,13 +877,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordCountService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-11-30T12:55:02.0997237-03:00</CreatedDateTime>
     <Description>Servicio que permite obtener si hay registros asignados a usuarios.</Description>
-    <Handler>BigBang.BackEnd.Campaing.SVC.GetRecordCountService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.GetRecordCount.GetRecordCountRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.GetRecordCount.GetRecordCountResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.GetRecordCountService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.GetRecordCount.GetRecordCountRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.GetRecordCount.GetRecordCountResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -892,13 +892,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordValueService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-11-30T15:14:41.8480095-03:00</CreatedDateTime>
     <Description>Servicio que permite obtener si los atributos tienen valores.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.GetRecordValueService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.GetRecordValue.GetRecordValueRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.GetRecordValue.GetRecordValueResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.GetRecordValueService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.GetRecordValue.GetRecordValueRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.GetRecordValue.GetRecordValueResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -907,13 +907,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteRecordSetService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-12-01T15:36:37.1574807-03:00</CreatedDateTime>
     <Description>Servicio que permite eliminar un RecordSet.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.DeleteRecordSetService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.DeleteRecordSet.DeleteRecordSetRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.DeleteRecordSet.DeleteRecordSetResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.DeleteRecordSetService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.DeleteRecordSet.DeleteRecordSetRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.DeleteRecordSet.DeleteRecordSetResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -922,13 +922,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteCampaignService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-12-01T15:37:03.8449807-03:00</CreatedDateTime>
     <Description>Servicio que permite eliminar una campaña.</Description>
-    <Handler>BigBang.BackEnd.Campaing.SVC.DeleteCampaignService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.DeleteCampaign.DeleteCampaignRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.DeleteCampaign.DeleteCampaignResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.DeleteCampaignService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.DeleteCampaign.DeleteCampaignRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.DeleteCampaign.DeleteCampaignResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -937,13 +937,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordSetCountService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-12-01T16:56:55.7904257-03:00</CreatedDateTime>
     <Description>Servicio que permite validar si una campaña tiene lotes o no.</Description>
-    <Handler>BigBang.BackEnd.Campaing.SVC.GetRecordSetCountService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.GetRecordSetCount.GetRecordSetCountRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.GetRecordSetCount.GetRecordSetCountResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.GetRecordSetCountService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.GetRecordSetCount.GetRecordSetCountRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.GetRecordSetCount.GetRecordSetCountResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -952,12 +952,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetSurveyWebMenuService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>HOliva</CreatedUserName>
     <CreatedDateTime>2009-12-01T17:03:06.6805556-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Survey.SVC.GetSurveyWebMenuService, BigBang.BackEnd.Survey.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Survey.ISVC.GetSurveyWebMenu.GetSurveyWebMenuReq, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Survey.ISVC.GetSurveyWebMenu.GetSurveyWebMenuRes, BigBang.Common.Survey.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.SVC.GetSurveyWebMenuService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.ISVC.GetSurveyWebMenu.GetSurveyWebMenuReq, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.ISVC.GetSurveyWebMenu.GetSurveyWebMenuRes, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -966,12 +966,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordActionResultByLevelService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>hebraida</CreatedUserName>
     <CreatedDateTime>2009-12-02T17:52:54.753094-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.SearchRecordActionResultByLevelService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.SearchRecordActionResultByLevel.SearchRecordActionResultByLevelRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.SearchRecordActionResultByLevel.SearchRecordActionResultByLevelResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.SearchRecordActionResultByLevelService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.SearchRecordActionResultByLevel.SearchRecordActionResultByLevelRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.SearchRecordActionResultByLevel.SearchRecordActionResultByLevelResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -980,13 +980,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordQuantityService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-12-03T12:01:22.4888937-03:00</CreatedDateTime>
     <Description>Servicio que permite obtener la cantidad total de registros del lote junto a algunos datos de la campaña y el lote.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.GetRecordQuantityService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.GetRecordQuantity.GetRecordQuantityRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.GetRecordQuantity.GetRecordQuantityResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.GetRecordQuantityService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.GetRecordQuantity.GetRecordQuantityRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.GetRecordQuantity.GetRecordQuantityResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -995,13 +995,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordsPendingService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-12-03T14:32:03.7305013-03:00</CreatedDateTime>
     <Description>Servicio que permite obtener registros que se encuentre con algún estado Pendiente.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.GetRecordsPendingService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.GetRecordsPending.GetRecordsPendingRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.GetRecordsPending.GetRecordsPendingResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.GetRecordsPendingService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.GetRecordsPending.GetRecordsPendingRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.GetRecordsPending.GetRecordsPendingResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1010,13 +1010,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRecordMassiveClosureService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-12-04T15:45:05.7850311-03:00</CreatedDateTime>
     <Description>Servicio que permite asignar masivamente estados a registros.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.UpdateRecordMassiveClosureService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.UpdateRecordMassiveClosure.UpdateRecordMassiveClosureRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.UpdateRecordMassiveClosure.UpdateRecordMassiveClosureResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.UpdateRecordMassiveClosureService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.UpdateRecordMassiveClosure.UpdateRecordMassiveClosureRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.UpdateRecordMassiveClosure.UpdateRecordMassiveClosureResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1025,12 +1025,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateRoleService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-23T11:46:37.306058-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.CreateRoleService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.CreateRole.CreateRoleReq, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.CreateRole.CreateRoleRes, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.CreateRoleService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.CreateRole.CreateRoleReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.CreateRole.CreateRoleRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1039,13 +1039,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteRoleService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-23T11:47:14.103875-03:00</CreatedDateTime>
     <Description>se saco la transaccion para que no de error el MDSCT</Description>
-    <Handler>BigBang.BackEnd.Security.DeleteRoleService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.DeleteRole.DeleteRoleReq, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.DeleteRole.DeleteRoleRes, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.DeleteRoleService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.DeleteRole.DeleteRoleReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.DeleteRole.DeleteRoleRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1054,12 +1054,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordActionResultByParamsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>hebraida</CreatedUserName>
     <CreatedDateTime>2009-12-11T11:22:20.0114249-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.SearchRecordActionResultByParamsService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.SearchRecordActionResultByParams.SearchRecordActionResultByParamsRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.SearchRecordActionResultByParams.SearchRecordActionResultByParamsResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.SearchRecordActionResultByParamsService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.SearchRecordActionResultByParams.SearchRecordActionResultByParamsRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.SearchRecordActionResultByParams.SearchRecordActionResultByParamsResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1068,12 +1068,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchCampignByParamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-12-11T11:35:15.7398507-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.SearchCampignByParamService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.SearchCampignByParam.SearchCampignByParamReq, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.SearchCampignByParam.SearchCampignByParamRes, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.SearchCampignByParamService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.SearchCampignByParam.SearchCampignByParamReq, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.SearchCampignByParam.SearchCampignByParamRes, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1082,12 +1082,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordsetsByParamsInfoService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-12-11T11:37:09.0138507-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.SearchRecordsetsByParamsInfoService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordsetsByParamsInfo.SearchRecordsetsByParamsInfoReq, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordsetsByParamsInfo.SearchRecordsetsByParamsInfoRes, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.SearchRecordsetsByParamsInfoService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordsetsByParamsInfo.SearchRecordsetsByParamsInfoReq, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordsetsByParamsInfo.SearchRecordsetsByParamsInfoRes, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1096,12 +1096,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordActionResultRecursiveService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>hebraida</CreatedUserName>
     <CreatedDateTime>2009-12-14T16:17:19.9822656-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Campaing.SVC.SearchRecordActionResultRecursiveService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.SearchRecordActionResultRecursive.SearchRecordActionResultRecursiveRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.SearchRecordActionResultRecursive.SearchRecordActionResultRecursiveResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.SearchRecordActionResultRecursiveService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.SearchRecordActionResultRecursive.SearchRecordActionResultRecursiveRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.SearchRecordActionResultRecursive.SearchRecordActionResultRecursiveResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1110,12 +1110,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordToReleaseByParamsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-12-14T11:04:56.3605897-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.SearchRecordToReleaseByParamsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordToReleaseByParams.SearchRecordToReleaseByParamsReq, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordToReleaseByParams.SearchRecordToReleaseByParamsRes, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.SearchRecordToReleaseByParamsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordToReleaseByParams.SearchRecordToReleaseByParamsReq, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordToReleaseByParams.SearchRecordToReleaseByParamsRes, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1124,13 +1124,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordSetsByParamsAllService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>abrondani</CreatedUserName>
     <CreatedDateTime>2009-12-15T09:33:42.0738346-03:00</CreatedDateTime>
     <Description>Servicio de búsqueda de RecordSets por parametros con campañas, usuarios y encuestas.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.RecordSets.SearchRecordSetsByParamsAllService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordSetsByParamsAll.SearchRecordSetsByParamsAllRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordSetsByParamsAll.SearchRecordSetsByParamsAllResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.RecordSets.SearchRecordSetsByParamsAllService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordSetsByParamsAll.SearchRecordSetsByParamsAllRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordSetsByParamsAll.SearchRecordSetsByParamsAllResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1139,13 +1139,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="ReleaseRecordsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-12-15T20:50:45.1202581-03:00</CreatedDateTime>
     <Description>[BB-40] Libera registros</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.ReleaseRecordsService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.ReleaseRecords.ReleaseRecordsReq, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.ReleaseRecords.ReleaseRecordsRes, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.ReleaseRecordsService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.ReleaseRecords.ReleaseRecordsReq, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.ReleaseRecords.ReleaseRecordsRes, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1154,12 +1154,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordsCountService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>abrondani</CreatedUserName>
     <CreatedDateTime>2009-12-21T17:21:46.8020084-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.SearchRecordsCountService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordsCount.SearchRecordsCountRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordsCount.SearchRecordsCountResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.SearchRecordsCountService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordsCount.SearchRecordsCountRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordsCount.SearchRecordsCountResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1168,13 +1168,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordSetsRecallOptionsCountService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-12-23T12:10:53.8104657-03:00</CreatedDateTime>
     <Description>Servicio que permite contar la cantidad de lotes que tienen determinada opcion de rellamado.</Description>
-    <Handler>BigBang.BackEnd.Campaing.SVC.GetRecordSetsRecallOptionsCountService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.GetRecordSetsRecallOptionsCount.GetRecordSetsRecallOptionsCountRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.GetRecordSetsRecallOptionsCount.GetRecordSetsRecallOptionsCountResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.GetRecordSetsRecallOptionsCountService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.GetRecordSetsRecallOptionsCount.GetRecordSetsRecallOptionsCountRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.GetRecordSetsRecallOptionsCount.GetRecordSetsRecallOptionsCountResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1183,13 +1183,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRecordSetRecallOptionsService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2009-12-23T15:26:37.5302429-03:00</CreatedDateTime>
     <Description>Servicio que permite actualizar las opciones de rellamado en el RecordSet.</Description>
-    <Handler>BigBang.BackEnd.Campaing.SVC.UpdateRecordSetRecallOptionsService, BigBang.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Campaing.ISVC.UpdateRecordSetRecallOptions.UpdateRecordSetRecallOptionsRequest, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Campaing.ISVC.UpdateRecordSetRecallOptions.UpdateRecordSetRecallOptionsResponse, BigBang.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Campaing.SVC.UpdateRecordSetRecallOptionsService, Test.BackEnd.Campaing.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Campaing.ISVC.UpdateRecordSetRecallOptions.UpdateRecordSetRecallOptionsRequest, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Campaing.ISVC.UpdateRecordSetRecallOptions.UpdateRecordSetRecallOptionsResponse, Test.Common.Campaing.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1198,12 +1198,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetUnassignedUsersByParamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2010-01-07T12:22:57.5558559-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetUnassignedUsersByParamService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetUnassignedUsersByParamService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1212,13 +1212,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRecordsByRecordSetIdService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>HOliva</CreatedUserName>
     <CreatedDateTime>2010-01-11T10:45:44.1256954-03:00</CreatedDateTime>
     <Description>Servicio Utilizado en el Reporte de Encuesta plana.(Web)</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.GetRecordsByRecordSetIdService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.GetRecordsByRecordSetId.Req.GetRecordsByRecordSetIdRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.GetRecordsByRecordSetId.Resp.GetRecordsByRecordSetIdResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.GetRecordsByRecordSetIdService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.GetRecordsByRecordSetId.Req.GetRecordsByRecordSetIdRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.GetRecordsByRecordSetId.Resp.GetRecordsByRecordSetIdResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1227,12 +1227,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetUserAdditionalAttributes_ByParamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2010-01-13T15:00:14.077537-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetUserAdditionalAttributes_ByParamService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetUserAdditionalAttributes_ByParamService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1241,12 +1241,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SaveUserAdditionalAttributesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2010-01-14T15:07:58.612115-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.SaveUserAdditionalAttributesService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.SaveUserAdditionalAttributes.SaveUserAdditionalAttributesRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.SaveUserAdditionalAttributes.SaveUserAdditionalAttributesResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.SaveUserAdditionalAttributesService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.SaveUserAdditionalAttributes.SaveUserAdditionalAttributesRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.SaveUserAdditionalAttributes.SaveUserAdditionalAttributesResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -1255,12 +1255,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="GetUserAdditionalAttributesValues_ByParamService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2010-01-18T16:25:42.3396302-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.GetUserAdditionalAttributesValues_ByParamService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.GetUserAdditionalAttributesValues.GetUserAdditionalAttributesValues_ByParamRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.GetUserAdditionalAttributesValues.GetUserAdditionalAttributesValues_ByParamResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.GetUserAdditionalAttributesValues_ByParamService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.GetUserAdditionalAttributesValues.GetUserAdditionalAttributesValues_ByParamRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.GetUserAdditionalAttributesValues.GetUserAdditionalAttributesValues_ByParamResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1269,12 +1269,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UserAdditionalAttributesValues_Exist_ByUserAttributeIdService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2010-01-18T16:25:55.2148774-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.SVC.UserAdditionalAttributesValues_Exist_ByUserAttributeIdService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.UserAdditionalAttributesValues_Exist_ByUserAttributeId.UserAdditionalAttributesValues_Exist_ByUserAttributeIdRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.UserAdditionalAttributesValues_Exist_ByUserAttributeId.UserAdditionalAttributesValues_Exist_ByUserAttributeIdResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.SVC.UserAdditionalAttributesValues_Exist_ByUserAttributeIdService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.UserAdditionalAttributesValues_Exist_ByUserAttributeId.UserAdditionalAttributesValues_Exist_ByUserAttributeIdRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.UserAdditionalAttributesValues_Exist_ByUserAttributeId.UserAdditionalAttributesValues_Exist_ByUserAttributeIdResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1283,12 +1283,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SaveUserAdditionalAttributesValuesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2010-01-20T15:12:05.1784906-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.SaveUserAdditionalAttributesValuesService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.SaveUserAdditionalAttributesValues.SaveUserAdditionalAttributesValuesRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.SaveUserAdditionalAttributesValues.SaveUserAdditionalAttributesValuesResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.SaveUserAdditionalAttributesValuesService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.SaveUserAdditionalAttributesValues.SaveUserAdditionalAttributesValuesRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.SaveUserAdditionalAttributesValues.SaveUserAdditionalAttributesValuesResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
@@ -1297,12 +1297,12 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateUserAdditionalAttributesValuesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>AAguirre</CreatedUserName>
     <CreatedDateTime>2010-01-21T10:42:35.7837556-03:00</CreatedDateTime>
-    <Handler>BigBang.BackEnd.Security.UpdateUserAdditionalAttributesValuesService, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.Security.ISVC.UpdateUserAdditionalAttributesValues.UpdateUserAdditionalAttributesValuesRequest, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.Security.ISVC.UpdateUserAdditionalAttributesValues.UpdateUserAdditionalAttributesValuesResponse, BigBang.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.UpdateUserAdditionalAttributesValuesService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.UpdateUserAdditionalAttributesValues.UpdateUserAdditionalAttributesValuesRequest, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.UpdateUserAdditionalAttributesValues.UpdateUserAdditionalAttributesValuesResponse, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
@@ -1311,13 +1311,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatchService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2010-01-25T10:18:51.5989666-03:00</CreatedDateTime>
     <Description>Servicio que obtiene el estado anterior de un Record y lo inserta en un WorkLog.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatchService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatch.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatchRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatch.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatchResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatchService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatch.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatchRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatch.SearchRecordsByPreviousRecordActionResult_InsertRecordsWorkLogBatchResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1326,13 +1326,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordSetAttributesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>abrondani</CreatedUserName>
     <CreatedDateTime>2010-01-25T16:30:42.2946334-03:00</CreatedDateTime>
     <Description>Busqueda de atributos de un lote.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.RecordSets.SearchRecordSetAttributesService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordSetAttributes.SearchRecordSetAttributesRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordSetAttributes.SearchRecordSetAttributesResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.RecordSets.SearchRecordSetAttributesService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordSetAttributes.SearchRecordSetAttributesRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordSetAttributes.SearchRecordSetAttributesResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1341,13 +1341,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRecordMassiveClosure_InsertWorkLogService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>jiguastini</CreatedUserName>
     <CreatedDateTime>2010-01-26T10:34:01.7633311-03:00</CreatedDateTime>
     <Description>Servicio que Actualiza masivamente los estados de los records, inserta en el Worklog y actualiza el estado del RecordSet.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.UpdateRecordMassiveClosure_InsertWorkLogService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.UpdateRecordMassiveClosure_InsertWorkLog.UpdateRecordMassiveClosure_InsertWorkLogRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.UpdateRecordMassiveClosure_InsertWorkLog.UpdateRecordMassiveClosure_InsertWorkLogResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.UpdateRecordMassiveClosure_InsertWorkLogService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.UpdateRecordMassiveClosure_InsertWorkLog.UpdateRecordMassiveClosure_InsertWorkLogRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.UpdateRecordMassiveClosure_InsertWorkLog.UpdateRecordMassiveClosure_InsertWorkLogResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -1356,13 +1356,13 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordsAttributesService">
-    <EntityState>Unchanged</EntityState>
+    
     <CreatedUserName>abrondani</CreatedUserName>
     <CreatedDateTime>2010-01-26T16:35:17.7223497-03:00</CreatedDateTime>
     <Description>Servicio que busca los registros y sus atributos que cumplen con los criterios de búsqueda recibidos.</Description>
-    <Handler>BigBang.BackEnd.RecordSet.SVC.Record.SearchRecordsAttributesService, BigBang.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>BigBang.Common.RecordSet.ISVC.SearchRecordsAttributes.SearchRecordsAttributesRequest, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>BigBang.Common.RecordSet.ISVC.SearchRecordsAttributes.SearchRecordsAttributesResponse, BigBang.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.RecordSet.SVC.Record.SearchRecordsAttributesService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.RecordSet.ISVC.SearchRecordsAttributes.SearchRecordsAttributesRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.RecordSet.ISVC.SearchRecordsAttributes.SearchRecordsAttributesResponse, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>

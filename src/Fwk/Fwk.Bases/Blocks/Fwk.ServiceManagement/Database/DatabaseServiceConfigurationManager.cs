@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 using Fwk.Transaction;
-using Datablock = Microsoft.Practices.EnterpriseLibrary.Data;
+using Microsoft.Practices.EnterpriseLibrary.Data;
 using Fwk.Bases;
 using System.Data;
+using Fwk.Exceptions;
 
 
 namespace Fwk.ServiceManagement
@@ -30,8 +31,7 @@ namespace Fwk.ServiceManagement
         /// <author>moviedo</author>
         public DatabaseServiceConfigurationManager(string cnnStringName)
         {
-
-            _DatabaseCnnString = System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString;
+            _DatabaseCnnString = cnnStringName;
         }
 		/// <summary>
 		/// Constructor por defecto
@@ -41,12 +41,10 @@ namespace Fwk.ServiceManagement
 		public DatabaseServiceConfigurationManager()
 		{
 
-            _DatabaseCnnString = System.Configuration.ConfigurationManager.ConnectionStrings[Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName].ConnectionString;
+            _DatabaseCnnString = Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName;
 		}
 
-		#region < Fields >
-		
-		#endregion
+	
 
 		#region < IServiceConfigurationManager Members >
 
@@ -58,30 +56,39 @@ namespace Fwk.ServiceManagement
 		/// <date>2008-04-07T00:00:00</date>
 		/// <author>moviedo</author>
         public ServiceConfiguration GetServiceConfiguration(string pServiceName)
-		{
+        {
             ServiceConfiguration wServiceConfiguration = null; ;
 
-            Datablock.Database wBPConfig = Datablock.DatabaseFactory.CreateDatabase(_DatabaseCnnString);
+            Database wBPConfig = DatabaseFactory.CreateDatabase(_DatabaseCnnString);
             System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_g_Name");
             wBPConfig.AddInParameter(dbCommand, "Name", System.Data.DbType.String, pServiceName);
-            
-            using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
+            try
             {
-                while (dataReader.Read())
+                using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
                 {
-                    wServiceConfiguration = GetServiceConfigurationFromRow(dataReader);
-                }
+                    while (dataReader.Read())
+                    {
+                        wServiceConfiguration = GetServiceConfigurationFromRow(dataReader);
+                    }
 
 
-                if (wServiceConfiguration == null)
-                {
-                    throw new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                    if (wServiceConfiguration == null)
+                    {
+                        throw new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                    }
+
                 }
-                
             }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.ServiceManagement  al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(te);
+                te.ErrorId = "7200";
+                throw te;
 
+            }
             return wServiceConfiguration;
-		}
+        }
 
 		/// <summary>
         /// Recupera la configuración de todos los servicios de negocio.
@@ -91,24 +98,29 @@ namespace Fwk.ServiceManagement
 		/// <author>moviedo</author>
         public ServiceConfigurationCollection GetAllServices()
 		{
-
-            Datablock.Database wBPConfig = Datablock.DatabaseFactory.CreateDatabase(_DatabaseCnnString);
+            Database wBPConfig = DatabaseFactory.CreateDatabase(_DatabaseCnnString);
          
 			ServiceConfigurationCollection wServiceConfigurationCollection = new ServiceConfigurationCollection();
             System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_s_All");
-
-
-            using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
-			{
-
-                while (dataReader.Read())
+            try
+            {
+                using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
                 {
-                    ServiceConfiguration wServiceConfiguration = GetServiceConfigurationFromRow(dataReader);
-                    wServiceConfigurationCollection.Add(wServiceConfiguration);
-
+                    while (dataReader.Read())
+                    {
+                        ServiceConfiguration wServiceConfiguration = GetServiceConfigurationFromRow(dataReader);
+                        wServiceConfigurationCollection.Add(wServiceConfiguration);
+                    }
                 }
-			}
+            }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.ServiceManagement  al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(te);
+                te.ErrorId = "7200";
+                throw te;
 
+            }
 			return wServiceConfigurationCollection;
 		}
 
@@ -122,45 +134,54 @@ namespace Fwk.ServiceManagement
 		/// <author>moviedo</author>
         public void SetServiceConfiguration(String pServiceName,ServiceConfiguration pServiceConfiguration)
 		{
-			Datablock.Database wBPConfig = Datablock.DatabaseFactory.CreateDatabase(_DatabaseCnnString);
+			Database wBPConfig = DatabaseFactory.CreateDatabase(_DatabaseCnnString);
 
             if (GetServiceConfiguration(pServiceName) == null)
             {
-                Fwk.Exceptions.TechnicalException wTex =
-                    new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " no se encuentra configurado en la base de datos.");
+                Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " no se actualizó por que no se encontro configurado en la base de datos.");
                 wTex.ErrorId = "7002";
-                wTex.Namespace = "Fwk.ServiceManagement";
-                wTex.Class = "DatabaseServiceConfigurationManager";
-                wTex.Assembly = "Fwk.ServiceManagement";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(wTex);
                 throw wTex;
             }
+            try
+            {
+                using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_u"))
+                {
 
-            using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_u"))
-			{
+                    wBPConfig.AddInParameter(wCmd, "UpdateServiceName", System.Data.DbType.String, pServiceName);
+                    wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceConfiguration.Name);
+                    wBPConfig.AddInParameter(wCmd, "Description", System.Data.DbType.String, pServiceConfiguration.Description);
+                    wBPConfig.AddInParameter(wCmd, "Handler", System.Data.DbType.String, pServiceConfiguration.Handler);
+                    wBPConfig.AddInParameter(wCmd, "Request", System.Data.DbType.String, pServiceConfiguration.Request);
+                    wBPConfig.AddInParameter(wCmd, "Response", System.Data.DbType.String, pServiceConfiguration.Response);
+                    wBPConfig.AddInParameter(wCmd, "Available", System.Data.DbType.String, pServiceConfiguration.Available);
+                    wBPConfig.AddInParameter(wCmd, "Audit", System.Data.DbType.String, pServiceConfiguration.Audit);
+                    wBPConfig.AddInParameter(wCmd, "TransactionalBehaviour", System.Data.DbType.String, Enum.GetName(typeof(TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour));
+                    wBPConfig.AddInParameter(wCmd, "IsolationLevel", System.Data.DbType.String, Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel));
+                    wBPConfig.AddInParameter(wCmd, "Timeout", System.Data.DbType.Int32, pServiceConfiguration.Timeout);
+                    wBPConfig.AddInParameter(wCmd, "Cacheable", System.Data.DbType.Int32, pServiceConfiguration.Cacheable);
+                    wBPConfig.AddInParameter(wCmd, "FolderRepositoryKey", System.Data.DbType.String, pServiceConfiguration.FolderRepositoryKey);
 
-                wBPConfig.AddInParameter(wCmd, "UpdateServiceName", System.Data.DbType.String, pServiceName);
-				wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceConfiguration.Name);
-				wBPConfig.AddInParameter(wCmd, "Description", System.Data.DbType.String, pServiceConfiguration.Description);
-				wBPConfig.AddInParameter(wCmd, "Handler", System.Data.DbType.String, pServiceConfiguration.Handler);
-				wBPConfig.AddInParameter(wCmd, "Request", System.Data.DbType.String, pServiceConfiguration.Request);
-				wBPConfig.AddInParameter(wCmd, "Response", System.Data.DbType.String, pServiceConfiguration.Response);
-				wBPConfig.AddInParameter(wCmd, "Available", System.Data.DbType.String, pServiceConfiguration.Available);
-				wBPConfig.AddInParameter(wCmd, "Audit", System.Data.DbType.String, pServiceConfiguration.Audit);
-                wBPConfig.AddInParameter(wCmd, "TransactionalBehaviour", System.Data.DbType.String, Enum.GetName(typeof(TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour));
-                wBPConfig.AddInParameter(wCmd, "IsolationLevel", System.Data.DbType.String, Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel));
-				wBPConfig.AddInParameter(wCmd, "Timeout", System.Data.DbType.Int32, pServiceConfiguration.Timeout);
-                wBPConfig.AddInParameter(wCmd, "Cacheable", System.Data.DbType.Int32, pServiceConfiguration.Cacheable);
-                wBPConfig.AddInParameter(wCmd, "FolderRepositoryKey", System.Data.DbType.String, pServiceConfiguration.FolderRepositoryKey);
-                
-				int wAffected = wBPConfig.ExecuteNonQuery(wCmd);
+                    int wAffected = wBPConfig.ExecuteNonQuery(wCmd);
 
-				if (wAffected == 0)
-				{
-					throw new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " no se actualizó por no encontrarse configurado.");
-				}
+                    if (wAffected == 0)
+                    {
+                        Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " no se actualizó por que no se encontro configurado en la base de datos.");
+                        wTex.ErrorId = "7002";
+                        Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(wTex);
+                        throw wTex;
+                    }
 
-			}
-			
+                }
+            }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.ServiceManagement  al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(te);
+                te.ErrorId = "7200";
+                throw te;
+
+            }
 		}
 
 		/// <summary>
@@ -171,25 +192,35 @@ namespace Fwk.ServiceManagement
 		/// <author>moviedo</author>
 		public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
 		{
-			Datablock.Database wBPConfig = Datablock.DatabaseFactory.CreateDatabase(_DatabaseCnnString);
+			Database wBPConfig = DatabaseFactory.CreateDatabase(_DatabaseCnnString);
+            try
+            {
+                using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_i"))
+                {
+                    wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceConfiguration.Name);
+                    wBPConfig.AddInParameter(wCmd, "Description", System.Data.DbType.String, pServiceConfiguration.Description);
+                    wBPConfig.AddInParameter(wCmd, "Handler", System.Data.DbType.String, pServiceConfiguration.Handler);
+                    wBPConfig.AddInParameter(wCmd, "Request", System.Data.DbType.String, pServiceConfiguration.Request);
+                    wBPConfig.AddInParameter(wCmd, "Response", System.Data.DbType.String, pServiceConfiguration.Response);
+                    wBPConfig.AddInParameter(wCmd, "Available", System.Data.DbType.String, pServiceConfiguration.Available);
+                    wBPConfig.AddInParameter(wCmd, "Audit", System.Data.DbType.String, pServiceConfiguration.Audit);
+                    wBPConfig.AddInParameter(wCmd, "TransactionalBehaviour", System.Data.DbType.String, Enum.GetName(typeof(TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour));
+                    wBPConfig.AddInParameter(wCmd, "IsolationLevel", System.Data.DbType.String, Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel));
+                    wBPConfig.AddInParameter(wCmd, "Timeout", System.Data.DbType.Int32, pServiceConfiguration.Timeout);
+                    wBPConfig.AddInParameter(wCmd, "Cacheable", System.Data.DbType.Int32, pServiceConfiguration.Cacheable);
+                    wBPConfig.AddInParameter(wCmd, "FolderRepositoryKey", System.Data.DbType.String, pServiceConfiguration.FolderRepositoryKey);
 
-            using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_i"))
-			{
-				wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceConfiguration.Name);
-				wBPConfig.AddInParameter(wCmd, "Description", System.Data.DbType.String, pServiceConfiguration.Description);
-				wBPConfig.AddInParameter(wCmd, "Handler", System.Data.DbType.String, pServiceConfiguration.Handler);
-				wBPConfig.AddInParameter(wCmd, "Request", System.Data.DbType.String, pServiceConfiguration.Request);
-				wBPConfig.AddInParameter(wCmd, "Response", System.Data.DbType.String, pServiceConfiguration.Response);
-				wBPConfig.AddInParameter(wCmd, "Available", System.Data.DbType.String, pServiceConfiguration.Available);
-				wBPConfig.AddInParameter(wCmd, "Audit", System.Data.DbType.String, pServiceConfiguration.Audit);
-                wBPConfig.AddInParameter(wCmd, "TransactionalBehaviour", System.Data.DbType.String, Enum.GetName(typeof(TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour));
-                wBPConfig.AddInParameter(wCmd, "IsolationLevel", System.Data.DbType.String, Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel));
-				wBPConfig.AddInParameter(wCmd, "Timeout", System.Data.DbType.Int32, pServiceConfiguration.Timeout);
-                wBPConfig.AddInParameter(wCmd, "Cacheable", System.Data.DbType.Int32, pServiceConfiguration.Cacheable);
-                wBPConfig.AddInParameter(wCmd, "FolderRepositoryKey", System.Data.DbType.String, pServiceConfiguration.FolderRepositoryKey);
-                
-				wBPConfig.ExecuteNonQuery(wCmd);
-			}
+                    wBPConfig.ExecuteNonQuery(wCmd);
+                }
+            }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.ServiceManagement  al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(te);
+                te.ErrorId = "7200";
+                throw te;
+
+            }
 		}
 
 		/// <summary>
@@ -198,22 +229,36 @@ namespace Fwk.ServiceManagement
 		/// <param name="pServiceName">Nombre del servicio.</param>
 		/// <date>2008-04-13T00:00:00</date>
 		/// <author>moviedo</author>
-		public void DeleteServiceConfiguration(string pServiceName)
-		{
-			Datablock.Database wBPConfig = Datablock.DatabaseFactory.CreateDatabase(_DatabaseCnnString);
+        public void DeleteServiceConfiguration(string pServiceName)
+        {
+            Database wBPConfig = DatabaseFactory.CreateDatabase(_DatabaseCnnString);
+            try
+            {
+                using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_d"))
+                {
+                    wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceName);
 
-            using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_d"))
-			{
-				wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceName);
+                    int wAffected = wBPConfig.ExecuteNonQuery(wCmd);
 
-				int wAffected = wBPConfig.ExecuteNonQuery(wCmd);
+                    if (wAffected == 0)
+                    {
+                      
+                        TechnicalException te = new TechnicalException("El servicio " + pServiceName + " no se eliminó por no encontrarse configurado.");
+                        ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(te);
+                        te.ErrorId = "7002";
+                        throw te;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.ServiceManagement  al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(te);
+                te.ErrorId = "7200";
+                throw te;
 
-				if (wAffected == 0)
-				{
-					throw new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se eliminó por no encontrarse configurado.");
-				}
-			}
-		}
+            }
+        }
 
 		#endregion
 
@@ -254,19 +299,6 @@ namespace Fwk.ServiceManagement
 
 
        
-
-        public string Tag
-        {
-            get
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-            set
-            {
-                //throw new Exception("The method or operation is not implemented.");
-            }
-        }
-
        
     }
 }

@@ -16,4 +16,11 @@
       <TestLink id="ab794f51-93ce-29d2-b9d8-851184d0a6e8" name="ConfigurationMannager_Database" storage="test\fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
+  <TestList name="Fwk.ServiceMannager" id="a187ccb7-7399-4471-a40c-866a53b50479" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
+    <TestLinks>
+      <TestLink id="d98488e7-f7bb-dcc8-b35b-0e4960215978" name="ImportToDB" storage="test\fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="be010b10-4e7a-4100-c854-51173388e710" name="XmlServiceConfigurationManager" storage="test\fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="b53d1893-5cb4-df87-262e-4be5c5d217e0" name="DataServiceConfigurationManager" storage="test\fwk.unittest\bin\debug\fwk.unittest.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+    </TestLinks>
+  </TestList>
 </TestLists>

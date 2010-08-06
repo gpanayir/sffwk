@@ -19,15 +19,8 @@ namespace Fwk.ServiceManagement
 	public sealed class XmlServiceConfigurationManager : IServiceConfigurationManager
 	{
         static ServiceConfigurationCollection _Services;
-        
-        private string _Tag = String.Empty;
-
-        public string Tag
-        {
-            get { return _Tag; }
-            set { _Tag = value; }
-        }
-
+   
+        string _XmlConfigFile = String.Empty;
         /// <summary>
         /// Constructor que no busca en el .config. Carga todos los servicios directamente del archivo pasado por parametros
         /// </summary>
@@ -36,8 +29,10 @@ namespace Fwk.ServiceManagement
         /// <author>moviedo</author>
         public XmlServiceConfigurationManager(string xmlConfigFile)
         {
-            _Services = GetAllServices(xmlConfigFile);
+          
+            _XmlConfigFile = xmlConfigFile;
 
+            LoadAllServices(_XmlConfigFile);
         }
 		/// <summary>
 		/// Constructor por defecto
@@ -46,8 +41,8 @@ namespace Fwk.ServiceManagement
 		/// <author>moviedo</author>
         public  XmlServiceConfigurationManager()
 		{
-            _Services = GetAllServices();
-
+            _XmlConfigFile = GetXMLRepositoryPath();
+            LoadAllServices(_XmlConfigFile);
 		}
 
 		
@@ -90,26 +85,30 @@ namespace Fwk.ServiceManagement
         /// <author>moviedo</author>
         public ServiceConfigurationCollection GetAllServices()
         {
-            return GetAllServices(GetXMLRepositoryPath());
 
+            
+             LoadAllServices(_XmlConfigFile);
+             return _Services;
 
         }
+
         /// <summary>
         /// Busca el archivo  lo carga a _Services que es un ServiceConfigurationCollection
         /// </summary>
+        ///<param name="xmlConfigFile"></param>
+        ///<param name="refresh">Indica si se vuelven a cargar los archivos</param>
         /// <returns></returns>
         /// <date>2007-07-13T00:00:00</date>
         /// <author>moviedo</author>
-        public ServiceConfigurationCollection GetAllServices(string xmlConfigFile)
+       void LoadAllServices(string xmlConfigFile)
         {
+          
             try
             {
 
                 String xml = FileFunctions.OpenTextFile(xmlConfigFile);
                 _Services = (ServiceConfigurationCollection)SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), xml);
 
-
-                return _Services;
             }
             catch (System.IO.IOException ioex)
             {
@@ -150,8 +149,15 @@ namespace Fwk.ServiceManagement
                 throw te;
             }
         }
-       
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void RefreshServices()
+        {
+            LoadAllServices(_XmlConfigFile);
+        }
 		/// <summary>
 		/// Actualiza la configuración de un servicio de negocio.
 		/// </summary>
@@ -164,7 +170,7 @@ namespace Fwk.ServiceManagement
 
             try
             {
-                _Services = GetAllServices();
+                //_Services = GetAllServices();
 
                 if (!_Services.Contains(pServiceName))
                 {
@@ -261,53 +267,8 @@ namespace Fwk.ServiceManagement
 
 		#region < Private methods >
 
-		/// <summary>
-		/// Busca la configuración de un servicio.
-		/// </summary>
-        /// <param name="pServiceName">Nombre del servicio de negocio.</param>
-		/// <param name="pDocument">Documento con el contenido del repositorio XML.</param>
-		/// <returns>Nodo que contiene la configuración del servicio.</returns>
-		/// <date>2007-07-13T00:00:00</date>
-		/// <author>moviedo</author>
-		private XmlElement GetXMLServiceNode(string pServiceName, XmlDocument pDocument)
-		{
-			XmlElement wNode;
-			// realiza la consulta XPath
-			string wXPath = "Service[@name='" + pServiceName + "']";
-			wNode = (XmlElement)pDocument.DocumentElement.SelectSingleNode("Services").SelectSingleNode(wXPath);
+		
 
-			if (wNode == null)
-			{
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
-
-                te.ErrorId = "7002";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<XmlServiceConfigurationManager>(te);
-
-                throw te;
-			}
-
-			return wNode;
-		}
-
-		/// <summary>
-		/// Recupera el repositorio XML.
-		/// </summary>
-		/// <returns>Documento con el contenido del repositorio XML.</returns>
-		/// <date>2007-02-10T00:00:00</date>
-		/// <author>moviedo</author>
-        private XmlDocument GetXMLServiceConfigurationDocument()
-		{
-			XmlDocument wDocument;
-			wDocument = new XmlDocument();
-            
-            if(_Tag.Length == 0)
-			    wDocument.Load(GetXMLRepositoryPath());
-            else
-                wDocument.Load(_Tag);
-
-			return wDocument;
-		}
-        
 
 		/// <summary>
 		/// Devuelve la ruta al repositorio XML.
@@ -364,20 +325,20 @@ namespace Fwk.ServiceManagement
         
 
         /// <summary>
-        /// 
+        /// Guarda lños cambios en el archivo
         /// </summary>
         private void SaveServiceConfigFile()
         {
             String xml = SerializationFunctions.SerializeToXml(_Services);
             try
             {
-                HelperFunctions.FileFunctions.SaveTextFile(GetXMLRepositoryPath(), xml, false);
+                HelperFunctions.FileFunctions.SaveTextFile(_XmlConfigFile, xml, false);
             }
               
             catch (System.UnauthorizedAccessException)
             {
 
-                TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", GetXMLRepositoryPath()));
+                TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", _XmlConfigFile));
                 te.ErrorId = "7100";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<XmlServiceConfigurationManager>(te);
                 throw te;

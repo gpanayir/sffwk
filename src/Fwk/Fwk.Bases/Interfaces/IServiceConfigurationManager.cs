@@ -19,7 +19,7 @@ namespace Fwk.Bases
         /// <summary>
         /// 
         /// </summary>
-        string Tag { get; set; }
+        //string Tag { get; set; }
       
 		/// <summary>
 		/// Recupera la configuración de un servicio de negocio.
