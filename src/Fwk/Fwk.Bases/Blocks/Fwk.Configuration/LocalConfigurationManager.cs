@@ -57,7 +57,7 @@ namespace Fwk.Configuration
             {
                 TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
                 te.ErrorId = "8005";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
             }
 
@@ -66,7 +66,7 @@ namespace Fwk.Configuration
             {
                 TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", wBaseConfigFile }));
                 te.ErrorId = "8006";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
             }
             Key wKey = wGroup.Keys.GetFirstByName(pPropertyName);
@@ -74,7 +74,7 @@ namespace Fwk.Configuration
             {
                 TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra la propiedad ", pPropertyName, " en el grupo de propiedades: ", pGroupName, " del archivo de configuración: ", wBaseConfigFile }));
                 te.ErrorId = "8007";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
             }
 
@@ -128,7 +128,7 @@ namespace Fwk.Configuration
 
                 TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", wBaseConfigFile }));
                 te.ErrorId = "8006";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
             }
 
@@ -174,14 +174,7 @@ namespace Fwk.Configuration
 
             }
 
-            //Si se opto por configuracion local no es necesario chequear el stado
-            //if (wConfigurationFile.CheckFileStatus() != Helper.FileStatus.Ok)
-            //{
-
-
-
-            //}
-
+         
 
             return wConfigurationFile;
 
@@ -217,7 +210,7 @@ namespace Fwk.Configuration
             {
                 TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuración. ", provider.BaseConfigFile, Environment.NewLine, "Revisar en el archivo .config de la aplicacion la configuración del proveedor ", provider.Name));
                 te.ErrorId = "8011";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
 
             }
@@ -249,59 +242,6 @@ namespace Fwk.Configuration
 
 
 
-        /// <summary>
-        /// Obtiene un String con el contenido del archivo xml de configuracion. 
-        /// Si este metodo es accedido desde el servicio web extrae la informacion de estado del archivo:
-        /// Encrypt
-        /// TTL
-        /// ForceUpdate
-        /// CurrentVersion
-        /// BaseConfigFile
-        /// Cacheable
-        /// </summary>
-        /// <param name="pFullFileName">Nombre del archivo</param>
-        /// <param name="pConfigFileRegistry">XmlElement que contiene informacion del catalogo de arhivos utilizado por el 
-        /// servicio web Configuration Service</param>
-        /// <returns></returns>
-        //static ConfigurationFile GetConfig(ConfigProviderElement provider, ConfigFileRegistry pConfigFileRegistry)
-        //{
-
-        //    ConfigurationFile wConfigurationFile;
-
-        //    if (!System.IO.File.Exists(provider.BaseConfigFile))
-        //    {
-        //        TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuracion espesificado en el proveedor de configuracion ", provider.BaseConfigFile, " . Ver archivo .config de la aplicacion"));
-        //        te.ErrorId = "8010";
-        //        Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
-        //        throw te;
-
-        //    }
-        //    string wFileContent = Fwk.HelperFunctions.FileFunctions.OpenTextFile(pFullFileName);
-
-
-        //    wConfigurationFile = ConfigurationFile.GetFromXml<ConfigurationFile>(wFileContent);
-
-
-
-        //    wConfigurationFile.FileName = pFullFileName;
-
-        //    if (pConfigFileRegistry != null)
-        //    {
-        //        wConfigurationFile.TTL = pConfigFileRegistry.TTL;
-        //        wConfigurationFile.Encrypted = pConfigFileRegistry.Encrypt;
-        //        wConfigurationFile.ForceUpdate = pConfigFileRegistry.ForceUpdate;
-        //        wConfigurationFile.CurrentVersion = pConfigFileRegistry.CurrentVersion;
-        //        wConfigurationFile.BaseConfigFile = pConfigFileRegistry.BaseConfigFile;
-
-        //    }
-        //    else
-        //    {
-        //        wConfigurationFile.BaseConfigFile = true;
-
-        //    }
-
-        //    return wConfigurationFile;
-        //}
 
         #endregion
 
@@ -310,7 +250,7 @@ namespace Fwk.Configuration
         /// </summary>
         /// <param name="provider">Proveedor de configuracion</param>
         /// <param name="key"></param>
-        /// <param name="groupName"></param>
+        /// <param name="groupName">Nombre del gruop que contiene las propiedades</param>
         internal static void AddProperty(ConfigProviderElement provider, Key key, string groupName)
         {
             ConfigurationFile wConfigurationFile = GetConfig(provider);
@@ -327,7 +267,7 @@ namespace Fwk.Configuration
 
                 TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", provider.BaseConfigFile));
                 te.ErrorId = "8008";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
             }
 
@@ -352,7 +292,7 @@ namespace Fwk.Configuration
             {
                 TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", provider.BaseConfigFile));
                 te.ErrorId = "8008";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
             }
 
@@ -379,7 +319,7 @@ namespace Fwk.Configuration
             {
                 TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", provider.BaseConfigFile));
                 te.ErrorId = "8008";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
 
             }
@@ -406,7 +346,7 @@ namespace Fwk.Configuration
             {
                 TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", provider.BaseConfigFile));
                 te.ErrorId = "8008";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
             }
         }
@@ -434,7 +374,7 @@ namespace Fwk.Configuration
             {
                 TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", provider.BaseConfigFile));
                 te.ErrorId = "8008";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
             }
         }
@@ -465,9 +405,33 @@ namespace Fwk.Configuration
 
                 TechnicalException te = new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo ", provider.BaseConfigFile));
                 te.ErrorId = "8008";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
             }
+        }
+
+        /// <summary>
+        /// Vuelve a cargar el archivo de configuracion desde el origen de datos
+        /// </summary>
+        /// <param name="provider">Proveedor de configuracion</param>
+        /// <returns></returns>
+        internal static ConfigurationFile RefreshConfigurationFile(ConfigProviderElement provider)
+        {
+            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+  
+            if (wConfigurationFile == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("Error al intentar eremover un archivo de configuracion: El archivo ", provider.BaseConfigFile, " no se encuentra"));
+                te.ErrorId = "8012";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
+                throw te;
+            }
+            _Repository.RemoveConfigurationFile(wConfigurationFile);
+            wConfigurationFile = null;
+            wConfigurationFile = SetConfigurationFile(provider);
+            _Repository.AddConfigurationFile(wConfigurationFile);
+
+            return wConfigurationFile;
         }
     }
 

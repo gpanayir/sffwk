@@ -10,6 +10,7 @@ using System.Reflection;
 using System.IO;
 using Fwk.HelperFunctions;
 using System.ComponentModel;
+using Fwk.Exceptions;
 namespace Fwk.Configuration.Common
 {
     /// <summary>
@@ -40,12 +41,18 @@ namespace Fwk.Configuration.Common
         {
             if (pConfigurationFile == null)
             {
-                throw new Exception("No hay datos para configurar.");
+                TechnicalException te = new TechnicalException("Error al intentar agregar un archivo de configuracion: El parámetro ConfigurationFile no puede ser nulo.");
+                te.ErrorId = "8012";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
             }
 
             if (_DictionaryFiles.ContainsKey(pConfigurationFile.FileName))
             {
-                throw new Exception("El archivo ya se encuentra configurado");
+                TechnicalException te = new TechnicalException(string.Concat("Error al intentar agregar un archivo de configuracion: El archivo ConfigurationFile ",pConfigurationFile.FileName, " ya se agrego con anterioridad al repositorio del configuration mannager."));
+                te.ErrorId = "8012";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
             }
 
             _DictionaryFiles.Add(pConfigurationFile.FileName, pConfigurationFile);
@@ -74,12 +81,19 @@ namespace Fwk.Configuration.Common
         {
             if (pConfigurationFile == null)
             {
-                throw new Exception("ConfigurationFile no puede ser nulo.");
+                
+                TechnicalException te = new TechnicalException("Error al intentar eremover un archivo de configuracion: El parámetro ConfigurationFile no puede ser nulo.");
+                te.ErrorId = "8012";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
             }
 
             if (!_DictionaryFiles.ContainsKey(pConfigurationFile.FileName))
             {
-                throw new Exception("El archivo no existe");
+                TechnicalException te = new TechnicalException(string.Concat("Error al intentar eremover un archivo de configuracion: El archivo ", pConfigurationFile.FileName , " no se encuentra"));
+                te.ErrorId = "8012";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                throw te;
             }
 
             _DictionaryFiles.Remove(pConfigurationFile.FileName);

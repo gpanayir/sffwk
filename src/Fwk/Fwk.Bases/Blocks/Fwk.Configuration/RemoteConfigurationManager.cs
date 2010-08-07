@@ -182,5 +182,10 @@ namespace Fwk.Configuration
         {
             throw new NotImplementedException();
         }
+
+        internal static ConfigurationFile RefreshConfigurationFile(ConfigProviderElement provider)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

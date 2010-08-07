@@ -18,7 +18,7 @@ namespace Fwk.Configuration
         /// Agrega una nueva propiedad
         /// </summary>
         /// <param name="configProvider">Proveedor de configuracion</param>
-        /// <param name="groupName"></param>
+        /// <param name="groupName">Nombre del gruop que contiene las propiedades</param>
         /// <param name="property"></param>
         public static void AddProperty(string configProvider,string groupName, Key property)
         {
@@ -29,8 +29,8 @@ namespace Fwk.Configuration
         /// 
         /// </summary>
         /// <param name="configProvider">Proveedor de configuracion</param>
-        /// <param name="propertyName"></param>
-        /// <param name="groupName"></param>
+        /// <param name="propertyName">Nombre de la propiedad o key.name</param>
+        /// <param name="groupName">Nombre del gruop que contiene las propiedades</param>
         public static void RemoveProperty(string configProvider,  string groupName,string propertyName)
         {
             ConfigurationManager.RemoveProperty(configProvider, groupName, propertyName);

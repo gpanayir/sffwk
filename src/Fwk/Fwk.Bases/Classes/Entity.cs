@@ -162,7 +162,7 @@ namespace Fwk.Bases
         /// This method delegates the call to the mHistory.Store method 
         /// IF the Undo flag is not set.
         /// </summary>
-        /// <param name="propertyName"></param>
+        /// <param name="propertyName">Nombre de la propiedad /param>
         /// <param name="Value"></param>
         protected void AddHistory(string propertyName, object Value)
         {

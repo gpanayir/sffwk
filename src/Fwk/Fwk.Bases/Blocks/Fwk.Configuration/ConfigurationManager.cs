@@ -281,7 +281,7 @@ namespace Fwk.Configuration
         /// Crea una propiedad en un grupo determinado
         /// </summary>
         /// <param name="configProvider">Nombre del proveedor de configuracion</param>
-        /// <param name="groupName"></param>
+        /// <param name="groupName">Nombre del gruop que contiene las propiedades</param>
         /// <param name="key"></param>
         internal static void AddProperty(string configProvider, string groupName,Key key)
         {
@@ -345,11 +345,11 @@ namespace Fwk.Configuration
 
 
         /// <summary>
-        /// 
+        /// Elimina una propiedad u objeto key
         /// </summary>
         /// <param name="configProvider">Nombre del proveedor de configuracion</param>
-        /// <param name="groupName"></param>
-        /// <param name="propertyName"></param>
+        /// <param name="groupName">Nombre del gruop que contiene las propiedades</param>
+        /// <param name="propertyName">Nombre de la propiedad o key.name</param>
         internal static void RemoveProperty(string configProvider, string groupName, string propertyName)
         {
             ConfigProviderElement provider = GetProvider(configProvider);
@@ -376,10 +376,10 @@ namespace Fwk.Configuration
         }
 
         /// <summary>
-        /// 
+        /// Elimina un grupo
         /// </summary>
         /// <param name="configProvider">Nombre del proveedor de configuracion</param>
-        /// <param name="groupName"></param>
+        /// <param name="groupName">Nombre del gruop que contiene las propiedades</param>
         internal static void RemoveGroup(string configProvider, string groupName)
         {
             ConfigProviderElement provider = GetProvider(configProvider);
@@ -406,10 +406,10 @@ namespace Fwk.Configuration
         }
 
         /// <summary>
-        /// 
+        /// Cançmbia el nombre de un grupo
         /// </summary>
         /// <param name="configProvider">Nombre del proveedor de configuracion</param>
-        /// <param name="groupName"></param>
+        /// <param name="groupName">Nombre del gruop que contiene las propiedades</param>
         /// <param name="newGroupName"></param>
         internal static void ChangeGroupName(string configProvider, string groupName, string newGroupName)
         {
@@ -439,7 +439,7 @@ namespace Fwk.Configuration
         /// <summary>
         /// Realiza cambios a una propiedad.-
         /// </summary>
-        /// <param name="provider">Nombre del proveedor de configuracion</param>
+        /// <param name="configProvider">Nombre del proveedor de configuracion</param>
         /// <param name="groupName">Nombre del grupo donde se encuentra la propiedad</param>
         /// <param name="property">Propiedad actualizada. Este objeto puede contener todos sus valores modifcados</param>
         /// <param name="propertyName">Nombre de la propiedad que se mofdifico.- Este valor es el original sin modificacion</param>
@@ -466,6 +466,38 @@ namespace Fwk.Configuration
                         return;
                     }
             }
+        }
+
+
+        /// <summary>
+        /// Vuelve a cargar el archivo de configuracion desde el origen de datos
+        /// </summary>
+        /// <param name="configProvider">Nombre del proveedor configurado</param>
+        /// <returns></returns>
+        public static ConfigurationFile RefreshConfigurationFile(string configProvider)
+        {
+            ConfigProviderElement provider = GetProvider(configProvider);
+            if (provider == null) return null;
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        return LocalFileConfigurationManager.RefreshConfigurationFile(provider); 
+                    }
+                case ConfigProviderType.remote:
+                    {
+                        return RemoteConfigurationManager.RefreshConfigurationFile(provider); 
+                    }
+                case ConfigProviderType.database:
+                    {
+                        return DatabaseConfigMannager.RefreshConfigurationFile(provider); 
+                    }
+                case ConfigProviderType.service:
+                    {
+                        return null;
+                    }
+            }
+            return null;
         }
     }
     

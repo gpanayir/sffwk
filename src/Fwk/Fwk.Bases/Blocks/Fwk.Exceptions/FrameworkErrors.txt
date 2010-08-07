@@ -46,13 +46,18 @@ Descripcion: No se encuentra la propiedad
 ErrorId = 8008
 No tiene permiso para actualizar el archivo 
 
-ErrorId = 9010
+ErrorId = 8010
 Descripcion: Nombre artchivo de configuracion no espesificado en el proveedor de configuracion. Ver archivo .config de la aplicacion
 
-ErrorId = 9011
-Descripcion: El archivo de artchivo de configuracion espesificado en el proveedor de configuracion ", provider.BaseConfigFile, " . Ver archivo .config de la aplicacion"
+ErrorId = 8011
+Descripcion: El archivo de  configuracion espesificado en el proveedor de configuracion ", provider.BaseConfigFile, " . Ver archivo .config de la aplicacion"
 
-ErrorId = 9200
+ErrorId = 8012
+Descripcion Errores al intentar eliminar o agregar un archivo de configuracion. Metodo RemoveConfigurationFile
+
+
+
+ErrorId = 8200
 Descripcion: Problemas con Fwk.Configuration al realizar operaciones con la base de datos
 
 
