@@ -76,25 +76,5 @@ namespace Fwk.Bases.Properties {
                 return ((string)(this["ServiceConfigurationSourceName"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SANTANA\\SQLEXPRESS;Initial Catalog=Logs;Integrated Security=True")]
-        public string LogsConnectionString {
-            get {
-                return ((string)(this["LogsConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SANTANA\\SQLEXPRESS;Initial Catalog=fwktest;Integrated Security=True")]
-        public string fwktestConnectionString {
-            get {
-                return ((string)(this["fwktestConnectionString"]));
-            }
-        }
     }
 }

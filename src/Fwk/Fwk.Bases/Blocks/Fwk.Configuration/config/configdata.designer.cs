@@ -35,11 +35,6 @@ namespace Fwk.Bases.Blocks.Fwk.Configuration.config
     partial void Deletefwk_ConfigMannager(fwk_ConfigMannager instance);
     #endregion
 		
-		public configdataDataContext() : 
-				base(global::Fwk.Bases.Properties.Settings.Default.fwktestConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
 		
 		public configdataDataContext(string connection) : 
 				base(connection, mappingSource)
