@@ -164,17 +164,41 @@ namespace ConfigurationApp.Forms
 
         
   
-        public void RefreshAllFiles(Boolean pClear)
+        /// <summary>
+        /// Vuelve a cargar todo
+        /// </summary>
+        public void RefreshAllFiles()
         {
             _CnfgManagerSelectedNodeType = CnfgManagerSelectedNodeType.Root;
-            if (pClear)
-            {
+            treeView1.BeginUpdate();
+          
                 treeView1.Nodes[0].Nodes.Clear();
-            }
-            ConfigManagerControl.LoadFiles(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey, _Storage);
-
-            treeView1.Nodes[0].Expand();
+          
             
+            ConfigManagerControl.RefreshAllFiles(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey, _Storage);
+            treeView1.EndUpdate();
+            treeView1.Refresh();
+            treeView1.ExpandAll();
+            
+            
+        }
+
+        /// <summary>
+        /// Carga todo
+        /// </summary>
+        /// <param name="pClear">Elimina todos los nodos existentes en el tre view</param>
+        public void LoadFiles()
+        {
+            _CnfgManagerSelectedNodeType = CnfgManagerSelectedNodeType.Root;
+            treeView1.BeginUpdate();
+    
+
+            ConfigManagerControl.LoadFiles(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey, _Storage);
+            treeView1.EndUpdate();
+            treeView1.Refresh();
+            treeView1.ExpandAll();
+
+
         }
         #endregion
 
@@ -343,7 +367,7 @@ namespace ConfigurationApp.Forms
 
         private void tsMenuItemRefreshAllFiles_Click(object sender, EventArgs e)
         {
-            RefreshAllFiles(true);
+            RefreshAllFiles();
         }
         #endregion
 

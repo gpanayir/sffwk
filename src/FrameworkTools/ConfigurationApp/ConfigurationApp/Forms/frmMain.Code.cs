@@ -103,13 +103,13 @@ namespace ConfigurationApp
         //    if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
         //        _dockPanelConfigManager.QuitFile();
         //}
-        private void RefreshAllFiles(bool pClear)
+        private void RefreshAllFiles()
         {
 
           
 
             if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
-                _dockPanelConfigManager.RefreshAllFiles(pClear);
+                _dockPanelConfigManager.RefreshAllFiles();
         }
         #endregion
     }

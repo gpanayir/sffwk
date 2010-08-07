@@ -15,8 +15,9 @@ namespace ConfigurationApp
             InitializeComponent();
 
             InitializeDocPanels();
-            RefreshAllFiles(false);
 
+            //if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
+                _dockPanelConfigManager.LoadFiles();
         }
 
 
@@ -31,7 +32,7 @@ namespace ConfigurationApp
         /// <param name="e"></param>
         private void tsMenuItemRefreshAllFiles_Click(object sender, EventArgs e)
         {
-            RefreshAllFiles(true);
+            RefreshAllFiles();
         }
 
    
@@ -50,7 +51,7 @@ namespace ConfigurationApp
         {
             _dockPanelConfigManager.SaveIsolatedStorage();
 
-            RefreshAllFiles(true);
+            RefreshAllFiles();
         }
         #endregion
 

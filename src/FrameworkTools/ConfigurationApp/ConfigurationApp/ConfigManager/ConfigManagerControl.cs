@@ -47,49 +47,40 @@ namespace ConfigurationApp
             pStorage.LoadStorage();
             foreach (ConfigProviderElement provider in Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers)
             {
-                LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty, provider);
+              
+                LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty,  provider,false);
             }
 
         }
 
-        /// <summary>
-        /// Metodo que carga un archivo de configuracion desde el menu del formulario principal
-        /// </summary>
-        /// <param name="pConfigManagerTreeNode"></param>
-        /// <param name="mnContextCnfgManFile"></param>
-        /// <param name="mnGroupOrProperty"></param>
-        //internal static void LoadFile(TreeNode pConfigManagerTreeNode,
-        //    ContextMenuStrip mnContextCnfgManFile,
-        //    ContextMenuStrip mnGroupOrProperty)
-        //{
-        //    String strFullFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(Fwk.HelperFunctions.FileFunctions.OpenFilterEnums.OpenXmlFilter);
-        //    if (strFullFileName.Length == 0)
-        //        return;
+        internal static void RefreshAllFiles(TreeNode pConfigManagerTreeNode,
+                  ContextMenuStrip mnContextCnfgManFile,
+                  ContextMenuStrip mnGroupOrProperty, Storage pStorage)
+        {
+            pStorage.LoadStorage();
+            foreach (ConfigProviderElement provider in Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers)
+            {
+                
+                LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty,  provider,true);
+            }
 
-        //    String strFileName = System.IO.Path.GetFileName(strFullFileName);
-
-
-        //    if (_Holder.ExistConfigurationFile(strFileName))
-        //    {
-        //        Fwk.Bases.FrontEnd.Controls.FwkMessageView.Show(string.Concat("The file ", strFileName, " exist"), "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Exclamation);
-
-        //        return;
-        //    }
-
-        //    LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty, strFileName, strFullFileName);
-
-        //}
+        }
+        
 
         private static void LoadFile(TreeNode pConfigManagerTreeNode,
            ContextMenuStrip mnContextCnfgManFile,
-           ContextMenuStrip mnGroupOrProperty, ConfigProviderElement provider)
+           ContextMenuStrip mnGroupOrProperty, ConfigProviderElement provider,bool isRefresh)
         {
-
+              ConfigurationFile wConfigurationFile ;
             ListDictionary wDictionary = new ListDictionary();
             try
             {
-                ConfigurationFile wConfigurationFile = Fwk.Configuration.ConfigurationManager.GetConfigurationFile(provider.Name);
-                wConfigurationFile.FileName = System.IO.Path.GetFileName(provider.BaseConfigFile);
+                if(isRefresh)
+                wConfigurationFile = Fwk.Configuration.ConfigurationManager.RefreshConfigurationFile(provider.Name);
+                else
+                
+                 wConfigurationFile = Fwk.Configuration.ConfigurationManager.GetConfigurationFile(provider.Name);
+                //wConfigurationFile.FileName = System.IO.Path.GetFileName(wConfigurationFile.BaseConfigFile);
 
 
                 #region [Set to FileNode]
@@ -125,7 +116,7 @@ namespace ConfigurationApp
             }
             catch (TechnicalException er1)
             {
-                if (er1.ErrorId.Equals("8011") || er1.ErrorId.Equals("9200"))
+                if (er1.ErrorId.Equals("8011") || er1.ErrorId.Equals("8200") || er1.ErrorId.Equals("8012"))
                 {
                     TreeNode wFileNode = new TreeNode(provider.BaseConfigFile);
 
@@ -147,91 +138,10 @@ namespace ConfigurationApp
             }
         }
 
-        //internal static void NewFile(TreeNode pConfigManagerTreeNode, ContextMenuStrip mnContextCnfgManFile,
-        //   ContextMenuStrip mnGroupOrProperty)
-        //{
-        //    ConfigurationFile wConfigurationFile = new ConfigurationFile();
-        //    String strFullFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_New(wConfigurationFile.GetXml(), Fwk.HelperFunctions.FileFunctions.OpenFilterEnums.OpenXmlFilter, true);
-
-        //    if (strFullFileName.Length == 0) return;
-        //    String strFileName = System.IO.Path.GetFileName(strFullFileName);
-
-        //    wConfigurationFile.FileName = strFileName;
-
-        //    LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty, strFileName, strFullFileName);
-        //}
 
 
 
 
-        /// <summary>
-        /// Guarda el archivo 
-        /// </summary>
-        /// <param name="pFileNode">Nombre del archivo</param>
-        //internal static void SaveFile(TreeNode pFileNode)
-        //{
-
-        //    ListDictionary dic = (ListDictionary)pFileNode.Tag;
-        //    String szFullFileName = dic["FullFileName"].ToString();
-        //    ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-        //    dic["Saved"] = true;
-        //    if (System.IO.File.Exists(szFullFileName))
-        //    {
-        //        try
-        //        {
-        //            FileFunctions.SaveTextFile(szFullFileName, wConfigurationFile.GetXml(), false);
-        //        }
-        //        catch (System.UnauthorizedAccessException)
-        //        {
-        //            throw new TechnicalException(string.Concat("No tiene permiso para actualizar el archivo " , szFullFileName));
-
-        //        }
-        //    }
-        //}
-
-        /// <summary>
-        /// Quita un archivo configuration manager.-
-        /// </summary>
-        /// <param name="pFileNode">Nodo que reprecenta el archivo ConfigurationManager.xml</param>
-        //public static void QuitFile(TreeNode pFileNode)
-        //{
-        //    ListDictionary dic = (ListDictionary)pFileNode.Tag;
-
-        //    bool wSaved = (bool)dic["Saved"];
-
-        //    if (wSaved)
-        //    {
-        //        SaveFile(pFileNode);
-        //        pFileNode.Remove();
-        //        _Holder.RemoveConfigManager(pFileNode.Text);
-        //    }
-        //    else
-        //    {
-
-
-        //        DialogResult d = FwkMessageView.Show(string.Concat("Save changes to ", pFileNode.Text, "?"), "Config mannager", MessageBoxButtons.YesNoCancel, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question);
-
-
-        //        if (d == DialogResult.Yes)
-        //        {
-        //            SaveFile(pFileNode);
-        //            pFileNode.Remove();
-        //            _Holder.RemoveConfigManager(pFileNode.Text);
-
-        //        }
-        //        if (d == DialogResult.No)
-        //        {
-
-        //            pFileNode.Remove();
-        //            pFileNode.TreeView.Refresh();
-        //            _Holder.RemoveConfigManager(pFileNode.Text);
-        //        }
-
-        //        if (d == DialogResult.Cancel)
-        //        { return; }
-
-        //    }
-        //}
 
 
         /// <summary>

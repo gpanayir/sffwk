@@ -70,7 +70,7 @@ namespace ConfigurationApp.Forms
             
         }
 
-        public Fwk.Bases.Entity Get()
+        public Fwk.Bases.BaseEntity Get()
         {
             if(_Key !=null)
                 return _Key;
