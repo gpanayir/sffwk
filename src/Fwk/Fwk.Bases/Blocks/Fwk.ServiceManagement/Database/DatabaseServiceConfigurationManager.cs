@@ -38,11 +38,11 @@ namespace Fwk.ServiceManagement
 		/// </summary>
 		/// <date>2008-04-10T00:00:00</date>
 		/// <author>moviedo</author>
-		public DatabaseServiceConfigurationManager()
-		{
+        //public DatabaseServiceConfigurationManager()
+        //{
 
-            _DatabaseCnnString = Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName;
-		}
+        //    _DatabaseCnnString = Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName;
+        //}
 
 	
 

@@ -39,11 +39,11 @@ namespace Fwk.ServiceManagement
 		/// </summary>
 		/// <date>2007-07-13T00:00:00</date>
 		/// <author>moviedo</author>
-        public  XmlServiceConfigurationManager()
-		{
-            _XmlConfigFile = GetXMLRepositoryPath();
-            LoadAllServices(_XmlConfigFile);
-		}
+        //public  XmlServiceConfigurationManager()
+        //{
+        //    _XmlConfigFile = GetXMLRepositoryPath();
+        //    LoadAllServices(_XmlConfigFile);
+        //}
 
 		
 

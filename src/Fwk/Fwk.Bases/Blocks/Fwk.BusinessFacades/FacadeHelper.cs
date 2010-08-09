@@ -73,7 +73,7 @@ namespace Fwk.BusinessFacades.Utils
             {
                 watcher = new System.IO.FileSystemWatcher();
 
-                watcher.Filter = Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName;
+                watcher.Filter = ObjectProvider._ServiceProviderSection.DefaultProvider.SourceInfo;
                 watcher.Path = Environment.CurrentDirectory;
                 watcher.EnableRaisingEvents = true;
 

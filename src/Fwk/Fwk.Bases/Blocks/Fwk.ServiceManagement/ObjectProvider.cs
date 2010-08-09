@@ -20,7 +20,7 @@ namespace Fwk.ServiceManagement
 	public class ObjectProvider
 	{
 
-        static ServiceProviderSection _ServiceProviderSection;
+        internal static ServiceProviderSection _ServiceProviderSection;
 
 		/// <summary>
 		/// Instancia una clase implementadora de IServiceConfigurationManager.
