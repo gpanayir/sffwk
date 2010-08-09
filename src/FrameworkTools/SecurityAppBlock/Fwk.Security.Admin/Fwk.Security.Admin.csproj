@@ -48,29 +48,49 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
-    <Reference Include="DevExpress.Utils.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.Data.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.XtraBars.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraBars.v9.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraEditors.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.XtraGrid.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraGrid.v9.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraLayout.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.XtraNavBar.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraNavBar.v9.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
-    <Reference Include="DevExpress.XtraRichEdit.v9.1.Extensions, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
-    <Reference Include="DevExpress.XtraSpellChecker.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
-    <Reference Include="DevExpress.XtraSpellChecker.v9.1.Core, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073" />
+    <Reference Include="DevExpress.XtraRichEdit.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v9.1.Extensions, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpellChecker.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpellChecker.v9.1.Core, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.XtraTreeList.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraTreeList.v9.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
