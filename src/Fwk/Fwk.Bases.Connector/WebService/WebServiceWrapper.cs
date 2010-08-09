@@ -31,7 +31,7 @@ namespace Fwk.Bases.Connector
 		{
 			string wResult = null;
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
 			{
 			    
                 wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
@@ -51,7 +51,7 @@ namespace Fwk.Bases.Connector
         {
             
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
                 wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
@@ -71,18 +71,18 @@ namespace Fwk.Bases.Connector
         {
            
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
                 wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 //msz_URL = wService.Url;
-                wService.ExecuteServiceCompleted += new Fwk.Bases.Connector.SingleService.ExecuteServiceCompletedEventHandler(wService_ExecuteServiceCompleted);
+                wService.ExecuteServiceCompleted += new Fwk.Bases.Connector.singleservice.ExecuteServiceCompletedEventHandler(wService_ExecuteServiceCompleted);
 
             }
 
         }
 
-        void wService_ExecuteServiceCompleted(object sender, Fwk.Bases.Connector.SingleService.ExecuteServiceCompletedEventArgs e)
+        void wService_ExecuteServiceCompleted(object sender, Fwk.Bases.Connector.singleservice.ExecuteServiceCompletedEventArgs e)
         {
             
             throw new NotImplementedException();
@@ -181,7 +181,7 @@ namespace Fwk.Bases.Connector
         {
             string xmlServices = null;
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
                 wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 msz_URL = wService.Url;
@@ -206,7 +206,7 @@ namespace Fwk.Bases.Connector
         {
             string xmlServices = null;
             
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
                 xmlServices = wService.GetServiceConfiguration(pServiceName);
             }
@@ -223,10 +223,10 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void SetServiceConfiguration(String pServiceName ,ServiceConfiguration pServiceConfiguration)
         {
-            Fwk.Bases.Connector.SingleService.ServiceConfiguration wServiceConfigurationProxy = 
+            Fwk.Bases.Connector.singleservice.ServiceConfiguration wServiceConfigurationProxy = 
                 GetServiceConfigurationProxy(pServiceConfiguration);
             
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
                 wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
@@ -245,10 +245,10 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
-            Fwk.Bases.Connector.SingleService.ServiceConfiguration wServiceConfigurationProxy = 
+            Fwk.Bases.Connector.singleservice.ServiceConfiguration wServiceConfigurationProxy = 
                 GetServiceConfigurationProxy(pServiceConfiguration);
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
                 wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
@@ -266,7 +266,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void DeleteServiceConfiguration(string pServiceName)
         {
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
                 wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 wService.DeleteServiceConfiguration(pServiceName);
@@ -274,28 +274,28 @@ namespace Fwk.Bases.Connector
         }
 
 
-        private static Fwk.Bases.Connector.SingleService.ServiceConfiguration GetServiceConfigurationProxy(ServiceConfiguration pServiceConfiguration)
+        private static Fwk.Bases.Connector.singleservice.ServiceConfiguration GetServiceConfigurationProxy(ServiceConfiguration pServiceConfiguration)
         {
-            Fwk.Bases.Connector.SingleService.ServiceConfiguration wServiceConfigurationProxy = null;
+            Fwk.Bases.Connector.singleservice.ServiceConfiguration wServiceConfigurationProxy = null;
 
-            wServiceConfigurationProxy = new Fwk.Bases.Connector.SingleService.ServiceConfiguration();
+            wServiceConfigurationProxy = new Fwk.Bases.Connector.singleservice.ServiceConfiguration();
             wServiceConfigurationProxy.Audit = pServiceConfiguration.Audit;
             wServiceConfigurationProxy.name = pServiceConfiguration.Name;
             wServiceConfigurationProxy.Handler = pServiceConfiguration.Handler;
             wServiceConfigurationProxy.Request = pServiceConfiguration.Request;
             wServiceConfigurationProxy.Response = pServiceConfiguration.Response;
-            wServiceConfigurationProxy.Cacheable = pServiceConfiguration.Cacheable;
-            wServiceConfigurationProxy.FolderRepositoryKey = pServiceConfiguration.FolderRepositoryKey;
+            wServiceConfigurationProxy.CreatedDateTime = pServiceConfiguration.CreatedDateTime;
+            wServiceConfigurationProxy.ApplicationId = pServiceConfiguration.ApplicationId;
             wServiceConfigurationProxy.Available = pServiceConfiguration.Available;
             wServiceConfigurationProxy.Description = pServiceConfiguration.Description;
             wServiceConfigurationProxy.Audit = pServiceConfiguration.Audit;
-            wServiceConfigurationProxy.Timeout = pServiceConfiguration.Timeout;
+            wServiceConfigurationProxy.CreatedUserName = pServiceConfiguration.CreatedUserName;
             String name = Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel);
-            wServiceConfigurationProxy.IsolationLevel = (Fwk.Bases.Connector.SingleService.IsolationLevel)
-                Enum.Parse(typeof(Fwk.Bases.Connector.SingleService.IsolationLevel), pServiceConfiguration.IsolationLevel.ToString());
+            wServiceConfigurationProxy.IsolationLevel = (Fwk.Bases.Connector.singleservice.IsolationLevel)
+                Enum.Parse(typeof(Fwk.Bases.Connector.singleservice.IsolationLevel), pServiceConfiguration.IsolationLevel.ToString());
 
-            wServiceConfigurationProxy.TransactionalBehaviour = (Fwk.Bases.Connector.SingleService.TransactionalBehaviour)
-                Enum.Parse(typeof(Fwk.Bases.Connector.SingleService.TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour.ToString());
+            wServiceConfigurationProxy.TransactionalBehaviour = (Fwk.Bases.Connector.singleservice.TransactionalBehaviour)
+                Enum.Parse(typeof(Fwk.Bases.Connector.singleservice.TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour.ToString());
            
 
             return wServiceConfigurationProxy;

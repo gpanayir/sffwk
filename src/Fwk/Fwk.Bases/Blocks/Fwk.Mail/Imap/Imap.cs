@@ -1272,13 +1272,17 @@ namespace Fwk.Mail.Imap
 			}
 		}
 
-		/// <summary>
-		/// Parse the bodystructure and store as XML Element
-		/// </summary>
-		/// <param name="sBodyStruct">Bosy Structure</param>
-		/// <param name="oXmlBodyPart">Body Structure in XML</param>
-		/// <param name="sPartPrefix">Part Prefix</param>
-		/// <returns>true/false</returns>
+
+
+    	/// <summary>
+        /// Parse the bodystructure and store as XML Element
+	    /// </summary>
+	    /// <param name="sMessageUID"></param>
+	    /// <param name="sBodyStruct"></param>
+	    /// <param name="oXmlBodyPart"></param>
+	    /// <param name="sPartPrefix"></param>
+	    /// <param name="bFetchBody"></param>
+	    /// <returns></returns>
 		bool ParseBodyStructure(string sMessageUID, ref string sBodyStruct, XmlWriter oXmlBodyPart,
 			string sPartPrefix, bool bFetchBody)
 		{

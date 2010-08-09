@@ -358,7 +358,7 @@ namespace Fwk.BusinessFacades.Utils
         private static TransactionScopeHandler CreateTransactionScopeHandler(ServiceConfiguration pServiceConfiguration)
         {
             //Creación del ámbito de la transacción.
-            TransactionScopeHandler wResult = new TransactionScopeHandler(pServiceConfiguration.TransactionalBehaviour, pServiceConfiguration.IsolationLevel, new TimeSpan(0, 0, pServiceConfiguration.Timeout));
+            TransactionScopeHandler wResult = new TransactionScopeHandler(pServiceConfiguration.TransactionalBehaviour, pServiceConfiguration.IsolationLevel, new TimeSpan(0, 0, 0));
 
             return wResult;
 
@@ -391,9 +391,9 @@ namespace Fwk.BusinessFacades.Utils
         {
             String wAssembliesPath = String.Empty;
 
-            if (pServiceConfiguration.FolderRepositoryKey != null)
+            if (pServiceConfiguration.ApplicationId != null)
             {
-                if (pServiceConfiguration.FolderRepositoryKey.Length == 0)
+                if (pServiceConfiguration.ApplicationId.Length == 0)
                 {
                     return String.Empty;
                 }
@@ -406,7 +406,7 @@ namespace Fwk.BusinessFacades.Utils
 
             wAssembliesPath = ConfigurationManager.GetProperty("AssembliesPath",
                                                                 pServiceConfiguration.
-                                                                    FolderRepositoryKey);
+                                                                    ApplicationId);
 
             //Si no existe tal carpeta por defecto se busca en el \bin de la aplicacion
             if (!Directory.Exists(wAssembliesPath))

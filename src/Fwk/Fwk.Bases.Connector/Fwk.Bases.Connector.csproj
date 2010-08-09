@@ -82,7 +82,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Remoting\RemotingWrapper.cs" />
-    <Compile Include="Web References\SingleService\Reference.cs">
+    <Compile Include="Web References\singleservice\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -110,7 +110,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Remoting\RemotingConfigFile.config" />
-    <None Include="Web References\SingleService\SingleService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -130,25 +129,28 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Remoting\App.config" />
+    <None Include="Web References\singleservice\SingleService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
     <WebReferenceUrl Include="http://localhost:1119/WebServiceDispatcher/SingleService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\SingleService\</RelPath>
+      <RelPath>Web References\singleservice\</RelPath>
       <UpdateFromURL>http://localhost:1119/WebServiceDispatcher/SingleService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Fwk_FrontEnd_ServiceIntefaceWrappers_SingleService_SingleService</CachedSettingsPropName>
+      <CachedSettingsPropName>Fwk_Bases_Connector_singleservice_SingleService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Remoting\App.config" />
-    <None Include="Web References\SingleService\Reference.map">
+    <None Include="Web References\singleservice\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\SingleService\SingleService.disco" />
+    <None Include="Web References\singleservice\SingleService.disco" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="WCF\" />

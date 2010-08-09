@@ -1,5 +1,8 @@
 ﻿namespace Fwk.Net.Ftp
 {
+    /// <summary>
+    /// 
+    /// </summary>
     partial class FTPComponent
     {
         /// <summary>

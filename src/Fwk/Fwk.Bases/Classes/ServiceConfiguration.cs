@@ -53,7 +53,7 @@ namespace Fwk.Bases
         IsolationLevel _IsolationLevel;
         int _Timeout;
         bool _Cacheable;
-        private string _FolderRepositoryKey;
+        private string __ApplicationId;
         private string _CreatedUserName;
         /// <summary>
         /// 
@@ -174,36 +174,17 @@ namespace Fwk.Bases
 		}
 
 
-		/// <summary>
-		/// Tiempo máximo de espera para transacción en segundos.
-		/// </summary>
-		/// <date>2008-04-07T00:00:00</date>
-		/// <author>moviedo</author>
-		public int Timeout
-		{
-			get { return _Timeout; }
-			set { _Timeout = value; }
-		}
 
-        /// <summary>
-        /// Indica si el resultado del servicio de almacena en cache.
-        /// </summary>
-        /// <date>2006-10-27T00:00:00</date>
-        /// <author>moviedo</author>
-        public bool Cacheable
-        {
-            get { return _Cacheable; }
-            set { _Cacheable = value; }
-        }
+      
         
 		
         /// <summary>
         /// 
         /// </summary>
-        public string FolderRepositoryKey
+        public string ApplicationId
         {
-            get { return _FolderRepositoryKey; }
-            set { _FolderRepositoryKey = value; }
+            get { return __ApplicationId; }
+            set { __ApplicationId = value; }
         }
 
        

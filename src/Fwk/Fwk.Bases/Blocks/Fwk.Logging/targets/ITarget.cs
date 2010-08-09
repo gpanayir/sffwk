@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Fwk.Logging.Targets
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITarget
     {
         Events SearchByParam(Fwk.Logging.Event pEvent);

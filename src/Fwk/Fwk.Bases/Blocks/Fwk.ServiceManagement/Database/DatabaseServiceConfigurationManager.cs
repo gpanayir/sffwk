@@ -158,9 +158,9 @@ namespace Fwk.ServiceManagement
                     wBPConfig.AddInParameter(wCmd, "Audit", System.Data.DbType.String, pServiceConfiguration.Audit);
                     wBPConfig.AddInParameter(wCmd, "TransactionalBehaviour", System.Data.DbType.String, Enum.GetName(typeof(TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour));
                     wBPConfig.AddInParameter(wCmd, "IsolationLevel", System.Data.DbType.String, Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel));
-                    wBPConfig.AddInParameter(wCmd, "Timeout", System.Data.DbType.Int32, pServiceConfiguration.Timeout);
-                    wBPConfig.AddInParameter(wCmd, "Cacheable", System.Data.DbType.Int32, pServiceConfiguration.Cacheable);
-                    wBPConfig.AddInParameter(wCmd, "FolderRepositoryKey", System.Data.DbType.String, pServiceConfiguration.FolderRepositoryKey);
+                    wBPConfig.AddInParameter(wCmd, "ApplicationId", System.Data.DbType.String, pServiceConfiguration.ApplicationId);
+                    wBPConfig.AddInParameter(wCmd, "CreatedUserName", System.Data.DbType.String, pServiceConfiguration.CreatedUserName);
+                    wBPConfig.AddInParameter(wCmd, "CreatedDateTime", System.Data.DbType.DateTime, pServiceConfiguration.CreatedDateTime);
 
                     int wAffected = wBPConfig.ExecuteNonQuery(wCmd);
 
@@ -206,9 +206,10 @@ namespace Fwk.ServiceManagement
                     wBPConfig.AddInParameter(wCmd, "Audit", System.Data.DbType.String, pServiceConfiguration.Audit);
                     wBPConfig.AddInParameter(wCmd, "TransactionalBehaviour", System.Data.DbType.String, Enum.GetName(typeof(TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour));
                     wBPConfig.AddInParameter(wCmd, "IsolationLevel", System.Data.DbType.String, Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel));
-                    wBPConfig.AddInParameter(wCmd, "Timeout", System.Data.DbType.Int32, pServiceConfiguration.Timeout);
-                    wBPConfig.AddInParameter(wCmd, "Cacheable", System.Data.DbType.Int32, pServiceConfiguration.Cacheable);
-                    wBPConfig.AddInParameter(wCmd, "FolderRepositoryKey", System.Data.DbType.String, pServiceConfiguration.FolderRepositoryKey);
+
+                    wBPConfig.AddInParameter(wCmd, "ApplicationId", System.Data.DbType.String, pServiceConfiguration.ApplicationId);
+                    wBPConfig.AddInParameter(wCmd, "CreatedUserName", System.Data.DbType.String, pServiceConfiguration.CreatedUserName);
+                    wBPConfig.AddInParameter(wCmd, "CreatedDateTime", System.Data.DbType.DateTime, pServiceConfiguration.CreatedDateTime);
 
                     wBPConfig.ExecuteNonQuery(wCmd);
                 }
@@ -283,11 +284,10 @@ namespace Fwk.ServiceManagement
 			wServiceConfiguration.Audit = Convert.ToBoolean(pServiceRow["Audit"]);
             wServiceConfiguration.TransactionalBehaviour = (TransactionalBehaviour)Enum.Parse(typeof(TransactionalBehaviour), pServiceRow["TransactionalBehaviour"].ToString());
             wServiceConfiguration.IsolationLevel = (Fwk.Transaction.IsolationLevel)Enum.Parse(typeof(Fwk.Transaction.IsolationLevel), pServiceRow["IsolationLevel"].ToString());
-            
 
-			wServiceConfiguration.Timeout = Convert.ToInt32(pServiceRow["Timeout"]);
-            wServiceConfiguration.Cacheable = Convert.ToBoolean(pServiceRow["Cacheable"]);
-            wServiceConfiguration.FolderRepositoryKey = Convert.ToString(pServiceRow["FolderRepositoryKey"]);
+            wServiceConfiguration.CreatedUserName = Convert.ToString(pServiceRow["CreatedUserName"]);
+            wServiceConfiguration.CreatedDateTime = Convert.ToDateTime(pServiceRow["CreatedDateTime"]);
+            wServiceConfiguration.ApplicationId = Convert.ToString(pServiceRow["ApplicationId"]);
             
 			return wServiceConfiguration;
 		}
