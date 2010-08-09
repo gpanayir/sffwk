@@ -129,10 +129,10 @@ namespace Fwk.ServiceManagement.Tools.Win32
             txtHandler.Enabled = pEnable;
             txtRequest.Enabled = pEnable;
             txtResponse.Enabled = pEnable;
-            txtTimeout.Enabled = pEnable;
+            
             ckbAvailable.Enabled = pEnable;
             ckbAudit.Enabled = pEnable;
-            chkCacheable.Enabled = pEnable;
+            txtAppId.Enabled = pEnable;
             cboTransactionalBehaviour.Enabled = pEnable;
             cboIsolationLevel.Enabled = pEnable;
         }
@@ -149,8 +149,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             txtHandler.Text = String.Empty;
             txtRequest.Text = String.Empty;
             txtResponse.Text = String.Empty;
-            txtTimeout.TextBoxText = "0";
-            chkCacheable.Checked = false;
+            txtAppId.Text = String.Empty; 
+            
             ckbAudit.Checked = false;
             ckbAvailable.Checked = false;
         }
