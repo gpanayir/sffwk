@@ -39,7 +39,15 @@ public class SingleService : System.Web.Services.WebService
         string wResult = wSimpleFacade.ExecuteService(pServiceName, pData);
 		return wResult;
 	}
+    [SoapDocumentMethod(OneWay = true)]
+    [WebMethod]
+    public void ExecuteService_OneWay(string pServiceName, string pData)
+    {
 
+        SimpleFacade wSimpleFacade = new SimpleFacade();
+        wSimpleFacade.ExecuteService(pServiceName, pData);
+
+    }
     /// <summary>
     /// Ejecuta un service de negocio.
     /// </summary>
