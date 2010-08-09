@@ -127,6 +127,9 @@
     <Compile Include="Blocks\Fwk.Security.Cryptography\ISymetriCypher.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\SymetricCypherFactory.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\SymetriCypher.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderCollection.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderElement.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderSection.cs" />
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Blocks\Functions\ExportFunctions.cs" />
     <Compile Include="Blocks\Functions\ImportFunctions.cs" />

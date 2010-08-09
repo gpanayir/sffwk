@@ -62,6 +62,8 @@ namespace Fwk.ServiceManagement
         /// <returns>Provider (Rule).</returns>
         public ServiceProviderElement GetProvider(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return this.DefaultProvider;
             foreach (ServiceProviderElement wElement in this.Providers)
             {
                 if (name.CompareTo(wElement.Name) ==0)
@@ -92,20 +94,11 @@ namespace Fwk.ServiceManagement
         /// <summary>
         /// Lee de un archivo local, puede ser carpeta compartida en la red.-
         /// </summary>
-        local,
+        xml,
         /// <summary>
         /// Utiliza la configuracion distribuida provista por el framework
         /// </summary>
-        remote,
-        /// <summary>
-        /// Consulta por medio de un servicio del dispatcher del framework
-        /// puede ser web service o remoting, 
-        /// </summary>
-        webservice,
-        /// <summary>
-        /// Consulta directa,mente a una base de datos
-        /// </summary>
-        database
-        
+        sqldatabase
+       
     }
 }

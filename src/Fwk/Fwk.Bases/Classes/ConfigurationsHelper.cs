@@ -52,22 +52,22 @@ namespace Fwk.Bases
         }
 
 
-        /// <summary>
-        /// ServiceConfigurationFilePath
-        /// </summary>
-        public static String ServiceConfigurationSourceName
-        {
-            get { return Properties.Settings.Default.ServiceConfigurationSourceName; }
+        ///// <summary>
+        ///// ServiceConfigurationFilePath
+        ///// </summary>
+        //public static String ServiceConfigurationSourceName
+        //{
+        //    get { return Properties.Settings.Default.ServiceConfigurationSourceName; }
 
-        }
-        /// <summary>
-        /// ServiceConfigurationManagerType
-        /// </summary>
-        public static String ServiceConfigurationManagerType
-        {
-            get { return Properties.Settings.Default.ServiceConfigurationManagerType; }
+        //}
+        ///// <summary>
+        ///// ServiceConfigurationManagerType
+        ///// </summary>
+        //public static String ServiceConfigurationManagerType
+        //{
+        //    get { return Properties.Settings.Default.ServiceConfigurationManagerType; }
 
-        }
+        //}
         
     }
 }

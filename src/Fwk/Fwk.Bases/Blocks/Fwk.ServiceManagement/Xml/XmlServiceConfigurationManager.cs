@@ -138,7 +138,7 @@ namespace Fwk.ServiceManagement
             catch (Exception ex)
             {
                 string strError = string.Concat("Error al inicializar la metadata de los servicios  \r\n ",
-                "Metadata :", Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName, Environment.NewLine);
+                "Metadata :", xmlConfigFile , Environment.NewLine);
 
                 Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(strError.ToString(), ex);
                 te.Source = "Despachador de servicios";
@@ -276,50 +276,50 @@ namespace Fwk.ServiceManagement
 		/// <returns>Ruta al repositorio XML.</returns>
 		/// <date>2007-07-13T00:00:00</date>
 		/// <author>moviedo</author>
-        public static string GetXMLRepositoryPath()
-        {
-            //Si existe el archivo 
-            if (System.IO.File.Exists(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName))
-                return Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName;
+        //public static string GetXMLRepositoryPath()
+        //{
+        //    //Si existe el archivo 
+        //    if (System.IO.File.Exists(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName))
+        //        return Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName;
 
-            //Si no existe se puede ser q se trate de un servicio y los servicios no usan la carpeta de ejecucion como entorno de ejecucion
+        //    //Si no existe se puede ser q se trate de un servicio y los servicios no usan la carpeta de ejecucion como entorno de ejecucion
 
 
-            string file =
-              System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, System.IO.Path.GetFileName(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName));
+        //    string file =
+        //      System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, System.IO.Path.GetFileName(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName));
 
-            if (System.IO.File.Exists(file))
-                return file;
+        //    if (System.IO.File.Exists(file))
+        //        return file;
 
-             System.Text.StringBuilder wMessage = new StringBuilder();
-            wMessage.Append("Error al inicializar la metadata de los servicios  \r\n");
+        //     System.Text.StringBuilder wMessage = new StringBuilder();
+        //    wMessage.Append("Error al inicializar la metadata de los servicios  \r\n");
             
-            //Si no existia por q estaba en blanco
-            if(string.IsNullOrEmpty( Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName))
+        //    //Si no existia por q estaba en blanco
+        //    if(string.IsNullOrEmpty( Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName))
 
-            {
-                wMessage.Append("verifique \r\n");
-                wMessage.AppendLine("Archivo de configuracion en la seccion Fwk.Bases.Properties.Settings el ");
-                wMessage.AppendLine("valor de [ServiceConfigurationSourceName] no esta confugurado el nombre del archivo de metadata de servicios.-");
-            }
+        //    {
+        //        wMessage.Append("verifique \r\n");
+        //        wMessage.AppendLine("Archivo de configuracion en la seccion Fwk.Bases.Properties.Settings el ");
+        //        wMessage.AppendLine("valor de [ServiceConfigurationSourceName] no esta confugurado el nombre del archivo de metadata de servicios.-");
+        //    }
            
-             //Si llego hasta aqui directamente no existia
-             wMessage.Append("No se puede encontrar el archivo ");
-             wMessage.Append(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName);
+        //     //Si llego hasta aqui directamente no existia
+        //     wMessage.Append("No se puede encontrar el archivo ");
+        //     wMessage.Append(Fwk.Bases.ConfigurationsHelper.ServiceConfigurationSourceName);
             
-             wMessage.AppendLine("Revice el archivo de configuracion en la seccion Fwk.Bases.Properties.Settings el ");
-             wMessage.AppendLine("valor de [ServiceConfigurationSourceName].-");
+        //     wMessage.AppendLine("Revice el archivo de configuracion en la seccion Fwk.Bases.Properties.Settings el ");
+        //     wMessage.AppendLine("valor de [ServiceConfigurationSourceName].-");
 
 
-            TechnicalException te = new TechnicalException(wMessage.ToString());
+        //    TechnicalException te = new TechnicalException(wMessage.ToString());
 
             
-            te.ErrorId = "7004";
-            Fwk.Exceptions.ExceptionHelper.SetTechnicalException<XmlServiceConfigurationManager>(te);
-            te.Source = "Despachador de servicios";
-            throw te;
+        //    te.ErrorId = "7004";
+        //    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<XmlServiceConfigurationManager>(te);
+        //    te.Source = "Despachador de servicios";
+        //    throw te;
 
-        }
+        //}
 
 
         

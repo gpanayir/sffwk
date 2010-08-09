@@ -58,23 +58,5 @@ namespace Fwk.Bases.Properties {
                 return ((string)(this["Fwk_Configuration_ConfigurationWebService_ConfigurationService"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Fwk.ServiceManagement.XmlServiceConfigurationManager, Fwk.ServiceManagement")]
-        public string ServiceConfigurationManagerType {
-            get {
-                return ((string)(this["ServiceConfigurationManagerType"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ServiceMetadataConfig.xml")]
-        public string ServiceConfigurationSourceName {
-            get {
-                return ((string)(this["ServiceConfigurationSourceName"]));
-            }
-        }
     }
 }
