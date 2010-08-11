@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fwk.Bases;
+using System.Configuration;
+using Fwk.ConfigSection;
+using Fwk.ServiceManagement;
 
 namespace Fwk.UnitTest
 {
@@ -11,9 +14,9 @@ namespace Fwk.UnitTest
     /// Summary description for ServiceMetadata
     /// </summary>
     [TestClass]
-    public class ServiceMetadata
+    public class ServiceMetadataTest
     {
-        public ServiceMetadata()
+        public ServiceMetadataTest()
         {
 
         }
@@ -37,25 +40,7 @@ namespace Fwk.UnitTest
         }
 
         #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
+       
         #endregion
 
         //Solo para rellenar la base de datos
@@ -65,14 +50,16 @@ namespace Fwk.UnitTest
             String strErrorResut = String.Empty;
             try
             {
-                Fwk.ServiceManagement.XmlServiceConfigurationManager xml = new Fwk.ServiceManagement.XmlServiceConfigurationManager(@"..\..\..\Test\Fwk.UnitTest\bin\Debug\ServiceMetadataConfig.xml");
-                Fwk.ServiceManagement.DatabaseServiceConfigurationManager data = new Fwk.ServiceManagement.DatabaseServiceConfigurationManager("test");
-                ServiceConfigurationCollection services = data.GetAllServices();
-                if (services.Count == 0)
-                    foreach (ServiceConfiguration s in xml.GetAllServices())
-                    {
-                        data.AddServiceConfiguration(s);
-                    }
+                ServiceConfigurationCollection services = ServiceMetadata.GetAllServices("XML_test");
+
+                if (ServiceMetadata.GetAllServices("Sql_test").Count == 0)
+                {
+                   
+                        foreach (ServiceConfiguration s in services)
+                        {
+                            ServiceMetadata.AddServiceConfiguration("Sql_test", s);
+                        }
+                }
             }
             catch (Exception e)
             {
@@ -84,34 +71,33 @@ namespace Fwk.UnitTest
         [TestMethod]
         public void XmlServiceConfigurationManager()
         {
-            Fwk.ServiceManagement.XmlServiceConfigurationManager xml = new Fwk.ServiceManagement.XmlServiceConfigurationManager(@"..\..\..\Test\Fwk.UnitTest\bin\Debug\ServiceMetadataConfig.xml");
-            IServiceConfigurationManager(xml);
+
+            ServiceMetadata_Test("XML_test");
         }
 
         [TestMethod]
         public void DataServiceConfigurationManager()
         {
 
-            Fwk.ServiceManagement.DatabaseServiceConfigurationManager data = new Fwk.ServiceManagement.DatabaseServiceConfigurationManager("test");
-            IServiceConfigurationManager(data);
+            ServiceMetadata_Test("Sql_test");
 
         }
 
-        public void IServiceConfigurationManager(IServiceConfigurationManager pIServiceConfigurationManager)
+        public void ServiceMetadata_Test(string providerName)
         {
             String strErrorResut = String.Empty;
             ServiceConfiguration wServiceConfigurationOriginal;
             ServiceConfiguration wServiceConfiguration;
             try
             {
-                ServiceConfigurationCollection services = pIServiceConfigurationManager.GetAllServices();
+                ServiceConfigurationCollection services = ServiceMetadata.GetAllServices(providerName);
 
 
                 if (services.Count == 0)
                     Assert.Inconclusive("No existen servicios para realizar pruevas ");
 
                 #region update
-                wServiceConfigurationOriginal = pIServiceConfigurationManager.GetServiceConfiguration(services[0].Name);
+                wServiceConfigurationOriginal = ServiceMetadata.GetServiceConfiguration(providerName,services[0].Name);
                 wServiceConfiguration = wServiceConfigurationOriginal.Clone();
 
                 wServiceConfiguration.Audit = true;
@@ -119,12 +105,12 @@ namespace Fwk.UnitTest
                 wServiceConfiguration.Description = wServiceConfigurationOriginal.Description + "_test";
                 wServiceConfiguration.Request = wServiceConfigurationOriginal.Request + "_test";
                 wServiceConfiguration.Response = wServiceConfigurationOriginal.Response + "_test";
-                pIServiceConfigurationManager.SetServiceConfiguration(wServiceConfigurationOriginal.Name, wServiceConfiguration);
+                ServiceMetadata.SetServiceConfiguration(providerName,wServiceConfigurationOriginal.Name, wServiceConfiguration);
                 #endregion
 
                 #region CHEK update
                 wServiceConfiguration = null;
-                wServiceConfiguration = pIServiceConfigurationManager.GetServiceConfiguration(wServiceConfigurationOriginal.Name + "_test");
+                wServiceConfiguration = ServiceMetadata.GetServiceConfiguration(providerName, wServiceConfigurationOriginal.Name + "_test");
 
                 if (!wServiceConfiguration.Name.Equals(string.Concat(wServiceConfigurationOriginal.Name, "_test"))
                    || !wServiceConfiguration.Response.Equals(string.Concat(wServiceConfigurationOriginal.Response, "_test"))
@@ -145,13 +131,13 @@ namespace Fwk.UnitTest
                 wServiceConfiguration.Request = "Request_test";
                 wServiceConfiguration.Response = "Response_test";
 
-                pIServiceConfigurationManager.AddServiceConfiguration(wServiceConfiguration);
+                ServiceMetadata.AddServiceConfiguration(providerName, wServiceConfiguration);
                 #endregion
 
                 #region CHEK  Add new service
                 wServiceConfiguration = null;
-              
-                wServiceConfiguration = pIServiceConfigurationManager.GetServiceConfiguration("Name_test");
+
+                wServiceConfiguration = ServiceMetadata.GetServiceConfiguration(providerName, "Name_test");
 
                 if (wServiceConfiguration == null)
                 {
@@ -163,7 +149,18 @@ namespace Fwk.UnitTest
 
 
 
-                pIServiceConfigurationManager.DeleteServiceConfiguration("Name_test");
+                ServiceMetadata.DeleteServiceConfiguration(providerName,"Name_test");
+                try
+                {
+                    wServiceConfiguration = ServiceMetadata.GetServiceConfiguration(providerName, "Name_test");
+                }
+                catch (Exceptions.TechnicalException te)
+                {
+                    if (te.ErrorId.Equals("7002"))
+                    { 
+
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -173,11 +170,22 @@ namespace Fwk.UnitTest
             Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
 
 
-
         }
 
-       
 
+        ServiceProviderSection _ServiceProviderSection;
+
+        [TestMethod]
+        public void Init_FwkServiceMetadata_Section()
+        {
+
+            if (_ServiceProviderSection == null)
+            {
+                _ServiceProviderSection = ConfigurationManager.GetSection("FwkServiceMetadata") as ServiceProviderSection;
+            }
+
+        }
+       
 
 
     }

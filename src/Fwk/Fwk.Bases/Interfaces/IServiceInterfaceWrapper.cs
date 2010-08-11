@@ -71,7 +71,7 @@ namespace Fwk.Bases
         /// Recupera la configuración de todos los servicios de negocio.
         /// </summary>
         /// <returns>Lista de configuraciones de servicios de negocio.</returns>
-        /// <date>2008-04-10T00:00:00</date>
+        /// <date>2010-08-10T00:00:00</date>
         /// <author>moviedo</author>
         ServiceConfigurationCollection GetAllServices();
 
@@ -81,7 +81,7 @@ namespace Fwk.Bases
         /// </summary>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <param name="pServiceName">Nombre del servicio a actualizar.</param>
-        /// <date>2008-04-10T00:00:00</date>
+        /// <date>2010-08-10T00:00:00</date>
         /// <author>moviedo</author>
         void SetServiceConfiguration(String pServiceName, ServiceConfiguration pServiceConfiguration);
 

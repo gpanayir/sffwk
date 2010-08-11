@@ -14,22 +14,52 @@ namespace Fwk.Bases
 	/// <remarks>
 	/// Permite búsquedas indexadas por nombre de servicio (<see cref="ServiceConfiguration.Name"/>).
 	/// </remarks>
-	/// <date>2008-04-10T00:00:00</date>
+	/// <date>2010-08-10T00:00:00</date>
 	/// <author>moviedo</author>
     [XmlRoot("ServiceConfigurationCollection"), SerializableAttribute]
-	public class ServiceConfigurationCollection :  KeyedCollection<string, ServiceConfiguration> 
+	public class ServiceConfigurationCollection : BaseEntities<ServiceConfiguration>// KeyedCollection<string, ServiceConfiguration> 
 	{
         /// <summary>
         /// Devuelve la propiedad a usar como clave.
         /// </summary>
         /// <param name="pItem">La configuración de servicio de la que se quiere extraer el valor clave.</param>
-        /// <date>2008-04-10T00:00:00</date>
+        /// <date>2010-08-10T00:00:00</date>
         /// <author>moviedo</author>
-        protected override string GetKeyForItem(ServiceConfiguration pItem)
+        //protected  string GetKeyForItem(ServiceConfiguration pItem)
+        //{
+        //    this.Exists(p=> p.Name.Equals(
+        //    return pItem.Name;
+        //}
+
+        /// <summary>
+        /// Retorna un ServiceConfiguration
+        /// </summary>
+        /// <param name="name">Nombre del servicio</param>
+        /// <param name="appId">Nombre de aplicacion, puede ser nula</param>
+        /// <returns></returns>
+        public ServiceConfiguration GetServiceConfiguration(string name, string appId)
         {
-            return pItem.Name;
+            if (Exists(name,appId))
+                return this.Find(p=> p.Name.Equals(name, StringComparison.OrdinalIgnoreCase) 
+                    && (string.IsNullOrEmpty(appId) || p.ApplicationId.Equals(appId, StringComparison.OrdinalIgnoreCase)
+                    ));
+
+            return null;
         }
-       
+
+        /// <summary>
+        /// Determina si existe un ServiceConfiguration
+        /// </summary>
+        /// <param name="name">Nombre del servicio</param>
+        /// <param name="appId">Nombre de aplicacion, puede ser nula</param>
+        /// <returns>bool</returns>
+        public bool Exists(string name, string appId)
+        {
+            return this.Exists(p =>
+                p.Name.Equals(name, StringComparison.OrdinalIgnoreCase)
+                && (string.IsNullOrEmpty(appId) || p.ApplicationId.Equals(appId, StringComparison.OrdinalIgnoreCase)
+                    ));
+        }
 	}
     
 
@@ -51,9 +81,9 @@ namespace Fwk.Bases
         bool _Audit;
         TransactionalBehaviour _TransactionalBehaviour;
         IsolationLevel _IsolationLevel;
-        int _Timeout;
-        bool _Cacheable;
-        private string __ApplicationId;
+     
+     
+        private string _ApplicationId;
         private string _CreatedUserName;
         /// <summary>
         /// 
@@ -183,8 +213,8 @@ namespace Fwk.Bases
         /// </summary>
         public string ApplicationId
         {
-            get { return __ApplicationId; }
-            set { __ApplicationId = value; }
+            get { return _ApplicationId; }
+            set { _ApplicationId = value; }
         }
 
        
@@ -224,8 +254,8 @@ namespace Fwk.Bases
             wStringBuilder.AppendLine(_Request);
             wStringBuilder.AppendLine(" Response: ");
             wStringBuilder.AppendLine(_Response);
-            wStringBuilder.AppendLine(" Cacheable: ");
-            wStringBuilder.AppendLine(_Cacheable.ToString());
+            wStringBuilder.AppendLine(" ApplicationId: ");
+            wStringBuilder.AppendLine(_ApplicationId.ToString());
             wStringBuilder.AppendLine(" Isolation Level: ");
             wStringBuilder.AppendLine(Enum.GetName(typeof(IsolationLevel), _IsolationLevel));
             wStringBuilder.AppendLine(" Transactional Behaviour: ");

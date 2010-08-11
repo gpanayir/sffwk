@@ -691,13 +691,13 @@
     <Timeout>0</Timeout>
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
-  <ServiceConfiguration name="GetAllUsersService">
+  <ServiceConfiguration name="SearchAllUsersService">
     
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-19T11:33:05.632228-03:00</CreatedDateTime>
-    <Handler>Test.BackEnd.Security.GetAllUsersService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Test.Common.Security.ISVC.GetAllUsers.GetAllUsersReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Test.Common.Security.ISVC.GetAllUsers.GetAllUsersRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Test.BackEnd.Security.SearchAllUsersService, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Test.Common.Security.ISVC.SearchAllUsers.SearchAllUsersReq, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Test.Common.Security.ISVC.SearchAllUsers.SearchAllUsersRes, Test.BackEnd.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>

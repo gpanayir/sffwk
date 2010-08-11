@@ -43,96 +43,98 @@ namespace Fwk.BusinessFacades.Utils
     /// <author>moviedo</author>
     public sealed class FacadeHelper
     {
-        private static IServiceConfigurationManager _ServiceConfigurationManager;
-        private static System.IO.FileSystemWatcher watcher;
+
+
         static FacadeHelper()
         {
-            // instanciación del ServiceConfigurationManager.
-            try
-            {
-                _ServiceConfigurationManager = ObjectProvider.GetServiceConfigurationManager();
-            }
-            catch (TechnicalException ex)
-            {
-                Fwk.Logging.Event ev = new Event();
-                ev.LogType = EventType.Error;
-                ev.Machine = ex.Machine;
-                ev.User = ex.UserName;
+            //// instanciación del ServiceConfigurationManager.
+            //try
+            //{
+            //    _ServiceConfigurationManager = ObjectProvider.GetServiceConfigurationManager();
+            //}
+            //catch (TechnicalException ex)
+            //{
+            //    Fwk.Logging.Event ev = new Event();
+            //    ev.LogType = EventType.Error;
+            //    ev.Machine = ex.Machine;
+            //    ev.User = ex.UserName;
                 
 
-                ev.Message.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            //    ev.Message.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
 
-                Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
-                ev = null;
-                throw ex;
-            }
+            //    Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
+            //    ev = null;
+            //    throw ex;
+            //}
 
 
-            //Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
-            if (_ServiceConfigurationManager.GetType() == typeof(XmlServiceConfigurationManager))
-            {
-                watcher = new System.IO.FileSystemWatcher();
+            ////Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
+            //if (_ServiceConfigurationManager.GetType() == typeof(XmlServiceConfigurationManager))
+            //{
+            //    watcher = new System.IO.FileSystemWatcher();
 
-                watcher.Filter = ObjectProvider._ServiceProviderSection.DefaultProvider.SourceInfo;
-                watcher.Path = Environment.CurrentDirectory;
-                watcher.EnableRaisingEvents = true;
+            //    watcher.Filter = ObjectProvider._ServiceProviderSection.DefaultProvider.SourceInfo;
+            //    watcher.Path = Environment.CurrentDirectory;
+            //    watcher.EnableRaisingEvents = true;
 
-                watcher.Changed += new FileSystemEventHandler(watcher_Changed);
-            }
+            //    watcher.Changed += new FileSystemEventHandler(watcher_Changed);
+            //}
         }
-        /// <summary>
-        /// Si algun cambio ocurre en el archivo de metadata
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        static void watcher_Changed(object sender, FileSystemEventArgs e)
-        {
 
-            try
-            {
-                _ServiceConfigurationManager = ObjectProvider.GetServiceConfigurationManager();
-            }
-            catch (TechnicalException ex)
-            {
-                Fwk.Logging.Event ev = new Event();
-                ev.LogType = EventType.Error;
-                ev.Machine = ex.Machine;
-                ev.User = ex.UserName;
-                //ev.Source = "Service Dispatcher";
-                String str = string.Concat(
-                    "Se intento modificar la metadata de servicios y se arrojo el siguiente error ",
-                    Environment.NewLine,
-                    Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex),
-                    Environment.NewLine,
-                    " la metadata se encuentra en: ",
-                    Environment.NewLine, e.FullPath);
+        ///// <summary>
+        ///// Si algun cambio ocurre en el archivo de metadata
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //static void watcher_Changed(object sender, FileSystemEventArgs e)
+        //{
 
-                ev.Message.Text = str;
+        //    try
+        //    {
+        //        _ServiceConfigurationManager = ObjectProvider.GetServiceConfigurationManager();
+        //    }
+        //    catch (TechnicalException ex)
+        //    {
+        //        Fwk.Logging.Event ev = new Event();
+        //        ev.LogType = EventType.Error;
+        //        ev.Machine = ex.Machine;
+        //        ev.User = ex.UserName;
+        //        //ev.Source = "Service Dispatcher";
+        //        String str = string.Concat(
+        //            "Se intento modificar la metadata de servicios y se arrojo el siguiente error ",
+        //            Environment.NewLine,
+        //            Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex),
+        //            Environment.NewLine,
+        //            " la metadata se encuentra en: ",
+        //            Environment.NewLine, e.FullPath);
 
-                Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
+        //        ev.Message.Text = str;
 
-            }
-        }
+        //        Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
+
+        //    }
+        //}
+
         #region Run services
         /// <summary>
         /// Ejecuta un servicio de negocio dentro de un ámbito transaccional.
         /// </summary>
         /// <param name="pData">XML con datos de entrada.</param>
-        /// <param name="pServiceConfiguration">configuración del servicio.</param>
+        /// <param name="serviceConfiguration">configuración del servicio.</param>
         /// <returns>XML con datos de salida del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public static string RunTransactionalProcess(string pData, ServiceConfiguration pServiceConfiguration)
+        public static string RunTransactionalProcess(string pData, ServiceConfiguration serviceConfiguration)
         {
             string wResult;
-            TransactionScopeHandler wTransactionScopeHandler = CreateTransactionScopeHandler(pServiceConfiguration);
+            TransactionScopeHandler wTransactionScopeHandler = CreateTransactionScopeHandler(serviceConfiguration);
             ServiceError wServiceError = null;
             try
             {
                 //  ejecución del servicio.
                 wTransactionScopeHandler.InitScope();
 
-                wResult = ServiceCalls.RunService(pData, pServiceConfiguration, out wServiceError);
+                wResult = ServiceCalls.RunService(pData, serviceConfiguration, out wServiceError);
 
                 if (wServiceError == null)
                     wTransactionScopeHandler.Complete();
@@ -146,9 +148,9 @@ namespace Fwk.BusinessFacades.Utils
                 wTransactionScopeHandler.Abort();
 
                 #region < Log >
-                if (pServiceConfiguration.Audit == true)
+                if (serviceConfiguration.Audit == true)
                 {
-                   Audit.LogNonSucessfulExecution(ex, pServiceConfiguration);
+                   Audit.LogNonSucessfulExecution(ex, serviceConfiguration);
                 }
                 #endregion
 
@@ -166,20 +168,20 @@ namespace Fwk.BusinessFacades.Utils
         /// Ejecuta un servicio de negocio dentro de un ámbito transaccional.
         /// </summary>
         /// <param name="pRequest">XML con datos de entrada.</param>
-        /// <param name="pServiceConfiguration">configuración del servicio.</param>
+        /// <param name="serviceConfiguration">configuración del servicio.</param>
         /// <returns>XML con datos de salida del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public static IServiceContract RunTransactionalProcess(IServiceContract pRequest, ServiceConfiguration pServiceConfiguration)
+        public static IServiceContract RunTransactionalProcess(IServiceContract pRequest, ServiceConfiguration serviceConfiguration)
         {
             IServiceContract wResult;
-            TransactionScopeHandler wTransactionScopeHandler = CreateTransactionScopeHandler(pServiceConfiguration);
+            TransactionScopeHandler wTransactionScopeHandler = CreateTransactionScopeHandler(serviceConfiguration);
             ServiceError wServiceError = null;
             try
             {
                 //  ejecución del servicio.
                 wTransactionScopeHandler.InitScope();
-                wResult = ServiceCalls.RunService(pRequest, pServiceConfiguration, out wServiceError);
+                wResult = ServiceCalls.RunService(pRequest, serviceConfiguration, out wServiceError);
 
                 if (wServiceError == null)
                     wTransactionScopeHandler.Complete();
@@ -193,9 +195,9 @@ namespace Fwk.BusinessFacades.Utils
                 wTransactionScopeHandler.Abort();
 
                 #region < Log >
-                if (pServiceConfiguration.Audit == true)
+                if (serviceConfiguration.Audit == true)
                 {
-                    Audit.LogNonSucessfulExecution(ex, pServiceConfiguration);
+                    Audit.LogNonSucessfulExecution(ex, serviceConfiguration);
                 }
                 #endregion
 
@@ -214,17 +216,17 @@ namespace Fwk.BusinessFacades.Utils
         /// Ejecuta un servicio de negocio dentro de un ámbito transaccional.
         /// </summary>
         /// <param name="pData">XML con datos de entrada.</param>
-        /// <param name="pServiceConfiguration">configuración del servicio.</param>
+        /// <param name="serviceConfiguration">configuración del servicio.</param>
         /// <returns>XML con datos de salida del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public static string RunNonTransactionalProcess(string pData, ServiceConfiguration pServiceConfiguration)
+        public static string RunNonTransactionalProcess(string pData, ServiceConfiguration serviceConfiguration)
         {
             string wResult;
             ServiceError wServiceError = null;
             try
             {
-                wResult = ServiceCalls.RunService(pData, pServiceConfiguration, out wServiceError);
+                wResult = ServiceCalls.RunService(pData, serviceConfiguration, out wServiceError);
 
             }
             catch (Exception ex)
@@ -240,17 +242,17 @@ namespace Fwk.BusinessFacades.Utils
         /// Ejecuta un servicio de negocio dentro de un ámbito transaccional.
         /// </summary>
         /// <param name="pRequest">Request con datos de entrada.</param>
-        /// <param name="pServiceConfiguration">configuración del servicio.</param>
+        /// <param name="serviceConfiguration">configuración del servicio.</param>
         /// <returns>XML con datos de salida del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public static IServiceContract RunNonTransactionalProcess(IServiceContract pRequest, ServiceConfiguration pServiceConfiguration)
+        public static IServiceContract RunNonTransactionalProcess(IServiceContract pRequest, ServiceConfiguration serviceConfiguration)
         {
             IServiceContract wResult;
             ServiceError wServiceError = null;
             try
             {
-                wResult = ServiceCalls.RunService(pRequest, pServiceConfiguration, out wServiceError);
+                wResult = ServiceCalls.RunService(pRequest, serviceConfiguration, out wServiceError);
             }
             catch (Exception ex)
             {
@@ -267,14 +269,14 @@ namespace Fwk.BusinessFacades.Utils
         /// Recupera la configuración del servicio de negocio.
         /// </summary>
         /// <remarks>Lee la configuración utilizando un ServiceConfigurationManager del tipo especificado en los settings de la aplicación.</remarks>
-        /// <param name="pServiceName">Nombre del servicio de negocio.</param>
+        /// <param name="serviceName">Nombre del servicio de negocio.</param>
         /// <returns>configuración del servicio de negocio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public static ServiceConfiguration GetServiceConfiguration(string pServiceName)
+        public static ServiceConfiguration GetServiceConfiguration(string serviceName)
         {
             // obtención de la configuración del servicio.
-            ServiceConfiguration wResult = _ServiceConfigurationManager.GetServiceConfiguration(pServiceName);
+            ServiceConfiguration wResult = ServiceMetadata.GetServiceConfiguration(string.Empty,serviceName);
             return wResult;
         }
 
@@ -284,81 +286,111 @@ namespace Fwk.BusinessFacades.Utils
         /// <returns>ServiceConfigurationCollection</returns>
         public static ServiceConfigurationCollection GetAllServices()
         {
-            return _ServiceConfigurationManager.GetAllServices();
+            return GetAllServices(string.Empty);
+        }
+
+        /// <summary>
+        /// Obtiene todos los servicios configurados
+        /// </summary>
+        /// <returns>ServiceConfigurationCollection</returns>
+        public static ServiceConfigurationCollection GetAllServices(string providerName)
+        {
+            return ServiceMetadata.GetAllServices(providerName);
         }
 
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
-        /// <date>2008-04-10T00:00:00</date>
+        /// <param name="serviceConfiguration">configuración del servicio de negocio.</param>
+        /// <date>2010-08-10T00:00:00</date>
         /// <author>moviedo</author>
-        public static void SetServiceConfiguration(String pServiceName, ServiceConfiguration pServiceConfiguration)
+        public static void SetServiceConfiguration(String serviceName, ServiceConfiguration serviceConfiguration)
         {
-            _ServiceConfigurationManager.SetServiceConfiguration(pServiceName,pServiceConfiguration);
+            ServiceMetadata.SetServiceConfiguration(string.Empty, serviceName, serviceConfiguration);
         }
 
+        public static void SetServiceConfiguration(string providerName, String serviceName, ServiceConfiguration serviceConfiguration)
+        {
+            ServiceMetadata.SetServiceConfiguration(providerName,serviceName, serviceConfiguration);
+        }
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
         /// </summary>
-        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
+        /// <param name="serviceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
-        public static void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
+        public static void AddServiceConfiguration(ServiceConfiguration serviceConfiguration)
         {
-            _ServiceConfigurationManager.AddServiceConfiguration(pServiceConfiguration); 
+            ServiceMetadata.AddServiceConfiguration(string.Empty, serviceConfiguration); 
         }
 
+        public static void AddServiceConfiguration(string providerName, ServiceConfiguration serviceConfiguration)
+        {
+            ServiceMetadata.AddServiceConfiguration(providerName, serviceConfiguration);
+        }
+        
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceName">Nombre del servicio.</param>
+        /// <param name="serviceName">Nombre del servicio.</param>
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
-        public static void DeleteServiceConfiguration(string pServiceName)
+        public static void DeleteServiceConfiguration(string serviceName)
         {
-            _ServiceConfigurationManager.DeleteServiceConfiguration(pServiceName);
+            ServiceMetadata.DeleteServiceConfiguration(string.Empty, serviceName);
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <param name="serviceName"></param>
+        public static void DeleteServiceConfiguration(string providerName, string serviceName)
+        {
+            ServiceMetadata.DeleteServiceConfiguration(providerName, serviceName);
+        }
+
         /// <summary>
         /// Valida que el servicio está disponible para ser ejecutado.
         /// </summary>
-        /// <param name="pServiceConfiguration">configuración del servicio.</param>
+        /// <param name="serviceConfiguration">configuración del servicio.</param>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public static void ValidateAvailability(ServiceConfiguration pServiceConfiguration, out IServiceContract result)
+        public static void ValidateAvailability(ServiceConfiguration serviceConfiguration, out IServiceContract result)
         {
             result = null;
             // Validación de disponibilidad del servicio.
-            if (!pServiceConfiguration.Available)
+            if (!serviceConfiguration.Available)
             {
-                result = TryGetResultInstance(pServiceConfiguration);
+                result = TryGetResultInstance(serviceConfiguration);
                 ServiceError wServiceError;
 
                 #region < Log >
-                Audit.LogNotAvailableExcecution(pServiceConfiguration, out wServiceError);
+                Audit.LogNotAvailableExcecution(serviceConfiguration, out wServiceError);
 
                 #endregion
 
                 result.Error = wServiceError;
             }
         }
-        static IServiceContract TryGetResultInstance(ServiceConfiguration pServiceConfiguration)
+        static IServiceContract TryGetResultInstance(ServiceConfiguration serviceConfiguration)
         {
-            return (IServiceContract)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(pServiceConfiguration.Response);
+            return (IServiceContract)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(serviceConfiguration.Response);
         }
+
         #region private methods
         /// <summary>
         /// Crea un ámbito de transacción en base a la configuración del servicio de negocio.
         /// </summary>
-        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
+        /// <param name="serviceConfiguration">configuración del servicio de negocio.</param>
         /// <returns>ámbito de transacción. <see cref="TransactionScopeHandler"/> </returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        private static TransactionScopeHandler CreateTransactionScopeHandler(ServiceConfiguration pServiceConfiguration)
+        private static TransactionScopeHandler CreateTransactionScopeHandler(ServiceConfiguration serviceConfiguration)
         {
             //Creación del ámbito de la transacción.
-            TransactionScopeHandler wResult = new TransactionScopeHandler(pServiceConfiguration.TransactionalBehaviour, pServiceConfiguration.IsolationLevel, new TimeSpan(0, 0, 0));
+            TransactionScopeHandler wResult = new TransactionScopeHandler(serviceConfiguration.TransactionalBehaviour, serviceConfiguration.IsolationLevel, new TimeSpan(0, 0, 0));
 
             return wResult;
 
@@ -385,15 +417,15 @@ namespace Fwk.BusinessFacades.Utils
         /// Ruta prefija donde se deberan obtener los assemblies. 
         /// Por defecto se retorna \bin del servicio
         /// </summary>
-        /// <param name="pServiceConfiguration"></param>
+        /// <param name="serviceConfiguration"></param>
         /// <returns>Ruta prefijada del servicio</returns>
-        private static string GePatch(ServiceConfiguration pServiceConfiguration)
+        private static string GePatch(ServiceConfiguration serviceConfiguration)
         {
             String wAssembliesPath = String.Empty;
 
-            if (pServiceConfiguration.ApplicationId != null)
+            if (serviceConfiguration.ApplicationId != null)
             {
-                if (pServiceConfiguration.ApplicationId.Length == 0)
+                if (serviceConfiguration.ApplicationId.Length == 0)
                 {
                     return String.Empty;
                 }
@@ -405,7 +437,7 @@ namespace Fwk.BusinessFacades.Utils
 
 
             wAssembliesPath = ConfigurationManager.GetProperty("AssembliesPath",
-                                                                pServiceConfiguration.
+                                                                serviceConfiguration.
                                                                     ApplicationId);
 
             //Si no existe tal carpeta por defecto se busca en el \bin de la aplicacion

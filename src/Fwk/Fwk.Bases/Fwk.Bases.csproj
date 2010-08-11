@@ -130,6 +130,7 @@
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderCollection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderElement.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderSection.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\ServiceManagement.cs" />
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Blocks\Functions\ExportFunctions.cs" />
     <Compile Include="Blocks\Functions\ImportFunctions.cs" />
@@ -183,10 +184,7 @@
     <Compile Include="Blocks\Fwk.Mail\Pop3\Pop3.cs" />
     <Compile Include="Blocks\Fwk.Mail\Pop3\Pop3Exception.cs" />
     <Compile Include="Blocks\Fwk.Mail\ProtocolMailBase.cs" />
-    <Compile Include="Blocks\Fwk.ServiceManagement\Database\DatabaseConfigSection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Database\DatabaseServiceConfigurationManager.cs" />
-    <Compile Include="Blocks\Fwk.ServiceManagement\ObjectProvider.cs" />
-    <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlConfigSection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlServiceConfigurationManager.cs" />
     <Compile Include="Classes\BackEndBases.cs" />
     <Compile Include="Classes\BusinessService.cs" />
@@ -353,9 +351,7 @@
     </None>
     <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
     <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
-    <None Include="Blocks\Fwk.ServiceManagement\Database\app.config" />
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />
-    <None Include="Blocks\Fwk.ServiceManagement\Xml\app.config" />
     <Content Include="Blocks\Fwk.Exceptions\FrameworkErrors.txt" />
     <None Include="Resources\db5.png" />
     <None Include="RequestResponse.cd" />

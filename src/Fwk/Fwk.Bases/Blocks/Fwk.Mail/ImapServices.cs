@@ -10,14 +10,14 @@ using System.Collections;
 
 namespace Fwk.Mail
 {
-    sealed class ImapServices : ProtocolMailBase
+    sealed class Imaservices : ProtocolMailBase
     {
         // Singleton       
-        public static readonly ImapServices Instance = null;
+        public static readonly Imaservices Instance = null;
 
-        static ImapServices()
+        static Imaservices()
         {
-            Instance = new ImapServices();
+            Instance = new Imaservices();
         }
 
         public override LoginResponseEnum Connect(string pUserMail, string pUserPassword)

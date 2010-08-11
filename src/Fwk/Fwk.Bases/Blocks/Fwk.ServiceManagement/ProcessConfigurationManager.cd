@@ -1,51 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Font Name="Tahoma" Size="8.25" />
-  <Class Name="Fwk.ServiceManagement.ObjectProvider" Collapsed="true">
-    <Position X="0.5" Y="4.5" Width="2.75" />
-    <TypeIdentifier>
-      <FileName>ObjectProvider.cs</FileName>
-      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Fwk.ServiceManagement.XmlServiceConfigurationManager">
-    <Position X="3.25" Y="4" Width="2.75" />
+    <Position X="4.25" Y="0.75" Width="2.75" />
     <TypeIdentifier>
-      <FileName>Xml\XmlServiceConfigurationManager.cs</FileName>
-      <HashCode>AAAAAAQAAABgAAAAAAAAIEBAEQAIAAAQAAAAAAAAAgA=</HashCode>
+      <HashCode>AAAAAIQAAAAAAAAAAAAEAEAAAAAIAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Blocks\Fwk.ServiceManagement\Xml\XmlServiceConfigurationManager.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Fwk.ServiceManagement.DatabaseServiceConfigurationManager">
     <Position X="1" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <FileName>Database\DatabaseServiceConfigurationManager.cs</FileName>
-      <HashCode>AAAAAAQAAAAgAAAAAAAAIEgAAAAIAAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAIEgAAAAIAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Blocks\Fwk.ServiceManagement\Database\DatabaseServiceConfigurationManager.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Fwk.ServiceManagement.Xml.XmlConfigSection">
-    <Position X="7.25" Y="3.25" Width="2" />
-    <TypeIdentifier>
-      <FileName>Xml\XmlConfigSection.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Fwk.ServiceManagement.DatabaseConfigSection">
-    <Position X="4.75" Y="1" Width="2" />
-    <TypeIdentifier>
-      <FileName>Database\DatabaseConfigSection.cs</FileName>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
-    </TypeIdentifier>
-    <InheritanceLine Type="System.Configuration.ConfigurationSection" ManuallyRouted="true">
-      <Path>
-        <Point X="7.25" Y="1.551" />
-        <Point X="6.75" Y="1.551" />
-      </Path>
-    </InheritanceLine>
   </Class>
   <Class Name="System.Configuration.ConfigurationSection">
     <Position X="7.25" Y="0.5" Width="2" />
     <TypeIdentifier />
   </Class>
+  <Font Name="Tahoma" Size="8.25" />
 </ClassDiagram>

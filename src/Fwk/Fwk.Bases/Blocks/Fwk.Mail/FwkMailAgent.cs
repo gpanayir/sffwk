@@ -122,8 +122,8 @@ namespace Fwk.Mail
 
         public void Stop()
         {
-            if (ImapServices.Instance != null)
-                ImapServices.Instance.Disconnect();
+            if (Imaservices.Instance != null)
+                Imaservices.Instance.Disconnect();
 
             if (_Pop3 != null)
                 _Pop3.Disconnect();
@@ -240,12 +240,12 @@ namespace Fwk.Mail
             if (_ItemCache.ConnectionType == ConnectionTypeEnum.IMAP)
             {
          
-                ImapServices.Instance.UserMail = _ItemCache.UserMail;
-                ImapServices.Instance.UserPassword = _ItemCache.UserPassword;
+                Imaservices.Instance.UserMail = _ItemCache.UserMail;
+                Imaservices.Instance.UserPassword = _ItemCache.UserPassword;
 
 
                 LoginResponseEnum wResponse = new LoginResponseEnum();
-                wResponse = ImapServices.Instance.Connect(_ItemCache.UserMail, _ItemCache.UserPassword);
+                wResponse = Imaservices.Instance.Connect(_ItemCache.UserMail, _ItemCache.UserPassword);
 
                 if ((wResponse == LoginResponseEnum.CONNECTION_FAIL) || (wResponse == LoginResponseEnum.LOGIN_FAIL))
                 {
@@ -260,7 +260,7 @@ namespace Fwk.Mail
                 }
 
                 _IsConnected = true;
-                wNewMail = ImapServices.Instance.GetUnseen();
+                wNewMail = Imaservices.Instance.GetUnseen();
 
                 // Se lanza evento con la cantidad de nuevos e-mails y la url para poder verlos
                 if (wNewMail > 0)
@@ -272,7 +272,7 @@ namespace Fwk.Mail
                     if ((_UnSeenMessages == 0) || (wNewMail > _UnSeenMessages))
                     {
                         if(NewReceivedMail != null)
-                            NewReceivedMail(this, new NewReceivedMailEventArgs(wNewMail, ImapServices.Instance.URLInboxMail));
+                            NewReceivedMail(this, new NewReceivedMailEventArgs(wNewMail, Imaservices.Instance.URLInboxMail));
                     }
 
                     _UnSeenMessages = wNewMail;
@@ -337,12 +337,12 @@ namespace Fwk.Mail
 
             // Se verifica primero el tipo Imap, ya que el mayor porcentaje de usuarios tendra Imap
                        
-            wIsImap = ImapServices.Instance.AccountValidation(pUser, pPass);
+            wIsImap = Imaservices.Instance.AccountValidation(pUser, pPass);
 
             if (!wIsImap)// se verifica si es pop3
             {
                 _Pop3 = Pop3Services.Instance; // obtiene instancia de Pop3Services
-                _Pop3.Host = ImapServices.Instance.Host;
+                _Pop3.Host = Imaservices.Instance.Host;
 
                 wIsPop3 = _Pop3.AccountValidation(pUser, pPass);
 

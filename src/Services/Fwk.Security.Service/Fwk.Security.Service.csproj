@@ -120,13 +120,15 @@
     <Compile Include="SVC\Users\UpdateUserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="metadata\ServiceMetadataConfig.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Fwk\Fwk.Security\Fwk.Security.csproj">
       <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
       <Name>Fwk.Security</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="metadata\ServiceMetadataConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

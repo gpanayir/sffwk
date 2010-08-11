@@ -4,12 +4,10 @@ using System.Text;
 using System.Configuration;
 using Fwk.Logging.Targets;
 
-namespace Fwk.ServiceManagement
+namespace Fwk.ConfigSection
 {
     /// <summary>
     /// ConfigProvider . 
-    /// 
-    ///
     /// </summary>
     /// <date>2010/09/02</date>
     /// <author>moviedo</author>
@@ -54,16 +52,22 @@ namespace Fwk.ServiceManagement
         /// Archivo contenedor de la configuracion
         ///  
         /// </summary>
-        [ConfigurationProperty("sourceinfo", IsRequired = true, IsKey = false), 
-         StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        [ConfigurationProperty("sourceinfo", IsRequired = true, IsKey = false), StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
         public string SourceInfo
         {
             get
             {
-                return (string)this["SourceInfo"];
+                return (string)this["sourceinfo"];
             }
         }
-
+        [ConfigurationProperty("appid", IsRequired = true, IsKey = false), StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        public string ApplicationId
+        {
+            get
+            {
+                return (string)this["appid"];
+            }
+        }
         #endregion
     }
 }

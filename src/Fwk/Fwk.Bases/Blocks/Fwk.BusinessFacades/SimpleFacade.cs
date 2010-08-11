@@ -273,7 +273,7 @@ namespace Fwk.BusinessFacades
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
-        /// <date>2008-04-10T00:00:00</date>
+        /// <date>2010-08-10T00:00:00</date>
         /// <author>moviedo</author>
         public void SetServiceConfiguration(String pServiceName, ServiceConfiguration pServiceConfiguration)
         {

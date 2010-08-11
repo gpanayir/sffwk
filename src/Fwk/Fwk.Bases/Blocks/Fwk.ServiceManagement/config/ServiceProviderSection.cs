@@ -2,7 +2,7 @@ using System;
 using System.Configuration;
 using System.Collections.Generic;
 
-namespace Fwk.ServiceManagement
+namespace Fwk.ConfigSection
 {
     /// <summary>
     /// Sección 'ServiceProviderSection' del archivo de configuración App.Config.
@@ -74,6 +74,7 @@ namespace Fwk.ServiceManagement
             }
             return null;
         }
+       
 
         ServiceProviderElement _DefaultProvider = null;
 

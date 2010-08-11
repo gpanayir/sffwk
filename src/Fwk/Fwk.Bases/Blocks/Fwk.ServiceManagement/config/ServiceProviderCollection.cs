@@ -4,7 +4,7 @@ using System.Text;
 using System.Configuration;
 
 
-namespace Fwk.ServiceManagement
+namespace Fwk.ConfigSection
 {
     /// <summary>
     /// Colección ServiceProviderElement 
@@ -22,7 +22,7 @@ namespace Fwk.ServiceManagement
 
         #region <protected overrides>
         /// <summary>
-        /// Crea un nuevo ConfigProviderElement en la colección.
+        /// Crea un nuevo ServiceProviderElement en la colección.
         /// </summary>
         /// <returns>ConfigurationElement.</returns>
         protected override ConfigurationElement CreateNewElement()
@@ -31,7 +31,7 @@ namespace Fwk.ServiceManagement
         }
 
         /// <summary>
-        /// Obtiene el key de un RuleElement.
+        /// Obtiene el key de un ServiceProviderElement.
         /// </summary>
         /// <param name="element">ConfigProviderElement del cual se desea conocer su key.</param>
         /// <returns>ConfigProviderElement.</returns>
@@ -53,7 +53,7 @@ namespace Fwk.ServiceManagement
         }
 
         /// <summary>
-        /// Retorna un proveedor de configuracion según si índice.
+        /// Retorna un proveedor de netadata según si índice.
         /// </summary>
         /// <param name="pIndex">índice del proveedor de configuracion que se desea obtener.</param>
         /// <returns>proveedor de configuracion</returns>
@@ -68,7 +68,7 @@ namespace Fwk.ServiceManagement
 
         #region <public methods>
         /// <summary>
-        /// Retorna el índice del proveedor de configuracion.
+        /// Retorna el índice del proveedor de metadata.
         /// </summary>
         /// <param name="configProviderElement">ConfigProviderElement que se desea conocer su </param>
         /// <returns>índice</returns>
@@ -77,5 +77,6 @@ namespace Fwk.ServiceManagement
             return BaseIndexOf(configProviderElement);
         }
         #endregion
+
     }
 }
