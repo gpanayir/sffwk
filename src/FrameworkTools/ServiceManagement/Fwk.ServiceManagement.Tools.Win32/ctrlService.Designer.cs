@@ -32,10 +32,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtResponse = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
+            this.txtApplicationId = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.bindingSourceService = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtResponse = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.txtRequest = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.txtHandler = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.txtName = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
@@ -51,29 +52,18 @@
             this.lblName = new System.Windows.Forms.Label();
             this.ckbAvailable = new System.Windows.Forms.CheckBox();
             this.cboTransactionalBehaviour = new System.Windows.Forms.ComboBox();
-            this.txtAppId = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceService)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(3, 1);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(51, 20);
-            this.lblTitle.TabIndex = 50;
-            this.lblTitle.Text = "label3";
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtAppId);
+            this.groupBox1.Controls.Add(this.txtApplicationId);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtResponse);
             this.groupBox1.Controls.Add(this.txtRequest);
             this.groupBox1.Controls.Add(this.txtHandler);
@@ -95,6 +85,43 @@
             this.groupBox1.Size = new System.Drawing.Size(671, 422);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // txtApplicationId
+            // 
+            this.txtApplicationId.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtApplicationId.AllowBlankSpace = true;
+            this.txtApplicationId.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
+            this.txtApplicationId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtApplicationId.BackColor = System.Drawing.Color.White;
+            this.txtApplicationId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtApplicationId.CapitalOnly = false;
+            this.txtApplicationId.ErrorIconRightToLeft = true;
+            this.txtApplicationId.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApplicationId.InactiveBorderColor = System.Drawing.SystemColors.Control;
+            this.txtApplicationId.Location = new System.Drawing.Point(9, 25);
+            this.txtApplicationId.Name = "txtApplicationId";
+            this.txtApplicationId.NotAllowedCharactersErrorText = null;
+            this.txtApplicationId.Required = true;
+            this.txtApplicationId.RequiredErrorText = "Name value is required";
+            this.txtApplicationId.Size = new System.Drawing.Size(653, 21);
+            this.txtApplicationId.TabIndex = 75;
+            this.txtApplicationId.TabStop = false;
+            this.txtApplicationId.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
+            // 
+            // bindingSourceService
+            // 
+            this.bindingSourceService.DataSource = typeof(Fwk.Bases.ServiceConfiguration);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 58);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 74;
+            this.label3.Text = "Name";
             // 
             // txtResponse
             // 
@@ -110,7 +137,7 @@
             this.txtResponse.ErrorIconRightToLeft = true;
             this.txtResponse.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtResponse.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtResponse.Location = new System.Drawing.Point(12, 272);
+            this.txtResponse.Location = new System.Drawing.Point(12, 290);
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.NotAllowedCharactersErrorText = null;
             this.txtResponse.Required = true;
@@ -118,10 +145,6 @@
             this.txtResponse.Size = new System.Drawing.Size(650, 21);
             this.txtResponse.TabIndex = 72;
             this.txtResponse.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
-            // 
-            // bindingSourceService
-            // 
-            this.bindingSourceService.DataSource = typeof(Fwk.Bases.ServiceConfiguration);
             // 
             // txtRequest
             // 
@@ -137,7 +160,7 @@
             this.txtRequest.ErrorIconRightToLeft = true;
             this.txtRequest.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRequest.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtRequest.Location = new System.Drawing.Point(12, 233);
+            this.txtRequest.Location = new System.Drawing.Point(12, 251);
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.NotAllowedCharactersErrorText = null;
             this.txtRequest.Required = true;
@@ -160,7 +183,7 @@
             this.txtHandler.ErrorIconRightToLeft = true;
             this.txtHandler.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHandler.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtHandler.Location = new System.Drawing.Point(12, 194);
+            this.txtHandler.Location = new System.Drawing.Point(12, 212);
             this.txtHandler.Name = "txtHandler";
             this.txtHandler.NotAllowedCharactersErrorText = null;
             this.txtHandler.Required = true;
@@ -183,7 +206,7 @@
             this.txtName.ErrorIconRightToLeft = true;
             this.txtName.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtName.Location = new System.Drawing.Point(12, 26);
+            this.txtName.Location = new System.Drawing.Point(12, 74);
             this.txtName.Name = "txtName";
             this.txtName.NotAllowedCharactersErrorText = null;
             this.txtName.Required = true;
@@ -208,20 +231,20 @@
             this.txtDescription.ErrorIconRightToLeft = true;
             this.txtDescription.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtDescription.Location = new System.Drawing.Point(12, 105);
+            this.txtDescription.Location = new System.Drawing.Point(12, 123);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NotAllowedCharactersErrorText = null;
             this.txtDescription.Required = false;
             this.txtDescription.RequiredErrorText = null;
-            this.txtDescription.Size = new System.Drawing.Size(651, 49);
+            this.txtDescription.Size = new System.Drawing.Size(651, 70);
             this.txtDescription.TabIndex = 68;
             this.txtDescription.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(172, 303);
+            this.label4.Location = new System.Drawing.Point(193, 323);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 13);
             this.label4.TabIndex = 65;
@@ -232,7 +255,7 @@
             this.cboIsolationLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIsolationLevel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboIsolationLevel.FormattingEnabled = true;
-            this.cboIsolationLevel.Location = new System.Drawing.Point(175, 319);
+            this.cboIsolationLevel.Location = new System.Drawing.Point(196, 339);
             this.cboIsolationLevel.Name = "cboIsolationLevel";
             this.cboIsolationLevel.Size = new System.Drawing.Size(150, 21);
             this.cboIsolationLevel.TabIndex = 58;
@@ -241,7 +264,7 @@
             // 
             this.ckbAudit.AutoSize = true;
             this.ckbAudit.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceService, "Audit", true));
-            this.ckbAudit.Location = new System.Drawing.Point(496, 323);
+            this.ckbAudit.Location = new System.Drawing.Point(527, 341);
             this.ckbAudit.Name = "ckbAudit";
             this.ckbAudit.Size = new System.Drawing.Size(50, 17);
             this.ckbAudit.TabIndex = 61;
@@ -251,7 +274,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 303);
+            this.label10.Location = new System.Drawing.Point(6, 321);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(121, 13);
             this.label10.TabIndex = 64;
@@ -260,7 +283,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 256);
+            this.label9.Location = new System.Drawing.Point(9, 274);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(55, 13);
             this.label9.TabIndex = 63;
@@ -269,7 +292,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 217);
+            this.label8.Location = new System.Drawing.Point(9, 235);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 13);
             this.label8.TabIndex = 62;
@@ -278,7 +301,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 178);
+            this.label2.Location = new System.Drawing.Point(9, 196);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 57;
@@ -287,7 +310,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 89);
+            this.label1.Location = new System.Drawing.Point(12, 107);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 55;
@@ -296,17 +319,17 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(12, 10);
+            this.lblName.Location = new System.Drawing.Point(6, 9);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.Size = new System.Drawing.Size(71, 13);
             this.lblName.TabIndex = 54;
-            this.lblName.Text = "Name";
+            this.lblName.Text = "Application Id";
             // 
             // ckbAvailable
             // 
             this.ckbAvailable.AutoSize = true;
             this.ckbAvailable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceService, "Available", true));
-            this.ckbAvailable.Location = new System.Drawing.Point(421, 323);
+            this.ckbAvailable.Location = new System.Drawing.Point(421, 343);
             this.ckbAvailable.Name = "ckbAvailable";
             this.ckbAvailable.Size = new System.Drawing.Size(69, 17);
             this.ckbAvailable.TabIndex = 60;
@@ -318,43 +341,20 @@
             this.cboTransactionalBehaviour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTransactionalBehaviour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboTransactionalBehaviour.FormattingEnabled = true;
-            this.cboTransactionalBehaviour.Location = new System.Drawing.Point(10, 319);
+            this.cboTransactionalBehaviour.Location = new System.Drawing.Point(10, 337);
             this.cboTransactionalBehaviour.Name = "cboTransactionalBehaviour";
             this.cboTransactionalBehaviour.Size = new System.Drawing.Size(150, 21);
             this.cboTransactionalBehaviour.TabIndex = 56;
             // 
-            // txtAppId
+            // lblTitle
             // 
-            this.txtAppId.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtAppId.AllowBlankSpace = true;
-            this.txtAppId.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
-            this.txtAppId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAppId.BackColor = System.Drawing.Color.White;
-            this.txtAppId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAppId.CapitalOnly = false;
-            this.txtAppId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceService, "ApplicationId", true));
-            this.txtAppId.ErrorIconRightToLeft = true;
-            this.txtAppId.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAppId.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtAppId.Location = new System.Drawing.Point(9, 66);
-            this.txtAppId.Name = "txtAppId";
-            this.txtAppId.NotAllowedCharactersErrorText = null;
-            this.txtAppId.Required = true;
-            this.txtAppId.RequiredErrorText = "Name value is required";
-            this.txtAppId.Size = new System.Drawing.Size(653, 21);
-            this.txtAppId.TabIndex = 73;
-            this.txtAppId.TabStop = false;
-            this.txtAppId.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 50);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 13);
-            this.label6.TabIndex = 74;
-            this.label6.Text = "App id";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(3, 1);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(51, 20);
+            this.lblTitle.TabIndex = 50;
+            this.lblTitle.Text = "label3";
             // 
             // ctrlService
             // 
@@ -363,7 +363,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.groupBox1);
             this.Name = "ctrlService";
-            this.Size = new System.Drawing.Size(674, 434);
+            this.Size = new System.Drawing.Size(674, 455);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceService)).EndInit();
@@ -393,7 +393,7 @@
         private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtRequest;
         private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtHandler;
         private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtName;
-        private System.Windows.Forms.Label label6;
-        private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtAppId;
+        private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtApplicationId;
+        private System.Windows.Forms.Label label3;
     }
 }

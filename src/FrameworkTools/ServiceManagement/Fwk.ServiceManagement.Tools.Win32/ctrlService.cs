@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -11,6 +10,7 @@ using Fwk.Bases;
 using System.Data;
 using Fwk.Bases.FrontEnd.Controls;
 using Fwk.ServiceManagement;
+
 namespace Fwk.ServiceManagement.Tools.Win32
 {
 
@@ -130,9 +130,11 @@ namespace Fwk.ServiceManagement.Tools.Win32
             txtRequest.Enabled = pEnable;
             txtResponse.Enabled = pEnable;
             
+            txtApplicationId.Enabled = pEnable;
+
             ckbAvailable.Enabled = pEnable;
             ckbAudit.Enabled = pEnable;
-            txtAppId.Enabled = pEnable;
+            
             cboTransactionalBehaviour.Enabled = pEnable;
             cboIsolationLevel.Enabled = pEnable;
         }
@@ -149,13 +151,18 @@ namespace Fwk.ServiceManagement.Tools.Win32
             txtHandler.Text = String.Empty;
             txtRequest.Text = String.Empty;
             txtResponse.Text = String.Empty;
-            txtAppId.Text = String.Empty; 
+            txtApplicationId.Text = String.Empty;
             
             ckbAudit.Checked = false;
             ckbAvailable.Checked = false;
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
