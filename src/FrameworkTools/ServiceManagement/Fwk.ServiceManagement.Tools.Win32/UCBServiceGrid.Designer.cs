@@ -43,24 +43,25 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.btnFilter = new System.Windows.Forms.ToolStripButton();
             this.txtXmlFilePath = new System.Windows.Forms.ToolStripTextBox();
             this.cmbSearchType = new System.Windows.Forms.ToolStripComboBox();
-            this.serviceConfigurationCollectionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fwkCellStyleMarronFlat1 = new Fwk.Bases.FrontEnd.Controls.FwkGrid.Design.FwkCellStyleMarronFlat(this.components);
             this.grdServices = new Fwk.Bases.FrontEnd.Controls.FwkGrid.FwkGenericDataGridView(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.availableDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.auditDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.transactionalBehaviourDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isolationLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serviceConfigurationCollectionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbFilterTransactionalBehaviour = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
             this.cmbFilterIsolationLevel = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionalBehaviourDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.auditDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.availableDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isolationLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceConfigurationCollectionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdServices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceConfigurationCollectionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -104,10 +105,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.cmbSearchType.ToolTipText = "Search type";
             this.cmbSearchType.Click += new System.EventHandler(this.cmbSearchType_Click);
             // 
-            // serviceConfigurationCollectionBindingSource
-            // 
-            this.serviceConfigurationCollectionBindingSource.DataSource = typeof(Fwk.Bases.ServiceConfigurationCollection);
-            // 
             // grdServices
             // 
             this.grdServices.AllowUserToDeleteRows = false;
@@ -134,12 +131,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.grdServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
-            this.availableDataGridViewCheckBoxColumn,
-            this.auditDataGridViewCheckBoxColumn,
+            this.descriptionDataGridViewTextBoxColumn,
             this.transactionalBehaviourDataGridViewTextBoxColumn,
+            this.auditDataGridViewCheckBoxColumn,
+            this.availableDataGridViewCheckBoxColumn,
             this.isolationLevelDataGridViewTextBoxColumn,
-            this.CreatedUserName,
-            this.CreatedDateTime});
+            this.CreatedDateTime,
+            this.CreatedUserName});
             this.grdServices.Cursor = System.Windows.Forms.Cursors.Hand;
             this.grdServices.CustomGridProperties.AllowAddRows = true;
             this.grdServices.CustomGridProperties.AllowDeleteRows = false;
@@ -175,55 +173,9 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.grdServices.TabIndex = 39;
             this.grdServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdServices_CellClick);
             // 
-            // nameDataGridViewTextBoxColumn
+            // serviceConfigurationCollectionBindingSource
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // availableDataGridViewCheckBoxColumn
-            // 
-            this.availableDataGridViewCheckBoxColumn.DataPropertyName = "Available";
-            this.availableDataGridViewCheckBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.availableDataGridViewCheckBoxColumn.HeaderText = "Available";
-            this.availableDataGridViewCheckBoxColumn.Name = "availableDataGridViewCheckBoxColumn";
-            this.availableDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.availableDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // auditDataGridViewCheckBoxColumn
-            // 
-            this.auditDataGridViewCheckBoxColumn.DataPropertyName = "Audit";
-            this.auditDataGridViewCheckBoxColumn.HeaderText = "Audit";
-            this.auditDataGridViewCheckBoxColumn.Name = "auditDataGridViewCheckBoxColumn";
-            this.auditDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.auditDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // transactionalBehaviourDataGridViewTextBoxColumn
-            // 
-            this.transactionalBehaviourDataGridViewTextBoxColumn.DataPropertyName = "TransactionalBehaviour";
-            this.transactionalBehaviourDataGridViewTextBoxColumn.HeaderText = "TransactionalBehaviour";
-            this.transactionalBehaviourDataGridViewTextBoxColumn.Name = "transactionalBehaviourDataGridViewTextBoxColumn";
-            this.transactionalBehaviourDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // isolationLevelDataGridViewTextBoxColumn
-            // 
-            this.isolationLevelDataGridViewTextBoxColumn.DataPropertyName = "IsolationLevel";
-            this.isolationLevelDataGridViewTextBoxColumn.HeaderText = "IsolationLevel";
-            this.isolationLevelDataGridViewTextBoxColumn.Name = "isolationLevelDataGridViewTextBoxColumn";
-            this.isolationLevelDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // CreatedUserName
-            // 
-            this.CreatedUserName.DataPropertyName = "CreatedUserName";
-            this.CreatedUserName.HeaderText = "User";
-            this.CreatedUserName.Name = "CreatedUserName";
-            // 
-            // CreatedDateTime
-            // 
-            this.CreatedDateTime.DataPropertyName = "CreatedDateTime";
-            this.CreatedDateTime.HeaderText = "Date";
-            this.CreatedDateTime.Name = "CreatedDateTime";
+            this.serviceConfigurationCollectionBindingSource.DataSource = typeof(Fwk.Bases.ServiceConfigurationCollection);
             // 
             // cmbFilterTransactionalBehaviour
             // 
@@ -305,6 +257,62 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.fwkMessageViewComponent1.TextMessageForeColor = System.Drawing.Color.Black;
             this.fwkMessageViewComponent1.Title = "Message";
             // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // transactionalBehaviourDataGridViewTextBoxColumn
+            // 
+            this.transactionalBehaviourDataGridViewTextBoxColumn.DataPropertyName = "TransactionalBehaviour";
+            this.transactionalBehaviourDataGridViewTextBoxColumn.HeaderText = "TransactionalBehaviour";
+            this.transactionalBehaviourDataGridViewTextBoxColumn.Name = "transactionalBehaviourDataGridViewTextBoxColumn";
+            this.transactionalBehaviourDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // auditDataGridViewCheckBoxColumn
+            // 
+            this.auditDataGridViewCheckBoxColumn.DataPropertyName = "Audit";
+            this.auditDataGridViewCheckBoxColumn.HeaderText = "Audit";
+            this.auditDataGridViewCheckBoxColumn.Name = "auditDataGridViewCheckBoxColumn";
+            this.auditDataGridViewCheckBoxColumn.Width = 70;
+            // 
+            // availableDataGridViewCheckBoxColumn
+            // 
+            this.availableDataGridViewCheckBoxColumn.DataPropertyName = "Available";
+            this.availableDataGridViewCheckBoxColumn.HeaderText = "Available";
+            this.availableDataGridViewCheckBoxColumn.Name = "availableDataGridViewCheckBoxColumn";
+            this.availableDataGridViewCheckBoxColumn.Width = 70;
+            // 
+            // isolationLevelDataGridViewTextBoxColumn
+            // 
+            this.isolationLevelDataGridViewTextBoxColumn.DataPropertyName = "IsolationLevel";
+            this.isolationLevelDataGridViewTextBoxColumn.HeaderText = "IsolationLevel";
+            this.isolationLevelDataGridViewTextBoxColumn.Name = "isolationLevelDataGridViewTextBoxColumn";
+            this.isolationLevelDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // CreatedDateTime
+            // 
+            this.CreatedDateTime.DataPropertyName = "CreatedDateTime";
+            this.CreatedDateTime.HeaderText = "Date";
+            this.CreatedDateTime.Name = "CreatedDateTime";
+            this.CreatedDateTime.Width = 70;
+            // 
+            // CreatedUserName
+            // 
+            this.CreatedUserName.DataPropertyName = "CreatedUserName";
+            this.CreatedUserName.HeaderText = "User";
+            this.CreatedUserName.Name = "CreatedUserName";
+            this.CreatedUserName.Width = 70;
+            // 
             // UCBServiceGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -319,8 +327,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.Size = new System.Drawing.Size(659, 272);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceConfigurationCollectionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdServices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceConfigurationCollectionBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,20 +341,21 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private System.Windows.Forms.ToolStripButton btnFilter;
         private Fwk.Bases.FrontEnd.Controls.FwkGrid.Design.FwkCellStyleGreenFlat fwkCellStyleGreenFlat1;
         private Fwk.Bases.FrontEnd.Controls.FwkGrid.Design.FwkCellStyleMarronFlat fwkCellStyleMarronFlat1;
-        public System.Windows.Forms.BindingSource serviceConfigurationCollectionBindingSource;
         private System.Windows.Forms.ToolStripComboBox cmbSearchType;
         private Fwk.Bases.FrontEnd.Controls.FwkGrid.FwkGenericDataGridView grdServices;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn availableDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn auditDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn transactionalBehaviourDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn isolationLevelDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedUserName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedDateTime;
         private Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox cmbFilterTransactionalBehaviour;
         private Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox cmbFilterIsolationLevel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewComponent1;
+        private System.Windows.Forms.BindingSource serviceConfigurationCollectionBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn transactionalBehaviourDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn auditDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn availableDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn isolationLevelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedDateTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedUserName;
     }
 }
