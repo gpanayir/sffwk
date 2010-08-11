@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Fwk.Bases;
 using Fwk.HelperFunctions;
 using System.Configuration;
+using Fwk.ConfigSection;
 
 
 namespace Fwk.ServiceManagement.Tools.Win32
@@ -19,7 +20,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
     /// </summary>
 	public partial class frmServices : Fwk.Bases.FrontEnd.FrmBase
 	{
-     
+        public static ServiceProviderElement CurrentProvider;
 		/// <summary>
 		/// Constructor por defecto.
 		/// </summary>
@@ -187,7 +188,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             //Recorre las bases
             foreach (SettingElement wSetting in wClientSettingsSection.Settings)
             {
-                if (String.Compare(wSetting.Name.Trim(),"wrapper",true) ==0)
+                if (String.Compare(wSetting.Name.Trim(), "wrapper", true) == 0)
                 {
                     if (wSetting.Value.ValueXml.InnerXml.Trim().ToLower().Contains("local"))
                         lblConnectionType.Text = "Local";
@@ -200,7 +201,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
                         lblConnectionType.Text = "Remoting win service";
 
                 }
-                
+
+
 
 
 
@@ -212,11 +214,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             foreach (SettingElement wSetting in wClientSettingsSection.Settings)
             {
-                if (String.Compare(wSetting.Name.Trim(), "ServiceConfigurationManagerType", true) == 0)
-                {
-                        lblMetadata.Text = wSetting.Value.ValueXml.InnerXml.Split(',')[0];
-                }
-
 
                 if (string.Compare(lblConnectionType.Text, "Web Service", true) == 0)
                 {
@@ -226,17 +223,28 @@ namespace Fwk.ServiceManagement.Tools.Win32
                     }
                 }
 
-                if (string.Compare(lblConnectionType.Text, "Local", true) ==0)
-                {
-                    if (String.Compare(wSetting.Name.Trim(), "ServiceConfigurationSourceName", true) == 0)
-                    {
-                        txtAddres.Text = wSetting.Value.ValueXml.InnerXml;
-                    }
-                }
-                
+
+
             }
+       
 
 
+            ComboBox cb = (ComboBox)cmbProviders.Control;
+
+            foreach (ServiceProviderElement p in Fwk.ServiceManagement.ServiceMetadata.ProviderSection.Providers)
+            {
+                cb.Items.Add(p.Name);
+            }
+            cmbProviders.SelectedIndex = 0;
+            cb.SelectedValueChanged += new EventHandler(cb_SelectedValueChanged);
+        }
+
+        void cb_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+            CurrentProvider = Fwk.ServiceManagement.ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
+            lblMetadata.Text = CurrentProvider.ConfigProviderType.ToString();
+            txtAddres.Text = CurrentProvider.SourceInfo;
         }
         
 
