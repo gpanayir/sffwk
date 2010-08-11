@@ -46,7 +46,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Location = new System.Drawing.Point(561, 373);
+            this.btnOk.Location = new System.Drawing.Point(561, 508);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 10;
@@ -59,7 +59,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(654, 373);
+            this.btnCancel.Location = new System.Drawing.Point(654, 508);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 11;
@@ -69,11 +69,11 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // 
             // btnSearchFile
             // 
-            this.btnSearchFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearchFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchFile.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.mostrar;
             this.btnSearchFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearchFile.Location = new System.Drawing.Point(168, 12);
+            this.btnSearchFile.Location = new System.Drawing.Point(161, 12);
             this.btnSearchFile.Name = "btnSearchFile";
             this.btnSearchFile.Size = new System.Drawing.Size(106, 23);
             this.btnSearchFile.TabIndex = 29;
@@ -89,7 +89,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.ctrlService1.Location = new System.Drawing.Point(12, 12);
             this.ctrlService1.Name = "ctrlService1";
             this.ctrlService1.ShowAction = Fwk.ServiceManagement.Tools.Win32.Action.Query;
-            this.ctrlService1.Size = new System.Drawing.Size(729, 355);
+            this.ctrlService1.Size = new System.Drawing.Size(729, 470);
             this.ctrlService1.TabIndex = 28;
             // 
             // frmEdit
@@ -99,7 +99,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(743, 406);
+            this.ClientSize = new System.Drawing.Size(743, 541);
             this.Controls.Add(this.btnSearchFile);
             this.Controls.Add(this.ctrlService1);
             this.Controls.Add(this.btnCancel);
