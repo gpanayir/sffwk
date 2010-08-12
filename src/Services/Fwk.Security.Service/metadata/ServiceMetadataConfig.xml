@@ -11,4 +11,37 @@
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
   </ServiceConfiguration>
+  <ServiceConfiguration name="AssignRolesToUserService">
+    <CreatedUserName>moviedo</CreatedUserName>
+    <CreatedDateTime>2010-08-12T08:51:03.4924608-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.AssignRolesToUserService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.AssignRolesToUser.AssignRolesToUserReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.AssignRolesToUser.AssignRolesToUserRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Required</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>
+  <ServiceConfiguration name="UpdateRulesService">
+    <CreatedUserName>moviedo</CreatedUserName>
+    <CreatedDateTime>2010-08-12T08:51:21.2261548-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.UpdateRulesService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.UpdateRules.UpdateRulesReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.UpdateRules.UpdateRulesRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Required</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>
+  <ServiceConfiguration name="CreateRoleService">
+    <CreatedUserName>moviedo</CreatedUserName>
+    <CreatedDateTime>2010-08-12T08:51:40.9441476-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.CreateRoleService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.CreateRole.CreateRoleReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.CreateRole.CreateRoleRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Required</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>
 </ServiceConfigurationCollection>
