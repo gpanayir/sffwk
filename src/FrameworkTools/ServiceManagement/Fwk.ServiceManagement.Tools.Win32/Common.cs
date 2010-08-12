@@ -43,11 +43,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             {
                 throw ex;
             }
-            //finally
-            //{
-            //    fs.Close();
-            //    sr.Close();
-            //}
+      
         }
 
   

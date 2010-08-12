@@ -19,7 +19,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
     /// 
     /// </summary>
 	public partial class frmServices : Fwk.Bases.FrontEnd.FrmBase
-	{
+	{   
+        string _AuxServiceName;
         public static ServiceProviderElement CurrentProvider;
 		/// <summary>
 		/// Constructor por defecto.
@@ -122,12 +123,10 @@ namespace Fwk.ServiceManagement.Tools.Win32
             if (frmEdit.ShowEdit(ucbServiceGrid1.CurentServiceConfiguration) == DialogResult.OK)
             {
                 base.SetServiceConfiguration(_AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
-                //ucbServiceGrid1.Update(wServiceClon);
-               
             }
             ucbServiceGrid1_OnClickServiceHandler(ucbServiceGrid1.CurentServiceConfiguration);   
 		}
-        string _AuxServiceName;
+
 		/// <summary>
 		/// Elimina configuración de servicio de negocio.
 		/// </summary>
@@ -247,6 +246,20 @@ namespace Fwk.ServiceManagement.Tools.Win32
             CurrentProvider = Fwk.ServiceManagement.ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
             lblMetadata.Text = CurrentProvider.ConfigProviderType.ToString();
             txtAddres.Text = CurrentProvider.SourceInfo;
+
+
+            try
+            {
+                //TODO: adaptar para multi providers
+                ucbServiceGrid1.Services = base.GetAllServices();
+                lblConnectionStatus.Text = "Connected";
+            }
+            catch (Exception ex)
+            {
+
+                base.ExceptionViewer.Show(ex);
+                lblConnectionStatus.Text = "Disconnected";
+            }
         }
         
 
