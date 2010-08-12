@@ -44,4 +44,26 @@
     <TransactionalBehaviour>Required</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
   </ServiceConfiguration>
+  <ServiceConfiguration name="UpdateRulesCategoryService">
+    <CreatedUserName>moviedo</CreatedUserName>
+    <CreatedDateTime>2010-08-12T09:18:01.4303296-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.UpdateRulesCategoryService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.UpdateRulesCategory.UpdateRulesCategoryReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.UpdateRulesCategory.UpdateRulesCategoryRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>
+  <ServiceConfiguration name="SearchAllRolesService">
+    <CreatedUserName>moviedo</CreatedUserName>
+    <CreatedDateTime>2010-08-12T09:19:03.162334-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.SearchAllRolesService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.SearchAllRoles.SearchAllRolesReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.SearchAllRoles.SearchAllRolesRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>
 </ServiceConfigurationCollection>
