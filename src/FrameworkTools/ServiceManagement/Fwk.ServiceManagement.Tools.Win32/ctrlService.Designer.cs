@@ -34,9 +34,9 @@
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtApplicationId = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
-            this.bindingSourceService = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.txtResponse = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
+            this.bindingSourceService = new System.Windows.Forms.BindingSource(this.components);
             this.txtRequest = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.txtHandler = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.txtName = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
@@ -85,7 +85,6 @@
             this.groupBox1.Size = new System.Drawing.Size(671, 422);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // txtApplicationId
             // 
@@ -109,10 +108,6 @@
             this.txtApplicationId.TabIndex = 75;
             this.txtApplicationId.TabStop = false;
             this.txtApplicationId.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
-            // 
-            // bindingSourceService
-            // 
-            this.bindingSourceService.DataSource = typeof(Fwk.Bases.ServiceConfiguration);
             // 
             // label3
             // 
@@ -145,6 +140,10 @@
             this.txtResponse.Size = new System.Drawing.Size(650, 21);
             this.txtResponse.TabIndex = 72;
             this.txtResponse.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
+            // 
+            // bindingSourceService
+            // 
+            this.bindingSourceService.DataSource = typeof(Fwk.Bases.ServiceConfiguration);
             // 
             // txtRequest
             // 
@@ -215,7 +214,6 @@
             this.txtName.TabIndex = 69;
             this.txtName.TabStop = false;
             this.txtName.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
-            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // txtDescription
             // 
@@ -328,6 +326,8 @@
             // ckbAvailable
             // 
             this.ckbAvailable.AutoSize = true;
+            this.ckbAvailable.Checked = true;
+            this.ckbAvailable.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbAvailable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceService, "Available", true));
             this.ckbAvailable.Location = new System.Drawing.Point(421, 343);
             this.ckbAvailable.Name = "ckbAvailable";

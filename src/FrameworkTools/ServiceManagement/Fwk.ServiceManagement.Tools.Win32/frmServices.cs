@@ -235,7 +235,9 @@ namespace Fwk.ServiceManagement.Tools.Win32
             {
                 cb.Items.Add(p.Name);
             }
+            
             cmbProviders.SelectedIndex = 0;
+            CurrentProvider = Fwk.ServiceManagement.ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
             cb.SelectedValueChanged += new EventHandler(cb_SelectedValueChanged);
         }
 

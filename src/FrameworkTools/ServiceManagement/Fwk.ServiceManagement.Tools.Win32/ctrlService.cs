@@ -10,6 +10,7 @@ using Fwk.Bases;
 using System.Data;
 using Fwk.Bases.FrontEnd.Controls;
 using Fwk.ServiceManagement;
+using Fwk.Transaction;
 
 namespace Fwk.ServiceManagement.Tools.Win32
 {
@@ -61,7 +62,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             }
         }
 
-        
+
 
 
         /// <summary>
@@ -81,12 +82,16 @@ namespace Fwk.ServiceManagement.Tools.Win32
         public void Populate()
         {
             if (this.EntityParam == null) return;
-           Fwk.Bases.ServiceConfiguration wServiceConfiguration = (Fwk.Bases.ServiceConfiguration)this.EntityParam;
-           bindingSourceService.DataSource = wServiceConfiguration;
-           int index = cboIsolationLevel.FindStringExact(Enum.GetName(typeof(Fwk.Transaction.IsolationLevel),wServiceConfiguration.IsolationLevel));
-           cboIsolationLevel.SelectedIndex= index;
-           index = cboTransactionalBehaviour.FindStringExact(Enum.GetName(typeof(Fwk.Transaction.TransactionalBehaviour), wServiceConfiguration.TransactionalBehaviour));
-           cboTransactionalBehaviour.SelectedIndex = index;
+            Fwk.Bases.ServiceConfiguration wServiceConfiguration = (Fwk.Bases.ServiceConfiguration)this.EntityParam;
+            bindingSourceService.DataSource = wServiceConfiguration;
+
+
+
+
+            int index = cboIsolationLevel.FindStringExact(Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), wServiceConfiguration.IsolationLevel));
+            cboIsolationLevel.SelectedIndex = index;
+            index = cboTransactionalBehaviour.FindStringExact(Enum.GetName(typeof(Fwk.Transaction.TransactionalBehaviour), wServiceConfiguration.TransactionalBehaviour));
+            cboTransactionalBehaviour.SelectedIndex = index;
         }
 
         /// <summary>
@@ -98,10 +103,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
             wServiceConfiguration = (Fwk.Bases.ServiceConfiguration)bindingSourceService.DataSource;
             wServiceConfiguration.IsolationLevel = (Fwk.Transaction.IsolationLevel)Enum.Parse(typeof(Fwk.Transaction.IsolationLevel), cboIsolationLevel.Text);
             wServiceConfiguration.TransactionalBehaviour = (Fwk.Transaction.TransactionalBehaviour)Enum.Parse(typeof(Fwk.Transaction.TransactionalBehaviour), cboTransactionalBehaviour.Text);
-            
+
             this.EntityResult = wServiceConfiguration;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         void Init()
         {
             String wTitle = String.Empty;
@@ -117,9 +125,9 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             cboTransactionalBehaviour.SelectedIndex = 0;
             cboIsolationLevel.SelectedIndex = 0;
-          
 
-           
+
+
         }
 
         void EnableControls(Boolean pEnable)
@@ -129,12 +137,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             txtHandler.Enabled = pEnable;
             txtRequest.Enabled = pEnable;
             txtResponse.Enabled = pEnable;
-            
+
             txtApplicationId.Enabled = pEnable;
 
             ckbAvailable.Enabled = pEnable;
             ckbAudit.Enabled = pEnable;
-            
+
             cboTransactionalBehaviour.Enabled = pEnable;
             cboIsolationLevel.Enabled = pEnable;
         }
@@ -152,22 +160,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             txtRequest.Text = String.Empty;
             txtResponse.Text = String.Empty;
             txtApplicationId.Text = String.Empty;
-            
+
             ckbAudit.Checked = false;
             ckbAvailable.Checked = false;
         }
 
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-       
     }
 
 
