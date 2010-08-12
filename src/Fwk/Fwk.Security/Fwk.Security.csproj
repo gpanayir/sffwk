@@ -207,7 +207,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="app.config" />
-    <None Include="Data\Scripts\Fwk_Security.sql" />
     <None Include="Membership\FwkMemberships.cd" />
     <None Include="Membership\RuleProvider.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
