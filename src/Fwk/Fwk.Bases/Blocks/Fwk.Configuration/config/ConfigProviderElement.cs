@@ -68,13 +68,13 @@ namespace Fwk.ConfigSection
         /// Nombre de cadena de coneccion
         ///  
         /// </summary>
-        [ConfigurationProperty("cnnStringName", IsRequired = false, IsKey = false),
+        [ConfigurationProperty("sourceinfo", IsRequired = false, IsKey = false),
          StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
-        public string CnnStringName
+        public string SourceInfo
         {
             get
             {
-                return (string)this["cnnStringName"];
+                return (string)this["sourceinfo"];
             }
         }
        

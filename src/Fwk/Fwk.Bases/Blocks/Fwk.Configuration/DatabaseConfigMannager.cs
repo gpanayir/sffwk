@@ -49,7 +49,7 @@ namespace Fwk.Configuration
             ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
 
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile, provider.CnnStringName);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile, provider.SourceInfo);
 
             if (!wConfigurationFile.BaseConfigFile)
             {
@@ -95,7 +95,7 @@ namespace Fwk.Configuration
         {
 
 
-            return  GetConfig(provider.BaseConfigFile,  provider.CnnStringName); ;
+            return  GetConfig(provider.BaseConfigFile,  provider.SourceInfo); ;
         }
 
 
@@ -110,7 +110,7 @@ namespace Fwk.Configuration
         {
             ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
 
             if (!wConfigurationFile.BaseConfigFile)
             {
@@ -249,22 +249,22 @@ namespace Fwk.Configuration
             Set_INSERT();
             System.Text.StringBuilder sqlCommand = new StringBuilder();
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);  //_Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);  //_Repository.GetConfigurationFile(provider.BaseConfigFile);
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
             wGroup.Keys.Add(key);
 
             Database wDataBase = null;
             DbCommand wCmd = null;
-            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.CnnStringName] == null)
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
-                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.CnnStringName));
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
                 ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(provider.CnnStringName);
+                wDataBase = DatabaseFactory.CreateDatabase(provider.SourceInfo);
 
 
                 sqlCommand.Append(_INSERT);
@@ -300,16 +300,16 @@ namespace Fwk.Configuration
 
             
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
 
             if (!wConfigurationFile.BaseConfigFile)
             {
                 ///TODO: manejo de exepcion de configuracion
                 throw new Exception("El archivo solicitado no es un archivo de configuración válido.");
             }
-            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.CnnStringName] == null)
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
-                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.CnnStringName));
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
                 ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
                 te.ErrorId = "8200";
                 throw te;
@@ -324,7 +324,7 @@ namespace Fwk.Configuration
             DbCommand wCmd = null;
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(provider.CnnStringName);
+                wDataBase = DatabaseFactory.CreateDatabase(provider.SourceInfo);
 
 
                 foreach (Key k in group.Keys)
@@ -454,7 +454,7 @@ namespace Fwk.Configuration
         /// <param name="propertyName">Nombre de la propiedad</param>
         internal static void RemoveProperty(ConfigProviderElement provider,  string groupName, string propertyName)
         {
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName); //_Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo); //_Repository.GetConfigurationFile(provider.BaseConfigFile);
             Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
             Key k = g.Keys.GetFirstByName(propertyName);
             g.Keys.Remove(k);
@@ -466,7 +466,7 @@ namespace Fwk.Configuration
             //    sqlCommand.AppendLine(string.Concat("and AppId = '", provider.ApplicationId, "'"));
             
 
-            EexeSqlCommand(sqlCommand.ToString(), provider.CnnStringName);
+            EexeSqlCommand(sqlCommand.ToString(), provider.SourceInfo);
         }
 
         /// <summary>
@@ -477,7 +477,7 @@ namespace Fwk.Configuration
         internal static void RemoveGroup(ConfigProviderElement provider, string groupName)
         {
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
             Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
 
             wConfigurationFile.Groups.Remove(g);
@@ -491,7 +491,7 @@ namespace Fwk.Configuration
             //if (!String.IsNullOrEmpty(provider.ApplicationId))
             //    sqlCommand.AppendLine(string.Concat("and AppId = '", provider.ApplicationId, "'"));
 
-            EexeSqlCommand(sqlCommand.ToString(), provider.CnnStringName);
+            EexeSqlCommand(sqlCommand.ToString(), provider.SourceInfo);
         }
 
 
@@ -538,21 +538,21 @@ namespace Fwk.Configuration
             Set_UPDATE_GROUP();
             System.Text.StringBuilder sqlCommand = new StringBuilder();
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
             
 
             Database wDataBase = null;
             DbCommand wCmd = null;
-            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.CnnStringName] == null)
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
-                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.CnnStringName));
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
                 ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(provider.CnnStringName);
+                wDataBase = DatabaseFactory.CreateDatabase(provider.SourceInfo);
 
 
                 sqlCommand.Append(_UPDATE_GROUP);
@@ -588,21 +588,21 @@ namespace Fwk.Configuration
             Set_UPDATE_PROP();
             System.Text.StringBuilder sqlCommand = new StringBuilder();
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.CnnStringName);
+            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
 
 
             Database wDataBase = null;
             DbCommand wCmd = null;
-            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.CnnStringName] == null)
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
-                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.CnnStringName));
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
                 ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(provider.CnnStringName);
+                wDataBase = DatabaseFactory.CreateDatabase(provider.SourceInfo);
 
 
                 sqlCommand.Append(_UPDATE_PROP);
@@ -648,7 +648,7 @@ namespace Fwk.Configuration
             }
             _Repository.RemoveConfigurationFile(wConfigurationFile);
             wConfigurationFile = null;
-            wConfigurationFile = GetFromDatabase(provider.BaseConfigFile, provider.CnnStringName);
+            wConfigurationFile = GetFromDatabase(provider.BaseConfigFile, provider.SourceInfo);
             _Repository.AddConfigurationFile(wConfigurationFile);
 
             return wConfigurationFile;

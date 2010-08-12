@@ -95,18 +95,14 @@ namespace Fwk.ConfigSection
         /// </summary>
         local,
         /// <summary>
-        /// Utiliza la configuracion distribuida provista por el framework
-        /// </summary>
-        remote,
-        /// <summary>
         /// Consulta por medio de un servicio del dispatcher del framework
-        /// puede ser web service o remoting, 
+        /// puede ser web service o remoting , depende del wrapper configurado
         /// </summary>
-        service,
+        servicewrapper,
         /// <summary>
         /// Consulta directa,mente a una base de datos
         /// </summary>
-        database
+        sqldatabase
         
     }
 }

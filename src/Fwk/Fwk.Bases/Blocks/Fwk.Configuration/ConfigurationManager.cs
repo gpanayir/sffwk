@@ -86,15 +86,12 @@ namespace Fwk.Configuration
                     {
                         return LocalFileConfigurationManager.GetProperty(configProvider,pGroupName,pPropertyName);
                     }
-                case ConfigProviderType.remote:
-                    {
-                        return RemoteConfigurationManager.GetProperty(pGroupName, pPropertyName);
-                    }
-                case ConfigProviderType.database:
+             
+                case ConfigProviderType.sqldatabase:
                     {
                         return DatabaseConfigMannager.GetProperty(configProvider ,pGroupName, pPropertyName);
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return null;
                     }
@@ -132,15 +129,11 @@ namespace Fwk.Configuration
                     {
                         return LocalFileConfigurationManager.GetConfigurationFile(provider); 
                     }
-                case ConfigProviderType.remote:
-                    {
-                        return RemoteConfigurationManager.GetConfigurationFile(provider.BaseConfigFile); 
-                    }
-                case ConfigProviderType.database:
+                case ConfigProviderType.sqldatabase:
                     {
                         return DatabaseConfigMannager.GetConfigurationFile(provider); 
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return null;
                         
@@ -167,16 +160,12 @@ namespace Fwk.Configuration
                     {
                         return LocalFileConfigurationManager.GetGroup(configProvider, pGroupName);
                     }
-                case ConfigProviderType.remote:
-                    {
-                        ///TODO: Ver esta sobregcarga
-                        return RemoteConfigurationManager.GetGroup(pGroupName);
-                    }
-                case ConfigProviderType.database:
+              
+                case ConfigProviderType.sqldatabase:
                     {
                         return DatabaseConfigMannager.GetGroup(provider.BaseConfigFile, provider.BaseConfigFile);
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return null;
                     }
@@ -204,22 +193,22 @@ namespace Fwk.Configuration
         /// <param name="pFileName">Nombre del archivo</param>
         /// <param name="pClientVersion">Version del archivo del lado del cliente</param>
         /// <Author>Marcelo Oviedo</Author>
-        public static Helper.FileStatus GetFileVersionStatus(string pFileName, string pClientVersion)
-        {
+        //public static Helper.FileStatus GetFileVersionStatus(string pFileName, string pClientVersion)
+        //{
 
-            if (_DefaultProvider.ConfigProviderType == ConfigProviderType.remote)
-            {
-                return RemoteConfigurationManager.GetFileVersionStatus(pFileName, pClientVersion);
-            }
+        //    if (_DefaultProvider.ConfigProviderType == ConfigProviderType.remote)
+        //    {
+        //        return RemoteConfigurationManager.GetFileVersionStatus(pFileName, pClientVersion);
+        //    }
             
-            else 
-            {
-                TechnicalException te = new TechnicalException(string.Concat("Operacion no valida para un proveedor de configuracion del tipo: ", _DefaultProvider.ConfigProviderType.ToString()));
-                te.ErrorId = "8100";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
-                throw te;
-            }
-        }
+        //    else 
+        //    {
+        //        TechnicalException te = new TechnicalException(string.Concat("Operacion no valida para un proveedor de configuracion del tipo: ", _DefaultProvider.ConfigProviderType.ToString()));
+        //        te.ErrorId = "8100";
+        //        Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+        //        throw te;
+        //    }
+        //}
         #endregion 
 
 
@@ -294,17 +283,12 @@ namespace Fwk.Configuration
                         LocalFileConfigurationManager.AddProperty(provider, key, groupName);
                         break;
                     }
-                case ConfigProviderType.remote:
-                    {
-                        RemoteConfigurationManager.AddProperty(provider, key, groupName);
-                        break;
-                    }
-                case ConfigProviderType.database:
+                case ConfigProviderType.sqldatabase:
                     {
                         DatabaseConfigMannager.AddProperty(provider, key, groupName);
                         break;
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return ;
                     }
@@ -327,15 +311,12 @@ namespace Fwk.Configuration
                     {
                         LocalFileConfigurationManager.AddGroup(provider, group); break;
                     }
-                case ConfigProviderType.remote:
-                    {
-                        RemoteConfigurationManager.AddGroup(provider, group); break;
-                    }
-                case ConfigProviderType.database:
+               
+                case ConfigProviderType.sqldatabase:
                     {
                         DatabaseConfigMannager.AddGroup(provider, group); break;
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return ;
                     }
@@ -360,15 +341,12 @@ namespace Fwk.Configuration
                     {
                         LocalFileConfigurationManager.RemoveProperty(provider, groupName, propertyName); break;
                     }
-                case ConfigProviderType.remote:
-                    {
-                        RemoteConfigurationManager.RemoveProperty(provider, groupName, propertyName); break;
-                    }
-                case ConfigProviderType.database:
+
+                case ConfigProviderType.sqldatabase:
                     {
                         DatabaseConfigMannager.RemoveProperty(provider, groupName, propertyName); break;
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return;
                     }
@@ -390,15 +368,12 @@ namespace Fwk.Configuration
                     {
                         LocalFileConfigurationManager.RemoveGroup(provider, groupName); break;
                     }
-                case ConfigProviderType.remote:
-                    {
-                        RemoteConfigurationManager.RemoveGroup(provider, groupName); break;
-                    }
-                case ConfigProviderType.database:
+            
+                case ConfigProviderType.sqldatabase:
                     {
                         DatabaseConfigMannager.RemoveGroup(provider, groupName); break;
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return;
                     }
@@ -421,15 +396,12 @@ namespace Fwk.Configuration
                     {
                         LocalFileConfigurationManager.ChangeGroupName(provider, groupName, newGroupName); break;
                     }
-                case ConfigProviderType.remote:
-                    {
-                        RemoteConfigurationManager.ChangeGroupName(provider, groupName, newGroupName); break;
-                    }
-                case ConfigProviderType.database:
+             
+                case ConfigProviderType.sqldatabase:
                     {
                         DatabaseConfigMannager.ChangeGroupName(provider, groupName,newGroupName); break;
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return;
                     }
@@ -453,15 +425,12 @@ namespace Fwk.Configuration
                     {
                         LocalFileConfigurationManager.ChangeProperty(provider, groupName, property, propertyName); break;
                     }
-                case ConfigProviderType.remote:
-                    {
-                        RemoteConfigurationManager.ChangeProperty(provider, groupName, property, propertyName); break;
-                    }
-                case ConfigProviderType.database:
+               
+                case ConfigProviderType.sqldatabase:
                     {
                         DatabaseConfigMannager.ChangeProperty(provider, groupName, property, propertyName); break;
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return;
                     }
@@ -484,15 +453,11 @@ namespace Fwk.Configuration
                     {
                         return LocalFileConfigurationManager.RefreshConfigurationFile(provider); 
                     }
-                case ConfigProviderType.remote:
-                    {
-                        return RemoteConfigurationManager.RefreshConfigurationFile(provider); 
-                    }
-                case ConfigProviderType.database:
+                case ConfigProviderType.sqldatabase:
                     {
                         return DatabaseConfigMannager.RefreshConfigurationFile(provider); 
                     }
-                case ConfigProviderType.service:
+                case ConfigProviderType.servicewrapper:
                     {
                         return null;
                     }

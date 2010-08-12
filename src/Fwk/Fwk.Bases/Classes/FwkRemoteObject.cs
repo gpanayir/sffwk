@@ -75,10 +75,10 @@ namespace Fwk.Remoting
         /// <param name="pServiceName">Nombre del servicio a actualizar.</param>
         /// <date>2006-02-10T00:00:00</date>
         /// <author>moviedo</author>
-        public void SetServiceConfiguration(String pServiceNamem,ServiceConfiguration pServiceConfiguration)
+        public void SetServiceConfiguration(String pServiceName,ServiceConfiguration pServiceConfiguration)
         {
             SimpleFacade wSimpleFacade = new SimpleFacade();
-            wSimpleFacade.SetServiceConfiguration(pServiceNamem,pServiceConfiguration); 
+            wSimpleFacade.SetServiceConfiguration(pServiceName,pServiceConfiguration); 
         }
 
         /// <summary>
