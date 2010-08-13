@@ -17,6 +17,9 @@ namespace Fwk.Bases.Connector
 
         string _ProviderName;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string ProviderName
         {
             get { return _ProviderName; }
@@ -24,6 +27,9 @@ namespace Fwk.Bases.Connector
         }
         string _SourceInfo;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string SourceInfo
         {
             get { return _SourceInfo; }
@@ -91,7 +97,7 @@ namespace Fwk.Bases.Connector
 
         private static bool IsConfigured()
         {
-            ///Seccion protegida por la posibilidad de multiples procesos intentar levantar la configuracion
+            //Seccion protegida por la posibilidad de multiples procesos intentar levantar la configuracion
             lock (singletonLock)
             {
                 bool wResult = false;
