@@ -12,11 +12,27 @@ namespace Fwk.Bases.Connector
 	/// <author>moviedo</author>
 	public class WebServiceWrapper : IServiceWrapper
 	{
+        string _ProviderName;
+
+        public string ProviderName
+        {
+            get { return _ProviderName; }
+            set { _ProviderName = value; }
+        }
+        /// <summary>
+        /// Direccion url del servicio web
+        /// </summary>
+        public string SourceInfo
+        {
+            get { return msz_URL; }
+            set { msz_URL = value; }
+        }
+
 	    private string msz_URL = string.Empty;
         /// <summary>
         /// Direccion url del servicio web
         /// </summary>
-        public static string _URL;
+        //public static string _URL;
 		#region IServiceInterfaceWrapper Members 
 
 		/// <summary>
@@ -33,11 +49,8 @@ namespace Fwk.Bases.Connector
 
             using (singleservice.SingleService wService = new singleservice.SingleService())
 			{
-			    
-                wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
-                msz_URL = wService.Url;
+                wService.Url = msz_URL;//Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
 				wResult = wService.ExecuteService(pServiceName, pData);
-              
 			}
 
 			return wResult;
@@ -54,8 +67,7 @@ namespace Fwk.Bases.Connector
             using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
-                wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
-                //msz_URL = wService.Url;
+                wService.Url = msz_URL;//Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 wService.ExecuteService_OneWay(pServiceName, pData);
 
             }
@@ -74,8 +86,8 @@ namespace Fwk.Bases.Connector
             using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
-                wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
-                //msz_URL = wService.Url;
+                wService.Url = msz_URL;// Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
+                
                 wService.ExecuteServiceCompleted += new Fwk.Bases.Connector.singleservice.ExecuteServiceCompletedEventHandler(wService_ExecuteServiceCompleted);
 
             }
@@ -183,8 +195,8 @@ namespace Fwk.Bases.Connector
 
             using (singleservice.SingleService wService = new singleservice.SingleService())
             {
-                wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
-                msz_URL = wService.Url;
+                wService.Url = msz_URL;//Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
+                
                 xmlServices = wService.GetServicesList(true);
 
             }
@@ -208,6 +220,7 @@ namespace Fwk.Bases.Connector
             
             using (singleservice.SingleService wService = new singleservice.SingleService())
             {
+                wService.Url = msz_URL;
                 xmlServices = wService.GetServiceConfiguration(pServiceName);
             }
 
@@ -229,7 +242,7 @@ namespace Fwk.Bases.Connector
             using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
-                wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
+                wService.Url = msz_URL;// Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 wService.SetServiceConfiguration(pServiceName,wServiceConfigurationProxy);
 
             }
@@ -251,7 +264,7 @@ namespace Fwk.Bases.Connector
             using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
-                wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
+                wService.Url = msz_URL;// Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 wService.AddServiceConfiguration(wServiceConfigurationProxy);
 
             }
@@ -268,7 +281,7 @@ namespace Fwk.Bases.Connector
         {
             using (singleservice.SingleService wService = new singleservice.SingleService())
             {
-                wService.Url = Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
+                wService.Url = msz_URL;//Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 wService.DeleteServiceConfiguration(pServiceName);
             }
         }
