@@ -12,6 +12,7 @@ namespace Fwk.Remoting
     /// </summary>
     public class FwkRemoteObject : MarshalByRefObject
     {
+        SimpleFacade _SimpleFacade = new SimpleFacade();
         /// <summary>
         /// Ejecuta un servicio 
         /// </summary>
@@ -21,7 +22,7 @@ namespace Fwk.Remoting
         public IServiceContract ExecuteService(string providerName, IServiceContract pReq)
         {
 
-            SimpleFacade wSimpleFacade = new SimpleFacade();
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
             IServiceContract wRsponse = wSimpleFacade.ExecuteService(providerName, pReq);
             return wRsponse;
 
@@ -37,7 +38,7 @@ namespace Fwk.Remoting
         public IServiceContract ExecuteService(string providerName, string pServiceName, IServiceContract pReq)
         {
             pReq.ServiceName = pServiceName;
-            return this.ExecuteService(providerName,pReq);
+            return this.ExecuteService(providerName, pReq);
         }
 
         /// <summary>
@@ -46,12 +47,12 @@ namespace Fwk.Remoting
         /// <param name="providerName">Proveeodor de metadata</param>
         /// <param name="pServiceName">Nombre del servicio</param>
         /// <returns><see cref="ServiceConfiguration"/></returns>
-        public  ServiceConfiguration GetServiceConfiguration(string providerName,string pServiceName)
+        public ServiceConfiguration GetServiceConfiguration(string providerName, string pServiceName)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
-            String xmlServices = wSimpleFacade.GetServiceConfiguration(providerName,pServiceName);
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            String xmlServices = _SimpleFacade.GetServiceConfiguration(providerName, pServiceName);
             return ServiceConfiguration.GetServiceConfigurationFromXml(xmlServices);
-           
+
         }
 
         /// <summary>
@@ -61,14 +62,14 @@ namespace Fwk.Remoting
         /// <returns></returns>
         public ServiceConfigurationCollection GetServicesList(string providerName)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
 
-            String xmlServices = wSimpleFacade.GetServicesList(providerName,true);
+            String xmlServices = wSimpleFacade.GetServicesList(providerName, true);
             ServiceConfigurationCollection wServiceConfigurationCollection = (ServiceConfigurationCollection)
                 Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), xmlServices);
 
             return wServiceConfigurationCollection;
-          
+
 
         }
 
@@ -82,8 +83,8 @@ namespace Fwk.Remoting
         /// <author>moviedo</author>
         public void SetServiceConfiguration(string providerName, String pServiceName, ServiceConfiguration pServiceConfiguration)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
-            wSimpleFacade.SetServiceConfiguration(providerName,pServiceName, pServiceConfiguration); 
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            wSimpleFacade.SetServiceConfiguration(providerName, pServiceName, pServiceConfiguration);
         }
 
         /// <summary>
@@ -95,8 +96,8 @@ namespace Fwk.Remoting
         /// <author>moviedo</author>
         public void AddServiceConfiguration(string providerName, ServiceConfiguration pServiceConfiguration)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
-            wSimpleFacade.AddServiceConfiguration(providerName,pServiceConfiguration); 
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            wSimpleFacade.AddServiceConfiguration(providerName, pServiceConfiguration);
         }
 
         /// <summary>
@@ -108,9 +109,20 @@ namespace Fwk.Remoting
         /// <author>moviedo</author>
         public void DeleteServiceConfiguration(string providerName, string pServiceName)
         {
-            SimpleFacade wSimpleFacade = new SimpleFacade();
-            wSimpleFacade.DeleteServiceConfiguration(providerName,pServiceName); 
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            wSimpleFacade.DeleteServiceConfiguration(providerName, pServiceName);
 
+        }
+        /// <summary>
+        /// Factory de SimpleFacade
+        /// </summary>
+        /// <returns></returns>
+        SimpleFacade CreateSimpleFacade()
+        {
+            if (_SimpleFacade == null)
+                _SimpleFacade = new SimpleFacade();
+
+            return _SimpleFacade;
         }
     }
 }
