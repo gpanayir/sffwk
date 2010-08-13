@@ -72,7 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+      <Link>Local\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Local\LocalWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,10 +129,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< .mine
+    <None Include="Remoting\App.config" />
+    <None Include="Web References\SingleService\SingleService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+=======
     <None Include="Remoting\App.config" />
     <None Include="Web References\singleservice\SingleService.wsdl" />
   </ItemGroup>
   <ItemGroup>
+>>>>>>> .r937
     <WebReferenceUrl Include="http://localhost:1119/WebServiceDispatcher/SingleService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\singleservice\</RelPath>
@@ -142,11 +149,19 @@
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+<<<<<<< .mine
+      <CachedSettingsPropName>Fwk_Bases_Connector_SingleService_SingleService</CachedSettingsPropName>
+=======
       <CachedSettingsPropName>Fwk_Bases_Connector_singleservice_SingleService</CachedSettingsPropName>
+>>>>>>> .r937
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< .mine
+    <None Include="Web References\SingleService\Reference.map">
+=======
     <None Include="Web References\singleservice\Reference.map">
+>>>>>>> .r937
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
