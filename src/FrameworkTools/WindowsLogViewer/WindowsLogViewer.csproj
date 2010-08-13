@@ -212,9 +212,6 @@
     <None Include="Resources\apply_16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dbscript.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\play_16.gif" />
   </ItemGroup>
   <ItemGroup>
