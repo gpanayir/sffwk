@@ -14,6 +14,21 @@ namespace Fwk.Bases.Connector
     [Serializable]
     public class RemotingWrapper :IServiceWrapper
     {
+
+        string _ProviderName;
+
+        public string ProviderName
+        {
+            get { return _ProviderName; }
+            set { _ProviderName = value; }
+        }
+        string _SourceInfo;
+
+        public string SourceInfo
+        {
+            get { return _SourceInfo; }
+            set { _SourceInfo = value; }
+        }
         #region IServiceInterfaceWrapper Members
 
         /// <summary>
@@ -58,7 +73,7 @@ namespace Fwk.Bases.Connector
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
             pReq.InitializeHostContextInformation();
-            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(pReq);
+            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(_ProviderName, pReq);
             response.InitializeHostContextInformation();
 
             return response;
@@ -73,6 +88,7 @@ namespace Fwk.Bases.Connector
         /// Objeto de interbloqueo concurrente
         /// </summary>
         protected static readonly object singletonLock = new object();
+
         private static bool IsConfigured()
         {
             ///Seccion protegida por la posibilidad de multiples procesos intentar levantar la configuracion
@@ -95,20 +111,20 @@ namespace Fwk.Bases.Connector
 
         
         /// <summary>
-        /// Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile
+        /// Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile en _SourceInfo
         /// </summary>
-        private static void LoadRemotingConfigSettings()
+        private  void LoadRemotingConfigSettings()
 		{
 			if (!IsConfigured())
 			{
                 //Si no se encuentra algun nombre de archivo en el App.config
-				if (Fwk.Bases.ConfigurationsHelper.RemotingConfigFilePathSetting == string.Empty)
+                if (_SourceInfo == string.Empty)
 				{
 					throw new Exception("No hay ruta especificada para el archivo de configuración.");
 				}
 				else
 				{
-                    RemotingConfiguration.Configure(Fwk.Bases.ConfigurationsHelper.RemotingConfigFilePathSetting, false);
+                    RemotingConfiguration.Configure(_SourceInfo, false);
 				}
 			}
 		}
@@ -117,7 +133,7 @@ namespace Fwk.Bases.Connector
         /// Crea en este caso SimpleFacaddeRemoteObject .-
         /// </summary>
         /// <returns>Instancia de SimpleFacaddeRemoteObject</returns>
-        private static FwkRemoteObject CreateRemoteObject()
+        private  FwkRemoteObject CreateRemoteObject()
 		{
             LoadRemotingConfigSettings();
 
@@ -143,7 +159,7 @@ namespace Fwk.Bases.Connector
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
-            return wFwkRemoteObject.GetServicesList();
+            return wFwkRemoteObject.GetServicesList(_ProviderName);
           
         }
 
@@ -157,7 +173,7 @@ namespace Fwk.Bases.Connector
         public ServiceConfiguration GetServiceConfiguration(String pServiceName)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            return wFwkRemoteObject.GetServiceConfiguration(pServiceName);
+            return wFwkRemoteObject.GetServiceConfiguration(_ProviderName, pServiceName);
            
         }
 
@@ -171,7 +187,7 @@ namespace Fwk.Bases.Connector
         public void SetServiceConfiguration(string pServiceName,ServiceConfiguration pServiceConfiguration)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            wFwkRemoteObject.SetServiceConfiguration(pServiceName, pServiceConfiguration);
+            wFwkRemoteObject.SetServiceConfiguration(_ProviderName, pServiceName, pServiceConfiguration);
         }
 
         /// <summary>
@@ -183,7 +199,7 @@ namespace Fwk.Bases.Connector
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            wFwkRemoteObject.AddServiceConfiguration(pServiceConfiguration);
+            wFwkRemoteObject.AddServiceConfiguration(_ProviderName, pServiceConfiguration);
         }
 
         /// <summary>
@@ -195,8 +211,10 @@ namespace Fwk.Bases.Connector
         public void DeleteServiceConfiguration(String  pServiceName)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            wFwkRemoteObject.DeleteServiceConfiguration(pServiceName);
+            wFwkRemoteObject.DeleteServiceConfiguration(_ProviderName, pServiceName);
         }
         #endregion [ServiceConfiguration]
+
+        
     }
 }
