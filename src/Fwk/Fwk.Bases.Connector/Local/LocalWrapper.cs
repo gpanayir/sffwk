@@ -13,6 +13,28 @@ namespace Fwk.Bases.Connector
     public class LocalWrapper : IServiceWrapper
     {
         SimpleFacade _SimpleFacade;
+
+        string _ProviderName;
+
+        /// <summary>
+        /// Este es el proveedor del wrapper
+        /// </summary>
+        public string ProviderName
+        {
+            get { return _ProviderName; }
+            set { _ProviderName = value; }
+        }
+        string _SourceInfo;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string SourceInfo
+        {
+            get { return _SourceInfo; }
+            set { _SourceInfo = value; }
+        }
+
         /// <summary>
         /// Implementa la llamada al backend atravez de la ejecucion de la SimpleFacade. 
         /// Al llamar directamente a la SimpleFacade funciona como un despachador de servicios, esto lo hace
@@ -27,7 +49,7 @@ namespace Fwk.Bases.Connector
                 _SimpleFacade = CreateSimpleFacade();
 
             pReq.InitializeHostContextInformation();
-            IServiceContract wResponse = _SimpleFacade.ExecuteService(pReq);
+            IServiceContract wResponse = _SimpleFacade.ExecuteService(string.Empty,pReq);
             wResponse.InitializeHostContextInformation();
 
             return wResponse;
@@ -36,22 +58,18 @@ namespace Fwk.Bases.Connector
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceName">Nombre del servicio.</param>
+        /// <param name="serviceName">Nombre del servicio.</param>
         /// <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        public TResponse ExecuteService<TRequest, TResponse>(string pServiceName, TRequest pReq)
+        public TResponse ExecuteService<TRequest, TResponse>(string serviceName, TRequest pReq)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
            
-            pReq.ServiceName = pServiceName;
-            
+            pReq.ServiceName = serviceName;
             TResponse wResponse = (TResponse)this.ExecuteService(pReq);
-          
-
-
             return wResponse;
         }
 
@@ -66,21 +84,18 @@ namespace Fwk.Bases.Connector
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-           
-
            return (TResponse)this.ExecuteService(pReq);
-
-
         }
+
         /// <summary>
         /// Este metodo no esta implementado para un wrapper local.-
         /// Su ejecucion producira un error.-
         /// </summary>
-        /// <param name="pServiceName"></param>
+        /// <param name="serviceName"></param>
         /// <param name="pData"></param>
         /// <returns></returns>
         [Obsolete("The method or operation is not implemented on local wraper")]
-        public string ExecuteService(string pServiceName, string pData)
+        public string ExecuteService(string serviceName, string pData)
         {
             throw new Exception("The method or operation is not implemented.");
         }
@@ -98,7 +113,7 @@ namespace Fwk.Bases.Connector
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
 
-            String xmlServices = wSimpleFacade.GetServicesList(true);
+            String xmlServices = wSimpleFacade.GetServicesList(_ProviderName,true);
             ServiceConfigurationCollection wServiceConfigurationCollection = (ServiceConfigurationCollection)
                 Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), xmlServices);
 
@@ -108,14 +123,14 @@ namespace Fwk.Bases.Connector
         /// <summary>
         /// Recupera la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceName">Nombre del servicio.</param>
+        /// <param name="serviceName">Nombre del servicio.</param>
         /// <returns>configuración del servicio de negocio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public ServiceConfiguration GetServiceConfiguration(string pServiceName)
+        public ServiceConfiguration GetServiceConfiguration(string serviceName)
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            String xmlServices = wSimpleFacade.GetServiceConfiguration(pServiceName);
+            String xmlServices = wSimpleFacade.GetServiceConfiguration(_ProviderName, serviceName);
             return ServiceConfiguration.GetServiceConfigurationFromXml(xmlServices);
            
         }
@@ -123,12 +138,12 @@ namespace Fwk.Bases.Connector
        /// <summary>
        /// 
        /// </summary>
-       /// <param name="pServiceName"></param>
+       /// <param name="serviceName"></param>
        /// <param name="pServiceConfiguration"></param>
-        public void SetServiceConfiguration(String pServiceName, ServiceConfiguration pServiceConfiguration)
+        public void SetServiceConfiguration(String serviceName, ServiceConfiguration pServiceConfiguration)
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            wSimpleFacade.SetServiceConfiguration(pServiceName,pServiceConfiguration);
+            wSimpleFacade.SetServiceConfiguration(_ProviderName, serviceName, pServiceConfiguration);
             wSimpleFacade = null;
         }
 
@@ -141,20 +156,20 @@ namespace Fwk.Bases.Connector
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            wSimpleFacade.AddServiceConfiguration(pServiceConfiguration);
+            wSimpleFacade.AddServiceConfiguration(_ProviderName, pServiceConfiguration);
             wSimpleFacade = null;
         }
 
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceName">Nombre del servicio.</param>
+        /// <param name="serviceName">Nombre del servicio.</param>
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
-        public void DeleteServiceConfiguration(string pServiceName)
+        public void DeleteServiceConfiguration(string serviceName)
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            wSimpleFacade.DeleteServiceConfiguration(pServiceName);
+            wSimpleFacade.DeleteServiceConfiguration(_ProviderName, serviceName);
             wSimpleFacade = null;
         }
        
