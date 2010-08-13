@@ -15,7 +15,9 @@ namespace Fwk.Security.ActiveDirectory
         PrincipalContext context;
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public ADManager()
         {
             context = new PrincipalContext(ContextType.Machine, "xxx", "xxx", "xxx");

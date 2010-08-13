@@ -20,7 +20,10 @@ namespace Fwk.Security.Common
         
         private Control owner;
         private Cursor previousCursor;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="owner"></param>
         public WaitCursorHelper(Control owner)
         {
             this.owner = owner;
