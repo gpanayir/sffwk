@@ -69,7 +69,7 @@ namespace Fwk.Bases
         /// <typeparam name="TRequest">Tipo del Request</typeparam>
         /// <typeparam name="TResponse">Tipo del Response</typeparam>
         /// <param name="providerName">Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher</param>
-        /// <param name="pRequest">Objeto request del tipo <see cref="TRequest"/></param>
+        /// <param name="pRequest">Objeto request del tipo </param>
         /// <returns></returns>
         public static TResponse ExecuteService<TRequest, TResponse>(string providerName,TRequest pRequest)
             where TRequest : IServiceContract
@@ -143,7 +143,7 @@ namespace Fwk.Bases
         /// Inicializa un wrapper deacuerdo el nombre del proveedor
         /// Carga al wrapper el nombre
         /// </summary>
-        /// <param name="providerName"></param>
+        /// <param name="providerName">Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher</param>
         internal static void InitWrapper(string providerName)
         {
             if (!_WraperPepository.ContainsKey(providerName))
