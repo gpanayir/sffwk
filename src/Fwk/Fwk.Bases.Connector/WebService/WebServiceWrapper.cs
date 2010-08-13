@@ -14,6 +14,9 @@ namespace Fwk.Bases.Connector
 	{
         string _ProviderName;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string ProviderName
         {
             get { return _ProviderName; }
@@ -28,11 +31,8 @@ namespace Fwk.Bases.Connector
             set { msz_URL = value; }
         }
 
-	    private string msz_URL = string.Empty;
-        /// <summary>
-        /// Direccion url del servicio web
-        /// </summary>
-        //public static string _URL;
+        private string msz_URL = string.Empty;
+    
 		#region IServiceInterfaceWrapper Members 
 
 		/// <summary>
