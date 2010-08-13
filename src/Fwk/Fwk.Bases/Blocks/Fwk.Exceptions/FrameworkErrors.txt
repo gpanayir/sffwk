@@ -1,5 +1,9 @@
 
-Service Manager - Dispatcher
+-------------------------------- Wrapper  -----------------------------------
+ErrorId = 6000
+
+-------------------------------- Service Manager - Dispatcher  -----------------------------------
+
 
 ErrorId = 7001
 Descripcion: "El despachador de servicio no se encuentra disponible."

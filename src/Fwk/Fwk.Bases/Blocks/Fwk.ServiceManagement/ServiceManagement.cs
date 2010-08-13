@@ -41,7 +41,7 @@ namespace Fwk.ServiceManagement
             }
             catch(Exception e)
             {
-                throw e;
+                throw e;//TODO:ver manejo de ex
             }
 
             
@@ -55,19 +55,19 @@ namespace Fwk.ServiceManagement
         /// 
         /// </summary>
         /// <param name="providerName"></param>
-        /// <param name="pServiceName"></param>
+        /// <param name="serviceName"></param>
         /// <returns></returns>
-        public static ServiceConfiguration GetServiceConfiguration(string providerName, string pServiceName)
+        public static ServiceConfiguration GetServiceConfiguration(string providerName, string serviceName)
         {
             ServiceConfiguration svc = null;
             ServiceProviderElement provider = GetProvider(providerName);
             ServiceConfigurationCollection svcList = GetAllServices(provider);
-            svc = svcList.GetServiceConfiguration(pServiceName,provider.ApplicationId);
+            svc = svcList.GetServiceConfiguration(serviceName,provider.ApplicationId);
 
 
             if (svc == null)
             {
-                Exceptions.TechnicalException te = new Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException("El servicio " + serviceName + " no se encuentra configurado.");
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
                 throw te;
@@ -187,21 +187,21 @@ namespace Fwk.ServiceManagement
 
         }
 
-        public static void SetServiceConfiguration(string providerName, string pServiceName, ServiceConfiguration pServiceConfiguration)
+        public static void SetServiceConfiguration(string providerName, string serviceName, ServiceConfiguration pServiceConfiguration)
         {
 
             ServiceProviderElement provider = GetProvider(providerName);
             ServiceConfigurationCollection svcList = GetAllServices(provider);
-            if (!svcList.Exists(pServiceName, provider.ApplicationId))
+            if (!svcList.Exists(serviceName, provider.ApplicationId))
             {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + serviceName + " no se encuentra configurado.");
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
 
                 throw te;
             }
 
-            ServiceConfiguration wServiceConfigurationEnMemoria = svcList.GetServiceConfiguration(pServiceName,provider.ApplicationId);
+            ServiceConfiguration wServiceConfigurationEnMemoria = svcList.GetServiceConfiguration(serviceName,provider.ApplicationId);
             svcList.Remove(wServiceConfigurationEnMemoria);
             svcList.Add(pServiceConfiguration);
 
@@ -232,20 +232,20 @@ namespace Fwk.ServiceManagement
                 XmlServiceConfigurationManager.AddServiceConfiguration(pServiceConfiguration, provider.SourceInfo, svcList);
         }
 
-        public static void DeleteServiceConfiguration(string providerName, string pServiceName)
+        public static void DeleteServiceConfiguration(string providerName, string serviceName)
         {
 
             ServiceProviderElement provider = GetProvider(providerName);
             ServiceConfigurationCollection svcList = GetAllServices(provider);
-            if (!svcList.Exists(pServiceName, provider.ApplicationId))
+            if (!svcList.Exists(serviceName, provider.ApplicationId))
             {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + serviceName + " no se encuentra configurado.");
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
 
                 throw te;
             }
-            ServiceConfiguration wServiceConfigurationEnMemoria = svcList.GetServiceConfiguration(pServiceName,provider.ApplicationId);
+            ServiceConfiguration wServiceConfigurationEnMemoria = svcList.GetServiceConfiguration(serviceName,provider.ApplicationId);
             svcList.Remove(wServiceConfigurationEnMemoria);
 
             if (provider.ConfigProviderType == ServiceProviderType.xml)

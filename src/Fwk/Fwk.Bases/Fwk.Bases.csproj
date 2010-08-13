@@ -190,6 +190,9 @@
     <Compile Include="Classes\BusinessService.cs" />
     <Compile Include="Classes\ClientServiceBase.cs" />
     <Compile Include="Classes\ConfigurationsHelper.cs" />
+    <Compile Include="Classes\config\WrapperProviderCollection.cs" />
+    <Compile Include="Classes\config\WrapperProviderElement.cs" />
+    <Compile Include="Classes\config\WrapperProviderSection.cs" />
     <Compile Include="Classes\ContextInformation.cs" />
     <Compile Include="Classes\Entities.cs" />
     <Compile Include="Classes\Entity.cs" />

@@ -15,13 +15,14 @@ namespace Fwk.Remoting
         /// <summary>
         /// Ejecuta un servicio 
         /// </summary>
+        /// <param name="providerName">Proveeodor de metadata</param>
         /// <param name="pReq">Interfaz de contrato de servicio.- interfaz que implementan todos los request y responsees</param>
         /// <returns><see cref="IServiceContract"/></returns>
-        public IServiceContract ExecuteService(IServiceContract pReq)
+        public IServiceContract ExecuteService(string providerName, IServiceContract pReq)
         {
 
             SimpleFacade wSimpleFacade = new SimpleFacade();
-            IServiceContract wRsponse = wSimpleFacade.ExecuteService(pReq);
+            IServiceContract wRsponse = wSimpleFacade.ExecuteService(providerName, pReq);
             return wRsponse;
 
         }
@@ -29,24 +30,26 @@ namespace Fwk.Remoting
         /// <summary>
         /// Ejecuta un servicio 
         /// </summary>
+        /// <param name="providerName">Proveeodor de metadata</param>
         /// <param name="pServiceName">Nombre del servicio</param>
         /// <param name="pReq">Interfaz de contrato de servicio.- interfaz que implementan todos los request y responsees</param>
         /// <returns><see cref="IServiceContract"/></returns>
-        public IServiceContract ExecuteService(string pServiceName,IServiceContract pReq)
+        public IServiceContract ExecuteService(string providerName, string pServiceName, IServiceContract pReq)
         {
             pReq.ServiceName = pServiceName;
-            return this.ExecuteService(pReq);
+            return this.ExecuteService(providerName,pReq);
         }
 
         /// <summary>
         /// Obtiene la metadata de un servicio 
         /// </summary>
+        /// <param name="providerName">Proveeodor de metadata</param>
         /// <param name="pServiceName">Nombre del servicio</param>
         /// <returns><see cref="ServiceConfiguration"/></returns>
-        public  ServiceConfiguration GetServiceConfiguration(string pServiceName)
+        public  ServiceConfiguration GetServiceConfiguration(string providerName,string pServiceName)
         {
             SimpleFacade wSimpleFacade = new SimpleFacade();
-            String xmlServices = wSimpleFacade.GetServiceConfiguration(pServiceName);
+            String xmlServices = wSimpleFacade.GetServiceConfiguration(providerName,pServiceName);
             return ServiceConfiguration.GetServiceConfigurationFromXml(xmlServices);
            
         }
@@ -54,12 +57,13 @@ namespace Fwk.Remoting
         /// <summary>
         /// Obtiene una lista de servicios
         /// </summary>
+        /// <param name="providerName">Proveeodor de metadata</param>
         /// <returns></returns>
-        public ServiceConfigurationCollection GetServicesList()
+        public ServiceConfigurationCollection GetServicesList(string providerName)
         {
             SimpleFacade wSimpleFacade = new SimpleFacade();
 
-            String xmlServices = wSimpleFacade.GetServicesList(true);
+            String xmlServices = wSimpleFacade.GetServicesList(providerName,true);
             ServiceConfigurationCollection wServiceConfigurationCollection = (ServiceConfigurationCollection)
                 Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), xmlServices);
 
@@ -71,38 +75,41 @@ namespace Fwk.Remoting
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
+        /// <param name="providerName">Proveeodor de metadata</param>
         /// <param name="pServiceName">Nombre del servicio a actualizar.</param>
+        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2006-02-10T00:00:00</date>
         /// <author>moviedo</author>
-        public void SetServiceConfiguration(String pServiceName,ServiceConfiguration pServiceConfiguration)
+        public void SetServiceConfiguration(string providerName, String pServiceName, ServiceConfiguration pServiceConfiguration)
         {
             SimpleFacade wSimpleFacade = new SimpleFacade();
-            wSimpleFacade.SetServiceConfiguration(pServiceName,pServiceConfiguration); 
+            wSimpleFacade.SetServiceConfiguration(providerName,pServiceName, pServiceConfiguration); 
         }
 
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
         /// </summary>
+        /// <param name="providerName">Proveeodor de metadata</param>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>
-        public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
+        public void AddServiceConfiguration(string providerName, ServiceConfiguration pServiceConfiguration)
         {
             SimpleFacade wSimpleFacade = new SimpleFacade();
-            wSimpleFacade.AddServiceConfiguration(pServiceConfiguration); 
+            wSimpleFacade.AddServiceConfiguration(providerName,pServiceConfiguration); 
         }
 
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
         /// </summary>
+        /// <param name="providerName">Proveeodor de metadata</param>
         /// <param name="pServiceName">Nombre del servicio.</param>
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>
-        public void DeleteServiceConfiguration(string pServiceName)
+        public void DeleteServiceConfiguration(string providerName, string pServiceName)
         {
             SimpleFacade wSimpleFacade = new SimpleFacade();
-            wSimpleFacade.DeleteServiceConfiguration(pServiceName); 
+            wSimpleFacade.DeleteServiceConfiguration(providerName,pServiceName); 
 
         }
     }

@@ -46,19 +46,28 @@ namespace Fwk.BusinessFacades
         }
         #region < IBusinessFacade members >
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <param name="pRequest"></param>
+        /// <returns></returns>
+        //public IServiceContract ExecuteService(IServiceContract pRequest)
+        //{
+        //    return ExecuteService(string.Empty, pRequest);
+        //}
 
 
 
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
+        /// <param name="providerName"></param>
         /// <param name="pRequest">Request con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>XML con el resultado de la  ejecución del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public IServiceContract ExecuteService(IServiceContract pRequest)
+        public IServiceContract ExecuteService(string providerName, IServiceContract pRequest)
         {
             IServiceContract wResult = null;
             if (string.IsNullOrEmpty(pRequest.ServiceName))
@@ -67,9 +76,8 @@ namespace Fwk.BusinessFacades
                 wMessage.Append("El despachador de servicio no pudo continuar debido  \r\n");
                 wMessage.Append("a que el nombre del servicio no fue establecido");
                 TechnicalException te = new TechnicalException(wMessage.ToString());
-                te.Assembly = "Fwk.BusinessFacades";
-                te.Class = "FacadeHelper";
-                te.Namespace = "Fwk.BusinessFacades";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
+                
                 te.ErrorId = "7005";
                 throw te;
             }
@@ -78,7 +86,7 @@ namespace Fwk.BusinessFacades
             try
             {
                 IRequest req = (IRequest)pRequest;
-                ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(pRequest.ServiceName);
+                ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,pRequest.ServiceName);
 
 
                 // Validación de disponibilidad del servicio.
@@ -116,32 +124,28 @@ namespace Fwk.BusinessFacades
             }
            
         }
-
-
-       
-       
-
+   
      
         /// <summary>
 		/// Ejecuta un servicio de negocio.
 		/// </summary>
-		/// <param name="pServiceName">Nombre del servicio de negocio.</param>
+		/// <param name="serviceName">Nombre del servicio de negocio.</param>
         /// <param name="pXmlRequest">XML con datos de entrada para la  ejecución del servicio.</param>
 		/// <returns>XML con el resultado de la  ejecución del servicio.</returns>
 		/// <date>2008-04-07T00:00:00</date>
 		/// <author>moviedo</author>
-        public string ExecuteService(string pServiceName ,string pXmlRequest)
+        public string ExecuteService(string providerName, string serviceName, string pXmlRequest)
         {
             string wResult;
             try
             {
-                ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(pServiceName);
+                ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,serviceName);
 
                 IServiceContract wRequest = (IServiceContract)ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
                 
                 wRequest.SetXml(pXmlRequest);
 
-                wResult =  ExecuteService(wRequest).GetXml();
+                wResult = ExecuteService(providerName,wRequest).GetXml();
                 
                 return wResult;
             }
@@ -218,20 +222,22 @@ namespace Fwk.BusinessFacades
         /// <summary>
         /// Obtiene la configuracion de un servicio
         /// </summary>
-        /// <param name="pServiceName">Nombre del servicio a obtener</param>
+        /// <param name="providerName">Nombre del proveedor de la metadata de szervicio</param>
+        /// <param name="serviceName">Nombre del servicio a obtener</param>
         /// <returns>Informacion del servicio</returns>
-        public String GetServiceConfiguration(String pServiceName)
+        public String GetServiceConfiguration(String providerName, String serviceName)
         {
             ServiceConfiguration wServiceConfiguration = null;
             String wServiceInfo;
             try
             {
-                wServiceConfiguration = FacadeHelper.GetServiceConfiguration(pServiceName);
+                wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,serviceName);
+
                 wServiceInfo = wServiceConfiguration.ToString();
             }
             catch (System.NullReferenceException)
             {
-                wServiceInfo = "El servicio " + pServiceName + " no se encuentra configurado";
+                wServiceInfo = "El servicio " + serviceName + " no se encuentra configurado";
             }
             catch (Exception e)
             {
@@ -248,15 +254,14 @@ namespace Fwk.BusinessFacades
         /// <param name="pViewXML">Permite ver como xml todos los servicios y sus datos.
         /// Si se espesifuca false solo se vera una simple lista</param>
         /// <returns></returns>
-        public String GetServicesList(Boolean pViewXML)
+        public String GetServicesList(String providerName, Boolean pViewXML)
         {
-            ServiceConfigurationCollection wServiceConfigurationCollection = FacadeHelper.GetAllServices();
+            ServiceConfigurationCollection wServiceConfigurationCollection = FacadeHelper.GetAllServices(providerName);
             StringBuilder strList = new StringBuilder();
 
             if (pViewXML)
             {
-                strList.Append(Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(
-                                   wServiceConfigurationCollection));
+                strList.Append(Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(wServiceConfigurationCollection));
             }
             else
             {
@@ -275,9 +280,9 @@ namespace Fwk.BusinessFacades
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2010-08-10T00:00:00</date>
         /// <author>moviedo</author>
-        public void SetServiceConfiguration(String pServiceName, ServiceConfiguration pServiceConfiguration)
+        public void SetServiceConfiguration(String providerName, String serviceName, ServiceConfiguration pServiceConfiguration)
         {
-            FacadeHelper.SetServiceConfiguration(pServiceName,pServiceConfiguration); 
+            FacadeHelper.SetServiceConfiguration(providerName,serviceName, pServiceConfiguration); 
         }
 
         /// <summary>
@@ -286,18 +291,18 @@ namespace Fwk.BusinessFacades
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
-        public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
-        { FacadeHelper.AddServiceConfiguration(pServiceConfiguration); }
+        public void AddServiceConfiguration(String providerName, ServiceConfiguration pServiceConfiguration)
+        { FacadeHelper.AddServiceConfiguration(providerName, pServiceConfiguration); }
 
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceName">Nombre del servicio.</param>
+        /// <param name="serviceName">Nombre del servicio.</param>
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
-        public void DeleteServiceConfiguration(string pServiceName)
+        public void DeleteServiceConfiguration(String providerName, string serviceName)
         {
-            FacadeHelper.DeleteServiceConfiguration(pServiceName);
+            FacadeHelper.DeleteServiceConfiguration(providerName, serviceName);
         
         }
 	}

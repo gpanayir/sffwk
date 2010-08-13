@@ -59,10 +59,12 @@ namespace Fwk.ConfigSection
         /// <summary>
         /// Retorna un proveedor determinado
         /// </summary>
-        /// <param name="pEventType">Tipo de evento.</param>
+        /// <param name="name">nombre del proveedor configurado.</param>
         /// <returns>Provider (Rule).</returns>
         public ConfigProviderElement GetProvider(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return this.DefaultProvider;
             foreach (ConfigProviderElement wElement in this.Providers)
             {
                 if (name.CompareTo(wElement.Name) ==0)
@@ -76,10 +78,18 @@ namespace Fwk.ConfigSection
 
         ConfigProviderElement _DefaultProvider = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ConfigProviderElement DefaultProvider
         {
-            get { return _DefaultProvider = this.GetProvider((string)base["defaultProviderName"]);  }
+            get
+            {
+                if (_DefaultProvider == null)
+                    _DefaultProvider = this.GetProvider((string)base["defaultProviderName"]);
 
+                return _DefaultProvider;
+            }
         }
 
         #endregion

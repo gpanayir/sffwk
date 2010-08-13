@@ -17,6 +17,8 @@ namespace Fwk.Bases
 	public interface IServiceWrapper
 	{
 
+        string ProviderName { get; set; }
+        string SourceInfo { get; set; }
 
 		/// <summary>
 		/// Ejecuta un servicio de negocio.

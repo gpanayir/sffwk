@@ -265,29 +265,24 @@ namespace Fwk.BusinessFacades.Utils
 
         #endregion
 
+        
         /// <summary>
         /// Recupera la configuración del servicio de negocio.
         /// </summary>
         /// <remarks>Lee la configuración utilizando un ServiceConfigurationManager del tipo especificado en los settings de la aplicación.</remarks>
+        /// <param name="providerName">Nombre del proveedor de la metadata de szervicio</param>
         /// <param name="serviceName">Nombre del servicio de negocio.</param>
         /// <returns>configuración del servicio de negocio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public static ServiceConfiguration GetServiceConfiguration(string serviceName)
+        public static ServiceConfiguration GetServiceConfiguration(string providerName, string serviceName)
         {
             // obtención de la configuración del servicio.
-            ServiceConfiguration wResult = ServiceMetadata.GetServiceConfiguration(string.Empty,serviceName);
+            ServiceConfiguration wResult = ServiceMetadata.GetServiceConfiguration(providerName, serviceName);
             return wResult;
         }
 
-        /// <summary>
-        /// Obtiene todos los servicios configurados
-        /// </summary>
-        /// <returns>ServiceConfigurationCollection</returns>
-        public static ServiceConfigurationCollection GetAllServices()
-        {
-            return GetAllServices(string.Empty);
-        }
+  
 
         /// <summary>
         /// Obtiene todos los servicios configurados
@@ -298,51 +293,33 @@ namespace Fwk.BusinessFacades.Utils
             return ServiceMetadata.GetAllServices(providerName);
         }
 
+    
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="serviceConfiguration">configuración del servicio de negocio.</param>
-        /// <date>2010-08-10T00:00:00</date>
-        /// <author>moviedo</author>
-        public static void SetServiceConfiguration(String serviceName, ServiceConfiguration serviceConfiguration)
-        {
-            ServiceMetadata.SetServiceConfiguration(string.Empty, serviceName, serviceConfiguration);
-        }
-
+        /// <param name="providerName"></param>
+        /// <param name="serviceName"></param>
+        /// <param name="serviceConfiguration"></param>
         public static void SetServiceConfiguration(string providerName, String serviceName, ServiceConfiguration serviceConfiguration)
         {
             ServiceMetadata.SetServiceConfiguration(providerName,serviceName, serviceConfiguration);
         }
+       
+
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
         /// </summary>
-        /// <param name="serviceConfiguration">configuración del servicio de negocio.</param>
-        /// <date>2008-04-13T00:00:00</date>
-        /// <author>moviedo</author>
-        public static void AddServiceConfiguration(ServiceConfiguration serviceConfiguration)
-        {
-            ServiceMetadata.AddServiceConfiguration(string.Empty, serviceConfiguration); 
-        }
-
+        /// <param name="providerName"></param>
+        /// <param name="serviceConfiguration"></param>
         public static void AddServiceConfiguration(string providerName, ServiceConfiguration serviceConfiguration)
         {
             ServiceMetadata.AddServiceConfiguration(providerName, serviceConfiguration);
         }
         
+      
+
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
-        /// </summary>
-        /// <param name="serviceName">Nombre del servicio.</param>
-        /// <date>2008-04-13T00:00:00</date>
-        /// <author>moviedo</author>
-        public static void DeleteServiceConfiguration(string serviceName)
-        {
-            ServiceMetadata.DeleteServiceConfiguration(string.Empty, serviceName);
-
-        }
-
-        /// <summary>
-        /// 
         /// </summary>
         /// <param name="providerName"></param>
         /// <param name="serviceName"></param>

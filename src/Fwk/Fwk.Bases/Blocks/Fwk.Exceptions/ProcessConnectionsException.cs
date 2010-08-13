@@ -106,12 +106,13 @@ namespace Fwk.Exceptions
             StringBuilder wMessage = new StringBuilder();
 
 
-            wMessage.AppendLine("Ocurrio un problema inesperado al intentar ejecutar un servicio.");
+            wMessage.AppendLine("Ocurrio un problema al intentar ejecutar un servicio.");
             wMessage.AppendLine();
             wMessage.AppendLine("Mensage: ");
             wMessage.AppendLine(pException.Message);
 
             wServiceError.Message = wMessage.ToString();
+            wServiceError.ErrorId = "6000";
             if (pException.InnerException != null)
                 wServiceError.InnerMessageException = pException.InnerException.Message;
 

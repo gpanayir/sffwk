@@ -19,6 +19,6 @@ namespace Fwk.Bases
         /// <param name="pServiceName">Nombre del servicio.</param>
 		/// <param name="pData">XML con datos de entrada para el servicio.</param>
 		/// <returns>XML resultado del servicio.</returns>
-		string ExecuteService(string pServiceName, string pData);
+        string ExecuteService(string providerName ,string pServiceName, string pData);
 	}
 }

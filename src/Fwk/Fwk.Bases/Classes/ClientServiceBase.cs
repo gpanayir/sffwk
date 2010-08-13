@@ -15,22 +15,23 @@ namespace Fwk.Bases
     /// </summary>
     public class ClientServiceBase 
     {
-        //static IServiceWrapper _Wrapper;
+      
 
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>
-        /// <param name="pServiceName"></param>
+        /// <param name="providerName"></param>
         /// <param name="pRequest">Request con datos de entrada para la  ejecución del servicio.</param>
         /// <returns></returns>
-        public TResponse ExecuteService<TRequest, TResponse>(string pServiceName, TRequest pRequest)
+        public TResponse ExecuteService<TRequest, TResponse>(string providerName, TRequest pRequest)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-            pRequest.ServiceName = pServiceName;
-            return this.ExecuteService<TRequest, TResponse>(pRequest);
+
+            return WrapperFactory.ExecuteService<TRequest, TResponse>(providerName, pRequest);
+         
 
         }
 
@@ -46,7 +47,9 @@ namespace Fwk.Bases
             where TResponse : IServiceContract, new()
         {
 
-            return WrapperFactory.ExecuteService<TRequest, TResponse>(pRequest);
+            return this.ExecuteService<TRequest, TResponse>(string.Empty, pRequest);
+
+            #region old code
             //TResponse wResponse = new TResponse();
 
             //if (_Wrapper == null)
@@ -112,6 +115,8 @@ namespace Fwk.Bases
             //}
 
             //return wResponse;
+            #endregion
+
         }
 
        
@@ -123,11 +128,11 @@ namespace Fwk.Bases
         /// <returns>Lista de configuraciones de servicios de negocio.</returns>
         /// <date>2006-02-10T00:00:00</date>
         /// <author>moviedo</author>
-        public ServiceConfigurationCollection GetAllServices()
+        public ServiceConfigurationCollection GetAllServices(string providerName)
         {
-          WrapperFactory.InitWrapper();
+           WrapperFactory.InitWrapper(providerName);
 
-          return WrapperFactory._Wrapper.GetAllServices();
+           return WrapperFactory._WraperPepository[providerName].GetAllServices();
             
         }
         /// <summary>
@@ -137,10 +142,10 @@ namespace Fwk.Bases
         /// <returns>configuración del servicio de negocio.</returns>
         /// <date>2006-02-07T00:00:00</date>
         /// <author>moviedo</author>
-        public ServiceConfiguration GetServiceConfiguration(string pServiceName)
+        public ServiceConfiguration GetServiceConfiguration(string providerName, string pServiceName)
         {
-            WrapperFactory.InitWrapper();
-            return WrapperFactory._Wrapper.GetServiceConfiguration(pServiceName);
+            WrapperFactory.InitWrapper(providerName);
+            return WrapperFactory._WraperPepository[providerName].GetServiceConfiguration(pServiceName);
         }
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
@@ -149,10 +154,10 @@ namespace Fwk.Bases
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2006-02-10T00:00:00</date>
         /// <author>moviedo</author>
-        public void SetServiceConfiguration(String  pServiceName ,ServiceConfiguration pServiceConfiguration)
+        public void SetServiceConfiguration(string providerName, String pServiceName, ServiceConfiguration pServiceConfiguration)
         {
-            WrapperFactory.InitWrapper();
-            WrapperFactory._Wrapper.SetServiceConfiguration(pServiceName, pServiceConfiguration); 
+            WrapperFactory.InitWrapper(providerName);
+            WrapperFactory._WraperPepository[providerName].SetServiceConfiguration(pServiceName, pServiceConfiguration); 
         }
 
         /// <summary>
@@ -161,10 +166,10 @@ namespace Fwk.Bases
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>
-        public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
+        public void AddServiceConfiguration(string providerName, ServiceConfiguration pServiceConfiguration)
         {
-            WrapperFactory.InitWrapper();
-            WrapperFactory._Wrapper.AddServiceConfiguration(pServiceConfiguration); 
+            WrapperFactory.InitWrapper(providerName);
+            WrapperFactory._WraperPepository[providerName].AddServiceConfiguration(pServiceConfiguration); 
         }
 
         /// <summary>
@@ -173,11 +178,11 @@ namespace Fwk.Bases
         /// <param name="pServiceName">Nombre del servicio.</param>
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>
-        public void DeleteServiceConfiguration(string pServiceName)
+        public void DeleteServiceConfiguration(string providerName, string pServiceName)
         {
-            WrapperFactory.InitWrapper();
+            WrapperFactory.InitWrapper(providerName);
 
-            WrapperFactory._Wrapper.DeleteServiceConfiguration(pServiceName); 
+            WrapperFactory._WraperPepository[providerName].DeleteServiceConfiguration(pServiceName); 
         }
         #endregion [ServiceConfiguration]
     }
