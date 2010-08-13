@@ -17,12 +17,7 @@ namespace Fwk.Bases
     /// </summary>
     internal static class WrapperFactory
     {
-        /// <summary>
-        /// Con un wrapper estatico evitamos la generacion de multiples instancias del wraper en el cliente atravez de las 
-        /// multipoles llamadas desde la clase que implementa Request> 
-        /// </summary>
-        //internal static IServiceWrapper _Wrapper = null;
-
+       
         /// <summary>
         /// Representa los diferentes wrapers de la aplicacion cliente
         /// se crea uno por FwkWrapperProvider
@@ -45,7 +40,7 @@ namespace Fwk.Bases
                 _ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
 
             }
-            catch (System.Configuration.ConfigurationErrorsException e)
+            catch (System.Configuration.ConfigurationErrorsException)
             {
                 
                 TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente la propiedad verifique en el archivo de configuracion si existe la seccion FwkWrapper"));
