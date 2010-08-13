@@ -58,5 +58,24 @@ namespace Fwk.Security.Service.Test
 
           
         }
+
+        [TestMethod]
+        public void SearchAllUsersService_WithProvider()
+        {
+            string strErrorResult = string.Empty;
+
+            SearchAllUsersReq req = new SearchAllUsersReq();
+
+
+            SearchAllUsersRes res = ClientServiceBase.ExecuteService<SearchAllUsersReq, SearchAllUsersRes>("XML_test",req);
+            if (res.Error != null)
+            {
+                strErrorResult = Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message;
+            }
+            Assert.AreEqual<Fwk.Exceptions.ServiceError>(res.Error, null, strErrorResult);
+
+
+
+        }
     }
 }
