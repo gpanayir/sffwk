@@ -126,7 +126,7 @@ namespace Fwk.Configuration
             {
 
 
-                TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", wBaseConfigFile }));
+                TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo [", pGroupName, "] en el archivo de configuración: ", wBaseConfigFile }));
                 te.ErrorId = "8006";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
@@ -208,7 +208,7 @@ namespace Fwk.Configuration
 
             if (!System.IO.File.Exists(wFullFileName))
             {
-                TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuración. ", provider.BaseConfigFile, Environment.NewLine, "Revisar en el archivo .config de la aplicacion la configuración del proveedor ", provider.Name));
+                TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuración ", provider.BaseConfigFile, " no existe. ", Environment.NewLine, "Revisar en el archivo .config de la aplicacion la configuración del proveedor [",  provider.Name,"]"));
                 te.ErrorId = "8011";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;

@@ -40,9 +40,9 @@ namespace Fwk.Exceptions
                 case "System.Configuration.ConfigurationErrorsException":
                     {
                         wServiceError = ProcessConfigurationException((System.Configuration.ConfigurationException)pEx);
-                        wServiceError.Assembly = "Fwk.Bases.FrontEnd.dll";
-                        wServiceError.Namespace = "Fwk.Bases.FrontEnd";
-                        wServiceError.Class = "FrmBase";
+                        wServiceError.Assembly = "Fwk.Bases.dll";
+                        wServiceError.Namespace = "";
+                        wServiceError.Class = "";
                         break;
                     }
                 case "System.Web.Services.Protocols.SoapException":
@@ -52,6 +52,17 @@ namespace Fwk.Exceptions
                         wServiceError.Namespace = "Fwk.ServiceManagement";
                         wServiceError.Class = "ServiceManagement : Despachador de servicios ";
 
+                        break;
+                    }
+                case "Fwk.Exceptions.TechnicalException":
+                    {
+                        TechnicalException te = (TechnicalException)pEx;
+                        wServiceError = ProcessDefaultException(pEx);
+                        wServiceError.Assembly = te.Assembly;
+                        wServiceError.Namespace = te.Namespace;
+                        wServiceError.Class = te.Class;
+                        wServiceError.ErrorId = te.ErrorId;
+                        wServiceError.Source = te.Source;
                         break;
                     }
                 default:
