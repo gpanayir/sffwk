@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="ProfileData" Class="TraceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MOVIEDO\SQLEXPRESS;Initial Catalog=ProfileData;Integrated Security=True" SettingsObjectName="FwkSqlTrace.Properties.Settings" SettingsPropertyName="ProfileDataConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Trace" Member="Traces">
+    <Type Name="Trace">
+      <Column Name="RowNumber" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventClass" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TextData" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ApplicationName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="NTUserName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="LoginName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="CPU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Reads" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Writes" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Duration" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ClientProcessID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SPID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BinaryData" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DatabaseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DatabaseName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="EventSequence" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="HostName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="IsSystem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LoginSid" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NTDomainName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="ServerName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="RowCounts" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="SessionLoginName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="TransactionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="XactSequence" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="EventSubClass" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IntegerData" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ObjectID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Error" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ObjectName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="DBUserName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="MethodName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="OwnerName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="ProviderName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="RoleName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="TargetLoginName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="TargetUserName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Severity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="State" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BigintData1" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IndexID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Success" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LinkedServerName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="ParentName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="BigintData2" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="IntegerData2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Handle" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RequestID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LineNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NestLevel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Offset" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ObjectType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SqlHandle" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SourceDatabaseID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EventClassName" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

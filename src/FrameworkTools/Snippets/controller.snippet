@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Metodo Controller</Title>
+			<Shortcut>controller</Shortcut>
+			<Description>snippet para generar un metodo controller que realiza un ExecuteService</Description>
+			<Author>Andrés Aguirre</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>TRequest</ID>
+					<ToolTip>Tipo del Request</ToolTip>
+					<Default>Req.TRequest</Default>
+				</Literal>
+				<Literal>
+					<ID>TResponse</ID>
+					<ToolTip>Tipo del Response</ToolTip>
+					<Default>Res.TResponse</Default>
+				</Literal>
+				<Literal>
+					<ID>TEntity</ID>
+					<ToolTip>Tipo de Entity a retornar</ToolTip>
+					<Default>BE.TEntity</Default>
+				</Literal>
+				<Literal>
+					<ID>TResponseEntity</ID>
+					<ToolTip>Tipo de Entity del Response</ToolTip>
+					<Default>Res.TResponseEntity</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+				<![CDATA[
+					$TRequest$ wReq = new $TRequest$();
+					$TResponse$ wRes = new $TResponse$();
+            
+					// Ejecuta el servicio
+					wRes = _ClientServiceBase.ExecuteService<$TRequest$, $TResponse$>(wReq);
+            
+					// Se retorna la entity					
+					($TEntity$)$TEntity$.GetObjectFromXml(typeof($TEntity$), wRes.GetBusinessDataXml());
+				
+				$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

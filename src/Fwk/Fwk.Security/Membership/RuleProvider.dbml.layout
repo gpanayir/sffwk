@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="RuleProvider">
+  <DataContextMoniker Name="/RuleProviderDataContext" />
+  <nestedChildShapes>
+    <classShape Id="2e513a1c-5772-40de-a661-32e0dd8b82f8" absoluteBounds="0.75, 0.75, 2, 1.26050048828125">
+      <DataClassMoniker Name="/RuleProviderDataContext/aspnet_Rule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6be0effa-9860-4efe-a26d-d574fdea1490" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="20f0a300-cf94-43c8-8bfe-1ba4f4687f3d" absoluteBounds="3.75, 0.75, 2, 1.26050048828125">
+      <DataClassMoniker Name="/RuleProviderDataContext/aspnet_RulesInCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ef07992f-1c3b-44a1-a253-f5773dabd0f4" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8999132e-5517-421b-bbc8-ac5c8025672a" absoluteBounds="0.75, 3.75, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/RuleProviderDataContext/aspnet_RulesCategory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3621fb06-9954-4497-a23e-c3c554585423" absoluteBounds="0.765, 4.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6a75dff0-2c08-41a3-9488-1a07015c4607" absoluteBounds="2.5, 2.25, 2, 1.4248478190104168">
+      <DataClassMoniker Name="/RuleProviderDataContext/aspnet_Application" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5e3d4137-b30a-4b6b-b506-6daa36e30577" absoluteBounds="2.515, 2.71, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

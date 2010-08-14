@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Fwk.Bases.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Wrapper" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Fwk.Bases.Connector.LocalWrapper, Fwk.Bases.Connector</Value>
+    </Setting>
+    <Setting Name="DispatcherRemotingConfigFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">RemotingConfigFile.config</Value>
+    </Setting>
+    <Setting Name="WebServiceDispatcherUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost/WebServiceDispatcher/SingleService.asmx</Value>
+    </Setting>
+    <Setting Name="Fwk_Configuration_ConfigurationWebService_ConfigurationService" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

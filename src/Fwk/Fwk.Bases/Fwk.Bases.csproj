@@ -1,0 +1,393 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1654A893-0408-474E-873C-E79F00D7587C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fwk.Bases</RootNamespace>
+    <AssemblyName>Fwk.Bases</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>fwk.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Fwk.Bases/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Fwk.Bases.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dao, Version=10.0.4504.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Archivos de programa\Microsoft Visual Studio 9.0\Visual Studio Tools for Office\PIA\Office12\dao.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cryptography, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager_CRUD.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\config\configdata.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>configdata.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Configuration\DatabaseConfigMannager.cs" />
+    <Compile Include="Blocks\Fwk.Net\CommonClass.cs" />
+    <Compile Include="Blocks\Fwk.Net\Ftp\FTPComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Net\Ftp\FTPComponent.Designer.cs">
+      <DependentUpon>FTPComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Net\Ftp\FtpUtil.cs" />
+    <Compile Include="Blocks\Fwk.Security.Cryptography\ISymetriCypher.cs" />
+    <Compile Include="Blocks\Fwk.Security.Cryptography\SymetricCypherFactory.cs" />
+    <Compile Include="Blocks\Fwk.Security.Cryptography\SymetriCypher.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderCollection.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderElement.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderSection.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\ServiceManagement.cs" />
+    <Compile Include="Classes\Common.cs" />
+    <Compile Include="Blocks\Functions\ExportFunctions.cs" />
+    <Compile Include="Blocks\Functions\ImportFunctions.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\BlockingEngineBase.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\BlockingEngineDAC.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\BlockingMarkBase.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\Functions.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\FwkBlockingEngine.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\IBlockingEngine.cs" />
+    <Compile Include="Blocks\Fwk.Blocking\IBlockingMark.cs" />
+    <Compile Include="Blocks\Fwk.BusinessFacades\Audit.cs" />
+    <Compile Include="Blocks\Fwk.BusinessFacades\FacadeHelper.cs" />
+    <Compile Include="Blocks\Fwk.BusinessFacades\ServiceCalls.cs" />
+    <Compile Include="Blocks\Fwk.BusinessFacades\SimpleFacade.cs" />
+    <Compile Include="Blocks\Fwk.Caching\ServiceCacheMannager.cs" />
+    <Compile Include="Blocks\Fwk.Caching\FwkSimpleStorageBase.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigFileRegistry.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationHolder.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationRepository.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\Utils.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\LocalConfigurationManager.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\RemoteConfigurationManager.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Logging\config\LoggingSection.cs" />
+    <Compile Include="Blocks\Fwk.Logging\config\RuleElement.cs" />
+    <Compile Include="Blocks\Fwk.Logging\config\RuleElementCollection.cs" />
+    <Compile Include="Blocks\Fwk.Logging\targets\ITarget.cs" />
+    <Compile Include="Blocks\Fwk.Mail\config\MailAgentFactory.cs" />
+    <Compile Include="Blocks\Fwk.Mail\config\MailAgentSection.cs" />
+    <Compile Include="Blocks\Fwk.Mail\config\MailAgentElement.cs" />
+    <Compile Include="Blocks\Fwk.Mail\config\MailAgentElementCollection.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Common.cs" />
+    <Compile Include="Blocks\Fwk.Mail\FwkMailAgent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Mail\FwkMailAgent.Designer.cs">
+      <DependentUpon>FwkMailAgent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Blocks\Fwk.Mail\ImapServices.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Imap\Imap.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Imap\ImapBase.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Imap\ImapException.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Message.cs" />
+    <Compile Include="Blocks\Fwk.Mail\ObjCache.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Pop3Services.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Pop3\Pop3.cs" />
+    <Compile Include="Blocks\Fwk.Mail\Pop3\Pop3Exception.cs" />
+    <Compile Include="Blocks\Fwk.Mail\ProtocolMailBase.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\Database\DatabaseServiceConfigurationManager.cs" />
+    <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlServiceConfigurationManager.cs" />
+    <Compile Include="Classes\BackEndBases.cs" />
+    <Compile Include="Classes\BusinessService.cs" />
+    <Compile Include="Classes\ClientServiceBase.cs" />
+    <Compile Include="Classes\ConfigurationsHelper.cs" />
+    <Compile Include="Classes\config\WrapperProviderCollection.cs" />
+    <Compile Include="Classes\config\WrapperProviderElement.cs" />
+    <Compile Include="Classes\config\WrapperProviderSection.cs" />
+    <Compile Include="Classes\ContextInformation.cs" />
+    <Compile Include="Classes\Entities.cs" />
+    <Compile Include="Classes\Entity.cs" />
+    <Compile Include="Classes\EntityHistory\FwkHistoryAttribute.cs" />
+    <Compile Include="Classes\EntityHistory\FwkMultipleEntityHistory.cs" />
+    <Compile Include="Classes\EntityHistory\FwkSingleEntityHistory.cs" />
+    <Compile Include="Classes\EntityHistory\IModificationHistory.cs" />
+    <Compile Include="Classes\EntityHistory\ModificationHistoryAttribute.cs" />
+    <Compile Include="Classes\EntityHistory\ModificationHistory.cs" />
+    <Compile Include="Classes\EntityHistory\PropertyValue.cs" />
+    <Compile Include="Classes\FwkRemoteObject.cs" />
+    <Compile Include="Classes\SingletonFactory.cs" />
+    <Compile Include="Classes\WrapperFactory.cs" />
+    <Compile Include="DialogDebuggerVisualizer\IEntityVisualizer.cs" />
+    <Compile Include="DialogDebuggerVisualizer\IEntityVisualizerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogDebuggerVisualizer\IEntityVisualizerForm.designer.cs">
+      <DependentUpon>IEntityVisualizerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Blocks\Functions\CryptographyFunctions.cs" />
+    <Compile Include="Blocks\Functions\DataFunctions.cs" />
+    <Compile Include="Blocks\Functions\DateFunctions.cs" />
+    <Compile Include="Blocks\Functions\EMailFunctions.cs" />
+    <Compile Include="Blocks\Functions\EnvironmentFunctions.cs" />
+    <Compile Include="Blocks\Functions\FileFunctions.cs" />
+    <Compile Include="Blocks\Functions\FormatFunctions.cs" />
+    <Compile Include="Blocks\Fwk.AssemblyExplorer\Assembly.cs" />
+    <Compile Include="Blocks\Fwk.AssemblyExplorer\AssemblyClass.cs" />
+    <Compile Include="Blocks\Fwk.AssemblyExplorer\AssemblyMethod.cs" />
+    <Compile Include="Blocks\Fwk.AssemblyExplorer\AssemblyParameter.cs" />
+    <Compile Include="Blocks\Fwk.AssemblyExplorer\AssemblyProperty.cs" />
+    <Compile Include="Blocks\Fwk.Caching\Cache.cs" />
+    <Compile Include="Blocks\Fwk.Caching\CacheCollectionMannager.cs" />
+    <Compile Include="Blocks\Fwk.Caching\CacheRefreshAction.cs" />
+    <Compile Include="Blocks\Fwk.Caching\CacheSettings.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\BlockingFunctionalException.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\ExceptionEnums.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\ExceptionHelper.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\FunctionalException.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\ProcessConnectionsException.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\SerializedExceptionExtension.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\SerializedExceptionExtensionAttribute.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\ServiceError.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\SoapOriginalException.cs" />
+    <Compile Include="Blocks\Fwk.Exceptions\TechnicalException.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\config\ConfigProviderSection.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\config\ConfigProviderElement.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\config\ConfigProviderCollection.cs" />
+    <Compile Include="Blocks\Fwk.Logging\Event.cs" />
+    <Compile Include="Blocks\Fwk.Logging\EventType.cs" />
+    <Compile Include="Blocks\Fwk.Logging\Logger.cs" />
+    <Compile Include="Blocks\Fwk.Logging\StaticLogger.cs" />
+    <Compile Include="Blocks\Fwk.Logging\targets\DatabaseTarget.cs" />
+    <Compile Include="Blocks\Fwk.Logging\targets\FileTarget.cs" />
+    <Compile Include="Blocks\Fwk.Logging\targets\Target.cs" />
+    <Compile Include="Blocks\Fwk.Logging\targets\TargetType.cs" />
+    <Compile Include="Blocks\Fwk.Logging\targets\WindowsEventTarget.cs" />
+    <Compile Include="Blocks\Fwk.Logging\targets\XmlTarget.cs" />
+    <Compile Include="Blocks\Functions\LogFunctions.cs" />
+    <Compile Include="Blocks\Functions\MathFunctions.cs" />
+    <Compile Include="Blocks\Functions\MoneyFunctions.cs" />
+    <Compile Include="Blocks\Functions\RandomPassword.cs" />
+    <Compile Include="Blocks\Functions\ReflectionFunctions.cs" />
+    <Compile Include="Blocks\Functions\SerializationFunctions.cs" />
+    <Compile Include="Blocks\Functions\TransactionScopeHandler.cs" />
+    <Compile Include="Blocks\Functions\TypeFunctions.cs" />
+    <Compile Include="Blocks\Functions\WebFunctions.cs" />
+    <Compile Include="Blocks\Functions\Xml\CData.cs" />
+    <Compile Include="Blocks\Functions\Xml\Document.cs" />
+    <Compile Include="Blocks\Functions\Xml\Element.cs" />
+    <Compile Include="Blocks\Functions\Xml\Node.cs" />
+    <Compile Include="Blocks\Functions\Xml\NodeAttribute.cs" />
+    <Compile Include="Interfaces\IClientServiceBase.cs" />
+    <Compile Include="Interfaces\IServiceConfigurationManager.cs" />
+    <Compile Include="Classes\Request.cs" />
+    <Compile Include="Classes\Response.cs" />
+    <Compile Include="Classes\SearchEntityArg.cs" />
+    <Compile Include="Classes\ServiceConfiguration.cs" />
+    <Compile Include="Classes\ServiceContractBase.cs" />
+    <Compile Include="Interfaces\IBusinessFacade.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IServiceInterfaceWrapper.cs" />
+    <Compile Include="Interfaces\IServiceContract.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SingletonFactoryArray.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="BackEnd.cd" />
+    <None Include="fwk.snk" />
+    <None Include="Blocks\Fwk.Caching\Caching.cd" />
+    <None Include="Blocks\Fwk.Caching\ConfigCaching_App.config" />
+    <None Include="Blocks\Fwk.Logging\diagrams\Diagram.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Blocks\Fwk.Configuration\config\configdata.dbml.layout">
+      <DependentUpon>configdata.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Blocks\Fwk.Mail\FwkMailAgent.resx">
+      <DependentUpon>FwkMailAgent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Blocks\Fwk.Net\Ftp\FTPComponent.resx">
+      <DependentUpon>FTPComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogDebuggerVisualizer\IEntityVisualizerForm.resx">
+      <DependentUpon>IEntityVisualizerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Blocks\Fwk.Caching\Configurations.xml" />
+    <None Include="Blocks\Fwk.Configuration\app.config" />
+    <None Include="Blocks\Fwk.Configuration\config\configdata.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>configdata.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\ConfigurationService.disco" />
+    <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\ConfigurationService.wsdl" />
+    <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
+    <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
+    <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />
+    <Content Include="Blocks\Fwk.Exceptions\FrameworkErrors.txt" />
+    <None Include="Resources\db5.png" />
+    <None Include="RequestResponse.cd" />
+    <None Include="Resources\mail_16.png" />
+    <None Include="Resources\cancel.png" />
+    <None Include="Resources\save.png" />
+    <None Include="Resources\copy.png" />
+    <None Include="Blocks\Fwk.ServiceManagement\Xml\BPConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:1817/Fwk.Configuration.ConfigurationService/ConfigurationService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Blocks\Fwk.Configuration\Web References\ConfigurationWebService\</RelPath>
+      <UpdateFromURL>
+      </UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>
+      </CachedAppSettingsObjectName>
+      <CachedSettingsPropName>
+      </CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetDir)$(TargetName).*"  "$(ProjectDir)..\..\Libraries\Framework\$(TargetName).*" &gt;&gt; nul</PostBuildEvent>
+  </PropertyGroup>
+</Project>
