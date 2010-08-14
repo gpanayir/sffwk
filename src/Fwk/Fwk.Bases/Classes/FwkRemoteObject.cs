@@ -16,7 +16,7 @@ namespace Fwk.Remoting
         /// <summary>
         /// Ejecuta un servicio 
         /// </summary>
-        /// <param name="providerName">Proveeodor de metadata</param>
+        /// <param name="providerName">Proveedor de metadata</param>
         /// <param name="pReq">Interfaz de contrato de servicio.- interfaz que implementan todos los request y responsees</param>
         /// <returns><see cref="IServiceContract"/></returns>
         public IServiceContract ExecuteService(string providerName, IServiceContract pReq)
@@ -31,7 +31,7 @@ namespace Fwk.Remoting
         /// <summary>
         /// Ejecuta un servicio 
         /// </summary>
-        /// <param name="providerName">Proveeodor de metadata</param>
+        /// <param name="providerName">Proveedor de metadata</param>
         /// <param name="pServiceName">Nombre del servicio</param>
         /// <param name="pReq">Interfaz de contrato de servicio.- interfaz que implementan todos los request y responsees</param>
         /// <returns><see cref="IServiceContract"/></returns>
@@ -44,7 +44,7 @@ namespace Fwk.Remoting
         /// <summary>
         /// Obtiene la metadata de un servicio 
         /// </summary>
-        /// <param name="providerName">Proveeodor de metadata</param>
+        /// <param name="providerName">Proveedor de metadata</param>
         /// <param name="pServiceName">Nombre del servicio</param>
         /// <returns><see cref="ServiceConfiguration"/></returns>
         public ServiceConfiguration GetServiceConfiguration(string providerName, string pServiceName)
@@ -58,7 +58,7 @@ namespace Fwk.Remoting
         /// <summary>
         /// Obtiene una lista de servicios
         /// </summary>
-        /// <param name="providerName">Proveeodor de metadata</param>
+        /// <param name="providerName">Proveedor de metadata</param>
         /// <returns></returns>
         public ServiceConfigurationCollection GetServicesList(string providerName)
         {
@@ -76,7 +76,7 @@ namespace Fwk.Remoting
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="providerName">Proveeodor de metadata</param>
+        /// <param name="providerName">Proveedor de metadata</param>
         /// <param name="pServiceName">Nombre del servicio a actualizar.</param>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2006-02-10T00:00:00</date>
@@ -90,7 +90,7 @@ namespace Fwk.Remoting
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
         /// </summary>
-        /// <param name="providerName">Proveeodor de metadata</param>
+        /// <param name="providerName">Proveedor de metadata</param>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>
@@ -103,7 +103,7 @@ namespace Fwk.Remoting
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="providerName">Proveeodor de metadata</param>
+        /// <param name="providerName">Proveedor de metadata</param>
         /// <param name="pServiceName">Nombre del servicio.</param>
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>

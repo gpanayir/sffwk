@@ -70,7 +70,7 @@ public class ConfigurationService : System.Web.Services.WebService
             ConfigFileRegistry wConfigFileRegistry = _ConfigFileRegistrys.GetFirstByName(pFileName);
             if (!wConfigFileRegistry.Available)
             {
-                throw new Exception("El archivo de configuraciÛn solicitado no est· disponible.");
+                throw new Exception("El archivo de configuraci√≥n solicitado no est√° disponible.");
             }
             ///TODO: analisar si se continbua utiilizando esta arquitectura
             return "";// Common.Helper.GetConfig(Server.MapPath(@"~/ConfigurationFiles/" + pFileName), wConfigFileRegistry).GetXml();

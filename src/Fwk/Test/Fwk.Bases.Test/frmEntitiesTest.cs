@@ -314,16 +314,16 @@ namespace Fwk.Bases.Test
 
         private void button9_Click_1(object sender, EventArgs e)
         {
-            XmlServiceConfigurationManager wXmlServiceConfigurationManager = new XmlServiceConfigurationManager();
-            ServiceConfiguration service = wXmlServiceConfigurationManager.GetServiceConfiguration(txtServiceConfigurationName.Text);
+
+            ServiceConfiguration service = Fwk.ServiceManagement.ServiceMetadata.GetServiceConfiguration(string.Empty,txtServiceConfigurationName.Text);
             txtEntidadSimple.Text = service.GetXml();
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            XmlServiceConfigurationManager wXmlServiceConfigurationManager = new XmlServiceConfigurationManager();
-            ServiceConfiguration service = ServiceConfiguration.GetServiceConfigurationFromXml(txtEntidadSimple.Text);
-            wXmlServiceConfigurationManager.SetServiceConfiguration("",service);
+
+            ServiceConfiguration service = ServiceConfiguration.GetFromXml < ServiceConfiguration>(txtEntidadSimple.Text);
+            ServiceMetadata.SetServiceConfiguration("","", service);
         }
 
         private void button11_Click(object sender, EventArgs e)

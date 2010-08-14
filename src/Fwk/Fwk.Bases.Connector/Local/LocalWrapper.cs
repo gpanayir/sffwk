@@ -17,22 +17,22 @@ namespace Fwk.Bases.Connector
         string _ProviderName;
 
         /// <summary>
-        /// Este es el proveedor del wrapper
+        /// Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher
         /// </summary>
         public string ProviderName
         {
             get { return _ProviderName; }
             set { _ProviderName = value; }
         }
-        string _SourceInfo;
+        //string _SourceInfo;
 
         /// <summary>
-        /// 
+        /// No se utiliza en un wrapper local
         /// </summary>
         public string SourceInfo
         {
-            get { return _SourceInfo; }
-            set { _SourceInfo = value; }
+            get { return null; }
+            set {  }
         }
 
         /// <summary>

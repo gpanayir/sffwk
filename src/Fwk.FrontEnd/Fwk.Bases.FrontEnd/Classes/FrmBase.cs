@@ -179,7 +179,7 @@ namespace Fwk.Bases.FrontEnd
         /// <author>moviedo</author>
         public ServiceConfigurationCollection GetAllServices()
         {
-            return _ClientServiceBase.GetAllServices();
+            return _ClientServiceBase.GetAllServices(_ProviderName);
         }
         /// <summary>
         /// Recupera la configuración de un servicio de negocio.
@@ -190,7 +190,7 @@ namespace Fwk.Bases.FrontEnd
         /// <author>moviedo</author>
         public ServiceConfiguration GetServiceConfiguration(string pServiceName)
         {
-            return _ClientServiceBase.GetServiceConfiguration(pServiceName);
+            return _ClientServiceBase.GetServiceConfiguration(_ProviderName, pServiceName);
         }
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
@@ -200,7 +200,7 @@ namespace Fwk.Bases.FrontEnd
         /// <date>2006-02-10T00:00:00</date>
         /// <author>moviedo</author>
         public void SetServiceConfiguration(String pServiceName,ServiceConfiguration pServiceConfiguration)
-        { _ClientServiceBase.SetServiceConfiguration(pServiceName,pServiceConfiguration); }
+        { _ClientServiceBase.SetServiceConfiguration(_ProviderName, pServiceName, pServiceConfiguration); }
 
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
@@ -209,7 +209,7 @@ namespace Fwk.Bases.FrontEnd
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
-        { _ClientServiceBase.AddServiceConfiguration(pServiceConfiguration); }
+        { _ClientServiceBase.AddServiceConfiguration(_ProviderName, pServiceConfiguration); }
 
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
@@ -218,11 +218,37 @@ namespace Fwk.Bases.FrontEnd
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>
         public void DeleteServiceConfiguration(string pServiceName)
-        { _ClientServiceBase.DeleteServiceConfiguration(pServiceName); }
+        { _ClientServiceBase.DeleteServiceConfiguration(_ProviderName, pServiceName); }
         #endregion  [ServiceConfiguration]
 
 
 
-       
+
+
+        #region IServiceWrapper Members
+
+
+        string _ProviderName;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ProviderName
+        {
+            get { return _ProviderName; }
+            set { _ProviderName = value; }
+        }
+        string _SourceInfo;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string SourceInfo
+        {
+            get { return _SourceInfo; }
+            set { _SourceInfo = value; }
+        }
+
+        #endregion
     }
 }

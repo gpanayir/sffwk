@@ -16,8 +16,13 @@ namespace Fwk.Bases
     /// <author>moviedo</author>
 	public interface IServiceWrapper
 	{
-
+        /// <summary>
+        /// Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher
+        /// </summary>
         string ProviderName { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         string SourceInfo { get; set; }
 
 		/// <summary>
@@ -32,20 +37,20 @@ namespace Fwk.Bases
 
        
 
-        /// <summary>
-        /// Ejecuta un servicio de negocio. Este metodo no debe ser mas utilizado solo se deja por compatibilidad
-        /// con verciones anteriores.
-        /// El establecimiento del nombre del servicio directamente se debe hacer por medio de la clase TRequest
-        /// 
-        /// </summary>
-        /// <param name="pServiceName">Nombre del servicio.</param>
-        /// <param name="pData">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
-        /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
-        /// <date>2007-06-23T00:00:00</date>
-        /// <author>moviedo</author>
-        TResponse ExecuteService<TRequest, TResponse>(string pServiceName, TRequest pData)
-            where TRequest : IServiceContract
-            where TResponse : IServiceContract, new();
+        ///// <summary>
+        ///// Ejecuta un servicio de negocio. Este metodo no debe ser mas utilizado solo se deja por compatibilidad
+        ///// con verciones anteriores.
+        ///// El establecimiento del nombre del servicio directamente se debe hacer por medio de la clase TRequest
+        ///// 
+        ///// </summary>
+        ///// <param name="pServiceName">Nombre del servicio.</param>
+        ///// <param name="pData">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
+        ///// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
+        ///// <date>2007-06-23T00:00:00</date>
+        ///// <author>moviedo</author>
+        //TResponse ExecuteService<TRequest, TResponse>(string pServiceName, TRequest pData)
+        //    where TRequest : IServiceContract
+        //    where TResponse : IServiceContract, new();
 
         /// <summary>
         /// Ejecuta un servicio de negocio.

@@ -15,7 +15,7 @@ namespace Fwk.Bases.Connector
         string _ProviderName;
 
         /// <summary>
-        /// 
+        /// Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher
         /// </summary>
         public string ProviderName
         {
