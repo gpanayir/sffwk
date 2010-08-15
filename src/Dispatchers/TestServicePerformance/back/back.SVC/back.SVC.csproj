@@ -32,17 +32,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\StaticLibs\Fwk.Bases.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
     <Reference Include="Fwk.Security, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\StaticLibs\Fwk.Security.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\StaticLibs\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
     </Reference>
     <Reference Include="System" />
