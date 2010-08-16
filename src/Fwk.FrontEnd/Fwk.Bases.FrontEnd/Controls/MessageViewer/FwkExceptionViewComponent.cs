@@ -89,7 +89,8 @@ namespace Fwk.Bases.FrontEnd.Controls
         {
 
             _FwkMessageView.Source = e.Source;
-            _FwkMessageView.Detail = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
+            if(e.InnerException != null  )
+                _FwkMessageView.Detail = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e.InnerException);
             _FwkMessageView.Message = e.Message ;
 
             _FwkMessageView.ShowDialog();

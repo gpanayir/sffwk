@@ -35,14 +35,16 @@ namespace Fwk.ServiceManagement
         {
             ServiceConfiguration wServiceConfiguration = null; ;
 
-            Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
-            System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_g_Name");
-            wBPConfig.AddInParameter(dbCommand, "Name", System.Data.DbType.String, serviceName);
-            if (!string.IsNullOrEmpty(applicationId))
-                wBPConfig.AddInParameter(dbCommand, "ApplicationId", System.Data.DbType.String, applicationId);
-
+          
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+                System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_g_Name");
+                wBPConfig.AddInParameter(dbCommand, "Name", System.Data.DbType.String, serviceName);
+                if (!string.IsNullOrEmpty(applicationId))
+                    wBPConfig.AddInParameter(dbCommand, "ApplicationId", System.Data.DbType.String, applicationId);
+
+
                 using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
                 {
                     while (dataReader.Read())
@@ -77,14 +79,17 @@ namespace Fwk.ServiceManagement
 		/// <returns>Lista de configuraciones de servicios de negocio.</returns>
         internal static ServiceConfigurationCollection GetAllServices(string applicationId, string cnnString)
 		{
-            Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+          
          
 			ServiceConfigurationCollection wServiceConfigurationCollection = new ServiceConfigurationCollection();
-            System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_s_All");
-            if (!string.IsNullOrEmpty(applicationId))
-                wBPConfig.AddInParameter(dbCommand, "ApplicationId", System.Data.DbType.String, applicationId);
+            
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+                System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_s_All");
+                if (!string.IsNullOrEmpty(applicationId))
+                    wBPConfig.AddInParameter(dbCommand, "ApplicationId", System.Data.DbType.String, applicationId);
+
                 using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
                 {
                     while (dataReader.Read())
@@ -115,8 +120,7 @@ namespace Fwk.ServiceManagement
         /// <param name="cnnString">Nombre de cadena de conexion</param>
         internal static void SetServiceConfiguration(String serviceName, ServiceConfiguration pServiceConfiguration, string applicationId, string cnnString)
 		{
-            Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
-
+            
             if (GetServiceConfiguration(serviceName,applicationId,cnnString) == null)
             {
                 Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " no se actualizó por que no se encontro configurado en la base de datos.");
@@ -126,6 +130,8 @@ namespace Fwk.ServiceManagement
             }
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
                 using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_u"))
                 {
 
@@ -175,9 +181,11 @@ namespace Fwk.ServiceManagement
 		/// <author>moviedo</author>
         internal static void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration, string applicationId, string cnnString)
 		{
-			Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
                 using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_i"))
                 {
                     wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceConfiguration.Name);
@@ -216,9 +224,11 @@ namespace Fwk.ServiceManagement
 		/// <param name="cnnString">Nombre de cadena de conexion</param>
         internal static void DeleteServiceConfiguration(string serviceName, string applicationId, string cnnString)
         {
-            Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
                 using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_d"))
                 {
                     wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, serviceName);

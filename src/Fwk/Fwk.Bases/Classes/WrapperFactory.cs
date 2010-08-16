@@ -15,7 +15,7 @@ namespace Fwk.Bases
     /// todos los request.-
     /// Cuando las llamadas a servicios es a travez de la clase request se utiliza esta clase
     /// </summary>
-    internal static class WrapperFactory
+    public static class WrapperFactory
     {
        
         /// <summary>
@@ -29,6 +29,12 @@ namespace Fwk.Bases
         /// </summary>
         static WrapperProviderSection _ProviderSection;
 
+        public static WrapperProviderSection ProviderSection
+        {
+            get { return WrapperFactory._ProviderSection; }
+         
+        }
+       
         /// <summary>
         /// Levanta la seccion FwkWrapper.-
         /// Inicialisa el repositorio de wrappers. (no lo llena con los wrappers)
@@ -38,12 +44,19 @@ namespace Fwk.Bases
             try
             {
                 _ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
+                if (_ProviderSection == null)
+                {
+                    TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente, verifique si existe la seccion [FwkWrapper] en el archivo de configuracion."));
+                    te.ErrorId = "6000";
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(WrapperFactory));
+                    throw te;
+                }
 
             }
             catch (System.Configuration.ConfigurationErrorsException)
             {
-                
-                TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente la propiedad verifique en el archivo de configuracion si existe la seccion FwkWrapper"));
+
+                TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente, verifique si existe la seccion [FwkWrapper] en el archivo de configuracion."));
                 te.ErrorId = "6000";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(WrapperFactory));
                 throw te;

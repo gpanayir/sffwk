@@ -21,7 +21,7 @@ namespace Fwk.Security.BC
     /// </summary>
     public class UserBC:Fwk.Bases.BaseBC
     {
-        string _ProviderName;
+        string _ProviderName = string.Empty;
         public UserBC(string pCompanyId,string pProviderName)
             : base(pCompanyId)
         {

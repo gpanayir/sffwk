@@ -12,7 +12,7 @@ namespace Fwk.Bases.Connector
 	/// <author>moviedo</author>
 	public class WebServiceWrapper : IServiceWrapper
 	{
-        string _ProviderName;
+        string _ProviderName = string.Empty;
 
         /// <summary>
         /// Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher

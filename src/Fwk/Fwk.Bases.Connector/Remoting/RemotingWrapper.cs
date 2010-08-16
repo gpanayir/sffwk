@@ -115,25 +115,8 @@ namespace Fwk.Bases.Connector
             }
         }
 
-        
-        /// <summary>
-        /// Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile en _SourceInfo
-        /// </summary>
-        private  void LoadRemotingConfigSettings()
-		{
-			if (!IsConfigured())
-			{
-                //Si no se encuentra algun nombre de archivo en el App.config
-                if (_SourceInfo == string.Empty)
-				{
-					throw new Exception("No hay ruta especificada para el archivo de configuración.");
-				}
-				else
-				{
-                    RemotingConfiguration.Configure(_SourceInfo, false);
-				}
-			}
-		}
+       
+		
 
         /// <summary>
         /// Crea en este caso SimpleFacaddeRemoteObject .-
@@ -141,7 +124,19 @@ namespace Fwk.Bases.Connector
         /// <returns>Instancia de SimpleFacaddeRemoteObject</returns>
         private  FwkRemoteObject CreateRemoteObject()
 		{
-            LoadRemotingConfigSettings();
+            //Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile en _SourceInfo
+            if (!IsConfigured())
+            {
+                //Si no se encuentra algun nombre de archivo en el App.config
+                if (_SourceInfo == string.Empty)
+                {
+                    throw new Exception("No hay ruta especificada para el archivo de configuración.");
+                }
+                else
+                {
+                    RemotingConfiguration.Configure(_SourceInfo, false);
+                }
+            }
 
             FwkRemoteObject wFwkRemoteObject = new FwkRemoteObject();
             return wFwkRemoteObject;
