@@ -102,8 +102,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
         /// <param name="pServiceConfiguration"></param>
         internal void Update(ServiceConfiguration pServiceConfiguration)
         {
-
-            if (_Services.Exists(pServiceConfiguration.Name, frmServices.CurrentProvider.ApplicationId))
+            //TODO:Ver appname
+            if (_Services.Exists(pServiceConfiguration.Name, string.Empty))
             {
                 _Services.Remove(_CurrentServiceConfiguration);
 
@@ -134,7 +134,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
 
 
-            if (_Services.Exists(pServiceConfiguration.Name, frmServices.CurrentProvider.ApplicationId))
+            if (_Services.Exists(pServiceConfiguration.Name, string.Empty))
             {
                 throw new Fwk.Exceptions.TechnicalException(string.Concat("El servicio " + pServiceConfiguration.Name + " ya existe en la metadata"));
             }

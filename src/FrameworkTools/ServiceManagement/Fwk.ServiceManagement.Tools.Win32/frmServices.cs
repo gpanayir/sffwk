@@ -11,6 +11,7 @@ using Fwk.Bases;
 using Fwk.HelperFunctions;
 using System.Configuration;
 using Fwk.ConfigSection;
+using Fwk.Exceptions;
 
 
 namespace Fwk.ServiceManagement.Tools.Win32
@@ -21,7 +22,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 	public partial class frmServices : Fwk.Bases.FrontEnd.FrmBase
 	{   
         string _AuxServiceName;
-        public static ServiceProviderElement CurrentProvider;
+        public static WrapperProviderElement CurrentProvider;
 		/// <summary>
 		/// Constructor por defecto.
 		/// </summary>
@@ -41,8 +42,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
             try
             {
-                
-                ucbServiceGrid1.Services = base.GetAllServices();
+
+                ucbServiceGrid1.Services = base.GetAllServices(frmServices.CurrentProvider.Name);
                 lblConnectionStatus.Text= "Connected";
             }
             catch(Exception ex)
@@ -93,7 +94,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                     ucbServiceGrid1.Add(wServiceNew);
 
 
-                    base.AddServiceConfiguration(wServiceNew);
+                    base.AddServiceConfiguration(CurrentProvider.Name,wServiceNew);
                 }
                 catch(Exception ex)
                 {
@@ -122,7 +123,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
              _AuxServiceName  = ucbServiceGrid1.CurentServiceConfiguration.Name;
             if (frmEdit.ShowEdit(ucbServiceGrid1.CurentServiceConfiguration) == DialogResult.OK)
             {
-                base.SetServiceConfiguration(_AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
+                base.SetServiceConfiguration(CurrentProvider.Name,_AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
             }
             ucbServiceGrid1_OnClickServiceHandler(ucbServiceGrid1.CurentServiceConfiguration);   
 		}
@@ -152,7 +153,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             {
                
                 ucbServiceGrid1.RemoveCurrent();
-                base.DeleteServiceConfiguration(ucbServiceGrid1.CurentServiceConfiguration.Name);
+                base.DeleteServiceConfiguration(CurrentProvider.Name, ucbServiceGrid1.CurentServiceConfiguration.Name);
             }
 
 
@@ -169,89 +170,68 @@ namespace Fwk.ServiceManagement.Tools.Win32
         }
 
 
-
+        static WrapperProviderSection _ProviderSection;
 
         void cnfg()
         {
+            try
+            {
+                _ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
+                if (_ProviderSection == null)
+                {
+                    TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente, verifique si existe la seccion [FwkWrapper] en el archivo de configuracion."));
+                    te.ErrorId = "6000";
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(frmServices));
+                    throw te;
+                }
+
+            }
+            catch (System.Configuration.ConfigurationErrorsException)
+            {
+
+                TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente, verifique si existe la seccion [FwkWrapper] en el archivo de configuracion."));
+                te.ErrorId = "6000";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(frmServices));
+                throw te;
+            }
+
+
+
             lblConnectionStatus.Text = "Diconect";
-            System.Configuration.Configuration wConfiguration = null;
-            ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
-
-            configFile.ExeConfigFilename = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-            wConfiguration = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
-            ConfigurationSectionGroup wConfigurationSectionGroup = wConfiguration.GetSectionGroup("applicationSettings");
-            ConfigurationSection wSection = wConfigurationSectionGroup.Sections.Get("Fwk.Bases.Properties.Settings");
-
-            ClientSettingsSection wClientSettingsSection = (System.Configuration.ClientSettingsSection)wSection;
-
-            //Recorre las bases
-            foreach (SettingElement wSetting in wClientSettingsSection.Settings)
-            {
-                if (String.Compare(wSetting.Name.Trim(), "wrapper", true) == 0)
-                {
-                    if (wSetting.Value.ValueXml.InnerXml.Trim().ToLower().Contains("local"))
-                        lblConnectionType.Text = "Local";
-
-                    if (wSetting.Value.ValueXml.InnerXml.Trim().ToLower().Contains("webservice"))
-                        lblConnectionType.Text = "Web Service";
-
-
-                    if (wSetting.Value.ValueXml.InnerXml.Trim().ToLower().Contains("remoting"))
-                        lblConnectionType.Text = "Remoting win service";
-
-                }
+           
 
 
 
+            lblConnectionType.Text = _ProviderSection.DefaultProvider.WrapperProviderType.ToString();
+            txtAddres.Text = _ProviderSection.DefaultProvider.SourceInfo;
 
-
-            }
-            //Recorre ServiceManagement
-            wSection = wConfigurationSectionGroup.Sections.Get("Fwk.Bases.Properties.Settings");
-            wClientSettingsSection = (System.Configuration.ClientSettingsSection)wSection;
-
-
-            foreach (SettingElement wSetting in wClientSettingsSection.Settings)
-            {
-
-                if (string.Compare(lblConnectionType.Text, "Web Service", true) == 0)
-                {
-                    if (String.Compare(wSetting.Name.Trim(), "WebServiceDispatcherUrl", true) == 0)
-                    {
-                        txtAddres.Text = wSetting.Value.ValueXml.InnerXml;
-                    }
-                }
-
-
-
-            }
-       
 
 
             ComboBox cb = (ComboBox)cmbProviders.Control;
 
-            foreach (ServiceProviderElement p in Fwk.ServiceManagement.ServiceMetadata.ProviderSection.Providers)
+            foreach (WrapperProviderElement p in _ProviderSection.Providers)
             {
                 cb.Items.Add(p.Name);
             }
-            
+
             cmbProviders.SelectedIndex = 0;
-            CurrentProvider = Fwk.ServiceManagement.ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
+            CurrentProvider =_ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
             cb.SelectedValueChanged += new EventHandler(cb_SelectedValueChanged);
         }
 
         void cb_SelectedValueChanged(object sender, EventArgs e)
         {
 
-            CurrentProvider = Fwk.ServiceManagement.ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
-            lblMetadata.Text = CurrentProvider.ConfigProviderType.ToString();
+            CurrentProvider = _ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
+            lblMetadata.Text = CurrentProvider.WrapperProviderType.ToString();
             txtAddres.Text = CurrentProvider.SourceInfo;
 
 
             try
             {
-                //TODO: adaptar para multi providers
-                ucbServiceGrid1.Services = base.GetAllServices();
+                
+                
+                ucbServiceGrid1.Services = base.GetAllServices(CurrentProvider.Name);
                 lblConnectionStatus.Text = "Connected";
             }
             catch (Exception ex)
@@ -259,6 +239,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
                 base.ExceptionViewer.Show(ex);
                 lblConnectionStatus.Text = "Disconnected";
+                ucbServiceGrid1.Services = null;
+                
             }
         }
         
@@ -278,6 +260,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             else
                  System.Diagnostics.Process.Start("explorer.exe", txtAddres.Text);
 
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmNewProvider frmbox = new frmNewProvider (CurrentProvider);
+            frmbox.ShowDialog();
         }
 
        

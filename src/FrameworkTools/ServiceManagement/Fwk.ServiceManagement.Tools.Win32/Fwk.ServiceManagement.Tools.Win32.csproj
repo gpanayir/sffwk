@@ -124,6 +124,12 @@
     <Compile Include="frmEdit.Designer.cs">
       <DependentUpon>frmEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNewProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewProvider.Designer.cs">
+      <DependentUpon>frmNewProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmServices.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     <EmbeddedResource Include="frmEdit.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewProvider.resx">
+      <DependentUpon>frmNewProvider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServices.resx">
       <DependentUpon>frmServices.cs</DependentUpon>
@@ -237,11 +246,11 @@
   <ItemGroup>
     <PublishFile Include="Microsoft.VisualStudio.DebuggerVisualizers">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
       <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>

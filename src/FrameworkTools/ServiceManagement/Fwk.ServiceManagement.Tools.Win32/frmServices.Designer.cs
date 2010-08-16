@@ -43,10 +43,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmbProviders = new System.Windows.Forms.ToolStripComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ucbServiceGrid1 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
             this.txtAddres = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.btnView = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.ctrlService1 = new Fwk.ServiceManagement.Tools.Win32.ctrlService();
             this.label4 = new System.Windows.Forms.Label();
             this.lblMetadata = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,9 +59,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMetaqadata = new System.Windows.Forms.Label();
-            this.cmbProviders = new System.Windows.Forms.ToolStripComboBox();
-            this.ucbServiceGrid1 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
-            this.ctrlService1 = new Fwk.ServiceManagement.Tools.Win32.ctrlService();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -181,7 +182,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripMenuItem,
-            this.cmbProviders});
+            this.cmbProviders,
+            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1215, 25);
@@ -195,6 +197,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.connectToolStripMenuItem.Size = new System.Drawing.Size(130, 21);
             this.connectToolStripMenuItem.Text = "Connect to services";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
+            // 
+            // cmbProviders
+            // 
+            this.cmbProviders.ForeColor = System.Drawing.Color.Maroon;
+            this.cmbProviders.Name = "cmbProviders";
+            this.cmbProviders.Size = new System.Drawing.Size(121, 21);
+            this.cmbProviders.ToolTipText = "Select metadata provider";
             // 
             // splitContainer1
             // 
@@ -225,6 +234,19 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.splitContainer1.Size = new System.Drawing.Size(1198, 583);
             this.splitContainer1.SplitterDistance = 532;
             this.splitContainer1.TabIndex = 39;
+            // 
+            // ucbServiceGrid1
+            // 
+            this.ucbServiceGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucbServiceGrid1.CurentServiceConfiguration = null;
+            this.ucbServiceGrid1.Location = new System.Drawing.Point(4, 2);
+            this.ucbServiceGrid1.Name = "ucbServiceGrid1";
+            this.ucbServiceGrid1.Services = null;
+            this.ucbServiceGrid1.Size = new System.Drawing.Size(529, 538);
+            this.ucbServiceGrid1.TabIndex = 0;
+            this.ucbServiceGrid1.OnClickServiceHandler += new Fwk.ServiceManagement.Tools.Win32.OnClickServiceHandler(this.ucbServiceGrid1_OnClickServiceHandler);
             // 
             // txtAddres
             // 
@@ -271,6 +293,20 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 48;
             this.label5.Text = "Address:";
+            // 
+            // ctrlService1
+            // 
+            this.ctrlService1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlService1.EntityParam = null;
+            this.ctrlService1.EntityResult = null;
+            this.ctrlService1.Location = new System.Drawing.Point(3, 111);
+            this.ctrlService1.Name = "ctrlService1";
+
+            this.ctrlService1.ShowAction = Fwk.ServiceManagement.Tools.Win32.Action.Query;
+            this.ctrlService1.Size = new System.Drawing.Size(644, 418);
+
+            this.ctrlService1.TabIndex = 47;
             // 
             // label4
             // 
@@ -371,37 +407,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.lblMetaqadata.TabIndex = 45;
             this.lblMetaqadata.Text = "<<<<<<<<<<<<<<<<<";
             // 
-            // cmbProviders
+            // toolStripMenuItem1
             // 
-            this.cmbProviders.ForeColor = System.Drawing.Color.Maroon;
-            this.cmbProviders.Name = "cmbProviders";
-            this.cmbProviders.Size = new System.Drawing.Size(121, 21);
-            this.cmbProviders.ToolTipText = "Select metadata provider";
-            // 
-            // ucbServiceGrid1
-            // 
-            this.ucbServiceGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucbServiceGrid1.CurentServiceConfiguration = null;
-            this.ucbServiceGrid1.Location = new System.Drawing.Point(4, 2);
-            this.ucbServiceGrid1.Name = "ucbServiceGrid1";
-            this.ucbServiceGrid1.Services = null;
-            this.ucbServiceGrid1.Size = new System.Drawing.Size(529, 538);
-            this.ucbServiceGrid1.TabIndex = 0;
-            this.ucbServiceGrid1.OnClickServiceHandler += new Fwk.ServiceManagement.Tools.Win32.OnClickServiceHandler(this.ucbServiceGrid1_OnClickServiceHandler);
-            // 
-            // ctrlService1
-            // 
-            this.ctrlService1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlService1.EntityParam = null;
-            this.ctrlService1.EntityResult = null;
-            this.ctrlService1.Location = new System.Drawing.Point(3, 111);
-            this.ctrlService1.Name = "ctrlService1";
-            this.ctrlService1.ShowAction = Fwk.ServiceManagement.Tools.Win32.Action.Query;
-            this.ctrlService1.Size = new System.Drawing.Size(644, 418);
-            this.ctrlService1.TabIndex = 47;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(113, 21);
+            this.toolStripMenuItem1.Text = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // frmServices
             // 
@@ -462,6 +473,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private System.Windows.Forms.Button btnView;
         private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtAddres;
         private System.Windows.Forms.ToolStripComboBox cmbProviders;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
        
         
 	}
