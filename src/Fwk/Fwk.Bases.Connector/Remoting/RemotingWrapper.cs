@@ -226,7 +226,16 @@ namespace Fwk.Bases.Connector
             return wFwkRemoteObject.GetAllApplicationsId(_ProviderName);
             
         }
-        
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        {
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+            return wFwkRemoteObject.GetProviderInfo(_ProviderName);
+        }
         #endregion [ServiceConfiguration]
 
         

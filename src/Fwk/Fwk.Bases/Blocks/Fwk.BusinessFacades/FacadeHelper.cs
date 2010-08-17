@@ -10,6 +10,7 @@ using Fwk.Bases;
 using Fwk.HelperFunctions;
 using Fwk.ServiceManagement;
 using System.Collections.Generic;
+using Fwk.ConfigSection;
 
 namespace Fwk.BusinessFacades.Utils
 {
@@ -45,76 +46,6 @@ namespace Fwk.BusinessFacades.Utils
     public sealed class FacadeHelper
     {
 
-
-        static FacadeHelper()
-        {
-            //// instanciación del ServiceConfigurationManager.
-            //try
-            //{
-            //    _ServiceConfigurationManager = ObjectProvider.GetServiceConfigurationManager();
-            //}
-            //catch (TechnicalException ex)
-            //{
-            //    Fwk.Logging.Event ev = new Event();
-            //    ev.LogType = EventType.Error;
-            //    ev.Machine = ex.Machine;
-            //    ev.User = ex.UserName;
-                
-
-            //    ev.Message.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-
-            //    Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
-            //    ev = null;
-            //    throw ex;
-            //}
-
-
-            ////Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
-            //if (_ServiceConfigurationManager.GetType() == typeof(XmlServiceConfigurationManager))
-            //{
-            //    watcher = new System.IO.FileSystemWatcher();
-
-            //    watcher.Filter = ObjectProvider._ServiceProviderSection.DefaultProvider.SourceInfo;
-            //    watcher.Path = Environment.CurrentDirectory;
-            //    watcher.EnableRaisingEvents = true;
-
-            //    watcher.Changed += new FileSystemEventHandler(watcher_Changed);
-            //}
-        }
-
-        ///// <summary>
-        ///// Si algun cambio ocurre en el archivo de metadata
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //static void watcher_Changed(object sender, FileSystemEventArgs e)
-        //{
-
-        //    try
-        //    {
-        //        _ServiceConfigurationManager = ObjectProvider.GetServiceConfigurationManager();
-        //    }
-        //    catch (TechnicalException ex)
-        //    {
-        //        Fwk.Logging.Event ev = new Event();
-        //        ev.LogType = EventType.Error;
-        //        ev.Machine = ex.Machine;
-        //        ev.User = ex.UserName;
-        //        //ev.Source = "Service Dispatcher";
-        //        String str = string.Concat(
-        //            "Se intento modificar la metadata de servicios y se arrojo el siguiente error ",
-        //            Environment.NewLine,
-        //            Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex),
-        //            Environment.NewLine,
-        //            " la metadata se encuentra en: ",
-        //            Environment.NewLine, e.FullPath);
-
-        //        ev.Message.Text = str;
-
-        //        Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
-
-        //    }
-        //}
 
         #region Run services
         /// <summary>
@@ -271,7 +202,7 @@ namespace Fwk.BusinessFacades.Utils
         /// Recupera la configuración del servicio de negocio.
         /// </summary>
         /// <remarks>Lee la configuración utilizando un ServiceConfigurationManager del tipo especificado en los settings de la aplicación.</remarks>
-        /// <param name="providerName">Nombre del proveedor de la metadata de szervicio</param>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <param name="serviceName">Nombre del servicio de negocio.</param>
         /// <returns>configuración del servicio de negocio.</returns>
         /// <date>2008-04-07T00:00:00</date>
@@ -288,6 +219,7 @@ namespace Fwk.BusinessFacades.Utils
         /// <summary>
         /// Obtiene todos los servicios configurados
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>  
         /// <returns>ServiceConfigurationCollection</returns>
         public static ServiceConfigurationCollection GetAllServices(string providerName)
         {
@@ -298,7 +230,7 @@ namespace Fwk.BusinessFacades.Utils
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="providerName"></param>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <param name="serviceName"></param>
         /// <param name="serviceConfiguration"></param>
         public static void SetServiceConfiguration(string providerName, String serviceName, ServiceConfiguration serviceConfiguration)
@@ -310,7 +242,7 @@ namespace Fwk.BusinessFacades.Utils
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
         /// </summary>
-        /// <param name="providerName"></param>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <param name="serviceConfiguration"></param>
         public static void AddServiceConfiguration(string providerName, ServiceConfiguration serviceConfiguration)
         {
@@ -322,7 +254,7 @@ namespace Fwk.BusinessFacades.Utils
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="providerName"></param>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <param name="serviceName"></param>
         public static void DeleteServiceConfiguration(string providerName, string serviceName)
         {
@@ -339,10 +271,23 @@ namespace Fwk.BusinessFacades.Utils
         {
            return ServiceMetadata.GetAllApplicationsId(providerName);
         }
+
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public static MetadataProvider GetProviderInfo(string providerName)
+        {
+            ServiceProviderElement provider = ServiceMetadata.ProviderSection.GetProvider(providerName);
+
+            return new MetadataProvider(provider);
+        }
         /// <summary>
         /// Valida que el servicio está disponible para ser ejecutado.
         /// </summary>
         /// <param name="serviceConfiguration">configuración del servicio.</param>
+        /// <param name="result"></param>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
         public static void ValidateAvailability(ServiceConfiguration serviceConfiguration, out IServiceContract result)

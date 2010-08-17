@@ -46,6 +46,8 @@ namespace Fwk.Bases.Connector.singleservice {
         
         private System.Threading.SendOrPostCallback GetAllApplicationsIdOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetProviderInfoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -107,6 +109,9 @@ namespace Fwk.Bases.Connector.singleservice {
         
         /// <remarks/>
         public event GetAllApplicationsIdCompletedEventHandler GetAllApplicationsIdCompleted;
+        
+        /// <remarks/>
+        public event GetProviderInfoCompletedEventHandler GetProviderInfoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ExecuteService", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -357,6 +362,35 @@ namespace Fwk.Bases.Connector.singleservice {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetProviderInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public MetadataProvider GetProviderInfo(string providerName) {
+            object[] results = this.Invoke("GetProviderInfo", new object[] {
+                        providerName});
+            return ((MetadataProvider)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetProviderInfoAsync(string providerName) {
+            this.GetProviderInfoAsync(providerName, null);
+        }
+        
+        /// <remarks/>
+        public void GetProviderInfoAsync(string providerName, object userState) {
+            if ((this.GetProviderInfoOperationCompleted == null)) {
+                this.GetProviderInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetProviderInfoOperationCompleted);
+            }
+            this.InvokeAsync("GetProviderInfo", new object[] {
+                        providerName}, this.GetProviderInfoOperationCompleted, userState);
+        }
+        
+        private void OnGetProviderInfoOperationCompleted(object arg) {
+            if ((this.GetProviderInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetProviderInfoCompleted(this, new GetProviderInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -574,6 +608,7 @@ namespace Fwk.Bases.Connector.singleservice {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MetadataProvider))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ServiceConfiguration))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
     [System.SerializableAttribute()]
@@ -581,6 +616,63 @@ namespace Fwk.Bases.Connector.singleservice {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public abstract partial class BaseEntity {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class MetadataProvider : BaseEntity {
+        
+        private string applicationIdField;
+        
+        private string nameField;
+        
+        private string configProviderTypeField;
+        
+        private string sourceInfoField;
+        
+        /// <remarks/>
+        public string ApplicationId {
+            get {
+                return this.applicationIdField;
+            }
+            set {
+                this.applicationIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ConfigProviderType {
+            get {
+                return this.configProviderTypeField;
+            }
+            set {
+                this.configProviderTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SourceInfo {
+            get {
+                return this.sourceInfoField;
+            }
+            set {
+                this.sourceInfoField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -699,6 +791,32 @@ namespace Fwk.Bases.Connector.singleservice {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void GetProviderInfoCompletedEventHandler(object sender, GetProviderInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetProviderInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetProviderInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public MetadataProvider Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((MetadataProvider)(this.results[0]));
             }
         }
     }

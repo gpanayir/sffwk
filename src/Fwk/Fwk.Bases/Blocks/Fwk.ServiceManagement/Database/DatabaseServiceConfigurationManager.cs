@@ -269,22 +269,22 @@ namespace Fwk.ServiceManagement
         {
             ServiceConfiguration wServiceConfiguration = new ServiceConfiguration();
 
-            wServiceConfiguration.Name = Convert.ToString(pServiceRow["name"]);
-            wServiceConfiguration.Description = Convert.ToString(pServiceRow["Description"]);
-            wServiceConfiguration.Handler = Convert.ToString(pServiceRow["Handler"]);
-            wServiceConfiguration.Request = Convert.ToString(pServiceRow["Request"]);
-            wServiceConfiguration.Response = Convert.ToString(pServiceRow["Response"]);
+            wServiceConfiguration.Name = Convert.ToString(pServiceRow["name"]).Trim();
+            wServiceConfiguration.Description = Convert.ToString(pServiceRow["Description"]).Trim();
+            wServiceConfiguration.Handler = Convert.ToString(pServiceRow["Handler"]).Trim();
+            wServiceConfiguration.Request = Convert.ToString(pServiceRow["Request"]).Trim();
+            wServiceConfiguration.Response = Convert.ToString(pServiceRow["Response"]).Trim();
             wServiceConfiguration.Available = Convert.ToBoolean(pServiceRow["Available"]);
             wServiceConfiguration.Audit = Convert.ToBoolean(pServiceRow["Audit"]);
             wServiceConfiguration.TransactionalBehaviour = (TransactionalBehaviour)Enum.Parse(typeof(TransactionalBehaviour), pServiceRow["TransactionalBehaviour"].ToString());
             wServiceConfiguration.IsolationLevel = (Fwk.Transaction.IsolationLevel)Enum.Parse(typeof(Fwk.Transaction.IsolationLevel), pServiceRow["IsolationLevel"].ToString());
             if (pServiceRow["CreatedUserName"] != DBNull.Value)
-            wServiceConfiguration.CreatedUserName = Convert.ToString(pServiceRow["CreatedUserName"]);
+                wServiceConfiguration.CreatedUserName = Convert.ToString(pServiceRow["CreatedUserName"]).Trim();
 
             if (pServiceRow["CreatedDateTime"] != DBNull.Value)
                 wServiceConfiguration.CreatedDateTime = Convert.ToDateTime(pServiceRow["CreatedDateTime"]);
             if (pServiceRow["ApplicationId"] != DBNull.Value)
-            wServiceConfiguration.ApplicationId = Convert.ToString(pServiceRow["ApplicationId"]);
+            wServiceConfiguration.ApplicationId = Convert.ToString(pServiceRow["ApplicationId"]).Trim();
 
 
             return wServiceConfiguration;

@@ -149,6 +149,32 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetProviderInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="providerName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProviderInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProviderInfoResult" type="tns:MetadataProvider" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MetadataProvider">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ConfigProviderType" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SourceInfo" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="ExecuteServiceSoapIn">
@@ -196,6 +222,12 @@
   <wsdl:message name="GetAllApplicationsIdSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllApplicationsIdResponse" />
   </wsdl:message>
+  <wsdl:message name="GetProviderInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProviderInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetProviderInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProviderInfoResponse" />
+  </wsdl:message>
   <wsdl:portType name="SingleServiceSoap">
     <wsdl:operation name="ExecuteService">
       <wsdl:input message="tns:ExecuteServiceSoapIn" />
@@ -227,6 +259,10 @@
     <wsdl:operation name="GetAllApplicationsId">
       <wsdl:input message="tns:GetAllApplicationsIdSoapIn" />
       <wsdl:output message="tns:GetAllApplicationsIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProviderInfo">
+      <wsdl:input message="tns:GetProviderInfoSoapIn" />
+      <wsdl:output message="tns:GetProviderInfoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SingleServiceSoap" type="tns:SingleServiceSoap">
@@ -300,6 +336,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetProviderInfo">
+      <soap:operation soapAction="http://tempuri.org/GetProviderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="SingleServiceSoap12" type="tns:SingleServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -365,6 +410,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllApplicationsId">
       <soap12:operation soapAction="http://tempuri.org/GetAllApplicationsId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProviderInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetProviderInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

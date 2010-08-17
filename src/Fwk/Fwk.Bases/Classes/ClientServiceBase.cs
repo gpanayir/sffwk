@@ -22,7 +22,7 @@ namespace Fwk.Bases
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>
-        /// <param name="providerName"></param>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <param name="pRequest">Request con datos de entrada para la  ejecución del servicio.</param>
         /// <returns></returns>
         public TResponse ExecuteService<TRequest, TResponse>(string providerName, TRequest pRequest)
@@ -125,6 +125,7 @@ namespace Fwk.Bases
         /// <summary>
         /// Recupera la configuración de todos los servicios de negocio.
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <returns>Lista de configuraciones de servicios de negocio.</returns>
         /// <date>2006-02-10T00:00:00</date>
         /// <author>moviedo</author>
@@ -163,6 +164,7 @@ namespace Fwk.Bases
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>
@@ -175,6 +177,7 @@ namespace Fwk.Bases
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <param name="pServiceName">Nombre del servicio.</param>
         /// <date>2006-02-13T00:00:00</date>
         /// <author>moviedo</author>
@@ -183,6 +186,31 @@ namespace Fwk.Bases
             WrapperFactory.InitWrapper(providerName);
 
             WrapperFactory._WraperPepository[providerName].DeleteServiceConfiguration(pServiceName); 
+        }
+
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public  List<String> GetAllApplicationsId(string providerName)
+        {
+            WrapperFactory.InitWrapper(providerName);
+                
+            return WrapperFactory._WraperPepository[providerName].GetAllApplicationsId(); 
+        }
+
+
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public static Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        {
+            WrapperFactory.InitWrapper(providerName);
+            return WrapperFactory._WraperPepository[providerName].GetProviderInfo(providerName);
         }
         #endregion [ServiceConfiguration]
     }

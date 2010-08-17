@@ -2,6 +2,7 @@ using System;
 using Fwk.Bases;
 using Fwk.Exceptions;
 using System.Collections.Generic;
+using Fwk.ConfigSection;
 
 namespace Fwk.Bases.Connector
 {
@@ -301,7 +302,30 @@ namespace Fwk.Bases.Connector
                 return new List<string>(wArraylist);
             }
         }
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        {
+            using (singleservice.SingleService wService = new singleservice.SingleService())
+            {
+                wService.Url = msz_URL;
+                Fwk.Bases.Connector.singleservice.MetadataProvider wMetadataProviderRemoto = wService.GetProviderInfo(_ProviderName);
 
+                string xml = Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(wMetadataProviderRemoto);
+               
+                Fwk.ConfigSection.MetadataProvider wMetadata = Fwk.ConfigSection.MetadataProvider.GetFromXml<Fwk.ConfigSection.MetadataProvider>(xml);
+                wMetadata.Name = wMetadataProviderRemoto.Name;
+                wMetadata.ApplicationId = wMetadataProviderRemoto.ApplicationId;
+                wMetadata.SourceInfo = wMetadataProviderRemoto.SourceInfo;
+                wMetadata.ConfigProviderType = wMetadataProviderRemoto.ConfigProviderType;
+
+                return wMetadata;
+
+            }
+        }
         /// <summary>
         /// Mapeta  Fwk.Bases.ServiceConfiguration a Fwk.Bases.Connector.SingleService.ServiceConfiguration 
         /// </summary>

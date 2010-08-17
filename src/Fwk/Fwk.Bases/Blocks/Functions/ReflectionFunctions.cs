@@ -300,7 +300,7 @@ namespace Fwk.HelperFunctions
         /// <summary>
         ///  Efectua un mapeo de todas las propiedades de un objeto a otro 
         ///  el mapeo solo lo hace de los atributos del tipo T, esto es debido a que 
-        ///  puede pasarce como T una interfaf y los objetos source y destino ser de distinto tipo
+        ///  puede pasarce como T una interfaz y los objetos source y destino ser de distinto tipo
         ///  
         /// </summary>
         /// <typeparam name="T"></typeparam>

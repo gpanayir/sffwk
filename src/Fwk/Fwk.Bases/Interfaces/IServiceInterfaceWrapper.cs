@@ -99,6 +99,14 @@ namespace Fwk.Bases
         /// </summary>
         /// <returns></returns>
         List<String> GetAllApplicationsId();
+
+
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName);
         #endregion
     }
 }

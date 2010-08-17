@@ -183,6 +183,20 @@ namespace Fwk.Bases.Connector
             return   wSimpleFacade.GetAllApplicationsId(_ProviderName);
        
         }
+
+
+
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public  Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        {
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            return wSimpleFacade.GetProviderInfo(_ProviderName);
+        }
+
         /// <summary>
         /// Factory de SimpleFacade
         /// </summary>

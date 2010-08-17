@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 using Fwk.Logging.Targets;
+using System.Xml.Serialization;
+using Fwk.Bases;
 
 namespace Fwk.ConfigSection
 {
@@ -46,7 +48,7 @@ namespace Fwk.ConfigSection
             }
         }
 
- 
+
 
         /// <summary>
         /// Archivo contenedor de la configuracion
@@ -69,5 +71,48 @@ namespace Fwk.ConfigSection
             }
         }
         #endregion
+    }
+
+    [XmlInclude(typeof(MetadataProvider)), Serializable]
+    public class MetadataProvider : BaseEntity
+    {
+        string _ApplicationId;
+
+        public string ApplicationId
+        {
+            get { return _ApplicationId; }
+            set { _ApplicationId = value; }
+        }
+        string _Name;
+
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value; }
+        }
+        string _ConfigProviderType;
+
+        public string ConfigProviderType
+        {
+            get { return _ConfigProviderType; }
+            set { _ConfigProviderType = value; }
+        }
+        string _SourceInfo;
+
+        public string SourceInfo
+        {
+            get { return _SourceInfo; }
+            set { _SourceInfo = value; }
+        }
+        public MetadataProvider()
+        { }
+        public MetadataProvider(ServiceProviderElement provider)
+        {
+            _ApplicationId = provider.ApplicationId;
+            _ConfigProviderType = provider.ConfigProviderType.ToString();
+            _Name = provider.Name;
+            _SourceInfo = provider.SourceInfo;
+
+        }
     }
 }

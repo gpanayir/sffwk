@@ -281,21 +281,17 @@ namespace Fwk.ServiceManagement
         /// <returns></returns>
         public static List<String> GetAllApplicationsId(string providerName)
         {
-
-          
-
-
+         
             ServiceProviderElement provider = GetProvider(providerName);
 
             ServiceConfigurationCollection svcList = GetAllServices(provider);
 
-            var llist = from s in svcList group  s by s.ApplicationId into g select new { Category = g.Key, Aplication = g };
+            IEnumerable<string> llist = from s in svcList
+                                        where s.ApplicationId != null
+                                        group  s by s.ApplicationId into g select g.Key ;
 
+            return  llist.ToList<string>();
 
-
-            var llist2 = from s in svcList group s by s.ApplicationId into g select new { Category = g.Key, Aplication = g };
-
-            return new List<string>();
         }
 
         /// <summary>
