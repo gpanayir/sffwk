@@ -35,7 +35,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
             get { return _CurrentServiceConfiguration; }
             set { _CurrentServiceConfiguration = value; }
         }
+        ServiceConfigurationCollection _SelecdedServices;
 
+        public ServiceConfigurationCollection SelecdedServices
+        {
+            get { return _SelecdedServices; }
+     
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -51,12 +57,36 @@ namespace Fwk.ServiceManagement.Tools.Win32
             set
             {
                     _Services = value;
-        
 
-                   
+
+                     _SelecdedServices = _Services;
                     serviceConfigurationCollectionBindingSource.DataSource = _Services;
                     SetSort();
                 
+            }
+        }
+        List<string> _Applications;
+        /// <summary>
+        /// 
+        /// </summary>
+        [Browsable(false)]
+        public List<string> Applications
+        {
+
+            get
+            {
+
+                return _Applications;
+            }
+            set
+            {
+                if(value ==null) return;
+                _Applications = value;
+                _Applications.Add("Any");
+                
+                cmbApplication.DataSource = _Applications;
+
+                cmbApplication.SelectedIndex = _Applications.Count-1;
             }
         }
 
@@ -145,6 +175,26 @@ namespace Fwk.ServiceManagement.Tools.Win32
         }
 
 
+        
+
+        private void cmbFilterIsolationLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            Filter();
+        }
+
+        private void cmbFilterTransactionalBehaviour_SelectedIndexChanged(object sender, EventArgs e)
+        {
+ 
+            Filter();
+        }
+
+        private void cmbApplication_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+            Filter();
+        }
+
         #region Filters
         private void toolStripButtonFilter_Click(object sender, EventArgs e)
         {
@@ -152,7 +202,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             Filter();
             this.Cursor = System.Windows.Forms.Cursors.Default;
         }
-
+        bool init = true;
         private void InitializeFilterCombo()
         {
 
@@ -172,7 +222,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 cmbFilterIsolationLevel.Items.Add(wName);
             }
 
-          
+
             foreach (string wName in Enum.GetNames(typeof(Common.TipoBusquedaEnum)))
             {
                 cmbSearchType.Items.Add(wName);
@@ -182,6 +232,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             cmbSearchType.SelectedIndex = 0;
             cmbFilterTransactionalBehaviour.SelectedIndex = 0;
             cmbFilterIsolationLevel.SelectedIndex = 0;
+            init = false;
         }
 
         private void txtXmlFilePath_KeyDown(object sender, KeyEventArgs e)
@@ -193,9 +244,10 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 this.Cursor = System.Windows.Forms.Cursors.Default;
             }
         }
-
-        private void Filter()
+        
+        protected void Filter()
         {
+            if (init) return;
             ServiceConfiguration wServiceConfiguration = new ServiceConfiguration();
             wServiceConfiguration.Name = txtXmlFilePath.Text;
 
@@ -203,14 +255,16 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 wServiceConfiguration.IsolationLevel = (Fwk.Transaction.IsolationLevel)Enum.Parse(typeof(Fwk.Transaction.IsolationLevel), cmbFilterIsolationLevel.Text);
             if (cmbFilterTransactionalBehaviour.SelectedIndex != 0)
                 wServiceConfiguration.TransactionalBehaviour = (Fwk.Transaction.TransactionalBehaviour)Enum.Parse(typeof(Fwk.Transaction.TransactionalBehaviour), cmbFilterTransactionalBehaviour.Text);
+            if (cmbApplication.SelectedIndex != 0)
+                wServiceConfiguration.ApplicationId = cmbApplication.Text;
 
 
             if (_Services == null) return;
-            bool wNotInclude_IsolationLevel = false;
-            if (cmbFilterIsolationLevel.SelectedIndex == 0) wNotInclude_IsolationLevel = true;
+            bool wNotInclude_IsolationLevel = (cmbFilterIsolationLevel.SelectedIndex == 0);
+            bool wNotInclude_TransactionalBehaviour = (cmbFilterTransactionalBehaviour.SelectedIndex == 0);
+            bool wNotInclude_ApplicationId = (cmbApplication.SelectedIndex == _Applications.Count - 1);
 
-            bool wNotInclude_TransactionalBehaviour = false;
-            if (cmbFilterTransactionalBehaviour.SelectedIndex == 0) wNotInclude_TransactionalBehaviour = true;
+
 
             Common.TipoBusquedaEnum tb = (Common.TipoBusquedaEnum)Enum.Parse(typeof(Common.TipoBusquedaEnum), cmbSearchType.Text);
 
@@ -220,6 +274,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
                                                          (wNotInclude_TransactionalBehaviour || wServiceConfiguration.TransactionalBehaviour == s.TransactionalBehaviour)
                                                          &&
                                                          (wNotInclude_IsolationLevel || wServiceConfiguration.IsolationLevel == s.IsolationLevel)
+                                                         &&
+                                                            (wNotInclude_ApplicationId || wServiceConfiguration.ApplicationId == s.ApplicationId)
                                                          &&
                                                          (
                                                          (s.Name.StartsWith(wServiceConfiguration.Name, StringComparison.OrdinalIgnoreCase) && Common.TipoBusquedaEnum.Start == tb)
@@ -233,43 +289,26 @@ namespace Fwk.ServiceManagement.Tools.Win32
                                                            String.IsNullOrEmpty(wServiceConfiguration.Name))
                                                      select s;
 
-            ServiceConfigurationCollection wServiceConfigurationCollection = new ServiceConfigurationCollection();
+             _SelecdedServices = new ServiceConfigurationCollection();
 
             foreach (ServiceConfiguration s in list)
             {
-                wServiceConfigurationCollection.Add(s);
+                _SelecdedServices.Add(s);
             }
 
-            //grdServices.Populate<ServiceConfigurationCollection,ServiceConfiguration>( wServiceConfigurationCollection);
-            serviceConfigurationCollectionBindingSource.DataSource = wServiceConfigurationCollection;
+
+            serviceConfigurationCollectionBindingSource.DataSource = _SelecdedServices;
         }
         private void cmbSearchType_Click(object sender, EventArgs e)
         {
             Filter();
         }
 
-   
 
-     
-        
+
+
+
         #endregion
-
-        private void cmbFilterIsolationLevel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbFilterIsolationLevel.SelectedIndex == 0)
-                return;
-        
-            Filter();
-        }
-
-        private void cmbFilterTransactionalBehaviour_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbFilterTransactionalBehaviour.SelectedIndex == 0)
-                return;
-            Filter();
-        }
-
-         
 
 
 

@@ -51,7 +51,10 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbApplication = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ApplicationId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.transactionalBehaviourDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.auditDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -131,6 +134,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.grdServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
+            this.ApplicationId,
             this.descriptionDataGridViewTextBoxColumn,
             this.transactionalBehaviourDataGridViewTextBoxColumn,
             this.auditDataGridViewCheckBoxColumn,
@@ -162,6 +166,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.grdServices.Location = new System.Drawing.Point(2, 63);
             this.grdServices.MultiSelect = false;
             this.grdServices.Name = "grdServices";
+            this.grdServices.ReadOnly = true;
             this.grdServices.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grdServices.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
@@ -192,7 +197,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.cmbFilterTransactionalBehaviour.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
             this.cmbFilterTransactionalBehaviour.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
             this.cmbFilterTransactionalBehaviour.InactiveButtonColor = System.Drawing.SystemColors.Control;
-            this.cmbFilterTransactionalBehaviour.Location = new System.Drawing.Point(131, 28);
+            this.cmbFilterTransactionalBehaviour.Location = new System.Drawing.Point(328, 30);
             this.cmbFilterTransactionalBehaviour.Name = "cmbFilterTransactionalBehaviour";
             this.cmbFilterTransactionalBehaviour.NullTextValue = null;
             this.cmbFilterTransactionalBehaviour.ReadOnly = false;
@@ -218,7 +223,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.cmbFilterIsolationLevel.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
             this.cmbFilterIsolationLevel.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
             this.cmbFilterIsolationLevel.InactiveButtonColor = System.Drawing.SystemColors.Control;
-            this.cmbFilterIsolationLevel.Location = new System.Drawing.Point(364, 28);
+            this.cmbFilterIsolationLevel.Location = new System.Drawing.Point(536, 30);
             this.cmbFilterIsolationLevel.Name = "cmbFilterIsolationLevel";
             this.cmbFilterIsolationLevel.NullTextValue = null;
             this.cmbFilterIsolationLevel.ReadOnly = false;
@@ -232,7 +237,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(271, 34);
+            this.label1.Location = new System.Drawing.Point(455, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 13);
             this.label1.TabIndex = 42;
@@ -241,7 +246,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 33);
+            this.label2.Location = new System.Drawing.Point(200, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(122, 13);
             this.label2.TabIndex = 43;
@@ -257,18 +262,62 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.fwkMessageViewComponent1.TextMessageForeColor = System.Drawing.Color.Black;
             this.fwkMessageViewComponent1.Title = "Message";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "Application";
+            // 
+            // cmbApplication
+            // 
+            this.cmbApplication.ActiveArrowColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cmbApplication.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cmbApplication.ActiveButtonColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbApplication.AllowEmptyTextValue = false;
+            this.cmbApplication.AutoComplete = false;
+            this.cmbApplication.ErrorIconRightToLeft = false;
+            this.cmbApplication.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbApplication.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbApplication.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
+            this.cmbApplication.FormattingEnabled = true;
+            this.cmbApplication.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbApplication.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbApplication.InactiveButtonColor = System.Drawing.SystemColors.Control;
+            this.cmbApplication.Location = new System.Drawing.Point(81, 30);
+            this.cmbApplication.Name = "cmbApplication";
+            this.cmbApplication.NullTextValue = null;
+            this.cmbApplication.ReadOnly = false;
+            this.cmbApplication.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.cmbApplication.Required = false;
+            this.cmbApplication.RequiredErrorText = null;
+            this.cmbApplication.Size = new System.Drawing.Size(121, 21);
+            this.cmbApplication.TabIndex = 44;
+            this.cmbApplication.SelectedIndexChanged += new System.EventHandler(this.cmbApplication_SelectedIndexChanged);
+            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // ApplicationId
+            // 
+            this.ApplicationId.DataPropertyName = "ApplicationId";
+            this.ApplicationId.HeaderText = "Application";
+            this.ApplicationId.Name = "ApplicationId";
+            this.ApplicationId.ReadOnly = true;
             // 
             // descriptionDataGridViewTextBoxColumn
             // 
             this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
             this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             this.descriptionDataGridViewTextBoxColumn.Width = 150;
             // 
             // transactionalBehaviourDataGridViewTextBoxColumn
@@ -276,6 +325,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.transactionalBehaviourDataGridViewTextBoxColumn.DataPropertyName = "TransactionalBehaviour";
             this.transactionalBehaviourDataGridViewTextBoxColumn.HeaderText = "TransactionalBehaviour";
             this.transactionalBehaviourDataGridViewTextBoxColumn.Name = "transactionalBehaviourDataGridViewTextBoxColumn";
+            this.transactionalBehaviourDataGridViewTextBoxColumn.ReadOnly = true;
             this.transactionalBehaviourDataGridViewTextBoxColumn.Width = 70;
             // 
             // auditDataGridViewCheckBoxColumn
@@ -283,6 +333,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.auditDataGridViewCheckBoxColumn.DataPropertyName = "Audit";
             this.auditDataGridViewCheckBoxColumn.HeaderText = "Audit";
             this.auditDataGridViewCheckBoxColumn.Name = "auditDataGridViewCheckBoxColumn";
+            this.auditDataGridViewCheckBoxColumn.ReadOnly = true;
             this.auditDataGridViewCheckBoxColumn.Width = 70;
             // 
             // availableDataGridViewCheckBoxColumn
@@ -290,6 +341,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.availableDataGridViewCheckBoxColumn.DataPropertyName = "Available";
             this.availableDataGridViewCheckBoxColumn.HeaderText = "Available";
             this.availableDataGridViewCheckBoxColumn.Name = "availableDataGridViewCheckBoxColumn";
+            this.availableDataGridViewCheckBoxColumn.ReadOnly = true;
             this.availableDataGridViewCheckBoxColumn.Width = 70;
             // 
             // isolationLevelDataGridViewTextBoxColumn
@@ -297,6 +349,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.isolationLevelDataGridViewTextBoxColumn.DataPropertyName = "IsolationLevel";
             this.isolationLevelDataGridViewTextBoxColumn.HeaderText = "IsolationLevel";
             this.isolationLevelDataGridViewTextBoxColumn.Name = "isolationLevelDataGridViewTextBoxColumn";
+            this.isolationLevelDataGridViewTextBoxColumn.ReadOnly = true;
             this.isolationLevelDataGridViewTextBoxColumn.Width = 70;
             // 
             // CreatedDateTime
@@ -304,6 +357,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.CreatedDateTime.DataPropertyName = "CreatedDateTime";
             this.CreatedDateTime.HeaderText = "Date";
             this.CreatedDateTime.Name = "CreatedDateTime";
+            this.CreatedDateTime.ReadOnly = true;
             this.CreatedDateTime.Width = 70;
             // 
             // CreatedUserName
@@ -311,12 +365,15 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.CreatedUserName.DataPropertyName = "CreatedUserName";
             this.CreatedUserName.HeaderText = "User";
             this.CreatedUserName.Name = "CreatedUserName";
+            this.CreatedUserName.ReadOnly = true;
             this.CreatedUserName.Width = 70;
             // 
             // UCBServiceGrid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cmbApplication);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbFilterIsolationLevel);
@@ -349,7 +406,10 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private System.Windows.Forms.Label label2;
         private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewComponent1;
         private System.Windows.Forms.BindingSource serviceConfigurationCollectionBindingSource;
+        private System.Windows.Forms.Label label3;
+        private Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox cmbApplication;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ApplicationId;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn transactionalBehaviourDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn auditDataGridViewCheckBoxColumn;

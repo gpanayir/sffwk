@@ -22,7 +22,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 	public partial class frmServices : Fwk.Bases.FrontEnd.FrmBase
 	{   
         string _AuxServiceName;
-        public static WrapperProviderElement CurrentProvider;
+        public static ServiceProviderElement CurrentProvider;
 		/// <summary>
 		/// Constructor por defecto.
 		/// </summary>
@@ -43,7 +43,9 @@ namespace Fwk.ServiceManagement.Tools.Win32
             try
             {
 
-                ucbServiceGrid1.Services = base.GetAllServices(frmServices.CurrentProvider.Name);
+                ucbServiceGrid1.Services = ServiceMetadata.GetAllServices(frmServices.CurrentProvider.Name);
+
+                ucbServiceGrid1.Applications = ServiceMetadata.GetAllApplicationsId(CurrentProvider.Name);
                 lblConnectionStatus.Text= "Connected";
             }
             catch(Exception ex)
@@ -94,7 +96,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                     ucbServiceGrid1.Add(wServiceNew);
 
 
-                    base.AddServiceConfiguration(CurrentProvider.Name,wServiceNew);
+                    base.Wrapper.AddServiceConfiguration(CurrentProvider.Name, wServiceNew);
                 }
                 catch(Exception ex)
                 {
@@ -121,13 +123,17 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 return;
             }
              _AuxServiceName  = ucbServiceGrid1.CurentServiceConfiguration.Name;
-            if (frmEdit.ShowEdit(ucbServiceGrid1.CurentServiceConfiguration) == DialogResult.OK)
+            ServiceConfiguration clon = ucbServiceGrid1.CurentServiceConfiguration.Clone();
+            if (frmEdit.ShowEdit(clon) == DialogResult.OK)
             {
-                base.SetServiceConfiguration(CurrentProvider.Name,_AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
+                base.Wrapper.SetServiceConfiguration(CurrentProvider.Name, _AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
+                ServiceConfiguration s = ucbServiceGrid1.CurentServiceConfiguration;
+                Fwk.HelperFunctions.ReflectionFunctions.MapProperties<ServiceConfiguration>(clon, ref s);
+     
             }
             ucbServiceGrid1_OnClickServiceHandler(ucbServiceGrid1.CurentServiceConfiguration);   
 		}
-
+       
 		/// <summary>
 		/// Elimina configuración de servicio de negocio.
 		/// </summary>
@@ -153,7 +159,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             {
                
                 ucbServiceGrid1.RemoveCurrent();
-                base.DeleteServiceConfiguration(CurrentProvider.Name, ucbServiceGrid1.CurentServiceConfiguration.Name);
+                base.Wrapper.DeleteServiceConfiguration(CurrentProvider.Name, ucbServiceGrid1.CurentServiceConfiguration.Name);
             }
 
 
@@ -170,68 +176,45 @@ namespace Fwk.ServiceManagement.Tools.Win32
         }
 
 
-        static WrapperProviderSection _ProviderSection;
 
         void cnfg()
         {
-            try
-            {
-                _ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
-                if (_ProviderSection == null)
-                {
-                    TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente, verifique si existe la seccion [FwkWrapper] en el archivo de configuracion."));
-                    te.ErrorId = "6000";
-                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(frmServices));
-                    throw te;
-                }
-
-            }
-            catch (System.Configuration.ConfigurationErrorsException)
-            {
-
-                TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente, verifique si existe la seccion [FwkWrapper] en el archivo de configuracion."));
-                te.ErrorId = "6000";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(frmServices));
-                throw te;
-            }
-
-
-
+            
+          
             lblConnectionStatus.Text = "Diconect";
-           
 
-
-
-            lblConnectionType.Text = _ProviderSection.DefaultProvider.WrapperProviderType.ToString();
-            txtAddres.Text = _ProviderSection.DefaultProvider.SourceInfo;
+            lblConnectionType.Text = ServiceMetadata.ProviderSection.DefaultProvider.ConfigProviderType.ToString();
+            txtAddres.Text = ServiceMetadata.ProviderSection.DefaultProvider.SourceInfo;
 
 
 
             ComboBox cb = (ComboBox)cmbProviders.Control;
 
-            foreach (WrapperProviderElement p in _ProviderSection.Providers)
+            foreach (ServiceProviderElement p in ServiceMetadata.ProviderSection.Providers)
             {
                 cb.Items.Add(p.Name);
             }
 
             cmbProviders.SelectedIndex = 0;
-            CurrentProvider =_ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
+            CurrentProvider = ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
             cb.SelectedValueChanged += new EventHandler(cb_SelectedValueChanged);
         }
 
         void cb_SelectedValueChanged(object sender, EventArgs e)
         {
 
-            CurrentProvider = _ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
-            lblMetadata.Text = CurrentProvider.WrapperProviderType.ToString();
+            CurrentProvider = ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
+       
+            lblConnectionType.Text = CurrentProvider.ConfigProviderType.ToString();
             txtAddres.Text = CurrentProvider.SourceInfo;
-
 
             try
             {
+
                 
+                ucbServiceGrid1.Services = Fwk.ServiceManagement.ServiceMetadata.GetAllServices(CurrentProvider.Name);
                 
-                ucbServiceGrid1.Services = base.GetAllServices(CurrentProvider.Name);
+                ucbServiceGrid1.Applications = Fwk.ServiceManagement.ServiceMetadata.GetAllApplicationsId(CurrentProvider.Name);
                 lblConnectionStatus.Text = "Connected";
             }
             catch (Exception ex)

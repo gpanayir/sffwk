@@ -14,30 +14,35 @@ namespace Fwk.ServiceManagement.Tools.Win32
 {
     public partial class frmNewProvider : FrmBase
     {
-        WrapperProviderElement _SourceProvider;
-        WrapperProviderElement _SelectedProvider;
-        WrapperProviderSection _ProviderSection;
-        public frmNewProvider(WrapperProviderElement sourceProvider)
+        ServiceProviderElement _SourceProvider;
+        ServiceProviderElement _SelectedProvider;
+      
+        public frmNewProvider(ServiceProviderElement sourceProvider)
         {
             _SourceProvider = sourceProvider;
-            InitializeComponent(); LoadConfig();
+            InitializeComponent(); 
+            LoadConfig();
         }
         void LoadConfig()
         {
-            System.Configuration.Configuration wConfiguration = null;
-            ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
+            //System.Configuration.Configuration wConfiguration = null;
+            //ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
 
-            configFile.ExeConfigFilename = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+            //configFile.ExeConfigFilename = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 
-            wConfiguration = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
-            _ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
+            //wConfiguration = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+            //_ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
 
-            lblMetadata_source.Text = _SourceProvider.WrapperProviderType.ToString();
+        
+                 
+            lblConnectionType_source.Text = _SourceProvider.ConfigProviderType.ToString();
             txtAddres_source.Text = _SourceProvider.SourceInfo;
 
-            ucbServiceGrid1.Services = base.GetAllServices(_SourceProvider.Name);
 
-            foreach (WrapperProviderElement p in _ProviderSection.Providers)
+            ucbServiceGrid1.Services = ServiceMetadata.GetAllServices(_SourceProvider.Name);
+            ucbServiceGrid1.Applications = ServiceMetadata.GetAllApplicationsId(_SourceProvider.Name);
+    
+            foreach (ServiceProviderElement p in ServiceMetadata.ProviderSection.Providers)
             {
                 if (!_SourceProvider.Name.Equals(p.Name))
                     cmb2.Items.Add(p.Name);
@@ -45,35 +50,58 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
 
             cmb2.SelectedIndex = 0;
-            _SelectedProvider = _ProviderSection.GetProvider(cmb2.SelectedItem.ToString());
+            _SelectedProvider = ServiceMetadata.ProviderSection.GetProvider(cmb2.SelectedItem.ToString());
 
             cmb2.SelectedValueChanged += new EventHandler(cb_SelectedValueChanged);
+
+
+            this.Text = string.Concat("Export data from ", _SourceProvider.Name, " to ", _SourceProvider.Name);
         }
+
+        /// <summary>
+        /// CAmbia el proveedor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void cb_SelectedValueChanged(object sender, EventArgs e)
         {
 
-            _SelectedProvider = _ProviderSection.GetProvider(cmb2.SelectedItem.ToString());
-            lblMetadata.Text = _SelectedProvider.WrapperProviderType.ToString();
+            _SelectedProvider = ServiceMetadata.ProviderSection.GetProvider(cmb2.SelectedItem.ToString());
+
+            lblConnectionType.Text = _SelectedProvider.ConfigProviderType.ToString();
             txtAddres.Text = _SelectedProvider.SourceInfo;
 
 
             try
             {
-                ucbServiceGrid2.Services = base.GetAllServices(_SelectedProvider.Name);
-                lblConnectionStatus.Text = "Connected";
+                ucbServiceGrid2.Services = ServiceMetadata.GetAllServices(_SelectedProvider.Name);
+                ucbServiceGrid2.Applications = ServiceMetadata.GetAllApplicationsId(_SelectedProvider.Name);
+
+                txtAddres.Text = _SelectedProvider.SourceInfo;
+
+                this.Text = string.Concat("Export data from ", _SelectedProvider.Name, " to ", _SelectedProvider.Name);
             }
             catch (Exception ex)
             {
 
                 base.ExceptionViewer.Show(ex);
-                lblConnectionStatus.Text = "Disconnected";
+               
                 ucbServiceGrid1.Services = null;
 
             }
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            LoadConfig();
+            using (frmExport frm = new frmExport(_SourceProvider,_SelectedProvider,ucbServiceGrid1.SelecdedServices))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    if(frm.HasErrors)
+                        this.MessageViewer.Show("Export terminated with warnings or errors!! ");
+                    else
+                        this.MessageViewer.Show("Export terminated successfully !! ");
+                }
+            }
         }
     }
 }
