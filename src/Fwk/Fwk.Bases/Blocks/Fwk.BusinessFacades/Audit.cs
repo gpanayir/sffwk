@@ -8,7 +8,7 @@ using Fwk.Exceptions;
 
 namespace Fwk.BusinessFacades.Utils
 {
-    internal static class Audit
+    static class Audit
     {
 
         /// <summary>
@@ -17,7 +17,7 @@ namespace Fwk.BusinessFacades.Utils
         /// </summary>
         /// <param name="pConfig">configuración del servicio.</param>
         /// <param name="pServiceError">pServiceError </param> 
-        public static void LogNotAvailableExcecution(ServiceConfiguration pConfig, out ServiceError pServiceError)
+        internal static void LogNotAvailableExcecution(ServiceConfiguration pConfig, out ServiceError pServiceError)
         {
              pServiceError = new ServiceError();
 
@@ -53,7 +53,7 @@ namespace Fwk.BusinessFacades.Utils
         /// </summary>
         /// <param name="pException">excepción.</param>
         /// <param name="pConfig">configuración del servicio.</param>
-        public static void LogNonSucessfulExecution(Exception pException, ServiceConfiguration pConfig)
+        internal static void LogNonSucessfulExecution(Exception pException, ServiceConfiguration pConfig)
         {
             ServiceError pServiceError = new ServiceError();
             pServiceError.Message = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException);
@@ -69,7 +69,7 @@ namespace Fwk.BusinessFacades.Utils
         /// </summary>
         /// <param name="pServiceError">ServiceError.</param>
         /// <param name="pConfig">configuración del servicio.</param>
-        public static void LogNonSucessfulExecution(ServiceError pServiceError, ServiceConfiguration pConfig)
+        internal static void LogNonSucessfulExecution(ServiceError pServiceError, ServiceConfiguration pConfig)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace Fwk.BusinessFacades.Utils
         /// </summary>
         /// <param name="pRequest">Request</param>
         /// <param name="wResult">Response</param>
-        public static void LogSuccessfulExecution(IServiceContract pRequest, IServiceContract wResult)
+        internal static void LogSuccessfulExecution(IServiceContract pRequest, IServiceContract wResult)
         {
             StringBuilder s = new StringBuilder();
             s.AppendLine("<Request>");
