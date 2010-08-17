@@ -5,6 +5,7 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using Fwk.BusinessFacades;
 using Fwk.Bases;
+using System.Collections.Generic;
 
 
 /// <summary>
@@ -97,7 +98,7 @@ public class SingleService : System.Web.Services.WebService
     {
         SimpleFacade wSimpleFacade = CreateSimpleFacade();
         wSimpleFacade.SetServiceConfiguration(providerName, pServiceName,pServiceConfiguration);
-        wSimpleFacade = null;
+        
     }
 
     /// <summary>
@@ -112,7 +113,7 @@ public class SingleService : System.Web.Services.WebService
     {
         SimpleFacade wSimpleFacade = CreateSimpleFacade();
         wSimpleFacade.AddServiceConfiguration(providerName,pServiceConfiguration);
-        wSimpleFacade = null;
+       
     }
 
     /// <summary>
@@ -127,11 +128,24 @@ public class SingleService : System.Web.Services.WebService
     {
         SimpleFacade wSimpleFacade = CreateSimpleFacade();
         wSimpleFacade.DeleteServiceConfiguration(providerName,pServiceName);
-        wSimpleFacade = null;
+
+    }
+
+    /// <summary>
+    /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+    /// proveedor
+    /// </summary>
+    /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+    [WebMethod]
+    public List<String> GetAllApplicationsId(string providerName)
+    {
+        SimpleFacade wSimpleFacade = CreateSimpleFacade();
+        return  wSimpleFacade.GetAllApplicationsId(providerName);
+      
     }
     /// <summary>
     /// Factory de SimpleFacade
-    /// </summary>
+    /// </summary>  
     /// <returns></returns>
     SimpleFacade CreateSimpleFacade()
     {
