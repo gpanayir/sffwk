@@ -196,7 +196,7 @@ namespace Fwk.ServiceManagement
         /// 
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
-       /// <param name="providerName">Nombre del servicio</param>
+        /// <param name="serviceName">Nombre del servicio</param>
         /// <param name="pServiceConfiguration"><see cref="ServiceConfiguration"/></param>
         public static void SetServiceConfiguration(string providerName, string serviceName, ServiceConfiguration pServiceConfiguration)
         {
@@ -218,10 +218,14 @@ namespace Fwk.ServiceManagement
 
             if (provider.ConfigProviderType == ServiceProviderType.xml)
                 XmlServiceConfigurationManager.SetServiceConfiguration(provider.SourceInfo, svcList);
+            else
+                DatabaseServiceConfigurationManager.SetServiceConfiguration(serviceName,pServiceConfiguration, provider.ApplicationId, provider.SourceInfo);
         }
 
         /// <summary>
-        /// 
+        /// Crea un servicio en el origen de datos indicado por el proveedor
+        /// El aaplication Id que se utiliza es el del  nuevo servicio. Si el provedor estra configurado para usar uno determinado este se ignora
+        /// de esta manera un proveedor puede insertar servicios para diferentes aplicaciones
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <param name="pServiceConfiguration"><see cref="ServiceConfiguration"/></param>
@@ -230,8 +234,8 @@ namespace Fwk.ServiceManagement
             ServiceProviderElement provider = GetProvider(providerName);
 
             ServiceConfigurationCollection svcList = GetAllServices(provider);
-
-            if (svcList.Exists(pServiceConfiguration.Name, provider.ApplicationId))
+          
+            if (svcList.Exists(pServiceConfiguration.Name, pServiceConfiguration.ApplicationId))
             {
                 Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " ya existe.");
                 te.ErrorId = "7002";
@@ -245,6 +249,8 @@ namespace Fwk.ServiceManagement
 
             if (provider.ConfigProviderType == ServiceProviderType.xml)
                 XmlServiceConfigurationManager.AddServiceConfiguration(pServiceConfiguration, provider.SourceInfo, svcList);
+            else
+                DatabaseServiceConfigurationManager.AddServiceConfiguration(pServiceConfiguration, pServiceConfiguration.ApplicationId, provider.SourceInfo);
         }
 
         /// <summary>
@@ -270,6 +276,8 @@ namespace Fwk.ServiceManagement
 
             if (provider.ConfigProviderType == ServiceProviderType.xml)
                 XmlServiceConfigurationManager.DeleteServiceConfiguration(provider.SourceInfo, svcList);
+            else
+                DatabaseServiceConfigurationManager.DeleteServiceConfiguration(serviceName, provider.ApplicationId, provider.SourceInfo);
 
         }
 

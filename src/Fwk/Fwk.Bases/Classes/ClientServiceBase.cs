@@ -139,6 +139,7 @@ namespace Fwk.Bases
         /// <summary>
         /// Recupera la configuración de un servicio de negocio.
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <param name="pServiceName">Nombre del servicio.</param>
         /// <returns>configuración del servicio de negocio.</returns>
         /// <date>2006-02-07T00:00:00</date>
@@ -151,6 +152,7 @@ namespace Fwk.Bases
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
         /// <param name="pServiceName">Nombre del servicio de negocio.</param>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2006-02-10T00:00:00</date>
@@ -207,7 +209,7 @@ namespace Fwk.Bases
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <returns></returns>
-        public static Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        public  Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
         {
             WrapperFactory.InitWrapper(providerName);
             return WrapperFactory._WraperPepository[providerName].GetProviderInfo(providerName);
