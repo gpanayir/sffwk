@@ -9,6 +9,7 @@ using Fwk.Transaction;
 using Fwk.Bases;
 using Fwk.HelperFunctions;
 using Fwk.ServiceManagement;
+using System.Collections.Generic;
 
 namespace Fwk.BusinessFacades.Utils
 {
@@ -328,6 +329,16 @@ namespace Fwk.BusinessFacades.Utils
             ServiceMetadata.DeleteServiceConfiguration(providerName, serviceName);
         }
 
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public static List<String> GetAllApplicationsId(string providerName)
+        {
+           return ServiceMetadata.GetAllApplicationsId(providerName);
+        }
         /// <summary>
         /// Valida que el servicio está disponible para ser ejecutado.
         /// </summary>

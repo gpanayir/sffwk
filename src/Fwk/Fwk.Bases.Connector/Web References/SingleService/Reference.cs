@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace Fwk.Bases.Connector.SingleService {
+namespace Fwk.Bases.Connector.singleservice {
     using System.Diagnostics;
     using System.Web.Services;
     using System.ComponentModel;
@@ -43,6 +43,8 @@ namespace Fwk.Bases.Connector.SingleService {
         private System.Threading.SendOrPostCallback AddServiceConfigurationOperationCompleted;
         
         private System.Threading.SendOrPostCallback DeleteServiceConfigurationOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAllApplicationsIdOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -102,6 +104,9 @@ namespace Fwk.Bases.Connector.SingleService {
         
         /// <remarks/>
         public event DeleteServiceConfigurationCompletedEventHandler DeleteServiceConfigurationCompleted;
+        
+        /// <remarks/>
+        public event GetAllApplicationsIdCompletedEventHandler GetAllApplicationsIdCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ExecuteService", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -319,6 +324,35 @@ namespace Fwk.Bases.Connector.SingleService {
             if ((this.DeleteServiceConfigurationCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.DeleteServiceConfigurationCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAllApplicationsId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string[] GetAllApplicationsId(string providerName) {
+            object[] results = this.Invoke("GetAllApplicationsId", new object[] {
+                        providerName});
+            return ((string[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllApplicationsIdAsync(string providerName) {
+            this.GetAllApplicationsIdAsync(providerName, null);
+        }
+        
+        /// <remarks/>
+        public void GetAllApplicationsIdAsync(string providerName, object userState) {
+            if ((this.GetAllApplicationsIdOperationCompleted == null)) {
+                this.GetAllApplicationsIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllApplicationsIdOperationCompleted);
+            }
+            this.InvokeAsync("GetAllApplicationsId", new object[] {
+                        providerName}, this.GetAllApplicationsIdOperationCompleted, userState);
+        }
+        
+        private void OnGetAllApplicationsIdOperationCompleted(object arg) {
+            if ((this.GetAllApplicationsIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllApplicationsIdCompleted(this, new GetAllApplicationsIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -642,6 +676,32 @@ namespace Fwk.Bases.Connector.SingleService {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
     public delegate void DeleteServiceConfigurationCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void GetAllApplicationsIdCompletedEventHandler(object sender, GetAllApplicationsIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllApplicationsIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllApplicationsIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string[])(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

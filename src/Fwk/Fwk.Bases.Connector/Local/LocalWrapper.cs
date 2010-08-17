@@ -144,7 +144,7 @@ namespace Fwk.Bases.Connector
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
             wSimpleFacade.SetServiceConfiguration(_ProviderName, serviceName, pServiceConfiguration);
-            wSimpleFacade = null;
+          
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Fwk.Bases.Connector
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
             wSimpleFacade.AddServiceConfiguration(_ProviderName, pServiceConfiguration);
-            wSimpleFacade = null;
+           
         }
 
         /// <summary>
@@ -170,9 +170,19 @@ namespace Fwk.Bases.Connector
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
             wSimpleFacade.DeleteServiceConfiguration(_ProviderName, serviceName);
-            wSimpleFacade = null;
+           
         }
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <returns></returns>
+        public  List<String> GetAllApplicationsId()
+        {
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            return   wSimpleFacade.GetAllApplicationsId(_ProviderName);
        
+        }
         /// <summary>
         /// Factory de SimpleFacade
         /// </summary>

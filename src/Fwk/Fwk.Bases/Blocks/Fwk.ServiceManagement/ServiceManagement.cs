@@ -52,10 +52,10 @@ namespace Fwk.ServiceManagement
         }
 
         /// <summary>
-        /// 
+        /// Obtine un servicio del repositorio
         /// </summary>
-        /// <param name="providerName"></param>
-        /// <param name="serviceName"></param>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+       /// <param name="providerName">Nombre del servicio</param>
         /// <returns></returns>
         public static ServiceConfiguration GetServiceConfiguration(string providerName, string serviceName)
         {
@@ -79,7 +79,7 @@ namespace Fwk.ServiceManagement
         private static FileSystemWatcher watcher;
 
         /// <summary>
-        /// 
+        /// Obtiene todos los servicios del proveedor de metadata
         /// </summary>
         /// <param name="provider">Proveedor de la metadata</param>
         /// <returns></returns>
@@ -155,9 +155,10 @@ namespace Fwk.ServiceManagement
         }
 
         /// <summary>
-        /// 
+        /// Este metodo elimina quita la lista de servicios del provider en el repositorio deservicios y 
+        /// los vuelve a cargar desde su origen
         /// </summary>
-        /// <param name="provider"></param>
+        /// <param name="provider">Proveedor de metadata</param>
         static void ReloadAllServices(ServiceProviderElement provider)
         {
 
@@ -179,7 +180,11 @@ namespace Fwk.ServiceManagement
 
 
         }    
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
         public static ServiceConfigurationCollection GetAllServices(string providerName)
         {
             ServiceProviderElement provider = GetProvider(providerName);
@@ -187,6 +192,12 @@ namespace Fwk.ServiceManagement
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+       /// <param name="providerName">Nombre del servicio</param>
+        /// <param name="pServiceConfiguration"><see cref="ServiceConfiguration"/></param>
         public static void SetServiceConfiguration(string providerName, string serviceName, ServiceConfiguration pServiceConfiguration)
         {
 
@@ -209,7 +220,11 @@ namespace Fwk.ServiceManagement
                 XmlServiceConfigurationManager.SetServiceConfiguration(provider.SourceInfo, svcList);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <param name="pServiceConfiguration"><see cref="ServiceConfiguration"/></param>
         public static void AddServiceConfiguration(string providerName, ServiceConfiguration pServiceConfiguration)
         {
             ServiceProviderElement provider = GetProvider(providerName);
@@ -232,6 +247,11 @@ namespace Fwk.ServiceManagement
                 XmlServiceConfigurationManager.AddServiceConfiguration(pServiceConfiguration, provider.SourceInfo, svcList);
         }
 
+        /// <summary>
+        /// Elimina un seriovicio del repositorio y del origen de metadata de servicios.-
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <param name="serviceName">Nombre del servicio</param>
         public static void DeleteServiceConfiguration(string providerName, string serviceName)
         {
 
@@ -253,6 +273,36 @@ namespace Fwk.ServiceManagement
 
         }
 
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public static List<String> GetAllApplicationsId(string providerName)
+        {
+
+          
+
+
+            ServiceProviderElement provider = GetProvider(providerName);
+
+            ServiceConfigurationCollection svcList = GetAllServices(provider);
+
+            var llist = from s in svcList group  s by s.ApplicationId into g select new { Category = g.Key, Aplication = g };
+
+
+
+            var llist2 = from s in svcList group s by s.ApplicationId into g select new { Category = g.Key, Aplication = g };
+
+            return new List<string>();
+        }
+
+        /// <summary>
+        /// Metodo privado que obtioene un proveedor . Si [providerName] es nulo se retornara el proveedor por defecto.-
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
         static ServiceProviderElement GetProvider(string providerName)
         {
             ServiceProviderElement provider = _ProviderSection.GetProvider(providerName);

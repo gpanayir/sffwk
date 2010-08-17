@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -129,12 +129,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-
     <None Include="Remoting\App.config" />
     <None Include="Web References\singleservice\SingleService.wsdl" />
   </ItemGroup>
   <ItemGroup>
-
     <WebReferenceUrl Include="http://localhost:1119/WebServiceDispatcher/SingleService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\singleservice\</RelPath>
@@ -144,15 +142,11 @@
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-
       <CachedSettingsPropName>Fwk_Bases_Connector_singleservice_SingleService</CachedSettingsPropName>
-
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-
     <None Include="Web References\singleservice\Reference.map">
-
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

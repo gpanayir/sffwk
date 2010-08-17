@@ -214,6 +214,19 @@ namespace Fwk.Bases.Connector
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
             wFwkRemoteObject.DeleteServiceConfiguration(_ProviderName, pServiceName);
         }
+        
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <returns></returns>
+        public  List<String> GetAllApplicationsId()
+        {
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+            return wFwkRemoteObject.GetAllApplicationsId(_ProviderName);
+            
+        }
+        
         #endregion [ServiceConfiguration]
 
         

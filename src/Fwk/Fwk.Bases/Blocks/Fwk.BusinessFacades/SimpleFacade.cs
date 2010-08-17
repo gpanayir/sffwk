@@ -13,6 +13,7 @@ using Fwk.Logging;
 using Fwk.Logging.Targets;
 
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace Fwk.BusinessFacades
 {
@@ -304,6 +305,17 @@ namespace Fwk.BusinessFacades
         {
             FacadeHelper.DeleteServiceConfiguration(providerName, serviceName);
         
+        }
+
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public  List<String> GetAllApplicationsId(string providerName)
+        {
+            return FacadeHelper.GetAllApplicationsId(providerName);
         }
 	}
 }
