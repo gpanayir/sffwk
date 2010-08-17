@@ -6,6 +6,7 @@ using System.Web.Services.Protocols;
 using Fwk.BusinessFacades;
 using Fwk.Bases;
 using System.Collections.Generic;
+using Fwk.ConfigSection;
 
 
 /// <summary>
@@ -142,6 +143,19 @@ public class SingleService : System.Web.Services.WebService
         SimpleFacade wSimpleFacade = CreateSimpleFacade();
         return  wSimpleFacade.GetAllApplicationsId(providerName);
       
+    }
+
+    /// <summary>
+    /// Obtiene info del proveedor de metadata
+    /// </summary>
+    /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+    /// <returns></returns>
+    [WebMethod]
+    public MetadataProvider GetProviderInfo(string providerName)
+    {
+        SimpleFacade wSimpleFacade = CreateSimpleFacade();
+        return wSimpleFacade.GetProviderInfo(providerName);
+
     }
     /// <summary>
     /// Factory de SimpleFacade
