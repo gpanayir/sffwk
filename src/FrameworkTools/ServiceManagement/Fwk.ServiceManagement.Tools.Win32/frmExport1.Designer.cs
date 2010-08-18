@@ -1,6 +1,6 @@
 ﻿namespace Fwk.ServiceManagement.Tools.Win32
 {
-    partial class frmNewProvider
+    partial class frmExport1
     {
         /// <summary>
         /// Required designer variable.

@@ -247,7 +247,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmNewProvider frmbox = new frmNewProvider (CurrentProvider);
+            frmExport1 frmbox = new frmExport1 (CurrentProvider);
             frmbox.ShowDialog();
         }
 

@@ -11,7 +11,7 @@ using Fwk.Bases;
 
 namespace Fwk.ServiceManagement.Tools.Win32
 {
-    public partial class frmExport : Form
+    public partial class frmExport2 : Form
     {
         StringBuilder log;
         bool _HasErrors = false;
@@ -29,7 +29,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         ServiceProviderElement _SourceProvider;
         ServiceProviderElement _SelectedProvider;
         ServiceConfigurationCollection _Services;
-        public frmExport(ServiceProviderElement from, ServiceProviderElement to, ServiceConfigurationCollection services)
+        public frmExport2(ServiceProviderElement from, ServiceProviderElement to, ServiceConfigurationCollection services)
         {
             InitializeComponent();
             _SourceProvider = from;

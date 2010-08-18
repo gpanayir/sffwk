@@ -12,12 +12,12 @@ using Fwk.Bases.FrontEnd;
 
 namespace Fwk.ServiceManagement.Tools.Win32
 {
-    public partial class frmNewProvider : FrmBase
+    public partial class frmExport1 : FrmBase
     {
         ServiceProviderElement _SourceProvider;
         ServiceProviderElement _SelectedProvider;
       
-        public frmNewProvider(ServiceProviderElement sourceProvider)
+        public frmExport1(ServiceProviderElement sourceProvider)
         {
             _SourceProvider = sourceProvider;
             InitializeComponent(); 
@@ -96,7 +96,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            using (frmExport frm = new frmExport(_SourceProvider,_SelectedProvider,ucbServiceGrid1.SelecdedServices))
+            using (frmExport2 frm = new frmExport2(_SourceProvider,_SelectedProvider,ucbServiceGrid1.SelecdedServices))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {

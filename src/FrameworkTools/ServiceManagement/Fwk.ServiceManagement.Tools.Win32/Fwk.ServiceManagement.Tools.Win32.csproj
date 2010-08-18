@@ -124,17 +124,17 @@
     <Compile Include="frmEdit.Designer.cs">
       <DependentUpon>frmEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmExport.cs">
+    <Compile Include="frmExport2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExport.Designer.cs">
-      <DependentUpon>frmExport.cs</DependentUpon>
+    <Compile Include="frmExport2.Designer.cs">
+      <DependentUpon>frmExport2.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNewProvider.cs">
+    <Compile Include="frmExport1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNewProvider.Designer.cs">
-      <DependentUpon>frmNewProvider.cs</DependentUpon>
+    <Compile Include="frmExport1.Designer.cs">
+      <DependentUpon>frmExport1.cs</DependentUpon>
     </Compile>
     <Compile Include="frmServices.cs">
       <SubType>Form</SubType>
@@ -156,11 +156,11 @@
       <SubType>Designer</SubType>
       <DependentUpon>frmEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExport.resx">
-      <DependentUpon>frmExport.cs</DependentUpon>
+    <EmbeddedResource Include="frmExport2.resx">
+      <DependentUpon>frmExport2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNewProvider.resx">
-      <DependentUpon>frmNewProvider.cs</DependentUpon>
+    <EmbeddedResource Include="frmExport1.resx">
+      <DependentUpon>frmExport1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServices.resx">
       <DependentUpon>frmServices.cs</DependentUpon>
