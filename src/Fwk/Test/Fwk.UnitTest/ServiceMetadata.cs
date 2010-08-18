@@ -43,6 +43,27 @@ namespace Fwk.UnitTest
        
         #endregion
 
+
+        [TestMethod]
+        public void UpdateAppConfig()
+        {
+            
+
+            //ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+            //map.ExeConfigFilename = System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.Name + ".config";
+            //System.Configuration.Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+            //ServiceProviderSection config = (ServiceProviderSection)configuration.Sections["FwkServiceMetadata"]; 
+
+
+            ServiceProviderElement p1 = new ServiceProviderElement ();
+            p1.ApplicationId = "xxx";
+            p1.Name = "p1";
+            p1.SourceInfo = "";
+            //config.Providers.Add(p1);
+            //configuration.Save(ConfigurationSaveMode.Modified,true);
+           
+            ServiceMetadata.ProviderSection.AddNewProvider(p1);
+        }
         //Solo para rellenar la base de datos
         [TestMethod]
         public void ImportToDB()

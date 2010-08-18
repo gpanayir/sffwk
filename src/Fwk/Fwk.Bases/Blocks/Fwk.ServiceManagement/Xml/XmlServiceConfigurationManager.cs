@@ -16,7 +16,7 @@ namespace Fwk.ServiceManagement
     /// </summary>
     /// <date>2008-04-07T00:00:00</date>
     /// <author>moviedo</author>
-    public sealed class XmlServiceConfigurationManager
+     sealed class XmlServiceConfigurationManager
     {
         //static ServiceConfigurationCollection _Services;
 

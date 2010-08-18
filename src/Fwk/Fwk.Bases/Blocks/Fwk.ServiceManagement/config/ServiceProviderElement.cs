@@ -34,18 +34,20 @@ namespace Fwk.ConfigSection
             {
                 return (string)this["name"];
             }
+            set { this["name"] = value; }
         }
 
         /// <summary>
         /// Determina el tipo de origen de la metadata de sercvicios
         /// </summary>
         [ConfigurationProperty("type", IsRequired = true, IsKey = false)]
-        public ServiceProviderType ConfigProviderType
+        public ServiceProviderType ProviderType
         {
             get
             {
                 return (ServiceProviderType)this["type"];
             }
+            set { this["type"] = value.ToString(); }
         }
 
 
@@ -61,6 +63,7 @@ namespace Fwk.ConfigSection
             {
                 return (string)this["sourceinfo"];
             }
+            set { this["sourceinfo"] = value; }
         }
         [ConfigurationProperty("appid", IsRequired = true, IsKey = false), StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
         public string ApplicationId
@@ -69,6 +72,11 @@ namespace Fwk.ConfigSection
             {
                 return (string)this["appid"];
             }
+            set { this["appid"] = value; }
+        }
+        public override bool IsReadOnly()
+        {
+            return false;
         }
         #endregion
     }
@@ -109,7 +117,7 @@ namespace Fwk.ConfigSection
         public MetadataProvider(ServiceProviderElement provider)
         {
             _ApplicationId = provider.ApplicationId;
-            _ConfigProviderType = provider.ConfigProviderType.ToString();
+            _ConfigProviderType = provider.ProviderType.ToString();
             _Name = provider.Name;
             _SourceInfo = provider.SourceInfo;
 

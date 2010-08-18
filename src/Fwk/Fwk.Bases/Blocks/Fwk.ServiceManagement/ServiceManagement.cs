@@ -27,7 +27,6 @@ namespace Fwk.ServiceManagement
             {
                 return _ProviderSection;
             }
-
         }
 
         static System.Collections.Generic.Dictionary<string, ServiceConfigurationCollection> _Repository;
@@ -91,7 +90,7 @@ namespace Fwk.ServiceManagement
             if (!_Repository.ContainsKey(provider.Name))
             {
                 
-                if (provider.ConfigProviderType == ServiceProviderType.xml)
+                if (provider.ProviderType == ServiceProviderType.xml)
                 {
                     svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
 
@@ -104,7 +103,7 @@ namespace Fwk.ServiceManagement
                     watcher.Changed += new FileSystemEventHandler(watcher_Changed);
 
                 }
-                if (provider.ConfigProviderType == ServiceProviderType.sqldatabase)
+                if (provider.ProviderType == ServiceProviderType.sqldatabase)
                 {
                     svcList = DatabaseServiceConfigurationManager.GetAllServices(provider.ApplicationId,provider.SourceInfo);
                 }
@@ -129,7 +128,7 @@ namespace Fwk.ServiceManagement
                 //Busco todos los providers que esten asociados al mismo archivo. Esta es una situacion qmuy rara pero podria darce
                 foreach (ServiceProviderElement provider in _ProviderSection.Providers)
                 {
-                    if (e.Name.Equals(provider.SourceInfo) && provider.ConfigProviderType == ServiceProviderType.xml)
+                    if (e.Name.Equals(provider.SourceInfo) && provider.ProviderType == ServiceProviderType.xml)
                         ReloadAllServices(provider);
                 }
             }
@@ -164,7 +163,7 @@ namespace Fwk.ServiceManagement
 
             _Repository.Remove(provider.Name);
 
-            if (provider.ConfigProviderType == ServiceProviderType.xml)
+            if (provider.ProviderType == ServiceProviderType.xml)
             {
                 ServiceConfigurationCollection svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
 
@@ -216,7 +215,7 @@ namespace Fwk.ServiceManagement
             svcList.Remove(wServiceConfigurationEnMemoria);
             svcList.Add(pServiceConfiguration);
 
-            if (provider.ConfigProviderType == ServiceProviderType.xml)
+            if (provider.ProviderType == ServiceProviderType.xml)
                 XmlServiceConfigurationManager.SetServiceConfiguration(provider.SourceInfo, svcList);
             else
                 DatabaseServiceConfigurationManager.SetServiceConfiguration(serviceName,pServiceConfiguration, provider.ApplicationId, provider.SourceInfo);
@@ -247,7 +246,7 @@ namespace Fwk.ServiceManagement
 
             svcList.Add(pServiceConfiguration);
 
-            if (provider.ConfigProviderType == ServiceProviderType.xml)
+            if (provider.ProviderType == ServiceProviderType.xml)
                 XmlServiceConfigurationManager.AddServiceConfiguration(pServiceConfiguration, provider.SourceInfo, svcList);
             else
                 DatabaseServiceConfigurationManager.AddServiceConfiguration(pServiceConfiguration, pServiceConfiguration.ApplicationId, provider.SourceInfo);
@@ -274,7 +273,7 @@ namespace Fwk.ServiceManagement
             ServiceConfiguration wServiceConfigurationEnMemoria = svcList.GetServiceConfiguration(serviceName,provider.ApplicationId);
             svcList.Remove(wServiceConfigurationEnMemoria);
 
-            if (provider.ConfigProviderType == ServiceProviderType.xml)
+            if (provider.ProviderType == ServiceProviderType.xml)
                 XmlServiceConfigurationManager.DeleteServiceConfiguration(provider.SourceInfo, svcList);
             else
                 DatabaseServiceConfigurationManager.DeleteServiceConfiguration(serviceName, provider.ApplicationId, provider.SourceInfo);
