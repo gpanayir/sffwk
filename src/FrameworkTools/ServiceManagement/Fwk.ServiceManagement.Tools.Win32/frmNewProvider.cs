@@ -35,13 +35,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         
                  
-            lblConnectionType_source.Text = _SourceProvider.ConfigProviderType.ToString();
+            lblConnectionType_source.Text = _SourceProvider.ProviderType.ToString();
             txtAddres_source.Text = _SourceProvider.SourceInfo;
 
-
+            //cargo la grilla izquierda
             ucbServiceGrid1.Services = ServiceMetadata.GetAllServices(_SourceProvider.Name);
             ucbServiceGrid1.Applications = ServiceMetadata.GetAllApplicationsId(_SourceProvider.Name);
     
+            //lleno el combo de posibles proveedores destino
             foreach (ServiceProviderElement p in ServiceMetadata.ProviderSection.Providers)
             {
                 if (!_SourceProvider.Name.Equals(p.Name))
@@ -68,17 +69,20 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             _SelectedProvider = ServiceMetadata.ProviderSection.GetProvider(cmb2.SelectedItem.ToString());
 
-            lblConnectionType.Text = _SelectedProvider.ConfigProviderType.ToString();
+            lblConnectionType.Text = _SelectedProvider.ProviderType.ToString();
             txtAddres.Text = _SelectedProvider.SourceInfo;
 
 
             try
             {
+                //cargo la grilla derecha
                 ucbServiceGrid2.Services = ServiceMetadata.GetAllServices(_SelectedProvider.Name);
                 ucbServiceGrid2.Applications = ServiceMetadata.GetAllApplicationsId(_SelectedProvider.Name);
 
+                
                 txtAddres.Text = _SelectedProvider.SourceInfo;
 
+                //muestro el titulo
                 this.Text = string.Concat("Export data from ", _SelectedProvider.Name, " to ", _SelectedProvider.Name);
             }
             catch (Exception ex)

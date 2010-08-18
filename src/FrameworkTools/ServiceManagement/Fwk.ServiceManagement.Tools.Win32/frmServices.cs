@@ -183,7 +183,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
           
             lblConnectionStatus.Text = "Diconect";
 
-            lblConnectionType.Text = ServiceMetadata.ProviderSection.DefaultProvider.ConfigProviderType.ToString();
+            lblConnectionType.Text = ServiceMetadata.ProviderSection.DefaultProvider.ProviderType.ToString();
             txtAddres.Text = ServiceMetadata.ProviderSection.DefaultProvider.SourceInfo;
 
 
@@ -205,7 +205,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             CurrentProvider = ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
        
-            lblConnectionType.Text = CurrentProvider.ConfigProviderType.ToString();
+            lblConnectionType.Text = CurrentProvider.ProviderType.ToString();
             txtAddres.Text = CurrentProvider.SourceInfo;
 
             try

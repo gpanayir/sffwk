@@ -200,9 +200,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataBaseConfig.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Data_Dataset.ico" />
     <None Include="Fwk.ServiceManagement.Tools.Win32_TemporaryKey.pfx" />
     <None Include="Resources\prntpv_16.png" />
