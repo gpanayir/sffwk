@@ -247,8 +247,27 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            frmExport1 frmbox = new frmExport1 (CurrentProvider);
-            frmbox.ShowDialog();
+            using (frmExport1 frm = new frmExport1(CurrentProvider))
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void btnNewProvider_Click(object sender, EventArgs e)
+        {
+            using (frmCreateProvider frm = new frmCreateProvider())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    ComboBox cb = (ComboBox)cmbProviders.Control;
+                    foreach (ServiceProviderElement p in ServiceMetadata.ProviderSection.Providers)
+                    {
+                        cb.Items.Add(p.Name);
+                    }
+
+                    cmbProviders.SelectedIndex = 0;
+                }
+            }
         }
 
        

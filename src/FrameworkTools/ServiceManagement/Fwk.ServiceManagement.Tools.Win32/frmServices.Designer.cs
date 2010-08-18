@@ -29,7 +29,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServices));
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -59,6 +58,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMetaqadata = new System.Windows.Forms.Label();
+            this.btnNewProvider = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -180,6 +180,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnNewProvider,
             this.connectToolStripMenuItem,
             this.cmbProviders,
             this.toolStripMenuItem1});
@@ -249,7 +250,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.ucbServiceGrid1.Location = new System.Drawing.Point(4, 2);
             this.ucbServiceGrid1.Name = "ucbServiceGrid1";
             this.ucbServiceGrid1.Services = null;
-            this.ucbServiceGrid1.Size = new System.Drawing.Size(529, 437);
+            this.ucbServiceGrid1.Size = new System.Drawing.Size(529, 572);
             this.ucbServiceGrid1.TabIndex = 0;
             this.ucbServiceGrid1.OnClickServiceHandler += new Fwk.ServiceManagement.Tools.Win32.OnClickServiceHandler(this.ucbServiceGrid1_OnClickServiceHandler);
             // 
@@ -388,6 +389,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.lblMetaqadata.TabIndex = 45;
             this.lblMetaqadata.Text = "<<<<<<<<<<<<<<<<<";
             // 
+            // btnNewProvider
+            // 
+            this.btnNewProvider.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.AddService;
+            this.btnNewProvider.Name = "btnNewProvider";
+            this.btnNewProvider.Size = new System.Drawing.Size(97, 21);
+            this.btnNewProvider.Text = "Add provider";
+            this.btnNewProvider.Click += new System.EventHandler(this.btnNewProvider_Click);
+            // 
             // frmServices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,6 +455,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtAddres;
         private System.Windows.Forms.ToolStripComboBox cmbProviders;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem btnNewProvider;
        
         
 	}

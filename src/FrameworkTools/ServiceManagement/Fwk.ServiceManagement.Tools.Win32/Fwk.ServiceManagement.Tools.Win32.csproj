@@ -118,6 +118,12 @@
     <Compile Include="frmAssemblyExplorer.Designer.cs">
       <DependentUpon>frmAssemblyExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCreateProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreateProvider.Designer.cs">
+      <DependentUpon>frmCreateProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     <EmbeddedResource Include="frmAssemblyExplorer.resx">
       <DependentUpon>frmAssemblyExplorer.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCreateProvider.resx">
+      <DependentUpon>frmCreateProvider.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEdit.resx">
       <SubType>Designer</SubType>
