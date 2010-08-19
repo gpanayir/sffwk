@@ -58,21 +58,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.Bases.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Bases.Connector, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.Bases.Connector.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Bases.FrontEnd, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Controls.Win32, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.Controls.Win32.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.DataBase, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.DataBase.dll</HintPath>
-    </Reference>
+    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Bases.Connector, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Bases.FrontEnd, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Controls.Win32, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.TextEditor, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
