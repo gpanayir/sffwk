@@ -89,7 +89,7 @@ namespace TestServicePerformance
                 if (stop) break;
                 Stopwatch watch = new Stopwatch();
                 watch.Start();
-                isvcRes = _RemoteObj.ExecuteService(isvcReq);
+                isvcRes = _RemoteObj.ExecuteService(string.Empty,isvcReq);
                 //System.Threading.Thread.Sleep(300);
                 watch.Stop();
 

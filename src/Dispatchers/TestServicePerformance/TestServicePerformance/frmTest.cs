@@ -151,7 +151,7 @@ namespace TestServicePerformance
                 _RemotingWrapper.Init(txtURL.Text);
                 dataGridView1.DataSource = null;
                 dataGridView1.Refresh();
-                dataGridView1.DataSource = _RemotingWrapper.RemoteObj.GetServicesList();
+                dataGridView1.DataSource = _RemotingWrapper.RemoteObj.GetServicesList(string.Empty);
                 this.btnPing.Image = global::TestServicePerformance.Properties.Resources.Ball__Green_;
                 tabControl2.TabIndex = 0;
             }
@@ -357,7 +357,7 @@ namespace TestServicePerformance
                 _RemotingWrapper_config.Init();
                 dataGridView1.DataSource = null;
                 dataGridView1.Refresh();
-                dataGridView1.DataSource = _RemotingWrapper_config.RemoteObj.GetServicesList();
+                dataGridView1.DataSource = _RemotingWrapper_config.RemoteObj.GetServicesList(string.Empty);
                 this.btn_InitConfigFile.Image = global::TestServicePerformance.Properties.Resources.Ball__Green_;
                 tabControl2.TabIndex = 0;
             }

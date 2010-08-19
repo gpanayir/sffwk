@@ -61,14 +61,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.Bases.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Security, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.Security.dll</HintPath>
-    </Reference>
+    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Security, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\branches\3.1.0\src\Libraries\Framework\Fwk.Security.Service.dll</HintPath>
