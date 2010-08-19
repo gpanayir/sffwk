@@ -32,6 +32,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 cboCnnStrings.Items.Add(cnn.Name);
             }
             cboCnnStrings.SelectedIndex = 0;
+            txtName.Focus();
         }
 
 
@@ -41,11 +42,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
             if (cboType.Text == "xml")
             {
                 tabControl1.SelectedIndex = 0;
+                groupBox2.Enabled = true;
+                groupBox1.Enabled = false;
             }
             else
             {
                 tabControl1.SelectedIndex = 1;
-                
+                groupBox2.Enabled = false;
+                groupBox1.Enabled = true;
             }
          
         }
@@ -84,7 +88,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (!Validaate()) return;
+            if (!Validate()) return;
             ServiceProviderElement provider = new ServiceProviderElement();
             if (cboType.Text == "xml")
             {
@@ -92,20 +96,24 @@ namespace Fwk.ServiceManagement.Tools.Win32
             }
             else
             {
-                provider.SourceInfo = txtCnnString.Text;
+                provider.SourceInfo = txtCnnStringName.Text;
                 AddNewCnnString();
             }
           
             provider.Name = txtName.Text;
             provider.ApplicationId = txtApplicationId.Text;
-            
-            provider.ProviderType = (ServiceProviderType)Enum.Parse(typeof(ServiceProviderType), cboType.Text);
+
+            provider.ProviderType =(ServiceProviderType)Enum.Parse(typeof(ServiceProviderType), cboType.Text);
             AddNewProvider(provider);
 
             this.DialogResult = DialogResult.OK; 
         }
 
-        bool Validaate()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        bool Validate()
         {
             if (String.IsNullOrEmpty(txtName.Text))
             {
@@ -115,24 +123,24 @@ namespace Fwk.ServiceManagement.Tools.Win32
             }
             if (cboType.Text == "xml")
             {
-                if (CheckFile())
+                if (CheckFile()== false)
                     return false; 
             }
             else
             {
                 if (radioButton2.Checked)
                 {
-                    if (String.IsNullOrEmpty(txtCnnString.Text))
+                    if (String.IsNullOrEmpty(txtCnnStringValue.Text))
                     {
                         base.ExceptionViewer.Show(new Exception("Connection string"));
-                        txtCnnString.Focus();
+                        txtCnnStringValue.Focus();
                         return false;
                     }
 
-                    if (String.IsNullOrEmpty(txtCnnStringNAme.Text))
+                    if (String.IsNullOrEmpty(txtCnnStringName.Text))
                     {
                         base.ExceptionViewer.Show(new Exception("Connection string name is required."));
-                        txtCnnStringNAme.Focus();
+                        txtCnnStringName.Focus();
                         return false;
                     }
                 }
@@ -170,8 +178,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             cboCnnStrings.Enabled = radioButton1.Checked;
-            txtCnnStringNAme.Enabled = !radioButton1.Checked;
-            txtCnnString.Enabled = !radioButton1.Checked;
+            txtCnnStringName.ReadOnly = radioButton1.Checked;
+            txtCnnStringValue.ReadOnly = radioButton1.Checked;
+
+            if (radioButton1.Checked)
+                txtCnnStringName.Text = cboCnnStrings.Text;
+            else
+                txtCnnStringName.Text = string.Empty;
         }
 
         //Agrega nueva cadena de coneccion si radioButton1.Checked = true   
@@ -180,7 +193,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             if (radioButton1.Checked == true) return;
             ConnectionStringsSection config = (ConnectionStringsSection)configuration.Sections["connectionStrings"];
 
-            ConnectionStringSettings wConnectionStringSettings = new ConnectionStringSettings(txtCnnString.Text, txtCnnStringNAme.Text, "System.Data.SqlClient");
+            ConnectionStringSettings wConnectionStringSettings = new ConnectionStringSettings( txtCnnStringName.Text,txtCnnStringValue.Text, "System.Data.SqlClient");
             config.ConnectionStrings.Add(wConnectionStringSettings);
             configuration.Save(ConfigurationSaveMode.Minimal, true);
         }
@@ -190,6 +203,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
             ServiceProviderSection config = (ServiceProviderSection)configuration.Sections["FwkServiceMetadata"];
             config.Providers.Add(newProvider);
             configuration.Save(ConfigurationSaveMode.Minimal, true);
+
+            ServiceMetadata.ProviderSection.Providers.Add(newProvider);
+        }
+
+        private void cboCnnStrings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtCnnStringName.Text = cboCnnStrings.Text;
         }
 
        

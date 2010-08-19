@@ -43,15 +43,19 @@
             this.cboCnnStrings = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtCnnString = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCnnStringValue = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
+            this.txtCnnStringName = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.txtCnnStringNAme = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.label5 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtApplicationId
@@ -73,7 +77,7 @@
             this.txtApplicationId.Required = true;
             this.txtApplicationId.RequiredErrorText = "Name value is required";
             this.txtApplicationId.Size = new System.Drawing.Size(662, 21);
-            this.txtApplicationId.TabIndex = 77;
+            this.txtApplicationId.TabIndex = 2;
             this.txtApplicationId.TabStop = false;
             this.txtApplicationId.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
@@ -114,7 +118,7 @@
             this.txtName.Required = true;
             this.txtName.RequiredErrorText = "Name value is required";
             this.txtName.Size = new System.Drawing.Size(662, 21);
-            this.txtName.TabIndex = 78;
+            this.txtName.TabIndex = 1;
             this.txtName.TabStop = false;
             this.txtName.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
@@ -137,15 +141,15 @@
             "sqldatabase"});
             this.cboType.Location = new System.Drawing.Point(12, 129);
             this.cboType.Name = "cboType";
-            this.cboType.Size = new System.Drawing.Size(150, 21);
-            this.cboType.TabIndex = 80;
+            this.cboType.Size = new System.Drawing.Size(222, 21);
+            this.cboType.TabIndex = 3;
             this.cboType.SelectedIndexChanged += new System.EventHandler(this.cboType_SelectedIndexChanged);
             // 
             // btnOk
             // 
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOk.Location = new System.Drawing.Point(541, 468);
+            this.btnOk.Location = new System.Drawing.Point(608, 462);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(66, 23);
             this.btnOk.TabIndex = 82;
@@ -161,27 +165,28 @@
             this.txtSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSource.BackColor = System.Drawing.Color.White;
-            this.txtSource.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSource.CapitalOnly = false;
             this.txtSource.ErrorIconRightToLeft = true;
             this.txtSource.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSource.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtSource.Location = new System.Drawing.Point(6, 55);
+            this.txtSource.Location = new System.Drawing.Point(11, 42);
             this.txtSource.Name = "txtSource";
             this.txtSource.NotAllowedCharactersErrorText = null;
             this.txtSource.Required = true;
             this.txtSource.RequiredErrorText = "Name value is required";
-            this.txtSource.Size = new System.Drawing.Size(570, 21);
+            this.txtSource.Size = new System.Drawing.Size(575, 21);
             this.txtSource.TabIndex = 83;
             this.txtSource.TabStop = false;
             this.txtSource.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
             // btnSearAssemblie
             // 
+            this.btnSearAssemblie.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearAssemblie.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearAssemblie.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.mostrar;
             this.btnSearAssemblie.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearAssemblie.Location = new System.Drawing.Point(631, 29);
+            this.btnSearAssemblie.Location = new System.Drawing.Point(604, 42);
             this.btnSearAssemblie.Name = "btnSearAssemblie";
             this.btnSearAssemblie.Size = new System.Drawing.Size(28, 23);
             this.btnSearAssemblie.TabIndex = 84;
@@ -193,7 +198,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 35);
+            this.label1.Location = new System.Drawing.Point(25, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 85;
@@ -204,7 +209,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label2.Location = new System.Drawing.Point(93, 24);
+            this.label2.Location = new System.Drawing.Point(48, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(112, 13);
             this.label2.TabIndex = 87;
@@ -215,10 +220,11 @@
             this.cboCnnStrings.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCnnStrings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboCnnStrings.FormattingEnabled = true;
-            this.cboCnnStrings.Location = new System.Drawing.Point(96, 40);
+            this.cboCnnStrings.Location = new System.Drawing.Point(51, 43);
             this.cboCnnStrings.Name = "cboCnnStrings";
             this.cboCnnStrings.Size = new System.Drawing.Size(236, 21);
             this.cboCnnStrings.TabIndex = 86;
+            this.cboCnnStrings.SelectedIndexChanged += new System.EventHandler(this.cboCnnStrings_SelectedIndexChanged);
             // 
             // tabControl1
             // 
@@ -228,13 +234,11 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(672, 273);
-            this.tabControl1.TabIndex = 88;
+            this.tabControl1.TabIndex = 10;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.txtSource);
-            this.tabPage1.Controls.Add(this.btnSearAssemblie);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -243,15 +247,20 @@
             this.tabPage1.Text = "Xml";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtSource);
+            this.groupBox2.Controls.Add(this.btnSearAssemblie);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Location = new System.Drawing.Point(6, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(638, 222);
+            this.groupBox2.TabIndex = 86;
+            this.groupBox2.TabStop = false;
+            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.txtCnnString);
-            this.tabPage2.Controls.Add(this.radioButton2);
-            this.tabPage2.Controls.Add(this.radioButton1);
-            this.tabPage2.Controls.Add(this.txtCnnStringNAme);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.cboCnnStrings);
+            this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -260,83 +269,98 @@
             this.tabPage2.Text = "SQL Database";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // txtCnnString
+            // groupBox1
             // 
-            this.txtCnnString.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtCnnString.AllowBlankSpace = true;
-            this.txtCnnString.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
-            this.txtCnnString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Controls.Add(this.cboCnnStrings);
+            this.groupBox1.Controls.Add(this.txtCnnStringValue);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtCnnStringName);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Location = new System.Drawing.Point(6, 17);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(652, 190);
+            this.groupBox1.TabIndex = 91;
+            this.groupBox1.TabStop = false;
+            // 
+            // txtCnnStringValue
+            // 
+            this.txtCnnStringValue.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtCnnStringValue.AllowBlankSpace = true;
+            this.txtCnnStringValue.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
+            this.txtCnnStringValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCnnString.BackColor = System.Drawing.Color.White;
-            this.txtCnnString.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCnnString.CapitalOnly = false;
-            this.txtCnnString.ErrorIconRightToLeft = true;
-            this.txtCnnString.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCnnString.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtCnnString.Location = new System.Drawing.Point(96, 159);
-            this.txtCnnString.Name = "txtCnnString";
-            this.txtCnnString.NotAllowedCharactersErrorText = null;
-            this.txtCnnString.Required = true;
-            this.txtCnnString.RequiredErrorText = "Name value is required";
-            this.txtCnnString.Size = new System.Drawing.Size(540, 21);
-            this.txtCnnString.TabIndex = 90;
-            this.txtCnnString.TabStop = false;
-            this.txtCnnString.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
+            this.txtCnnStringValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(253)))));
+            this.txtCnnStringValue.CapitalOnly = false;
+            this.txtCnnStringValue.ErrorIconRightToLeft = true;
+            this.txtCnnStringValue.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCnnStringValue.InactiveBorderColor = System.Drawing.SystemColors.Control;
+            this.txtCnnStringValue.Location = new System.Drawing.Point(56, 152);
+            this.txtCnnStringValue.Name = "txtCnnStringValue";
+            this.txtCnnStringValue.NotAllowedCharactersErrorText = null;
+            this.txtCnnStringValue.ReadOnly = true;
+            this.txtCnnStringValue.Required = true;
+            this.txtCnnStringValue.RequiredErrorText = "Name value is required";
+            this.txtCnnStringValue.Size = new System.Drawing.Size(573, 21);
+            this.txtCnnStringValue.TabIndex = 90;
+            this.txtCnnStringValue.TabStop = false;
+            this.txtCnnStringValue.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
+            // 
+            // txtCnnStringName
+            // 
+            this.txtCnnStringName.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtCnnStringName.AllowBlankSpace = true;
+            this.txtCnnStringName.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
+            this.txtCnnStringName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCnnStringName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(253)))));
+            this.txtCnnStringName.CapitalOnly = false;
+            this.txtCnnStringName.ErrorIconRightToLeft = true;
+            this.txtCnnStringName.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCnnStringName.InactiveBorderColor = System.Drawing.SystemColors.Control;
+            this.txtCnnStringName.Location = new System.Drawing.Point(56, 108);
+            this.txtCnnStringName.Name = "txtCnnStringName";
+            this.txtCnnStringName.NotAllowedCharactersErrorText = null;
+            this.txtCnnStringName.ReadOnly = true;
+            this.txtCnnStringName.Required = true;
+            this.txtCnnStringName.RequiredErrorText = "Name value is required";
+            this.txtCnnStringName.Size = new System.Drawing.Size(573, 21);
+            this.txtCnnStringName.TabIndex = 86;
+            this.txtCnnStringName.TabStop = false;
+            this.txtCnnStringName.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(19, 84);
+            this.radioButton2.Location = new System.Drawing.Point(10, 92);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(14, 13);
             this.radioButton2.TabIndex = 89;
             this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(18, 24);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(14, 13);
-            this.radioButton1.TabIndex = 88;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // txtCnnStringNAme
-            // 
-            this.txtCnnStringNAme.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtCnnStringNAme.AllowBlankSpace = true;
-            this.txtCnnStringNAme.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
-            this.txtCnnStringNAme.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCnnStringNAme.BackColor = System.Drawing.Color.White;
-            this.txtCnnStringNAme.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCnnStringNAme.CapitalOnly = false;
-            this.txtCnnStringNAme.ErrorIconRightToLeft = true;
-            this.txtCnnStringNAme.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCnnStringNAme.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtCnnStringNAme.Location = new System.Drawing.Point(96, 115);
-            this.txtCnnStringNAme.Name = "txtCnnStringNAme";
-            this.txtCnnStringNAme.NotAllowedCharactersErrorText = null;
-            this.txtCnnStringNAme.Required = true;
-            this.txtCnnStringNAme.RequiredErrorText = "Name value is required";
-            this.txtCnnStringNAme.Size = new System.Drawing.Size(540, 21);
-            this.txtCnnStringNAme.TabIndex = 86;
-            this.txtCnnStringNAme.TabStop = false;
-            this.txtCnnStringNAme.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label5.Location = new System.Drawing.Point(103, 99);
+            this.label5.Location = new System.Drawing.Point(63, 92);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(136, 13);
             this.label5.TabIndex = 87;
             this.label5.Text = "New connection String";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(10, 27);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(14, 13);
+            this.radioButton1.TabIndex = 88;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // frmCreateProvider
             // 
@@ -359,9 +383,11 @@
             this.Text = "Add provider";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,10 +410,12 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtCnnStringNAme;
+        private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtCnnStringName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtCnnString;
+        private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtCnnStringValue;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

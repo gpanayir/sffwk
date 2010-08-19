@@ -260,11 +260,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     ComboBox cb = (ComboBox)cmbProviders.Control;
+                    cb.Items.Clear();
                     foreach (ServiceProviderElement p in ServiceMetadata.ProviderSection.Providers)
                     {
                         cb.Items.Add(p.Name);
                     }
-
+                ServiceProviderCollection l=    ServiceMetadata.ProviderSection.Providers;
                     cmbProviders.SelectedIndex = 0;
                 }
             }
