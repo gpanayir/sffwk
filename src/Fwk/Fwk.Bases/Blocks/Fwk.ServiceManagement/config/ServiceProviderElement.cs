@@ -47,7 +47,7 @@ namespace Fwk.ConfigSection
             {
                 return (ServiceProviderType)this["type"];
             }
-            set { this["type"] = value.ToString(); }
+            set { this["type"] = value; }
         }
 
 
