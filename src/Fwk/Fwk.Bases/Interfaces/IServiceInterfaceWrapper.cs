@@ -24,7 +24,16 @@ namespace Fwk.Bases
         /// 
         /// </summary>
         string SourceInfo { get; set; }
+        
+        /// <summary>
+        /// identificador del proveedor de seguridad en el server.
+        /// </summary>
+        string SecurityProviderName { get; set; }
 
+        /// <summary>
+        /// identificador de empresa
+        /// </summary>
+        string CompanyId { get; set; }
 		/// <summary>
 		/// Ejecuta un servicio de negocio.
 		/// </summary>

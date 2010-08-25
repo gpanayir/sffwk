@@ -14,6 +14,7 @@ namespace Fwk.Bases.Connector
 	/// <author>moviedo</author>
 	public class WebServiceWrapper : IServiceWrapper
 	{
+
         string _ProviderName = string.Empty;
 
         /// <summary>
@@ -24,6 +25,9 @@ namespace Fwk.Bases.Connector
             get { return _ProviderName; }
             set { _ProviderName = value; }
         }
+
+        private string msz_URL = string.Empty;
+
         /// <summary>
         /// Direccion url del servicio web
         /// </summary>
@@ -32,8 +36,28 @@ namespace Fwk.Bases.Connector
             get { return msz_URL; }
             set { msz_URL = value; }
         }
+        string _SecurityProviderName = string.Empty;
 
-        private string msz_URL = string.Empty;
+        /// <summary>
+        /// Proveedor del seguridad en el despachador de servicios
+        /// </summary>
+        public string SecurityProviderName
+        {
+            get { return _SecurityProviderName; }
+            set { _SecurityProviderName = value; }
+        }
+
+        string _CompanyId = string.Empty;
+
+        /// <summary>
+        /// Identificador de empresa
+        /// </summary>
+        public string CompanyId
+        {
+            get { return _CompanyId; }
+            set { _CompanyId = value; }
+        }
+
     
 		#region IServiceInterfaceWrapper Members 
 

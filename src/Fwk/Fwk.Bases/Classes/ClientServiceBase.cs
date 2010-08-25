@@ -49,73 +49,7 @@ namespace Fwk.Bases
 
             return this.ExecuteService<TRequest, TResponse>(string.Empty, pRequest);
 
-            #region old code
-            //TResponse wResponse = new TResponse();
-
-            //if (_Wrapper == null)
-            //{
-            //    try
-            //    {
-            //        _Wrapper =
-            //            (IServiceWrapper)
-            //            ReflectionFunctions.CreateInstance(Fwk.Bases.ConfigurationsHelper.WrapperSetting);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        ServiceError wServiceError = ProcessConnectionsException.Process(ex);
-            //        TechnicalException te = new TechnicalException(wServiceError.Assembly, wServiceError.Namespace, wServiceError.Class, wServiceError.Machine, wServiceError.UserName, wServiceError.Message);
-
-            //        wResponse.Error = ProcessConnectionsException.Process(te);
-
-            //    }
-
-            //}
-            //Boolean wExecuteOndispatcher = true;
-            ////Si no ocurrio algun error
-            //if (wResponse.Error == null)
-            //{
-            //    IServiceContract res = null;
-            //    IRequest req = (IRequest)pRequest;
-            //    // Caching del servicio.
-            //    if (req.CacheSettings != null && req.CacheSettings.CacheOnClientSide) //--------------------------------------->>> Implement the cache factory
-            //    {
-
-            //        res = ServiceCacheMannager.Get(req);
-            //        wResponse = (TResponse)res;
-            //        //Si estaba en la cache no es necesario llamar al despachador de servicio
-            //        if (wResponse != null)
-            //            wExecuteOndispatcher = false;
-                    
-                            
-
-            //    }
-
-
-            //    if (wExecuteOndispatcher)
-            //    {
-            //        try
-            //        {
-            //            wResponse = _Wrapper.ExecuteService<TRequest, TResponse>(pRequest);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            wResponse.Error = ProcessConnectionsException.Process(ex);
-
-            //        }
-
-            //        //Si aplica cache y se llamo a la ejecucion se debe almacenar en cache para proxima llamada
-            //        if (req.CacheSettings != null && req.CacheSettings.CacheOnClientSide)
-            //        {
-            //            //Es posible que la ejecucion produzca algun error y por lo tanto no se permitira 
-            //            //su almacen en cache
-            //            if (wResponse.Error == null)
-            //                ServiceCacheMannager.Add(req, wResponse);
-            //        }
-            //    }
-            //}
-
-            //return wResponse;
-            #endregion
+            
 
         }
 

@@ -93,6 +93,11 @@ namespace Fwk.Bases
             {
                 IServiceContract res = null;
                 IRequest req = (IRequest)pRequest;
+
+
+                req.SecurityProviderName = _WraperPepository[providerName].SecurityProviderName;
+                req.ContextInformation.CompanyId = _WraperPepository[providerName].CompanyId;
+
                 // Caching del servicio.
                 if (req.CacheSettings != null && req.CacheSettings.CacheOnClientSide) //--------------------------------------->>> Implement the cache factory
                 {
@@ -109,6 +114,9 @@ namespace Fwk.Bases
                 {
                     try
                     {
+                       
+                        pRequest.ContextInformation.CompanyId = _WraperPepository[providerName].SecurityProviderName;
+
                         wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>(pRequest);
                     }
                     catch (Exception ex)
@@ -176,6 +184,7 @@ namespace Fwk.Bases
                     IServiceWrapper w =(IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
                     w.ProviderName = providerName;
                     w.SourceInfo = provider.SourceInfo;
+                    w.SecurityProviderName = provider.SecurityProviderName;
                     _WraperPepository.Add(providerName, w);
                     
                 }

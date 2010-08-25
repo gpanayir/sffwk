@@ -34,6 +34,27 @@ namespace Fwk.Bases.Connector
             get { return null; }
             set {  }
         }
+        string _SecurityProviderName = string.Empty;
+
+        /// <summary>
+        /// Proveedor del seguridad en el despachador de servicios
+        /// </summary>
+        public string SecurityProviderName
+        {
+            get { return _SecurityProviderName; }
+            set { _SecurityProviderName = value; }
+        }
+
+        string _CompanyId = string.Empty;
+
+        /// <summary>
+        /// Identificador de empresa
+        /// </summary>
+        public string CompanyId
+        {
+            get { return _CompanyId; }
+            set { _CompanyId = value; }
+        }
 
         /// <summary>
         /// Implementa la llamada al backend atravez de la ejecucion de la SimpleFacade. 
