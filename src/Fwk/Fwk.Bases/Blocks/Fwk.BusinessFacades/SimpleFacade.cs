@@ -36,34 +36,15 @@ namespace Fwk.BusinessFacades
     {
 
   
-            
-        /// <summary>
-        /// 
-        /// </summary>
-        public SimpleFacade()
-        {
-
-        
-        }
+      
         #region < IBusinessFacade members >
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="providerName"></param>
-        /// <param name="pRequest"></param>
-        /// <returns></returns>
-        //public IServiceContract ExecuteService(IServiceContract pRequest)
-        //{
-        //    return ExecuteService(string.Empty, pRequest);
-        //}
 
 
 
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <param name="providerName"></param>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <param name="pRequest">Request con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>XML con el resultado de la  ejecución del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
@@ -130,7 +111,8 @@ namespace Fwk.BusinessFacades
         /// <summary>
 		/// Ejecuta un servicio de negocio.
 		/// </summary>
-		/// <param name="serviceName">Nombre del servicio de negocio.</param>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <param name="serviceName">Nombre del servicio de negocio.</param> 
         /// <param name="pXmlRequest">XML con datos de entrada para la  ejecución del servicio.</param>
 		/// <returns>XML con el resultado de la  ejecución del servicio.</returns>
 		/// <date>2008-04-07T00:00:00</date>
@@ -280,6 +262,7 @@ namespace Fwk.BusinessFacades
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <param name="serviceName"></param>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2010-08-10T00:00:00</date>
         /// <author>moviedo</author>
