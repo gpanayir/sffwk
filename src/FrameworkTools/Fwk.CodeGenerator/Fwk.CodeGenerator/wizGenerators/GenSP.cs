@@ -102,42 +102,6 @@ namespace Fwk.CodeGenerator
 
 
 
-        ///// <summary>
-        ///// Genera código fuente de un parámetro del procedimiento almacenado.
-        ///// </summary>
-        ///// <param name="pParameterInfo">información sobre el parámetro a generar.</param>
-        ///// <returns>Código fuente del parámetro.</returns>
-        ///// <date>2006-03-31T00:00:00</date>
-        ///// <author>Marcelo Oviedo</author>
-        // StringBuilder BuildParameter(Column pColumn)
-        //{
-        //    string wDirection = string.Empty;
-        //    StringBuilder wBuilder = new StringBuilder();
-        //    wBuilder.Append("\t");
-        //    wBuilder.Append(FwkGeneratorHelper.GetParameterPattern(pColumn));
-        //    //@Nombre
-        //    wBuilder.Replace("[Name]", DBTypesMappingSection.Current.ParameterToken + pColumn.Name);
-        //    if (pColumn.DataType.Name.ToLower().Contains("image"))
-
-        //        wBuilder.Replace("[Type]", "varbinary");
-        //    else
-        //        wBuilder.Replace("[Type]", pColumn.DataType.Name);
-
-        //    if (pColumn.Length != -1)
-        //        wBuilder.Replace("[Length]", pColumn.Length.ToString());
-        //    else
-        //        wBuilder.Replace("[Length]", "max");
-
-        //    wBuilder.Replace("[Precision]", pColumn.Prec.ToString());
-        //    wBuilder.Replace("[Scale]", pColumn.Scale.ToString());
-
-        //    wBuilder.Replace("[Direction]", DBTypesMappingSection.Current.InputParameter);
-        //    wBuilder.Append(",\r\n");
-
-        //    return wBuilder;
-        //}
-
-
 
         /// <summary>
         /// Genera código fuente de un parámetro del procedimiento almacenado a partir de un campo de la tabla.
@@ -258,25 +222,25 @@ namespace Fwk.CodeGenerator
             {
                 case MethodActionType.Insert:
                     {
-                        pSpName = string.Concat(pSchema, pTableName, "_i");
+                        pSpName = string.Concat(pSchema, ".",pTableName, "_i");
                         break;
                     }
 
                 case MethodActionType.Update:
                     {
-                        pSpName = string.Concat(pSchema, pTableName, "_u");
+                        pSpName = string.Concat(pSchema, ".", pTableName, "_u");
                         break;
                     }
 
                 case MethodActionType.Delete:
                     {
-                        pSpName = string.Concat(pSchema, pTableName, "_d");
+                        pSpName = string.Concat(pSchema, ".", pTableName, "_d");
                         break;
                     }
 
                 case MethodActionType.SearchByParam:
                     {
-                        pSpName = string.Concat(pSchema, pTableName, "_s");
+                        pSpName = string.Concat(pSchema, ".", pTableName, "_s");
                         break;
                     }
 
