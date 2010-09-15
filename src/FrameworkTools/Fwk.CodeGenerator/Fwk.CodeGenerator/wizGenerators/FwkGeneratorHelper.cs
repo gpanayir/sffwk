@@ -69,6 +69,8 @@ namespace Fwk.CodeGenerator
             _Entity_Property_tt = _TemplateDocument.GetTemplate("Property").Content;
 
             _Entity_Member_tt = "           private [TYPENAME][NullToken] _[Property_Name];";
+            
+            
 
 
 

@@ -142,12 +142,23 @@ namespace Fwk.CodeGenerator
         /// Borrado de un registro.
         /// </summary>
         Delete = 4,
-
+        /// <summary>
+        /// Búsqueda de un registro por clave primaria.
+        /// </summary>
+        Get = 8,
+        
+        /// <summary>
+        /// Búsqueda de todos los registros de la tabla por páginas.
+        /// </summary>
+        SearchAllPaginated = 32,
         /// <summary>
         /// Búsqueda por parámetros.
         /// </summary>
-        SearchByParam = 5,
-        Get = 6
+        GetByParam = 64,
+        /// <summary>
+        /// Otro tipo de Acción.
+        /// </summary>
+        SearchByParam = 128
     }
     public enum SelectedObject
     {

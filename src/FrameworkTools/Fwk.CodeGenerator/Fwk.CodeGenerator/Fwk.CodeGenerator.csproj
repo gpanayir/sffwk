@@ -253,8 +253,8 @@
     <Compile Include="wizControls\wizTablesTreeSelector.Designer.cs">
       <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjectModel\CommonConstants.cs" />
-    <Compile Include="ObjectModel\FwkGeneratorHelper.cs" />
+    <Compile Include="wizGenerators\CommonConstants.cs" />
+    <Compile Include="wizGenerators\FwkGeneratorHelper.cs" />
     <Compile Include="wizGenerators\GenDAC.cs" />
     <Compile Include="wizGenerators\GenEntity.cs" />
     <Compile Include="wizGenerators\GenSVC.cs" />

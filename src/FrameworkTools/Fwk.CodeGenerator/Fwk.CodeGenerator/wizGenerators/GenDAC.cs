@@ -106,7 +106,7 @@ namespace Fwk.CodeGenerator
 
             switch (t)
             {
-                
+                case MethodActionType.GetByParam:
                 case MethodActionType.SearchByParam:
                     {
                         return FwkGeneratorHelper.TemplateDocument.GetTemplate("EntityAnListDeclaration").Content;
@@ -136,7 +136,7 @@ namespace Fwk.CodeGenerator
             {
                 case MethodActionType.Insert:
                 case MethodActionType.Update:
-
+                case MethodActionType.GetByParam:
                 case MethodActionType.SearchByParam:
 
                     wBuilder.Replace("[MethodParameterName]", pTable.Name);
@@ -176,7 +176,7 @@ namespace Fwk.CodeGenerator
             {
                 case MethodActionType.Insert:
                 case MethodActionType.Update:
-           
+                case MethodActionType.GetByParam:
                 case MethodActionType.SearchByParam:
 
                     wBuilder = string.Concat(pTable.Name, " p", pTable.Name);
@@ -221,7 +221,9 @@ namespace Fwk.CodeGenerator
                 case MethodActionType.SearchByParam:
                     wBuilder = string.Concat(pTable.Name, "List");
                     break;
-               
+                case MethodActionType.GetByParam:
+                    wBuilder = pTable.Name;
+                    break;
             }
             return wBuilder;
         }
@@ -241,8 +243,9 @@ namespace Fwk.CodeGenerator
                 case MethodActionType.Insert:
                     sufix = "_i";
                     break;
-           
-                    
+                case MethodActionType.GetByParam:
+                    sufix = "_gp";
+                    break;
                 case MethodActionType.Update:
                     sufix = "_u";
                     break;
