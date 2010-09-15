@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fwk.Wizard
+namespace Fwk.CodeGenerator
 {
     /// <summary>
     /// Boton del wizard
@@ -18,7 +18,7 @@ namespace Fwk.Wizard
     public class CommonConstants
     {
         #region [constantes]
-       
+
 
         public const string CONST_ENTER = "\r\n";
         public const char CONST_TAB = '\t';
@@ -33,9 +33,9 @@ namespace Fwk.Wizard
         public const string CONST_ENTITY_PROPERTY_NAME = "[Property_Name]";
         public const string CONST_ENTITY_PUBLIC_PROPERTY_BODY = "[PROPERTY_BODY]";
         public const string CONST_ENTITY_PRIVATE_MEMBERS_BODY = "[PRIVATE_BODY]";
-   
-        
-        
+
+
+
         public const string CONST_BODY = "[BODY]";
 
         public const string CONST_STOREDPROCEDURE_NAME = "[StoredProcedureName]";
@@ -43,18 +43,18 @@ namespace Fwk.Wizard
         public const string CONST_AUTHOR = "[Author]";
         public const string CONST_DESCRIPTION = "[Description]";
         public const string CONST_CREATION_DATETIME = "[CreationDate]";
-        
-        
+
+
         public const string CONST_NAMESPACE = "[Namespace]";
-        
+
 
 
         public const string CONST_BACK_END_METHOD_NAME = "[MethodName]";
         public const string CONST_BACK_END_RETURN = "[Return]";
         public const string CONST_BACK_CnnStringKey = "[CnnStringKey]";
-        
+
         public const string CONST_CHILDS_ITERATION = "[ChildsIteration]";
-        
+
         public const string CONST_SERVICE_NAME = "$servicename$";
         public const string CONST_FwkProject_NAME = "$fwkprojectname$";
         public const string CONST_SERVICE_RES_CLASS = "[RESClass]";
@@ -63,10 +63,62 @@ namespace Fwk.Wizard
         public const string CONST_SERVICE_RESPONSE_CLASS = "[ResponseClass]";
         public const string CONST_SERVICE_CLASS = "[ServiceClass]";
         public const string CONST_SERVICE_BussinessData = "[BussinessData]";
-       
-        
+
+
         #endregion
     }
+
+
+
+    /// <summary>
+    /// Capa a la que pertenece un componente.
+    /// </summary>
+    /// <author>Marcelo Oviedo</author>
+    public enum ComponentLayer
+    {
+        /// <summary>
+        /// Business entity.
+        /// </summary>
+        BE,
+        /// <summary>
+        /// Business component.
+        /// </summary>
+        BC,
+        /// <summary>
+        /// Data access component.
+        /// </summary>
+        DAC,
+
+        /// <summary>
+        /// Service
+        /// </summary>
+        SVC,
+        /// <summary>
+        /// Common interfaces
+        /// </summary>
+        ISVC,
+
+        /// <summary>
+        /// Common interfaces
+        /// </summary>
+        SP
+    }
+
+    public enum GeneratorsType
+    {
+        BackEnd = 0,
+        Entities = 1,
+        Services = 2
+    }
+
+    public enum TemplateType
+    {
+        StoreProcedure = 0,
+        DataAccesComponent = 1,
+        BussinesEntity = 2,
+        Namespaces = 3
+    }
+
 
     /// <summary>
     /// Acción a realizar por un procedimiento almacenado.
@@ -107,5 +159,11 @@ namespace Fwk.Wizard
         /// Otro tipo de Acción.
         /// </summary>
         SearchByParam = 128
+    }
+    public enum SelectedObject
+    {
+        Tables = 0,
+        StoreProcedures = 1,
+        Schema = 2
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
-namespace Fwk.Wizard
+namespace Fwk.CodeGenerator
 {
     /// <summary>
     /// Coleccion de objetos Template, hereda de System.Collections.Generic.List<>

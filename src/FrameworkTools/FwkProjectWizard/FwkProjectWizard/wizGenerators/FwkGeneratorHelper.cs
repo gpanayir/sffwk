@@ -8,8 +8,11 @@ using System.Data.SqlClient;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using Fwk.Wizard;
 
-namespace Fwk.Wizard
+
+namespace Fwk.CodeGenerator
 {
 
     public static class FwkGeneratorHelper
@@ -27,7 +30,12 @@ namespace Fwk.Wizard
             get { return _MappingTypes; }
         }
         internal static UserDefinedTypes UserDefinedTypes;
+        internal static List<MethodActionType> MethodActionTypeList;
+       
+        
         internal static string NotSupportTypes_ToIncludeInBackEnd;
+        internal static string NotSupportTypes_ToSearchInStoreProcedure;
+        internal static string NotSupportTypes_ToInsertStoreProcedure;
         internal static string _Entity_Property_tt;
         internal static string _Entity_Member_tt;
         internal static string _Entity_Envelope_tt;
@@ -41,9 +49,14 @@ namespace Fwk.Wizard
             _MappingTypes = (MappingTypes)HelperFunctions.DeserializeFromXml(typeof(MappingTypes), GetFileTemplate("MappingType.xml"));
 
             NotSupportTypes_ToIncludeInBackEnd = "xml,timestamp,sql_variant";
+
+            NotSupportTypes_ToSearchInStoreProcedure = "xml,timestamp,sql_variant,varbinary,binary,image";
+            NotSupportTypes_ToInsertStoreProcedure = "xml,timestamp,sql_variant";
+
+
             _Entity_Envelope_tt = FwkGeneratorHelper.GetFileTemplate("Entity.txt");
             _Entity_Property_TemplateBinary_tt = _TemplateDocument.GetTemplate("Property_Binary").Content;
-            
+
             _Entity_Property_tt = _TemplateDocument.GetTemplate("Property").Content;
 
             _Entity_Member_tt = "           private [TYPENAME][NullToken] _[Property_Name];";
@@ -51,7 +64,8 @@ namespace Fwk.Wizard
             UserDefinedTypes = new UserDefinedTypes();
 
 
-            
+
+
 
 
         }
@@ -201,6 +215,39 @@ namespace Fwk.Wizard
             
              return string.Empty;
          }
+
+         /// <summary>
+         /// Obtiene el Patrón para armado de parámetros de procedimientos almaceneados a partir del tipo de dato de cada campo de una tabla.
+         /// </summary>
+         ///	<remarks>
+         /// Hace uso de componentes de configuración (<see>DBTypesMappingSection</see>) que leen la configuración de mapeos del app.config. 
+         /// Devuelve un Patrón compuesto por tags a reemplazar. Los siguientes tags están disponibles para ser utilizados por el diseñador del Patrón:
+         /// <list type="bullet">
+         /// <item>Name</item>
+         /// <item>Direction (Input / Output / InputOutput)</item>
+         /// <item>Type</item>
+         /// <item>Length</item>
+         /// <item>Precision</item>
+         /// <item>Scale</item>
+         /// </list>
+         /// </remarks>
+         /// <param name="pDatabaseType">Tipo de dato para obtener el Patrón.</param>
+         /// <returns>Patrón para reemplazo.</returns>
+         /// <author>moviedo</author>
+         internal static string GetParameterPattern(Column pColumn)
+         {
+             string wTypeName = pColumn.DataType.Name.ToUpper();
+             if (pColumn.DataType.SqlDataType.ToString().Equals("UserDefinedDataType"))
+             {
+                 wTypeName = UserDefinedTypes.GetUserDefinedType(pColumn.DataType.Name).SystemType.ToUpper();
+             }
+             if (_MappingTypes.ExistMappingType_sqlname(wTypeName))
+                 return _MappingTypes.GetMappingType_sqlname(wTypeName).Parameterpattern;
+
+
+             return string.Empty;
+         }
+
          internal static string GetNullableToken(Column pColumn)
         {
             if (!pColumn.Nullable)
@@ -300,6 +347,9 @@ namespace Fwk.Wizard
              }
              return false;
          }
+
+
+        
     }
 
 

@@ -10,6 +10,7 @@ using Microsoft.SqlServer.Management.Smo;
 
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
+using Fwk.CodeGenerator;
 namespace Fwk.Wizard
 {
     
