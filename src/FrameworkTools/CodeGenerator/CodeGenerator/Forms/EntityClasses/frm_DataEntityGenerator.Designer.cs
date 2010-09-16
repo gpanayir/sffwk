@@ -51,7 +51,7 @@ namespace CodeGenerator.EntityClasses
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButtonGenerate = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor();
+            this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor.TextCodeEditor();
             this.listViewCodeGenerated1 = new CodeGenerator.Controls.ListViewCodeGenerated();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -149,7 +149,7 @@ namespace CodeGenerator.EntityClasses
             this.treeViewTables1.Location = new System.Drawing.Point(3, 2);
             this.treeViewTables1.Name = "treeViewTables1";
             this.treeViewTables1.SelectedTable = null;
-            this.treeViewTables1.SelectedTableName = "";
+            this.treeViewTables1.SelectedTableName = global::CodeGenerator.Properties.Resources.AppIcon;
             this.treeViewTables1.Size = new System.Drawing.Size(203, 387);
             this.treeViewTables1.TabIndex = 1;
             this.treeViewTables1.Tablas = null;
@@ -199,7 +199,7 @@ namespace CodeGenerator.EntityClasses
             this.treeViewStoreProcedures1.Location = new System.Drawing.Point(-1, 6);
             this.treeViewStoreProcedures1.Name = "treeViewStoreProcedures1";
             this.treeViewStoreProcedures1.SelectedStoreProcedure = null;
-            this.treeViewStoreProcedures1.SelectedStoreProcedureName = "";
+            this.treeViewStoreProcedures1.SelectedStoreProcedureName = global::CodeGenerator.Properties.Resources.AppIcon;
             this.treeViewStoreProcedures1.Size = new System.Drawing.Size(215, 379);
             this.treeViewStoreProcedures1.StoreProcedures = null;
             this.treeViewStoreProcedures1.TabIndex = 1;
@@ -224,7 +224,7 @@ namespace CodeGenerator.EntityClasses
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(862, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(913, 25);
             this.toolStrip1.TabIndex = 27;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -312,8 +312,8 @@ namespace CodeGenerator.EntityClasses
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listViewCodeGenerated1);
-            this.splitContainer1.Size = new System.Drawing.Size(633, 435);
-            this.splitContainer1.SplitterDistance = 497;
+            this.splitContainer1.Size = new System.Drawing.Size(684, 435);
+            this.splitContainer1.SplitterDistance = 500;
             this.splitContainer1.TabIndex = 33;
             // 
             // textCodeEditor1
@@ -323,7 +323,7 @@ namespace CodeGenerator.EntityClasses
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textCodeEditor1.Location = new System.Drawing.Point(6, 3);
             this.textCodeEditor1.Name = "textCodeEditor1";
-            this.textCodeEditor1.Size = new System.Drawing.Size(487, 427);
+            this.textCodeEditor1.Size = new System.Drawing.Size(490, 427);
             this.textCodeEditor1.TabIndex = 31;
             this.textCodeEditor1.TitleText = "";
             this.textCodeEditor1.TitleVisible = true;
@@ -346,7 +346,7 @@ namespace CodeGenerator.EntityClasses
             this.listViewCodeGenerated1.NodeSP = null;
             this.listViewCodeGenerated1.NodeSVC = null;
             this.listViewCodeGenerated1.NodeTDG = null;
-            this.listViewCodeGenerated1.Size = new System.Drawing.Size(135, 442);
+            this.listViewCodeGenerated1.Size = new System.Drawing.Size(183, 442);
             this.listViewCodeGenerated1.TabIndex = 0;
             this.listViewCodeGenerated1.BECodeGeneratedSelectEvent += new CodeGenerator.Controls.BECodeGeneratedSelectHandler(this.listViewCodeGenerated1_BECodeGeneratedSelectEvent);
             // 
@@ -356,18 +356,19 @@ namespace CodeGenerator.EntityClasses
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(862, 499);
+            this.ClientSize = new System.Drawing.Size(913, 499);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(921, 533);
             this.Name = "frm_DataEntityGenerator";
             this.TabText = "Entities :.";
             this.Text = "Entities code generator";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataEntityGenerator_DragDrop);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataEntityGenerator_FormClosing);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataEntityGenerator_DragEnter);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataEntityGenerator_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -406,7 +407,7 @@ namespace CodeGenerator.EntityClasses
         private Fwk.DataBase.CustomControls.TreeViewStoreProcedures treeViewStoreProcedures1;
         private System.Windows.Forms.ToolStripButton toolStripButtonGenerate;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private Fwk.Controls.Win32.TextCodeEditor textCodeEditor1;
+        private Fwk.Controls.Win32.TextCodeEditor.TextCodeEditor textCodeEditor1;
     }
 }
 

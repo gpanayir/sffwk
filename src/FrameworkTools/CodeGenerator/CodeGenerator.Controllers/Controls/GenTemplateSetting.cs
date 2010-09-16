@@ -96,7 +96,7 @@ namespace CodeGenerator.Controls
                 Fwk.HelperFunctions.FileFunctions.SaveTextFile(_TemplateSettingObject.FullFileName,
                                                                                 wszContent);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(string.Format("No se puede guardar el archivo {0}", _TemplateSettingObject.FullFileName));
             }
@@ -117,7 +117,7 @@ namespace CodeGenerator.Controls
             {
                 Fwk.HelperFunctions.FileFunctions.SaveTextFile(_TemplateSettingObject.FullFileName, wszContent);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(string.Format("No se puede guardar el archivo {0}", _TemplateSettingObject.FullFileName));
             }

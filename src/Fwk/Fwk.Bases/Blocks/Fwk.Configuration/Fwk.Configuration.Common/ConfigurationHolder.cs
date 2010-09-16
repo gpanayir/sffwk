@@ -39,11 +39,11 @@ namespace Fwk.Configuration.Common
 
             if (wlease.CurrentState == LeaseState.Initial)
             {
-                int wSecs = Convert.ToInt32(ConfigurationManager.DefaultProvider.LifeTime);
+                //int wSecs = Convert.ToInt32(ConfigurationManager.DefaultProvider.LifeTime);
 
 
-                wlease.InitialLeaseTime = TimeSpan.FromSeconds(wSecs);
-                wlease.RenewOnCallTime = TimeSpan.FromSeconds(wSecs);
+                //wlease.InitialLeaseTime = TimeSpan.FromSeconds(wSecs);
+                //wlease.RenewOnCallTime = TimeSpan.FromSeconds(wSecs);
             }
 
             return wlease;

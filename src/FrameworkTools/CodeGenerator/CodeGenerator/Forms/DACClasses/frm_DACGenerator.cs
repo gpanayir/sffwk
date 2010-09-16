@@ -207,8 +207,7 @@ namespace CodeGenerator.DACClasses
             _SelectedObject = (CodeGeneratorCommon.SelectedObject)Enum.Parse(typeof(CodeGeneratorCommon.SelectedObject), tabControl1.SelectedTab.Tag.ToString());
         }
 
-        
-
+       
        
     }
 }

@@ -121,55 +121,61 @@
   <data name="serviceunknown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\serviceunknown.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="textdoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\textdoc.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="servicerunning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\servicerunning.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Piezas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Piezas.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DataSourceSchema2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DataSourceSchema2.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WinXPSetV4 Icon 60" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WinXPSetV4 Icon 60.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="servicepaused" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\servicepaused.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WinXPSetV4 Icon 60" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WinXPSetV4 Icon 60.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="servicestopped" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\servicestopped.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="AppIcon" xml:space="preserve">
-    <value />
-  </data>
   <data name="config" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\config.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Configure 16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Configure 16x16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="textdoc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\textdoc.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Web_XML" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Web_XML.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Web_HTML" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Web_HTML.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SchemaDataSourceOk2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SchemaDataSourceOk2.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="services" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\services.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WindowsHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WindowsHS.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Configure 16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configure 16x16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SetDef32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SetDef32.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Web_HTML" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Web_HTML.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="servicestopped" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\servicestopped.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WindowsHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WindowsHS.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Web_XML" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Web_XML.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clear_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clear_small.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Asp Page 16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Asp Page 16.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SchemaDataSourceOk2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SchemaDataSourceOk2.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DataSourceSchema2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DataSourceSchema2.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Piezas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Piezas.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AppIcon" xml:space="preserve">
+    <value />
+  </data>
+  <data name="servicerunning" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\servicerunning.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="question" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\question.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

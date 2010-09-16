@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("pelsoft SA")]
-[assembly: AssemblyDescription("Generador de codigo de clases basicas para backend, interfaces y servicios")]
+[assembly: AssemblyDescription("Generador de código de clases básicas para backend, interfaces y servicios")]
 [assembly: AssemblyProduct("CodeGenerator")]
 [assembly: AssemblyCopyright("Copyright © Pelsoft SA 2008")]
 [assembly: AssemblyTrademark("")]
@@ -23,5 +23,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("3.0.0.0")]
-[assembly: AssemblyFileVersion("3.0.0.0")]
+[assembly: AssemblyVersion("4.0.0.0")]
+[assembly: AssemblyFileVersion("4.0.0.0")]

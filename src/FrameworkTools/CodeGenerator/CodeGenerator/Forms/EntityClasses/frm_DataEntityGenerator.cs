@@ -42,12 +42,8 @@ namespace CodeGenerator.EntityClasses
                     tvwSchema.LoadSchemaByName(base.SchemaPath);
                     tvwSchema.ImageList = this.imgImages;
                 }
-           
-
         }
-
-     
-
+        
       
         private void DataEntityGenerator_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -62,8 +58,7 @@ namespace CodeGenerator.EntityClasses
             btnSearchSchema.Visible = Visible;
             btnConnect.Enabled = !Visible;
         }
-
-      
+              
 
         private void tabControl1_Click(object sender, EventArgs e)
         {
@@ -120,6 +115,7 @@ namespace CodeGenerator.EntityClasses
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
+            
             base.ShowConnection();
             if (base.ConnectionOk)
             {
@@ -153,7 +149,11 @@ namespace CodeGenerator.EntityClasses
         {
             try
             {
+                
                 base.RefreshMetadata();
+
+                if (base.Metadata.CnnString == null)
+                    return;
 
                 if (_SelectedObject == CodeGeneratorCommon.SelectedObject.Tables)
                 {
@@ -185,19 +185,16 @@ namespace CodeGenerator.EntityClasses
         }
 
         private void listViewCodeGenerated1_BECodeGeneratedSelectEvent(string pTextCode, string pEntityName, string pParentKey)
-        {
+        {   
             textCodeEditor1.Text = pTextCode;
             textCodeEditor1.TitleText = "Business Entity from: " + pEntityName;
             LastEntityName = pEntityName;
             LastParentKey = pParentKey;
         }
-
-
-     
+             
 
         private void toolStripButtonGenerate_Click(object sender, EventArgs e)
-        {
-           
+        {          
 
             wDACGenController = new DACGenController();
             wDACGenController.TemplateSettingObject = base.TemplateSettingObject;
@@ -229,19 +226,22 @@ namespace CodeGenerator.EntityClasses
                     }
                 case CodeGeneratorCommon.SelectedObject.Schema:
                     {
-                        
-                        textCodeEditor1.Text = string.Empty;
-                        if (tvwSchema.Nodes.Count > 0)
+                        if (textCodeEditor1 != null)
                         {
-                            //List<GlobalElementComplexType> wGlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
-                            wDACGenController.GlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
+                            textCodeEditor1.Text = string.Empty;
+                            if (tvwSchema.Nodes.Count > 0)
+                            {
+                                //List<GlobalElementComplexType> wGlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
+                                wDACGenController.GlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
 
-                            //wEntityGenerationInfo.Entities = DACControllers.GenerateEntityInfo(wGlobalElementComplexTypeList, null, string.Empty);//SchemEntityGenEngine.GeneratesSchemaCode(wListTables);
-                            //textCodeEditor1.Text = ServiceControlle.BEFromSchemaGenerator_GenerateCode(wEntityGenerationInfo);
-                            wDACGenController.GlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
-                            textCodeEditor1.Text = wDACGenController.GenerateBEFromSchema();
+                                //wEntityGenerationInfo.Entities = DACControllers.GenerateEntityInfo(wGlobalElementComplexTypeList, null, string.Empty);//SchemEntityGenEngine.GeneratesSchemaCode(wListTables);
+                                //textCodeEditor1.Text = ServiceControlle.BEFromSchemaGenerator_GenerateCode(wEntityGenerationInfo);
+                                wDACGenController.GlobalElementComplexTypeList = this.tvwSchema.GetComplexTypes();
+                                textCodeEditor1.Text = wDACGenController.GenerateBEFromSchema();
+                            }
                         }
                         break;
+
                     }
 
             }
@@ -286,13 +286,15 @@ namespace CodeGenerator.EntityClasses
                 }
                 else
                 {
-                    textCodeEditor1.Text = String.Empty;
-                    textCodeEditor1.TitleText = String.Empty;
+                    if (textCodeEditor1 != null)
+                    {
+                        textCodeEditor1.Text = String.Empty;
+                        textCodeEditor1.TitleText = String.Empty;
+                    }
                 }
             }
         }
-
-      
+              
 
         private void txtSchemPath1_Leave(object sender, EventArgs e)
         {

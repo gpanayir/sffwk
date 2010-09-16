@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using CodeGenerator.Back.Common;
 using CodeGenerator.Bases;
 using CodeGenerator.Forms;
+using Fwk.DataBase;
 
 namespace CodeGenerator
 {
@@ -31,13 +32,6 @@ namespace CodeGenerator
         private void toolStripMenuItemDAC_Click(object sender, EventArgs e)
         {
             ShowBackEndForm();
-        }
-
-       
-
-        private void toolStripMenuItemEntity_Click(object sender, EventArgs e)
-        {
-            ShowEntityForm();
         }
 
        
@@ -127,8 +121,6 @@ namespace CodeGenerator
 
         void ShowFrm(FrmBase pFrmBase)
         {
-
-
             pFrmBase.Show(dockPanel1, Fwk.Controls.Win32.DockState.Document);
         }
 
@@ -159,7 +151,7 @@ namespace CodeGenerator
                 ofrmDACGenerator.Closing += new CancelEventHandler(ofrmDACGenerator_Closing);
                 ofrmDACGenerator.LastAccessStorage = _LastAccessStorage;
                 ofrmDACGenerator.TemplateSettingObject = _TemplateSettingObject;
-
+                
                 ofrmDACGenerator.MdiParent = this;
                 _WorkSpace.Add(ofrmDACGenerator,Common.GeneratorsType.BackEnd);
                 
@@ -205,6 +197,7 @@ namespace CodeGenerator
             ofrmServicesGenerator.LastAccessStorage = _LastAccessStorage;
             ofrmServicesGenerator.TemplateSettingObject = _TemplateSettingObject;
             ofrmServicesGenerator.MdiParent = this;
+            
             _WorkSpace.Add(ofrmServicesGenerator,Common.GeneratorsType.Services);
             ShowFrm(ofrmServicesGenerator);
         }
@@ -212,6 +205,32 @@ namespace CodeGenerator
         void ofrmServicesGenerator_Closing(object sender, CancelEventArgs e)
         {
             _WorkSpace.Remove(Common.GeneratorsType.Services);
+        }
+
+        private void clearDataConnectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataBaseConnections _DataBaseConnections = new DataBaseConnections();
+            _DataBaseConnections.Clear();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            ShowBackEndForm();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            ShowEntityForm();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            ShowServiceForm();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

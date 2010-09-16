@@ -55,14 +55,14 @@ namespace Fwk.Configuration
             if (!IsConfigured())
             {
                 //Si no se encuentra algun nombre de archivo en el App.config
-                if (string.IsNullOrEmpty(ConfigurationManager.DefaultProvider.RemotingConfigFile))
-                {
-                    throw new Exception("No hay ruta especificada para el archivo de configuración.");
-                }
-                else
-                {
-                    RemotingConfiguration.Configure(ConfigurationManager.DefaultProvider.RemotingConfigFile, false);
-                }
+                //if (string.IsNullOrEmpty(ConfigurationManager.DefaultProvider.RemotingConfigFile))
+                //{
+                //    throw new Exception("No hay ruta especificada para el archivo de configuración.");
+                //}
+                //else
+                //{
+                //    RemotingConfiguration.Configure(ConfigurationManager.DefaultProvider.RemotingConfigFile, false);
+                //}
             }
         }
 

@@ -1,4 +1,4 @@
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -62,21 +62,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Fwk.Controls.Win32, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Fwk.Controls.Win32.TextCodeEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="CSharpBinding, Version=2.1.0.2429, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Framework\Fwk.Controls.Win32.TextCodeEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.DataBase, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="ICSharpCode.TextEditor, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL" />
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\Microsoft Visual Studio 9.0\Common7\IDE\PublicAssemblies\EnvDTE.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Controls.Win32, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="ICSharpCode.TextEditor, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
+    <Reference Include="System.Deployment">
+      <HintPath>..\..\..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v2.0.50727\System.Deployment.dll</HintPath>
+    </Reference>
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -274,6 +281,8 @@
     <Content Include="Files\Images\Web_WebConfig.ico" />
     <Content Include="Files\Images\WindowsHS.png" />
     <Content Include="Piezas.ico" />
+    <None Include="Resources\question.png" />
+    <None Include="Resources\clear_small.gif" />
     <None Include="Resources\SchemaDataSourceOk2.ico" />
     <None Include="Resources\Asp Page 16.ico" />
     <None Include="Resources\WinXPSetV4 Icon 60.ico" />

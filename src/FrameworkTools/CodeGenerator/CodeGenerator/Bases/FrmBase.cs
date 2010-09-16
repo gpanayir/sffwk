@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using CodeGenerator.Back;
 using CodeGenerator.Back.Common;
 using CodeGenerator.Bases;
+using Fwk.Bases;
+using Fwk.DataBase;
 
 namespace CodeGenerator
 {
@@ -127,13 +129,14 @@ namespace CodeGenerator
             else
             {
                 ConnectionForm oConnectionForm = new ConnectionForm();
+                
                 oConnectionForm.ShowDialog();
 
                 _ConnectionOk = oConnectionForm.ConnectionOK;
                 _CnnStringChange = oConnectionForm.CnnStringChange;
                 //Actualizo la coneccion por si se modifico por medio de el componente de coneccion
                 _Metadata.RefreshConnection();
-
+                
                 //TODO: Ver ReloadObjects
                 _Metadata.ReloadObjects = true;
             }
@@ -272,7 +275,7 @@ namespace CodeGenerator
 
             try
             {
-                if (!_Metadata.TestConnection())
+                if (_Metadata.CnnString != null && !_Metadata.TestConnection())
                     return;
             }
             catch (Exception ex)
@@ -298,7 +301,7 @@ namespace CodeGenerator
             _LoadFromDatabaseWorker.StartWorkEvent -= new StartWorkHandler(_LoadFromDAtaBaseWorker_StartWorkEvent);
             _LoadFromDatabaseWorker.FinishtWorkEvent -= new FinishWorkHandler(_LoadFromDatabaseWorker_FinishtWorkEvent);
         }
-
+        
         void _LoadFromDatabaseWorker_FailtWorkEvent(Exception error)
         {
             if (this.InvokeRequired)
