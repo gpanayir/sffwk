@@ -63,10 +63,12 @@ namespace Fwk.Wizard
             // 
             // txtProjectName
             // 
+            this.txtProjectName.BackColor = System.Drawing.Color.White;
             this.txtProjectName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProjectName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtProjectName.Location = new System.Drawing.Point(12, 27);
             this.txtProjectName.Name = "txtProjectName";
+            this.txtProjectName.ReadOnly = true;
             this.txtProjectName.Size = new System.Drawing.Size(358, 20);
             this.txtProjectName.TabIndex = 33;
             this.txtProjectName.TextChanged += new System.EventHandler(this.txtProjectName_TextChanged);

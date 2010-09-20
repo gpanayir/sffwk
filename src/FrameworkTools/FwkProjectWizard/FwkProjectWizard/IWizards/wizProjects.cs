@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TemplateWizard;
 using System.Windows.Forms;
 using System.IO;
 using Fwk.CodeGenerator;
+using EnvDTE;
 
 namespace Fwk.Wizard
 {
@@ -15,6 +16,7 @@ namespace Fwk.Wizard
         static string fwkprojectname = string.Empty;
         static string destinationdirectory = string.Empty;
         static bool  useStatics = true;
+        DTE dte;
         #region IWizard Members
 
         void IWizard.BeforeOpeningFile(EnvDTE.ProjectItem projectItem)
@@ -25,13 +27,48 @@ namespace Fwk.Wizard
         void IWizard.ProjectFinishedGenerating(EnvDTE.Project project)
         {
 
-            //if (project == null)
-            //{
-            //  DirectoryInfo dd = new System.IO.DirectoryInfo(destinationdirectory);
-             
+            //Ubicar la carpeta creada que contiene los proyectos y arreglarla debido a que Visual studio ordena de una forma no deceada
+            //System.IO.DirectoryInfo solutionDir = new System.IO.DirectoryInfo(destinationdirectory);
             
-            //}
 
+            ////Creo el destino con el npmbre del proyecto
+            //// Ej: Motorola.bigbang.Clientes
+            //System.IO.DirectoryInfo destinationDir = System.IO.Directory.CreateDirectory(System.IO.Path.Combine(solutionDir.Parent.FullName, fwkprojectname));
+
+
+            //MoveRec(solutionDir, destinationDir);
+            ////destinationdirectory = destinationDir.FullName;
+
+            //EnvDTE.DTE dte = (EnvDTE.DTE)System.Runtime.InteropServices.Marshal.GetActiveObject("VisualStudio.DTE"); 
+            //string dir = System.IO.Path.GetDirectoryName(dte.Solution.FullName);
+      
+        }
+
+
+        void MoveRec(DirectoryInfo sourceparentDir,DirectoryInfo detDir )
+        {
+            DirectoryInfo d;
+
+
+            foreach (FileInfo f in sourceparentDir.GetFiles("*.*", SearchOption.TopDirectoryOnly))
+            {
+               File.Move(f.FullName, Path.Combine(detDir.FullName, f.Name));
+            }
+
+            foreach (DirectoryInfo sourceDir in sourceparentDir.GetDirectories("*.*", SearchOption.TopDirectoryOnly))
+            {
+                if (!Directory.Exists(Path.Combine(detDir.FullName, sourceDir.Name)))
+                {
+                    d = Directory.CreateDirectory(Path.Combine(detDir.FullName, sourceDir.Name));
+                }
+                else
+                {
+                    d = new DirectoryInfo(Path.Combine(detDir.FullName, sourceDir.Name));
+                }
+
+                MoveRec(sourceDir, d);
+            }
+            
         }
 
         void IWizard.ProjectItemFinishedGenerating(EnvDTE.ProjectItem projectItem)
@@ -41,18 +78,20 @@ namespace Fwk.Wizard
 
         void IWizard.RunFinished()
         {
-         
-                if (useStatics)
-                {
-                    string libs = string.Concat(destinationdirectory, @"..\..\..\", @"StaticLibs");
-                    string statics  = string.Concat(destinationdirectory, @"..\..\..\", @"builds");
 
-                    if (!System.IO.Directory.Exists(statics))
-                        System.IO.Directory.CreateDirectory(statics);
-                    if (!System.IO.Directory.Exists(libs))
-                        System.IO.Directory.CreateDirectory(libs);
-                }
-            
+            if (useStatics)
+            {
+                string libs = string.Concat(destinationdirectory, @"..\..\..\", @"StaticLibs");
+                string statics = string.Concat(destinationdirectory, @"..\..\..\", @"builds");
+
+                if (!System.IO.Directory.Exists(statics))
+                    System.IO.Directory.CreateDirectory(statics);
+                if (!System.IO.Directory.Exists(libs))
+                    System.IO.Directory.CreateDirectory(libs);
+            }
+
+          
+
         }
         bool _Cancel = true;
         void IWizard.RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
@@ -71,6 +110,8 @@ namespace Fwk.Wizard
                     _Cancel = false;
                     fwkprojectname = inputForm.ProjectName;
                     useStatics = inputForm.UseStatics;
+
+                    
                     destinationdirectory = replacementsDictionary["$destinationdirectory$"];
                 }
 
@@ -103,12 +144,9 @@ namespace Fwk.Wizard
         private void InitializeWizard(Dictionary<string, string> pReplacementsDictionary)
         {
             inputForm = new frmBackeçEndProjects();
-        
-
-
 
             inputForm.ProjectName = pReplacementsDictionary["$projectname$"].ToString();
-
+         
         }
     }
 }
