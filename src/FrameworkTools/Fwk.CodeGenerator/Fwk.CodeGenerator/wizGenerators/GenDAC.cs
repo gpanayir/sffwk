@@ -82,10 +82,10 @@ namespace Fwk.CodeGenerator
                             return wBuilderReturn.ToString();
                         }
                         else
-                            return string.Empty;
+                            return "  wDataBase.ExecuteNonQuery(wCmd);";
                     }
                 case MethodActionType.Update:
-                    return string.Empty;
+                    return "  wDataBase.ExecuteNonQuery(wCmd);";
 
                 case MethodActionType.SearchByParam:
 
@@ -93,7 +93,7 @@ namespace Fwk.CodeGenerator
 
                     return wBuilderReturn.ToString();
                 case MethodActionType.Delete:
-                    return string.Empty;
+                    return  "  wDataBase.ExecuteNonQuery(wCmd);";
 
             }
 
