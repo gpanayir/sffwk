@@ -123,11 +123,11 @@ namespace Fwk.CodeGenerator
             wBuilder.Append(FwkGeneratorHelper.GetParameterPattern(pColumn));
             //@Nombre
             wBuilder.Replace("[Name]", "@" + pColumn.Name);
-            if (pColumn.DataType.SqlDataType.ToString().ToLower().Contains("image"))
+            if (pColumn.DataType.ToString().ToLower().Contains("image"))
 
                 wBuilder.Replace("[Type]", "varbinary");
             else
-                wBuilder.Replace("[Type]", pColumn.DataType.SqlDataType.ToString());
+                wBuilder.Replace("[Type]", pColumn.DataType.ToString());
 
             if (pColumn.DataType.MaximumLength != -1 && pColumn.DataType.MaximumLength != 0)
                 wBuilder.Replace("[Length]", pColumn.DataType.MaximumLength.ToString());
@@ -145,7 +145,7 @@ namespace Fwk.CodeGenerator
                 {
                     case System.Data.ParameterDirection.Input:
                         {
-                            wDirection = "";
+                            wDirection = String.Empty;
                             break;
                         }
                     case System.Data.ParameterDirection.Output:
@@ -156,7 +156,7 @@ namespace Fwk.CodeGenerator
 
                     case System.Data.ParameterDirection.InputOutput:
                         {
-                            wDirection = "";
+                            wDirection = String.Empty;
                             break;
                         }
                     default:
@@ -866,7 +866,7 @@ namespace Fwk.CodeGenerator
          static string GetPatternSearchParametersSp_ExecuteSql(Column pColumn)
         {
 
-            StringBuilder sbTipo = new StringBuilder("");
+            StringBuilder sbTipo = new StringBuilder(String.Empty);
             switch (pColumn.DataType.SqlDataType.ToString().ToUpper())
             {
                 case "SMALLDATETIME":

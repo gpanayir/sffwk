@@ -389,7 +389,6 @@ namespace Fwk.CodeGenerator
             foreach (Column c in pTable.Columns)
             {
                 i++;
-
                 if (pMethodActionType == MethodActionType.Insert ||
                     pMethodActionType == MethodActionType.Update)
                 {
@@ -402,6 +401,8 @@ namespace Fwk.CodeGenerator
                         wParams.Append(Get_Property_Batch(c, (i == pTable.Columns.Count)));
 
                 }
+               
+
             }
             return wParams.ToString();
         }
@@ -434,7 +435,7 @@ namespace Fwk.CodeGenerator
         {
             System.Text.StringBuilder str = new System.Text.StringBuilder();
 
-            switch (c.DataType.SqlDataType.ToString().ToUpper())
+            switch (c.DataType.ToString().ToUpper())
             {
                 case "BIT":
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchBit").Content);
@@ -458,7 +459,9 @@ namespace Fwk.CodeGenerator
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchDateTime").Content);
                     break;
                 case "TEXT":
+                case "NTEXT":
                 case "CHAR":
+                case "NCHAR":
                 case "VARCHAR":
                 case "NVARCHAR":
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchString").Content);
@@ -486,7 +489,7 @@ namespace Fwk.CodeGenerator
             str.Replace(CommonConstants.CONST_ENTITY_PROPERTY_NAME, c.Name);
 
             if (pLastField)
-                str.Replace(" BatchCommandText.Append( \",\");", " BatchCommandText.Append( \";\");");
+                str.Replace("wBatchCommandText.Append( \",\");", "wBatchCommandText.Append( \";\");");
 
             return str.ToString();
         }
