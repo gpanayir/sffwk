@@ -435,7 +435,7 @@ namespace Fwk.CodeGenerator
         {
             System.Text.StringBuilder str = new System.Text.StringBuilder();
 
-            switch (c.DataType.SqlDataType.ToString().ToUpper())
+            switch (c.DataType.ToString().ToUpper())
             {
                 case "BIT":
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchBit").Content);
@@ -460,6 +460,7 @@ namespace Fwk.CodeGenerator
                     break;
                 case "TEXT":
                 case "CHAR":
+                case "NCHAR":
                 case "VARCHAR":
                 case "NVARCHAR":
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchString").Content);
@@ -487,7 +488,7 @@ namespace Fwk.CodeGenerator
             str.Replace(CommonConstants.CONST_ENTITY_PROPERTY_NAME, c.Name);
 
             if (pLastField)
-                str.Replace(" BatchCommandText.Append( \",\");", " BatchCommandText.Append( \";\");");
+                str.Replace("wBatchCommandText.Append( \",\");", "wBatchCommandText.Append( \";\");");
 
             return str.ToString();
         }
