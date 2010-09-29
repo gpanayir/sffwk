@@ -53,10 +53,10 @@ namespace Fwk.Bases
                 }
 
             }
-            catch (System.Configuration.ConfigurationErrorsException)
+            catch (System.Configuration.ConfigurationErrorsException ex)
             {
 
-                TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente, verifique si existe la seccion [FwkWrapper] en el archivo de configuracion."));
+                TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente, verifique si existe la seccion [FwkWrapper] en el archivo de configuracion."), ex);
                 te.ErrorId = "6000";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(WrapperFactory));
                 throw te;
