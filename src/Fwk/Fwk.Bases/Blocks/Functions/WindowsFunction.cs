@@ -6,22 +6,42 @@ using System.Runtime.InteropServices;
 
 namespace Fwk.HelperFunctions
 {
+
+    /// <summary>
+    /// Funciones de ayuda para visualisacion de formularios
+    /// </summary>
    public class WindowsFunction
     {
+       /// <summary>
+       /// Inicia  un flash o parpadeo del formulario 
+       /// </summary>
+       /// <param name="form"></param>
         public static void FlashWindow_Start(System.Windows.Forms.Form form)
         {
             FlashWindow.Start(form);
         }
+       /// <summary>
+       /// Detiene el parpadeo o flash en el formulario espesificado
+       /// </summary>
+       /// <param name="form"></param>
         public static void FlashWindow_Stop(System.Windows.Forms.Form form)
         {
-            FlashWindow.Start(form);
+            FlashWindow.Stop(form);
         }
 
-
+       /// <summary>
+        /// Produce un parpadeo o flash en el formulario hasta q recive foco
+       /// </summary>
+       /// <param name="form"></param>
         public static void FlashWindow_Flash(System.Windows.Forms.Form form)
         {
             FlashWindow.Flash(form);
         }
+       /// <summary>
+        /// Produce un parpadeo o flash en el formulario hasta q recive foco por un cierto periodo de tiempo
+       /// </summary>
+       /// <param name="form"></param>
+       /// <param name="count"></param>
         public static void FlashWindow_Flash(System.Windows.Forms.Form form, uint count)
         {
             FlashWindow.Flash(form, count);
