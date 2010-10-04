@@ -101,6 +101,7 @@
     <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Blocks\Functions\WindowsFunction.cs" />
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager_CRUD.cs" />
     <Compile Include="Blocks\Fwk.Configuration\config\configdata.designer.cs">
       <AutoGen>True</AutoGen>
