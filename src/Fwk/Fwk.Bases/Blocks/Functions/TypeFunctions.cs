@@ -421,7 +421,15 @@ namespace Fwk.HelperFunctions
             return wTipo;
 
         }
-
+        /// <summary>
+        /// Convierte una  array of 8-bit a su equivalente  System.String,
+        //  codificado en base 64 digitos
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertBytesToBase64String(Byte[] byteArray)
+        {
+            return Convert.ToBase64String(byteArray);
+        }
 
         /// <summary>
         /// Convierte un Byte[] a un System.Drawing.Image -
@@ -456,13 +464,25 @@ namespace Fwk.HelperFunctions
                 return ms.ToArray();
             }
         }
+
+        /// <summary>
+        /// Utiliza ASCIIEncoding
+        /// </summary>
+        /// <param name="stringText"></param>
+        /// <returns></returns>
         public static byte[] ConvertStringToByteArray(string stringText)
           
         {
             System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
             return encoding.GetBytes(stringText);
         }
-        public static string ConvertByteToTextString(Byte[] bytes)
+
+        /// <summary>
+        ///  Utiliza ASCIIEncoding
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static string ConvertBytesToTextString(Byte[] bytes)
         {
 
             System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
@@ -523,7 +543,7 @@ namespace Fwk.HelperFunctions
             fw.Close();
             return arrWrite;
         }
-
+        
         /// <summary>
         /// Toma los elementos de pEntitiCollection y los agrega a la coleccion TEntities
         /// </summary>
