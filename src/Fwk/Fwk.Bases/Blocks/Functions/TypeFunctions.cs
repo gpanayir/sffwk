@@ -421,12 +421,13 @@ namespace Fwk.HelperFunctions
             return wTipo;
 
         }
+
         /// <summary>
         /// Convierte una  array of 8-bit a su equivalente  System.String,
-        //  codificado en base 64 digitos
+        ///  codificado en base 64 digitos
         /// </summary>
         /// <returns></returns>
-        public string ConvertBytesToBase64String(Byte[] byteArray)
+        public static string ConvertBytesToBase64String(Byte[] byteArray)
         {
             return Convert.ToBase64String(byteArray);
         }
