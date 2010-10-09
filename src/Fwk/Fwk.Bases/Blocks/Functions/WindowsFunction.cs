@@ -338,11 +338,9 @@ namespace Fwk.HelperFunctions
             int style = GetWindowLong(hwnd, GWL_STYLE);
 
             if (remove)
-                style = style | WS_CAPTION;//| = Or  ---> | = Or
-
-            else
                 style = style ^ WS_CAPTION;// ^ = Xor .----> Si ya lo tiene, lo quita
-
+            else
+              style = style | WS_CAPTION;//| = Or  ---> | = Or
 
 
             ///Aplica el estilo  
