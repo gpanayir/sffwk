@@ -11,7 +11,7 @@ namespace Fwk.HelperFunctions
     /// <summary>
     /// Funciones de ayuda para visualisacion de formularios
     /// </summary>
-   public class WindowsFunction
+   public class Windows32Function
     {
        /// <summary>
        /// Inicia  un flash o parpadeo del formulario 
@@ -19,7 +19,7 @@ namespace Fwk.HelperFunctions
        /// <param name="form"></param>
         public static void FlashWindow_Start(System.Windows.Forms.Form form)
         {
-            FlashWindow.Start(form);
+            WindowDllImport.Start(form);
         }
        /// <summary>
        /// Detiene el parpadeo o flash en el formulario espesificado
@@ -27,7 +27,7 @@ namespace Fwk.HelperFunctions
        /// <param name="form"></param>
         public static void FlashWindow_Stop(System.Windows.Forms.Form form)
         {
-            FlashWindow.Stop(form);
+            WindowDllImport.Stop(form);
         }
 
        /// <summary>
@@ -36,7 +36,7 @@ namespace Fwk.HelperFunctions
        /// <param name="form"></param>
         public static void FlashWindow_Flash(System.Windows.Forms.Form form)
         {
-            FlashWindow.Flash(form);
+            WindowDllImport.Flash(form);
         }
        /// <summary>
         /// Produce un parpadeo o flash en el formulario hasta q recive foco por un cierto periodo de tiempo
@@ -45,27 +45,8 @@ namespace Fwk.HelperFunctions
        /// <param name="count"></param>
         public static void FlashWindow_Flash(System.Windows.Forms.Form form, uint count)
         {
-            FlashWindow.Flash(form, count);
+            WindowDllImport.Flash(form, count);
         }
-    }
-
-    static class FlashWindow
-    {
-
-        #region redondear un control
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn
-        (
-        int nLeftRect, // x-coordinate of upper-left corner
-        int nTopRect, // y-coordinate of upper-left corner
-        int nRightRect, // x-coordinate of lower-right corner
-        int nBottomRect, // y-coordinate of lower-right corner
-        int nWidthEllipse, // height of ellipse
-        int nHeightEllipse // width of ellipse
-        );
-
-        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-        private static extern bool DeleteObject(System.IntPtr hObject);
 
         /// <summary>
         /// Redondea un objeto que hereda de Control
@@ -74,30 +55,12 @@ namespace Fwk.HelperFunctions
         /// <param name="pControl"></param>
         public static void Round(Control pControl)
         {
-            System.IntPtr ptr = CreateRoundRectRgn(0, 0, pControl.Width, pControl.Height, 50, 50); 
+            System.IntPtr ptr = WindowDllImport.CreateRoundRectRgn(0, 0, pControl.Width, pControl.Height, 50, 50);
             pControl.Region = System.Drawing.Region.FromHrgn(ptr);
-            DeleteObject(ptr);
+            WindowDllImport.DeleteObject(ptr);
 
         }
-        #endregion
 
-        #region Mover formulario sin barra de titulo
-
-        /// <summary>
-        /// Declaraciones del API de Windows (y constantes usadas para mover el form)
-        /// </summary>
-        const int WM_SYSCOMMAND = 0x112;
-        /// <summary>
-        /// Declaraciones del API de Windows (y constantes usadas para mover el form)
-        /// </summary>
-        const int MOUSE_MOVE = 0xF012;
-        //
-        // Declaraciones del API
-        [System.Runtime.InteropServices.DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        //
-        [System.Runtime.InteropServices.DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
 
         /// <summary>
@@ -108,9 +71,51 @@ namespace Fwk.HelperFunctions
         /// <param name="frm"></param>
         public static void MoveForm(Form frm)
         {
-            ReleaseCapture();
-            SendMessage(frm.Handle, WM_SYSCOMMAND, MOUSE_MOVE, 0);
+            WindowDllImport.ReleaseCapture();
+            WindowDllImport.SendMessage(frm.Handle, WindowDllImport.WM_SYSCOMMAND, WindowDllImport.MOUSE_MOVE, 0);
         }
+    }
+
+   internal static class WindowDllImport
+    {
+
+        #region redondear un control
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        internal static extern IntPtr CreateRoundRectRgn
+        (
+        int nLeftRect, // x-coordinate of upper-left corner
+        int nTopRect, // y-coordinate of upper-left corner
+        int nRightRect, // x-coordinate of lower-right corner
+        int nBottomRect, // y-coordinate of lower-right corner
+        int nWidthEllipse, // height of ellipse
+        int nHeightEllipse // width of ellipse
+        );
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        internal static extern bool DeleteObject(System.IntPtr hObject);
+
+       
+        #endregion
+
+        #region Mover formulario sin barra de titulo
+
+        /// <summary>
+        /// Declaraciones del API de Windows (y constantes usadas para mover el form)
+        /// </summary>
+        internal const int WM_SYSCOMMAND = 0x112;
+        /// <summary>
+        /// Declaraciones del API de Windows (y constantes usadas para mover el form)
+        /// </summary>
+        internal const int MOUSE_MOVE = 0xF012;
+        //
+        // Declaraciones del API
+        [System.Runtime.InteropServices.DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        internal extern static void ReleaseCapture();
+        //
+        [System.Runtime.InteropServices.DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        internal extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+
 
         #endregion
 
@@ -118,7 +123,7 @@ namespace Fwk.HelperFunctions
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool FlashWindowEx(ref FLASHWINFO pwfi);
+        internal static extern bool FlashWindowEx(ref FLASHWINFO pwfi);
 
 
         /// <summary>
@@ -135,7 +140,7 @@ namespace Fwk.HelperFunctions
         ///     FlashWindow.Stop(this);
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        private struct FLASHWINFO
+        internal struct FLASHWINFO
         {
             /// <summary>
             /// The size of the structure in bytes.
@@ -196,7 +201,7 @@ namespace Fwk.HelperFunctions
         /// </summary>
         /// <param name="form">The Form (Window) to Flash.</param>
         /// <returns></returns>
-        public static bool Flash(System.Windows.Forms.Form form)
+        internal static bool Flash(System.Windows.Forms.Form form)
         {
             // Make sure we're running under Windows 2000 or later
             if (Win2000OrLater)
@@ -224,7 +229,7 @@ namespace Fwk.HelperFunctions
         /// <param name="form">The Form (Window) to Flash.</param>
         /// <param name="count">The number of times to Flash.</param>
         /// <returns></returns>
-        public static bool Flash(System.Windows.Forms.Form form, uint count)
+        internal static bool Flash(System.Windows.Forms.Form form, uint count)
         {
             if (Win2000OrLater)
             {
@@ -239,7 +244,7 @@ namespace Fwk.HelperFunctions
         /// </summary>
         /// <param name="form">The Form (Window) to Flash.</param>
         /// <returns></returns>
-        public static bool Start(System.Windows.Forms.Form form)
+        internal static bool Start(System.Windows.Forms.Form form)
         {
             if (Win2000OrLater)
             {
@@ -254,7 +259,7 @@ namespace Fwk.HelperFunctions
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
-        public static bool Stop(System.Windows.Forms.Form form)
+        internal static bool Stop(System.Windows.Forms.Form form)
         {
             if (Win2000OrLater)
             {
