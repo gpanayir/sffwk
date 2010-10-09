@@ -11,7 +11,7 @@ namespace Fwk.HelperFunctions
     /// <summary>
     /// Funciones de ayuda para visualisacion de formularios
     /// </summary>
-   public class Windows32Function
+   public class Win32Function
     {
        /// <summary>
        /// Inicia  un flash o parpadeo del formulario 
