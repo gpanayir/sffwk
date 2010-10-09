@@ -11,38 +11,38 @@ namespace Fwk.HelperFunctions
     /// <summary>
     /// Funciones de ayuda para visualisacion de formularios
     /// </summary>
-   public class Win32Function
+    public class Win32Function
     {
-       /// <summary>
-       /// Inicia  un flash o parpadeo del formulario 
-       /// </summary>
-       /// <param name="form"></param>
+        /// <summary>
+        /// Inicia  un flash o parpadeo del formulario 
+        /// </summary>
+        /// <param name="form"></param>
         public static void FlashWindow_Start(System.Windows.Forms.Form form)
         {
             WindowDllImport.Start(form);
         }
-       /// <summary>
-       /// Detiene el parpadeo o flash en el formulario espesificado
-       /// </summary>
-       /// <param name="form"></param>
+        /// <summary>
+        /// Detiene el parpadeo o flash en el formulario espesificado
+        /// </summary>
+        /// <param name="form"></param>
         public static void FlashWindow_Stop(System.Windows.Forms.Form form)
         {
             WindowDllImport.Stop(form);
         }
 
-       /// <summary>
+        /// <summary>
         /// Produce un parpadeo o flash en el formulario hasta q recive foco
-       /// </summary>
-       /// <param name="form"></param>
+        /// </summary>
+        /// <param name="form"></param>
         public static void FlashWindow_Flash(System.Windows.Forms.Form form)
         {
             WindowDllImport.Flash(form);
         }
-       /// <summary>
+        /// <summary>
         /// Produce un parpadeo o flash en el formulario hasta q recive foco por un cierto periodo de tiempo
-       /// </summary>
-       /// <param name="form"></param>
-       /// <param name="count"></param>
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="count"></param>
         public static void FlashWindow_Flash(System.Windows.Forms.Form form, uint count)
         {
             WindowDllImport.Flash(form, count);
@@ -74,6 +74,16 @@ namespace Fwk.HelperFunctions
             WindowDllImport.ReleaseCapture();
             WindowDllImport.SendMessage(frm.Handle, WindowDllImport.WM_SYSCOMMAND, WindowDllImport.MOUSE_MOVE, 0);
         }
+
+
+
+        /// <summary>
+        /// Remueve la barra de titulo de un formulario
+        /// </summary>
+        /// <param name="hwnd">Manejador de ventana </param>
+        /// <param name="remove">True = remueve</param>
+        public static void RemoveTittleBar(IntPtr hwnd, bool remove)
+        { WindowDllImport.RemoveTittleBar(hwnd, remove); }
     }
 
    internal static class WindowDllImport
@@ -276,6 +286,77 @@ namespace Fwk.HelperFunctions
         {
             get { return System.Environment.OSVersion.Version.Major >= 5; }
         }
+        #endregion
+
+        #region quitar barra de titulo
+
+
+        [DllImport("user32.DLL", EntryPoint = "SetWindowLong")]
+        static extern int SetWindowLong(
+            IntPtr hWnd,       // handle to window
+            int nIndex,     // offset of value to set
+            int dwNewLong   // new value
+        );
+        [DllImport("user32.DLL", EntryPoint = "SetWindowPos")]
+        static extern bool SetWindowPos(
+            IntPtr hWnd,               // handle to window
+            int hWndInsertAfter,    // placement-order handle
+            int X,                  // horizontal position
+            int Y,                  // vertical position
+            int cx,                 // width
+            int cy,                 // height
+            uint uFlags             // window-positioning options
+        );
+        //' Declaraciones del API para 32 bits
+        [DllImport("user32.DLL", EntryPoint = "GetWindowLong")]
+        static extern int GetWindowLong(
+            IntPtr hWnd,   // handle to window
+            int nIndex  // offset of value to retrieve
+        );
+        //'
+        //' Constantes para usar con el API
+        const int GWL_STYLE = (-16);
+        /// <summary>
+        /// Constante Tipo de estilo, en este caso para quitar la barra 
+        /// </summary>
+        const int WS_CAPTION = 0x00C00000;
+        ///Constantes para SetWindowPos  
+        const int SWP_FRAMECHANGED = 0x0020;
+        const int SWP_NOMOVE = 0x2;
+        const int SWP_NOSIZE = 0x1;
+        const int SWP_NOZORDER = 0x4;
+
+
+        /// <summary>
+        /// Remueve la barra de titulo de un formulario
+        /// </summary>
+        /// <param name="hwnd">Manejador de ventana </param>
+        /// <param name="remove">True = remueve</param>
+        internal static void RemoveTittleBar(IntPtr hwnd, bool remove)
+        {
+            //Almacena en la variable el estilo actual   
+            int style = GetWindowLong(hwnd, GWL_STYLE);
+
+            if (remove)
+                style = style | WS_CAPTION;//| = Or  ---> | = Or
+
+            else
+                style = style ^ WS_CAPTION;// ^ = Xor .----> Si ya lo tiene, lo quita
+
+
+
+            ///Aplica el estilo  
+            SetWindowLong(hwnd, GWL_STYLE, style);
+
+            SetWindowPos(hwnd, 0, 0, 0, 0, 0,
+                              SWP_FRAMECHANGED |
+                              SWP_NOMOVE |
+                              SWP_NOSIZE |
+                              SWP_NOZORDER);
+
+        }
+
+
         #endregion
     }
 }
