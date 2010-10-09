@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace Fwk.HelperFunctions
 {
@@ -50,6 +51,71 @@ namespace Fwk.HelperFunctions
 
     static class FlashWindow
     {
+
+        #region redondear un control
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+        int nLeftRect, // x-coordinate of upper-left corner
+        int nTopRect, // y-coordinate of upper-left corner
+        int nRightRect, // x-coordinate of lower-right corner
+        int nBottomRect, // y-coordinate of lower-right corner
+        int nWidthEllipse, // height of ellipse
+        int nHeightEllipse // width of ellipse
+        );
+
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        private static extern bool DeleteObject(System.IntPtr hObject);
+
+        /// <summary>
+        /// Redondea un objeto que hereda de Control
+        /// _BoarderRaduis can be adjusted to your needs, try 15 to start.
+        /// </summary>
+        /// <param name="pControl"></param>
+        public static void Round(Control pControl)
+        {
+            System.IntPtr ptr = CreateRoundRectRgn(0, 0, pControl.Width, pControl.Height, 50, 50); 
+            pControl.Region = System.Drawing.Region.FromHrgn(ptr);
+            DeleteObject(ptr);
+
+        }
+        #endregion
+
+        #region Mover formulario sin barra de titulo
+
+        /// <summary>
+        /// Declaraciones del API de Windows (y constantes usadas para mover el form)
+        /// </summary>
+        const int WM_SYSCOMMAND = 0x112;
+        /// <summary>
+        /// Declaraciones del API de Windows (y constantes usadas para mover el form)
+        /// </summary>
+        const int MOUSE_MOVE = 0xF012;
+        //
+        // Declaraciones del API
+        [System.Runtime.InteropServices.DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        //
+        [System.Runtime.InteropServices.DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+
+        /// <summary>
+        /// 
+        /// función privada usada para mover el formulario actual
+        /// Se usa en evento MouseMove del control
+        /// </summary>
+        /// <param name="frm"></param>
+        public static void MoveForm(Form frm)
+        {
+            ReleaseCapture();
+            SendMessage(frm.Handle, WM_SYSCOMMAND, MOUSE_MOVE, 0);
+        }
+
+        #endregion
+
+        #region FlashWindowEx
+
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool FlashWindowEx(ref FLASHWINFO pwfi);
@@ -205,5 +271,6 @@ namespace Fwk.HelperFunctions
         {
             get { return System.Environment.OSVersion.Version.Major >= 5; }
         }
+        #endregion
     }
 }
