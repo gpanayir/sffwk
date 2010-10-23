@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Pelsoft S.A.")]
+[assembly: AssemblyCompany("Pelsoft")]
 [assembly: AssemblyProduct(".: Pelsoft Framework - :.")]
-[assembly: AssemblyCopyright("Copyright © PELSOFT S.A. 2008")]
+[assembly: AssemblyCopyright("Copyright © PELSOFT  2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
