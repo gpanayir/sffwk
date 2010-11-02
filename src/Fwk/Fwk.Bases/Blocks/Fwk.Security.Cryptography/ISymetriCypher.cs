@@ -6,7 +6,7 @@ using System.Text;
 namespace Fwk.Security.Cryptography
 {
 
-    interface ISymetriCypher
+    public interface ISymetriCypher
     {
         string CreateKeyFile();
         string CreateKeyFile(string keyFileName);
