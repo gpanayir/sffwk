@@ -29,6 +29,12 @@ namespace Fwk.Security.Cryptography
 
         SymmetricAlgorithmProvider _SymmetricAlgorithmProvider;
 
+        public SymmetricAlgorithmProvider AlgorithmProvider
+        {
+            get { return _SymmetricAlgorithmProvider; }
+            set { _SymmetricAlgorithmProvider = value; }
+        }
+
 
         /// <summary>
         /// Encripta una cadena de caracteres.-
