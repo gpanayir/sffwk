@@ -56,5 +56,15 @@ namespace Fwk.Security.Cryptography
             return symetriCypher;
         }
 
+        /// <summary>
+        /// Crea un algoritmo sin nombre de archivo de encriptacion. Este constructor es util cando se trata de un encriptador para crear archivos .key
+        /// </summary>
+        /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
+        /// <returns>Argoritmo <see cref="SymetriCypher"/></returns>
+        public static SymetriCypher<T> Get<T>() where T : SymmetricAlgorithm
+        {
+               return  new SymetriCypher<T>();
+        }
+
     }
 }
