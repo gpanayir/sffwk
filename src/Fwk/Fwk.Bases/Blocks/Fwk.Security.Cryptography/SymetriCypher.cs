@@ -6,18 +6,17 @@ using Microsoft.Practices.EnterpriseLibrary.Security.Cryptography;
 using System.IO;
 using System.Security.Cryptography;
 using Fwk.Exceptions;
+
 namespace Fwk.Security.Cryptography
 {
-    class SymetriCypher
-    {
-    }
+
 
     /// <summary>
     /// Clase generica de encriptacion
     /// <![CDATA[SymetriCypher<T>]]>
     /// </summary>
     /// <typeparam name="T"><see cref="SymmetricAlgorithm"/></typeparam>
-    public class SymetriCypher<T> : ISymetriCypher where T : SymmetricAlgorithm
+    public class SymetriCypher_EntLibs<T> : ISymetriCypher where T : SymmetricAlgorithm
     {
         private string keyFileName;
 
@@ -53,7 +52,7 @@ namespace Fwk.Security.Cryptography
             catch (CryptographicException e)
             {
                 TechnicalException te = new TechnicalException("Clave de encriptacion no es la correcta ");
-                ExceptionHelper.SetTechnicalException<SymetriCypher<T>>(te);
+                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
                 te.ErrorId = "4402";
                 throw te;
             }
@@ -75,7 +74,7 @@ namespace Fwk.Security.Cryptography
             catch (CryptographicException)
             {
                 TechnicalException te = new TechnicalException("Clave de encriptacion no es la correcta ");
-                ExceptionHelper.SetTechnicalException<SymetriCypher<T>>(te);
+                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
                 te.ErrorId = "4402";
                 throw te;
             }
@@ -83,7 +82,7 @@ namespace Fwk.Security.Cryptography
             {
 
                 TechnicalException te = new TechnicalException("Error al intentar desencriptar", e);
-                ExceptionHelper.SetTechnicalException<SymetriCypher<T>>(te);
+                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
                 te.ErrorId = "4402";
                 throw te;
             }
@@ -138,7 +137,7 @@ namespace Fwk.Security.Cryptography
             if (string.IsNullOrEmpty(keyFileName))
             {
                 te = new TechnicalException("La clave de encriptacion no puede ser nula");
-                ExceptionHelper.SetTechnicalException<SymetriCypher<T>>(te);
+                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
                 te.ErrorId = "4401";
                 throw te;
             }
@@ -148,7 +147,7 @@ namespace Fwk.Security.Cryptography
                 throw new Fwk.Exceptions.TechnicalException();
 
                 te = new TechnicalException(string.Concat("La clave de encriptacion ", keyFileName, " no existe"));
-                ExceptionHelper.SetTechnicalException<SymetriCypher<T>>(te);
+                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
                 te.ErrorId = "4401";
                 throw te;
 
@@ -161,7 +160,7 @@ namespace Fwk.Security.Cryptography
             catch (Exception e)
             {
                 te = new TechnicalException("Error al intentar crear SymmetricAlgorithmProvider ", e);
-                ExceptionHelper.SetTechnicalException<SymetriCypher<T>>(te);
+                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
                 te.ErrorId = "4400";
                 throw te;
             }
