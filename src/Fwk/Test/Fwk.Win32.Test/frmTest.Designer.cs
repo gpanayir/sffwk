@@ -31,10 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.btnTest = new DevExpress.XtraEditors.SimpleButton();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
-            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             this.workSheetsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnPreview = new DevExpress.XtraEditors.SimpleButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor.TextCodeEditor();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workSheetsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -67,6 +68,10 @@
             this.lookUpEdit1.Size = new System.Drawing.Size(123, 20);
             this.lookUpEdit1.TabIndex = 1;
             // 
+            // workSheetsBindingSource
+            // 
+            this.workSheetsBindingSource.DataSource = typeof(Fwk.HelperFunctions.WorkSheets);
+            // 
             // btnPreview
             // 
             this.btnPreview.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -78,13 +83,9 @@
             this.btnPreview.Text = "Preview";
             this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
-            // workSheetsBindingSource
-            // 
-            this.workSheetsBindingSource.DataSource = typeof(Fwk.HelperFunctions.WorkSheets);
-            // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(163, 104);
+            this.gridControl1.Location = new System.Drawing.Point(182, 79);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(324, 200);
@@ -97,11 +98,21 @@
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
+            // textCodeEditor1
+            // 
+            this.textCodeEditor1.Location = new System.Drawing.Point(567, 62);
+            this.textCodeEditor1.Name = "textCodeEditor1";
+            this.textCodeEditor1.Size = new System.Drawing.Size(536, 336);
+            this.textCodeEditor1.TabIndex = 4;
+            this.textCodeEditor1.TitleText = "";
+            this.textCodeEditor1.TitleVisible = true;
+            // 
             // frmTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 385);
+            this.ClientSize = new System.Drawing.Size(1190, 576);
+            this.Controls.Add(this.textCodeEditor1);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.btnPreview);
             this.Controls.Add(this.lookUpEdit1);
@@ -128,6 +139,7 @@
         private DevExpress.XtraEditors.SimpleButton btnPreview;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private Fwk.Controls.Win32.TextCodeEditor.TextCodeEditor textCodeEditor1;
     }
 }
 
