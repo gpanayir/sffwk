@@ -33,10 +33,9 @@ namespace Fwk.ServiceManagement.Tools.Win32
             //wConfiguration = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
             //_ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
 
-        
-                 
-            lblConnectionType_source.Text = _SourceProvider.ProviderType.ToString();
-            txtAddres_source.Text = _SourceProvider.SourceInfo;
+            SetProviderSource();
+            SetProviderDest();
+
 
             //cargo la grilla izquierda
             ucbServiceGrid1.Services = ServiceMetadata.GetAllServices(_SourceProvider.Name);
@@ -69,18 +68,17 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             _SelectedProvider = ServiceMetadata.ProviderSection.GetProvider(cmb2.SelectedItem.ToString());
 
-            lblConnectionType.Text = _SelectedProvider.ProviderType.ToString();
-            txtAddres.Text = _SelectedProvider.SourceInfo;
+            SetProviderDest() ;
 
 
             try
             {
+                
                 //cargo la grilla derecha
                 ucbServiceGrid2.Services = ServiceMetadata.GetAllServices(_SelectedProvider.Name);
                 ucbServiceGrid2.Applications = ServiceMetadata.GetAllApplicationsId(_SelectedProvider.Name);
 
-                
-                txtAddres.Text = _SelectedProvider.SourceInfo;
+            
 
                 //muestro el titulo
                 this.Text = string.Concat("Export data from ", _SelectedProvider.Name, " to ", _SelectedProvider.Name);
@@ -107,5 +105,56 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 }
             }
         }
+
+
+        void SetProviderSource()
+        {
+
+            lblConnectionType_source.Text = _SourceProvider.ProviderType.ToString();
+            txtAddres_source.Text = _SourceProvider.SourceInfo;
+            cnnstring_Source.Clear();
+            if (_SourceProvider.ProviderType == ServiceProviderType.xml)
+            {
+                lblAddressSource.Text = "File :";
+                cnnstring_Source.Visible = false;
+            }
+            if (_SourceProvider.ProviderType == ServiceProviderType.sqldatabase)
+            {
+                lblAddressSource.Text = "Connectionstring";
+                if (System.Configuration.ConfigurationManager.ConnectionStrings[_SourceProvider.SourceInfo] != null)
+                {
+                    Fwk.DataBase.CnnString c = new Fwk.DataBase.CnnString(_SourceProvider.SourceInfo, System.Configuration.ConfigurationManager.ConnectionStrings[_SourceProvider.SourceInfo].ConnectionString);
+                    cnnstring_Source.Populate(c);
+                    cnnstring_Source.Visible = true;
+                }
+               
+            }
+        }
+
+        void SetProviderDest()
+        {
+            if (_SelectedProvider == null) return;
+            lblConnectionType.Text = _SelectedProvider.ProviderType.ToString();
+            txtAddres.Text = _SelectedProvider.SourceInfo;
+            cnnstring_Dest.Clear();
+            if (_SelectedProvider.ProviderType == ServiceProviderType.xml)
+            {
+              
+                lblAddressDest.Text = "File :";
+                cnnstring_Dest.Visible = false;
+            }
+            if (_SelectedProvider.ProviderType == ServiceProviderType.sqldatabase)
+            {
+                lblAddressDest.Text = "Connectionstring";
+                if (System.Configuration.ConfigurationManager.ConnectionStrings[_SelectedProvider.SourceInfo] != null)
+                {
+                    Fwk.DataBase.CnnString c = new Fwk.DataBase.CnnString(_SelectedProvider.SourceInfo, System.Configuration.ConfigurationManager.ConnectionStrings[_SelectedProvider.SourceInfo].ConnectionString);
+                    cnnstring_Dest.Populate(c);
+                    cnnstring_Dest.Visible = true;
+                }
+                
+            }
+        }
+        
     }
 }

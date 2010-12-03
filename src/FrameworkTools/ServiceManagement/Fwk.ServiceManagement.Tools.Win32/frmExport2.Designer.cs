@@ -68,7 +68,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(790, 62);
             this.label7.TabIndex = 93;
-            this.label7.Text = "Insert the application Id of the new services";
+            this.label7.Text = "Insert the application Id for new services";
             // 
             // btnCancel
             // 
@@ -116,7 +116,7 @@
             this.label2.TabIndex = 97;
             this.label2.Text = "Exporting log";
             // 
-            // frmExport
+            // frmExport2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,8 +130,9 @@
             this.Controls.Add(this.btnOk);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmExport";
+            this.Name = "frmExport2";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmExport";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -199,13 +199,20 @@ namespace Fwk.ServiceManagement.Tools.Win32
         }
         void AddNewProvider(ServiceProviderElement newProvider)
         {
-           
-            ServiceProviderSection config = (ServiceProviderSection)configuration.Sections["FwkServiceMetadata"];
-            config.Providers.Add(newProvider);
-            
-            configuration.Save(ConfigurationSaveMode.Minimal, true);
+            try
+            {
 
-            ServiceMetadata.ProviderSection.Providers.Add(newProvider);
+                ServiceProviderSection config = (ServiceProviderSection)configuration.Sections["FwkServiceMetadata"];
+                config.Providers.Add(newProvider);
+
+                configuration.Save(ConfigurationSaveMode.Minimal, true);
+
+                ServiceMetadata.ProviderSection.Providers.Add(newProvider);
+            }
+            catch (Exception ex)
+            {
+                this.ExceptionViewer.Show(ex);
+            }
         }
 
         private void cboCnnStrings_SelectedIndexChanged(object sender, EventArgs e)

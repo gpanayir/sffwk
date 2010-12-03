@@ -109,7 +109,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEdit";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Service edition";
             ((System.ComponentModel.ISupportInitialize)(this.ServiceConfigurationCollectionBindingSource)).EndInit();
             this.ResumeLayout(false);

@@ -51,6 +51,8 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -149,7 +151,7 @@
             // 
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOk.Location = new System.Drawing.Point(608, 462);
+            this.btnOk.Location = new System.Drawing.Point(608, 443);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(66, 23);
             this.btnOk.TabIndex = 82;
@@ -271,6 +273,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cboCnnStrings);
             this.groupBox1.Controls.Add(this.txtCnnStringValue);
             this.groupBox1.Controls.Add(this.label2);
@@ -280,7 +284,7 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(6, 17);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(652, 190);
+            this.groupBox1.Size = new System.Drawing.Size(652, 213);
             this.groupBox1.TabIndex = 91;
             this.groupBox1.TabStop = false;
             // 
@@ -296,13 +300,13 @@
             this.txtCnnStringValue.ErrorIconRightToLeft = true;
             this.txtCnnStringValue.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCnnStringValue.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtCnnStringValue.Location = new System.Drawing.Point(56, 152);
+            this.txtCnnStringValue.Location = new System.Drawing.Point(28, 171);
             this.txtCnnStringValue.Name = "txtCnnStringValue";
             this.txtCnnStringValue.NotAllowedCharactersErrorText = null;
             this.txtCnnStringValue.ReadOnly = true;
             this.txtCnnStringValue.Required = true;
             this.txtCnnStringValue.RequiredErrorText = "Name value is required";
-            this.txtCnnStringValue.Size = new System.Drawing.Size(573, 21);
+            this.txtCnnStringValue.Size = new System.Drawing.Size(595, 21);
             this.txtCnnStringValue.TabIndex = 90;
             this.txtCnnStringValue.TabStop = false;
             this.txtCnnStringValue.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
@@ -319,13 +323,13 @@
             this.txtCnnStringName.ErrorIconRightToLeft = true;
             this.txtCnnStringName.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCnnStringName.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtCnnStringName.Location = new System.Drawing.Point(56, 108);
+            this.txtCnnStringName.Location = new System.Drawing.Point(28, 125);
             this.txtCnnStringName.Name = "txtCnnStringName";
             this.txtCnnStringName.NotAllowedCharactersErrorText = null;
             this.txtCnnStringName.ReadOnly = true;
             this.txtCnnStringName.Required = true;
             this.txtCnnStringName.RequiredErrorText = "Name value is required";
-            this.txtCnnStringName.Size = new System.Drawing.Size(573, 21);
+            this.txtCnnStringName.Size = new System.Drawing.Size(239, 21);
             this.txtCnnStringName.TabIndex = 86;
             this.txtCnnStringName.TabStop = false;
             this.txtCnnStringName.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
@@ -333,7 +337,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(10, 92);
+            this.radioButton2.Location = new System.Drawing.Point(10, 81);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(14, 13);
             this.radioButton2.TabIndex = 89;
@@ -344,7 +348,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label5.Location = new System.Drawing.Point(63, 92);
+            this.label5.Location = new System.Drawing.Point(63, 81);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(136, 13);
             this.label5.TabIndex = 87;
@@ -362,11 +366,29 @@
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(24, 108);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 83;
+            this.label6.Text = "Name";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 154);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.TabIndex = 91;
+            this.label7.Text = "Connection string";
+            // 
             // frmCreateProvider
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 497);
+            this.ClientSize = new System.Drawing.Size(695, 466);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label4);
@@ -417,5 +439,7 @@
         private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtCnnStringValue;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }

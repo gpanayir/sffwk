@@ -182,17 +182,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             
           
             lblConnectionStatus.Text = "Diconect";
-            if (ServiceMetadata.ProviderSection.DefaultProvider != null)
-            {
-                lblConnectionType.Text = ServiceMetadata.ProviderSection.DefaultProvider.ProviderType.ToString();
-                txtAddres.Text = ServiceMetadata.ProviderSection.DefaultProvider.SourceInfo;
-            }
-            else
-            {
-                lblConnectionType.Text = ServiceMetadata.ProviderSection.Providers[0].ProviderType.ToString();
-                txtAddres.Text = ServiceMetadata.ProviderSection.Providers[0].SourceInfo;
-            }
-
+           
 
             ComboBox cb = (ComboBox)cmbProviders.Control;
 
@@ -203,12 +193,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             cmbProviders.SelectedIndex = 0;
             CurrentProvider = ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
+            SetProvider();
 
-            if (CurrentProvider.ProviderType == ServiceProviderType.sqldatabase)
-                lblAddress.Text = "Connection string";
-            else
-                lblAddress.Text = "File :";
-            txtApplicationId.Text = CurrentProvider.ApplicationId;
             cb.SelectedValueChanged += new EventHandler(cb_SelectedValueChanged);
 
         }
@@ -218,19 +204,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             CurrentProvider = ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
 
-            lblConnectionType.Text = CurrentProvider.ProviderType.ToString();
-            txtAddres.Text = CurrentProvider.SourceInfo;
-            txtApplicationId.Text = CurrentProvider.ApplicationId;
-            if (CurrentProvider.ProviderType == ServiceProviderType.sqldatabase)
-                lblAddress.Text = "Connection string";
-            else
-                lblAddress.Text = "File :";
-
+            SetProvider();
+           
             try
             {
 
-
-                ucbServiceGrid1.Services = Fwk.ServiceManagement.ServiceMetadata.GetAllServices(CurrentProvider.Name);
+               ucbServiceGrid1.Services = Fwk.ServiceManagement.ServiceMetadata.GetAllServices(CurrentProvider.Name);
 
                 ucbServiceGrid1.Applications = Fwk.ServiceManagement.ServiceMetadata.GetAllApplicationsId(CurrentProvider.Name);
                 lblConnectionStatus.Text = "Connected";
@@ -244,8 +223,33 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             }
         }
-        
 
+        void SetProvider()
+        {
+
+            lblConnectionType.Text = CurrentProvider.ProviderType.ToString();
+            txtAddres.Text = CurrentProvider.SourceInfo;
+            txtApplicationId.Text = CurrentProvider.ApplicationId;
+            cnnstring.Clear();
+            if (CurrentProvider.ProviderType == ServiceProviderType.xml)
+            {
+                cnnstring.Visible = false;
+                lblAddress.Text = "File :";
+                btnView.Visible = true;
+            }
+            if (CurrentProvider.ProviderType == ServiceProviderType.sqldatabase)
+            {
+                btnView.Visible = false;
+                lblAddress.Text = "Connection string";
+                if (System.Configuration.ConfigurationManager.ConnectionStrings[CurrentProvider.SourceInfo] != null)
+                {
+                    Fwk.DataBase.CnnString c = new Fwk.DataBase.CnnString(CurrentProvider.SourceInfo, System.Configuration.ConfigurationManager.ConnectionStrings[CurrentProvider.SourceInfo].ConnectionString);
+                    cnnstring.Populate(c);
+                    cnnstring.Visible = true;
+                }
+               
+            }
+        } 
         private void button1_Click(object sender, EventArgs e)
         {
             frmAssemblyExplorer f = new frmAssemblyExplorer();

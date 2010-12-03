@@ -72,6 +72,7 @@
     <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fwk.Bases.Connector, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fwk.Bases.FrontEnd, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\Bigbang\src\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
     </Reference>
@@ -99,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheObject.cs" />
+    <Compile Include="cnnstring.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="cnnstring.Designer.cs">
+      <DependentUpon>cnnstring.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common.cs" />
     <Compile Include="ctrlService.cs">
       <SubType>UserControl</SubType>
@@ -144,6 +151,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="cnnstring.resx">
+      <DependentUpon>cnnstring.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrlService.resx">
       <DependentUpon>ctrlService.cs</DependentUpon>
       <SubType>Designer</SubType>

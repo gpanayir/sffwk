@@ -32,17 +32,19 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cnnstring_Source = new Fwk.ServiceManagement.Tools.Win32.cnnstring();
             this.label7 = new System.Windows.Forms.Label();
             this.txtAddres_source = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblAddressSource = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblConnectionType_source = new System.Windows.Forms.Label();
             this.ucbServiceGrid1 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
+            this.cnnstring_Dest = new Fwk.ServiceManagement.Tools.Win32.cnnstring();
             this.ucbServiceGrid2 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
             this.label1 = new System.Windows.Forms.Label();
             this.txtAddres = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.cmb2 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblAddressDest = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblConnectionType = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -85,26 +87,36 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cnnstring_Source);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
             this.splitContainer1.Panel1.Controls.Add(this.txtAddres_source);
-            this.splitContainer1.Panel1.Controls.Add(this.label6);
+            this.splitContainer1.Panel1.Controls.Add(this.lblAddressSource);
             this.splitContainer1.Panel1.Controls.Add(this.label8);
             this.splitContainer1.Panel1.Controls.Add(this.lblConnectionType_source);
             this.splitContainer1.Panel1.Controls.Add(this.ucbServiceGrid1);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.cnnstring_Dest);
             this.splitContainer1.Panel2.Controls.Add(this.ucbServiceGrid2);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.txtAddres);
             this.splitContainer1.Panel2.Controls.Add(this.cmb2);
-            this.splitContainer1.Panel2.Controls.Add(this.label5);
+            this.splitContainer1.Panel2.Controls.Add(this.lblAddressDest);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.lblConnectionType);
             this.splitContainer1.Panel2.Controls.Add(this.label9);
             this.splitContainer1.Size = new System.Drawing.Size(1167, 677);
             this.splitContainer1.SplitterDistance = 575;
             this.splitContainer1.TabIndex = 88;
+            // 
+            // cnnstring_Source
+            // 
+            this.cnnstring_Source.Location = new System.Drawing.Point(8, 107);
+            this.cnnstring_Source.Name = "cnnstring_Source";
+            this.cnnstring_Source.Size = new System.Drawing.Size(531, 32);
+            this.cnnstring_Source.TabIndex = 96;
+            this.cnnstring_Source.Visible = false;
             // 
             // label7
             // 
@@ -140,16 +152,16 @@
             this.txtAddres_source.TabIndex = 89;
             this.txtAddres_source.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
-            // label6
+            // lblAddressSource
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label6.Location = new System.Drawing.Point(9, 77);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
-            this.label6.TabIndex = 95;
-            this.label6.Text = "Address:";
+            this.lblAddressSource.AutoSize = true;
+            this.lblAddressSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddressSource.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblAddressSource.Location = new System.Drawing.Point(9, 77);
+            this.lblAddressSource.Name = "lblAddressSource";
+            this.lblAddressSource.Size = new System.Drawing.Size(56, 13);
+            this.lblAddressSource.TabIndex = 95;
+            this.lblAddressSource.Text = "Address:";
             // 
             // label8
             // 
@@ -180,11 +192,19 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.ucbServiceGrid1.Applications = null;
             this.ucbServiceGrid1.CurentServiceConfiguration = null;
-            this.ucbServiceGrid1.Location = new System.Drawing.Point(7, 104);
+            this.ucbServiceGrid1.Location = new System.Drawing.Point(7, 145);
             this.ucbServiceGrid1.Name = "ucbServiceGrid1";
             this.ucbServiceGrid1.Services = null;
-            this.ucbServiceGrid1.Size = new System.Drawing.Size(560, 557);
+            this.ucbServiceGrid1.Size = new System.Drawing.Size(560, 516);
             this.ucbServiceGrid1.TabIndex = 87;
+            // 
+            // cnnstring_Dest
+            // 
+            this.cnnstring_Dest.Location = new System.Drawing.Point(13, 99);
+            this.cnnstring_Dest.Name = "cnnstring_Dest";
+            this.cnnstring_Dest.Size = new System.Drawing.Size(531, 32);
+            this.cnnstring_Dest.TabIndex = 94;
+            this.cnnstring_Dest.Visible = false;
             // 
             // ucbServiceGrid2
             // 
@@ -193,10 +213,10 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.ucbServiceGrid2.Applications = null;
             this.ucbServiceGrid2.CurentServiceConfiguration = null;
-            this.ucbServiceGrid2.Location = new System.Drawing.Point(3, 104);
+            this.ucbServiceGrid2.Location = new System.Drawing.Point(3, 145);
             this.ucbServiceGrid2.Name = "ucbServiceGrid2";
             this.ucbServiceGrid2.Services = null;
-            this.ucbServiceGrid2.Size = new System.Drawing.Size(574, 557);
+            this.ucbServiceGrid2.Size = new System.Drawing.Size(574, 516);
             this.ucbServiceGrid2.TabIndex = 88;
             // 
             // label1
@@ -222,7 +242,7 @@
             this.txtAddres.ErrorIconRightToLeft = false;
             this.txtAddres.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddres.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
-            this.txtAddres.Location = new System.Drawing.Point(132, 74);
+            this.txtAddres.Location = new System.Drawing.Point(136, 76);
             this.txtAddres.Name = "txtAddres";
             this.txtAddres.NotAllowedCharactersErrorText = "";
             this.txtAddres.ReadOnly = true;
@@ -240,23 +260,23 @@
             this.cmb2.Size = new System.Drawing.Size(255, 21);
             this.cmb2.TabIndex = 90;
             // 
-            // label5
+            // lblAddressDest
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label5.Location = new System.Drawing.Point(8, 77);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 13);
-            this.label5.TabIndex = 56;
-            this.label5.Text = "Address:";
+            this.lblAddressDest.AutoSize = true;
+            this.lblAddressDest.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddressDest.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblAddressDest.Location = new System.Drawing.Point(11, 77);
+            this.lblAddressDest.Name = "lblAddressDest";
+            this.lblAddressDest.Size = new System.Drawing.Size(56, 13);
+            this.lblAddressDest.TabIndex = 56;
+            this.lblAddressDest.Text = "Address:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(8, 51);
+            this.label3.Location = new System.Drawing.Point(11, 51);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 13);
             this.label3.TabIndex = 54;
@@ -286,7 +306,7 @@
             this.label9.TabIndex = 93;
             this.label9.Text = "Destination";
             // 
-            // frmNewProvider
+            // frmExport1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -294,7 +314,8 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
-            this.Name = "frmNewProvider";
+            this.Name = "frmExport1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Export from ";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -313,16 +334,18 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ComboBox cmb2;
         private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtAddres_source;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblAddressSource;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblConnectionType_source;
         private UCBServiceGrid ucbServiceGrid2;
         private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtAddres;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblAddressDest;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblConnectionType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
+        private cnnstring cnnstring_Dest;
+        private cnnstring cnnstring_Source;
     }
 }
