@@ -182,11 +182,16 @@ namespace Fwk.ServiceManagement.Tools.Win32
             
           
             lblConnectionStatus.Text = "Diconect";
-
-            lblConnectionType.Text = ServiceMetadata.ProviderSection.DefaultProvider.ProviderType.ToString();
-            txtAddres.Text = ServiceMetadata.ProviderSection.DefaultProvider.SourceInfo;
-
-
+            if (ServiceMetadata.ProviderSection.DefaultProvider != null)
+            {
+                lblConnectionType.Text = ServiceMetadata.ProviderSection.DefaultProvider.ProviderType.ToString();
+                txtAddres.Text = ServiceMetadata.ProviderSection.DefaultProvider.SourceInfo;
+            }
+            else
+            {
+                lblConnectionType.Text = ServiceMetadata.ProviderSection.Providers[0].ProviderType.ToString();
+                txtAddres.Text = ServiceMetadata.ProviderSection.Providers[0].SourceInfo;
+            }
 
             ComboBox cb = (ComboBox)cmbProviders.Control;
 

@@ -77,7 +77,7 @@
             this.txtApplicationId.Required = true;
             this.txtApplicationId.RequiredErrorText = "Name value is required";
             this.txtApplicationId.Size = new System.Drawing.Size(662, 21);
-            this.txtApplicationId.TabIndex = 2;
+            this.txtApplicationId.TabIndex = 11;
             this.txtApplicationId.TabStop = false;
             this.txtApplicationId.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
@@ -118,7 +118,7 @@
             this.txtName.Required = true;
             this.txtName.RequiredErrorText = "Name value is required";
             this.txtName.Size = new System.Drawing.Size(662, 21);
-            this.txtName.TabIndex = 1;
+            this.txtName.TabIndex = 10;
             this.txtName.TabStop = false;
             this.txtName.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
@@ -142,7 +142,7 @@
             this.cboType.Location = new System.Drawing.Point(12, 129);
             this.cboType.Name = "cboType";
             this.cboType.Size = new System.Drawing.Size(222, 21);
-            this.cboType.TabIndex = 3;
+            this.cboType.TabIndex = 12;
             this.cboType.SelectedIndexChanged += new System.EventHandler(this.cboType_SelectedIndexChanged);
             // 
             // btnOk

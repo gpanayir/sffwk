@@ -202,6 +202,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
            
             ServiceProviderSection config = (ServiceProviderSection)configuration.Sections["FwkServiceMetadata"];
             config.Providers.Add(newProvider);
+            
             configuration.Save(ConfigurationSaveMode.Minimal, true);
 
             ServiceMetadata.ProviderSection.Providers.Add(newProvider);

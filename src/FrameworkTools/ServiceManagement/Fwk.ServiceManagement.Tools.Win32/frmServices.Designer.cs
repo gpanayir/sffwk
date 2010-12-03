@@ -42,6 +42,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.btnNewProvider = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmbProviders = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +59,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMetaqadata = new System.Windows.Forms.Label();
-            this.btnNewProvider = new System.Windows.Forms.ToolStripMenuItem();
+            this.providersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -182,6 +183,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNewProvider,
             this.connectToolStripMenuItem,
+            this.providersToolStripMenuItem,
             this.cmbProviders,
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -189,6 +191,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.menuStrip1.Size = new System.Drawing.Size(1215, 25);
             this.menuStrip1.TabIndex = 37;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // btnNewProvider
+            // 
+            this.btnNewProvider.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.AddService;
+            this.btnNewProvider.Name = "btnNewProvider";
+            this.btnNewProvider.Size = new System.Drawing.Size(97, 21);
+            this.btnNewProvider.Text = "Add provider";
+            this.btnNewProvider.Click += new System.EventHandler(this.btnNewProvider_Click);
             // 
             // connectToolStripMenuItem
             // 
@@ -389,13 +399,11 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.lblMetaqadata.TabIndex = 45;
             this.lblMetaqadata.Text = "<<<<<<<<<<<<<<<<<";
             // 
-            // btnNewProvider
+            // providersToolStripMenuItem
             // 
-            this.btnNewProvider.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.AddService;
-            this.btnNewProvider.Name = "btnNewProvider";
-            this.btnNewProvider.Size = new System.Drawing.Size(97, 21);
-            this.btnNewProvider.Text = "Add provider";
-            this.btnNewProvider.Click += new System.EventHandler(this.btnNewProvider_Click);
+            this.providersToolStripMenuItem.Name = "providersToolStripMenuItem";
+            this.providersToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
+            this.providersToolStripMenuItem.Text = "Providers";
             // 
             // frmServices
             // 
@@ -456,6 +464,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private System.Windows.Forms.ToolStripComboBox cmbProviders;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem btnNewProvider;
+        private System.Windows.Forms.ToolStripMenuItem providersToolStripMenuItem;
        
         
 	}
