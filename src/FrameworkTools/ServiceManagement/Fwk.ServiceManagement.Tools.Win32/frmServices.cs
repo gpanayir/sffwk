@@ -193,6 +193,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 txtAddres.Text = ServiceMetadata.ProviderSection.Providers[0].SourceInfo;
             }
 
+
             ComboBox cb = (ComboBox)cmbProviders.Control;
 
             foreach (ServiceProviderElement p in ServiceMetadata.ProviderSection.Providers)
@@ -202,23 +203,35 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             cmbProviders.SelectedIndex = 0;
             CurrentProvider = ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
+
+            if (CurrentProvider.ProviderType == ServiceProviderType.sqldatabase)
+                lblAddress.Text = "Connection string";
+            else
+                lblAddress.Text = "File :";
+            txtApplicationId.Text = CurrentProvider.ApplicationId;
             cb.SelectedValueChanged += new EventHandler(cb_SelectedValueChanged);
+
         }
 
         void cb_SelectedValueChanged(object sender, EventArgs e)
         {
 
             CurrentProvider = ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
-       
+
             lblConnectionType.Text = CurrentProvider.ProviderType.ToString();
             txtAddres.Text = CurrentProvider.SourceInfo;
+            txtApplicationId.Text = CurrentProvider.ApplicationId;
+            if (CurrentProvider.ProviderType == ServiceProviderType.sqldatabase)
+                lblAddress.Text = "Connection string";
+            else
+                lblAddress.Text = "File :";
 
             try
             {
 
-                
+
                 ucbServiceGrid1.Services = Fwk.ServiceManagement.ServiceMetadata.GetAllServices(CurrentProvider.Name);
-                
+
                 ucbServiceGrid1.Applications = Fwk.ServiceManagement.ServiceMetadata.GetAllApplicationsId(CurrentProvider.Name);
                 lblConnectionStatus.Text = "Connected";
             }
@@ -228,7 +241,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 base.ExceptionViewer.Show(ex);
                 lblConnectionStatus.Text = "Disconnected";
                 ucbServiceGrid1.Services = null;
-                
+
             }
         }
         
