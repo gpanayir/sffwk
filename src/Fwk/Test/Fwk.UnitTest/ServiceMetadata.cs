@@ -206,7 +206,32 @@ namespace Fwk.UnitTest
             }
 
         }
-       
+        System.Configuration.Configuration configuration;
+        [TestMethod]
+        public void CheckProvider()
+        {
+            ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+            map.ExeConfigFilename = System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.Name + ".config";
+            configuration = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+
+
+            ServiceProviderElement provider = new ServiceProviderElement();
+            provider.Name = "proividertest";
+            provider.ApplicationId = "apptest";
+
+            provider.ProviderType = ServiceProviderType.xml;
+            AddNewProvider(provider);
+
+        }
+        void AddNewProvider(ServiceProviderElement newProvider)
+        {
+
+            ServiceProviderSection config = (ServiceProviderSection)configuration.Sections["FwkServiceMetadata"];
+            config.Providers.Add(newProvider);
+            configuration.Save(ConfigurationSaveMode.Minimal, true);
+
+            ServiceMetadata.ProviderSection.Providers.Add(newProvider);
+        }
 
 
     }

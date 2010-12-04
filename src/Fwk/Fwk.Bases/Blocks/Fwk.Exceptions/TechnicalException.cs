@@ -248,6 +248,22 @@ namespace Fwk.Exceptions
 
         #region --[Protected Methods]--
         /// <summary>
+        /// Agrega texto al comienzo del mensaje
+        /// </summary>
+        /// <param name="pmsg"></param>
+        public void AddMessage_Top(string pmsg)
+        {
+            mMsg = string.Concat(pmsg, Environment.NewLine, mMsg);
+        }
+        /// <summary>
+        /// Agrega texto al final del mensae
+        /// </summary>
+        /// <param name="pmsg"></param>
+        public void AddMessage_Down(string pmsg)
+        {
+            mMsg = string.Concat(mMsg, Environment.NewLine, pmsg);
+        }
+        /// <summary>
         /// Sets the System.Runtime.Serialization.SerializationInfo with information about the exception.
         /// </summary>
         /// <param name="pinfo">The System.Runtime.Serialization.SerializationInfo that holds the serialized object data about the exception being thrown.</param>

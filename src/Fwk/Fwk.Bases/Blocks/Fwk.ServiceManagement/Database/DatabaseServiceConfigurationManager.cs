@@ -7,6 +7,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using Fwk.Bases;
 using System.Data;
 using Fwk.Exceptions;
+using System.Data.SqlClient;
 
 
 namespace Fwk.ServiceManagement
@@ -208,7 +209,14 @@ namespace Fwk.ServiceManagement
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException("Problemas con Fwk.ServiceManagement  al realizar operaciones con la base de datos \r\n", ex);
+
                 ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(te);
+                if (ex is SqlException && ((SqlException)ex).Number == 2627)
+                {
+                    te.AddMessage_Top("El servicio ya exiiste. Clave duplicada ");
+                }
+
+                
                 te.ErrorId = "7200";
                 throw te;
 
