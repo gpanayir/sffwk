@@ -68,6 +68,8 @@
             this.txtAddres.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.txtAddres.AllowBlankSpace = true;
             this.txtAddres.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
+            this.txtAddres.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(253)))));
             this.txtAddres.CapitalOnly = false;
             this.txtAddres.ErrorIconRightToLeft = false;
@@ -79,16 +81,17 @@
             this.txtAddres.ReadOnly = true;
             this.txtAddres.Required = false;
             this.txtAddres.RequiredErrorText = null;
-            this.txtAddres.Size = new System.Drawing.Size(446, 21);
+            this.txtAddres.Size = new System.Drawing.Size(318, 21);
             this.txtAddres.TabIndex = 96;
             this.txtAddres.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
             // btnView
             // 
+            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnView.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.prntpv_16;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(582, 58);
+            this.btnView.Location = new System.Drawing.Point(454, 58);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(49, 19);
             this.btnView.TabIndex = 102;
@@ -155,7 +158,7 @@
             // 
             this.cnnstring.Location = new System.Drawing.Point(5, 82);
             this.cnnstring.Name = "cnnstring";
-            this.cnnstring.Size = new System.Drawing.Size(531, 32);
+            this.cnnstring.Size = new System.Drawing.Size(498, 32);
             this.cnnstring.TabIndex = 105;
             this.cnnstring.Visible = false;
             // 
@@ -174,7 +177,7 @@
             this.Controls.Add(this.lblConnectionStatus);
             this.Controls.Add(this.label1);
             this.Name = "provider";
-            this.Size = new System.Drawing.Size(653, 128);
+            this.Size = new System.Drawing.Size(511, 128);
             this.ResumeLayout(false);
             this.PerformLayout();
 

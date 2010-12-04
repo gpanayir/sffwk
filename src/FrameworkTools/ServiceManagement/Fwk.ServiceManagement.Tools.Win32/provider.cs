@@ -21,6 +21,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
         public void Populate(ServiceProviderElement pProvider)
         {
             Provider = pProvider;
+            if (pProvider == null) return;
+            SetProvider();
         }
 
         void SetProvider()
