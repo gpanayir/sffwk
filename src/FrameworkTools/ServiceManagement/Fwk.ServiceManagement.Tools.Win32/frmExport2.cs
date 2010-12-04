@@ -29,12 +29,24 @@ namespace Fwk.ServiceManagement.Tools.Win32
         ServiceProviderElement _SourceProvider;
         ServiceProviderElement _SelectedProvider;
         ServiceConfigurationCollection _Services;
+
         public frmExport2(ServiceProviderElement from, ServiceProviderElement to, ServiceConfigurationCollection services)
         {
             InitializeComponent();
             _SourceProvider = from;
             _SelectedProvider = to;
             _Services = services;
+
+            if (string.IsNullOrEmpty(_SelectedProvider.ApplicationId))
+            {
+                txtAppId.Enabled = true;
+                txtAppId.Text = string.Empty;
+            }
+            else 
+            {
+                txtAppId.Enabled = false;
+                txtAppId.Text = _SelectedProvider.ApplicationId;
+            }
         }
 
         void Expòrt()
@@ -45,6 +57,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 try
                 {
                     Fwk.Bases.ServiceConfiguration sclon = s.Clone();
+
                     sclon.ApplicationId = txtAppId.Text;
                         
                     ServiceMetadata.AddServiceConfiguration(_SelectedProvider.Name, s);
@@ -55,7 +68,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                     if (te.ErrorId.Equals("7002"))
                         log.AppendLine(string.Concat(s.Name, " already exist"));
                     else
-                        log.AppendLine(string.Concat(s.Name, te.Message));
+                        log.AppendLine(string.Concat(s.Name, Fwk.Exceptions.ExceptionHelper.GetAllMessageException(te)));
                     _HasErrors = true;
                 }
 

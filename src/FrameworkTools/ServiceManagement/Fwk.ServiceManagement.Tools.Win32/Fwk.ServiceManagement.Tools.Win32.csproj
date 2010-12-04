@@ -184,6 +184,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="provider.resx">
+      <DependentUpon>provider.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCBServiceGrid.resx">
       <SubType>Designer</SubType>
       <DependentUpon>UCBServiceGrid.cs</DependentUpon>
@@ -197,6 +200,12 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="provider.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="provider.Designer.cs">
+      <DependentUpon>provider.cs</DependentUpon>
     </Compile>
     <Compile Include="UCBServiceGrid.cs">
       <SubType>UserControl</SubType>
