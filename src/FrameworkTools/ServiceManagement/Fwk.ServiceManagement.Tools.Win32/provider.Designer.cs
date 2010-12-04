@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.txtApplicationId = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtAddres = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.btnView = new System.Windows.Forms.Button();
             this.lblAddress = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblConnectionType = new System.Windows.Forms.Label();
             this.lblConnectionStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtAddres = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.cnnstring = new Fwk.ServiceManagement.Tools.Win32.cnnstring();
             this.SuspendLayout();
             // 
@@ -63,28 +63,6 @@
             this.label2.TabIndex = 103;
             this.label2.Text = "Application Id:";
             // 
-            // txtAddres
-            // 
-            this.txtAddres.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtAddres.AllowBlankSpace = true;
-            this.txtAddres.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
-            this.txtAddres.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(253)))));
-            this.txtAddres.CapitalOnly = false;
-            this.txtAddres.ErrorIconRightToLeft = false;
-            this.txtAddres.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddres.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
-            this.txtAddres.Location = new System.Drawing.Point(130, 56);
-            this.txtAddres.Name = "txtAddres";
-            this.txtAddres.NotAllowedCharactersErrorText = "";
-            this.txtAddres.ReadOnly = true;
-            this.txtAddres.Required = false;
-            this.txtAddres.RequiredErrorText = null;
-            this.txtAddres.Size = new System.Drawing.Size(318, 21);
-            this.txtAddres.TabIndex = 96;
-            this.txtAddres.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
-            // 
             // btnView
             // 
             this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -98,6 +76,7 @@
             this.btnView.Text = "View";
             this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // lblAddress
             // 
@@ -153,6 +132,30 @@
             this.label1.Size = new System.Drawing.Size(113, 13);
             this.label1.TabIndex = 97;
             this.label1.Text = "Connection status:";
+            // 
+            // txtAddres
+            // 
+            this.txtAddres.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtAddres.AllowBlankSpace = true;
+            this.txtAddres.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
+            this.txtAddres.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAddres.BackColor = System.Drawing.Color.White;
+            this.txtAddres.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAddres.CapitalOnly = false;
+            this.txtAddres.ErrorIconRightToLeft = false;
+            this.txtAddres.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddres.InactiveBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtAddres.Location = new System.Drawing.Point(83, 56);
+            this.txtAddres.Multiline = true;
+            this.txtAddres.Name = "txtAddres";
+            this.txtAddres.NotAllowedCharactersErrorText = "";
+            this.txtAddres.ReadOnly = true;
+            this.txtAddres.Required = false;
+            this.txtAddres.RequiredErrorText = null;
+            this.txtAddres.Size = new System.Drawing.Size(365, 20);
+            this.txtAddres.TabIndex = 96;
+            this.txtAddres.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
             // cnnstring
             // 

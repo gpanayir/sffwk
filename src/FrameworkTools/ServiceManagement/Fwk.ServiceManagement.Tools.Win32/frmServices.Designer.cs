@@ -29,6 +29,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServices));
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -48,21 +49,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.cmbProviders = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.txtApplicationId = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtAddres = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
-            this.btnView = new System.Windows.Forms.Button();
-            this.lblAddress = new System.Windows.Forms.Label();
+            this.ucbServiceGrid1 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
+            this.ctrlService1 = new Fwk.ServiceManagement.Tools.Win32.ctrlService();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblConnectionType = new System.Windows.Forms.Label();
-            this.lblConnectionStatus = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMetaqadata = new System.Windows.Forms.Label();
-            this.ucbServiceGrid1 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
-            this.cnnstring = new Fwk.ServiceManagement.Tools.Win32.cnnstring();
-            this.ctrlService1 = new Fwk.ServiceManagement.Tools.Win32.ctrlService();
+            this.provider1 = new Fwk.ServiceManagement.Tools.Win32.provider();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -245,90 +237,39 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.cnnstring);
-            this.splitContainer1.Panel2.Controls.Add(this.txtApplicationId);
-            this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.txtAddres);
-            this.splitContainer1.Panel2.Controls.Add(this.btnView);
-            this.splitContainer1.Panel2.Controls.Add(this.lblAddress);
+            this.splitContainer1.Panel2.Controls.Add(this.provider1);
             this.splitContainer1.Panel2.Controls.Add(this.ctrlService1);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
-            this.splitContainer1.Panel2.Controls.Add(this.label3);
-            this.splitContainer1.Panel2.Controls.Add(this.lblConnectionType);
-            this.splitContainer1.Panel2.Controls.Add(this.lblConnectionStatus);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(1198, 583);
             this.splitContainer1.SplitterDistance = 532;
             this.splitContainer1.TabIndex = 39;
             // 
-            // txtApplicationId
+            // ucbServiceGrid1
             // 
-            this.txtApplicationId.AutoSize = true;
-            this.txtApplicationId.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApplicationId.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtApplicationId.Location = new System.Drawing.Point(413, 35);
-            this.txtApplicationId.Name = "txtApplicationId";
-            this.txtApplicationId.Size = new System.Drawing.Size(16, 13);
-            this.txtApplicationId.TabIndex = 52;
-            this.txtApplicationId.Text = "---";
+            this.ucbServiceGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucbServiceGrid1.Applications = null;
+            this.ucbServiceGrid1.CurentServiceConfiguration = null;
+            this.ucbServiceGrid1.Location = new System.Drawing.Point(4, 2);
+            this.ucbServiceGrid1.Name = "ucbServiceGrid1";
+            this.ucbServiceGrid1.Services = null;
+            this.ucbServiceGrid1.Size = new System.Drawing.Size(529, 572);
+            this.ucbServiceGrid1.TabIndex = 0;
+            this.ucbServiceGrid1.OnClickServiceHandler += new Fwk.ServiceManagement.Tools.Win32.OnClickServiceHandler(this.ucbServiceGrid1_OnClickServiceHandler);
             // 
-            // label2
+            // ctrlService1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(293, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
-            this.label2.TabIndex = 51;
-            this.label2.Text = "Application Id:";
-            // 
-            // txtAddres
-            // 
-            this.txtAddres.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtAddres.AllowBlankSpace = true;
-            this.txtAddres.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
-            this.txtAddres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(253)))));
-            this.txtAddres.CapitalOnly = false;
-            this.txtAddres.ErrorIconRightToLeft = false;
-            this.txtAddres.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddres.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
-            this.txtAddres.Location = new System.Drawing.Point(146, 62);
-            this.txtAddres.Name = "txtAddres";
-            this.txtAddres.NotAllowedCharactersErrorText = "";
-            this.txtAddres.ReadOnly = true;
-            this.txtAddres.Required = false;
-            this.txtAddres.RequiredErrorText = null;
-            this.txtAddres.Size = new System.Drawing.Size(446, 21);
-            this.txtAddres.TabIndex = 40;
-            this.txtAddres.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
-            // 
-            // btnView
-            // 
-            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnView.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.prntpv_16;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(598, 61);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(49, 19);
-            this.btnView.TabIndex = 50;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // lblAddress
-            // 
-            this.lblAddress.AutoSize = true;
-            this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblAddress.Location = new System.Drawing.Point(22, 64);
-            this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(56, 13);
-            this.lblAddress.TabIndex = 48;
-            this.lblAddress.Text = "Address:";
+            this.ctrlService1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlService1.EntityParam = null;
+            this.ctrlService1.EntityResult = null;
+            this.ctrlService1.Location = new System.Drawing.Point(3, 126);
+            this.ctrlService1.Name = "ctrlService1";
+            this.ctrlService1.ShowAction = Fwk.ServiceManagement.Tools.Win32.Action.Query;
+            this.ctrlService1.Size = new System.Drawing.Size(644, 395);
+            this.ctrlService1.TabIndex = 47;
             // 
             // label4
             // 
@@ -340,50 +281,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.label4.Size = new System.Drawing.Size(16, 13);
             this.label4.TabIndex = 46;
             this.label4.Text = "---";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(22, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 13);
-            this.label3.TabIndex = 44;
-            this.label3.Text = "Metadata type:";
-            // 
-            // lblConnectionType
-            // 
-            this.lblConnectionType.AutoSize = true;
-            this.lblConnectionType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConnectionType.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblConnectionType.Location = new System.Drawing.Point(139, 35);
-            this.lblConnectionType.Name = "lblConnectionType";
-            this.lblConnectionType.Size = new System.Drawing.Size(16, 13);
-            this.lblConnectionType.TabIndex = 43;
-            this.lblConnectionType.Text = "---";
-            // 
-            // lblConnectionStatus
-            // 
-            this.lblConnectionStatus.AutoSize = true;
-            this.lblConnectionStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConnectionStatus.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblConnectionStatus.Location = new System.Drawing.Point(139, 10);
-            this.lblConnectionStatus.Name = "lblConnectionStatus";
-            this.lblConnectionStatus.Size = new System.Drawing.Size(25, 13);
-            this.lblConnectionStatus.TabIndex = 42;
-            this.lblConnectionStatus.Text = "......";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(19, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 13);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "Connection status:";
             // 
             // flowLayoutPanel1
             // 
@@ -407,39 +304,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.lblMetaqadata.TabIndex = 45;
             this.lblMetaqadata.Text = "<<<<<<<<<<<<<<<<<";
             // 
-            // ucbServiceGrid1
+            // provider1
             // 
-            this.ucbServiceGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucbServiceGrid1.Applications = null;
-            this.ucbServiceGrid1.CurentServiceConfiguration = null;
-            this.ucbServiceGrid1.Location = new System.Drawing.Point(4, 2);
-            this.ucbServiceGrid1.Name = "ucbServiceGrid1";
-            this.ucbServiceGrid1.Services = null;
-            this.ucbServiceGrid1.Size = new System.Drawing.Size(529, 572);
-            this.ucbServiceGrid1.TabIndex = 0;
-            this.ucbServiceGrid1.OnClickServiceHandler += new Fwk.ServiceManagement.Tools.Win32.OnClickServiceHandler(this.ucbServiceGrid1_OnClickServiceHandler);
-            // 
-            // cnnstring
-            // 
-            this.cnnstring.Location = new System.Drawing.Point(25, 88);
-            this.cnnstring.Name = "cnnstring";
-            this.cnnstring.Size = new System.Drawing.Size(531, 32);
-            this.cnnstring.TabIndex = 95;
-            this.cnnstring.Visible = false;
-            // 
-            // ctrlService1
-            // 
-            this.ctrlService1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlService1.EntityParam = null;
-            this.ctrlService1.EntityResult = null;
-            this.ctrlService1.Location = new System.Drawing.Point(3, 126);
-            this.ctrlService1.Name = "ctrlService1";
-            this.ctrlService1.ShowAction = Fwk.ServiceManagement.Tools.Win32.Action.Query;
-            this.ctrlService1.Size = new System.Drawing.Size(644, 395);
-            this.ctrlService1.TabIndex = 47;
+            this.provider1.Location = new System.Drawing.Point(9, 7);
+            this.provider1.Name = "provider1";
+            this.provider1.Size = new System.Drawing.Size(638, 116);
+            this.provider1.TabIndex = 51;
             // 
             // frmServices
             // 
@@ -486,24 +356,15 @@ namespace Fwk.ServiceManagement.Tools.Win32
       
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblConnectionType;
-        private System.Windows.Forms.Label lblConnectionStatus;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblMetaqadata;
         private UCBServiceGrid ucbServiceGrid1;
         private ctrlService ctrlService1;
-        private System.Windows.Forms.Label lblAddress;
-        private System.Windows.Forms.Button btnView;
-        private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtAddres;
         private System.Windows.Forms.ToolStripComboBox cmbProviders;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem btnNewProvider;
         private System.Windows.Forms.ToolStripMenuItem providersToolStripMenuItem;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label txtApplicationId;
-        private cnnstring cnnstring;
+        private provider provider1;
        
         
 	}

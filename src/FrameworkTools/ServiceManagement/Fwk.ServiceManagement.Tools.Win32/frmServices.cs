@@ -46,13 +46,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 ucbServiceGrid1.Services = ServiceMetadata.GetAllServices(frmServices.CurrentProvider.Name);
 
                 ucbServiceGrid1.Applications = ServiceMetadata.GetAllApplicationsId(CurrentProvider.Name);
-                lblConnectionStatus.Text= "Connected";
+                provider1.SetConnected(true);
             }
             catch(Exception ex)
             {
                
                 base.ExceptionViewer.Show(ex);
-                lblConnectionStatus.Text = "Disconnected";
+                provider1.SetConnected(false);
             }
         }
 
@@ -181,8 +181,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
             
           
-            lblConnectionStatus.Text = "Diconect";
-           
+            
+            provider1.SetConnected(false);
 
             ComboBox cb = (ComboBox)cmbProviders.Control;
 
@@ -193,7 +193,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             cmbProviders.SelectedIndex = 0;
             CurrentProvider = ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
-            SetProvider();
+            provider1.Populate(CurrentProvider);
 
             cb.SelectedValueChanged += new EventHandler(cb_SelectedValueChanged);
 
@@ -204,7 +204,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             CurrentProvider = ServiceMetadata.ProviderSection.GetProvider(cmbProviders.SelectedItem.ToString());
 
-            SetProvider();
+            provider1.Populate(CurrentProvider);
            
             try
             {
@@ -212,44 +212,44 @@ namespace Fwk.ServiceManagement.Tools.Win32
                ucbServiceGrid1.Services = Fwk.ServiceManagement.ServiceMetadata.GetAllServices(CurrentProvider.Name);
 
                 ucbServiceGrid1.Applications = Fwk.ServiceManagement.ServiceMetadata.GetAllApplicationsId(CurrentProvider.Name);
-                lblConnectionStatus.Text = "Connected";
+                provider1.SetConnected(true);
             }
             catch (Exception ex)
             {
 
                 base.ExceptionViewer.Show(ex);
-                lblConnectionStatus.Text = "Disconnected";
+                provider1.SetConnected(false);
                 ucbServiceGrid1.Services = null;
 
             }
         }
 
-        void SetProvider()
-        {
+        //void SetProvider()
+        //{
 
-            lblConnectionType.Text = CurrentProvider.ProviderType.ToString();
-            txtAddres.Text = CurrentProvider.SourceInfo;
-            txtApplicationId.Text = CurrentProvider.ApplicationId;
-            cnnstring.Clear();
-            if (CurrentProvider.ProviderType == ServiceProviderType.xml)
-            {
-                cnnstring.Visible = false;
-                lblAddress.Text = "File :";
-                btnView.Visible = true;
-            }
-            if (CurrentProvider.ProviderType == ServiceProviderType.sqldatabase)
-            {
-                btnView.Visible = false;
-                lblAddress.Text = "Connection string";
-                if (System.Configuration.ConfigurationManager.ConnectionStrings[CurrentProvider.SourceInfo] != null)
-                {
-                    Fwk.DataBase.CnnString c = new Fwk.DataBase.CnnString(CurrentProvider.SourceInfo, System.Configuration.ConfigurationManager.ConnectionStrings[CurrentProvider.SourceInfo].ConnectionString);
-                    cnnstring.Populate(c);
-                    cnnstring.Visible = true;
-                }
+        //    //lblConnectionType.Text = CurrentProvider.ProviderType.ToString();
+        //    //txtAddres.Text = CurrentProvider.SourceInfo;
+        //    //txtApplicationId.Text = CurrentProvider.ApplicationId;
+        //    //cnnstring.Clear();
+        //    //if (CurrentProvider.ProviderType == ServiceProviderType.xml)
+        //    //{
+        //    //    cnnstring.Visible = false;
+        //    //    lblAddress.Text = "File :";
+        //    //    btnView.Visible = true;
+        //    //}
+        //    //if (CurrentProvider.ProviderType == ServiceProviderType.sqldatabase)
+        //    //{
+        //    //    btnView.Visible = false;
+        //    //    lblAddress.Text = "Connection string";
+        //    //    if (System.Configuration.ConfigurationManager.ConnectionStrings[CurrentProvider.SourceInfo] != null)
+        //    //    {
+        //    //        Fwk.DataBase.CnnString c = new Fwk.DataBase.CnnString(CurrentProvider.SourceInfo, System.Configuration.ConfigurationManager.ConnectionStrings[CurrentProvider.SourceInfo].ConnectionString);
+        //    //        cnnstring.Populate(c);
+        //    //        cnnstring.Visible = true;
+        //    //    }
                
-            }
-        } 
+        //    //}
+        //} 
         private void button1_Click(object sender, EventArgs e)
         {
             frmAssemblyExplorer f = new frmAssemblyExplorer();
@@ -260,10 +260,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
             
           
-             if (string.Compare(lblConnectionType.Text, "Web Service", true) == 0)
-                 System.Diagnostics.Process.Start("www.yahoo.com.ar");
-            else
-                 System.Diagnostics.Process.Start("explorer.exe", txtAddres.Text);
+      
 
         }
 

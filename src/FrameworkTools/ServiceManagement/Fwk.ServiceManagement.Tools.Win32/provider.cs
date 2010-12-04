@@ -24,7 +24,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
             if (pProvider == null) return;
             SetProvider();
         }
-
+        public void SetConnected(bool pIsConnected)
+        {
+            if (pIsConnected)
+                lblConnectionStatus.Text = "Connected";
+            else
+                lblConnectionStatus.Text = "Disconnected";
+        }
         void SetProvider()
         {
 
@@ -50,6 +56,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 }
 
             }
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            if (string.Compare(lblConnectionType.Text, "Web Service", true) == 0)
+                System.Diagnostics.Process.Start("www.yahoo.com.ar");
+            else
+                System.Diagnostics.Process.Start("explorer.exe", txtAddres.Text);
         } 
     }
 }
