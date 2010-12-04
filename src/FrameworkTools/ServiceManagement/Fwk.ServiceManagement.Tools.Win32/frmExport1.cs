@@ -25,13 +25,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
         }
         void LoadConfig()
         {
-            //System.Configuration.Configuration wConfiguration = null;
-            //ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
-
-            //configFile.ExeConfigFilename = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-
-            //wConfiguration = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
-            //_ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
+      
 
             SetProviderSource();
             SetProviderDest();
@@ -109,51 +103,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         void SetProviderSource()
         {
-
-            lblConnectionType_source.Text = _SourceProvider.ProviderType.ToString();
-            txtAddres_source.Text = _SourceProvider.SourceInfo;
-            cnnstring_Source.Clear();
-            if (_SourceProvider.ProviderType == ServiceProviderType.xml)
-            {
-                lblAddressSource.Text = "File :";
-                cnnstring_Source.Visible = false;
-            }
-            if (_SourceProvider.ProviderType == ServiceProviderType.sqldatabase)
-            {
-                lblAddressSource.Text = "Connectionstring";
-                if (System.Configuration.ConfigurationManager.ConnectionStrings[_SourceProvider.SourceInfo] != null)
-                {
-                    Fwk.DataBase.CnnString c = new Fwk.DataBase.CnnString(_SourceProvider.SourceInfo, System.Configuration.ConfigurationManager.ConnectionStrings[_SourceProvider.SourceInfo].ConnectionString);
-                    cnnstring_Source.Populate(c);
-                    cnnstring_Source.Visible = true;
-                }
-               
-            }
+            provider1.Populate(_SourceProvider);
+          
         }
 
         void SetProviderDest()
         {
-            if (_SelectedProvider == null) return;
-            lblConnectionType.Text = _SelectedProvider.ProviderType.ToString();
-            txtAddres.Text = _SelectedProvider.SourceInfo;
-            cnnstring_Dest.Clear();
-            if (_SelectedProvider.ProviderType == ServiceProviderType.xml)
-            {
-              
-                lblAddressDest.Text = "File :";
-                cnnstring_Dest.Visible = false;
-            }
-            if (_SelectedProvider.ProviderType == ServiceProviderType.sqldatabase)
-            {
-                lblAddressDest.Text = "Connectionstring";
-                if (System.Configuration.ConfigurationManager.ConnectionStrings[_SelectedProvider.SourceInfo] != null)
-                {
-                    Fwk.DataBase.CnnString c = new Fwk.DataBase.CnnString(_SelectedProvider.SourceInfo, System.Configuration.ConfigurationManager.ConnectionStrings[_SelectedProvider.SourceInfo].ConnectionString);
-                    cnnstring_Dest.Populate(c);
-                    cnnstring_Dest.Visible = true;
-                }
-                
-            }
+            provider2.Populate(_SelectedProvider);
         }
         
     }
