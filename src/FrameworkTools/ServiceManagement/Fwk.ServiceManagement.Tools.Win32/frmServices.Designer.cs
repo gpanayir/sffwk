@@ -29,7 +29,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            this.components = new System.ComponentModel.Container();
+
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServices));
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();

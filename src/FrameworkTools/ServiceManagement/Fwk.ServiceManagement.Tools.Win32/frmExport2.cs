@@ -59,8 +59,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
                     Fwk.Bases.ServiceConfiguration sclon = s.Clone();
 
                     sclon.ApplicationId = txtAppId.Text;
-                        
-                    ServiceMetadata.AddServiceConfiguration(_SelectedProvider.Name, s);
+
+                    ServiceMetadata.AddServiceConfiguration(_SelectedProvider.Name, sclon);
                     log.AppendLine(string.Concat(s.Name, " OK"));
                 }
                 catch (Fwk.Exceptions.TechnicalException te)

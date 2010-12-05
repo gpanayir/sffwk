@@ -33,11 +33,11 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCBServiceGrid));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.fwkCellStyleGreenFlat1 = new Fwk.Bases.FrontEnd.Controls.FwkGrid.Design.FwkCellStyleGreenFlat(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnFilter = new System.Windows.Forms.ToolStripButton();
@@ -45,14 +45,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.cmbSearchType = new System.Windows.Forms.ToolStripComboBox();
             this.fwkCellStyleMarronFlat1 = new Fwk.Bases.FrontEnd.Controls.FwkGrid.Design.FwkCellStyleMarronFlat(this.components);
             this.grdServices = new Fwk.Bases.FrontEnd.Controls.FwkGrid.FwkGenericDataGridView(this.components);
-            this.serviceConfigurationCollectionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cmbFilterTransactionalBehaviour = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
-            this.cmbFilterIsolationLevel = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbApplication = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ApplicationId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +54,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.isolationLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreatedDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreatedUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serviceConfigurationCollectionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbFilterTransactionalBehaviour = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
+            this.cmbFilterIsolationLevel = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbApplication = new Fwk.Bases.FrontEnd.Controls.FwkFlatComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdServices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceConfigurationCollectionBindingSource)).BeginInit();
@@ -102,6 +102,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // 
             // cmbSearchType
             // 
+            this.cmbSearchType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbSearchType.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.cmbSearchType.Name = "cmbSearchType";
             this.cmbSearchType.Size = new System.Drawing.Size(121, 25);
@@ -114,23 +115,23 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.grdServices.AllowUserToOrderColumns = true;
             this.grdServices.AllowUserToResizeColumns = false;
             this.grdServices.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
-            this.grdServices.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(243)))), ((int)(((byte)(245)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
+            this.grdServices.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.grdServices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.grdServices.AutoGenerateColumns = false;
             this.grdServices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(249)))), ((int)(((byte)(234)))));
             this.grdServices.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Sienna;
-            this.grdServices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Sienna;
+            this.grdServices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.grdServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
@@ -153,14 +154,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.grdServices.CustomGridProperties.RowErrorColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.grdServices.CustomGridProperties.RowHeaderVisible = false;
             this.grdServices.DataSource = this.serviceConfigurationCollectionBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdServices.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdServices.DefaultCellStyle = dataGridViewCellStyle13;
             this.grdServices.EnableHeadersVisualStyles = false;
             this.grdServices.GridColor = System.Drawing.Color.White;
             this.grdServices.Location = new System.Drawing.Point(2, 63);
@@ -168,134 +169,15 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.grdServices.Name = "grdServices";
             this.grdServices.ReadOnly = true;
             this.grdServices.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdServices.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdServices.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.grdServices.RowHeadersVisible = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.grdServices.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.grdServices.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.grdServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdServices.Size = new System.Drawing.Size(656, 204);
             this.grdServices.TabIndex = 39;
             this.grdServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdServices_CellClick);
-            // 
-            // serviceConfigurationCollectionBindingSource
-            // 
-            this.serviceConfigurationCollectionBindingSource.DataSource = typeof(Fwk.Bases.ServiceConfigurationCollection);
-            // 
-            // cmbFilterTransactionalBehaviour
-            // 
-            this.cmbFilterTransactionalBehaviour.ActiveArrowColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cmbFilterTransactionalBehaviour.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cmbFilterTransactionalBehaviour.ActiveButtonColor = System.Drawing.SystemColors.ControlDark;
-            this.cmbFilterTransactionalBehaviour.AllowEmptyTextValue = false;
-            this.cmbFilterTransactionalBehaviour.AutoComplete = false;
-            this.cmbFilterTransactionalBehaviour.ErrorIconRightToLeft = false;
-            this.cmbFilterTransactionalBehaviour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbFilterTransactionalBehaviour.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFilterTransactionalBehaviour.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
-            this.cmbFilterTransactionalBehaviour.FormattingEnabled = true;
-            this.cmbFilterTransactionalBehaviour.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
-            this.cmbFilterTransactionalBehaviour.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
-            this.cmbFilterTransactionalBehaviour.InactiveButtonColor = System.Drawing.SystemColors.Control;
-            this.cmbFilterTransactionalBehaviour.Location = new System.Drawing.Point(328, 30);
-            this.cmbFilterTransactionalBehaviour.Name = "cmbFilterTransactionalBehaviour";
-            this.cmbFilterTransactionalBehaviour.NullTextValue = null;
-            this.cmbFilterTransactionalBehaviour.ReadOnly = false;
-            this.cmbFilterTransactionalBehaviour.ReadOnlyColor = System.Drawing.SystemColors.Control;
-            this.cmbFilterTransactionalBehaviour.Required = false;
-            this.cmbFilterTransactionalBehaviour.RequiredErrorText = null;
-            this.cmbFilterTransactionalBehaviour.Size = new System.Drawing.Size(121, 21);
-            this.cmbFilterTransactionalBehaviour.TabIndex = 40;
-            this.cmbFilterTransactionalBehaviour.SelectedIndexChanged += new System.EventHandler(this.cmbFilterTransactionalBehaviour_SelectedIndexChanged);
-            // 
-            // cmbFilterIsolationLevel
-            // 
-            this.cmbFilterIsolationLevel.ActiveArrowColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cmbFilterIsolationLevel.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cmbFilterIsolationLevel.ActiveButtonColor = System.Drawing.SystemColors.ControlDark;
-            this.cmbFilterIsolationLevel.AllowEmptyTextValue = false;
-            this.cmbFilterIsolationLevel.AutoComplete = false;
-            this.cmbFilterIsolationLevel.ErrorIconRightToLeft = false;
-            this.cmbFilterIsolationLevel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbFilterIsolationLevel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFilterIsolationLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
-            this.cmbFilterIsolationLevel.FormattingEnabled = true;
-            this.cmbFilterIsolationLevel.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
-            this.cmbFilterIsolationLevel.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
-            this.cmbFilterIsolationLevel.InactiveButtonColor = System.Drawing.SystemColors.Control;
-            this.cmbFilterIsolationLevel.Location = new System.Drawing.Point(536, 30);
-            this.cmbFilterIsolationLevel.Name = "cmbFilterIsolationLevel";
-            this.cmbFilterIsolationLevel.NullTextValue = null;
-            this.cmbFilterIsolationLevel.ReadOnly = false;
-            this.cmbFilterIsolationLevel.ReadOnlyColor = System.Drawing.SystemColors.Control;
-            this.cmbFilterIsolationLevel.Required = false;
-            this.cmbFilterIsolationLevel.RequiredErrorText = null;
-            this.cmbFilterIsolationLevel.Size = new System.Drawing.Size(121, 21);
-            this.cmbFilterIsolationLevel.TabIndex = 41;
-            this.cmbFilterIsolationLevel.SelectedIndexChanged += new System.EventHandler(this.cmbFilterIsolationLevel_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(455, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
-            this.label1.TabIndex = 42;
-            this.label1.Text = "Isolation Level";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(200, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 13);
-            this.label2.TabIndex = 43;
-            this.label2.Text = "Transactional Behaviour";
-            // 
-            // fwkMessageViewComponent1
-            // 
-            this.fwkMessageViewComponent1.BackColor = System.Drawing.Color.White;
-            this.fwkMessageViewComponent1.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
-            this.fwkMessageViewComponent1.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
-            this.fwkMessageViewComponent1.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
-            this.fwkMessageViewComponent1.TextMessageColor = System.Drawing.Color.White;
-            this.fwkMessageViewComponent1.TextMessageForeColor = System.Drawing.Color.Black;
-            this.fwkMessageViewComponent1.Title = "Message";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
-            this.label3.TabIndex = 45;
-            this.label3.Text = "Application";
-            // 
-            // cmbApplication
-            // 
-            this.cmbApplication.ActiveArrowColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cmbApplication.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.cmbApplication.ActiveButtonColor = System.Drawing.SystemColors.ControlDark;
-            this.cmbApplication.AllowEmptyTextValue = false;
-            this.cmbApplication.AutoComplete = false;
-            this.cmbApplication.ErrorIconRightToLeft = false;
-            this.cmbApplication.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbApplication.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbApplication.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
-            this.cmbApplication.FormattingEnabled = true;
-            this.cmbApplication.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
-            this.cmbApplication.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
-            this.cmbApplication.InactiveButtonColor = System.Drawing.SystemColors.Control;
-            this.cmbApplication.Location = new System.Drawing.Point(81, 30);
-            this.cmbApplication.Name = "cmbApplication";
-            this.cmbApplication.NullTextValue = null;
-            this.cmbApplication.ReadOnly = false;
-            this.cmbApplication.ReadOnlyColor = System.Drawing.SystemColors.Control;
-            this.cmbApplication.Required = false;
-            this.cmbApplication.RequiredErrorText = null;
-            this.cmbApplication.Size = new System.Drawing.Size(121, 21);
-            this.cmbApplication.TabIndex = 44;
-            this.cmbApplication.SelectedIndexChanged += new System.EventHandler(this.cmbApplication_SelectedIndexChanged);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -367,6 +249,128 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.CreatedUserName.Name = "CreatedUserName";
             this.CreatedUserName.ReadOnly = true;
             this.CreatedUserName.Width = 70;
+            // 
+            // serviceConfigurationCollectionBindingSource
+            // 
+            this.serviceConfigurationCollectionBindingSource.DataSource = typeof(Fwk.Bases.ServiceConfigurationCollection);
+            // 
+            // cmbFilterTransactionalBehaviour
+            // 
+            this.cmbFilterTransactionalBehaviour.ActiveArrowColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cmbFilterTransactionalBehaviour.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cmbFilterTransactionalBehaviour.ActiveButtonColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbFilterTransactionalBehaviour.AllowEmptyTextValue = false;
+            this.cmbFilterTransactionalBehaviour.AutoComplete = true;
+            this.cmbFilterTransactionalBehaviour.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbFilterTransactionalBehaviour.ErrorIconRightToLeft = false;
+            this.cmbFilterTransactionalBehaviour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbFilterTransactionalBehaviour.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFilterTransactionalBehaviour.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
+            this.cmbFilterTransactionalBehaviour.FormattingEnabled = true;
+            this.cmbFilterTransactionalBehaviour.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbFilterTransactionalBehaviour.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbFilterTransactionalBehaviour.InactiveButtonColor = System.Drawing.SystemColors.Control;
+            this.cmbFilterTransactionalBehaviour.Location = new System.Drawing.Point(328, 30);
+            this.cmbFilterTransactionalBehaviour.Name = "cmbFilterTransactionalBehaviour";
+            this.cmbFilterTransactionalBehaviour.NullTextValue = null;
+            this.cmbFilterTransactionalBehaviour.ReadOnly = false;
+            this.cmbFilterTransactionalBehaviour.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.cmbFilterTransactionalBehaviour.Required = false;
+            this.cmbFilterTransactionalBehaviour.RequiredErrorText = null;
+            this.cmbFilterTransactionalBehaviour.Size = new System.Drawing.Size(121, 21);
+            this.cmbFilterTransactionalBehaviour.TabIndex = 40;
+            this.cmbFilterTransactionalBehaviour.SelectedIndexChanged += new System.EventHandler(this.cmbFilterTransactionalBehaviour_SelectedIndexChanged);
+            // 
+            // cmbFilterIsolationLevel
+            // 
+            this.cmbFilterIsolationLevel.ActiveArrowColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cmbFilterIsolationLevel.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cmbFilterIsolationLevel.ActiveButtonColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbFilterIsolationLevel.AllowEmptyTextValue = false;
+            this.cmbFilterIsolationLevel.AutoComplete = true;
+            this.cmbFilterIsolationLevel.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbFilterIsolationLevel.ErrorIconRightToLeft = false;
+            this.cmbFilterIsolationLevel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbFilterIsolationLevel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFilterIsolationLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
+            this.cmbFilterIsolationLevel.FormattingEnabled = true;
+            this.cmbFilterIsolationLevel.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbFilterIsolationLevel.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbFilterIsolationLevel.InactiveButtonColor = System.Drawing.SystemColors.Control;
+            this.cmbFilterIsolationLevel.Location = new System.Drawing.Point(536, 30);
+            this.cmbFilterIsolationLevel.Name = "cmbFilterIsolationLevel";
+            this.cmbFilterIsolationLevel.NullTextValue = null;
+            this.cmbFilterIsolationLevel.ReadOnly = false;
+            this.cmbFilterIsolationLevel.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.cmbFilterIsolationLevel.Required = false;
+            this.cmbFilterIsolationLevel.RequiredErrorText = null;
+            this.cmbFilterIsolationLevel.Size = new System.Drawing.Size(121, 21);
+            this.cmbFilterIsolationLevel.TabIndex = 41;
+            this.cmbFilterIsolationLevel.SelectedIndexChanged += new System.EventHandler(this.cmbFilterIsolationLevel_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(455, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "Isolation Level";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(200, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(122, 13);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "Transactional Behaviour";
+            // 
+            // fwkMessageViewComponent1
+            // 
+            this.fwkMessageViewComponent1.BackColor = System.Drawing.Color.White;
+            this.fwkMessageViewComponent1.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
+            this.fwkMessageViewComponent1.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
+            this.fwkMessageViewComponent1.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
+            this.fwkMessageViewComponent1.TextMessageColor = System.Drawing.Color.White;
+            this.fwkMessageViewComponent1.TextMessageForeColor = System.Drawing.Color.Black;
+            this.fwkMessageViewComponent1.Title = "Message";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "Application";
+            // 
+            // cmbApplication
+            // 
+            this.cmbApplication.ActiveArrowColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cmbApplication.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cmbApplication.ActiveButtonColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbApplication.AllowEmptyTextValue = false;
+            this.cmbApplication.AutoComplete = true;
+            this.cmbApplication.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbApplication.ErrorIconRightToLeft = false;
+            this.cmbApplication.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbApplication.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbApplication.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(83)))), ((int)(((byte)(141)))));
+            this.cmbApplication.FormattingEnabled = true;
+            this.cmbApplication.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbApplication.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
+            this.cmbApplication.InactiveButtonColor = System.Drawing.SystemColors.Control;
+            this.cmbApplication.Location = new System.Drawing.Point(81, 30);
+            this.cmbApplication.Name = "cmbApplication";
+            this.cmbApplication.NullTextValue = null;
+            this.cmbApplication.ReadOnly = false;
+            this.cmbApplication.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.cmbApplication.Required = false;
+            this.cmbApplication.RequiredErrorText = null;
+            this.cmbApplication.Size = new System.Drawing.Size(121, 21);
+            this.cmbApplication.TabIndex = 44;
+            this.cmbApplication.SelectedIndexChanged += new System.EventHandler(this.cmbApplication_SelectedIndexChanged);
             // 
             // UCBServiceGrid
             // 

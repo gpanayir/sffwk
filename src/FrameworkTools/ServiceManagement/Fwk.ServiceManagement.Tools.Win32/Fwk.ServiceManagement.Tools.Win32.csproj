@@ -120,6 +120,7 @@
       <DependentUpon>frmAssemblyExplorer.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCreateProvider.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCreateProvider.Designer.cs">
       <DependentUpon>frmCreateProvider.cs</DependentUpon>
@@ -137,11 +138,13 @@
       <DependentUpon>frmExport2.cs</DependentUpon>
     </Compile>
     <Compile Include="frmExport1.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmExport1.Designer.cs">
       <DependentUpon>frmExport1.cs</DependentUpon>
     </Compile>
     <Compile Include="frmServices.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmServices.Designer.cs">
       <DependentUpon>frmServices.cs</DependentUpon>
