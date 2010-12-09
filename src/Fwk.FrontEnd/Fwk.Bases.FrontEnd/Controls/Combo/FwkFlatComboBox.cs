@@ -91,9 +91,9 @@ namespace Fwk.Bases.FrontEnd.Controls
             set { _Required = value; }
         }
         /// <summary>
-        /// Texto que se muestra en el mensage de error cuando el campo es requerido.-
+        /// Texto que se muestra en el mensaje de error cuando el campo es requerido.-
         /// </summary>
-        [CategoryAttribute("Factory Tools"), Description("Texto que se muestra en el mensage de error cuando el campo es requerido.-")]
+        [CategoryAttribute("Factory Tools"), Description("Texto que se muestra en el mensaje de error cuando el campo es requerido.-")]
         public string RequiredErrorText
         {
             get { return _RequiredErrorText; }

@@ -43,10 +43,26 @@ namespace Fwk.Logging.Targets
             if (XmlTarget.Logs == null) 
                 XmlTarget.Logs = OpenLogsFromFile();
             XmlTarget.Logs.Add(pEvent);
-            Fwk.HelperFunctions.FileFunctions.SaveTextFile(this.FileName, XmlTarget.Logs.GetXml(), false);
 
-       
-           
+            Fwk.HelperFunctions.FileFunctions.SaveTextFile(this.FileName, XmlTarget.Logs.GetXml(), false);
+          
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<string> eventIdList)
+        {
+
+            if (XmlTarget.Logs == null)
+                XmlTarget.Logs = OpenLogsFromFile();
+            foreach(string strGuid in eventIdList)
+            {
+                Event eventToRemove = XmlTarget.Logs.Get_ByID(new Guid(strGuid));
+                XmlTarget.Logs.Remove(eventToRemove);
+            }
+            Fwk.HelperFunctions.FileFunctions.SaveTextFile(this.FileName, XmlTarget.Logs.GetXml(), false);
         }
         #endregion
 
@@ -89,7 +105,7 @@ namespace Fwk.Logging.Targets
         #endregion
 
         /// <summary>
-        /// 
+        /// Busca directamente en el archivo. No busca por Id
         /// </summary>
         /// <param name="pEvent"></param>
         /// <returns></returns>
@@ -127,10 +143,11 @@ namespace Fwk.Logging.Targets
          }
 
         /// <summary>
-        /// 
+         ///Busca directamente en el archivo. No busca por Id. Este método realiza ademas de la busqueda por cada uno de los parámetros de Event, un between entre pEvent.LogDate y pEndDate
+         ///para cualquier envento con LogDate entre este rango. 
         /// </summary>
-        /// <param name="pEvent"></param>
-        /// <param name="pEndDate"></param>
+        /// <param name="pEvent">Event como parametro para buscqueda. </param>
+        /// <param name="pEndDate">Fecha fin para busqueda.. </param>
         /// <returns></returns>
          public override Events SearchByParam(Event pEvent, DateTime pEndDate)
          {

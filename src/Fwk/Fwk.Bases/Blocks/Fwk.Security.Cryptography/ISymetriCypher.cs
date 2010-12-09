@@ -7,19 +7,33 @@ using Microsoft.Practices.EnterpriseLibrary.Security.Cryptography;
 namespace Fwk.Security.Cryptography
 {
 
-    //public interface ISymetriCypher
-    //{
-    //    string CreateKeyFile();
-    //    string CreateKeyFile(string keyFileName);
-    //    string Dencrypt(string val);
-    //    string Encrypt(string val);
-    //    //SymmetricAlgorithmProvider AlgorithmProvider { get; }
-    //}
+    /// <summary>
+    /// Interfaz de encriptador simetrico del fwk .-
+    /// </summary>
     public interface ISymetriCypher 
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         string CreateKeyFile();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyFileName"></param>
+        /// <returns></returns>
         string CreateKeyFile(string keyFileName);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
         string Dencrypt(string val);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
         string Encrypt(string val);
         //SymmetricAlgorithmProvider AlgorithmProvider { get; }
     }

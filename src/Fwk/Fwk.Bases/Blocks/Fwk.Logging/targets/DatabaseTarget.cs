@@ -103,7 +103,7 @@ namespace Fwk.Logging.Targets
                 }
                 catch (Exception ex)
                 {
-                    TechnicalException te = new TechnicalException("Error de Logging", ex);
+                    TechnicalException te = new TechnicalException("Error de Fwk.Logging al intentar insertar log en base de datos", ex);
                     te.ErrorId = "9004";
                     Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
                     throw te;
@@ -176,10 +176,9 @@ namespace Fwk.Logging.Targets
                         while (reader.Read())
                         {
                             wEvent = new Event();
-
+                            wEvent.Id = new Guid(reader["Id"].ToString());
                             wEvent.Message.Text = reader["Message"].ToString();
                             wEvent.Source = reader["Source"].ToString();
-                           
                             wEvent.LogType = (EventType)Enum.Parse(typeof(EventType), reader["LogType"].ToString());
                             wEvent.Machine = reader["Machine"].ToString();
                             wEvent.LogDate = Convert.ToDateTime(reader["LogDate"]);
@@ -193,7 +192,7 @@ namespace Fwk.Logging.Targets
                 }
                 catch (Exception ex)
                 {
-                    TechnicalException te = new TechnicalException("Error de Fwk.Logging", ex);
+                    TechnicalException te = new TechnicalException("Error de Fwk.Logging al intentar consultar log en base de datos", ex);
                     te.ErrorId = "9004";
                     Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
                     throw te;
@@ -271,7 +270,7 @@ namespace Fwk.Logging.Targets
                         while (reader.Read())
                         {
                             wEvent = new Event();
-
+                            wEvent.Id = new Guid(reader["Id"].ToString());
                             wEvent.Message.Text = reader["Message"].ToString();
                             wEvent.Source = reader["Source"].ToString();
                             wEvent.LogType = (EventType)reader["LogType"];
@@ -294,6 +293,38 @@ namespace Fwk.Logging.Targets
                 }
             }
 
+        }
+        string delLog = "DELETE FROM events id = {0}";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<string> eventIdList)
+        {
+
+            using (SqlConnection wCnn = new SqlConnection(GetCnnString()))
+            using (SqlCommand wCmd = new SqlCommand())
+            {
+                try
+                {
+                    wCnn.Open();
+                    wCmd.Connection = wCnn;
+                    wCmd.CommandType = CommandType.StoredProcedure;
+                    foreach (string id in eventIdList)
+                    {
+                        wCmd.CommandText = string.Format(delLog, id);
+                        wCmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    TechnicalException te = new TechnicalException("Error de Fwk.Logging al intentar elimiar log en base de datos", ex);
+                    te.ErrorId = "9004";
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
+                    throw te;
+                }
+            }
         }
         string strDb;
         string GetCnnString()

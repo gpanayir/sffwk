@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using Fwk.Xml;
 using Fwk.Bases;
-
+using System.Linq;
 
 namespace Fwk.Logging
 {
@@ -16,33 +16,38 @@ namespace Fwk.Logging
     /// <date>200609/02</date>
     /// <author>moviedo</author>
     [XmlInclude(typeof(Event)), Serializable]
-    public class Event:Fwk.Bases.Entity
+    public class Event : Fwk.Bases.Entity
     {
         #region <private members>
-        private String _AppId;
-        private String _Source;
+        private String _AppId = string.Empty;
+        private String _Source = string.Empty;
         private EventType _LogType;
         private Guid _Id;
-        private string _UserLoginName;
-        private string _Machine;
-        private CData _Message = new CData ();
+        private string _UserLoginName = string.Empty;
+        private string _Machine = string.Empty;
+        private CData _Message = new CData();
         private DateTime _LogDate;
         #endregion
 
         #region <constructor>
         /// <summary>
-        /// Constructor de Event.
+        /// Constructor de Event que inicializa todos los atributos como nulos o empty 
+        /// Valor por defecto:  
+        ///  Id es autogenerado
         /// </summary>
         public Event()
         {
             _Id = Guid.NewGuid();
-            //_Machine = Environment.MachineName;
-            //_UserLoginName = Environment.UserName;
             _LogDate = Fwk.HelperFunctions.DateFunctions.NullDateTime;
             _LogType = EventType.None;
         }
         /// <summary>
         /// Constructor de Event.
+        /// Valor por defecto:     
+        ///   Id es autogenerado 
+        ///   Machine = Environment.MachineName;
+        ///   UserLoginName = Environment.UserName;
+        ///   LogDate = DateTime.Now;
         /// </summary>
         /// <param name="pType">Tipo de evento.</param>
         /// <param name="pSource">Origen del evento.</param>
@@ -57,9 +62,12 @@ namespace Fwk.Logging
             _UserLoginName = Environment.UserName;
             _LogDate = DateTime.Now;
         }
-       
+
         /// <summary>
         /// Constructor de Event.
+        /// Valor por defecto:     
+        ///   Id es autogenerado
+        ///   LogDate = DateTime.Now;
         /// </summary>
         /// <param name="pType">Tipo de evento.</param>
         /// <param name="pSource">Origen del evento.</param>
@@ -78,7 +86,10 @@ namespace Fwk.Logging
         }
 
         /// <summary>
-        ///  Constructor de Event.
+        ///  Constructor de Event. 
+        /// Valor por defecto:     
+        ///   Id es autogenerado
+        ///   LogDate = DateTime.Now;
         /// </summary>
         /// <param name="pType">Tipo de evento.</param>
         /// <param name="pSource">Origen del evento.</param>
@@ -91,7 +102,7 @@ namespace Fwk.Logging
             _Id = Guid.NewGuid();
             _AppId = appId;
             _LogType = pType;
-            
+
             _Source = pSource;
             _Message.Text = pMessage;
             _Machine = pMachine;
@@ -114,8 +125,8 @@ namespace Fwk.Logging
         /// <summary>
         /// Fecha y hora en la que se produce el evento.
         /// </summary>
-       [XmlAttribute("Date")]
-       public DateTime LogDate
+        [XmlAttribute("Date")]
+        public DateTime LogDate
         {
             get { return _LogDate; }
             set { _LogDate = value; }
@@ -195,11 +206,11 @@ namespace Fwk.Logging
         public override string ToString()
         {
             StringBuilder wStringBuilder = new StringBuilder();
-            wStringBuilder.Append(string.Concat("Log Id: ",this._Id));
+            wStringBuilder.Append(string.Concat("Log Id: ", this._Id));
             wStringBuilder.AppendLine();
             wStringBuilder.Append(" | Date: ");
             wStringBuilder.Append(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff", CultureInfo.InvariantCulture));
-            wStringBuilder.AppendLine(string.Concat(" Type: ",_LogType.ToString().ToUpper()));
+            wStringBuilder.AppendLine(string.Concat(" Type: ", _LogType.ToString().ToUpper()));
 
             wStringBuilder.AppendLine("Message: ");
             wStringBuilder.AppendLine(this._Message.Text);
@@ -212,7 +223,7 @@ namespace Fwk.Logging
             return wStringBuilder.ToString();
         }
 
-  
+
         #endregion
     }
 
@@ -414,13 +425,69 @@ namespace Fwk.Logging
 
         #endregion
     }
-    
+
     /// <summary>
     /// Lista de eventos logs
     /// </summary>
     [XmlRoot("Events"), SerializableAttribute]
     public class Events : Fwk.Bases.Entities<Event>
-    { 
-    
+    {
+        /// <summary>
+        /// Obtiene el primer contacto donde Id EndsWith jid.Bare
+        /// </summary>
+        /// <param name="jid"></param>
+        /// <returns></returns>
+        public Event Get_ByID(Guid id)
+        {
+            if (this.Exist(id))
+            {
+                var n = from e in this where (e.Id == id) select e;
+                return n.FirstOrDefault<Event>();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool Exist(Guid id)
+        {
+            return this.Count<Event>(e => e.Id == id) > 0;
+        }
+
+
+        public Events SearchByParams(EventType type)
+        {
+            Events lisToReturn = new Events();
+            var list = from item in this where item.LogType == type select item;
+
+            lisToReturn.AddRange(list.ToArray<Event>());
+            return lisToReturn;
+        }
+
+        public  Events SearchByParam(Event pEvent)
+        {
+
+
+            var lisToReturn = from s in this
+                                  where
+                                      (String.IsNullOrEmpty(pEvent.Machine) || s.Machine.StartsWith(pEvent.Machine))
+                                      &&
+                                      (String.IsNullOrEmpty(pEvent.User) || s.Machine.StartsWith(pEvent.User))
+                                      &&
+                                      (pEvent.LogType == EventType.None || s.LogType == pEvent.LogType)
+                                      &&
+                                      (pEvent.LogDate == HelperFunctions.DateFunctions.NullDateTime || s.LogDate >= pEvent.LogDate)
+                                  select s;
+                Events list2 = new Events();
+
+
+                Fwk.HelperFunctions.TypeFunctions.SetEntitiesFromIenumerable<Events, Event>(list2, lisToReturn);
+
+                
+                return list2;
+
+          
+        }
     }
 }

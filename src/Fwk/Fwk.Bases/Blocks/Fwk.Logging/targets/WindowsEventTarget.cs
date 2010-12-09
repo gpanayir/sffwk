@@ -34,6 +34,35 @@ namespace Fwk.Logging.Targets
                 pEvent.Source = "Fwk.Logging.Targets";
             EventLog.WriteEntry(pEvent.Source, pEvent.ToString(), GetWindowsEventType(pEvent.LogType));
         }
+
+        /// <summary>
+        /// No se implementa SearchByParam en un evento proveniente del visor de evento de windows
+        /// </summary>
+        /// <param name="pEvent"></param>
+        /// <returns></returns>
+        public override Events SearchByParam(Event pEvent)
+        {
+            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows. Utilice para ello la herramienta WindowsLogViewer del framework");
+        }
+        /// <summary>
+        /// No se implementa SearchByParam en un evento proveniente del visor de evento de windows
+        /// </summary>
+        /// <param name="pEvent"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public override Events SearchByParam(Event pEvent, DateTime t)
+        {
+            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows. Utilice para ello la herramienta WindowsLogViewer del framework");
+        }
+
+        /// <summary>
+        /// No se implementa Remove en un evento proveniente del visor de evento de windows. Utilice para ello la herramienta WindowsLogViewer del framework
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<string> eventIdList)
+        {
+            throw new NotImplementedException("No se implementa Remove en un evento proveniente del visor de evento de windows. Utilice para ello la herramienta WindowsLogViewer del framework");
+        }
         #endregion
 
         #region <private methods>
@@ -68,24 +97,6 @@ namespace Fwk.Logging.Targets
             return EventLogEntryType.Error;
         }
         #endregion
-        /// <summary>
-        /// No se implementa SearchByParam en un evento proveniente del visor de evento de windows
-        /// </summary>
-        /// <param name="pEvent"></param>
-        /// <returns></returns>
-        public override Events SearchByParam(Event pEvent)
-        {
-            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows");
-        }
-        /// <summary>
-        /// No se implementa SearchByParam en un evento proveniente del visor de evento de windows
-        /// </summary>
-        /// <param name="pEvent"></param>
-        /// <param name="t"></param>
-        /// <returns></returns>
-        public override Events SearchByParam(Event pEvent,DateTime t)
-        {
-            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows");
-        }
+       
     }
 }

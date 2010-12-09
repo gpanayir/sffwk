@@ -234,7 +234,7 @@ namespace Fwk.BusinessFacades.Utils
                 wMessage.Append(pServiceConfiguration.Response);
                 wMessage.Append(Environment.NewLine);
 
-                wMessage.Append("Mensage original :");
+                wMessage.Append("Mensaje original :");
                 wMessage.Append(Environment.NewLine);
                 wMessage.Append(ex.Message);
                 #endregion
@@ -402,7 +402,7 @@ namespace Fwk.BusinessFacades.Utils
         /// Completa el error del que va dentro del Request con informacion de :
         /// Assembly, Class, Namespace, UserName,  InnerException, etc
         /// </summary>
-        /// <param name="pMessage">Mensage personalizado</param>
+        /// <param name="pMessage">Mensaje personalizado</param>
         /// <param name="pErrorId">Id del Error</param>
         /// <param name="pException">Alguna Exception que se quiera incluir</param>
         /// <date>2007-08-07T00:00:00</date>

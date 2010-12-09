@@ -119,7 +119,7 @@ namespace Fwk.Exceptions
 
             wMessage.AppendLine("Ocurrio un problema al intentar ejecutar un servicio.");
             wMessage.AppendLine();
-            wMessage.AppendLine("Mensage: ");
+            wMessage.AppendLine("Mensaje: ");
             wMessage.AppendLine(pException.Message);
 
             wServiceError.Message = wMessage.ToString();
@@ -146,7 +146,7 @@ namespace Fwk.Exceptions
             wMessage.AppendLine("Ocurrio un problema al intentar ejecutar un servicio.");
             wMessage.AppendLine("Verifique que el despachador de servicio se encuentre actualizado con las ultimas librerias del Framework .");
             wMessage.AppendLine();
-            wMessage.AppendLine("Mensage SOAP: ");
+            wMessage.AppendLine("Mensaje SOAP: ");
             wMessage.AppendLine(soapException.Message);
 
             wServiceError.Message = wMessage.ToString();
@@ -172,7 +172,7 @@ namespace Fwk.Exceptions
             wMessage.AppendLine("Ocurrio un problema al intentar obtener la confuguracion del cliente al conectarce al Servicio Web. ");
             wMessage.AppendLine("Verifique  si esta bien formado el archivo de configuracion AppConfig y si contiene la seccion que configura el Wrapper");
             wMessage.AppendLine();
-            wMessage.AppendLine("Mensage Web: ");
+            wMessage.AppendLine("Mensaje Web: ");
             wMessage.AppendLine(configurationErrorsException.Message);
 
             wServiceError.Message = wMessage.ToString();

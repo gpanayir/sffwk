@@ -11,7 +11,7 @@ using Fwk.Bases.FrontEnd.Properties;
 namespace Fwk.Bases.FrontEnd.Controls
 {
     /// <summary>
-    /// Componente de visualizacion de mensages personalizados.-
+    /// Componente de visualizacion de mensajes personalizados.-
     /// 
     /// </summary>
     
@@ -131,9 +131,9 @@ namespace Fwk.Bases.FrontEnd.Controls
         #endregion
 
         /// <summary>
-        /// Muestra el mensage
+        /// Muestra el mensaje
         /// </summary>
-        /// <param name="pMessage">Mensage a mostrar</param>
+        /// <param name="pMessage">Mensaje a mostrar</param>
         /// <returns>DialogResult</returns>
         public DialogResult Show(String pMessage)
         {
@@ -147,7 +147,7 @@ namespace Fwk.Bases.FrontEnd.Controls
         }
 
         /// <summary>
-        /// Muestra el mensage
+        /// Muestra el mensaje
         /// </summary>
         /// <param name="e">Exception</param>
         /// <returns>DialogResult</returns>
