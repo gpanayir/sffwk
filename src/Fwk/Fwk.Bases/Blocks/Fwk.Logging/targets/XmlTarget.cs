@@ -64,6 +64,23 @@ namespace Fwk.Logging.Targets
             }
             Fwk.HelperFunctions.FileFunctions.SaveTextFile(this.FileName, XmlTarget.Logs.GetXml(), false);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<Guid> eventIdList)
+        {
+
+            if (XmlTarget.Logs == null)
+                XmlTarget.Logs = OpenLogsFromFile();
+            foreach (Guid guid in eventIdList)
+            {
+                Event eventToRemove = XmlTarget.Logs.Get_ByID(guid);
+                XmlTarget.Logs.Remove(eventToRemove);
+            }
+            Fwk.HelperFunctions.FileFunctions.SaveTextFile(this.FileName, XmlTarget.Logs.GetXml(), false);
+        }
         #endregion
 
         #region <private methods>

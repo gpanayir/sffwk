@@ -42,7 +42,7 @@ namespace Fwk.Logging.Targets
         /// <returns></returns>
         public override Events SearchByParam(Event pEvent)
         {
-            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows. Utilice para ello la herramienta WindowsLogViewer del framework");
+            throw new NotImplementedException("No se implementa SearchByParam en un evento de windows. Utilice para ello la herramienta WindowsLogViewer del framework");
         }
         /// <summary>
         /// No se implementa SearchByParam en un evento proveniente del visor de evento de windows
@@ -52,7 +52,7 @@ namespace Fwk.Logging.Targets
         /// <returns></returns>
         public override Events SearchByParam(Event pEvent, DateTime t)
         {
-            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente del visor de evento de windows. Utilice para ello la herramienta WindowsLogViewer del framework");
+            throw new NotImplementedException("No se implementa SearchByParam en un evento de windows. Utilice para ello la herramienta WindowsLogViewer del framework");
         }
 
         /// <summary>
@@ -61,7 +61,16 @@ namespace Fwk.Logging.Targets
         /// <param name="eventIdList"></param>
         public override void Remove(List<string> eventIdList)
         {
-            throw new NotImplementedException("No se implementa Remove en un evento proveniente del visor de evento de windows. Utilice para ello la herramienta WindowsLogViewer del framework");
+            throw new NotImplementedException("No se implementa Remove en un evento  de windows. Utilice para ello la herramienta WindowsLogViewer del framework");
+        }
+
+        /// <summary>
+        /// No se implementa Remove en un evento proveniente un archivo comun.- Solo de xml y database
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<Guid> eventIdList)
+        {
+            throw new NotImplementedException("No se implementa Remove en un evento de windows.- Solo de xml y database");
         }
         #endregion
 

@@ -88,6 +88,13 @@
     <Compile Include="ConnectionForm.Designer.cs">
       <DependentUpon>ConnectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventGrid.cs" />
+    <Compile Include="Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Filter.Designer.cs">
+      <DependentUpon>Filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRM_Document.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +123,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConnectionForm.resx">
       <DependentUpon>ConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filter.resx">
+      <DependentUpon>Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRM_Document.resx">
       <SubType>Designer</SubType>
@@ -175,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contents 16x16.ico" />
+    <None Include="Properties\DataSources\EventGridList.datasource" />
     <None Include="Resources\srch_16.gif" />
     <None Include="Resources\Zoom In.png" />
     <None Include="Resources\Warning.png" />

@@ -56,7 +56,7 @@
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.LogTypeConverter
+            : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
@@ -280,36 +280,14 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="propertiesToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAddJREFUOE+lkzFr
-        3EAQhdfgwvkpKf03XF46t+5iXARzRRBpguLCCFfiCqMqcCkMcnGgKw6URiAVB3uFQC4MukLFllu42AMb
-        Xt5IPiE5LgJZeKx2tPtp5u3oIFjWOFIf1E4ptXtRylEyi0ZD1oddZMvNx7tc/fj86UAFS4P4AQgL4HIF
-        TH4BH2fA0RWgvlLTd8T4ZBqgpYUrA22AvAHSRyAhbL4BonUHDbKxJHa6cDj58gqYZzztqEYDtoZ1nKjh
-        kKXIPncK1kMAF9iEwHcF3J8wA8dMXAtJC91prZFkOfTWwhDgF0MAFygj4IaAxWQM4EE53AE0dEMAt48B
-        LMFag7rMYZoKSWnbDGqmEN1GvcJZSFCFep/BxcCD2ljEWQX9aEaAeJFANBfdJ0hLfujpTQZRZuGaHFid
-        t6WIB5KF1CqbRdUbednAg4geuMIHpvTg5zHikgBCpIT+64u0z0BgY4BksE1p4CkcbyPe7AHsCdacFK+i
-        iSlv4S+A9EFFd5PfGvlDTQCfmYE4Hlz5vfxvHn3S7wFY75NDRQMFVFvWTEntcu/5QNKxksHoGs/uTNtZ
-        AVtXZnnZizGfrSvyRDRP3k2WNHF/jd4sbn8MCUh//6u867D7mf53/AHRM7ZhNLNrdwAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
-  <data name="mnuCopy.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAALtJREFUOE9jYKAK
-        qNv1n4EQxmsRUDMuADIYBMAW4AQEDIC7jpABr1+/RthGkpegLsg59///hFsQ55LmJaiGHz9+wF3w//cH
-        rGagBDbcSyS4AGYqaqBCDUAOA5BCkHdy5gIx0Gsw7HEIYgRWAzDCAIc3cBoA8zfIdFB4gF2AZDuIDXIB
-        SI6gF8ABCnIBGkYOaESywBLnII3oLpiwFeIColLmlmcQhSAbkTFKYsOXMmFOxZeg8OYNgrkTmrkACYFM
-        mpo9g4MAAAAASUVORK5CYII=
-</value>
-  </data>
   <metadata name="mnuMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>322, 17</value>
   </metadata>
   <metadata name="fwkMessageViewComponent1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 54</value>
+  </metadata>
+  <metadata name="ExceptionViewer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>216, 54</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

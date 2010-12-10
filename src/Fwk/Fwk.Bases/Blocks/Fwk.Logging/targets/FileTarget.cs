@@ -69,6 +69,16 @@ namespace Fwk.Logging.Targets
         {
             throw new NotImplementedException("No se implementa Remove en un evento proveniente un archivo comun.- Solo de xml y database");
         }
+
+
+        /// <summary>
+        /// No se implementa Remove en un evento proveniente un archivo comun.- Solo de xml y database
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<Guid> eventIdList)
+        {
+            throw new NotImplementedException("No se implementa Remove en un evento proveniente un archivo comun.- Solo de xml y database");
+        }
         #endregion
 
         #region <private methods>

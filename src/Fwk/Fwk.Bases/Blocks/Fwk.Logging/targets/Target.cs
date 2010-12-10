@@ -70,6 +70,14 @@ namespace Fwk.Logging.Targets
         /// </summary>
         /// <param name="eventIdList">Lista de guids de los eventos a eliminar</param>
         public abstract void Remove(List<string> eventIdList);
+
+
+        /// <summary>
+        /// Elimina del origen de logueo una lista de eventos por medio de su guid
+        /// </summary>
+        /// <param name="eventIdList">Lista de guids de los eventos a eliminar</param>
+        public abstract void Remove(List<Guid> eventIdList);
+
         #endregion
 
         static Target()

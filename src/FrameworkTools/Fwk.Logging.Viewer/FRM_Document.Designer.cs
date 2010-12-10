@@ -31,19 +31,25 @@ namespace Fwk.Logging.Viewer
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_Document));
             this.grdLogs = new System.Windows.Forms.DataGridView();
-            this.colImg = new System.Windows.Forms.DataGridViewImageColumn();
-            this.machineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sourceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LogDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserLoginName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LogType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Source = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ctlImages = new System.Windows.Forms.ImageList(this.components);
+            this.eventGridListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblMessage1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            this.ExceptionViewer = new Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent(this.components);
+            this.filter1 = new Fwk.Logging.Viewer.Filter();
+            this.colImg = new System.Windows.Forms.DataGridViewImageColumn();
+            this.logTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.logDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.machineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sourceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.appIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.messageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventGridListBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // grdLogs
@@ -60,34 +66,133 @@ namespace Fwk.Logging.Viewer
             this.grdLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdLogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colImg,
+            this.logTypeDataGridViewTextBoxColumn,
+            this.Id,
+            this.logDateDataGridViewTextBoxColumn,
+            this.userDataGridViewTextBoxColumn,
             this.machineDataGridViewTextBoxColumn,
             this.sourceDataGridViewTextBoxColumn,
-            this.LogDate,
-            this.UserLoginName,
-            this.LogType,
-            this.Source});
-            this.grdLogs.DataSource = this.eventBindingSource;
-            this.grdLogs.Location = new System.Drawing.Point(0, -1);
+            this.appIdDataGridViewTextBoxColumn,
+            this.messageDataGridViewTextBoxColumn});
+            this.grdLogs.DataSource = this.eventGridListBindingSource;
+            this.grdLogs.Location = new System.Drawing.Point(9, 92);
             this.grdLogs.Name = "grdLogs";
             this.grdLogs.ReadOnly = true;
             this.grdLogs.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdLogs.RowHeadersVisible = false;
             this.grdLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdLogs.Size = new System.Drawing.Size(1053, 375);
+            this.grdLogs.Size = new System.Drawing.Size(1053, 318);
             this.grdLogs.TabIndex = 0;
             this.grdLogs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLogs_CellClick);
-            this.grdLogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLogs_CellContentClick);
+            // 
+            // eventGridListBindingSource
+            // 
+            this.eventGridListBindingSource.DataSource = typeof(Fwk.Logging.Viewer.EventGridList);
+            // 
+            // lblMessage1
+            // 
+            this.lblMessage1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblMessage1.AutoSize = true;
+            this.lblMessage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage1.Location = new System.Drawing.Point(8, 413);
+            this.lblMessage1.Name = "lblMessage1";
+            this.lblMessage1.Size = new System.Drawing.Size(57, 13);
+            this.lblMessage1.TabIndex = 4;
+            this.lblMessage1.Text = "Message";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Location = new System.Drawing.Point(11, 429);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1042, 220);
+            this.panel1.TabIndex = 5;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "LogType";
+            this.dataGridViewTextBoxColumn1.HeaderText = "LogType";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 262;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "LogType";
+            this.dataGridViewTextBoxColumn2.HeaderText = "LogType";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 262;
+            // 
+            // fwkMessageViewComponent1
+            // 
+            this.fwkMessageViewComponent1.BackColor = System.Drawing.Color.SteelBlue;
+            this.fwkMessageViewComponent1.IconSize = Fwk.Bases.FrontEnd.Controls.IconSize.Small;
+            this.fwkMessageViewComponent1.MessageBoxButtons = System.Windows.Forms.MessageBoxButtons.OK;
+            this.fwkMessageViewComponent1.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Information;
+            this.fwkMessageViewComponent1.TextMessageColor = System.Drawing.Color.SteelBlue;
+            this.fwkMessageViewComponent1.TextMessageForeColor = System.Drawing.Color.PaleGoldenrod;
+            this.fwkMessageViewComponent1.Title = "Message";
+            // 
+            // ExceptionViewer
+            // 
+            this.ExceptionViewer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ExceptionViewer.TextMessageColor = System.Drawing.Color.White;
+            this.ExceptionViewer.TextMessageForeColorColor = System.Drawing.SystemColors.WindowText;
+            this.ExceptionViewer.Title = "FrmTechnicalMsg";
+            // 
+            // filter1
+            // 
+            this.filter1.Location = new System.Drawing.Point(10, 4);
+            this.filter1.Name = "filter1";
+            this.filter1.Size = new System.Drawing.Size(1052, 78);
+            this.filter1.TabIndex = 6;
+            this.filter1.OnFilterChanged += new Fwk.Logging.Viewer.OnFilterChangedHandler(this.filter1_OnFilterChanged);
             // 
             // colImg
             // 
             this.colImg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colImg.DataPropertyName = "IconImage";
+            this.colImg.DataPropertyName = "LogImage";
             this.colImg.Description = "IconImage";
             this.colImg.FillWeight = 155.5696F;
+            this.colImg.Frozen = true;
             this.colImg.HeaderText = "";
             this.colImg.Name = "colImg";
             this.colImg.ReadOnly = true;
             this.colImg.Width = 5;
+            // 
+            // logTypeDataGridViewTextBoxColumn
+            // 
+            this.logTypeDataGridViewTextBoxColumn.DataPropertyName = "LogType";
+            this.logTypeDataGridViewTextBoxColumn.HeaderText = "LogType";
+            this.logTypeDataGridViewTextBoxColumn.Name = "logTypeDataGridViewTextBoxColumn";
+            this.logTypeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // logDateDataGridViewTextBoxColumn
+            // 
+            this.logDateDataGridViewTextBoxColumn.DataPropertyName = "LogDate";
+            this.logDateDataGridViewTextBoxColumn.HeaderText = "LogDate";
+            this.logDateDataGridViewTextBoxColumn.Name = "logDateDataGridViewTextBoxColumn";
+            this.logDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userDataGridViewTextBoxColumn
+            // 
+            this.userDataGridViewTextBoxColumn.DataPropertyName = "User";
+            this.userDataGridViewTextBoxColumn.HeaderText = "User";
+            this.userDataGridViewTextBoxColumn.Name = "userDataGridViewTextBoxColumn";
+            this.userDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // machineDataGridViewTextBoxColumn
             // 
@@ -103,70 +208,19 @@ namespace Fwk.Logging.Viewer
             this.sourceDataGridViewTextBoxColumn.Name = "sourceDataGridViewTextBoxColumn";
             this.sourceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // LogDate
+            // appIdDataGridViewTextBoxColumn
             // 
-            this.LogDate.DataPropertyName = "LogDate";
-            this.LogDate.HeaderText = "LogDate";
-            this.LogDate.Name = "LogDate";
-            this.LogDate.ReadOnly = true;
+            this.appIdDataGridViewTextBoxColumn.DataPropertyName = "AppId";
+            this.appIdDataGridViewTextBoxColumn.HeaderText = "AppId";
+            this.appIdDataGridViewTextBoxColumn.Name = "appIdDataGridViewTextBoxColumn";
+            this.appIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // UserLoginName
+            // messageDataGridViewTextBoxColumn
             // 
-            this.UserLoginName.DataPropertyName = "UserLoginName";
-            this.UserLoginName.HeaderText = "UserLoginName";
-            this.UserLoginName.Name = "UserLoginName";
-            this.UserLoginName.ReadOnly = true;
-            // 
-            // LogType
-            // 
-            this.LogType.DataPropertyName = "LogType";
-            this.LogType.HeaderText = "LogType";
-            this.LogType.Name = "LogType";
-            this.LogType.ReadOnly = true;
-            // 
-            // Source
-            // 
-            this.Source.DataPropertyName = "Source";
-            this.Source.HeaderText = "Source";
-            this.Source.Name = "Source";
-            this.Source.ReadOnly = true;
-            // 
-            // eventBindingSource
-            // 
-            this.eventBindingSource.DataSource = typeof(Fwk.Logging.Event);
-            // 
-            // ctlImages
-            // 
-            this.ctlImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ctlImages.ImageStream")));
-            this.ctlImages.TransparentColor = System.Drawing.Color.Transparent;
-            this.ctlImages.Images.SetKeyName(0, "folder-closed_16.png");
-            this.ctlImages.Images.SetKeyName(1, "search_16.png");
-            this.ctlImages.Images.SetKeyName(2, "confirm_16.png");
-            this.ctlImages.Images.SetKeyName(3, "info.ico");
-            this.ctlImages.Images.SetKeyName(4, "alert.ico");
-            this.ctlImages.Images.SetKeyName(5, "delete.ico");
-            // 
-            // lblMessage1
-            // 
-            this.lblMessage1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblMessage1.AutoSize = true;
-            this.lblMessage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage1.Location = new System.Drawing.Point(6, 385);
-            this.lblMessage1.Name = "lblMessage1";
-            this.lblMessage1.Size = new System.Drawing.Size(57, 13);
-            this.lblMessage1.TabIndex = 4;
-            this.lblMessage1.Text = "Message";
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Location = new System.Drawing.Point(11, 403);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1042, 246);
-            this.panel1.TabIndex = 5;
+            this.messageDataGridViewTextBoxColumn.DataPropertyName = "Message";
+            this.messageDataGridViewTextBoxColumn.HeaderText = "Message";
+            this.messageDataGridViewTextBoxColumn.Name = "messageDataGridViewTextBoxColumn";
+            this.messageDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // FRM_Document
             // 
@@ -174,14 +228,18 @@ namespace Fwk.Logging.Viewer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1065, 661);
+            this.Controls.Add(this.filter1);
+            this.Controls.Add(this.grdLogs);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblMessage1);
-            this.Controls.Add(this.grdLogs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "FRM_Document";
             this.Text = "[name]";
+            this.Activated += new System.EventHandler(this.FRM_Document_Activated);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FRM_Document_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventGridListBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,21 +248,23 @@ namespace Fwk.Logging.Viewer
         #endregion
 
         private System.Windows.Forms.DataGridView grdLogs;
-        private System.Windows.Forms.ImageList ctlImages;
-        private System.Windows.Forms.BindingSource eventBindingSource;
         private System.Windows.Forms.Label lblMessage1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateAndTimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Panel panel1;
+        private Filter filter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewComponent1;
+        private Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent ExceptionViewer;
+        private System.Windows.Forms.BindingSource eventGridListBindingSource;
         private System.Windows.Forms.DataGridViewImageColumn colImg;
+        private System.Windows.Forms.DataGridViewTextBoxColumn logTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn logDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn machineDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sourceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LogDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserLoginName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LogType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Source;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn appIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
 
     }
 }

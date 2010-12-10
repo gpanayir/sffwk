@@ -20,6 +20,7 @@ namespace Fwk.Logging.Viewer
 {
     public partial class FRM_Main : Form
     {
+        public static FRM_Document Current_Document;
         public FRM_Main()
         {
             InitializeComponent();
@@ -81,17 +82,7 @@ namespace Fwk.Logging.Viewer
             CreateTabDocumentFromDB();
         }
 
-        //private void mnuClose_Click(object sender, EventArgs e)
-        //{
-        //    if (ctlTabs.SelectedTab != null)
-        //    {
-        //        ctlTabs.TabPages.Remove(ctlTabs.SelectedTab);
-        //    }
-        //    if (ctlTabs.TabPages.Count == 0)
-        //    {
-        //        ctlTabs.Visible = false;
-        //    }
-        //}
+     
         #endregion
 
         #region <private methods>
@@ -159,27 +150,11 @@ namespace Fwk.Logging.Viewer
             wForm.Populate(t);
             wForm.MdiParent = this;
             wForm.Show();
-            //MagicControls.TabPage wTab = new MagicControls.TabPage(System.IO.Path.GetFileName(pFileName) , wForm);
-            //if (ctlTabs.TabPages.Count == 0)
-            //{
-            //    ctlTabs.Visible = true;
-            //}
-            //wTab.Tag = pFileName;
-            //ctlTabs.TabPages.Add(wTab);
+      
         }
         private void RefreshTabDocument()
         {
-            //if (ctlTabs.SelectedTab == null) return;
-            //FRM_Document wForm = new FRM_Document();
-            //FileInfo wFile = new FileInfo(ctlTabs.SelectedTab.Tag.ToString());
-            //List<Event> wEvents = ParseFile(wFile);
-            
-            //wForm.Populate(wEvents);
-
-            //MagicControls.TabPage wTab = new MagicControls.TabPage(wFile.Name, wForm);
-
-            //wTab.Tag = wFile.Name;
-            //ctlTabs.SelectedTab = wTab;
+            Current_Document.Refresh();
         }
         
         private List<Event> ParseDB(DataSet pLogs)
@@ -237,6 +212,11 @@ namespace Fwk.Logging.Viewer
             return wEvents;
         }
         #endregion
+
+        private void clearAllEventsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
        
 
