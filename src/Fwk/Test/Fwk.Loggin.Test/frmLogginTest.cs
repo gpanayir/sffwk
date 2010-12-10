@@ -181,16 +181,21 @@ namespace Fwk.Logging.Test
             try
             {
                 _loger.Information("Fwk Loggin test", "Mensaje de prueba para Fwk Loggin");
-
-                ITarget t = DatabaseTarget.TargetFactory(TargetType.Database, _LoggingSection.GetRuleByEventType(EventType.Information).CnnStringName);
-                eventFilter.LogType = EventType.Information;
-                t.SearchByParam(eventFilter);
-                foreach (Event wEvent in t.SearchByParam(eventFilter))
+                System.Configuration.ConnectionStringSettings cnn = System.Configuration.ConfigurationManager.ConnectionStrings[_LoggingSection.GetRuleByEventType(EventType.Information).CnnStringName];
+                if(cnn == null)
                 {
-                    lst.Add(wEvent.Id.ToString());
+                    throw new Exception("no existe la ConnectionString " + _LoggingSection.GetRuleByEventType(EventType.Information).CnnStringName + " configurada en el config file para EventType.Information");
                 }
-                t.Remove(lst);
-                eventFilter.LogType = EventType.None;
+                ITarget t = DatabaseTarget.TargetFactory(TargetType.Database, cnn.Name);
+                _loger.Information("test logging", "Informe de error");
+                //eventFilter.LogType = EventType.Information;
+                //t.SearchByParam(eventFilter);
+                //foreach (Event wEvent in t.SearchByParam(eventFilter))
+                //{
+                //    lst.Add(wEvent.Id.ToString());
+                //}
+                //t.Remove(lst);
+                //eventFilter.LogType = EventType.None;
                 txtNoStaticResult.Text = t.SearchByParam(eventFilter).GetXml();
 
 
