@@ -98,6 +98,8 @@ namespace Fwk.Logging.Targets
                     wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
                     wParam.Value = pEvent.User;
 
+                    wParam = wCmd.Parameters.Add("AppId", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.AppId;
 
                     wCmd.ExecuteNonQuery();
                 }
