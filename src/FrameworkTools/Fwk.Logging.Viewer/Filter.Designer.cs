@@ -71,7 +71,7 @@
             // dtEndDate
             // 
             this.dtEndDate.Enabled = false;
-            this.dtEndDate.Location = new System.Drawing.Point(97, 14);
+            this.dtEndDate.Location = new System.Drawing.Point(351, 12);
             this.dtEndDate.Name = "dtEndDate";
             this.dtEndDate.Size = new System.Drawing.Size(200, 20);
             this.dtEndDate.TabIndex = 2;
@@ -108,10 +108,11 @@
             // dtStartDate
             // 
             this.dtStartDate.Enabled = false;
-            this.dtStartDate.Location = new System.Drawing.Point(347, 13);
+            this.dtStartDate.Location = new System.Drawing.Point(100, 13);
             this.dtStartDate.Name = "dtStartDate";
             this.dtStartDate.Size = new System.Drawing.Size(200, 20);
             this.dtStartDate.TabIndex = 5;
+            this.dtStartDate.ValueChanged += new System.EventHandler(this.dtStartDate_ValueChanged);
             // 
             // groupBox1
             // 
@@ -145,6 +146,7 @@
             // 
             // errorProvider1
             // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
             this.errorProvider1.ContainerControl = this;
             // 
             // Filter

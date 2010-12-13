@@ -25,9 +25,9 @@ namespace Fwk.Logging.Viewer
         bool Validate()
         {
             //Fecha desde > fecha fin
-            if (dtStartDate.Value.CompareTo(dtEndDate.Value) < 0)
+            if (dtStartDate.Value.CompareTo(dtEndDate.Value) > 0)
             {
-                errorProvider1.SetError(dtStartDate,"Fecha desde debe ser menor a fecha hasta");
+                errorProvider1.SetError(dtEndDate, "Fecha desde debe ser menor a fecha hasta");
                 return false;
             }
 
@@ -43,13 +43,15 @@ namespace Fwk.Logging.Viewer
             if (cmbType.SelectedIndex == 0)
                 wEventFilter.LogType = EventType.None;
             else
-
-                wEventFilter.LogType = (EventType)Enum.Parse(typeof(EventType), cmbType.Text);
+               wEventFilter.LogType = (EventType)Enum.Parse(typeof(EventType), cmbType.Text);
 
             if (chDates.Checked)
             {
-                wEventFilter.LogDate = dtEndDate.Value;
-                wEndDate = dtEndDate.Value;
+                if ((dtStartDate.Value.CompareTo(dtEndDate.Value)) != 0)
+                {
+                    wEndDate = dtEndDate.Value;
+                }
+                wEventFilter.LogDate = dtStartDate.Value;
             }
             if (!string.IsNullOrEmpty(txtText.Text))
             {
@@ -91,6 +93,14 @@ namespace Fwk.Logging.Viewer
         }
 
         private void dtEndDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (Validate())
+            {
+                SetFilter();
+            }
+        }
+
+        private void dtStartDate_ValueChanged(object sender, EventArgs e)
         {
             if (Validate())
             {

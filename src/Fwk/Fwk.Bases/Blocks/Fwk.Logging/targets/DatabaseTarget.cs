@@ -281,14 +281,16 @@ namespace Fwk.Logging.Targets
                     {
                         while (reader.Read())
                         {
+
                             wEvent = new Event();
                             wEvent.Id = new Guid(reader["Id"].ToString());
                             wEvent.Message.Text = reader["Message"].ToString();
                             wEvent.Source = reader["Source"].ToString();
-                            wEvent.LogType = (EventType)reader["LogType"];
+                            wEvent.LogType = (EventType)Enum.Parse(typeof(EventType), reader["LogType"].ToString());
                             wEvent.Machine = reader["Machine"].ToString();
-                            wEvent.LogDate = Convert.ToDateTime(reader["Machine"]);
+                            wEvent.LogDate = Convert.ToDateTime(reader["LogDate"]);
                             wEvent.User = reader["UserLoginName"].ToString();
+                            wEvent.AppId = reader["AppId"].ToString();
                             wEventList.Add(wEvent);
                         }
                     }

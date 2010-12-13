@@ -33,7 +33,7 @@ namespace Fwk.Logging.Viewer
             //grdLogs.BindingContextChanged += new EventHandler(grdLogs_BindingContextChanged);
 
             Event ev = new Event();
-            
+
             Events wEvents = _Target.SearchByParam(ev);
 
             currentEvents = Get_EventGridList(wEvents);
@@ -56,10 +56,10 @@ namespace Fwk.Logging.Viewer
         {
 
         }
-     
 
 
-      
+
+
         #endregion
 
 
@@ -122,8 +122,6 @@ namespace Fwk.Logging.Viewer
 
 
 
-
-
         private void grdLogs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -161,22 +159,8 @@ namespace Fwk.Logging.Viewer
 
 
         }
-        public void AddtoPanel(Control pControlToAdd)
-        {
 
-            if (panel1.Contains(pControlToAdd)) return;
 
-            pControlToAdd.Location = new System.Drawing.Point(1, 1);
-            pControlToAdd.Width = panel1.Width - 60;
-            pControlToAdd.Height = panel1.Height - 60;
-            pControlToAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                   | System.Windows.Forms.AnchorStyles.Left)
-                   | System.Windows.Forms.AnchorStyles.Right)));
-            panel1.Controls.Clear();
-            panel1.Controls.Add(pControlToAdd);
-
-        }
-       
         private void FRM_Document_Activated(object sender, EventArgs e)
         {
             FRM_Main.Current_Document = this;
@@ -186,28 +170,33 @@ namespace Fwk.Logging.Viewer
         {
             Events wEvents = null;
             this.eventGridListBindingSource.DataSource = null;
-            if (endDate == Fwk.HelperFunctions.DateFunctions.NullDateTime)
+            try
             {
-                wEvents = _Target.SearchByParam(eventFilter);
-               
-            }
-            else
-            {
-                wEvents = _Target.SearchByParam(eventFilter, endDate);
-              
-            }
+                if (endDate == Fwk.HelperFunctions.DateFunctions.NullDateTime)
+                {
+                    wEvents = _Target.SearchByParam(eventFilter);
 
+                }
+                else
+                {
+                    wEvents = _Target.SearchByParam(eventFilter, endDate);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionViewer.Show(ex);
+            }
             currentEvents = Get_EventGridList(wEvents);
+            if (currentEvents.Count == 0) return;
             this.eventGridListBindingSource.DataSource = null;
             this.eventGridListBindingSource.DataSource = currentEvents;
             grdLogs.Refresh();
         }
 
 
-
         private void FRM_Document_KeyDown(object sender, KeyEventArgs e)
         {
-
             if (e.KeyCode == Keys.Delete)
             {
                 List<Guid> wGuids = new List<Guid>();
@@ -227,13 +216,21 @@ namespace Fwk.Logging.Viewer
                     ExceptionViewer.Show(ex);
                 }
             }
-
         }
+
         public override void Refresh()
         {
             this.filter1.Refresh();
             Event ev = new Event();
-            Events wEvents = _Target.SearchByParam(ev);
+            Events wEvents = null;
+            try
+            {
+                 wEvents = _Target.SearchByParam(ev);
+            }
+            catch (Exception ex)
+            {
+                ExceptionViewer.Show(ex);
+            }
             currentEvents = Get_EventGridList(wEvents);
             this.eventGridListBindingSource.DataSource = null;
             this.eventGridListBindingSource.DataSource = currentEvents;
@@ -257,30 +254,21 @@ namespace Fwk.Logging.Viewer
             lst2.AddRange(lst.ToArray<EventGrid>());
             return lst2;
         }
-        //void AddImages()
-        //{
-        //    //grdLogs.Rows.Add(GetImageByType(pEvent.LogType), pEvent.Id, pEvent.DateAndTime, pEvent.Message, pEvent.Source, pEvent.Machine, pEvent.User);
+        void AddtoPanel(Control pControlToAdd)
+        {
 
+            if (panel1.Contains(pControlToAdd)) return;
 
-        //    foreach (DataGridViewRow row in grdLogs.Rows)
-        //    {
+            pControlToAdd.Location = new System.Drawing.Point(1, 1);
+            pControlToAdd.Width = panel1.Width - 60;
+            pControlToAdd.Height = panel1.Height - 60;
+            pControlToAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                   | System.Windows.Forms.AnchorStyles.Left)
+                   | System.Windows.Forms.AnchorStyles.Right)));
+            panel1.Controls.Clear();
+            panel1.Controls.Add(pControlToAdd);
 
-        //        EventType wEventType = (EventType)row.Cells["Type"].Value;
-        //        row.Cells["Logtype"].Value = GetImageByType(wEventType);
-        //        row.Cells["Logtype"].ToolTipText = wEventType.ToString();
-        //    }
-        //}
-        //void grdLogs_BindingContextChanged(object sender, EventArgs e)
-        //{
-        //    List<Event> pEvenList = (List<Event>)eventGridListBindingSource.DataSource;
-        //    foreach (DataGridViewRow row in grdLogs.Rows)
-        //    {
-        //        Event x = (Event)row.DataBoundItem;
-
-        //        row.Cells[0].Value = GetImageByType(x.LogType);
-        //        row.Cells[0].ToolTipText = x.LogType.ToString();
-        //    }
-        //}
+        }
     }
 
 
@@ -323,29 +311,7 @@ namespace Fwk.Logging.Viewer
             get { return _AnyMessage; }
             set { _AnyMessage = value; }
         }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="pMessage"></param>
-        ///// <returns></returns>
-        //internal  static Message LoadMessage(String pMessage)
-        //{
-        //    Message msg = new Message ();
-        //    StringBuilder s = new StringBuilder();
-        //    s.AppendLine("<Message>");
-        //    s.AppendLine(pMessage);
-        //    s.AppendLine("</Message>");
-        //    try
-        //    {
-        //         msg = (Message)Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(Message), s.ToString());
-        //    }
-        //    catch(Exception xx )
-        //    {
-        //        msg.AnyMessage = pMessage;
-        //    }
 
-        //    return msg;
-        //}
     }
 
 
