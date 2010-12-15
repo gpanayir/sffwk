@@ -1,17 +1,29 @@
-ECHO cd C:\Projects\Fwk 3.0\Libraries\Framework\
-CleanFwk.cmd
+@echo off
+:: REalizando limpiesa de basura
+
+
 @SET SPDIR="..\..\..\build"
 
-@ECHO OFF
 ECHO:
-ECHO  ** Se esta por copiar los asemblies del framework al servidor **
+Echo  ********************************************************************
+ECHO  ******* Copiando archivos ******************************************
+Echo  ********************************************************************
 ECHO:
-pause
-
 copy Fwk.* %SPDIR%
 
+cd %SPDIR%
 
 
+ECHO:
+Echo  ********************************************************************
+ECHO  ******* Eliminando basura ******************************************
+Echo  ********************************************************************
+ECHO:
+
+del *.pdb 
+del Fwk.*.xml
+del *.config 
+dir
 
 
 pause
