@@ -58,17 +58,17 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddService();
+            AddService(); ucbServiceGrid1.RefreshServices();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            EditService();
+            EditService(); ucbServiceGrid1.RefreshServices();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DeleteService();
+            DeleteService(); ucbServiceGrid1.RefreshServices();
         }
 
 
@@ -93,10 +93,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 wServiceNew.CreatedDateTime = System.DateTime.Now;
                 try
                 {
-                    ucbServiceGrid1.Add(wServiceNew);
+                    //ucbServiceGrid1.Add(wServiceNew);
 
-
-                    base.Wrapper.AddServiceConfiguration(CurrentProvider.Name, wServiceNew);
+             
+                    //base.Wrapper.AddServiceConfiguration(CurrentProvider.Name, wServiceNew);
+                    Fwk.ServiceManagement.ServiceMetadata.AddServiceConfiguration(CurrentProvider.Name, wServiceNew);
+                   
                 }
                 catch(Exception ex)
                 {
@@ -126,8 +128,10 @@ namespace Fwk.ServiceManagement.Tools.Win32
             ServiceConfiguration clon = ucbServiceGrid1.CurentServiceConfiguration.Clone();
             if (frmEdit.ShowEdit(clon) == DialogResult.OK)
             {
-                base.Wrapper.SetServiceConfiguration(CurrentProvider.Name, _AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
+                Fwk.ServiceManagement.ServiceMetadata.SetServiceConfiguration(CurrentProvider.Name, _AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
+                //base.Wrapper.SetServiceConfiguration(CurrentProvider.Name, _AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
                 ServiceConfiguration s = ucbServiceGrid1.CurentServiceConfiguration;
+               
                 Fwk.HelperFunctions.ReflectionFunctions.MapProperties<ServiceConfiguration>(clon, ref s);
      
             }
@@ -157,9 +161,10 @@ namespace Fwk.ServiceManagement.Tools.Win32
             base.SetMessageViewInfoDefault();
             if (wDialogResult == DialogResult.OK)
             {
-               
+                Fwk.ServiceManagement.ServiceMetadata.DeleteServiceConfiguration(CurrentProvider.Name, ucbServiceGrid1.CurentServiceConfiguration.Name);
                 ucbServiceGrid1.RemoveCurrent();
-                base.Wrapper.DeleteServiceConfiguration(CurrentProvider.Name, ucbServiceGrid1.CurentServiceConfiguration.Name);
+               
+                //base.Wrapper.DeleteServiceConfiguration(CurrentProvider.Name, ucbServiceGrid1.CurentServiceConfiguration.Name);
             }
 
 

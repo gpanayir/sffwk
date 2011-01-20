@@ -133,27 +133,34 @@ namespace Fwk.ServiceManagement.Tools.Win32
         internal void Update(ServiceConfiguration pServiceConfiguration)
         {
             //TODO:Ver appname
-            if (_Services.Exists(pServiceConfiguration.Name, string.Empty))
-            {
-                _Services.Remove(_CurrentServiceConfiguration);
+            //if (_Services.Exists(pServiceConfiguration.Name, string.Empty))
+            //{
+            //    _Services.Remove(_CurrentServiceConfiguration);
 
-                _CurrentServiceConfiguration = pServiceConfiguration;
+            //    _CurrentServiceConfiguration = pServiceConfiguration;
 
-                _Services.Add(_CurrentServiceConfiguration);
+            //    _Services.Add(_CurrentServiceConfiguration);
 
-                //SetSort();
+         
 
-            }
+            //}
             serviceConfigurationCollectionBindingSource.ResetBindings(true);
+            Filter();
         }
-
+        internal void RefreshServices()
+        {
+            
+          
+            Filter();
+        }
         /// <summary>
         /// 
         /// </summary>
         internal void RemoveCurrent()
         {
-            _Services.Remove(_CurrentServiceConfiguration);
-            serviceConfigurationCollectionBindingSource.ResetBindings(true);
+            //_Services.Remove(_CurrentServiceConfiguration);
+            //serviceConfigurationCollectionBindingSource.ResetBindings(true);
+            Filter();
         }
 
         /// <summary>
@@ -164,14 +171,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
 
 
-            if (_Services.Exists(pServiceConfiguration.Name, string.Empty))
-            {
-                throw new Fwk.Exceptions.TechnicalException(string.Concat("El servicio " + pServiceConfiguration.Name + " ya existe en la metadata"));
-            }
+            //if (_Services.Exists(pServiceConfiguration.Name, string.Empty))
+            //{
+            //    throw new Fwk.Exceptions.TechnicalException(string.Concat("El servicio " + pServiceConfiguration.Name + " ya existe en la metadata"));
+            //}
             _CurrentServiceConfiguration = pServiceConfiguration;
-            _Services.Add(_CurrentServiceConfiguration);
-            serviceConfigurationCollectionBindingSource.ResetBindings(true);
-
+            //_Services.Add(_CurrentServiceConfiguration);
+            //serviceConfigurationCollectionBindingSource.ResetBindings(true);
+            Filter();
         }
 
 
@@ -263,11 +270,17 @@ namespace Fwk.ServiceManagement.Tools.Win32
             bool wNotInclude_IsolationLevel = (cmbFilterIsolationLevel.SelectedIndex == 0);
             bool wNotInclude_TransactionalBehaviour = (cmbFilterTransactionalBehaviour.SelectedIndex == 0);
             bool wNotInclude_ApplicationId = (cmbApplication.SelectedIndex == _Applications.Count - 1);
+            Common.TipoBusquedaEnum tb = Common.TipoBusquedaEnum.Contains;
+            try
+            {
 
+                 tb = (Common.TipoBusquedaEnum)Enum.Parse(typeof(Common.TipoBusquedaEnum), cmbSearchType.Text);
 
-
-            Common.TipoBusquedaEnum tb = (Common.TipoBusquedaEnum)Enum.Parse(typeof(Common.TipoBusquedaEnum), cmbSearchType.Text);
-
+            }
+            catch (Exception)
+            {
+ 
+            }
             IEnumerable<ServiceConfiguration> list = from s in _Services
                                                      where
 

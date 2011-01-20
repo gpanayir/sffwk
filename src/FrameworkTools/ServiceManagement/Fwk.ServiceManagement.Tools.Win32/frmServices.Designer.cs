@@ -29,7 +29,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServices));
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -50,11 +49,11 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ucbServiceGrid1 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
+            this.provider1 = new Fwk.ServiceManagement.Tools.Win32.provider();
             this.ctrlService1 = new Fwk.ServiceManagement.Tools.Win32.ctrlService();
             this.label4 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMetaqadata = new System.Windows.Forms.Label();
-            this.provider1 = new Fwk.ServiceManagement.Tools.Win32.provider();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -211,6 +210,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // 
             // cmbProviders
             // 
+            this.cmbProviders.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbProviders.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cmbProviders.ForeColor = System.Drawing.Color.Maroon;
             this.cmbProviders.Name = "cmbProviders";
             this.cmbProviders.Size = new System.Drawing.Size(121, 21);
@@ -259,6 +260,13 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.ucbServiceGrid1.TabIndex = 0;
             this.ucbServiceGrid1.OnClickServiceHandler += new Fwk.ServiceManagement.Tools.Win32.OnClickServiceHandler(this.ucbServiceGrid1_OnClickServiceHandler);
             // 
+            // provider1
+            // 
+            this.provider1.Location = new System.Drawing.Point(9, 7);
+            this.provider1.Name = "provider1";
+            this.provider1.Size = new System.Drawing.Size(638, 116);
+            this.provider1.TabIndex = 51;
+            // 
             // ctrlService1
             // 
             this.ctrlService1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -303,13 +311,6 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.lblMetaqadata.Size = new System.Drawing.Size(109, 13);
             this.lblMetaqadata.TabIndex = 45;
             this.lblMetaqadata.Text = "<<<<<<<<<<<<<<<<<";
-            // 
-            // provider1
-            // 
-            this.provider1.Location = new System.Drawing.Point(9, 7);
-            this.provider1.Name = "provider1";
-            this.provider1.Size = new System.Drawing.Size(638, 116);
-            this.provider1.TabIndex = 51;
             // 
             // frmServices
             // 
