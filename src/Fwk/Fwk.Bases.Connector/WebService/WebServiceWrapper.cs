@@ -69,14 +69,14 @@ namespace Fwk.Bases.Connector
 		/// <returns>XML con datos de salida del servicio.</returns>
 		/// <date>2007-08-23T00:00:00</date>
 		/// <author>moviedo</author>
-		public string ExecuteService (string pServiceName, string pData)
+		public string ExecuteService (string serviceMetadataProviderName ,string pServiceName, string pData)
 		{
 			string wResult = null;
 
             using (singleservice.SingleService wService = new singleservice.SingleService())
 			{
                 wService.Url = msz_URL;//Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
-                wResult = wService.ExecuteService(_ProviderName, pServiceName, pData);
+                wResult = wService.ExecuteService(serviceMetadataProviderName, pServiceName, pData);
 			}
 
 			return wResult;
@@ -130,12 +130,12 @@ namespace Fwk.Bases.Connector
         /// Ejecuta un servicio de negocio. (Metodo vigente solo por compatibilidad con versiones anteriores donde se pasaba el 
         /// nombre del servicio como parametro.-
         /// </summary>
-        /// <param name="pServiceName">Nombre del servicio.</param>
+        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
         /// <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        public TResponse ExecuteService<TRequest, TResponse>(string pServiceName, TRequest pReq)
+        public TResponse ExecuteService<TRequest, TResponse>(string serviceMetadataProviderName, TRequest pReq)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
@@ -145,9 +145,9 @@ namespace Fwk.Bases.Connector
 
             try
             {
-                pReq.ServiceName = pServiceName;
+                
                 pReq.InitializeHostContextInformation();
-                string wResult = ExecuteService(pServiceName ,pReq.GetXml());
+                string wResult = ExecuteService(serviceMetadataProviderName, pReq.ServiceName, pReq.GetXml());
                 wResponse.SetXml(wResult);
                 wResponse.InitializeHostContextInformation();
             }
@@ -173,33 +173,33 @@ namespace Fwk.Bases.Connector
         /// <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
-            where TRequest : IServiceContract
-            where TResponse : IServiceContract, new()
-        {
-            pReq.InitializeHostContextInformation();
+        //public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
+        //    where TRequest : IServiceContract
+        //    where TResponse : IServiceContract, new()
+        //{
+        //    pReq.InitializeHostContextInformation();
 
-            TResponse wResponse = new TResponse();
+        //    TResponse wResponse = new TResponse();
 
-            try
-            {
-                pReq.InitializeHostContextInformation();
-                string wResult = ExecuteService(pReq.ServiceName, pReq.GetXml());
-                wResponse.SetXml(wResult);
-                wResponse.InitializeHostContextInformation();
-            }
-            catch (Exception ex)
-            {
-                wResponse.Error = ProcessConnectionsException.Process(ex, msz_URL);
-            }
+        //    try
+        //    {
+        //        pReq.InitializeHostContextInformation();
+        //        string wResult = ExecuteService(pReq.ServiceName, pReq.GetXml());
+        //        wResponse.SetXml(wResult);
+        //        wResponse.InitializeHostContextInformation();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        wResponse.Error = ProcessConnectionsException.Process(ex, msz_URL);
+        //    }
 
-            wResponse.InitializeHostContextInformation();
-
-
-            return wResponse;
+        //    wResponse.InitializeHostContextInformation();
 
 
-        }
+        //    return wResponse;
+
+
+        //}
 		#endregion
 
 

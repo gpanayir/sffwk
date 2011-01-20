@@ -12,6 +12,7 @@ namespace Fwk.Bases.Connector
     /// </summary>
     public class LocalWrapper : IServiceWrapper
     {
+        #region properties
         SimpleFacade _SimpleFacade;
 
         string _ProviderName;
@@ -55,6 +56,7 @@ namespace Fwk.Bases.Connector
             get { return _CompanyId; }
             set { _CompanyId = value; }
         }
+        #endregion 
 
         /// <summary>
         /// Implementa la llamada al backend atravez de la ejecucion de la SimpleFacade. 
@@ -64,13 +66,13 @@ namespace Fwk.Bases.Connector
         /// <param name="pReq">Clase request que implementa IServiceContract. No nececita pasarce el reprecentativo xml de tal
         /// objeto, esto es para evitar serializacion innecesaria</param>
         /// <returns>Response con los resultados del servicio</returns>
-        private IServiceContract ExecuteService(IServiceContract pReq)
+        private IServiceContract ExecuteService(string serviceMetadataProviderName,IServiceContract pReq)
         {
             if (_SimpleFacade == null)
                 _SimpleFacade = CreateSimpleFacade();
 
             pReq.InitializeHostContextInformation();
-            IServiceContract wResponse = _SimpleFacade.ExecuteService(string.Empty,pReq);
+            IServiceContract wResponse = _SimpleFacade.ExecuteService(serviceMetadataProviderName, pReq);
             wResponse.InitializeHostContextInformation();
 
             return wResponse;
@@ -79,18 +81,17 @@ namespace Fwk.Bases.Connector
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <param name="serviceName">Nombre del servicio.</param>
+        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
         /// <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        public TResponse ExecuteService<TRequest, TResponse>(string serviceName, TRequest pReq)
+        public TResponse ExecuteService<TRequest, TResponse>(string serviceMetadataProviderName, TRequest pReq)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-           
-            pReq.ServiceName = serviceName;
-            TResponse wResponse = (TResponse)this.ExecuteService(pReq);
+
+            TResponse wResponse = (TResponse)this.ExecuteService(serviceMetadataProviderName,pReq);
             return wResponse;
         }
 
@@ -101,12 +102,12 @@ namespace Fwk.Bases.Connector
         /// <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
-            where TRequest : IServiceContract
-            where TResponse : IServiceContract, new()
-        {
-           return (TResponse)this.ExecuteService(pReq);
-        }
+        ////////public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
+        ////////    where TRequest : IServiceContract
+        ////////    where TResponse : IServiceContract, new()
+        ////////{
+        ////////   return (TResponse)this.ExecuteService(pReq);
+        ////////}
 
         /// <summary>
         /// Este metodo no esta implementado para un wrapper local.-
@@ -116,7 +117,7 @@ namespace Fwk.Bases.Connector
         /// <param name="pData"></param>
         /// <returns></returns>
         [Obsolete("The method or operation is not implemented on local wraper")]
-        public string ExecuteService(string serviceName, string pData)
+        public string ExecuteService(string serviceMetadataProviderName, string serviceName, string pData)
         {
             throw new Exception("The method or operation is not implemented.");
         }

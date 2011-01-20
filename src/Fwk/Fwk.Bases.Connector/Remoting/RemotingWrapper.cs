@@ -63,50 +63,53 @@ namespace Fwk.Bases.Connector
         /// <summary>
         /// Metodo no implementado
         /// </summary>
-        /// <param name="pServiceName"></param>
-        /// <param name="pData"></param>
-        /// <returns></returns>
-        public string ExecuteService(string pServiceName, string pData)
+        public string ExecuteService(string serviceMetadataProviderName,string pServiceName, string pData)
         {
             throw new Exception("The method or operation is not implemented in remoting execution. It's obsolete");
         }
 
         /// <summary>
-        /// Ejecucion del servicio
+        /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <typeparam name="TRequest"></typeparam>
-        /// <typeparam name="TResponse"></typeparam>
-        /// <param name="pServiceName"></param>
-        /// <param name="pData"></param>
+        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
+        /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
+        /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
         /// <returns></returns>
-        public TResponse ExecuteService<TRequest, TResponse>(string pServiceName, TRequest pData)
+        public TResponse ExecuteService<TRequest, TResponse>(string serviceMetadataProviderName, TRequest req)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-            pData.ServiceName = pServiceName;
-            
-            return this.ExecuteService<TRequest, TResponse>(pData);
-        }
 
-        /// <summary>
-        /// Ejecucion del servicio
-        /// </summary>
-        /// <typeparam name="TRequest"></typeparam>
-        /// <typeparam name="TResponse"></typeparam>
-        /// <param name="pReq"></param>
-        /// <returns></returns>
-        public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
-            where TRequest : IServiceContract
-            where TResponse : IServiceContract, new()
-        {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
-            pReq.InitializeHostContextInformation();
-            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(_ProviderName, pReq);
+            req.InitializeHostContextInformation();
+            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(serviceMetadataProviderName, req);
             response.InitializeHostContextInformation();
 
             return response;
+
+            //return this.ExecuteService<TRequest, TResponse>(serviceMetadataProviderName,req);
         }
+
+        ///// <summary>
+        ///// Ejecucion del servicio
+        ///// </summary>
+        ///// <typeparam name="TRequest"></typeparam>
+        ///// <typeparam name="TResponse"></typeparam>
+        ///// <param name="pReq"></param>
+        ///// <returns></returns>
+        //public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
+        //    where TRequest : IServiceContract
+        //    where TResponse : IServiceContract, new()
+        //{
+        //    FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+
+        //    pReq.InitializeHostContextInformation();
+        //    TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(_ProviderName, pReq);
+        //    response.InitializeHostContextInformation();
+
+        //    return response;
+        //}
 
 
 
