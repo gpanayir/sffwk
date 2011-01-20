@@ -8,7 +8,7 @@ using Fwk.Security.BE;
 namespace Fwk.Security.ISVC.SearchAllRules
 {
     [Serializable]
-    public class SearchAllRulesReq : Request<Param>
+    public class SearchAllRulesReq : Request<DummyContract>
     {
         public SearchAllRulesReq()
 		{
@@ -16,25 +16,7 @@ namespace Fwk.Security.ISVC.SearchAllRules
 		}
     }
 
-    #region [BussinesData]
-
-    [XmlInclude(typeof(Param)), Serializable]
-    public class Param : Entity
-    {
-
-        private System.String _ApplicationName;
-
-        public System.String ApplicationName
-        {
-            get { return _ApplicationName; }
-            set { _ApplicationName = value; }
-        }
-        
-                
-
-    }
-
-    #endregion
+   
 
     [Serializable]
     public class SearchAllRulesRes : Response<FwkAuthorizationRuleList>

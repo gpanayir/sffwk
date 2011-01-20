@@ -28,13 +28,7 @@ namespace Fwk.Security.ISVC.SearchAllRoles
             get { return _UserName; }
             set { _UserName = value; }
         }
-        private System.String _ApplicationName;
-
-        public System.String ApplicationName
-        {
-            get { return _ApplicationName; }
-            set { _ApplicationName = value; }
-        }
+       
         
                 
 

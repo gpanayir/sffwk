@@ -190,19 +190,19 @@ namespace Fwk.Bases
 
     }
 
-    /// <summary>
-    /// Modo de autenticacion
-    /// </summary>
+
     public enum AuthenticationModeEnum
     {
-        [Description("Integrada de Windows")]
+        [Description("Autenticación Integrada")]
         WindowsIntegrated = 0,
 
-        [Description("Mixta")]
+        [Description("Autenticación Mixta")]
         Mixed = 1,
 
-        [Description("Huella Digital")]// --> buena groso falto ocular tambien jaja
+        [Description("Huella Digital")]
         FingerPrint = 2,
 
+        [Description("Autenticación de Windows")]
+        LDAP = 3,
     }
 }

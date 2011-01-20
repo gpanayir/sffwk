@@ -20,7 +20,7 @@ namespace Fwk.Security.SVC
     /// </summary>
     public class SearchAllRulesService : BusinessService<SearchAllRulesReq, SearchAllRulesRes>
     {
-        //TODO:Limpiar este codigo
+        
         public override SearchAllRulesRes Execute(SearchAllRulesReq pServiceRequest)
         {
             SearchAllRulesRes wRes = new SearchAllRulesRes();

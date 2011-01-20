@@ -28,6 +28,13 @@ namespace Fwk.Blocking
         /// <param name="pBlockingMark"></param>
         /// <returns></returns>
         DataTable GetByParam(IBlockingMark pBlockingMark);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pBlockingMark"></param>
+        /// <returns></returns>
+        DataTable GetByParamCustom(IBlockingMark pBlockingMark);
         /// <summary>
         /// 
         /// </summary>
