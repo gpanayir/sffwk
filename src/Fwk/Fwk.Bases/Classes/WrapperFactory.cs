@@ -115,7 +115,7 @@ namespace Fwk.Bases
                     try
                     {
                        
-                        pRequest.ContextInformation.CompanyId = _WraperPepository[providerName].SecurityProviderName;
+                        //pRequest.ContextInformation.CompanyId = _WraperPepository[providerName].SecurityProviderName;
 
                         wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>(pRequest);
                     }
