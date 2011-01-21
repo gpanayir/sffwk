@@ -22,9 +22,9 @@ namespace Fwk.Security.ISVC.UpdateRules
     [XmlInclude(typeof(Param)), Serializable]
     public class Param:Entity
     {
-        FwkAuthorizationRuleList _Rules = new FwkAuthorizationRuleList();
-        
-        public FwkAuthorizationRuleList FwkAuthorizationRuleList
+        FwkAuthorizationRuleAuxList _Rules = new FwkAuthorizationRuleAuxList();
+
+        public FwkAuthorizationRuleAuxList FwkAuthorizationRuleList
         {
             get { return _Rules; }
             set { _Rules = value; }

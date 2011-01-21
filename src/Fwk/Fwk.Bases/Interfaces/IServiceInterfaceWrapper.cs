@@ -37,23 +37,25 @@ namespace Fwk.Bases
 		/// <summary>
 		/// Ejecuta un servicio de negocio.
 		/// </summary>
-		/// <param name="pServiceName">Nombre del servicio.</param>
+        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
+        /// <param name="pServiceName">Nombre del servicio.</param>
 		/// <param name="pData">XML con datos de entrada para la  ejecución del servicio.</param>
 		/// <returns>XML con datos de salida del servicio.</returns>
 		/// <date>2007-06-23T00:00:00</date>
 		/// <author>moviedo</author>
-		string ExecuteService(string pServiceName, string pData);
+        string ExecuteService(string serviceMetadataProviderName, string pServiceName, string pData);
 
        
 
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <param name="pData">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
+        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
+        /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        TResponse ExecuteService<TRequest, TResponse>( TRequest pData)
+        TResponse ExecuteService<TRequest, TResponse>(string serviceMetadataProviderName, TRequest req)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new();
 

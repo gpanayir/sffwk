@@ -30,8 +30,8 @@ namespace Fwk.Security.SVC
         public override CreateRuleRes Execute(CreateRuleReq pServiceRequest)
         {
             CreateRuleRes wRes = new CreateRuleRes();
-       
-            FwkMembership.CreateRule(pServiceRequest.BusinessData,pServiceRequest.SecurityProviderName);  
+            FwkAuthorizationRule pFwkAuthorizationRule = new FwkAuthorizationRule(pServiceRequest.BusinessData);
+            FwkMembership.CreateRule(pFwkAuthorizationRule, pServiceRequest.SecurityProviderName);  
             return wRes;
         }
     }

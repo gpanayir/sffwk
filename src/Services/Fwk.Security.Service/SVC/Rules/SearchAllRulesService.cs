@@ -26,11 +26,11 @@ namespace Fwk.Security.SVC
             SearchAllRulesRes wRes = new SearchAllRulesRes();
 
             FwkAuthorizationRuleList rules = FwkMembership.GetRulesAuxList(pServiceRequest.SecurityProviderName);
-            
-            wRes.BusinessData = rules;
-         
 
-            
+            FwkAuthorizationRuleAuxList pFwkAuthorizationRuleAuxList = new FwkAuthorizationRuleAuxList();
+            pFwkAuthorizationRuleAuxList.Populate(rules);
+            wRes.BusinessData = pFwkAuthorizationRuleAuxList;
+         
             return wRes;
         }
     }

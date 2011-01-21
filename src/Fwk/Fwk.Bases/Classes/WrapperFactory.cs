@@ -29,6 +29,9 @@ namespace Fwk.Bases
         /// </summary>
         static WrapperProviderSection _ProviderSection;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static WrapperProviderSection ProviderSection
         {
             get { return WrapperFactory._ProviderSection; }
@@ -117,7 +120,7 @@ namespace Fwk.Bases
                        
                         //pRequest.ContextInformation.CompanyId = _WraperPepository[providerName].SecurityProviderName;
 
-                        wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>(pRequest);
+                        wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>(_WraperPepository[providerName].ProviderName, pRequest);
                     }
                     catch (Exception ex)
                     {
@@ -182,7 +185,7 @@ namespace Fwk.Bases
                     }
                     
                     IServiceWrapper w =(IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
-                    w.ProviderName = providerName;
+                    w.ProviderName = provider.Name;
                     w.SourceInfo = provider.SourceInfo;
                     w.SecurityProviderName = provider.SecurityProviderName;
                     _WraperPepository.Add(providerName, w);

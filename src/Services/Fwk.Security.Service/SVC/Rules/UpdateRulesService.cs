@@ -17,13 +17,7 @@ namespace Fwk.Security.SVC
         public override UpdateRulesRes Execute(UpdateRulesReq pServiceRequest)
         {
             UpdateRulesRes wRes = new UpdateRulesRes();
-
-           foreach (FwkAuthorizationRule rule in pServiceRequest.BusinessData.FwkAuthorizationRuleList)
-            {
-                FwkMembership.UpdateRule(rule, pServiceRequest.SecurityProviderName);
-            }
-
-
+            pServiceRequest.BusinessData.FwkAuthorizationRuleList.ForEach(r=>FwkMembership.UpdateRule(new FwkAuthorizationRule(r), pServiceRequest.SecurityProviderName));
             return wRes;
         }
     }

@@ -37,12 +37,12 @@ namespace Security
             CreateRule_No_Service();
 
             SearchAllRulesRes res = SearchAllRules();
-            bool updateOK = res.BusinessData.Any<FwkAuthorizationRule>(r => r.Name.Equals("rule_1", StringComparison.OrdinalIgnoreCase));
+            bool updateOK = res.BusinessData.Any<FwkAuthorizationRuleAux>(r => r.Name.Equals("rule_1", StringComparison.OrdinalIgnoreCase));
 
             UpdateRules_No_Service();
 
             res = SearchAllRules();
-            updateOK = res.BusinessData.Any<FwkAuthorizationRule>(r => r.Name.Equals("rule_1", StringComparison.OrdinalIgnoreCase)
+            updateOK = res.BusinessData.Any<FwkAuthorizationRuleAux>(r => r.Name.Equals("rule_1", StringComparison.OrdinalIgnoreCase)
                && r.Expression.Equals("(R:Admin OR R:User)", StringComparison.OrdinalIgnoreCase));
 
             Assert.AreEqual<bool>(updateOK, true, "No se actualizo correctamente la regla");
@@ -85,9 +85,9 @@ namespace Security
             UpdateRulesService svc = new UpdateRulesService();
             UpdateRulesReq req = new UpdateRulesReq();
 
-            req.BusinessData.FwkAuthorizationRuleList = new Fwk.Security.FwkAuthorizationRuleList();
-
-            req.BusinessData.FwkAuthorizationRuleList.Add(new Fwk.Security.FwkAuthorizationRule("rule_1", "(R:Admin OR R:User)"));
+            req.BusinessData.FwkAuthorizationRuleList = new Fwk.Security.FwkAuthorizationRuleAuxList();
+            
+            req.BusinessData.FwkAuthorizationRuleList.Add(new Fwk.Security.FwkAuthorizationRuleAux("rule_1", "(R:Admin OR R:User)"));
             //req.BusinessData.FwkAuthorizationRuleList.Add(new Fwk.Security.FwkAuthorizationRule("rule_2", "(R:Admin OR R:User)"));
 
             req.SecurityProviderName = SecurityProviderName;
