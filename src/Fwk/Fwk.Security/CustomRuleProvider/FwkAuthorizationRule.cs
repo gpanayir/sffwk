@@ -59,6 +59,20 @@ namespace Fwk.Security
             _ApplicationId = applicationId;
 
         }
+         /// <summary>
+        /// Initializes a new instance of the <see cref="FwkAuthorizationRuleAux"/> class with the specified name and expression.
+        /// </summary>
+        /// <param name="pFwkAuthorizationRule">Framework rule</param>
+        public FwkAuthorizationRule(FwkAuthorizationRuleAux pFwkAuthorizationRule): base(pFwkAuthorizationRule.Name)
+            
+        {
+            _ApplicationId = pFwkAuthorizationRule.ApplicationId;
+            _ApplicationName = pFwkAuthorizationRule.ApplicationName;
+            _CategoryId = pFwkAuthorizationRule.CategoryId;
+            _Expression = pFwkAuthorizationRule.Expression;
+           
+
+        }
         /// <summary>
         /// Gets or sets the expression associated with
         /// this rule.
@@ -117,7 +131,7 @@ namespace Fwk.Security
         }
 
 
-
+        
         #region IEntity Members IBaseEntity Members
 
         public System.Data.DataSet GetDataSet()
@@ -204,6 +218,11 @@ namespace Fwk.Security
         }
 
         #endregion
+
+        public void Populate(FwkAuthorizationRuleAuxList pFwkAuthorizationRuleauxList)
+        {
+            pFwkAuthorizationRuleauxList.ForEach(a => this.Add(new FwkAuthorizationRule(a)));
+        }
     }
     /// <summary>
     /// Categorias de reglass
@@ -278,8 +297,138 @@ namespace Fwk.Security
     }
 
 
+    /// <summary>
+    /// Esta clace es una auxiliar de FwkAuthorizationRule con la exepcion de que no  hereda de NamedConfigurationElement
+    /// lo que la hace serializable .-
+    /// </summary>
+    [Serializable]
+    public class FwkAuthorizationRuleAux : Entity, IAuthorizationRule
+    {
+        #region Properties
+        private string _Expression;
+        private System.Guid _ApplicationId;
+        private System.String _ApplicationName;
+        private System.String _Name;
+        private int _CategoryId;
+
+        public System.String Name
+        {
+            get { return _Name; }
+            set { _Name = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Expression
+        {
+            get
+            {
+                return _Expression;
+            }
+            set
+            {
+                _Expression = value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int CategoryId
+        {
+            get
+            {
+                return _CategoryId;
+            }
+            set
+            {
+                _CategoryId = value;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.Guid ApplicationId
+        {
+            get { return _ApplicationId; }
+            set { _ApplicationId = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String ApplicationName
+        {
+            get { return _ApplicationName; }
+            set { _ApplicationName = value; }
+        }
+
+        #endregion 
+
+        /// <summary>
+        /// Initializes a new instance of the 
+        /// <see cref="FwkAuthorizationRuleAux"/> class.
+        /// </summary>
+        public FwkAuthorizationRuleAux()
+        {
+        }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FwkAuthorizationRuleAux"/> class with the specified name and expression.
+        /// </summary>
+        /// <param name="pFwkAuthorizationRule">Framework rule</param>
+        public FwkAuthorizationRuleAux(FwkAuthorizationRule pFwkAuthorizationRule)
+            
+        {
+            _ApplicationId = pFwkAuthorizationRule.ApplicationId;
+            _ApplicationName = pFwkAuthorizationRule.ApplicationName;
+            _CategoryId = pFwkAuthorizationRule.CategoryId;
+            _Expression = pFwkAuthorizationRule.Expression;
+            _Name = pFwkAuthorizationRule.Name;
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthorizationRuleData"/> class with the specified name and expression.
+        /// </summary>
+        /// <param name="name">The name of the rule</param>
+        /// <param name="expression">The expression to evaluate.</param>
+        public FwkAuthorizationRuleAux(string name, string expression)
+            
+        {
+            _Expression = expression;
+            _Name = name;
+
+        }
     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newExpresion"></param>
+        public void SetExpression(string newExpresion)
+        {
+            _Expression = newExpresion;
+        }
 
+
+        
+    }
+
+    /// <summary>
+    /// Esta clace es una auxiliar de FwkAuthorizationRuleList con la exepcion de que no  hereda de NamedConfigurationElement
+    /// lo que la hace serializable .-
+    /// </summary>
+    [Serializable]
+    public class FwkAuthorizationRuleAuxList:Entities<FwkAuthorizationRuleAux>
+    {
+        public void Populate(FwkAuthorizationRuleList pFwkAuthorizationRuleList)
+        {
+            pFwkAuthorizationRuleList.ForEach(a=> this.Add(new  FwkAuthorizationRuleAux(a)));  
+        }
+       
+
+      
+    }
 }

@@ -30,11 +30,18 @@ namespace Fwk.Security.Common
         private String m_Password;
         private String m_QuestionPassword;
         private String m_AnswerPassword;
+        private string _DNI;
+
         bool? _MustChangePassword;
         Int32? _ModifiedByUserId;
         DateTime? _ModifiedDate;
         AuthenticationModeEnum _AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
 
+        public string DNI
+        {
+            get { return _DNI; }
+            set { _DNI = value; }
+        }
         /// <summary>
         /// 
         /// </summary>
