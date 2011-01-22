@@ -59,7 +59,7 @@ namespace Fwk.Bases.FrontEnd.Controls
         }
 
         /// <summary>
-        ///Color de texto del mensage
+        ///Color de texto del mensaje
         /// </summary>
         [CategoryAttribute("Factory Tools"), Description("")]
         public Color TextMessageForeColor
@@ -68,7 +68,7 @@ namespace Fwk.Bases.FrontEnd.Controls
             get { return txtMessage.ForeColor; }
         }
         /// <summary>
-        /// Mensage a mostraR
+        /// Mensaje a mostraR
         /// </summary>
         [CategoryAttribute("Factory Tools"), Description("")]
         public string Message
@@ -121,9 +121,9 @@ namespace Fwk.Bases.FrontEnd.Controls
             InitializeComponent();
         }
         /// <summary>
-        /// Muestra el mensage
+        /// Muestra el mensaje
         /// </summary>
-        /// <param name="pMessage">Mensage a mostrar</param>
+        /// <param name="pMessage">Mensaje a mostrar</param>
         /// <param name="pMessageBoxButtons">Specifies constants defining which buttons to display on a System.Windows.Forms.MessageBox.</param>
         /// <param name="MessageBoxIcon">Specifies constants defining which information to display.</param>
         /// <returns>DialogResult</returns>
@@ -147,9 +147,9 @@ namespace Fwk.Bases.FrontEnd.Controls
             }
         }
         /// <summary>
-        /// Muestra el mensage
+        /// Muestra el mensaje
         /// </summary>
-        /// <param name="pMessage">Mensage a mostrar</param>
+        /// <param name="pMessage">Mensaje a mostrar</param>
         /// <param name="pMessageBoxButtons">Specifies constants defining which buttons to display on a System.Windows.Forms.MessageBox.</param>
         /// <param name="MessageBoxIcon">Specifies constants defining which information to display.</param>
         /// <returns>DialogResult</returns>

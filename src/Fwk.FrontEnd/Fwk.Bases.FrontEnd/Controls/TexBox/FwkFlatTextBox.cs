@@ -227,30 +227,30 @@ namespace Fwk.Bases.FrontEnd.Controls
                 }
             }
         }
-        /// <summary>
-        /// Setea si es de solo lectura el control.
-        /// </summary>
-        public new bool ReadOnly
-        {
-            set
-            {
-                if (value == true)
-                {
-                    this.BackColor = System.Drawing.Color.FromArgb(230, 231, 253);
-                }
-                else
-                {
-                    this.BackColor = System.Drawing.Color.White;
+        ///// <summary>
+        ///// Setea si es de solo lectura el control.
+        ///// </summary>
+        //public new bool ReadOnly
+        //{
+        //    set
+        //    {
+        //        //if (value == true)
+        //        //{
+        //        //    this.BackColor = System.Drawing.Color.FromArgb(230, 231, 253);
+        //        //}
+        //        //else
+        //        //{
+        //        //    this.BackColor = System.Drawing.Color.White;
 
-                }
-                base.ReadOnly = value;
-            }
-            get
-            {
-                return base.ReadOnly;
-            }
+        //        //}
+        //        base.ReadOnly = value;
+        //    }
+        //    get
+        //    {
+        //        return base.ReadOnly;
+        //    }
 
-        }
+        //}
         /// <summary>
         /// Sobrecarga de la propiedad Text para quitar los espacios del comienzo y el final del String.
         /// </summary>

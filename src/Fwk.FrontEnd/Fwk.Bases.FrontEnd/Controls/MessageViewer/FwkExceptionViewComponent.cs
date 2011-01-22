@@ -66,9 +66,9 @@ namespace Fwk.Bases.FrontEnd.Controls
 
 
         /// <summary>
-        /// Muestra el mensage
+        /// Muestra el mensaje
         /// </summary>
-        /// <param name="pMessage">Mensage a mostrar</param>
+        /// <param name="pMessage">Mensaje a mostrar</param>
         /// <returns>DialogResult</returns>
         public DialogResult Show(String pSource, String pMessage, String pDetail)
         {
@@ -81,7 +81,7 @@ namespace Fwk.Bases.FrontEnd.Controls
         }
 
         /// <summary>
-        /// Muestra el mensage
+        /// Muestra el mensaje
         /// </summary>
         /// <param name="e">Exception</param>
         /// <returns>DialogResult</returns>
@@ -89,7 +89,8 @@ namespace Fwk.Bases.FrontEnd.Controls
         {
 
             _FwkMessageView.Source = e.Source;
-            _FwkMessageView.Detail = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
+            if(e.InnerException != null  )
+                _FwkMessageView.Detail = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e.InnerException);
             _FwkMessageView.Message = e.Message ;
 
             _FwkMessageView.ShowDialog();
@@ -97,7 +98,7 @@ namespace Fwk.Bases.FrontEnd.Controls
         }
 
         /// <summary>
-        /// Muestra el mensage
+        /// Muestra el mensaje
         /// </summary>
         /// <param name="e">Exception</param>
         /// <returns>DialogResult</returns>
