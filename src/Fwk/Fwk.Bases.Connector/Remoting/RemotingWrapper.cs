@@ -35,55 +35,81 @@ namespace Fwk.Bases.Connector
             get { return _SourceInfo; }
             set { _SourceInfo = value; }
         }
+
+        string _SecurityProviderName = string.Empty;
+
+        /// <summary>
+        /// Proveedor del seguridad en el despachador de servicios
+        /// </summary>
+        public string SecurityProviderName
+        {
+            get { return _SecurityProviderName; }
+            set { _SecurityProviderName = value; }
+        }
+
+        string _CompanyId = string.Empty;
+
+        /// <summary>
+        /// Identificador de empresa
+        /// </summary>
+        public string CompanyId
+        {
+            get { return _CompanyId; }
+            set { _CompanyId = value; }
+        }
+
         #region IServiceInterfaceWrapper Members
 
         /// <summary>
         /// Metodo no implementado
         /// </summary>
-        /// <param name="pServiceName"></param>
-        /// <param name="pData"></param>
-        /// <returns></returns>
-        public string ExecuteService(string pServiceName, string pData)
+        public string ExecuteService(string serviceMetadataProviderName,string pServiceName, string pData)
         {
             throw new Exception("The method or operation is not implemented in remoting execution. It's obsolete");
         }
 
         /// <summary>
-        /// Ejecucion del servicio
+        /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <typeparam name="TRequest"></typeparam>
-        /// <typeparam name="TResponse"></typeparam>
-        /// <param name="pServiceName"></param>
-        /// <param name="pData"></param>
+        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
+        /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
+        /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
         /// <returns></returns>
-        public TResponse ExecuteService<TRequest, TResponse>(string pServiceName, TRequest pData)
+        public TResponse ExecuteService<TRequest, TResponse>(string serviceMetadataProviderName, TRequest req)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-            pData.ServiceName = pServiceName;
-            
-            return this.ExecuteService<TRequest, TResponse>(pData);
-        }
 
-        /// <summary>
-        /// Ejecucion del servicio
-        /// </summary>
-        /// <typeparam name="TRequest"></typeparam>
-        /// <typeparam name="TResponse"></typeparam>
-        /// <param name="pReq"></param>
-        /// <returns></returns>
-        public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
-            where TRequest : IServiceContract
-            where TResponse : IServiceContract, new()
-        {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
-            pReq.InitializeHostContextInformation();
-            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(_ProviderName, pReq);
+            req.InitializeHostContextInformation();
+            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(serviceMetadataProviderName, req);
             response.InitializeHostContextInformation();
 
             return response;
+
+            //return this.ExecuteService<TRequest, TResponse>(serviceMetadataProviderName,req);
         }
+
+        ///// <summary>
+        ///// Ejecucion del servicio
+        ///// </summary>
+        ///// <typeparam name="TRequest"></typeparam>
+        ///// <typeparam name="TResponse"></typeparam>
+        ///// <param name="pReq"></param>
+        ///// <returns></returns>
+        //public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
+        //    where TRequest : IServiceContract
+        //    where TResponse : IServiceContract, new()
+        //{
+        //    FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+
+        //    pReq.InitializeHostContextInformation();
+        //    TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(_ProviderName, pReq);
+        //    response.InitializeHostContextInformation();
+
+        //    return response;
+        //}
 
 
 
@@ -115,25 +141,8 @@ namespace Fwk.Bases.Connector
             }
         }
 
-        
-        /// <summary>
-        /// Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile en _SourceInfo
-        /// </summary>
-        private  void LoadRemotingConfigSettings()
-		{
-			if (!IsConfigured())
-			{
-                //Si no se encuentra algun nombre de archivo en el App.config
-                if (_SourceInfo == string.Empty)
-				{
-					throw new Exception("No hay ruta especificada para el archivo de configuración.");
-				}
-				else
-				{
-                    RemotingConfiguration.Configure(_SourceInfo, false);
-				}
-			}
-		}
+       
+		
 
         /// <summary>
         /// Crea en este caso SimpleFacaddeRemoteObject .-
@@ -141,7 +150,19 @@ namespace Fwk.Bases.Connector
         /// <returns>Instancia de SimpleFacaddeRemoteObject</returns>
         private  FwkRemoteObject CreateRemoteObject()
 		{
-            LoadRemotingConfigSettings();
+            //Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile en _SourceInfo
+            if (!IsConfigured())
+            {
+                //Si no se encuentra algun nombre de archivo en el App.config
+                if (_SourceInfo == string.Empty)
+                {
+                    throw new Exception("No hay ruta especificada para el archivo de configuración.");
+                }
+                else
+                {
+                    RemotingConfiguration.Configure(_SourceInfo, false);
+                }
+            }
 
             FwkRemoteObject wFwkRemoteObject = new FwkRemoteObject();
             return wFwkRemoteObject;
@@ -218,6 +239,28 @@ namespace Fwk.Bases.Connector
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
             wFwkRemoteObject.DeleteServiceConfiguration(_ProviderName, pServiceName);
+        }
+        
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <returns></returns>
+        public  List<String> GetAllApplicationsId()
+        {
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+            return wFwkRemoteObject.GetAllApplicationsId(_ProviderName);
+            
+        }
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        {
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+            return wFwkRemoteObject.GetProviderInfo(_ProviderName);
         }
         #endregion [ServiceConfiguration]
 

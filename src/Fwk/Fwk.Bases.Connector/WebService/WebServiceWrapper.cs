@@ -1,6 +1,8 @@
 using System;
 using Fwk.Bases;
 using Fwk.Exceptions;
+using System.Collections.Generic;
+using Fwk.ConfigSection;
 
 namespace Fwk.Bases.Connector
 {
@@ -12,7 +14,8 @@ namespace Fwk.Bases.Connector
 	/// <author>moviedo</author>
 	public class WebServiceWrapper : IServiceWrapper
 	{
-        string _ProviderName;
+
+        string _ProviderName = string.Empty;
 
         /// <summary>
         /// Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher
@@ -22,6 +25,9 @@ namespace Fwk.Bases.Connector
             get { return _ProviderName; }
             set { _ProviderName = value; }
         }
+
+        private string msz_URL = string.Empty;
+
         /// <summary>
         /// Direccion url del servicio web
         /// </summary>
@@ -30,8 +36,28 @@ namespace Fwk.Bases.Connector
             get { return msz_URL; }
             set { msz_URL = value; }
         }
+        string _SecurityProviderName = string.Empty;
 
-        private string msz_URL = string.Empty;
+        /// <summary>
+        /// Proveedor del seguridad en el despachador de servicios
+        /// </summary>
+        public string SecurityProviderName
+        {
+            get { return _SecurityProviderName; }
+            set { _SecurityProviderName = value; }
+        }
+
+        string _CompanyId = string.Empty;
+
+        /// <summary>
+        /// Identificador de empresa
+        /// </summary>
+        public string CompanyId
+        {
+            get { return _CompanyId; }
+            set { _CompanyId = value; }
+        }
+
     
 		#region IServiceInterfaceWrapper Members 
 
@@ -43,14 +69,14 @@ namespace Fwk.Bases.Connector
 		/// <returns>XML con datos de salida del servicio.</returns>
 		/// <date>2007-08-23T00:00:00</date>
 		/// <author>moviedo</author>
-		public string ExecuteService (string pServiceName, string pData)
+		public string ExecuteService (string serviceMetadataProviderName ,string pServiceName, string pData)
 		{
 			string wResult = null;
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
 			{
                 wService.Url = msz_URL;//Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
-                wResult = wService.ExecuteService(_ProviderName, pServiceName, pData);
+                wResult = wService.ExecuteService(serviceMetadataProviderName, pServiceName, pData);
 			}
 
 			return wResult;
@@ -64,7 +90,7 @@ namespace Fwk.Bases.Connector
         {
             
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
                 wService.Url = msz_URL;//Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
@@ -83,18 +109,18 @@ namespace Fwk.Bases.Connector
         {
            
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
                 wService.Url = msz_URL;// Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 
-                wService.ExecuteServiceCompleted += new Fwk.Bases.Connector.SingleService.ExecuteServiceCompletedEventHandler(wService_ExecuteServiceCompleted);
+                wService.ExecuteServiceCompleted += new Fwk.Bases.Connector.singleservice.ExecuteServiceCompletedEventHandler(wService_ExecuteServiceCompleted);
 
             }
 
         }
 
-        void wService_ExecuteServiceCompleted(object sender, Fwk.Bases.Connector.SingleService.ExecuteServiceCompletedEventArgs e)
+        void wService_ExecuteServiceCompleted(object sender, Fwk.Bases.Connector.singleservice.ExecuteServiceCompletedEventArgs e)
         {
             
             throw new NotImplementedException();
@@ -104,12 +130,12 @@ namespace Fwk.Bases.Connector
         /// Ejecuta un servicio de negocio. (Metodo vigente solo por compatibilidad con versiones anteriores donde se pasaba el 
         /// nombre del servicio como parametro.-
         /// </summary>
-        /// <param name="pServiceName">Nombre del servicio.</param>
+        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
         /// <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        public TResponse ExecuteService<TRequest, TResponse>(string pServiceName, TRequest pReq)
+        public TResponse ExecuteService<TRequest, TResponse>(string serviceMetadataProviderName, TRequest pReq)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
@@ -119,9 +145,9 @@ namespace Fwk.Bases.Connector
 
             try
             {
-                pReq.ServiceName = pServiceName;
+                
                 pReq.InitializeHostContextInformation();
-                string wResult = ExecuteService(pServiceName ,pReq.GetXml());
+                string wResult = ExecuteService(serviceMetadataProviderName, pReq.ServiceName, pReq.GetXml());
                 wResponse.SetXml(wResult);
                 wResponse.InitializeHostContextInformation();
             }
@@ -147,33 +173,33 @@ namespace Fwk.Bases.Connector
         /// <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
-            where TRequest : IServiceContract
-            where TResponse : IServiceContract, new()
-        {
-            pReq.InitializeHostContextInformation();
+        //public TResponse ExecuteService<TRequest, TResponse>(TRequest pReq)
+        //    where TRequest : IServiceContract
+        //    where TResponse : IServiceContract, new()
+        //{
+        //    pReq.InitializeHostContextInformation();
 
-            TResponse wResponse = new TResponse();
+        //    TResponse wResponse = new TResponse();
 
-            try
-            {
-                pReq.InitializeHostContextInformation();
-                string wResult = ExecuteService(pReq.ServiceName, pReq.GetXml());
-                wResponse.SetXml(wResult);
-                wResponse.InitializeHostContextInformation();
-            }
-            catch (Exception ex)
-            {
-                wResponse.Error = ProcessConnectionsException.Process(ex, msz_URL);
-            }
+        //    try
+        //    {
+        //        pReq.InitializeHostContextInformation();
+        //        string wResult = ExecuteService(pReq.ServiceName, pReq.GetXml());
+        //        wResponse.SetXml(wResult);
+        //        wResponse.InitializeHostContextInformation();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        wResponse.Error = ProcessConnectionsException.Process(ex, msz_URL);
+        //    }
 
-            wResponse.InitializeHostContextInformation();
-
-
-            return wResponse;
+        //    wResponse.InitializeHostContextInformation();
 
 
-        }
+        //    return wResponse;
+
+
+        //}
 		#endregion
 
 
@@ -193,7 +219,7 @@ namespace Fwk.Bases.Connector
         {
             string xmlServices = null;
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
                 wService.Url = msz_URL;//Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 
@@ -218,7 +244,7 @@ namespace Fwk.Bases.Connector
         {
             string xmlServices = null;
             
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
                 wService.Url = msz_URL;
                 xmlServices = wService.GetServiceConfiguration(_ProviderName, pServiceName);
@@ -236,10 +262,10 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void SetServiceConfiguration(String pServiceName ,ServiceConfiguration pServiceConfiguration)
         {
-            Fwk.Bases.Connector.SingleService.ServiceConfiguration wServiceConfigurationProxy = 
+            Fwk.Bases.Connector.singleservice.ServiceConfiguration wServiceConfigurationProxy = 
                 GetServiceConfigurationProxy(pServiceConfiguration);
             
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
                 wService.Url = msz_URL;// Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
@@ -258,10 +284,10 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
-            Fwk.Bases.Connector.SingleService.ServiceConfiguration wServiceConfigurationProxy = 
+            Fwk.Bases.Connector.singleservice.ServiceConfiguration wServiceConfigurationProxy = 
                 GetServiceConfigurationProxy(pServiceConfiguration);
 
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
 
                 wService.Url = msz_URL;// Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
@@ -279,19 +305,61 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void DeleteServiceConfiguration(string pServiceName)
         {
-            using (SingleService.SingleService wService = new SingleService.SingleService())
+            using (singleservice.SingleService wService = new singleservice.SingleService())
             {
                 wService.Url = msz_URL;//Fwk.Bases.ConfigurationsHelper.WebServiceDispatcherUrlSetting;
                 wService.DeleteServiceConfiguration(_ProviderName, pServiceName);
             }
         }
 
-
-        private static Fwk.Bases.Connector.SingleService.ServiceConfiguration GetServiceConfigurationProxy(ServiceConfiguration pServiceConfiguration)
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <returns></returns>
+        public  List<String> GetAllApplicationsId()
         {
-            Fwk.Bases.Connector.SingleService.ServiceConfiguration wServiceConfigurationProxy = null;
+            using (singleservice.SingleService wService = new singleservice.SingleService())
+            {
+                wService.Url = msz_URL;
+                string[] wArraylist = wService.GetAllApplicationsId(_ProviderName);
+                return new List<string>(wArraylist);
+            }
+        }
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        {
+            using (singleservice.SingleService wService = new singleservice.SingleService())
+            {
+                wService.Url = msz_URL;
+                Fwk.Bases.Connector.singleservice.MetadataProvider wMetadataProviderRemoto = wService.GetProviderInfo(_ProviderName);
 
-            wServiceConfigurationProxy = new Fwk.Bases.Connector.SingleService.ServiceConfiguration();
+                string xml = Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(wMetadataProviderRemoto);
+               
+                Fwk.ConfigSection.MetadataProvider wMetadata = Fwk.ConfigSection.MetadataProvider.GetFromXml<Fwk.ConfigSection.MetadataProvider>(xml);
+                wMetadata.Name = wMetadataProviderRemoto.Name;
+                wMetadata.ApplicationId = wMetadataProviderRemoto.ApplicationId;
+                wMetadata.SourceInfo = wMetadataProviderRemoto.SourceInfo;
+                wMetadata.ConfigProviderType = wMetadataProviderRemoto.ConfigProviderType;
+
+                return wMetadata;
+
+            }
+        }
+        /// <summary>
+        /// Mapeta  Fwk.Bases.ServiceConfiguration a Fwk.Bases.Connector.SingleService.ServiceConfiguration 
+        /// </summary>
+        /// <param name="pServiceConfiguration"></param>
+        /// <returns></returns>
+        private static Fwk.Bases.Connector.singleservice.ServiceConfiguration GetServiceConfigurationProxy(ServiceConfiguration pServiceConfiguration)
+        {
+            Fwk.Bases.Connector.singleservice.ServiceConfiguration wServiceConfigurationProxy = null;
+
+            wServiceConfigurationProxy = new Fwk.Bases.Connector.singleservice.ServiceConfiguration();
             wServiceConfigurationProxy.Audit = pServiceConfiguration.Audit;
             wServiceConfigurationProxy.name = pServiceConfiguration.Name;
             wServiceConfigurationProxy.Handler = pServiceConfiguration.Handler;
@@ -304,11 +372,11 @@ namespace Fwk.Bases.Connector
             wServiceConfigurationProxy.Audit = pServiceConfiguration.Audit;
             wServiceConfigurationProxy.CreatedUserName = pServiceConfiguration.CreatedUserName;
             String name = Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel);
-            wServiceConfigurationProxy.IsolationLevel = (Fwk.Bases.Connector.SingleService.IsolationLevel)
-                Enum.Parse(typeof(Fwk.Bases.Connector.SingleService.IsolationLevel), pServiceConfiguration.IsolationLevel.ToString());
+            wServiceConfigurationProxy.IsolationLevel = (Fwk.Bases.Connector.singleservice.IsolationLevel)
+                Enum.Parse(typeof(Fwk.Bases.Connector.singleservice.IsolationLevel), pServiceConfiguration.IsolationLevel.ToString());
 
-            wServiceConfigurationProxy.TransactionalBehaviour = (Fwk.Bases.Connector.SingleService.TransactionalBehaviour)
-                Enum.Parse(typeof(Fwk.Bases.Connector.SingleService.TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour.ToString());
+            wServiceConfigurationProxy.TransactionalBehaviour = (Fwk.Bases.Connector.singleservice.TransactionalBehaviour)
+                Enum.Parse(typeof(Fwk.Bases.Connector.singleservice.TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour.ToString());
            
 
             return wServiceConfigurationProxy;
