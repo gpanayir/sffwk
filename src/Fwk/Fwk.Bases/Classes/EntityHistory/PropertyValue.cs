@@ -11,6 +11,11 @@ namespace Fwk.Bases
 		private string PropName;
 		private object PropVal;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="propName"></param>
+        /// <param name="propVal"></param>
 		public PropertyValue(string propName, object propVal)
 		{
 			PropName = propName;

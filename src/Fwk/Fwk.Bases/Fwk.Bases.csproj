@@ -104,6 +104,7 @@
     <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Blocks\Functions\WindowsFunction.cs" />
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager_CRUD.cs" />
     <Compile Include="Blocks\Fwk.Configuration\config\configdata.designer.cs">
       <AutoGen>True</AutoGen>
@@ -119,6 +120,7 @@
       <DependentUpon>FTPComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="Blocks\Fwk.Net\Ftp\FtpUtil.cs" />
+    <Compile Include="Blocks\Fwk.Security.Cryptography\FwkSymetricAlg.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\ISymetriCypher.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\SymetricCypherFactory.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\SymetriCypher.cs" />
@@ -138,7 +140,6 @@
     <Compile Include="Blocks\Fwk.Blocking\IBlockingMark.cs" />
     <Compile Include="Blocks\Fwk.BusinessFacades\Audit.cs" />
     <Compile Include="Blocks\Fwk.BusinessFacades\FacadeHelper.cs" />
-    <Compile Include="Blocks\Fwk.BusinessFacades\ServiceCalls.cs" />
     <Compile Include="Blocks\Fwk.BusinessFacades\SimpleFacade.cs" />
     <Compile Include="Blocks\Fwk.Caching\ServiceCacheMannager.cs" />
     <Compile Include="Blocks\Fwk.Caching\FwkSimpleStorageBase.cs" />

@@ -13,6 +13,7 @@ using Fwk.Logging;
 using Fwk.Logging.Targets;
 
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace Fwk.BusinessFacades
 {
@@ -35,34 +36,15 @@ namespace Fwk.BusinessFacades
     {
 
   
-            
-        /// <summary>
-        /// 
-        /// </summary>
-        public SimpleFacade()
-        {
-
-        
-        }
+      
         #region < IBusinessFacade members >
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="providerName"></param>
-        /// <param name="pRequest"></param>
-        /// <returns></returns>
-        //public IServiceContract ExecuteService(IServiceContract pRequest)
-        //{
-        //    return ExecuteService(string.Empty, pRequest);
-        //}
 
 
 
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <param name="providerName"></param>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <param name="pRequest">Request con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>XML con el resultado de la  ejecución del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
@@ -129,7 +111,8 @@ namespace Fwk.BusinessFacades
         /// <summary>
 		/// Ejecuta un servicio de negocio.
 		/// </summary>
-		/// <param name="serviceName">Nombre del servicio de negocio.</param>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <param name="serviceName">Nombre del servicio de negocio.</param> 
         /// <param name="pXmlRequest">XML con datos de entrada para la  ejecución del servicio.</param>
 		/// <returns>XML con el resultado de la  ejecución del servicio.</returns>
 		/// <date>2008-04-07T00:00:00</date>
@@ -251,6 +234,7 @@ namespace Fwk.BusinessFacades
         /// <summary>
         /// lista los servicios configurados
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <param name="pViewXML">Permite ver como xml todos los servicios y sus datos.
         /// Si se espesifuca false solo se vera una simple lista</param>
         /// <returns></returns>
@@ -277,6 +261,8 @@ namespace Fwk.BusinessFacades
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <param name="serviceName"></param>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2010-08-10T00:00:00</date>
         /// <author>moviedo</author>
@@ -288,6 +274,7 @@ namespace Fwk.BusinessFacades
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
@@ -297,6 +284,7 @@ namespace Fwk.BusinessFacades
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
         /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <param name="serviceName">Nombre del servicio.</param>
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
@@ -304,6 +292,27 @@ namespace Fwk.BusinessFacades
         {
             FacadeHelper.DeleteServiceConfiguration(providerName, serviceName);
         
+        }
+
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public  List<String> GetAllApplicationsId(string providerName)
+        {
+            return FacadeHelper.GetAllApplicationsId(providerName);
+        }
+
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        {
+            return FacadeHelper.GetProviderInfo(providerName);
         }
 	}
 }

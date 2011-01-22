@@ -79,31 +79,31 @@ namespace Fwk.ConfigSection
         }
        
         
-        /// <summary>
-        /// En caso de que la configuracion sea remota se debe espesificar el nombre del  
-        /// archivo de configuracion de remoting.-
-        /// </summary>
-        [ConfigurationProperty("remotingConfigFile", IsRequired = false, IsKey = false), 
-         StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
-        public string RemotingConfigFile
-        {
-            get
-            {
-                return (string)this["remotingConfigFile"];
-            }
-        }
+        ///// <summary>
+        ///// En caso de que la configuracion sea remota se debe espesificar el nombre del  
+        ///// archivo de configuracion de remoting.-
+        ///// </summary>
+        //[ConfigurationProperty("remotingConfigFile", IsRequired = false, IsKey = false), 
+        // StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        //public string RemotingConfigFile
+        //{
+        //    get
+        //    {
+        //        return (string)this["remotingConfigFile"];
+        //    }
+        //}
 
         /// <summary>
         /// 
         /// </summary>
-        [ConfigurationProperty("lifeTime", IsRequired = false, IsKey = false)     ]
-        public int LifeTime
-        {
-            get
-            {
-                return (int)this["lifeTime"];
-            }
-        }
+        //[ConfigurationProperty("lifeTime", IsRequired = false, IsKey = false)     ]
+        //public int LifeTime
+        //{
+        //    get
+        //    {
+        //        return (int)this["lifeTime"];
+        //    }
+        //}
         #endregion
     }
 }

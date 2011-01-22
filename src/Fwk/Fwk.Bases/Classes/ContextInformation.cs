@@ -11,6 +11,8 @@ namespace Fwk.Bases
 	public class ContextInformation
 	{
         string _CompanyId;
+        //string _SecurityProviderName;
+
         
 		string _UserName;
         string _HostName;
@@ -78,5 +80,14 @@ namespace Fwk.Bases
             get { return _CompanyId; }
             set { _CompanyId = value; }
         }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public string SecurityProviderName
+        //{
+        //    get { return _SecurityProviderName; }
+        //    set { _SecurityProviderName = value; }
+        //}
 	}
 }

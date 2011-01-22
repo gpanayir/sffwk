@@ -24,42 +24,38 @@ namespace Fwk.Bases
         /// 
         /// </summary>
         string SourceInfo { get; set; }
+        
+        /// <summary>
+        /// identificador del proveedor de seguridad en el server.
+        /// </summary>
+        string SecurityProviderName { get; set; }
 
+        /// <summary>
+        /// identificador de empresa
+        /// </summary>
+        string CompanyId { get; set; }
 		/// <summary>
 		/// Ejecuta un servicio de negocio.
 		/// </summary>
-		/// <param name="pServiceName">Nombre del servicio.</param>
+        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
+        /// <param name="pServiceName">Nombre del servicio.</param>
 		/// <param name="pData">XML con datos de entrada para la  ejecución del servicio.</param>
 		/// <returns>XML con datos de salida del servicio.</returns>
 		/// <date>2007-06-23T00:00:00</date>
 		/// <author>moviedo</author>
-		string ExecuteService(string pServiceName, string pData);
+        string ExecuteService(string serviceMetadataProviderName, string pServiceName, string pData);
 
        
-
-        ///// <summary>
-        ///// Ejecuta un servicio de negocio. Este metodo no debe ser mas utilizado solo se deja por compatibilidad
-        ///// con verciones anteriores.
-        ///// El establecimiento del nombre del servicio directamente se debe hacer por medio de la clase TRequest
-        ///// 
-        ///// </summary>
-        ///// <param name="pServiceName">Nombre del servicio.</param>
-        ///// <param name="pData">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
-        ///// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
-        ///// <date>2007-06-23T00:00:00</date>
-        ///// <author>moviedo</author>
-        //TResponse ExecuteService<TRequest, TResponse>(string pServiceName, TRequest pData)
-        //    where TRequest : IServiceContract
-        //    where TResponse : IServiceContract, new();
 
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <param name="pData">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
+        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
+        /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        TResponse ExecuteService<TRequest, TResponse>( TRequest pData)
+        TResponse ExecuteService<TRequest, TResponse>(string serviceMetadataProviderName, TRequest req)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new();
 
@@ -108,6 +104,20 @@ namespace Fwk.Bases
         /// <author>moviedo</author>
         void DeleteServiceConfiguration(string pServiceName);
 
+        /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <returns></returns>
+        List<String> GetAllApplicationsId();
+
+
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName);
         #endregion
     }
 }

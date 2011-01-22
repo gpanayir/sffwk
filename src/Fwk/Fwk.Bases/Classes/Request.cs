@@ -150,9 +150,9 @@ namespace Fwk.Bases
         
      
         /// <summary>
-        /// Ejecuta un servicio de negocio.
+        /// Ejecuta un servicio de negocio. Utiliza el wrapper por defecto
         /// </summary>
-        /// <param name="req">Dataset con datos de entrada para la  ejecución del servicio.</param>
+        /// <param name="req">Datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Dataset con datos de respuesta del servicio.</returns>
         /// <date>2007-08-24T00:00:00</date>
         /// <author>moviedo</author>
@@ -164,7 +164,23 @@ namespace Fwk.Bases
             return WrapperFactory.ExecuteService<TRequest, TResponse>(pRequest);
     
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TRequest"></typeparam>
+        /// <typeparam name="TResponse"></typeparam>
+        /// <param name="providerName">Nombre del proveedor de la metadata de servicio</param>
+        /// <param name="pRequest">Request con datos de entrada para la  ejecución del servicio.</param>
+        /// <returns></returns>
+        public TResponse ExecuteService<TRequest, TResponse>(string providerName, TRequest pRequest)
+            where TRequest : IServiceContract
+            where TResponse : IServiceContract, new()
+        {
 
+            return WrapperFactory.ExecuteService<TRequest, TResponse>(providerName, pRequest);
+
+
+        }
        
     }
 

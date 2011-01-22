@@ -1,6 +1,8 @@
 using System;
 using System.Configuration;
 using System.Collections.Generic;
+using System.Reflection;
+using System.IO;
 
 namespace Fwk.ConfigSection
 {
@@ -52,6 +54,10 @@ namespace Fwk.ConfigSection
                return (ServiceProviderCollection)base["Providers"];
             }
         }
+        public override bool IsReadOnly()
+        {
+            return false;
+        }
         #endregion
 
         #region <public methods>
@@ -91,7 +97,48 @@ namespace Fwk.ConfigSection
             }
 
         }
+        /// <summary>
+        /// Agrega un nuevo proveedor si este no existe
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="sourceInfo"></param>
+        /// <param name="applicationId"></param>
+        /// <param name="type"></param>
+        public void AddNewProvider(string name, string sourceInfo, string applicationId, ServiceProviderType type)
+        {
+            
+                ServiceProviderElement p = new ServiceProviderElement();
+                p.Name = name;
+                p.SourceInfo = sourceInfo;
+                p.ApplicationId = applicationId;
+                p.ProviderType = type;
+                this.AddNewProvider(p);
+            
+        }
 
+        /// <summary>
+        /// Agrega un nuevo proveedor si este no existe
+        /// </summary>
+        /// <param name="newProvider"></param>
+        public void AddNewProvider(ServiceProviderElement newProvider)
+        {
+            if (this.GetProvider(newProvider.Name) == null)
+            {
+                this.Providers.Add(newProvider);
+
+                //ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+                //map.ExeConfigFilename = System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.Name + ".config";
+                //map.ExeConfigFilename = AssemblyDirectory();
+                //System.Configuration.Configuration configuration = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+                //ServiceProviderSection config = (ServiceProviderSection)configuration.Sections["FwkServiceMetadata"];
+
+
+                //config.Providers.Add(newProvider);
+                //configuration.Save(ConfigurationSaveMode.Minimal, true);
+                
+            }
+        }
+      
         #endregion
     }
 

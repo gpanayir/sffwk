@@ -17,10 +17,7 @@ namespace Fwk.Bases
         /// <returns></returns>
         DataSet GetDataSet();
 
-        /// <summary>
-        /// Returns one of EntityState enum values 
-        /// </summary>
-        //EntityState EntityState { get; set; }
+  
     }
     /// <summary>
     /// Define la interfaz de todas las Entidades tipo coleccion y escalares.

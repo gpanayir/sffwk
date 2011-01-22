@@ -10,13 +10,28 @@ using System.Diagnostics;
 
 namespace Fwk.Blocking
 {
+    
     /// <summary>
     /// Clase base de implementacien standar de blocking
     /// </summary>
     /// <Auhor>moviedo</Auhor>
     public abstract class BlockingEngineBase : IBlockingEngine
     {
+        
+        #region Members
+
         String _Table_BlockingMarks_Name;
+
+        #endregion
+
+
+        #region Contructors
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public BlockingEngineBase() { }
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -26,12 +41,10 @@ namespace Fwk.Blocking
             _Table_BlockingMarks_Name = pBlockingTableNamme;
         }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public BlockingEngineBase()  {}
+        #endregion
 
-      
+
+        #region Privates Methods
 
         /// <summary>
         /// Realiza un bloqueo creando una
@@ -76,7 +89,6 @@ namespace Fwk.Blocking
             wBlockingMark.BlockingId = null;
             BlockingEngineDAC.RemoveMark(wBlockingMark);
         }
-   
 
         /// <summary>
         /// Limpia todas las marcas para las cuales se cumplió el TTL.
@@ -124,8 +136,12 @@ namespace Fwk.Blocking
             }
         }
         
-
         public DataTable GetByParam(IBlockingMark pBlockingMark)
+        {
+            return BlockingEngineDAC.GetByParam(pBlockingMark);
+        }
+
+        public DataTable GetByParamCustom(IBlockingMark pBlockingMark)
         {
             List<SqlParameter> wSqlParameterlist = GetCustomParametersToGetByParams(pBlockingMark);
             return BlockingEngineDAC.GetByParam(pBlockingMark, wSqlParameterlist);
@@ -135,10 +151,6 @@ namespace Fwk.Blocking
         protected abstract List<SqlParameter> GetCustomParametersToInsert(IBlockingMark pBlockingMark);
         protected abstract List<SqlParameter> GetCustomParametersToGetByParams(IBlockingMark pBlockingMark);
         protected abstract List<SqlParameter> GetCustomParametersUserExist(IBlockingMark pBlockingMark);
-
-        
-
-        #region Privates Methods
 
         /// <summary>
         /// Retorna el RetryCount.
@@ -217,13 +229,8 @@ namespace Fwk.Blocking
      
             return BlockingEngineDAC.ExistsUsers(pBlockingMark, wSqlParameterlist,_Table_BlockingMarks_Name);
         }
-        
 
         #endregion
     }
-
-
-
-
 
 }

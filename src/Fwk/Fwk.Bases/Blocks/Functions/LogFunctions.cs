@@ -27,7 +27,7 @@ namespace Fwk.HelperFunctions
         /// Metodo que permite escribir un log en el Log viewer o en un archivo dependiendo del 
         /// parametro 
         /// </summary>
-        /// <param name="pMessage">Mensage del log.-</param>
+        /// <param name="pMessage">Mensaje del log.-</param>
         /// <param name="pFileName">Nombre del archivo donde se guarda el Log si modalidad log es <remarks "LogMode.File"</param>
 		/// <param name="pSource">El origen por el cual la qplicacion es registrada </param>
         /// <param name="pLogMode">Si es "EventViewer" genera un registro en Event Viewer 

@@ -64,6 +64,20 @@ namespace Fwk.Logging.Targets
         /// <param name="pEndDate">Fecha limite de fin de busqueda</param>
         /// <returns></returns>
         public abstract Events SearchByParam(Event pEvent, DateTime pEndDate);
+
+        /// <summary>
+        /// Elimina del origen de logueo una lista de eventos por medio de su guid
+        /// </summary>
+        /// <param name="eventIdList">Lista de guids de los eventos a eliminar</param>
+        public abstract void Remove(List<string> eventIdList);
+
+
+        /// <summary>
+        /// Elimina del origen de logueo una lista de eventos por medio de su guid
+        /// </summary>
+        /// <param name="eventIdList">Lista de guids de los eventos a eliminar</param>
+        public abstract void Remove(List<Guid> eventIdList);
+
         #endregion
 
         static Target()
@@ -73,34 +87,37 @@ namespace Fwk.Logging.Targets
         static Dictionary<string, ITarget> _Targets;
 
         /// <summary>
-        /// Fabrica de Itargets 
+        /// Fabrica de Itargets . Crea un ITarget sin basarce en archivo de configuración.-
         /// </summary>
         /// <param name="targetType"></param>
-        /// <param name="key"></param>
+        /// <param name="key">Clave del Target. La clave sera ademas utiliza como 
+        /// Si es DatabaseTarget --> CnnStringName
+        /// Si es TargetType     --> FileName
+        /// Si es Xml            --> FileName
+        /// </param>
         /// <returns></returns>
         public static ITarget TargetFactory(TargetType targetType, string key)
         {
-            ITarget target = null;
+            ITarget wITarget = null;
             if(_Targets.ContainsKey(key))
-             target = _Targets[key];
+             wITarget = _Targets[key];
           
             //Si no existe se crea
-            if (target == null)
+            if (wITarget == null)
             {
                 switch (targetType)
                 {
 
                     case TargetType.Database:
                         {
-                            target = new DatabaseTarget();
-                            ((DatabaseTarget)target).CnnStringName = key;
+                            wITarget = new DatabaseTarget();
+                            ((DatabaseTarget)wITarget).CnnStringName = key;
                             break;
                         }
                     case TargetType.File:
                         {
-                            target = new FileTarget();
-                            ((FileTarget)target).FileName = key;//fullFileName;
-
+                            wITarget = new FileTarget();
+                            ((FileTarget)wITarget).FileName = key;//fullFileName;
                             break;
                         }
                     case TargetType.WindowsEvent:
@@ -109,14 +126,18 @@ namespace Fwk.Logging.Targets
                         }
                     case TargetType.Xml:
                         {
-                            target = new XmlTarget();
-                            ((XmlTarget)target).FileName = key;
+                            wITarget = new XmlTarget();
+                            ((XmlTarget)wITarget).FileName = key;
                             break;
                         }
                 }
               
             }
-            return target;
+            //Si no existe ahora lo agrega
+            if (_Targets.ContainsKey(key))
+                _Targets.Add(key, wITarget);
+
+            return wITarget;
         }
 
       

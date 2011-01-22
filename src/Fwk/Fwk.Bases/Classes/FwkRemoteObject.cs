@@ -114,6 +114,31 @@ namespace Fwk.Remoting
 
         }
         /// <summary>
+        /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
+        /// proveedor
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public List<String> GetAllApplicationsId(string providerName)
+        {
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            return wSimpleFacade.GetAllApplicationsId(providerName);
+            
+        }
+
+
+        /// <summary>
+        /// Obtiene info del proveedor de metadata
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <returns></returns>
+        public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        {
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            return wSimpleFacade.GetProviderInfo(providerName);
+        }
+
+        /// <summary>
         /// Factory de SimpleFacade
         /// </summary>
         /// <returns></returns>

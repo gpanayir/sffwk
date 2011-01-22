@@ -7,6 +7,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using Fwk.Bases;
 using System.Data;
 using Fwk.Exceptions;
+using System.Data.SqlClient;
 
 
 namespace Fwk.ServiceManagement
@@ -35,14 +36,16 @@ namespace Fwk.ServiceManagement
         {
             ServiceConfiguration wServiceConfiguration = null; ;
 
-            Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
-            System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_g_Name");
-            wBPConfig.AddInParameter(dbCommand, "Name", System.Data.DbType.String, serviceName);
-            if (!string.IsNullOrEmpty(applicationId))
-                wBPConfig.AddInParameter(dbCommand, "ApplicationId", System.Data.DbType.String, applicationId);
-
+          
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+                System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_g_Name");
+                wBPConfig.AddInParameter(dbCommand, "Name", System.Data.DbType.String, serviceName);
+                if (!string.IsNullOrEmpty(applicationId))
+                    wBPConfig.AddInParameter(dbCommand, "ApplicationId", System.Data.DbType.String, applicationId);
+
+
                 using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
                 {
                     while (dataReader.Read())
@@ -77,14 +80,17 @@ namespace Fwk.ServiceManagement
 		/// <returns>Lista de configuraciones de servicios de negocio.</returns>
         internal static ServiceConfigurationCollection GetAllServices(string applicationId, string cnnString)
 		{
-            Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+          
          
 			ServiceConfigurationCollection wServiceConfigurationCollection = new ServiceConfigurationCollection();
-            System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_s_All");
-            if (!string.IsNullOrEmpty(applicationId))
-                wBPConfig.AddInParameter(dbCommand, "ApplicationId", System.Data.DbType.String, applicationId);
+            
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+                System.Data.Common.DbCommand dbCommand = wBPConfig.GetStoredProcCommand("fwk_Service_s_All");
+                if (!string.IsNullOrEmpty(applicationId))
+                    wBPConfig.AddInParameter(dbCommand, "ApplicationId", System.Data.DbType.String, applicationId);
+
                 using (IDataReader dataReader = wBPConfig.ExecuteReader(dbCommand))
                 {
                     while (dataReader.Read())
@@ -115,8 +121,7 @@ namespace Fwk.ServiceManagement
         /// <param name="cnnString">Nombre de cadena de conexion</param>
         internal static void SetServiceConfiguration(String serviceName, ServiceConfiguration pServiceConfiguration, string applicationId, string cnnString)
 		{
-            Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
-
+            
             if (GetServiceConfiguration(serviceName,applicationId,cnnString) == null)
             {
                 Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " no se actualizó por que no se encontro configurado en la base de datos.");
@@ -126,6 +131,8 @@ namespace Fwk.ServiceManagement
             }
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
                 using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_u"))
                 {
 
@@ -175,9 +182,11 @@ namespace Fwk.ServiceManagement
 		/// <author>moviedo</author>
         internal static void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration, string applicationId, string cnnString)
 		{
-			Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
                 using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_i"))
                 {
                     wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, pServiceConfiguration.Name);
@@ -200,7 +209,14 @@ namespace Fwk.ServiceManagement
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException("Problemas con Fwk.ServiceManagement  al realizar operaciones con la base de datos \r\n", ex);
+
                 ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(te);
+                if (ex is SqlException && ((SqlException)ex).Number == 2627)
+                {
+                    te.AddMessage_Top("El servicio ya exiiste. Clave duplicada ");
+                }
+
+                
                 te.ErrorId = "7200";
                 throw te;
 
@@ -216,9 +232,11 @@ namespace Fwk.ServiceManagement
 		/// <param name="cnnString">Nombre de cadena de conexion</param>
         internal static void DeleteServiceConfiguration(string serviceName, string applicationId, string cnnString)
         {
-            Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
             try
             {
+                Database wBPConfig = DatabaseFactory.CreateDatabase(cnnString);
+
                 using (System.Data.Common.DbCommand wCmd = wBPConfig.GetStoredProcCommand("fwk_Service_d"))
                 {
                     wBPConfig.AddInParameter(wCmd, "Name", System.Data.DbType.String, serviceName);
@@ -259,22 +277,22 @@ namespace Fwk.ServiceManagement
         {
             ServiceConfiguration wServiceConfiguration = new ServiceConfiguration();
 
-            wServiceConfiguration.Name = Convert.ToString(pServiceRow["name"]);
-            wServiceConfiguration.Description = Convert.ToString(pServiceRow["Description"]);
-            wServiceConfiguration.Handler = Convert.ToString(pServiceRow["Handler"]);
-            wServiceConfiguration.Request = Convert.ToString(pServiceRow["Request"]);
-            wServiceConfiguration.Response = Convert.ToString(pServiceRow["Response"]);
+            wServiceConfiguration.Name = Convert.ToString(pServiceRow["name"]).Trim();
+            wServiceConfiguration.Description = Convert.ToString(pServiceRow["Description"]).Trim();
+            wServiceConfiguration.Handler = Convert.ToString(pServiceRow["Handler"]).Trim();
+            wServiceConfiguration.Request = Convert.ToString(pServiceRow["Request"]).Trim();
+            wServiceConfiguration.Response = Convert.ToString(pServiceRow["Response"]).Trim();
             wServiceConfiguration.Available = Convert.ToBoolean(pServiceRow["Available"]);
             wServiceConfiguration.Audit = Convert.ToBoolean(pServiceRow["Audit"]);
             wServiceConfiguration.TransactionalBehaviour = (TransactionalBehaviour)Enum.Parse(typeof(TransactionalBehaviour), pServiceRow["TransactionalBehaviour"].ToString());
             wServiceConfiguration.IsolationLevel = (Fwk.Transaction.IsolationLevel)Enum.Parse(typeof(Fwk.Transaction.IsolationLevel), pServiceRow["IsolationLevel"].ToString());
             if (pServiceRow["CreatedUserName"] != DBNull.Value)
-            wServiceConfiguration.CreatedUserName = Convert.ToString(pServiceRow["CreatedUserName"]);
+                wServiceConfiguration.CreatedUserName = Convert.ToString(pServiceRow["CreatedUserName"]).Trim();
 
             if (pServiceRow["CreatedDateTime"] != DBNull.Value)
                 wServiceConfiguration.CreatedDateTime = Convert.ToDateTime(pServiceRow["CreatedDateTime"]);
             if (pServiceRow["ApplicationId"] != DBNull.Value)
-            wServiceConfiguration.ApplicationId = Convert.ToString(pServiceRow["ApplicationId"]);
+            wServiceConfiguration.ApplicationId = Convert.ToString(pServiceRow["ApplicationId"]).Trim();
 
 
             return wServiceConfiguration;

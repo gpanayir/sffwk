@@ -98,12 +98,14 @@ namespace Fwk.Logging.Targets
                     wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
                     wParam.Value = pEvent.User;
 
+                    wParam = wCmd.Parameters.Add("AppId", SqlDbType.NVarChar);
+                    wParam.Value = pEvent.AppId;
 
                     wCmd.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
-                    TechnicalException te = new TechnicalException("Error de Logging", ex);
+                    TechnicalException te = new TechnicalException("Error de Fwk.Logging al intentar insertar log en base de datos", ex);
                     te.ErrorId = "9004";
                     Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
                     throw te;
@@ -153,7 +155,6 @@ namespace Fwk.Logging.Targets
                         
                     }
                   
-
                     if (!string.IsNullOrEmpty(pEvent.Machine))
                     {
                         wParam = wCmd.Parameters.Add("Machine", SqlDbType.NVarChar);
@@ -166,7 +167,12 @@ namespace Fwk.Logging.Targets
                         wParam.Value = string.Concat("%", pEvent.User, "%");
                     }
 
-                    
+
+                    if (!string.IsNullOrEmpty(pEvent.AppId))
+                    {
+                        wParam = wCmd.Parameters.Add("AppId", SqlDbType.NVarChar);
+                        wParam.Value = string.Concat("%", pEvent.AppId, "%");
+                    }
 
 
 
@@ -176,14 +182,14 @@ namespace Fwk.Logging.Targets
                         while (reader.Read())
                         {
                             wEvent = new Event();
-
+                            wEvent.Id = new Guid(reader["Id"].ToString());
                             wEvent.Message.Text = reader["Message"].ToString();
                             wEvent.Source = reader["Source"].ToString();
-                           
                             wEvent.LogType = (EventType)Enum.Parse(typeof(EventType), reader["LogType"].ToString());
                             wEvent.Machine = reader["Machine"].ToString();
                             wEvent.LogDate = Convert.ToDateTime(reader["LogDate"]);
                             wEvent.User = reader["UserLoginName"].ToString();
+                            wEvent.AppId = reader["AppId"].ToString();
                             wEventList.Add(wEvent);
                         }
                     }
@@ -193,7 +199,7 @@ namespace Fwk.Logging.Targets
                 }
                 catch (Exception ex)
                 {
-                    TechnicalException te = new TechnicalException("Error de Fwk.Logging", ex);
+                    TechnicalException te = new TechnicalException("Error de Fwk.Logging al intentar consultar log en base de datos", ex);
                     te.ErrorId = "9004";
                     Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
                     throw te;
@@ -263,6 +269,11 @@ namespace Fwk.Logging.Targets
                         wParam.Value = string.Concat("%", pEvent.User, "%");
                     }
 
+                    if (!string.IsNullOrEmpty(pEvent.AppId))
+                    {
+                        wParam = wCmd.Parameters.Add("AppId", SqlDbType.NVarChar);
+                        wParam.Value = string.Concat("%", pEvent.AppId, "%");
+                    }
 
                     
 
@@ -270,14 +281,16 @@ namespace Fwk.Logging.Targets
                     {
                         while (reader.Read())
                         {
-                            wEvent = new Event();
 
+                            wEvent = new Event();
+                            wEvent.Id = new Guid(reader["Id"].ToString());
                             wEvent.Message.Text = reader["Message"].ToString();
                             wEvent.Source = reader["Source"].ToString();
-                            wEvent.LogType = (EventType)reader["LogType"];
+                            wEvent.LogType = (EventType)Enum.Parse(typeof(EventType), reader["LogType"].ToString());
                             wEvent.Machine = reader["Machine"].ToString();
-                            wEvent.LogDate = Convert.ToDateTime(reader["Machine"]);
+                            wEvent.LogDate = Convert.ToDateTime(reader["LogDate"]);
                             wEvent.User = reader["UserLoginName"].ToString();
+                            wEvent.AppId = reader["AppId"].ToString();
                             wEventList.Add(wEvent);
                         }
                     }
@@ -295,6 +308,74 @@ namespace Fwk.Logging.Targets
             }
 
         }
+  
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<string> eventIdList)
+        {
+
+            using (SqlConnection wCnn = new SqlConnection(GetCnnString()))
+            using (SqlCommand wCmd = new SqlCommand())
+            {
+                try
+                {
+                    wCnn.Open();
+                    wCmd.Connection = wCnn;
+                    wCmd.CommandType = CommandType.StoredProcedure;
+                    wCmd.CommandText = "fwk_Logs_d";
+                    SqlParameter wParam = wCmd.Parameters.Add("Id", SqlDbType.UniqueIdentifier);
+                     
+                    foreach (string id in eventIdList)
+                    {
+                        wParam.Value = new Guid(id.ToString());
+                        wCmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    TechnicalException te = new TechnicalException("Error de Fwk.Logging al intentar elimiar log en base de datos", ex);
+                    te.ErrorId = "9004";
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
+                    throw te;
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<Guid> eventIdList)
+        {
+
+            using (SqlConnection wCnn = new SqlConnection(GetCnnString()))
+            using (SqlCommand wCmd = new SqlCommand())
+            {
+                try
+                {
+                    wCnn.Open();
+                    wCmd.Connection = wCnn;
+                    wCmd.CommandType = CommandType.StoredProcedure;
+                    wCmd.CommandText = "fwk_Logs_d";
+                    SqlParameter wParam = wCmd.Parameters.Add("Id", SqlDbType.UniqueIdentifier);
+                    foreach (Guid id in eventIdList)
+                    {
+                        wParam.Value = id;
+                        wCmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    TechnicalException te = new TechnicalException("Error de Fwk.Logging al intentar elimiar log en base de datos", ex);
+                    te.ErrorId = "9004";
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseTarget>(te);
+                    throw te;
+                }
+            }
+        }
+
         string strDb;
         string GetCnnString()
         {
@@ -318,6 +399,7 @@ namespace Fwk.Logging.Targets
             }
             return strDb;
         }
+
 
         #endregion
 

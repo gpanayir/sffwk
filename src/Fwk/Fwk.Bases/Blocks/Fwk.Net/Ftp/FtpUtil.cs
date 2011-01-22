@@ -13,7 +13,11 @@ namespace Fwk.Net.Ftp
     /// </summary>
     public static class Util
     {
+        /// <summary>
+        /// cache de <see cref="SocketClient"/> 
+        /// </summary>
         public static FwkSimpleStorageBase<SocketClient> storage = new FwkSimpleStorageBase<SocketClient>();
+
         const string CRLF = "\r\n";
 
 

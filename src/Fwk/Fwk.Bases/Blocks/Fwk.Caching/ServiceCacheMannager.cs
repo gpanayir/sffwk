@@ -7,11 +7,15 @@ namespace Fwk.Caching
 {
 
     /// <summary>
-    /// 
+    /// Componente que permite manipular los objetos IServiceContract en la cache.- 
     /// </summary>
     public static class ServiceCacheMannager
     {
-       
+       /// <summary>
+       /// Obtiene un response cacheado por medio de su request
+       /// </summary>
+       /// <param name="pRequest"></param>
+       /// <returns></returns>
         public static IServiceContract Get(IRequest pRequest)
         {
             IRequest req = (IRequest)pRequest;
@@ -39,6 +43,11 @@ namespace Fwk.Caching
             return wResult;
         }
 
+        /// <summary>
+        /// Almacena un response en cahce
+        /// </summary>
+        /// <param name="pRequest"></param>
+        /// <param name="pResult"></param>
         public static void Add(IServiceContract pRequest, IServiceContract pResult)
         {
             IRequest req = (IRequest)pRequest;
@@ -59,6 +68,11 @@ namespace Fwk.Caching
 
             
         }
+
+        /// <summary>
+        /// Limpia todos los resultado de servicios en cache
+        /// </summary>
+        /// <param name="pCacheMannagerName"></param>
         public static void ClearAll(String pCacheMannagerName)
         {
             KwkCacheFactory.GetFwkCache(pCacheMannagerName).ClearAll();

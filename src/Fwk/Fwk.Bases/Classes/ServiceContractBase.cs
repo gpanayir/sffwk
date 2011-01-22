@@ -212,61 +212,61 @@ namespace Fwk.Bases
             m_Context.HostName = Environment.MachineName;
             m_Context.UserName = Environment.UserName;
             m_Context.HostTime = DateTime.Now;
-            m_Context.CompanyId = GetCompanyId();
+            //m_Context.CompanyId = GetCompanyId();
 
             //solo si es un objeto request
-            if (typeof(IRequest).IsInstanceOfType(this))
-            {
-                //Obtener nombre del proveedor de seguridad. Membership,Rol y Autthorization Provider
-                ((IRequest)this).SecurityProviderName = GetSecurtyProviderName();
-            }
+            //if (typeof(IRequest).IsInstanceOfType(this))
+            //{
+            //    //Obtener nombre del proveedor de seguridad. Membership,Rol y Autthorization Provider
+            //    ((IRequest)this).SecurityProviderName = GetSecurtyProviderName();
+            //}
         }
 
         /// <summary>
         /// Busca el identificador de compañia o compañia-aplicacion en el archivo de configuracion o Configuracion mannager del framework
         /// </summary>
         /// <returns></returns>
-        protected static string GetCompanyId()
-        {
-            string wCompanyId = System.Configuration.ConfigurationManager.AppSettings["CompanyId"];
-            try
-            {
-                if (string.IsNullOrEmpty(wCompanyId))
-                    wCompanyId = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "CompanyId");
-            }
-            catch (System.TypeInitializationException)
-            {
-                return string.Empty;
-            }
-            if (wCompanyId == null)
-                return string.Empty;
+        //protected static string GetCompanyId()
+        //{
+        //    string wCompanyId = System.Configuration.ConfigurationManager.AppSettings["CompanyId"];
+        //    try
+        //    {
+        //        if (string.IsNullOrEmpty(wCompanyId))
+        //            wCompanyId = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "CompanyId");
+        //    }
+        //    catch (System.TypeInitializationException)
+        //    {
+        //        return string.Empty;
+        //    }
+        //    if (wCompanyId == null)
+        //        return string.Empty;
 
-            return wCompanyId;
-        }
+        //    return wCompanyId;
+        //}
 
 
         /// <summary>
         /// Busca cadenas de coenección en el archivo de configuracion Configuracion mannager del framework
         /// </summary>
         /// <returns></returns>
-        protected static string GetSecurtyProviderName()
-        {
+        //protected static string GetSecurtyProviderName()
+        //{
 
-            string wSecurtyProviderName = System.Configuration.ConfigurationManager.AppSettings["SecurtyProviderName"];
-            try
-            {
-                if (string.IsNullOrEmpty(wSecurtyProviderName))
-                    wSecurtyProviderName = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "SecurtyProviderName");
-            }
-            catch (System.TypeInitializationException)
-            {
-                return string.Empty;
-            }
-            if (wSecurtyProviderName == null)
-                return string.Empty;
-
-            return wSecurtyProviderName;
-        }
+        //    string wSecurtyProviderName = System.Configuration.ConfigurationManager.AppSettings["SecurtyProviderName"];
+        //    try
+        //    {
+        //        if (string.IsNullOrEmpty(wSecurtyProviderName))
+        //            wSecurtyProviderName = Fwk.Configuration.ConfigurationManager.GetProperty("ClientFwkSettings", "SecurtyProviderName");
+        //    }
+        //    catch (System.TypeInitializationException)
+        //    {
+        //        return string.Empty;
+        //    }
+        //    if (wSecurtyProviderName == null)
+        //        return string.Empty;
+           
+        //    return wSecurtyProviderName;
+        //}
 
         /// <summary>
         /// Clona el contrato de servicio

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 using Fwk.Logging.Targets;
+using System.Xml.Serialization;
+using Fwk.Bases;
 
 namespace Fwk.ConfigSection
 {
@@ -32,21 +34,23 @@ namespace Fwk.ConfigSection
             {
                 return (string)this["name"];
             }
+            set { this["name"] = value; }
         }
 
         /// <summary>
         /// Determina el tipo de origen de la metadata de sercvicios
         /// </summary>
         [ConfigurationProperty("type", IsRequired = true, IsKey = false)]
-        public ServiceProviderType ConfigProviderType
+        public ServiceProviderType ProviderType
         {
             get
             {
                 return (ServiceProviderType)this["type"];
             }
+            set { this["type"] = value; }
         }
 
- 
+
 
         /// <summary>
         /// Archivo contenedor de la configuracion
@@ -59,6 +63,7 @@ namespace Fwk.ConfigSection
             {
                 return (string)this["sourceinfo"];
             }
+            set { this["sourceinfo"] = value; }
         }
         [ConfigurationProperty("appid", IsRequired = true, IsKey = false), StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
         public string ApplicationId
@@ -67,7 +72,55 @@ namespace Fwk.ConfigSection
             {
                 return (string)this["appid"];
             }
+            set { this["appid"] = value; }
+        }
+        public override bool IsReadOnly()
+        {
+            return false;
         }
         #endregion
+    }
+
+    [XmlInclude(typeof(MetadataProvider)), Serializable]
+    public class MetadataProvider : BaseEntity
+    {
+        string _ApplicationId;
+
+        public string ApplicationId
+        {
+            get { return _ApplicationId; }
+            set { _ApplicationId = value; }
+        }
+        string _Name;
+
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value; }
+        }
+        string _ConfigProviderType;
+
+        public string ConfigProviderType
+        {
+            get { return _ConfigProviderType; }
+            set { _ConfigProviderType = value; }
+        }
+        string _SourceInfo;
+
+        public string SourceInfo
+        {
+            get { return _SourceInfo; }
+            set { _SourceInfo = value; }
+        }
+        public MetadataProvider()
+        { }
+        public MetadataProvider(ServiceProviderElement provider)
+        {
+            _ApplicationId = provider.ApplicationId;
+            _ConfigProviderType = provider.ProviderType.ToString();
+            _Name = provider.Name;
+            _SourceInfo = provider.SourceInfo;
+
+        }
     }
 }

@@ -45,29 +45,6 @@ namespace Fwk.Bases
     public static class Enums
     {
         /// <summary>
-        /// Tipo Busqueda
-        /// </summary>
-        public enum SearchtypeEnum
-        {
-            /// <summary>
-            /// Que Comience
-            /// </summary>
-            Start = 1,
-            /// <summary>
-            ///  Que contenga
-            /// </summary>
-            Contain = 2,
-            /// <summary>
-            /// Que finalice
-            /// </summary>
-            Finalize = 3,
-            /// <summary>
-            /// Igual
-            /// </summary>
-            Equal = 4
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="pValue"></param>
@@ -98,7 +75,28 @@ namespace Fwk.Bases
             return pValue;
         }
     }
-
+    /// <summary>
+    /// Tipo Busqueda
+    /// </summary>
+    public enum SearchtypeEnum
+    {
+        /// <summary>
+        /// Que Comience
+        /// </summary>
+        Start = 1,
+        /// <summary>
+        ///  Que contenga
+        /// </summary>
+        Contain = 2,
+        /// <summary>
+        /// Que finalice
+        /// </summary>
+        Finalize = 3,
+        /// <summary>
+        /// Igual
+        /// </summary>
+        Equal = 4
+    }
 
     /// <summary>
     /// Enumeracion de Estados de una entidad
@@ -190,19 +188,19 @@ namespace Fwk.Bases
 
     }
 
-    /// <summary>
-    /// Modo de autenticacion
-    /// </summary>
+
     public enum AuthenticationModeEnum
     {
-        [Description("Integrada de Windows")]
+        [Description("Autenticación Integrada")]
         WindowsIntegrated = 0,
 
-        [Description("Mixta")]
+        [Description("Autenticación Mixta")]
         Mixed = 1,
 
-        [Description("Huella Digital")]// --> buena groso falto ocular tambien jaja
+        [Description("Huella Digital")]
         FingerPrint = 2,
 
+        [Description("Autenticación de Windows")]
+        LDAP = 3,
     }
 }

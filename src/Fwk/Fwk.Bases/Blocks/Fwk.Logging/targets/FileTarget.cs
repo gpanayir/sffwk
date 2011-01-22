@@ -25,50 +25,6 @@ namespace Fwk.Logging.Targets
         #endregion
         #region <public overrides>
         /// <summary>
-        /// Implementación de la escritura del log del evento
-        /// en archivo .log.
-        /// </summary>
-        /// <param name="pEvent">Evento a loguear.</param>
-        public override void Write(Event pEvent)
-        {
-            StreamWriter wStreamWriter;
-            wStreamWriter = OpenStreamWriter();
-            wStreamWriter.WriteLine(pEvent.ToString());
-            wStreamWriter.Flush();
-            wStreamWriter.Close();
-            wStreamWriter = null;
-        }
-        #endregion
-
-        #region <private methods>
-        /// <summary>
-        /// Retorna un StreamWriter según el FileName especificado 
-        /// en la propiedad FileName.
-        /// </summary>
-        /// <returns>StreamWriter.</returns>
-        private StreamWriter OpenStreamWriter()
-        {
-            StreamWriter wStreamWriter;
-
-            if (this.FileName.Trim().Length == 0)
-            {
-                throw new TechnicalException("Debe especificar un FileName.");
-            }
-
-            FileInfo wFileInfo = new FileInfo(this.FileName);
-            if (!wFileInfo.Exists)
-            {
-                if (!wFileInfo.Directory.Exists)
-                {
-                    Directory.CreateDirectory(wFileInfo.DirectoryName);
-                }
-            }
-            wStreamWriter = new StreamWriter(this.FileName, true);
-            return wStreamWriter;
-        }
-        #endregion
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="pEvent"></param>
@@ -84,9 +40,75 @@ namespace Fwk.Logging.Targets
         /// <param name="pEvent"></param>
         /// <param name="t"></param>
         /// <returns></returns>
-        public override Events SearchByParam(Event pEvent,DateTime t)
+        public override Events SearchByParam(Event pEvent, DateTime t)
         {
-            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente un archivo comun.- Solo de xml");
+            throw new NotImplementedException("No se implementa SearchByParam en un evento proveniente un archivo comun.- Solo de xml y database");
         }
+        /// <summary>
+        /// Implementación de la escritura del log del evento
+        /// en archivo .log.
+        /// </summary>
+        /// <param name="pEvent">Evento a loguear.</param>
+        public override void Write(Event pEvent)
+        {
+            CheckOpenStreamWriter();
+            Fwk.HelperFunctions.FileFunctions.SaveTextFile(this.FileName, pEvent.ToString(), true);
+            //StreamWriter wStreamWriter;
+            //wStreamWriter = OpenStreamWriter();
+            //wStreamWriter.WriteLine(pEvent.ToString());
+            //wStreamWriter.Flush();
+            //wStreamWriter.Close();
+            //wStreamWriter = null;
+        }
+
+        /// <summary>
+        /// No se implementa Remove en un evento proveniente un archivo comun.- Solo de xml y database
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<string> eventIdList)
+        {
+            throw new NotImplementedException("No se implementa Remove en un evento proveniente un archivo comun.- Solo de xml y database");
+        }
+
+
+        /// <summary>
+        /// No se implementa Remove en un evento proveniente un archivo comun.- Solo de xml y database
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public override void Remove(List<Guid> eventIdList)
+        {
+            throw new NotImplementedException("No se implementa Remove en un evento proveniente un archivo comun.- Solo de xml y database");
+        }
+        #endregion
+
+        #region <private methods>
+        /// <summary>
+        ///Chequea si existe previamente el archiivo o no tambien el directorio de logs
+        /// 
+        /// </summary>
+        /// <returns>StreamWriter.</returns>
+        private void  CheckOpenStreamWriter()
+        {
+            //StreamWriter wStreamWriter;
+
+            if (this.FileName.Trim().Length == 0)
+            {
+                throw new TechnicalException("Debe especificar un FileName.");
+            }
+
+            FileInfo wFileInfo = new FileInfo(this.FileName);
+            if (!wFileInfo.Exists)
+            {
+                if (!wFileInfo.Directory.Exists)
+                {
+                    Directory.CreateDirectory(wFileInfo.DirectoryName);
+                }
+            }
+            //wStreamWriter = new StreamWriter(this.FileName, true);
+            //return wStreamWriter;
+        }
+        #endregion
+
+      
     }
 }

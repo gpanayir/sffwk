@@ -32,7 +32,11 @@ namespace Fwk.Exceptions
         /// <summary>
         /// BlockingFunctionalException
         /// </summary>
-        BlockingFunctionalException = 4
+        BlockingFunctionalException = 4,
+        /// <summary>
+        /// OtherException
+        /// </summary>
+        OtherException = 5
     }
     /// <summary>
     /// Clase que procesa excepciones.
@@ -226,8 +230,45 @@ namespace Fwk.Exceptions
             return wMessage.ToString();
         }
 
+        /// <summary>
+        /// Retorna el tipo <see cref="FwkExceptionTypes"/> de acuerdo al ex.GetType() de la excepción poasada por parametro
+        /// </summary>
+        /// <param name="ex">excepción</param>
+        /// <returns><see cref="FwkExceptionTypes"/></returns>
+        public static FwkExceptionTypes GetFwkExceptionTypes(Exception ex)
+        {
+            if (ex.GetType() == typeof(FunctionalException))
+            {
+                return FwkExceptionTypes.FunctionalException;
+            }
+            if (ex.GetType() == typeof(TechnicalException))
+            {
+                return FwkExceptionTypes.TechnicalException;
+            }
 
+            return FwkExceptionTypes.OtherException;
 
+        }
+
+        /// <summary>
+        /// Retorna el error id de la excepción
+        /// </summary>
+        /// <param name="ex">excepción</param>
+        /// <returns>ErrorId de la excepción </returns>
+        public static string GetFwkErrorId(Exception ex)
+        {
+           
+            if (GetFwkExceptionTypes(ex) == FwkExceptionTypes.FunctionalException || ex.GetType().BaseType == typeof(FunctionalException)) 
+            {
+                return ((FunctionalException)ex).ErrorId;
+            }
+            if (GetFwkExceptionTypes(ex) == FwkExceptionTypes.TechnicalException || ex.GetType().BaseType == typeof(TechnicalException)) 
+            {
+                return ((TechnicalException)ex).ErrorId;
+            }
+            return string.Empty;
+
+        }
         /// <summary>
         /// Retorna el tipo de una SoapException.
         /// </summary>
@@ -311,6 +352,7 @@ namespace Fwk.Exceptions
                 SoapException.ClientFaultCode, pabosoluteURI, node);
         }
       
+
         #endregion
 
 

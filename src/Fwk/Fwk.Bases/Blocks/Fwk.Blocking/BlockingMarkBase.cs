@@ -20,13 +20,13 @@ namespace Fwk.Blocking
     /// <Auhor>moviedo</Auhor>
     public class BlockingMarkBase : IBlockingMark
     {
+        
         #region Private members
         private Boolean _AlreadyExists;
-        private DateTime? m_DueDate;
+        private DateTime? _DueDate;
         private String _Process;
         private Guid? _FwkGuid;
-        private Int32? m_BlockingId;
-        //private Int32? m_BlockingTime;
+        private Int32? _BlockingId;
         private String _User;
         private Int32? _TTL;
         private String _TableName = "BlockingMarks";
@@ -37,17 +37,7 @@ namespace Fwk.Blocking
         #endregion
 
         #region Constructors
-        public String AttValue
-        {
-            get { return _AttValue; }
-            set { _AttValue = value; }
-        }
 
-        public String Attribute
-        {
-            get { return _Attribute; }
-            set { _Attribute = value; }
-        }
         /// <summary>
         /// Constructor que asigna un nombre de tabla de modo de tratar con una tabla que no 
         /// sea la por defecto de blocking.
@@ -99,17 +89,44 @@ namespace Fwk.Blocking
             _FwkGuid = Guid.NewGuid();
             SetValues();
         }
+        /// <summary>
+        /// Constructor para búsquedas
+        /// todos los parametros pueden ser nulos
+        /// </summary>
+        public BlockingMarkBase(Int32? pBlockingId, String pTableName, String pAttribute, Int32? pTTL,
+            String pUserName, Guid? pGuid, DateTime? pDueDate, String pProcess)
+        {
+            _BlockingId = pBlockingId;
+            _TableName = pTableName;
+            _Attribute = pAttribute;
+            _TTL = pTTL;
+            _User = pUserName;
+            _FwkGuid = pGuid;
+            _DueDate = pDueDate;
+            _Process = pProcess;
+        }
 
         #endregion
 
         #region Properties
+
+        public String AttValue
+        {
+            get { return _AttValue; }
+            set { _AttValue = value; }
+        }
+        public String Attribute
+        {
+            get { return _Attribute; }
+            set { _Attribute = value; }
+        }
         /// <summary>
         /// 
         /// </summary>
         public Int32? BlockingId
         {
-            get { return m_BlockingId; }
-            set { m_BlockingId = value; }
+            get { return _BlockingId; }
+            set { _BlockingId = value; }
         }
 
         /// <summary>
@@ -135,7 +152,7 @@ namespace Fwk.Blocking
         /// </summary>
         public DateTime? DueDate
         {
-            get { return m_DueDate; }
+            get { return _DueDate; }
             //set { m_DueDate = value; }
         }
 
@@ -157,20 +174,9 @@ namespace Fwk.Blocking
             set
             {
                 _TTL = value;
-                m_DueDate = System.DateTime.Now.AddSeconds(Convert.ToDouble(_TTL));
+                _DueDate = System.DateTime.Now.AddSeconds(Convert.ToDouble(_TTL));
             }
         }
-
-        //        /// <summary>
-        //        /// Tiempo de espera antes de lanzar una excepcion cuando
-        //        /// se esta esperando que se liberen marcas de bloqueo.-
-        //        /// </summary>
-        //public int? BlockingTime
-        //{
-        //    get { return m_BlockingTime; }
-        //    set { m_BlockingTime = value; }
-        //}
-
         /// <summary>
         /// Usuario que efectua el bloqueo.-
         /// </summary>
@@ -188,10 +194,10 @@ namespace Fwk.Blocking
             get { return _TableName; }
         }
 
-        
         #endregion
 
         #region Private Methods
+        
         /// <summary>
         /// Setea los valores por defecto.-
         /// </summary>
@@ -202,7 +208,9 @@ namespace Fwk.Blocking
             _User = String.Empty;
            
         }
+        
         #endregion
 
     }
+
 }

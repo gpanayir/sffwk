@@ -130,7 +130,7 @@ namespace Fwk.Exceptions
         }
 
         /// <summary>
-        /// Nombre del grupo donde obtener los mensages. Por defecto es el grupo FunctionalExceptionMassage
+        /// Nombre del grupo donde obtener los mensajes. Por defecto es el grupo FunctionalExceptionMassage
         /// </summary>
         public String GroupExceptionName
         {
@@ -209,7 +209,7 @@ namespace Fwk.Exceptions
         /// </summary>
         /// <param name="errorId">Id del error funcional</param>
         /// <param name="keyExceptionName">Id. del mensaje en el Configuration Manager</param>
-        /// <param name="groupExceptionName">Nombre del grupo donde se encuentran los mensages funcionales, 
+        /// <param name="groupExceptionName">Nombre del grupo donde se encuentran los mensajes funcionales, 
         /// si este valor esta vacio se tomara uno por defecto llamadoFunctionalExceptionMessage
         /// </param>
         /// <param name="pparams">Parametros a incluir en el mensaje de error. Reemplaza todos los {} deacuerdo al orden especificado</param>
@@ -235,7 +235,7 @@ namespace Fwk.Exceptions
         ///// throw new FunctionalException("SaldoInsuficiente",String.Empty,"SaldoCliente")
         ///// </summary>
         ///// <param name="keyExceptionName">Id. del mensaje en el Configuration Manager</param>
-        ///// <param name="groupExceptionName">Nombre del grupo donde se encuentran los mensages funcionales, 
+        ///// <param name="groupExceptionName">Nombre del grupo donde se encuentran los mensajes funcionales, 
         ///// si este valor esta vacio se tomara uno por defecto llamadoFunctionalExceptionMessage
         ///// </param>
         ///// <param name="pparams">Parametros a incluir en el mensaje de error. Reemplaza todos los {} deacuerdo al orden especificado</param>
@@ -294,7 +294,7 @@ namespace Fwk.Exceptions
         /// <param name="errorId">Id del error funcional</param>
         /// <param name="keyExceptionName">Id. del mensaje.</param>
         /// <param name="pinner">Excepcion original.</param>
-        /// <param name="groupExceptionName">Nombre del grupo donde obtener los mensages. Por defecto es el grupo FunctionalExceptionMassage</param>
+        /// <param name="groupExceptionName">Nombre del grupo donde obtener los mensajes. Por defecto es el grupo FunctionalExceptionMassage</param>
         /// <param name="pparams">Parametros a incluir en el mensaje de error.</param>
         public FunctionalException(int? errorId, string keyExceptionName, Exception pinner, String groupExceptionName, params string[] pparams)
             : base(String.Empty, pinner)
@@ -315,7 +315,7 @@ namespace Fwk.Exceptions
         ///// </summary>
         ///// <param name="keyExceptionName">Id. del mensaje.</param>
         ///// <param name="pinner">Excepcion original.</param>
-        ///// <param name="groupExceptionName">Nombre del grupo donde obtener los mensages. Por defecto es el grupo FunctionalExceptionMassage</param>
+        ///// <param name="groupExceptionName">Nombre del grupo donde obtener los mensajes. Por defecto es el grupo FunctionalExceptionMassage</param>
         ///// <param name="pparams">Parametros a incluir en el mensaje de error.</param>
         //public FunctionalException(string keyExceptionName, Exception pinner, String groupExceptionName, params string[] pparams)
         //    : base(String.Empty, pinner)
@@ -373,7 +373,7 @@ namespace Fwk.Exceptions
         }
 
         /// <summary>
-        /// Este metodo intenta establecer el mensage desde ConfigurationManager (Grupo,Clave) 
+        /// Este metodo intenta establecer el mensaje desde ConfigurationManager (Grupo,Clave) 
         /// reemplaza los parametros por el String[]  -- Es decir
         /// </summary>
         void SetMessage()

@@ -39,6 +39,14 @@ namespace Fwk.ConfigSection
         {
             return ((ServiceProviderElement)element).Name;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        public  void Add(ConfigurationElement element)
+        {
+            base.BaseAdd(element,true);
+        }
         #endregion
 
         #region <public properties>
@@ -55,14 +63,26 @@ namespace Fwk.ConfigSection
         /// <summary>
         /// Retorna un proveedor de netadata según si índice.
         /// </summary>
-        /// <param name="pIndex">índice del proveedor de configuracion que se desea obtener.</param>
+        /// <param name="index">índice del proveedor de configuracion que se desea obtener.</param>
         /// <returns>proveedor de configuracion</returns>
-        public ServiceProviderElement this[int pIndex]
+        public ServiceProviderElement this[int index]
         {
             get
             {
-                return (ServiceProviderElement)BaseGet(pIndex);
+                return (ServiceProviderElement)BaseGet(index);
             }
+            set
+            {
+                if (BaseGet(index) != null)
+                {
+                    BaseRemoveAt(index);
+                }
+                BaseAdd(index, value);
+            }
+        }
+        public override bool IsReadOnly()
+        {
+            return false;
         }
         #endregion
 

@@ -68,7 +68,30 @@ namespace Fwk.ConfigSection
                 return (string)this["sourceinfo"];
             }
         }
-
+        /// <summary>
+        /// pueden ser :
+        /// 
+        /// 
+        /// 
+        /// </summary>
+        [ConfigurationProperty("securityProviderName", IsRequired = true, IsKey = false),
+         StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        public string SecurityProviderName 
+        {
+            get
+            {
+                return (string)this["securityProviderName"];
+            }
+        }
+        [ConfigurationProperty("companyId", IsRequired = true, IsKey = false),
+         StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        public string CompanyId 
+        {
+            get
+            {
+                return (string)this["companyId"];
+            }
+        }
         
         
 

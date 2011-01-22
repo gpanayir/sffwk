@@ -7,6 +7,9 @@ namespace Fwk.Blocking
 	{
 		
       
+        /// <summary>
+        /// Constructor de <see cref="FwkBlockingEngine"/>
+        /// </summary>
         public FwkBlockingEngine(): base("BlockingMarks") { }
 
 

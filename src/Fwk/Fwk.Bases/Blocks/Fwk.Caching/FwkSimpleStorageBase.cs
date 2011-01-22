@@ -100,7 +100,7 @@ namespace Fwk.Caching
         string CONFIG_FILE = AppDomain.CurrentDomain.FriendlyName;
         FwkIsolatedStorageScope _IsolatedStorageScope = FwkIsolatedStorageScope.UserStoreForApplication;
        
-
+        
         /// <summary>
         /// 
         /// </summary>

@@ -71,7 +71,6 @@ namespace Fwk.Blocking
                     //AttValue
                     wParam = wCmd.Parameters.Add("@AttValue", SqlDbType.VarChar, 100);
                     wParam.Value = pIBlockingMark.AttValue;
-             
 
                     wParam = wCmd.Parameters.Add("@TTL", SqlDbType.Int);
                     wParam.Value = pIBlockingMark.TTL;
@@ -113,10 +112,7 @@ namespace Fwk.Blocking
         /// </summary>
         internal static void RemoveMark(IBlockingMark pBlockingMark)
         {
-
-
-            /// Una vez que el Contexto pasó los controles, se procede a
-            /// la liberación.
+            /// Una vez que el Contexto pasó los controles, se procede a la liberación.
             using (SqlConnection wCnn = new SqlConnection(msz_ConnectionString))
             using (SqlCommand wCmd = new SqlCommand(pBlockingMark.TableName + "_d", wCnn))
             {
@@ -201,12 +197,11 @@ namespace Fwk.Blocking
         /// <returns>Registro blocking</returns>
         internal static bool Exists(IBlockingMark pIBlockingMark,String pBlockingTable)
         {
-            
             SqlParameter wParam;
             using (SqlConnection wCnn = new SqlConnection(msz_ConnectionString))
             using (SqlCommand wCmd = new SqlCommand(pBlockingTable + "_g_Exist", wCnn))
             {
-                 Boolean wExist;
+                Boolean wExist;
                 try
                 {
                     wCmd.CommandType = CommandType.StoredProcedure;
@@ -226,8 +221,6 @@ namespace Fwk.Blocking
                         wParam = wCmd.Parameters.Add("@BlockingId", SqlDbType.Int);
                         wParam.Value = pIBlockingMark.BlockingId;
                     }
-
-                    
 
                     wCnn.Open();
                     wCmd.ExecuteNonQuery();
@@ -260,7 +253,6 @@ namespace Fwk.Blocking
         {
 
             List<string> strUserList = new List<string>();
-           
             SqlParameter wParam;
             using (SqlConnection wCnn = new SqlConnection(msz_ConnectionString))
             using (SqlCommand wCmd = new SqlCommand(pBlockingTable + "_g_ExistUser", wCnn))
@@ -277,8 +269,6 @@ namespace Fwk.Blocking
                         wParam = wCmd.Parameters.Add("@FwkGuid", SqlDbType.UniqueIdentifier);
                         wParam.Value = pIBlockingMark.FwkGuid;
                     }
-
-                   
 
                     //BlockingId
                     if (pIBlockingMark.BlockingId != null)
@@ -333,8 +323,6 @@ namespace Fwk.Blocking
             }
         }
 
-        
-
         /// <summary>
         /// Obtiene una o valraias marcas de bloqueo 
         /// </summary>
@@ -355,8 +343,12 @@ namespace Fwk.Blocking
 
                     wCmd.CommandType = CommandType.StoredProcedure;
                     if (pCustomParametersGetByParam != null)
+                    {
                         if (pCustomParametersGetByParam.Count != 0)
+                        {
                             wCmd.Parameters.AddRange(pCustomParametersGetByParam.ToArray());
+                        }
+                    }
 
                     //BlockingId
                     wParam = wCmd.Parameters.Add("@BlockingId", SqlDbType.Int, 4);
@@ -394,8 +386,74 @@ namespace Fwk.Blocking
 
                     wDA.Fill(wDS);
                     return wDS.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    /// Cierra la conexión si está abierta
+                    if (wCnn.State == ConnectionState.Open)
+                        wCnn.Close();
+                }
+            }
+        }
 
+        /// <summary>Obtiene una o varias marcas de bloqueo</summary>
+        /// <param name="pIBlockingMark">Clase que implementa IBlockingMark</param>
+        /// <returns>Tabla con las marcas obtenidas</returns>
+        /// <create>hebraida</create>
+        /// <date>2010-07-15</date>
+        internal static DataTable GetByParam(IBlockingMark pIBlockingMark)
+        {
+            DataSet wDS = new DataSet();
+            SqlParameter wParam;
+            string wUsuario = string.Empty;
 
+            using (SqlConnection wCnn = new SqlConnection(msz_ConnectionString))
+            using (SqlCommand wCmd = new SqlCommand("BlockingMarks_s", wCnn))
+            {
+                try
+                {
+                    wCmd.CommandType = CommandType.StoredProcedure;
+
+                    //BlockingId
+                    wParam = wCmd.Parameters.Add("@BlockingId", SqlDbType.Int, 4);
+                    wParam.Value = pIBlockingMark.BlockingId;
+
+                    //TableName
+                    wParam = wCmd.Parameters.Add("@TableName", SqlDbType.VarChar, 100);
+                    wParam.Value = pIBlockingMark.TableName;
+
+                    //Attribute
+                    wParam = wCmd.Parameters.Add("@Attribute", SqlDbType.VarChar, 100);
+                    wParam.Value = pIBlockingMark.Attribute;
+
+                    //TTL
+                    wParam = wCmd.Parameters.Add("@TTL", SqlDbType.Int, 4);
+                    wParam.Value = pIBlockingMark.TTL;
+
+                    //UserName
+                    wParam = wCmd.Parameters.Add("@UserName", SqlDbType.VarChar, 32);
+                    wParam.Value = pIBlockingMark.User;
+
+                    //FwkGuid
+                    wParam = wCmd.Parameters.Add("@FwkGuid", SqlDbType.UniqueIdentifier);
+                    wParam.Value = pIBlockingMark.FwkGuid;
+
+                    //DueDate
+                    wParam = wCmd.Parameters.Add("@DueDate", SqlDbType.DateTime);
+                    wParam.Value = pIBlockingMark.DueDate;
+
+                    //Process
+                    wParam = wCmd.Parameters.Add("@Process", SqlDbType.VarChar, 50);
+                    wParam.Value = pIBlockingMark.Process;
+
+                    SqlDataAdapter wDA = new SqlDataAdapter(wCmd);
+
+                    wDA.Fill(wDS);
+                    return wDS.Tables[0];
                 }
                 catch (Exception ex)
                 {
