@@ -118,8 +118,6 @@
     <None Include="WizardInstallFiles\Install.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="WizardInstallFiles\Templates\Items\entity.zip" />
-    <None Include="WizardInstallFiles\Templates\Items\service.zip" />
     <None Include="WizardInstallFiles\Templates\old\BusinessComponentsProject.zip" />
     <None Include="WizardInstallFiles\Templates\old\BusinessEntitiesProject.zip" />
     <None Include="WizardInstallFiles\Templates\old\BusinessServicesProject.zip" />
@@ -226,7 +224,9 @@
   <ItemGroup>
     <None Include="FrameworkProjectWizard.snk" />
     <None Include="Resources\applications_32.png" />
-    <None Include="WizardInstallFiles\Templates\Items\dac.zip" />
+    <None Include="WizardInstallFiles\Templates\Items\dac\dac.zip" />
+    <None Include="WizardInstallFiles\Templates\Items\entity\entity.zip" />
+    <None Include="WizardInstallFiles\Templates\Items\service\service.zip" />
     <None Include="WizardInstallFiles\Templates\template_installer.vsi" />
     <Content Include="tt\DAC.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

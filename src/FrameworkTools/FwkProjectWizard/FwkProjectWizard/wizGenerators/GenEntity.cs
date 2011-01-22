@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.SqlServer.Management.Smo;
 
-namespace Fwk.Wizard
+namespace Fwk.CodeGenerator
 {
     public static class GenEntity
     {
@@ -24,7 +24,7 @@ namespace Fwk.Wizard
             return gen;
         }
 
-         static string Generate(Table pTable,string project)
+        internal static string Generate(Table pTable, string project)
         {
             StringBuilder wClassContainer = new StringBuilder();
             string wPrivateMembers_BODY = String.Empty;

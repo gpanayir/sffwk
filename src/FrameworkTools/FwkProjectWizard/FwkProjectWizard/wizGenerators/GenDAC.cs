@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.SqlServer.Management.Smo;
+using Fwk.Wizard;
 
-namespace Fwk.Wizard
+namespace Fwk.CodeGenerator
 {
 
     internal static class GenDAC
@@ -82,10 +83,10 @@ namespace Fwk.Wizard
                             return wBuilderReturn.ToString();
                         }
                         else
-                            return string.Empty;
+                            return "  wDataBase.ExecuteNonQuery(wCmd);";
                     }
                 case MethodActionType.Update:
-                    return string.Empty;
+                    return "  wDataBase.ExecuteNonQuery(wCmd);";
 
                 case MethodActionType.SearchByParam:
 
@@ -93,7 +94,7 @@ namespace Fwk.Wizard
 
                     return wBuilderReturn.ToString();
                 case MethodActionType.Delete:
-                    return string.Empty;
+                    return  "  wDataBase.ExecuteNonQuery(wCmd);";
 
             }
 
@@ -278,13 +279,16 @@ namespace Fwk.Wizard
                 case MethodActionType.Insert:
                     foreach (Column c in pTable.Columns)
                     {
-                        if (c.InPrimaryKey)
+                        if (!FwkGeneratorHelper.NotSupportTypes_ToIncludeInBackEnd.Contains(c.DataType.SqlDataType.ToString().ToLower()))
                         {
-                            wParams.Append(GetOutParameter(pTable, c));
-                        }
-                        else
-                        {
-                            wParams.Append(GetInParameter(pTable, c));
+                            if (c.InPrimaryKey)
+                            {
+                                wParams.Append(GetOutParameter(pTable, c));
+                            }
+                            else
+                            {
+                                wParams.Append(GetInParameter(pTable, c));
+                            }
                         }
                     }
                     break;
@@ -292,7 +296,10 @@ namespace Fwk.Wizard
                 case MethodActionType.Update:
                     foreach (Column c in pTable.Columns)
                     {
-                        wParams.Append(GetInParameter(pTable, c));
+                        if (!FwkGeneratorHelper.NotSupportTypes_ToIncludeInBackEnd.Contains(c.DataType.SqlDataType.ToString().ToLower()))
+                        {
+                            wParams.Append(GetInParameter(pTable, c));
+                        }
                     }
                     break;
                 case MethodActionType.Delete:
@@ -305,7 +312,7 @@ namespace Fwk.Wizard
 
                     break;
                 case MethodActionType.SearchByParam:
-                case MethodActionType.GetByParam:
+               
                     foreach (Column c in pTable.Columns)
                     {
                         if (FwkGeneratorHelper.GeColumnFindeable(c))
@@ -428,7 +435,7 @@ namespace Fwk.Wizard
         {
             System.Text.StringBuilder str = new System.Text.StringBuilder();
 
-            switch (c.DataType.Name.ToUpper())
+            switch (c.DataType.ToString().ToUpper())
             {
                 case "BIT":
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchBit").Content);
@@ -453,6 +460,7 @@ namespace Fwk.Wizard
                     break;
                 case "TEXT":
                 case "CHAR":
+                case "NCHAR":
                 case "VARCHAR":
                 case "NVARCHAR":
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchString").Content);
@@ -480,10 +488,10 @@ namespace Fwk.Wizard
             str.Replace(CommonConstants.CONST_ENTITY_PROPERTY_NAME, c.Name);
 
             if (pLastField)
-                str.Replace(" BatchCommandText.Append( \",\");", " BatchCommandText.Append( \";\");");
+                str.Replace("wBatchCommandText.Append( \",\");", "wBatchCommandText.Append( \";\");");
 
             return str.ToString();
         }
-
+       
     }
 }

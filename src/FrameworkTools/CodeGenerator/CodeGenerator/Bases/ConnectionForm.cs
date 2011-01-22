@@ -36,14 +36,14 @@ namespace CodeGenerator
         public ConnectionForm()
         {
             InitializeComponent();
-            this.cnnDataBaseForm1.InitialiceControl();
+            this.cnnDataBaseForm1.InitialiceControl();                  
         }
 
        
 
         private void cnnDataBaseForm1_CancelEvent()
         {
-            this.Close();
+            this.Close();            
         }
 
         private void cnnDataBaseForm1_AceptEvent(bool ConnectionOK)

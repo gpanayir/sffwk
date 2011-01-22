@@ -34,9 +34,9 @@
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtApplicationId = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
+            this.bindingSourceService = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.txtResponse = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
-            this.bindingSourceService = new System.Windows.Forms.BindingSource(this.components);
             this.txtRequest = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.txtHandler = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.txtName = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
@@ -96,6 +96,7 @@
             this.txtApplicationId.BackColor = System.Drawing.Color.White;
             this.txtApplicationId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtApplicationId.CapitalOnly = false;
+            this.txtApplicationId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceService, "ApplicationId", true));
             this.txtApplicationId.ErrorIconRightToLeft = true;
             this.txtApplicationId.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApplicationId.InactiveBorderColor = System.Drawing.SystemColors.Control;
@@ -108,6 +109,10 @@
             this.txtApplicationId.TabIndex = 75;
             this.txtApplicationId.TabStop = false;
             this.txtApplicationId.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
+            // 
+            // bindingSourceService
+            // 
+            this.bindingSourceService.DataSource = typeof(Fwk.Bases.ServiceConfiguration);
             // 
             // label3
             // 
@@ -140,10 +145,6 @@
             this.txtResponse.Size = new System.Drawing.Size(650, 21);
             this.txtResponse.TabIndex = 72;
             this.txtResponse.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
-            // 
-            // bindingSourceService
-            // 
-            this.bindingSourceService.DataSource = typeof(Fwk.Bases.ServiceConfiguration);
             // 
             // txtRequest
             // 

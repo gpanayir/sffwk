@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Fwk.Wizard;
 using Microsoft.SqlServer.Management.Smo;
+using Fwk.CodeGenerator;
 
 namespace Fwk.Wizard
 {

@@ -82,10 +82,10 @@ namespace Fwk.CodeGenerator
                             return wBuilderReturn.ToString();
                         }
                         else
-                            return string.Empty;
+                            return "  wDataBase.ExecuteNonQuery(wCmd);";
                     }
                 case MethodActionType.Update:
-                    return string.Empty;
+                    return "  wDataBase.ExecuteNonQuery(wCmd);";
 
                 case MethodActionType.SearchByParam:
 
@@ -93,7 +93,7 @@ namespace Fwk.CodeGenerator
 
                     return wBuilderReturn.ToString();
                 case MethodActionType.Delete:
-                    return string.Empty;
+                    return  "  wDataBase.ExecuteNonQuery(wCmd);";
 
             }
 
@@ -106,7 +106,7 @@ namespace Fwk.CodeGenerator
 
             switch (t)
             {
-                
+                case MethodActionType.GetByParam:
                 case MethodActionType.SearchByParam:
                     {
                         return FwkGeneratorHelper.TemplateDocument.GetTemplate("EntityAnListDeclaration").Content;
@@ -136,7 +136,7 @@ namespace Fwk.CodeGenerator
             {
                 case MethodActionType.Insert:
                 case MethodActionType.Update:
-
+                case MethodActionType.GetByParam:
                 case MethodActionType.SearchByParam:
 
                     wBuilder.Replace("[MethodParameterName]", pTable.Name);
@@ -176,7 +176,7 @@ namespace Fwk.CodeGenerator
             {
                 case MethodActionType.Insert:
                 case MethodActionType.Update:
-           
+                case MethodActionType.GetByParam:
                 case MethodActionType.SearchByParam:
 
                     wBuilder = string.Concat(pTable.Name, " p", pTable.Name);
@@ -221,7 +221,9 @@ namespace Fwk.CodeGenerator
                 case MethodActionType.SearchByParam:
                     wBuilder = string.Concat(pTable.Name, "List");
                     break;
-               
+                case MethodActionType.GetByParam:
+                    wBuilder = pTable.Name;
+                    break;
             }
             return wBuilder;
         }
@@ -241,8 +243,9 @@ namespace Fwk.CodeGenerator
                 case MethodActionType.Insert:
                     sufix = "_i";
                     break;
-           
-                    
+                case MethodActionType.GetByParam:
+                    sufix = "_gp";
+                    break;
                 case MethodActionType.Update:
                     sufix = "_u";
                     break;
@@ -386,7 +389,6 @@ namespace Fwk.CodeGenerator
             foreach (Column c in pTable.Columns)
             {
                 i++;
-
                 if (pMethodActionType == MethodActionType.Insert ||
                     pMethodActionType == MethodActionType.Update)
                 {
@@ -399,6 +401,8 @@ namespace Fwk.CodeGenerator
                         wParams.Append(Get_Property_Batch(c, (i == pTable.Columns.Count)));
 
                 }
+               
+
             }
             return wParams.ToString();
         }
@@ -431,7 +435,7 @@ namespace Fwk.CodeGenerator
         {
             System.Text.StringBuilder str = new System.Text.StringBuilder();
 
-            switch (c.DataType.SqlDataType.ToString().ToUpper())
+            switch (c.DataType.ToString().ToUpper())
             {
                 case "BIT":
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchBit").Content);
@@ -455,7 +459,9 @@ namespace Fwk.CodeGenerator
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchDateTime").Content);
                     break;
                 case "TEXT":
+                case "NTEXT":
                 case "CHAR":
+                case "NCHAR":
                 case "VARCHAR":
                 case "NVARCHAR":
                     str.Append(FwkGeneratorHelper.TemplateDocument.GetTemplate("SPParameterBatchString").Content);
@@ -483,7 +489,7 @@ namespace Fwk.CodeGenerator
             str.Replace(CommonConstants.CONST_ENTITY_PROPERTY_NAME, c.Name);
 
             if (pLastField)
-                str.Replace(" BatchCommandText.Append( \",\");", " BatchCommandText.Append( \";\");");
+                str.Replace("wBatchCommandText.Append( \",\");", "wBatchCommandText.Append( \";\");");
 
             return str.ToString();
         }

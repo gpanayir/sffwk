@@ -82,9 +82,21 @@ namespace CodeGenerator.Bases
         {
             //creating a store
             IsolatedStorageFile userStore = IsolatedStorageFile.GetUserStoreForAssembly();
+            
             IsolatedStorageFileStream userStream = new IsolatedStorageFileStream(LastAccessStorageName, FileMode.Create, userStore);
             SerializeDictionary(userStream, _LastAccess);
         }
+
+        public void Clear()
+        {
+            //creating a store
+            IsolatedStorageFile userStore = IsolatedStorageFile.GetUserStoreForAssembly();
+            //CodeGeneratorLastAccessStorage.set
+            userStore.DeleteFile("CodeGeneratorLastAccessStorage.set");
+            userStore.Remove();
+        }
+
+
 
 
         #region Private methods

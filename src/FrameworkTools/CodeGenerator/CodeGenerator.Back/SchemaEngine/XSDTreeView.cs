@@ -395,9 +395,6 @@ namespace CodeGenerator.Back.Schema
                     wCT.ChildElements = GetElement(wCT.Name);
                     wComplexTypeNames.Add(wCT);
                 }
-                int x = 1111;
-               
-
             }
             return wComplexTypeNames;
         }

@@ -8,89 +8,63 @@ using System.Windows.Forms;
 using Fwk.Logging;
 using System.Xml.Serialization;
 using System.Xml;
-
+using System.Linq;
 namespace Fwk.Logging.Viewer
 {
     public partial class FRM_Document : Form
     {
         Fwk.Logging.Targets.Target _Target;
+        EventGridList currentEvents = null;
+        ServiceErrorView _ServiceErrorView;
+        ServicesView _ServicesView;
+        OtherView _OtherView;
         public FRM_Document()
         {
             InitializeComponent();
-         
+
         }
 
         #region <public methods>
-        public void AddImages()
-        {
-            //grdLogs.Rows.Add(GetImageByType(pEvent.LogType), pEvent.Id, pEvent.DateAndTime, pEvent.Message, pEvent.Source, pEvent.Machine, pEvent.User);
 
-
-            foreach (DataGridViewRow row in grdLogs.Rows)
-            {
-
-
-                EventType wEventType =  (EventType)row.Cells["Type"].Value;
-                row.Cells["Logtype"].Value = GetImageByType(wEventType);
-                row.Cells["Logtype"].ToolTipText = wEventType.ToString();
-            }
-        }
         public void Populate(Fwk.Logging.Targets.Target target)
         {
 
             _Target = target;
-            grdLogs.BindingContextChanged += new EventHandler(grdLogs_BindingContextChanged);
+            //grdLogs.BindingContextChanged += new EventHandler(grdLogs_BindingContextChanged);
 
-            Event ev =new Event();
-          
-            this.eventBindingSource.DataSource = _Target.SearchByParam(ev);
+            Event ev = new Event();
+
+            Events wEvents = _Target.SearchByParam(ev);
+
+            currentEvents = Get_EventGridList(wEvents);
+            this.eventGridListBindingSource.DataSource = null;
+            this.eventGridListBindingSource.DataSource = currentEvents;
 
             grdLogs.Refresh();
 
         }
-       
 
-        void grdLogs_BindingContextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventIdList"></param>
+        public void Remove(List<string> eventIdList)
         {
-            List<Event> pEvenList = (List<Event>)eventBindingSource.DataSource;
-            foreach (DataGridViewRow row in grdLogs.Rows)
-            {
-                Event x = (Event)row.DataBoundItem;
-                row.Cells[0].Value = GetImageByType(x.LogType);
-                row.Cells[0].ToolTipText = x.LogType.ToString();
-            }
+            _Target.Remove(eventIdList);
         }
-        
+        public void RemoveAll()
+        {
 
-        private Image GetImageByType(EventType pEventType)
-        {
-            switch (pEventType)
-            {
-                case EventType.Error:
-                    {
-                        return (Image)Fwk.Logging.Viewer.Properties.Resources.Error;
-                    }
-                case EventType.Information:
-                    {
-                        return (Image)Fwk.Logging.Viewer.Properties.Resources.Information;
-                    }
-                case EventType.Warning:
-                    {
-                        return (Image)Fwk.Logging.Viewer.Properties.Resources.Warning;
-                    }
-              
-                case EventType.Audit:
-                    {
-                        return (Image)Fwk.Logging.Viewer.Properties.Resources.audit;
-                    }
-            }
-            return ctlImages.Images[4];
         }
+
+
+
+
         #endregion
 
 
 
-     
+
 
 
         /// <summary>
@@ -110,7 +84,7 @@ namespace Fwk.Logging.Viewer
             try
             {
                 doc.LoadXml(s.ToString());
-               
+
                 node = Fwk.Xml.Node.NodeGet(doc.FirstChild, "Request");
                 if (node != null)
                 {
@@ -136,9 +110,9 @@ namespace Fwk.Logging.Viewer
                     msg.MessageContenType = MessageContenType.Other;
                 }
 
-                
+
             }
-            catch (Exception  )
+            catch (Exception)
             {
                 msg.AnyMessage = pMessage;
             }
@@ -146,31 +120,21 @@ namespace Fwk.Logging.Viewer
             return msg;
         }
 
-        private void btnrefresh_Click(object sender, EventArgs e)
-        {
-           
-        }
 
-        private void grdLogs_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
-        ServiceErrorView _ServiceErrorView;
-        ServicesView _ServicesView;
-        OtherView _OtherView;
         private void grdLogs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
 
             if (grdLogs.CurrentRow == null) return;
-            Event x = (Event)((System.Windows.Forms.BindingSource)grdLogs.DataSource).Current;
-       
+            EventGrid x = (EventGrid)((System.Windows.Forms.BindingSource)grdLogs.DataSource).Current;
+
             Message wMessage = LoadMessage(x.Message.Text);
 
             if (wMessage.MessageContenType == MessageContenType.ServiceError)
             {
-                if( _ServiceErrorView == null)
-                    _ServiceErrorView = new ServiceErrorView ();
+                if (_ServiceErrorView == null)
+                    _ServiceErrorView = new ServiceErrorView();
                 _ServiceErrorView.Populate(wMessage);
 
                 AddtoPanel(_ServiceErrorView);
@@ -193,9 +157,104 @@ namespace Fwk.Logging.Viewer
                 AddtoPanel(_OtherView);
             }
 
-           
+
         }
-        public void AddtoPanel(Control pControlToAdd)
+
+
+        private void FRM_Document_Activated(object sender, EventArgs e)
+        {
+            FRM_Main.Current_Document = this;
+        }
+
+        private void filter1_OnFilterChanged(Event eventFilter, DateTime endDate)
+        {
+            Events wEvents = null;
+            this.eventGridListBindingSource.DataSource = null;
+            try
+            {
+                if (endDate == Fwk.HelperFunctions.DateFunctions.NullDateTime)
+                {
+                    wEvents = _Target.SearchByParam(eventFilter);
+
+                }
+                else
+                {
+                    wEvents = _Target.SearchByParam(eventFilter, endDate);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionViewer.Show(ex);
+            }
+            currentEvents = Get_EventGridList(wEvents);
+            if (currentEvents.Count == 0) return;
+            this.eventGridListBindingSource.DataSource = null;
+            this.eventGridListBindingSource.DataSource = currentEvents;
+            grdLogs.Refresh();
+        }
+
+
+        private void FRM_Document_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                List<Guid> wGuids = new List<Guid>();
+                foreach (DataGridViewRow row in grdLogs.SelectedRows)
+                {
+                    wGuids.Add((Guid)row.Cells["Id"].Value);
+                }
+                try
+                {
+                    _Target.Remove(wGuids);
+                    currentEvents.Remove(wGuids);
+                    grdLogs.Refresh();
+
+                }
+                catch (Exception ex)
+                {
+                    ExceptionViewer.Show(ex);
+                }
+            }
+        }
+
+        public override void Refresh()
+        {
+            this.filter1.Refresh();
+            Event ev = new Event();
+            Events wEvents = null;
+            try
+            {
+                 wEvents = _Target.SearchByParam(ev);
+            }
+            catch (Exception ex)
+            {
+                ExceptionViewer.Show(ex);
+            }
+            currentEvents = Get_EventGridList(wEvents);
+            this.eventGridListBindingSource.DataSource = null;
+            this.eventGridListBindingSource.DataSource = currentEvents;
+            grdLogs.Refresh();
+            base.Refresh();
+
+
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pEvents"></param>
+        /// <returns></returns>
+        EventGridList Get_EventGridList(Events pEvents)
+        {
+            if (pEvents.Count == 0) return new EventGridList();
+            var lst = from e in pEvents select new EventGrid(e);
+            EventGridList lst2 = new EventGridList();
+            lst2.AddRange(lst.ToArray<EventGrid>());
+            return lst2;
+        }
+        void AddtoPanel(Control pControlToAdd)
         {
 
             if (panel1.Contains(pControlToAdd)) return;
@@ -210,11 +269,9 @@ namespace Fwk.Logging.Viewer
             panel1.Controls.Add(pControlToAdd);
 
         }
-
-       
     }
 
-    
+
     [XmlInclude(typeof(Message)), Serializable]
     public class Message
     {
@@ -226,11 +283,11 @@ namespace Fwk.Logging.Viewer
             set { _MessageContenType = value; }
         }
         private String _Request;
-       
-        
+
+
         private String _Response;
 
-        
+
         private String _AnyMessage;
 
 
@@ -254,35 +311,13 @@ namespace Fwk.Logging.Viewer
             get { return _AnyMessage; }
             set { _AnyMessage = value; }
         }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="pMessage"></param>
-        ///// <returns></returns>
-        //internal  static Message LoadMessage(String pMessage)
-        //{
-        //    Message msg = new Message ();
-        //    StringBuilder s = new StringBuilder();
-        //    s.AppendLine("<Message>");
-        //    s.AppendLine(pMessage);
-        //    s.AppendLine("</Message>");
-        //    try
-        //    {
-        //         msg = (Message)Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(Message), s.ToString());
-        //    }
-        //    catch(Exception xx )
-        //    {
-        //        msg.AnyMessage = pMessage;
-        //    }
 
-        //    return msg;
-        //}
     }
 
 
     internal enum MessageContenType
-    { 
-        Service ,
+    {
+        Service,
         ServiceError,
         Other
     }

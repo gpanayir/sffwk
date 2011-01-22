@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml.Serialization;
 
 using Microsoft.VisualStudio.TemplateWizard;
+using Fwk.CodeGenerator;
 
 namespace Fwk.Wizard
 {

@@ -52,7 +52,7 @@ namespace CodeGenerator.ServicesClasess
             this.lblServiceName = new System.Windows.Forms.Label();
             this.txtServiceName = new System.Windows.Forms.TextBox();
             this.tabPageCode = new System.Windows.Forms.TabPage();
-            this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor();
+            this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor.TextCodeEditor();
             this.imgImages = new System.Windows.Forms.ImageList(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolStrip1.SuspendLayout();
@@ -80,8 +80,8 @@ namespace CodeGenerator.ServicesClasess
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(953, 25);
-            this.toolStrip1.TabIndex = 33;
+            this.toolStrip1.Size = new System.Drawing.Size(863, 25);
+            this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnRefresh
@@ -127,32 +127,29 @@ namespace CodeGenerator.ServicesClasess
             // 
             // listViewCodeGenerated1
             // 
-            this.listViewCodeGenerated1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewCodeGenerated1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewCodeGenerated1.ForeColorBE = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listViewCodeGenerated1.ForeColorDAC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listViewCodeGenerated1.ForeColorSP = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listViewCodeGenerated1.ForeColorSVC = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.listViewCodeGenerated1.ForeColorTDG = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listViewCodeGenerated1.GeneratedBECodeList = null;
-            this.listViewCodeGenerated1.Location = new System.Drawing.Point(3, -1);
+            this.listViewCodeGenerated1.Location = new System.Drawing.Point(0, 0);
             this.listViewCodeGenerated1.Name = "listViewCodeGenerated1";
             this.listViewCodeGenerated1.NodeCustomSVC = null;
             this.listViewCodeGenerated1.NodeDAC = null;
             this.listViewCodeGenerated1.NodeSP = null;
             this.listViewCodeGenerated1.NodeSVC = null;
             this.listViewCodeGenerated1.NodeTDG = null;
-            this.listViewCodeGenerated1.Size = new System.Drawing.Size(244, 399);
+            this.listViewCodeGenerated1.Size = new System.Drawing.Size(197, 435);
             this.listViewCodeGenerated1.TabIndex = 0;
             this.listViewCodeGenerated1.ServiceCodeGeneratedSelectEvent += new CodeGenerator.Controls.ServiceCodeGeneratedSelectHandler(this.listViewCodeGenerated1_ServiceCodeGeneratedSelectEvent);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(12, 28);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
+            this.splitContainer1.MinimumSize = new System.Drawing.Size(863, 435);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -162,22 +159,20 @@ namespace CodeGenerator.ServicesClasess
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listViewCodeGenerated1);
-            this.splitContainer1.Size = new System.Drawing.Size(929, 402);
-            this.splitContainer1.SplitterDistance = 679;
+            this.splitContainer1.Size = new System.Drawing.Size(863, 435);
+            this.splitContainer1.SplitterDistance = 662;
             this.splitContainer1.TabIndex = 37;
             // 
             // tabCtrlCodeParameters
             // 
-            this.tabCtrlCodeParameters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabCtrlCodeParameters.Controls.Add(this.tabPageParams);
             this.tabCtrlCodeParameters.Controls.Add(this.tabPageCode);
-            this.tabCtrlCodeParameters.Location = new System.Drawing.Point(4, 7);
+            this.tabCtrlCodeParameters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabCtrlCodeParameters.Location = new System.Drawing.Point(0, 0);
             this.tabCtrlCodeParameters.Name = "tabCtrlCodeParameters";
             this.tabCtrlCodeParameters.SelectedIndex = 0;
-            this.tabCtrlCodeParameters.Size = new System.Drawing.Size(672, 395);
-            this.tabCtrlCodeParameters.TabIndex = 37;
+            this.tabCtrlCodeParameters.Size = new System.Drawing.Size(662, 435);
+            this.tabCtrlCodeParameters.TabIndex = 0;
             // 
             // tabPageParams
             // 
@@ -187,7 +182,7 @@ namespace CodeGenerator.ServicesClasess
             this.tabPageParams.Location = new System.Drawing.Point(4, 22);
             this.tabPageParams.Name = "tabPageParams";
             this.tabPageParams.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageParams.Size = new System.Drawing.Size(664, 369);
+            this.tabPageParams.Size = new System.Drawing.Size(654, 409);
             this.tabPageParams.TabIndex = 0;
             this.tabPageParams.Text = "Parameters";
             // 
@@ -203,8 +198,8 @@ namespace CodeGenerator.ServicesClasess
             this.tabControlSchemas.Name = "tabControlSchemas";
             this.tabControlSchemas.SelectedIndex = 0;
             this.tabControlSchemas.ShowToolTips = true;
-            this.tabControlSchemas.Size = new System.Drawing.Size(596, 248);
-            this.tabControlSchemas.TabIndex = 38;
+            this.tabControlSchemas.Size = new System.Drawing.Size(613, 285);
+            this.tabControlSchemas.TabIndex = 1;
             // 
             // tabPageREQ
             // 
@@ -214,7 +209,7 @@ namespace CodeGenerator.ServicesClasess
             this.tabPageREQ.Location = new System.Drawing.Point(4, 22);
             this.tabPageREQ.Name = "tabPageREQ";
             this.tabPageREQ.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageREQ.Size = new System.Drawing.Size(588, 222);
+            this.tabPageREQ.Size = new System.Drawing.Size(605, 259);
             this.tabPageREQ.TabIndex = 0;
             this.tabPageREQ.Tag = "0";
             this.tabPageREQ.Text = "Request";
@@ -222,14 +217,12 @@ namespace CodeGenerator.ServicesClasess
             // 
             // tvwSchemaREQ
             // 
-            this.tvwSchemaREQ.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.tvwSchemaREQ.Location = new System.Drawing.Point(-1, 2);
+            this.tvwSchemaREQ.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvwSchemaREQ.Location = new System.Drawing.Point(3, 3);
             this.tvwSchemaREQ.Name = "tvwSchemaREQ";
             this.tvwSchemaREQ.ShowNodeToolTips = true;
-            this.tvwSchemaREQ.Size = new System.Drawing.Size(585, 208);
-            this.tvwSchemaREQ.TabIndex = 17;
+            this.tvwSchemaREQ.Size = new System.Drawing.Size(597, 251);
+            this.tvwSchemaREQ.TabIndex = 0;
             // 
             // tabPageRES
             // 
@@ -238,7 +231,7 @@ namespace CodeGenerator.ServicesClasess
             this.tabPageRES.Location = new System.Drawing.Point(4, 22);
             this.tabPageRES.Name = "tabPageRES";
             this.tabPageRES.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageRES.Size = new System.Drawing.Size(588, 222);
+            this.tabPageRES.Size = new System.Drawing.Size(605, 259);
             this.tabPageRES.TabIndex = 1;
             this.tabPageRES.Tag = "1";
             this.tabPageRES.Text = "Response";
@@ -252,13 +245,11 @@ namespace CodeGenerator.ServicesClasess
             this.tvwSchemaRES.Location = new System.Drawing.Point(4, 6);
             this.tvwSchemaRES.Name = "tvwSchemaRES";
             this.tvwSchemaRES.ShowNodeToolTips = true;
-            this.tvwSchemaRES.Size = new System.Drawing.Size(581, 190);
+            this.tvwSchemaRES.Size = new System.Drawing.Size(598, 227);
             this.tvwSchemaRES.TabIndex = 15;
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.lblResponce);
             this.groupBox2.Controls.Add(this.txtResponce);
             this.groupBox2.Controls.Add(this.lblRequest);
@@ -268,8 +259,8 @@ namespace CodeGenerator.ServicesClasess
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Desktop;
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(596, 106);
-            this.groupBox2.TabIndex = 37;
+            this.groupBox2.Size = new System.Drawing.Size(606, 106);
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
             // lblResponce
@@ -289,8 +280,8 @@ namespace CodeGenerator.ServicesClasess
             this.txtResponce.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtResponce.Location = new System.Drawing.Point(97, 76);
             this.txtResponce.Name = "txtResponce";
-            this.txtResponce.Size = new System.Drawing.Size(473, 20);
-            this.txtResponce.TabIndex = 6;
+            this.txtResponce.Size = new System.Drawing.Size(503, 20);
+            this.txtResponce.TabIndex = 3;
             // 
             // lblRequest
             // 
@@ -309,7 +300,7 @@ namespace CodeGenerator.ServicesClasess
             this.txtRequest.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRequest.Location = new System.Drawing.Point(97, 46);
             this.txtRequest.Name = "txtRequest";
-            this.txtRequest.Size = new System.Drawing.Size(473, 20);
+            this.txtRequest.Size = new System.Drawing.Size(503, 20);
             this.txtRequest.TabIndex = 2;
             // 
             // lblServiceName
@@ -320,7 +311,7 @@ namespace CodeGenerator.ServicesClasess
             this.lblServiceName.Location = new System.Drawing.Point(6, 15);
             this.lblServiceName.Name = "lblServiceName";
             this.lblServiceName.Size = new System.Drawing.Size(72, 13);
-            this.lblServiceName.TabIndex = 1;
+            this.lblServiceName.TabIndex = 0;
             this.lblServiceName.Text = "Service name";
             // 
             // txtServiceName
@@ -328,8 +319,8 @@ namespace CodeGenerator.ServicesClasess
             this.txtServiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtServiceName.Location = new System.Drawing.Point(97, 12);
             this.txtServiceName.Name = "txtServiceName";
-            this.txtServiceName.Size = new System.Drawing.Size(473, 20);
-            this.txtServiceName.TabIndex = 0;
+            this.txtServiceName.Size = new System.Drawing.Size(503, 20);
+            this.txtServiceName.TabIndex = 1;
             this.txtServiceName.Leave += new System.EventHandler(this.txtServiceName_Leave);
             this.txtServiceName.Validating += new System.ComponentModel.CancelEventHandler(this.txtServiceName_Validating);
             // 
@@ -339,7 +330,7 @@ namespace CodeGenerator.ServicesClasess
             this.tabPageCode.Location = new System.Drawing.Point(4, 22);
             this.tabPageCode.Name = "tabPageCode";
             this.tabPageCode.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCode.Size = new System.Drawing.Size(664, 369);
+            this.tabPageCode.Size = new System.Drawing.Size(654, 409);
             this.tabPageCode.TabIndex = 1;
             this.tabPageCode.Text = "Code";
             this.tabPageCode.UseVisualStyleBackColor = true;
@@ -351,9 +342,9 @@ namespace CodeGenerator.ServicesClasess
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textCodeEditor1.Location = new System.Drawing.Point(-18, 3);
             this.textCodeEditor1.Name = "textCodeEditor1";
-            this.textCodeEditor1.Size = new System.Drawing.Size(676, 366);
+            this.textCodeEditor1.Size = new System.Drawing.Size(666, 406);
             this.textCodeEditor1.TabIndex = 36;
-            this.textCodeEditor1.TitleText = "";
+            this.textCodeEditor1.TitleText = global::CodeGenerator.Properties.Resources.AppIcon;
             this.textCodeEditor1.TitleVisible = false;
             // 
             // imgImages
@@ -391,11 +382,12 @@ namespace CodeGenerator.ServicesClasess
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(953, 463);
+            this.ClientSize = new System.Drawing.Size(863, 460);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_ServicesGenerator";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TabText = "Services :.";
             this.Text = "Services ";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ServicesGenerator_DragDrop);
@@ -428,7 +420,16 @@ namespace CodeGenerator.ServicesClasess
         private  CodeGenerator.Controls.ListViewCodeGenerated listViewCodeGenerated1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabCtrlCodeParameters;
+        private System.Windows.Forms.TabPage tabPageCode;
+        private Fwk.Controls.Win32.TextCodeEditor.TextCodeEditor textCodeEditor1;
+        private System.Windows.Forms.ImageList imgImages;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TabPage tabPageParams;
+        private System.Windows.Forms.TabControl tabControlSchemas;
+        private System.Windows.Forms.TabPage tabPageREQ;
+        private CodeGenerator.Back.Schema.XSDTreeView tvwSchemaREQ;
+        private System.Windows.Forms.TabPage tabPageRES;
+        private CodeGenerator.Back.Schema.XSDTreeView tvwSchemaRES;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblResponce;
         private System.Windows.Forms.TextBox txtResponce;
@@ -436,15 +437,6 @@ namespace CodeGenerator.ServicesClasess
         private System.Windows.Forms.TextBox txtRequest;
         private System.Windows.Forms.Label lblServiceName;
         private System.Windows.Forms.TextBox txtServiceName;
-        private System.Windows.Forms.TabPage tabPageCode;
-        private Fwk.Controls.Win32.TextCodeEditor textCodeEditor1;
-        private System.Windows.Forms.ImageList imgImages;
-        private System.Windows.Forms.TabControl tabControlSchemas;
-        private System.Windows.Forms.TabPage tabPageREQ;
-        private CodeGenerator.Back.Schema.XSDTreeView tvwSchemaREQ;
-        private System.Windows.Forms.TabPage tabPageRES;
-        private CodeGenerator.Back.Schema.XSDTreeView tvwSchemaRES;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
 
     }
 }

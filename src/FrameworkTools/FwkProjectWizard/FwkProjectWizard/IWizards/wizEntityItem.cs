@@ -42,6 +42,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TemplateWizard;
 using System.Windows.Forms;
+using Fwk.CodeGenerator;
 
 namespace Fwk.Wizard
 {
