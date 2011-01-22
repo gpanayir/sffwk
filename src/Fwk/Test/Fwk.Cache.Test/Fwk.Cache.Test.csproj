@@ -36,14 +36,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
     </Reference>
-      <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+      <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
     </Reference>
-	
-        <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -128,6 +127,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Fwk.FrontEnd\Fwk.Bases.FrontEnd\Fwk.Bases.FrontEnd.csproj">
+      <Project>{E882C6F7-0C02-4014-B5E0-BEFD20756C07}</Project>
+      <Name>Fwk.Bases.FrontEnd</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fwk.Bases\Fwk.Bases.csproj">
       <Project>{1654A893-0408-474E-873C-E79F00D7587C}</Project>
       <Name>Fwk.Bases</Name>
