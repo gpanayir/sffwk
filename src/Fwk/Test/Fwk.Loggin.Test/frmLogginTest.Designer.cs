@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.primitivesRemoveButton = new System.Windows.Forms.Button();
             this.btnCount = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -46,12 +47,18 @@
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnClearWarning = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnInfo = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtNoStaticResult = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -60,13 +67,14 @@
             this.loadingResultsTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button10 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFilePrefix = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.ExceptionView = new Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent(this.components);
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemsCount)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -232,7 +240,7 @@
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(928, 83);
+            this.groupBox1.Size = new System.Drawing.Size(857, 83);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             // 
@@ -269,40 +277,100 @@
             this.tabControl1.Location = new System.Drawing.Point(4, 100);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(897, 415);
+            this.tabControl1.Size = new System.Drawing.Size(826, 620);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.btnClearWarning);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.btnInfo);
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.txtNoStaticResult);
             this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.button7);
-            this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.button5);
             this.tabPage1.Controls.Add(this.button6);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(889, 383);
+            this.tabPage1.Size = new System.Drawing.Size(818, 588);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "No Static use";
             // 
-            // textBox1
+            // btnClearWarning
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.btnClearWarning.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearWarning.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnClearWarning.Location = new System.Drawing.Point(283, 66);
+            this.btnClearWarning.Name = "btnClearWarning";
+            this.btnClearWarning.Size = new System.Drawing.Size(65, 25);
+            this.btnClearWarning.TabIndex = 19;
+            this.btnClearWarning.Text = "Remove";
+            this.btnClearWarning.Click += new System.EventHandler(this.btnClearWarning_Click);
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.White;
+            this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label12.Location = new System.Drawing.Point(584, 66);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(103, 20);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "_Log.Information (...)";
+            // 
+            // btnInfo
+            // 
+            this.btnInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnInfo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnInfo.Location = new System.Drawing.Point(462, 60);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(100, 31);
+            this.btnInfo.TabIndex = 15;
+            this.btnInfo.Text = "Information";
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label10.Location = new System.Drawing.Point(174, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 20);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "_Log.Audit (...)";
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label4.Location = new System.Drawing.Point(174, 43);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 20);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "_Log.Warning (...)";
+            // 
+            // txtNoStaticResult
+            // 
+            this.txtNoStaticResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(16, 145);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(857, 209);
-            this.textBox1.TabIndex = 12;
+            this.txtNoStaticResult.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtNoStaticResult.Location = new System.Drawing.Point(16, 145);
+            this.txtNoStaticResult.Multiline = true;
+            this.txtNoStaticResult.Name = "txtNoStaticResult";
+            this.txtNoStaticResult.ReadOnly = true;
+            this.txtNoStaticResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtNoStaticResult.Size = new System.Drawing.Size(786, 440);
+            this.txtNoStaticResult.TabIndex = 12;
             // 
             // button8
             // 
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button8.Location = new System.Drawing.Point(213, 97);
+            this.button8.Location = new System.Drawing.Point(283, 97);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(86, 25);
             this.button8.TabIndex = 11;
@@ -311,23 +379,14 @@
             // 
             // button7
             // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button7.Location = new System.Drawing.Point(213, 37);
+            this.button7.Location = new System.Drawing.Point(283, 37);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(86, 25);
+            this.button7.Size = new System.Drawing.Size(65, 25);
             this.button7.TabIndex = 10;
             this.button7.Text = "Open Log";
             this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // label7
-            // 
-            this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(11, 11);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(672, 20);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "El archivo se abre suponiendo q el Target del log es un archivo";
             // 
             // button5
             // 
@@ -344,12 +403,36 @@
             // 
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button6.Location = new System.Drawing.Point(14, 34);
+            this.button6.Location = new System.Drawing.Point(16, 34);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(154, 31);
             this.button6.TabIndex = 0;
             this.button6.Text = "Warning";
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label7.Location = new System.Drawing.Point(11, 11);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(397, 131);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "TargetType = XmlTarget";
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.BackColor = System.Drawing.Color.White;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label11.Location = new System.Drawing.Point(439, 11);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(363, 131);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "TargetType = DatabseTarget";
             // 
             // tabPage2
             // 
@@ -447,6 +530,17 @@
             this.tabPage3.Text = "Static Loguer";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button10
+            // 
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button10.Location = new System.Drawing.Point(506, 54);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(154, 31);
+            this.button10.TabIndex = 16;
+            this.button10.Text = "Warning (No config)";
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -508,22 +602,18 @@
             this.button3.Text = "Warning (AppSetting)";
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button10
+            // ExceptionView
             // 
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button10.Location = new System.Drawing.Point(506, 54);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(154, 31);
-            this.button10.TabIndex = 16;
-            this.button10.Text = "Warning (No config)";
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.ExceptionView.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ExceptionView.TextMessageColor = System.Drawing.Color.White;
+            this.ExceptionView.TextMessageForeColorColor = System.Drawing.SystemColors.WindowText;
+            this.ExceptionView.Title = "FrmTechnicalMsg";
             // 
             // frmLoggingTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 522);
+            this.ClientSize = new System.Drawing.Size(857, 727);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmLoggingTest";
@@ -579,12 +669,19 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNoStaticResult;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtFilePrefix;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label10;
+        private Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent ExceptionView;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnClearWarning;
     }
 }
 
