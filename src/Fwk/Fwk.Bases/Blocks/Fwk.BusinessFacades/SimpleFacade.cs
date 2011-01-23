@@ -70,6 +70,8 @@ namespace Fwk.BusinessFacades
                 IRequest req = (IRequest)pRequest;
                 ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,pRequest.ServiceName);
 
+                //establezco el nombre del proveedor de seguridad al request
+                req.SecurityProviderName = FacadeHelper.GetProviderInfo(providerName).SecurityProviderName;
 
                 // Validación de disponibilidad del servicio.
                 FacadeHelper.ValidateAvailability(wServiceConfiguration, out wResult);

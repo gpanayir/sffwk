@@ -74,15 +74,19 @@ namespace Fwk.ConfigSection
         /// 
         /// 
         /// </summary>
-        [ConfigurationProperty("securityProviderName", IsRequired = true, IsKey = false),
+        [ConfigurationProperty("serviceMetadataProviderName", IsRequired = true, IsKey = false),
          StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
-        public string SecurityProviderName 
+        public string ServiceMetadataProviderName 
         {
             get
             {
-                return (string)this["securityProviderName"];
+                return (string)this["serviceMetadataProviderName"];
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [ConfigurationProperty("companyId", IsRequired = true, IsKey = false),
          StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
         public string CompanyId 

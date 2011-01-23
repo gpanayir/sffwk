@@ -36,15 +36,15 @@ namespace Fwk.Bases.Connector
             get { return msz_URL; }
             set { msz_URL = value; }
         }
-        string _SecurityProviderName = string.Empty;
+        string _ServiceMetadataProviderName = string.Empty;
 
         /// <summary>
-        /// Proveedor del seguridad en el despachador de servicios
+        /// Proveedor del metadatos en el despachador de servicios
         /// </summary>
-        public string SecurityProviderName
+        public string ServiceMetadataProviderName
         {
-            get { return _SecurityProviderName; }
-            set { _SecurityProviderName = value; }
+            get { return _ServiceMetadataProviderName; }
+            set { _ServiceMetadataProviderName = value; }
         }
 
         string _CompanyId = string.Empty;

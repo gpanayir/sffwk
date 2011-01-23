@@ -117,6 +117,7 @@ namespace Fwk.Bases
 	{
         string _SecurityProviderName;
 
+
         /// <summary>
         /// Nombre del proveedor deseguridad
         /// Si esta en blanco se utilizara el po defecto
@@ -147,6 +148,7 @@ namespace Fwk.Bases
             get { return _Encrypt; }
             set { _Encrypt = value; }
         }
+
         
      
         /// <summary>

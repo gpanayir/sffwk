@@ -61,38 +61,22 @@ namespace Fwk.BusinessFacades.Utils
             string wResult;
             TransactionScopeHandler wTransactionScopeHandler = CreateTransactionScopeHandler(serviceConfiguration);
             ServiceError wServiceError = null;
-            //try
-            //{
-                //  ejecución del servicio.
-                wTransactionScopeHandler.InitScope();
 
-                wResult = RunService(pData, serviceConfiguration, out wServiceError);
+            //  ejecución del servicio.
+            wTransactionScopeHandler.InitScope();
 
-                if (wServiceError == null)
-                    wTransactionScopeHandler.Complete();
-                else
-                    wTransactionScopeHandler.Abort();
+            wResult = RunService(pData, serviceConfiguration, out wServiceError);
 
-             
-            //}
-            //catch (Exception ex)
-            //{
-            //    wTransactionScopeHandler.Abort();
+            if (wServiceError == null)
+                wTransactionScopeHandler.Complete();
+            else
+                wTransactionScopeHandler.Abort();
 
-            //    #region < Log >
-            //    if (serviceConfiguration.Audit == true)
-            //    {
-            //       Audit.LogNonSucessfulExecution(ex, serviceConfiguration);
-            //    }
-            //    #endregion
 
-            //    throw ex;
-            //}
-            //finally
-            //{
-                wTransactionScopeHandler.Dispose();
-                wTransactionScopeHandler = null;
-            //}
+
+            wTransactionScopeHandler.Dispose();
+            wTransactionScopeHandler = null;
+
             return wResult;
         }
 
@@ -109,37 +93,20 @@ namespace Fwk.BusinessFacades.Utils
             IServiceContract wResult;
             TransactionScopeHandler wTransactionScopeHandler = CreateTransactionScopeHandler(serviceConfiguration);
             ServiceError wServiceError = null;
-            //try
-            //{
-                //  ejecución del servicio.
-                wTransactionScopeHandler.InitScope();
-                wResult = RunService(pRequest, serviceConfiguration, out wServiceError);
 
-                if (wServiceError == null)
-                    wTransactionScopeHandler.Complete();
-                else
-                    wTransactionScopeHandler.Abort();
+            //  ejecución del servicio.
+            wTransactionScopeHandler.InitScope();
+            wResult = RunService(pRequest, serviceConfiguration, out wServiceError);
 
-       
-            //}
-            //catch (Exception ex)
-            //{
-            //    wTransactionScopeHandler.Abort();
+            if (wServiceError == null)
+                wTransactionScopeHandler.Complete();
+            else
+                wTransactionScopeHandler.Abort();
 
-            //    #region < Log >
-            //    if (serviceConfiguration.Audit == true)
-            //    {
-            //        Audit.LogNonSucessfulExecution(ex, serviceConfiguration);
-            //    }
-            //    #endregion
 
-            //    throw ex;
-            //}
-            //finally
-            //{
-                wTransactionScopeHandler.Dispose();
-                wTransactionScopeHandler = null;
-            //}
+            wTransactionScopeHandler.Dispose();
+            wTransactionScopeHandler = null;
+
             return wResult;
         }
 

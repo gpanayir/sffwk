@@ -25,12 +25,12 @@ namespace Fwk.Bases
         internal static Dictionary<string, IServiceWrapper> _WraperPepository;
 
         /// <summary>
-        /// Seccion FwkWrapper
+        /// Seccion de configuracion de wrapper
         /// </summary>
         static WrapperProviderSection _ProviderSection;
 
         /// <summary>
-        /// 
+        /// Seccion de configuracion de wrapper
         /// </summary>
         public static WrapperProviderSection ProviderSection
         {
@@ -46,6 +46,7 @@ namespace Fwk.Bases
         {
             try
             {
+                //Obtiene la la configuracion del wrapper del archivo .config
                 _ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
                 if (_ProviderSection == null)
                 {
@@ -65,7 +66,7 @@ namespace Fwk.Bases
                 throw te;
             }
 
-
+            //Inicio la instancia del diccionario de wrappers en el cliente
             if (_WraperPepository == null)
             {
                 _WraperPepository = new Dictionary<string, IServiceWrapper>();
@@ -79,7 +80,7 @@ namespace Fwk.Bases
         /// </summary>
         /// <typeparam name="TRequest">Tipo del Request</typeparam>
         /// <typeparam name="TResponse">Tipo del Response</typeparam>
-        /// <param name="providerName">Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher</param>
+        /// <param name="providerName">Proveedor del wrapper</param>
         /// <param name="pRequest">Objeto request del tipo </param>
         /// <returns></returns>
         public static TResponse ExecuteService<TRequest, TResponse>(string providerName,TRequest pRequest)
@@ -96,9 +97,7 @@ namespace Fwk.Bases
             {
                 IServiceContract res = null;
                 IRequest req = (IRequest)pRequest;
-
-
-                req.SecurityProviderName = _WraperPepository[providerName].SecurityProviderName;
+ 
                 req.ContextInformation.CompanyId = _WraperPepository[providerName].CompanyId;
 
                 // Caching del servicio.
@@ -117,10 +116,7 @@ namespace Fwk.Bases
                 {
                     try
                     {
-                       
-                        //pRequest.ContextInformation.CompanyId = _WraperPepository[providerName].SecurityProviderName;
-
-                        wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>(_WraperPepository[providerName].ProviderName, pRequest);
+                        wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>(_WraperPepository[providerName].ServiceMetadataProviderName, pRequest);
                     }
                     catch (Exception ex)
                     {
@@ -187,7 +183,7 @@ namespace Fwk.Bases
                     IServiceWrapper w =(IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
                     w.ProviderName = provider.Name;
                     w.SourceInfo = provider.SourceInfo;
-                    w.SecurityProviderName = provider.SecurityProviderName;
+                    //w.SecurityProviderName = provider.SecurityProviderName;
                     _WraperPepository.Add(providerName, w);
                     
                 }

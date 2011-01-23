@@ -198,7 +198,7 @@ namespace Fwk.Bases
 
             m_Context.ServerTime = DateTime.Now;
             m_Context.ServerName = Environment.MachineName;
-
+           
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace Fwk.Bases
             //if (typeof(IRequest).IsInstanceOfType(this))
             //{
             //    //Obtener nombre del proveedor de seguridad. Membership,Rol y Autthorization Provider
-            //    ((IRequest)this).SecurityProviderName = GetSecurtyProviderName();
+           
             //}
         }
 
