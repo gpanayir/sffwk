@@ -57,7 +57,7 @@ namespace Fwk.Bases
         {
             return this.Exists(p =>
                 p.Name.Equals(name, StringComparison.OrdinalIgnoreCase)
-                && (string.IsNullOrEmpty(appId) || p.ApplicationId.Equals(appId, StringComparison.OrdinalIgnoreCase)
+                && (string.IsNullOrEmpty(appId) ||(p.ApplicationId!=null && p.ApplicationId.Equals(appId, StringComparison.OrdinalIgnoreCase))
                     ));
         }
 	}

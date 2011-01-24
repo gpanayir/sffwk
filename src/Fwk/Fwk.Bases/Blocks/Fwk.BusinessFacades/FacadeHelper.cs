@@ -357,10 +357,10 @@ namespace Fwk.BusinessFacades.Utils
             pServiceError.UserName = Environment.UserName;
             pServiceError.Machine = Environment.MachineName;
 
-            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationNname))
+            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
                 pServiceError.Source = "Despachador de servicios en " + Environment.MachineName;
             else
-                pServiceError.Source = ConfigurationsHelper.HostApplicationNname;
+                pServiceError.Source = ConfigurationsHelper.HostApplicationName;
 
             if (pException.InnerException != null)
                 pServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException.InnerException);
@@ -386,10 +386,10 @@ namespace Fwk.BusinessFacades.Utils
             //te.UserName = Environment.UserName;
             te.Machine = Environment.MachineName;
 
-            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationNname))
+            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
                 te.Source = "Despachador de servicios en " + Environment.MachineName;
             else
-                te.Source = ConfigurationsHelper.HostApplicationNname;
+                te.Source = ConfigurationsHelper.HostApplicationName;
 
             return te;
         }

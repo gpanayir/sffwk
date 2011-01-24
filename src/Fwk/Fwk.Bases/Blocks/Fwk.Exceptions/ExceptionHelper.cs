@@ -367,7 +367,7 @@ namespace Fwk.Exceptions
             te.Class = typeof(T).GetType().Name;
             te.UserName = Environment.UserName;
             te.Machine = Environment.MachineName;
-            te.Source = ConfigurationsHelper.HostApplicationNname;
+            te.Source = ConfigurationsHelper.HostApplicationName;
         }
          /// <summary>
         /// Establece los valores basicos de error producido en el componente ADHelper
@@ -380,7 +380,7 @@ namespace Fwk.Exceptions
             te.Class = T.GetType().Name;
             te.UserName = Environment.UserName;
             te.Machine = Environment.MachineName;
-            te.Source = ConfigurationsHelper.HostApplicationNname;
+            te.Source = ConfigurationsHelper.HostApplicationName;
         }
     
     }

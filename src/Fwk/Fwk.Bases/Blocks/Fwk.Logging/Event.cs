@@ -180,7 +180,7 @@ namespace Fwk.Logging
             get
             {
                 if (string.IsNullOrEmpty(_Source))
-                    _Source = ConfigurationsHelper.HostApplicationNname;
+                    _Source = ConfigurationsHelper.HostApplicationName;
 
                 return _Source;
             }

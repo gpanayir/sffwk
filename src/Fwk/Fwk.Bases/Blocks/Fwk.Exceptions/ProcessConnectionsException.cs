@@ -80,10 +80,10 @@ namespace Fwk.Exceptions
             wServiceError.UserName = Environment.UserName;
             wServiceError.Machine = Environment.MachineName;
 
-            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationNname))
+            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
                 wServiceError.Source = "Cliente " + Environment.MachineName;
             else
-                wServiceError.Source = ConfigurationsHelper.HostApplicationNname;
+                wServiceError.Source = ConfigurationsHelper.HostApplicationName;
 
            
             wServiceError.Type = pEx.GetType().FullName;
