@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Data.SqlTypes;
 
 namespace Fwk.HelperFunctions
 {
@@ -218,6 +219,19 @@ namespace Fwk.HelperFunctions
             return date.ToString("yyyy-MM-dd").Replace('-', separator);
            
         }
+
+        /// <summary>
+        /// Detecta si la fecha esta fuera de rango permitido para SQL Server
+        /// La fecha debe estar entre 1/1/1753 12:00:00 AM y 12/31/9999 11:59:59 PM."}
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static bool IsSqlDateTimeOutOverflow(DateTime date)
+        {
+            //date > MaxValue                                               o  date < MinValue
+            return (DateTime.Compare(date, SqlDateTime.MaxValue.Value) > 0) || (DateTime.Compare(date, SqlDateTime.MinValue.Value) < 0);
+         
+       }
           /// <summary>
         /// Retorna la fecha en formato YYYY[sep]MM[sep]dd
         /// EJ: 2010_11_02_41_33_1

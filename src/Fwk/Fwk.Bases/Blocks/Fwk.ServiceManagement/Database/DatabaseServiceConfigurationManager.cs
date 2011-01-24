@@ -148,7 +148,12 @@ namespace Fwk.ServiceManagement
                     wBPConfig.AddInParameter(wCmd, "IsolationLevel", System.Data.DbType.String, Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel));
                     wBPConfig.AddInParameter(wCmd, "ApplicationId", System.Data.DbType.String, pServiceConfiguration.ApplicationId);
                     wBPConfig.AddInParameter(wCmd, "CreatedUserName", System.Data.DbType.String, pServiceConfiguration.CreatedUserName);
-                    wBPConfig.AddInParameter(wCmd, "CreatedDateTime", System.Data.DbType.DateTime, pServiceConfiguration.CreatedDateTime);
+
+
+             
+
+                    if (Fwk.HelperFunctions.DateFunctions.IsSqlDateTimeOutOverflow(pServiceConfiguration.CreatedDateTime) == false)
+                        wBPConfig.AddInParameter(wCmd, "CreatedDateTime", System.Data.DbType.DateTime, pServiceConfiguration.CreatedDateTime);
 
                     int wAffected = wBPConfig.ExecuteNonQuery(wCmd);
 
@@ -201,7 +206,11 @@ namespace Fwk.ServiceManagement
 
                     wBPConfig.AddInParameter(wCmd, "ApplicationId", System.Data.DbType.String, pServiceConfiguration.ApplicationId);
                     wBPConfig.AddInParameter(wCmd, "CreatedUserName", System.Data.DbType.String, pServiceConfiguration.CreatedUserName);
-                    wBPConfig.AddInParameter(wCmd, "CreatedDateTime", System.Data.DbType.DateTime, pServiceConfiguration.CreatedDateTime);
+
+                   
+
+                    if (Fwk.HelperFunctions.DateFunctions.IsSqlDateTimeOutOverflow(pServiceConfiguration.CreatedDateTime) == false)
+                        wBPConfig.AddInParameter(wCmd, "CreatedDateTime", System.Data.DbType.DateTime, pServiceConfiguration.CreatedDateTime);
 
                     wBPConfig.ExecuteNonQuery(wCmd);
                 }
