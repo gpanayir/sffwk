@@ -38,7 +38,7 @@ namespace Fwk.BusinessFacades.Utils
             try
             {
                 /// TODO: ver prefijo del log
-                Event ev = new Event(EventType.Error, "Serive Dispatcher", pServiceError.GetXml(), pServiceError.Machine, pServiceError.UserName);
+                Event ev = new Event(EventType.Error,Fwk.Bases.ConfigurationsHelper.HostApplicationName, pServiceError.GetXml(), pServiceError.Machine, pServiceError.UserName);
                 Fwk.Logging.StaticLogger.Log(ev);
             }
             catch { }
@@ -73,8 +73,9 @@ namespace Fwk.BusinessFacades.Utils
         {
             try
             {
+                Event ev = new Event(EventType.Error, Fwk.Bases.ConfigurationsHelper.HostApplicationName, pServiceError.GetXml(), pServiceError.Machine, pServiceError.UserName);
                 ///TODO: Ver prefijos de logs
-                Fwk.Logging.StaticLogger.Log(new Event(EventType.Error, "Serive Dispatcher", pServiceError.GetXml(), pServiceError.Machine, pServiceError.UserName));
+                Fwk.Logging.StaticLogger.Log(ev);
             }
             catch { }
         }
@@ -99,7 +100,7 @@ namespace Fwk.BusinessFacades.Utils
             try
             {
                 ///TODO: Ver prefijos de logs
-                Event ev = new Event(EventType.Audit,pRequest.ContextInformation.HostName,s.ToString(), pRequest.ContextInformation.HostName,pRequest.ContextInformation.UserName);
+                Event ev = new Event(EventType.Audit, Fwk.Bases.ConfigurationsHelper.HostApplicationName, s.ToString(), pRequest.ContextInformation.HostName, pRequest.ContextInformation.UserName);
                 Fwk.Logging.StaticLogger.Log(ev);
                     
             }
