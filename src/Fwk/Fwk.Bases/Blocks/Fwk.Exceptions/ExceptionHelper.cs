@@ -46,6 +46,47 @@ namespace Fwk.Exceptions
     public class ExceptionHelper
     {
         #region --[Public Static Methods]--
+
+        /// <summary>
+        /// Realiza el mapeo de una Exception a un ServiceError
+        /// </summary>
+        /// <param name="ex">Exception</param>
+        /// <returns><see cref="ServiceError"/></returns>
+        public static ServiceError GetServiceError(Exception ex)
+        {
+            
+            ServiceError wServiceError = new ServiceError();
+            wServiceError.Message = ex.Message;
+            wServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            wServiceError.Source = ex.Source;
+            wServiceError.StackTrace = ex.StackTrace;
+
+            FwkExceptionTypes t = Fwk.Exceptions.ExceptionHelper.GetFwkExceptionTypes(ex);
+            wServiceError.Type = Enum.GetName(typeof(FwkExceptionTypes), t);
+
+            switch (t)
+            { 
+                case FwkExceptionTypes.TechnicalException:
+                    {
+                        TechnicalException tex =  (TechnicalException)ex;
+                        wServiceError.ErrorId = tex.ErrorId;
+                        wServiceError.Machine = tex.Machine;
+                        wServiceError.UserName =  tex.UserName;
+                        wServiceError.Namespace = tex.Namespace;
+                        wServiceError.Class =  tex.Class;
+                        wServiceError.Assembly = tex.Assembly;
+                        break;
+                    }
+                case FwkExceptionTypes.FunctionalException:
+                    {
+                        FunctionalException fex = (FunctionalException)ex;
+                        wServiceError.ErrorId = fex.ErrorId;
+                        break;
+                    }
+            }
+            return wServiceError;
+        }
+
         /// <summary>
         /// Procesa la excepcion original y la retorna.
         /// </summary>
@@ -319,13 +360,15 @@ namespace Fwk.Exceptions
             }
         }
 
+       
+
         /// <summary>
         /// Obtiene una SoapException.
         /// </summary>
-        /// <param name="pexception">Excepcion original.</param>
+        /// <param name="ex">Excepcion original.</param>
         /// <param name="pabosoluteURI">URI.</param>
         /// <returns>SoapException.</returns>
-        private static SoapException GetSoapException(Exception pexception, string pabosoluteURI)
+        private static SoapException GetSoapException(Exception ex, string pabosoluteURI)
         {
             // Build the detail element of the SOAP fault.
             XmlDocument doc = new XmlDocument();
@@ -335,15 +378,15 @@ namespace Fwk.Exceptions
             XmlElement elem;
 
             elem = doc.CreateElement("Type");
-            elem.InnerText = pexception.GetType().FullName;
+            elem.InnerText = ex.GetType().FullName;
             node.AppendChild(elem);
 
             elem = doc.CreateElement("Message");
-            elem.InnerText = pexception.Message;
+            elem.InnerText = ex.Message;
             node.AppendChild(elem);
 
             elem = doc.CreateElement("StackTrace");
-            elem.InnerText = pexception.StackTrace;
+            elem.InnerText = ex.StackTrace;
             node.AppendChild(elem);
 
 

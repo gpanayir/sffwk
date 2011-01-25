@@ -55,11 +55,8 @@ namespace Fwk.BusinessFacades.Utils
         /// <param name="pConfig">configuración del servicio.</param>
         internal static void LogNonSucessfulExecution(Exception pException, ServiceConfiguration pConfig)
         {
-            ServiceError pServiceError = new ServiceError();
-            pServiceError.Message = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException);
-            
-
-            LogNonSucessfulExecution(pServiceError,pConfig);
+            ServiceError wServiceError = ExceptionHelper.GetServiceError(pException);
+            LogNonSucessfulExecution(wServiceError, pConfig);
       
         }
 
