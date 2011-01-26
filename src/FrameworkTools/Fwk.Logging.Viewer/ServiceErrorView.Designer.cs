@@ -40,6 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnCopyRequstToClip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -99,7 +100,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMessage1.AutoSize = true;
             this.lblMessage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage1.Location = new System.Drawing.Point(346, 31);
+            this.lblMessage1.Location = new System.Drawing.Point(346, 11);
             this.lblMessage1.Name = "lblMessage1";
             this.lblMessage1.Size = new System.Drawing.Size(57, 13);
             this.lblMessage1.TabIndex = 7;
@@ -109,11 +110,11 @@
             // 
             this.txtMessage1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMessage1.Location = new System.Drawing.Point(344, 50);
+            this.txtMessage1.Location = new System.Drawing.Point(316, 33);
             this.txtMessage1.Multiline = true;
             this.txtMessage1.Name = "txtMessage1";
             this.txtMessage1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtMessage1.Size = new System.Drawing.Size(453, 259);
+            this.txtMessage1.Size = new System.Drawing.Size(481, 299);
             this.txtMessage1.TabIndex = 6;
             // 
             // lblErrorType
@@ -150,10 +151,26 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "User";
             // 
+            // btnCopyRequstToClip
+            // 
+            this.btnCopyRequstToClip.BackColor = System.Drawing.Color.White;
+            this.btnCopyRequstToClip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopyRequstToClip.Image = global::Fwk.Logging.Viewer.Properties.Resources.Copy;
+            this.btnCopyRequstToClip.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCopyRequstToClip.Location = new System.Drawing.Point(418, 5);
+            this.btnCopyRequstToClip.Name = "btnCopyRequstToClip";
+            this.btnCopyRequstToClip.Size = new System.Drawing.Size(57, 24);
+            this.btnCopyRequstToClip.TabIndex = 12;
+            this.btnCopyRequstToClip.Text = "Copy";
+            this.btnCopyRequstToClip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCopyRequstToClip.UseVisualStyleBackColor = false;
+            this.btnCopyRequstToClip.Click += new System.EventHandler(this.btnCopyRequstToClip_Click);
+            // 
             // ServiceErrorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCopyRequstToClip);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblErrorType);
@@ -187,5 +204,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnCopyRequstToClip;
     }
 }

@@ -29,18 +29,12 @@ namespace Fwk.Logging.Viewer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_Document));
             this.grdLogs = new System.Windows.Forms.DataGridView();
-            this.lblMessage1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
-            this.ExceptionViewer = new Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent(this.components);
             this.colImg = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.filter1 = new Fwk.Logging.Viewer.Filter();
             this.logTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.logDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.machineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +42,13 @@ namespace Fwk.Logging.Viewer
             this.appIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.messageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventGridListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExceptionViewer = new Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent(this.components);
+            this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            this.filter1 = new Fwk.Logging.Viewer.Filter();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventGridListBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +63,17 @@ namespace Fwk.Logging.Viewer
             this.grdLogs.AutoGenerateColumns = false;
             this.grdLogs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdLogs.BackgroundColor = System.Drawing.Color.White;
+            this.grdLogs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.grdLogs.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.grdLogs.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdLogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdLogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colImg,
@@ -83,26 +94,101 @@ namespace Fwk.Logging.Viewer
             this.grdLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdLogs.Size = new System.Drawing.Size(1044, 318);
             this.grdLogs.TabIndex = 0;
-            this.grdLogs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLogs_CellClick);
+            this.grdLogs.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLogs_RowEnter);
+            
             // 
-            // lblMessage1
+            // colImg
             // 
-            this.lblMessage1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblMessage1.AutoSize = true;
-            this.lblMessage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage1.Location = new System.Drawing.Point(8, 417);
-            this.lblMessage1.Name = "lblMessage1";
-            this.lblMessage1.Size = new System.Drawing.Size(57, 13);
-            this.lblMessage1.TabIndex = 4;
-            this.lblMessage1.Text = "Message";
+            this.colImg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colImg.DataPropertyName = "LogImage";
+            this.colImg.Description = "IconImage";
+            this.colImg.FillWeight = 155.5696F;
+            this.colImg.Frozen = true;
+            this.colImg.HeaderText = "";
+            this.colImg.Name = "colImg";
+            this.colImg.ReadOnly = true;
+            this.colImg.Width = 5;
+            // 
+            // logTypeDataGridViewTextBoxColumn
+            // 
+            this.logTypeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.logTypeDataGridViewTextBoxColumn.DataPropertyName = "LogType";
+            this.logTypeDataGridViewTextBoxColumn.FillWeight = 114.0627F;
+            this.logTypeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.logTypeDataGridViewTextBoxColumn.Name = "logTypeDataGridViewTextBoxColumn";
+            this.logTypeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.logTypeDataGridViewTextBoxColumn.Width = 72;
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            this.Id.Width = 5;
+            // 
+            // logDateDataGridViewTextBoxColumn
+            // 
+            this.logDateDataGridViewTextBoxColumn.DataPropertyName = "LogDate";
+            this.logDateDataGridViewTextBoxColumn.FillWeight = 36.18885F;
+            this.logDateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.logDateDataGridViewTextBoxColumn.Name = "logDateDataGridViewTextBoxColumn";
+            this.logDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userDataGridViewTextBoxColumn
+            // 
+            this.userDataGridViewTextBoxColumn.DataPropertyName = "User";
+            this.userDataGridViewTextBoxColumn.FillWeight = 36.18885F;
+            this.userDataGridViewTextBoxColumn.HeaderText = "User";
+            this.userDataGridViewTextBoxColumn.Name = "userDataGridViewTextBoxColumn";
+            this.userDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // machineDataGridViewTextBoxColumn
+            // 
+            this.machineDataGridViewTextBoxColumn.DataPropertyName = "Machine";
+            this.machineDataGridViewTextBoxColumn.FillWeight = 36.18885F;
+            this.machineDataGridViewTextBoxColumn.HeaderText = "Machine";
+            this.machineDataGridViewTextBoxColumn.Name = "machineDataGridViewTextBoxColumn";
+            this.machineDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sourceDataGridViewTextBoxColumn
+            // 
+            this.sourceDataGridViewTextBoxColumn.DataPropertyName = "Source";
+            this.sourceDataGridViewTextBoxColumn.FillWeight = 36.18885F;
+            this.sourceDataGridViewTextBoxColumn.HeaderText = "Source";
+            this.sourceDataGridViewTextBoxColumn.Name = "sourceDataGridViewTextBoxColumn";
+            this.sourceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // appIdDataGridViewTextBoxColumn
+            // 
+            this.appIdDataGridViewTextBoxColumn.DataPropertyName = "AppId";
+            this.appIdDataGridViewTextBoxColumn.FillWeight = 36.18885F;
+            this.appIdDataGridViewTextBoxColumn.HeaderText = "AppId";
+            this.appIdDataGridViewTextBoxColumn.Name = "appIdDataGridViewTextBoxColumn";
+            this.appIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // messageDataGridViewTextBoxColumn
+            // 
+            this.messageDataGridViewTextBoxColumn.DataPropertyName = "Message";
+            this.messageDataGridViewTextBoxColumn.FillWeight = 4.993313F;
+            this.messageDataGridViewTextBoxColumn.HeaderText = "Message";
+            this.messageDataGridViewTextBoxColumn.Name = "messageDataGridViewTextBoxColumn";
+            this.messageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.messageDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // eventGridListBindingSource
+            // 
+            this.eventGridListBindingSource.DataSource = typeof(Fwk.Logging.Viewer.EventGridList);
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Location = new System.Drawing.Point(11, 433);
+            this.panel1.Location = new System.Drawing.Point(11, 416);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1042, 220);
+            this.panel1.Size = new System.Drawing.Size(1042, 237);
             this.panel1.TabIndex = 5;
             // 
             // dataGridViewTextBoxColumn1
@@ -121,6 +207,13 @@ namespace Fwk.Logging.Viewer
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Width = 262;
             // 
+            // ExceptionViewer
+            // 
+            this.ExceptionViewer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ExceptionViewer.TextMessageColor = System.Drawing.Color.White;
+            this.ExceptionViewer.TextMessageForeColorColor = System.Drawing.SystemColors.WindowText;
+            this.ExceptionViewer.Title = "FrmTechnicalMsg";
+            // 
             // fwkMessageViewComponent1
             // 
             this.fwkMessageViewComponent1.BackColor = System.Drawing.Color.SteelBlue;
@@ -131,35 +224,6 @@ namespace Fwk.Logging.Viewer
             this.fwkMessageViewComponent1.TextMessageForeColor = System.Drawing.Color.PaleGoldenrod;
             this.fwkMessageViewComponent1.Title = "Message";
             // 
-            // ExceptionViewer
-            // 
-            this.ExceptionViewer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ExceptionViewer.TextMessageColor = System.Drawing.Color.White;
-            this.ExceptionViewer.TextMessageForeColorColor = System.Drawing.SystemColors.WindowText;
-            this.ExceptionViewer.Title = "FrmTechnicalMsg";
-            // 
-            // colImg
-            // 
-            this.colImg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colImg.DataPropertyName = "LogImage";
-            this.colImg.Description = "IconImage";
-            this.colImg.FillWeight = 155.5696F;
-            this.colImg.Frozen = true;
-            this.colImg.HeaderText = "";
-            this.colImg.Name = "colImg";
-            this.colImg.ReadOnly = true;
-            this.colImg.Width = 5;
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            this.Id.Width = 5;
-            // 
             // filter1
             // 
             this.filter1.Location = new System.Drawing.Point(10, 4);
@@ -168,65 +232,14 @@ namespace Fwk.Logging.Viewer
             this.filter1.TabIndex = 6;
             this.filter1.OnFilterChanged += new Fwk.Logging.Viewer.OnFilterChangedHandler(this.filter1_OnFilterChanged);
             // 
-            // logTypeDataGridViewTextBoxColumn
+            // label1
             // 
-            this.logTypeDataGridViewTextBoxColumn.DataPropertyName = "LogType";
-            this.logTypeDataGridViewTextBoxColumn.FillWeight = 364.5834F;
-            this.logTypeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.logTypeDataGridViewTextBoxColumn.Name = "logTypeDataGridViewTextBoxColumn";
-            this.logTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // logDateDataGridViewTextBoxColumn
-            // 
-            this.logDateDataGridViewTextBoxColumn.DataPropertyName = "LogDate";
-            this.logDateDataGridViewTextBoxColumn.FillWeight = 65.28185F;
-            this.logDateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.logDateDataGridViewTextBoxColumn.Name = "logDateDataGridViewTextBoxColumn";
-            this.logDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // userDataGridViewTextBoxColumn
-            // 
-            this.userDataGridViewTextBoxColumn.DataPropertyName = "User";
-            this.userDataGridViewTextBoxColumn.FillWeight = 65.28185F;
-            this.userDataGridViewTextBoxColumn.HeaderText = "User";
-            this.userDataGridViewTextBoxColumn.Name = "userDataGridViewTextBoxColumn";
-            this.userDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // machineDataGridViewTextBoxColumn
-            // 
-            this.machineDataGridViewTextBoxColumn.DataPropertyName = "Machine";
-            this.machineDataGridViewTextBoxColumn.FillWeight = 65.28185F;
-            this.machineDataGridViewTextBoxColumn.HeaderText = "Machine";
-            this.machineDataGridViewTextBoxColumn.Name = "machineDataGridViewTextBoxColumn";
-            this.machineDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sourceDataGridViewTextBoxColumn
-            // 
-            this.sourceDataGridViewTextBoxColumn.DataPropertyName = "Source";
-            this.sourceDataGridViewTextBoxColumn.FillWeight = 65.28185F;
-            this.sourceDataGridViewTextBoxColumn.HeaderText = "Source";
-            this.sourceDataGridViewTextBoxColumn.Name = "sourceDataGridViewTextBoxColumn";
-            this.sourceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // appIdDataGridViewTextBoxColumn
-            // 
-            this.appIdDataGridViewTextBoxColumn.DataPropertyName = "AppId";
-            this.appIdDataGridViewTextBoxColumn.FillWeight = 65.28185F;
-            this.appIdDataGridViewTextBoxColumn.HeaderText = "AppId";
-            this.appIdDataGridViewTextBoxColumn.Name = "appIdDataGridViewTextBoxColumn";
-            this.appIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // messageDataGridViewTextBoxColumn
-            // 
-            this.messageDataGridViewTextBoxColumn.DataPropertyName = "Message";
-            this.messageDataGridViewTextBoxColumn.FillWeight = 9.007546F;
-            this.messageDataGridViewTextBoxColumn.HeaderText = "Message";
-            this.messageDataGridViewTextBoxColumn.Name = "messageDataGridViewTextBoxColumn";
-            this.messageDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // eventGridListBindingSource
-            // 
-            this.eventGridListBindingSource.DataSource = typeof(Fwk.Logging.Viewer.EventGridList);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(694, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "label1";
             // 
             // FRM_Document
             // 
@@ -234,14 +247,15 @@ namespace Fwk.Logging.Viewer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1065, 665);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.filter1);
             this.Controls.Add(this.grdLogs);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblMessage1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "FRM_Document";
             this.Text = "[name]";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FRM_Document_Activated);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FRM_Document_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).EndInit();
@@ -254,7 +268,6 @@ namespace Fwk.Logging.Viewer
         #endregion
 
         private System.Windows.Forms.DataGridView grdLogs;
-        private System.Windows.Forms.Label lblMessage1;
         private System.Windows.Forms.Panel panel1;
         private Filter filter1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -271,6 +284,7 @@ namespace Fwk.Logging.Viewer
         private System.Windows.Forms.DataGridViewTextBoxColumn sourceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn appIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label1;
 
     }
 }

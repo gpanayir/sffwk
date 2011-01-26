@@ -122,12 +122,16 @@ namespace Fwk.Logging.Viewer
 
 
 
-        private void grdLogs_CellClick(object sender, DataGridViewCellEventArgs e)
+       
+        private void grdLogs_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-
-
             if (grdLogs.CurrentRow == null) return;
-            EventGrid x = (EventGrid)((System.Windows.Forms.BindingSource)grdLogs.DataSource).Current;
+            label1.Text =string.Concat( "CurrentRow = ",grdLogs.CurrentRow.Index ,"e.RowIndex", e.RowIndex);
+
+            
+            EventGrid x = (EventGrid)grdLogs.Rows[e.RowIndex].DataBoundItem as EventGrid;
+
+            
 
             Message wMessage = LoadMessage(x.Message.Text);
 
@@ -156,10 +160,7 @@ namespace Fwk.Logging.Viewer
 
                 AddtoPanel(_OtherView);
             }
-
-
         }
-
 
         private void FRM_Document_Activated(object sender, EventArgs e)
         {
@@ -259,16 +260,19 @@ namespace Fwk.Logging.Viewer
 
             if (panel1.Contains(pControlToAdd)) return;
 
-            pControlToAdd.Location = new System.Drawing.Point(1, 1);
-            pControlToAdd.Width = panel1.Width - 60;
-            pControlToAdd.Height = panel1.Height - 60;
-            pControlToAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                   | System.Windows.Forms.AnchorStyles.Left)
-                   | System.Windows.Forms.AnchorStyles.Right)));
+            pControlToAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            pControlToAdd.Location = new System.Drawing.Point(0, 0);
+
+            
+            
             panel1.Controls.Clear();
             panel1.Controls.Add(pControlToAdd);
 
         }
+
+       
+
+       
     }
 
 

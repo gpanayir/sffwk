@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contents 16x16.ico" />
+    <None Include="Resources\Copy.png" />
     <None Include="Properties\DataSources\EventGridList.datasource" />
     <None Include="Resources\srch_16.gif" />
     <None Include="Resources\Zoom In.png" />

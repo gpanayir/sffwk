@@ -38,7 +38,6 @@ namespace Fwk.Logging.Viewer
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOpenFromDB = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuClose = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,19 +95,18 @@ namespace Fwk.Logging.Viewer
             this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuOpen,
             this.mnuOpenFromDB,
-            this.mnuClose,
             this.toolStripMenuItem1,
             this.mnuExit});
             this.mnuFile.Name = "mnuFile";
-            this.mnuFile.Size = new System.Drawing.Size(35, 20);
-            this.mnuFile.Text = "&File";
+            this.mnuFile.Size = new System.Drawing.Size(36, 20);
+            this.mnuFile.Text = "Log";
             // 
             // mnuOpen
             // 
             this.mnuOpen.Image = ((System.Drawing.Image)(resources.GetObject("mnuOpen.Image")));
             this.mnuOpen.Name = "mnuOpen";
             this.mnuOpen.Size = new System.Drawing.Size(184, 22);
-            this.mnuOpen.Text = "Open";
+            this.mnuOpen.Text = "Open xml log file";
             this.mnuOpen.Click += new System.EventHandler(this.mnuOpen_Click);
             // 
             // mnuOpenFromDB
@@ -118,13 +116,6 @@ namespace Fwk.Logging.Viewer
             this.mnuOpenFromDB.Size = new System.Drawing.Size(184, 22);
             this.mnuOpenFromDB.Text = "Open from database";
             this.mnuOpenFromDB.Click += new System.EventHandler(this.mnuOpenFromDB_Click);
-            // 
-            // mnuClose
-            // 
-            this.mnuClose.Image = ((System.Drawing.Image)(resources.GetObject("mnuClose.Image")));
-            this.mnuClose.Name = "mnuClose";
-            this.mnuClose.Size = new System.Drawing.Size(184, 22);
-            this.mnuClose.Text = "Close";
             // 
             // toolStripMenuItem1
             // 
@@ -227,7 +218,6 @@ namespace Fwk.Logging.Viewer
         private System.Windows.Forms.ToolStripMenuItem mnuFile;
         private System.Windows.Forms.ToolStripMenuItem mnuOpen;
         private System.Windows.Forms.ToolStripMenuItem mnuOpenFromDB;
-        private System.Windows.Forms.ToolStripMenuItem mnuClose;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;

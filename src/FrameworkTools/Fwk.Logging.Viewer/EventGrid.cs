@@ -16,6 +16,7 @@ namespace Fwk.Logging.Viewer
     /// </summary>
     /// <date>200609/02</date>
     /// <author>moviedo</author>
+    [Serializable]
     public class EventGrid : Fwk.Bases.Entity
     {
         #region <private members>
@@ -28,7 +29,13 @@ namespace Fwk.Logging.Viewer
         private CData _Message = new CData();
         private DateTime _LogDate;
         private Image _LogImage;
+        private Message _FormatedMessage;
 
+        public Message FormatedMessage
+        {
+            get { return _FormatedMessage; }
+            set { _FormatedMessage = value; }
+        }
         public Image LogImage
         {
             get { return _LogImage; }
@@ -37,6 +44,11 @@ namespace Fwk.Logging.Viewer
         #endregion
 
         #region <constructor>
+
+        public EventGrid()
+        {
+         
+        }
         /// <summary>
         /// Constructor de EventGrid.
         /// </summary>

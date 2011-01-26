@@ -15,10 +15,15 @@ namespace Fwk.Logging.Viewer
         {
             InitializeComponent();
         }
-        public void Populate(Message pMessage)
+        public void Populate(EventGrid pEventGrid)
         {
-                      txtMessage1.Text = pMessage.AnyMessage;
+            txtMessage1.Text = pEventGrid.Message.Text;
 
+        }
+
+        private void btnCopyRequstToClip_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(txtMessage1.Text);
         }
     }
 }

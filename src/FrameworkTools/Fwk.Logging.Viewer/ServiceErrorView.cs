@@ -28,5 +28,10 @@ namespace Fwk.Logging.Viewer
             txtMessage1.Text = error.Message + Environment.NewLine + error.InnerMessageException;
            
         }
+
+        private void btnCopyRequstToClip_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(txtMessage1.Text);
+        }
     }
 }

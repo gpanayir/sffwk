@@ -218,6 +218,11 @@ namespace Fwk.Logging.Viewer
 
         }
 
+        private void mnuClose_Click(object sender, EventArgs e)
+        {
+
+        }
+
        
 
        

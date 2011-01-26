@@ -22,5 +22,15 @@ namespace Fwk.Logging.Viewer
             txtMessage1.Text = pMessage.Request;
             txtMessage2.Text = pMessage.Response;
         }
+
+       private void btnCopyResToClip_Click(object sender, EventArgs e)
+       {
+           Clipboard.SetText(txtMessage2.Text);
+       }
+
+       private void btnCopyRequstToClip_Click(object sender, EventArgs e)
+       {
+           Clipboard.SetText(txtMessage1.Text);
+       }
     }
 }
