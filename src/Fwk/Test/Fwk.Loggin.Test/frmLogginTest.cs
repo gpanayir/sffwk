@@ -14,7 +14,7 @@ namespace Fwk.Logging.Test
 {
     public partial class frmLoggingTest : Form
     {
-        Logger _loger = new Logger();
+        Logger _loger = new Logger("Fwk.Logging.Test.frmLoggingTest");
         LoggingSection _LoggingSection;
         public frmLoggingTest()
         {
