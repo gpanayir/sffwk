@@ -7,6 +7,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using Fwk.Exceptions;
 using System.Data;
 using System.Data.SqlClient;
+using Fwk.HelperFunctions;
 
 namespace Fwk.Logging.Targets
 {
@@ -80,8 +81,8 @@ namespace Fwk.Logging.Targets
                     wParam = wCmd.Parameters.Add("Id", SqlDbType.UniqueIdentifier);
                     wParam.Value = pEvent.Id;
 
-                    wParam = wCmd.Parameters.Add("Message", SqlDbType.NVarChar);
-                    wParam.Value = pEvent.Message.Text;
+                    wParam = wCmd.Parameters.Add("Message", SqlDbType.VarBinary,2000);
+                    wParam.Value = TypeFunctions.ConvertStringToByteArray(pEvent.Message.Text);
 
                     wParam = wCmd.Parameters.Add("Source", SqlDbType.NVarChar);
                     wParam.Value = pEvent.Source;
@@ -91,7 +92,7 @@ namespace Fwk.Logging.Targets
 
                     wParam = wCmd.Parameters.Add("Machine", SqlDbType.NVarChar);
                     wParam.Value = pEvent.Machine;
-
+                   
                     wParam = wCmd.Parameters.Add("LogDate", SqlDbType.DateTime);
                     wParam.Value = pEvent.LogDate;
 
@@ -183,7 +184,8 @@ namespace Fwk.Logging.Targets
                         {
                             wEvent = new Event();
                             wEvent.Id = new Guid(reader["Id"].ToString());
-                            wEvent.Message.Text = reader["Message"].ToString();
+                      
+                            wEvent.Message.Text = TypeFunctions.ConvertBytesToTextString((Byte[])(reader["Message"]));
                             wEvent.Source = reader["Source"].ToString();
                             wEvent.LogType = (EventType)Enum.Parse(typeof(EventType), reader["LogType"].ToString());
                             wEvent.Machine = reader["Machine"].ToString();
@@ -284,7 +286,8 @@ namespace Fwk.Logging.Targets
 
                             wEvent = new Event();
                             wEvent.Id = new Guid(reader["Id"].ToString());
-                            wEvent.Message.Text = reader["Message"].ToString();
+                        
+                            wEvent.Message.Text = TypeFunctions.ConvertBytesToTextString((Byte[])(reader["Message"]));
                             wEvent.Source = reader["Source"].ToString();
                             wEvent.LogType = (EventType)Enum.Parse(typeof(EventType), reader["LogType"].ToString());
                             wEvent.Machine = reader["Machine"].ToString();

@@ -112,7 +112,7 @@ namespace Fwk.Logging.Viewer
 
 
             }
-            catch (Exception)
+            catch (Exception f)
             {
                 msg.AnyMessage = pMessage;
             }

@@ -19,14 +19,43 @@ namespace Fwk.Logging
     {
         #region <private members>
         private LoggingSection _LoggingSection = null;
+        private string appId; 
         #endregion
 
         #region <constructor>
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pAppId"></param>
+        public Logger(string pAppId)
+        {
+            appId = pAppId;
+
+            try
+            {
+                _LoggingSection = ConfigurationManager.GetSection("FwkLogging") as LoggingSection;
+            }
+            catch (System.Configuration.ConfigurationException ex)
+            {
+
+                TechnicalException te = new
+                    TechnicalException("Hay problemas al intentar cargar la configuracion FwkLogging. \r\n ", ex);
+                te.Assembly = "Fwk.Logging";
+                te.Class = "LoginSection";
+                te.ErrorId = "9002";
+                te.Namespace = "Fwk.Logging";
+                te.UserName = Environment.UserName;
+                te.Machine = Environment.MachineName;
+                throw te;
+            }
+        }
         /// <summary>
         /// Constructor de Logger.
         /// </summary>
         public Logger()
         {
+            appId = Fwk.Bases.ConfigurationsHelper.HostApplicationName;
             try
             {
                 _LoggingSection = ConfigurationManager.GetSection("FwkLogging") as LoggingSection;
@@ -108,7 +137,7 @@ namespace Fwk.Logging
         {
             // Crea un nuevo Event.
             Event wEvent = new Event(pEventType, pSource, pText);
-
+            wEvent.AppId = appId;
             // Obtiene la Rule asociada al EventType.
             RuleElement wRule = _LoggingSection.GetRuleByEventType(pEventType);
 
