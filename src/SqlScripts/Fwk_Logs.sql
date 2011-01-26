@@ -20,7 +20,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[fwk_Logs](
 	[Id] [uniqueidentifier] NOT NULL,
-	[Message] [nvarchar](2000) NOT NULL,
+	[Message] [VARBINARY](2000)NOT NULL,
 	[Source] [nvarchar](20) NOT NULL,
 	[LogType] [nvarchar](20) NOT NULL,
 	[Machine] [nvarchar](50) NOT NULL,
@@ -42,7 +42,7 @@ CREATE PROCEDURE [dbo].[fwk_Logs_i]
 (
 	@Id  uniqueidentifier ,
 	@LogDate datetime ,
-	@Message nvarchar(2000) ,
+	@Message VARBINARY(2000) ,
 	@Source nvarchar(20) ,
 	@LogType nvarchar(20) ,
 	@Machine nvarchar(100) ,
@@ -61,7 +61,7 @@ INSERT INTO fwk_Logs
 (
 	Id,
 	LogDate,
-	Message,
+	[Message],
 	Source,
 	LogType,
 	Machine,
