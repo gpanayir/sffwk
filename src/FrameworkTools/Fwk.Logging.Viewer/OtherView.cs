@@ -17,7 +17,7 @@ namespace Fwk.Logging.Viewer
         }
         public void Populate(EventGrid pEventGrid)
         {
-            txtMessage1.Text = pEventGrid.Message.Text;
+            txtMessage1.Text = pEventGrid.FormatedMessage.AnyMessage;
 
         }
 

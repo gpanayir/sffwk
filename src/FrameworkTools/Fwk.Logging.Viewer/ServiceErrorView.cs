@@ -17,9 +17,9 @@ namespace Fwk.Logging.Viewer
             InitializeComponent();
         }
 
-        public void Populate(Message pMessage)
+        public void Populate(EventGrid pMessage)
         {
-            ServiceError error = ServiceError.GetFromXml<ServiceError>( pMessage.AnyMessage);
+            ServiceError error = ServiceError.GetFromXml<ServiceError>( pMessage.FormatedMessage .AnyMessage);
             lblMachine.Text = error.Machine;
             lblSource.Text = error.Source;
             lblErrorId.Text = error.ErrorId;

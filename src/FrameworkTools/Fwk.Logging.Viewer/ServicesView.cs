@@ -17,10 +17,10 @@ namespace Fwk.Logging.Viewer
             InitializeComponent();
         }
 
-       public  void Populate(Message pMessage)
+        public void Populate(EventGrid pEventGrid)
         {
-            txtMessage1.Text = pMessage.Request;
-            txtMessage2.Text = pMessage.Response;
+            txtMessage1.Text = pEventGrid.FormatedMessage.Request;
+            txtMessage2.Text =  pEventGrid.FormatedMessage.Response;
         }
 
        private void btnCopyResToClip_Click(object sender, EventArgs e)

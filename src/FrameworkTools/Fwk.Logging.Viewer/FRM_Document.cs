@@ -134,12 +134,12 @@ namespace Fwk.Logging.Viewer
             
 
             Message wMessage = LoadMessage(x.Message.Text);
-
+            x.FormatedMessage = wMessage;
             if (wMessage.MessageContenType == MessageContenType.ServiceError)
             {
                 if (_ServiceErrorView == null)
                     _ServiceErrorView = new ServiceErrorView();
-                _ServiceErrorView.Populate(wMessage);
+                _ServiceErrorView.Populate(x);
 
                 AddtoPanel(_ServiceErrorView);
             }
@@ -148,7 +148,7 @@ namespace Fwk.Logging.Viewer
             {
                 if (_ServicesView == null)
                     _ServicesView = new ServicesView();
-                _ServicesView.Populate(wMessage);
+                _ServicesView.Populate(x);
 
                 AddtoPanel(_ServicesView);
             }
@@ -156,7 +156,7 @@ namespace Fwk.Logging.Viewer
             {
                 if (_OtherView == null)
                     _OtherView = new OtherView();
-                _OtherView.Populate(wMessage);
+                _OtherView.Populate(x);
 
                 AddtoPanel(_OtherView);
             }
