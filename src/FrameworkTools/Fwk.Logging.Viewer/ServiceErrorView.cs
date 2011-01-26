@@ -26,7 +26,7 @@ namespace Fwk.Logging.Viewer
             lblErrorType.Text = error.Type;
             lblUser.Text = error.UserName;
             txtMessage1.Text = error.Message + Environment.NewLine + error.InnerMessageException;
-           
+          
         }
 
         private void btnCopyRequstToClip_Click(object sender, EventArgs e)
