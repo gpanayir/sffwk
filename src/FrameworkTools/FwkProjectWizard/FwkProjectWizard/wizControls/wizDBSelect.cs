@@ -95,6 +95,8 @@ namespace Fwk.Wizard
 
         private void cmbDataBases_Click(object sender, EventArgs e)
         {
+            if (_cnn == null)
+                _cnn = GetAuxiliarCnnString();
 
             if (!_cnn.DataSource.Equals(cmbServer.Text.Trim()) || cmbDataBases.Items.Count == 0)
             {

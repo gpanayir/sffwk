@@ -22,10 +22,10 @@ using Fwk.Bases;
 using $fwkprojectname$.Common.BE;
 
 
-namespace $fwkprojectname$.BackEnd.DAC : BaseDAC
+namespace $fwkprojectname$.BackEnd.DAC
 {
 
-    public static class [EntityName]DAC
+    public  class [EntityName]DAC : Fwk.Bases.BaseDAC
     {
         [BODY]
     }     
