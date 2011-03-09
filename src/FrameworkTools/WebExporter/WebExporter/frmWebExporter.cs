@@ -39,7 +39,7 @@ namespace WebExporter
             extencionsListToExport.Add(".xml");
             extencionsListToExport.Add(".master");
 
-
+            extencionsListToExport.Add(".htc");
             extencionsListToExport.Add(".dll");
          
         }
@@ -131,7 +131,7 @@ namespace WebExporter
                  //{
                      try
                      {
-                         file.CopyTo(Path.Combine(destination, file.Name));
+                         file.CopyTo(Path.Combine(destination, file.Name),true);
                          progressBar1.Value++;
                      }
 
