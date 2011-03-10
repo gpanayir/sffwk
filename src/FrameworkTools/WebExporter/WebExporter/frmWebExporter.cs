@@ -28,20 +28,20 @@ namespace WebExporter
             extencionsListToExport.Add(".html");
             extencionsListToExport.Add(".ascx");
             extencionsListToExport.Add(".aspx");
-            extencionsListToExport.Add(".html");
+            extencionsListToExport.Add(".htm");
             extencionsListToExport.Add(".css");
             extencionsListToExport.Add(".js");
+     
             extencionsListToExport.Add(".jpg");
             extencionsListToExport.Add(".jpeg");
-            extencionsListToExport.Add(".JPG");
-            extencionsListToExport.Add(".JPEG");
+            extencionsListToExport.Add(".bmp");
             extencionsListToExport.Add(".png");
             extencionsListToExport.Add(".gif");
 
             extencionsListToExport.Add(".config");
             extencionsListToExport.Add(".xml");
             extencionsListToExport.Add(".master");
-
+         
             extencionsListToExport.Add(".htc");
             extencionsListToExport.Add(".dll");
       
@@ -125,7 +125,7 @@ namespace WebExporter
             //Crear directorio en destino si no existe
             if (!Directory.Exists(destination)) Directory.CreateDirectory(destination);
              FileInfo[] wFiles= new DirectoryInfo(source).GetFiles(searchPattern, SearchOption.TopDirectoryOnly);
-             var filesFiltereds = from f in wFiles where extencionsListToExport.Contains(f.Extension) select f;
+             var filesFiltereds = from f in wFiles where extencionsListToExport.Contains(f.Extension.ToLower()) select f;
 
              //wFiles.Where<FileInfo>(p=> extencionsListToExport.Contains(p.Extension));
 
