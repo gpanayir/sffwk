@@ -32,6 +32,9 @@ namespace WebExporter
             extencionsListToExport.Add(".css");
             extencionsListToExport.Add(".js");
             extencionsListToExport.Add(".jpg");
+            extencionsListToExport.Add(".jpeg");
+            extencionsListToExport.Add(".JPG");
+            extencionsListToExport.Add(".JPEG");
             extencionsListToExport.Add(".png");
             extencionsListToExport.Add(".gif");
 
@@ -41,6 +44,7 @@ namespace WebExporter
 
             extencionsListToExport.Add(".htc");
             extencionsListToExport.Add(".dll");
+      
          
         }
 
@@ -197,6 +201,11 @@ namespace WebExporter
 
 
             Store.Save(_Store);
+        }
+
+        private void txtErrors_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
       

@@ -175,6 +175,7 @@ namespace WebExporter
             this.txtErrors.ReadOnly = true;
             this.txtErrors.Size = new System.Drawing.Size(713, 214);
             this.txtErrors.TabIndex = 0;
+            this.txtErrors.TextChanged += new System.EventHandler(this.txtErrors_TextChanged);
             // 
             // frmWebExporter
             // 
