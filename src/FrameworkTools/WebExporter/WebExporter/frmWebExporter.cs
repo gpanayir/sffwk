@@ -110,55 +110,55 @@ namespace WebExporter
         /// <param name="source">Ruta de origen</param>
         /// <param name="destination">Ruta destino</param>
         /// <param name= "searchPatter">ej "*"</param>
-        void Export(string source, string destination,string searchPattern,out StringBuilder strErrors)
+        void Export(string source, string destination, string searchPattern, out StringBuilder strErrors)
         {
             strErrors = new StringBuilder();
             //Validaciones sobre el directorio
             if (destination.EndsWith(".svn"))
-                return ;
-         
+                return;
+
             #region Declarations
-          
+
             DirectoryInfo[] sourceDirectories = new DirectoryInfo(source).GetDirectories(searchPattern, SearchOption.TopDirectoryOnly);
-       
+
             #endregion
             //Crear directorio en destino si no existe
             if (!Directory.Exists(destination)) Directory.CreateDirectory(destination);
-             FileInfo[] wFiles= new DirectoryInfo(source).GetFiles(searchPattern, SearchOption.TopDirectoryOnly);
-             var filesFiltereds = from f in wFiles where extencionsListToExport.Contains(f.Extension.ToLower()) select f;
+            FileInfo[] wFiles = new DirectoryInfo(source).GetFiles(searchPattern, SearchOption.TopDirectoryOnly);
+            var filesFiltereds = from f in wFiles where extencionsListToExport.Contains(f.Extension.ToLower()) select f;
 
-             //wFiles.Where<FileInfo>(p=> extencionsListToExport.Contains(p.Extension));
+            //wFiles.Where<FileInfo>(p=> extencionsListToExport.Contains(p.Extension));
 
-             foreach (FileInfo file in filesFiltereds)
-             {
-                 //if (extencionsListToExport.Contains(file.Extension))
-                 //{
-                     try
-                     {
-                         file.CopyTo(Path.Combine(destination, file.Name),true);
-                         progressBar1.Value++;
-                     }
+            foreach (FileInfo file in filesFiltereds)
+            {
+                //if (extencionsListToExport.Contains(file.Extension))
+                //{
+                try
+                {
+                    file.CopyTo(Path.Combine(destination, file.Name), true);
+                    progressBar1.Value++;
+                }
 
-                     catch (System.IO.IOException ex)
-                     {
-                         strErrors.AppendLine(ex.Message);
-                     }
+                catch (System.IO.IOException ex)
+                {
+                    strErrors.AppendLine(ex.Message);
+                }
 
-                 //}
-             }
-          
+                //}
+            }
 
 
-           
+
+
             //Llamr recursivamente los subdirectorios
             foreach (DirectoryInfo subDir in sourceDirectories)
             {
                 Export(subDir.FullName, Path.Combine(destination, subDir.Name), "*", out strErrors);
             }
 
-           
 
-           
+
+
         }
 
 
