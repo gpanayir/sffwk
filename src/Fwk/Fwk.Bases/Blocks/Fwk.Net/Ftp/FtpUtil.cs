@@ -234,4 +234,23 @@ namespace Fwk.Net.Ftp
         }
     }
 
+    public class UploadData
+    {
+        
+        string _Message;
+
+        public string Message
+        {
+            get { return _Message; }
+            set { _Message = value; }
+        }
+        FTPComponent _ftpComponent;
+
+        public FTPComponent FtpComponent
+        {
+            get { return _ftpComponent; }
+            set { _ftpComponent = value; }
+        }
+    }
+
 }

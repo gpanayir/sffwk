@@ -42,12 +42,15 @@ namespace Fwk.Net.Ftp
         public event ErrorHandler OnErrorEvent;
         public event ObjectHandler OnCloseEvent;
         public event ObjectHandler OnLoginEvent;
-
+        public event ObjectHandler OnUploadEvent;
         /// <summary>
         /// Evento que se lanza cundo se finaliza BeginDowloadAllDirAsync
         /// </summary>
         public event ObjectHandler EndDowloadAllDirEvent;
         public event FileListResivedHandler OnFileListResivedEvent;
+
+
+     
 
         /// <summary>
         /// 
@@ -627,6 +630,13 @@ namespace Fwk.Net.Ftp
     
 
             SendDebug(string.Concat("File ", fileName, " must successfully uploaded to ", ftpServer, "/", ftpPath));
+            if (OnUploadEvent != null)
+            {
+                UploadData data = new UploadData();
+                data.FtpComponent = this;
+                data.Message = string.Concat("File ", fileName, " must successfully uploaded to ", ftpServer, "/", ftpPath);
+                OnUploadEvent(data, null);
+            }
         }
 
         #endregion
