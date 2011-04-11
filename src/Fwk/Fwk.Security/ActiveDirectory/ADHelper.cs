@@ -107,7 +107,7 @@ namespace Fwk.Security.ActiveDirectory
             DirectoryEntry userDirectoryEntry = null;
             loginResult = LoginResult.LOGIN_OK; 
             SearchResult result = this.User_Get_Result(userName);
-
+            
             //Si esl resultado de busqueda en nodes es nulo el usuario no exisate en el dominio
             if (result == null)
             {
@@ -454,8 +454,33 @@ namespace Fwk.Security.ActiveDirectory
             return rs;
 
         }
-        
-       
+
+        /// <summary>
+        /// Metodo de prueva
+        /// </summary>
+        public void User_ChangeEmail(string userName,string newEmail)
+        {
+         
+            DirectoryEntry userDirectoryEntry = null;
+            try
+            {
+                userDirectoryEntry = this.User_Get(userName);
+                if (userDirectoryEntry != null)
+                {
+                    if (userDirectoryEntry.Properties.Contains("mail"))
+                    {
+                        userDirectoryEntry.Properties["mail"].Value = newEmail;
+                        userDirectoryEntry.CommitChanges();
+                    }
+                }
+
+            
+            }
+            catch (Exception ex)
+            {
+                throw ProcessActiveDirectoryException(ex);
+            }
+        }
 
         #endregion
 

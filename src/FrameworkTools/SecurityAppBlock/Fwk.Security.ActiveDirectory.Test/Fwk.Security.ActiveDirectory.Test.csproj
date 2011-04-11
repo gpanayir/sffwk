@@ -131,6 +131,12 @@
       <DependentUpon>DomainGoups.cs</DependentUpon>
     </Compile>
     <Compile Include="StaticAD.cs" />
+    <Compile Include="UserPropertiesUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserPropertiesUpdate.Designer.cs">
+      <DependentUpon>UserPropertiesUpdate.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DomainGoups.resx">
       <DependentUpon>DomainGoups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserPropertiesUpdate.resx">
+      <DependentUpon>UserPropertiesUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
