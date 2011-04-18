@@ -51,9 +51,9 @@ namespace Fwk.DataBase.CustomControls
 
 
         /// <summary>
-        /// Muestra el mensage
+        /// Muestra el mensaje
         /// </summary>
-        /// <param name="pMessage">Mensage a mostrar</param>
+        /// <param name="pMessage">Mensaje a mostrar</param>
         /// <returns>DialogResult</returns>
         public DialogResult Show()
         {
