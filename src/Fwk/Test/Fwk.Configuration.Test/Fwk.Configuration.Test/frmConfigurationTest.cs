@@ -23,6 +23,7 @@ namespace Fwk.Configuration.Test
             try
             {
                 textBox1.Text = ConfigurationManager.GetProperty("RemoteProvider", "ValidationExceptionMessage", "NullOrEmptyField");
+                
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }
