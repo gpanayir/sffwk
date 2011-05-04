@@ -117,7 +117,7 @@ namespace Fwk.Logging.Test
                 Event ev = new Event();
                 ev.Message.Text = "test login" + i.ToString() + "aaaaaaaaaaaaaaaa";
                 ev.LogType = EventType.Error;
-                Fwk.Logging.StaticLogger.Log(ev);
+                Fwk.Logging.StaticLogger.Log( TargetType.Database ,ev,"","test");
 
             }
 
