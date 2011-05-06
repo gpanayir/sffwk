@@ -282,10 +282,7 @@ namespace Fwk.CodeGenerator
 
             try
             {
-                if (_Metadata.TestConnection())
-
-                    return true;
-                else
+                if (!_Metadata.TestConnection())
                     return false;
             }
             catch (Exception ex)
@@ -309,6 +306,7 @@ namespace Fwk.CodeGenerator
 
             _LoadFromDatabaseWorker.StartWorkEvent -= new StartWorkHandler(_LoadFromDAtaBaseWorker_StartWorkEvent);
             _LoadFromDatabaseWorker.FinishtWorkEvent -= new FinishWorkHandler(_LoadFromDatabaseWorker_FinishtWorkEvent);
+            return true;
         }
 
         void _LoadFromDatabaseWorker_FailtWorkEvent(Exception error)
