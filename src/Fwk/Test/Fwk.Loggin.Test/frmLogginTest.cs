@@ -172,6 +172,7 @@ namespace Fwk.Logging.Test
 
             StaticLogger.Log(TargetType.Xml, new Event(EventType.Warning, "Test", "Hola mundo"), @"c:\" + HelperFunctions.DateFunctions.Get_Year_Mont_Day_String(DateTime.Now, '_') + "pepe.xml", string.Empty);
             StaticLogger.Log(TargetType.Xml, new Event(), @"c:\logs.xml", string.Empty);
+
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
