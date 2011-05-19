@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections.Specialized;
 
 namespace Fwk.Security.ActiveDirectory.Test
 {
@@ -18,12 +19,20 @@ namespace Fwk.Security.ActiveDirectory.Test
 
         void Connect()
         {
-            ADHelper _ADHelper = new ADHelper ("LDAP://CORRSF71NT13.allus.ar/DC=allus,DC=ar","moviedo","Lincelin9");
+            ///172.22.12.110
+            ADHelper _ADHelper = new ADHelper("LDAP://ARCORRSF71DC03.allus.ar/DC=allus,DC=ar", "moviedo", "Lincelin9");
 
             _ADHelper.User_Get_ByName("moviedo");
 
             _ADHelper.User_ChangeEmail("moviedo","marcelo.oviedo@allus.com.ar");
 
+        }
+
+        private void btnSearchInDomain_Click(object sender, EventArgs e)
+        {
+
+            StringCollection str = Fwk.Security.ActiveDirectory.ADHelper.Domain_GetList();
+            Connect();
         }
     }
 }

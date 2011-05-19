@@ -48,7 +48,6 @@ namespace Fwk.Logging.Viewer
             this.ExceptionViewer = new Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent(this.components);
             this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.filter1 = new Fwk.Logging.Viewer.Filter();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventGridListBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -95,7 +94,6 @@ namespace Fwk.Logging.Viewer
             this.grdLogs.Size = new System.Drawing.Size(1044, 318);
             this.grdLogs.TabIndex = 0;
             this.grdLogs.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdLogs_RowEnter);
-            
             // 
             // colImg
             // 
@@ -232,22 +230,12 @@ namespace Fwk.Logging.Viewer
             this.filter1.TabIndex = 6;
             this.filter1.OnFilterChanged += new Fwk.Logging.Viewer.OnFilterChangedHandler(this.filter1_OnFilterChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(694, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "label1";
-            // 
             // FRM_Document
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1065, 665);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.filter1);
             this.Controls.Add(this.grdLogs);
             this.Controls.Add(this.panel1);
@@ -261,7 +249,6 @@ namespace Fwk.Logging.Viewer
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventGridListBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -284,7 +271,6 @@ namespace Fwk.Logging.Viewer
         private System.Windows.Forms.DataGridViewTextBoxColumn sourceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn appIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label1;
 
     }
 }

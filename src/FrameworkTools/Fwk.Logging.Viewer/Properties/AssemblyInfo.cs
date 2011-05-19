@@ -8,7 +8,12 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Fwk.Logging.Viewer")]
-[assembly: AssemblyDescription("")]
+
+[assembly: AssemblyProduct(".: Pelsoft Framework - :.")]
+[assembly: AssemblyDescription("Log fwk events viewer")]
+[assembly: AssemblyCopyright("Copyright © PELSOFT  2008")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -28,3 +33,5 @@ using System.Runtime.InteropServices;
 //
 
 
+[assembly: AssemblyVersion("5.0.0.0")]
+[assembly: AssemblyFileVersion("5.0.0.0")]

@@ -112,7 +112,7 @@ namespace Fwk.Logging.Viewer
 
 
             }
-            catch (Exception f)
+            catch (Exception )
             {
                 msg.AnyMessage = pMessage;
             }
@@ -126,7 +126,7 @@ namespace Fwk.Logging.Viewer
         private void grdLogs_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (grdLogs.CurrentRow == null) return;
-            label1.Text =string.Concat( "CurrentRow = ",grdLogs.CurrentRow.Index ,"e.RowIndex", e.RowIndex);
+            //label1.Text =string.Concat( "CurrentRow = ",grdLogs.CurrentRow.Index ,"e.RowIndex", e.RowIndex);
 
             
             EventGrid x = (EventGrid)grdLogs.Rows[e.RowIndex].DataBoundItem as EventGrid;
@@ -221,12 +221,26 @@ namespace Fwk.Logging.Viewer
 
         public override void Refresh()
         {
-            this.filter1.Refresh();
-            Event ev = new Event();
+            //this.filter1.Refresh();
+        
+            
+
+            DateTime wEndDate = Fwk.HelperFunctions.DateFunctions.NullDateTime;
+            Event wEventFilter =null;
+            this.filter1.GetFilter(out wEventFilter,out wEndDate);
             Events wEvents = null;
             try
             {
-                 wEvents = _Target.SearchByParam(ev);
+                if (wEndDate == Fwk.HelperFunctions.DateFunctions.NullDateTime)
+                {
+                    wEvents = _Target.SearchByParam(wEventFilter);
+
+                }
+                else
+                {
+                    wEvents = _Target.SearchByParam(wEventFilter, wEndDate);
+
+                }
             }
             catch (Exception ex)
             {
@@ -243,7 +257,7 @@ namespace Fwk.Logging.Viewer
         }
 
         /// <summary>
-        /// 
+        /// Mapea Events con EventGridList
         /// </summary>
         /// <param name="pEvents"></param>
         /// <returns></returns>

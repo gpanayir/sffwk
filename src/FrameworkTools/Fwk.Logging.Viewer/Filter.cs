@@ -37,31 +37,43 @@ namespace Fwk.Logging.Viewer
         void SetFilter()
         {
             errorProvider1.Clear();
-            Event wEventFilter = new Event();
             DateTime wEndDate = Fwk.HelperFunctions.DateFunctions.NullDateTime;
+            Event wEventFilter =null;
+            GetFilter(out wEventFilter, out wEndDate);
+            if (OnFilterChanged != null)
+                OnFilterChanged(wEventFilter, wEndDate);
+        }
+
+        /// <summary>
+        /// Get filter
+        /// </summary>
+        /// <returns></returns>
+        public void GetFilter(out Event eventFilter,out DateTime endDate)
+        {
+             eventFilter = new Event();
+
+             endDate = Fwk.HelperFunctions.DateFunctions.NullDateTime;
 
             if (cmbType.SelectedIndex == 0)
-                wEventFilter.LogType = EventType.None;
+                eventFilter.LogType = EventType.None;
             else
-               wEventFilter.LogType = (EventType)Enum.Parse(typeof(EventType), cmbType.Text);
+                eventFilter.LogType = (EventType)Enum.Parse(typeof(EventType), cmbType.Text);
 
             if (chDates.Checked)
             {
                 if ((dtStartDate.Value.CompareTo(dtEndDate.Value)) != 0)
                 {
-                    wEndDate = dtEndDate.Value;
+                    endDate = dtEndDate.Value;
                 }
-                wEventFilter.LogDate = dtStartDate.Value;
+                eventFilter.LogDate = dtStartDate.Value;
             }
             if (!string.IsNullOrEmpty(txtText.Text))
             {
-                wEventFilter.AppId = txtText.Text;
-                wEventFilter.Source = txtText.Text;
-                wEventFilter.Machine = txtText.Text;
-                wEventFilter.User = txtText.Text;
+                eventFilter.AppId = txtText.Text;
+                eventFilter.Source = txtText.Text;
+                eventFilter.Machine = txtText.Text;
+                eventFilter.User = txtText.Text;
             }
-            if (OnFilterChanged != null)
-                OnFilterChanged(wEventFilter, wEndDate);
         }
         public void Refresh()
         {
