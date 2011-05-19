@@ -107,29 +107,26 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ActiveDirectory\ADEnums.cs" />
-    <Compile Include="ActiveDirectory\AD_Entities\ADGroup.cs" />
     <Compile Include="ActiveDirectory\ADHelper.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ActiveDirectory\ADManager.cs" />
     <Compile Include="ActiveDirectory\ADProperties.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\ADGroup.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\ADUser.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\DomainUrl.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\ObjectDomain.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\SqlDomainControllers.designer.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\SqlDomainURL.designer.cs" />
     <Compile Include="ActiveDirectory\DirectoryServicesBase.cs" />
     <Compile Include="ActiveDirectory\DomainController.cs" />
     <Compile Include="ActiveDirectory\FwkActiveDirectory.cs" />
     <Compile Include="ActiveDirectory\IDirectoryService.cs" />
     <Compile Include="ActiveDirectory\LDAPHelper.cs" />
-    <Compile Include="ActiveDirectory\AD_Entities\ObjectDomain.cs" />
-    <Compile Include="ActiveDirectory\AD_Entities\ADUser.cs" />
-    <Compile Include="ActiveDirectory\AD_Entities\SqlDomainControllers.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SqlDomainControllers.dbml</DependentUpon>
-    </Compile>
     <Compile Include="CustomRuleProvider\FwkAuthorizationRule.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProvider.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderData.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderPolicyCreator.cs" />
-    <Compile Include="ActiveDirectory\AD_Entities\DomainUrl.cs" />
     <Compile Include="Entities\FwkIdentity.cs" />
     <Compile Include="Entities\FwkPrincipal.cs" />
     <Compile Include="Entities\SimpleEntities.cs" />
@@ -160,11 +157,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ActiveDirectory\AD_Entities\SqlDomainURL.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SqlDomainURL.dbml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />
@@ -188,12 +180,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ActiveDirectory\doc\AdUserDiagram.cd" />
     <None Include="ActiveDirectory\AD_Entities\SqlDomainControllers.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>SqlDomainControllers.designer.cs</LastGenOutput>
+      <LastGenOutput>SqlDomainControllers1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="ActiveDirectory\AD_Entities\SqlDomainURL.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>SqlDomainURL1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ActiveDirectory\doc\AdUserDiagram.cd" />
     <None Include="app.config" />
     <None Include="Membership\FwkMemberships.cd" />
     <None Include="Membership\RuleProvider.dbml">
@@ -207,11 +204,6 @@
     </None>
     <None Include="Membership\RuleProvider.dbml.layout">
       <DependentUpon>RuleProvider.dbml</DependentUpon>
-    </None>
-    <None Include="ActiveDirectory\AD_Entities\SqlDomainURL.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>SqlDomainURL.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
     <None Include="ActiveDirectory\AD_Entities\SqlDomainControllers.dbml.layout">
       <DependentUpon>SqlDomainControllers.dbml</DependentUpon>
@@ -231,9 +223,6 @@
     <Content Include="ActiveDirectory\doc\LDAP_Query_AllUsers.txt" />
     <Content Include="ActiveDirectory\doc\LDAP_Query_Group.txt" />
     <Content Include="ActiveDirectory\doc\Propiedades.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
