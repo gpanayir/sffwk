@@ -32,7 +32,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <ApplicationIcon>Documents.ico</ApplicationIcon>
-    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -212,7 +212,8 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\Entregas\ProjectReferencesCreator\*.*" &gt;&gt; nul
+    <PostBuildEvent>del "$(ProjectDir)..\..\..\Entregas\ProjectReferencesCreator\*.*" &gt;&gt; nul 
+copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\Entregas\ProjectReferencesCreator\*.*" &gt;&gt; nul
 del "$(ProjectDir)..\..\..\Entregas\ProjectReferencesCreator\*.pdb" &gt;&gt; nul 
 del "$(ProjectDir)..\..\..\Entregas\ProjectReferencesCreator\*vshost*.*" &gt;&gt; nul
 del "$(ProjectDir)..\..\..\Entregas\ProjectReferencesCreator\*.manifest" &gt;&gt; nul 
