@@ -117,7 +117,7 @@ namespace Fwk.Logging.Test
                 Event ev = new Event();
                 ev.Message.Text = "test login" + i.ToString() + "aaaaaaaaaaaaaaaa";
                 ev.LogType = EventType.Error;
-                Fwk.Logging.StaticLogger.Log( TargetType.Database ,ev,"","test");
+                Fwk.Logging.StaticLogger.Log(ev);
 
             }
 
@@ -172,7 +172,6 @@ namespace Fwk.Logging.Test
 
             StaticLogger.Log(TargetType.Xml, new Event(EventType.Warning, "Test", "Hola mundo"), @"c:\" + HelperFunctions.DateFunctions.Get_Year_Mont_Day_String(DateTime.Now, '_') + "pepe.xml", string.Empty);
             StaticLogger.Log(TargetType.Xml, new Event(), @"c:\logs.xml", string.Empty);
-
         }
 
         private void btnInfo_Click(object sender, EventArgs e)

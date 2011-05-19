@@ -45,7 +45,17 @@ namespace Security
             base.Tx.Abort();
 
         }
+        [TestMethod]
+        public void CreateRulesCategory()
+        {
+            CreateRulesCategoryReq req = new CreateRulesCategoryReq();
+            CreateRulesCategoryRes res = base.ClientServiceBase.ExecuteService<CreateRulesCategoryReq, CreateRulesCategoryRes>(req);
 
+            if (res.Error != null)
+            {
+
+            }
+        }
         //[TestMethod]
         public int? CreateRulesCategory_No_Service()
         {
