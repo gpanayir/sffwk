@@ -107,7 +107,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ActiveDirectory\ADEnums.cs" />
-    <Compile Include="ActiveDirectory\ADGroup.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\ADGroup.cs" />
     <Compile Include="ActiveDirectory\ADHelper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -118,9 +118,9 @@
     <Compile Include="ActiveDirectory\FwkActiveDirectory.cs" />
     <Compile Include="ActiveDirectory\IDirectoryService.cs" />
     <Compile Include="ActiveDirectory\LDAPHelper.cs" />
-    <Compile Include="ActiveDirectory\ObjectDomain.cs" />
-    <Compile Include="ActiveDirectory\ADUser.cs" />
-    <Compile Include="ActiveDirectory\SqlDomainControllers.designer.cs">
+    <Compile Include="ActiveDirectory\AD_Entities\ObjectDomain.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\ADUser.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\SqlDomainControllers.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SqlDomainControllers.dbml</DependentUpon>
@@ -129,7 +129,7 @@
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProvider.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderData.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderPolicyCreator.cs" />
-    <Compile Include="ActiveDirectory\DomainUrl.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\DomainUrl.cs" />
     <Compile Include="Entities\FwkIdentity.cs" />
     <Compile Include="Entities\FwkPrincipal.cs" />
     <Compile Include="Entities\SimpleEntities.cs" />
@@ -160,7 +160,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ActiveDirectory\SqlDomainURL.designer.cs">
+    <Compile Include="ActiveDirectory\AD_Entities\SqlDomainURL.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SqlDomainURL.dbml</DependentUpon>
@@ -188,8 +188,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ActiveDirectory\AdUserDiagram.cd" />
-    <None Include="ActiveDirectory\SqlDomainControllers.dbml">
+    <None Include="ActiveDirectory\doc\AdUserDiagram.cd" />
+    <None Include="ActiveDirectory\AD_Entities\SqlDomainControllers.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>SqlDomainControllers.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -208,12 +208,12 @@
     <None Include="Membership\RuleProvider.dbml.layout">
       <DependentUpon>RuleProvider.dbml</DependentUpon>
     </None>
-    <None Include="ActiveDirectory\SqlDomainURL.dbml">
+    <None Include="ActiveDirectory\AD_Entities\SqlDomainURL.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>SqlDomainURL.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="ActiveDirectory\SqlDomainControllers.dbml.layout">
+    <None Include="ActiveDirectory\AD_Entities\SqlDomainControllers.dbml.layout">
       <DependentUpon>SqlDomainControllers.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="Properties\Resource.resx">
@@ -221,16 +221,16 @@
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="ActiveDirectory\SqlDomainURL.dbml.layout">
+    <None Include="ActiveDirectory\AD_Entities\SqlDomainURL.dbml.layout">
       <DependentUpon>SqlDomainURL.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ActiveDirectory\DomainsUrlScript.txt" />
-    <Content Include="ActiveDirectory\LDAP.Connections.xml" />
-    <Content Include="ActiveDirectory\LDAP_Query_AllUsers.txt" />
-    <Content Include="ActiveDirectory\LDAP_Query_Group.txt" />
-    <Content Include="ActiveDirectory\Propiedades.txt" />
+    <Content Include="ActiveDirectory\doc\DomainsUrlScript.txt" />
+    <Content Include="ActiveDirectory\doc\LDAP.Connections.xml" />
+    <Content Include="ActiveDirectory\doc\LDAP_Query_AllUsers.txt" />
+    <Content Include="ActiveDirectory\doc\LDAP_Query_Group.txt" />
+    <Content Include="ActiveDirectory\doc\Propiedades.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
