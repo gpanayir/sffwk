@@ -17,6 +17,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
     public partial class frmCreateProvider : FrmBase
     {
         System.Configuration.Configuration configuration;
+        public ServiceProviderElement CreatedProvider;
         public frmCreateProvider()
         {
             InitializeComponent();
@@ -89,22 +90,22 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private void btnOk_Click(object sender, EventArgs e)
         {
             if (!Validate()) return;
-            ServiceProviderElement provider = new ServiceProviderElement();
+            CreatedProvider = new ServiceProviderElement();
             if (cboType.Text == "xml")
             {
-                provider.SourceInfo = txtSource.Text;
+                CreatedProvider.SourceInfo = txtSource.Text;
             }
             else
             {
-                provider.SourceInfo = txtCnnStringName.Text;
+                CreatedProvider.SourceInfo = txtCnnStringName.Text;
                 AddNewCnnString();
             }
-          
-            provider.Name = txtName.Text;
-            provider.ApplicationId = txtApplicationId.Text;
 
-            provider.ProviderType =(ServiceProviderType)Enum.Parse(typeof(ServiceProviderType), cboType.Text);
-            AddNewProvider(provider);
+            CreatedProvider.Name = txtName.Text;
+            CreatedProvider.ApplicationId = txtApplicationId.Text;
+
+            CreatedProvider.ProviderType = (ServiceProviderType)Enum.Parse(typeof(ServiceProviderType), cboType.Text);
+            AddNewProvider(CreatedProvider);
 
             this.DialogResult = DialogResult.OK; 
         }
@@ -197,6 +198,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             config.ConnectionStrings.Add(wConnectionStringSettings);
             configuration.Save(ConfigurationSaveMode.Minimal, true);
         }
+
         void AddNewProvider(ServiceProviderElement newProvider)
         {
             try

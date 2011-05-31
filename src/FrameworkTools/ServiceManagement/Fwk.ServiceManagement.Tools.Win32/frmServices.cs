@@ -285,12 +285,18 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 {
                     ComboBox cb = (ComboBox)cmbProviders.Control;
                     cb.Items.Clear();
+                    int index = 0;
                     foreach (ServiceProviderElement p in ServiceMetadata.ProviderSection.Providers)
                     {
                         cb.Items.Add(p.Name);
+                        if (frm.CreatedProvider.Name.Equals(p.Name)) cb.SelectedIndex = index;
+                        index++;
+                        
                     }
-                ServiceProviderCollection l=    ServiceMetadata.ProviderSection.Providers;
-                    cmbProviders.SelectedIndex = 0;
+
+                    
+                   
+
                 }
             }
         }
