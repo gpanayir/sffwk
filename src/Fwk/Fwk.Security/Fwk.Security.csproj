@@ -119,7 +119,7 @@
     <Compile Include="ActiveDirectory\AD_Entities\SqlDomainControllers.designer.cs" />
     <Compile Include="ActiveDirectory\AD_Entities\SqlDomainURL.designer.cs" />
     <Compile Include="ActiveDirectory\DirectoryServicesBase.cs" />
-    <Compile Include="ActiveDirectory\DomainController.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\DomainController.cs" />
     <Compile Include="ActiveDirectory\FwkActiveDirectory.cs" />
     <Compile Include="ActiveDirectory\IDirectoryService.cs" />
     <Compile Include="ActiveDirectory\LDAPHelper.cs" />

@@ -138,7 +138,9 @@ ErrorId = 4007
 	
 ErrorId = 4008
 	No se puede crear el usuario en las membership.-
- 
+ErrorId = 4009	
+ User_NoApproved	El usuario {0} no es un usuario aprobado. Pongase en contacto con su administrador de seguridad.	
+
 --------------------------------   Fwk.Security Active directory-----------------------------------
 ErrorId = 4103 : AD_GetingDomainsURL_Error
 Error al intentar obtener la lista de dominios desde la base de datos:

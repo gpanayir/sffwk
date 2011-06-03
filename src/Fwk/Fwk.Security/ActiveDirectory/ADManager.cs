@@ -9,6 +9,7 @@ namespace Fwk.Security.ActiveDirectory
     /// <summary>
     /// 
     /// </summary>
+    [Obsolete("Los metodos de esta clase seran absorvidos por ADHelper en versiones futuras")]
     public class ADManager
     {
 
