@@ -7,6 +7,7 @@ using Fwk.Exceptions;
 using Fwk.Caching;
 using System.Configuration;
 using Fwk.ConfigSection;
+using System.Net;
 
 namespace Fwk.Bases
 {
@@ -17,7 +18,7 @@ namespace Fwk.Bases
     /// </summary>
     public static class WrapperFactory
     {
-       
+
         /// <summary>
         /// Representa los diferentes wrapers de la aplicacion cliente
         /// se crea uno por FwkWrapperProvider
@@ -35,9 +36,9 @@ namespace Fwk.Bases
         public static WrapperProviderSection ProviderSection
         {
             get { return WrapperFactory._ProviderSection; }
-         
+
         }
-       
+
         /// <summary>
         /// Levanta la seccion FwkWrapper.-
         /// Inicialisa el repositorio de wrappers. (no lo llena con los wrappers)
@@ -72,7 +73,7 @@ namespace Fwk.Bases
                 _WraperPepository = new Dictionary<string, IServiceWrapper>();
             }
 
-           
+
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Fwk.Bases
         /// <param name="providerName">Proveedor del wrapper</param>
         /// <param name="pRequest">Objeto request del tipo </param>
         /// <returns></returns>
-        public static TResponse ExecuteService<TRequest, TResponse>(string providerName,TRequest pRequest)
+        public static TResponse ExecuteService<TRequest, TResponse>(string providerName, TRequest pRequest)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
@@ -97,7 +98,7 @@ namespace Fwk.Bases
             {
                 IServiceContract res = null;
                 IRequest req = (IRequest)pRequest;
- 
+
                 req.ContextInformation.CompanyId = _WraperPepository[providerName].CompanyId;
 
                 // Caching del servicio.
@@ -109,14 +110,14 @@ namespace Fwk.Bases
                     //Si estaba en la cache no es necesario llamar al despachador de servicio
                     if (wResponse != null)
                         wExecuteOndispatcher = false;
-               }
+                }
 
 
                 if (wExecuteOndispatcher)
                 {
                     try
                     {
-                        wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>(_WraperPepository[providerName].ServiceMetadataProviderName, pRequest);
+                        wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>( pRequest);
                     }
                     catch (Exception ex)
                     {
@@ -153,7 +154,7 @@ namespace Fwk.Bases
 
 
 
-        
+
         /// <summary>
         /// Inicializa un wrapper deacuerdo el nombre del proveedor
         /// Carga al wrapper el nombre
@@ -166,11 +167,12 @@ namespace Fwk.Bases
                 try
                 {
                     WrapperProviderElement provider = _ProviderSection.GetProvider(providerName);
+                    if (provider.Name.Equals(_ProviderSection.DefaultProviderName)) providerName = String.Empty;
 
                     if (provider == null)
                     {
                         TechnicalException te;
-                        if(String.IsNullOrEmpty(providerName))
+                        if (String.IsNullOrEmpty(providerName))
                             te = new TechnicalException(string.Concat("El proveedor de configuracion del wrapper por defecto del lado del cliente, no existe, verifique en el archivo de configuracion si existe la seccion FwkWrapper y el proveedor por defecto"));
                         else
                             te = new TechnicalException(string.Concat("El proveedor de configuracion del wrapper ", providerName, " del lado del cliente, no existe, verifique en el archivo de configuracion si existe la seccion FwkWrapper y el proveedor mencionado"));
@@ -179,13 +181,13 @@ namespace Fwk.Bases
                         Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(WrapperFactory));
                         throw te;
                     }
-                    
-                    IServiceWrapper w =(IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
+
+                    IServiceWrapper w = (IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
                     w.ProviderName = provider.Name;
                     w.SourceInfo = provider.SourceInfo;
-                    //w.SecurityProviderName = provider.SecurityProviderName;
+                    w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
                     _WraperPepository.Add(providerName, w);
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -199,5 +201,24 @@ namespace Fwk.Bases
             }
         }
 
+
+        /// <summary>
+        /// Get wrapper from IServiceWrapper factory`s dictionary
+        /// </summary>
+        /// <param name="providerName"></param>
+        public static IServiceWrapper GetWrapper(string providerName)
+        {
+            InitWrapper(providerName);
+
+            if (providerName.Equals(_ProviderSection.DefaultProviderName))
+                return _WraperPepository[string.Empty];
+
+            if (_WraperPepository.ContainsKey(providerName))
+            {
+               
+                    return _WraperPepository[providerName];
+            }
+            throw new Fwk.Exceptions.TechnicalException(string.Concat("No se encuentra el wrapper solicitado [", providerName, "]"));
+        }
     }
 }

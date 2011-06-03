@@ -26,7 +26,7 @@ namespace Fwk.Bases
         string SourceInfo { get; set; }
         
         /// <summary>
-        /// identificador del proveedor de metadata en el server.
+        /// identificador del proveedor de metadata en el server.Nombre proveedor de megtadatos de servicios en el dispatcher
         /// </summary>
         string ServiceMetadataProviderName { get; set; }
 
@@ -39,25 +39,23 @@ namespace Fwk.Bases
 		/// <summary>
 		/// Ejecuta un servicio de negocio.
 		/// </summary>
-        /// <param name="pServiceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
         /// <param name="pServiceName">Nombre del servicio.</param>
 		/// <param name="pData">XML con datos de entrada para la  ejecución del servicio.</param>
 		/// <returns>XML con datos de salida del servicio.</returns>
 		/// <date>2007-06-23T00:00:00</date>
 		/// <author>moviedo</author>
-        string ExecuteService(string pServiceMetadataProviderName, string pServiceName, string pData);
+        string ExecuteService( string pServiceName, string pData);
 
        
 
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
         /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        TResponse ExecuteService<TRequest, TResponse>(string pServiceMetadataProviderName, TRequest req)
+        TResponse ExecuteService<TRequest, TResponse>( TRequest req)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new();
 
@@ -84,8 +82,8 @@ namespace Fwk.Bases
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <param name="pServiceName">Nombre del servicio a actualizar.</param>
+        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2010-08-10T00:00:00</date>
         /// <author>moviedo</author>
         void SetServiceConfiguration(String pServiceName, ServiceConfiguration pServiceConfiguration);
