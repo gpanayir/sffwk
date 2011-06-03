@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A1F08B2F-7D75-4BD4-8BD3-B98C582013EC}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -132,10 +132,10 @@
     <None Include="Web References\Singleservice\SingleService.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:1119/WebServiceDispatcher/SingleService.asmx">
+    <WebReferenceUrl Include="http://katy.sytes.net/gastosWS/SingleService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\Singleservice\</RelPath>
-      <UpdateFromURL>http://localhost:1119/WebServiceDispatcher/SingleService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://katy.sytes.net/gastosWS/SingleService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -145,7 +145,8 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\Singleservice\MetadataProvider.datasource">
+    <None Include="app.config" />
+    <None Include="Web References\Singleservice\MetadataProvider1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\Singleservice\Reference.map">

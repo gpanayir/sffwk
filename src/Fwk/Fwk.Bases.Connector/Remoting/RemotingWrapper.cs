@@ -60,10 +60,13 @@ namespace Fwk.Bases.Connector
 
         #region IServiceInterfaceWrapper Members
 
-        /// <summary>
-        /// Metodo no implementado
-        /// </summary>
-        public string ExecuteService(string serviceMetadataProviderName,string pServiceName, string pData)
+         /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="pServiceName"></param>
+         /// <param name="pData"></param>
+         /// <returns></returns>
+        public string ExecuteService(string pServiceName, string pData)
         {
             throw new Exception("The method or operation is not implemented in remoting execution. It's obsolete");
         }
@@ -71,11 +74,10 @@ namespace Fwk.Bases.Connector
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
         /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
-        /// <returns></returns>
-        public TResponse ExecuteService<TRequest, TResponse>(string serviceMetadataProviderName, TRequest req)
+        /// <returns>response</returns>
+        public TResponse ExecuteService<TRequest, TResponse>(TRequest req)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
@@ -83,12 +85,12 @@ namespace Fwk.Bases.Connector
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
             req.InitializeHostContextInformation();
-            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(serviceMetadataProviderName, req);
+            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(_ServiceMetadataProviderName, req);
             response.InitializeHostContextInformation();
 
             return response;
 
-            //return this.ExecuteService<TRequest, TResponse>(serviceMetadataProviderName,req);
+            
         }
 
         ///// <summary>
@@ -186,7 +188,7 @@ namespace Fwk.Bases.Connector
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
 
-            return wFwkRemoteObject.GetServicesList(_ProviderName);
+            return wFwkRemoteObject.GetServicesList(_ServiceMetadataProviderName);
           
         }
 
@@ -200,21 +202,21 @@ namespace Fwk.Bases.Connector
         public ServiceConfiguration GetServiceConfiguration(String pServiceName)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            return wFwkRemoteObject.GetServiceConfiguration(_ProviderName, pServiceName);
+            return wFwkRemoteObject.GetServiceConfiguration(_ServiceMetadataProviderName, pServiceName);
            
         }
 
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
-        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <param name="pServiceName">Nombre del servicio a actualizar.</param>
+        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2008-04-10T00:00:00</date>
         /// <author>moviedo</author>
         public void SetServiceConfiguration(string pServiceName,ServiceConfiguration pServiceConfiguration)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            wFwkRemoteObject.SetServiceConfiguration(_ProviderName, pServiceName, pServiceConfiguration);
+            wFwkRemoteObject.SetServiceConfiguration(_ServiceMetadataProviderName, pServiceName, pServiceConfiguration);
         }
 
         /// <summary>
@@ -226,7 +228,7 @@ namespace Fwk.Bases.Connector
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            wFwkRemoteObject.AddServiceConfiguration(_ProviderName, pServiceConfiguration);
+            wFwkRemoteObject.AddServiceConfiguration(_ServiceMetadataProviderName, pServiceConfiguration);
         }
 
         /// <summary>
@@ -235,10 +237,10 @@ namespace Fwk.Bases.Connector
         /// <param name="pServiceName">Nombre del servicio.</param>
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
-        public void DeleteServiceConfiguration(String  pServiceName)
+        public void DeleteServiceConfiguration(String pServiceName)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            wFwkRemoteObject.DeleteServiceConfiguration(_ProviderName, pServiceName);
+            wFwkRemoteObject.DeleteServiceConfiguration(_ServiceMetadataProviderName, pServiceName);
         }
         
         /// <summary>
@@ -249,7 +251,7 @@ namespace Fwk.Bases.Connector
         public  List<String> GetAllApplicationsId()
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            return wFwkRemoteObject.GetAllApplicationsId(_ProviderName);
+            return wFwkRemoteObject.GetAllApplicationsId(_ServiceMetadataProviderName);
             
         }
         /// <summary>
@@ -260,7 +262,7 @@ namespace Fwk.Bases.Connector
         public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
-            return wFwkRemoteObject.GetProviderInfo(_ProviderName);
+            return wFwkRemoteObject.GetProviderInfo(providerName);
         }
         #endregion [ServiceConfiguration]
 

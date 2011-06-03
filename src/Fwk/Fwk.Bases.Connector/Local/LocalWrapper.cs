@@ -66,13 +66,13 @@ namespace Fwk.Bases.Connector
         /// <param name="pReq">Clase request que implementa IServiceContract. No nececita pasarce el reprecentativo xml de tal
         /// objeto, esto es para evitar serializacion innecesaria</param>
         /// <returns>Response con los resultados del servicio</returns>
-        private IServiceContract ExecuteService(string serviceMetadataProviderName,IServiceContract pReq)
+        private IServiceContract ExecuteService(IServiceContract pReq)
         {
             if (_SimpleFacade == null)
                 _SimpleFacade = CreateSimpleFacade();
 
             pReq.InitializeHostContextInformation();
-            IServiceContract wResponse = _SimpleFacade.ExecuteService(serviceMetadataProviderName, pReq);
+            IServiceContract wResponse = _SimpleFacade.ExecuteService(_ServiceMetadataProviderName, pReq);
             wResponse.InitializeHostContextInformation();
 
             return wResponse;
@@ -81,17 +81,16 @@ namespace Fwk.Bases.Connector
         /// <summary>
         /// Ejecuta un servicio de negocio.
         /// </summary>
-        /// <param name="serviceMetadataProviderName">Nombre proveedor de megtadatos de servicios en el dispatcher</param>
         /// <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>
         /// <date>2007-06-23T00:00:00</date>
         /// <author>moviedo</author>
-        public TResponse ExecuteService<TRequest, TResponse>(string serviceMetadataProviderName, TRequest pReq)
+        public TResponse ExecuteService<TRequest, TResponse>( TRequest pReq)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
 
-            TResponse wResponse = (TResponse)this.ExecuteService(serviceMetadataProviderName,pReq);
+            TResponse wResponse = (TResponse)this.ExecuteService(pReq);
             return wResponse;
         }
 
@@ -117,7 +116,7 @@ namespace Fwk.Bases.Connector
         /// <param name="pData"></param>
         /// <returns></returns>
         [Obsolete("The method or operation is not implemented on local wraper")]
-        public string ExecuteService(string serviceMetadataProviderName, string serviceName, string pData)
+        public string ExecuteService( string serviceName, string pData)
         {
             throw new Exception("The method or operation is not implemented.");
         }
@@ -135,7 +134,7 @@ namespace Fwk.Bases.Connector
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
 
-            String xmlServices = wSimpleFacade.GetServicesList(_ProviderName,true);
+            String xmlServices = wSimpleFacade.GetServicesList(_ServiceMetadataProviderName ,true);
             ServiceConfigurationCollection wServiceConfigurationCollection = (ServiceConfigurationCollection)
                 Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), xmlServices);
 
@@ -152,7 +151,7 @@ namespace Fwk.Bases.Connector
         public ServiceConfiguration GetServiceConfiguration(string serviceName)
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            String xmlServices = wSimpleFacade.GetServiceConfiguration(_ProviderName, serviceName);
+            String xmlServices = wSimpleFacade.GetServiceConfiguration(_ServiceMetadataProviderName, serviceName);
             return ServiceConfiguration.GetServiceConfigurationFromXml(xmlServices);
            
         }
@@ -165,7 +164,7 @@ namespace Fwk.Bases.Connector
         public void SetServiceConfiguration(String serviceName, ServiceConfiguration pServiceConfiguration)
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            wSimpleFacade.SetServiceConfiguration(_ProviderName, serviceName, pServiceConfiguration);
+            wSimpleFacade.SetServiceConfiguration(_ServiceMetadataProviderName, serviceName, pServiceConfiguration);
           
         }
 
@@ -178,7 +177,7 @@ namespace Fwk.Bases.Connector
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            wSimpleFacade.AddServiceConfiguration(_ProviderName, pServiceConfiguration);
+            wSimpleFacade.AddServiceConfiguration(_ServiceMetadataProviderName, pServiceConfiguration);
            
         }
 
@@ -191,7 +190,7 @@ namespace Fwk.Bases.Connector
         public void DeleteServiceConfiguration(string serviceName)
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            wSimpleFacade.DeleteServiceConfiguration(_ProviderName, serviceName);
+            wSimpleFacade.DeleteServiceConfiguration(_ServiceMetadataProviderName, serviceName);
            
         }
         /// <summary>
@@ -202,7 +201,7 @@ namespace Fwk.Bases.Connector
         public  List<String> GetAllApplicationsId()
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            return   wSimpleFacade.GetAllApplicationsId(_ProviderName);
+            return wSimpleFacade.GetAllApplicationsId(_ServiceMetadataProviderName);
        
         }
 
@@ -216,7 +215,7 @@ namespace Fwk.Bases.Connector
         public  Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            return wSimpleFacade.GetProviderInfo(_ProviderName);
+            return wSimpleFacade.GetProviderInfo(providerName);
         }
 
         /// <summary>

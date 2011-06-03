@@ -6,7 +6,7 @@
       <Value Profile="(Default)">http://localhost/WebServiceDispatcher/SingleService.asmx</Value>
     </Setting>
     <Setting Name="Fwk_Bases_Connector_singleservice_SingleService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:1119/WebServiceDispatcher/SingleService.asmx</Value>
+      <Value Profile="(Default)">http://katy.sytes.net/gastosWS/SingleService.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>
