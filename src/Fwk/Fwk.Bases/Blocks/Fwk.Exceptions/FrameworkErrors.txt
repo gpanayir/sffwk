@@ -32,7 +32,9 @@ Servicio de configuracion
 ErrorId = 7200
  Descripcion =  Problemas con Fwk.ServiceManagement  al realizar operaciones con la base de datos \r\n"
 
-
+ErrorId = 7201
+ Descripcion =  No se encuentra configurado el proveedor de metadatos de servicios con el nombre {0} en el despachador de servicios \r\n
+ Descripcion =  No se encuentra configurado un proveedor de metadatos de servicios por defecto en el despachador de servicios \r\n
 -------------------------------- Servicio de configuracion  -----------------------------------
 
 ErrorId = 8004

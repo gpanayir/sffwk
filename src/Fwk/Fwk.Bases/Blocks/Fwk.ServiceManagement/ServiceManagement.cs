@@ -38,12 +38,12 @@ namespace Fwk.ServiceManagement
                 _ProviderSection = ConfigurationManager.GetSection("FwkServiceMetadata") as ServiceProviderSection;
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;//TODO:ver manejo de ex
             }
 
-            
+
             if (_Repository == null)
             {
                 _Repository = new Dictionary<string, ServiceConfigurationCollection>();
@@ -54,14 +54,17 @@ namespace Fwk.ServiceManagement
         /// Obtine un servicio del repositorio
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
-       /// <param name="providerName">Nombre del servicio</param>
+        /// <param name="providerName">Nombre del servicio</param>
         /// <returns></returns>
         public static ServiceConfiguration GetServiceConfiguration(string providerName, string serviceName)
         {
             ServiceConfiguration svc = null;
             ServiceProviderElement provider = GetProvider(providerName);
+
+            CheckProvider(providerName, provider);
+
             ServiceConfigurationCollection svcList = GetAllServices(provider);
-            svc = svcList.GetServiceConfiguration(serviceName,provider.ApplicationId);
+            svc = svcList.GetServiceConfiguration(serviceName, provider.ApplicationId);
 
 
             if (svc == null)
@@ -84,12 +87,12 @@ namespace Fwk.ServiceManagement
         /// <returns></returns>
         public static ServiceConfigurationCollection GetAllServices(ServiceProviderElement provider)
         {
-            ServiceConfigurationCollection svcList= null;
+            ServiceConfigurationCollection svcList = null;
 
             //no esta cargado el provider
             if (!_Repository.ContainsKey(provider.Name))
             {
-                
+
                 if (provider.ProviderType == ServiceProviderType.xml)
                 {
                     svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
@@ -105,7 +108,7 @@ namespace Fwk.ServiceManagement
                 }
                 if (provider.ProviderType == ServiceProviderType.sqldatabase)
                 {
-                    svcList = DatabaseServiceConfigurationManager.GetAllServices(provider.ApplicationId,provider.SourceInfo);
+                    svcList = DatabaseServiceConfigurationManager.GetAllServices(provider.ApplicationId, provider.SourceInfo);
                 }
 
                 _Repository.Add(provider.Name, svcList);
@@ -114,7 +117,7 @@ namespace Fwk.ServiceManagement
                 svcList = _Repository[provider.Name];
 
             return svcList;
-        }    
+        }
 
         /// <summary>
         /// Si algun cambio ocurre en el archivo de metadata de algun proveedor xml
@@ -178,7 +181,8 @@ namespace Fwk.ServiceManagement
             }
 
 
-        }    
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -187,6 +191,9 @@ namespace Fwk.ServiceManagement
         public static ServiceConfigurationCollection GetAllServices(string providerName)
         {
             ServiceProviderElement provider = GetProvider(providerName);
+
+            CheckProvider(providerName, provider);
+
             return GetAllServices(provider);
 
         }
@@ -201,6 +208,9 @@ namespace Fwk.ServiceManagement
         {
 
             ServiceProviderElement provider = GetProvider(providerName);
+
+            CheckProvider(providerName, provider);
+
             ServiceConfigurationCollection svcList = GetAllServices(provider);
             if (!svcList.Exists(serviceName, provider.ApplicationId))
             {
@@ -211,14 +221,14 @@ namespace Fwk.ServiceManagement
                 throw te;
             }
 
-            ServiceConfiguration wServiceConfigurationEnMemoria = svcList.GetServiceConfiguration(serviceName,provider.ApplicationId);
+            ServiceConfiguration wServiceConfigurationEnMemoria = svcList.GetServiceConfiguration(serviceName, provider.ApplicationId);
             svcList.Remove(wServiceConfigurationEnMemoria);
             svcList.Add(pServiceConfiguration);
 
             if (provider.ProviderType == ServiceProviderType.xml)
                 XmlServiceConfigurationManager.SetServiceConfiguration(provider.SourceInfo, svcList);
             else
-                DatabaseServiceConfigurationManager.SetServiceConfiguration(serviceName,pServiceConfiguration, provider.ApplicationId, provider.SourceInfo);
+                DatabaseServiceConfigurationManager.SetServiceConfiguration(serviceName, pServiceConfiguration, provider.ApplicationId, provider.SourceInfo);
         }
 
         /// <summary>
@@ -232,8 +242,10 @@ namespace Fwk.ServiceManagement
         {
             ServiceProviderElement provider = GetProvider(providerName);
 
+            CheckProvider(providerName, provider);
+
             ServiceConfigurationCollection svcList = GetAllServices(provider);
-          
+
             if (svcList.Exists(pServiceConfiguration.Name, pServiceConfiguration.ApplicationId))
             {
                 Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " ya existe.");
@@ -242,7 +254,7 @@ namespace Fwk.ServiceManagement
                 throw te;
             }
 
-            
+
 
             svcList.Add(pServiceConfiguration);
 
@@ -261,6 +273,10 @@ namespace Fwk.ServiceManagement
         {
 
             ServiceProviderElement provider = GetProvider(providerName);
+
+
+            CheckProvider(providerName, provider);
+
             ServiceConfigurationCollection svcList = GetAllServices(provider);
             if (!svcList.Exists(serviceName, provider.ApplicationId))
             {
@@ -270,7 +286,7 @@ namespace Fwk.ServiceManagement
 
                 throw te;
             }
-            ServiceConfiguration wServiceConfigurationEnMemoria = svcList.GetServiceConfiguration(serviceName,provider.ApplicationId);
+            ServiceConfiguration wServiceConfigurationEnMemoria = svcList.GetServiceConfiguration(serviceName, provider.ApplicationId);
             svcList.Remove(wServiceConfigurationEnMemoria);
 
             if (provider.ProviderType == ServiceProviderType.xml)
@@ -288,16 +304,19 @@ namespace Fwk.ServiceManagement
         /// <returns></returns>
         public static List<String> GetAllApplicationsId(string providerName)
         {
-         
+
             ServiceProviderElement provider = GetProvider(providerName);
+
+            CheckProvider(providerName, provider);
 
             ServiceConfigurationCollection svcList = GetAllServices(provider);
 
             IEnumerable<string> llist = from s in svcList
                                         where s.ApplicationId != null
-                                        group  s by s.ApplicationId into g select g.Key ;
+                                        group s by s.ApplicationId into g
+                                        select g.Key;
 
-            return  llist.ToList<string>();
+            return llist.ToList<string>();
 
         }
 
@@ -309,6 +328,8 @@ namespace Fwk.ServiceManagement
         static ServiceProviderElement GetProvider(string providerName)
         {
             ServiceProviderElement provider = _ProviderSection.GetProvider(providerName);
+
+            CheckProvider(providerName,provider);
 
             if (string.IsNullOrEmpty(provider.SourceInfo))
             {
@@ -330,6 +351,51 @@ namespace Fwk.ServiceManagement
             }
 
             return provider;
+        }
+
+
+        /// <summary>
+        /// Completa el error del que va dentro del Request con informacion de :
+        /// Assembly, Class, Namespace, UserName,  InnerException, etc
+        /// </summary>
+        /// <param name="pMessage">Mensaje personalizado</param>
+        /// <param name="pErrorId">Id del Error</param>
+        /// <param name="pException">Alguna Exception que se quiera incluir</param>
+        /// <date>2007-08-07T00:00:00</date>
+        /// <author>moviedo</author> 
+        static TechnicalException GetTechnicalException(String pMessage, String pErrorId, Exception pException)
+        {
+            TechnicalException te = new TechnicalException(pMessage, pException);
+
+            te.ErrorId = pErrorId;
+            te.Assembly = "Fwk.Bases";
+            te.Class = "ServiceMetadata";
+            te.Namespace = "Fwk.ServiceManagement";
+
+            //te.UserName = Environment.UserName;
+            te.Machine = Environment.MachineName;
+
+            if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
+                te.Source = "Despachador de servicios en " + Environment.MachineName;
+            else
+                te.Source = ConfigurationsHelper.HostApplicationName;
+
+            return te;
+        }
+
+        /// <summary>
+        /// Determina si el proveedor solicitado existe o no. para lanzar una exepcion en caso de que no exista.
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <param name="provider"></param>
+        static void CheckProvider(string providerName, ServiceProviderElement provider)
+        {
+            if (provider == null)
+                if (string.IsNullOrEmpty(providerName))
+                    throw GetTechnicalException("No se encuentra configurado un proveedor de metadatos de servicios por defecto en el despachador de servicios \r\n", "7201", null);
+                else
+                    throw GetTechnicalException(string.Format("No se encuentra configurado el proveedor de metadatos de servicios con el nombre {0} en el despachador de servicios \r\n", providerName), "7201", null);
+
         }
     }
 }
