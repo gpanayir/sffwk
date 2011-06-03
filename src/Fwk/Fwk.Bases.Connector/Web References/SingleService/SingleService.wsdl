@@ -170,6 +170,7 @@
               <s:element minOccurs="0" maxOccurs="1" name="ApplicationId" type="s:string" />
               <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
               <s:element minOccurs="0" maxOccurs="1" name="ConfigProviderType" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SecurityProviderName" type="s:string" />
               <s:element minOccurs="0" maxOccurs="1" name="SourceInfo" type="s:string" />
             </s:sequence>
           </s:extension>
@@ -429,10 +430,10 @@
   </wsdl:binding>
   <wsdl:service name="SingleService">
     <wsdl:port name="SingleServiceSoap" binding="tns:SingleServiceSoap">
-      <soap:address location="http://localhost:1119/WebServiceDispatcher/SingleService.asmx" />
+      <soap:address location="http://katy.sytes.net/gastosWS/SingleService.asmx" />
     </wsdl:port>
     <wsdl:port name="SingleServiceSoap12" binding="tns:SingleServiceSoap12">
-      <soap12:address location="http://localhost:1119/WebServiceDispatcher/SingleService.asmx" />
+      <soap12:address location="http://katy.sytes.net/gastosWS/SingleService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
