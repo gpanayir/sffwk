@@ -45,7 +45,7 @@ namespace Fwk.Security.Admin.Controls
                 {
                     MembershipCreateStatus wStatus = MembershipCreateStatus.Success;
                     if (string.IsNullOrEmpty(txtAnsw.Text) && string.IsNullOrEmpty(txtQuest.Text))
-                        FwkMembership.CreateUser(txtUserName.Text, txtPassword.Text, txtEmail.Text);
+                        FwkMembership.CreateUser(txtUserName.Text, txtPassword.Text, txtEmail.Text, frmAdmin.Provider.Name);
                     else
                         FwkMembership.CreateUser(txtUserName.Text, txtPassword.Text, txtEmail.Text, txtQuest.Text, txtAnsw.Text, chkApproved.Checked, out wStatus, frmAdmin.Provider.Name);
 
