@@ -25,18 +25,18 @@ namespace Fwk.Security
         /// <returns></returns>
         internal static DomainUrlInfo Find_DomainUrlInfo(string domainName)
         {
-            if (_DomainUrlList != null)
+            if (_DomainUrlList == null)
             {
-                _DomainUrlList = Fwk.Security.ActiveDirectory.ADHelper.DomainsUrl_GetList("");
+                _DomainUrlList = Fwk.Security.ActiveDirectory.ADHelper.DomainsUrl_GetList(string.Empty);
             }
 
             DomainUrlInfo wDomainUrlInfo = _DomainUrlList.Find(p => p.DomainName.Equals(domainName, StringComparison.InvariantCultureIgnoreCase));
-            if (wDomainUrlInfo != null)
+            if (wDomainUrlInfo == null)
             {
 
                 TechnicalException te = new TechnicalException(string.Format(Resource.AD_NotExistDomainsURL, domainName));
                 te.ErrorId = "4001";
-                te.Source = "FwkMembership blok";
+                te.Source = "FwkMembership block";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 throw te;
             }
