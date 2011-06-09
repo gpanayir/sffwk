@@ -121,20 +121,10 @@ namespace Fwk.Security.ISVC.AuthenticateUser
         private System.Data.DataSet _UserCustomInfo;
         private Fwk.Security.Common.RolList _RolList;
         private User _UserInfo;
-        private AuthenticationModeEnum _AuthenticationMode;
+  
 
 
-		public AuthenticationModeEnum AuthenticationMode
-		{
-			get
-			{
-				return _AuthenticationMode;
-			}
-			set
-			{
-				_AuthenticationMode = value;
-			}
-		}    
+		 
 
         public User UserInfo
         {

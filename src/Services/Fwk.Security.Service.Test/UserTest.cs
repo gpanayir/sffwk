@@ -60,7 +60,10 @@ namespace ServiceTest
             req.BusinessData.UserName = "moviedo";
             try
             {
-               GetUserInfoByParamsRes res = service.Execute(req);
+
+                GetUserInfoByParamsRes res = service.Execute(req);
+
+
             }
             catch (Exception ex)
             {

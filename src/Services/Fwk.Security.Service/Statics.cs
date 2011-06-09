@@ -46,7 +46,7 @@ namespace Fwk.Security
         }
 
         /// <summary>
-        /// Busca un objeto <see cref="ADHelper"/> si no lo encuentra intenta crearlo e insertarlo a ll diccionario.-
+        /// Busca un objeto <see cref="ADHelper"/> si no lo encuentra intenta crearlo e insertarlo al diccionario.-
         /// La creacion del diccionario se hace para no instanciar cientos de veses la clase ADHelper. ya que esta tarea requiere ,mas uso de CPU que el costo de mantener en memoria 
         /// un diccionario con porcos ADHelper. 
         /// En el mundo reali no existiran gran cantidad de clases ADHelper, pero si muchas quisa cientos de ejecuciones del metodos de autenticacio, q son los que 
@@ -65,7 +65,7 @@ namespace Fwk.Security
                 return ad;
             }
 
-            //Si el codigo pasa por aui es por que existe
+            //Si el codigo pasa por aqui es por que existe
             return _ADHelperDictionary[domainName];
             
           
