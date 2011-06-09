@@ -4,6 +4,9 @@ ErrorId = 6000
 
 -------------------------------- Service Manager - Dispatcher  -----------------------------------
 
+ErrorId = 7000 
+Descripcion: No se puede cargar el proveedor de configuracion de Metadata de servicios del framework fwk, verifique si existe la seccion [FwkServiceMetadata] en el archivo de configuracion."
+      te.Class = "Fwk.Configuration.ServiceManagement [static constructor --> ServiceMetadata()]";
 
 ErrorId = 7001
 Descripcion: "El despachador de servicio no se encuentra disponible."
@@ -35,7 +38,13 @@ ErrorId = 7200
 ErrorId = 7201
  Descripcion =  No se encuentra configurado el proveedor de metadatos de servicios con el nombre {0} en el despachador de servicios \r\n
  Descripcion =  No se encuentra configurado un proveedor de metadatos de servicios por defecto en el despachador de servicios \r\n
--------------------------------- Servicio de configuracion  -----------------------------------
+ 
+ 
+-------------------------------- Servicio de configuracion  Fwk.Configuration -----------------------------------
+
+ErrorId = 8000
+Descripcion: No se puede cargar el proveedor de configuracion del framework fwk, verifique si existe la seccion [FwkConfigProvider] en el archivo de configuracion."
+
 
 ErrorId = 8004
 Descripcion "Error al cargar el archivo de configuracion de servicios " "Verifique que todos los servicios cuentan con todos los atributos confugurados"

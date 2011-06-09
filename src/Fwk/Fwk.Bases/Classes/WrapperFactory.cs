@@ -104,12 +104,19 @@ namespace Fwk.Bases
                 // Caching del servicio.
                 if (req.CacheSettings != null && req.CacheSettings.CacheOnClientSide) //--------------------------------------->>> Implement the cache factory
                 {
+                    try
+                    {
+                        res = ServiceCacheMannager.Get(req);
 
-                    res = ServiceCacheMannager.Get(req);
-                    wResponse = (TResponse)res;
-                    //Si estaba en la cache no es necesario llamar al despachador de servicio
-                    if (wResponse != null)
-                        wExecuteOndispatcher = false;
+                        wResponse = (TResponse)res;
+                        //Si estaba en la cache no es necesario llamar al despachador de servicio
+                        if (wResponse != null)
+                            wExecuteOndispatcher = false;
+                    }
+                    catch (System.Security.SecurityException)
+                    {
+                        
+                    }
                 }
 
 

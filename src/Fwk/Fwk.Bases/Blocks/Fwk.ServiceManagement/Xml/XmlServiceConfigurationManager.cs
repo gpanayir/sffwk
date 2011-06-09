@@ -18,66 +18,7 @@ namespace Fwk.ServiceManagement
     /// <author>moviedo</author>
      sealed class XmlServiceConfigurationManager
     {
-        //static ServiceConfigurationCollection _Services;
-
-        //string _XmlConfigFile = String.Empty;
-
-        /// <summary>
-        /// Constructor que no busca en el .config. Carga todos los servicios directamente del archivo pasado por parametros
-        /// </summary>
-        /// <param name="xmlConfigFile">archivo de servicios</param>
-        /// <date>2007-07-13T00:00:00</date>
-        /// <author>moviedo</author>
-        //public XmlServiceConfigurationManager(string xmlConfigFile)
-        //{
-
-        //    _XmlConfigFile = xmlConfigFile;
-
-        //    LoadAllServices(_XmlConfigFile);
-        //}
-
-        /// <summary>
-        /// Constructor por defecto
-        /// </summary>
-        /// <date>2007-07-13T00:00:00</date>
-        /// <author>moviedo</author>
-        //public XmlServiceConfigurationManager()
-        //{
-
-        //}
-
-
-
         #region < IServiceConfiguration Members >
-
-
-        /// <summary>
-        /// Devuelve la configuración de un servicio buscándolo en el repositorio XML.
-        /// </summary>
-        /// <param name="pServiceName">Nombre del servicio</param>
-        /// <returns>configuración del servicio</returns>
-        /// <date>2008-04-07T00:00:00</date>
-        /// <author>moviedo</author>
-        //public static ServiceConfiguration GetServiceConfiguration(string pServiceName)
-        //{
-        //    ServiceConfiguration wResult;
-
-        //    if (!_Services.Contains(pServiceName))
-        //    {
-        //        Exceptions.TechnicalException te = new Exceptions.TechnicalException("El servicio " + pServiceName + " no se encuentra configurado.");
-        //        te.Source = "Despachador de servicios";
-        //        te.ErrorId = "7002";
-        //        te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
-        //        te.Class = typeof(XmlServiceConfigurationManager).Name;
-        //        te.Namespace = typeof(XmlServiceConfigurationManager).Namespace;
-        //        throw te;
-        //    }
-
-        //    wResult = _Services[pServiceName];
-
-        //    return wResult;
-
-        //}
 
         /// <summary>
         /// Busca el archivo BPConfig y lo carga a _Services que es un ServiceConfigurationCollection
@@ -96,7 +37,6 @@ namespace Fwk.ServiceManagement
         /// Busca el archivo  lo carga a _Services que es un ServiceConfigurationCollection
         /// </summary>
         ///<param name="xmlConfigFile"></param>
-        ///<param name="refresh">Indica si se vuelven a cargar los archivos</param>
         /// <returns></returns>
         /// <date>2007-07-13T00:00:00</date>
         /// <author>moviedo</author>
@@ -114,15 +54,15 @@ namespace Fwk.ServiceManagement
             {
 
 
-                string wMessage = string.Concat(
-                "Error al inicializar la metadata de los servicios  \r\n",
-                "Verifique: \r\n ",
-                "Archivo de .config en la seccion FwkServiceMetadata el ", Environment.NewLine,
-                "valor de [sourceinfo],  que la ruta y archivo de metadata sea correcta");
+                string wMessage = "Error al inicializar la metadata de los servicios  \r\n Verifique: \r\nArchivo de .config en la seccion FwkServiceMetadata el \r\nValor de [sourceinfo],  que la ruta y archivo de metadata sea correcta";
 
 
                 TechnicalException te = new TechnicalException(wMessage, ioex);
-                te.Source = "Despachador de servicios";
+                if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
+                    te.Source = string.Concat("Despachador de servicios en ", Environment.MachineName);
+                else
+                    te.Source = ConfigurationsHelper.HostApplicationName;
+
                 te.ErrorId = "7004";
                 te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
                 te.Class = typeof(XmlServiceConfigurationManager).Name;
@@ -141,7 +81,10 @@ namespace Fwk.ServiceManagement
                 "Metadata :", xmlConfigFile, Environment.NewLine);
 
                 Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(strError.ToString(), ex);
-                te.Source = "Despachador de servicios";
+                if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
+                    te.Source = string.Concat("Despachador de servicios en ", Environment.MachineName);
+                else
+                    te.Source = ConfigurationsHelper.HostApplicationName;
                 te.ErrorId = "7004";
                 te.Assembly = typeof(XmlServiceConfigurationManager).AssemblyQualifiedName;
                 te.Class = typeof(XmlServiceConfigurationManager).Name;
@@ -151,15 +94,13 @@ namespace Fwk.ServiceManagement
         }
 
 
-  
+
 
         /// <summary>
-        /// Actualiza la configuración de un servicio de negocio.
+        /// Guarda los cambios en el archivo
         /// </summary>
-        /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
-        /// <param name="pServiceName">Nombre del servicio a actualizar.</param>
-        /// <date>2007-07-13T00:00:00</date>
-        /// <author>moviedo</author>
+        /// <param name="xmlConfigFile">Nombre del archivo que contiene la metadata.</param>
+        /// <param name="services">Repositorio de servicios enmemoria.</param>
         internal static void SetServiceConfiguration(string xmlConfigFile, ServiceConfigurationCollection services)
         {
 
@@ -171,14 +112,11 @@ namespace Fwk.ServiceManagement
         /// Almacena la configuración de un nuevo servicio de negocio.
         /// </summary>
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
-        /// <date>2007-07-13T00:00:00</date>
-        /// <author>moviedo</author>
+        /// <param name="xmlConfigFile">Nombre del archivo que contiene la metadata.</param>
+        /// <param name="services"></param>
         internal static void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration, string xmlConfigFile, ServiceConfigurationCollection services)
         {
-
-            
             SaveServiceConfigFile(xmlConfigFile, services);
-           
         }
 
         /// <summary>

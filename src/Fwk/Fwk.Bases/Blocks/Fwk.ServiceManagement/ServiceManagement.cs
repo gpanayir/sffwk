@@ -29,18 +29,46 @@ namespace Fwk.ServiceManagement
             }
         }
 
+        /// <summary>
+        /// Diccionario de providers de metadatas de servicios. Continen lista de <see cref="ServiceConfigurationCollection"/> 
+        /// </summary>
         static System.Collections.Generic.Dictionary<string, ServiceConfigurationCollection> _Repository;
 
+        /// <summary>
+        /// Constructor estatico . Inicializa la sección FwkServiceMetadata
+        /// </summary>
         static ServiceMetadata()
         {
+            TechnicalException te;
             try
             {
                 _ProviderSection = ConfigurationManager.GetSection("FwkServiceMetadata") as ServiceProviderSection;
 
+                if (_ProviderSection == null)
+                {
+                    te = new TechnicalException("No se puede cargar el proveedor de configuracion de Metadata de servicios del framework fwk, verifique si existe la seccion [FwkServiceMetadata] en el archivo de configuracion.");
+                    te.ErrorId = "7000";
+                    te.Namespace = "Fwk.ServiceManagement";
+                    te.Class = "Fwk.Configuration.ServiceManagement [static constructor --> ServiceMetadata()]";
+                    te.UserName = Environment.UserName;
+                    te.Machine = Environment.MachineName;
+                    te.Source = ConfigurationsHelper.HostApplicationName;
+
+                    throw te;
+                }
             }
-            catch (Exception e)
+            catch (System.Exception ex)
             {
-                throw e;//TODO:ver manejo de ex
+                te = new TechnicalException("No se puede cargar el proveedor de configuracion de Metadata de servicios del framework fwk, verifique si existe la seccion [FwkServiceMetadata] en el archivo de configuracion.",ex);
+                te.ErrorId = "7000";
+                te.Namespace = "Fwk.ServiceManagement";
+                te.Class = "Fwk.Configuration.ServiceManagement [static constructor --> ServiceMetadata()]";
+                te.UserName = Environment.UserName;
+                te.Machine = Environment.MachineName;
+                te.Source = ConfigurationsHelper.HostApplicationName;
+
+                throw te;
+
             }
 
 
@@ -54,7 +82,7 @@ namespace Fwk.ServiceManagement
         /// Obtine un servicio del repositorio
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
-        /// <param name="providerName">Nombre del servicio</param>
+        /// <param name="serviceName">Nombre del servicio</param>
         /// <returns></returns>
         public static ServiceConfiguration GetServiceConfiguration(string providerName, string serviceName)
         {
@@ -69,7 +97,7 @@ namespace Fwk.ServiceManagement
 
             if (svc == null)
             {
-                Exceptions.TechnicalException te = new Exceptions.TechnicalException("El servicio " + serviceName + " no se encuentra configurado.");
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} no se encuentra configurado.\r\nProveedor de Metadata: {1}\r\n ApplicationId: {2}\r\n", provider.Name, provider.ApplicationId));
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
                 throw te;
@@ -142,12 +170,10 @@ namespace Fwk.ServiceManagement
                 ev.Machine = ex.Machine;
                 ev.User = ex.UserName;
                 String str = string.Concat(
-                    "Se intento modificar la metadata de servicios y se arrojo el siguiente error ",
-                    Environment.NewLine,
+                    "Se intento modificar la metadata de servicios y se arrojó el siguiente error \r\n",
                     Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex),
-                    Environment.NewLine,
-                    " la metadata se encuentra en: ",
-                    Environment.NewLine, e.FullPath);
+                    "\r\n la metadata se encuentra en: \r\n",
+                    e.FullPath);
 
                 ev.Message.Text = str;
 
@@ -184,7 +210,7 @@ namespace Fwk.ServiceManagement
         }
 
         /// <summary>
-        /// 
+        /// Obtiene una lista de metadata de servicios 
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <returns></returns>
@@ -199,7 +225,7 @@ namespace Fwk.ServiceManagement
         }
 
         /// <summary>
-        /// 
+        /// Actualiza la metadata de un servicio <see cref="ServiceConfiguration"/>
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <param name="serviceName">Nombre del servicio</param>
@@ -214,7 +240,7 @@ namespace Fwk.ServiceManagement
             ServiceConfigurationCollection svcList = GetAllServices(provider);
             if (!svcList.Exists(serviceName, provider.ApplicationId))
             {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + serviceName + " no se encuentra configurado.");
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} no se encuentra configurado.\r\nProveedor de Metadata: {1}\r\n ApplicationId: {2}\r\n", provider.Name, provider.ApplicationId));
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
 
@@ -248,7 +274,7 @@ namespace Fwk.ServiceManagement
 
             if (svcList.Exists(pServiceConfiguration.Name, pServiceConfiguration.ApplicationId))
             {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " ya existe.");
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} ya existe.\r\nProveedor de Metadata: {1}\r\n ApplicationId: {2}\r\n", provider.Name, provider.ApplicationId));
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
                 throw te;
@@ -280,7 +306,7 @@ namespace Fwk.ServiceManagement
             ServiceConfigurationCollection svcList = GetAllServices(provider);
             if (!svcList.Exists(serviceName, provider.ApplicationId))
             {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("El servicio " + serviceName + " no se encuentra configurado.");
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} no se encuentra configurado.\r\nProveedor de Metadata: {1}\r\n ApplicationId: {2}\r\n", provider.Name, provider.ApplicationId));
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
 
@@ -376,7 +402,7 @@ namespace Fwk.ServiceManagement
             te.Machine = Environment.MachineName;
 
             if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
-                te.Source = "Despachador de servicios en " + Environment.MachineName;
+                te.Source = string.Concat("Despachador de servicios en " , Environment.MachineName);
             else
                 te.Source = ConfigurationsHelper.HostApplicationName;
 

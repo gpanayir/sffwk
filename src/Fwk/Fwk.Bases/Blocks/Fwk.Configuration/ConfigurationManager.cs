@@ -4,6 +4,7 @@ using Fwk.Configuration.Common;
 using Fwk.Bases.Properties;
 using Fwk.ConfigSection;
 using Fwk.Exceptions;
+using Fwk.Bases;
 
 namespace Fwk.Configuration
 {
@@ -43,9 +44,50 @@ namespace Fwk.Configuration
             
         }
 
+        /// <summary>
+        /// Constructor estatico del bloque de configuracion del framework
+        /// </summary>
         static ConfigurationManager()
         {
-            _ConfigProvider = System.Configuration.ConfigurationManager.GetSection("FwkConfigProvider") as ConfigProviderSection;
+            TechnicalException te;
+            try
+            {
+                _ConfigProvider = System.Configuration.ConfigurationManager.GetSection("FwkConfigProvider") as ConfigProviderSection;
+                if (_ConfigProvider == null)
+                {
+                    te = new TechnicalException("No se puede cargar el proveedor de configuracion del framework fwk, verifique si existe la seccion [FwkConfigProvider] en el archivo de configuracion.");
+                    te.ErrorId = "8000";
+                    te.Namespace = "Fwk.Configuration";
+                    te.Class = "Fwk.Configuration.ConfigurationManager [static constructor --> ConfigurationManager()]";
+                    te.UserName = Environment.UserName;
+                    te.Machine = Environment.MachineName;
+              
+                    if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
+                        te.Source = "Sistema de Configuration del framework en ";
+                    else
+                        te.Source = ConfigurationsHelper.HostApplicationName;
+
+                    throw te;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                te = new TechnicalException("No se puede cargar el proveedor de configuracion del framework fwk, verifique si existe la seccion [FwkConfigProvider] en el archivo de configuracion. \r\n", ex);
+                te.ErrorId = "8000";
+                te.Namespace = "Fwk.Configuration";
+                te.Class = "Fwk.Configuration.ConfigurationManager [static constructor --> ConfigurationManager()]";
+                te.UserName = Environment.UserName;
+                te.Machine = Environment.MachineName;
+
+                if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
+                    te.Source = "Sistema de Configuration del framework en ";
+                else
+                    te.Source = ConfigurationsHelper.HostApplicationName;
+
+                throw te;
+
+            }
+
             _DefaultProvider = _ConfigProvider.DefaultProvider;
 
         }
@@ -99,18 +141,6 @@ namespace Fwk.Configuration
             return null;
         }
       
-
-        /// <summary>
-        /// Obtiene un ConfigurationFile <see cref="ConfigurationFile" atravez de su nombre/>
-        /// </summary>
-        /// <param name="pFileName">Nombre del archivo xml con la configuracion</param>
-        /// <returns><see cref="ConfigurationFile"/></returns>
-        /// <Author>Marcelo Oviedo</Author>
-        //public static ConfigurationFile GetConfigurationFile(string pFileName)
-        //{
-        // return   GetConfigurationFromProvider(_DefaultProvider.Name);
-
-        //}
 
         /// <summary>
         /// 
