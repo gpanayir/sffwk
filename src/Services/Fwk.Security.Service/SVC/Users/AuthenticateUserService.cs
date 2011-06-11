@@ -40,7 +40,7 @@ namespace Fwk.Security.SVC
                     break;
 
                 case AuthenticationModeEnum.Mixed:
-                    //utiliza autenticación mixta. Valida contra el usuario de bigbang
+                    //utiliza autenticación mixta. Valida contra el usuario de memberships
                     ///wRes.BusinessData.UserInfo = wUserBC.AuthenticateUser(pServiceRequest.BusinessData.UserName, pServiceRequest.BusinessData.Password, pServiceRequest.BusinessData.SiteName);
 
                     //utiliza autenticación mixta. Valida contra el usuario de bigbang
@@ -74,16 +74,18 @@ namespace Fwk.Security.SVC
                             wUserBC.GetUserByParams(pServiceRequest.BusinessData.UserName, out wUser, out wRolList);
                         }
                     }
-                    // Cuando es autenticación de windows, nunca debe pedir que cambie el password de bigbang
+                    // Cuando es autenticación de windows, nunca debe pedir que cambie el password de las memberships
                     wRes.BusinessData.UserInfo.MustChangePassword = false;
                     break;
 
                 default:
                     throw new NotImplementedException("Modo de autenticación no implementado");
             }
-            wRes.BusinessData.UserInfo.AuthenticationMode = pServiceRequest.BusinessData.AuthenticationMode;
-            wRes.BusinessData.RolList = wRolList;
             wRes.BusinessData.UserInfo = wUser;
+            wRes.BusinessData.UserInfo.Roles = wRolList.GetArrayNames();
+             wRes.BusinessData.UserInfo.AuthenticationMode = pServiceRequest.BusinessData.AuthenticationMode;
+//            wRes.BusinessData.RolList = wRolList;
+          
             return wRes;
         }
     }
