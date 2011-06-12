@@ -98,8 +98,8 @@ namespace Fwk.Bases
             {
                 IServiceContract res = null;
                 IRequest req = (IRequest)pRequest;
-
-                req.ContextInformation.CompanyId = _WraperPepository[providerName].CompanyId;
+                 if(string.IsNullOrEmpty(req.ContextInformation.CompanyId))
+                    req.ContextInformation.CompanyId = _WraperPepository[providerName].CompanyId;
 
                 // Caching del servicio.
                 if (req.CacheSettings != null && req.CacheSettings.CacheOnClientSide) //--------------------------------------->>> Implement the cache factory
