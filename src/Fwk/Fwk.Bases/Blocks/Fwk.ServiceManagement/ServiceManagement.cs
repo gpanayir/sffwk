@@ -97,7 +97,8 @@ namespace Fwk.ServiceManagement
 
             if (svc == null)
             {
-                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} no se encuentra configurado.\r\nProveedor de Metadata: {1}\r\n ApplicationId: {2}\r\n", provider.Name, provider.ApplicationId));
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException(
+                    string.Format("El servicio {0} no se encuentra configurado.\r\nProveedor de Metadata: {1}\r\nApplicationId: {2}\r\n", serviceName,provider.Name, provider.ApplicationId));
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
                 throw te;
@@ -240,7 +241,7 @@ namespace Fwk.ServiceManagement
             ServiceConfigurationCollection svcList = GetAllServices(provider);
             if (!svcList.Exists(serviceName, provider.ApplicationId))
             {
-                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} no se encuentra configurado.\r\nProveedor de Metadata: {1}\r\n ApplicationId: {2}\r\n", provider.Name, provider.ApplicationId));
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} no se encuentra configurado.\r\nProveedor de Metadata: {1}\r\nApplicationId: {2}\r\n",serviceName, provider.Name, provider.ApplicationId));
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
 
@@ -274,7 +275,7 @@ namespace Fwk.ServiceManagement
 
             if (svcList.Exists(pServiceConfiguration.Name, pServiceConfiguration.ApplicationId))
             {
-                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} ya existe.\r\nProveedor de Metadata: {1}\r\n ApplicationId: {2}\r\n", provider.Name, provider.ApplicationId));
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} ya existe.\r\nProveedor de Metadata: {1}\r\nApplicationId: {2}\r\n", pServiceConfiguration.Name, provider.Name, provider.ApplicationId));
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
                 throw te;
@@ -306,7 +307,7 @@ namespace Fwk.ServiceManagement
             ServiceConfigurationCollection svcList = GetAllServices(provider);
             if (!svcList.Exists(serviceName, provider.ApplicationId))
             {
-                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} no se encuentra configurado.\r\nProveedor de Metadata: {1}\r\n ApplicationId: {2}\r\n", provider.Name, provider.ApplicationId));
+                Exceptions.TechnicalException te = new Exceptions.TechnicalException(string.Format("El servicio {0} no se encuentra configurado.\r\nProveedor de Metadata: {1}\r\nApplicationId: {2}\r\n", serviceName, provider.Name, provider.ApplicationId));
                 te.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<ServiceMetadata>(te);
 
