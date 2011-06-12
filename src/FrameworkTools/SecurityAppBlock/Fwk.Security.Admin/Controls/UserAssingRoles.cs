@@ -56,6 +56,7 @@ namespace Fwk.Security.Admin.Controls
                 FwkMembership.CreateRolesToUser(wRolList, usersGrid1.CurrentUser.UserName,frmAdmin.Provider.Name);
 
                 bindingSourceUserRole.DataSource = FwkMembership.GetRolesForUser(usersGrid1.CurrentUser.UserName, frmAdmin.Provider.Name);
+
                 NewSecurityInfoCreatedHandler();
             }
         }
@@ -67,7 +68,8 @@ namespace Fwk.Security.Admin.Controls
             using (new WaitCursorHelper(this))
             {
                 rolListBindingSource.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
-               
+                lstBoxRoles.Refresh();
+                usersGrid1.Initialize();
             }
         }
 

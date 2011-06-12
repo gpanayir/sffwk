@@ -137,7 +137,7 @@ namespace Fwk.Security
                 providerName = GetSqlMembershipProvider(providerName).Name;
             try
             {
-                if (!Roles.RoleExists(roleName))
+                if (!Roles.Providers[providerName].RoleExists(roleName))
                 {
                     Roles.Providers[providerName].CreateRole(roleName);
                     UpdateRole(roleName, description, providerName);

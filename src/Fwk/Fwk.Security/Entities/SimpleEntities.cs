@@ -348,6 +348,10 @@ namespace Fwk.Security.Common
     [XmlRoot("RolList"), SerializableAttribute]
     public class RolList : List<Rol>
     {
+        /// <summary>
+        /// retorna los roles separados por coma
+        /// </summary>
+        /// <returns></returns>
         public String[] GetArrayNames()
         {
     
