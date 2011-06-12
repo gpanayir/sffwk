@@ -26,7 +26,7 @@ namespace Fwk.Security.SVC
                 case AuthenticationModeEnum.LDAP:
                     //Se debe validar el usuario en LDAP contra el dominio seleccionado
                     //wRes.BusinessData.UserInfo = wUserBC.AuthenticateUser(pServiceRequest.BusinessData.UserName, pServiceRequest.BusinessData.Password, pServiceRequest.BusinessData.Domain, pServiceRequest.BusinessData.SiteName);
-                 
+
                     if (wUserBC.AuthenticateUser_AD(pServiceRequest.BusinessData.UserName,
                                               pServiceRequest.BusinessData.Password,
                                               pServiceRequest.BusinessData.Domain)
@@ -81,11 +81,13 @@ namespace Fwk.Security.SVC
                 default:
                     throw new NotImplementedException("Modo de autenticación no implementado");
             }
+            if (wUser.MustChangePassword == null)
+            { wUser.MustChangePassword = false; }
             wRes.BusinessData.UserInfo = wUser;
             wRes.BusinessData.UserInfo.Roles = wRolList.GetArrayNames();
-             wRes.BusinessData.UserInfo.AuthenticationMode = pServiceRequest.BusinessData.AuthenticationMode;
-//            wRes.BusinessData.RolList = wRolList;
-          
+            wRes.BusinessData.UserInfo.AuthenticationMode = pServiceRequest.BusinessData.AuthenticationMode;
+            //            wRes.BusinessData.RolList = wRolList;
+
             return wRes;
         }
     }
