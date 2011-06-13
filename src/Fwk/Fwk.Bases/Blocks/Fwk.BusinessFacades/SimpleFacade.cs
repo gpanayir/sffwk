@@ -54,10 +54,8 @@ namespace Fwk.BusinessFacades
             IServiceContract wResult = null;
             if (string.IsNullOrEmpty(pRequest.ServiceName))
             {
-                System.Text.StringBuilder wMessage = new StringBuilder();
-                wMessage.Append("El despachador de servicio no pudo continuar debido  \r\n");
-                wMessage.Append("a que el nombre del servicio no fue establecido");
-                TechnicalException te = new TechnicalException(wMessage.ToString());
+
+                TechnicalException te = new TechnicalException("El despachador de servicio no pudo continuar debido\r\n a que el nombre del servicio no fue establecido");
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
                 
                 te.ErrorId = "7005";
@@ -125,9 +123,27 @@ namespace Fwk.BusinessFacades
             try
             {
                 ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,serviceName);
-
-                IServiceContract wRequest = (IServiceContract)ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
                 
+                IServiceContract wRequest = (IServiceContract)ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
+                if (wRequest == null)
+                {
+                    TechnicalException te = new TechnicalException(string.Concat("El despachador de servicio no pudo continuar debido\r\na que no construir el requets del servicio: ",
+                        serviceName, "\r\nVerifique que se encuentre los componentes necesarios para su ejecucion esten en el servidor de aplicación. " ));
+
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
+                    te.Assembly = this.GetType().Assembly.FullName;
+                    te.Source = this.GetType().Assembly.FullName;
+                    te.Class = "SimpleFacade";
+                    te.Namespace = "Fwk.BusinessFacades";
+                    te.Machine = Environment.MachineName;
+                    if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
+                        te.Source = "Despachador de servicios en " + Environment.MachineName;
+                    else
+                        te.Source = ConfigurationsHelper.HostApplicationName;
+
+                    te.ErrorId = "7003";
+                    throw te;
+                }
                 wRequest.SetXml(pXmlRequest);
 
                 wResult = ExecuteService(providerName,wRequest).GetXml();
@@ -222,7 +238,7 @@ namespace Fwk.BusinessFacades
             }
             catch (System.NullReferenceException)
             {
-                wServiceInfo = "El servicio " + serviceName + " no se encuentra configurado";
+                wServiceInfo = string.Concat("El servicio ", serviceName , " no se encuentra configurado");
             }
             catch (Exception e)
             {

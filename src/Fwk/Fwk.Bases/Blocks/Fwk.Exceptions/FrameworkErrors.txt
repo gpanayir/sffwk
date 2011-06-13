@@ -15,7 +15,10 @@ ErrorId = 7002
 Descripcion: "El servicio " + [serviceName] + " no se encuentra configurado."
 			 "El servicio " + [serviceName] + " no se eliminó por no encontrarse configurado.
 			 "El servicio " + [serviceName] + " no se puede ejecutar debido a que esta faltando el assembly [AssemblyName] en el despachador de servicio"
-
+ErrorId = 7003
+ Descripcion: TechnicalException te = new TechnicalException(string.Concat("El despachador de servicio no pudo continuar debido\r\na que no construir el servicio: ",
+  serviceName, "\r\nVerifique que se encuentre los componentes necesarios para su ejecucion esten en el servidor de aplicación. "));
+  
 ErrorId = 7004
 Descripcion: Error al inicializar la metadata de los servicios  \r\n
 

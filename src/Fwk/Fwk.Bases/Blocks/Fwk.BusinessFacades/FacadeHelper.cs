@@ -374,7 +374,7 @@ namespace Fwk.BusinessFacades.Utils
         /// <param name="pException">Alguna Exception que se quiera incluir</param>
         /// <date>2007-08-07T00:00:00</date>
         /// <author>moviedo</author> 
-         static TechnicalException GetTechnicalException(String pMessage, String pErrorId, Exception pException)
+        internal static TechnicalException GetTechnicalException(String pMessage, String pErrorId, Exception pException)
         {
             TechnicalException te = new TechnicalException(pMessage, pException);
 
