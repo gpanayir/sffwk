@@ -227,7 +227,7 @@ namespace Fwk.Security
     /// <summary>
     /// Categorias de reglass
     /// </summary>
-    [Serializable]
+    [XmlInclude(typeof(FwkCategory)), Serializable]
     public class FwkCategory:Entity
     {
         int? _ParentCategoryId =0;
@@ -301,7 +301,7 @@ namespace Fwk.Security
     /// Esta clace es una auxiliar de FwkAuthorizationRule con la exepcion de que no  hereda de NamedConfigurationElement
     /// lo que la hace serializable .-
     /// </summary>
-    [Serializable]
+    [XmlInclude(typeof(FwkAuthorizationRuleAux)), Serializable]
     public class FwkAuthorizationRuleAux : Entity, IAuthorizationRule
     {
         #region Properties
@@ -420,7 +420,8 @@ namespace Fwk.Security
     /// Esta clace es una auxiliar de FwkAuthorizationRuleList con la exepcion de que no  hereda de NamedConfigurationElement
     /// lo que la hace serializable .-
     /// </summary>
-    [Serializable]
+
+    [XmlRoot("FwkAuthorizationRuleAuxList"), SerializableAttribute]
     public class FwkAuthorizationRuleAuxList:Entities<FwkAuthorizationRuleAux>
     {
         public void Populate(FwkAuthorizationRuleList pFwkAuthorizationRuleList)
