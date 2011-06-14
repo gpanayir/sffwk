@@ -53,8 +53,19 @@ namespace Fwk.Security.Admin.Controls
                     wRolList.Add((Rol)obj);
                 }
 
-                FwkMembership.CreateRolesToUser(wRolList, usersGrid1.CurrentUser.UserName,frmAdmin.Provider.Name);
+                try
+                {
+                    FwkMembership.CreateRolesToUser(wRolList, usersGrid1.CurrentUser.UserName, frmAdmin.Provider.Name);
+                }
+                catch (Exception ex)
+                {
+                    if (((Fwk.Exceptions.TechnicalException)ex).InnerException != null)
+                        MessageBox.Show(((Fwk.Exceptions.TechnicalException)ex).InnerException.Message);
 
+                    else
+                        MessageBox.Show(ex.Message);
+                }
+                
                 bindingSourceUserRole.DataSource = FwkMembership.GetRolesForUser(usersGrid1.CurrentUser.UserName, frmAdmin.Provider.Name);
 
                 NewSecurityInfoCreatedHandler();
