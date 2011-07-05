@@ -405,7 +405,10 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pLdapUser"></param>
         public ADUser(LdapEntry pLdapUser)
         {
             String domainAddress;

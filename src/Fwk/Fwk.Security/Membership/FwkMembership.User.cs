@@ -254,7 +254,7 @@ namespace Fwk.Security
         }
 
         /// <summary>
-        /// Bloquea un Usuario
+        /// Desaprueva un usuario
         /// </summary>
         /// <param name="userName">Nombre del usuario que se desea bloquear</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
@@ -263,7 +263,7 @@ namespace Fwk.Security
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
             MembershipUser wUser = GetMembershipUser(userName, providerName);
 
-            // block the user
+            // Updates a users approval status to the specified value
             if (wUser != null)
             {
                 wUser.IsApproved = false;
@@ -280,7 +280,7 @@ namespace Fwk.Security
         }
 
         /// <summary>
-        /// Desbloquea un usuario
+        ///  Aprueva un usuario
         /// </summary>
         /// <param name="userName">Nombre del usuario a desbloquear</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
@@ -289,7 +289,7 @@ namespace Fwk.Security
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
             MembershipUser wUser = GetMembershipUser(userName, providerName);
 
-            // block the user
+            // Updates a users approval status to the specified value
             if (wUser != null)
             {
                 wUser.IsApproved = true;
@@ -309,6 +309,11 @@ namespace Fwk.Security
         /// Toma como entrada un nombre de usuario y actualiza el campo en el origen de datos que asigna a la propiedad 
         /// IsLockedOut el valor false. 
         /// El método UnlockUser devuelve true si el registro para el usuario suscripto se actualiza correctamente; de lo contrario, false.
+        /// 
+        /// The asp.net membership has the mechanism that it locks out a user's account if she tries to authenticate herself with false password five times, 
+        /// by default, or within 10 minute window. It is all for possible hacks. And I had no mechanism to unlock the user account.
+        /// Because locked user can not login, I needed some way to unlock the user. 
+        /// Firstly, I was frustrated since I saw the MembershipUser class's IsLockedOut read only property.
         /// </summary>
         /// <param name="userName">Nombre del usuario a desbloquear</param>
         /// <param name="providerName">Nombre del proveedor de membership</param>
@@ -321,6 +326,7 @@ namespace Fwk.Security
             // block the user
             if (wUser != null)
             {
+                
                 return wUser.UnlockUser();
             }
             else

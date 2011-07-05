@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 using System.Security.AccessControl;
+using System.Text;
 
 namespace Fwk.HelperFunctions
 {
@@ -16,6 +17,27 @@ namespace Fwk.HelperFunctions
     {
 
         #region Dialog
+
+        /// <summary>
+        /// Obtiene el texto de un TextReader
+        /// </summary>
+        /// <param name="reader">TextReader</param>
+        /// <returns></returns>
+        public static string GetTextFromReader(TextReader reader)
+        {
+            StringBuilder list = new StringBuilder();
+
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                list.Append(line);
+                
+            }
+            reader.Close();
+            return list.ToString();
+        }
+
+        
 
         /// <summary>
         /// Muestra dialog box para abrir un archivo .-

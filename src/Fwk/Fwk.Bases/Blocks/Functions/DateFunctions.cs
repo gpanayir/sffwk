@@ -244,7 +244,30 @@ namespace Fwk.HelperFunctions
             return date.ToString("yyyy-MM-dd hh:mm:ss").Replace('-', separator).Replace(':', separator);
            
         }
+        /// <summary>
+        /// Convierte DateTime a UnixTimeStamp (Total acumulado en segundo desde 1-ENE-1970 hasta la fecha pasada por parametros)
+        /// The unix time stamp is a way to track time as a running total of seconds. 
+        /// This count starts at the Unix Epoch on January 1st, 1970. Therefore, the unix time stamp is merely the number of seconds between a particular date and the Unix Epoch. This is very useful to computer systems for tracking and sorting dated information in dynamic and distributed applications both online and client side.
+        /// </summary>
+        /// <param name="date">Fehca</param>
+        /// <returns>Total acumulado en segundo desde o intervalo de tiempo en segundos  </returns>
+        public static Int64 DateTimeToUnixTimeStamp(DateTime date)
+        {
+            TimeSpan wTimeSpan = date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, 0));
+            return Convert.ToInt64(wTimeSpan.TotalSeconds);
+        }
 
+
+        /// <summary>
+        /// Convierte UnixTimeStamp a DateTime Retorna la fecha correspondiente de un 
+        /// acumulado en segundos desde desde 1-ENE-1970 a su fecha correspondiente
+        /// </summary>
+        /// <param name="unixtimestamp">Total acumulado en segundo desde 1-ENE-1970 (intervalo en segundos)</param>
+        /// <returns>Fecha</returns>
+        public static DateTime UnixTimeStampToDateTime(Int64 unixTimeStamp)
+        {
+            return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(unixTimeStamp);
+        }
 
         
 	}
