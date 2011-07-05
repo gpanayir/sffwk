@@ -134,7 +134,10 @@ namespace Fwk.Security.Admin.Controls
             txtComments.Text = usersGrid1.CurrentUser.Comment;
             btnRemove.Enabled = true;
             btnUpdate.Enabled = true;
-
+            if (usersGrid1.CurrentUser.IsApproved)
+                btnApprove.Text = "DisApprove";
+            else
+                btnApprove.Text = "Approve";
 
 
             using (new WaitCursorHelper(this))
@@ -153,6 +156,25 @@ namespace Fwk.Security.Admin.Controls
                     MessageViewInfo.Show("User password was successfully updated");
                 }
             }
+        }
+
+        private void btnApprove_Click(object sender, EventArgs e)
+        {
+            if (usersGrid1.CurrentUser == null) return;
+            if (usersGrid1.CurrentUser.IsApproved)
+            {
+                FwkMembership.UnApproveUser(usersGrid1.CurrentUser.UserName, frmAdmin.Provider.Name);
+                MessageViewInfo.Show(string.Concat("User password was successfully ", "disapproved"));
+            }
+            else
+            {
+                FwkMembership.ApproveUser(usersGrid1.CurrentUser.UserName, frmAdmin.Provider.Name);
+                MessageViewInfo.Show(string.Concat("User password was successfully ", "approved"));
+            }
+
+            usersGrid1.Initialize();
+
+           
         }
 
     

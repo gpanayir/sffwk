@@ -50,6 +50,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtComments = new DevExpress.XtraEditors.TextEdit();
             this.btnchangePwd = new System.Windows.Forms.Button();
+            this.btnApprove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -297,10 +298,25 @@
             this.btnchangePwd.UseVisualStyleBackColor = false;
             this.btnchangePwd.Click += new System.EventHandler(this.btnchangePwd_Click);
             // 
+            // btnAprove
+            // 
+            this.btnApprove.BackColor = System.Drawing.Color.White;
+            this.btnApprove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnApprove.Image = global::Fwk.Security.Admin.Properties.Resources.lock_16;
+            this.btnApprove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnApprove.Location = new System.Drawing.Point(437, 3);
+            this.btnApprove.Name = "btnAprove";
+            this.btnApprove.Size = new System.Drawing.Size(100, 26);
+            this.btnApprove.TabIndex = 32;
+            this.btnApprove.Text = "Aprovar";
+            this.btnApprove.UseVisualStyleBackColor = false;
+            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
+            // 
             // UserAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.btnchangePwd);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtComments);
@@ -351,5 +367,6 @@
         private System.Windows.Forms.Label label5;
         private DevExpress.XtraEditors.TextEdit txtComments;
         private System.Windows.Forms.Button btnchangePwd;
+        private System.Windows.Forms.Button btnApprove;
     }
 }

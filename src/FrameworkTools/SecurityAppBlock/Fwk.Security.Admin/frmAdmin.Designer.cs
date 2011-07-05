@@ -119,11 +119,11 @@ namespace Fwk.Security.Admin
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinExplorerBarViewInfoRegistrator("Money Twins");
             this.navBarControl1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarControl1_LinkClicked);
-
             // 
             // navBarGroup_Users
             // 
             this.navBarGroup_Users.Caption = "Users";
+            this.navBarGroup_Users.Expanded = true;
             this.navBarGroup_Users.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup_Users.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_UserCreate),
@@ -159,6 +159,7 @@ namespace Fwk.Security.Admin
             // navBarGroup_Groups
             // 
             this.navBarGroup_Groups.Caption = "Roles";
+            this.navBarGroup_Groups.Expanded = true;
             this.navBarGroup_Groups.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.SmallIconsText;
             this.navBarGroup_Groups.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_RoleCreate)});
