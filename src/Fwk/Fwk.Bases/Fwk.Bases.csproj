@@ -147,11 +147,6 @@
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\Utils.cs" />
     <Compile Include="Blocks\Fwk.Configuration\LocalConfigurationManager.cs" />
     <Compile Include="Blocks\Fwk.Configuration\RemoteConfigurationManager.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\Reference.cs">
-      <DependentUpon>Reference.map</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Blocks\Fwk.Logging\config\LoggingSection.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElement.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElementCollection.cs" />
@@ -229,7 +224,6 @@
     <Compile Include="Blocks\Fwk.Exceptions\FunctionalException.cs" />
     <Compile Include="Blocks\Fwk.Exceptions\ProcessConnectionsException.cs" />
     <Compile Include="Blocks\Fwk.Exceptions\SerializedExceptionExtension.cs" />
-    <Compile Include="Blocks\Fwk.Exceptions\SerializedExceptionExtensionAttribute.cs" />
     <Compile Include="Blocks\Fwk.Exceptions\ServiceError.cs" />
     <Compile Include="Blocks\Fwk.Exceptions\SoapOriginalException.cs" />
     <Compile Include="Blocks\Fwk.Exceptions\TechnicalException.cs" />
@@ -342,12 +336,6 @@
       <LastGenOutput>configdata.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\ConfigurationService.disco" />
-    <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\ConfigurationService.wsdl" />
-    <None Include="Blocks\Fwk.Configuration\Web References\ConfigurationWebService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
     <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />
@@ -359,22 +347,6 @@
     <None Include="Resources\save.png" />
     <None Include="Resources\copy.png" />
     <None Include="Blocks\Fwk.ServiceManagement\Xml\BPConfig.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:1817/Fwk.Configuration.ConfigurationService/ConfigurationService.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Blocks\Fwk.Configuration\Web References\ConfigurationWebService\</RelPath>
-      <UpdateFromURL>
-      </UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>
-      </CachedAppSettingsObjectName>
-      <CachedSettingsPropName>
-      </CachedSettingsPropName>
-    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
