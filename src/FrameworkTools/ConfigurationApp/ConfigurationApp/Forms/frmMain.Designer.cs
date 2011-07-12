@@ -40,14 +40,11 @@ namespace ConfigurationApp
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripAppClientConfig = new System.Windows.Forms.ToolStrip();
-            this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.tsButtonSaveAll = new System.Windows.Forms.ToolStripButton();
             this.tsButtonRefreshAll = new System.Windows.Forms.ToolStripButton();
-            this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.printToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.btnNewProvider = new System.Windows.Forms.ToolStripButton();
+            this.btnQuitProvider = new System.Windows.Forms.ToolStripButton();
+            this.btnExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.quitToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -156,42 +153,18 @@ namespace ConfigurationApp
             this.toolStripAppClientConfig.BackColor = System.Drawing.Color.Transparent;
             this.toolStripAppClientConfig.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStripAppClientConfig.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripButton,
-            this.tsButtonSaveAll,
             this.tsButtonRefreshAll,
-            this.newToolStripButton,
-            this.openToolStripButton,
-            this.printToolStripButton,
+            this.btnNewProvider,
+            this.btnQuitProvider,
+            this.btnExport,
             this.toolStripSeparator,
-            this.quitToolStripButton,
             this.toolStripSeparator1,
             this.helpToolStripButton});
             this.toolStripAppClientConfig.Location = new System.Drawing.Point(0, 24);
             this.toolStripAppClientConfig.Name = "toolStripAppClientConfig";
-            this.toolStripAppClientConfig.Size = new System.Drawing.Size(47, 25);
+            this.toolStripAppClientConfig.Size = new System.Drawing.Size(170, 25);
             this.toolStripAppClientConfig.TabIndex = 7;
             this.toolStripAppClientConfig.Text = "toolStrip1";
-            // 
-            // saveToolStripButton
-            // 
-            this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.saveToolStripButton.Image = global::ConfigurationApp.Properties.Resources.save_small;
-            this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.saveToolStripButton.Text = "&Save";
-            this.saveToolStripButton.ToolTipText = "Save the selected file";
-            this.saveToolStripButton.Visible = false;
-            // 
-            // tsButtonSaveAll
-            // 
-            this.tsButtonSaveAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsButtonSaveAll.Image = global::ConfigurationApp.Properties.Resources.save_as_small;
-            this.tsButtonSaveAll.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsButtonSaveAll.Name = "tsButtonSaveAll";
-            this.tsButtonSaveAll.Size = new System.Drawing.Size(23, 22);
-            this.tsButtonSaveAll.Text = "Save all files";
-            this.tsButtonSaveAll.Visible = false;
             // 
             // tsButtonRefreshAll
             // 
@@ -203,54 +176,42 @@ namespace ConfigurationApp
             this.tsButtonRefreshAll.Text = "Refresh all files";
             this.tsButtonRefreshAll.Click += new System.EventHandler(this.tsButtonRefreshAll_Click);
             // 
-            // newToolStripButton
+            // btnNewProvider
             // 
-            this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newToolStripButton.Image = global::ConfigurationApp.Properties.Resources.documents_small;
-            this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.newToolStripButton.Text = "&New";
-            this.newToolStripButton.ToolTipText = "Create new file";
-            this.newToolStripButton.Visible = false;
+            this.btnNewProvider.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNewProvider.Image = global::ConfigurationApp.Properties.Resources.documents_small;
+            this.btnNewProvider.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNewProvider.Name = "btnNewProvider";
+            this.btnNewProvider.Size = new System.Drawing.Size(23, 22);
+            this.btnNewProvider.Text = "&New";
+            this.btnNewProvider.ToolTipText = "Create new file";
+            this.btnNewProvider.Click += new System.EventHandler(this.btnNewProvider_Click);
             // 
-            // openToolStripButton
+            // btnQuitProvider
             // 
-            this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.openToolStripButton.Image = global::ConfigurationApp.Properties.Resources.open_folder_large;
-            this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.openToolStripButton.Text = "&Open";
-            this.openToolStripButton.ToolTipText = "Open existent file";
-            this.openToolStripButton.Visible = false;
+            this.btnQuitProvider.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnQuitProvider.Image = global::ConfigurationApp.Properties.Resources.file_del_16;
+            this.btnQuitProvider.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnQuitProvider.Name = "btnQuitProvider";
+            this.btnQuitProvider.Size = new System.Drawing.Size(23, 22);
+            this.btnQuitProvider.Text = "Quit";
+            this.btnQuitProvider.ToolTipText = "Quit the selected file";
             // 
-            // printToolStripButton
+            // btnExport
             // 
-            this.printToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.printToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripButton.Image")));
-            this.printToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripButton.Name = "printToolStripButton";
-            this.printToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.printToolStripButton.Text = "&Print";
-            this.printToolStripButton.ToolTipText = "Print selected file";
-            this.printToolStripButton.Visible = false;
+            this.btnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExport.Image = global::ConfigurationApp.Properties.Resources.export_16;
+            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(23, 22);
+            this.btnExport.Text = "Export";
+            this.btnExport.ToolTipText = "Print selected file";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // quitToolStripButton
-            // 
-            this.quitToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.quitToolStripButton.Image = global::ConfigurationApp.Properties.Resources.file_del_16;
-            this.quitToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.quitToolStripButton.Name = "quitToolStripButton";
-            this.quitToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.quitToolStripButton.Text = "Q&uit";
-            this.quitToolStripButton.ToolTipText = "Quit the selected file";
-            this.quitToolStripButton.Visible = false;
             // 
             // toolStripSeparator1
             // 
@@ -271,7 +232,7 @@ namespace ConfigurationApp
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(64, 24);
+            this.label1.Location = new System.Drawing.Point(118, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(778, 17);
             this.label1.TabIndex = 8;
@@ -314,17 +275,14 @@ namespace ConfigurationApp
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemSave;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemSaveAllFiles;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemRefreshAllFiles;
-     
+
         private System.Windows.Forms.ToolStrip toolStripAppClientConfig;
-        private System.Windows.Forms.ToolStripButton tsButtonSaveAll;
         private System.Windows.Forms.ToolStripButton tsButtonRefreshAll;
         private Fwk.Controls.Win32.DockPanel dockPanel1;
-        private System.Windows.Forms.ToolStripButton newToolStripButton;
-        private System.Windows.Forms.ToolStripButton openToolStripButton;
-        private System.Windows.Forms.ToolStripButton saveToolStripButton;
-        private System.Windows.Forms.ToolStripButton printToolStripButton;
+        private System.Windows.Forms.ToolStripButton btnNewProvider;
+        private System.Windows.Forms.ToolStripButton btnExport;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton quitToolStripButton;
+        private System.Windows.Forms.ToolStripButton btnQuitProvider;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.Label label1;

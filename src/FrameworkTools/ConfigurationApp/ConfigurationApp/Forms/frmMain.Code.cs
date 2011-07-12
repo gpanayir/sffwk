@@ -85,24 +85,7 @@ namespace ConfigurationApp
         {
             m_SelectedRoot = SelectedRoot.AppConfigRoot;
         }
-        //void NewFile()
-        //{
-           
-
-         
-
-        //    if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
-        //        _dockPanelConfigManager.NewFile();
-        //}
-        //void QuitFile()
-        //{
-            
-
-      
-
-        //    if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
-        //        _dockPanelConfigManager.QuitFile();
-        //}
+       
         private void RefreshAllFiles()
         {
 

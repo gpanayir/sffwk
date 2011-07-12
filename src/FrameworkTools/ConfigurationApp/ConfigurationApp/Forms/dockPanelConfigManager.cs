@@ -171,16 +171,16 @@ namespace ConfigurationApp.Forms
         {
             _CnfgManagerSelectedNodeType = CnfgManagerSelectedNodeType.Root;
             treeView1.BeginUpdate();
-          
-                treeView1.Nodes[0].Nodes.Clear();
-          
-            
+
+            treeView1.Nodes[0].Nodes.Clear();
+
+
             ConfigManagerControl.RefreshAllFiles(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey, _Storage);
             treeView1.EndUpdate();
             treeView1.Refresh();
             treeView1.ExpandAll();
-            
-            
+
+
         }
 
         /// <summary>
@@ -240,6 +240,7 @@ namespace ConfigurationApp.Forms
 
 
         UCConfigElement _UCConfigElement = new UCConfigElement ();
+
         private void DoConfigManager(TreeNode pTreeNodeSelected)
         {
             

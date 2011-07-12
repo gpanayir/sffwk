@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using ConfigurationApp.Common;
 using ConfigurationApp.Forms;
 using ConfigurationApp.IsolatedStorage;
+using Fwk.ConfigSection;
 
 namespace ConfigurationApp
 {
@@ -95,6 +96,35 @@ namespace ConfigurationApp
 
         }
 
+        private void btnNewProvider_Click(object sender, EventArgs e)
+        {
+            using (frmCreateProvider frm = new frmCreateProvider())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+
+
+                    RefreshAllFiles();
+
+                }
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            using (frmExport1 frm = new frmExport1())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+
+                    RefreshAllFiles();
+                }
+            }
+
+            
+        }
+
+      
       
 
 

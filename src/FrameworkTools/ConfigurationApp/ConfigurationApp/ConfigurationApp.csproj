@@ -73,6 +73,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Libraries\Fwk.Controls.Win32.dll</HintPath>
     </Reference>
+    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
     </Reference>
@@ -136,6 +137,48 @@
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\TemplateProvider.cs" />
     <Compile Include="ConfigManager\ConfigManagerControl.cs" />
+    <Compile Include="Export\cnnstring.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Export\cnnstring.Designer.cs">
+      <DependentUpon>cnnstring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\frmCreateProvider.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\frmCreateProvider.Designer.cs">
+      <DependentUpon>frmCreateProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\frmExport1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\frmExport1.Designer.cs">
+      <DependentUpon>frmExport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\frmExport2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\frmExport2.Designer.cs">
+      <DependentUpon>frmExport2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\frmExport3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\frmExport3.Designer.cs">
+      <DependentUpon>frmExport3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\provider.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Export\provider.Designer.cs">
+      <DependentUpon>provider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\UCBServiceGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Export\UCBServiceGrid.Designer.cs">
+      <DependentUpon>UCBServiceGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\dockPanelConfigManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +215,21 @@
     <Compile Include="IsolatedStorage\Storage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Export\cnnstring.resx">
+      <DependentUpon>cnnstring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\frmCreateProvider.resx">
+      <DependentUpon>frmCreateProvider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\frmExport1.resx">
+      <DependentUpon>frmExport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\provider.resx">
+      <DependentUpon>provider.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\UCBServiceGrid.resx">
+      <DependentUpon>UCBServiceGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\dockPanelConfigManager.resx">
       <SubType>Designer</SubType>
       <DependentUpon>dockPanelConfigManager.cs</DependentUpon>
@@ -259,6 +317,7 @@
     <None Include="Resources\news_info.gif" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\Fwk.Bases.Blocks.Fwk.Configuration.config.fwk_ConfigMannager.datasource" />
     <None Include="Properties\DataSources\Fwk.Configuration.Common.Key.datasource" />
     <None Include="Resources\Web_WebConfig.ico" />
     <None Include="Resources\WinXPSetV4 Icon 60.ico" />
@@ -280,6 +339,9 @@
     <None Include="Resources\save_large.png" />
     <None Include="Resources\file_add_16.png" />
     <None Include="Resources\file_del_16.png" />
+    <None Include="Resources\prntpv_16.png" />
+    <None Include="Resources\mostrar.gif" />
+    <None Include="Resources\import_16.png" />
     <Content Include="Templates.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
