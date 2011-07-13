@@ -155,18 +155,6 @@
     <Compile Include="Export\frmExport1.Designer.cs">
       <DependentUpon>frmExport1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Export\frmExport2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Export\frmExport2.Designer.cs">
-      <DependentUpon>frmExport2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Export\frmExport3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Export\frmExport3.Designer.cs">
-      <DependentUpon>frmExport3.cs</DependentUpon>
-    </Compile>
     <Compile Include="Export\provider.cs">
       <SubType>UserControl</SubType>
     </Compile>

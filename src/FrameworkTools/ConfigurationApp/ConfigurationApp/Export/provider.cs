@@ -24,29 +24,23 @@ namespace ConfigurationApp
             if (pProvider == null) return;
             SetProvider();
         }
-        public void SetConnected(bool pIsConnected)
-        {
-            if (pIsConnected)
-                lblConnectionStatus.Text = "Connected";
-            else
-                lblConnectionStatus.Text = "Disconnected";
-        }
+
         void SetProvider()
         {
 
             lblConnectionType.Text = Provider.ConfigProviderType.ToString();
-            txtAddres.Text = Provider.SourceInfo;
+            txtConfigName.Text = Provider.BaseConfigFile;
         
             cnnstring.Clear();
             if (Provider.ConfigProviderType == ConfigProviderType.local)
             {
                 cnnstring.Visible = false;
                 lblAddress.Text = "File :";
-                btnView.Visible = true;
+         
             }
             if (Provider.ConfigProviderType == ConfigProviderType.sqldatabase)
             {
-                btnView.Visible = false;
+               
                 lblAddress.Text = "Connection string";
                 if (System.Configuration.ConfigurationManager.ConnectionStrings[Provider.SourceInfo] != null)
                 {
@@ -58,12 +52,6 @@ namespace ConfigurationApp
             }
         }
 
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            if (string.Compare(lblConnectionType.Text, "Web Service", true) == 0)
-                System.Diagnostics.Process.Start("www.yahoo.com.ar");
-            else
-                System.Diagnostics.Process.Start("explorer.exe", txtAddres.Text);
-        } 
+      
     }
 }

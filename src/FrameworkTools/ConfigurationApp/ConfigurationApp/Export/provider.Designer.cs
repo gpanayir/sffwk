@@ -29,48 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnView = new System.Windows.Forms.Button();
             this.lblAddress = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblConnectionType = new System.Windows.Forms.Label();
-            this.lblConnectionStatus = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtAddres = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
+            this.txtConfigName = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
             this.cnnstring = new ConfigurationApp.cnnstring();
             this.SuspendLayout();
-            // 
-            // btnView
-            // 
-            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnView.Image = global::ConfigurationApp.Properties.Resources.prntpv_16;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(454, 58);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(49, 19);
-            this.btnView.TabIndex = 102;
-            this.btnView.Text = "View";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddress.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblAddress.Location = new System.Drawing.Point(6, 58);
+            this.lblAddress.Location = new System.Drawing.Point(1, 43);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(56, 13);
+            this.lblAddress.Size = new System.Drawing.Size(79, 13);
             this.lblAddress.TabIndex = 101;
-            this.lblAddress.Text = "Address:";
+            this.lblAddress.Text = "Config Name";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label3.Location = new System.Drawing.Point(6, 29);
+            this.label3.Location = new System.Drawing.Point(3, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 100;
@@ -81,63 +63,41 @@
             this.lblConnectionType.AutoSize = true;
             this.lblConnectionType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConnectionType.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblConnectionType.Location = new System.Drawing.Point(123, 29);
+            this.lblConnectionType.Location = new System.Drawing.Point(80, 14);
             this.lblConnectionType.Name = "lblConnectionType";
             this.lblConnectionType.Size = new System.Drawing.Size(16, 13);
             this.lblConnectionType.TabIndex = 99;
             this.lblConnectionType.Text = "---";
             // 
-            // lblConnectionStatus
+            // txtConfigName
             // 
-            this.lblConnectionStatus.AutoSize = true;
-            this.lblConnectionStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConnectionStatus.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblConnectionStatus.Location = new System.Drawing.Point(123, 4);
-            this.lblConnectionStatus.Name = "lblConnectionStatus";
-            this.lblConnectionStatus.Size = new System.Drawing.Size(25, 13);
-            this.lblConnectionStatus.TabIndex = 98;
-            this.lblConnectionStatus.Text = "......";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(3, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 13);
-            this.label1.TabIndex = 97;
-            this.label1.Text = "Connection status:";
-            // 
-            // txtAddres
-            // 
-            this.txtAddres.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.txtAddres.AllowBlankSpace = true;
-            this.txtAddres.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
-            this.txtAddres.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.txtConfigName.ActiveBorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.txtConfigName.AllowBlankSpace = true;
+            this.txtConfigName.AllowedCharacters = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz";
+            this.txtConfigName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddres.BackColor = System.Drawing.Color.White;
-            this.txtAddres.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAddres.CapitalOnly = false;
-            this.txtAddres.ErrorIconRightToLeft = false;
-            this.txtAddres.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddres.InactiveBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtAddres.Location = new System.Drawing.Point(83, 56);
-            this.txtAddres.Multiline = true;
-            this.txtAddres.Name = "txtAddres";
-            this.txtAddres.NotAllowedCharactersErrorText = "";
-            this.txtAddres.ReadOnly = true;
-            this.txtAddres.Required = false;
-            this.txtAddres.RequiredErrorText = null;
-            this.txtAddres.Size = new System.Drawing.Size(365, 20);
-            this.txtAddres.TabIndex = 96;
-            this.txtAddres.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
+            this.txtConfigName.BackColor = System.Drawing.Color.White;
+            this.txtConfigName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtConfigName.CapitalOnly = false;
+            this.txtConfigName.ErrorIconRightToLeft = false;
+            this.txtConfigName.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfigName.InactiveBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtConfigName.Location = new System.Drawing.Point(91, 41);
+            this.txtConfigName.Multiline = true;
+            this.txtConfigName.Name = "txtConfigName";
+            this.txtConfigName.NotAllowedCharactersErrorText = "";
+            this.txtConfigName.ReadOnly = true;
+            this.txtConfigName.Required = false;
+            this.txtConfigName.RequiredErrorText = null;
+            this.txtConfigName.Size = new System.Drawing.Size(417, 20);
+            this.txtConfigName.TabIndex = 96;
+            this.txtConfigName.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
             // 
             // cnnstring
             // 
-            this.cnnstring.Location = new System.Drawing.Point(5, 82);
+            this.cnnstring.Location = new System.Drawing.Point(2, 67);
             this.cnnstring.Name = "cnnstring";
-            this.cnnstring.Size = new System.Drawing.Size(498, 32);
+            this.cnnstring.Size = new System.Drawing.Size(506, 32);
             this.cnnstring.TabIndex = 105;
             this.cnnstring.Visible = false;
             // 
@@ -146,15 +106,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cnnstring);
-            this.Controls.Add(this.txtAddres);
-            this.Controls.Add(this.btnView);
+            this.Controls.Add(this.txtConfigName);
             this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblConnectionType);
-            this.Controls.Add(this.lblConnectionStatus);
-            this.Controls.Add(this.label1);
             this.Name = "provider";
-            this.Size = new System.Drawing.Size(511, 128);
+            this.Size = new System.Drawing.Size(511, 107);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,12 +120,9 @@
         #endregion
 
         private cnnstring cnnstring;
-        private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtAddres;
-        private System.Windows.Forms.Button btnView;
+        private Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox txtConfigName;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblConnectionType;
-        private System.Windows.Forms.Label lblConnectionStatus;
-        private System.Windows.Forms.Label label1;
     }
 }
