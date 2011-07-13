@@ -52,6 +52,7 @@ namespace Fwk.ConfigSection
                 ConfigProviderCollection wConfigProviderCollection = (ConfigProviderCollection)base["Providers"];
                 return wConfigProviderCollection;
             }
+             
         }
         #endregion
 
@@ -91,7 +92,19 @@ namespace Fwk.ConfigSection
                 return _DefaultProvider;
             }
         }
+        /// <summary>
+        /// Agrega un nuevo proveedor si este no existe
+        /// </summary>
+        /// <param name="newProvider"></param>
+        public void AddNewProvider(ConfigProviderElement newProvider)
+        {
+            if (this.GetProvider(newProvider.Name) == null)
+            {
+                this.Providers.Add(newProvider);
 
+
+            }
+        }
         #endregion
     }
 

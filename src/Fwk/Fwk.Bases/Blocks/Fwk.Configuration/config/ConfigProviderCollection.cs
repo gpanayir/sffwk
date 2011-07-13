@@ -76,6 +76,23 @@ namespace Fwk.ConfigSection
         {
             return BaseIndexOf(configProviderElement);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        public void Add(ConfigProviderElement element)
+        {
+            base.BaseAdd(element, true);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override bool IsReadOnly()
+        {
+            return false;
+        }
         #endregion
     }
 }

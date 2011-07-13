@@ -34,6 +34,7 @@ namespace Fwk.ConfigSection
             {
                 return (string)this["name"];
             }
+            set { this["name"] = value; }
         }
 
         /// <summary>
@@ -46,6 +47,7 @@ namespace Fwk.ConfigSection
             {
                 return (ConfigProviderType)this["type"];
             }
+            set { this["type"] = value; }
         }
 
  
@@ -62,6 +64,7 @@ namespace Fwk.ConfigSection
             {
                 return (string)this["baseConfigFile"];
             }
+            set { this["baseConfigFile"] = value; }
         }
 
         /// <summary>
@@ -76,6 +79,7 @@ namespace Fwk.ConfigSection
             {
                 return (string)this["sourceinfo"];
             }
+            set { this["sourceinfo"] = value; }
         }
        
         
