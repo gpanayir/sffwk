@@ -8,6 +8,7 @@ using Fwk.Bases;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Data.SqlClient;
 
 namespace Fwk.DataBase
 {
@@ -143,7 +144,16 @@ namespace Fwk.DataBase
             // Close the file
             fs.Close();
         }
-         
+
+        //public static bool ChekedCnnstring(string cnnString)
+        //{
+        //    // Initialize the connection string builder for the
+        //    // underlying provider.
+        //    SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder(cnnString);
+            
+        //    sqlBuilder.
+
+        //}
     }
 
     /// <summary>
@@ -256,24 +266,36 @@ namespace Fwk.DataBase
         [Description("Retorna la cadena de conexion")]
         public override string ToString()
         {
+            SqlConnectionStringBuilder sqlBuilder =    new SqlConnectionStringBuilder();
 
-            StringBuilder str = new StringBuilder();
+            sqlBuilder.DataSource = _DataSource;// serverName;
+            sqlBuilder.InitialCatalog = _InitialCatalog;// databaseName;
+            sqlBuilder.IntegratedSecurity = _WindowsAutentification;
 
-            if (_WindowsAutentification)
+
+            if (_WindowsAutentification == false)
             {
-                str.Append("Initial Catalog = [DatabaseName];Data Source=[ServerName];Integrated Security=True;");
+                sqlBuilder.UserID = _User;
+                sqlBuilder.Password = _Password;
+
             }
-            else
-            {
-                str.Append("Initial Catalog = [DatabaseName];Data Source=[ServerName];User ID= [User] ;Password= [Password]");
-                str.Replace("[User]", _User);
-                str.Replace("[Password]", _Password);
-            }
-            str.Replace("[ServerName]", _DataSource);
-            str.Replace("[DatabaseName]", _InitialCatalog);
+            //StringBuilder str = new StringBuilder();
+
+            //if (_WindowsAutentification)
+            //{
+            //    str.Append("Initial Catalog = [DatabaseName];Data Source=[ServerName];Integrated Security=True;");
+            //}
+            //else
+            //{
+            //    str.Append("Initial Catalog = [DatabaseName];Data Source=[ServerName];User ID= [User] ;Password= [Password]");
+            //    str.Replace("[User]", _User);
+            //    str.Replace("[Password]", _Password);
+            //}
+            //str.Replace("[ServerName]", _DataSource);
+            //str.Replace("[DatabaseName]", _InitialCatalog);
 
 
-            return str.ToString();
+            return sqlBuilder.ConnectionString;
         }
 
         /// <summary>
@@ -283,28 +305,36 @@ namespace Fwk.DataBase
         private void ParceCnnString(String pConnectionString)
         {
 
-            List<string> list = new List<string>(pConnectionString.Split(';'));
-            _InitialCatalog = GetValue(list, "Initial Catalog");
-            if (_InitialCatalog.Length == 0)
-                _InitialCatalog = GetValue(list, "Database");
+            SqlConnectionStringBuilder sqlBuilder = new SqlConnectionStringBuilder(pConnectionString);
 
-            _DataSource = GetValue(list, "Data Source");
-            if (_DataSource.Length == 0)
-                _DataSource = GetValue(list, "Server");
+            _InitialCatalog = sqlBuilder.InitialCatalog;
+            _DataSource = sqlBuilder.DataSource;
+            _User = sqlBuilder.UserID;
+            _Password = sqlBuilder.Password;
+            _WindowsAutentification = sqlBuilder.IntegratedSecurity;
 
-            _User = GetValue(list, "User ID");
-            if (_User.Length == 0)
-                _User = GetValue(list, "User");
+            //List<string> list = new List<string>(pConnectionString.Split(';'));
+            //_InitialCatalog = GetValue(list, "Initial Catalog");
+            //if (_InitialCatalog.Length == 0)
+            //    _InitialCatalog = GetValue(list, "Database");
 
-            _Password = GetValue(list, "Password");
-            if (_Password.Length == 0)
-                _Password = GetValue(list, "pwd");
+            //_DataSource = GetValue(list, "Data Source");
+            //if (_DataSource.Length == 0)
+            //    _DataSource = GetValue(list, "Server");
 
-            String wIntegratedSecurity = GetValue(list, "Integrated Security");
-            if (wIntegratedSecurity.Trim().ToLower() == "true" || wIntegratedSecurity.Trim().ToLower() == "SSPI")
-                _WindowsAutentification = true;
-            else
-                _WindowsAutentification = false;
+            //_User = GetValue(list, "User ID");
+            //if (_User.Length == 0)
+            //    _User = GetValue(list, "User");
+
+            //_Password = GetValue(list, "Password");
+            //if (_Password.Length == 0)
+            //    _Password = GetValue(list, "pwd");
+
+            //String wIntegratedSecurity = GetValue(list, "Integrated Security");
+            //if (wIntegratedSecurity.Trim().ToLower() == "true" || wIntegratedSecurity.Trim().ToLower() == "SSPI")
+            //    _WindowsAutentification = true;
+            //else
+            //    _WindowsAutentification = false;
 
         }
 
@@ -317,22 +347,22 @@ namespace Fwk.DataBase
         /// <param name="pCnnStringList"></param>
         /// <param name="pValueName"></param>
         /// <returns></returns>
-        private string GetValue(List<string> pCnnStringList, String pValueName)
-        {
-            String[] val = null;
-            foreach (String s in pCnnStringList)
-            {
-                if (s.Contains(pValueName))
-                {
-                    val = s.Split('=');
-                    if (String.Equals(val[0].Trim().ToLower(), pValueName.Trim().ToLower()))
-                        return val[1].Trim();
-                    else
-                        return val[0].Trim();
-                }
-            }
-            return String.Empty;
-        }
+        //private string GetValue(List<string> pCnnStringList, String pValueName)
+        //{
+        //    String[] val = null;
+        //    foreach (String s in pCnnStringList)
+        //    {
+        //        if (s.Contains(pValueName))
+        //        {
+        //            val = s.Split('=');
+        //            if (String.Equals(val[0].Trim().ToLower(), pValueName.Trim().ToLower()))
+        //                return val[1].Trim();
+        //            else
+        //                return val[0].Trim();
+        //        }
+        //    }
+        //    return String.Empty;
+        //}
     }
 
     /// <summary>
