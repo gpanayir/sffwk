@@ -2,57 +2,64 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Fwk.Security;
+
 using System.Data.Linq;
 using System.Collections.Specialized;
 using System.DirectoryServices.ActiveDirectory;
 using Fwk.Exceptions;
+using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
+using System.Runtime.ConstrainedExecution;
+using System.Security;
+using System.Security.Permissions;
+using System.Security.Principal;
+using System.ComponentModel;
+using System.DirectoryServices;
 
 namespace Fwk.Security.ActiveDirectory
 {
     public class LDAPHelper : DirectoryServicesBase, IDirectoryService
     {
+        
         private LdapWrapper _LdapWrapper;
         private DomainUrlInfo _DomainUrlInfo;
         private DomainController _DomainController;
+        private static List<DomainController> _DomainControllers;
+        
 
         #region Constructors
 
-        public LDAPHelper (String pDomainName, String pConnString) : this(pDomainName, pConnString, false) { }
+
+        public LDAPHelper(String pDomainName, String connStringName) : this(pDomainName, connStringName, false) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="pDomainName">Nombre corto del dominio, por ej "ALCO"</param>
-        /// <param name="pConnString">Nombre de la cadena conexión de la base de datos de la tabla UrlDomains</param>
+        /// <param name="connStringName">Nombre de la cadena conexión de la base de datos de la tabla UrlDomains</param>
         /// <param name="pSecure">Especifica si establece una conexión SSL</param>
-        public LDAPHelper (String pDomainName, String pConnString, Boolean pSecure) 
+        public LDAPHelper(String pDomainName, String connStringName, Boolean pSecure) 
         {
             _LdapWrapper = new LdapWrapper();
 
-            String conn = System.Configuration.ConfigurationManager.ConnectionStrings[pConnString].ConnectionString;
+            //LoadControllersFromDatabase( pConnString);
 
-            List<DomainUrlInfo> wDomainList = DomainsUrl_GetList2(conn);
-            if (wDomainList == null)
-            {
-                throw new Fwk.Exceptions.TechnicalException("Error al intentar obtener la lista de dominios: La lista se encuentra vacía.");
-            }
-            
-            _DomainUrlInfo = wDomainList.First<DomainUrlInfo>(p => p.DomainName == pDomainName);
+
+            _DomainUrlInfo = DomainsUrl_Get(System.Configuration.ConfigurationManager.ConnectionStrings[connStringName].ConnectionString, pDomainName);// _DomainUrlInfoList.First<DomainUrlInfo>(p => p.DomainName == pDomainName);
             if (_DomainUrlInfo == null)
             {
                 throw new Fwk.Exceptions.TechnicalException("No se encontró la información del dominio especificado");
             }
 
-            List<DomainController> wDCList = GetDomainControllersByDomainId(conn, _DomainUrlInfo.Id);
-            if (wDCList == null || wDCList.Count == 0)
-            {
+
+            _DomainControllers = GetDomainControllersByDomainId(System.Configuration.ConfigurationManager.ConnectionStrings[connStringName].ConnectionString, _DomainUrlInfo.Id);
+            if (_DomainControllers == null || _DomainControllers.Count == 0)
                 throw new Fwk.Exceptions.TechnicalException("No se encuentra configurado ningún controlador de dominio para el sitio especificado.");
-            }
+
 
             // Prueba de conectarse a algún controlador de dominio disponible, siempre arranando del primero. debería 
             // TODO: reemplazarse por un sistema de prioridad automática para que no intente conectarse primero a los funcionales conocidos
-            LdapException wLastExcept = GetDomainController(pSecure, wDCList);
+            LdapException wLastExcept = GetDomainController(pSecure, _DomainControllers);
             if (_DomainController == null)
             {
                 throw new Fwk.Exceptions.TechnicalException("No se encontró ningún controlador de dominio disponible para el sitio especificado.", wLastExcept);
@@ -61,6 +68,165 @@ namespace Fwk.Security.ActiveDirectory
         }
         #endregion
 
+        #region Funciones que no usan LDAP en C++
+
+        /// <summary>
+        /// Esta funcion utiliza chequea el loging de un usuario contra un dominio
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public LoginResult User_Logon(string userName, string password, out Fwk.Exceptions.TechnicalException logError)
+        {
+            LoginResult wLoginResult = LoginResult.LOGIN_OK;
+            logError = null;
+            SafeTokenHandle safeTokenHandle;
+
+            #region Creo DirectoryEntry con usuario administrador
+
+
+            this.User_Get(userName, password, out wLoginResult);
+
+            #endregion
+
+
+            //obtain a handle to an access token.
+            bool returnValue = LogonUser(userName, _DomainUrlInfo.DomainName, password,
+                (int)LOGON32.LOGON32_LOGON_INTERACTIVE,
+                (int)LOGON32.LOGON32_PROVIDER_DEFAULT,
+               out safeTokenHandle);
+
+
+            if (!returnValue)
+            {
+
+
+                //int ret = Marshal.GetLastWin32Error();
+                int ret = GetLastError();
+                //err = string.Format("LogonUser failed with error code : {0}", ret);
+                Win32Exception win32Error = new Win32Exception();
+
+                logError = new Fwk.Exceptions.TechnicalException(win32Error.Message);
+                LDAPHelper.SetError(logError);
+                logError.ErrorId = "15004";
+                logError.Source = string.Concat(logError.Source, Environment.NewLine, win32Error.Source);
+
+                //switch (ret)
+                //{
+                //    case (126):
+
+                //        return LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
+
+
+                //    case (1314):
+                //        return LoginResult.LOGIN_OK;
+
+                //    case (1326):
+                //        return LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
+
+                //    default:
+                //        throw new Exception(
+                //                "Unexpected Logon Failure. Contact Administrator");
+                //}
+
+                //throw new System.ComponentModel.Win32Exception(ret);
+            }
+
+            //using (safeTokenHandle)
+            //{
+            //    err = string.Concat("Did LogonUser Succeed? " + (returnValue ? "Yes" : "No"));
+            //    err = string.Concat("Value of Windows NT token: " + safeTokenHandle);
+
+            // Check the identity.
+            ///////Console.WriteLine("Before impersonation: "        + WindowsIdentity.GetCurrent().Name);
+            // Use the token handle returned by LogonUser.
+            //WindowsIdentity newId = new WindowsIdentity(safeTokenHandle.DangerousGetHandle());
+            //using (WindowsImpersonationContext impersonatedUser = newId.Impersonate())
+            //{
+
+            //    // Check the identity.
+            //    Console.WriteLine("After impersonation: " + WindowsIdentity.GetCurrent().Name);
+            //}
+            // Releasing the context object stops the impersonation
+            // Check the identity.
+            //Console.WriteLine("After closing the context: " + WindowsIdentity.GetCurrent().Name);
+            //}
+            return wLoginResult;
+
+        }
+
+
+        /// <summary>
+        /// Busca un usuario con autenticacion 
+        /// Returna como parametro el resultado de loging
+        /// </summary>
+        /// <param name="userName">nombre de loging de usuario</param>
+        /// <param name="password">password</param>
+        /// <param name="loginResult">resultado de loging</param>
+        /// <returns>DirectoryEntry</returns>
+        DirectoryEntry User_Get(string userName, string password, out LoginResult loginResult)
+        {
+
+            DirectoryEntry searchRoot_DE = new DirectoryEntry(_DomainUrlInfo.LDAPPath, _DomainUrlInfo.Usr, _DomainUrlInfo.Pwd, AuthenticationTypes.Secure);
+
+            DirectoryEntry userDirectoryEntry = null;
+            loginResult = LoginResult.LOGIN_OK;
+            SearchResult result = ADHelper.User_Get_Result(userName, searchRoot_DE);
+
+            //Si esl resultado de busqueda en nodes es nulo el usuario no exisate en el dominio
+            if (result == null)
+            {
+                loginResult = LoginResult.LOGIN_USER_DOESNT_EXIST;
+                return null;
+            }
+
+            //PasswordExpired
+            if (ADHelper.GetProperty(result, ADProperties.PWDLASTSET) == "0")
+            {
+                loginResult = LoginResult.ERROR_PASSWORD_MUST_CHANGE;
+                return null;
+            }
+
+
+
+
+            //string str = EnlistValue(results);
+            //si result no es nulo se puede crear una DirectoryEntry
+            if (result != null)
+                userDirectoryEntry = new DirectoryEntry(result.Path, userName, password);
+
+            //Intenta obtener una propiedad para determinar si el usuario se logueo con clave correcta o no.-
+            try
+            {
+                int userAccountControl = Convert.ToInt32(ADHelper.GetProperty(userDirectoryEntry, ADProperties.USERACCOUNTCONTROL));
+            }
+            catch (TechnicalException te)
+            {
+                if (te.ErrorId == "4101")
+                {
+                    loginResult = LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
+                    return userDirectoryEntry;
+                }
+            }
+
+            if (ADHelper.User_IsAccountActive(userDirectoryEntry) == false)
+            {
+                loginResult = LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+                return userDirectoryEntry;
+            }
+
+            if (ADHelper.User_IsAccountLockout(userDirectoryEntry))
+            {
+                loginResult = LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT;
+                return userDirectoryEntry;
+            }
+
+
+            return userDirectoryEntry;
+        }
+
+
+        #endregion
         #region Interface Methods
 
         /// <summary>

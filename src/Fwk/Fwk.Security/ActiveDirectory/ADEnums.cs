@@ -108,4 +108,18 @@ namespace Fwk.Security.ActiveDirectory
 
     }
 
+    public enum LOGON32
+    {
+        /// <summary>
+        /// This parameter causes LogonUser to create a primary token.
+        /// Use the standard logon provider for the system. 
+        /// This is the recommended value for the dwLogonProvider parameter. 
+        /// It provides maximum compatibility with current and future releases of Windows NT.
+        /// </summary>
+        LOGON32_PROVIDER_DEFAULT = 0,
+        /// <summary>
+        /// 
+        /// </summary>
+        LOGON32_LOGON_INTERACTIVE = 2
+    }
 }

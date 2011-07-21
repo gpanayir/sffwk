@@ -11,6 +11,9 @@ using System.DirectoryServices.ActiveDirectory;
 using Fwk.Exceptions;
 using System.DirectoryServices.AccountManagement;
 using System.Reflection;
+using System.Runtime.ConstrainedExecution;
+using Microsoft.Win32.SafeHandles;
+using System.Security;
 namespace Fwk.Security.ActiveDirectory
 {
     /// <summary>
@@ -19,6 +22,16 @@ namespace Fwk.Security.ActiveDirectory
     /// </summary>
     public class DirectoryServicesBase
     {
+        [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern bool LogonUser(String lpszUsername, String lpszDomain, String lpszPassword,
+            int dwLogonType, int dwLogonProvider, out SafeTokenHandle phToken);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
+        public extern static bool CloseHandle(IntPtr handle);
+
+        [DllImport("Kernel32.dll")]
+        public static extern int GetLastError();
+
         #region Properties
         protected DirectoryEntry _directoryEntrySearchRoot;
         protected string _LDAPPath;
@@ -150,7 +163,42 @@ namespace Fwk.Security.ActiveDirectory
                 throw te;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cnnString"></param>
+        /// <param name="domainName"></param>
+        /// <returns></returns>
+        public static DomainUrlInfo DomainsUrl_Get(string cnnString, string domainName)
+        {
+            try
+            {
+                using (SqlDomainURLDataContext dc = new SqlDomainURLDataContext(cnnString))
+                {
+                    IEnumerable<DomainUrlInfo> list = from s in dc.DomainsUrls
+                                                      where (domainName.Equals(string.Empty) || s.DomainName.Equals(domainName.Trim()))// si domainName en empty no filtra por este
+                                                      select
+                                                          new DomainUrlInfo
+                                                          {
+                                                              DomainName = s.DomainName,
+                                                              LDAPPath = s.LDAPPath,
+                                                              Usr = s.Usr,
+                                                              Pwd = s.Pwd,
+                                                              Id = s.DomainID,
+                                                              SiteName = s.SiteName,
+                                                              DomainDN = s.DomainDN
+                                                          };
+                    return list.FirstOrDefault<DomainUrlInfo>();
+                }
+            }
+            catch (Exception ex)
+            {
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al intentar obtener la lista de dominios desde la base de datos: ", ex);
+                LDAPHelper.SetError(te);
+                te.ErrorId = "15004";
+                throw te;
+            }
+        }
         /// <summary>
         /// Establece los valores basicos de error producido en el componente ADHelper
         /// </summary>
@@ -158,9 +206,34 @@ namespace Fwk.Security.ActiveDirectory
         protected static void SetError(Fwk.Exceptions.TechnicalException te)
         {
             te.Namespace = typeof(ADHelper).Namespace;
-            te.Source = "Constructor fwk active directory component";
+            te.Source = "Fwk active directory component";
             te.UserName = Environment.UserName;
             te.UserName = Environment.MachineName;
+        }
+    }
+    /// <summary>
+    /// Proporciona una clase base para implementaciones de identificadores Win32 seguros en las que el valor 0 ó -1 indica un identificador no válido.
+    /// </summary>
+    public sealed class SafeTokenHandle : SafeHandleZeroOrMinusOneIsInvalid
+    {
+        private SafeTokenHandle()
+            : base(true)
+        {
+        }
+
+        [DllImport("kernel32.dll")]
+        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+        [SuppressUnmanagedCodeSecurity]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool CloseHandle(IntPtr handle);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected override bool ReleaseHandle()
+        {
+            return CloseHandle(handle);
         }
     }
 }

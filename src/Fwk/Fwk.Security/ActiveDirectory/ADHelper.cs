@@ -82,17 +82,32 @@ namespace Fwk.Security.ActiveDirectory
         ///// </summary>
         ///// <param name="userName"></param>
         ///// <returns></returns>
-        SearchResult User_Get_Result(string userName)
+        //SearchResult User_Get_Result(string userName)
+        //{
+        //    DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+        //    deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
+        //    deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
+        //    SearchResult rs = deSearch.FindOne();
+        //    deSearch.Dispose();
+        //    return rs;
+
+        //}
+        
+        ///// <summary>
+        ///// Obtiene un usuario sin pasar clave.-
+        ///// </summary>
+        ///// <param name="userName"></param>
+        ///// <returns></returns>
+        internal static SearchResult User_Get_Result(string userName, DirectoryEntry root)
         {
-            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
+            DirectorySearcher deSearch = new DirectorySearcher(root);
+            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + ADHelper.FilterOutDomain(userName) + "))";
             deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
             SearchResult rs = deSearch.FindOne();
             deSearch.Dispose();
             return rs;
 
         }
-
         /// <summary>
         /// Busca un usuario con autenticacion 
         /// Returna como parametro el resultado de loging
@@ -106,7 +121,7 @@ namespace Fwk.Security.ActiveDirectory
 
             DirectoryEntry userDirectoryEntry = null;
             loginResult = LoginResult.LOGIN_OK; 
-            SearchResult result = this.User_Get_Result(userName);
+            SearchResult result = User_Get_Result(userName,_directoryEntrySearchRoot);
             
             //Si esl resultado de busqueda en nodes es nulo el usuario no exisate en el dominio
             if (result == null)

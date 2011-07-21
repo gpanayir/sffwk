@@ -37,9 +37,14 @@
             this.txtLoginName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblURL = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbDomains = new System.Windows.Forms.ComboBox();
             this.domainUrlInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblCheckResult = new System.Windows.Forms.TextBox();
+            this.ResetPwd = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.UnLock = new System.Windows.Forms.CheckBox();
+            this.ForceChange = new System.Windows.Forms.CheckBox();
+            this.txtError = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.domainUrlInfoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,9 +62,9 @@
             this.btnCheck.BackColor = System.Drawing.Color.White;
             this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheck.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCheck.Location = new System.Drawing.Point(215, 136);
+            this.btnCheck.Location = new System.Drawing.Point(128, 136);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(91, 22);
+            this.btnCheck.Size = new System.Drawing.Size(87, 22);
             this.btnCheck.TabIndex = 70;
             this.btnCheck.Text = "Ahutenticate";
             this.btnCheck.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -97,6 +102,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
             this.txtPassword.TabIndex = 66;
+            this.txtPassword.Text = "Allus+123";
             // 
             // lblURL
             // 
@@ -108,16 +114,16 @@
             this.lblURL.Size = new System.Drawing.Size(485, 24);
             this.lblURL.TabIndex = 73;
             // 
-            // comboBox1
+            // cmbDomains
             // 
-            this.comboBox1.DataSource = this.domainUrlInfoBindingSource;
-            this.comboBox1.DisplayMember = "DomainName";
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(130, 109);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(175, 21);
-            this.comboBox1.TabIndex = 74;
+            this.cmbDomains.DataSource = this.domainUrlInfoBindingSource;
+            this.cmbDomains.DisplayMember = "DomainName";
+            this.cmbDomains.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbDomains.FormattingEnabled = true;
+            this.cmbDomains.Location = new System.Drawing.Point(130, 109);
+            this.cmbDomains.Name = "cmbDomains";
+            this.cmbDomains.Size = new System.Drawing.Size(175, 21);
+            this.cmbDomains.TabIndex = 74;
             // 
             // domainUrlInfoBindingSource
             // 
@@ -131,17 +137,83 @@
             this.lblCheckResult.Multiline = true;
             this.lblCheckResult.Name = "lblCheckResult";
             this.lblCheckResult.ReadOnly = true;
-            this.lblCheckResult.Size = new System.Drawing.Size(482, 77);
+            this.lblCheckResult.Size = new System.Drawing.Size(482, 105);
             this.lblCheckResult.TabIndex = 75;
+            // 
+            // ResetPwd
+            // 
+            this.ResetPwd.BackColor = System.Drawing.Color.White;
+            this.ResetPwd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResetPwd.ForeColor = System.Drawing.Color.Red;
+            this.ResetPwd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ResetPwd.Location = new System.Drawing.Point(221, 136);
+            this.ResetPwd.Name = "ResetPwd";
+            this.ResetPwd.Size = new System.Drawing.Size(85, 22);
+            this.ResetPwd.TabIndex = 76;
+            this.ResetPwd.Text = "Reset Pwd!";
+            this.ResetPwd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ResetPwd.UseVisualStyleBackColor = false;
+            this.ResetPwd.Click += new System.EventHandler(this.ResetPwd_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.Red;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(312, 409);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(182, 22);
+            this.button1.TabIndex = 77;
+            this.button1.Text = "Install Allus Root Certs";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // UnLock
+            // 
+            this.UnLock.AutoSize = true;
+            this.UnLock.Location = new System.Drawing.Point(430, 140);
+            this.UnLock.Name = "UnLock";
+            this.UnLock.Size = new System.Drawing.Size(64, 17);
+            this.UnLock.TabIndex = 78;
+            this.UnLock.Text = "UnLock";
+            this.UnLock.UseVisualStyleBackColor = true;
+            // 
+            // ForceChange
+            // 
+            this.ForceChange.AutoSize = true;
+            this.ForceChange.Location = new System.Drawing.Point(312, 140);
+            this.ForceChange.Name = "ForceChange";
+            this.ForceChange.Size = new System.Drawing.Size(111, 17);
+            this.ForceChange.TabIndex = 79;
+            this.ForceChange.Text = "ForceChangePwd";
+            this.ForceChange.UseVisualStyleBackColor = true;
+            // 
+            // txtError
+            // 
+            this.txtError.BackColor = System.Drawing.Color.White;
+            this.txtError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtError.Location = new System.Drawing.Point(12, 298);
+            this.txtError.Multiline = true;
+            this.txtError.Name = "txtError";
+            this.txtError.ReadOnly = true;
+            this.txtError.Size = new System.Drawing.Size(482, 105);
+            this.txtError.TabIndex = 80;
             // 
             // frmDinamic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(506, 273);
+            this.ClientSize = new System.Drawing.Size(598, 498);
+            this.Controls.Add(this.txtError);
+            this.Controls.Add(this.ForceChange);
+            this.Controls.Add(this.UnLock);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ResetPwd);
             this.Controls.Add(this.lblCheckResult);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbDomains);
             this.Controls.Add(this.lblURL);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCheck);
@@ -171,9 +243,14 @@
         private System.Windows.Forms.TextBox txtLoginName;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblURL;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbDomains;
         private System.Windows.Forms.BindingSource domainUrlInfoBindingSource;
         private System.Windows.Forms.TextBox lblCheckResult;
-        
+        private System.Windows.Forms.Button ResetPwd;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox UnLock;
+        private System.Windows.Forms.CheckBox ForceChange;
+        private System.Windows.Forms.TextBox txtError;
+
     }
 }

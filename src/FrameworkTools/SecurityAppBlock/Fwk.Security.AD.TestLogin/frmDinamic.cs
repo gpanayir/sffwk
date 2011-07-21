@@ -8,13 +8,18 @@ using System.Text;
 using System.Windows.Forms;
 using Fwk.Security.ActiveDirectory;
 using Fwk.Bases;
+
+using System.Security.Cryptography.X509Certificates;
+using Fwk.Exceptions;
+
 namespace Fwk.Security.AD.TestLogin
 {
     public partial class frmDinamic : Form
     {
-        ADHelper _ADHelper;
+        LDAPHelper _ADHelper;
+        IDirectoryService _ADHelperSecure;
         List<DomainUrlInfo> urls;
-       
+
         public frmDinamic()
         {
             InitializeComponent();
@@ -23,53 +28,62 @@ namespace Fwk.Security.AD.TestLogin
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
+
+            lblCheckResult.Clear();
+            txtError.Clear();
             try
             {
-                if (SetAD())
+                if (SetAD(false))
                 {
-                    lblCheckResult.Text = _ADHelper.User_CheckLogin(txtLoginName.Text, txtPassword.Text).ToString();
+                    TechnicalException logError = null;
+                    //lblCheckResult.Text = _ADHelper.User_CheckLogin(txtLoginName.Text, txtPassword.Text).ToString();
+                    lblCheckResult.Text = _ADHelper.User_Logon(txtLoginName.Text, txtPassword.Text, out logError).ToString();
+
+                    if (logError != null)
+                        txtError.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(logError);
                     //_ADHelper.User_CheckLogin2(txtLoginName.Text, txtPassword.Text);
-                 
+
                 }
             }
             catch (Exception ex)
             {
-                lblCheckResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-                
-      
+                txtError.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+
+
             }
         }
 
-        bool SetAD()
+        bool SetAD(Boolean pSecure)
         {
             lblURL.Text = string.Empty;
 
-            DomainUrlInfo wDomainUrlInfo = (DomainUrlInfo)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
-            
+            DomainUrlInfo wDomainUrlInfo = (DomainUrlInfo)cmbDomains.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
+
             if (wDomainUrlInfo == null)
             {
                 lblCheckResult.Text = "Nombre de dominio incorrecto";
                 return false;
             }
-            _ADHelper = new ADHelper(wDomainUrlInfo.LDAPPath, wDomainUrlInfo.Usr, wDomainUrlInfo.Pwd);
-            
+            //_ADHelper = new ADHelper(wDomainUrlInfo.LDAPPath, wDomainUrlInfo.Usr, wDomainUrlInfo.Pwd);
+            _ADHelper = new LDAPHelper(wDomainUrlInfo.DomainName, "testActiveDirectory", pSecure);
+
             return true;
         }
-        
+
         void init()
         {
-           
+
             try
             {
                 urls = ADHelper.DomainsUrl_GetList("testActiveDirectory");//@"Data Source=SANTANA\SQLEXPRESS;Initial Catalog=Logs;Integrated Security=True");
                 domainUrlInfoBindingSource.DataSource = urls;
-                comboBox1.SelectedIndex = 0;
+                cmbDomains.SelectedIndex = 1;
 
-                lblURL.Text = ((DomainUrlInfo)comboBox1.SelectedItem).LDAPPath;
+                lblURL.Text = ((DomainUrlInfo)cmbDomains.SelectedItem).LDAPPath;
             }
             catch (Exception ex)
             {
-                lblCheckResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException( ex);
+                lblCheckResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
                 btnCheck.Enabled = false;
             }
             //urls = new List<DomainUrlInfo>();
@@ -111,12 +125,12 @@ namespace Fwk.Security.AD.TestLogin
             //wDomainUrlInfo.Pwd = "Prueba+456";
             //urls.Add(wDomainUrlInfo);
 
-           
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DomainUrlInfo wDomainUrlInfo = (DomainUrlInfo)comboBox1.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
+            DomainUrlInfo wDomainUrlInfo = (DomainUrlInfo)cmbDomains.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
             if (wDomainUrlInfo == null) return;
             lblURL.Text = wDomainUrlInfo.LDAPPath;
 
@@ -127,8 +141,45 @@ namespace Fwk.Security.AD.TestLogin
 
         }
 
+        private void ResetPwd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SetAD(true))
+                {
+                    String Pwd = null;
+                    if (!String.IsNullOrEmpty(txtPassword.Text))
+                        Pwd = txtPassword.Text;
+                    _ADHelper.ResetPwd(txtLoginName.Text, Pwd, ForceChange.Checked, UnLock.Checked);
+                    lblCheckResult.Text = "Clave Reseteada";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblCheckResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddRootCert("AllusCerts/RootAlcomovistar.cer");
+            AddRootCert("AllusCerts/RootAllusArgent.cer");
+            AddRootCert("AllusCerts/RootAllusPeru.cer");
+        }
+
+        void AddRootCert(String pCertFilePath)
+        {
+            X509Certificate2 wCertificate = new X509Certificate2(pCertFilePath);
+            X509Store wStore = new X509Store(StoreName.Root, StoreLocation.LocalMachine);
+            wStore.Open(OpenFlags.ReadWrite);
+            wStore.Add(wCertificate);
+            wStore.Close();
+
+        }
+
 
     }
 
-   
+
 }
