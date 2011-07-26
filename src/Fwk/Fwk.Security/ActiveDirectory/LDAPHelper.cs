@@ -25,12 +25,16 @@ namespace Fwk.Security.ActiveDirectory
         private DomainUrlInfo _DomainUrlInfo;
         private DomainController _DomainController;
         private static List<DomainController> _DomainControllers;
-        
+
 
         #region Constructors
 
-
-        public LDAPHelper(String pDomainName, String connStringName) : this(pDomainName, connStringName, false) { }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pDomainName"></param>
+        /// <param name="pConnString"></param>
+        public LDAPHelper(String pDomainName, String pConnString) : this(pDomainName, pConnString, false) { }
 
         /// <summary>
         /// Constructor
@@ -38,7 +42,19 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="pDomainName">Nombre corto del dominio, por ej "ALCO"</param>
         /// <param name="connStringName">Nombre de la cadena conexión de la base de datos de la tabla UrlDomains</param>
         /// <param name="pSecure">Especifica si establece una conexión SSL</param>
-        public LDAPHelper(String pDomainName, String connStringName, Boolean pSecure) 
+        public LDAPHelper(String pDomainName, String connStringName, Boolean pSecure)
+        {
+            Init(pDomainName, connStringName, pSecure, true);
+
+        }
+        public LDAPHelper(String pDomainName, String connStringName, Boolean pSecure, bool chekControllers)
+        {
+
+            Init(pDomainName, connStringName, pSecure, chekControllers);
+
+        }
+
+        void Init(String pDomainName, String connStringName, Boolean pSecure, bool chekControllers)
         {
             _LdapWrapper = new LdapWrapper();
 
@@ -51,21 +67,49 @@ namespace Fwk.Security.ActiveDirectory
                 throw new Fwk.Exceptions.TechnicalException("No se encontró la información del dominio especificado");
             }
 
-
-            _DomainControllers = GetDomainControllersByDomainId(System.Configuration.ConfigurationManager.ConnectionStrings[connStringName].ConnectionString, _DomainUrlInfo.Id);
-            if (_DomainControllers == null || _DomainControllers.Count == 0)
-                throw new Fwk.Exceptions.TechnicalException("No se encuentra configurado ningún controlador de dominio para el sitio especificado.");
-
-
-            // Prueba de conectarse a algún controlador de dominio disponible, siempre arranando del primero. debería 
-            // TODO: reemplazarse por un sistema de prioridad automática para que no intente conectarse primero a los funcionales conocidos
-            LdapException wLastExcept = GetDomainController(pSecure, _DomainControllers);
-            if (_DomainController == null)
+            if (chekControllers)
             {
-                throw new Fwk.Exceptions.TechnicalException("No se encontró ningún controlador de dominio disponible para el sitio especificado.", wLastExcept);
-            }
+                _DomainControllers = GetDomainControllersByDomainId(System.Configuration.ConfigurationManager.ConnectionStrings[connStringName].ConnectionString, _DomainUrlInfo.Id);
+                if (_DomainControllers == null || _DomainControllers.Count == 0)
+                    throw new Fwk.Exceptions.TechnicalException("No se encuentra configurado ningún controlador de dominio para el sitio especificado.");
 
+
+                // Prueba de conectarse a algún controlador de dominio disponible, siempre arranando del primero. debería 
+                // TODO: reemplazarse por un sistema de prioridad automática para que no intente conectarse primero a los funcionales conocidos
+                LdapException wLastExcept = GetDomainController(pSecure, _DomainControllers);
+                if (_DomainController == null)
+                {
+                    throw new Fwk.Exceptions.TechnicalException("No se encontró ningún controlador de dominio disponible para el sitio especificado.", wLastExcept);
+                }
+            }
         }
+
+        /// <summary>
+        /// Aqui se cargan por unica vez los Domain Controllers y DomainUrlInfoList
+        /// </summary>
+        //void LoadControllersFromDatabase(string pConnString)
+        //{
+        ///TODO: Aqui se debera agregar la utilizacion de un diccionario para mentener los valores por cada cadena de conexion
+        /// hay que usar _DomainControllerDictionary y _DomainUrlInfoDictionary
+        /// 
+        ///Se comenta por que en teoria no se usaria mas.. directamente se obtendra _DomainUrlInfo necesario
+        //if (_DomainUrlInfoList == null)
+        //{
+        //    _DomainUrlInfoList = DomainsUrl_GetList2(System.Configuration.ConfigurationManager.ConnectionStrings[pConnString].ConnectionString);
+
+        //    if (_DomainUrlInfoList == null)
+
+        //        throw new Fwk.Exceptions.TechnicalException("Error al intentar obtener la lista de dominios: La lista se encuentra vacía.");
+
+        //}
+        //if (_DomainControllers == null)
+        //{
+        //    _DomainControllers = GetDomainControllersByDomainId(System.Configuration.ConfigurationManager.ConnectionStrings[pConnString].ConnectionString, _DomainUrlInfo.Id);
+        //    if (_DomainControllers == null || _DomainControllers.Count == 0)
+        //        throw new Fwk.Exceptions.TechnicalException("No se encuentra configurado ningún controlador de dominio para el sitio especificado.");
+        //}
+
+        //}
         #endregion
 
         #region Funciones que no usan LDAP en C++
@@ -79,16 +123,24 @@ namespace Fwk.Security.ActiveDirectory
         public LoginResult User_Logon(string userName, string password, out Fwk.Exceptions.TechnicalException logError)
         {
             LoginResult wLoginResult = LoginResult.LOGIN_OK;
+            Win32Exception win32Error = null;
             logError = null;
             SafeTokenHandle safeTokenHandle;
 
-            #region Creo DirectoryEntry con usuario administrador
+            #region Busco el usuario con un DirectoryEntry con usuario administrador
 
 
             this.User_Get(userName, password, out wLoginResult);
-
+            if (wLoginResult == LoginResult.ERROR_SERVER_IS_NOT_OPERATIONAL)
+            {
+                win32Error = new Win32Exception();
+                logError = new Fwk.Exceptions.TechnicalException(win32Error.Message);
+                LDAPHelper.SetError(logError);
+                logError.ErrorId = "15004";
+                logError.Source = string.Concat(logError.Source, Environment.NewLine, win32Error.Source);
+                return wLoginResult;
+            }
             #endregion
-
 
             //obtain a handle to an access token.
             bool returnValue = LogonUser(userName, _DomainUrlInfo.DomainName, password,
@@ -99,18 +151,14 @@ namespace Fwk.Security.ActiveDirectory
 
             if (!returnValue)
             {
-
-
-                //int ret = Marshal.GetLastWin32Error();
-                int ret = GetLastError();
-                //err = string.Format("LogonUser failed with error code : {0}", ret);
-                Win32Exception win32Error = new Win32Exception();
-
+                int ret = GetLastError();//int ret = Marshal.GetLastWin32Error();
+                win32Error = new Win32Exception();
                 logError = new Fwk.Exceptions.TechnicalException(win32Error.Message);
                 LDAPHelper.SetError(logError);
                 logError.ErrorId = "15004";
                 logError.Source = string.Concat(logError.Source, Environment.NewLine, win32Error.Source);
 
+                #region old code
                 //switch (ret)
                 //{
                 //    case (126):
@@ -130,8 +178,10 @@ namespace Fwk.Security.ActiveDirectory
                 //}
 
                 //throw new System.ComponentModel.Win32Exception(ret);
+                #endregion
             }
 
+            #region old code
             //using (safeTokenHandle)
             //{
             //    err = string.Concat("Did LogonUser Succeed? " + (returnValue ? "Yes" : "No"));
@@ -151,10 +201,15 @@ namespace Fwk.Security.ActiveDirectory
             // Check the identity.
             //Console.WriteLine("After closing the context: " + WindowsIdentity.GetCurrent().Name);
             //}
+            #endregion
+
             return wLoginResult;
+
 
         }
 
+
+        
 
         /// <summary>
         /// Busca un usuario con autenticacion 
@@ -164,7 +219,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="password">password</param>
         /// <param name="loginResult">resultado de loging</param>
         /// <returns>DirectoryEntry</returns>
-        DirectoryEntry User_Get(string userName, string password, out LoginResult loginResult)
+        DirectoryEntry User_Get(string userName, string password,out LoginResult loginResult)
         {
 
             DirectoryEntry searchRoot_DE = new DirectoryEntry(_DomainUrlInfo.LDAPPath, _DomainUrlInfo.Usr, _DomainUrlInfo.Pwd, AuthenticationTypes.Secure);
@@ -207,6 +262,11 @@ namespace Fwk.Security.ActiveDirectory
                     loginResult = LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
                     return userDirectoryEntry;
                 }
+                if (te.ErrorId == "4100")
+                {
+                    loginResult = LoginResult.ERROR_SERVER_IS_NOT_OPERATIONAL;
+                    return userDirectoryEntry;
+                }
             }
 
             if (ADHelper.User_IsAccountActive(userDirectoryEntry) == false)
@@ -223,6 +283,7 @@ namespace Fwk.Security.ActiveDirectory
 
 
             return userDirectoryEntry;
+        
         }
 
 

@@ -19,8 +19,7 @@ namespace Fwk.CheckLogging
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            //lblCheckResult.Clear();
-            //txtError.Clear();
+            lblError.Text = "NO Error";
             try
             {
                 if (SetAD(false))
@@ -31,6 +30,9 @@ namespace Fwk.CheckLogging
 
                     if (logError != null)
                         lblError.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(logError);
+                    else
+                        lblError.Text = "NO Error";
+
                     //_ADHelper.User_CheckLogin2(txtLoginName.Text, txtPassword.Text);
 
                 }
@@ -58,7 +60,7 @@ namespace Fwk.CheckLogging
             //}
             //_ADHelper = new ADHelper(wDomainUrlInfo.LDAPPath, wDomainUrlInfo.Usr, wDomainUrlInfo.Pwd);
             //_ADHelper = new LDAPHelper(wDomainUrlInfo.DomainName, "testActiveDirectory", pSecure);
-            _ADHelper = new LDAPHelper(txtDomain.Text, "testActiveDirectory", pSecure);
+            _ADHelper = new LDAPHelper(txtDomain.Text, "testActiveDirectory", pSecure, false);
 
             return true;
         }
