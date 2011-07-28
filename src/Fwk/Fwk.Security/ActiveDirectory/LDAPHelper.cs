@@ -47,6 +47,7 @@ namespace Fwk.Security.ActiveDirectory
             Init(pDomainName, connStringName, pSecure, true);
 
         }
+
         public LDAPHelper(String pDomainName, String connStringName, Boolean pSecure, bool chekControllers)
         {
 
