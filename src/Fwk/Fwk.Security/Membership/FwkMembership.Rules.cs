@@ -11,6 +11,7 @@ using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Fwk.Security.Properties;
 using Fwk.Exceptions;
+using Fwk.Security.Membership;
 
 namespace Fwk.Security
 {
@@ -136,7 +137,7 @@ namespace Fwk.Security
 
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
 
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (RuleProviderDataContext dc = new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
                     if (dc.aspnet_Rules.Any<aspnet_Rule>(s => s.name.Equals(ruleName.Trim()) && s.ApplicationId == wApplicationId))
                     {
@@ -192,7 +193,7 @@ namespace Fwk.Security
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
 
                 wRules = new NamedElementCollection<FwkAuthorizationRule>();
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (RuleProviderDataContext dc = new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
                     var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
 
@@ -248,7 +249,7 @@ namespace Fwk.Security
             {
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
                 wRules = new List<AuthorizationRuleData>();
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (RuleProviderDataContext dc = new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
                     var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
 
@@ -307,7 +308,7 @@ namespace Fwk.Security
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
                 wRules = new FwkAuthorizationRuleList();
 
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (RuleProviderDataContext dc = new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
                     var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
 
@@ -363,7 +364,7 @@ namespace Fwk.Security
 
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
 
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (RuleProviderDataContext dc = new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
                     wExist = dc.aspnet_Rules.Any(s => s.name.Equals(pRuleName) && s.ApplicationId == wApplicationId);
                 }

@@ -58,7 +58,7 @@ namespace Fwk.Security
         public static List<string> GetAllMembershiproviderNameArray()
         {
             List<string> list = new List<string>();
-            foreach (MembershipProvider m in Membership.Providers)
+            foreach (MembershipProvider m in System.Web.Security.Membership.Providers)
             {
                 if(!m.Name.Equals("AspNetSqlMembershipProvider"))
                     list.Add(m.Name);
@@ -79,9 +79,9 @@ namespace Fwk.Security
             SqlMembershipProvider wSqlMembershipProvider;
 
             if (string.IsNullOrEmpty(providerName))
-                wSqlMembershipProvider = (SqlMembershipProvider)Membership.Provider;
+                wSqlMembershipProvider = (SqlMembershipProvider)System.Web.Security.Membership.Provider;
             else
-                wSqlMembershipProvider = (SqlMembershipProvider)Membership.Providers[providerName];
+                wSqlMembershipProvider = (SqlMembershipProvider)System.Web.Security.Membership.Providers[providerName];
 
             if (wSqlMembershipProvider == null)
             {
@@ -108,7 +108,7 @@ namespace Fwk.Security
             //{
             //    Fwk.Security.Configuration.FwkAuthorizationRuleProviderData wProviderData;
             //    if (string.IsNullOrEmpty(providerName))
-            //        wProviderData = ((Fwk.Security.Configuration.FwkAuthorizationRuleProviderData)(_SecuritySettings.AuthorizationProviders.Get(Membership.Provider.Name)));
+            //        wProviderData = ((Fwk.Security.Configuration.FwkAuthorizationRuleProviderData)(_SecuritySettings.AuthorizationProviders.Get(System.Web.Security.Membership.Provider.Name)));
             //    else
             //        wProviderData = ((Fwk.Security.Configuration.FwkAuthorizationRuleProviderData)(_SecuritySettings.AuthorizationProviders.Get(providerName)));
 
@@ -119,8 +119,8 @@ namespace Fwk.Security
             //}
             if (string.IsNullOrEmpty(providerName))
             {
-                if (providerCnnStrings.ContainsKey(Membership.Provider.Name))
-                    return providerCnnStrings[Membership.Provider.Name];
+                if (providerCnnStrings.ContainsKey(System.Web.Security.Membership.Provider.Name))
+                    return providerCnnStrings[System.Web.Security.Membership.Provider.Name];
             }
             else
             {
@@ -134,7 +134,7 @@ namespace Fwk.Security
             
                
                 if (string.IsNullOrEmpty(providerName))
-                    wProviderSettings = ((ProviderSettings)(_MembershipSection.Providers[Membership.Provider.Name]));
+                    wProviderSettings = ((ProviderSettings)(_MembershipSection.Providers[System.Web.Security.Membership.Provider.Name]));
                 else
                      wProviderSettings = ((ProviderSettings)(_MembershipSection.Providers[providerName]));
 

@@ -8,6 +8,7 @@ using Fwk.Security;
 using Fwk.Security.ISVC.AssignRolesToUser;
 using Fwk.Security.Common;
 using Fwk.Security.BC;
+using Fwk.Security.Membership;
 
 
 namespace Fwk.Security.SVC
@@ -21,7 +22,7 @@ namespace Fwk.Security.SVC
             UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
            
             if (string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
-                pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;
+                pServiceRequest.BusinessData.ApplicationName = System.Web.Security.Membership.ApplicationName;
 
             FwkMembership.CreateRolesToUser(pServiceRequest.BusinessData.RolList, pServiceRequest.BusinessData.Username, pServiceRequest.SecurityProviderName);
 

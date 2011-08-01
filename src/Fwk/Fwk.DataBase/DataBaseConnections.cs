@@ -70,17 +70,20 @@ namespace Fwk.DataBase
             }
 
         }
-
+        /// <summary>
+        /// Limpia la lista de conexiones
+        /// </summary>
         public void Clear()
         {
-            _Connections = new CnnStringList();
+            _Connections.Clear();
+            //_Connections = new CnnStringList();
             Save();
         }
 
         /// <summary>
         /// Crear in IsolatedStorageFile con la serializacion en binario del diccionario .-
         /// Este diccionario contiene el par [NombreArchivo,Ruta]
-        //// </summary>
+        /// </summary>
         public void Save()
         {
 

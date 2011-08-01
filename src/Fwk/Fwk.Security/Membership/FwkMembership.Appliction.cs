@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using Fwk.Exceptions;
+using Fwk.Security.Membership;
 
 namespace Fwk.Security
 {
@@ -66,7 +67,7 @@ namespace Fwk.Security
             try
             {
 
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[companyId].ConnectionString))
+                using (RuleProviderDataContext dc = new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[companyId].ConnectionString))
                 {
 
                     aspnet_Application app = dc.aspnet_Applications.First<aspnet_Application>(p => p.LoweredApplicationName.Equals(applicationName.ToLower()));
