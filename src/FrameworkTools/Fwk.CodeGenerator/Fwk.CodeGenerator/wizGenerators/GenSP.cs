@@ -44,7 +44,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pProceduresCode">Lista de código generado.</param>
         /// <date>2006-03-20T00:00:00</date>
         /// <author>Marcelo Oviedo</author>
-        internal static List<GeneratedCode> GenCode(Table pTable, List<GeneratedCode> pProceduresCode)
+        internal static List<GeneratedCode> GenCode(TableViewBase pTable, List<GeneratedCode> pProceduresCode)
         {
 
             string wSPBodyCode;
@@ -189,7 +189,7 @@ namespace Fwk.CodeGenerator
 
         /// <date>2007-5-25T00:00:00</date>
         /// <author>Marcelo Oviedo</author>
-        static StringBuilder GenCodeCommon(Table pTable, string pSpBody)
+        static StringBuilder GenCodeCommon(TableViewBase pTable, string pSpBody)
         {
             StringBuilder wBuilder = new StringBuilder();
             wBuilder.Append(_CommonTemplate);
@@ -320,7 +320,7 @@ namespace Fwk.CodeGenerator
 
         
 
-        static void GenCodeGetByParam(Table pTable, string pSpBody, MethodActionType action, List<GeneratedCode> pProceduresCode)
+        static void GenCodeGetByParam(TableViewBase pTable, string pSpBody, MethodActionType action, List<GeneratedCode> pProceduresCode)
         {
             GeneratedCode wCode = null;
 
@@ -341,7 +341,7 @@ namespace Fwk.CodeGenerator
                 wCode = null;
             }
         }
-        static void GenCodeUpdate(Table pTable, string pSpBody, MethodActionType action, List<GeneratedCode> pProceduresCode)
+        static void GenCodeUpdate(TableViewBase pTable, string pSpBody, MethodActionType action, List<GeneratedCode> pProceduresCode)
         {
             StringBuilder wBuilder = null;
             GeneratedCode wCode = null;
@@ -371,7 +371,7 @@ namespace Fwk.CodeGenerator
                 wCode = null;
             }
         }
-        static void GenCodeDelete(Table pTable, string pSpBody, MethodActionType action, List<GeneratedCode> pProceduresCode)
+        static void GenCodeDelete(TableViewBase pTable, string pSpBody, MethodActionType action, List<GeneratedCode> pProceduresCode)
         {
 
             StringBuilder wBuilder = null;
@@ -401,7 +401,7 @@ namespace Fwk.CodeGenerator
                 wCode = null;
             }
         }
-         static void GenCodeInsert(Table pTable, string pSpBody,MethodActionType action, List<GeneratedCode> pProceduresCode)
+        static void GenCodeInsert(TableViewBase pTable, string pSpBody, MethodActionType action, List<GeneratedCode> pProceduresCode)
         {
 
             StringBuilder wBuilder = null;
@@ -434,7 +434,7 @@ namespace Fwk.CodeGenerator
                 wCode = null;
             }
         }
-        static string GenCodeWhereClause(Table pTable)
+        static string GenCodeWhereClause(TableViewBase pTable)
         {
             StringBuilder wBuilder = new StringBuilder();
 
@@ -471,7 +471,7 @@ namespace Fwk.CodeGenerator
         /// <returns>Código fuente generado.</returns>
         /// <date>2007-5-25T00:00:00</date>
         /// <author>Marcelo Oviedo</author>
-        protected string GenCodeParameters(Table pTable, MethodActionType action)
+        protected string GenCodeParameters(TableViewBase pTable, MethodActionType action)
         {
 
             StringBuilder wBuilder = new StringBuilder();
@@ -511,7 +511,7 @@ namespace Fwk.CodeGenerator
         /// <returns>Código fuente generado.</returns>
         /// <date>2007-5-25T00:00:00</date>
         /// <author>Marcelo Oviedo</author>
-        static string GenCodeGetSelectList(Table pTable)
+        static string GenCodeGetSelectList(TableViewBase pTable)
         {
             StringBuilder wBuilder = new StringBuilder();
 
@@ -535,7 +535,7 @@ namespace Fwk.CodeGenerator
 
         #region -- auxiliares Insert --
 
-        static string GenCodeInsertParameters(Table pTable, MethodActionType action)
+        static string GenCodeInsertParameters(TableViewBase pTable, MethodActionType action)
         {
             StringBuilder wBuilder = new StringBuilder();
             StringBuilder wParamBuilder;
@@ -577,7 +577,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pMethodInfo"></param>
         /// <returns></returns>
         /// <author>Marcelo Oviedo</author>
-        static string GenCodeInsertFields(Table pTable, MethodActionType action)
+        static string GenCodeInsertFields(TableViewBase pTable, MethodActionType action)
         {
             StringBuilder wBuilder = new StringBuilder();
 
@@ -602,7 +602,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pMethodInfo"></param>
         /// <returns></returns>
         /// <author>Marcelo Oviedo</author>
-        static string GenCodeInsertValues(Table pTable, MethodActionType action)
+        static string GenCodeInsertValues(TableViewBase pTable, MethodActionType action)
         {
             StringBuilder wBuilder = new StringBuilder();
 
@@ -620,7 +620,7 @@ namespace Fwk.CodeGenerator
             return wBuilder.ToString();
         }
         ///TODO: Ver si se utiliza esto
-        static string GenCodeInsertReturnAutogenerated(Table pTable, MethodActionType action)
+        static string GenCodeInsertReturnAutogenerated(TableViewBase pTable, MethodActionType action)
         {
             StringBuilder wBuilder = new StringBuilder();
             string wText = string.Empty;
@@ -656,7 +656,7 @@ namespace Fwk.CodeGenerator
         /// <returns>Código fuente generado.</returns>
         /// <date>2007-5-25T00:00:00</date>
         /// <author>Marcelo Oviedo</author>
-        static string GenCodeDeleteParameters(Table pTable, MethodActionType action)
+        static string GenCodeDeleteParameters(TableViewBase pTable, MethodActionType action)
         {
             StringBuilder wBuilder = new StringBuilder();
 
@@ -685,7 +685,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pMethodInfo"></param>
         /// <returns>string</returns>
         /// <author>Marcelo Oviedo</author>
-        static string GenCodeUpdateParameters(Table pTable, MethodActionType action)
+        static string GenCodeUpdateParameters(TableViewBase pTable, MethodActionType action)
         {
             StringBuilder wBuilder = new StringBuilder();
 
@@ -709,7 +709,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pMethodInfo"></param>
         /// <returns>string</returns>
         /// <author>Marcelo Oviedo</author>
-        static string GenCodeUpdateSetStatements(Table pTable, MethodActionType action)
+        static string GenCodeUpdateSetStatements(TableViewBase pTable, MethodActionType action)
         {
             StringBuilder wBuilder = new StringBuilder();
 
@@ -743,7 +743,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pTable"></param>
         /// <returns></returns>
         /// <author>Marcelo Oviedo</author>
-        static string GenerateStoreSearchByParam(Table pTable)
+        static string GenerateStoreSearchByParam(TableViewBase pTable)
         {
 
             StringBuilder wSPPatternWitchExecutesql = new StringBuilder();

@@ -101,9 +101,9 @@ namespace Fwk.CodeGenerator
         #region Entity gen
 
 
+      
 
-
-        internal static Column GetPrimaryKey(Table pTable)
+        internal static Column GetPrimaryKey(TableViewBase pTable)
         {
             foreach (Column c in pTable.Columns)
             {

@@ -25,11 +25,11 @@ namespace Fwk.CodeGenerator
         /// </summary>
         /// <param name="pTreeView">Nodo</param>
         /// <param name="pTables">Tablas</param>
-        public static void LoadTreeView(TreeView pTreeView, TableCollection pTables)
+        public static void LoadTreeView(TreeView pTreeView, SchemaCollectionBase pTables)
         {
             TreeNode wTreeNode;
-            pTreeView.Nodes.Clear();    
-            foreach (Table wTable in pTables)
+            pTreeView.Nodes.Clear();
+            foreach (TableViewBase wTable in pTables)
             {
                 wTreeNode = new TreeNode();
                 wTreeNode.Checked = false;
@@ -48,11 +48,11 @@ namespace Fwk.CodeGenerator
         /// Carga las coluimnas al nodo pParentNode.-
         /// </summary>
         /// <param name="pParentNode">Nodo padre </param>
-        /// <param name="pTable"></param>
-        internal static void LoadColumnsNodes(TreeNode pParentNode, Table pTable)
+        /// <param name="pView"></param>
+        internal static void LoadColumnsNodes(TreeNode pParentNode, TableViewBase pView)
         {
             TreeNode wTreeNode;
-            foreach (Column wColumn in pTable.Columns)
+            foreach (Column wColumn in pView.Columns)
             {
 
                 String nullable = wColumn.Nullable ? "NULL" : String.Empty;

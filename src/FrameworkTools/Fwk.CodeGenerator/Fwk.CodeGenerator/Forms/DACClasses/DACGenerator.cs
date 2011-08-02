@@ -23,8 +23,35 @@ namespace Fwk.CodeGenerator
         /// <author>Marcelo Oviedo</author>
         internal class DACGenerator
         {
-           
 
+
+
+            /// <summary>
+            /// Inicia la generación de código fuente de un componente de acceso a datos
+            /// </summary>
+            /// <param name="pEntityGenerationInfo">información de generación de entidad para creación del componente de acceso a datos.</param>
+            /// <returns>Código fuente.</returns>
+            /// <date>2006-03-29T00:00:00</date>
+            /// <author>Marcelo Oviedo</author>
+            internal static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.View> pViews)
+            {
+                List<GeneratedCode> wGeneratedCodeResult = new List<GeneratedCode>();
+                GeneratedCode wGeneratedCode;
+                foreach (Microsoft.SqlServer.Management.Smo.View t in pViews)
+                {
+                    //GenClass(wEntityInfo,wGeneratedCodeResult);
+                    wGeneratedCode = new GeneratedCode();
+                    wGeneratedCode.Id = t.Name;
+                    ///TODO: Ver parametros Gen_DAC
+                    wGeneratedCode.Code.Append(GenDAC.Gen_DAC(t,
+                        FwkGeneratorHelper.TemplateSetting.Methods.GenerateBatch,
+                        FwkGeneratorHelper.TemplateSetting.Project.ProjectName));
+                    wGeneratedCodeResult.Add(wGeneratedCode);
+                }
+
+
+                return BuildTreeNode(wGeneratedCodeResult);
+            }
 
 
             /// <summary>

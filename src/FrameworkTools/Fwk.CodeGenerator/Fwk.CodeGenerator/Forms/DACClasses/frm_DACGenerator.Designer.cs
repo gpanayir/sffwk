@@ -35,6 +35,8 @@ namespace Fwk.CodeGenerator
             this.ctrlTreeViewTables1 = new Fwk.CodeGenerator.ctrlTreeViewTables();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.treeViewStoreProcedures1 = new Fwk.DataBase.CustomControls.TreeViewStoreProcedures();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.ctrlTreeViewViews1 = new Fwk.CodeGenerator.ctrlTreeViewViews();
             this.btnGenerate2 = new System.Windows.Forms.Button();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -46,13 +48,15 @@ namespace Fwk.CodeGenerator
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonGenerate = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.textCodeEditor1 = new TextCodeEditor();
+            this.textCodeEditor1 = new Fwk.Controls.Win32.TextCodeEditor.TextCodeEditor();
             this.listViewCodeGenerated1 = new Fwk.CodeGenerator.ListViewCodeGenerated();
             this.txtSPName = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -60,10 +64,11 @@ namespace Fwk.CodeGenerator
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(3, 31);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
@@ -78,52 +83,76 @@ namespace Fwk.CodeGenerator
             this.tabPage1.BackColor = System.Drawing.Color.SteelBlue;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage1.Controls.Add(this.ctrlTreeViewTables1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 40);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(208, 468);
+            this.tabPage1.Size = new System.Drawing.Size(208, 450);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Tag = "0";
             this.tabPage1.Text = "From tables";
             // 
             // ctrlTreeViewTables1
             // 
-            this.ctrlTreeViewTables1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlTreeViewTables1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ctrlTreeViewTables1.CheckBoxes = true;
             this.ctrlTreeViewTables1.Location = new System.Drawing.Point(2, 2);
             this.ctrlTreeViewTables1.Name = "ctrlTreeViewTables1";
-            this.ctrlTreeViewTables1.Size = new System.Drawing.Size(198, 458);
+            this.ctrlTreeViewTables1.Size = new System.Drawing.Size(198, 440);
             this.ctrlTreeViewTables1.TabIndex = 0;
             // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.SteelBlue;
             this.tabPage2.Controls.Add(this.treeViewStoreProcedures1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(208, 468);
+            this.tabPage2.Size = new System.Drawing.Size(208, 450);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Tag = "1";
             this.tabPage2.Text = "From store procedures";
             // 
             // treeViewStoreProcedures1
             // 
-            this.treeViewStoreProcedures1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeViewStoreProcedures1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewStoreProcedures1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.treeViewStoreProcedures1.Location = new System.Drawing.Point(0, 3);
             this.treeViewStoreProcedures1.Name = "treeViewStoreProcedures1";
             this.treeViewStoreProcedures1.SelectedStoreProcedure = null;
             this.treeViewStoreProcedures1.SelectedStoreProcedureName = global::Fwk.CodeGenerator.Properties.Resources.AppIcon;
-            this.treeViewStoreProcedures1.Size = new System.Drawing.Size(207, 451);
+            this.treeViewStoreProcedures1.Size = new System.Drawing.Size(207, 433);
             this.treeViewStoreProcedures1.StoreProcedures = null;
             this.treeViewStoreProcedures1.TabIndex = 0;
             this.treeViewStoreProcedures1.SelectObjectEvent += new Fwk.DataBase.CustomControls.SelectObjectHandler(this.treeViewStoreProcedures1_SelectObjectEvent);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.ctrlTreeViewViews1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 40);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(208, 450);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Tag = "3";
+            this.tabPage3.Text = "From views";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // ctrlTreeViewViews1
+            // 
+            this.ctrlTreeViewViews1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlTreeViewViews1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ctrlTreeViewViews1.CheckBoxes = true;
+            this.ctrlTreeViewViews1.Location = new System.Drawing.Point(0, 0);
+            this.ctrlTreeViewViews1.Name = "ctrlTreeViewViews1";
+            this.ctrlTreeViewViews1.Size = new System.Drawing.Size(202, 446);
+            this.ctrlTreeViewViews1.TabIndex = 0;
             // 
             // btnGenerate2
             // 
@@ -170,13 +199,13 @@ namespace Fwk.CodeGenerator
             // lblServer
             // 
             this.lblServer.Name = "lblServer";
-            this.lblServer.Size = new System.Drawing.Size(49, 22);
+            this.lblServer.Size = new System.Drawing.Size(48, 22);
             this.lblServer.Text = "Server : ";
             // 
             // lblDatabase
             // 
             this.lblDatabase.Name = "lblDatabase";
-            this.lblDatabase.Size = new System.Drawing.Size(60, 22);
+            this.lblDatabase.Size = new System.Drawing.Size(61, 22);
             this.lblDatabase.Text = "Database: ";
             // 
             // btnRefresh
@@ -193,7 +222,7 @@ namespace Fwk.CodeGenerator
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(59, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(46, 22);
             this.toolStripLabel1.Text = ".............";
             // 
             // toolStripSeparator1
@@ -213,9 +242,9 @@ namespace Fwk.CodeGenerator
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(220, 28);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -233,9 +262,9 @@ namespace Fwk.CodeGenerator
             // 
             // textCodeEditor1
             // 
-            this.textCodeEditor1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textCodeEditor1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textCodeEditor1.BackColor = System.Drawing.Color.GhostWhite;
             this.textCodeEditor1.Location = new System.Drawing.Point(5, 3);
             this.textCodeEditor1.Name = "textCodeEditor1";
@@ -246,9 +275,9 @@ namespace Fwk.CodeGenerator
             // 
             // listViewCodeGenerated1
             // 
-            this.listViewCodeGenerated1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewCodeGenerated1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewCodeGenerated1.ForeColorBE = System.Drawing.Color.Empty;
             this.listViewCodeGenerated1.ForeColorDAC = System.Drawing.Color.Empty;
             this.listViewCodeGenerated1.ForeColorSP = System.Drawing.Color.Empty;
@@ -261,10 +290,10 @@ namespace Fwk.CodeGenerator
             this.listViewCodeGenerated1.NodeSP = null;
             this.listViewCodeGenerated1.NodeSVC = null;
             this.listViewCodeGenerated1.NodeTDG = null;
-            this.listViewCodeGenerated1.Size = new System.Drawing.Size(209, 493);
+            this.listViewCodeGenerated1.Size = new System.Drawing.Size(207, 493);
             this.listViewCodeGenerated1.TabIndex = 0;
-            this.listViewCodeGenerated1.StoredProcedureCodeGeneratedSelectEvent += new Fwk.CodeGenerator.StoredProcedureCodeGeneratedSelectHandler(this.listViewCodeGenerated1_StoreProcedureCodeGeneratedSelectEvent);
             this.listViewCodeGenerated1.ServiceCodeGeneratedSelectEvent += new Fwk.CodeGenerator.ServiceCodeGeneratedSelectHandler(this.listViewCodeGenerated1_ServiceCodeGeneratedSelectEvent);
+            this.listViewCodeGenerated1.StoredProcedureCodeGeneratedSelectEvent += new Fwk.CodeGenerator.StoredProcedureCodeGeneratedSelectHandler(this.listViewCodeGenerated1_StoreProcedureCodeGeneratedSelectEvent);
             this.listViewCodeGenerated1.DACCodeGeneratedSelectEvent += new Fwk.CodeGenerator.DACCodeGeneratedSelectHandler(this.listViewCodeGenerated1_DACCodeGeneratedSelectEvent);
             this.listViewCodeGenerated1.BECodeGeneratedSelectEvent += new Fwk.CodeGenerator.BECodeGeneratedSelectHandler(this.listViewCodeGenerated1_BECodeGeneratedSelectEvent);
             this.listViewCodeGenerated1.TDGCodeGeneratedSelectEvent += new Fwk.CodeGenerator.TDGCodeGeneratedSelectHandler(this.listViewCodeGenerated1_TDGCodeGeneratedSelectEvent);
@@ -295,10 +324,12 @@ namespace Fwk.CodeGenerator
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -330,6 +361,8 @@ namespace Fwk.CodeGenerator
         
         private TextCodeEditor textCodeEditor1;
         private Fwk.CodeGenerator.ctrlTreeViewTables ctrlTreeViewTables1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private ctrlTreeViewViews ctrlTreeViewViews1;
       
     }
 }

@@ -63,11 +63,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSharpBinding, Version=2.1.0.2429, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Fwk.Bases.Connector, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
     <Reference Include="Fwk.Bases.FrontEnd, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -263,6 +261,12 @@
     <Compile Include="No_Used\ServiceControlle.cs" />
     <Compile Include="ObjectModel\Storage.cs" />
     <Compile Include="ObjectModel\TreeViewHelper.cs" />
+    <Compile Include="wizControls\ctrlTreeViewViews.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="wizControls\ctrlTreeViewViews.Designer.cs">
+      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
+    </Compile>
     <Compile Include="wizControls\CnnString.cs" />
     <Compile Include="wizControls\ctrlNewService.cs">
       <SubType>UserControl</SubType>
@@ -304,18 +308,6 @@
     <Compile Include="ObjectModel\WorkSpace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExternalTools\TextToStringBuilder\Fwk.Bases.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ExternalTools\TextToStringBuilder\Fwk.Controls.Win32.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ExternalTools\TextToStringBuilder\Fwk.Controls.Win32.TextCodeEditor.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ExternalTools\TextToStringBuilder\TextToStringBuilder.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Files\DataBaseConfig.xml">
     </None>
     <None Include="Resources\serviceunknown.ico" />
@@ -351,6 +343,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectModel\ListViewCodeGenerated.resx">
       <DependentUpon>ListViewCodeGenerated.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\ctrlTreeViewViews.resx">
+      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="wizControls\ctrlNewService.resx">
@@ -440,38 +436,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Component Include="ExternalTools\TextToStringBuilder\CSharpBinding.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.Core.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.NRefactory.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.SharpDevelop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.SharpDevelop.Dom.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.SharpDevelop.Widgets.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.TextEditor.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\log4net.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\Mono.Cecil.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\WeifenLuo.WinFormsUI.Docking.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-  </ItemGroup>
-  <ItemGroup>
+    <Folder Include="ExternalTools\TextToStringBuilder\" />
     <Folder Include="Files\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

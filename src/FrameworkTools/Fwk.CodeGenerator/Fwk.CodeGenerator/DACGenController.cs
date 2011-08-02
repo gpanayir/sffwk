@@ -14,6 +14,8 @@ namespace Fwk.CodeGenerator
 
         private CodeGeneratorCommon.SelectedObject _SelectedObject = CodeGeneratorCommon.SelectedObject.Tables; 
         private List<Table> _Tables = null;
+        private List<Microsoft.SqlServer.Management.Smo.View> _Views = null;
+       
         private List<StoredProcedure> _StoreProcedures = null;
         private ListViewCodeGenerated _listViewCodeGenerated = null;
 
@@ -46,6 +48,15 @@ namespace Fwk.CodeGenerator
         /// <summary>
         /// 
         /// </summary>
+        public List<Microsoft.SqlServer.Management.Smo.View> Views
+        {
+            get { return _Views; }
+            set { _Views = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public List<StoredProcedure> StoreProcedures
         {
             get { return _StoreProcedures; }
@@ -74,14 +85,23 @@ namespace Fwk.CodeGenerator
                     {
 
                         _listViewCodeGenerated.NodeSP = SPGenerator.GenCode(_Tables);
-                       
+                        _listViewCodeGenerated.NodeDAC = DACGenerator.GenCode(_Tables);
+                        _listViewCodeGenerated.NodeBE = BEGenerator.GenCode(_Tables);
+                        break;
+                    }
+                case CodeGeneratorCommon.SelectedObject.Views:
+                    {
+
+                        _listViewCodeGenerated.NodeSP = SPGenerator.GenCode(_Views);
+                        _listViewCodeGenerated.NodeDAC = DACGenerator.GenCode(_Views);
+                        _listViewCodeGenerated.NodeBE = BEGenerator.GenCode(_Views);
                         break;
                     }
 
             }
 
-            _listViewCodeGenerated.NodeDAC = DACGenerator.GenCode(_Tables);
-            _listViewCodeGenerated.NodeBE = BEGenerator.GenCode(_Tables);
+            
+            
             _listViewCodeGenerated.LoadTtreeView();
         }
 

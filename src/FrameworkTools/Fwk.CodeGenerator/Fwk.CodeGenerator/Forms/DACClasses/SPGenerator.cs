@@ -31,7 +31,26 @@ namespace Fwk.CodeGenerator
             return BuildTreeNode(wGeneratedCodeResult);
 
         }
+        /// <summary>
+        /// Genera el código fuente de un conjunto de procedimientos almacenados.
+        /// </summary>
+        /// <seealso cref="GenStoredProcedures"/>
+        /// <param name="pEntityGenerationInfo">información de generación de entidad para creación de procedimientos almacenados.</param>
+        /// <returns>Código fuente.</returns>
+        /// <date>2007-5-25T00:00:00</date>
+        /// <author>Marcelo Oviedo</author>
+        public static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.View> pViews)
+        {
 
+            List<GeneratedCode> wGeneratedCodeResult = new List<GeneratedCode>();
+
+            foreach (Microsoft.SqlServer.Management.Smo.View t in pViews)
+            {
+                GenSP.GenCode(t, wGeneratedCodeResult);
+            }
+            return BuildTreeNode(wGeneratedCodeResult);
+
+        }
 
 
         /// <summary>

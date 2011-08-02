@@ -17,7 +17,8 @@ namespace Fwk.CodeGenerator
         {
             Tables = 0,
             StoreProcedures = 1,
-            Schema = 2
+            Schema = 2,
+            Views =3
         }
         public enum TemplateType
         {

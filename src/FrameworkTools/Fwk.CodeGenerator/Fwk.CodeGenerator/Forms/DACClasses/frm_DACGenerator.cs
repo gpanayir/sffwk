@@ -122,6 +122,12 @@ namespace Fwk.CodeGenerator
                         //_DACGenController.StoreProcedures = treeViewStoreProcedures1.GetSelectedStoreProcedures();
                         break;
                     }
+                case CodeGeneratorCommon.SelectedObject.Views:
+                    {
+                        if (ctrlTreeViewViews1.SelectedView == null) return;
+                        _DACGenController.Views = ctrlTreeViewViews1.CheckedViews;
+                        break;
+                    }
             }
 
             _DACGenController.Generate();
@@ -146,11 +152,16 @@ namespace Fwk.CodeGenerator
 
             try
             {
-                base._SelectedObject = (CodeGeneratorCommon.SelectedObject)tabControl1.SelectedIndex;
+                //base._SelectedObject = (CodeGeneratorCommon.SelectedObject)tabControl1.SelectedTab.Tag;
                 if (!base.RefreshMetadata()) return;
 
-                
-                
+
+                //Esta seleccionado Tables
+                if (_SelectedObject == CodeGeneratorCommon.SelectedObject.Views)
+                {
+                    ctrlTreeViewViews1.Populate(base.CnnString);
+
+                }
 
                 //Esta seleccionado Tables
                 if (_SelectedObject == CodeGeneratorCommon.SelectedObject.Tables)

@@ -19,7 +19,7 @@ namespace Fwk.CodeGenerator
         }
 
 
-        internal static string Gen_DAC(Table pTable, bool pPerformBatch, string projectNmae)
+        internal static string Gen_DAC(TableViewBase pTable, bool pPerformBatch, string projectNmae)
         {
             StringBuilder wClass = new StringBuilder(_DAC_tt);
             StringBuilder wMethods = new StringBuilder();
@@ -41,7 +41,7 @@ namespace Fwk.CodeGenerator
 
             return wClass.ToString();
         }
-        static string GenBatchMethod(Table pTable, MethodActionType t)
+        static string GenBatchMethod(TableViewBase pTable, MethodActionType t)
         {
             StringBuilder wMethod = new StringBuilder(FwkGeneratorHelper.TemplateDocument.GetTemplate("MethodBatch").Content);
             wMethod.Replace("[SummaryParams]", GenParametersSummary(t, pTable));
@@ -51,7 +51,7 @@ namespace Fwk.CodeGenerator
             wMethod.Replace("[Parameters]", GenSPParameters_Batch(pTable, t));
             return wMethod.ToString();
         }
-        static string GenMethod(Table pTable, MethodActionType t)
+        static string GenMethod(TableViewBase pTable, MethodActionType t)
         {
             StringBuilder wMethod = new StringBuilder(_Method_tt);
             wMethod.Replace("[SummaryParams]", GenParametersSummary(t, pTable));
@@ -65,7 +65,7 @@ namespace Fwk.CodeGenerator
             return wMethod.ToString();
         }
 
-        private static string GenMethodReturn(Table pTable, MethodActionType t)
+        private static string GenMethodReturn(TableViewBase pTable, MethodActionType t)
         {
             StringBuilder wBuilderReturn = null;
             switch (t)
@@ -101,7 +101,7 @@ namespace Fwk.CodeGenerator
 
         }
 
-        private static string GenDeclaration(Table pTable, MethodActionType t)
+        private static string GenDeclaration(TableViewBase pTable, MethodActionType t)
         {
 
             switch (t)
@@ -126,7 +126,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pMethodInfo">información sobre el método a generar.</param>
         /// <returns>Comentarios sobre los parámetros.</returns>
         /// <author>Marcelo Oviedo</author>
-        static string GenParametersSummary(MethodActionType pMethodActionType, Table pTable)
+        static string GenParametersSummary(MethodActionType pMethodActionType, TableViewBase pTable)
         {
             StringBuilder wBuilder = new StringBuilder(FwkGeneratorHelper.TemplateDocument.GetTemplate("ParameterSummary").Content);
 
@@ -169,7 +169,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pTable">tabla.</param>
         /// <returns>Código que representa los parámetros para ejecutar el método.</returns>
         /// <author>Marcelo Oviedo</author>
-        static string GenMethodParameters(MethodActionType pMethodActionType, Table pTable)
+        static string GenMethodParameters(MethodActionType pMethodActionType, TableViewBase pTable)
         {
             String wBuilder = string.Empty;
             switch (pMethodActionType)
@@ -206,7 +206,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pTable"></param>
         /// <param name="pMethodActionType"></param>
         /// <returns></returns>
-        static string GetRetType(Table pTable, MethodActionType pMethodActionType)
+        static string GetRetType(TableViewBase pTable, MethodActionType pMethodActionType)
         {
             String wBuilder = string.Empty;
             Column c = FwkGeneratorHelper.GetPrimaryKey(pTable);
@@ -234,7 +234,7 @@ namespace Fwk.CodeGenerator
         /// <param name="pTable"></param>
         /// <param name="pMethodActionType"></param>
         /// <returns></returns>
-        static string GetSPName(Table pTable, MethodActionType pMethodActionType)
+        static string GetSPName(TableViewBase pTable, MethodActionType pMethodActionType)
         {
             String sufix = string.Empty;
 
@@ -266,7 +266,7 @@ namespace Fwk.CodeGenerator
         }
 
 
-        static string GenSPParameters(Table pTable, MethodActionType pMethodActionType)
+        static string GenSPParameters(TableViewBase pTable, MethodActionType pMethodActionType)
         {
 
             StringBuilder wParams = new StringBuilder();
@@ -327,7 +327,7 @@ namespace Fwk.CodeGenerator
             return wParams.ToString();
         }
 
-        static string GetInParameter(Table pTable, Column c)
+        static string GetInParameter(TableViewBase pTable, Column c)
         {
             StringBuilder wParamBuilder = new StringBuilder(FwkGeneratorHelper.TemplateDocument.GetTemplate("ParameterInput").Content);
             //Si es un tipo de dato string y hacepta nulos se agrega la condicion para decidir si pasar o no el parametros al SP
@@ -367,7 +367,7 @@ namespace Fwk.CodeGenerator
             return wParamBuilder.ToString();
         }
 
-        static string GetOutParameter(Table pTable, Column c)
+        static string GetOutParameter(TableViewBase pTable, Column c)
         {
             StringBuilder wParamBuilder = new StringBuilder(FwkGeneratorHelper.TemplateDocument.GetTemplate("ParameterOutput").Content);
             wParamBuilder.Replace("[ParameterName]", c.Name);
@@ -379,7 +379,7 @@ namespace Fwk.CodeGenerator
         }
 
 
-        static string GenSPParameters_Batch(Table pTable, MethodActionType pMethodActionType)
+        static string GenSPParameters_Batch(TableViewBase pTable, MethodActionType pMethodActionType)
         {
 
             StringBuilder wParams = new StringBuilder();

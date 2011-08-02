@@ -10,8 +10,27 @@ namespace Fwk.CodeGenerator
 {
     internal class BEGenerator
     {
- 
-        
+
+        internal static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.View> pViews)
+        {
+
+            List<GeneratedCode> wGeneratedCodeResult = new List<GeneratedCode>();
+            GeneratedCode wGeneratedCode;
+            foreach (Microsoft.SqlServer.Management.Smo.View t in pViews)
+            {
+
+                wGeneratedCode = new GeneratedCode();
+                wGeneratedCode.Id = t.Name;
+                wGeneratedCode.Code.Append(GenEntity.Generate(t, FwkGeneratorHelper.TemplateSetting.Project.ProjectName));
+                wGeneratedCodeResult.Add(wGeneratedCode);
+            }
+
+
+            return BuildTreeNode(wGeneratedCodeResult);
+
+        }
+
+
         internal static TreeNode GenCode(List<Table> pTables )
         {
              
