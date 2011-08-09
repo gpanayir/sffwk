@@ -1,0 +1,29 @@
+﻿<#@ template language="C#" #>
+<#@ property processor="PropertyProcessor" name="EntityName" #>
+<#@ property processor="PropertyProcessor" name="TargetNamespace" #>
+
+<#@ assembly name="System.dll" #>
+
+
+
+
+using System;
+using System.Text;
+
+namespace <#= this.TargetNamespace #>
+{
+	/// <summary>
+	/// The code in this class uses a for loop to generate multiple lines of code.
+	/// </summary>
+	public class <#= this.EntityName #>
+	{
+		public void Repeat()
+		{
+<# int count = 10; //note that the property is emitted strong-typed
+for (int i = 0; i < count; i++) { #>
+			Console.WriteLine("Hello iteration: " + <#= i #>);
+<# } #>
+		}
+	}
+}
+
