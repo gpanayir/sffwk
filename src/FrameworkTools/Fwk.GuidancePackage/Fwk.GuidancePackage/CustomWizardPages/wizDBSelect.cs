@@ -22,9 +22,20 @@ namespace Fwk.GuidPk
         DataTable _AvailableSqlServers;
         Server _Server;
 
+        [RecipeArgument]
+        public string ConnectionString
+        {
+            set
+            {
+                if (value != null)
+                {
 
+                    _cnn = new CnnString("1", value.ToString());
+                    SetUI(_cnn);
+                }
 
-
+            }
+        }
 
 
         public wizDBSelect()
@@ -37,20 +48,7 @@ namespace Fwk.GuidPk
             InitializeComponent();
         }
 
-        [RecipeArgument]
-        public string ConnectionString
-        {
-            set
-            {
-                if (value != null)
-                {
-
-                    _cnn = new CnnString("1",value.ToString());
-                    SetUI(_cnn);
-                }
-             
-            }
-        }
+   
 
        
 

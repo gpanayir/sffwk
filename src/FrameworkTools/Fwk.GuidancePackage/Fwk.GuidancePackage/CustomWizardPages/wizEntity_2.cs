@@ -30,6 +30,22 @@ namespace Fwk.GuidPk
         }
 
 
+        [RecipeArgument]
+        public string TargetNamespace
+        {
+            set
+            {
+                if (value != null)
+                {
+
+                    txtTargetNamespace.Text = value;
+                }
+                else
+                {
+                    txtTargetNamespace.Text = string.Empty;
+                }
+            }
+        }
 
 
         [RecipeArgument]
@@ -91,7 +107,11 @@ namespace Fwk.GuidPk
                 Table selTable = (Table)e;
 
                 dictionaryService.SetValue("Table", selTable);
+            
+                    txtEntityName.Text = selTable.Name;
             }
+
+
         }
 
         private void txtEntityName_TextChanged(object sender, EventArgs e)
@@ -131,6 +151,28 @@ namespace Fwk.GuidPk
 
             if (!string.IsNullOrEmpty(connectionString))
                 LoadCnn(connectionString);
+
+
+            txtTargetNamespace.Text = dictionaryService.GetValue("TargetNamespace").ToString();
+        }
+
+        private void txtTargetNamespace_TextChanged(object sender, EventArgs e)
+        {
+            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
+            if (string.IsNullOrEmpty(txtTargetNamespace.Text.ToString()))
+                dictionaryService.SetValue("TargetNamespace", null);
+            else
+                dictionaryService.SetValue("TargetNamespace", txtTargetNamespace.Text);
+        }
+
+        private void txtTargetNamespace_Enter(object sender, EventArgs e)
+        {
+            txtTargetNamespace.SelectAll();
+        }
+
+        private void txtEntityName_Enter(object sender, EventArgs e)
+        {
+            txtEntityName.SelectAll();
         }
 
 

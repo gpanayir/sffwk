@@ -15,30 +15,46 @@
 			<Actions>
         <Action Name="CreateSampleUnboundTemplateRef" Type="RefCreator" AssetName="Projects\SampleLibrary\SampleLibrary.vstemplate"
                   ReferenceType="Fwk.GuidPk.References.SolutionFolderAReference, Fwk.GuidPk" />
-   
-        
         <Action Name="UnboundEntityTemplate" Type="RefCreator" AssetName="EntityWizard"
           ReferenceType="Microsoft.Practices.RecipeFramework.Library.AssetReferences.UnboundReferences.CSharpProjectRecipeReference, Microsoft.Practices.RecipeFramework.Library" />
-
-
         
       </Actions>
 		</Recipe>
 
     <Recipe Name="CreateSolution">
+      <Types>
+        <TypeAlias Name="NmsEval" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
+      </Types>
       <Caption>Collects information for the new sample solution.</Caption>
       <Arguments>
+       
+        
         <Argument Name="ProjectName">
           <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
+        </Argument>
+        
+        <Argument Name="ProjectNamespace">
+          <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
+          
+          <ValueProvider Type="NmsEval"	 Expression="$(ProjectName).Entities">
+            <MonitorArgument Name="ProjectName" />
+          </ValueProvider>
+        
+        </Argument>
+        <Argument Name="ProjectNamespace2">
+          <ValueProvider Type="NmsEval"	 Expression="$(ProjectName).Entities">
+            <MonitorArgument Name="ProjectName" />
+          </ValueProvider>
         </Argument>
       </Arguments>
       <GatheringServiceData>
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
           <Pages>
             <Page>
-              <Title>Initial values for the new solution</Title>
+              <Title>Valores iniciales</Title>
               <Fields>
                 <Field Label="Project Name" ValueName="ProjectName" />
+                <Field Label="Namespace Name" ValueName="ProjectNamespace" />
               </Fields>
             </Page>
           </Pages>
@@ -58,15 +74,19 @@
       <Icon ID="1047"/>
       <CommandBar Name="Project" />
     </HostData>
+     
+
       <Arguments>
+        
         <Argument Name="selctedproject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
           <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
         </Argument>
 
         <Argument Name="TargetNamespace">
           <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
-          <ValueProvider Type="Evaluator" Expression="$(CurrentProject.Properties.Item('DefaultNamespace').Value)" />
+          <ValueProvider Type="Evaluator" Expression="$(selctedproject.Properties.Item('DefaultNamespace').Value)" />
         </Argument>
+        
         <Argument Name="EntityName" Type="System.String" />
         <Argument Name="ConnectionString" Type="System.String" />
         <Argument Name="Table" Type="Microsoft.SqlServer.Management.Smo.Table,Microsoft.SqlServer.Smo, Version=10.0.0.0 , Culture=neutral, PublicKeyToken=89845dcd8080cc91" />

@@ -31,9 +31,10 @@
               Recipe="CreateSolution">
 			<References>
 
-				<!--<RecipeReference Name="CustomWizardPages" Target="\SampleFolder" />-->
-
-				<TemplateReference Name="Projects\ClientApplication\ClientApplication.vstemplate" Target="\SampleFolder" />
+				
+        <RecipeReference Name="AddMainClass" Target="\SampleFolder" />
+        
+        <TemplateReference Name="Projects\ClientApplication\ClientApplication.vstemplate" Target="\SampleFolder" />
 			</References>
 		</Template>
 	</WizardData>

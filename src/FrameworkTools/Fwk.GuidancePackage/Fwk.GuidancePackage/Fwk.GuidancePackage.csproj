@@ -351,20 +351,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Compile Include="CustomWizardPages\CustomWizPage2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CustomWizardPages\CustomWizPage2.Designer.cs">
-      <DependentUpon>CustomWizPage2.cs</DependentUpon>
-    </Compile>
     <Content Include="Snippets\CSharp\Fwk.GuidancePackage\sample.snippet">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <EmbeddedResource Include="CustomWizardPages\CustomWizPage2.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>CustomWizPage2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Snippets\Basic\Fwk.GuidancePackage\" />
