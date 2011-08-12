@@ -15,9 +15,13 @@ using System.Security.Permissions;
 using System.Security.Principal;
 using System.ComponentModel;
 using System.DirectoryServices;
+using Fwk.Security.Properties;
 
 namespace Fwk.Security.ActiveDirectory
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class LDAPHelper : DirectoryServicesBase, IDirectoryService
     {
         
@@ -32,37 +36,44 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pDomainName"></param>
+        /// <param name="domainName"></param>
         /// <param name="pConnString"></param>
-        public LDAPHelper(String pDomainName, String pConnString) : this(pDomainName, pConnString, false) { }
+        public LDAPHelper(String domainName, String pConnString) : this(domainName, pConnString, false) { }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="pDomainName">Nombre corto del dominio, por ej "ALCO"</param>
+        /// <param name="domainName">Nombre corto del dominio, por ej "ALCO"</param>
         /// <param name="connStringName">Nombre de la cadena conexión de la base de datos de la tabla UrlDomains</param>
         /// <param name="pSecure">Especifica si establece una conexión SSL</param>
-        public LDAPHelper(String pDomainName, String connStringName, Boolean pSecure)
+        public LDAPHelper(String domainName, String connStringName, Boolean pSecure)
         {
-            Init(pDomainName, connStringName, pSecure, true);
+            Init(domainName, connStringName, pSecure, true);
 
         }
 
-        public LDAPHelper(String pDomainName, String connStringName, Boolean pSecure, bool chekControllers)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="domainName"></param>
+        /// <param name="connStringName"></param>
+        /// <param name="pSecure"></param>
+        /// <param name="chekControllers"></param>
+        public LDAPHelper(String domainName, String connStringName, Boolean pSecure, bool chekControllers)
         {
 
-            Init(pDomainName, connStringName, pSecure, chekControllers);
+            Init(domainName, connStringName, pSecure, chekControllers);
 
         }
 
-        void Init(String pDomainName, String connStringName, Boolean pSecure, bool chekControllers)
+        void Init(String domainName, String connStringName, Boolean pSecure, bool chekControllers)
         {
             _LdapWrapper = new LdapWrapper();
 
             //LoadControllersFromDatabase( pConnString);
 
 
-            _DomainUrlInfo = DomainsUrl_Get(System.Configuration.ConfigurationManager.ConnectionStrings[connStringName].ConnectionString, pDomainName);// _DomainUrlInfoList.First<DomainUrlInfo>(p => p.DomainName == pDomainName);
+            _DomainUrlInfo = DomainsUrl_Get(System.Configuration.ConfigurationManager.ConnectionStrings[connStringName].ConnectionString, domainName);// _DomainUrlInfoList.First<DomainUrlInfo>(p => p.DomainName == domainName);
             if (_DomainUrlInfo == null)
             {
                 throw new Fwk.Exceptions.TechnicalException("No se encontró la información del dominio especificado");
@@ -120,6 +131,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="password"></param>
+        /// <param name="logError"></param>
         /// <returns></returns>
         public LoginResult User_Logon(string userName, string password, out Fwk.Exceptions.TechnicalException logError)
         {
@@ -130,8 +142,9 @@ namespace Fwk.Security.ActiveDirectory
 
             #region Busco el usuario con un DirectoryEntry con usuario administrador
 
-
-            this.User_Get(userName, password, out wLoginResult);
+          
+                this.User_Get(userName, password, out wLoginResult);
+           
             if (wLoginResult == LoginResult.ERROR_SERVER_IS_NOT_OPERATIONAL)
             {
                 win32Error = new Win32Exception();
@@ -142,12 +155,15 @@ namespace Fwk.Security.ActiveDirectory
                 return wLoginResult;
             }
             #endregion
+            if (wLoginResult == LoginResult.LOGIN_OK) return wLoginResult;
 
             //obtain a handle to an access token.
             bool returnValue = LogonUser(userName, _DomainUrlInfo.DomainName, password,
                 (int)LOGON32.LOGON32_LOGON_INTERACTIVE,
                 (int)LOGON32.LOGON32_PROVIDER_DEFAULT,
                out safeTokenHandle);
+
+
 
 
             if (!returnValue)
@@ -210,7 +226,25 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        DirectoryEntry  GetImpersonate_SearchRoot_DE()
+        {
+            try
+            {
+                return new DirectoryEntry(_DomainUrlInfo.LDAPPath, _DomainUrlInfo.Usr, _DomainUrlInfo.Pwd, AuthenticationTypes.Secure);
+            }
+            catch (Exception e)// Cuando el usuario no existe o clave erronea
+            {
+                Exception te1 = ADHelper.ProcessActiveDirectoryException(e);
+                TechnicalException te = new TechnicalException(string.Format(Resource.AD_Impersonation_Error, te1.Message), te1.InnerException);
+                ExceptionHelper.SetTechnicalException<ADHelper>(te);
+                te.ErrorId = "4103";
+                throw te;
+            }
+        }
 
         /// <summary>
         /// Busca un usuario con autenticacion 
@@ -223,7 +257,7 @@ namespace Fwk.Security.ActiveDirectory
         DirectoryEntry User_Get(string userName, string password,out LoginResult loginResult)
         {
 
-            DirectoryEntry searchRoot_DE = new DirectoryEntry(_DomainUrlInfo.LDAPPath, _DomainUrlInfo.Usr, _DomainUrlInfo.Pwd, AuthenticationTypes.Secure);
+            DirectoryEntry searchRoot_DE = GetImpersonate_SearchRoot_DE();
 
             DirectoryEntry userDirectoryEntry = null;
             loginResult = LoginResult.LOGIN_OK;

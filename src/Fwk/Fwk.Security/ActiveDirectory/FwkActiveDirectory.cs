@@ -373,11 +373,12 @@ namespace Fwk.Security.Common
 
 
         }
-
+  
         /// <summary>
-        /// Solo sirve a los fines de ver las propiedades
+        ///  Solo sirve a los fines de ver las propiedades
         /// </summary>
         /// <param name="directoryEntry"></param>
+        /// <param name="pQuery"></param>
         private void GetProperties(DirectoryEntry directoryEntry, String pQuery)
         {
             StringBuilder slist = new StringBuilder("Query = " + pQuery);

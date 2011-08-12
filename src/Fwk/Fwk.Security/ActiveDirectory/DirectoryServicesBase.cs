@@ -22,23 +22,69 @@ namespace Fwk.Security.ActiveDirectory
     /// </summary>
     public class DirectoryServicesBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lpszUsername"></param>
+        /// <param name="lpszDomain"></param>
+        /// <param name="lpszPassword"></param>
+        /// <param name="dwLogonType"></param>
+        /// <param name="dwLogonProvider"></param>
+        /// <param name="phToken"></param>
+        /// <returns></returns>
         [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern bool LogonUser(String lpszUsername, String lpszDomain, String lpszPassword,
             int dwLogonType, int dwLogonProvider, out SafeTokenHandle phToken);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="handle"></param>
+        /// <returns></returns>
         [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
         public extern static bool CloseHandle(IntPtr handle);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [DllImport("Kernel32.dll")]
         public static extern int GetLastError();
 
         #region Properties
+        /// <summary>
+        /// 
+        /// </summary>
         protected DirectoryEntry _directoryEntrySearchRoot;
+        /// <summary>
+        /// 
+        /// </summary>
         protected string _LDAPPath;
+        /// <summary>
+        /// Domain DC name
+        /// </summary>
         protected string _LDAPDomain;
+        /// <summary>
+        /// 
+        /// </summary>
         protected string _LDAPUser;
+        /// <summary>
+        /// 
+        /// </summary>
         protected string _LDAPPassword;
 
+        /// <summary>
+        /// Domain name ej allus-ar
+        /// </summary>
+        protected string _LDAPDomainName;
+        /// <summary>
+        /// Domain name ej allus-ar
+        /// </summary>
+        public  string LDAPDomainName
+        {
+            get { return _LDAPDomainName; }
+            
+        }
         /// <summary>
         ///Ej: 
         ///LDAP://domain/DC=xxx,DC=com

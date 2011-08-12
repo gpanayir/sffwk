@@ -19,47 +19,96 @@ namespace Fwk.Security.ActiveDirectory
     /// Wrapper de Active Directory con funcionalidades para interactuar contra un controlador de dominio .-
     /// 
     /// </summary>
-    public class ADHelper : DirectoryServicesBase, IDirectoryService
-    {
+    public class ADHelper : DirectoryServicesBase, IDirectoryService,IDisposable
+    {  Impersonation objImp ; 
+         
         #region Constructors
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="domain"></param>
-        public ADHelper(string domain)
+         ~ADHelper()
         {
-            _LDAPPath = string.Concat(@"LDAP://", domain);
+            UnImpersonateWindowsContext();
+        }
 
+         /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="domainName"></param>
+         /// <param name="cnnStringName"></param>
+         /// <param name="performWindowsContextImpersonalization"></param>
+         public ADHelper(string domainName, string cnnStringName, bool performWindowsContextImpersonalization)
+         {
+             Init(domainName, cnnStringName,performWindowsContextImpersonalization);
+         }
+
+     
+
+
+        /// <param name="domain"></param>
+        /// <summary>
+        /// Esta sobrecarga obtiene datos de impersonalizacion en la tabla Domain controllers atravez de 
+        /// la conexion pasada por parametros
+        /// </summary>
+        /// <param name="domainName"></param>
+        /// <param name="cnnStringName"></param>
+        public ADHelper(string domainName, string cnnStringName)
+        {
+
+            Init(domainName, cnnStringName,false);
+
+        }
+
+        private void Init(string domainName, string cnnStringName,bool performWindowsContextImpersonalization)
+        {
+
+            DomainUrlInfo domainUrlInfo = DomainsUrl_Get(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString, domainName);
+
+            if (domainUrlInfo == null)
+                throw new Fwk.Exceptions.TechnicalException("No se encontró la información del dominio especificado");
+
+            _LDAPPath = domainUrlInfo.LDAPPath;
+            _LDAPUser = FilterOutDomain(domainUrlInfo.Usr);
+            _LDAPPassword = domainUrlInfo.Pwd;
+            _LDAPDomainName = domainName;
+            domainUrlInfo = null;
+            
+
+            if (performWindowsContextImpersonalization)
+                ImpersonateWindowsContext();
+            
             try
             {
-                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, null, null, AuthenticationTypes.Secure);
+                _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
+
+                _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
             }
-            catch (Exception ex)
+            catch (TechnicalException e)// Cuando el usuario no existe o clave erronea
             {
-                throw ex;
+                Exception te1 = ProcessActiveDirectoryException(e);
+                TechnicalException te = new TechnicalException(string.Format(Resource.AD_Impersonation_Error, te1.Message), te1.InnerException);
+                ExceptionHelper.SetTechnicalException<ADHelper>(te);
+                te.ErrorId = "4103";
+                throw te;
             }
-
-            _LDAPDomain = domain;
-
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="user"></param>
-        /// <param name="pwd"></param>
+        /// <param name="path">Domain path Ej </param>
+        /// <param name="user">AD admin user</param>
+        /// <param name="pwd">password de un usuario con pivilegios suficiente</param>
         public ADHelper(string path, string user, string pwd)
         {
             _LDAPPath = path;
-
             _LDAPUser = FilterOutDomain(user);
             _LDAPPassword = pwd;
 
             try
             {
                 _directoryEntrySearchRoot = new DirectoryEntry(_LDAPPath, _LDAPUser, _LDAPPassword, AuthenticationTypes.Secure);
-             
+
                 _LDAPDomain = GetValue(GetProperty(_directoryEntrySearchRoot, ADProperties.DISTINGUISHEDNAME), "DC");
             }
             catch (TechnicalException e)// Cuando el usuario no existe o clave erronea
@@ -73,26 +122,11 @@ namespace Fwk.Security.ActiveDirectory
 
         }
 
-       
         #endregion
 
         #region users
-        ///// <summary>
-        ///// Obtiene un usuario sin pasar clave.-
-        ///// </summary>
-        ///// <param name="userName"></param>
-        ///// <returns></returns>
-        //SearchResult User_Get_Result(string userName)
-        //{
-        //    DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-        //    deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
-        //    deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
-        //    SearchResult rs = deSearch.FindOne();
-        //    deSearch.Dispose();
-        //    return rs;
 
-        //}
-        
+
         ///// <summary>
         ///// Obtiene un usuario sin pasar clave.-
         ///// </summary>
@@ -120,9 +154,9 @@ namespace Fwk.Security.ActiveDirectory
         {
 
             DirectoryEntry userDirectoryEntry = null;
-            loginResult = LoginResult.LOGIN_OK; 
-            SearchResult result = User_Get_Result(userName,_directoryEntrySearchRoot);
-            
+            loginResult = LoginResult.LOGIN_OK;
+            SearchResult result = User_Get_Result(userName, _directoryEntrySearchRoot);
+
             //Si esl resultado de busqueda en nodes es nulo el usuario no exisate en el dominio
             if (result == null)
             {
@@ -136,14 +170,14 @@ namespace Fwk.Security.ActiveDirectory
                 loginResult = LoginResult.ERROR_PASSWORD_MUST_CHANGE;
                 return null;
             }
-            
-          
 
-            
+
+
+
             //string str = EnlistValue(results);
             //si result no es nulo se puede crear una DirectoryEntry
             if (result != null)
-                 userDirectoryEntry = new DirectoryEntry(result.Path, userName, password);
+                userDirectoryEntry = new DirectoryEntry(result.Path, userName, password);
 
             //Intenta obtener una propiedad para determinar si el usuario se logueo con clave correcta o no.-
             try
@@ -158,7 +192,7 @@ namespace Fwk.Security.ActiveDirectory
                     return userDirectoryEntry;
                 }
             }
-           
+
             if (User_IsAccountActive(userDirectoryEntry) == false)
             {
                 loginResult = LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
@@ -176,33 +210,272 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-        
-       /// <summary>
+
+        /// <summary>
         /// Obtiene un usuario por nombre sin tener en cuenta las credenciales del usuario
-       /// </summary>
-       /// <param name="userName"></param>
-       /// <returns></returns>
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         DirectoryEntry User_Get(string userName)
         {
 
             DirectoryEntry userDirectoryEntry = null;
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-            deSearch.Filter = "(&(objectClass=user)(sAMAccountName=" + FilterOutDomain(userName) + "))";
+         
+            deSearch.Filter = string.Format("(&(objectClass=user)(sAMAccountName={0}))",FilterOutDomain(userName));
+            
             //deSearch.Filter = "(&(objectClass=user)(cn=" + FilterOutDomain(userName) + "))";
-
+            
+            deSearch.CacheResults = false;
             deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
             SearchResult results = deSearch.FindOne();
-           
+
             //si result no es nulo se puede crear una DirectoryEntry
             if (results != null)
                 userDirectoryEntry = new DirectoryEntry(results.Path);
-            
+
 
             deSearch.Dispose();
             return userDirectoryEntry;
 
         }
-       
+        /// <summary>
+        /// Obtiene un usuario por nombre sin tener en cuenta las credenciales del usuario
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        DirectoryEntry Person_Get(string userName)
+        {
+
+            DirectoryEntry userDirectoryEntry = null;
+            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+            deSearch.Filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
+
+
+            deSearch.CacheResults = false;
+            //deSearch.SearchScope = System.DirectoryServices.SearchScope.Subtree;
+            SearchResult results = deSearch.FindOne();
+
+            //si result no es nulo se puede crear una DirectoryEntry
+            if (results != null)
+                userDirectoryEntry = new DirectoryEntry(results.Path);
+
+
+            deSearch.Dispose();
+            return userDirectoryEntry;
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public bool User_IsAccountActive(string userName)
+        {
+            DirectoryEntry userDirectoryEntry = null;
+
+            bool wIsAccountLocked = false;
+            try
+            {
+                userDirectoryEntry = this.User_Get(userName);
+                userDirectoryEntry.Close();
+                wIsAccountLocked = User_IsAccountActive(userDirectoryEntry);
+                return wIsAccountLocked;
+            }
+
+            catch (Exception ex)
+            {
+                throw ProcessActiveDirectoryException(ex);
+            }
+        }
+
+        /// <summary>
+        ///  Gets or sets a value indicating if the user account is locked out
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public bool User_IsAccountLocked(string userName)
+        {
+
+
+
+            bool wIsAccountLocked = false;
+            DirectoryEntry userDirectoryEntry = null;
+
+            try
+            {
+                userDirectoryEntry = this.User_Get(userName);
+                wIsAccountLocked = Convert.ToBoolean(userDirectoryEntry.InvokeGet("IsAccountLocked"));
+                userDirectoryEntry.Close();
+                return wIsAccountLocked;
+
+            }
+
+            catch (Exception ex)
+            {
+                throw ProcessActiveDirectoryException(ex);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Unlock user
+        /// </summary>
+        /// <param name="userName"></param>
+        public void User_Unlock(string userName)
+        {
+            User_SetLockedStatus(userName, true);
+            //DirectoryEntry userDirectoryEntry = null;
+            //Impersonation objImp = new Impersonation(_LDAPUser, _LDAPPassword, _LDAPDomainName);
+            //try
+            //{
+
+            //    objImp.Impersonate();
+            //    userDirectoryEntry = this.User_Get(userName);
+
+
+            //    if (userDirectoryEntry != null)
+            //    {
+            //        if (userDirectoryEntry.Properties.Contains("LockOutTime"))
+            //        {
+            //            userDirectoryEntry.Properties["LockOutTime"].Value = 0;
+            //            userDirectoryEntry.CommitChanges();
+            //            userDirectoryEntry.Close();
+            //        }
+            //    }
+            //    objImp.UnImpersonate();
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ProcessActiveDirectoryException(ex);
+            //}
+        }
+
+        /// <summary>
+        /// Alternate of Unlock user method
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="lockUser">true = loock user</param>
+        public void User_SetLockedStatus(string userName, bool lockUser)
+        {
+            DirectoryEntry userDirectoryEntry = null;
+
+            try
+            {
+                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+                deSearch.Filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
+                SearchResult result = deSearch.FindOne();
+                if (result != null)
+                    userDirectoryEntry = result.GetDirectoryEntry();
+                
+                //Error de acceso
+                //userDirectoryEntry = this.User_Get(userName);
+
+
+                //if (userDirectoryEntry != null)
+                //{
+                //    userDirectoryEntry.InvokeSet("IsAccountLocked", lockUser);
+
+
+                //  userDirectoryEntry.CommitChanges();
+                //  userDirectoryEntry.Close();
+                //  objImp.UnImpersonate();
+
+                //}
+                if (userDirectoryEntry != null)
+                {
+
+                    int val = (int)userDirectoryEntry.Properties["userAccountControl"].Value;
+                    if (lockUser)
+                        userDirectoryEntry.Properties["userAccountControl"].Value = val | Convert.ToInt32(ADAccountOptions.UF_LOCKOUT);// 0x0010;
+                    else
+                        userDirectoryEntry.Properties["userAccountControl"].Value = val & Convert.ToInt32(ADAccountOptions.UF_LOCKOUT);// 0x0010;
+
+                    userDirectoryEntry.CommitChanges();
+                    userDirectoryEntry.Close();
+                }
+
+
+                // objImp.UnImpersonate();
+            }
+            catch (Exception ex)
+            {
+                //objImp.UnImpersonate();
+                throw ProcessActiveDirectoryException(ex);
+            }
+        }
+
+        /// <summary>
+        /// Enable or disable user acount 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="disabled"></param>
+        public void User_SetActivation(string userName, bool disabled)
+        {
+            DirectoryEntry userDirectoryEntry = null;
+            
+            try
+            {
+
+
+                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+                deSearch.Filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
+                SearchResult result = deSearch.FindOne();
+                if (result != null)
+                    userDirectoryEntry = result.GetDirectoryEntry();
+
+
+                int val = (int)userDirectoryEntry.Properties["userAccountControl"].Value;
+
+                if (disabled)
+                    userDirectoryEntry.Properties["userAccountControl"].Value = val | (int)ADS_USER_FLAG_ENUM.ADS_UF_ACCOUNTDISABLE;
+                else
+                    userDirectoryEntry.Properties["userAccountControl"].Value = val & ~(int)ADS_USER_FLAG_ENUM.ADS_UF_ACCOUNTDISABLE;
+
+
+                userDirectoryEntry.CommitChanges();
+                userDirectoryEntry.Close();
+                
+            }
+            catch (System.DirectoryServices.DirectoryServicesCOMException ex)
+            {
+                
+                throw ProcessActiveDirectoryException(ex);
+            }
+
+        }
+
+        /// <summary>
+        /// Reset password. To execute it ensure that you was used impersonalization constructor. 
+        /// </summary>
+        /// <param name="userName">user name</param>
+        /// <param name="password">new passsword</param>
+        /// <param name="unlockAccount">Lock or unlock flag</param>
+        public void User_ResetPwd(string userName, string password, bool unlockAccount)
+        {
+            DirectoryEntry userDirectoryEntry = null;
+            try
+            {
+
+                userDirectoryEntry = this.User_Get(userName);
+
+                userDirectoryEntry.Invoke("SetPassword", new object[] { password });
+                if (unlockAccount) userDirectoryEntry.Properties["LockOutTime"].Value = 0;
+
+                userDirectoryEntry.CommitChanges();
+                userDirectoryEntry.Close();
+
+            }
+            catch (System.DirectoryServices.DirectoryServicesCOMException ex)
+            {
+                
+                throw ProcessActiveDirectoryException(ex);
+            }
+
+        }
 
 
         /// <summary>
@@ -221,8 +494,10 @@ namespace Fwk.Security.ActiveDirectory
                 if (userDirectoryEntry != null)
                 {
                     wADUser = new ADUser(userDirectoryEntry);
+                    userDirectoryEntry.Close();
+                    userDirectoryEntry.Dispose();
                 }
-                
+
                 return wADUser;
             }
             catch (Exception ex)
@@ -244,15 +519,15 @@ namespace Fwk.Security.ActiveDirectory
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
 
             //set the search filter
-            deSearch.Filter = "(&(objectClass=user) (cn=" + FilterOutDomain(userName) + "))";
-
+            //deSearch.Filter = "(&(objectClass=user) (cn=" + FilterOutDomain(userName) + "))";
+            //deSearch.Filter = string.Format("(&(objectClass=user)(sAMAccountName= {0} ))", FilterOutDomain(userName));
+            deSearch.Filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
             //find the first instance
             SearchResultCollection results = deSearch.FindAll();
 
-            //if the username and password do match, then this implies a valid login
-            //if so then return the DirectoryEntry object
             if (results.Count == 0)
             {
+                deSearch.Dispose();
                 return false;
             }
             else
@@ -261,7 +536,6 @@ namespace Fwk.Security.ActiveDirectory
             }
 
         }
-
         /// <summary>
         /// Retorna los grupos a los que pertenece el usuario .-
         /// </summary>
@@ -271,9 +545,10 @@ namespace Fwk.Security.ActiveDirectory
         {
             List<ADGroup> list = null;
             DirectoryEntry directoryEntryUser = null;
-            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
+
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-            deSearch.Filter = filter;
+            deSearch.Filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
+
             try
             {
 
@@ -282,6 +557,7 @@ namespace Fwk.Security.ActiveDirectory
                 if (result != null)
                 {
                     directoryEntryUser = result.GetDirectoryEntry();
+                    //directoryEntryUser = this.Person_Get(userName);
                     list = new List<ADGroup>();
                     ADGroup aDGroup;
                     foreach (string grouInfo in directoryEntryUser.Properties["memberOf"])
@@ -316,12 +592,10 @@ namespace Fwk.Security.ActiveDirectory
             DirectoryEntry directoryEntryUser = null;
             List<String> list = null;
             DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-
-            string filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
+            deSearch.Filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
             try
             {
-
-                deSearch.Filter = filter;
+                
                 SearchResult result = deSearch.FindOne();
 
 
@@ -359,10 +633,13 @@ namespace Fwk.Security.ActiveDirectory
             List<ADUser> userlist = new List<ADUser>();
             ADUser wADUser = null;
             DirectoryEntry directoryEntryUser = null;
+            DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+            //deSearch.Filter = "(&(objectClass=group)(SAMAccountName=" + groupName + "))";
+            deSearch.Filter = string.Format("(&(objectClass=group)(SAMAccountName={0}))", groupName);
             try
             {
-                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
-                deSearch.Filter = "(&(objectClass=group)(SAMAccountName=" + groupName + "))";
+               
+
                 SearchResult results = deSearch.FindOne();
                 if (results != null)
                 {
@@ -431,9 +708,9 @@ namespace Fwk.Security.ActiveDirectory
 
             //string filter = string.Format("(givenName={0}*", fName);
             //filter = "(&(objectClass=user)(objectCategory=person)" + filter + ")";
-            string filter = "(&(objectClass=user)(objectCategory=person)(givenName=" + fName + "*))";
 
-            deSearch.Filter = filter;
+
+            deSearch.Filter = string.Format("(&(objectClass=user)(objectCategory=person)(givenName={0}*))", fName); 
             try
             {
                 SearchResultCollection userCollection = deSearch.FindAll();
@@ -473,9 +750,9 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// Metodo de prueva
         /// </summary>
-        public void User_ChangeEmail(string userName,string newEmail)
+        public void User_ChangeEmail(string userName, string newEmail)
         {
-         
+
             DirectoryEntry userDirectoryEntry = null;
             try
             {
@@ -486,10 +763,11 @@ namespace Fwk.Security.ActiveDirectory
                     {
                         userDirectoryEntry.Properties["mail"].Value = newEmail;
                         userDirectoryEntry.CommitChanges();
+                        userDirectoryEntry.Close();
                     }
                 }
 
-            
+
             }
             catch (Exception ex)
             {
@@ -500,7 +778,8 @@ namespace Fwk.Security.ActiveDirectory
         #endregion
 
         #region users statics
-        
+
+
 
         /// <summary>
         /// Este metodo realiza una aperacion logica con el valor userAccountControl para deternçminar si la cuenta de usuario 
@@ -527,7 +806,7 @@ namespace Fwk.Security.ActiveDirectory
             //{
             //    return true;
             //}
-          return flagExists == 0;//Si es = a 2 es por que esta DESHABILITADO (512 - 2) 
+            return flagExists == 0;//Si es = a 2 es por que esta DESHABILITADO (512 - 2) 
         }
 
         /// <summary>
@@ -557,7 +836,7 @@ namespace Fwk.Security.ActiveDirectory
             return !(flag == 0); // No estoy seguro de utilizar la return (flag == 16);  sentencia q apareentenmete seria =  ()
         }
 
-     
+
 
         #endregion
 
@@ -725,7 +1004,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <returns></returns>
         public GlobalCatalogCollection GlobalCatalogs(string domainName)
         {
-            
+
             Forest f3 = Forest.GetCurrentForest();
 
             //return  f.GlobalCatalogs;
@@ -742,7 +1021,7 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="ex"></param>
         /// <returns></returns>
-        static Exception ProcessActiveDirectoryException(Exception ex)
+       internal static Exception ProcessActiveDirectoryException(Exception ex)
         {
             Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(ex.Message, ex);
             ExceptionHelper.SetTechnicalException<ADHelper>(te);
@@ -769,7 +1048,7 @@ namespace Fwk.Security.ActiveDirectory
             return te;
         }
 
-      
+
 
         /// <summary>
         /// 
@@ -938,10 +1217,28 @@ namespace Fwk.Security.ActiveDirectory
         }
         #endregion
 
-        public void ResetPwd(string pUserName, string pNewPwd, bool pForceChangeOnFirstLogon, bool pUnlockAccount)
+         void ImpersonateWindowsContext()
         {
-            // TODO, implementar reseteo aca, cut & paste from reseteo web
-            throw new NotImplementedException();
+            objImp = new Impersonation(_LDAPUser, _LDAPPassword, _LDAPDomainName);
+            objImp.Impersonate();
         }
+         void UnImpersonateWindowsContext()
+        {
+            if (objImp != null)
+                objImp.UnImpersonate();
+        }
+        #region IDisposable Members
+
+         public void Dispose()
+         {
+             UnImpersonateWindowsContext();
+             if (_directoryEntrySearchRoot != null)
+             {
+                 _directoryEntrySearchRoot.Close();
+                 _directoryEntrySearchRoot.Dispose();
+             }
+         }
+
+        #endregion
     }
 }

@@ -7,6 +7,9 @@ using System.DirectoryServices.ActiveDirectory;
 
 namespace Fwk.Security.ActiveDirectory
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IDirectoryService
     {
         /// <summary>
@@ -34,25 +37,25 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        ADUser User_Get_ByName(String pUserName);
+        ADUser User_Get_ByName(String userName);
         /// <summary>
         /// Verifica si el usuario existe.- 
         /// </summary>
         /// <param name="userName">Nombre de loging de usuario</param>
         /// <returns></returns>
-        bool User_Exists(string pUserName);
+        bool User_Exists(string userName);
         /// <summary>
         /// Retorna los grupos a los que pertenece el usuario .-
         /// </summary>
-        /// <param name="pUserName">Nombre completo del usuario</param>
+        /// <param name="userName">Nombre completo del usuario</param>
         /// <returns></returns>
-        List<ADGroup> User_SearchGroupList(String pUserName);
+        List<ADGroup> User_SearchGroupList(String userName);
         /// <summary>
         /// Retorna la lista de usuarios pertenecientes a un determinado grupo
         /// </summary>
         /// <param name="groupName">Nombre del grupo</param>
         /// <returns></returns>
-        LoginResult User_CheckLogin(string pUserName, string pPassword);
+        LoginResult User_CheckLogin(string userName, string pPassword);
         /// <summary>
         /// Obtiene un ADGroup que reprecenta un grupo 
         /// </summary>
@@ -65,7 +68,7 @@ namespace Fwk.Security.ActiveDirectory
         List<ADGroup> Groups_GetAll();
 
 
-        void ResetPwd(String pUserName, String pNewPwd, Boolean pForceChangeOnFirstLogon, Boolean pUnlockAccount);
+        
 
     }
 }
