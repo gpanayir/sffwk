@@ -86,13 +86,14 @@ namespace Fwk.Security
             string passwordQuestion,
             string passwordAnswer,
             Boolean isApproved,
-            out MembershipCreateStatus pStatus,
+            out System.Web.Security.MembershipCreateStatus pStatus,
             string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
 
             User wUsuario = null;
-            MembershipUser newUser = wProvider.CreateUser(userName, password, email, passwordQuestion, passwordAnswer, isApproved, Guid.NewGuid(), out pStatus);
+            System.Web.Security.MembershipUser newUser = wProvider.CreateUser(userName, password, email, passwordQuestion, passwordAnswer, isApproved, Guid.NewGuid(), out pStatus);
+
 
             if (newUser != null)
                 wUsuario = new User(newUser);
