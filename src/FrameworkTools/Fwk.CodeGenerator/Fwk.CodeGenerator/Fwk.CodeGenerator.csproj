@@ -142,7 +142,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bases\CodeGeneratorCommon.cs" />
     <Compile Include="Bases\ConnectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,10 +169,7 @@
       <DependentUpon>MessageViewWait.cs</DependentUpon>
     </Compile>
     <Compile Include="DACGenController.cs" />
-    <Compile Include="Forms\DACClasses\SPGenerator.cs" />
     <Compile Include="No_Used\DataEntityGenEngine.cs" />
-    <Compile Include="Forms\DACClasses\BEGenerator.cs" />
-    <Compile Include="Forms\DACClasses\DACGenerator.cs" />
     <Compile Include="Forms\DACClasses\frm_DACGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,13 +193,6 @@
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjectModel\TemplateSettingControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ObjectModel\TemplateSettingControl.Designer.cs">
-      <DependentUpon>TemplateSettingControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ObjectModel\Helper.cs" />
     <Compile Include="ObjectModel\ListViewCodeGenDraw.cs" />
     <Compile Include="ObjectModel\ListViewCodeGenerated.cs">
       <SubType>UserControl</SubType>
@@ -211,9 +200,6 @@
     <Compile Include="ObjectModel\ListViewCodeGenerated.Designer.cs">
       <DependentUpon>ListViewCodeGenerated.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjectModel\EntityInfo.cs" />
-    <Compile Include="ObjectModel\GeneratedCode.cs" />
-    <Compile Include="ObjectModel\TemplateSettingObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\DACClasses\frm_DACGenerator.resx">
@@ -242,6 +228,30 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="wizControls\ctrlNewService.resx">
+      <DependentUpon>ctrlNewService.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\ctrlTreeViewTables.resx">
+      <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\ctrlTreeViewViews.resx">
+      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\wizBase.resx">
+      <DependentUpon>wizBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\wizDBSelect.resx">
+      <DependentUpon>wizDBSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\wizTablesTreeSelector.resx">
+      <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Files\CnnCrypt.key" />
     <None Include="Properties\Settings.settings">
@@ -261,13 +271,6 @@
     <Compile Include="No_Used\ServiceControlle.cs" />
     <Compile Include="ObjectModel\Storage.cs" />
     <Compile Include="ObjectModel\TreeViewHelper.cs" />
-    <Compile Include="wizControls\ctrlTreeViewViews.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="wizControls\ctrlTreeViewViews.Designer.cs">
-      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
-    </Compile>
-    <Compile Include="wizControls\CnnString.cs" />
     <Compile Include="wizControls\ctrlNewService.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -279,6 +282,12 @@
     </Compile>
     <Compile Include="wizControls\ctrlTreeViewTables.Designer.cs">
       <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wizControls\ctrlTreeViewViews.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="wizControls\ctrlTreeViewViews.Designer.cs">
+      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
     </Compile>
     <Compile Include="wizControls\wizBase.cs">
       <SubType>UserControl</SubType>
@@ -298,13 +307,6 @@
     <Compile Include="wizControls\wizTablesTreeSelector.Designer.cs">
       <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="wizGenerators\CommonConstants.cs" />
-    <Compile Include="wizGenerators\FwkGeneratorHelper.cs" />
-    <Compile Include="wizGenerators\GenDAC.cs" />
-    <Compile Include="wizGenerators\GenEntity.cs" />
-    <Compile Include="wizGenerators\GenSVC.cs" />
-    <Compile Include="wizGenerators\GenSP.cs" />
-    <Compile Include="wizGenerators\Template.cs" />
     <Compile Include="ObjectModel\WorkSpace.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -337,36 +339,8 @@
       <SubType>Designer</SubType>
       <DependentUpon>FrmTemplateSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ObjectModel\TemplateSettingControl.resx">
-      <DependentUpon>TemplateSettingControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="ObjectModel\ListViewCodeGenerated.resx">
       <DependentUpon>ListViewCodeGenerated.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\ctrlTreeViewViews.resx">
-      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\ctrlNewService.resx">
-      <DependentUpon>ctrlNewService.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\ctrlTreeViewTables.resx">
-      <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\wizBase.resx">
-      <DependentUpon>wizBase.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\wizDBSelect.resx">
-      <DependentUpon>wizDBSelect.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\wizTablesTreeSelector.resx">
-      <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="Piezas.ico" />
@@ -438,6 +412,12 @@
   <ItemGroup>
     <Folder Include="ExternalTools\TextToStringBuilder\" />
     <Folder Include="Files\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fwk.CodeGenerator.Core\Fwk.CodeGenerator.Core.csproj">
+      <Project>{3DB68504-5E07-4DE7-8426-2A1ED23B1B4B}</Project>
+      <Name>Fwk.CodeGenerator.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

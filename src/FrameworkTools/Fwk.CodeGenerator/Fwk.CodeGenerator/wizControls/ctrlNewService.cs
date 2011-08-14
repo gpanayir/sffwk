@@ -105,7 +105,7 @@ namespace Fwk.CodeGenerator
                 svcCode = GenSVC.Generate_SVC(txtServiceName.Text.Trim(), _ProjectName);
 
 
-                base.DoEvent(null, WizardButton.Ok);
+                base.DoEvent(null, CodeGeneratorCommon.WizardButton.Ok);
             }
             catch (Exception ex)
             { 
@@ -115,7 +115,7 @@ namespace Fwk.CodeGenerator
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            base.DoEvent(null, WizardButton.Cancel);
+            base.DoEvent(null, CodeGeneratorCommon.WizardButton.Cancel);
         }
 
        

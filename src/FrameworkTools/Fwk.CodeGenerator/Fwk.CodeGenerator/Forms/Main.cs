@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Fwk.CodeGenerator.Common;
+
 
 
 
@@ -148,7 +148,7 @@ namespace Fwk.CodeGenerator
 
         private void ShowBackEndForm()
         {
-            if(_WorkSpace.Contains(GeneratorsType.BackEnd)) return;
+            if(_WorkSpace.Contains(CodeGeneratorCommon.GeneratorsType.BackEnd)) return;
             
             
 
@@ -160,7 +160,7 @@ namespace Fwk.CodeGenerator
                 ofrmDACGenerator.TemplateSettingObject = _TemplateSettingObject;
 
                 ofrmDACGenerator.MdiParent = this;
-                _WorkSpace.Add(ofrmDACGenerator,GeneratorsType.BackEnd);
+                _WorkSpace.Add(ofrmDACGenerator, CodeGeneratorCommon.GeneratorsType.BackEnd);
                 
                 ShowFrm(ofrmDACGenerator);
             }
@@ -175,7 +175,7 @@ namespace Fwk.CodeGenerator
 
         void ofrmDACGenerator_Closing(object sender, CancelEventArgs e)
         {
-            _WorkSpace.Remove(GeneratorsType.BackEnd);
+            _WorkSpace.Remove(CodeGeneratorCommon.GeneratorsType.BackEnd);
         }
 
         //private void ShowEntityForm()
@@ -194,7 +194,7 @@ namespace Fwk.CodeGenerator
 
         void ofrmDataEntityGenerator_Closing(object sender, CancelEventArgs e)
         {
-            _WorkSpace.Remove(GeneratorsType.Entities);
+            _WorkSpace.Remove(CodeGeneratorCommon.GeneratorsType.Entities);
         }
         //private void ShowServiceForm()
         //{

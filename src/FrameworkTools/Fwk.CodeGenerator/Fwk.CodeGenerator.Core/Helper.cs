@@ -14,7 +14,7 @@ namespace Fwk.CodeGenerator
 {
   
 
-    internal static class HelperFunctions 
+    public static class HelperFunctions 
     {
         #region -- Xml Serialization using Xml --
 
@@ -146,7 +146,7 @@ namespace Fwk.CodeGenerator
         /// </summary>
         /// <param name="ex"></param>
         /// <returns></returns>
-        internal static String GetAllMessageException(Exception ex)
+        public static String GetAllMessageException(Exception ex)
         {
             
             StringBuilder wMessage = new StringBuilder();
@@ -168,7 +168,7 @@ namespace Fwk.CodeGenerator
         /// </summary>
         /// <param name="pFileName">Nombre completo del archivo</param>
         /// <returns></returns>
-        internal static string OpenTextFile(string pFileName)
+        public static string OpenTextFile(string pFileName)
         {
             using (StreamReader sr = File.OpenText(pFileName))
             {
@@ -197,7 +197,7 @@ namespace Fwk.CodeGenerator
                 sw.Close();
             }
         }
-        internal static string ProgramFilesx86()
+        public static string ProgramFilesx86()
         {
             if (8 == IntPtr.Size
                 || (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))))

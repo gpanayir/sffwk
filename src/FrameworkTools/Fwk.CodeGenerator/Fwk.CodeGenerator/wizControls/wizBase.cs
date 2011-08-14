@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Fwk.CodeGenerator
 {
-    public delegate void OnWizardButtonClickHandler(object arg, WizardButton result);
+    public delegate void OnWizardButtonClickHandler(object arg, CodeGeneratorCommon.WizardButton result);
     [DefaultEvent("OnWizardFinalizeEvent")]
     [ToolboxItem(true)]
     public partial class wizBase : UserControl
@@ -45,7 +45,7 @@ namespace Fwk.CodeGenerator
         }
         [Category("Fwk Wizard")]
         public event OnWizardButtonClickHandler OnWizardButtonClickEvent;
-        public void DoEvent(object o, WizardButton r)
+        public void DoEvent(object o, CodeGeneratorCommon.WizardButton r)
         {
             if (OnWizardButtonClickEvent != null)
                 OnWizardButtonClickEvent(o,r);

@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using Fwk.CodeGenerator.Common;
+
 using Fwk.HelperFunctions;
 
 
@@ -238,17 +238,17 @@ namespace Fwk.CodeGenerator
         {
 
             if (_NodeBE != null)
-                LoadGeneratedCode(ComponentLayer.BE, _NodeBE);
+                LoadGeneratedCode(CodeGeneratorCommon.ComponentLayer.BE, _NodeBE);
               
             
 
             if (_NodeDAC != null)
-                LoadGeneratedCode(ComponentLayer.DAC, _NodeDAC);
+                LoadGeneratedCode(CodeGeneratorCommon.ComponentLayer.DAC, _NodeDAC);
    
 
 
             if (_NodeCustomSVC != null)
-                LoadGeneratedCode(ComponentLayer.SVC, _NodeCustomSVC);
+                LoadGeneratedCode(CodeGeneratorCommon.ComponentLayer.SVC, _NodeCustomSVC);
                
 
 
@@ -280,9 +280,9 @@ namespace Fwk.CodeGenerator
             ListViewCodeGen.ImageToBackendSP(trvCodeGenerated.Nodes["SP"]);
         }
 
-        void LoadGeneratedCode(ComponentLayer pComponentLayer, TreeNode pNodeToClone)
+        void LoadGeneratedCode(CodeGeneratorCommon.ComponentLayer pComponentLayer, TreeNode pNodeToClone)
         {
-            String wNodeKey = Enum.GetName(typeof (ComponentLayer), pComponentLayer);
+            String wNodeKey = Enum.GetName(typeof(CodeGeneratorCommon.ComponentLayer), pComponentLayer);
 
             trvCodeGenerated.Nodes[wNodeKey].Nodes.Clear();
             foreach (TreeNode node in pNodeToClone.Nodes)
@@ -343,11 +343,11 @@ namespace Fwk.CodeGenerator
         {
 
 
-            SaveGeneratedCodeFiles(pzsPath, ComponentLayer.BE);
-            SaveGeneratedCodeFiles(pzsPath, ComponentLayer.DAC);
+            SaveGeneratedCodeFiles(pzsPath, CodeGeneratorCommon.ComponentLayer.BE);
+            SaveGeneratedCodeFiles(pzsPath, CodeGeneratorCommon.ComponentLayer.DAC);
             
-            SaveGeneratedCodeFiles(pzsPath, ComponentLayer.SP);
-            SaveGeneratedCodeFiles(pzsPath, ComponentLayer.SVC);
+            SaveGeneratedCodeFiles(pzsPath, CodeGeneratorCommon.ComponentLayer.SP);
+            SaveGeneratedCodeFiles(pzsPath, CodeGeneratorCommon.ComponentLayer.SVC);
             Boolean wPublicOnCitryx = Convert.ToBoolean(ConfigurationManager.AppSettings.Get("PublicOnCitryx"));
             if (!wPublicOnCitryx)
                 System.Diagnostics.Process.Start("explorer.exe", pzsPath);
@@ -362,39 +362,39 @@ namespace Fwk.CodeGenerator
         /// <param name="pzsPath">Ruta raiz </param>
         /// <param name="pComponentLayer">Modulo (BE,DAC,TDG SVC, SP)</param>
         /// <param name="pGeneratedCodeList">Coleccion de GeneratedCodes</param>
-        private void SaveGeneratedCodeFiles(string pzsPath, ComponentLayer pComponentLayer)
+        private void SaveGeneratedCodeFiles(string pzsPath, CodeGeneratorCommon.ComponentLayer pComponentLayer)
         {
             //if (pGeneratedCodeList.Count == 0) return;
             GeneratedCode wGeneratedCode = null;
             DirectoryInfo wdiModule = null;
             string wzsFile = String.Empty;
 
-            if(pComponentLayer != ComponentLayer.SVC)
-             wdiModule = Directory.CreateDirectory(pzsPath + Path.DirectorySeparatorChar + Enum.GetName(typeof(ComponentLayer), pComponentLayer));
+            if(pComponentLayer != CodeGeneratorCommon.ComponentLayer.SVC)
+                wdiModule = Directory.CreateDirectory(pzsPath + Path.DirectorySeparatorChar + Enum.GetName(typeof(CodeGeneratorCommon.ComponentLayer), pComponentLayer));
             else
              wdiModule = Directory.CreateDirectory(pzsPath + Path.DirectorySeparatorChar );
             
             #region BE, DAC y TDG
-            if (pComponentLayer != ComponentLayer.SP && pComponentLayer != ComponentLayer.SVC)
+            if (pComponentLayer != CodeGeneratorCommon.ComponentLayer.SP && pComponentLayer != CodeGeneratorCommon.ComponentLayer.SVC)
             {
-         
 
-                foreach (TreeNode wNode in trvCodeGenerated.Nodes[Enum.GetName(typeof(ComponentLayer), pComponentLayer)].Nodes)
+
+                foreach (TreeNode wNode in trvCodeGenerated.Nodes[Enum.GetName(typeof(CodeGeneratorCommon.ComponentLayer), pComponentLayer)].Nodes)
                 {
                     wGeneratedCode = (GeneratedCode) wNode.Tag;
 
-                    wzsFile = wdiModule.FullName + Path.DirectorySeparatorChar + wGeneratedCode.Id + Enum.GetName(typeof(ComponentLayer), pComponentLayer) + ".cs";
+                    wzsFile = wdiModule.FullName + Path.DirectorySeparatorChar + wGeneratedCode.Id + Enum.GetName(typeof(CodeGeneratorCommon.ComponentLayer), pComponentLayer) + ".cs";
                     FileFunctions.SaveTextFile(wzsFile, wGeneratedCode.Code.ToString());
                 }
             }
             #endregion
 
             #region StoredProcedures
-            if (pComponentLayer == ComponentLayer.SP)
+            if (pComponentLayer == CodeGeneratorCommon.ComponentLayer.SP)
             {
                 DirectoryInfo wdiEntity = null;
                 string wzsAux = string.Empty;
-                foreach (TreeNode wNodeTable in trvCodeGenerated.Nodes[Enum.GetName(typeof(ComponentLayer), pComponentLayer)].Nodes)
+                foreach (TreeNode wNodeTable in trvCodeGenerated.Nodes[Enum.GetName(typeof(CodeGeneratorCommon.ComponentLayer), pComponentLayer)].Nodes)
                 {
                     foreach (TreeNode wNodeMethod in wNodeTable.Nodes)
                     {
@@ -414,16 +414,16 @@ namespace Fwk.CodeGenerator
             }
             #endregion
 
-            if (pComponentLayer == ComponentLayer.SVC)
+            if (pComponentLayer == CodeGeneratorCommon.ComponentLayer.SVC)
             {
-                
 
-                 DirectoryInfo wdiSVC = Directory.CreateDirectory(wdiModule.FullName + Path.DirectorySeparatorChar + Enum.GetName(typeof(ComponentLayer), pComponentLayer));
-                 DirectoryInfo wdiISVC = Directory.CreateDirectory(wdiModule.FullName + Path.DirectorySeparatorChar + Enum.GetName(typeof(ComponentLayer), ComponentLayer.ISVC));
+
+                DirectoryInfo wdiSVC = Directory.CreateDirectory(wdiModule.FullName + Path.DirectorySeparatorChar + Enum.GetName(typeof(CodeGeneratorCommon.ComponentLayer), pComponentLayer));
+                DirectoryInfo wdiISVC = Directory.CreateDirectory(wdiModule.FullName + Path.DirectorySeparatorChar + Enum.GetName(typeof(CodeGeneratorCommon.ComponentLayer), CodeGeneratorCommon.ComponentLayer.ISVC));
 
 
                 TreeNode wNodeService =
-                    trvCodeGenerated.Nodes[Enum.GetName(typeof (ComponentLayer), pComponentLayer)];
+                    trvCodeGenerated.Nodes[Enum.GetName(typeof(CodeGeneratorCommon.ComponentLayer), pComponentLayer)];
 
                 if (wNodeService.Nodes.Count == 0)
                     return;

@@ -202,12 +202,12 @@ namespace Fwk.CodeGenerator
             //UserDefinedTypesBack wUserDefinedTypesBack = new UserDefinedTypesBack(_cnn);
             //FwkGeneratorHelper.UserDefinedTypes = wUserDefinedTypesBack.UserDefinedTypes;
             _cnn = GetAuxiliarCnnString();
-            base.DoEvent(_cnn, WizardButton.Ok);
+            base.DoEvent(_cnn, CodeGeneratorCommon.WizardButton.Ok);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            base.DoEvent(null, WizardButton.Cancel);
+            base.DoEvent(null, CodeGeneratorCommon.WizardButton.Cancel);
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -216,12 +216,12 @@ namespace Fwk.CodeGenerator
              _cnn = GetAuxiliarCnnString();
              //UserDefinedTypesBack wUserDefinedTypesBack = new UserDefinedTypesBack(_cnn);
              //FwkGeneratorHelper.UserDefinedTypes = wUserDefinedTypesBack.UserDefinedTypes;
-            base.DoEvent(null, WizardButton.Next);
+             base.DoEvent(null, CodeGeneratorCommon.WizardButton.Next);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            base.DoEvent(null, WizardButton.Back);
+            base.DoEvent(null, CodeGeneratorCommon.WizardButton.Back);
         }
 
 

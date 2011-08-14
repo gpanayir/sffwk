@@ -10,7 +10,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.Windows.Forms;
 
-using Fwk.CodeGenerator.Common;
+
 using Fwk.DataBase;
 
 

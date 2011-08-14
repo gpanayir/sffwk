@@ -28,7 +28,7 @@ namespace Fwk.CodeGenerator
         {
             get { return _MappingTypes; }
         }
-        internal static Fwk.DataBase.DataEntities.UserDefinedTypes UserDefinedTypes;
+        public static Fwk.DataBase.DataEntities.UserDefinedTypes UserDefinedTypes;
         internal static List<CodeGeneratorCommon.MethodActionType> MethodActionTypeList;
         static TemplateSettingObject _TemplateSetting;
 

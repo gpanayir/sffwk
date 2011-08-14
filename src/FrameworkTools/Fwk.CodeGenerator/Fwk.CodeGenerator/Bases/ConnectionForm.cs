@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Fwk.CodeGenerator.Common;
+
 using Fwk.DataBase;
 namespace Fwk.CodeGenerator
 {

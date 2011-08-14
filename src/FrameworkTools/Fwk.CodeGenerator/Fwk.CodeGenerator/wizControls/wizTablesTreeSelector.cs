@@ -51,21 +51,21 @@ namespace Fwk.CodeGenerator
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            base.DoEvent(ctrlTreeViewTables1.CheckedTables, WizardButton.Ok);
+            base.DoEvent(ctrlTreeViewTables1.CheckedTables, CodeGeneratorCommon.WizardButton.Ok);
         }
 
       
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            base.DoEvent(null, WizardButton.Cancel);
+            base.DoEvent(null, CodeGeneratorCommon.WizardButton.Cancel);
         }
 
        
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            base.DoEvent(null, WizardButton.Back);
+            base.DoEvent(null,CodeGeneratorCommon.WizardButton.Back);
         }
         
 

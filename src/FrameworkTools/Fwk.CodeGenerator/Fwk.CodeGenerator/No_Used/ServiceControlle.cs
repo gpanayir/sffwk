@@ -2,7 +2,7 @@
 //using System.Windows.Forms;
 //using System.Collections.Generic;
 //using System.Text;
-//using Fwk.CodeGenerator.Common;
+//
 //using Microsoft.SqlServer.Management.Smo;
 
 

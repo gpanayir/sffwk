@@ -1,4 +1,4 @@
-using Fwk.CodeGenerator.Common;
+
 namespace Fwk.CodeGenerator
 {
     partial class FrmTemplateSetting
@@ -29,13 +29,13 @@ namespace Fwk.CodeGenerator
         /// </summary>
         private void InitializeComponent()
         {
-            Fwk.CodeGenerator.Common.TemplateSettingObject templateSettingObject1 = new Fwk.CodeGenerator.Common.TemplateSettingObject();
-            Fwk.CodeGenerator.Common.Entities entities1 = new Fwk.CodeGenerator.Common.Entities();
-            Fwk.CodeGenerator.Common.Methods methods1 = new Fwk.CodeGenerator.Common.Methods();
-            Fwk.CodeGenerator.Common.MethodsName methodsName1 = new Fwk.CodeGenerator.Common.MethodsName();
-            Fwk.CodeGenerator.Common.Project namespacesPattern1 = new Fwk.CodeGenerator.Common.Project();
-            Fwk.CodeGenerator.Common.Others others1 = new Fwk.CodeGenerator.Common.Others();
-            Fwk.CodeGenerator.Common.StoreProceduresPattern storeProceduresPattern1 = new Fwk.CodeGenerator.Common.StoreProceduresPattern();
+            Fwk.CodeGenerator.TemplateSettingObject templateSettingObject1 = new Fwk.CodeGenerator.TemplateSettingObject();
+            Fwk.CodeGenerator.Entities entities1 = new Fwk.CodeGenerator.Entities();
+            Fwk.CodeGenerator.Methods methods1 = new Fwk.CodeGenerator.Methods();
+            Fwk.CodeGenerator.MethodsName methodsName1 = new Fwk.CodeGenerator.MethodsName();
+            Fwk.CodeGenerator.Project namespacesPattern1 = new Fwk.CodeGenerator.Project();
+            Fwk.CodeGenerator.Others others1 = new Fwk.CodeGenerator.Others();
+            Fwk.CodeGenerator.StoreProceduresPattern storeProceduresPattern1 = new Fwk.CodeGenerator.StoreProceduresPattern();
             this.genTemplateSetting1 = new Fwk.CodeGenerator.TemplateSettingControl();
             this.SuspendLayout();
             // 

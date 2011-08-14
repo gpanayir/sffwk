@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using  Fwk.DataBase.DataEntities ;
-using  Fwk.CodeGenerator.Common;
+
 
 namespace Fwk.CodeGenerator
 {

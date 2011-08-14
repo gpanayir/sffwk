@@ -18,7 +18,7 @@ namespace Fwk.CodeGenerator
 
         }
 
-        internal static string Generate_SVC(string pServiceName, string prjName)
+        public static string Generate_SVC(string pServiceName, string prjName)
         {
             StringBuilder wClassContainer = new StringBuilder(_SVC_tt);
             wClassContainer.Replace(CodeGeneratorCommon.CommonConstants.CONST_SERVICE_NAME, pServiceName);
@@ -26,7 +26,7 @@ namespace Fwk.CodeGenerator
             return wClassContainer.ToString();
         }
 
-        internal static string Generate_ISVC(string pServiceName,string prjName)
+        public static string Generate_ISVC(string pServiceName,string prjName)
         {
 
             StringBuilder wClassContainer = new StringBuilder(_ISVC_tt);

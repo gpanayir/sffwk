@@ -21,7 +21,7 @@ namespace Fwk.CodeGenerator
         /// Hace uso de templates para efectuar reemplazos en tags. Crea una clase y sus métodos.
         /// </remarks>
         /// <author>Marcelo Oviedo</author>
-        internal class DACGenerator
+        public class DACGenerator
         {
 
 
@@ -33,7 +33,7 @@ namespace Fwk.CodeGenerator
             /// <returns>Código fuente.</returns>
             /// <date>2006-03-29T00:00:00</date>
             /// <author>Marcelo Oviedo</author>
-            internal static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.View> pViews)
+            public static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.View> pViews)
             {
                 List<GeneratedCode> wGeneratedCodeResult = new List<GeneratedCode>();
                 GeneratedCode wGeneratedCode;
@@ -61,7 +61,7 @@ namespace Fwk.CodeGenerator
             /// <returns>Código fuente.</returns>
             /// <date>2006-03-29T00:00:00</date>
             /// <author>Marcelo Oviedo</author>
-            internal static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.Table> pTables)
+            public static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.Table> pTables)
             {
                 List<GeneratedCode> wGeneratedCodeResult = new List<GeneratedCode>();
                 GeneratedCode wGeneratedCode;

@@ -8,10 +8,10 @@ using Microsoft.SqlServer.Management.Smo;
 
 namespace Fwk.CodeGenerator
 {
-    internal class BEGenerator
+    public class BEGenerator
     {
 
-        internal static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.View> pViews)
+        public static TreeNode GenCode(List<Microsoft.SqlServer.Management.Smo.View> pViews)
         {
 
             List<GeneratedCode> wGeneratedCodeResult = new List<GeneratedCode>();
@@ -31,7 +31,7 @@ namespace Fwk.CodeGenerator
         }
 
 
-        internal static TreeNode GenCode(List<Table> pTables )
+        public static TreeNode GenCode(List<Table> pTables )
         {
              
             List<GeneratedCode> wGeneratedCodeResult = new List<GeneratedCode>();
