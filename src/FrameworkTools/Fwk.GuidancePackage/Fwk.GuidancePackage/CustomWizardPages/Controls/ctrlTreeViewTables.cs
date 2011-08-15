@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -116,8 +117,12 @@ namespace Fwk.GuidPk
             {
                 Server wServer = new Server(serverConnection);
                 Database db = new Database(wServer, cnn.InitialCatalog);
+                 
+                
                 db.Tables.Refresh();
                 _Tables = db.Tables;
+
+                
             }
             catch (Exception ex)
             {

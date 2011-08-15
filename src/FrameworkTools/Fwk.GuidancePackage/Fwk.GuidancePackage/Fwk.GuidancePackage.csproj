@@ -45,6 +45,10 @@
     <Reference Include="Fwk.DataBase">
       <HintPath>D:\Projects\fwk\trunk\src\Libraries\Framework\Fwk.DataBase.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.RecipeFramework.VisualStudio.Library, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\Extensions\Microsoft patterns and practices\GAX 2010\2.0.20406.0\Microsoft.Practices.RecipeFramework.VisualStudio.Library.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
@@ -133,6 +137,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\FwkGenerator.cs" />
+    <Compile Include="Core\Helper.cs" />
+    <Compile Include="Core\Template.cs" />
     <Content Include="img\logo.gif" />
     <Content Include="img\header.gif" />
     <Compile Include="Actions\AddTemplateReference.cs" />
@@ -353,6 +360,17 @@
     </Content>
     <Content Include="Snippets\CSharp\Fwk.GuidancePackage\sample.snippet">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Text\Entity.cs.t4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Text\EntitySimpleTemplate.cs.t4">
+      <LastGenOutput>EntitySimpleTemplate.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Text\HelperFunctions.cs.t4">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>

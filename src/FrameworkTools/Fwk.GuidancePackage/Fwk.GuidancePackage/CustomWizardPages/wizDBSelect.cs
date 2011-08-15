@@ -36,7 +36,19 @@ namespace Fwk.GuidPk
 
             }
         }
+        [RecipeArgument]
+        public string DatabaseName
+        {
+            set
+            {
+                if (value != null)
+                {
+                  //cmbDataBases.Text = value;
+                }
 
+            }
+        }
+        
 
         public wizDBSelect()
         {
@@ -46,6 +58,9 @@ namespace Fwk.GuidPk
         public wizDBSelect(WizardForm parent)      : base(parent)
         {
             InitializeComponent();
+            this.cmbServer.Text = @"SANTANA\SQLEXPRESS2008R2";
+            this.cmbDataBases.Text = "gastos_my";
+            
         }
 
    
@@ -86,9 +101,18 @@ namespace Fwk.GuidPk
             IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
 
             if (cnn == null)
+            {
                 dictionaryService.SetValue("ConnectionString", null);
+                dictionaryService.SetValue("DatabaseName", null);
+                
+            }
             else
+            {
                 dictionaryService.SetValue("ConnectionString", cnn.ToString());
+                dictionaryService.SetValue("DatabaseName", cnn.InitialCatalog);
+            }
+
+
         }
         
 
@@ -110,8 +134,31 @@ namespace Fwk.GuidPk
                 txtUserName.Enabled = true;
             }
         }
-      
+     
+        //   private CnnString GetAuxiliarCnnString_test()
+        //{
+        //    CnnString wCnnString = new CnnString();
 
+
+        //    wCnnString.InitialCatalog =  "SANTANA\SQLEXPRESS2008R2";
+        //    wCnnString.DataSource ="SANTANA\SQLEXPRESS2008R2";
+
+        //    if (WindowsAutentificaction.Checked)
+        //    {
+        //        wCnnString.User = String.Empty;
+        //        wCnnString.Password = String.Empty;
+
+        //    }
+        //    else
+        //    {
+        //        wCnnString.User = txtUserName.Text.Trim();
+        //        wCnnString.Password = txtPassword.Text.Trim();
+        //    }
+
+        //    wCnnString.WindowsAutentification = WindowsAutentificaction.Checked;
+           
+        //    return wCnnString;
+        //}
         private CnnString GetAuxiliarCnnString()
         {
             CnnString wCnnString = new CnnString();
@@ -209,16 +256,19 @@ namespace Fwk.GuidPk
 
             try
             {
+                
                 _Server = new Server(serverConnection);
 
-
+                //_Server.Databases[_cnn.InitialCatalog].Tables.Refresh();
+               
                 ////iterate over all Databases
-                foreach (Database db in _Server.Databases)
-                {
-                    MessageBox.Show("Coneccion exitosa.-", "Fwk wizard");
+                //foreach (Database db in _Server.Databases)
+
+                //{
+                MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(), "Fwk wizard");
                     
                   
-                }
+                //}
 
             }
             catch (Exception ex)

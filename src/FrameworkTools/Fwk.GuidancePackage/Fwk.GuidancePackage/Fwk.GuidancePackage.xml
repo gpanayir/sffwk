@@ -87,9 +87,11 @@
           <ValueProvider Type="Evaluator" Expression="$(selctedproject.Properties.Item('DefaultNamespace').Value)" />
         </Argument>
         
+        <Argument Name="DatabaseName" Type="System.String" />
         <Argument Name="EntityName" Type="System.String" />
         <Argument Name="ConnectionString" Type="System.String" />
         <Argument Name="Table" Type="Microsoft.SqlServer.Management.Smo.Table,Microsoft.SqlServer.Smo, Version=10.0.0.0 , Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+        <Argument Name="TableName" Type="System.String" />
         <Argument Name="EntityTargetFile">
           <ValueProvider Type="Evaluator"	 Expression="$(EntityName).cs">
             <MonitorArgument Name="EntityName" />
@@ -111,9 +113,13 @@
         
         <Action Name="CreateEntity" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
 						Template="Text\Repeating.cs.t4">
+          
           <Input Name="EntityName" RecipeArgument="EntityName" />
-          <Input Name="Table" RecipeArgument="Table" />
+          <Input Name="TableName" RecipeArgument="TableName" />
           <Input Name="TargetNamespace" RecipeArgument="TargetNamespace" />
+          <Input Name="DatabaseName" RecipeArgument="TargetNamespace" />
+          <Input Name="CnnString" RecipeArgument="ConnectionString" />
+          
           <Output Name="Content" />
         </Action>
         

@@ -81,7 +81,22 @@ namespace Fwk.GuidPk
                 }
             }
         }
+        
+        [RecipeArgument]
+        public string TableName
+        {
+            set
+            {
+                if (value != null)
+                {
 
+                    //ctrlTreeViewTables1.SelectedTable = value;
+                }
+             
+            }
+        }
+
+         
         internal void LoadCnn(string cnnString)
         {
             _cnn = new CnnString("c1", cnnString.ToString());
@@ -101,14 +116,16 @@ namespace Fwk.GuidPk
             {
 
                 dictionaryService.SetValue("Table", null);
+                dictionaryService.SetValue("TableName", null);
             }
             else
             {
                 Table selTable = (Table)e;
 
                 dictionaryService.SetValue("Table", selTable);
-            
-                    txtEntityName.Text = selTable.Name;
+                dictionaryService.SetValue("TableName", selTable.Name);
+
+                txtEntityName.Text = selTable.Name;
             }
 
 
