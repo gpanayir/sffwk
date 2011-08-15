@@ -112,7 +112,7 @@
         
         
         <Action Name="CreateEntity" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
-						Template="Text\Repeating.cs.t4">
+						Template="Text\EntitySimpleTemplate.cs.t4">
           
           <Input Name="EntityName" RecipeArgument="EntityName" />
           <Input Name="TableName" RecipeArgument="TableName" />

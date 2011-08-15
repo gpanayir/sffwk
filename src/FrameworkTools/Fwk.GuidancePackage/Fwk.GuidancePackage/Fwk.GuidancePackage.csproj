@@ -369,6 +369,7 @@
     <Content Include="Templates\Text\EntitySimpleTemplate.cs.t4">
       <LastGenOutput>EntitySimpleTemplate.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\Text\HelperFunctions.cs.t4">
       <IncludeInVSIX>true</IncludeInVSIX>
