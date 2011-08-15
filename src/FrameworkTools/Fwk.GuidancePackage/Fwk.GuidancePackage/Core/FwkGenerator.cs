@@ -119,8 +119,7 @@ namespace Fwk.Guidance.Core
             _MappingTypes.Add(new MappingType("nvarchar", "System.String", "System.Data.DbType.String", "string", "[Name] [Type]([Length]) [Direction]"));
             _MappingTypes.Add(new MappingType("text", "System.String", "System.Data.DbType.String", "string", "[Name] varchar(8000) [Direction]"));
             _MappingTypes.Add(new MappingType("ntext", "System.String", "System.Data.DbType.String", "string", "[Name] varchar(8000) [Direction]"));
-            
-            _MappingTypes.Add(new MappingType("uniqueidentifier", "Guid", "System.Data.DbType.String", "string", "[Name] uniqueidentifier"));
+              _MappingTypes.Add(new MappingType("uniqueidentifier", "Guid", "System.Data.DbType.String", "string", "[Name] uniqueidentifier"));
             
             _MappingTypes.Add(new MappingType("nchar", "System.String", "System.Data.DbType.String", "string", "[Name] nchar([Length]) [Direction]"));
             
