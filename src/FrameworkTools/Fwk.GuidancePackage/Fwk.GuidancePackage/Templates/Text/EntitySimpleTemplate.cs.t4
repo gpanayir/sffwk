@@ -11,6 +11,7 @@
 <#@ assembly name="Microsoft.SqlServer.Smo.dll" #>
 <#@ assembly name="Microsoft.SqlServer.ConnectionInfo.dll" #>
 <#@ assembly name="Microsoft.SqlServer.Management.Sdk.Sfc.dll" #>
+<#@ assembly name="Fwk.GuidPk.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Data" #>
 <#@ import namespace="System.IO" #>
@@ -19,6 +20,7 @@
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #> 
 <#@ import namespace="Microsoft.SqlServer.Management.Smo" #>
+<#@ import namespace="Fwk.Guidance.Core" #>
 <#@ include file="Templates\Text\HelperFunctions.cs.t4" #>
 
 	
