@@ -39,5 +39,22 @@ using System.Linq;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
-
-
+namespace <#= TargetNamespace #>.BE{
+	[Serializable]
+	public class <#= EntityName #>
+	{
+	
+	<#= TableName #>
+	<#= CnnString #>
+	<#= DatabaseName #>
+		<#
+		Table t = GetTable(TableName,CnnString,DatabaseName);
+	
+		foreach (Column column in t.Columns)
+		{ #>	
+		 public <#=  GetCSharpType(column) #><#=  GetNullable(column) #> <#= column.Name #> {get;set;}
+		<# } #>
+				
+			
+	}
+}

@@ -374,6 +374,10 @@
     <Content Include="Templates\Text\HelperFunctions.cs.t4">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\Text\EntityTemplate.tt">
+      <LastGenOutput>EntityTemplate.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Snippets\Basic\Fwk.GuidancePackage\" />

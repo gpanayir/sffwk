@@ -117,7 +117,7 @@
           <Input Name="EntityName" RecipeArgument="EntityName" />
           <Input Name="TableName" RecipeArgument="TableName" />
           <Input Name="TargetNamespace" RecipeArgument="TargetNamespace" />
-          <Input Name="DatabaseName" RecipeArgument="TargetNamespace" />
+          <Input Name="DatabaseName" RecipeArgument="DatabaseName" />
           <Input Name="CnnString" RecipeArgument="ConnectionString" />
           
           <Output Name="Content" />
