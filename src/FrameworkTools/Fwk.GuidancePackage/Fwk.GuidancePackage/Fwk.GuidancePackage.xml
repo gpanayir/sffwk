@@ -36,13 +36,13 @@
         <Argument Name="ProjectNamespace">
           <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
           
-          <ValueProvider Type="NmsEval"	 Expression="$(ProjectName).Entities">
+          <ValueProvider Type="NmsEval"	 Expression="$(ProjectName)">
             <MonitorArgument Name="ProjectName" />
           </ValueProvider>
         
         </Argument>
         <Argument Name="ProjectNamespace2">
-          <ValueProvider Type="NmsEval"	 Expression="$(ProjectName).Entities">
+          <ValueProvider Type="NmsEval"	 Expression="$(ProjectName)">
             <MonitorArgument Name="ProjectName" />
           </ValueProvider>
         </Argument>
@@ -54,7 +54,7 @@
               <Title>Valores iniciales</Title>
               <Fields>
                 <Field Label="Project Name" ValueName="ProjectName" />
-                <Field Label="Namespace Name" ValueName="ProjectNamespace" />
+                <Field Label="Namespace" ValueName="ProjectNamespace" />
               </Fields>
             </Page>
           </Pages>
@@ -67,11 +67,11 @@
         <TypeAlias Name="Evaluator" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
       </Types>
   
-    <Caption>Create a new entity from database elated backend classes</Caption>
-    <Description>peludo. </Description>
+    <Caption>New simple-entity</Caption>
+    <Description>New simple entity from database</Description>
     
       <HostData >
-      <Icon ID="1047"/>
+      <Icon ID="630"/>
       <CommandBar Name="Project" />
     </HostData>
      
@@ -112,7 +112,7 @@
         
         
         <Action Name="CreateEntity" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
-						Template="Text\EntitySimpleTemplate.cs.t4">
+						Template="Text\EntitySimpleTemplate.tt">
           
           <Input Name="EntityName" RecipeArgument="EntityName" />
           <Input Name="TableName" RecipeArgument="TableName" />
@@ -196,78 +196,9 @@
         </Action>
       </Actions>
     </Recipe>
-    <Recipe Name="NewItemClass" Recurrent="true">
-      <xi:include href="TypeAlias.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
-      <Caption>Collects information from the user</Caption>
-      <Description>
-        This recipe doesn't perform any actions, but showcases the features
-        available to build highly functional wizards by taking advantage of
-        type converters and editors.
-      </Description>
-      <HostData>
-        <Icon ID="1429"/>
-        <CommandBar Name="Project" />
-      </HostData>
-      <Arguments>
-        <Argument Name="Developer" />
-        <!-- Example of automatic UITypeEditor provided by .NET, and a custom value provider -->
-        <Argument Name="Date" Type="System.DateTime">
-          <ValueProvider Type="Fwk.GuidPk.ValueProviders.DateNowValueProvider, Fwk.GuidPk" />
-        </Argument>
-        <!-- Example of automatic converter provided by .NET -->
-        <Argument Name="Platform" Type="System.PlatformID" />
-        <Argument Name="Iterations" Type="System.Int32">
-          <!-- Shows how to use the expression evaluator to assign simple default values, which are typed nevertheless -->
-          <!-- The full type of the evaluator is included using XInclude from a reusable file -->
-          <ValueProvider Type="Evaluator" Expression="5" />
-        </Argument>
-        <!-- The following two arguments are not shown to the user, but collaborate to retrieve a value -->
-        <Argument Name="CurrentProject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-          <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
-        </Argument>
-        <Argument Name="TargetNamespace">
-          <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
-          <!-- Shows an argument with a custom type defined in-place, and not collected by the wizard -->
-          <ValueProvider Type="Evaluator" Expression="$(CurrentProject.Properties.Item('DefaultNamespace').Value).Generated" />
-        </Argument>
-        <Argument Name="Project" Type="EnvDTE.Project, EnvDTE" Required="false">
-          <!-- Converter ensures that a string representation of a project is valid, and also allows conversion to/from it to the Project instance. -->
-          <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.ProjectConverter, Microsoft.Practices.RecipeFramework.Library" />
-        </Argument>
-      </Arguments>
-      <GatheringServiceData>
-        <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
-          <Pages>
-            <Page>
-              <Title>Collect information using editors, converters and value providers.</Title>
-              <Fields>
-                <Field ValueName="Developer" Label="Your name">
-                  <Tooltip>Custom editor provided by the guidance package, the MessageEditor, also used in the "Say a message" recipe.</Tooltip>
-                  <Editor Type="Fwk.GuidPk.Editors.MessageEditor, Fwk.GuidPk" />
-                </Field>
-                <Field ValueName="Date" Label="Date">
-                  <Tooltip>Automatic editor provided by .NET.</Tooltip>
-                </Field>
-                <Field ValueName="Iterations" Label="Iterations"
-									InvalidValueMessage="Must enter a valid integer value to use for the number of iterations.">
-                  <Tooltip>Value retrieved using the value editor, with a fixed value but converted to the proper type automatically.</Tooltip>
-                </Field>
-                <Field ValueName="Platform" Label="Platform">
-                  <Tooltip>Automatic converter and values provided by .NET to all Enum types.</Tooltip>
-                </Field>
-                <Field ValueName="TargetNamespace" Label="Target Namespace">
-                  <Tooltip>This value was calculated using the ExpressionEvaluatorValueProvider, and referring to other recipe arguments (one containing the current project in this case).</Tooltip>
-                </Field>
-                <Field ValueName="Project" Label="Reference Project">
-                  <Tooltip>Shows a complex editor for selecting a project in the current solution, provided with the Library.</Tooltip>
-                  <Editor Type="Microsoft.Practices.RecipeFramework.Library.Editors.SolutionPickerEditor, Microsoft.Practices.RecipeFramework.Library" />
-                </Field>
-              </Fields>
-            </Page>
-          </Pages>
-        </Wizard>
-      </GatheringServiceData>
-    </Recipe>
+
+    
+    
     <Recipe Name="RecipeWithInitialState">
       <Caption>Recipe that is loaded with preset values in the invoking .vstemplate file</Caption>
       <Arguments>
@@ -301,6 +232,50 @@
           <Input Name="HelloMessage" RecipeArgument="StringParameter" />
         </Action>
       </Actions>
+    </Recipe>
+    <Recipe Name="serviceItemClass" Recurrent="true">
+      <xi:include href="TypeAlias.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+      <Caption>Collects information from the service</Caption>
+      <Description>
+        This recipe create new saervice
+      </Description>
+      <HostData>
+        <Icon ID="1429"/>
+        <CommandBar Name="Project" />
+      </HostData>
+      <Arguments>
+        <Argument Name="Developer" >
+          <ValueProvider Type="Fwk.GuidPk.ValueProviders.DeveloperValueProvider, Fwk.GuidPk" />
+        </Argument>
+        <Argument Name="Date" Type="System.DateTime">
+          <ValueProvider Type="Fwk.GuidPk.ValueProviders.DateValueProvider, Fwk.GuidPk" />
+        </Argument>
+        <Argument Name="Platform" Type="System.PlatformID" />
+        <Argument Name="servicename" Type="System.String"/>
+        <Argument Name="CurrentProject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
+        </Argument>
+        
+        
+      </Arguments>
+      <GatheringServiceData>
+        <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
+          <Pages>
+            <Page>
+              <Title>Collect information using editors, converters and value providers.</Title>
+              <Fields>
+                <Field ValueName="servicename" Label="Sevice name">
+                  <Tooltip>Custom editor provided by the guidance package, the MessageEditor, also used in the "Say a message" recipe.</Tooltip>
+                  <Editor Type="Fwk.GuidPk.Editors.MessageEditor, Fwk.GuidPk" />
+                </Field>
+                <Field ValueName="Platform" Label="Platform">
+                  <Tooltip>Automatic converter and values provided by .NET to all Enum types.</Tooltip>
+                </Field>
+              </Fields>
+            </Page>
+          </Pages>
+        </Wizard>
+      </GatheringServiceData>
     </Recipe>
 	</Recipes>
 </GuidancePackage>

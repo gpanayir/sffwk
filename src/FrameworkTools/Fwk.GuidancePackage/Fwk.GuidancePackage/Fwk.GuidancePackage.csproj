@@ -140,6 +140,24 @@
     <Compile Include="Core\FwkGenerator.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\Template.cs" />
+    <Content Include="Templates\Items\Isvc.t4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Items\Svc.t4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Compile Include="ValueProviders\ValueProvider.cs" />
+    <Content Include="Templates\Items\service.vstemplate">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Solutions\Projects\Controller\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="img\logo.gif" />
     <Content Include="img\header.gif" />
     <Compile Include="Actions\AddTemplateReference.cs" />
@@ -181,6 +199,14 @@
     </Compile>
     <Compile Include="Editors\FileChooser.cs" />
     <Compile Include="Editors\MessageEditor.cs" />
+    <Content Include="Templates\Solutions\Projects\Controller\Controller.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Solutions\Projects\Controller\Controller.vstemplate">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <EmbeddedResource Include="CustomWizardPages\wizEntity_2.resx">
       <DependentUpon>wizEntity_2.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +258,7 @@
     <Content Include="Fwk.GuidancePackage.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Resources\applications_32.png" />
     <Content Include="Templates\Items\Class.cs">
@@ -265,95 +292,77 @@
     <Content Include="Templates\Items\CustomSerializableClass.vstemplate">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Projects\ClientApplication\Properties\Resources.resx">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Projects\ClientApplication\Properties\Settings.settings">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\ClientApplication\ClientApplication.vstemplate">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Projects\ClientApplication\WindowsApplication.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\ClientApplication\Form1.cs">
       <SubType>Form</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\ClientApplication\Form1.designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\ClientApplication\Program.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\ClientApplication\Properties\AssemblyInfo.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\ClientApplication\Properties\Resources.Designer.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Projects\ClientApplication\Properties\Resources.resx">
+      <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\ClientApplication\Properties\Settings.Designer.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Solutions\Projects\ConsoleApplication\Properties\AssemblyInfo.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Templates\Projects\ClientApplication\Properties\Settings.settings">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Solutions\Projects\ConsoleApplication\Program.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Solutions\Projects\ConsoleApplication\ConsoleApplication.vstemplate">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Solutions\Projects\ConsoleApplication\ConsoleApplication.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Templates\Projects\ClientApplication\WindowsApplication.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\SampleLibrary\Properties\AssemblyInfo.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Projects\SampleLibrary\SampleLibrary.vstemplate">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Projects\SampleLibrary\SampleLibrary.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Projects\SampleLibrary\SampleClass.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Projects\SampleLibrary\SampleLibrary.csproj">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\Projects\SampleLibrary\SampleLibrary.vstemplate">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\Solutions\Projects\Backend\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Solutions\SampleSolution.vstemplate">
+    <Content Include="Templates\Solutions\Projects\Backend\Backend.vstemplate">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Solutions\Projects\Backend\Backend.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Solutions\FwkSolution.vstemplate">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Solutions\SampleSolution.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Text\Repeating.cs.t4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Fwk.GuidancePackage_.xml" />
     <Content Include="TypeAlias.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -362,16 +371,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Text\Entity.cs.t4">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Text\EntitySimpleTemplate.cs.t4">
-      <LastGenOutput>EntitySimpleTemplate.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
+    <Content Include="Templates\Text\EntitySimpleTemplate.tt">
+      <LastGenOutput>EntitySimpleTemplate1.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Text\HelperFunctions.cs.t4">
+    <Content Include="Templates\Text\Methods.tt">
+      <LastGenOutput>Methods1.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Text\EntityTemplate.tt">
@@ -382,7 +389,9 @@
   <ItemGroup>
     <Folder Include="Snippets\Basic\Fwk.GuidancePackage\" />
     <Folder Include="Snippets\XML\Fwk.GuidancePackage\" />
-    <Folder Include="ValueProviders\" />
+    <Folder Include="Templates\Solutions\Projects\Backend\Entities\" />
+    <Folder Include="Templates\Solutions\Projects\Backend\ISVC\" />
+    <Folder Include="Templates\Solutions\Projects\Backend\SVC\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

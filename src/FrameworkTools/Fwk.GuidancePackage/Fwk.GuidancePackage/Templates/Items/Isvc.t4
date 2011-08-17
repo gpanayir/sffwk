@@ -1,0 +1,62 @@
+﻿<#@ template language="C#" #>
+<#@ property processor="PropertyProcessor" name="projectname" #>
+<#@ property processor="PropertyProcessor" name="servicename" #>
+<#@ assembly name="System.dll" #>
+
+// ===============================================================================
+// Disclaimer: this class was created by <#= System.Environment.UserName #> on <#= System.DateTime.Now().ToLongDateString() #>
+//
+// 
+//
+// ==============================================================================
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Fwk.Bases;
+using System.Xml.Serialization;
+using <#= projectname #>.Common.Entities;
+
+namespace <#= projectname #>.Common.Isvc.<#= servicename #>
+{
+    
+    #region [Request]
+    [Serializable]
+    public class <#= servicename #>Req : Request<Params>/// If you hasn´t any returns value you can use : Request<DummyContract> and remove Params class
+    {
+        public <#= servicename #>Req()
+        {
+            base.servicename = "<#= servicename #>Service";
+        }
+    }
+
+     #region [BussinesData]
+    [XmlInclude(typeof(Params)), Serializable]
+    public class Params : Entity
+    {
+
+    }
+    
+    #endregion
+    #endregion
+
+    #region [Response]
+    [Serializable]
+    public class <#= servicename #>Res: Response<Result> ///  If you hasn´t any returns value you can use : Request<DummyContract> and remove Params class
+    {
+    }
+
+    #region [BussinesData]
+
+    [XmlInclude(typeof(Result)), Serializable]
+    public class Result : Entity
+    {
+     
+
+    }
+
+    #endregion
+    #endregion
+}

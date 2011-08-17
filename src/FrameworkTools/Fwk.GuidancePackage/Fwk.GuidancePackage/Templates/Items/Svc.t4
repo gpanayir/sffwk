@@ -1,0 +1,33 @@
+﻿// ===============================================================================
+
+// Disclaimer: this class was created by $Developer$ on $Date$
+//
+// Development platform was: $Platform$
+//
+// ==============================================================================
+
+
+using System;
+using System.Data;
+using System.Collections.Generic;
+using Fwk.Bases;
+using $safeprojectname$.Common.Entities;
+using $safeprojectname$.Common.Isvc.<#= servicename #>;
+
+namespace $CurrentProject$.BackEnd.SVC
+{
+    public class <#= servicename #>Service : BusinessService<<#= servicename #>Req,<#= servicename #>Res>
+    {
+        public override <#= servicename #>Res Execute(<#= servicename #>Req req)
+        {
+         <#= servicename #>Res res = new <#= servicename #>Res();
+
+
+            //----------------------------
+            // Implement your code here..
+            //----------------------------
+
+           return res;
+        }
+    }
+}

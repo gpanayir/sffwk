@@ -1,0 +1,42 @@
+﻿<VSTemplate 
+	Version="2.0" 
+	Type="ProjectGroup"
+	xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+	<TemplateData>
+		<Name>Controller solution </Name>
+		<Description>This template will create a Controller solution with all needed referenses to fwk framework</Description>
+		<ProjectType>CSharp</ProjectType>
+		<SortOrder>90</SortOrder>
+		<Icon>SampleSolution.ico</Icon>
+		<CreateNewFolder>false</CreateNewFolder>
+		<DefaultName>Fwk.GuidPkSolution</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+	</TemplateData>
+	<TemplateContent>
+		<ProjectCollection>
+      <SolutionFolder Name="Controller" >
+        <ProjectTemplateLink ProjectName="$ProjectName$.Ctrl">Projects\Controller\Controller.vstemplate</ProjectTemplateLink>
+      </SolutionFolder>
+
+      <SolutionFolder Name="Backend">
+        <ProjectTemplateLink ProjectName="$ProjectName$.Backend">Projects\Backend\Backend.vstemplate</ProjectTemplateLink>
+      </SolutionFolder>
+
+
+    </ProjectCollection>
+	</TemplateContent>
+	<WizardExtension>
+		<Assembly>Microsoft.Practices.RecipeFramework.VisualStudio, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</Assembly>
+		<FullClassName>Microsoft.Practices.RecipeFramework.VisualStudio.Templates.UnfoldTemplate</FullClassName>
+	</WizardExtension>
+	<WizardData>
+		<Template xmlns="http://schemas.microsoft.com/pag/gax-template"
+              SchemaVersion="1.0"
+              Recipe="CreateSolution">
+			<References>
+        <RecipeReference Name="serviceItemClass" Target="\Controller" />
+        <TemplateReference Name="Projects\ClientApplication\ClientApplication.vstemplate" Target="\Controller" />
+			</References>
+		</Template>
+	</WizardData>
+</VSTemplate>
