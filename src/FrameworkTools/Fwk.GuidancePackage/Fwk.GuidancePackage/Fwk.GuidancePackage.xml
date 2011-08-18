@@ -164,13 +164,13 @@
 
 
         <Argument Name="projectName">
-          <ValueProvider Type="Evaluator"	 Expression="$(selctedproject.FullName)">
+          <ValueProvider Type="Evaluator"	 Expression="$(selctedproject.Name)">
             <MonitorArgument Name="selctedproject" />
           </ValueProvider>
         </Argument>
 
         <Argument Name="IsvcFileName">
-          <ValueProvider Type="Evaluator"	 Expression="$(ServiceName).cs">
+          <ValueProvider Type="Evaluator"	 Expression="$(ServiceName)Contract.cs">
             <MonitorArgument Name="ServiceName" />
           </ValueProvider>
         </Argument>
@@ -180,6 +180,14 @@
             <MonitorArgument Name="ServiceName" />
           </ValueProvider>
         </Argument>
+        <Argument Name="Developer" >
+        <ValueProvider Type="Fwk.GuidPk.ValueProviders.DeveloperValueProvider, Fwk.GuidPk" />
+        </Argument>
+        <Argument Name="Date">
+          <ValueProvider Type="Fwk.GuidPk.ValueProviders.DateValueProvider, Fwk.GuidPk" />
+        </Argument>
+        
+        
       </Arguments>
       <GatheringServiceData>
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
@@ -196,6 +204,8 @@
 						Template="Text\Isvc.t4">
           <Input Name="projectname" RecipeArgument="projectName" />
           <Input Name="servicename" RecipeArgument="ServiceName" />
+          <Input Name="developer" RecipeArgument="Developer" />
+          <Input Name="date" RecipeArgument="Date" />
           <Output Name="Content" />
         </Action>
 
@@ -211,6 +221,8 @@
 						Template="Text\Svc.t4">
           <Input Name="projectname" RecipeArgument="projectName" />
           <Input Name="servicename" RecipeArgument="ServiceName" />
+          <Input Name="developer" RecipeArgument="Developer" />
+          <Input Name="date" RecipeArgument="Date" />
           <Output Name="Content" />
         </Action>
 
@@ -229,88 +241,6 @@
 
 
 
-    <Recipe Name="ServiceItemClass_" Bound="false" >
-      <Types>
-        <TypeAlias Name="Evaluator" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
-      </Types>
-      <Caption>Fwk Service (Svc/Isvc Class) </Caption>
-      <Description>
-        Collects information from the service
-      </Description>
-      <HostData>
-        <Icon ID="630"/>
-        <CommandBar Name="Project" />
-      </HostData>
-      <Arguments>
-        
-
-        <Argument Name="servicename" Type="System.String"/>
-        <Argument Name="selctedproject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-          <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
-        </Argument>
-
-
-        <Argument Name="projectName">
-          <ValueProvider Type="Evaluator"	 Expression="$(selctedproject.FullName)">
-            <MonitorArgument Name="selctedproject" />
-          </ValueProvider>
-        </Argument>
-        
-        <Argument Name="IsvcFileName">
-          <ValueProvider Type="Evaluator"	 Expression="$(servicename).cs">
-            <MonitorArgument Name="servicename" />
-          </ValueProvider>
-        </Argument>
-
-        <Argument Name="SvcFileName">
-          <ValueProvider Type="Evaluator"	 Expression="$(servicename)Service.cs">
-            <MonitorArgument Name="servicename" />
-          </ValueProvider>
-        </Argument>
-      </Arguments>
-      <GatheringServiceData>
-        <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
-
-          <Pages>
-            <Page Type="Fwk.GuidPk.wizService, Fwk.GuidPk" Width="800" Height="500" />
-         </Pages>
-        </Wizard>
-      </GatheringServiceData>
-
-      <Actions>
-
-
-        <Action Name="CreateIsvc" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
-						Template="Text\Isvc.t4">
-          <Input Name="projectname" RecipeArgument="projectName" />
-          <Input Name="servicename" RecipeArgument="servicename" />
-          <Output Name="Isvc.Content" />
-        </Action>
-
-        <Action Name="AddIsvc" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
-          <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
-          <Input Name="Content" ActionOutput="Isvc.Content" />
-          <Input Name="TargetFileName" RecipeArgument="IsvcFileName" />
-          <Input Name="Project" RecipeArgument="selctedproject" />
-        </Action>
-
-
-        <Action Name="CreateSvc" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
-						Template="Text\Svc.t4">
-          <Input Name="projectname" RecipeArgument="projectName" />
-          <Input Name="servicename" RecipeArgument="servicename" />
-          <Output Name="Svc.Content" />
-        </Action>
-
-        <Action Name="Addsvc" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
-
-          <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
-          <Input Name="Content" ActionOutput="Svc.Content" />
-          <Input Name="TargetFileName" RecipeArgument="SvcFileName" />
-          <Input Name="Project" RecipeArgument="selctedproject" />
-        </Action>
-
-      </Actions>
-    </Recipe>
+    
 	</Recipes>
 </GuidancePackage>
