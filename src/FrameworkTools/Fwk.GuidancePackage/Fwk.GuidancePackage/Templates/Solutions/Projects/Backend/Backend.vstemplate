@@ -5,17 +5,18 @@
 		<Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4547" />
 		<ProjectType>CSharp</ProjectType>
 		<SortOrder>20</SortOrder>
-		<CreateNewFolder>false</CreateNewFolder>
+		<CreateNewFolder>true</CreateNewFolder>
 		<DefaultName>SampleConsole</DefaultName>
 		<ProvideDefaultName>true</ProvideDefaultName>
 	</TemplateData>
 	<TemplateContent>
 		<Project File="Backend.csproj" ReplaceParameters="true">
 			<ProjectItem ReplaceParameters="true">Properties\AssemblyInfo.cs</ProjectItem>
-      <Folder Name="SVC"></Folder>
-      <Folder Name="ISVC"></Folder>
-      <Folder Name="Entities"></Folder>
+      <Folder Name="Services" TargetFolderName="Services" />
+      <Folder Name="Entities" TargetFolderName="Entities"/>
+      
 	</Project>
+    
 	</TemplateContent>
 	<WizardExtension>
 		<Assembly>Microsoft.Practices.RecipeFramework.VisualStudio, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</Assembly>

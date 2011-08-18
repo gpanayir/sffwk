@@ -212,6 +212,7 @@
     <Content Include="Templates\Solutions\Projects\Controller\Controller.vstemplate">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <EmbeddedResource Include="CustomWizardPages\wizEntity_2.resx">
       <DependentUpon>wizEntity_2.cs</DependentUpon>
@@ -358,6 +359,7 @@
     <Content Include="Templates\Solutions\Projects\Backend\Backend.vstemplate">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Solutions\Projects\Backend\Backend.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -399,8 +401,7 @@
     <Folder Include="Snippets\Basic\Fwk.GuidancePackage\" />
     <Folder Include="Snippets\XML\Fwk.GuidancePackage\" />
     <Folder Include="Templates\Solutions\Projects\Backend\Entities\" />
-    <Folder Include="Templates\Solutions\Projects\Backend\ISVC\" />
-    <Folder Include="Templates\Solutions\Projects\Backend\SVC\" />
+    <Folder Include="Templates\Solutions\Projects\Backend\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

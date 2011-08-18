@@ -15,7 +15,7 @@
 	<TemplateContent>
 		<ProjectCollection>
       <SolutionFolder Name="Controller" >
-        <ProjectTemplateLink ProjectName="$ProjectName$.Ctrl">Projects\Controller\Controller.vstemplate</ProjectTemplateLink>
+        <ProjectTemplateLink ProjectName="$ProjectName$.Controller">Projects\Controller\Controller.vstemplate</ProjectTemplateLink>
       </SolutionFolder>
 
       <SolutionFolder Name="Backend">

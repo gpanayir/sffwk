@@ -8,8 +8,8 @@
     <ProjectGuid>$guid1$</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>$safeprojectname$.controller</RootNamespace>
-    <AssemblyName>$safeprojectname$.controller</AssemblyName>
+    <RootNamespace>$safeprojectname$</RootNamespace>
+    <AssemblyName>$safeprojectname$</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +33,7 @@
     <Reference Include="System.Data"/>
     <Reference Include="System.Xml"/>
     <Reference Include="Fwk.Bases"/>
+    <Reference Include="Fwk.Connector"/>
   </ItemGroup>
   <ItemGroup>
 	  <Compile Include="Properties\AssemblyInfo.cs" />
