@@ -33,7 +33,7 @@ namespace Fwk.GuidPk.ValueProviders
                 newValue = null;
                 return false;
             }
-            newValue = DateTime.Now;
+            newValue = DateTime.Now.ToShortDateString();
             return true;
         }
     }
