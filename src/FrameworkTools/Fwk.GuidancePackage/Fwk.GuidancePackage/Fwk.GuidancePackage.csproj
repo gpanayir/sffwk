@@ -140,14 +140,20 @@
     <Compile Include="Core\FwkGenerator.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\Template.cs" />
-    <Content Include="Templates\Items\Isvc.t4">
+    <Content Include="Templates\Text\Isvc.t4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Items\Svc.t4">
+    <Content Include="Templates\Text\Svc.t4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Compile Include="CustomWizardPages\wizService.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomWizardPages\wizService.Designer.cs">
+      <DependentUpon>wizService.cs</DependentUpon>
+    </Compile>
     <Compile Include="ValueProviders\ValueProvider.cs" />
     <Content Include="Templates\Items\service.vstemplate">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -231,6 +237,9 @@
     </Compile>
     <Compile Include="Editors\TemplateChooser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CustomWizardPages\wizService.resx">
+      <DependentUpon>wizService.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

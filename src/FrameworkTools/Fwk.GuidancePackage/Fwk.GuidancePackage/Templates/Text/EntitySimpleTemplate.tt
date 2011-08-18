@@ -33,6 +33,7 @@
 //     the code is regenerated.
 //
 //</auto-generated>
+// Disclaimer: this class was created by <#= System.Environment.UserName #> on <#= System.DateTime.Now().ToLongDateString() #>
 //------------------------------------------------------------------------------
 using System;
 using System.Linq;
@@ -44,9 +45,7 @@ namespace <#= TargetNamespace #>.BE{
 	public class <#= EntityName #>
 	{
 	
-	<#= TableName #>
-	<#= CnnString #>
-	<#= DatabaseName #>
+
 		<#
 		Table t = GetTable(TableName,CnnString,DatabaseName);
 	

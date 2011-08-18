@@ -34,7 +34,7 @@
               SchemaVersion="1.0"
               Recipe="CreateSolution">
 			<References>
-        <RecipeReference Name="serviceItemClass" Target="\Controller" />
+        
         <TemplateReference Name="Projects\ClientApplication\ClientApplication.vstemplate" Target="\Controller" />
 			</References>
 		</Template>

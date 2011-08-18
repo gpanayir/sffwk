@@ -104,11 +104,11 @@
             this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTestConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTestConnection.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnTestConnection.Location = new System.Drawing.Point(460, 85);
+            this.btnTestConnection.Location = new System.Drawing.Point(393, 121);
             this.btnTestConnection.Name = "btnTestConnection";
-            this.btnTestConnection.Size = new System.Drawing.Size(112, 24);
+            this.btnTestConnection.Size = new System.Drawing.Size(75, 24);
             this.btnTestConnection.TabIndex = 60;
-            this.btnTestConnection.Text = "Testear Coneccion";
+            this.btnTestConnection.Text = "Test ";
             this.btnTestConnection.UseVisualStyleBackColor = false;
             this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 

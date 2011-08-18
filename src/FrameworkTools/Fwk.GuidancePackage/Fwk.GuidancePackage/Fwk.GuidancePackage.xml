@@ -17,6 +17,10 @@
                   ReferenceType="Fwk.GuidPk.References.SolutionFolderAReference, Fwk.GuidPk" />
         <Action Name="UnboundEntityTemplate" Type="RefCreator" AssetName="EntityWizard"
           ReferenceType="Microsoft.Practices.RecipeFramework.Library.AssetReferences.UnboundReferences.CSharpProjectRecipeReference, Microsoft.Practices.RecipeFramework.Library" />
+
+        <Action Name="UnboundEntityTemplate3" Type="RefCreator" AssetName="ServiceItemClass"
+          ReferenceType="Microsoft.Practices.RecipeFramework.Library.AssetReferences.UnboundReferences.CSharpProjectRecipeReference, Microsoft.Practices.RecipeFramework.Library" />
+        
         
       </Actions>
 		</Recipe>
@@ -134,148 +138,179 @@
         
         </Actions>
     </Recipe>
-    <Recipe Name="AddMainClass" Recurrent="false">
+
+
+    <Recipe Name="ServiceItemClass" Bound="false">
       <Types>
         <TypeAlias Name="Evaluator" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
       </Types>
-      <Caption>Add class with Main method</Caption>
-      <HostData>
-        <Icon ID="630" />
+
+      <Caption>Fwk Service (Svc/Isvc Class)</Caption>
+      <Description>New simple entity from database</Description>
+
+      <HostData >
+        <Icon ID="630"/>
         <CommandBar Name="Project" />
       </HostData>
+
+
       <Arguments>
-        <Argument Name="CurrentProject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+
+
+        <Argument Name="ServiceName" Type="System.String"/>
+        <Argument Name="selctedproject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
           <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
         </Argument>
-        <Argument Name="ClassName">
-          <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.CodeIdentifierStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
-        </Argument>
-        <Argument Name="TargetFile">
-          <ValueProvider Type="Evaluator"
-									 Expression="$(ClassName).cs">
-            <MonitorArgument Name="ClassName" />
+
+
+        <Argument Name="projectName">
+          <ValueProvider Type="Evaluator"	 Expression="$(selctedproject.FullName)">
+            <MonitorArgument Name="selctedproject" />
           </ValueProvider>
         </Argument>
-        <Argument Name="TargetNamespace">
-          <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
-          <ValueProvider Type="Evaluator"
-									 Expression="$(CurrentProject.Properties.Item('DefaultNamespace').Value)" />
+
+        <Argument Name="IsvcFileName">
+          <ValueProvider Type="Evaluator"	 Expression="$(ServiceName).cs">
+            <MonitorArgument Name="ServiceName" />
+          </ValueProvider>
         </Argument>
-        <Argument Name="HelloMessage">
-          <Converter Type="Fwk.GuidPk.Converters.HelloWorldConverter, Fwk.GuidPk" />
+
+        <Argument Name="SvcFileName">
+          <ValueProvider Type="Evaluator"	 Expression="$(ServiceName)Service.cs">
+            <MonitorArgument Name="ServiceName" />
+          </ValueProvider>
         </Argument>
       </Arguments>
       <GatheringServiceData>
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
+
           <Pages>
-            <Page>
-              <Title>Hello World</Title>
-              <Fields>
-                <Field ValueName="ClassName" Label="Class Name" />
-                <Field ValueName="TargetNamespace" Label="Namespace" />
-                <Field ValueName="HelloMessage" Label="Message" />
-              </Fields>
-            </Page>
+            <Page Type="Fwk.GuidPk.wizService, Fwk.GuidPk" Width="800" Height="500" />
           </Pages>
         </Wizard>
       </GatheringServiceData>
       <Actions>
-        <Action Name="GenerateMainClass" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
-						Template="Text\Program.cs.t4">
-          <Input Name="Hello" RecipeArgument="HelloMessage" />
-          <Input Name="ClassName" RecipeArgument="ClassName"/>
-          <Input Name="TargetNamespace" RecipeArgument="TargetNamespace"/>
+
+
+        <Action Name="CreateIsvc" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
+						Template="Text\Isvc.t4">
+          <Input Name="projectname" RecipeArgument="projectName" />
+          <Input Name="servicename" RecipeArgument="ServiceName" />
           <Output Name="Content" />
         </Action>
-        <Action Name="AddMainClass" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"
-						Open="true">
-          <!--Shows how to specify a property as a fixed value in config-->
-          <Input Name="Content" ActionOutput="GenerateMainClass.Content" />
-          <Input Name="TargetFileName" RecipeArgument="TargetFile" />
-          <Input Name="Project" RecipeArgument="CurrentProject" />
+
+        <Action Name="AddIsvc" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
+          <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
+          <Input Name="Content" ActionOutput="CreateIsvc.Content" />
+          <Input Name="TargetFileName" RecipeArgument="IsvcFileName" />
+          <Input Name="Project" RecipeArgument="selctedproject" />
         </Action>
+
+
+        <Action Name="CreateSvc" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
+						Template="Text\Svc.t4">
+          <Input Name="projectname" RecipeArgument="projectName" />
+          <Input Name="servicename" RecipeArgument="ServiceName" />
+          <Output Name="Content" />
+        </Action>
+
+        <Action Name="Addsvc" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
+
+          <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
+          <Input Name="Content" ActionOutput="CreateSvc.Content" />
+          <Input Name="TargetFileName" RecipeArgument="SvcFileName" />
+          <Input Name="Project" RecipeArgument="selctedproject" />
+        </Action>
+
       </Actions>
+      
     </Recipe>
 
-    
-    
-    <Recipe Name="RecipeWithInitialState">
-      <Caption>Recipe that is loaded with preset values in the invoking .vstemplate file</Caption>
-      <Arguments>
-        <Argument Name="StringParameter" Type="System.String"/>
-        <Argument Name="IntParameter" Type="System.Int32"/>
-        <Argument Name="DoubleParameter" Type="System.Double"/>
-      </Arguments>
-      <GatheringServiceData>
-        <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
-          <Pages>
-            <Page>
-              <Title>Wizard with initial state</Title>
-              <Help>Wizard values are set in the .vstemplate</Help>
-              <Fields>
-                <Field ValueName="StringParameter" Label="String parameter">
-                  <Help>String parameter with initial state specified</Help>
-                </Field>
-                <Field ValueName="IntParameter" Label="Integer parameter">
-                  <Help>Integer parameter with initial state specified</Help>
-                </Field>
-                <Field ValueName="DoubleParameter" Label="Double parameter">
-                  <Help>Double parameter with initial state specified</Help>
-                </Field>
-              </Fields>
-            </Page>
-          </Pages>
-        </Wizard>
-      </GatheringServiceData>
-      <Actions>
-        <Action Name="HelloWorld" Type="pelsoft.ar.Actions.HelloWorldAction, GuidancePackage1">
-          <Input Name="HelloMessage" RecipeArgument="StringParameter" />
-        </Action>
-      </Actions>
-    </Recipe>
-    <Recipe Name="serviceItemClass" Recurrent="true">
-      <xi:include href="TypeAlias.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
-      <Caption>Collects information from the service</Caption>
+
+
+
+    <Recipe Name="ServiceItemClass_" Bound="false" >
+      <Types>
+        <TypeAlias Name="Evaluator" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
+      </Types>
+      <Caption>Fwk Service (Svc/Isvc Class) </Caption>
       <Description>
-        This recipe create new saervice
+        Collects information from the service
       </Description>
       <HostData>
-        <Icon ID="1429"/>
+        <Icon ID="630"/>
         <CommandBar Name="Project" />
       </HostData>
       <Arguments>
-        <Argument Name="Developer" >
-          <ValueProvider Type="Fwk.GuidPk.ValueProviders.DeveloperValueProvider, Fwk.GuidPk" />
-        </Argument>
-        <Argument Name="Date" Type="System.DateTime">
-          <ValueProvider Type="Fwk.GuidPk.ValueProviders.DateValueProvider, Fwk.GuidPk" />
-        </Argument>
-        <Argument Name="Platform" Type="System.PlatformID" />
+        
+
         <Argument Name="servicename" Type="System.String"/>
-        <Argument Name="CurrentProject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+        <Argument Name="selctedproject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
           <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
         </Argument>
+
+
+        <Argument Name="projectName">
+          <ValueProvider Type="Evaluator"	 Expression="$(selctedproject.FullName)">
+            <MonitorArgument Name="selctedproject" />
+          </ValueProvider>
+        </Argument>
         
-        
+        <Argument Name="IsvcFileName">
+          <ValueProvider Type="Evaluator"	 Expression="$(servicename).cs">
+            <MonitorArgument Name="servicename" />
+          </ValueProvider>
+        </Argument>
+
+        <Argument Name="SvcFileName">
+          <ValueProvider Type="Evaluator"	 Expression="$(servicename)Service.cs">
+            <MonitorArgument Name="servicename" />
+          </ValueProvider>
+        </Argument>
       </Arguments>
       <GatheringServiceData>
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
+
           <Pages>
-            <Page>
-              <Title>Collect information using editors, converters and value providers.</Title>
-              <Fields>
-                <Field ValueName="servicename" Label="Sevice name">
-                  <Tooltip>Custom editor provided by the guidance package, the MessageEditor, also used in the "Say a message" recipe.</Tooltip>
-                  <Editor Type="Fwk.GuidPk.Editors.MessageEditor, Fwk.GuidPk" />
-                </Field>
-                <Field ValueName="Platform" Label="Platform">
-                  <Tooltip>Automatic converter and values provided by .NET to all Enum types.</Tooltip>
-                </Field>
-              </Fields>
-            </Page>
-          </Pages>
+            <Page Type="Fwk.GuidPk.wizService, Fwk.GuidPk" Width="800" Height="500" />
+         </Pages>
         </Wizard>
       </GatheringServiceData>
+
+      <Actions>
+
+
+        <Action Name="CreateIsvc" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
+						Template="Text\Isvc.t4">
+          <Input Name="projectname" RecipeArgument="projectName" />
+          <Input Name="servicename" RecipeArgument="servicename" />
+          <Output Name="Isvc.Content" />
+        </Action>
+
+        <Action Name="AddIsvc" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
+          <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
+          <Input Name="Content" ActionOutput="Isvc.Content" />
+          <Input Name="TargetFileName" RecipeArgument="IsvcFileName" />
+          <Input Name="Project" RecipeArgument="selctedproject" />
+        </Action>
+
+
+        <Action Name="CreateSvc" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
+						Template="Text\Svc.t4">
+          <Input Name="projectname" RecipeArgument="projectName" />
+          <Input Name="servicename" RecipeArgument="servicename" />
+          <Output Name="Svc.Content" />
+        </Action>
+
+        <Action Name="Addsvc" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
+
+          <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
+          <Input Name="Content" ActionOutput="Svc.Content" />
+          <Input Name="TargetFileName" RecipeArgument="SvcFileName" />
+          <Input Name="Project" RecipeArgument="selctedproject" />
+        </Action>
+
+      </Actions>
     </Recipe>
 	</Recipes>
 </GuidancePackage>

@@ -25,19 +25,11 @@
       <References>
 
 
-        <RecipeReference Name="serviceItemClass" Target="/"/>
 
 
 
 
-        <TemplateReference Name="Items\service.vstemplate" Target="/" >
-          <InitialState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-            <Entry>
-              <Key>SeriviceName</Key>
-              <Value>porongasa</Value>
-            </Entry>
-          </InitialState>
-        </TemplateReference>
+        
       </References>
     </Template>
 	</WizardData>
