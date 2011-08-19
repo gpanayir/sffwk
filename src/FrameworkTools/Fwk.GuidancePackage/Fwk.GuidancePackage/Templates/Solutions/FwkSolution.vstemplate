@@ -35,7 +35,7 @@
               Recipe="CreateSolution">
 			<References>
         
-        <TemplateReference Name="Projects\ClientApplication\ClientApplication.vstemplate" Target="\Controller" />
+     
 			</References>
 		</Template>
 	</WizardData>

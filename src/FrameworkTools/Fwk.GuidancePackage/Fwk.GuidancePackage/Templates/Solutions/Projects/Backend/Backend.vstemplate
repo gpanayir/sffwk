@@ -12,8 +12,10 @@
 	<TemplateContent>
 		<Project File="Backend.csproj" ReplaceParameters="true">
 			<ProjectItem ReplaceParameters="true">Properties\AssemblyInfo.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="false">Entities\EntityFwkGen.tt</ProjectItem>
+      <ProjectItem ReplaceParameters="false">Entities\EntityFwkGen_helper.tt</ProjectItem>
       <Folder Name="Services" TargetFolderName="Services" />
-      <Folder Name="Entities" TargetFolderName="Entities"/>
+      
       
 	</Project>
     
