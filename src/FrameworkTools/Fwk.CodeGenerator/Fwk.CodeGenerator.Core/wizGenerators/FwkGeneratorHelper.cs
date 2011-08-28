@@ -257,7 +257,7 @@ namespace Fwk.CodeGenerator
              return string.Empty;
          }
 
-         internal static string GetNullableToken(Column pColumn)
+        internal static string GetNullableToken(Column pColumn)
         {
             if (!pColumn.Nullable)
                 return string.Empty;
