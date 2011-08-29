@@ -6,9 +6,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data;
 using System.Data.Common;
 using System.Web.Security;
-
 using Fwk.Exceptions;
-using Fwk.Security.Membership;
 
 
 namespace Fwk.Security
@@ -99,7 +97,7 @@ namespace Fwk.Security
             try
             {
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
-                using (RuleProviderDataContext dc = new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
                     var rulesinCat = from s in dc.aspnet_RulesCategories where s.ApplicationId == wApplicationId select s;
 
@@ -147,7 +145,7 @@ namespace Fwk.Security
             try
             {
 
-                using (RuleProviderDataContext dc = new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
                     rulesinCat = from s in dc.aspnet_Rules
                                  from p in dc.aspnet_RulesInCategories
@@ -255,7 +253,7 @@ namespace Fwk.Security
             try
             {
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
-                using (RuleProviderDataContext dc = new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
                     wCategories = from s in dc.aspnet_RulesCategories
                                   where (s.ParentCategoryId == pCategoryId
@@ -375,8 +373,8 @@ namespace Fwk.Security
             try
             {
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
-                using (RuleProviderDataContext dc =
-                    new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (Fwk.Security.RuleProviderDataContext dc =
+                    new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
 
                     return dc.aspnet_RulesCategories.Any<aspnet_RulesCategory>
@@ -423,8 +421,8 @@ namespace Fwk.Security
             try
             {
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
-                using (RuleProviderDataContext dc =
-                    new RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                using (Fwk.Security.RuleProviderDataContext dc =
+                    new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
 
                     bool contain = dc.aspnet_RulesCategories.Any<aspnet_RulesCategory>(p => p.ParentCategoryId == parentFwkCategoryId && p.ApplicationId == wApplicationId);

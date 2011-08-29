@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fwk.Security.Membership
+namespace Fwk.Security
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -18,6 +18,8 @@ namespace Fwk.Security.Membership
 	using System.Reflection;
 	using System.Linq;
 	using System.Linq.Expressions;
+	using System.ComponentModel;
+	using System;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="aspnetdb")]
@@ -28,12 +30,12 @@ namespace Fwk.Security.Membership
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertaspnet_RulesCategory(Fwk.Security.aspnet_RulesCategory instance);
-    partial void Updateaspnet_RulesCategory(Fwk.Security.aspnet_RulesCategory instance);
-    partial void Deleteaspnet_RulesCategory(Fwk.Security.aspnet_RulesCategory instance);
-    partial void Insertaspnet_Application(Fwk.Security.aspnet_Application instance);
-    partial void Updateaspnet_Application(Fwk.Security.aspnet_Application instance);
-    partial void Deleteaspnet_Application(Fwk.Security.aspnet_Application instance);
+    partial void Insertaspnet_RulesCategory(aspnet_RulesCategory instance);
+    partial void Updateaspnet_RulesCategory(aspnet_RulesCategory instance);
+    partial void Deleteaspnet_RulesCategory(aspnet_RulesCategory instance);
+    partial void Insertaspnet_Application(aspnet_Application instance);
+    partial void Updateaspnet_Application(aspnet_Application instance);
+    partial void Deleteaspnet_Application(aspnet_Application instance);
     #endregion
 		
 		public RuleProviderDataContext() : 
@@ -66,46 +68,38 @@ namespace Fwk.Security.Membership
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Fwk.Security.aspnet_Rule> aspnet_Rules
+		public System.Data.Linq.Table<aspnet_Rule> aspnet_Rules
 		{
 			get
 			{
-				return this.GetTable<Fwk.Security.aspnet_Rule>();
+				return this.GetTable<aspnet_Rule>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Fwk.Security.aspnet_RulesInCategory> aspnet_RulesInCategories
+		public System.Data.Linq.Table<aspnet_RulesInCategory> aspnet_RulesInCategories
 		{
 			get
 			{
-				return this.GetTable<Fwk.Security.aspnet_RulesInCategory>();
+				return this.GetTable<aspnet_RulesInCategory>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Fwk.Security.aspnet_RulesCategory> aspnet_RulesCategories
+		public System.Data.Linq.Table<aspnet_RulesCategory> aspnet_RulesCategories
 		{
 			get
 			{
-				return this.GetTable<Fwk.Security.aspnet_RulesCategory>();
+				return this.GetTable<aspnet_RulesCategory>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Fwk.Security.aspnet_Application> aspnet_Applications
+		public System.Data.Linq.Table<aspnet_Application> aspnet_Applications
 		{
 			get
 			{
-				return this.GetTable<Fwk.Security.aspnet_Application>();
+				return this.GetTable<aspnet_Application>();
 			}
 		}
 	}
-}
-namespace Fwk.Security
-{
-	using System.Data.Linq;
-	using System.Data.Linq.Mapping;
-	using System.ComponentModel;
-	using System;
-	
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.aspnet_Rules")]
 	public partial class aspnet_Rule

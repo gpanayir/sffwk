@@ -158,9 +158,6 @@
     <Compile Include="Membership\FwkMembership.User.cs" />
     <Compile Include="Membership\FwkMembershipScripts.cs" />
     <Compile Include="Membership\FwkMembership.cs" />
-    <Compile Include="Membership\RuleProvider.cs">
-      <DependentUpon>RuleProvider.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Membership\RuleProvider.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -227,6 +224,7 @@
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>RuleProvider.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <CustomToolNamespace>Fwk.Security</CustomToolNamespace>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
