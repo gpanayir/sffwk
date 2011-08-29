@@ -1228,7 +1228,9 @@ namespace Fwk.Security.ActiveDirectory
                 objImp.UnImpersonate();
         }
         #region IDisposable Members
-
+        /// <summary>
+        /// 
+        /// </summary>
          public void Dispose()
          {
              UnImpersonateWindowsContext();
