@@ -3,8 +3,8 @@
 	Type="ProjectGroup"
 	xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
 	<TemplateData>
-		<Name>Controller solution </Name>
-		<Description>This template will create a Controller solution with all needed referenses to fwk framework</Description>
+		<Name>BackEnd Fwk solution </Name>
+		<Description>This template will create a backend solution with all needed referenses to fwk framework and wizard recipes</Description>
 		<ProjectType>CSharp</ProjectType>
 		<SortOrder>90</SortOrder>
 		<Icon>SampleSolution.ico</Icon>

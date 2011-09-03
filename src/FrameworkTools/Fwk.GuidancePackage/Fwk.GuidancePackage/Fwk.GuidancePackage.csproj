@@ -42,6 +42,9 @@
     <Reference Include="Fwk.Bases">
       <HintPath>D:\Projects\fwk\trunk\src\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
+    <Reference Include="Fwk.CodeGenerator.Core">
+      <HintPath>..\..\Fwk.CodeGenerator\Fwk.CodeGenerator.Core\bin\Debug\Fwk.CodeGenerator.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Fwk.DataBase">
       <HintPath>D:\Projects\fwk\trunk\src\Libraries\Framework\Fwk.DataBase.dll</HintPath>
     </Reference>
@@ -150,6 +153,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Compile Include="CustomWizardPages\wizDAC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomWizardPages\wizDAC.Designer.cs">
+      <DependentUpon>wizDAC.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomWizardPages\wizService.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -217,6 +226,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <SubType>Designer</SubType>
     </Content>
+    <EmbeddedResource Include="CustomWizardPages\wizDAC.resx">
+      <DependentUpon>wizDAC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomWizardPages\wizEntity_2.resx">
       <DependentUpon>wizEntity_2.cs</DependentUpon>
     </EmbeddedResource>

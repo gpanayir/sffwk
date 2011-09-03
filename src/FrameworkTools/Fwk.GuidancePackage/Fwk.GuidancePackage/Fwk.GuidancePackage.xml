@@ -239,7 +239,68 @@
     </Recipe>
 
 
+    <Recipe Name="DACWizard" Bound="false">
+      <Types>
+        <TypeAlias Name="Evaluator" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
+      </Types>
 
+      <Caption>New data access component</Caption>
+      <Description>New DAC from database</Description>
+
+      <HostData >
+        <Icon ID="630"/>
+        <CommandBar Name="Project" />
+      </HostData>
+
+
+      <Arguments>
+
+        <Argument Name="selctedproject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+          <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
+        </Argument>
+
+        <Argument Name="TargetNamespace">
+          <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
+          <ValueProvider Type="Evaluator" Expression="$(selctedproject.Properties.Item('DefaultNamespace').Value)" />
+        </Argument>
+
+        <Argument Name="DatabaseName" Type="System.String" />
+        <Argument Name="EntityName" Type="System.String" />
+        <Argument Name="ConnectionString" Type="System.String" />
+        <Argument Name="Content" Type="System.String" />
+        
+        <Argument Name="EntityTargetFile">
+          <ValueProvider Type="Evaluator"	 Expression="$(EntityName)DAC.cs">
+            <MonitorArgument Name="EntityName" />
+          </ValueProvider>
+        </Argument>
+      </Arguments>
+      <GatheringServiceData>
+        <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
+
+          <Pages>
+            <Page Type="Fwk.GuidPk.wizDBSelect, Fwk.GuidPk" Width="800" Height="500" />
+            <Page Type="Fwk.GuidPk.wizDAC, Fwk.GuidPk"  />
+          </Pages>
+        </Wizard>
+      </GatheringServiceData>
+
+      <Actions>
+
+
+   
+
+        <Action Name="AddEntityBase" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
+
+          <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
+          <Input Name="Content" ActionOutput="Content" />
+          <Input Name="TargetFileName" RecipeArgument="EntityTargetFile" />
+          <Input Name="Project" RecipeArgument="selctedproject" />
+        </Action>
+
+
+      </Actions>
+    </Recipe>
 
     
 	</Recipes>
