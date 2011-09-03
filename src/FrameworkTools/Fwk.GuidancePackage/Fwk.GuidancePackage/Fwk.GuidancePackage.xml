@@ -20,8 +20,10 @@
 
         <Action Name="UnboundEntityTemplate3" Type="RefCreator" AssetName="ServiceItemClass"
           ReferenceType="Microsoft.Practices.RecipeFramework.Library.AssetReferences.UnboundReferences.CSharpProjectRecipeReference, Microsoft.Practices.RecipeFramework.Library" />
-        
-        
+        <Action Name="UnboundDACTemplate" Type="RefCreator" AssetName="DACWizard"
+         ReferenceType="Microsoft.Practices.RecipeFramework.Library.AssetReferences.UnboundReferences.CSharpProjectRecipeReference, Microsoft.Practices.RecipeFramework.Library" />
+
+
       </Actions>
 		</Recipe>
 
