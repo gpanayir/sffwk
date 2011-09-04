@@ -7,7 +7,7 @@ using Microsoft.SqlServer.Management.Smo;
 namespace Fwk.CodeGenerator
 {
 
-    internal static class GenDAC
+    public static class GenDAC
     {
         static string _DAC_tt;
         static string _Method_tt;
@@ -19,7 +19,7 @@ namespace Fwk.CodeGenerator
         }
 
 
-        internal static string Gen_DAC(TableViewBase pTable, bool pPerformBatch, string projectNmae)
+        public static string Gen_DAC(TableViewBase pTable, bool pPerformBatch, string projectNmae)
         {
             StringBuilder wClass = new StringBuilder(_DAC_tt);
             StringBuilder wMethods = new StringBuilder();
