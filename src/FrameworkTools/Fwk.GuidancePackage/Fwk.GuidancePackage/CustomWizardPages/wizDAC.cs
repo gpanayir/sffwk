@@ -16,6 +16,7 @@ using Microsoft.Practices.RecipeFramework.Library;
 using Microsoft.Practices.RecipeFramework.VisualStudio;
 using EnvDTE;
 using Fwk.CodeGenerator;
+using System.Reflection;
 
 namespace Fwk.GuidPk
 {
@@ -84,6 +85,8 @@ namespace Fwk.GuidPk
 
         public void Generate()
         {
+
+            Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting = new TemplateSettingObject();
 
             TreeNode dacs = Fwk.CodeGenerator.DACGenerator.GenCode(ctrlTreeViewTables1.CheckedTables);
             IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
@@ -163,6 +166,19 @@ namespace Fwk.GuidPk
 
 
 
+        }
+
+        private void wizDAC_Load(object sender, EventArgs e)
+        {
+            LoadTables();
+        }
+
+        private void wizDAC_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                LoadTables();
+            }
         }
     }
 

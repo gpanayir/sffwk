@@ -39,8 +39,9 @@
             // 
             // infoPanel
             // 
-            this.infoPanel.Location = new System.Drawing.Point(0, 245);
-            this.infoPanel.Size = new System.Drawing.Size(771, 319);
+            this.infoPanel.Location = new System.Drawing.Point(0, 300);
+            this.infoPanel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.infoPanel.Size = new System.Drawing.Size(1028, 394);
             this.infoPanel.Visible = false;
             // 
             // txtEntityName
@@ -48,9 +49,10 @@
             this.txtEntityName.BackColor = System.Drawing.Color.White;
             this.txtEntityName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEntityName.ForeColor = System.Drawing.Color.DimGray;
-            this.txtEntityName.Location = new System.Drawing.Point(369, 146);
+            this.txtEntityName.Location = new System.Drawing.Point(492, 180);
+            this.txtEntityName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEntityName.Name = "txtEntityName";
-            this.txtEntityName.Size = new System.Drawing.Size(381, 23);
+            this.txtEntityName.Size = new System.Drawing.Size(507, 26);
             this.txtEntityName.TabIndex = 68;
             this.txtEntityName.TextChanged += new System.EventHandler(this.txtEntityName_TextChanged);
             this.txtEntityName.Enter += new System.EventHandler(this.txtEntityName_Enter);
@@ -65,8 +67,9 @@
             this.lblTitle.Image = global::Fwk.GuidPk.Properties.Resources.applications_32;
             this.lblTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(771, 75);
+            this.lblTitle.Size = new System.Drawing.Size(1028, 92);
             this.lblTitle.TabIndex = 69;
             this.lblTitle.Text = "Select table from databse";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -76,9 +79,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(257, 146);
+            this.label1.Location = new System.Drawing.Point(343, 180);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 20);
+            this.label1.Size = new System.Drawing.Size(128, 25);
             this.label1.TabIndex = 66;
             this.label1.Text = "Entity Name";
             // 
@@ -86,10 +90,11 @@
             // 
             this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ctrlTreeViewTables1.CheckBoxes = true;
-            this.ctrlTreeViewTables1.Location = new System.Drawing.Point(3, 122);
+            this.ctrlTreeViewTables1.Location = new System.Drawing.Point(4, 150);
+            this.ctrlTreeViewTables1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ctrlTreeViewTables1.Name = "ctrlTreeViewTables1";
             this.ctrlTreeViewTables1.SelectedTable = null;
-            this.ctrlTreeViewTables1.Size = new System.Drawing.Size(226, 436);
+            this.ctrlTreeViewTables1.Size = new System.Drawing.Size(301, 537);
             this.ctrlTreeViewTables1.TabIndex = 67;
             // 
             // txtTargetNamespace
@@ -97,9 +102,10 @@
             this.txtTargetNamespace.BackColor = System.Drawing.Color.White;
             this.txtTargetNamespace.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTargetNamespace.ForeColor = System.Drawing.Color.DimGray;
-            this.txtTargetNamespace.Location = new System.Drawing.Point(366, 105);
+            this.txtTargetNamespace.Location = new System.Drawing.Point(488, 129);
+            this.txtTargetNamespace.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTargetNamespace.Name = "txtTargetNamespace";
-            this.txtTargetNamespace.Size = new System.Drawing.Size(381, 23);
+            this.txtTargetNamespace.Size = new System.Drawing.Size(507, 26);
             this.txtTargetNamespace.TabIndex = 71;
             this.txtTargetNamespace.TextChanged += new System.EventHandler(this.txtTargetNamespace_TextChanged);
             this.txtTargetNamespace.Enter += new System.EventHandler(this.txtTargetNamespace_Enter);
@@ -109,15 +115,16 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(257, 108);
+            this.label2.Location = new System.Drawing.Point(343, 133);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 20);
+            this.label2.Size = new System.Drawing.Size(126, 25);
             this.label2.TabIndex = 70;
             this.label2.Text = "Namespase";
             // 
             // wizEntity_2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtTargetNamespace);
             this.Controls.Add(this.label2);
@@ -125,8 +132,9 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.ctrlTreeViewTables1);
             this.Controls.Add(this.label1);
+            this.InfoRTBoxSize = new System.Drawing.Size(661, 74);
             this.Name = "wizEntity_2";
-            this.Size = new System.Drawing.Size(771, 564);
+            this.Size = new System.Drawing.Size(1028, 694);
             this.Load += new System.EventHandler(this.wizEntity_2_Load);
             this.VisibleChanged += new System.EventHandler(this.wizEntity_2_VisibleChanged);
             this.Controls.SetChildIndex(this.infoPanel, 0);
