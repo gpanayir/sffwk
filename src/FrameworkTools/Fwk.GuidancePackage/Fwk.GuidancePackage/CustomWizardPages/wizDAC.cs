@@ -41,7 +41,22 @@ namespace Fwk.GuidPk
         }
 
 
+        [RecipeArgument]
+        public string EntityName
+        {
+            set
+            {
+                if (value != null)
+                {
 
+                    txtEntityName.Text = value;
+                }
+                else
+                {
+                    txtEntityName.Text = string.Empty;
+                }
+            }
+        }
 
         public wizDAC()
         {
@@ -179,6 +194,14 @@ namespace Fwk.GuidPk
             {
                 LoadTables();
             }
+        }
+        private void txtEntityName_TextChanged(object sender, EventArgs e)
+        {
+            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
+            if (string.IsNullOrEmpty(txtEntityName.Text.ToString()))
+                dictionaryService.SetValue("EntityName", null);
+            else
+                dictionaryService.SetValue("EntityName", txtEntityName.Text);
         }
     }
 

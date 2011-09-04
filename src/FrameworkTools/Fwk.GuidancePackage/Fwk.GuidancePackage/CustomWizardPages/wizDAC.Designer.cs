@@ -97,6 +97,7 @@
             this.txtEntityName.Name = "txtEntityName";
             this.txtEntityName.Size = new System.Drawing.Size(401, 26);
             this.txtEntityName.TabIndex = 71;
+            this.txtEntityName.TextChanged += new System.EventHandler(this.txtEntityName_TextChanged);
             // 
             // lblTitle
             // 
