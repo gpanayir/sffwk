@@ -15,6 +15,8 @@ namespace Fwk.Guidance.Core
 
     internal static class HelperFunctions 
     {
+
+        
         internal static string GetFileTemplate(string roottemplate,string name)
         {
 
@@ -266,7 +268,7 @@ namespace Fwk.Guidance.Core
 
 
 
-
+    
 
 
 }

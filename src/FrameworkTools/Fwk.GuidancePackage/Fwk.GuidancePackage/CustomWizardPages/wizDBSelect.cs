@@ -92,7 +92,7 @@ namespace Fwk.GuidPk
             }
             catch (Exception ex)
             {
-                MessageBox.Show(HelperFunctions.GetAllMessageException(ex));
+                MessageBox.Show(Fwk.CodeGenerator.HelperFunctions.GetAllMessageException(ex), Fwk.GuidPk.Properties.Resources.ProductTitle);
             }
         }
 
@@ -226,14 +226,14 @@ namespace Fwk.GuidPk
 
             if (string.IsNullOrEmpty(_cnn.DataSource))
             {
-                MessageBox.Show("Ingrese servidor de SQL.-", "Fwk wizard");
+                MessageBox.Show("Ingrese servidor de SQL.-", Fwk.GuidPk.Properties.Resources.ProductTitle);
                 cmbServer.Focus();
                 return false;
             }
 
             if (string.IsNullOrEmpty(_cnn.InitialCatalog))
             {
-                MessageBox.Show("Seleccione o ingrese una base de datos.-", "Fwk wizard");
+                MessageBox.Show("Seleccione o ingrese una base de datos.-", Fwk.GuidPk.Properties.Resources.ProductTitle);
                 cmbDataBases.Focus();
                 return false;
             }
@@ -244,7 +244,7 @@ namespace Fwk.GuidPk
             {
                 if (string.IsNullOrEmpty(_cnn.User))
                 {
-                    MessageBox.Show("Ingrese usuario.-", "Fwk wizard");
+                    MessageBox.Show("Ingrese usuario.-", Fwk.GuidPk.Properties.Resources.ProductTitle);
                     txtUserName.Focus();
                     return false;
                 }
@@ -265,7 +265,7 @@ namespace Fwk.GuidPk
                 //foreach (Database db in _Server.Databases)
 
                 //{
-                MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(), "Fwk wizard");
+                MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(),  Fwk.GuidPk.Properties.Resources.ProductTitle);
                     
                   
                 //}
@@ -273,7 +273,7 @@ namespace Fwk.GuidPk
             }
             catch (Exception ex)
             {
-                MessageBox.Show(HelperFunctions.GetAllMessageException(ex), "Fwk wizard");
+                MessageBox.Show(Fwk.CodeGenerator.HelperFunctions.GetAllMessageException(ex),  Fwk.GuidPk.Properties.Resources.ProductTitle);
                 return false;
             }
             return true;

@@ -66,5 +66,14 @@ namespace Fwk.GuidPk.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fwk Guidance Package Code Generator.
+        /// </summary>
+        internal static string ProductTitle {
+            get {
+                return ResourceManager.GetString("ProductTitle", resourceCulture);
+            }
+        }
     }
 }

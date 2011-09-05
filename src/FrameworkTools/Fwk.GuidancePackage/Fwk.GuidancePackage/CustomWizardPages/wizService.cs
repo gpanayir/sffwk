@@ -94,7 +94,7 @@ namespace Fwk.GuidPk
                 EnvDTE.DTE dte = (EnvDTE.DTE)GetService(typeof(EnvDTE.DTE));
                 IAssetReferenceService referenceService = (IAssetReferenceService)GetService(typeof(IAssetReferenceService));
                 object item = DteHelper.GetTarget(dte);
-                //MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(), "Fwk wizard");
+                //MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(),  Fwk.GuidPk.Properties.Resources.ProductTitle);
 
 
                 //templateFilename = new Uri(templateFilename).LocalPath;
@@ -109,11 +109,11 @@ namespace Fwk.GuidPk
                     //vsTarget = new ProjectReference(templateFilename, (Project)item);
                 }
 
-                MessageBox.Show(items.ToString());
+                MessageBox.Show(items.ToString(), Fwk.GuidPk.Properties.Resources.ProductTitle);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(HelperFunctions.GetAllMessageException(ex), "Fwk wizard");
+                MessageBox.Show(Fwk.CodeGenerator.HelperFunctions.GetAllMessageException(ex), Fwk.GuidPk.Properties.Resources.ProductTitle);
                 return false;
             }
             return true;

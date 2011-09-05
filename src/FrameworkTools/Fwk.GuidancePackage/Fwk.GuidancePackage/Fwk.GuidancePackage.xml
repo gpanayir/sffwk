@@ -270,6 +270,8 @@
         <Argument Name="EntityName" Type="System.String" />
         <Argument Name="ConnectionString" Type="System.String" />
         <Argument Name="Content" Type="System.String" />
+
+        <Argument Name="GeneratedCodeList" Type="Fwk.CodeGenerator.GeneratedCode[], Fwk.CodeGenerator.Core" />
         
         <Argument Name="EntityTargetFile">
           <ValueProvider Type="Evaluator"	 Expression="$(EntityName)DAC.cs">
@@ -290,16 +292,24 @@
       <Actions>
 
 
-   
 
-        <Action Name="AddEntityBase" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
+        <Action Name="AddEntityBase" Type=" Fwk.GuidPk.Actions.AddDAC, Fwk.GuidPk"	Open="true" >
 
           <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
-          <Input Name="Content" ActionOutput="Content" />
-          <Input Name="TargetFileName" RecipeArgument="EntityTargetFile" />
+          <Input Name="GeneratedCodeList" RecipeArgument="GeneratedCodeList" />
           <Input Name="Project" RecipeArgument="selctedproject" />
         </Action>
 
+
+      
+        <!--<Action Name="AddEntityBase" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
+
+          --><!--Content, TargetFileName and Project are AddItemFromStringAction class properties--><!--
+          <Input Name="Content" RecipeArgument="Content" />
+          <Input Name="TargetFileName" RecipeArgument="EntityTargetFile" />
+          <Input Name="Project" RecipeArgument="selctedproject" />
+        </Action>-->
+        
 
       </Actions>
     </Recipe>

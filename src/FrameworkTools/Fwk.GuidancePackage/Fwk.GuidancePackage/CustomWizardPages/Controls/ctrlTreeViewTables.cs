@@ -126,7 +126,7 @@ namespace Fwk.GuidPk
             }
             catch (Exception ex)
             {
-                MessageBox.Show(HelperFunctions.GetAllMessageException(ex));
+                MessageBox.Show(Fwk.CodeGenerator.HelperFunctions.GetAllMessageException(ex));
             }
         }
 

@@ -202,7 +202,7 @@
     <Content Include="img\logo.gif" />
     <Content Include="img\header.gif" />
     <Compile Include="Actions\AddTemplateReference.cs" />
-    <Compile Include="Actions\AddRecipeReference.cs" />
+    <Compile Include="Actions\AddDAC.cs" />
     <Compile Include="Actions\HelloWorldAction.cs" />
     <Compile Include="Actions\ShowCurrentSelection.cs" />
     <Compile Include="Converters\HelloWorldConverter.cs" />

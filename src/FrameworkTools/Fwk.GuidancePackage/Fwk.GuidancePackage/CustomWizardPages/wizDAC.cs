@@ -26,7 +26,7 @@ namespace Fwk.GuidPk
 
         CnnString _cnn = new CnnString();
         string _Content = "";
-
+        List<GeneratedCode> _GeneratedCodeList;
         [RecipeArgument]
         public string Content
         {
@@ -36,6 +36,19 @@ namespace Fwk.GuidPk
                     _Content = value;
                 else
                     _Content = string.Empty;
+
+            }
+        }
+
+        [RecipeArgument]
+        public GeneratedCode[] GeneratedCodeList
+        {
+            set
+            {
+                if (value != null)
+                    _GeneratedCodeList.AddRange( value);
+                else
+                    _GeneratedCodeList = null;
 
             }
         }
@@ -100,18 +113,19 @@ namespace Fwk.GuidPk
 
         public void Generate()
         {
-
+            GeneratedCode wGeneratedCode = null;
+             _GeneratedCodeList = new List<GeneratedCode>();
             Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting = new TemplateSettingObject();
 
             TreeNode dacs = Fwk.CodeGenerator.DACGenerator.GenCode(ctrlTreeViewTables1.CheckedTables);
             IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
             foreach (TreeNode nodeDac in dacs.Nodes)
             {
-                GeneratedCode _GeneratedCode = (GeneratedCode)nodeDac.Tag;
-
-                dictionaryService.SetValue("Content",_GeneratedCode.Code.ToString());
+                wGeneratedCode = (GeneratedCode)nodeDac.Tag;
+                dictionaryService.SetValue("Content", wGeneratedCode.Code.ToString());
+                _GeneratedCodeList.Add(wGeneratedCode);
             }
-
+            dictionaryService.SetValue("GeneratedCodeList", _GeneratedCodeList.ToArray());
 
         }
     
@@ -128,7 +142,7 @@ namespace Fwk.GuidPk
                 EnvDTE.DTE dte = (EnvDTE.DTE)GetService(typeof(EnvDTE.DTE));
                 IAssetReferenceService referenceService = (IAssetReferenceService)GetService(typeof(IAssetReferenceService));
                 object item = DteHelper.GetTarget(dte);
-                //MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(), "Fwk wizard");
+                //MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(),  Fwk.GuidPk.Properties.Resources.ProductTitle);
 
 
                 //templateFilename = new Uri(templateFilename).LocalPath;
@@ -147,7 +161,7 @@ namespace Fwk.GuidPk
             }
             catch (Exception ex)
             {
-                MessageBox.Show(HelperFunctions.GetAllMessageException(ex), "Fwk wizard");
+                MessageBox.Show(Fwk.CodeGenerator.HelperFunctions.GetAllMessageException(ex),  Fwk.GuidPk.Properties.Resources.ProductTitle);
                 return false;
             }
             return true;
