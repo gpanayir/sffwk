@@ -201,10 +201,7 @@
     </Content>
     <Content Include="img\logo.gif" />
     <Content Include="img\header.gif" />
-    <Compile Include="Actions\AddTemplateReference.cs" />
     <Compile Include="Actions\AddDAC.cs" />
-    <Compile Include="Actions\HelloWorldAction.cs" />
-    <Compile Include="Actions\ShowCurrentSelection.cs" />
     <Compile Include="Converters\HelloWorldConverter.cs" />
     <Compile Include="Converters\RecipeNameConverter.cs" />
     <Compile Include="CustomWizardPages\wizEntity_2.cs">
