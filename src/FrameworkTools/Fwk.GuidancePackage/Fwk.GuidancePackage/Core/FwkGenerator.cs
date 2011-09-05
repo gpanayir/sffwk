@@ -13,6 +13,7 @@ namespace Fwk.Guidance.Core
 {
     public class FwkGenerator
     {
+          
         internal static string NotSupportTypes_ToIncludeInBackEnd;
         internal static string NotSupportTypes_ToSearchInStoreProcedure;
         internal static string NotSupportTypes_ToInsertStoreProcedure;
@@ -29,6 +30,8 @@ namespace Fwk.Guidance.Core
             NotSupportTypes_ToIncludeInBackEnd = "xml,timestamp,sql_variant";
             NotSupportTypes_ToSearchInStoreProcedure = "xml,timestamp,sql_variant,varbinary,binary,image";
             NotSupportTypes_ToInsertStoreProcedure = "xml,timestamp,sql_variant";
+
+        
         }
         internal static string Xml = "value 1";
         public static string Get()
@@ -36,6 +39,14 @@ namespace Fwk.Guidance.Core
             return Xml;
         }
 
+        internal static CodeGenerator.TemplateSettingObject TemplateSettingFactoty()
+        {
+            if (Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting == null)
+                Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting = new CodeGenerator.TemplateSettingObject();
+
+            return Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting;
+
+        }
 
         public static string GetCSharpType(string dataTypeName)
         {

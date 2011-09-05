@@ -67,6 +67,7 @@
     <None Include="Entities\EntityFwkGen.tt" />
 
     <Folder Include="Services\" />
+    <Folder Include="DAC\" />
  
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />

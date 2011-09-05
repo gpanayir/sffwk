@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Microsoft.Practices.RecipeFramework.Configuration;
 
 namespace Fwk.GuidPk.Converters
 {
@@ -9,6 +10,7 @@ namespace Fwk.GuidPk.Converters
     /// </summary>
     public class HelloWorldConverter : TypeConverter
     {
+        
         static string[] validValues = new string[] {
             "Hello Guidance Automation Toolkit!", "Hello Microsoft!", "Hello World!" };
 

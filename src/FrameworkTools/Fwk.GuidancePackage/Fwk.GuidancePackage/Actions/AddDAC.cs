@@ -46,14 +46,7 @@ namespace Fwk.GuidPk.Actions
             set { prj = value; }
         }
         
-        /// <summary>
-        /// Instance of the new added reference
-        /// </summary>
-        //[Output]
-        //public IBoundAssetReference Reference
-        //{
-        //    get { return addedReference; }
-        //}
+     
 
         /// <summary>
         /// Adds the template reference to the IAssetReferenceService
@@ -65,9 +58,7 @@ namespace Fwk.GuidPk.Actions
             object item = DteHelper.GetTarget(vs);
 
             CreateFolderAndFiles(Project);
-            //Project p = DteHelper.FindProject(dte, p => p.Name.Equals(""));
 
-            //p.ProjectItems.AddFromFile("");
             
 
             if (item == null)
@@ -102,9 +93,9 @@ namespace Fwk.GuidPk.Actions
         void CreateFolderAndFiles(EnvDTE.Project currentProject)
         {
             string foldert = System.IO.Path.GetDirectoryName(currentProject.FullName);
-            string fileFullName =string.Empty;
+            string fileFullName = string.Empty;
             DirectoryInfo dInfo = new DirectoryInfo(foldert);
-             DialogResult res = DialogResult.OK ;
+            DialogResult res = DialogResult.OK;
             if (!System.IO.Directory.Exists("DAC"))
                 dInfo = dInfo.CreateSubdirectory("DAC");
             StringBuilder err = new StringBuilder();
@@ -113,11 +104,12 @@ namespace Fwk.GuidPk.Actions
                 fileFullName = Path.Combine(dInfo.FullName, string.Concat(genCode.Id, "DAC.cs"));
                 try
                 {
-
+                    // Check it the targetFileName already exists and delete it so it can be added.
+                    //ProjectItem targetItem = VSIPHelper.FindItemByName(Project.ProjectItems, fileFullName, true);
                     if (File.Exists(fileFullName))
                     {
-                      res =  MessageBox.Show(string.Concat("DAC file: ", Path.GetFileName(fileFullName)," already exist. /n do you want to replaced it?" ), "New Data Access Components",
-                                MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                        res = MessageBox.Show(string.Concat("DAC file: ", Path.GetFileName(fileFullName), " already exist. /n do you want to replaced it?"), Fwk.GuidPk.Properties.Resources.ProductTitle,
+                                  MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     }
                     if (res == DialogResult.OK)
                     {
@@ -132,12 +124,12 @@ namespace Fwk.GuidPk.Actions
             }
             if (err.Length != 0)
 
-                MessageBox.Show(string.Concat("The DAC's classes was successfully generated with errors /r", err.ToString()), "New Data Access Components",
+                MessageBox.Show(string.Concat("The DAC's classes was successfully generated with errors /r", err.ToString()), Fwk.GuidPk.Properties.Resources.ProductTitle,
                MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             else
 
-                MessageBox.Show("The new DAC's class was successfully generated.", "New Data Access Components",
+                MessageBox.Show("The new DAC's class was successfully generated.", Fwk.GuidPk.Properties.Resources.ProductTitle,
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

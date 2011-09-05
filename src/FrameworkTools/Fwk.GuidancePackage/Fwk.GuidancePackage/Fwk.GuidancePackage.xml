@@ -97,7 +97,7 @@
         <Argument Name="EntityName" Type="System.String" />
         <Argument Name="ConnectionString" Type="System.String" />
         <Argument Name="Table" Type="Microsoft.SqlServer.Management.Smo.Table,Microsoft.SqlServer.Smo, Version=10.0.0.0 , Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-        <Argument Name="TableName" Type="System.String" />
+        <Argument Name="TableName" Type="System.String"  />
         <Argument Name="EntityTargetFile">
           <ValueProvider Type="Evaluator"	 Expression="$(EntityName).cs">
             <MonitorArgument Name="EntityName" />
@@ -158,7 +158,13 @@
 
       <Arguments>
 
-
+        
+        <Argument Name="ServiceFolder" Type="System.String">
+          <ValueProvider Type="Evaluator"	 Expression="Services">
+            
+          </ValueProvider>
+        </Argument>
+        
         <Argument Name="ServiceName" Type="System.String"/>
         <Argument Name="selctedproject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
           <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
@@ -211,10 +217,11 @@
           <Output Name="Content" />
         </Action>
 
-        <Action Name="AddIsvc" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
+        <Action Name="AddIsvc" Type="Fwk.GuidPk.Actions.AddItemFromStringAction, Fwk.GuidPk"	Open="true" >
           <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
           <Input Name="Content" ActionOutput="CreateIsvc.Content" />
           <Input Name="TargetFileName" RecipeArgument="IsvcFileName" />
+          <Input Name="Subfolder" RecipeArgument="ServiceFolder"  />
           <Input Name="Project" RecipeArgument="selctedproject" />
         </Action>
 
@@ -227,15 +234,19 @@
           <Input Name="date" RecipeArgument="Date" />
           <Output Name="Content" />
         </Action>
-
-        <Action Name="Addsvc" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
-
+        <Action Name="AddSvc" Type="Fwk.GuidPk.Actions.AddItemFromStringAction, Fwk.GuidPk"	Open="true" >
           <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
-          <Input Name="Content" ActionOutput="CreateSvc.Content" />
+          <Input Name="Content" ActionOutput="CreateIsvc.Content" />
           <Input Name="TargetFileName" RecipeArgument="SvcFileName" />
+          <Input Name="Subfolder" RecipeArgument="ServiceFolder"  />
           <Input Name="Project" RecipeArgument="selctedproject" />
         </Action>
 
+        <Action Name="AddMetadata" Type=" Fwk.GuidPk.Actions.SVCRegistrationAction, Fwk.GuidPk"	Open="true" >
+          <Input Name="ServiceName" RecipeArgument="ServiceName" />
+          <Input Name="Project" RecipeArgument="selctedproject" />
+        </Action>
+        
       </Actions>
       
     </Recipe>

@@ -13,10 +13,38 @@ namespace Fwk.Guidance.Core
 {
 
 
-    internal static class HelperFunctions 
+    public static class HelperFunctions 
     {
+         static List<string> RequiresNewPrefix;
+        static HelperFunctions()
+        {
+            RequiresNewPrefix = new List<string>();
+            RequiresNewPrefix.Add("Create");
+            RequiresNewPrefix.Add("Crear");
+            RequiresNewPrefix.Add("Insert");
+            RequiresNewPrefix.Add("Insertar");
+            RequiresNewPrefix.Add("Update");
+            RequiresNewPrefix.Add("Modificar");
+            RequiresNewPrefix.Add("Actualizar");
+            RequiresNewPrefix.Add("Remove");
+            RequiresNewPrefix.Add("Remover");
+            RequiresNewPrefix.Add("Eliminar");
+            RequiresNewPrefix.Add("Delete");
+        }
 
-        
+        public static bool RequiresNew(string value)
+        {
+            int indexOf =-1;
+            foreach (string s in RequiresNewPrefix)
+            {
+
+                indexOf = value.IndexOf(s, 0, StringComparison.CurrentCultureIgnoreCase);
+                //Si Contiene e inicia.
+                if(indexOf != -1 && indexOf ==0 )
+                    return true;
+            }
+            return false;
+        }
         internal static string GetFileTemplate(string roottemplate,string name)
         {
 

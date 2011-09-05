@@ -82,6 +82,15 @@
       <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.SqlWmiManagement.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 2010 SDK SP1\VisualStudioIntegration\Common\Assemblies\v2.0\Microsoft.VisualStudio.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 2010 SDK SP1\VisualStudioIntegration\Common\Assemblies\v2.0\Microsoft.VisualStudio.Shell.Interop.10.0.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -142,6 +151,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\AddItemFromString.cs" />
+    <Compile Include="Actions\SVCRegistration.cs" />
     <Compile Include="Core\FwkGenerator.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Core\Template.cs" />
@@ -177,6 +188,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Compile Include="Core\VSIPHelper.cs" />
     <Compile Include="CustomWizardPages\wizDAC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -448,6 +460,7 @@
   <ItemGroup>
     <Folder Include="Snippets\Basic\Fwk.GuidancePackage\" />
     <Folder Include="Snippets\XML\Fwk.GuidancePackage\" />
+    <Folder Include="Templates\Solutions\Projects\Backend\DAC\" />
     <Folder Include="Templates\Solutions\Projects\Backend\Services\" />
   </ItemGroup>
   <ItemGroup>

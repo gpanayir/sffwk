@@ -33,23 +33,30 @@
             this.txtServiceName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtGenerationResult = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // infoPanel
             // 
-            this.infoPanel.Location = new System.Drawing.Point(0, 128);
-            this.infoPanel.Size = new System.Drawing.Size(718, 319);
+            this.infoPanel.Location = new System.Drawing.Point(0, 221);
+            this.infoPanel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.infoPanel.Size = new System.Drawing.Size(948, 394);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtGenerationResult);
             this.groupBox1.Controls.Add(this.btnTestConnection);
             this.groupBox1.Controls.Add(this.txtServiceName);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(26, 146);
+            this.groupBox1.Location = new System.Drawing.Point(4, 180);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(657, 202);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(876, 416);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             // 
@@ -60,30 +67,34 @@
             this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTestConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTestConnection.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnTestConnection.Location = new System.Drawing.Point(272, 89);
+            this.btnTestConnection.Location = new System.Drawing.Point(71, 89);
+            this.btnTestConnection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTestConnection.Name = "btnTestConnection";
-            this.btnTestConnection.Size = new System.Drawing.Size(112, 24);
+            this.btnTestConnection.Size = new System.Drawing.Size(149, 30);
             this.btnTestConnection.TabIndex = 61;
-            this.btnTestConnection.Text = "Check";
+            this.btnTestConnection.Text = "Check generation";
             this.btnTestConnection.UseVisualStyleBackColor = false;
+            this.btnTestConnection.Visible = false;
             this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // txtServiceName
             // 
             this.txtServiceName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtServiceName.ForeColor = System.Drawing.Color.Maroon;
-            this.txtServiceName.Location = new System.Drawing.Point(163, 34);
+            this.txtServiceName.Location = new System.Drawing.Point(217, 42);
+            this.txtServiceName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtServiceName.Name = "txtServiceName";
-            this.txtServiceName.Size = new System.Drawing.Size(388, 20);
+            this.txtServiceName.Size = new System.Drawing.Size(517, 22);
             this.txtServiceName.TabIndex = 55;
             this.txtServiceName.TextChanged += new System.EventHandler(this.txtServiceName_TextChanged);
             // 
             // label2
             // 
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(51, 38);
+            this.label2.Location = new System.Drawing.Point(68, 47);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 18);
+            this.label2.Size = new System.Drawing.Size(139, 22);
             this.label2.TabIndex = 54;
             this.label2.Text = "Service name";
             // 
@@ -97,20 +108,46 @@
             this.lblTitle.Image = global::Fwk.GuidPk.Properties.Resources.applications_32;
             this.lblTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(718, 75);
+            this.lblTitle.Size = new System.Drawing.Size(948, 92);
             this.lblTitle.TabIndex = 64;
             this.lblTitle.Text = "Set service info";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Gray;
+            this.label1.Location = new System.Drawing.Point(66, 142);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(164, 25);
+            this.label1.TabIndex = 72;
+            this.label1.Text = "Generation logs";
+            // 
+            // txtGenerationResult
+            // 
+            this.txtGenerationResult.BackColor = System.Drawing.Color.White;
+            this.txtGenerationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGenerationResult.ForeColor = System.Drawing.Color.DimGray;
+            this.txtGenerationResult.Location = new System.Drawing.Point(69, 171);
+            this.txtGenerationResult.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGenerationResult.Multiline = true;
+            this.txtGenerationResult.Name = "txtGenerationResult";
+            this.txtGenerationResult.Size = new System.Drawing.Size(678, 109);
+            this.txtGenerationResult.TabIndex = 73;
+            // 
             // wizService
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.groupBox1);
+            this.InfoRTBoxSize = new System.Drawing.Size(661, 74);
             this.Name = "wizService";
-            this.Size = new System.Drawing.Size(718, 447);
+            this.Size = new System.Drawing.Size(948, 615);
             this.Controls.SetChildIndex(this.infoPanel, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.lblTitle, 0);
@@ -129,5 +166,7 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnTestConnection;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox txtGenerationResult;
     }
 }

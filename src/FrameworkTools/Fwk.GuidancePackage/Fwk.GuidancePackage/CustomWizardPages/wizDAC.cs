@@ -17,6 +17,7 @@ using Microsoft.Practices.RecipeFramework.VisualStudio;
 using EnvDTE;
 using Fwk.CodeGenerator;
 using System.Reflection;
+using Fwk.Guidance.Core;
 
 namespace Fwk.GuidPk
 {
@@ -90,7 +91,7 @@ namespace Fwk.GuidPk
             logs.AppendLine("Following class will be generated:");
             GeneratedCode wGeneratedCode = null;
              _GeneratedCodeList = new List<GeneratedCode>();
-            Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting = new TemplateSettingObject();
+             Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting = FwkGenerator.TemplateSettingFactoty();
 
             TreeNode dacs = Fwk.CodeGenerator.DACGenerator.GenCode(ctrlTreeViewTables1.CheckedTables);
             IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
