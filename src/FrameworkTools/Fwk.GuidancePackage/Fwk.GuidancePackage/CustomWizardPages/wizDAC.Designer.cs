@@ -70,19 +70,19 @@
             this.ctrlTreeViewTables1.Size = new System.Drawing.Size(301, 537);
             this.ctrlTreeViewTables1.TabIndex = 70;
             // 
-            // btnTestConnection
+            // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGenerate.BackColor = System.Drawing.Color.SlateGray;
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnGenerate.Location = new System.Drawing.Point(318, 23);
+            this.btnGenerate.Location = new System.Drawing.Point(323, 12);
             this.btnGenerate.Margin = new System.Windows.Forms.Padding(4);
-            this.btnGenerate.Name = "btnTestConnection";
+            this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(149, 30);
             this.btnGenerate.TabIndex = 61;
-            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.Text = "Check generation";
             this.btnGenerate.UseVisualStyleBackColor = false;
             this.btnGenerate.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
@@ -91,25 +91,24 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(318, 78);
+            this.label1.Location = new System.Drawing.Point(318, 66);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 25);
             this.label1.TabIndex = 69;
             this.label1.Text = "Generation logs";
             // 
-            // txtEntityName
+            // txtGenerationResult
             // 
             this.txtGenerationResult.BackColor = System.Drawing.Color.White;
             this.txtGenerationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGenerationResult.ForeColor = System.Drawing.Color.DimGray;
-            this.txtGenerationResult.Location = new System.Drawing.Point(318, 117);
+            this.txtGenerationResult.Location = new System.Drawing.Point(323, 95);
             this.txtGenerationResult.Margin = new System.Windows.Forms.Padding(4);
             this.txtGenerationResult.Multiline = true;
-            this.txtGenerationResult.Name = "txtEntityName";
+            this.txtGenerationResult.Name = "txtGenerationResult";
             this.txtGenerationResult.Size = new System.Drawing.Size(589, 421);
             this.txtGenerationResult.TabIndex = 71;
-            
             // 
             // lblTitle
             // 

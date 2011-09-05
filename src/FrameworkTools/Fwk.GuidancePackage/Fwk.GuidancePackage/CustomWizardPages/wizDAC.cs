@@ -87,7 +87,7 @@ namespace Fwk.GuidPk
         public void Generate()
         {
             StringBuilder logs = new StringBuilder();
-            logs.AppendLine("Following class must be generated: /r");
+            logs.AppendLine("Following class will be generated:");
             GeneratedCode wGeneratedCode = null;
              _GeneratedCodeList = new List<GeneratedCode>();
             Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting = new TemplateSettingObject();
