@@ -1,17 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <GuidancePackage xmlns="http://schemas.microsoft.com/pag/gax-core"
     Name="Fwk.GuidPk" 
-    Caption="Pelsoft fwk generator"
-    Description="Esto es una prueva "
+    Caption="Fwk Guidance Package Generator"
+    Description="Fwk Guidance Package Generator"
     BindingRecipe="BindingRecipe"
     Guid="465c0111-832d-404d-a25e-127294989a64" 
     SchemaVersion="1.0">
+  <HostData >
+  
+    <Menu Name="CascadingMenuOne" Text="DoSomething">
+      <CommandBar Name="Project"/>
+    </Menu>
+  </HostData>
 	<Recipes>
 		<Recipe Name="BindingRecipe">
 			<Types>
 				<TypeAlias Name="RefCreator" Type="Microsoft.Practices.RecipeFramework.Library.Actions.CreateUnboundReferenceAction, Microsoft.Practices.RecipeFramework.Library"/>
 		</Types>
-     <Caption>Crear referencias unbound  al guidance package</Caption>
+     <Caption>Create unbound referencias to guidance package</Caption>
 			<Actions>
         <Action Name="CreateSampleUnboundTemplateRef" Type="RefCreator" AssetName="Projects\SampleLibrary\SampleLibrary.vstemplate"
                   ReferenceType="Fwk.GuidPk.References.SolutionFolderAReference, Fwk.GuidPk" />
@@ -31,7 +37,7 @@
       <Types>
         <TypeAlias Name="NmsEval" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
       </Types>
-      <Caption>Collects information for the new sample solution.</Caption>
+      <Caption>Collects information for the new solution.</Caption>
       <Arguments>
        
         
@@ -148,11 +154,13 @@
       </Types>
 
       <Caption>Fwk Service (Svc/Isvc Class)</Caption>
-      <Description>New simple entity from database</Description>
+      <Description>New service and contracts</Description>
 
       <HostData >
         <Icon ID="630"/>
         <CommandBar Name="Project" />
+        <CommandBar Menu=" CascadingMenuOne" />
+       
       </HostData>
 
 
@@ -257,7 +265,7 @@
         <TypeAlias Name="Evaluator" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
       </Types>
 
-      <Caption>New data access component</Caption>
+      <Caption>New data access component (DAC)</Caption>
       <Description>New DAC from database</Description>
 
       <HostData >
