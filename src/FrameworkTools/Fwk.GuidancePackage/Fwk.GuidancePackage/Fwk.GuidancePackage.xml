@@ -8,7 +8,7 @@
     SchemaVersion="1.0">
   <HostData >
   
-    <Menu Name="CascadingMenuOne" Text="DoSomething">
+    <Menu Name="CascadingMenuOne" Text="New Fwk guidance item">
       <CommandBar Name="Project"/>
     </Menu>
   </HostData>
@@ -84,7 +84,7 @@
     
       <HostData >
       <Icon ID="630"/>
-      <CommandBar Name="Project" />
+        <CommandBar Menu="CascadingMenuOne" />
     </HostData>
      
 
@@ -158,8 +158,8 @@
 
       <HostData >
         <Icon ID="630"/>
-        <CommandBar Name="Project" />
-        <CommandBar Menu=" CascadingMenuOne" />
+       
+        <CommandBar Menu="CascadingMenuOne" />
        
       </HostData>
 
@@ -270,7 +270,8 @@
 
       <HostData >
         <Icon ID="630"/>
-        <CommandBar Name="Project" />
+        
+        <CommandBar Menu="CascadingMenuOne" />
       </HostData>
 
 
