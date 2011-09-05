@@ -110,7 +110,7 @@ namespace Fwk.GuidPk.Actions
             StringBuilder err = new StringBuilder();
             foreach (GeneratedCode genCode in _GeneratedCodeList)
             {
-                fileFullName = Path.Combine(dInfo.FullName, string.Concat(genCode.Id, ".cs"));
+                fileFullName = Path.Combine(dInfo.FullName, string.Concat(genCode.Id, "DAC.cs"));
                 try
                 {
 

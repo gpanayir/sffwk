@@ -25,21 +25,9 @@ namespace Fwk.GuidPk
     {
 
         CnnString _cnn = new CnnString();
-        string _Content = "";
+        
         List<GeneratedCode> _GeneratedCodeList;
-        [RecipeArgument]
-        public string Content
-        {
-            set
-            {
-                if (value != null)
-                    _Content = value;
-                else
-                    _Content = string.Empty;
-
-            }
-        }
-
+        
         [RecipeArgument]
         public GeneratedCode[] GeneratedCodeList
         {
@@ -54,22 +42,7 @@ namespace Fwk.GuidPk
         }
 
 
-        [RecipeArgument]
-        public string EntityName
-        {
-            set
-            {
-                if (value != null)
-                {
-
-                    txtEntityName.Text = value;
-                }
-                else
-                {
-                    txtEntityName.Text = string.Empty;
-                }
-            }
-        }
+        
 
         public wizDAC()
         {
@@ -113,6 +86,8 @@ namespace Fwk.GuidPk
 
         public void Generate()
         {
+            StringBuilder logs = new StringBuilder();
+            logs.AppendLine("Following class must be generated: /r");
             GeneratedCode wGeneratedCode = null;
              _GeneratedCodeList = new List<GeneratedCode>();
             Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting = new TemplateSettingObject();
@@ -122,50 +97,20 @@ namespace Fwk.GuidPk
             foreach (TreeNode nodeDac in dacs.Nodes)
             {
                 wGeneratedCode = (GeneratedCode)nodeDac.Tag;
-                dictionaryService.SetValue("Content", wGeneratedCode.Code.ToString());
+                
                 _GeneratedCodeList.Add(wGeneratedCode);
+                
+                logs.AppendLine(string.Concat(wGeneratedCode.Id,"DAC") );
             }
-            dictionaryService.SetValue("GeneratedCodeList", _GeneratedCodeList.ToArray());
 
+            dictionaryService.SetValue("GeneratedCodeList", _GeneratedCodeList.ToArray());
+            txtGenerationResult.Text = logs.ToString();
         }
     
       
        
 
 
-        public bool Test()
-        {
-           
-            try
-            {
-
-                EnvDTE.DTE dte = (EnvDTE.DTE)GetService(typeof(EnvDTE.DTE));
-                IAssetReferenceService referenceService = (IAssetReferenceService)GetService(typeof(IAssetReferenceService));
-                object item = DteHelper.GetTarget(dte);
-                //MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(),  Fwk.GuidPk.Properties.Resources.ProductTitle);
-
-
-                //templateFilename = new Uri(templateFilename).LocalPath;
-                StringBuilder items= new StringBuilder ();
-                //VsBoundReference vsTarget = null;
-                if (item is EnvDTE.Project)
-                {
-                    foreach (ProjectItem i in ((EnvDTE.Project)item).ProjectItems)
-                    {
-                        items.AppendLine(i.Name);
-                    }
-                    //vsTarget = new ProjectReference(templateFilename, (Project)item);
-                }
-
-                MessageBox.Show(items.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(Fwk.CodeGenerator.HelperFunctions.GetAllMessageException(ex),  Fwk.GuidPk.Properties.Resources.ProductTitle);
-                return false;
-            }
-            return true;
-        }
 
         private void btnTestConnection_Click(object sender, EventArgs e)
         {
@@ -182,16 +127,16 @@ namespace Fwk.GuidPk
 
 
 
-        Table selTable = null;
+        //Table selTable = null;
         void ctrlTreeViewTables1_SelectElementHandler(object e)
         {
 
 
-            if (e != null)
-            {
-                 selTable = (Table)e;
-                txtEntityName.Text = selTable.Name;
-            }
+            //if (e != null)
+            //{
+            //     selTable = (Table)e;
+            //    txtGenerationResult.Text = selTable.Name;
+            //}
 
 
 
@@ -209,14 +154,7 @@ namespace Fwk.GuidPk
                 LoadTables();
             }
         }
-        private void txtEntityName_TextChanged(object sender, EventArgs e)
-        {
-            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
-            if (string.IsNullOrEmpty(txtEntityName.Text.ToString()))
-                dictionaryService.SetValue("EntityName", null);
-            else
-                dictionaryService.SetValue("EntityName", txtEntityName.Text);
-        }
+   
     }
 
 }

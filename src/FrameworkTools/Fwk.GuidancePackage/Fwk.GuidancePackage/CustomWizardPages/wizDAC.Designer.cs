@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnTestConnection = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtEntityName = new System.Windows.Forms.TextBox();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.ctrlTreeViewTables1 = new Fwk.GuidPk.ctrlTreeViewTables();
+            this.btnGenerate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtGenerationResult = new System.Windows.Forms.TextBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -42,62 +42,74 @@
             // 
             this.infoPanel.Dock = System.Windows.Forms.DockStyle.None;
             this.infoPanel.Location = new System.Drawing.Point(0, 148);
-            this.infoPanel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.infoPanel.Margin = new System.Windows.Forms.Padding(5);
             this.infoPanel.Size = new System.Drawing.Size(957, 554);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.ctrlTreeViewTables1);
-            this.groupBox1.Controls.Add(this.btnTestConnection);
+            this.groupBox1.Controls.Add(this.btnGenerate);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtEntityName);
+            this.groupBox1.Controls.Add(this.txtGenerationResult);
             this.groupBox1.Location = new System.Drawing.Point(12, 123);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(941, 546);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             // 
+            // ctrlTreeViewTables1
+            // 
+            this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ctrlTreeViewTables1.CheckBoxes = true;
+            this.ctrlTreeViewTables1.Location = new System.Drawing.Point(8, 0);
+            this.ctrlTreeViewTables1.Margin = new System.Windows.Forms.Padding(5);
+            this.ctrlTreeViewTables1.Name = "ctrlTreeViewTables1";
+            this.ctrlTreeViewTables1.SelectedTable = null;
+            this.ctrlTreeViewTables1.Size = new System.Drawing.Size(301, 537);
+            this.ctrlTreeViewTables1.TabIndex = 70;
+            // 
             // btnTestConnection
             // 
-            this.btnTestConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTestConnection.BackColor = System.Drawing.Color.SlateGray;
-            this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTestConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTestConnection.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnTestConnection.Location = new System.Drawing.Point(473, 108);
-            this.btnTestConnection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnTestConnection.Name = "btnTestConnection";
-            this.btnTestConnection.Size = new System.Drawing.Size(149, 30);
-            this.btnTestConnection.TabIndex = 61;
-            this.btnTestConnection.Text = "Check";
-            this.btnTestConnection.UseVisualStyleBackColor = false;
-            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
+            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenerate.BackColor = System.Drawing.Color.SlateGray;
+            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate.ForeColor = System.Drawing.SystemColors.Info;
+            this.btnGenerate.Location = new System.Drawing.Point(318, 23);
+            this.btnGenerate.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGenerate.Name = "btnTestConnection";
+            this.btnGenerate.Size = new System.Drawing.Size(149, 30);
+            this.btnGenerate.TabIndex = 61;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(336, 74);
+            this.label1.Location = new System.Drawing.Point(318, 78);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 25);
+            this.label1.Size = new System.Drawing.Size(164, 25);
             this.label1.TabIndex = 69;
-            this.label1.Text = "Entity Name";
+            this.label1.Text = "Generation logs";
             // 
             // txtEntityName
             // 
-            this.txtEntityName.BackColor = System.Drawing.Color.White;
-            this.txtEntityName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEntityName.ForeColor = System.Drawing.Color.DimGray;
-            this.txtEntityName.Location = new System.Drawing.Point(485, 74);
-            this.txtEntityName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtEntityName.Name = "txtEntityName";
-            this.txtEntityName.Size = new System.Drawing.Size(401, 26);
-            this.txtEntityName.TabIndex = 71;
-            this.txtEntityName.TextChanged += new System.EventHandler(this.txtEntityName_TextChanged);
+            this.txtGenerationResult.BackColor = System.Drawing.Color.White;
+            this.txtGenerationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGenerationResult.ForeColor = System.Drawing.Color.DimGray;
+            this.txtGenerationResult.Location = new System.Drawing.Point(318, 117);
+            this.txtGenerationResult.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGenerationResult.Multiline = true;
+            this.txtGenerationResult.Name = "txtEntityName";
+            this.txtGenerationResult.Size = new System.Drawing.Size(589, 421);
+            this.txtGenerationResult.TabIndex = 71;
+            
             // 
             // lblTitle
             // 
@@ -115,17 +127,6 @@
             this.lblTitle.TabIndex = 64;
             this.lblTitle.Text = "Set DAC info";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ctrlTreeViewTables1
-            // 
-            this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ctrlTreeViewTables1.CheckBoxes = true;
-            this.ctrlTreeViewTables1.Location = new System.Drawing.Point(8, 0);
-            this.ctrlTreeViewTables1.Margin = new System.Windows.Forms.Padding(5);
-            this.ctrlTreeViewTables1.Name = "ctrlTreeViewTables1";
-            this.ctrlTreeViewTables1.SelectedTable = null;
-            this.ctrlTreeViewTables1.Size = new System.Drawing.Size(301, 537);
-            this.ctrlTreeViewTables1.TabIndex = 70;
             // 
             // wizDAC
             // 
@@ -153,8 +154,8 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnTestConnection;
-        public System.Windows.Forms.TextBox txtEntityName;
+        private System.Windows.Forms.Button btnGenerate;
+        public System.Windows.Forms.TextBox txtGenerationResult;
         private ctrlTreeViewTables ctrlTreeViewTables1;
         private System.Windows.Forms.Label label1;
     }
