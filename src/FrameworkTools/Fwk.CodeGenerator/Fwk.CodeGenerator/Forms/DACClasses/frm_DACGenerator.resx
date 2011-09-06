@@ -121,16 +121,16 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="directorySearcher1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>143, 17</value>
+    <value>162, 17</value>
   </metadata>
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>297, 17</value>
+    <value>342, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnConnect.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAErSURBVFhH7ZYBDsMgCEU9eo/Wm3Vh5pdfRdTSpVmiyWI6
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAErSURBVFhH7ZYBDsMgCEU9eo/Wm3Vh5pdfRdTSpVmiyWI6
         LTw+WElpjaVAQIFt246ZX8CV/ao4v45kPu/7fsiK7A9DzEQMQADIHIa4E7U4liEqdCFGIsw623IjB2XU
         pd0qFdighuGgnnVvG8SKWv4zFVBZ206vUed9AIFhOOU1jtwEuOscSnk1wWCyrwmg5HMKQE6vJtipCzAL
         YRnmiNkeQDsKpK9EMuwZ63lmY71TMQTABST59SBsABzA+ngOAbBTPsuqSFuBUno8s51uEf61Aq/XgJ+C
@@ -141,7 +141,7 @@
   <data name="btnRefresh.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHbSURBVDhPY2AgACbsfPc/fd6L/4TUweWbN7z537f9HRhP
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAHbSURBVDhPY2AgACbsfPc/fd6L/4TUweWbN7z537f9HRhP
         3/v+/0SgARFTn/23rz1P2JBZ+z/8n3vwA1gjyOaebe/+V61+/T9k8tP/DvWX/ru038duSNfWt2CNk3a9
         /1+49NX/wIlP/3v3Pvnv0/fkvy8Qe/U8+e/Z/eS/TflR7Ab073j3Pw3oT4OE+f/lbVP/y1rG/dePnf3f
         rur0f9eOR/+dW+/+t6069V83cgqmARUrX/9363z8X8275r+kYRCKAleguE3Zkf96MTP+Kzrl/pezScE0
