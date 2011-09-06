@@ -63,7 +63,7 @@
             // 
             this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ctrlTreeViewTables1.CheckBoxes = true;
-            this.ctrlTreeViewTables1.Location = new System.Drawing.Point(8, 0);
+            this.ctrlTreeViewTables1.Location = new System.Drawing.Point(13, 24);
             this.ctrlTreeViewTables1.Margin = new System.Windows.Forms.Padding(5);
             this.ctrlTreeViewTables1.Name = "ctrlTreeViewTables1";
             this.ctrlTreeViewTables1.SelectedTable = null;

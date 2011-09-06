@@ -153,9 +153,17 @@
   <ItemGroup>
     <Compile Include="Actions\AddItemFromString.cs" />
     <Compile Include="Actions\SVCRegistration.cs" />
+    <Compile Include="Core\ctrlTreeViewViews.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\ctrlTreeViewViews.Designer.cs">
+      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\FwkGenerator.cs" />
     <Compile Include="Core\Helper.cs" />
+    <Compile Include="Core\Storage.cs" />
     <Compile Include="Core\Template.cs" />
+    <None Include="Resources\ref_16.png" />
     <Content Include="Templates\DAC.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -194,6 +202,12 @@
     </Compile>
     <Compile Include="CustomWizardPages\wizDAC.Designer.cs">
       <DependentUpon>wizDAC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomWizardPages\wizDbSelect_2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomWizardPages\wizDbSelect_2.Designer.cs">
+      <DependentUpon>wizDbSelect_2.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomWizardPages\wizService.cs">
       <SubType>UserControl</SubType>
@@ -259,8 +273,14 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <SubType>Designer</SubType>
     </Content>
+    <EmbeddedResource Include="Core\ctrlTreeViewViews.resx">
+      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomWizardPages\wizDAC.resx">
       <DependentUpon>wizDAC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomWizardPages\wizDbSelect_2.resx">
+      <DependentUpon>wizDbSelect_2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomWizardPages\wizEntity_2.resx">
       <DependentUpon>wizEntity_2.cs</DependentUpon>

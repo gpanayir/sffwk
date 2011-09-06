@@ -75,5 +75,12 @@ namespace Fwk.GuidPk.Properties {
                 return ResourceManager.GetString("ProductTitle", resourceCulture);
             }
         }
+        
+        internal static System.Drawing.Bitmap ref_16 {
+            get {
+                object obj = ResourceManager.GetObject("ref_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

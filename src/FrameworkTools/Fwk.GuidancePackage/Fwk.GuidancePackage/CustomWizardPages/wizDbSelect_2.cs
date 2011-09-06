@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -12,11 +12,12 @@ using Fwk.DataBase;
 using Microsoft.Practices.WizardFramework;
 using System.ComponentModel.Design;
 using Fwk.Guidance.Core;
+
 namespace Fwk.GuidPk
 {
-
-    public partial class wizDBSelect : CustomWizardPage
+    public partial class wizDbSelect_2 : CustomWizardPage
     {
+         
         bool onInitServerCollection = true;
         CnnString _cnn = new CnnString();
         DataTable _AvailableSqlServers;
@@ -48,24 +49,18 @@ namespace Fwk.GuidPk
 
             }
         }
-        
 
-        public wizDBSelect()
+        public wizDbSelect_2()
         {
             InitializeComponent();
         }
-
-        public wizDBSelect(WizardForm parent)      : base(parent)
+        public wizDbSelect_2(WizardForm parent)
+            : base(parent)
         {
             InitializeComponent();
-
-          
             
         }
 
-   
-
-       
 
         /// <summary>
         /// Carga las bses de datos del server
@@ -104,7 +99,7 @@ namespace Fwk.GuidPk
             {
                 dictionaryService.SetValue("ConnectionString", null);
                 dictionaryService.SetValue("DatabaseName", null);
-                
+
             }
             else
             {
@@ -114,53 +109,6 @@ namespace Fwk.GuidPk
 
 
         }
-        
-
-      
-
-   
-      
-
-        private void WindowsAutentificaction_CheckedChanged(object sender, EventArgs e)
-        {
-            if (WindowsAutentificaction.Checked)
-            {
-                txtPassword.Enabled = false;
-                txtUserName.Enabled = false;
-            }
-            else
-            {
-                txtPassword.Enabled = true;
-                txtUserName.Enabled = true;
-            }
-        }
-     
-        //   private CnnString GetAuxiliarCnnString_test()
-        //{
-        //    CnnString wCnnString = new CnnString();
-
-
-        //    wCnnString.InitialCatalog =  "SANTANA\SQLEXPRESS2008R2";
-        //    wCnnString.DataSource ="SANTANA\SQLEXPRESS2008R2";
-
-        //    if (WindowsAutentificaction.Checked)
-        //    {
-        //        wCnnString.User = String.Empty;
-        //        wCnnString.Password = String.Empty;
-
-        //    }
-        //    else
-        //    {
-        //        wCnnString.User = txtUserName.Text.Trim();
-        //        wCnnString.Password = txtPassword.Text.Trim();
-        //    }
-
-        //    wCnnString.WindowsAutentification = WindowsAutentificaction.Checked;
-           
-        //    return wCnnString;
-        //}
-
-
         private CnnString GetAuxiliarCnnString()
         {
             CnnString wCnnString = new CnnString();
@@ -182,14 +130,14 @@ namespace Fwk.GuidPk
             }
 
             wCnnString.WindowsAutentification = WindowsAutentificaction.Checked;
-           
+
             return wCnnString;
         }
 
         private void SetUI(CnnString cnn)
         {
             WindowsAutentificaction.Checked = cnn.WindowsAutentification;
-            
+
 
             cmbDataBases.Text = cnn.InitialCatalog;
             cmbServer.Text = cnn.DataSource;
@@ -206,20 +154,9 @@ namespace Fwk.GuidPk
                 txtPassword.Text = cnn.Password;
             }
 
-            
- 
+
+
         }
-
-        private void btnTestConnection_Click(object sender, EventArgs e)
-        {
-           if(Test())
-               setIDictionaryService(_cnn);
-            else
-               setIDictionaryService(null);
-        }
-
-
-
 
 
         public bool Test()
@@ -258,114 +195,28 @@ namespace Fwk.GuidPk
 
             try
             {
-                
+
                 _Server = new Server(serverConnection);
 
                 //_Server.Databases[_cnn.InitialCatalog].Tables.Refresh();
-               
+
                 ////iterate over all Databases
                 //foreach (Database db in _Server.Databases)
 
                 //{
-                MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(),  Fwk.GuidPk.Properties.Resources.ProductTitle);
-                    
-                  
+                MessageBox.Show("Coneccion exitosa.- a " + _Server.Information.Product.ToString(), Fwk.GuidPk.Properties.Resources.ProductTitle);
+
+
                 //}
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(Fwk.CodeGenerator.HelperFunctions.GetAllMessageException(ex),  Fwk.GuidPk.Properties.Resources.ProductTitle);
+                MessageBox.Show(Fwk.CodeGenerator.HelperFunctions.GetAllMessageException(ex), Fwk.GuidPk.Properties.Resources.ProductTitle);
                 return false;
             }
             return true;
         }
 
-      
-
-
-    
-
-
-        private void cmbServer_Click(object sender, EventArgs e)
-        {
-            InitServers();
-        }
-
-        void InitServers()
-        {
-            onInitServerCollection = true;
-
-            if (_AvailableSqlServers == null)
-            {
-                _AvailableSqlServers = SmoApplication.EnumAvailableSqlServers(false);
-                cmbServer.DataSource = _AvailableSqlServers;
-                cmbServer.DisplayMember = "Name";
-            }
-
-            onInitServerCollection = false;
-        }
-
-        private void cmbDataBases_Click(object sender, EventArgs e)
-        {
-           
-            _cnn = GetAuxiliarCnnString();
-            setIDictionaryService(_cnn);
-
-            if (!_cnn.DataSource.Equals(cmbServer.Text.Trim()) || cmbDataBases.Items.Count == 0)
-            {
-                _cnn.DataSource = cmbServer.Text.Trim();
-                FillDatabaseCombo(_cnn);
-            }
-        }
-
-
-        private void cmbDataBases_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _cnn = GetAuxiliarCnnString();
-            setIDictionaryService(_cnn);
-
-            if (!_cnn.DataSource.Equals(cmbServer.Text.Trim()) || cmbDataBases.Items.Count == 0)
-            {
-                _cnn.DataSource = cmbServer.Text.Trim();
-                FillDatabaseCombo(_cnn);
-            }
-        }
-
-        private void cmbServer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void wizDBSelect_Load(object sender, EventArgs e)
-        {
-            if (Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString == null)
-            {
-                Fwk.Guidance.Core.HelperFunctions.Settings.Load();
-            }
-            
-                //this.cmbServer.Text = @"SANTANA\SQLEXPRESS2008R2";
-                //this.cmbDataBases.Text = "GASTOS_MY";
-                SetUI(Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString);
-            
-        }
-
-        private void wizDBSelect_VisibleChanged(object sender, EventArgs e)
-        {
-            //if (this.Visible)
-            //{
-            //    if (Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString != null)
-            //    {
-            //        SetUI(Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString);
-            //    }
-            //}
-        }
-        public override bool OnDeactivate()
-        {
-            Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString = _cnn;
-            Fwk.Guidance.Core.HelperFunctions.Settings.Save();
-
-            return base.OnDeactivate();
-        }
     }
 }

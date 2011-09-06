@@ -102,7 +102,7 @@
         <Argument Name="DatabaseName" Type="System.String" />
         <Argument Name="EntityName" Type="System.String" />
         <Argument Name="ConnectionString" Type="System.String" />
-        <Argument Name="Table" Type="Microsoft.SqlServer.Management.Smo.Table,Microsoft.SqlServer.Smo, Version=10.0.0.0 , Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+        <Argument Name="Table" Type="Microsoft.SqlServer.Management.Smo.TableViewBase,Microsoft.SqlServer.Smo, Version=10.0.0.0 , Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
         <Argument Name="TableName" Type="System.String"  />
         <Argument Name="EntityTargetFile">
           <ValueProvider Type="Evaluator"	 Expression="$(EntityName).cs">
@@ -114,7 +114,8 @@
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
           
           <Pages>
-            <Page Type="Fwk.GuidPk.wizDBSelect, Fwk.GuidPk" Width="800" Height="500" />
+                                   
+            <Page Type="Fwk.GuidPk.wizDbSelect_2, Fwk.GuidPk" Width="800" Height="500" />
             <Page Type="Fwk.GuidPk.wizEntity_2, Fwk.GuidPk"  />
           </Pages>
         </Wizard>

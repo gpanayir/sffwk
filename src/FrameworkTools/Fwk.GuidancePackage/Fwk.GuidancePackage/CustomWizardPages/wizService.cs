@@ -127,6 +127,10 @@ namespace Fwk.GuidPk
         private void txtServiceName_TextChanged(object sender, EventArgs e)
         {
             setIDictionaryService();
+
+            txtBE.Text = string.Concat(txtServiceName.Text, @"Service.cs");
+            txtReq.Text = string.Concat(txtServiceName.Text, @"Req.cs");
+            txtRes.Text = string.Concat(txtServiceName.Text, @"Res.cs");
         }
 
       

@@ -1,16 +1,16 @@
 ﻿namespace Fwk.GuidPk
 {
-    partial class wizDBSelect
+    partial class wizDbSelect_2
     {
         /// <summary> 
-        /// Variable del diseñador requerida.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary> 
-        /// Limpiar los recursos que se estén utilizando.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,15 +20,15 @@
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de componentes
+        #region Component Designer generated code
 
         /// <summary> 
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido del método con el editor de código.
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbServer = new System.Windows.Forms.ComboBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -38,29 +38,32 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cmbDataBases = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.cmbServer = new System.Windows.Forms.ComboBox();
             this.WindowsAutentificaction = new System.Windows.Forms.CheckBox();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // infoPanel
             // 
-            this.infoPanel.Location = new System.Drawing.Point(0, 180);
-            this.infoPanel.Margin = new System.Windows.Forms.Padding(5);
-            this.infoPanel.Size = new System.Drawing.Size(897, 379);
+            this.infoPanel.Location = new System.Drawing.Point(0, 92);
             // 
-            // cmbServer
+            // lblTitle
             // 
-            this.cmbServer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cmbServer.FormattingEnabled = true;
-            this.cmbServer.Location = new System.Drawing.Point(160, 47);
-            this.cmbServer.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbServer.Name = "cmbServer";
-            this.cmbServer.Size = new System.Drawing.Size(255, 24);
-            this.cmbServer.TabIndex = 2;
-            this.cmbServer.SelectedIndexChanged += new System.EventHandler(this.cmbServer_SelectedIndexChanged);
-            this.cmbServer.Click += new System.EventHandler(this.cmbServer_Click);
+            this.lblTitle.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblTitle.Image = global::Fwk.GuidPk.Properties.Resources.applications_32;
+            this.lblTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(700, 92);
+            this.lblTitle.TabIndex = 67;
+            this.lblTitle.Text = "Select database";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
@@ -73,12 +76,12 @@
             this.groupBox1.Controls.Add(this.cmbDataBases);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cmbServer);
-            this.groupBox1.Location = new System.Drawing.Point(17, 164);
+            this.groupBox1.Location = new System.Drawing.Point(17, 194);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(876, 246);
-            this.groupBox1.TabIndex = 63;
+            this.groupBox1.Size = new System.Drawing.Size(639, 246);
+            this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
             // 
             // label5
@@ -110,14 +113,13 @@
             this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTestConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTestConnection.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnTestConnection.Location = new System.Drawing.Point(524, 146);
+            this.btnTestConnection.Location = new System.Drawing.Point(480, 136);
             this.btnTestConnection.Margin = new System.Windows.Forms.Padding(4);
             this.btnTestConnection.Name = "btnTestConnection";
             this.btnTestConnection.Size = new System.Drawing.Size(100, 30);
             this.btnTestConnection.TabIndex = 60;
             this.btnTestConnection.Text = "Test ";
             this.btnTestConnection.UseVisualStyleBackColor = false;
-            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // txtUserName
             // 
@@ -157,8 +159,6 @@
             this.cmbDataBases.Name = "cmbDataBases";
             this.cmbDataBases.Size = new System.Drawing.Size(255, 24);
             this.cmbDataBases.TabIndex = 50;
-            this.cmbDataBases.SelectedIndexChanged += new System.EventHandler(this.cmbDataBases_SelectedIndexChanged);
-            this.cmbDataBases.Click += new System.EventHandler(this.cmbDataBases_Click);
             // 
             // label6
             // 
@@ -170,47 +170,37 @@
             this.label6.TabIndex = 48;
             this.label6.Text = "Base de datos";
             // 
+            // cmbServer
+            // 
+            this.cmbServer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbServer.FormattingEnabled = true;
+            this.cmbServer.Location = new System.Drawing.Point(160, 47);
+            this.cmbServer.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbServer.Name = "cmbServer";
+            this.cmbServer.Size = new System.Drawing.Size(255, 24);
+            this.cmbServer.TabIndex = 2;
+            // 
             // WindowsAutentificaction
             // 
             this.WindowsAutentificaction.Checked = true;
             this.WindowsAutentificaction.CheckState = System.Windows.Forms.CheckState.Checked;
             this.WindowsAutentificaction.ForeColor = System.Drawing.Color.SteelBlue;
-            this.WindowsAutentificaction.Location = new System.Drawing.Point(35, 129);
+            this.WindowsAutentificaction.Location = new System.Drawing.Point(35, 159);
             this.WindowsAutentificaction.Margin = new System.Windows.Forms.Padding(4);
             this.WindowsAutentificaction.Name = "WindowsAutentificaction";
             this.WindowsAutentificaction.Size = new System.Drawing.Size(437, 27);
-            this.WindowsAutentificaction.TabIndex = 62;
+            this.WindowsAutentificaction.TabIndex = 65;
             this.WindowsAutentificaction.Text = "Usar autentificacion de windows";
-            this.WindowsAutentificaction.CheckedChanged += new System.EventHandler(this.WindowsAutentificaction_CheckedChanged);
             // 
-            // lblTitle
-            // 
-            this.lblTitle.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTitle.Image = global::Fwk.GuidPk.Properties.Resources.applications_32;
-            this.lblTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(897, 92);
-            this.lblTitle.TabIndex = 64;
-            this.lblTitle.Text = "Select database";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // wizDBSelect
+            // wizDbSelect_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.WindowsAutentificaction);
-            this.Name = "wizDBSelect";
-            this.Size = new System.Drawing.Size(897, 559);
-            this.Load += new System.EventHandler(this.wizDBSelect_Load);
-            this.VisibleChanged += new System.EventHandler(this.wizDBSelect_VisibleChanged);
+            this.Name = "wizDbSelect_2";
+            this.Size = new System.Drawing.Size(700, 471);
             this.Controls.SetChildIndex(this.infoPanel, 0);
             this.Controls.SetChildIndex(this.WindowsAutentificaction, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
@@ -225,17 +215,17 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbServer;
+        public System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Button btnTestConnection;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbDataBases;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbServer;
         private System.Windows.Forms.CheckBox WindowsAutentificaction;
-        private System.Windows.Forms.Button btnTestConnection;
-        public System.Windows.Forms.Label lblTitle;
     }
 }

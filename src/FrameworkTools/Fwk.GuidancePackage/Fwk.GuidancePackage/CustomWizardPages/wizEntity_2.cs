@@ -10,13 +10,14 @@ using Microsoft.Practices.WizardFramework;
 using Fwk.DataBase;
 using System.ComponentModel.Design;
 using Microsoft.SqlServer.Management.Smo;
+using Fwk.CodeGenerator;
 
 namespace Fwk.GuidPk
 {
     public partial class wizEntity_2 : CustomWizardPage
     {
-
-
+        CodeGeneratorCommon.SelectedObject _SelectedObject = CodeGeneratorCommon.SelectedObject.Tables;
+        
         CnnString _cnn = new CnnString();
 
         public wizEntity_2(WizardForm parent)
@@ -26,9 +27,10 @@ namespace Fwk.GuidPk
             InitializeComponent();
 
             ctrlTreeViewTables1.SelectElementHandler += new SelectElementHandler(ctrlTreeViewTables1_SelectElementHandler);
-
+            ctrlTreeViewViews1.SelectElementHandler += new SelectElementHandler(ctrlTreeViewTables1_SelectElementHandler);
         }
 
+       
 
         [RecipeArgument]
         public string TargetNamespace
@@ -66,14 +68,14 @@ namespace Fwk.GuidPk
         }
 
         [RecipeArgument]
-        public Table Table
+        public TableViewBase Table
         {
             set
             {
                 if (value != null)
                 {
 
-                    ctrlTreeViewTables1.SelectedTable = value;
+                    ctrlTreeViewTables1.SelectedTable = (Table)value;
                 }
                 else
                 {
@@ -96,16 +98,11 @@ namespace Fwk.GuidPk
             }
         }
 
-         
-        internal void LoadCnn(string cnnString)
-        {
-            _cnn = new CnnString("c1", cnnString.ToString());
-            ctrlTreeViewTables1.Populate(_cnn);
-        }
 
 
 
 
+       
 
         void ctrlTreeViewTables1_SelectElementHandler(object e)
         {
@@ -120,7 +117,8 @@ namespace Fwk.GuidPk
             }
             else
             {
-                Table selTable = (Table)e;
+                //if(_SelectedObject == CodeGeneratorCommon.SelectedObject.Tables)
+                TableViewBase selTable = (TableViewBase)e;
 
                 dictionaryService.SetValue("Table", selTable);
                 dictionaryService.SetValue("TableName", selTable.Name);
@@ -142,36 +140,25 @@ namespace Fwk.GuidPk
 
         private void wizEntity_2_Load(object sender, EventArgs e)
         {
-            LoadTables();
+            LoadDatabaseObjects();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadTables();
+            LoadDatabaseObjects();
         }
 
         private void wizEntity_2_VisibleChanged(object sender, EventArgs e)
         {
             if (this.Visible)
             {
-                LoadTables();
+                LoadDatabaseObjects();
             }
 
         }
 
 
-        void LoadTables()
-        {
-            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
-
-            string connectionString = dictionaryService.GetValue("ConnectionString").ToString();
-
-            if (!string.IsNullOrEmpty(connectionString))
-                LoadCnn(connectionString);
-
-
-            txtTargetNamespace.Text = dictionaryService.GetValue("TargetNamespace").ToString();
-        }
+       
 
         private void txtTargetNamespace_TextChanged(object sender, EventArgs e)
         {
@@ -191,8 +178,75 @@ namespace Fwk.GuidPk
         {
             txtEntityName.SelectAll();
         }
+        
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            _SelectedObject = (CodeGeneratorCommon.SelectedObject)
+                Enum.Parse(typeof(CodeGeneratorCommon.SelectedObject), tabControl1.SelectedTab.Tag.ToString());
+        }
 
 
+        void LoadDatabaseObjects()
+        {
+            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
+
+            string connectionString = dictionaryService.GetValue("ConnectionString").ToString();
+
+            if (!string.IsNullOrEmpty(connectionString))
+            {
+                _cnn = new CnnString("c1", connectionString);
+
+                RefreshDataObject();
+            }
+
+
+            txtTargetNamespace.Text = dictionaryService.GetValue("TargetNamespace").ToString();
+        }
+
+        private void RefreshDataObject()
+        {
+
+            try
+            {
+                //base._SelectedObject = (CodeGeneratorCommon.SelectedObject)tabControl1.SelectedTab.Tag;
+                //if (!base.RefreshMetadata()) return;
+
+
+                //Esta seleccionado Tables
+                if (_SelectedObject == CodeGeneratorCommon.SelectedObject.Views)
+                {
+                    ctrlTreeViewViews1.Populate(_cnn);
+               }
+
+                //Esta seleccionado Tables
+                if (_SelectedObject == CodeGeneratorCommon.SelectedObject.Tables)
+                {
+                    ctrlTreeViewTables1.Populate(_cnn);
+
+                }
+                //Esta seleccionado StoreProcedures
+                if (_SelectedObject == CodeGeneratorCommon.SelectedObject.StoreProcedures)
+                {
+                    //treeViewStoreProcedures1.StoreProcedures = base.Metadata.StoreProcedures;
+                    //treeViewStoreProcedures1.LoadTreeView();
+                }
+
+
+
+                //this.lblServer.Text = "Server:" + " [" + base.ServerName + "]";
+                //this.lblDatabase.Text = "Database:" + " [" + base.DataBaseName + "]";
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException( ex));
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshDataObject();
+        }
     }
 }
 

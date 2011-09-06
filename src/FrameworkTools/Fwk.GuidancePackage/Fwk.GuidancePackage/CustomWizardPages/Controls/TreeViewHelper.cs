@@ -29,11 +29,11 @@ namespace Fwk.GuidPk
         /// </summary>
         /// <param name="pTreeView">Nodo</param>
         /// <param name="pTables">Tablas</param>
-        public static void LoadTreeView(TreeView pTreeView, TableCollection pTables)
+        public static void LoadTreeView(TreeView pTreeView, SchemaCollectionBase pTables)
         {
             TreeNode wTreeNode;
             pTreeView.Nodes.Clear();    
-            foreach (Table wTable in pTables)
+            foreach (TableViewBase wTable in pTables)
             {
                 wTreeNode = new TreeNode();
                 wTreeNode.Checked = false;
@@ -53,7 +53,7 @@ namespace Fwk.GuidPk
         /// </summary>
         /// <param name="pParentNode">Nodo padre </param>
         /// <param name="pTable"></param>
-        internal static void LoadColumnsNodes(TreeNode pParentNode, Table pTable)
+        internal static void LoadColumnsNodes(TreeNode pParentNode, TableViewBase pTable)
         {
             TreeNode wTreeNode;
             foreach (Column wColumn in pTable.Columns)

@@ -11,6 +11,9 @@ using System.IO;
 
 namespace Fwk.Guidance.Core
 {
+    /// <summary>
+    /// Extraccion de Fwk.CodeGenerator.Coer.FwkGenerator para usar desde t4
+    /// </summary>
     public class FwkGenerator
     {
           

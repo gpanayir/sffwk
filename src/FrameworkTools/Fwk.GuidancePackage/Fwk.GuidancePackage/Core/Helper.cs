@@ -9,13 +9,17 @@ using System.Data;
 using System.Xml;
 using System.Diagnostics;
 
+
 namespace Fwk.Guidance.Core
 {
 
-
-    public static class HelperFunctions 
+    /// <summary>
+    /// Helper extraccion de Fwk.Helper para usar desde t4
+    /// </summary>
+    public static class HelperFunctions
     {
-         static List<string> RequiresNewPrefix;
+        internal static Fwk.Caching.FwkSimpleStorageBase<Storage> Settings = new Caching.FwkSimpleStorageBase<Storage>();
+        static List<string> RequiresNewPrefix;
         static HelperFunctions()
         {
             RequiresNewPrefix = new List<string>();
@@ -30,22 +34,25 @@ namespace Fwk.Guidance.Core
             RequiresNewPrefix.Add("Remover");
             RequiresNewPrefix.Add("Eliminar");
             RequiresNewPrefix.Add("Delete");
+            
+            Settings.Load();
+            
         }
 
         public static bool RequiresNew(string value)
         {
-            int indexOf =-1;
+            int indexOf = -1;
             foreach (string s in RequiresNewPrefix)
             {
 
                 indexOf = value.IndexOf(s, 0, StringComparison.CurrentCultureIgnoreCase);
                 //Si Contiene e inicia.
-                if(indexOf != -1 && indexOf ==0 )
+                if (indexOf != -1 && indexOf == 0)
                     return true;
             }
             return false;
         }
-        internal static string GetFileTemplate(string roottemplate,string name)
+        internal static string GetFileTemplate(string roottemplate, string name)
         {
 
             string file = name;
@@ -194,7 +201,7 @@ namespace Fwk.Guidance.Core
         /// <returns></returns>
         internal static String GetAllMessageException(Exception ex)
         {
-            
+
             StringBuilder wMessage = new StringBuilder();
             wMessage.Append(ex.Message);
             while (ex.InnerException != null)
@@ -225,48 +232,8 @@ namespace Fwk.Guidance.Core
             }
 
         }
-     
-        /// <summary>
-        /// Agrega el texto a un archivo. Si el archivo no existe, este método crea uno nuevo. 
-        /// </summary>
-        /// <param name="pFileName">Nombre completo del archivo</param>
-        /// <param name="pContent">Contenido del archivo</param>
-        /// <param name="pAppend">Determina si se van a agregar datos al archivo. 
-        /// Si ya existe el archivo y append es false, el archivo se sobrescribirá. 
-        /// Si ya existe el archivo y append es true, los datos se anexarán al archivo. De lo contrario, se crea un nuevo archivo. 
-        /// </param>
-        internal static void SaveTextFile(string pFileName, string pContent, bool pAppend)
-        {
-            using (StreamWriter sw = new StreamWriter(pFileName, pAppend))
-            {
-                sw.Write(pContent);
-                sw.Close();
-            }
-        }
-        internal static string ProgramFilesx86()
-        {
-            if (8 == IntPtr.Size
-                || (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))))
-            {
-                return Environment.GetEnvironmentVariable("ProgramFiles(x86)");
-            }
 
-            return Environment.GetEnvironmentVariable("ProgramFiles");
-        }
 
-        internal static Boolean ValidateFileByExtencion(string pExtencion, string pFullNemeFile)
-        {
-            if (!System.IO.File.Exists(pFullNemeFile)) return false;
-            if (pFullNemeFile.Length > 3)
-            {
-                if (pFullNemeFile.Substring(pFullNemeFile.Length - 3, 3).ToLower() != pExtencion.ToLower()) return false;
-            }
-            else
-                return false;
-
-            return true;
-
-        }
 
         internal static void CreateEventLog()
         {
