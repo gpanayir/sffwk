@@ -131,6 +131,19 @@ namespace Fwk.DataBase
 			_StoreProcedures = new StoreProcedures ();
 			_DataBaseServer = new DataBaseServer (true);
 		}
+        /// <summary>
+        /// 
+        /// </summary>
+        public Metadata(CnnString cnnString)
+            : base(String.Empty)
+        {
+            _Tables = new Tables();
+            _StoreProcedures = new StoreProcedures();
+            _DataBaseServer = new DataBaseServer(true);
+
+            _DataBaseServer.CurrentCnnString = cnnString;
+        }
+
 		#endregion
 
 		#region --[Methods]--

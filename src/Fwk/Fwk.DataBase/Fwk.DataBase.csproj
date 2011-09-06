@@ -225,6 +225,7 @@
     </EmbeddedResource>
     <None Include="Back\UserDefinedTypeScript.sql" />
     <Content Include="DataBaseConfig.xml">
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Back\StoreProceduresScript.sql" />
   </ItemGroup>
