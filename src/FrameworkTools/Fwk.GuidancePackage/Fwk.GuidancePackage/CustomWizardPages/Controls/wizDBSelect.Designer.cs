@@ -59,7 +59,7 @@
             this.cmbServer.Name = "cmbServer";
             this.cmbServer.Size = new System.Drawing.Size(255, 24);
             this.cmbServer.TabIndex = 2;
-            this.cmbServer.SelectedIndexChanged += new System.EventHandler(this.cmbServer_SelectedIndexChanged);
+            
             this.cmbServer.Click += new System.EventHandler(this.cmbServer_Click);
             // 
             // groupBox1

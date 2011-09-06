@@ -217,6 +217,87 @@ namespace Fwk.GuidPk
             }
             return true;
         }
+        void InitServers()
+        {
+            onInitServerCollection = true;
+
+            if (_AvailableSqlServers == null)
+            {
+                _AvailableSqlServers = SmoApplication.EnumAvailableSqlServers(false);
+                cmbServer.DataSource = _AvailableSqlServers;
+                cmbServer.DisplayMember = "Name";
+            }
+
+            onInitServerCollection = false;
+        }
+
+        private void WindowsAutentificaction_CheckedChanged(object sender, EventArgs e)
+        {
+            if (WindowsAutentificaction.Checked)
+            {
+                txtPassword.Enabled = false;
+                txtUserName.Enabled = false;
+            }
+            else
+            {
+                txtPassword.Enabled = true;
+                txtUserName.Enabled = true;
+            }
+        }
+
+        private void btnTestConnection_Click(object sender, EventArgs e)
+        {
+            if (Test())
+                setIDictionaryService(_cnn);
+            else
+                setIDictionaryService(null);
+        }
+
+        
+
+        private void cmbServer_Click(object sender, EventArgs e)
+        {
+            InitServers();
+        }
+
+        private void cmbDataBases_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _cnn = GetAuxiliarCnnString();
+            setIDictionaryService(_cnn);
+
+            if (!_cnn.DataSource.Equals(cmbServer.Text.Trim()) || cmbDataBases.Items.Count == 0)
+            {
+                _cnn.DataSource = cmbServer.Text.Trim();
+                FillDatabaseCombo(_cnn);
+            }
+        }
+
+        private void wizDbSelect_2_VisibleChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void wizDbSelect_2_Load(object sender, EventArgs e)
+        {
+           
+            if (Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString == null)
+            {
+                Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString = new CnnString();
+                Fwk.Guidance.Core.HelperFunctions.Settings.Save(); 
+            }
+
+            //this.cmbServer.Text = @"SANTANA\SQLEXPRESS2008R2";
+            //this.cmbDataBases.Text = "GASTOS_MY";
+            SetUI(Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString);
+            
+        }
+        public override bool OnDeactivate()
+        {
+            Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString = _cnn;
+            Fwk.Guidance.Core.HelperFunctions.Settings.Save();
+
+            return base.OnDeactivate();
+        }
 
     }
 }

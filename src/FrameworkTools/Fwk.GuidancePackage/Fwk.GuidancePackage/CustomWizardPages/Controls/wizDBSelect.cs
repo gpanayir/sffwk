@@ -135,31 +135,7 @@ namespace Fwk.GuidPk
             }
         }
      
-        //   private CnnString GetAuxiliarCnnString_test()
-        //{
-        //    CnnString wCnnString = new CnnString();
-
-
-        //    wCnnString.InitialCatalog =  "SANTANA\SQLEXPRESS2008R2";
-        //    wCnnString.DataSource ="SANTANA\SQLEXPRESS2008R2";
-
-        //    if (WindowsAutentificaction.Checked)
-        //    {
-        //        wCnnString.User = String.Empty;
-        //        wCnnString.Password = String.Empty;
-
-        //    }
-        //    else
-        //    {
-        //        wCnnString.User = txtUserName.Text.Trim();
-        //        wCnnString.Password = txtPassword.Text.Trim();
-        //    }
-
-        //    wCnnString.WindowsAutentification = WindowsAutentificaction.Checked;
-           
-        //    return wCnnString;
-        //}
-
+        
 
         private CnnString GetAuxiliarCnnString()
         {
@@ -332,10 +308,6 @@ namespace Fwk.GuidPk
             }
         }
 
-        private void cmbServer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void wizDBSelect_Load(object sender, EventArgs e)
         {

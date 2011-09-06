@@ -296,7 +296,7 @@
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
 
           <Pages>
-            <Page Type="Fwk.GuidPk.wizDBSelect, Fwk.GuidPk" Width="800" Height="500" />
+            <Page Type="Fwk.GuidPk.wizEntity_2, Fwk.GuidPk" Width="800" Height="500" />
             <Page Type="Fwk.GuidPk.wizDAC, Fwk.GuidPk"  />
           </Pages>
         </Wizard>

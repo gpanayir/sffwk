@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtGenerationResult = new System.Windows.Forms.TextBox();
-            this.btnTestConnection = new System.Windows.Forms.Button();
-            this.txtServiceName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtRes = new System.Windows.Forms.TextBox();
@@ -42,6 +36,12 @@
             this.txtReq = new System.Windows.Forms.TextBox();
             this.lblSVC = new System.Windows.Forms.Label();
             this.txtBE = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtGenerationResult = new System.Windows.Forms.TextBox();
+            this.btnTestConnection = new System.Windows.Forms.Button();
+            this.txtServiceName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -68,6 +68,105 @@
             this.groupBox1.Size = new System.Drawing.Size(876, 485);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.txtRes);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.txtReq);
+            this.groupBox2.Controls.Add(this.lblSVC);
+            this.groupBox2.Controls.Add(this.txtBE);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.groupBox2.Location = new System.Drawing.Point(35, 148);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(743, 144);
+            this.groupBox2.TabIndex = 74;
+            this.groupBox2.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(11, 98);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 17);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Response";
+            // 
+            // txtRes
+            // 
+            this.txtRes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtRes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRes.ForeColor = System.Drawing.Color.Black;
+            this.txtRes.Location = new System.Drawing.Point(128, 96);
+            this.txtRes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRes.Name = "txtRes";
+            this.txtRes.ReadOnly = true;
+            this.txtRes.Size = new System.Drawing.Size(569, 23);
+            this.txtRes.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(11, 66);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 17);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Request";
+            // 
+            // txtReq
+            // 
+            this.txtReq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtReq.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReq.ForeColor = System.Drawing.Color.Black;
+            this.txtReq.Location = new System.Drawing.Point(128, 64);
+            this.txtReq.Margin = new System.Windows.Forms.Padding(4);
+            this.txtReq.Name = "txtReq";
+            this.txtReq.ReadOnly = true;
+            this.txtReq.Size = new System.Drawing.Size(569, 23);
+            this.txtReq.TabIndex = 10;
+            // 
+            // lblSVC
+            // 
+            this.lblSVC.AutoSize = true;
+            this.lblSVC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSVC.Location = new System.Drawing.Point(11, 30);
+            this.lblSVC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSVC.Name = "lblSVC";
+            this.lblSVC.Size = new System.Drawing.Size(59, 17);
+            this.lblSVC.TabIndex = 12;
+            this.lblSVC.Text = "Service ";
+            // 
+            // txtBE
+            // 
+            this.txtBE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBE.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtBE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBE.ForeColor = System.Drawing.Color.Black;
+            this.txtBE.Location = new System.Drawing.Point(128, 26);
+            this.txtBE.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBE.Name = "txtBE";
+            this.txtBE.ReadOnly = true;
+            this.txtBE.Size = new System.Drawing.Size(569, 23);
+            this.txtBE.TabIndex = 9;
             // 
             // label1
             // 
@@ -147,105 +246,6 @@
             this.lblTitle.TabIndex = 64;
             this.lblTitle.Text = "Set service info";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.txtRes);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.txtReq);
-            this.groupBox2.Controls.Add(this.lblSVC);
-            this.groupBox2.Controls.Add(this.txtBE);
-            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.groupBox2.Location = new System.Drawing.Point(35, 148);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(743, 144);
-            this.groupBox2.TabIndex = 74;
-            this.groupBox2.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(11, 98);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Response";
-            // 
-            // txtRes
-            // 
-            this.txtRes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRes.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtRes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRes.ForeColor = System.Drawing.Color.SlateGray;
-            this.txtRes.Location = new System.Drawing.Point(128, 96);
-            this.txtRes.Margin = new System.Windows.Forms.Padding(4);
-            this.txtRes.Name = "txtRes";
-            this.txtRes.ReadOnly = true;
-            this.txtRes.Size = new System.Drawing.Size(569, 23);
-            this.txtRes.TabIndex = 11;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(11, 66);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 17);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Request";
-            // 
-            // txtReq
-            // 
-            this.txtReq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReq.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtReq.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtReq.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReq.ForeColor = System.Drawing.Color.SlateGray;
-            this.txtReq.Location = new System.Drawing.Point(128, 64);
-            this.txtReq.Margin = new System.Windows.Forms.Padding(4);
-            this.txtReq.Name = "txtReq";
-            this.txtReq.ReadOnly = true;
-            this.txtReq.Size = new System.Drawing.Size(569, 23);
-            this.txtReq.TabIndex = 10;
-            // 
-            // lblSVC
-            // 
-            this.lblSVC.AutoSize = true;
-            this.lblSVC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSVC.Location = new System.Drawing.Point(11, 30);
-            this.lblSVC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSVC.Name = "lblSVC";
-            this.lblSVC.Size = new System.Drawing.Size(59, 17);
-            this.lblSVC.TabIndex = 12;
-            this.lblSVC.Text = "Service ";
-            // 
-            // txtBE
-            // 
-            this.txtBE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBE.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtBE.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBE.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBE.ForeColor = System.Drawing.Color.SlateGray;
-            this.txtBE.Location = new System.Drawing.Point(128, 26);
-            this.txtBE.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBE.Name = "txtBE";
-            this.txtBE.ReadOnly = true;
-            this.txtBE.Size = new System.Drawing.Size(569, 23);
-            this.txtBE.TabIndex = 9;
             // 
             // wizService
             // 

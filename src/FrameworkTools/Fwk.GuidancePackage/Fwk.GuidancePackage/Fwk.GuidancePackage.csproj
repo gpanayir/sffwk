@@ -255,10 +255,10 @@
     <Compile Include="CustomWizardPages\Controls\wizBase.Designer.cs">
       <DependentUpon>wizBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomWizardPages\wizDBSelect.cs">
+    <Compile Include="CustomWizardPages\Controls\wizDBSelect.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomWizardPages\wizDBSelect.Designer.cs">
+    <Compile Include="CustomWizardPages\Controls\wizDBSelect.Designer.cs">
       <DependentUpon>wizDBSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\FileChooser.cs" />
@@ -294,7 +294,7 @@
     <EmbeddedResource Include="CustomWizardPages\Controls\wizBase.resx">
       <DependentUpon>wizBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomWizardPages\wizDBSelect.resx">
+    <EmbeddedResource Include="CustomWizardPages\Controls\wizDBSelect.resx">
       <DependentUpon>wizDBSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\MessageEditorForm.resx">

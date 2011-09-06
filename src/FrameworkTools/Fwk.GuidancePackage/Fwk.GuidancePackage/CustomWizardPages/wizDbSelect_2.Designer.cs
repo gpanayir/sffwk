@@ -120,6 +120,7 @@
             this.btnTestConnection.TabIndex = 60;
             this.btnTestConnection.Text = "Test ";
             this.btnTestConnection.UseVisualStyleBackColor = false;
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // txtUserName
             // 
@@ -159,6 +160,7 @@
             this.cmbDataBases.Name = "cmbDataBases";
             this.cmbDataBases.Size = new System.Drawing.Size(255, 24);
             this.cmbDataBases.TabIndex = 50;
+            this.cmbDataBases.SelectedIndexChanged += new System.EventHandler(this.cmbDataBases_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -179,6 +181,7 @@
             this.cmbServer.Name = "cmbServer";
             this.cmbServer.Size = new System.Drawing.Size(255, 24);
             this.cmbServer.TabIndex = 2;
+            this.cmbServer.Click += new System.EventHandler(this.cmbServer_Click);
             // 
             // WindowsAutentificaction
             // 
@@ -191,6 +194,7 @@
             this.WindowsAutentificaction.Size = new System.Drawing.Size(437, 27);
             this.WindowsAutentificaction.TabIndex = 65;
             this.WindowsAutentificaction.Text = "Usar autentificacion de windows";
+            this.WindowsAutentificaction.CheckedChanged += new System.EventHandler(this.WindowsAutentificaction_CheckedChanged);
             // 
             // wizDbSelect_2
             // 
@@ -201,6 +205,8 @@
             this.Controls.Add(this.WindowsAutentificaction);
             this.Name = "wizDbSelect_2";
             this.Size = new System.Drawing.Size(700, 471);
+            this.Load += new System.EventHandler(this.wizDbSelect_2_Load);
+            this.VisibleChanged += new System.EventHandler(this.wizDbSelect_2_VisibleChanged);
             this.Controls.SetChildIndex(this.infoPanel, 0);
             this.Controls.SetChildIndex(this.WindowsAutentificaction, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
