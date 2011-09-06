@@ -30,10 +30,10 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ctrlTreeViewTables1 = new Fwk.GuidPk.ctrlTreeViewTables();
-            this.btnGenerate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtGenerationResult = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -47,15 +47,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.ctrlTreeViewTables1);
-            this.groupBox1.Controls.Add(this.btnGenerate);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtGenerationResult);
-            this.groupBox1.Location = new System.Drawing.Point(12, 123);
+            this.groupBox1.Location = new System.Drawing.Point(12, 96);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(941, 546);
+            this.groupBox1.Size = new System.Drawing.Size(941, 573);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             // 
@@ -70,28 +70,12 @@
             this.ctrlTreeViewTables1.Size = new System.Drawing.Size(301, 537);
             this.ctrlTreeViewTables1.TabIndex = 70;
             // 
-            // btnGenerate
-            // 
-            this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerate.BackColor = System.Drawing.Color.SlateGray;
-            this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnGenerate.Location = new System.Drawing.Point(323, 12);
-            this.btnGenerate.Margin = new System.Windows.Forms.Padding(4);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(149, 30);
-            this.btnGenerate.TabIndex = 61;
-            this.btnGenerate.Text = "Check generation";
-            this.btnGenerate.UseVisualStyleBackColor = false;
-            this.btnGenerate.Click += new System.EventHandler(this.btnTestConnection_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(318, 66);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label1.Location = new System.Drawing.Point(318, 74);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(164, 25);
@@ -103,11 +87,11 @@
             this.txtGenerationResult.BackColor = System.Drawing.Color.White;
             this.txtGenerationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGenerationResult.ForeColor = System.Drawing.Color.DimGray;
-            this.txtGenerationResult.Location = new System.Drawing.Point(323, 95);
+            this.txtGenerationResult.Location = new System.Drawing.Point(323, 111);
             this.txtGenerationResult.Margin = new System.Windows.Forms.Padding(4);
             this.txtGenerationResult.Multiline = true;
             this.txtGenerationResult.Name = "txtGenerationResult";
-            this.txtGenerationResult.Size = new System.Drawing.Size(589, 421);
+            this.txtGenerationResult.Size = new System.Drawing.Size(589, 450);
             this.txtGenerationResult.TabIndex = 71;
             // 
             // lblTitle
@@ -117,7 +101,7 @@
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTitle.Image = global::Fwk.GuidPk.Properties.Resources.applications_32;
+            this.lblTitle.Image = global::Fwk.GuidPk.Properties.Resources.fabrica;
             this.lblTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -127,10 +111,23 @@
             this.lblTitle.Text = "Set DAC info";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // button1
+            // 
+            this.button1.Image = global::Fwk.GuidPk.Properties.Resources.applications_32;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(323, 25);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(247, 44);
+            this.button1.TabIndex = 75;
+            this.button1.Text = "Check generation";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // wizDAC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblTitle);
             this.InfoRTBoxSize = new System.Drawing.Size(661, 74);
@@ -153,9 +150,9 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnGenerate;
         public System.Windows.Forms.TextBox txtGenerationResult;
         private ctrlTreeViewTables ctrlTreeViewTables1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

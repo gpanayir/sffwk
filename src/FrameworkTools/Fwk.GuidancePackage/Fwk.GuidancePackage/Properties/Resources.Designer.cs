@@ -67,6 +67,20 @@ namespace Fwk.GuidPk.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap e6246c93f3a323a5 {
+            get {
+                object obj = ResourceManager.GetObject("e6246c93f3a323a5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap fabrica {
+            get {
+                object obj = ResourceManager.GetObject("fabrica", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Fwk Guidance Package Code Generator.
         /// </summary>
@@ -79,6 +93,13 @@ namespace Fwk.GuidPk.Properties {
         internal static System.Drawing.Bitmap ref_16 {
             get {
                 object obj = ResourceManager.GetObject("ref_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap software_factory {
+            get {
+                object obj = ResourceManager.GetObject("software_factory", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

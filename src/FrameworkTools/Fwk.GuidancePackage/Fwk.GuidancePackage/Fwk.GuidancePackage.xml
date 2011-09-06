@@ -94,21 +94,20 @@
           <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
         </Argument>
 
-        <Argument Name="TargetNamespace">
+        <!--<Argument Name="TargetNamespace">
           <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
           <ValueProvider Type="Evaluator" Expression="$(selctedproject.Properties.Item('DefaultNamespace').Value)" />
-        </Argument>
-        
+        </Argument>-->
+        <Argument Name="GeneratedCodeList" Type="Fwk.CodeGenerator.GeneratedCode[], Fwk.CodeGenerator.Core" />
         <Argument Name="DatabaseName" Type="System.String" />
-        <Argument Name="EntityName" Type="System.String" />
+        <!--<Argument Name="EntityName" Type="System.String" />-->
         <Argument Name="ConnectionString" Type="System.String" />
-        <Argument Name="Table" Type="Microsoft.SqlServer.Management.Smo.TableViewBase,Microsoft.SqlServer.Smo, Version=10.0.0.0 , Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
-        <Argument Name="TableName" Type="System.String"  />
-        <Argument Name="EntityTargetFile">
+        <!--<Argument Name="TableName" Type="System.String"  />-->
+        <!--<Argument Name="EntityTargetFile">
           <ValueProvider Type="Evaluator"	 Expression="$(EntityName).cs">
             <MonitorArgument Name="EntityName" />
           </ValueProvider>
-        </Argument>
+        </Argument>-->
       </Arguments>
       <GatheringServiceData>
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
@@ -124,7 +123,7 @@
       <Actions>
         
         
-        <Action Name="CreateEntity" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
+        <!--<Action Name="CreateEntity" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
 						Template="Text\EntitySimpleTemplate.tt">
           
           <Input Name="EntityName" RecipeArgument="EntityName" />
@@ -138,13 +137,17 @@
         
         <Action Name="AddEntityBase" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
 
-          <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
+          --><!--Content, TargetFileName and Project are AddItemFromStringAction class properties--><!--
           <Input Name="Content" ActionOutput="CreateEntity.Content" />
           <Input Name="TargetFileName" RecipeArgument="EntityTargetFile" />
           <Input Name="Project" RecipeArgument="selctedproject" />
-        </Action>
+        </Action>-->
 
-        
+
+        <Action Name="AddEntityBase" Type=" Fwk.GuidPk.Actions.AddBE, Fwk.GuidPk"	Open="true" >
+          <Input Name="GeneratedCodeList" RecipeArgument="GeneratedCodeList" />
+          <Input Name="Project" RecipeArgument="selctedproject" />
+        </Action>
         </Actions>
     </Recipe>
 
@@ -296,7 +299,7 @@
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
 
           <Pages>
-            <Page Type="Fwk.GuidPk.wizEntity_2, Fwk.GuidPk" Width="800" Height="500" />
+            <Page Type="Fwk.GuidPk.wizDbSelect_2, Fwk.GuidPk" Width="800" Height="500" />
             <Page Type="Fwk.GuidPk.wizDAC, Fwk.GuidPk"  />
           </Pages>
         </Wizard>

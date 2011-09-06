@@ -161,6 +161,7 @@
             this.cmbDataBases.Size = new System.Drawing.Size(255, 24);
             this.cmbDataBases.TabIndex = 50;
             this.cmbDataBases.SelectedIndexChanged += new System.EventHandler(this.cmbDataBases_SelectedIndexChanged);
+            this.cmbDataBases.Click += new System.EventHandler(this.cmbDataBases_Click);
             // 
             // label6
             // 

@@ -64,16 +64,6 @@ namespace Fwk.GuidPk
             ctrlTreeViewTables1.Populate(_cnn);
         }
 
-
-      
-
-   
-
-       
-
-       
-      
-
         void LoadTables()
         {
             IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
@@ -154,6 +144,11 @@ namespace Fwk.GuidPk
             {
                 LoadTables();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Generate();
         }
    
     }

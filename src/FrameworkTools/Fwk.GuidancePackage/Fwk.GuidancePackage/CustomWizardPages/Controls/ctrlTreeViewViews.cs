@@ -13,11 +13,11 @@ using Fwk.DataBase;
 
 namespace Fwk.GuidPk
 {
-   
+
     public partial class ctrlTreeViewViews : UserControl
     {
         public event AfterCheckHandler AfterCheckEvent;
-        public  event SelectElementHandler SelectElementHandler;
+        public event SelectElementHandler SelectElementHandler;
         private void OnAfterCheckHandler()
         {
             if (AfterCheckEvent != null)
@@ -30,9 +30,9 @@ namespace Fwk.GuidPk
             set { this.tvwChilds.CheckBoxes = value; }
         }
         private Microsoft.SqlServer.Management.Smo.ViewCollection _Views;
-        private Microsoft.SqlServer.Management.Smo.View _SelectedView = null;
+        private Microsoft.SqlServer.Management.Smo.View _Selected = null;
 
-       
+
         public void OnSelectObjectEvent(object e)
         {
             if (SelectElementHandler != null)
@@ -45,22 +45,22 @@ namespace Fwk.GuidPk
         [Browsable(false)]
         public Microsoft.SqlServer.Management.Smo.View SelectedView
         {
-            get { return _SelectedView; }
-            
-       
+            get { return _Selected; }
+
+
         }
         /// <summary>
         /// Indica la tabla seleccionada en el arbol .-
         /// </summary>
         [Browsable(false)]
-        public List<Table> CheckedTables
+        public List<Microsoft.SqlServer.Management.Smo.View> CheckedTables
         {
             get { return GetCheckedTables(); }
-       
-        }
-       
 
-        
+        }
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -78,35 +78,33 @@ namespace Fwk.GuidPk
         public void Populate(CnnString pCnn)
         {
             //if (_Tables == null)
-                LoadTables(pCnn);
+            LoadTables(pCnn);
 
-          
-            
             if (_Views == null)
             {
                 this.tvwChilds.Nodes.Clear();
-              
+
                 return;
             }
             if (_Views.Count == 0)
             {
                 this.tvwChilds.Nodes.Clear();
-                
+
                 return;
             }
 
             TreeViewHelper.LoadTreeView(this.tvwChilds, _Views);
-            
-            _SelectedView = _Views[0];
-      
+
+            _Selected = _Views[0];
+
 
 
             lblTreeViewSelected.Text = String.Empty;
 
-         
+
         }
 
-       
+
 
         private void LoadTables(CnnString cnn)
         {
@@ -117,12 +115,12 @@ namespace Fwk.GuidPk
             {
                 Server wServer = new Server(serverConnection);
                 Database db = new Database(wServer, cnn.InitialCatalog);
-                 
-                
+
+
                 db.Views.Refresh();
                 _Views = db.Views;
 
-                
+
             }
             catch (Exception ex)
             {
@@ -134,15 +132,15 @@ namespace Fwk.GuidPk
         /// Retorna las tablas seleccionadas en el tree view.-
         /// </summary>
         /// <returns></returns>
-        List<Table> GetCheckedTables()
+        List<Microsoft.SqlServer.Management.Smo.View> GetCheckedTables()
         {
             if (_Views == null) return null;
 
-            List<Table> wTablesSelected = new List<Table>();
+            List<Microsoft.SqlServer.Management.Smo.View> wTablesSelected = new List<Microsoft.SqlServer.Management.Smo.View>();
             foreach (TreeNode node in tvwChilds.Nodes)
             {
                 if (node.Checked)
-                    wTablesSelected.Add((Table)node.Tag);
+                    wTablesSelected.Add((Microsoft.SqlServer.Management.Smo.View)node.Tag);
 
             }
 
@@ -150,9 +148,9 @@ namespace Fwk.GuidPk
         }
 
 
-      
 
-    
+
+
 
         #region [Events]
 
@@ -161,18 +159,18 @@ namespace Fwk.GuidPk
             if (e.Node == null) return;
             if (e.Node.Level == 0)
             {
-                Table wTable = (Table)e.Node.Tag;
+                Microsoft.SqlServer.Management.Smo.View wTable = (Microsoft.SqlServer.Management.Smo.View)e.Node.Tag;
                 ///TODO: Ver Checked
                 //wTable.Checked = e.Node.Checked;
                 //if (wTable.IsColumnsLoaded == false)
-                if(e.Node.Nodes.Count ==0)
+                if (e.Node.Nodes.Count == 0)
                 {
                     TreeViewHelper.LoadColumnsNodes(e.Node, wTable);
                     OnSelectObjectEvent(wTable);
                 }
 
                 this.tvwChilds.AfterCheck -= new System.Windows.Forms.TreeViewEventHandler(this.tvwChilds_AfterCheck);
-                this.tvwChilds.BeforeCheck -= new TreeViewCancelEventHandler(this.tvwChilds_BeforeCheck);    
+                this.tvwChilds.BeforeCheck -= new TreeViewCancelEventHandler(this.tvwChilds_BeforeCheck);
                 TreeViewHelper.UncheckChildNodes(e.Node);
                 this.tvwChilds.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tvwChilds_AfterCheck);
                 this.tvwChilds.BeforeCheck += new TreeViewCancelEventHandler(this.tvwChilds_BeforeCheck);
@@ -189,27 +187,27 @@ namespace Fwk.GuidPk
                     e.Node.Parent.Checked = false;
                 }
             }
-           
+
         }
         private void tvwChilds_BeforeCheck(object sender, TreeViewCancelEventArgs e)
         {
             //Nivel de tablas
             if (e.Node.Level == 1)
             {
-                if (e.Node.Parent.Text != _SelectedView.Name)
+                if (e.Node.Parent.Text != _Selected.Name)
                 {
 
-                    _SelectedView = (Microsoft.SqlServer.Management.Smo.View)e.Node.Parent.Tag;
+                    _Selected = (Microsoft.SqlServer.Management.Smo.View)e.Node.Parent.Tag;
 
-                    lblTreeViewSelected.Text = _SelectedView.Name;
-                    OnSelectObjectEvent(_Views);
+                    lblTreeViewSelected.Text = _Selected.Name;
+                    OnSelectObjectEvent(_Selected);
 
                 }
 
             }
         }
 
-       
+
 
         private void tvwChilds_AfterSelect(object sender, TreeViewEventArgs e)
         {
@@ -219,29 +217,24 @@ namespace Fwk.GuidPk
             if (this.tvwChilds.SelectedNode.Level == 0)
             {
 
-                _SelectedView = (Microsoft.SqlServer.Management.Smo.View)this.tvwChilds.SelectedNode.Tag;
-                lblTreeViewSelected.Text = _SelectedView.Name;
-              
+                _Selected = (Microsoft.SqlServer.Management.Smo.View)this.tvwChilds.SelectedNode.Tag;
+                lblTreeViewSelected.Text = _Selected.Name;
+
                 if (e.Node.Nodes.Count == 0)
                 {
-                    TreeViewHelper.LoadColumnsNodes(this.tvwChilds.SelectedNode, _SelectedView);
-                    OnSelectObjectEvent(_Views);
+                    TreeViewHelper.LoadColumnsNodes(this.tvwChilds.SelectedNode, _Selected);
+                    OnSelectObjectEvent(_Selected);
                 }
-
-               
             }
 
             if (this.tvwChilds.SelectedNode.Level == 1)
             {
-                lblTreeViewSelected.Text = _SelectedView.Name; //+ "." + this.tvwChilds.SelectedNode.Text.Substring(0, this.tvwChilds.SelectedNode.Text.IndexOf(" "));
+                lblTreeViewSelected.Text = _Selected.Name; //+ "." + this.tvwChilds.SelectedNode.Text.Substring(0, this.tvwChilds.SelectedNode.Text.IndexOf(" "));
             }
         }
 
-      
-
-       
         #endregion
 
-       
+
     }
 }

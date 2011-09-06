@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtEntityName = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtTargetNamespace = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ctrlTreeViewTables1 = new Fwk.GuidPk.ctrlTreeViewTables();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ctrlTreeViewViews1 = new Fwk.GuidPk.ctrlTreeViewViews();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.txtGenerationResult = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.infoPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -47,23 +47,17 @@
             // 
             // infoPanel
             // 
-            this.infoPanel.Location = new System.Drawing.Point(0, 301);
+            this.infoPanel.BackColor = System.Drawing.Color.DimGray;
+            this.infoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.infoPanel.Controls.Add(this.txtGenerationResult);
+            this.infoPanel.Controls.Add(this.label1);
+            this.infoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.infoPanel.Location = new System.Drawing.Point(0, 0);
             this.infoPanel.Margin = new System.Windows.Forms.Padding(5);
-            this.infoPanel.Size = new System.Drawing.Size(1028, 393);
+            this.infoPanel.Size = new System.Drawing.Size(1028, 694);
             this.infoPanel.Visible = false;
-            // 
-            // txtEntityName
-            // 
-            this.txtEntityName.BackColor = System.Drawing.Color.White;
-            this.txtEntityName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEntityName.ForeColor = System.Drawing.Color.DimGray;
-            this.txtEntityName.Location = new System.Drawing.Point(481, 239);
-            this.txtEntityName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEntityName.Name = "txtEntityName";
-            this.txtEntityName.Size = new System.Drawing.Size(507, 26);
-            this.txtEntityName.TabIndex = 68;
-            this.txtEntityName.TextChanged += new System.EventHandler(this.txtEntityName_TextChanged);
-            this.txtEntityName.Enter += new System.EventHandler(this.txtEntityName_Enter);
+            this.infoPanel.Controls.SetChildIndex(this.label1, 0);
+            this.infoPanel.Controls.SetChildIndex(this.txtGenerationResult, 0);
             // 
             // lblTitle
             // 
@@ -72,7 +66,7 @@
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblTitle.Image = global::Fwk.GuidPk.Properties.Resources.applications_32;
+            this.lblTitle.Image = global::Fwk.GuidPk.Properties.Resources.fabrica;
             this.lblTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -85,39 +79,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.GrayText;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(332, 239);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.label1.Location = new System.Drawing.Point(332, 229);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 25);
+            this.label1.Size = new System.Drawing.Size(148, 25);
             this.label1.TabIndex = 66;
-            this.label1.Text = "Entity Name";
-            // 
-            // txtTargetNamespace
-            // 
-            this.txtTargetNamespace.BackColor = System.Drawing.Color.White;
-            this.txtTargetNamespace.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTargetNamespace.ForeColor = System.Drawing.Color.DimGray;
-            this.txtTargetNamespace.Location = new System.Drawing.Point(477, 188);
-            this.txtTargetNamespace.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTargetNamespace.Name = "txtTargetNamespace";
-            this.txtTargetNamespace.Size = new System.Drawing.Size(507, 26);
-            this.txtTargetNamespace.TabIndex = 71;
-            this.txtTargetNamespace.TextChanged += new System.EventHandler(this.txtTargetNamespace_TextChanged);
-            this.txtTargetNamespace.Enter += new System.EventHandler(this.txtTargetNamespace_Enter);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(332, 192);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 25);
-            this.label2.TabIndex = 70;
-            this.label2.Text = "Namespase";
+            this.label1.Text = "Generated log";
             // 
             // tabControl1
             // 
@@ -179,7 +149,7 @@
             // 
             this.btnRefresh.Image = global::Fwk.GuidPk.Properties.Resources.ref_16;
             this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefresh.Location = new System.Drawing.Point(337, 121);
+            this.btnRefresh.Location = new System.Drawing.Point(337, 109);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(185, 31);
             this.btnRefresh.TabIndex = 73;
@@ -187,30 +157,50 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // txtGenerationResult
+            // 
+            this.txtGenerationResult.BackColor = System.Drawing.Color.White;
+            this.txtGenerationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGenerationResult.ForeColor = System.Drawing.Color.DimGray;
+            this.txtGenerationResult.Location = new System.Drawing.Point(337, 258);
+            this.txtGenerationResult.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGenerationResult.Multiline = true;
+            this.txtGenerationResult.Name = "txtGenerationResult";
+            this.txtGenerationResult.Size = new System.Drawing.Size(607, 360);
+            this.txtGenerationResult.TabIndex = 69;
+            // 
+            // button1
+            // 
+            this.button1.Image = global::Fwk.GuidPk.Properties.Resources.applications_32;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(337, 154);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(247, 44);
+            this.button1.TabIndex = 74;
+            this.button1.Text = "Check generation";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // wizEntity_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.txtTargetNamespace);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtEntityName);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.label1);
             this.InfoRTBoxSize = new System.Drawing.Size(661, 74);
             this.Name = "wizEntity_2";
             this.Size = new System.Drawing.Size(1028, 694);
             this.Load += new System.EventHandler(this.wizEntity_2_Load);
             this.VisibleChanged += new System.EventHandler(this.wizEntity_2_VisibleChanged);
             this.Controls.SetChildIndex(this.infoPanel, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.lblTitle, 0);
-            this.Controls.SetChildIndex(this.txtEntityName, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.txtTargetNamespace, 0);
             this.Controls.SetChildIndex(this.tabControl1, 0);
             this.Controls.SetChildIndex(this.btnRefresh, 0);
+            this.Controls.SetChildIndex(this.button1, 0);
+            this.infoPanel.ResumeLayout(false);
+            this.infoPanel.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -222,16 +212,15 @@
 
         #endregion
 
-        public System.Windows.Forms.TextBox txtEntityName;
         public System.Windows.Forms.Label lblTitle;
         private ctrlTreeViewTables ctrlTreeViewTables1;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.TextBox txtTargetNamespace;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private ctrlTreeViewViews ctrlTreeViewViews1;
         private System.Windows.Forms.Button btnRefresh;
+        public System.Windows.Forms.TextBox txtGenerationResult;
+        private System.Windows.Forms.Button button1;
     }
 }

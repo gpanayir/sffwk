@@ -18,11 +18,12 @@ using System.Text;
 
 namespace Fwk.GuidPk.Actions
 {
-    
     [ServiceDependency(typeof(DTE))]
-    public class AddDAC : Microsoft.Practices.RecipeFramework.Action
+    public class AddBE : Microsoft.Practices.RecipeFramework.Action
     {
-        GeneratedCode[] _GeneratedCodeList;
+        #region Input Properties
+
+         GeneratedCode[] _GeneratedCodeList;
         
         EnvDTE.Project prj;
         /// <summary>
@@ -45,9 +46,13 @@ namespace Fwk.GuidPk.Actions
         
      
 
-        /// <summary>
-        /// Adds the template reference to the IAssetReferenceService
-        /// </summary>
+
+        #endregion
+
+        
+
+        #region IAction Members
+
         public override void Execute()
         {
             DTE vs = GetService<DTE>(true);
@@ -56,35 +61,6 @@ namespace Fwk.GuidPk.Actions
 
             CreateFolderAndFiles(Project);
 
-            
-
-            if (item == null)
-                throw new InvalidOperationException("There is no valid target to create any DAC .");
-
-            if (item is EnvDTE.Project)
-            {
-
-                EnvDTE.Project p = (EnvDTE.Project)item;
-                
-               // p.ProjectItems.AddFromFile();
-            }
-            else if (item is Solution)
-            {
-               // addedReference = new SolutionReference(recipeName, (Solution)item);
-            }
-            else if (item is ProjectItem)
-            {
-              //  addedReference = new ProjectItemReference(recipeName, (ProjectItem)item);
-            }
-            else
-            {
-                throw new NotSupportedException("Current selection is unsupported.");
-            }
-
-            //referenceService.Add(addedReference);
-
-            //MessageBox.Show("The new reference was successfully added.", "New Reference",
-            //    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         void CreateFolderAndFiles(EnvDTE.Project currentProject)
@@ -93,19 +69,19 @@ namespace Fwk.GuidPk.Actions
             string fileFullName = string.Empty;
             DirectoryInfo dInfo = new DirectoryInfo(foldert);
             DialogResult res = DialogResult.OK;
-            if (!System.IO.Directory.Exists("DAC"))
-                dInfo = dInfo.CreateSubdirectory("DAC");
+            if (!System.IO.Directory.Exists("Entities"))
+                dInfo = dInfo.CreateSubdirectory("Entities");
             StringBuilder err = new StringBuilder();
             foreach (GeneratedCode genCode in _GeneratedCodeList)
             {
-                fileFullName = Path.Combine(dInfo.FullName, string.Concat(genCode.Id, "DAC.cs"));
+                fileFullName = Path.Combine(dInfo.FullName, string.Concat(genCode.Id, ".cs"));
                 try
                 {
                     // Check it the targetFileName already exists and delete it so it can be added.
                     //ProjectItem targetItem = VSIPHelper.FindItemByName(Project.ProjectItems, fileFullName, true);
                     if (File.Exists(fileFullName))
                     {
-                        res = MessageBox.Show(string.Concat("DAC file: ", Path.GetFileName(fileFullName), " already exist. /n do you want to replaced it?"), Fwk.GuidPk.Properties.Resources.ProductTitle,
+                        res = MessageBox.Show(string.Concat("Entity file: ", Path.GetFileName(fileFullName), " already exist. /n do you want to replaced it?"), Fwk.GuidPk.Properties.Resources.ProductTitle,
                                   MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     }
                     if (res == DialogResult.OK)
@@ -121,27 +97,19 @@ namespace Fwk.GuidPk.Actions
             }
             if (err.Length != 0)
 
-                MessageBox.Show(string.Concat("The DAC's classes was successfully generated with errors /r", err.ToString()), Fwk.GuidPk.Properties.Resources.ProductTitle,
+                MessageBox.Show(string.Concat("The Entities classes was successfully generated with errors /r", err.ToString()), Fwk.GuidPk.Properties.Resources.ProductTitle,
                MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             else
 
-                MessageBox.Show("The new DAC's class was successfully generated.", Fwk.GuidPk.Properties.Resources.ProductTitle,
+                MessageBox.Show("The new Entities class was successfully generated.", Fwk.GuidPk.Properties.Resources.ProductTitle,
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        
-
-        /// <summary>
-        /// Removes the previously added reference, if it was created
-        /// </summary>
         public override void Undo()
         {
-            //if (addedReference != null)
-            //{
-            //    IAssetReferenceService referenceService = GetService<IAssetReferenceService>(true);
-            //   referenceService.Remove(addedReference);
-            //}
+            throw new Exception("The method or operation is not implemented.");
         }
+
+        #endregion
     }
 }

@@ -30,7 +30,7 @@ namespace Fwk.GuidPk
             set { this.tvwChilds.CheckBoxes = value; }
         }
         private TableCollection _Tables;
-        private Table _SelectedTable = null;
+        private Table _Selected = null;
 
        
         public void OnSelectObjectEvent(object e)
@@ -45,8 +45,8 @@ namespace Fwk.GuidPk
         [Browsable(false)]
         public Table SelectedTable
         {
-            get { return _SelectedTable; }
-            set { _SelectedTable = value; }
+            get { return _Selected; }
+            set { _Selected = value; }
        
         }
         /// <summary>
@@ -97,7 +97,7 @@ namespace Fwk.GuidPk
 
             TreeViewHelper.LoadTreeView(this.tvwChilds, _Tables);
 
-            _SelectedTable = _Tables[0];
+            _Selected = _Tables[0];
       
 
 
@@ -196,13 +196,13 @@ namespace Fwk.GuidPk
             //Nivel de tablas
             if (e.Node.Level == 1)
             {
-                if (e.Node.Parent.Text != _SelectedTable.Name)
+                if (e.Node.Parent.Text != _Selected.Name)
                 {
                     
-                    _SelectedTable = (Table)e.Node.Parent.Tag;
+                    _Selected = (Table)e.Node.Parent.Tag;
 
-                    lblTreeViewSelected.Text = _SelectedTable.Name;
-                    OnSelectObjectEvent(_SelectedTable);
+                    lblTreeViewSelected.Text = _Selected.Name;
+                    OnSelectObjectEvent(_Selected);
 
                 }
 
@@ -219,13 +219,13 @@ namespace Fwk.GuidPk
             if (this.tvwChilds.SelectedNode.Level == 0)
             {
           
-                _SelectedTable = (Table)this.tvwChilds.SelectedNode.Tag;
-                lblTreeViewSelected.Text = _SelectedTable.Name;
+                _Selected = (Table)this.tvwChilds.SelectedNode.Tag;
+                lblTreeViewSelected.Text = _Selected.Name;
               
                 if (e.Node.Nodes.Count == 0)
                 {
-                    TreeViewHelper.LoadColumnsNodes(this.tvwChilds.SelectedNode, _SelectedTable);
-                    OnSelectObjectEvent(_SelectedTable);
+                    TreeViewHelper.LoadColumnsNodes(this.tvwChilds.SelectedNode, _Selected);
+                    OnSelectObjectEvent(_Selected);
                 }
 
                
@@ -233,7 +233,7 @@ namespace Fwk.GuidPk
 
             if (this.tvwChilds.SelectedNode.Level == 1)
             {
-                lblTreeViewSelected.Text = _SelectedTable.Name; //+ "." + this.tvwChilds.SelectedNode.Text.Substring(0, this.tvwChilds.SelectedNode.Text.IndexOf(" "));
+                lblTreeViewSelected.Text = _Selected.Name; //+ "." + this.tvwChilds.SelectedNode.Text.Substring(0, this.tvwChilds.SelectedNode.Text.IndexOf(" "));
             }
         }
 

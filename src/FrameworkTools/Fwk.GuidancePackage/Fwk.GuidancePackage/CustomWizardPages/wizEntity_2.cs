@@ -11,13 +11,15 @@ using Fwk.DataBase;
 using System.ComponentModel.Design;
 using Microsoft.SqlServer.Management.Smo;
 using Fwk.CodeGenerator;
+using Fwk.Guidance.Core;
+
 
 namespace Fwk.GuidPk
 {
     public partial class wizEntity_2 : CustomWizardPage
     {
         CodeGeneratorCommon.SelectedObject _SelectedObject = CodeGeneratorCommon.SelectedObject.Tables;
-        
+
         CnnString _cnn = new CnnString();
 
         public wizEntity_2(WizardForm parent)
@@ -29,114 +31,100 @@ namespace Fwk.GuidPk
             ctrlTreeViewTables1.SelectElementHandler += new SelectElementHandler(ctrlTreeViewTables1_SelectElementHandler);
             ctrlTreeViewViews1.SelectElementHandler += new SelectElementHandler(ctrlTreeViewTables1_SelectElementHandler);
         }
-
-       
+        List<GeneratedCode> _GeneratedCodeList;
 
         [RecipeArgument]
-        public string TargetNamespace
+        public GeneratedCode[] GeneratedCodeList
         {
             set
             {
                 if (value != null)
-                {
-
-                    txtTargetNamespace.Text = value;
-                }
+                    _GeneratedCodeList.AddRange(value);
                 else
-                {
-                    txtTargetNamespace.Text = string.Empty;
-                }
+                    _GeneratedCodeList = null;
+
             }
         }
+        //[RecipeArgument]
+        //public string TargetNamespace
+        //{
+        //    set
+        //    {
+        //        if (value != null)
+        //        {
+
+        //            txtTargetNamespace.Text = value;
+        //        }
+        //        else
+        //        {
+        //            txtTargetNamespace.Text = string.Empty;
+        //        }
+        //    }
+        //}
 
 
-        [RecipeArgument]
-        public string EntityName
-        {
-            set
-            {
-                if (value != null)
-                {
+        //[RecipeArgument]
+        //public string EntityName
+        //{
+        //    set
+        //    {
+        //        if (value != null)
+        //        {
 
-                    txtEntityName.Text = value;
-                }
-                else
-                {
-                    txtEntityName.Text = string.Empty;
-                }
-            }
-        }
+        //            txtEntityName.Text = value;
+        //        }
+        //        else
+        //        {
+        //            txtEntityName.Text = string.Empty;
+        //        }
+        //    }
+        //}
 
-        [RecipeArgument]
-        public TableViewBase Table
-        {
-            set
-            {
-                if (value != null)
-                {
+        //[RecipeArgument]
+        //public string TableName
+        //{
+        //    set
+        //    {
+        //        if (value != null) { }
 
-                    ctrlTreeViewTables1.SelectedTable = (Table)value;
-                }
-                else
-                {
-                    ctrlTreeViewTables1.SelectedTable = null;
-                }
-            }
-        }
-        
-        [RecipeArgument]
-        public string TableName
-        {
-            set
-            {
-                if (value != null)
-                {
-
-                    //ctrlTreeViewTables1.SelectedTable = value;
-                }
-             
-            }
-        }
+        //    }
+        //}
 
 
-
-
-
-       
 
         void ctrlTreeViewTables1_SelectElementHandler(object e)
         {
 
 
-            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
-            if (e == null)
-            {
+            //IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
+            //if (e == null)
+            //{
 
-                dictionaryService.SetValue("Table", null);
-                dictionaryService.SetValue("TableName", null);
-            }
-            else
-            {
-                //if(_SelectedObject == CodeGeneratorCommon.SelectedObject.Tables)
-                TableViewBase selTable = (TableViewBase)e;
+   
+            //    dictionaryService.SetValue("TableName", null);
+            //}
+            //else
+            //{
+            //    //if(_SelectedObject == CodeGeneratorCommon.SelectedObject.Tables)
+            //    TableViewBase selTable = (TableViewBase)e;
 
-                dictionaryService.SetValue("Table", selTable);
-                dictionaryService.SetValue("TableName", selTable.Name);
 
-                txtEntityName.Text = selTable.Name;
-            }
+            //    dictionaryService.SetValue("TableName", selTable.Name);
+
+            //    txtEntityName.Text = selTable.Name;
+            //}
 
 
         }
 
-        private void txtEntityName_TextChanged(object sender, EventArgs e)
-        {
-            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
-            if (string.IsNullOrEmpty(txtEntityName.Text.ToString()))
-                dictionaryService.SetValue("EntityName", null);
-            else
-                dictionaryService.SetValue("EntityName", txtEntityName.Text);
-        }
+        //private void txtEntityName_TextChanged(object sender, EventArgs e)
+        //{
+        //    IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
+        //    if (string.IsNullOrEmpty(txtEntityName.Text.ToString()))
+        //        dictionaryService.SetValue("EntityName", null);
+        //    else
+        //        dictionaryService.SetValue("EntityName", txtEntityName.Text);
+        //}
 
         private void wizEntity_2_Load(object sender, EventArgs e)
         {
@@ -158,27 +146,27 @@ namespace Fwk.GuidPk
         }
 
 
-       
 
-        private void txtTargetNamespace_TextChanged(object sender, EventArgs e)
-        {
-            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
-            if (string.IsNullOrEmpty(txtTargetNamespace.Text.ToString()))
-                dictionaryService.SetValue("TargetNamespace", null);
-            else
-                dictionaryService.SetValue("TargetNamespace", txtTargetNamespace.Text);
-        }
 
-        private void txtTargetNamespace_Enter(object sender, EventArgs e)
-        {
-            txtTargetNamespace.SelectAll();
-        }
+        //private void txtTargetNamespace_TextChanged(object sender, EventArgs e)
+        //{
+        //    IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
+        //    if (string.IsNullOrEmpty(txtTargetNamespace.Text.ToString()))
+        //        dictionaryService.SetValue("TargetNamespace", null);
+        //    else
+        //        dictionaryService.SetValue("TargetNamespace", txtTargetNamespace.Text);
+        //}
 
-        private void txtEntityName_Enter(object sender, EventArgs e)
-        {
-            txtEntityName.SelectAll();
-        }
-        
+        //private void txtTargetNamespace_Enter(object sender, EventArgs e)
+        //{
+        //    txtTargetNamespace.SelectAll();
+        //}
+
+        //private void txtEntityName_Enter(object sender, EventArgs e)
+        //{
+        //    txtEntityName.SelectAll();
+        //}
+
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             _SelectedObject = (CodeGeneratorCommon.SelectedObject)
@@ -200,7 +188,7 @@ namespace Fwk.GuidPk
             }
 
 
-            txtTargetNamespace.Text = dictionaryService.GetValue("TargetNamespace").ToString();
+           // txtTargetNamespace.Text = dictionaryService.GetValue("TargetNamespace").ToString();
         }
 
         private void RefreshDataObject()
@@ -216,7 +204,7 @@ namespace Fwk.GuidPk
                 if (_SelectedObject == CodeGeneratorCommon.SelectedObject.Views)
                 {
                     ctrlTreeViewViews1.Populate(_cnn);
-               }
+                }
 
                 //Esta seleccionado Tables
                 if (_SelectedObject == CodeGeneratorCommon.SelectedObject.Tables)
@@ -239,13 +227,71 @@ namespace Fwk.GuidPk
             catch (Exception ex)
             {
 
-                MessageBox.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException( ex));
+                MessageBox.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
             }
         }
 
+
+
+        public void Generate()
+        {
+            StringBuilder logs = new StringBuilder();
+            logs.AppendLine("Following class will be generated:");
+            Metadata _metadata = new Metadata(_cnn);
+            _metadata.LoadUserDefinedTypes();
+            _metadata.RefreshConnection();
+
+
+       
+
+            FwkGeneratorHelper.UserDefinedTypes = _metadata.UserDefinedTypes;
+            Fwk.CodeGenerator.FwkGeneratorHelper.TemplateSetting = FwkGenerator.TemplateSettingFactoty();
+
+            TreeNode entities = null;
+
+            switch (_SelectedObject)
+            {
+                case CodeGeneratorCommon.SelectedObject.Tables:
+                    {
+
+                        entities = BEGenerator.GenCode(ctrlTreeViewTables1.CheckedTables);
+                        break;
+                    }
+                case CodeGeneratorCommon.SelectedObject.Views:
+                    {
+
+
+                        entities = BEGenerator.GenCode(ctrlTreeViewViews1.CheckedTables);
+                        break;
+                    }
+
+            }
+            _GeneratedCodeList = new List<GeneratedCode>();
+
+            GeneratedCode wGeneratedCode = null;
+
+            foreach (TreeNode nodeDac in entities.Nodes)
+            {
+                wGeneratedCode = (GeneratedCode)nodeDac.Tag;
+
+                _GeneratedCodeList.Add(wGeneratedCode);
+
+                logs.AppendLine(string.Concat(wGeneratedCode.Id, "DAC"));
+            }
+
+            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
+            dictionaryService.SetValue("GeneratedCodeList", _GeneratedCodeList.ToArray());
+            txtGenerationResult.Text = logs.ToString();
+
+        }
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             RefreshDataObject();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Generate();
         }
     }
 }

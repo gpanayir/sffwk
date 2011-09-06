@@ -58,7 +58,8 @@ namespace Fwk.GuidPk
             : base(parent)
         {
             InitializeComponent();
-            
+
+          
         }
 
 
@@ -259,7 +260,18 @@ namespace Fwk.GuidPk
         {
             InitServers();
         }
+        private void cmbDataBases_Click(object sender, EventArgs e)
+        {
 
+            _cnn = GetAuxiliarCnnString();
+            setIDictionaryService(_cnn);
+
+            if (!_cnn.DataSource.Equals(cmbServer.Text.Trim()) || cmbDataBases.Items.Count == 0)
+            {
+                _cnn.DataSource = cmbServer.Text.Trim();
+                FillDatabaseCombo(_cnn);
+            }
+        }
         private void cmbDataBases_SelectedIndexChanged(object sender, EventArgs e)
         {
             _cnn = GetAuxiliarCnnString();
@@ -286,9 +298,11 @@ namespace Fwk.GuidPk
                 Fwk.Guidance.Core.HelperFunctions.Settings.Save(); 
             }
 
-            //this.cmbServer.Text = @"SANTANA\SQLEXPRESS2008R2";
-            //this.cmbDataBases.Text = "GASTOS_MY";
+           
             SetUI(Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString);
+
+            this.cmbServer.Text = @"SANTANA\SQLEXPRESS2008R2";
+            this.cmbDataBases.Text = "GASTOS_MY";
             
         }
         public override bool OnDeactivate()
@@ -298,6 +312,9 @@ namespace Fwk.GuidPk
 
             return base.OnDeactivate();
         }
+
+        
+
 
     }
 }

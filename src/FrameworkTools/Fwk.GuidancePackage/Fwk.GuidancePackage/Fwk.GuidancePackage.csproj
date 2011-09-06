@@ -151,12 +151,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\AddBE.cs" />
     <Compile Include="Actions\AddItemFromString.cs" />
     <Compile Include="Actions\SVCRegistration.cs" />
-    <Compile Include="Core\ctrlTreeViewViews.cs">
+    <Compile Include="CustomWizardPages\Controls\ctrlTreeViewViews.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Core\ctrlTreeViewViews.Designer.cs">
+    <Compile Include="CustomWizardPages\Controls\ctrlTreeViewViews.Designer.cs">
       <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\FwkGenerator.cs" />
@@ -164,6 +165,9 @@
     <Compile Include="Core\Storage.cs" />
     <Compile Include="Core\Template.cs" />
     <None Include="Resources\ref_16.png" />
+    <None Include="Resources\fabrica.jpg" />
+    <None Include="Resources\e6246c93f3a323a5.jpg" />
+    <None Include="Resources\software factory.png" />
     <Content Include="Templates\DAC.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -236,12 +240,6 @@
     <Compile Include="CustomWizardPages\wizEntity_2.Designer.cs">
       <DependentUpon>wizEntity_2.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomWizardPages\Controls\ctrlDBSelect.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CustomWizardPages\Controls\ctrlDBSelect.Designer.cs">
-      <DependentUpon>ctrlDBSelect.cs</DependentUpon>
-    </Compile>
     <Compile Include="CustomWizardPages\Controls\ctrlTreeViewTables.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -273,7 +271,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <SubType>Designer</SubType>
     </Content>
-    <EmbeddedResource Include="Core\ctrlTreeViewViews.resx">
+    <EmbeddedResource Include="CustomWizardPages\Controls\ctrlTreeViewViews.resx">
       <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomWizardPages\wizDAC.resx">
@@ -284,9 +282,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomWizardPages\wizEntity_2.resx">
       <DependentUpon>wizEntity_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CustomWizardPages\Controls\ctrlDBSelect.resx">
-      <DependentUpon>ctrlDBSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomWizardPages\Controls\ctrlTreeViewTables.resx">
       <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
