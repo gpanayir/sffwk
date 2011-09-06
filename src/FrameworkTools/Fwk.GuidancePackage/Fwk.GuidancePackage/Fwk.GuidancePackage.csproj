@@ -168,6 +168,8 @@
     <None Include="Resources\fabrica.jpg" />
     <None Include="Resources\e6246c93f3a323a5.jpg" />
     <None Include="Resources\software factory.png" />
+    <None Include="Resources\search-database-icon.png" />
+    <None Include="Resources\home_migracion.jpg" />
     <Content Include="Templates\DAC.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

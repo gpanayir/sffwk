@@ -81,6 +81,13 @@ namespace Fwk.GuidPk.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap home_migracion {
+            get {
+                object obj = ResourceManager.GetObject("home_migracion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Fwk Guidance Package Code Generator.
         /// </summary>
@@ -93,6 +100,13 @@ namespace Fwk.GuidPk.Properties {
         internal static System.Drawing.Bitmap ref_16 {
             get {
                 object obj = ResourceManager.GetObject("ref_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap search_database_icon {
+            get {
+                object obj = ResourceManager.GetObject("search_database_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -313,6 +313,14 @@ namespace Fwk.GuidPk
             return base.OnDeactivate();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (Test())
+                setIDictionaryService(_cnn);
+            else
+                setIDictionaryService(null);
+        }
+
         
 
 
