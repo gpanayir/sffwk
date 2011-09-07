@@ -7,8 +7,9 @@
     Guid="465c0111-832d-404d-a25e-127294989a64" 
     SchemaVersion="1.0">
   <HostData >
-  
-    <Menu Name="CascadingMenuOne" Text="New Fwk guidance item">
+    <Icon ID="1429"/>
+    <Menu Name="CascadingMenuOne" Text="New Fwk guidance item" >
+      
       <CommandBar Name="Project"/>
     </Menu>
   </HostData>
@@ -23,13 +24,10 @@
                   ReferenceType="Fwk.GuidPk.References.SolutionFolderAReference, Fwk.GuidPk" />
         <Action Name="UnboundEntityTemplate" Type="RefCreator" AssetName="EntityWizard"
           ReferenceType="Microsoft.Practices.RecipeFramework.Library.AssetReferences.UnboundReferences.CSharpProjectRecipeReference, Microsoft.Practices.RecipeFramework.Library" />
-
         <Action Name="UnboundEntityTemplate3" Type="RefCreator" AssetName="ServiceItemClass"
           ReferenceType="Microsoft.Practices.RecipeFramework.Library.AssetReferences.UnboundReferences.CSharpProjectRecipeReference, Microsoft.Practices.RecipeFramework.Library" />
         <Action Name="UnboundDACTemplate" Type="RefCreator" AssetName="DACWizard"
          ReferenceType="Microsoft.Practices.RecipeFramework.Library.AssetReferences.UnboundReferences.CSharpProjectRecipeReference, Microsoft.Practices.RecipeFramework.Library" />
-
-
       </Actions>
 		</Recipe>
 
@@ -83,7 +81,7 @@
     <Description>New simple entity from database</Description>
     
       <HostData >
-      <Icon ID="630"/>
+      <Icon ID="525"/>
         <CommandBar Menu="CascadingMenuOne" />
     </HostData>
      
@@ -161,7 +159,7 @@
       <Description>New service and contracts</Description>
 
       <HostData >
-        <Icon ID="630"/>
+        <Icon ID="680"/>
        
         <CommandBar Menu="CascadingMenuOne" />
        
@@ -285,7 +283,7 @@
       <Description>New DAC from database</Description>
 
       <HostData >
-        <Icon ID="630"/>
+        <Icon ID="639"/>
         
         <CommandBar Menu="CascadingMenuOne" />
       </HostData>

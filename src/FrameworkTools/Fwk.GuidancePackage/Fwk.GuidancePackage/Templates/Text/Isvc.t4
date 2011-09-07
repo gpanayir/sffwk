@@ -38,7 +38,7 @@ namespace <#= RootNamespace #>.Common.ISVC.<#= servicename #>
     {
         public <#= servicename #>Req()
         {
-            base.servicename = "<#= servicename #>Service";
+            base.ServiceName = "<#= servicename #>Service";
         }
     }
 

@@ -52,7 +52,8 @@ using System.Runtime.Serialization;
 
 
 namespace <#=namespaceName#>.Common.BE
-{<#
+{
+<#
         PushIndent(CodeRegion.GetIndent(1));
 
     ////////

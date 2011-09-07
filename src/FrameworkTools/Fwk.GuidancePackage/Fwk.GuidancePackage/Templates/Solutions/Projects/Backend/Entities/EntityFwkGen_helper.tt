@@ -1,4 +1,10 @@
-﻿<#+
+﻿
+<#+
+
+    ////////
+    ////////  Reusable Template Sections
+    ////////
+
     ////////
     ////////  Write Factory Method.
     ////////
@@ -89,8 +95,10 @@
         <#=code.SpaceAfter(Accessibility.ForSetter((primitiveProperty)))#>set
         { <#=code.FieldName(primitiveProperty)#> = value;
 		}
-		}
-
+	}
+	
+	    private <#=code.Escape(primitiveProperty.TypeUsage)#> <#=code.FieldName(primitiveProperty)#><#=code.StringBefore(" = ", code.CreateLiteral(primitiveProperty.DefaultValue))#>;
+   
    
 <#+
     }

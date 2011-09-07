@@ -30,9 +30,9 @@
   </PropertyGroup>
   <ItemGroup>
 
-    <Reference Include="Fwk.Connector" >
+    <Reference Include="Fwk.Bases.Connector" >
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\...\Libraries\Fwk.Connector.dll</HintPath>
+      <HintPath>..\...\Libraries\Fwk.Bases.Connector.dll</HintPath>
     </Reference>
     
     <Reference Include="Fwk.Bases" >
