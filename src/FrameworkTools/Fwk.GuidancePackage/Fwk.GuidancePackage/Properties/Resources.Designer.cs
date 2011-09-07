@@ -67,6 +67,13 @@ namespace Fwk.GuidPk.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap copy_16 {
+            get {
+                object obj = ResourceManager.GetObject("copy_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap e6246c93f3a323a5 {
             get {
                 object obj = ResourceManager.GetObject("e6246c93f3a323a5", resourceCulture);
@@ -100,13 +107,6 @@ namespace Fwk.GuidPk.Properties {
         internal static System.Drawing.Bitmap ref_16 {
             get {
                 object obj = ResourceManager.GetObject("ref_16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap search_database_icon {
-            get {
-                object obj = ResourceManager.GetObject("search_database_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

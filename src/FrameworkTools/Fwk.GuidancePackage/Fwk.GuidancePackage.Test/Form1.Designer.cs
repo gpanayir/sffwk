@@ -33,7 +33,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(257, 104);
+            this.button1.Location = new System.Drawing.Point(249, 282);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(207, 43);

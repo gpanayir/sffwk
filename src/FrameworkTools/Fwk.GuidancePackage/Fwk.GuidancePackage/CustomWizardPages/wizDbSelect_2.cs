@@ -17,7 +17,7 @@ namespace Fwk.GuidPk
 {
     public partial class wizDbSelect_2 : CustomWizardPage
     {
-         
+
         bool onInitServerCollection = true;
         CnnString _cnn = new CnnString();
         DataTable _AvailableSqlServers;
@@ -44,9 +44,8 @@ namespace Fwk.GuidPk
             {
                 if (value != null)
                 {
-                  //cmbDataBases.Text = value;
+                    //cmbDataBases.Text = value;
                 }
-
             }
         }
 
@@ -54,12 +53,13 @@ namespace Fwk.GuidPk
         {
             InitializeComponent();
         }
+
         public wizDbSelect_2(WizardForm parent)
             : base(parent)
         {
             InitializeComponent();
 
-          
+
         }
 
 
@@ -137,6 +137,7 @@ namespace Fwk.GuidPk
 
         private void SetUI(CnnString cnn)
         {
+
             WindowsAutentificaction.Checked = cnn.WindowsAutentification;
 
 
@@ -147,15 +148,25 @@ namespace Fwk.GuidPk
             {
                 txtUserName.Text = string.Empty;
                 txtPassword.Text = string.Empty;
-
+                txtUserName.Enabled = false;
+                txtPassword.Enabled = false;
+                lblUserName.ForeColor = System.Drawing.Color.Black;
+                lblPassword.ForeColor = System.Drawing.Color.Black;
             }
             else
             {
                 txtUserName.Text = cnn.User;
                 txtPassword.Text = cnn.Password;
+                txtUserName.Enabled = true;
+                txtPassword.Enabled = true;
+                lblUserName.ForeColor = System.Drawing.Color.DimGray;
+                lblPassword.ForeColor = System.Drawing.Color.DimGray;
             }
 
+            if (string.IsNullOrEmpty(cnn.DataSource) || string.IsNullOrEmpty(cnn.InitialCatalog))
+                return;
 
+            txtCnnString.Text = cnn.ToString();
 
         }
 
@@ -254,7 +265,7 @@ namespace Fwk.GuidPk
                 setIDictionaryService(null);
         }
 
-        
+
 
         private void cmbServer_Click(object sender, EventArgs e)
         {
@@ -284,26 +295,22 @@ namespace Fwk.GuidPk
             }
         }
 
-        private void wizDbSelect_2_VisibleChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void wizDbSelect_2_Load(object sender, EventArgs e)
         {
-           
+
             if (Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString == null)
             {
                 Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString = new CnnString();
-                Fwk.Guidance.Core.HelperFunctions.Settings.Save(); 
+                Fwk.Guidance.Core.HelperFunctions.Settings.Save();
             }
 
-           
+
             SetUI(Fwk.Guidance.Core.HelperFunctions.Settings.StorageObject.LastCnnString);
 
             this.cmbServer.Text = @"SANTANA\SQLEXPRESS2008R2";
             this.cmbDataBases.Text = "GASTOS_MY";
-            
+
         }
         public override bool OnDeactivate()
         {
@@ -321,7 +328,23 @@ namespace Fwk.GuidPk
                 setIDictionaryService(null);
         }
 
-        
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+
+            Clipboard.SetData(DataFormats.Text, txtCnnString.ToString());
+        }
+
+        private void txtUserName_TextChanged(object sender, EventArgs e)
+        {
+            SetUI(_cnn);
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            SetUI(_cnn);
+        }
+
+
 
 
     }

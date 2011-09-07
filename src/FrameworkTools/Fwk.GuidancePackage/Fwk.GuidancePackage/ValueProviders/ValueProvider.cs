@@ -37,4 +37,34 @@ namespace Fwk.GuidPk.ValueProviders
             return true;
         }
     }
+
+    /// <summary>
+    /// Elimina palabras claves del namespase
+    /// </summary>
+    public class RootNamespaseProvider : ValueProvider
+    {
+        public override bool OnBeginRecipe(object currentValue, out object newValue)
+        {
+            if (currentValue != null)
+            {
+
+                newValue = null;
+                return false;
+            }
+
+                newValue = new object();
+            string nms = newValue.ToString();
+            nms = nms.Replace(".Backend", String.Empty);
+            nms = nms.Replace(".Contract", String.Empty);
+            nms = nms.Replace(".backend", String.Empty);
+            nms = nms.Replace(".common", String.Empty);
+            newValue = nms;
+            return true;
+        }
+
+        public override bool OnBeforeActions(object currentValue, out object newValue)
+        {
+            return base.OnBeforeActions(currentValue, out newValue);
+        }
+    }
 }

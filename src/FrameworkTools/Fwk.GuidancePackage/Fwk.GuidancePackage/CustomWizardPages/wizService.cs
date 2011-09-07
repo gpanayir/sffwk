@@ -23,7 +23,6 @@ namespace Fwk.GuidPk
     {
 
 
-
         [RecipeArgument]
         public string ServiceName
         {
@@ -36,8 +35,8 @@ namespace Fwk.GuidPk
 
             }
         }
-     
         
+       
 
         public wizService()
         {
@@ -48,8 +47,8 @@ namespace Fwk.GuidPk
             : base(parent)
         {
             InitializeComponent();
-       
-            
+
+    
         }
 
    
@@ -70,7 +69,6 @@ namespace Fwk.GuidPk
             else
             {
                 dictionaryService.SetValue("ServiceName", txtServiceName.Text);
-                
             }
 
 
@@ -131,6 +129,27 @@ namespace Fwk.GuidPk
             txtBE.Text = string.Concat(txtServiceName.Text, @"Service.cs");
             txtReq.Text = string.Concat(txtServiceName.Text, @"Req.cs");
             txtRes.Text = string.Concat(txtServiceName.Text, @"Res.cs");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+     
+        }
+
+        private void wizService_Load(object sender, EventArgs e)
+        {
+           // IAssetReferenceService referenceService = (IAssetReferenceService)GetService(typeof(IAssetReferenceService));
+
+            IDictionaryService dictionaryService = GetService(typeof(IDictionaryService)) as IDictionaryService;
+            //Project prj = (Project)dictionaryService.GetValue("selctedproject");
+            string nms = dictionaryService.GetValue("TargetNamespace").ToString();
+            nms = nms.Replace(".Backend", String.Empty);
+            nms = nms.Replace(".Contract", String.Empty);
+            nms = nms.Replace(".backend", String.Empty);
+            nms = nms.Replace(".common", String.Empty);
+
+            dictionaryService.SetValue("RootNamespace", nms);
         }
 
       

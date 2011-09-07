@@ -44,7 +44,7 @@ using System.Text;
 using Fwk.Bases;
 
 
-namespace <#= TargetNamespace #>.BE{
+namespace <#= TargetNamespace #>.Common.BE{
 
 
 	[XmlRoot("<#= EntityName #>List"), SerializableAttribute]

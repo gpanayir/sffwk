@@ -1,4 +1,5 @@
 ﻿<#@ template language="C#" #>
+<#@ property processor="PropertyProcessor" name="RootNamespace" #>
 <#@ property processor="PropertyProcessor" name="projectname" #>
 <#@ property processor="PropertyProcessor" name="servicename" #>
 <#@ property processor="PropertyProcessor" name="developer" #>
@@ -23,10 +24,10 @@ using System;
 using System.Data;
 using System.Collections.Generic;
 using Fwk.Bases;
-using <#= projectname #>.Entities;
-using <#= projectname #>.Isvc.<#= servicename #>;
+using <#= RootNamespace #>.Common.BE;
+using <#= RootNamespace #>.Common.ISVC.<#= servicename #>;
 
-namespace <#= projectname #>.BackEnd.SVC
+namespace <#= RootNamespace #>BackEnd.SVC
 {
     public class <#= servicename #>Service : BusinessService< <#= servicename #>Req,<#= servicename #>Res>
     {

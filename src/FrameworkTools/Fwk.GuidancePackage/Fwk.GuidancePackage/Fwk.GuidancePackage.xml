@@ -181,7 +181,16 @@
         <Argument Name="selctedproject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
           <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
         </Argument>
+        <Argument Name="TargetNamespace">
+          <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
+          <ValueProvider Type="Evaluator" Expression="$(selctedproject.Properties.Item('DefaultNamespace').Value)" />
+        </Argument>
+        <Argument Name="RootNamespace">
+          <ValueProvider Type="Fwk.GuidPk.ValueProviders.RootNamespaseProvider, Fwk.GuidPk" Expression="$(selctedproject.Properties.Item('DefaultNamespace').Value)">
+            <MonitorArgument Name="TargetNamespace" />
+          </ValueProvider>
 
+        </Argument>
 
         <Argument Name="projectName">
           <ValueProvider Type="Evaluator"	 Expression="$(selctedproject.Name)">
@@ -190,7 +199,7 @@
         </Argument>
 
         <Argument Name="IsvcFileName">
-          <ValueProvider Type="Evaluator"	 Expression="$(ServiceName)Contract.cs">
+          <ValueProvider Type="Evaluator"	 Expression="$(ServiceName)Isvc.cs">
             <MonitorArgument Name="ServiceName" />
           </ValueProvider>
         </Argument>
@@ -204,7 +213,7 @@
         <ValueProvider Type="Fwk.GuidPk.ValueProviders.DeveloperValueProvider, Fwk.GuidPk" />
         </Argument>
         <Argument Name="Date">
-          <ValueProvider Type="Fwk.GuidPk.ValueProviders.DateValueProvider, Fwk.GuidPk" />
+          <ValueProvider Type="Fwk.GuidPk.ValueProviders.DateValueProvider, Fwk.GuidPk"  />
         </Argument>
         
         
@@ -222,6 +231,8 @@
 
         <Action Name="CreateIsvc" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
 						Template="Text\Isvc.t4">
+          
+          <Input Name="RootNamespace" RecipeArgument="RootNamespace" />
           <Input Name="projectname" RecipeArgument="projectName" />
           <Input Name="servicename" RecipeArgument="ServiceName" />
           <Input Name="developer" RecipeArgument="Developer" />
@@ -240,6 +251,7 @@
 
         <Action Name="CreateSvc" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
 						Template="Text\Svc.t4">
+          <Input Name="RootNamespace" RecipeArgument="RootNamespace" />
           <Input Name="projectname" RecipeArgument="projectName" />
           <Input Name="servicename" RecipeArgument="ServiceName" />
           <Input Name="developer" RecipeArgument="Developer" />
@@ -248,7 +260,7 @@
         </Action>
         <Action Name="AddSvc" Type="Fwk.GuidPk.Actions.AddItemFromStringAction, Fwk.GuidPk"	Open="true" >
           <!--Content, TargetFileName and Project are AddItemFromStringAction class properties-->
-          <Input Name="Content" ActionOutput="CreateIsvc.Content" />
+          <Input Name="Content" ActionOutput="CreateSvc.Content" />
           <Input Name="TargetFileName" RecipeArgument="SvcFileName" />
           <Input Name="Subfolder" RecipeArgument="ServiceFolder"  />
           <Input Name="Project" RecipeArgument="selctedproject" />

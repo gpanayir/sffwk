@@ -38,7 +38,6 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.txtGenerationResult = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.infoPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -47,17 +46,13 @@
             // 
             // infoPanel
             // 
-            this.infoPanel.BackColor = System.Drawing.Color.DimGray;
+            this.infoPanel.BackColor = System.Drawing.SystemColors.Control;
             this.infoPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.infoPanel.Controls.Add(this.txtGenerationResult);
-            this.infoPanel.Controls.Add(this.label1);
-            this.infoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.infoPanel.Location = new System.Drawing.Point(0, 0);
+            this.infoPanel.Dock = System.Windows.Forms.DockStyle.None;
+            this.infoPanel.Location = new System.Drawing.Point(12, 97);
             this.infoPanel.Margin = new System.Windows.Forms.Padding(5);
-            this.infoPanel.Size = new System.Drawing.Size(1028, 694);
+            this.infoPanel.Size = new System.Drawing.Size(666, 422);
             this.infoPanel.Visible = false;
-            this.infoPanel.Controls.SetChildIndex(this.label1, 0);
-            this.infoPanel.Controls.SetChildIndex(this.txtGenerationResult, 0);
             // 
             // lblTitle
             // 
@@ -71,7 +66,7 @@
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(1028, 92);
+            this.lblTitle.Size = new System.Drawing.Size(933, 92);
             this.lblTitle.TabIndex = 69;
             this.lblTitle.Text = "Select table from databse";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -82,7 +77,7 @@
             this.label1.BackColor = System.Drawing.SystemColors.GrayText;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(332, 229);
+            this.label1.Location = new System.Drawing.Point(354, 216);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 25);
@@ -161,12 +156,12 @@
             // 
             this.txtGenerationResult.BackColor = System.Drawing.Color.White;
             this.txtGenerationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGenerationResult.ForeColor = System.Drawing.Color.DimGray;
-            this.txtGenerationResult.Location = new System.Drawing.Point(337, 258);
+            this.txtGenerationResult.ForeColor = System.Drawing.SystemColors.Control;
+            this.txtGenerationResult.Location = new System.Drawing.Point(322, 266);
             this.txtGenerationResult.Margin = new System.Windows.Forms.Padding(4);
             this.txtGenerationResult.Multiline = true;
             this.txtGenerationResult.Name = "txtGenerationResult";
-            this.txtGenerationResult.Size = new System.Drawing.Size(607, 360);
+            this.txtGenerationResult.Size = new System.Drawing.Size(607, 400);
             this.txtGenerationResult.TabIndex = 69;
             // 
             // button1
@@ -185,22 +180,25 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtGenerationResult);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lblTitle);
-            this.InfoRTBoxSize = new System.Drawing.Size(661, 74);
+            this.InfoRTBoxSize = new System.Drawing.Size(461, 74);
+            this.InfoRTBoxText = "\t";
             this.Name = "wizEntity_2";
-            this.Size = new System.Drawing.Size(1028, 694);
+            this.Size = new System.Drawing.Size(800, 500);
             this.Load += new System.EventHandler(this.wizEntity_2_Load);
             this.VisibleChanged += new System.EventHandler(this.wizEntity_2_VisibleChanged);
             this.Controls.SetChildIndex(this.infoPanel, 0);
             this.Controls.SetChildIndex(this.lblTitle, 0);
             this.Controls.SetChildIndex(this.tabControl1, 0);
             this.Controls.SetChildIndex(this.btnRefresh, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.button1, 0);
-            this.infoPanel.ResumeLayout(false);
-            this.infoPanel.PerformLayout();
+            this.Controls.SetChildIndex(this.txtGenerationResult, 0);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

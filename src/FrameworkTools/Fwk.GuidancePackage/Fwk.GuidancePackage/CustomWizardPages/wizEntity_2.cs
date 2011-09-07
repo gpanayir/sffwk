@@ -171,6 +171,9 @@ namespace Fwk.GuidPk
         {
             _SelectedObject = (CodeGeneratorCommon.SelectedObject)
                 Enum.Parse(typeof(CodeGeneratorCommon.SelectedObject), tabControl1.SelectedTab.Tag.ToString());
+
+            if(_SelectedObject == CodeGeneratorCommon.SelectedObject.Views)
+                ctrlTreeViewViews1.Populate(_cnn);
         }
 
 

@@ -30,29 +30,28 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btnCopy = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.txtCnnString = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbDataBases = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbServer = new System.Windows.Forms.ComboBox();
             this.WindowsAutentificaction = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.infoPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // infoPanel
             // 
-            this.infoPanel.BackColor = System.Drawing.Color.DimGray;
-            this.infoPanel.Controls.Add(this.groupBox1);
-            this.infoPanel.Controls.Add(this.WindowsAutentificaction);
-            this.infoPanel.Location = new System.Drawing.Point(0, 92);
-            this.infoPanel.Controls.SetChildIndex(this.WindowsAutentificaction, 0);
-            this.infoPanel.Controls.SetChildIndex(this.groupBox1, 0);
+            this.infoPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.infoPanel.Dock = System.Windows.Forms.DockStyle.None;
+            this.infoPanel.Location = new System.Drawing.Point(4, 107);
+            this.infoPanel.Size = new System.Drawing.Size(755, 462);
             // 
             // lblTitle
             // 
@@ -66,87 +65,123 @@
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(700, 92);
+            this.lblTitle.Size = new System.Drawing.Size(774, 103);
             this.lblTitle.TabIndex = 67;
             this.lblTitle.Text = "                              Connection";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.DimGray;
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.btnCopy);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblPassword);
+            this.groupBox1.Controls.Add(this.txtCnnString);
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Controls.Add(this.txtUserName);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblUserName);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.cmbDataBases);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cmbServer);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(13, 71);
+            this.groupBox1.Location = new System.Drawing.Point(20, 162);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(671, 286);
+            this.groupBox1.Size = new System.Drawing.Size(671, 373);
             this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
             // 
-            // label5
+            // btnCopy
             // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(68, 156);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(139, 22);
-            this.label5.TabIndex = 59;
-            this.label5.Text = "Password";
+            this.btnCopy.Image = global::Fwk.GuidPk.Properties.Resources.copy_16;
+            this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCopy.Location = new System.Drawing.Point(10, 289);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(26, 68);
+            this.btnCopy.TabIndex = 76;
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(299, 210);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(180, 34);
+            this.button1.TabIndex = 61;
+            this.button1.Text = "Test connection";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassword.ForeColor = System.Drawing.Color.DimGray;
+            this.lblPassword.Location = new System.Drawing.Point(36, 156);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(139, 22);
+            this.lblPassword.TabIndex = 59;
+            this.lblPassword.Text = "Password";
+            // 
+            // txtCnnString
+            // 
+            this.txtCnnString.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCnnString.ForeColor = System.Drawing.Color.SlateGray;
+            this.txtCnnString.Location = new System.Drawing.Point(40, 289);
+            this.txtCnnString.Multiline = true;
+            this.txtCnnString.Name = "txtCnnString";
+            this.txtCnnString.Size = new System.Drawing.Size(624, 68);
+            this.txtCnnString.TabIndex = 67;
             // 
             // txtPassword
             // 
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPassword.Enabled = false;
             this.txtPassword.ForeColor = System.Drawing.Color.Maroon;
-            this.txtPassword.Location = new System.Drawing.Point(217, 154);
+            this.txtPassword.Location = new System.Drawing.Point(178, 152);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(255, 22);
             this.txtPassword.TabIndex = 57;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // txtUserName
             // 
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.Enabled = false;
             this.txtUserName.ForeColor = System.Drawing.Color.Maroon;
-            this.txtUserName.Location = new System.Drawing.Point(217, 121);
+            this.txtUserName.Location = new System.Drawing.Point(178, 119);
             this.txtUserName.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(255, 22);
             this.txtUserName.TabIndex = 55;
+            this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
             // 
-            // label2
+            // lblUserName
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(68, 126);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 22);
-            this.label2.TabIndex = 54;
-            this.label2.Text = "Nombre de usuario";
+            this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.ForeColor = System.Drawing.Color.DimGray;
+            this.lblUserName.Location = new System.Drawing.Point(36, 126);
+            this.lblUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(139, 22);
+            this.lblUserName.TabIndex = 54;
+            this.lblUserName.Text = "User name";
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(11, 54);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 20);
+            this.label4.Size = new System.Drawing.Size(117, 20);
             this.label4.TabIndex = 53;
-            this.label4.Text = "Servidor SQL";
+            this.label4.Text = "SQL Server";
             // 
             // cmbDataBases
             // 
@@ -161,13 +196,13 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(12, 86);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(139, 20);
             this.label6.TabIndex = 48;
-            this.label6.Text = "Base de datos";
+            this.label6.Text = "Database";
             // 
             // cmbServer
             // 
@@ -182,44 +217,34 @@
             // 
             // WindowsAutentificaction
             // 
-            this.WindowsAutentificaction.BackColor = System.Drawing.Color.DimGray;
+            this.WindowsAutentificaction.BackColor = System.Drawing.SystemColors.Control;
             this.WindowsAutentificaction.Checked = true;
             this.WindowsAutentificaction.CheckState = System.Windows.Forms.CheckState.Checked;
             this.WindowsAutentificaction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowsAutentificaction.ForeColor = System.Drawing.Color.White;
-            this.WindowsAutentificaction.Location = new System.Drawing.Point(52, 36);
+            this.WindowsAutentificaction.ForeColor = System.Drawing.Color.DimGray;
+            this.WindowsAutentificaction.Location = new System.Drawing.Point(4, 107);
             this.WindowsAutentificaction.Margin = new System.Windows.Forms.Padding(4);
             this.WindowsAutentificaction.Name = "WindowsAutentificaction";
-            this.WindowsAutentificaction.Size = new System.Drawing.Size(437, 27);
+            this.WindowsAutentificaction.Size = new System.Drawing.Size(433, 49);
             this.WindowsAutentificaction.TabIndex = 65;
-            this.WindowsAutentificaction.Text = "Usar autentificacion de windows";
+            this.WindowsAutentificaction.Text = "Use windows authentication";
             this.WindowsAutentificaction.UseVisualStyleBackColor = false;
             this.WindowsAutentificaction.CheckedChanged += new System.EventHandler(this.WindowsAutentificaction_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(72, 214);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 34);
-            this.button1.TabIndex = 61;
-            this.button1.Text = "Test conection";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // wizDbSelect_2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.WindowsAutentificaction);
             this.Name = "wizDbSelect_2";
-            this.Size = new System.Drawing.Size(700, 471);
+            this.Size = new System.Drawing.Size(774, 573);
             this.Load += new System.EventHandler(this.wizDbSelect_2_Load);
-            this.VisibleChanged += new System.EventHandler(this.wizDbSelect_2_VisibleChanged);
             this.Controls.SetChildIndex(this.infoPanel, 0);
+            this.Controls.SetChildIndex(this.WindowsAutentificaction, 0);
+            this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.lblTitle, 0);
-            this.infoPanel.ResumeLayout(false);
-            this.infoPanel.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -232,15 +257,17 @@
 
         public System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbDataBases;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbServer;
         private System.Windows.Forms.CheckBox WindowsAutentificaction;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtCnnString;
+        private System.Windows.Forms.Button btnCopy;
     }
 }

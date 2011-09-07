@@ -170,6 +170,7 @@
     <None Include="Resources\software factory.png" />
     <None Include="Resources\search-database-icon.png" />
     <None Include="Resources\home_migracion.jpg" />
+    <None Include="Resources\copy_16.png" />
     <Content Include="Templates\DAC.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

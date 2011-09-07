@@ -1,4 +1,6 @@
 ﻿<#@ template language="C#" #>
+
+<#@ property processor="PropertyProcessor" name="RootNamespace" #>
 <#@ property processor="PropertyProcessor" name="projectname" #>
 <#@ property processor="PropertyProcessor" name="servicename" #>
 <#@ property processor="PropertyProcessor" name="developer" #>
@@ -25,9 +27,9 @@ using System.Linq;
 using System.Text;
 using Fwk.Bases;
 using System.Xml.Serialization;
-using <#= projectname #>.Entities;
+using <#= RootNamespace #>.Common.BE;
 
-namespace <#= projectname #>.Isvc.<#= servicename #>
+namespace <#= RootNamespace #>.Common.ISVC.<#= servicename #>
 {
     
     #region [Request]
