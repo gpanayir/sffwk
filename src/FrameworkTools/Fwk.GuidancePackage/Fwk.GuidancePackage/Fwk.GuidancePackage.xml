@@ -83,6 +83,7 @@
       <HostData >
       <Icon ID="525"/>
         <CommandBar Menu="CascadingMenuOne" />
+        <CommandBar Name="Solution Folder" />
     </HostData>
      
 
@@ -325,6 +326,36 @@
       </Actions>
     </Recipe>
 
-    
+    <Recipe Name="AddProjectTemplateReference" Bound="false">
+      <Caption>Add a project template reference to a Solution Folder or Solution</Caption>
+      <HostData>
+        <Icon ID="680" />
+        <CommandBar Name="Solution Folder" />
+        <CommandBar Name="Solution" />
+      </HostData>
+      <Arguments>
+        <Argument Name="TemplateFilename" Type="System.String"/>
+      </Arguments>
+      <GatheringServiceData>
+        <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
+          <Pages>
+            <Page>
+              <Title>New Template Reference</Title>
+              <Fields>
+                <Field ValueName="TemplateFilename" Label="Template filename">
+                  <Editor Type="Fwk.GuidPk.Editors.ProjectTemplateChooser, Fwk.GuidPk" />
+                </Field>
+              </Fields>
+            </Page>
+          </Pages>
+        </Wizard>
+      </GatheringServiceData>
+      <Actions>
+        <Action Type="Fwk.GuidPk.Actions.AddTemplateReference, Fwk.GuidPk"
+						Name="AddItemTemplateReference">
+          <Input Name="TemplateFilename" RecipeArgument="TemplateFilename"/>
+        </Action>
+      </Actions>
+    </Recipe>
 	</Recipes>
 </GuidancePackage>
