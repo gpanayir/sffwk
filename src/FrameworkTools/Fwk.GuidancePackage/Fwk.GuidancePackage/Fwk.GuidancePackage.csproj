@@ -405,6 +405,7 @@
     </Content>
     <Content Include="Templates\Projects\ClientApplication\WindowsApplication.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Templates\Projects\SampleLibrary\Properties\AssemblyInfo.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
