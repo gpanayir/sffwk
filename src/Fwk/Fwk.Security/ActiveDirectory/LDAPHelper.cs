@@ -22,10 +22,10 @@ namespace Fwk.Security.ActiveDirectory
     /// <summary>
     /// 
     /// </summary>
-    public class LDAPHelper : DirectoryServicesBase, IDirectoryService
+    public class LDAPHelper : DirectoryServicesBase
     {
         
-        private LdapWrapper _LdapWrapper;
+        //private LdapWrapper _LdapWrapper;
         private DomainUrlInfo _DomainUrlInfo;
         private DomainController _DomainController;
         private static List<DomainController> _DomainControllers;
@@ -68,7 +68,7 @@ namespace Fwk.Security.ActiveDirectory
 
         void Init(String domainName, String connStringName, Boolean pSecure, bool chekControllers)
         {
-            _LdapWrapper = new LdapWrapper();
+            //_LdapWrapper = new LdapWrapper();
 
             //LoadControllersFromDatabase( pConnString);
 
@@ -88,10 +88,10 @@ namespace Fwk.Security.ActiveDirectory
 
                 // Prueba de conectarse a algún controlador de dominio disponible, siempre arranando del primero. debería 
                 // TODO: reemplazarse por un sistema de prioridad automática para que no intente conectarse primero a los funcionales conocidos
-                LdapException wLastExcept = GetDomainController(pSecure, _DomainControllers);
+                //LdapException wLastExcept = GetDomainController(pSecure, _DomainControllers);
                 if (_DomainController == null)
                 {
-                    throw new Fwk.Exceptions.TechnicalException("No se encontró ningún controlador de dominio disponible para el sitio especificado.", wLastExcept);
+                    throw new Fwk.Exceptions.TechnicalException("No se encontró ningún controlador de dominio disponible para el sitio especificado.");//, wLastExcept);
                 }
             }
         }
@@ -328,26 +328,26 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// Obtiene un usuario de LDAP por nombre
         /// </summary>
-        public ADUser User_Get_ByName(string pUserName)
-        {
-            ADUser wADUser;
-            String wFilter;
-            String[] wAttributes;
-            LdapEntryList wResults;
+        //public ADUser User_Get_ByName(string pUserName)
+        //{
+        //    ADUser wADUser;
+        //    String wFilter;
+        //    String[] wAttributes;
+        //    LdapEntryList wResults;
 
-            // Parámetros de búsqueda
-            wFilter = String.Format("(&(objectClass=user)(sAMAccountName={0}))", pUserName);
-            wAttributes = new String[0]; // array vacío, para que traiga todos los disponibles
-            wResults = new LdapEntryList();
+        //    // Parámetros de búsqueda
+        //    wFilter = String.Format("(&(objectClass=user)(sAMAccountName={0}))", pUserName);
+        //    wAttributes = new String[0]; // array vacío, para que traiga todos los disponibles
+        //    wResults = new LdapEntryList();
 
-            // Busca y verifica que exista el usuario
-            if (_LdapWrapper.Search(wFilter, wAttributes, wResults) > 0)
-            {
-                wADUser = new ADUser(wResults.First<LdapEntry>());
-                return wADUser;
-            }
-            return null;
-        }
+        //    // Busca y verifica que exista el usuario
+        //    if (_LdapWrapper.Search(wFilter, wAttributes, wResults) > 0)
+        //    {
+        //        wADUser = new ADUser(wResults.First<LdapEntry>());
+        //        return wADUser;
+        //    }
+        //    return null;
+        //}
 
         /// <summary>
         /// Devuelve true o false según el usuario especificado exista en LDAP
@@ -356,9 +356,9 @@ namespace Fwk.Security.ActiveDirectory
         public bool User_Exists(string pUserName)
         {
             String wFilter;
-            Int32 wTotal;
+            Int32 wTotal=0;
             wFilter = String.Format("(&(objectClass=user)(sAMAccountName={0}))", pUserName);
-            wTotal = _LdapWrapper.Search(wFilter, null, null); // attributos y resultado en null.. solo cuenta la cantidad
+            //wTotal = _LdapWrapper.Search(wFilter, null, null); // attributos y resultado en null.. solo cuenta la cantidad
             return (wTotal == 0);
         }
 
@@ -366,159 +366,159 @@ namespace Fwk.Security.ActiveDirectory
         /// Obtiene la lista de Grupos de LDAP a los que pertenece el usuario
         /// </summary>
         /// <param name="pUserName">Nombre de usuario</param>
-        public List<ADGroup> User_SearchGroupList(string pUserName)
-        {
-            List<ADGroup> wGroups = null;
-            String wFilter;
-            String[] wAttributes;
-            LdapEntryList wResults;
+        //public List<ADGroup> User_SearchGroupList(string pUserName)
+        //{
+        //    List<ADGroup> wGroups = null;
+        //    String wFilter;
+        //    String[] wAttributes;
+        //    LdapEntryList wResults;
 
-            ADGroup wADGroup;
+        //    ADGroup wADGroup;
 
-            // Parámetros de búsqueda
-            wFilter = String.Format("(&(objectClass=user)(sAMAccountName={0}))", pUserName);
-            wAttributes = new String[1]; // array vacío, para que traiga todos los disponibles
-            wAttributes[0] = ADProperties.MEMBEROF;
-            wResults = new LdapEntryList();
+        //    // Parámetros de búsqueda
+        //    wFilter = String.Format("(&(objectClass=user)(sAMAccountName={0}))", pUserName);
+        //    wAttributes = new String[1]; // array vacío, para que traiga todos los disponibles
+        //    wAttributes[0] = ADProperties.MEMBEROF;
+        //    wResults = new LdapEntryList();
 
-            // Busca y verifica que exista el usuario
-            if (_LdapWrapper.Search(wFilter, wAttributes, wResults) > 0)
-            {
-                LdapEntry wUser = wResults.First<LdapEntry>();
-                if (wUser.ContainsKey(ADProperties.MEMBEROF))
-                {
-                    foreach (String wGrp in wUser[ADProperties.MEMBEROF])
-                    {
-                        foreach (string wG in GetGroupFromMemberOf(wGrp))
-                        {
-                            wADGroup = Group_GetByName(wG);
-                            if (wADGroup != null)
-                                wGroups.Add(wADGroup);
-                        }                        
-                    }
-                }
-            }
-            return null; 
-        }
+        //    // Busca y verifica que exista el usuario
+        //    if (_LdapWrapper.Search(wFilter, wAttributes, wResults) > 0)
+        //    {
+        //        LdapEntry wUser = wResults.First<LdapEntry>();
+        //        if (wUser.ContainsKey(ADProperties.MEMBEROF))
+        //        {
+        //            foreach (String wGrp in wUser[ADProperties.MEMBEROF])
+        //            {
+        //                foreach (string wG in GetGroupFromMemberOf(wGrp))
+        //                {
+        //                    wADGroup = Group_GetByName(wG);
+        //                    if (wADGroup != null)
+        //                        wGroups.Add(wADGroup);
+        //                }                        
+        //            }
+        //        }
+        //    }
+        //    return null; 
+        //}
 
-        /// <summary>
-        /// Autentica un usuario
-        /// </summary>
-        /// <param name="pUserName">Nombre de usuario</param>
-        /// <param name="pPassword">Clave</param>
-        public LoginResult User_CheckLogin(string pUserName, string pPassword)
-        {
+        ///// <summary>
+        ///// Autentica un usuario
+        ///// </summary>
+        ///// <param name="pUserName">Nombre de usuario</param>
+        ///// <param name="pPassword">Clave</param>
+        //public LoginResult User_CheckLogin(string pUserName, string pPassword)
+        //{
 
-            String wFilter;
-            String[] wAttributes;
-            LdapEntryList wResults;
+        //    String wFilter;
+        //    String[] wAttributes;
+        //    LdapEntryList wResults;
 
-            // Parámetros de búsqueda
-            wFilter = String.Format("(&(objectClass=user)(sAMAccountName={0}))", pUserName);
-            wAttributes = new String[3];
-            wAttributes[0] = ADProperties.USERACCOUNTCONTROL;
-            wAttributes[1] = ADProperties.PWDLASTSET;
-            wAttributes[2] = "lockoutTime"; // TODO: agregar "lockoutTime" a la clase ADProperties;
-            wResults = new LdapEntryList();
+        //    // Parámetros de búsqueda
+        //    wFilter = String.Format("(&(objectClass=user)(sAMAccountName={0}))", pUserName);
+        //    wAttributes = new String[3];
+        //    wAttributes[0] = ADProperties.USERACCOUNTCONTROL;
+        //    wAttributes[1] = ADProperties.PWDLASTSET;
+        //    wAttributes[2] = "lockoutTime"; // TODO: agregar "lockoutTime" a la clase ADProperties;
+        //    wResults = new LdapEntryList();
 
-            // Busca y verifica que exista el usuario
-            if (_LdapWrapper.Search(wFilter, wAttributes, wResults) == 0)
-            {
-                return LoginResult.LOGIN_USER_DOESNT_EXIST;
-            }
+        //    // Busca y verifica que exista el usuario
+        //    if (_LdapWrapper.Search(wFilter, wAttributes, wResults) == 0)
+        //    {
+        //        return LoginResult.LOGIN_USER_DOESNT_EXIST;
+        //    }
 
-            // Verifica que la cuenta no esté deshabilitada
-            Int32 wUserAccountControl = Convert.ToInt32(wResults.First()[ADProperties.USERACCOUNTCONTROL].First());
-            Int32 wUserAccountControlDisabled = Convert.ToInt32(ADAccountOptions.UF_ACCOUNTDISABLE);
-            if ((wUserAccountControl & wUserAccountControlDisabled) != 0)
-            {
-                return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
-            }
+        //    // Verifica que la cuenta no esté deshabilitada
+        //    Int32 wUserAccountControl = Convert.ToInt32(wResults.First()[ADProperties.USERACCOUNTCONTROL].First());
+        //    Int32 wUserAccountControlDisabled = Convert.ToInt32(ADAccountOptions.UF_ACCOUNTDISABLE);
+        //    if ((wUserAccountControl & wUserAccountControlDisabled) != 0)
+        //    {
+        //        return LoginResult.LOGIN_USER_ACCOUNT_INACTIVE;
+        //    }
 
-            if (wResults.First().ContainsKey("lockoutTime"))
-            {
-                Int64 wLockOutTime = Convert.ToInt64(wResults.First()["lockoutTime"].First());
-                if (wLockOutTime > 0)
-                {
-                    return LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT;
-                }
-            }
+        //    if (wResults.First().ContainsKey("lockoutTime"))
+        //    {
+        //        Int64 wLockOutTime = Convert.ToInt64(wResults.First()["lockoutTime"].First());
+        //        if (wLockOutTime > 0)
+        //        {
+        //            return LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT;
+        //        }
+        //    }
 
-            // Verifica que no deba cambiar la clave
-            Int64 wPwdLastSet = Convert.ToInt64(wResults.First()[ADProperties.PWDLASTSET].First());
-            if (wPwdLastSet == 0)
-            {
-                return LoginResult.ERROR_PASSWORD_MUST_CHANGE;
-            }
+        //    // Verifica que no deba cambiar la clave
+        //    Int64 wPwdLastSet = Convert.ToInt64(wResults.First()[ADProperties.PWDLASTSET].First());
+        //    if (wPwdLastSet == 0)
+        //    {
+        //        return LoginResult.ERROR_PASSWORD_MUST_CHANGE;
+        //    }
 
-            // Autentica
-            try
-            {
-                if (!_LdapWrapper.Bind(_DomainController.HostName, _DomainUrlInfo.DomainDN, pUserName, pPassword, false))
-                {
-                    return LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
-                }
-            }
-            catch (LdapAuthenticationException)
-            {
-                return LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;                
-            }
+        //    // Autentica
+        //    try
+        //    {
+        //        if (!_LdapWrapper.Bind(_DomainController.HostName, _DomainUrlInfo.DomainDN, pUserName, pPassword, false))
+        //        {
+        //            return LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;
+        //        }
+        //    }
+        //    catch (LdapAuthenticationException)
+        //    {
+        //        return LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT;                
+        //    }
 
-            // Pasó hasta acá, login OK
-            return LoginResult.LOGIN_OK;
-        }
+        //    // Pasó hasta acá, login OK
+        //    return LoginResult.LOGIN_OK;
+        //}
 
         /// <summary>
         /// Obtiene un Grupo de LDAP, dado un nombre
         /// </summary>
-        public ADGroup Group_GetByName(string pName)
-        {
-            String wFilter;
-            String[] wAttributes;
-            LdapEntryList wResults;
+        //public ADGroup Group_GetByName(string pName)
+        //{
+        //    String wFilter;
+        //    String[] wAttributes;
+        //    LdapEntryList wResults;
 
-            // Parámetros de búsqueda
-            wFilter = String.Format("(&(objectClass=group)(sAMAccountName={0}))", pName);
-            wAttributes = new String[0]; // todos lso atributos disponibles
-            wResults = new LdapEntryList(); // buffer de resultados
+        //    // Parámetros de búsqueda
+        //    wFilter = String.Format("(&(objectClass=group)(sAMAccountName={0}))", pName);
+        //    wAttributes = new String[0]; // todos lso atributos disponibles
+        //    wResults = new LdapEntryList(); // buffer de resultados
 
-            // Busca y verifica que exista el usuario
-            if (_LdapWrapper.Search(wFilter, wAttributes, wResults) == 0)
-            {
-                return new ADGroup(wResults.First<LdapEntry>());
-            }
-            return null;
-        }
+        //    // Busca y verifica que exista el usuario
+        //    if (_LdapWrapper.Search(wFilter, wAttributes, wResults) == 0)
+        //    {
+        //        return new ADGroup(wResults.First<LdapEntry>());
+        //    }
+        //    return null;
+        //}
 
         /// <summary>
         /// Obtiene la lista completa de grupos del LDAP
         /// </summary>
-        public List<ADGroup> Groups_GetAll()
-        {
-            List<ADGroup> wGroups = null;
-            String wFilter;
-            String[] wAttributes;
-            LdapEntryList wResults;
+        //public List<ADGroup> Groups_GetAll()
+        //{
+        //    List<ADGroup> wGroups = null;
+        //    String wFilter;
+        //    String[] wAttributes;
+        //    LdapEntryList wResults;
 
-            ADGroup wADGroup;
+        //    ADGroup wADGroup;
 
-            // Parámetros de búsqueda
-            wFilter = "(&(objectClass=group))";
-            wAttributes = new String[0]; // array vacío, para que traiga todos los disponibles
-            wResults = new LdapEntryList();
+        //    // Parámetros de búsqueda
+        //    wFilter = "(&(objectClass=group))";
+        //    wAttributes = new String[0]; // array vacío, para que traiga todos los disponibles
+        //    wResults = new LdapEntryList();
 
-            // Busca y verifica que exista el usuario
-            if (_LdapWrapper.Search(wFilter, wAttributes, wResults) > 0)
-            {
-                foreach (LdapEntry wGrp in wResults)
-                {
-                    wADGroup = new ADGroup(wGrp);
-                    if (wADGroup != null)
-                        wGroups.Add(wADGroup);
-                }
-            }
-            return null;
-        }
+        //    // Busca y verifica que exista el usuario
+        //    if (_LdapWrapper.Search(wFilter, wAttributes, wResults) > 0)
+        //    {
+        //        foreach (LdapEntry wGrp in wResults)
+        //        {
+        //            wADGroup = new ADGroup(wGrp);
+        //            if (wADGroup != null)
+        //                wGroups.Add(wADGroup);
+        //        }
+        //    }
+        //    return null;
+        //}
 
         /// <summary>
         /// Resetea la clave de un usuario de LDAP
@@ -527,11 +527,11 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="pNewPwd">Nuevo Password, en caso de ser NULL, no se resetea la cuenta, se realizan el resto de las acciones</param>
         /// <param name="pForceChangeOnFirstLogon">Cuando es true, fuerza al usuario a cambiar la clave especificada en el próximo login</param>
         /// <param name="pUnlockAccount">Cuando es true, desbloquea la cuenta</param>
-        public void ResetPwd(string pUserName, string pNewPwd, bool pForceChangeOnFirstLogon, bool pUnlockAccount)
-        {
-            String wUserDN = GetUserDN(pUserName);
-            _LdapWrapper.SetPassword(wUserDN, pNewPwd, pForceChangeOnFirstLogon, pUnlockAccount);
-        }
+        //public void ResetPwd(string pUserName, string pNewPwd, bool pForceChangeOnFirstLogon, bool pUnlockAccount)
+        //{
+        //    String wUserDN = GetUserDN(pUserName);
+        //    _LdapWrapper.SetPassword(wUserDN, pNewPwd, pForceChangeOnFirstLogon, pUnlockAccount);
+        //}
 
         #endregion
 
@@ -541,27 +541,27 @@ namespace Fwk.Security.ActiveDirectory
         /// Obtiene el nombre distinguido de la entrada de LDAP, para un usuario específico
         /// </summary>
         /// <param name="pUserName">Nombre de Usuario</param>
-        private String GetUserDN(string pUserName)
-        {
+        //private String GetUserDN(string pUserName)
+        //{
 
-            String pUserDN;
-            String wFilter;
-            String[] wAttributes;
-            LdapEntryList wResults;
+        //    String pUserDN;
+        //    String wFilter;
+        //    String[] wAttributes;
+        //    LdapEntryList wResults;
 
-            // parámetros de búsqueda
-            wFilter = String.Format("(&(objectClass=user)(sAMAccountName={0}))", pUserName);
-            wAttributes = new String[10];
-            wAttributes[0] = ADProperties.DISTINGUISHEDNAME;
-            wResults = new LdapEntryList();
+        //    // parámetros de búsqueda
+        //    wFilter = String.Format("(&(objectClass=user)(sAMAccountName={0}))", pUserName);
+        //    wAttributes = new String[10];
+        //    wAttributes[0] = ADProperties.DISTINGUISHEDNAME;
+        //    wResults = new LdapEntryList();
 
-            if (_LdapWrapper.Search(wFilter, wAttributes, wResults) == 0)
-            {
-                throw new TechnicalException("No se encuentra el usuario");
-            }
-            pUserDN = wResults.First()[ADProperties.DISTINGUISHEDNAME].First();
-            return pUserDN;
-        }
+        //    if (_LdapWrapper.Search(wFilter, wAttributes, wResults) == 0)
+        //    {
+        //        throw new TechnicalException("No se encuentra el usuario");
+        //    }
+        //    pUserDN = wResults.First()[ADProperties.DISTINGUISHEDNAME].First();
+        //    return pUserDN;
+        //}
 
         /// <summary>
         /// Obtiene la lista de controladores de dominio para un DomainID especificado
@@ -600,33 +600,33 @@ namespace Fwk.Security.ActiveDirectory
         /// </summary>
         /// <param name="pSecure">Especifica si debe establecer conexion SSL</param>
         /// <param name="wDCList">Lista de controladores de dominio</param>
-        private LdapException GetDomainController(Boolean pSecure, List<DomainController> wDCList)
-        {
-            LdapException wLastExcept = null;
-            foreach (DomainController wDC in wDCList)
-            {
-                try
-                {
-                    if (_LdapWrapper.Bind(wDC.HostName, _DomainUrlInfo.DomainDN, _DomainUrlInfo.Usr, _DomainUrlInfo.Pwd, pSecure))
-                    {
-                        _DomainController = wDC;
-                        break;
-                    }
-                }
-                catch (LdapAuthenticationException ex)
-                {
-                    // si no autentica, es porque está mal la info Usr y Pwd
-                    throw ex;
-                }
-                catch (LdapException ex)
-                {
-                    // si entra por acá es porque no pudo conectar, continuo con el siguiente
-                    //throw;
-                    wLastExcept = ex;
-                }
-            }
-            return wLastExcept;
-        }
+        //private LdapException GetDomainController(Boolean pSecure, List<DomainController> wDCList)
+        //{
+        //    LdapException wLastExcept = null;
+        //    foreach (DomainController wDC in wDCList)
+        //    {
+        //        try
+        //        {
+        //            if (_LdapWrapper.Bind(wDC.HostName, _DomainUrlInfo.DomainDN, _DomainUrlInfo.Usr, _DomainUrlInfo.Pwd, pSecure))
+        //            {
+        //                _DomainController = wDC;
+        //                break;
+        //            }
+        //        }
+        //        catch (LdapAuthenticationException ex)
+        //        {
+        //            // si no autentica, es porque está mal la info Usr y Pwd
+        //            throw ex;
+        //        }
+        //        catch (LdapException ex)
+        //        {
+        //            // si entra por acá es porque no pudo conectar, continuo con el siguiente
+        //            //throw;
+        //            wLastExcept = ex;
+        //        }
+        //    }
+        //    return wLastExcept;
+        //}
 
         #endregion
     }

@@ -105,31 +105,31 @@ namespace Fwk.Security.ActiveDirectory
         { }
 
 
-        public ADGroup(LdapEntry wLdapEntry)
-        {
-            if (wLdapEntry.ContainsKey(ADProperties.NAME))
-                _Name = wLdapEntry[ADProperties.NAME][0];
+        //public ADGroup(LdapEntry wLdapEntry)
+        //{
+        //    if (wLdapEntry.ContainsKey(ADProperties.NAME))
+        //        _Name = wLdapEntry[ADProperties.NAME][0];
 
-            if (wLdapEntry.ContainsKey(ADProperties.DISTINGUISHEDNAME))
-                _Name = wLdapEntry[ADProperties.DISTINGUISHEDNAME][0];
+        //    if (wLdapEntry.ContainsKey(ADProperties.DISTINGUISHEDNAME))
+        //        _Name = wLdapEntry[ADProperties.DISTINGUISHEDNAME][0];
 
-            if (wLdapEntry.ContainsKey(ADProperties.DESCRIPTION))
-                _Name = wLdapEntry[ADProperties.DESCRIPTION][0];
+        //    if (wLdapEntry.ContainsKey(ADProperties.DESCRIPTION))
+        //        _Name = wLdapEntry[ADProperties.DESCRIPTION][0];
 
-            if (wLdapEntry.ContainsKey(ADProperties.LOGINNAME))
-                _Name = wLdapEntry[ADProperties.LOGINNAME][0];
+        //    if (wLdapEntry.ContainsKey(ADProperties.LOGINNAME))
+        //        _Name = wLdapEntry[ADProperties.LOGINNAME][0];
 
-            if (wLdapEntry.ContainsKey(ADProperties.OBJECTCATEGORY))
-                _Name = wLdapEntry[ADProperties.OBJECTCATEGORY][0];
+        //    if (wLdapEntry.ContainsKey(ADProperties.OBJECTCATEGORY))
+        //        _Name = wLdapEntry[ADProperties.OBJECTCATEGORY][0];
 
-            if (wLdapEntry.ContainsKey(ADProperties.USERPRINCIPALNAME))
-                _Domain = wLdapEntry[ADProperties.USERPRINCIPALNAME][0].Split('.').First();
+        //    if (wLdapEntry.ContainsKey(ADProperties.USERPRINCIPALNAME))
+        //        _Domain = wLdapEntry[ADProperties.USERPRINCIPALNAME][0].Split('.').First();
 
-            if (!String.IsNullOrEmpty(_DistinguishedName))
-            {
-                SetNameInfo(_DistinguishedName);
-            }
-        }
+        //    if (!String.IsNullOrEmpty(_DistinguishedName))
+        //    {
+        //        SetNameInfo(_DistinguishedName);
+        //    }
+        //}
 
 
         /// <summary>

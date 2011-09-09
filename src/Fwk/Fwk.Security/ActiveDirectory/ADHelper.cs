@@ -326,32 +326,32 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="userName"></param>
         public void User_Unlock(string userName)
         {
-            User_SetLockedStatus(userName, true);
-            //DirectoryEntry userDirectoryEntry = null;
-            //Impersonation objImp = new Impersonation(_LDAPUser, _LDAPPassword, _LDAPDomainName);
-            //try
-            //{
+           // User_SetLockedStatus(userName, true);
+            DirectoryEntry userDirectoryEntry = null;
+            
+            try
+            {
 
-            //    objImp.Impersonate();
-            //    userDirectoryEntry = this.User_Get(userName);
+                
+                userDirectoryEntry = this.User_Get(userName);
 
 
-            //    if (userDirectoryEntry != null)
-            //    {
-            //        if (userDirectoryEntry.Properties.Contains("LockOutTime"))
-            //        {
-            //            userDirectoryEntry.Properties["LockOutTime"].Value = 0;
-            //            userDirectoryEntry.CommitChanges();
-            //            userDirectoryEntry.Close();
-            //        }
-            //    }
-            //    objImp.UnImpersonate();
+                if (userDirectoryEntry != null)
+                {
+                    if (userDirectoryEntry.Properties.Contains("LockOutTime"))
+                    {
+                        userDirectoryEntry.Properties["LockOutTime"].Value = 0;
+                        userDirectoryEntry.CommitChanges();
+                        userDirectoryEntry.Close();
+                    }
+                }
+                
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ProcessActiveDirectoryException(ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                throw ProcessActiveDirectoryException(ex);
+            }
         }
 
         /// <summary>

@@ -409,83 +409,83 @@ namespace Fwk.Security.ActiveDirectory
         /// 
         /// </summary>
         /// <param name="pLdapUser"></param>
-        public ADUser(LdapEntry pLdapUser)
-        {
-            String domainAddress;
-            String userPrincipalName = pLdapUser[ADProperties.USERPRINCIPALNAME][0];
-            String domainName;
+        //public ADUser(LdapEntry pLdapUser)
+        //{
+        //    String domainAddress;
+        //    String userPrincipalName = pLdapUser[ADProperties.USERPRINCIPALNAME][0];
+        //    String domainName;
 
-            _UserAccountControl = pLdapUser[ADProperties.USERACCOUNTCONTROL][0];
-            _firstName = pLdapUser[ADProperties.FIRSTNAME][0];
-            if (pLdapUser.ContainsKey(ADProperties.MIDDLENAME))
-                _middleName = pLdapUser[ADProperties.MIDDLENAME][0];
-            if (pLdapUser.ContainsKey(ADProperties.LASTNAME))
-                _lastName = pLdapUser[ADProperties.LASTNAME][0];
-            if (pLdapUser.ContainsKey(ADProperties.LOGINNAME))
-                _loginName = pLdapUser[ADProperties.LOGINNAME][0];
+        //    _UserAccountControl = pLdapUser[ADProperties.USERACCOUNTCONTROL][0];
+        //    _firstName = pLdapUser[ADProperties.FIRSTNAME][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.MIDDLENAME))
+        //        _middleName = pLdapUser[ADProperties.MIDDLENAME][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.LASTNAME))
+        //        _lastName = pLdapUser[ADProperties.LASTNAME][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.LOGINNAME))
+        //        _loginName = pLdapUser[ADProperties.LOGINNAME][0];
 
-            if (!string.IsNullOrEmpty(userPrincipalName))
-            {
-                domainAddress = userPrincipalName.Split('@')[1];
-            }
-            else
-            {
-                domainAddress = String.Empty;
-            }
+        //    if (!string.IsNullOrEmpty(userPrincipalName))
+        //    {
+        //        domainAddress = userPrincipalName.Split('@')[1];
+        //    }
+        //    else
+        //    {
+        //        domainAddress = String.Empty;
+        //    }
 
-            if (!string.IsNullOrEmpty(domainAddress))
-            {
+        //    if (!string.IsNullOrEmpty(domainAddress))
+        //    {
 
-                domainName = domainAddress.Split('.').First();
-            }
-            else
-            {
-                domainName = String.Empty;
+        //        domainName = domainAddress.Split('.').First();
+        //    }
+        //    else
+        //    {
+        //        domainName = String.Empty;
 
-            }
-            _loginNameWithDomain = String.Format(@"{0}\{1}", domainName, _loginName);
+        //    }
+        //    _loginNameWithDomain = String.Format(@"{0}\{1}", domainName, _loginName);
 
-            if (pLdapUser.ContainsKey(ADProperties.STREETADDRESS))
-                _streetAddress = pLdapUser[ADProperties.STREETADDRESS][0];
-            if (pLdapUser.ContainsKey(ADProperties.CITY))
-                _city = pLdapUser[ADProperties.CITY][0];
-            if (pLdapUser.ContainsKey(ADProperties.STATE))
-                _state = pLdapUser[ADProperties.STATE][0];
-            if (pLdapUser.ContainsKey(ADProperties.POSTALCODE))
-                _postalCode = pLdapUser[ADProperties.POSTALCODE][0];
-            if (pLdapUser.ContainsKey(ADProperties.COUNTRY))
-                _country = pLdapUser[ADProperties.COUNTRY][0];
-            if (pLdapUser.ContainsKey(ADProperties.COMPANY))
-                _company = pLdapUser[ADProperties.COMPANY][0];
-            if (pLdapUser.ContainsKey(ADProperties.DEPARTMENT))
-                _department = pLdapUser[ADProperties.DEPARTMENT][0];
-            if (pLdapUser.ContainsKey(ADProperties.HOMEPHONE))
-                _homePhone = pLdapUser[ADProperties.HOMEPHONE][0];
-            if (pLdapUser.ContainsKey(ADProperties.EXTENSION))
-                _extension = pLdapUser[ADProperties.EXTENSION][0];
-            if (pLdapUser.ContainsKey(ADProperties.MOBILE))
-                _mobile = pLdapUser[ADProperties.MOBILE][0];
-            if (pLdapUser.ContainsKey(ADProperties.FAX))
-                _fax = pLdapUser[ADProperties.FAX][0];
-            if (pLdapUser.ContainsKey(ADProperties.EMAILADDRESS))
-                _emailAddress = pLdapUser[ADProperties.EMAILADDRESS][0];
-            if (pLdapUser.ContainsKey(ADProperties.TITLE))
-                _title = pLdapUser[ADProperties.TITLE][0];
-            if (pLdapUser.ContainsKey(ADProperties.MANAGER))
-                _manager = pLdapUser[ADProperties.MANAGER][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.STREETADDRESS))
+        //        _streetAddress = pLdapUser[ADProperties.STREETADDRESS][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.CITY))
+        //        _city = pLdapUser[ADProperties.CITY][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.STATE))
+        //        _state = pLdapUser[ADProperties.STATE][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.POSTALCODE))
+        //        _postalCode = pLdapUser[ADProperties.POSTALCODE][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.COUNTRY))
+        //        _country = pLdapUser[ADProperties.COUNTRY][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.COMPANY))
+        //        _company = pLdapUser[ADProperties.COMPANY][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.DEPARTMENT))
+        //        _department = pLdapUser[ADProperties.DEPARTMENT][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.HOMEPHONE))
+        //        _homePhone = pLdapUser[ADProperties.HOMEPHONE][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.EXTENSION))
+        //        _extension = pLdapUser[ADProperties.EXTENSION][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.MOBILE))
+        //        _mobile = pLdapUser[ADProperties.MOBILE][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.FAX))
+        //        _fax = pLdapUser[ADProperties.FAX][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.EMAILADDRESS))
+        //        _emailAddress = pLdapUser[ADProperties.EMAILADDRESS][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.TITLE))
+        //        _title = pLdapUser[ADProperties.TITLE][0];
+        //    if (pLdapUser.ContainsKey(ADProperties.MANAGER))
+        //        _manager = pLdapUser[ADProperties.MANAGER][0];
 
-            if (!String.IsNullOrEmpty(_manager))
-            {
-                String[] managerArray = _manager.Split(',');
-                _managerName = managerArray[0].Replace("CN=", "");
+        //    if (!String.IsNullOrEmpty(_manager))
+        //    {
+        //        String[] managerArray = _manager.Split(',');
+        //        _managerName = managerArray[0].Replace("CN=", "");
 
-            }
+        //    }
 
-            //if (pLdapUser.ContainsKey("lockoutTime"))
-            //    _LockedOut = Convert.ToInt64(pLdapUser["lockoutTime"][0]) > 0;
+        //    //if (pLdapUser.ContainsKey("lockoutTime"))
+        //    //    _LockedOut = Convert.ToInt64(pLdapUser["lockoutTime"][0]) > 0;
 
-            //_LoginResult = ADHelper.User_Get_LoginResult(directoryUser);
-        }
+        //    //_LoginResult = ADHelper.User_Get_LoginResult(directoryUser);
+        //}
 
 
 

@@ -39,15 +39,27 @@ namespace Fwk.Security.Common
             get { return _FullName; }
             set { _FullName = value; }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public ObjectDomain()
         { }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pName"></param>
         public ObjectDomain(string pName)
         {
             _Name = pName;
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="pName"></param>
+        /// <param name="pSource"></param>
+        /// <returns></returns>
         public static List<T> FilterByName<T>(String pName, List<T> pSource)   where T : ObjectDomain
         {
 
