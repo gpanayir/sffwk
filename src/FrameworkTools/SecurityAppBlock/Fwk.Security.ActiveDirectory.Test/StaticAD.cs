@@ -20,10 +20,10 @@ namespace Fwk.Security.ActiveDirectory.Test
 
         }
 
-        internal static void LoadDomain(string pDomainName)
+        internal static void LoadDomain(string domainName)
         {
 
-            _ADHelper = new ADHelper( pDomainName );
+            //_ADHelper = new ADHelper( domainName );
 
         }
     }

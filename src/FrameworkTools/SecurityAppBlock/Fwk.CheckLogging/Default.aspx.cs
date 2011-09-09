@@ -25,15 +25,13 @@ namespace Fwk.CheckLogging
                 if (SetAD(false))
                 {
                     TechnicalException logError = null;
-                    //lblCheckResult.Text = _ADHelper.User_CheckLogin(txtLoginName.Text, txtPassword.Text).ToString();
+
                     lblResult.Text = _ADHelper.User_Logon(txtUsr.Text, txtpassword.Text, out logError).ToString();
 
                     if (logError != null)
                         lblError.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(logError);
                     else
                         lblError.Text = "NO Error";
-
-                    //_ADHelper.User_CheckLogin2(txtLoginName.Text, txtPassword.Text);
 
                 }
             }
@@ -49,17 +47,6 @@ namespace Fwk.CheckLogging
 
         bool SetAD(Boolean pSecure)
         {
-            //lblURL.Text = string.Empty;
-
-            //DomainUrlInfo wDomainUrlInfo = (DomainUrlInfo)cmbDomains.SelectedItem;//urls.Find(p => p.DomainName.Equals(txtDomain.Text,StringComparison.CurrentCultureIgnoreCase));
-
-            //if (wDomainUrlInfo == null)
-            //{
-            //    lblCheckResult.Text = "Nombre de dominio incorrecto";
-            //    return false;
-            //}
-            //_ADHelper = new ADHelper(wDomainUrlInfo.LDAPPath, wDomainUrlInfo.Usr, wDomainUrlInfo.Pwd);
-            //_ADHelper = new LDAPHelper(wDomainUrlInfo.DomainName, "testActiveDirectory", pSecure);
             _ADHelper = new LDAPHelper(txtDomain.Text, "testActiveDirectory", pSecure, false);
 
             return true;

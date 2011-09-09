@@ -75,16 +75,16 @@ namespace Fwk.Security.ActiveDirectory.Test
         private void button5_Click(object sender, EventArgs e)
         {
             lblResult.Text = string.Empty;
-            try
-            {
-                _ADHelper = new ADHelper(txtDomain.Text);
-                lstDomains.DataSource = _ADHelper.Domain_GetList1();
-                label4.Text = _ADHelper.LDAPPath;
-            }
-            catch (Exception ex)
-            {
-                lblResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-            }
+            //try
+            //{
+            //    _ADHelper = new ADHelper(txtDomain.Text);
+            //    lstDomains.DataSource = _ADHelper.Domain_GetList1();
+            //    label4.Text = _ADHelper.LDAPPath;
+            //}
+            //catch (Exception ex)
+            //{
+            //    lblResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            //}
         }
 
         private void button6_Click(object sender, EventArgs e)

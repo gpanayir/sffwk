@@ -48,7 +48,7 @@ namespace Fwk.CentralizedSecurity.Service
             ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName);
      
             List<ADGroup> list = ad.User_SearchGroupList(userName);
-
+            ad.Dispose();
             if (list.Count != 0)
             {
                 var activeDirectoryGroupList = from g in list select new ActiveDirectoryGroup(g);
@@ -66,6 +66,7 @@ namespace Fwk.CentralizedSecurity.Service
 
             List<ADUser> list = ad.Users_SearchByGroupName(groupName);
 
+            ad.Dispose();
             if (list.Count != 0)
             {
                 var userList = from u in list select new ActiveDirectoryUser(u);
@@ -79,17 +80,22 @@ namespace Fwk.CentralizedSecurity.Service
 
         internal static bool UserExist(string userName, string domain)
         {
-            ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName);
+            ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName, true);
 
-            return ad.User_Exists(userName);
-            
+            bool exist= ad.User_Exists(userName);
+
+            ad.Dispose();
+
+            return exist;
         }
 
         internal static ActiveDirectoryGroup[] GetGroups(string domain)
         {
-           ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName);
+           ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName,true);
      
             List<ADGroup> list = ad.Groups_GetAll();
+
+            ad.Dispose();
 
             if (list.Count != 0)
             {
@@ -105,32 +111,47 @@ namespace Fwk.CentralizedSecurity.Service
 
         internal static void User_Unlock(string userName, string domain)
         {
-            ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName);
-
+            ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName,true);
+            
+            //ad.User_SetLockedStatus(userName, false);
             ad.User_Unlock(userName);
+
+            ad.Dispose();
         }
 
         internal static void User_Lock(string userName, string domain)
         {
-            ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName);
+            ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName,true);
 
             ad.User_SetLockedStatus(userName,true);
         }
 
 
+        internal static ActiveDirectoryUser User_Info(string userName, string domain)
+        {
+            ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName);
+
+          ADUser usr =  ad.User_Get_ByName(userName);
+          if (usr != null)
+              return null;
+          return new ActiveDirectoryUser(usr);
+        }
 
         internal static void User_SetActivation(string userName, bool disabled, string domain)
         {
-             ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName);
+             ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName,true);
 
              ad.User_SetActivation(userName, disabled);
+             ad.Dispose();
         }
 
         internal static void User_Reset_Password(string userName, string newPassword, string domain)
         {
-            ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName);
+            ADHelper ad = new ADHelper(domain, ActiveDirectoryService.CnnStringName,true);
 
             ad.User_ResetPwd(userName, newPassword ,true);
+
+            ad.Dispose();
         }
 
 
@@ -140,7 +161,8 @@ namespace Fwk.CentralizedSecurity.Service
         internal static Fwk.CentralizedSecurity.Contracts.DomainsUrl[] GetAllDomainsUrl()
         {
 
-            List<DomainUrlInfo> auxlist = ADHelper.DomainsUrl_GetList2(ActiveDirectoryService.CnnStringName);
+
+            List<DomainUrlInfo> auxlist = ADHelper.DomainsUrl_GetList2(System.Configuration.ConfigurationManager.ConnectionStrings[ActiveDirectoryService.CnnStringName].ConnectionString);
 
             if (auxlist.Count != 0)
             {

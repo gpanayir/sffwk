@@ -7,21 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Fwk.Security.ActiveDirectory;
+using Fwk.Security.AD.TestLogin.ServiceReference1;
+
 
 namespace Fwk.Security.AD.TestLogin
 {
     public partial class frmStatic : Form
     {
+        Fwk.Security.AD.TestLogin.ServiceReference1.ActiveDirectorySoapClient _proxy = null;
         public frmStatic()
         {
             InitializeComponent();
+             _proxy = new Fwk.Security.AD.TestLogin.ServiceReference1.ActiveDirectorySoapClient("ActiveDirectorySoap");
         }
-
+   
         private void btnCheck_Click(object sender, EventArgs e)
         {
             try
             {
-                //lblCheckResult.Text = ADHelper.User_CheckLogin(txtDomain.Text, txtLoginName.Text, txtPassword.Text).ToString();
+                LoogonUserResult wLoogonUserResult  = _proxy.Autenticate(txtLoginName.Text, txtPassword.Text, txtDomain.Text);
+                lblCheckResult.Text = wLoogonUserResult.LogResult;
             }
             catch (Exception ex)
             {

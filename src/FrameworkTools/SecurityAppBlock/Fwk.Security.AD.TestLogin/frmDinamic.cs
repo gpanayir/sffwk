@@ -17,7 +17,7 @@ namespace Fwk.Security.AD.TestLogin
     public partial class frmDinamic : Form
     {
         LDAPHelper _ADHelper;
-        IDirectoryService _ADHelperSecure;
+        //IDirectoryService _ADHelperSecure;
         List<DomainUrlInfo> urls;
 
         public frmDinamic()
@@ -150,7 +150,7 @@ namespace Fwk.Security.AD.TestLogin
                     String Pwd = null;
                     if (!String.IsNullOrEmpty(txtPassword.Text))
                         Pwd = txtPassword.Text;
-                    _ADHelper.ResetPwd(txtLoginName.Text, Pwd, ForceChange.Checked, UnLock.Checked);
+                    //_ADHelper.ResetPwd(txtLoginName.Text, Pwd, ForceChange.Checked, UnLock.Checked);
                     lblCheckResult.Text = "Clave Reseteada";
                 }
             }

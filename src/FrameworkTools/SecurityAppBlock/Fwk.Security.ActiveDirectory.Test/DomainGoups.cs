@@ -35,10 +35,10 @@ namespace Fwk.Security.ActiveDirectory.Test
         }
 
 
-        public void Initialize(String pDomainName)
+        public void Initialize(String domainName)
         {
-            //_FwkActyveDirectory = new FwkActyveDirectory(pDomainName);
-            StaticAD.LoadDomain(pDomainName);
+            //_FwkActyveDirectory = new FwkActyveDirectory(domainName);
+            StaticAD.LoadDomain(domainName);
             _ADHelper = StaticAD.ADHelper;
         }
 
