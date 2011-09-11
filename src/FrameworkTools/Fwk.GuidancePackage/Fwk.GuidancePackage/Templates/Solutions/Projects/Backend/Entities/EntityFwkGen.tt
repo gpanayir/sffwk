@@ -50,7 +50,6 @@ using System.ComponentModel;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
-
 namespace <#=namespaceName#>.Common.BE
 {
 <#
@@ -78,12 +77,12 @@ namespace <#=namespaceName#>.Common.BE
 
 
 [XmlRoot("<#=code.Escape(entity)#>List"), SerializableAttribute]
-<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>class <#=code.Escape(entity)#>List : Fwk.Bases.Entities< <#=code.Escape(entity)#> >{}
+<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>class <#=code.Escape(entity)#>List : Fwk.Bases.Entities< <#=code.Escape(entity)#>BE >{}
 
    <# ////////  Write Entity. 
 #>
 [XmlInclude(typeof(<#=code.Escape(entity)#>)), Serializable]
-<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#> : Fwk.Bases.Entity
+<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#>BE : Fwk.Bases.Entity
 {
 <#
         //if (!entity.Abstract)
@@ -106,12 +105,43 @@ namespace <#=namespaceName#>.Common.BE
            // WriteComplexTypeProperty(property, code);
         //}
         //region.End();
+		
+ PushIndent(CodeRegion.GetIndent(2));
 #>
 
 
+/// <summary>
+/// Empty Constructor
+/// </summary>
+public <#=code.Escape(entity)#>BE(){}
+
+/// <summary>
+/// Constructor from Model Entity
+/// Framework BE --> Edm Entity Model 
+/// </summary>
+/// <param name="p<#=code.Escape(entity)#>">Edm Model BE</param>
+public <#=code.Escape(entity)#>BE(<#=code.Escape(entity)#> p<#=code.Escape(entity)#>)
+{
+<#   foreach (EdmProperty property in entity.Properties.Where(p => p.DeclaringType == entity && p.TypeUsage.EdmType is PrimitiveType))
+      		{#>
+	<#=code.FieldName(property)#> =	p<#=code.Escape(entity)#>.<#=code.Escape(property)#> ;
+	<#}#>}
+
+
+/// <summary>
+/// Overload equal operator
+/// Framework BE = Edm Entity Model 
+/// </summary>
+/// <param name="p<#=code.Escape(entity)#>">Edm Model BE</param>
+public static explicit operator <#=code.Escape(entity)#>BE(<#=code.Escape(entity)#> p<#=code.Escape(entity)#>)
+ {
+  return  new  <#=code.Escape(entity)#>BE(p<#=code.Escape(entity)#>);
+}
 }
 <#
+				PopIndent();
     }
+
     region.End();
 
     ////////
