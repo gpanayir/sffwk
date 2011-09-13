@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <GuidancePackage xmlns="http://schemas.microsoft.com/pag/gax-core"
     Name="Fwk.GuidPk" 
-    Caption="Fwk Guidance Package Generator"
-    Description="Fwk Guidance Package Generator"
+    Caption="Fwk Guidance Package"
+    Description="Fwk Guidance Package"
     BindingRecipe="BindingRecipe"
     Guid="465c0111-832d-404d-a25e-127294989a64" 
     SchemaVersion="1.0">
