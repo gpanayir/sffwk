@@ -14,7 +14,6 @@
 			<ProjectItem ReplaceParameters="true">Properties\AssemblyInfo.cs</ProjectItem>
 
       <Folder Name="Services" TargetFolderName="Services" />
-
       <Folder Name="Entities" TargetFolderName="Entities">
         <ProjectItem ReplaceParameters="false" TargetFileName="EntityFwkGen.tt">EntityFwkGen.tt</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="EntityFwkGen_helper.tt">EntityFwkGen_helper.tt</ProjectItem>
