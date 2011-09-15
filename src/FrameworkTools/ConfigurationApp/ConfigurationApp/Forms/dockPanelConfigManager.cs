@@ -10,6 +10,7 @@ using ConfigurationApp.Common;
 using ConfigurationApp.IsolatedStorage;
 using Fwk.Configuration.Common;
 using System.Collections.Specialized;
+using Fwk.ConfigSection;
 
 namespace ConfigurationApp.Forms
 {
@@ -175,7 +176,7 @@ namespace ConfigurationApp.Forms
             treeView1.Nodes[0].Nodes.Clear();
 
 
-            ConfigManagerControl.RefreshAllFiles(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey, _Storage);
+            ConfigManagerControl.RefreshAllFiles(treeView1.Nodes[0], mnCnfgManFile,mnCnfgManFile_Fail, mnGroupAndKey, _Storage);
             treeView1.EndUpdate();
             treeView1.Refresh();
             treeView1.ExpandAll();
@@ -193,7 +194,7 @@ namespace ConfigurationApp.Forms
             treeView1.BeginUpdate();
     
 
-            ConfigManagerControl.LoadFiles(treeView1.Nodes[0], mnCnfgManFile, mnGroupAndKey, _Storage);
+            ConfigManagerControl.LoadFiles(treeView1.Nodes[0], mnCnfgManFile,mnCnfgManFile_Fail, mnGroupAndKey, _Storage);
             treeView1.EndUpdate();
             treeView1.Refresh();
             treeView1.ExpandAll();
@@ -401,6 +402,46 @@ namespace ConfigurationApp.Forms
             TreeNode wTreeNodeFile = GetTreeNodeFile();
             System.Diagnostics.Process.Start("IExplore", wTreeNodeFile.ToolTipText);
             
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            TreeNode nodeFile = GetTreeNodeFile();
+            ListDictionary wDictionary = (ListDictionary)nodeFile.Tag;
+
+            //try
+            //{
+
+            //    ConfigProviderSection config = (ConfigProviderSection)configuration.Sections["FwkConfigProvider"];
+            //    config.Providers.re(newProvider);
+
+            //    configuration.Save(ConfigurationSaveMode.Minimal, true);
+
+            //    Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.re(newProvider);
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.ExceptionViewer.Show(ex);
+            //}
+
+            
+           // RefreshAllFiles();
+
+        }
+
+        private void tsMenuItemQuitFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsMenuItemRefreshFile_Click(object sender, EventArgs e)
+        {
+
         }
 
         

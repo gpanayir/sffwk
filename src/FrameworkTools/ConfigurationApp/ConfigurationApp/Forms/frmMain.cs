@@ -124,6 +124,11 @@ namespace ConfigurationApp
             
         }
 
+        private void btnQuitProvider_Click(object sender, EventArgs e)
+        {
+            
+        }
+
       
       
 

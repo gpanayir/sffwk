@@ -55,7 +55,7 @@ namespace ConfigurationApp
             }
         }
 
-        private void btnSearAssemblie_Click(object sender, EventArgs e)
+        private void btnSearhAssemblie_Click(object sender, EventArgs e)
         {
             if (cboType.Text == "xml")
             {

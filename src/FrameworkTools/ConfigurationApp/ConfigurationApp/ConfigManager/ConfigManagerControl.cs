@@ -41,34 +41,34 @@ namespace ConfigurationApp
         /// <param name="mnGroupOrProperty"></param>
         /// <param name="pStorage"></param>
         internal static void LoadFiles(TreeNode pConfigManagerTreeNode,
-          ContextMenuStrip mnContextCnfgManFile,
+          ContextMenuStrip mnContextCnfgManFile, ContextMenuStrip mnContextCnfgManFile_Fail,
           ContextMenuStrip mnGroupOrProperty, Storage pStorage)
         {
             pStorage.LoadStorage();
             foreach (ConfigProviderElement provider in Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers)
             {
               
-                LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty,  provider,false);
+                LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile,mnContextCnfgManFile_Fail, mnGroupOrProperty,  provider,false);
             }
 
         }
 
         internal static void RefreshAllFiles(TreeNode pConfigManagerTreeNode,
-                  ContextMenuStrip mnContextCnfgManFile,
+                  ContextMenuStrip mnContextCnfgManFile, ContextMenuStrip mnContextCnfgManFile_Fail,
                   ContextMenuStrip mnGroupOrProperty, Storage pStorage)
         {
             pStorage.LoadStorage();
             foreach (ConfigProviderElement provider in Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers)
             {
                 
-                LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile, mnGroupOrProperty,  provider,true);
+                LoadFile(pConfigManagerTreeNode, mnContextCnfgManFile,mnContextCnfgManFile_Fail, mnGroupOrProperty,  provider,true);
             }
 
         }
         
 
         private static void LoadFile(TreeNode pConfigManagerTreeNode,
-           ContextMenuStrip mnContextCnfgManFile,
+           ContextMenuStrip mnContextCnfgManFile, ContextMenuStrip mnContextCnfgManFile_Fail,
            ContextMenuStrip mnGroupOrProperty, ConfigProviderElement provider,bool isRefresh)
         {
               ConfigurationFile wConfigurationFile ;
@@ -120,6 +120,7 @@ namespace ConfigurationApp
                 {
                     TreeNode wFileNode = new TreeNode(provider.BaseConfigFile);
 
+                    wFileNode.ContextMenuStrip = mnContextCnfgManFile_Fail;
                     wFileNode.ToolTipText = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(er1);
                     wDictionary.Add("FullFileName", provider.BaseConfigFile);
                     wDictionary.Add("ConfigurationFile", null);

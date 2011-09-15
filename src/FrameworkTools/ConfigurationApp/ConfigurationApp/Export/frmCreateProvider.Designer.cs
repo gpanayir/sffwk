@@ -196,7 +196,7 @@
             this.btnSearAssemblie.TabIndex = 84;
             this.btnSearAssemblie.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSearAssemblie.UseVisualStyleBackColor = true;
-            this.btnSearAssemblie.Click += new System.EventHandler(this.btnSearAssemblie_Click);
+            this.btnSearAssemblie.Click += new System.EventHandler(this.btnSearhAssemblie_Click);
             // 
             // label1
             // 
