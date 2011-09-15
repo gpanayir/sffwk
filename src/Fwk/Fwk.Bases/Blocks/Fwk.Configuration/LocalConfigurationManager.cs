@@ -203,7 +203,7 @@ namespace Fwk.Configuration
             else
             {
                 //Application.StartupPath
-                wFullFileName = System.IO.Path.Combine(System.Reflection.Assembly.GetExecutingAssembly().Location, provider.BaseConfigFile);
+                wFullFileName = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), provider.BaseConfigFile);
             }
 
             if (!System.IO.File.Exists(wFullFileName))
