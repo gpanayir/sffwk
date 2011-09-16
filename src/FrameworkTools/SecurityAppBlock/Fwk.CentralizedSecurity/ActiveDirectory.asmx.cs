@@ -104,5 +104,11 @@ namespace Fwk.CentralizedSecurity
             ActiveDirectoryService.User_Lock(userName, domain);
             return true;
         }
+        [WebMethod(Description = "Metodo solo para test.")]
+        public string Test()
+        {
+            return "El servicio funciona correctamente";
+        }
+
     }
 }

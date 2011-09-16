@@ -1,21 +1,24 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityAppBlock.Use", "SecurityAppBlock.Use\SecurityAppBlock.Use.csproj", "{9155394C-7D3C-4CD0-AA3A-ACD555D1790A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.ActiveDirectory.Test", "Fwk.Security.ActiveDirectory.Test\Fwk.Security.ActiveDirectory.Test.csproj", "{F34E7964-2942-4129-9236-4F0B1A4F953E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Admin", "Fwk.Security.Admin\Fwk.Security.Admin.csproj", "{27D62BF8-5321-428B-93CE-98CFB8F6223E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security", "..\..\Fwk\Fwk.Security\Fwk.Security.csproj", "{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.AD.TestLogin", "Fwk.Security.AD.TestLogin\Fwk.Security.AD.TestLogin.csproj", "{512B83B3-714E-48D4-904B-222B65B9F86A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943} = {E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.CheckLogging", "Fwk.CheckLogging\Fwk.CheckLogging.csproj", "{6483389E-4CBA-4034-8F9E-2200232E98E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.CentralizedSecurity", "Fwk.CentralizedSecurity\Fwk.CentralizedSecurity.csproj", "{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}"
+Project("{00000000-0000-0000-0000-000000000000}") = "Fwk.CentralizedSecurity", "Fwk.CentralizedSecurity\Fwk.CentralizedSecurity.csproj", "{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
@@ -60,8 +63,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F34E7964-2942-4129-9236-4F0B1A4F953E} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
 		{9155394C-7D3C-4CD0-AA3A-ACD555D1790A} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
+		{F34E7964-2942-4129-9236-4F0B1A4F953E} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
 		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
 		{512B83B3-714E-48D4-904B-222B65B9F86A} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
 		{6483389E-4CBA-4034-8F9E-2200232E98E5} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
