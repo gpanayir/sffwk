@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.CheckLogging", "Fwk.Che
 EndProject
 Project("{00000000-0000-0000-0000-000000000000}") = "Fwk.CentralizedSecurity", "Fwk.CentralizedSecurity\Fwk.CentralizedSecurity.csproj", "{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service", "..\..\Services\Fwk.Security.Service\Fwk.Security.Service.csproj", "{5659954E-96C0-4D30-8728-DF8BD381A63D}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -58,6 +60,10 @@ Global
 		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

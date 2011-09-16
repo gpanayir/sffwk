@@ -62,11 +62,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActiveDirectory.asmx" />
+    <Content Include="ASPNet.asmx" />
+    <Content Include="ServiceMetadataConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveDirectory.asmx.cs">
       <DependentUpon>ActiveDirectory.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ASPNet.asmx.cs">
+      <DependentUpon>ASPNet.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Contracts\ActiveDirectoryGroup.cs" />
@@ -80,6 +88,10 @@
     <ProjectReference Include="..\..\..\Fwk\Fwk.Security\Fwk.Security.csproj">
       <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
       <Name>Fwk.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Services\Fwk.Security.Service\Fwk.Security.Service.csproj">
+      <Project>{5659954E-96C0-4D30-8728-DF8BD381A63D}</Project>
+      <Name>Fwk.Security.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
