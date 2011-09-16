@@ -42,5 +42,15 @@ namespace Fwk.Bases.Connector.Properties {
                 return ((string)(this["Fwk_Bases_Connector_singleservice_SingleService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:14538/ASPNet.asmx")]
+        public string Fwk_Bases_Connector_ASPNetSecurity_ASPNet {
+            get {
+                return ((string)(this["Fwk_Bases_Connector_ASPNetSecurity_ASPNet"]));
+            }
+        }
     }
 }
