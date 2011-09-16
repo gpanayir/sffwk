@@ -22,6 +22,10 @@ Project("{00000000-0000-0000-0000-000000000000}") = "Fwk.CentralizedSecurity", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service", "..\..\Services\Fwk.Security.Service\Fwk.Security.Service.csproj", "{5659954E-96C0-4D30-8728-DF8BD381A63D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service.Test", "..\..\Services\Fwk.Security.Service.Test\Fwk.Security.Service.Test.csproj", "{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASPNetServices", "ASPNetServices", "{2166907B-4844-44C0-A519-F93031558E1C}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -64,6 +68,10 @@ Global
 		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5659954E-96C0-4D30-8728-DF8BD381A63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,5 +82,7 @@ Global
 		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
 		{512B83B3-714E-48D4-904B-222B65B9F86A} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
 		{6483389E-4CBA-4034-8F9E-2200232E98E5} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264} = {2166907B-4844-44C0-A519-F93031558E1C}
+		{5659954E-96C0-4D30-8728-DF8BD381A63D} = {2166907B-4844-44C0-A519-F93031558E1C}
 	EndGlobalSection
 EndGlobal
