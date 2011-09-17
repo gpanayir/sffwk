@@ -144,10 +144,17 @@ namespace Fwk.Security
                 }
                 else
                 {
-                    throw new Exception(string.Format(Fwk.Security.Properties.Resource.RoleExist, roleName));
 
+                    TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.RoleExist, roleName));
+                    ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                    te.ErrorId = "4010";
+                    throw te;
                 }
 
+            }
+            catch (TechnicalException err)
+            {
+                throw err;
             }
             catch (Exception ex)
             {

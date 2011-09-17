@@ -53,6 +53,10 @@ namespace Fwk.Security.Admin
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbProviders = new DevExpress.XtraEditors.LookUpEdit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblServer = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblDatabase = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProviders.Properties)).BeginInit();
@@ -60,9 +64,10 @@ namespace Fwk.Security.Admin
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(573, 12);
+            this.button1.Location = new System.Drawing.Point(764, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -74,8 +79,9 @@ namespace Fwk.Security.Admin
             this.lbltitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbltitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbltitle.Location = new System.Drawing.Point(0, 0);
+            this.lbltitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbltitle.Name = "lbltitle";
-            this.lbltitle.Size = new System.Drawing.Size(985, 69);
+            this.lbltitle.Size = new System.Drawing.Size(1313, 85);
             this.lbltitle.TabIndex = 2;
             this.lbltitle.Text = "Security admin";
             this.lbltitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -111,10 +117,11 @@ namespace Fwk.Security.Admin
             this.navBarItem_Check,
             this.navBarItem_RulesEdit,
             this.navBarItem_Encrypt});
-            this.navBarControl1.Location = new System.Drawing.Point(7, 72);
+            this.navBarControl1.Location = new System.Drawing.Point(9, 89);
+            this.navBarControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 177;
-            this.navBarControl1.Size = new System.Drawing.Size(177, 557);
+            this.navBarControl1.Size = new System.Drawing.Size(236, 686);
             this.navBarControl1.TabIndex = 4;
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinExplorerBarViewInfoRegistrator("Money Twins");
@@ -249,13 +256,14 @@ namespace Fwk.Security.Admin
             // 
             // panelControl1
             // 
-            this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl1.AutoSize = true;
-            this.panelControl1.Location = new System.Drawing.Point(190, 72);
+            this.panelControl1.Location = new System.Drawing.Point(253, 89);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(783, 561);
+            this.panelControl1.Size = new System.Drawing.Size(1044, 690);
             this.panelControl1.TabIndex = 5;
             // 
             // label2
@@ -264,27 +272,85 @@ namespace Fwk.Security.Admin
             this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Maroon;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(17, 14);
+            this.label2.Location = new System.Drawing.Point(13, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(171, 16);
+            this.label2.Size = new System.Drawing.Size(138, 20);
             this.label2.TabIndex = 19;
             this.label2.Text = "Security provide";
             // 
             // cmbProviders
             // 
-            this.cmbProviders.Location = new System.Drawing.Point(16, 33);
+            this.cmbProviders.Location = new System.Drawing.Point(144, 13);
+            this.cmbProviders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbProviders.Name = "cmbProviders";
             this.cmbProviders.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbProviders.Size = new System.Drawing.Size(243, 20);
+            this.cmbProviders.Size = new System.Drawing.Size(231, 22);
             this.cmbProviders.TabIndex = 20;
             this.cmbProviders.EditValueChanged += new System.EventHandler(this.cmbProviders_EditValueChanged);
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DimGray;
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(18, 47);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 20);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Server";
+            // 
+            // lblServer
+            // 
+            this.lblServer.BackColor = System.Drawing.Color.White;
+            this.lblServer.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServer.ForeColor = System.Drawing.Color.DimGray;
+            this.lblServer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblServer.Location = new System.Drawing.Point(98, 47);
+            this.lblServer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblServer.Name = "lblServer";
+            this.lblServer.Size = new System.Drawing.Size(189, 20);
+            this.lblServer.TabIndex = 22;
+            this.lblServer.Text = "Server";
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.DimGray;
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(18, 67);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 20);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Database";
+            // 
+            // lblDatabase
+            // 
+            this.lblDatabase.BackColor = System.Drawing.Color.White;
+            this.lblDatabase.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDatabase.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDatabase.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblDatabase.Location = new System.Drawing.Point(98, 65);
+            this.lblDatabase.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDatabase.Name = "lblDatabase";
+            this.lblDatabase.Size = new System.Drawing.Size(72, 20);
+            this.lblDatabase.TabIndex = 24;
+            this.lblDatabase.Text = "Database";
+            // 
             // frmAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 651);
+            this.ClientSize = new System.Drawing.Size(1313, 801);
+            this.Controls.Add(this.lblDatabase);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblServer);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbProviders);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panelControl1);
@@ -292,6 +358,7 @@ namespace Fwk.Security.Admin
             this.Controls.Add(this.lbltitle);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "frmAdmin";
             this.Text = "Security admin";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -328,6 +395,10 @@ namespace Fwk.Security.Admin
         private DevExpress.XtraEditors.LookUpEdit cmbProviders;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_Encrypt;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblServer;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblDatabase;
     }
 }
 

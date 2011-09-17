@@ -52,6 +52,7 @@ namespace Fwk.Security.Admin
         private void cmbProviders_EditValueChanged(object sender, EventArgs e)
         {
             frmAdmin.Provider = Membership.Providers[cmbProviders.Text];
+      
             if (currontSecurityControlBase == null) return;
             try
             {
