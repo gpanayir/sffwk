@@ -164,7 +164,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Remoting\App.config" />
+    <None Include="Remoting\App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web References\Singleservice\SingleService.wsdl" />
   </ItemGroup>
   <ItemGroup>

@@ -235,7 +235,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void SetServiceConfiguration(String pServiceName ,ServiceConfiguration pServiceConfiguration)
         {
-            throw new TechnicalException("SetServiceConfiguration is not implemented on ASPNET Securrity service");
+            throw new TechnicalException("SetServiceConfiguration is not implemented on ASPNET Security service");
         }
 
      
@@ -248,7 +248,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
         {
-            throw new TechnicalException("AddServiceConfiguration is not implemented on ASPNET Securrity service");
+            throw new TechnicalException("AddServiceConfiguration is not implemented on ASPNET Security service");
         
         }
 
@@ -260,7 +260,7 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public void DeleteServiceConfiguration(string pServiceName)
         {
-            throw new TechnicalException("DeleteServiceConfiguration is not implemented on ASPNET Securrity service");
+            throw new TechnicalException("DeleteServiceConfiguration is not implemented on ASPNET Security service");
         }
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace Fwk.Bases.Connector
         /// <returns></returns>
         public  List<String> GetAllApplicationsId()
         {
-            throw new TechnicalException("GetAllApplicationsId is not implemented on ASPNET Securrity service");
+            throw new TechnicalException("GetAllApplicationsId is not implemented on ASPNET Security service");
         }
         /// <summary>
         /// Obtiene info del proveedor de metadata
@@ -286,7 +286,7 @@ namespace Fwk.Bases.Connector
                 if (_Credentials != null)
                     wService.Credentials = _Credentials;
                 wService.Url = _URL;
-                Fwk.Bases.Connector.Singleservice.MetadataProvider wMetadataProviderRemoto = wService.GetProviderInfo(providerName);
+                Fwk.Bases.Connector.ASPNetSecurity.MetadataProvider wMetadataProviderRemoto = wService.GetProviderInfo(providerName);
 
                 string xml = Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(wMetadataProviderRemoto);
                
@@ -300,37 +300,7 @@ namespace Fwk.Bases.Connector
 
             }
         }
-        /// <summary>
-        /// Mapeta  Fwk.Bases.ServiceConfiguration a Fwk.Bases.Connector.SingleService.ServiceConfiguration 
-        /// </summary>
-        /// <param name="pServiceConfiguration"></param>
-        /// <returns></returns>
-        private static Fwk.Bases.Connector.Singleservice.ServiceConfiguration GetServiceConfigurationProxy(ServiceConfiguration pServiceConfiguration)
-        {
-            Fwk.Bases.Connector.Singleservice.ServiceConfiguration wServiceConfigurationProxy = null;
-
-            wServiceConfigurationProxy = new Fwk.Bases.Connector.Singleservice.ServiceConfiguration();
-            wServiceConfigurationProxy.Audit = pServiceConfiguration.Audit;
-            wServiceConfigurationProxy.name = pServiceConfiguration.Name;
-            wServiceConfigurationProxy.Handler = pServiceConfiguration.Handler;
-            wServiceConfigurationProxy.Request = pServiceConfiguration.Request;
-            wServiceConfigurationProxy.Response = pServiceConfiguration.Response;
-            wServiceConfigurationProxy.CreatedDateTime = pServiceConfiguration.CreatedDateTime;
-            wServiceConfigurationProxy.ApplicationId = pServiceConfiguration.ApplicationId;
-            wServiceConfigurationProxy.Available = pServiceConfiguration.Available;
-            wServiceConfigurationProxy.Description = pServiceConfiguration.Description;
-            wServiceConfigurationProxy.Audit = pServiceConfiguration.Audit;
-            wServiceConfigurationProxy.CreatedUserName = pServiceConfiguration.CreatedUserName;
-            String name = Enum.GetName(typeof(Fwk.Transaction.IsolationLevel), pServiceConfiguration.IsolationLevel);
-            wServiceConfigurationProxy.IsolationLevel = (Fwk.Bases.Connector.Singleservice.IsolationLevel)
-                Enum.Parse(typeof(Fwk.Bases.Connector.Singleservice.IsolationLevel), pServiceConfiguration.IsolationLevel.ToString());
-
-            wServiceConfigurationProxy.TransactionalBehaviour = (Fwk.Bases.Connector.Singleservice.TransactionalBehaviour)
-                Enum.Parse(typeof(Fwk.Bases.Connector.Singleservice.TransactionalBehaviour), pServiceConfiguration.TransactionalBehaviour.ToString());
-           
-
-            return wServiceConfigurationProxy;
-        }
+      
         #endregion [ServiceConfiguration]
 
 

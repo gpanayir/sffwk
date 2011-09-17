@@ -153,6 +153,10 @@ ErrorId = 4008
 ErrorId = 4009	
  User_NoApproved	El usuario {0} no es un usuario aprobado. Pongase en contacto con su administrador de seguridad.	
 
+ ErrorId = 4010
+
+ RoleExist	Role {0} already exists.
+
 --------------------------------   Fwk.Security Active directory-----------------------------------
 ErrorId = 4103 : AD_GetingDomainsURL_Error
 Error al intentar obtener la lista de dominios desde la base de datos:
