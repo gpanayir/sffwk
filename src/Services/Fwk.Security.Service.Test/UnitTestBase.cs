@@ -14,7 +14,7 @@ namespace Fwk.Bases.Test
     [TestClass]
     public class UnitTestBase
     {
-        public const string SecurityProviderName = "providerTest";
+        public const string SecurityProviderName = "sec_test_provider";
         public UnitTestBase()
         {
             _ClientServiceBase = new ClientServiceBase();

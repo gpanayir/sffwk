@@ -65,6 +65,7 @@
     <Content Include="ASPNet.asmx" />
     <Content Include="ServiceMetadataConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>

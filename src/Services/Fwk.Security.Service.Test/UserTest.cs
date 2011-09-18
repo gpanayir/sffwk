@@ -29,8 +29,26 @@ namespace ServiceTest
     [TestClass]
     public class UserTest : Fwk.Bases.Test.UnitTestBase
     {
-       
-       
+
+        public UserTest()
+        {
+            User wUser = new User();
+
+            wUser.UserName = "moviedo";
+            wUser.FirstName = "Marcelo";
+            wUser.LastName = "Oviedo";
+            wUser.Password = "12345678";
+            wUser.Email = "marcelo.oviedo@santesxer.com.ca";
+
+            wUser.IsApproved = true;
+
+            try
+            {
+                //CreeateUser_No_Service(wUser);
+            }
+            catch { }
+        }
+    
    
         [TestMethod]
         public void SearchAllUsers_NoService()
@@ -78,30 +96,30 @@ namespace ServiceTest
         #region WindowsDefaultUser (4 Test Methods)
 
         [TestMethod()]
-        public void AuthenticateUserReq_WindowsAuthenticationDefaultUser_NonExistentUser()
+        public void AuthenticateUser_WindowsAuthenticationDefaultUser_NonExistentUser()
         {
-            AuthenticateUserReq_WindowsAuthenticationDefaultUser("usuarioquenoexiste");
+            AuthenticateUser_WindowsAuthenticationDefaultUser("usuarioquenoexiste");
         }
 
         [TestMethod()]
-        public void AuthenticateUserReq_WindowsAuthenticationDefaultUser_ok()
+        public void AuthenticateUser_WindowsAuthenticationDefaultUser_ok()
         {
-            AuthenticateUserReq_WindowsAuthenticationDefaultUser("jiguastini");
+            AuthenticateUser_WindowsAuthenticationDefaultUser("moviedo");
         }
 
         [TestMethod()]
-        public void AuthenticateUserReq_WindowsAuthenticationDefaultUser_IsApprovedFalse()
+        public void AuthenticateUser_WindowsAuthenticationDefaultUser_IsApprovedFalse()
         {
-            AuthenticateUserReq_WindowsAuthenticationDefaultUser("sinjefe");
+            AuthenticateUser_WindowsAuthenticationDefaultUser("moviedo");
         }
 
         [TestMethod()]
-        public void AuthenticateUserReq_WindowsAuthenticationDefaultUser_ActiveFlagFalse()
+        public void AuthenticateUser_WindowsAuthenticationDefaultUser_ActiveFlagFalse()
         {
-            AuthenticateUserReq_WindowsAuthenticationDefaultUser("sirefresco");
+            AuthenticateUser_WindowsAuthenticationDefaultUser("sirefresco");
         }
 
-        public void AuthenticateUserReq_WindowsAuthenticationDefaultUser(string pUserName)
+        public void AuthenticateUser_WindowsAuthenticationDefaultUser(string pUserName)
         {
 
             String strErrorResut = String.Empty;
@@ -109,7 +127,7 @@ namespace ServiceTest
             AuthenticateUserService svc = new AuthenticateUserService();
             req.BusinessData.AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
             req.BusinessData.UserName = pUserName;
-            req.BusinessData.IsEnvironmentUser = true;
+            req.BusinessData.IsEnvironmentUser = false;
 
             try
             {
@@ -123,8 +141,8 @@ namespace ServiceTest
             }
 
 
-            Assert.AreEqual<String>(strErrorResut, string.Empty, strErrorResut);
-
+            Assert.AreEqual<String>(strErrorResut, String.Empty, strErrorResut);
+    
 
         }
 
@@ -155,7 +173,7 @@ namespace ServiceTest
         {
             AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo1", "passwordchoto", "ALLUS-AR");
         }
-
+        object sysobj = new object ();
         public void AuthenticateUserReq_WindowsAuthenticationDomainUser(string pUserName, string pPassword, string pDomain)
         {
             String strErrorResult = string.Empty;
@@ -175,8 +193,10 @@ namespace ServiceTest
             {
                 strErrorResult = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
             }
-
-            Assert.AreEqual<String>(strErrorResult, string.Empty, strErrorResult);
+            lock (sysobj)
+            {
+                Assert.AreEqual<String>(strErrorResult, String.Empty, strErrorResult);
+            }
 
         }
 
