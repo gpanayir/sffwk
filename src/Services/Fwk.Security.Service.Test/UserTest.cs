@@ -80,8 +80,6 @@ namespace ServiceTest
             {
 
                 GetUserInfoByParamsRes res = service.Execute(req);
-
-
             }
             catch (Exception ex)
             {
@@ -461,7 +459,7 @@ namespace ServiceTest
           
 
             SearchDomainsUrlsRequest wRequest = new SearchDomainsUrlsRequest();
-            wRequest.BusinessData.ConnectionString = "BigBangConnectionString";
+            wRequest.BusinessData.ConnectionString = "test";
             SearchDomainsUrlsService svc = new SearchDomainsUrlsService();
 
             try
