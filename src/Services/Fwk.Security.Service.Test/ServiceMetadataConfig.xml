@@ -12,7 +12,8 @@
 		
 		
 	</ServiceConfiguration>
-	<ServiceConfiguration name="AuthenticateUserService">
+                              
+  <ServiceConfiguration name="AuthenticateUserService">
 		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-06-24T12:35:47.0558685-03:00</CreatedDateTime>
 		<Description>Este servicio permite realizar autenticacion de usuario con seguridad integrada o mixta.- Si la seguridad es mixta no es necesario pasar como parametro el password y hay que establecer el valor WindowsAtentication = true</Description>

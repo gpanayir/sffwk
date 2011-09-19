@@ -29,22 +29,40 @@ namespace ServiceTest
     [TestClass]
     public class UserTest : Fwk.Bases.Test.UnitTestBase
     {
-
+        static User wTestUser = null;
+        static User wUnaprovedUser = null;
+        
         public UserTest()
         {
-            User wUser = new User();
+             wTestUser = new User();
 
-            wUser.UserName = "moviedo";
-            wUser.FirstName = "Marcelo";
-            wUser.LastName = "Oviedo";
-            wUser.Password = "12345678";
-            wUser.Email = "marcelo.oviedo@santesxer.com.ca";
+            wTestUser.UserName = "riley";
+            wTestUser.FirstName = "Riley";
+            wTestUser.LastName = "B. King";
+            wTestUser.Password = "12345678";
+            wTestUser.Email = "Riley.King@rollingstones.com";
 
-            wUser.IsApproved = true;
+            wTestUser.IsApproved = true;
 
+             wUnaprovedUser = new User();
+
+            wUnaprovedUser.UserName = "daved";
+            wUnaprovedUser.FirstName = "Daved";
+            wUnaprovedUser.LastName = "Matthews";
+            wUnaprovedUser.Password = "12345678";
+            wUnaprovedUser.Email = "daved.matthews@rollingstones.com";
+
+            wUnaprovedUser.IsApproved = false;
             try
             {
-                //CreeateUser_No_Service(wUser);
+                CreeateUser_No_Service(wTestUser);
+                CreeateUser_No_Service(wUnaprovedUser);
+            }
+            catch { }
+            try
+            {
+                CreeateUser_No_Service(wTestUser);
+                
             }
             catch { }
         }
@@ -75,7 +93,7 @@ namespace ServiceTest
             string strErrorResult = string.Empty;
             Fwk.Security.SVC.GetUserInfoByParamsService service = new Fwk.Security.SVC.GetUserInfoByParamsService();
             GetUserInfoByParamsReq req = new GetUserInfoByParamsReq();
-            req.BusinessData.UserName = "moviedo";
+            req.BusinessData.UserName = wTestUser.UserName;
             try
             {
 
@@ -91,136 +109,35 @@ namespace ServiceTest
 
         #region Authentication Test Methods
 
-        #region WindowsDefaultUser (4 Test Methods)
-
         [TestMethod()]
-        public void AuthenticateUser_WindowsAuthenticationDefaultUser_NonExistentUser()
+        public void AuthenticateUser_NonExistentUser()
         {
-            AuthenticateUser_WindowsAuthenticationDefaultUser("usuarioquenoexiste");
+            AuthenticateUser("usuarioquenoexiste","123345");
         }
 
         [TestMethod()]
-        public void AuthenticateUser_WindowsAuthenticationDefaultUser_ok()
+        public void AuthenticateUser_ok()
         {
-            AuthenticateUser_WindowsAuthenticationDefaultUser("moviedo");
+            AuthenticateUser(wTestUser.UserName, wTestUser.Password);
         }
 
         [TestMethod()]
-        public void AuthenticateUser_WindowsAuthenticationDefaultUser_IsApprovedFalse()
+        public void AuthenticateUser_IsApproved_False()
         {
-            AuthenticateUser_WindowsAuthenticationDefaultUser("moviedo");
+            AuthenticateUser(wUnaprovedUser.UserName, wUnaprovedUser.Password);
         }
 
+      
+       
         [TestMethod()]
-        public void AuthenticateUser_WindowsAuthenticationDefaultUser_ActiveFlagFalse()
+        public void AuthenticateUser_WrongPassword()
         {
-            AuthenticateUser_WindowsAuthenticationDefaultUser("sirefresco");
+            AuthenticateUser(wUnaprovedUser.UserName, "sarasabtrosca");
         }
 
-        public void AuthenticateUser_WindowsAuthenticationDefaultUser(string pUserName)
-        {
+   
 
-            String strErrorResut = String.Empty;
-            AuthenticateUserReq req = new AuthenticateUserReq();
-            AuthenticateUserService svc = new AuthenticateUserService();
-            req.BusinessData.AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
-            req.BusinessData.UserName = pUserName;
-            req.BusinessData.IsEnvironmentUser = false;
-
-            try
-            {
-                AuthenticateUserRes res = svc.Execute(req);
-
-
-            }
-            catch (Exception ex)
-            {
-                strErrorResut = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-            }
-
-
-            Assert.AreEqual<String>(strErrorResut, String.Empty, strErrorResut);
-    
-
-        }
-
-        #endregion
-
-        #region WindowsDomainUser - LDAP (4 Test Methods)
-
-        [TestMethod()]
-        public void AuthenticateUserReq_WindowsAuthenticationDomainUser_UsuarioNoExiste()
-        {
-            AuthenticateUserReq_WindowsAuthenticationDomainUser("usuarioNOExiste", "sarasa", "ALLUS-AR");
-        }
-
-        [TestMethod()]
-        public void AuthenticateUserReq_WindowsAuthenticationDomainUser_Ok()
-        {
-            AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo2", "Allus+123", "ALLUS-AR");
-        }
-
-        [TestMethod()]
-        public void AuthenticateUserReq_WindowsAuthenticationDomainUser_InactiveUser()
-        {
-            AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo2", "Allus+123", "ALLUS-AR");
-        }
-
-        [TestMethod()]
-        public void AuthenticateUserReq_WindowsAuthenticationDomainUser_WrongPassword()
-        {
-            AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo1", "passwordchoto", "ALLUS-AR");
-        }
-        object sysobj = new object ();
-        public void AuthenticateUserReq_WindowsAuthenticationDomainUser(string pUserName, string pPassword, string pDomain)
-        {
-            String strErrorResult = string.Empty;
-            AuthenticateUserService svc = new AuthenticateUserService();
-            AuthenticateUserReq req = new AuthenticateUserReq();
-            req.BusinessData.AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
-            req.BusinessData.UserName = pUserName;
-            req.BusinessData.Password = pPassword;
-            req.BusinessData.Domain = pDomain;
-            req.BusinessData.IsEnvironmentUser = false;
-
-            try
-            {
-                AuthenticateUserRes res = svc.Execute(req);
-            }
-            catch (Exception ex)
-            {
-                strErrorResult = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
-            }
-            lock (sysobj)
-            {
-                Assert.AreEqual<String>(strErrorResult, String.Empty, strErrorResult);
-            }
-
-        }
-
-        #endregion
-
-        #region MixedAuthentication (3 Test Methods)
-
-        [TestMethod()]
-        public void AuthenticateUserReq_MixedAuthentication_Ok()
-        {
-            AuthenticateUserReq_MixedAuth("jiguastini", "jiguastini");
-        }
-
-        [TestMethod()]
-        public void AuthenticateUserReq_MixedAuthentication_WrongPassword()
-        {
-            AuthenticateUserReq_MixedAuth("cviglietta", "sarasabtrosca");
-        }
-
-        [TestMethod()]
-        public void AuthenticateUserReq_MixedAuthentication_WrongUser()
-        {
-            AuthenticateUserReq_MixedAuth("saracatunga", "sarabatrosca");
-        }
-
-        public void AuthenticateUserReq_MixedAuth(string pUserName, string pPassword)
+        public void AuthenticateUser(string pUserName, string pPassword)
         {
             String wErrorResult;
 
@@ -241,7 +158,7 @@ namespace ServiceTest
 
         #endregion
 
-        #endregion
+       
 
         [TestMethod()]
         public void User_CRUD_No_Service()

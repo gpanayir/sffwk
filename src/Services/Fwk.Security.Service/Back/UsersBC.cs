@@ -19,10 +19,10 @@ namespace Fwk.Security.BC
     /// <summary>
     /// 
     /// </summary>
-    public class UserBC:Fwk.Bases.BaseBC
+    public class UserBC : Fwk.Bases.BaseBC
     {
         string _ProviderName = string.Empty;
-        public UserBC(string pCompanyId,string pProviderName)
+        public UserBC(string pCompanyId, string pProviderName)
             : base(pCompanyId)
         {
             _ProviderName = pProviderName;
@@ -38,7 +38,7 @@ namespace Fwk.Security.BC
         /// <returns>UserId del nuevo usuario.</returns>
         public void Create(User pUser)
         {
-                        
+
             //TODO: Ver tema de nuevo GUID para el usuario 
             //Guid wUserGUID = Guid.NewGuid();
 
@@ -47,7 +47,7 @@ namespace Fwk.Security.BC
             // se inserta en las membership el nuevo usuario
             User wNewUser = FwkMembership.CreateUser(pUser.UserName, pUser.Password, pUser.Email,
                                                           pUser.QuestionPassword, pUser.AnswerPassword,
-                                                          pUser.IsApproved, out pStatus,_ProviderName);
+                                                          pUser.IsApproved, out pStatus, _ProviderName);
 
             // se inserta el usuario custom
             if (pStatus == MembershipCreateStatus.Success)
@@ -57,13 +57,12 @@ namespace Fwk.Security.BC
                 if (pUser.Roles != null)
                 {
                     RolList roleList = pUser.GetRolList();
-
                     FwkMembership.CreateRolesToUser(roleList, pUser.UserName, _ProviderName);
                 }
             }
             else
             {
-                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_Created_Error_Message, pUser.UserName,pStatus));
+                TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_Created_Error_Message, pUser.UserName, pStatus));
                 ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 te.ErrorId = "4008";
                 throw te;
@@ -78,23 +77,23 @@ namespace Fwk.Security.BC
         /// <param name="userName">Nombre no modificado del usuario.- El nuevo nombre de usuario en caso de modifucacion 
         /// va en el parametro pUser </param>
         /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
-        public void Update(User pUser,string userName)
+        public void Update(User pUser, string userName)
         {
             Validate(pUser, false);
-            
-           
+
+
             // Actualizacion del usuario de las membership
-            FwkMembership.UpdateUser(pUser,userName, _ProviderName);
-            
+            FwkMembership.UpdateUser(pUser, userName, _ProviderName);
+
             // Se actualizan los roles que posee el usuario
             if (pUser.Roles != null)
             {
-                RolList usrRoles = FwkMembership.GetRolesForUser(pUser.UserName,_ProviderName);
+                RolList usrRoles = FwkMembership.GetRolesForUser(pUser.UserName, _ProviderName);
                 FwkMembership.RemoveUserFromRoles(pUser.UserName, usrRoles, _ProviderName);
                 RolList newRolList = pUser.GetRolList();
                 FwkMembership.CreateRolesToUser(newRolList, pUser.UserName, _ProviderName);
             }
-        }             
+        }
 
         /// <summary>
         /// Cambia la password.-
@@ -109,12 +108,12 @@ namespace Fwk.Security.BC
             {
                 try
                 {
-                    pOldPassword = FwkMembership.ResetUserPassword(pUserName,_ProviderName);
+                    pOldPassword = FwkMembership.ResetUserPassword(pUserName, _ProviderName);
                 }
                 catch (System.Web.Security.MembershipPasswordException)
                 {
-                    FwkMembership.UnlockUser(pUserName,_ProviderName);
-                    pOldPassword = FwkMembership.ResetUserPassword(pUserName,_ProviderName);
+                    FwkMembership.UnlockUser(pUserName, _ProviderName);
+                    pOldPassword = FwkMembership.ResetUserPassword(pUserName, _ProviderName);
                 }
                 catch (Exception er)
                 {
@@ -126,25 +125,21 @@ namespace Fwk.Security.BC
                 pOldPassword,
                 pNewPassword, _ProviderName))
             {
-                
+
                 TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_InvalidCredentialsMessage, pUserName));
                 ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 te.ErrorId = "4007";
                 throw te;
 
             }
-
-            //UsersBE wUserBE = UsersDAC.GetByName(pUserName, _ProviderName);
-            //wUserBE.MustChangePassword = false;
-            //UsersDAC.Update(wUserBE,_ProviderName);
         }
-        
+
         /// <summary>
         /// Valida si el usuario existe. y si no le falta el nombre
         /// </summary>
         /// <param name="pUser">UsersBE a validar.</param>
         /// <param name="pIsNewUser">Si es nuevo se verifica de otra forma</param>
-        void Validate(User pUser,Boolean pIsNewUser)
+        void Validate(User pUser, Boolean pIsNewUser)
         {
             //Validación de existencia de usuario
             //Nombre vacio
@@ -154,17 +149,15 @@ namespace Fwk.Security.BC
             }
 
             if (pIsNewUser)
-            { 
+            {
                 //Nombre ya existente
                 User wUser = FwkMembership.GetUser(pUser.UserName, _ProviderName);
-                
+
                 TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NotExist, pUser.UserName));
                 ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 te.ErrorId = "4007";
                 throw te;
 
-                
-                
             }
         }
 
@@ -174,31 +167,14 @@ namespace Fwk.Security.BC
         /// <param name="pUserName"></param>
         /// <param name="pRolList"></param>
         /// <returns></returns>
-        public void GetUserByParams(String pUserName,out User pUser  , out RolList pRolList)
+        public void GetUserByParams(String pUserName, out User pUser, out RolList pRolList)
         {
-           
-
             pUser = FwkMembership.GetUser(pUserName, _ProviderName);
-
-            //if (CustomParameters != null)
-            //{
-            //    if (CustomParameters.Count > 0)
-            //    {
-            //        wUserInfo = UsersDAC.GetUser(_ProviderName, CustomParameters, pCustomUserStoreProcedure);
-
-            //        if (wUserInfo == null)
-            //        {
-            //            throw new FunctionalException("No se encontró ningún usuario");
-            //        }
-            //    }
-            //}
             pRolList = FwkMembership.GetRolesForUser(pUserName, _ProviderName);
-
-          
         }
 
-     
-        
+
+
         /// <summary>
         /// Obtiene el usauario de las Membership
         ///   Si es NULL lanza Ex dentro de la llamada anterior
@@ -217,9 +193,9 @@ namespace Fwk.Security.BC
         public bool AuthenticateUser(String pUserName, String pPassword, out User pUser)
         {
             //Si el usuario no existe se retorna una  TechnicalException ErrorId = "4007" == User_NotExist
-             pUser = Fwk.Security.FwkMembership.GetUser(pUserName, _ProviderName);
-      
-        
+            pUser = Fwk.Security.FwkMembership.GetUser(pUserName, _ProviderName);
+
+
             if (!pUser.IsApproved)
             {
                 TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.User_NoApproved, pUserName));
@@ -227,7 +203,7 @@ namespace Fwk.Security.BC
                 ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 te.ErrorId = "4009";
                 throw te;
-            }    
+            }
 
             bool wValidateUser = Fwk.Security.FwkMembership.ValidateUser(pUserName, pPassword, _ProviderName);
 
@@ -253,7 +229,7 @@ namespace Fwk.Security.BC
 
 
             ADHelper wADHelper = StaticsValues.Find_ADHelper(pDomain);
-           
+
             LoginResult wLoginResult = wADHelper.User_CheckLogin(pUserName, pPassword);
 
 
@@ -264,25 +240,25 @@ namespace Fwk.Security.BC
                 //    break;
                 case LoginResult.ERROR_PASSWORD_EXPIRED:
                     throw new AuthenticationException("La clave ha expirado.");
-                    break;
+
                 case LoginResult.ERROR_PASSWORD_MUST_CHANGE:
                     throw new AuthenticationException("El usuario debe cambiar la clave.");
-                    break;
+
                 case LoginResult.LOGIN_USER_ACCOUNT_INACTIVE:
                     throw new AuthenticationException("La cuenta se encuentra deshabilitada.");
-                    break;
+
                 case LoginResult.LOGIN_USER_ACCOUNT_LOCKOUT:
                     throw new AuthenticationException("La cuenta se encuentra bloqueada.");
-                    break;
+
                 case LoginResult.LOGIN_USER_DOESNT_EXIST:
                     throw new AuthenticationException("Error en nombre de usuario y/o clave.");
-                    break;
+
                 case LoginResult.LOGIN_USER_OR_PASSWORD_INCORRECT:
                     throw new AuthenticationException("Error en nombre de usuario y/o clave.");
-                    break;
+
                 default:
                     throw new FunctionalException("Error desconocido.");
-                    break;
+
             }
 
             //return true;//this.AuthenticateUser(pUserName,pUserName,out pUser);
@@ -292,8 +268,13 @@ namespace Fwk.Security.BC
 
             return wLoginResult;
         }
-      
-        public  List<String> MapListDomainToListString(List<DomainUrlInfo> pDomainUrlInfoList)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pDomainUrlInfoList"></param>
+        /// <returns></returns>
+        public List<String> MapListDomainToListString(List<DomainUrlInfo> pDomainUrlInfoList)
         {
             List<String> wDomainNamesList = new List<String>();
 
@@ -305,35 +286,30 @@ namespace Fwk.Security.BC
             return wDomainNamesList;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUserName"></param>
+        /// <returns></returns>
         public User GetUser(String pUserName)
         {
 
             User wUser = FwkMembership.GetUser(pUserName, _ProviderName);
 
-            // Verficación de parametros customizables
-            //if (pCustomParameters != null)
-            //{
-            //    if (pCustomParameters.Count > 0)
-            //    {
-            //        wResult = UsersDAC.GetUser(_ProviderName, pCustomParameters, pCustomUserStoreProcedure);
-            //    }
-            //}
 
             return wUser;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public UserList GetAllUser()
         {
-          
 
             // Se obtienen los usuarios de las memberships
             UserList pUserList = new UserList();
             pUserList.AddRange(FwkMembership.GetAllUsers(_ProviderName));
-
-            // Se obtienen los usuarios Custom
-            //if(pCustomUserStoreProcedure != String.Empty)
-            //    wResult = UsersDAC.SearchAllUsers(_ProviderName, pCustomUserStoreProcedure);
 
             return pUserList;
         }
