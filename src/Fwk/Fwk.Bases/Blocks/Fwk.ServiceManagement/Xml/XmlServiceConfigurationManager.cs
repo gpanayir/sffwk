@@ -53,11 +53,7 @@ namespace Fwk.ServiceManagement
             catch (System.IO.IOException ioex)
             {
 
-
-                string wMessage = "Error al inicializar la metadata de los servicios  \r\n Verifique: \r\nArchivo de .config en la seccion FwkServiceMetadata el \r\nValor de [sourceinfo],  que la ruta y archivo de metadata sea correcta";
-
-
-                TechnicalException te = new TechnicalException(wMessage, ioex);
+                TechnicalException te = new TechnicalException(Fwk.Bases.Properties.Resources.ServiceManagement_SourceInfo_Error, ioex);
                 if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
                     te.Source = string.Concat("Despachador de servicios en ", Environment.MachineName);
                 else

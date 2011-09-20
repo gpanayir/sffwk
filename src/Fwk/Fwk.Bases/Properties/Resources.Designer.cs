@@ -94,5 +94,25 @@ namespace Fwk.Bases.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error al inicializar la metadata de los servicios.\r\n Verifique: en el archivo de de configuracion (.config) la seccion [FwkServiceMetadata] el\r\n atributo [sourceinfo],  que la ruta y archivo de metadata sea correcta.-.
+        /// </summary>
+        internal static string ServiceManagement_SourceInfo_Error {
+            get {
+                return ResourceManager.GetString("ServiceManagement_SourceInfo_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error en la configuración del wrapper  {0}, esta definiendo un proveedor de metadatos de servicios \r\n
+        ///que no se puede encontrar,  verifique el atributo ser1viceMetadataProviderName sea = a un nombre de proveedor \r\n
+        ///correcto y existente.\r\n.
+        /// </summary>
+        internal static string Wrapper_ServiceMetadataProviderName_NotExist {
+            get {
+                return ResourceManager.GetString("Wrapper_ServiceMetadataProviderName_NotExist", resourceCulture);
+            }
+        }
     }
 }

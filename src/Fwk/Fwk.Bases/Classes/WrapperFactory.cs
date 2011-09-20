@@ -124,7 +124,19 @@ namespace Fwk.Bases
                 {
                     try
                     {
-                        wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>( pRequest);
+                        wResponse = _WraperPepository[providerName].ExecuteService<TRequest, TResponse>(pRequest);
+                    }
+                    catch (TechnicalException te)
+                    {
+                     
+                        if(te.ErrorId.Equals("7201"))
+                            wResponse.Error = ProcessConnectionsException.Process(
+                                new TechnicalException(
+                                    String.Format(Fwk.Bases.Properties.Resources.Wrapper_ServiceMetadataProviderName_NotExist,
+                                    _WraperPepository[providerName].ProviderName,te)));
+                        else
+                          wResponse.Error = ProcessConnectionsException.Process(te);
+ 
                     }
                     catch (Exception ex)
                     {

@@ -45,10 +45,14 @@ namespace Fwk.Bases
     public static class Enums
     {
         /// <summary>
+        /// Obtine una expresion con el patron start, contain o finaliza
+        /// <example> 
+        /// string value = GetSearchTypeValue("a",SearchtypeEnum.Contain);
         /// 
+        /// </example>
         /// </summary>
-        /// <param name="pValue"></param>
-        /// <param name="pSearchType"></param>
+        /// <param name="pValue">String</param>
+        /// <param name="pSearchType">Tipo de busqueda <see cref="SearchtypeEnum"/></param>
         /// <returns></returns>
         public static string GetSearchTypeValue(string pValue, SearchtypeEnum pSearchType)
         {
@@ -179,11 +183,29 @@ namespace Fwk.Bases
     /// </summary>
     public enum MessageBoxIcon
     {
+        /// <summary>
+        /// 
+        /// </summary>
         None = 0,
+        /// <summary>
+        /// 
+        /// </summary>
         Error = 16,
+        /// <summary>
+        /// 
+        /// </summary>
         Question = 32,
+        /// <summary>
+        /// 
+        /// </summary>
         Exclamation = 48,
+        /// <summary>
+        /// 
+        /// </summary>
         Warning = 49,
+        /// <summary>
+        /// 
+        /// </summary>
         Information = 64
 
     }
@@ -202,5 +224,8 @@ namespace Fwk.Bases
 
         [Description("Autenticación de Windows")]
         LDAP = 3,
+        [Description("Use SQL Membeships provider and SQL Rol provider")]
+        ASPNETMemberShips = 4
+
     }
 }
