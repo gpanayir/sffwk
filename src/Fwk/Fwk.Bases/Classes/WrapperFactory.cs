@@ -186,7 +186,6 @@ namespace Fwk.Bases
                 try
                 {
                     WrapperProviderElement provider = _ProviderSection.GetProvider(providerName);
-                    if (provider.Name.Equals(_ProviderSection.DefaultProviderName)) providerName = String.Empty;
 
                     if (provider == null)
                     {
@@ -200,6 +199,8 @@ namespace Fwk.Bases
                         Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(WrapperFactory));
                         throw te;
                     }
+
+                    if (provider.Name.Equals(_ProviderSection.DefaultProviderName)) providerName = String.Empty;
 
                     IServiceWrapper w = (IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
                     w.ProviderName = provider.Name;
