@@ -19,76 +19,45 @@ namespace Fwk.Security.Common
     [XmlInclude(typeof(User)), Serializable]
     public class User
     {
-        private Int32? _UserId = 0;
-        private String m_AppName;
-        private String m_UserName;
-        private DateTime m_LastActivityDate;
-        private String m_Email;
-        private Boolean m_IsApproved;
-        private Boolean m_IsLockedOut;
-        private String m_Comment;
-        private String m_Password;
-        private String m_QuestionPassword;
-        private String m_AnswerPassword;
-        private string _DNI;
+        
+           string[] _Roles;
 
-        bool? _MustChangePassword;
-        Int32? _ModifiedByUserId;
-        DateTime? _ModifiedDate;
+
+    
         AuthenticationModeEnum _AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
 
-        public string DNI
-        {
-            get { return _DNI; }
-            set { _DNI = value; }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public DateTime? ModifiedDate
-        {
-            get { return _ModifiedDate; }
-            set { _ModifiedDate = value; }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public Int32? ModifiedByUserId
-        {
-            get { return _ModifiedByUserId; }
-            set { _ModifiedByUserId = value; }
-        }
+
+
+        public string DNI{get;set;}
 
         /// <summary>
         /// 
         /// </summary>
-        public bool? MustChangePassword
-        {
-            get { return _MustChangePassword; }
-            set { _MustChangePassword = value; }
-        }
+        public DateTime? ModifiedDate{get;set;}
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? ModifiedByUserId{get;set;}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool? MustChangePassword{get;set;}
+   
         string _FirstName;
 
         /// <summary>
         /// 
         /// </summary>
-        public string FirstName
-        {
-            get { return _FirstName; }
-            set { _FirstName = value; }
-        }
-        string _LastName;
-
+        public string FirstName{get;set;}
+      
         /// <summary>
         /// 
         /// </summary>
-        public string LastName
-        {
-            get { return _LastName; }
-            set { _LastName = value; }
-        }
-        string[] _Roles;
-
+        public string LastName{get;set;}
+       
+     
         /// <summary>
         /// 
         /// </summary>
@@ -102,114 +71,58 @@ namespace Fwk.Security.Common
         /// Este valor es para comp'atibilidad con sistenmas existentes
         /// 
         /// </summary>
-        public Int32? UserId
-        {
-            get { return _UserId; }
-            set { _UserId = value; }
-        }
+        public int? UserId{get;set;}
+       
         /// <summary>
         /// Answer security password
         /// </summary>
-        public String AnswerPassword
-        {
-            get
-            {
-                return m_AnswerPassword;
-            }
-            set
-            {
-                m_AnswerPassword = value;
-            }
-        }
+        public string AnswerPassword{get;set;}
+     
         /// <summary>
         /// Question security password
         /// </summary>
-        public String QuestionPassword
-        {
-            get
-            {
-                return m_QuestionPassword;
-            }
-            set
-            {
-                m_QuestionPassword = value;
-            }
-        }
+        public string QuestionPassword{get;set;}
+     
         /// <summary>
         /// User Password
         /// </summary>
-        public String Password
-        {
-            get
-            {
-                return m_Password;
-            }
-            set
-            {
-                m_Password = value;
-            }
-        }
+        public string Password{get;set;}
+       
         /// <summary>
         /// User comment or description
         /// </summary>
-        public String Comment
-        {
-            get
-            {
-                return m_Comment;
-            }
-            set
-            {
-                m_Comment = value;
-            }
-        }                
+        public string Comment{get;set;}
+                
         /// <summary>
         /// Application name
         /// </summary>
-        public String AppName
-        {
-            get { return m_AppName; }
-            set { m_AppName = value; }
-        }
+        public string AppName{get;set;}
+    
         /// <summary>
         /// User name
         /// </summary>
-        public String UserName
-        {
-            get { return m_UserName; }
-            set { m_UserName = value; }
-        }
+        public string UserName{get;set;}
+    
         /// <summary>
         /// Last user activity
         /// </summary>
-        public DateTime LastActivityDate
-        {
-            get{return m_LastActivityDate;}
-            set{m_LastActivityDate = value;}
-        }
+        public DateTime LastActivityDate{get;set;}
+  
         /// <summary>
         /// Get User Lock
         /// </summary>
-        public Boolean IsLockedOut
-        {
-            get{return m_IsLockedOut;}            
-        }
+        public bool IsLockedOut{get;set;}
+     
         /// <summary>
         /// User Approved 
         /// </summary>
-        public Boolean IsApproved
-        {
-            get{return m_IsApproved;}
-            set{m_IsApproved = value;}
-        }
+        public bool IsApproved{get;set;}
+      
         /// <summary>
         /// User Email
         /// </summary>
-        public String Email
-        {
-            get{return m_Email;}
-            set{m_Email = value;}
-        }
+        public String Email{get;set;}
+  
     
         /// <summary>
         /// 
@@ -219,20 +132,20 @@ namespace Fwk.Security.Common
             get { return _AuthenticationMode; }
             set { _AuthenticationMode = value; }
         }
-
         /// <summary>
         /// 
         /// </summary>
         /// <param name="pMembershipUser"></param>
         public User(MembershipUser pMembershipUser)
         {
-            m_UserName = pMembershipUser.UserName;
-            m_LastActivityDate = pMembershipUser.LastActivityDate;
-            m_IsLockedOut = pMembershipUser.IsLockedOut;
-            m_IsApproved = pMembershipUser.IsApproved;
-            m_Email = pMembershipUser.Email;
-            m_Comment = pMembershipUser.Comment;
-            m_QuestionPassword = pMembershipUser.PasswordQuestion;            
+            UserId = 0;
+            UserName = pMembershipUser.UserName;
+            LastActivityDate = pMembershipUser.LastActivityDate;
+            IsLockedOut = pMembershipUser.IsLockedOut;
+            IsApproved = pMembershipUser.IsApproved;
+            Email = pMembershipUser.Email;
+            Comment = pMembershipUser.Comment;
+            QuestionPassword = pMembershipUser.PasswordQuestion;            
 
         }
 
@@ -242,7 +155,8 @@ namespace Fwk.Security.Common
         /// <param name="pUserName"></param>
         public User(string pUserName)
         {
-            m_UserName = pUserName;
+            UserId = 0;
+            UserName = pUserName;
 
         }
 
@@ -250,7 +164,7 @@ namespace Fwk.Security.Common
         /// 
         /// </summary>
         public User()
-        {}
+        { UserId = 0; }
         /// <summary>
         /// Crea el array de roles.- Eleimina los qe exuisten 
         /// </summary>
@@ -287,6 +201,10 @@ namespace Fwk.Security.Common
     [XmlRoot("UserList"), SerializableAttribute]
     public class UserList : List<User>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String[] GetArraNames()
         {
             StringBuilder list = new StringBuilder(); ;

@@ -20,6 +20,9 @@ using Fwk.HelperFunctions;
 using Fwk.Security.SVC;
 using Fwk.Security.Common;
 using Fwk.Security.ISVC.RemoveUserFromRole;
+using Fwk.ConfigSection;
+using System.Configuration;
+using Fwk.Security.Service.Test;
 
 namespace ServiceTest
 {
@@ -32,8 +35,11 @@ namespace ServiceTest
         static User wTestUser = null;
         static User wUnaprovedUser = null;
         
+        
         public UserTest()
         {
+
+        
              wTestUser = new User();
 
             wTestUser.UserName = "riley";
@@ -112,48 +118,64 @@ namespace ServiceTest
         [TestMethod()]
         public void AuthenticateUser_NonExistentUser()
         {
-            AuthenticateUser("usuarioquenoexiste","123345");
+            String wErrorResult;
+            AuthenticateUserRes res = AuthenticateUser("usuarioquenoexiste", "123345", out wErrorResult);
+
+            Assert.AreEqual<string>(res.Error.ErrorId, "4005", wErrorResult);
+
         }
 
         [TestMethod()]
         public void AuthenticateUser_ok()
         {
-            AuthenticateUser(wTestUser.UserName, wTestUser.Password);
+            String wErrorResult;
+            AuthenticateUserRes res = AuthenticateUser(wTestUser.UserName, wTestUser.Password, out wErrorResult);
+
+            Assert.AreEqual<Fwk.Exceptions.ServiceError>(res.Error, null, wErrorResult);
+
         }
 
         [TestMethod()]
         public void AuthenticateUser_IsApproved_False()
         {
-            AuthenticateUser(wUnaprovedUser.UserName, wUnaprovedUser.Password);
+            String wErrorResult;
+            AuthenticateUserRes res = AuthenticateUser(wUnaprovedUser.UserName, wUnaprovedUser.Password, out wErrorResult);
+
+            Assert.AreEqual<string>(res.Error.ErrorId, "4009", wErrorResult);
+
         }
 
-      
-       
+
+
         [TestMethod()]
         public void AuthenticateUser_WrongPassword()
         {
-            AuthenticateUser(wUnaprovedUser.UserName, "sarasabtrosca");
+            String wErrorResult;
+            AuthenticateUserRes res = AuthenticateUser(wTestUser.UserName, "sarasabtrosca", out wErrorResult);
+
+            Assert.AreEqual<string>(res.Error.ErrorId, "4007", wErrorResult);
+
         }
 
-   
 
-        public void AuthenticateUser(string pUserName, string pPassword)
+
+        public AuthenticateUserRes AuthenticateUser(string pUserName, string pPassword, out string pErrorResult)
         {
-            String wErrorResult;
-
+            
+            string d = System.Reflection.Assembly.GetExecutingAssembly().Location;
             AuthenticateUserReq req = new AuthenticateUserReq();
-            req.BusinessData.AuthenticationMode = AuthenticationModeEnum.Mixed;
+            req.BusinessData.AuthenticationMode = AuthenticationModeEnum.ASPNETMemberShips;
             req.BusinessData.UserName = pUserName;
             req.BusinessData.Password = pPassword;
             AuthenticateUserRes res = base.ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(req);
 
             if (res.Error != null)
-                wErrorResult = Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message;
+                pErrorResult = Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message;
             else
-                wErrorResult = String.Empty;
+                pErrorResult = String.Empty;
 
-            Assert.AreEqual<Fwk.Exceptions.ServiceError>(res.Error, null, wErrorResult);
-
+            return res;
+           
         }
 
         #endregion
