@@ -28,8 +28,10 @@ CodeGenerationTools code = new CodeGenerationTools(this){FullyQualifySystemTypes
 
 ItemCollection = loader.CreateEdmItemCollection(SourceCsdlPath, ReferenceCsdlPaths.ToArray());
 ModelNamespace = loader.GetModelNamespace(SourceCsdlPath);
-string namespaceName = code.VsNamespaceSuggestion();
-UpdateObjectNamespaceMap(namespaceName);
+string namespaceNameBE = code.VsNamespaceSuggestion().Replace("Backend","Common");
+string namespaceNameBackend = code.VsNamespaceSuggestion();
+
+UpdateObjectNamespaceMap(namespaceNameBackend);
 
 #>
 //------------------------------------------------------------------------------
@@ -49,8 +51,9 @@ using System.Linq;
 using System.ComponentModel;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using <#=namespaceNameBackend#>;
 
-namespace <#=namespaceName#>.Common.BE
+namespace <#=namespaceNameBE#>
 {
 <#
         PushIndent(CodeRegion.GetIndent(1));
@@ -155,7 +158,7 @@ public static explicit operator <#=code.Escape(entity)#>BE(<#=code.Escape(entity
 /// <summary>
 /// <#=SummaryComment(complex)#>
 /// </summary><#=LongDescriptionCommentElement(complex, region.CurrentIndentLevel)#>
-[EdmComplexTypeAttribute(NamespaceName="<#=complex.NamespaceName#>", Name="<#=complex.Name#>")]
+[EdmComplexTypeAttribute(namespaceNameBE="<#=complex.NamespaceName#>", Name="<#=complex.Name#>")]
 [DataContractAttribute(IsReference=true)]
 [Serializable()]
 <#=Accessibility.ForType(complex)#> partial class <#=code.Escape(complex)#> : ComplexObject
@@ -184,7 +187,7 @@ public static explicit operator <#=code.Escape(entity)#>BE(<#=code.Escape(entity
 #>
 
 <#
-    if (!String.IsNullOrEmpty(namespaceName))
+    if (!String.IsNullOrEmpty(namespaceNameBE))
     {
         PopIndent();
 #>
