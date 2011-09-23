@@ -171,7 +171,7 @@ namespace Fwk.CodeGenerator
 
             if (pSetDefaultNull && pColumn.Nullable)
             {
-                wBuilder.Append("NULL");
+                wBuilder.Append(" = NULL");
             }
 
             wBuilder.Append(",\r\n");
