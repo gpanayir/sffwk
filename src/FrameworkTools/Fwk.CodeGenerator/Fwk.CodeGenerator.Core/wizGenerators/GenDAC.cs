@@ -75,7 +75,9 @@ namespace Fwk.CodeGenerator
                         Column pPK = FwkGeneratorHelper.GetPrimaryKey(pTable);
                         if (pPK != null)
                         {
-                            wBuilderReturn = new StringBuilder(FwkGeneratorHelper.TemplateDocument.GetTemplate("InsertReturn").Content);
+                            
+                            wBuilderReturn = new StringBuilder("  wDataBase.ExecuteNonQuery(wCmd);");
+                            wBuilderReturn.AppendLine(FwkGeneratorHelper.TemplateDocument.GetTemplate("InsertReturn").Content);
                             wBuilderReturn.Replace(CodeGeneratorCommon.CommonConstants.CONST_ENTITY_PROPERTY_NAME, pPK.Name);
                             wBuilderReturn.Replace(CodeGeneratorCommon.CommonConstants.CONST_TYPENAME, FwkGeneratorHelper.GetCSharpType(pPK));
 
