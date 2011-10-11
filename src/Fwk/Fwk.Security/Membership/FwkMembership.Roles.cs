@@ -140,7 +140,8 @@ namespace Fwk.Security
                 if (!Roles.Providers[providerName].RoleExists(roleName))
                 {
                     Roles.Providers[providerName].CreateRole(roleName);
-                    UpdateRole(roleName, description, providerName);
+                    if(!string.IsNullOrEmpty(description))
+                        UpdateRole(roleName, description, providerName);
                 }
                 else
                 {
