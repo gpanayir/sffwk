@@ -97,6 +97,8 @@ namespace Fwk.Security
 
             if (newUser != null)
                 wUsuario = new User(newUser);
+                
+
             return wUsuario;
 
         }

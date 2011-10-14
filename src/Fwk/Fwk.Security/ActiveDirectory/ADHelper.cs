@@ -448,6 +448,40 @@ namespace Fwk.Security.ActiveDirectory
 
         }
 
+        private void User_MustChangePasswordNextLogon(string userName,bool mustChange)
+        {
+            DirectoryEntry userDirectoryEntry = null;
+            
+            try
+            {
+
+
+                DirectorySearcher deSearch = new DirectorySearcher(_directoryEntrySearchRoot);
+                deSearch.Filter = string.Format("(&(ObjectClass={0})(sAMAccountName={1}))", "person", userName);
+                SearchResult result = deSearch.FindOne();
+                if (result != null)
+                    userDirectoryEntry = result.GetDirectoryEntry();
+
+
+                int val = (int)userDirectoryEntry.Properties["userAccountControl"].Value;
+
+                if (mustChange)
+                    userDirectoryEntry.Properties["pwdLastSet"].Value = -1;//must be changed at the next logon.
+                else
+                    userDirectoryEntry.Properties["pwdLastSet"].Value = 0;
+
+
+                userDirectoryEntry.CommitChanges();
+                userDirectoryEntry.Close();
+                
+            }
+            catch (System.DirectoryServices.DirectoryServicesCOMException ex)
+            {
+                
+                throw ProcessActiveDirectoryException(ex);
+            }
+        }
+
         /// <summary>
         /// Reset password. To execute it ensure that you was used impersonalization constructor. 
         /// </summary>
@@ -464,6 +498,8 @@ namespace Fwk.Security.ActiveDirectory
 
                 userDirectoryEntry.Invoke("SetPassword", new object[] { password });
                 if (unlockAccount) userDirectoryEntry.Properties["LockOutTime"].Value = 0;
+
+                userDirectoryEntry.Properties["pwdLastSet"].Value = -1;//must be changed at the next logon.
 
                 userDirectoryEntry.CommitChanges();
                 userDirectoryEntry.Close();
