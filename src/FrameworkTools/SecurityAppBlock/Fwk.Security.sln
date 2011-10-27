@@ -1,13 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityAppBlock.Use", "SecurityAppBlock.Use\SecurityAppBlock.Use.csproj", "{9155394C-7D3C-4CD0-AA3A-ACD555D1790A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.ActiveDirectory.Test", "Fwk.Security.ActiveDirectory.Test\Fwk.Security.ActiveDirectory.Test.csproj", "{F34E7964-2942-4129-9236-4F0B1A4F953E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Admin", "Fwk.Security.Admin\Fwk.Security.Admin.csproj", "{27D62BF8-5321-428B-93CE-98CFB8F6223E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security", "..\..\Fwk\Fwk.Security\Fwk.Security.csproj", "{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}"
 EndProject
@@ -20,26 +20,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.CheckLogging", "Fwk.Che
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.CentralizedSecurity", "Fwk.CentralizedSecurity\Fwk.CentralizedSecurity.csproj", "{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{9BFABDFD-C81B-492B-930B-0B21128A03B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASPNetServices", "ASPNetServices", "{AA65C309-D2C6-4A05-B614-47E5C14363C7}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service", "..\..\Services\Fwk.Security.Service\Fwk.Security.Service.csproj", "{5659954E-96C0-4D30-8728-DF8BD381A63D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service.Test", "..\..\Services\Fwk.Security.Service.Test\Fwk.Security.Service.Test.csproj", "{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASPNetServices", "ASPNetServices", "{2166907B-4844-44C0-A519-F93031558E1C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D72E92CB-E82D-4227-B8EB-684872547CA3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{042E9CE8-7D6C-4C9F-8DC0-5EDB1BA315D8}"
-	ProjectSection(SolutionItems) = preProject
-		Fwk.Security.vsmdi = Fwk.Security.vsmdi
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
 		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Fwk.Security.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,12 +79,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9155394C-7D3C-4CD0-AA3A-ACD555D1790A} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
 		{F34E7964-2942-4129-9236-4F0B1A4F953E} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
+		{9155394C-7D3C-4CD0-AA3A-ACD555D1790A} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
 		{512B83B3-714E-48D4-904B-222B65B9F86A} = {59DEF41B-8EA5-48C3-A3A9-056839ED8F5D}
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943} = {D72E92CB-E82D-4227-B8EB-684872547CA3}
-		{6483389E-4CBA-4034-8F9E-2200232E98E5} = {D72E92CB-E82D-4227-B8EB-684872547CA3}
-		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264} = {2166907B-4844-44C0-A519-F93031558E1C}
-		{5659954E-96C0-4D30-8728-DF8BD381A63D} = {2166907B-4844-44C0-A519-F93031558E1C}
+		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943} = {9BFABDFD-C81B-492B-930B-0B21128A03B1}
+		{6483389E-4CBA-4034-8F9E-2200232E98E5} = {9BFABDFD-C81B-492B-930B-0B21128A03B1}
+		{5659954E-96C0-4D30-8728-DF8BD381A63D} = {AA65C309-D2C6-4A05-B614-47E5C14363C7}
+		{2BAD51BD-D7D0-4B1D-8915-4726B5B67264} = {AA65C309-D2C6-4A05-B614-47E5C14363C7}
 	EndGlobalSection
 EndGlobal

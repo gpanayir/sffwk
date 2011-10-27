@@ -112,12 +112,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cancel.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -133,12 +133,12 @@
   <data name="db5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\db5.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ServiceManagement_SourceInfo_Error" xml:space="preserve">
+    <value>Error al inicializar la metadata de los servicios.\r\n Verifique: en el archivo de de configuracion (.config) la seccion [FwkServiceMetadata] el\r\n atributo [sourceinfo],  que la ruta y archivo de metadata sea correcta.-</value>
+  </data>
   <data name="Wrapper_ServiceMetadataProviderName_NotExist" xml:space="preserve">
     <value>Error en la configuración del wrapper  {0}, esta definiendo un proveedor de metadatos de servicios \r\n
 que no se puede encontrar,  verifique el atributo ser1viceMetadataProviderName sea = a un nombre de proveedor \r\n
 correcto y existente.\r\n</value>
-  </data>
-  <data name="ServiceManagement_SourceInfo_Error" xml:space="preserve">
-    <value>Error al inicializar la metadata de los servicios.\r\n Verifique: en el archivo de de configuracion (.config) la seccion [FwkServiceMetadata] el\r\n atributo [sourceinfo],  que la ruta y archivo de metadata sea correcta.-</value>
   </data>
 </root>

@@ -174,6 +174,7 @@ namespace Fwk.Security.BC
         }
 
 
+
         /// <summary>
         /// Obtiene el usauario de las Membership
         ///   Si es NULL lanza Ex dentro de la llamada anterior

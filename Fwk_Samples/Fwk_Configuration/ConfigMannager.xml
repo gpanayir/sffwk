@@ -1,0 +1,24 @@
+﻿<ConfigurationFile>
+  <Groups>
+    <Group name="FuntionalsExceptions">
+      <Keys>
+        <Key name="Excepcion1" encrypted="false">
+          <Value>Error  1 para la perrada </Value>
+        </Key>
+        <Key name="Excepcion2" encrypted="false">
+          <Value>Error 2 para la gatreada</Value>
+        </Key>
+      </Keys>
+    </Group>
+    <Group name="Rutas">
+      <Keys>
+        <Key name="Ruta1" encrypted="false">
+          <Value>f:\</Value>
+        </Key>
+        <Key name="Ruta2" encrypted="false">
+          <Value>c:\</Value>
+        </Key>
+      </Keys>
+    </Group>
+  </Groups>
+</ConfigurationFile>

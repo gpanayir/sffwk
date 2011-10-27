@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <GuidancePackage xmlns="http://schemas.microsoft.com/pag/gax-core"
-    Name="Fwk.GuidPk" 
-    Caption="Fwk Guidance Package"
-    Description="Fwk Guidance Package"
+    Name="Fwk.GuidancePackage" 
+    Caption="Fwk.GuidancePackage"
+    Description="Fwk.GuidancePackage"
     BindingRecipe="BindingRecipe"
-    Guid="465c0111-832d-404d-a25e-127294989a64" 
+    Guid="e8cdbb08-1398-48ee-942b-be734e8bb762" 
     SchemaVersion="1.0">
   <HostData >
     <Icon ID="1429"/>
     <Menu Name="CascadingMenuOne" Text="New Fwk guidance item" >
-      
       <CommandBar Name="Project"/>
     </Menu>
   </HostData>
+  
 	<Recipes>
 		<Recipe Name="BindingRecipe">
 			<Types>
 				<TypeAlias Name="RefCreator" Type="Microsoft.Practices.RecipeFramework.Library.Actions.CreateUnboundReferenceAction, Microsoft.Practices.RecipeFramework.Library"/>
-		</Types>
-     <Caption>Create unbound referencias to guidance package</Caption>
-			<Actions>
+			</Types>
+			<Caption>Creates unbound references to the guidance package</Caption>
+      <Actions>
         <Action Name="CreateSampleUnboundTemplateRef" Type="RefCreator" AssetName="Projects\SampleLibrary\SampleLibrary.vstemplate"
                   ReferenceType="Fwk.GuidPk.References.SolutionFolderAReference, Fwk.GuidPk" />
         <Action Name="UnboundEntityTemplate" Type="RefCreator" AssetName="EntityWizard"
@@ -30,26 +30,25 @@
          ReferenceType="Microsoft.Practices.RecipeFramework.Library.AssetReferences.UnboundReferences.CSharpProjectRecipeReference, Microsoft.Practices.RecipeFramework.Library" />
       </Actions>
 		</Recipe>
-
     <Recipe Name="CreateSolution">
       <Types>
         <TypeAlias Name="NmsEval" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
       </Types>
       <Caption>Collects information for the new solution.</Caption>
       <Arguments>
-       
-        
+
+
         <Argument Name="ProjectName">
           <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
         </Argument>
-        
+
         <Argument Name="ProjectNamespace">
           <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
-          
+
           <ValueProvider Type="NmsEval"	 Expression="$(ProjectName)">
             <MonitorArgument Name="ProjectName" />
           </ValueProvider>
-        
+
         </Argument>
         <Argument Name="ProjectNamespace2">
           <ValueProvider Type="NmsEval"	 Expression="$(ProjectName)">
@@ -72,23 +71,24 @@
       </GatheringServiceData>
     </Recipe>
     
-    <Recipe Name="EntityWizard" Bound="false">
+		<Recipe Name="EntityWizard" Bound="false">
+
       <Types>
         <TypeAlias Name="Evaluator" Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.ExpressionEvaluatorValueProvider,Microsoft.Practices.RecipeFramework.Library" />
       </Types>
-  
-    <Caption>New simple-entity</Caption>
-    <Description>New simple entity from database</Description>
-    
+
+      <Caption>New simple-entity</Caption>
+      <Description>New simple entity from database</Description>
+
       <HostData >
-      <Icon ID="525"/>
+        <Icon ID="525"/>
         <CommandBar Menu="CascadingMenuOne" />
         <CommandBar Name="Solution Folder" />
-    </HostData>
-     
+      </HostData>
+
 
       <Arguments>
-        
+
         <Argument Name="selctedproject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
           <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
         </Argument>
@@ -110,9 +110,9 @@
       </Arguments>
       <GatheringServiceData>
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
-          
+
           <Pages>
-                                   
+
             <Page Type="Fwk.GuidPk.wizDbSelect_2, Fwk.GuidPk" Width="800" Height="500" />
             <Page Type="Fwk.GuidPk.wizEntity_2, Fwk.GuidPk"  />
           </Pages>
@@ -120,35 +120,13 @@
       </GatheringServiceData>
 
       <Actions>
-        
-        
-        <!--<Action Name="CreateEntity" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
-						Template="Text\EntitySimpleTemplate.tt">
-          
-          <Input Name="EntityName" RecipeArgument="EntityName" />
-          <Input Name="TableName" RecipeArgument="TableName" />
-          <Input Name="TargetNamespace" RecipeArgument="TargetNamespace" />
-          <Input Name="DatabaseName" RecipeArgument="DatabaseName" />
-          <Input Name="CnnString" RecipeArgument="ConnectionString" />
-          
-          <Output Name="Content" />
-        </Action>
-        
-        <Action Name="AddEntityBase" Type="Microsoft.Practices.RecipeFramework.Library.Actions.AddItemFromStringAction, Microsoft.Practices.RecipeFramework.Library"	Open="true" >
-
-          --><!--Content, TargetFileName and Project are AddItemFromStringAction class properties--><!--
-          <Input Name="Content" ActionOutput="CreateEntity.Content" />
-          <Input Name="TargetFileName" RecipeArgument="EntityTargetFile" />
-          <Input Name="Project" RecipeArgument="selctedproject" />
-        </Action>-->
-
 
         <Action Name="AddEntityBase" Type=" Fwk.GuidPk.Actions.AddBE, Fwk.GuidPk"	Open="true" >
           <Input Name="GeneratedCodeList" RecipeArgument="GeneratedCodeList" />
           <Input Name="Project" RecipeArgument="selctedproject" />
         </Action>
-        </Actions>
-    </Recipe>
+      </Actions>
+		</Recipe>
 
 
     <Recipe Name="ServiceItemClass" Bound="false">
@@ -161,21 +139,21 @@
 
       <HostData >
         <Icon ID="680"/>
-       
+
         <CommandBar Menu="CascadingMenuOne" />
-       
+
       </HostData>
 
 
       <Arguments>
 
-        
+
         <Argument Name="ServiceFolder" Type="System.String">
           <ValueProvider Type="Evaluator"	 Expression="Services">
-            
+
           </ValueProvider>
         </Argument>
-        
+
         <Argument Name="ServiceName" Type="System.String"/>
         <Argument Name="selctedproject" Type="EnvDTE.Project, EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
           <ValueProvider Type="Microsoft.Practices.RecipeFramework.Library.ValueProviders.FirstSelectedProject, Microsoft.Practices.RecipeFramework.Library" />
@@ -209,13 +187,13 @@
           </ValueProvider>
         </Argument>
         <Argument Name="Developer" >
-        <ValueProvider Type="Fwk.GuidPk.ValueProviders.DeveloperValueProvider, Fwk.GuidPk" />
+          <ValueProvider Type="Fwk.GuidPk.ValueProviders.DeveloperValueProvider, Fwk.GuidPk" />
         </Argument>
         <Argument Name="Date">
           <ValueProvider Type="Fwk.GuidPk.ValueProviders.DateValueProvider, Fwk.GuidPk"  />
         </Argument>
-        
-        
+
+
       </Arguments>
       <GatheringServiceData>
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
@@ -230,7 +208,7 @@
 
         <Action Name="CreateIsvc" Type="Microsoft.Practices.RecipeFramework.VisualStudio.Library.Templates.TextTemplateAction, Microsoft.Practices.RecipeFramework.VisualStudio.Library"
 						Template="Text\Isvc.t4">
-          
+
           <Input Name="RootNamespace" RecipeArgument="RootNamespace" />
           <Input Name="projectname" RecipeArgument="projectName" />
           <Input Name="servicename" RecipeArgument="ServiceName" />
@@ -269,9 +247,9 @@
           <Input Name="ServiceName" RecipeArgument="ServiceName" />
           <Input Name="Project" RecipeArgument="selctedproject" />
         </Action>
-        
+
       </Actions>
-      
+
     </Recipe>
 
 
@@ -285,7 +263,7 @@
 
       <HostData >
         <Icon ID="639"/>
-        
+
         <CommandBar Menu="CascadingMenuOne" />
       </HostData>
 
@@ -304,7 +282,7 @@
         <Argument Name="DatabaseName" Type="System.String" />
         <Argument Name="ConnectionString" Type="System.String" />
         <Argument Name="GeneratedCodeList" Type="Fwk.CodeGenerator.GeneratedCode[], Fwk.CodeGenerator.Core" />
-        
+
       </Arguments>
       <GatheringServiceData>
         <Wizard xmlns="http://schemas.microsoft.com/pag/gax-wizards" SchemaVersion="1.0">
@@ -319,7 +297,7 @@
       <Actions>
 
         <Action Name="AddEntityBase" Type=" Fwk.GuidPk.Actions.AddDAC, Fwk.GuidPk"	Open="true" >
-           <Input Name="GeneratedCodeList" RecipeArgument="GeneratedCodeList" />
+          <Input Name="GeneratedCodeList" RecipeArgument="GeneratedCodeList" />
           <Input Name="Project" RecipeArgument="selctedproject" />
         </Action>
 
@@ -357,5 +335,13 @@
         </Action>
       </Actions>
     </Recipe>
+		
+		
+		
+		
+		
+		
+		
+		
 	</Recipes>
 </GuidancePackage>

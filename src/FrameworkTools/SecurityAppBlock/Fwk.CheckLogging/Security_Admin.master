@@ -1,0 +1,17 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Security_Master_2c.Master" AutoEventWireup="true" CodeBehind="Security_Admin.master.cs" Inherits="Security.Modules.Security_Admin" %>
+
+<%@ Register src="Menues/Vmenu_Admin.ascx" tagname="Vmenu_Admin" tagprefix="uc2" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" runat="server">
+
+    <uc2:Vmenu_Admin ID="Vmenu_Admin1" runat="server" />
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentCenter" runat="server">
+ 
+     
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+       
+  
+</asp:Content>

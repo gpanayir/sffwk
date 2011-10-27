@@ -1,0 +1,27 @@
+<div id="Div2" class ="EnvelopeContNews">
+        <div id="Div5" class="EnvelopeNews">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
+                <ContentTemplate>
+                    <asp:Panel ID="Panel1" runat="server" CssClass="cpHeaderExpand">
+                        <asp:Label ID="Label4" runat="server" Text="Avanzada" />
+                    </asp:Panel>
+                    <asp:Panel ID="Panel2" runat="server" CssClass="cpBody">
+                        <div>
+                            <asp:Label ID="Label5" runat="server" Text="Fecha de expiración" />
+                        </div>
+                        <div>
+                            <asp:TextBox ID="TextBox1" runat="server" Height="24px" Width="222px"></asp:TextBox>
+                            <cc1:CalendarExtender ID="CalendarExtender2" TargetControlID="txtStartDate" runat="server">
+                            </cc1:CalendarExtender>
+                        </div>
+                        
+                    </asp:Panel>
+                    <cc1:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" TargetControlID="pBody"
+                        CollapseControlID="pHeader" ExpandControlID="pHeader" Collapsed="true" TextLabelID="lblText"
+                        CollapsedText="+ Avanzada" ExpandedText="- Avanzada"
+                        CollapsedSize="0">
+                    </cc1:CollapsiblePanelExtender>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+     </div>

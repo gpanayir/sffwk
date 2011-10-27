@@ -1,0 +1,103 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Security_Master.master.cs" Inherits="Security.Security_Master" %>
+<%@ Register src="Menues/MainMenu.ascx" tagname="MainMenu" tagprefix="uc1" %>
+<%@ Register src="Usercontrol/News_Search_Control.ascx" tagname="News_Search_Control" tagprefix="uc2" %>
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+    <link href="Styles/articulos.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/News.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/Common.css" rel="stylesheet" type="text/css" />
+    <link href="App_Themes/Clear/Menu.css" rel="stylesheet" type="text/css" />
+
+  
+    <link href="Styles/grd992_16_5_5/text.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/grd992_16_5_5/992_16_5_5.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/grd992_16_5_5/reset.css" rel="stylesheet" type="text/css" />
+    <link href="App_Themes/Clear/Grd960.css" rel="stylesheet" type="text/css" />
+     
+
+  
+    <title></title>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+</asp:ScriptManager>
+     <div id="master_preheader" class="panel2">
+     <p>Prototipo inicial de sitio web Clinica La Security</p>
+     </div>
+     
+    <div id="master_header" class="panel2">
+        <div id="master_header_tittle" class="grid_5 alpha">
+     
+          <%-- <p> Municipalidad de Adelia Security</p>--%>
+        </div>
+        <div id="master_header_searcher" class="grid_5 omega">
+            <uc2:News_Search_Control ID="News_Search_Control1" runat="server" />
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    
+    
+<div id="Div1" class="container_16">
+        <div id="Div2" class="grid_10 alpha" >
+                 <uc1:MainMenu ID="MainMenu2" runat="server" />
+        </div>
+        <div id="master_logging" class="grid_6 omega">
+            <div id="master_logging_image">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Login/IniciarSesionSmall.png"
+                    EnableTheming="False" EnableViewState="False" Height="16px" Width="16px" />
+            </div>
+            <div id="master_logging_status">
+                <span>
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" LoginImageUrl="" LoginText="Iniciar Sesión"
+                        LogoutImageUrl="" LogoutText="Cerrar Sesión" LogoutAction="RedirectToLoginPage"
+                        OnLoggingOut="LoginStatus1_LoggingOut" CssClass="master_logging_status_asp" />
+                </span>
+                <asp:LoginName ID="LoginName1" runat="server" FormatString=" Bienvenido {0}!" CssClass="master_logging_status_asp" />
+            </div>
+           
+        </div>
+
+        <div class="clear">    </div>
+    </div>
+   
+    <div id="master_wrap" class="container_16 box_roun_shadow">
+        <div  id ="master_leftcol" class="grid_3 alpha">
+            <asp:ContentPlaceHolder ID="ContentLeft" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="master_centercol"  class="grid_10">
+            <asp:ContentPlaceHolder ID="ContentCenter" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        
+       <div class="clear"></div>
+
+        
+      
+   </div>
+  
+    <div id="master_footer" class="container_12">
+        <div id="master_footerLine" class="push_14">
+        </div>
+        <div id="master_footerContainerLeft" class="grid_4  ">
+            <p>
+                Copyright © 2011  Pelsoft .- Software factory</p>
+        </div>
+        <div id="master_footerContainerRight" class="grid_8">
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    </form>
+</body>
+</html>

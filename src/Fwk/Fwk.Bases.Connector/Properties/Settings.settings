@@ -9,7 +9,7 @@
       <Value Profile="(Default)">http://katy.sytes.net/gastosWS/SingleService.asmx</Value>
     </Setting>
     <Setting Name="Fwk_Bases_Connector_ASPNetSecurity_ASPNet" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:14538/ASPNet.asmx</Value>
+      <Value Profile="(Default)">http://localhost:37288/ASPNet.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -23,11 +22,10 @@
     <AssemblyOriginatorKeyFile>fwk.snk</AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <PublishUrl>http://localhost/Fwk.Bases.FrontEnd/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -40,9 +38,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,7 +52,6 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -63,12 +60,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
+    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -248,11 +242,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
       <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
@@ -266,11 +255,6 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>

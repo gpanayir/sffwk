@@ -1,0 +1,15 @@
+﻿<ConfigurationFile>
+  <Groups>
+    
+    <Group name="Colores">
+      <Keys>
+        <Key name="Rojo" encrypted="false">
+          <Value>Red</Value>
+        </Key>
+        <Key name="Amarillo" encrypted="false">
+          <Value>Yellow</Value>
+        </Key>
+      </Keys>
+    </Group>
+  </Groups>
+</ConfigurationFile>

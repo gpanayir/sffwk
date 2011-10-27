@@ -1,0 +1,162 @@
+﻿.MsoNormal{font-size : 11px;}
+.ttl {float: left; margin-top: 5px;}
+.btGrisNegrita{background-color: #666666;color: #FFFFFF;font-size: small;border:1px solid #333333;height: 24px; margin:5px;}.btGrisNegrita: c{background-color: #333333;color: #FFFF66;}
+/*-------------------------------------------------Contenedores de col izquierda-----------------------*/
+/*------------------------------------------------ standars Wraper primero --------------------------*/
+ .left_box_st
+ {
+    width: 250px;
+    border-style: solid;
+    border-width: 0 1px 1px;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    font-family: Verdana;
+    margin-top:8px;
+}
+.left_box_panel_st{ padding : 0px;margin: 0px; height: 100%;}
+
+/*---------CABEZERA DEL PANEL*/
+.left_box_panel_title_st{height:30px;padding :5px;margin:0 ; font-weight:bold;font-family:Verdana;font-size: 13px;}
+.left_box_panel_title_st img{margin:5px 0 0 0;float:left;}
+.left_box_panel_title_st_span{  margin-top: 15px;margin-left:5px;}
+.left_box_panel_list_st {margin-top:8px;padding:4px;}
+.left_box_panel_list_st ul{list-style-type:none;}
+.left_box_panel_list_st li
+{
+    background-position: 0px 4px;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-color: Transparent;
+    background: url('../../Images/viñeta_row.png') no-repeat ;
+    padding: 0px 0px 0px 8px;
+
+}
+/*************************LEFT BOX BROWN  */
+.left_box_brown{border-color: #666666;}
+.left_box_panel_brown{background-color: #462C2D;}
+.left_box_panel_title_brown
+{
+    background-color: #4F120E;
+    color: #D7C14A;
+    padding: inherit;
+    margin: inherit;
+}
+
+.left_box_panel_list_brown a
+{
+    text-decoration: none;
+    color: #DADADA;
+    font-size: 11px;
+    font-family:inherit;
+    margin-left:15px;
+}
+.left_box_panel_list_brown  a:hover{color: White;}
+
+/*************************LEFT BOX WHITE  */
+
+.left_box_white{border-color: #FFFFFF;}
+.left_box_panel_white{background-color: White;}
+.left_box_panel_title_white
+{
+    background-color: #CCCCCC;
+    color: #333300;
+    padding: inherit;
+    margin: inherit;
+}
+.left_box_panel_list_white li
+{
+    background: no-repeat 0px 4px;
+    background-position: 0px 4px;
+    margin: 0 0 8px 0px;
+    padding: 2px 0px 0px 0px;
+}
+.left_box_panel_list_white a
+{
+    text-decoration: none;
+    color: #336699;
+    font-size: 11px;
+    font-family:inherit;
+    margin-left:4px;
+}
+.left_box_panel_list_white a:hover{color: #0000CC;}
+/*************************LEFT BOX Grey  */
+.left_box_grey {border-color: #666666;}
+.left_box_panel_grey{ background-color: #E8E8E6;}
+.left_box_panel_title_grey
+{
+    background-color: #999999;
+    color: #336699;
+    padding: inherit;
+    margin: inherit;
+}
+.left_box_panel_list_grey  a
+{
+    text-decoration: none;
+    color: #102127;
+    font-size: 11px;
+    font-family:inherit;
+    margin-left:15px;
+}
+.left_box_panel_list_grey   a:hover{color: #669999;}
+/************************************CONTENEDOR DE LISTA DE LINCKS PAGINA CENTRAL**************************************/
+.center_box{width:600px;}
+
+.center_box_ttl
+    {
+        background: url("../../Images/fondo_cont_box.gif") repeat-x scroll center top transparent;
+            border: 1px solid #D2D8DF;
+            height: 25px;
+            width: auto;
+    }
+.center_box_ttl_lft
+    {
+         color: #000000;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+    }
+.center_box_ttl_rgh
+    {
+        color: #92A4B4;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+    }
+.center_box_ttl img {
+    float: left;
+    height: 25px;
+    margin-left: 2px;
+    margin-right: 3px;
+    width: 20px;
+}
+.center_box_linklist_wrap {
+    border: 1px solid #D2D8DF;
+    /*height: 240px;*/
+    margin-top: 1px;
+    padding: 10px;
+    width: auto;
+}
+
+.center_box_linklist_div{float: left; width: 244px;}
+.center_box_linklist_wrap ul li{
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    font-size: 11px;
+    line-height: 15px;
+    margin-bottom: 7px;
+}
+
+.center_box_linklist_wrap a 
+{
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+     color: #0066CC;
+    font-weight: normal;
+    text-decoration: none;
+}
+.center_box_linklist_wrap a:hover{color: #336699;}
+/************************************CONTENEDOR IMAGEN**************************************/
+.img_box {padding: 4px; margin:5px;}

@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service", "Fwk.Security.Service\Fwk.Security.Service.csproj", "{5659954E-96C0-4D30-8728-DF8BD381A63D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.Service.Test", "Fwk.Security.Service.Test\Fwk.Security.Service.Test.csproj", "{2BAD51BD-D7D0-4B1D-8915-4726B5B67264}"

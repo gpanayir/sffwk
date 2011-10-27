@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,15 +10,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.Security.Admin</RootNamespace>
     <AssemblyName>Fwk.Security.Admin</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>group_16.ico</ApplicationIcon>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
     <PublishUrl>http://localhost/SecurityAppBlock.Admin/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -33,7 +29,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +38,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,50 +46,50 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Data.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Utils.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Utils.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraBars.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraBars.v9.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraEditors.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGrid.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraGrid.v9.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraLayout.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraNavBar.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraNavBar.v9.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.RichEdit.v10.2.Core, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraRichEdit.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraRichEdit.v9.1.Extensions, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v10.2.Extensions, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraSpellChecker.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraSpellChecker.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraSpellChecker.v9.1.Core, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.SpellChecker.v10.2.Core, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraTreeList.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\DevExpress 2009.1\Components\Sources\DevExpress.DLL\DevExpress.XtraTreeList.v9.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -132,8 +126,6 @@
     <Reference Include="System.Design" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -148,11 +140,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ConnectionStringsCrypt.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\ConnectionStringsCrypt.Designer.cs">
       <DependentUpon>ConnectionStringsCrypt.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\frmChangePwd.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\frmChangePwd.Designer.cs">
       <DependentUpon>frmChangePwd.cs</DependentUpon>
@@ -170,53 +164,63 @@
       <DependentUpon>frmUserFind.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\RolesGrid.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\RolesGrid.Designer.cs">
       <DependentUpon>RolesGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\RuleObjetoSource.cs" />
     <Compile Include="Controls\RulesEditControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\RulesEditControl.Designer.cs">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\CategoryCreate.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\CategoryCreate.Designer.cs">
       <DependentUpon>CategoryCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserAssingRoles.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UserAssingRoles.Designer.cs">
       <DependentUpon>UserAssingRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\RulesAssingControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\RulesAssingControl.Designer.cs">
       <DependentUpon>RulesAssingControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\RulesCheckControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\RulesCheckControl.Designer.cs">
       <DependentUpon>RulesCheckControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ControlsFactory.cs" />
     <Compile Include="Controls\RolesCreate.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\RolesCreate.Designer.cs">
       <DependentUpon>RolesCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserCretate.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UserCretate.Designer.cs">
       <DependentUpon>UserCretate.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\SecurityControlBase.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\SecurityControlBase.Designer.cs">
       <DependentUpon>SecurityControlBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserAdmin.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UserAdmin.Designer.cs">
       <DependentUpon>UserAdmin.cs</DependentUpon>
@@ -314,6 +318,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Controls\UsersGrid.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\UsersGrid.Designer.cs">
       <DependentUpon>UsersGrid.cs</DependentUpon>
@@ -491,7 +496,7 @@
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <ProductName>.NET Framework Client Profile</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

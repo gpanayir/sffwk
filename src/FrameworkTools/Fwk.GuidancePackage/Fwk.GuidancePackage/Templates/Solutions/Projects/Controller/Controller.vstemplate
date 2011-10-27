@@ -1,30 +1,33 @@
-﻿<VSTemplate Version="2.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+﻿<VSTemplate Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
 	<TemplateData>
-		<Name>Controller Client</Name>
-		<Description>Controller project to fwk services</Description>
+    <Name>Controller Client</Name>
+    <Description>Controller project to fwk services</Description>
 		<Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4547" />
-		<ProjectType>CSharp</ProjectType>
-		<SortOrder>20</SortOrder>
+		<ProjectType>Web</ProjectType>
+		<ProjectSubType>CSharp</ProjectSubType>
+		<SortOrder>1000</SortOrder>
 		<CreateNewFolder>false</CreateNewFolder>
 		<DefaultName>Controller</DefaultName>
 		<ProvideDefaultName>true</ProvideDefaultName>
+		<LocationField>Enabled</LocationField>
+		<EnableLocationBrowseButton>true</EnableLocationBrowseButton>
 	</TemplateData>
-	<TemplateContent>
-		<Project File="Controller.csproj" ReplaceParameters="true">
-			<ProjectItem ReplaceParameters="true">Properties\AssemblyInfo.cs</ProjectItem>
-			
-		</Project>
-	</TemplateContent>
+  <TemplateContent>
+    <Project File="Controller.csproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="true">Properties\AssemblyInfo.cs</ProjectItem>
+
+    </Project>
+  </TemplateContent>
 	<WizardExtension>
-		<Assembly>Microsoft.Practices.RecipeFramework.VisualStudio, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</Assembly>
+		<Assembly>Microsoft.Practices.RecipeFramework.VisualStudio, Version=1.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
 		<FullClassName>Microsoft.Practices.RecipeFramework.VisualStudio.Templates.UnfoldTemplate</FullClassName>
 	</WizardExtension>
-	<WizardData>
+  <WizardData>
     <Template xmlns="http://schemas.microsoft.com/pag/gax-template"
               SchemaVersion="1.0">
       <References>
 
       </References>
     </Template>
-	</WizardData>
+  </WizardData>
 </VSTemplate>

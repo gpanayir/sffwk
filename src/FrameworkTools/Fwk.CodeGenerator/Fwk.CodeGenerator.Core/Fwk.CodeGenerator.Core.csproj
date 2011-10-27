@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3DB68504-5E07-4DE7-8426-2A1ED23B1B4B}</ProjectGuid>
+    <ProjectGuid>{A4A83FA2-8BDF-4418-91D8-3C6BE2886A16}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.CodeGenerator.Core</RootNamespace>
     <AssemblyName>Fwk.CodeGenerator.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -31,38 +31,54 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases">
+    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Controls.Win32">
+    <Reference Include="Fwk.Controls.Win32, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Controls.Win32.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.DataBase">
+    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.DataBase.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+      <HintPath>..\..\..\Libraries\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.Smo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+      <HintPath>..\..\..\..\Entregas\Fwk.CodeGenerator\Microsoft.SqlServer.Smo.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Management.Utility, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.SmoEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.Management.Utility.dll</HintPath>
+      <HintPath>..\..\..\..\Entregas\Fwk.CodeGenerator\Microsoft.SqlServer.SmoEnum.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+      <HintPath>..\..\..\..\Entregas\Fwk.CodeGenerator\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.WmiEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Entregas\Fwk.CodeGenerator\Microsoft.SqlServer.WmiEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Entregas\Fwk.CodeGenerator\Microsoft.VisualStudio.DebuggerVisualizers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -90,12 +106,8 @@
     <Compile Include="wizGenerators\Template.cs" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TemplateSettingControl.resx">
       <DependentUpon>TemplateSettingControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

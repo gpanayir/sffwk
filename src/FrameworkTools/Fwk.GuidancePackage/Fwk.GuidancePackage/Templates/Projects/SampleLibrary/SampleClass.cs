@@ -6,6 +6,5 @@ namespace $safeprojectname$
 {
 	public class Class1
 	{
-        sapo pepe
 	}
 }

@@ -6,7 +6,7 @@
 //using System.Windows.Forms;
 //using Fwk.DataBase.DataEntities;
 
-//
+//using Fwk.CodeGenerator.Common;
 
 //namespace Fwk.CodeGenerator
 //{

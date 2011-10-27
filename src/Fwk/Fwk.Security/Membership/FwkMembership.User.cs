@@ -97,8 +97,6 @@ namespace Fwk.Security
 
             if (newUser != null)
                 wUsuario = new User(newUser);
-                
-
             return wUsuario;
 
         }
@@ -383,18 +381,6 @@ namespace Fwk.Security
 
             return wUser.ChangePassword(pOldPassword, pNewPassword);
 
-        }
-
-       /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="email">e-mail</param>
-        /// <param name="providerName">Nombre del proveedor de membership</param>
-       /// <returns>Nombre del usuario</returns>
-        public static string GetUserNameByEmail(string email, string providerName)
-        {
-               SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            return wProvider.GetUserNameByEmail(email);
         }
 
         /// <summary>

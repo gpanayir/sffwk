@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -21,11 +20,10 @@
     </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>3.5</OldToolsVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <PublishUrl>http://localhost/CodeGenerator/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -38,9 +36,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,7 +48,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,25 +56,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSharpBinding, Version=2.1.0.2429, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Bases.FrontEnd, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Controls.Win32, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Libraries\Framework\Fwk.Controls.Win32.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
+    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Bases.Connector, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Bases.FrontEnd, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Controls.Win32, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.Core, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.NRefactory, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpDevelop, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
@@ -85,44 +71,19 @@
     <Reference Include="ICSharpCode.SharpDevelop.Sda, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.SharpDevelop.Widgets, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
     <Reference Include="ICSharpCode.TextEditor, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.ConnectionInfoExtended, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfoExtended.dll</HintPath>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    <Reference Include="Microsoft.SqlServer.SmoEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.PolicyEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.PolicyEnum.dll</HintPath>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.SqlEnum.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.SString, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.SString.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.WmiEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.WmiEnum.dll</HintPath>
+    <Reference Include="Microsoft.SqlServer.WmiEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -228,31 +189,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="wizControls\ctrlNewService.resx">
-      <DependentUpon>ctrlNewService.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\ctrlTreeViewTables.resx">
-      <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\ctrlTreeViewViews.resx">
-      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\wizBase.resx">
-      <DependentUpon>wizBase.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\wizDBSelect.resx">
-      <DependentUpon>wizDBSelect.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="wizControls\wizTablesTreeSelector.resx">
-      <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="Files\CnnCrypt.key" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -270,6 +208,7 @@
     <Compile Include="No_Used\ServiceControlle.cs" />
     <Compile Include="ObjectModel\Storage.cs" />
     <Compile Include="ObjectModel\TreeViewHelper.cs" />
+    <Compile Include="wizControls\CnnString.cs" />
     <Compile Include="wizControls\ctrlNewService.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -309,6 +248,18 @@
     <Compile Include="ObjectModel\WorkSpace.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExternalTools\TextToStringBuilder\Fwk.Bases.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExternalTools\TextToStringBuilder\Fwk.Controls.Win32.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExternalTools\TextToStringBuilder\Fwk.Controls.Win32.TextCodeEditor.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExternalTools\TextToStringBuilder\TextToStringBuilder.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Files\DataBaseConfig.xml">
     </None>
     <None Include="Resources\serviceunknown.ico" />
@@ -340,6 +291,29 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectModel\ListViewCodeGenerated.resx">
       <DependentUpon>ListViewCodeGenerated.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\ctrlNewService.resx">
+      <DependentUpon>ctrlNewService.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\ctrlTreeViewTables.resx">
+      <DependentUpon>ctrlTreeViewTables.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\ctrlTreeViewViews.resx">
+      <DependentUpon>ctrlTreeViewViews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\wizBase.resx">
+      <DependentUpon>wizBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\wizDBSelect.resx">
+      <DependentUpon>wizDBSelect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wizControls\wizTablesTreeSelector.resx">
+      <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Content Include="Piezas.ico" />
@@ -382,11 +356,6 @@
     <None Include="Resources\Piezas.ico" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
       <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
@@ -402,21 +371,47 @@
       <ProductName>.NET Framework 3.5</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ExternalTools\TextToStringBuilder\" />
-    <Folder Include="Files\Images\" />
+    <Component Include="ExternalTools\TextToStringBuilder\CSharpBinding.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
+    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
+    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.NRefactory.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
+    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.SharpDevelop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
+    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.SharpDevelop.Dom.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
+    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.SharpDevelop.Widgets.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
+    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.TextEditor.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
+    <Component Include="ExternalTools\TextToStringBuilder\log4net.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
+    <Component Include="ExternalTools\TextToStringBuilder\Mono.Cecil.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
+    <Component Include="ExternalTools\TextToStringBuilder\WeifenLuo.WinFormsUI.Docking.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Component>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fwk.CodeGenerator.Core\Fwk.CodeGenerator.Core.csproj">
-      <Project>{3DB68504-5E07-4DE7-8426-2A1ED23B1B4B}</Project>
+      <Project>{A4A83FA2-8BDF-4418-91D8-3C6BE2886A16}</Project>
       <Name>Fwk.CodeGenerator.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Files\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
