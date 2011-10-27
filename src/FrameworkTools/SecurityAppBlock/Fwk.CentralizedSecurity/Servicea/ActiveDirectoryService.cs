@@ -14,8 +14,8 @@ namespace Fwk.CentralizedSecurity.Service
        static bool  performCustomWindowsContextImpersonalization= false;
        static ActiveDirectoryService()
        {
-           if (System.Configuration.ConfigurationManager.AppSettings["FwkImpersonate"]!=null)
-            performCustomWindowsContextImpersonalization =Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["FwkImpersonate"]);
+           //if (System.Configuration.ConfigurationManager.AppSettings["FwkImpersonate"]!=null)
+           // performCustomWindowsContextImpersonalization =Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["FwkImpersonate"]);
        }
 
         internal static LoogonUserResult User_Logon(string userName, string password, string domain)

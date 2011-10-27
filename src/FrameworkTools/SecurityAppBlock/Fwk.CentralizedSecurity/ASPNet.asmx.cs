@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Fwk.BusinessFacades;
-using Fwk.Bases;
-using System.Web.Services.Protocols;
 using Fwk.ConfigSection;
 
 namespace Fwk.CentralizedSecurity
