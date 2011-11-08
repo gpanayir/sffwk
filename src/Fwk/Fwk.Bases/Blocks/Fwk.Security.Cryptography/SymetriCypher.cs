@@ -20,6 +20,9 @@ namespace Fwk.Security.Cryptography
     {
         private string keyFileName;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string KeyFileName
         {
             get { return keyFileName; }
@@ -28,6 +31,9 @@ namespace Fwk.Security.Cryptography
 
         SymmetricAlgorithmProvider _SymmetricAlgorithmProvider;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public SymmetricAlgorithmProvider AlgorithmProvider
         {
             get { return _SymmetricAlgorithmProvider; }
@@ -132,7 +138,7 @@ namespace Fwk.Security.Cryptography
             TechnicalException te;
             if (string.IsNullOrEmpty(keyFileName))
             {
-                keyFileName = System.Configuration.ConfigurationSettings.AppSettings["CrypKeyFile"];
+                keyFileName = System.Configuration.ConfigurationManager.AppSettings["CrypKeyFile"];
             }
             if (string.IsNullOrEmpty(keyFileName))
             {
@@ -144,9 +150,9 @@ namespace Fwk.Security.Cryptography
 
             if (!File.Exists(keyFileName))
             {
-                throw new Fwk.Exceptions.TechnicalException();
+                
 
-                te = new TechnicalException(string.Concat("La clave de encriptacion ", keyFileName, " no existe"));
+                 te = new TechnicalException(string.Concat("La clave de encriptacion ", keyFileName, " no existe"));
                 ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
                 te.ErrorId = "4401";
                 throw te;

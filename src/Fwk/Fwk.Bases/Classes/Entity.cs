@@ -521,7 +521,7 @@ namespace Fwk.Bases
         ///</summary>
         public override string ToString()
         {
-
+            
             return HelperFunctions.TypeFunctions.ToString(this);
         }
         /// <summary>
@@ -577,6 +577,6 @@ namespace Fwk.Bases
 
             return sb.ToString();
         }
-        #endregion
+        #endregion 
     }
 }
