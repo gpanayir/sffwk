@@ -437,13 +437,10 @@ namespace Fwk.Bases
     /// <summary>
     /// 
     /// </summary>
+    [DebuggerVisualizer(typeof(IEntityVisualizer))]
     [Serializable]
     public abstract class BaseEntity : IBaseEntity
     {
-        
-        
-
-
 
         #region ICloneable Members
         /// <summary>

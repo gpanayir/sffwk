@@ -47,7 +47,7 @@ namespace Fwk.Configuration.Common
                 throw te;
             }
 
-            if (_DictionaryFiles.ContainsKey(pConfigurationFile.FileName))
+            if (_DictionaryFiles.ContainsKey(pConfigurationFile.ProviderName))
             {
                 TechnicalException te = new TechnicalException(string.Concat("Error al intentar agregar un archivo de configuracion: El archivo ConfigurationFile ",pConfigurationFile.FileName, " ya se agrego con anterioridad al repositorio del configuration mannager."));
                 te.ErrorId = "8012";
@@ -55,7 +55,7 @@ namespace Fwk.Configuration.Common
                 throw te;
             }
 
-            _DictionaryFiles.Add(pConfigurationFile.FileName, pConfigurationFile);
+            _DictionaryFiles.Add(pConfigurationFile.ProviderName, pConfigurationFile);
 
         }
 
@@ -63,12 +63,12 @@ namespace Fwk.Configuration.Common
         /// <summary>
         /// Obtiene un ConfigurationFile del hashtable.
         /// </summary>
-        /// <param name="pFileName">Nombre de archivo.</param>
+        /// <param name="providerName">Nombre del proveedor.</param>
         /// <returns><see cref="ConfigurationFile"/></returns>
-        public ConfigurationFile GetConfigurationFile(string pFileName)
+        public ConfigurationFile GetConfigurationFile(string providerName)
         {
-            if (_DictionaryFiles.ContainsKey(pFileName))
-                return (ConfigurationFile)_DictionaryFiles[pFileName];
+            if (_DictionaryFiles.ContainsKey(providerName))
+                return (ConfigurationFile)_DictionaryFiles[providerName];
             else
                 return null;
         }
@@ -88,7 +88,7 @@ namespace Fwk.Configuration.Common
                 throw te;
             }
 
-            if (!_DictionaryFiles.ContainsKey(pConfigurationFile.FileName))
+            if (!_DictionaryFiles.ContainsKey(pConfigurationFile.ProviderName))
             {
                 TechnicalException te = new TechnicalException(string.Concat("Error al intentar eremover un archivo de configuracion: El archivo ", pConfigurationFile.FileName , " no se encuentra"));
                 te.ErrorId = "8012";
@@ -96,14 +96,18 @@ namespace Fwk.Configuration.Common
                 throw te;
             }
 
-            _DictionaryFiles.Remove(pConfigurationFile.FileName);
+            _DictionaryFiles.Remove(pConfigurationFile.ProviderName);
 
 
         }
-
-        public bool ExistConfigurationFile(string pFileName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ProviderName"></param>
+        /// <returns></returns>
+        public bool ExistConfigurationFile(string providerName)
         {
-            return _DictionaryFiles.ContainsKey(pFileName);
+            return _DictionaryFiles.ContainsKey(providerName);
 
         }
     }
@@ -122,7 +126,7 @@ namespace Fwk.Configuration.Common
         string _FileName;
         int _TTL;
         bool _ForceUpdate;
-        bool _BaseConfigFile = true;
+        string providerName= string.Empty;
        
         string _CurrentVersion;
 
@@ -152,17 +156,13 @@ namespace Fwk.Configuration.Common
             set { _ForceUpdate = value; }
         }
 
-        public bool BaseConfigFile
+        public string ProviderName
         {
-            get { return _BaseConfigFile; }
-            set { _BaseConfigFile = value; }
+            get { return providerName; }
+            set { providerName = value; }
         }
 
-        //public bool Cacheable
-        //{
-        //    get { return _Cacheable; }
-        //    set { _Cacheable = value; }
-        //}
+       
 
         public string CurrentVersion
         {
