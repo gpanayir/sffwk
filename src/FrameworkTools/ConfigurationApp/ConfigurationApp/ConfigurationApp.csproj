@@ -103,6 +103,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Microsoft.VisualStudio.DebuggerVisualizers.dll</HintPath>
+    </Reference>
     <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -318,6 +322,7 @@
     <None Include="Resources\news_info.gif" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Test\ConfigurationManager_01 - Copy.xml" />
     <Content Include="Test\ConfigurationManager_01.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

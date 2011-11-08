@@ -326,7 +326,8 @@ namespace ConfigurationApp
 
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             Key wKey = wGroup.Keys.GetFirstByName(pKeyName);
-            wGroup.Keys.Remove(wKey);
+            ////Esto lo hace ConfigurationManager_CRUD
+            //wGroup.Keys.Remove(wKey);
             Fwk.Configuration.ConfigurationManager_CRUD.RemoveProperty(dic["provider"].ToString(), wGroup.Name, wKey.Name);
         }
 
@@ -375,8 +376,9 @@ namespace ConfigurationApp
 
             wKeyTreeNode.Tag = wKey;
             pTreeNodeGroup.Nodes.Add(wKeyTreeNode);
-            
-            wGroup.Keys.Add(wKey);
+
+            //Esto lo hace ConfigurationManager_CRUD
+            //wGroup.Keys.Add(wKey);
 
             Fwk.Configuration.ConfigurationManager_CRUD.AddProperty(dic["provider"].ToString(), wGroup.Name, wKey);
 
@@ -454,8 +456,8 @@ namespace ConfigurationApp
             Group wGroup = new Group();
             wGroup.Name = pGroupName;
             wtvGroupNode.Tag = wGroup;
-
-            wConfigurationFile.Groups.Add(wGroup);
+            ////Esto lo hace ConfigurationManager_CRUD
+            //wConfigurationFile.Groups.Add(wGroup);
             pFileNode.Nodes.Add(wtvGroupNode);
 
             Fwk.Configuration.ConfigurationManager_CRUD.AddGroup(dic["provider"].ToString(), wGroup);
