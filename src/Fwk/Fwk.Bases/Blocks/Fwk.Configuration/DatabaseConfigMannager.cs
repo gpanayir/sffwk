@@ -49,16 +49,16 @@ namespace Fwk.Configuration
             ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
 
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile, provider.SourceInfo);
+            ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);
 
-            if (!wConfigurationFile.BaseConfigFile)
-            {
+            //if (!wConfigurationFile.BaseConfigFile)
+            //{
                 
-                TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
-                te.ErrorId = "8005";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
-                throw te;
-            }
+            //    TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
+            //    te.ErrorId = "8005";
+            //    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+            //    throw te;
+            //}
 
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             if (wGroup == null)
@@ -95,7 +95,7 @@ namespace Fwk.Configuration
         {
 
 
-            return  GetConfig(provider.BaseConfigFile,  provider.SourceInfo); ;
+            return  GetConfig(provider,  provider.SourceInfo); ;
         }
 
 
@@ -110,15 +110,15 @@ namespace Fwk.Configuration
         {
             ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
+            ConfigurationFile wConfigurationFile = GetConfig(provider,  provider.SourceInfo);
 
-            if (!wConfigurationFile.BaseConfigFile)
-            {
-                TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
-                te.ErrorId = "8005";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
-                throw te;
-            }
+            //if (!wConfigurationFile.BaseConfigFile)
+            //{
+            //    TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
+            //    te.ErrorId = "8005";
+            //    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+            //    throw te;
+            //}
 
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             if (wGroup == null)
@@ -149,15 +149,15 @@ namespace Fwk.Configuration
         /// <param name="pCnnStringName">Nombre de cadena de coneccion.</param>
         /// <returns><see cref="ConfigurationFile"/></returns>
         /// <Author>Marcelo Oviedo</Author>
-        static ConfigurationFile GetConfig(string pFileName, string pCnnStringName)
+        static ConfigurationFile GetConfig(ConfigProviderElement provider, string pCnnStringName)
         {
 
-  
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(pFileName);
+
+            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.Name);
 
             if (wConfigurationFile == null)
             {
-                wConfigurationFile = GetFromDatabase(pFileName,  pCnnStringName);
+                wConfigurationFile = GetFromDatabase(provider.BaseConfigFile, pCnnStringName);
                 _Repository.AddConfigurationFile(wConfigurationFile);
 
             }
@@ -249,7 +249,7 @@ namespace Fwk.Configuration
             Set_INSERT();
             System.Text.StringBuilder sqlCommand = new StringBuilder();
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);  //_Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider,  provider.SourceInfo);  //_Repository.GetConfigurationFile(provider.BaseConfigFile);
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
             wGroup.Keys.Add(key);
 
@@ -300,13 +300,13 @@ namespace Fwk.Configuration
 
             
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
+            ConfigurationFile wConfigurationFile = GetConfig(provider,  provider.SourceInfo);
 
-            if (!wConfigurationFile.BaseConfigFile)
-            {
-                ///TODO: manejo de exepcion de configuracion
-                throw new Exception("El archivo solicitado no es un archivo de configuración válido.");
-            }
+            //if (!wConfigurationFile.BaseConfigFile)
+            //{
+            //    ///TODO: manejo de exepcion de configuracion
+            //    throw new Exception("El archivo solicitado no es un archivo de configuración válido.");
+            //}
             if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
@@ -454,7 +454,7 @@ namespace Fwk.Configuration
         /// <param name="propertyName">Nombre de la propiedad</param>
         internal static void RemoveProperty(ConfigProviderElement provider,  string groupName, string propertyName)
         {
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo); //_Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider,  provider.SourceInfo); //_Repository.GetConfigurationFile(provider.BaseConfigFile);
             Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
             Key k = g.Keys.GetFirstByName(propertyName);
             g.Keys.Remove(k);
@@ -477,7 +477,7 @@ namespace Fwk.Configuration
         internal static void RemoveGroup(ConfigProviderElement provider, string groupName)
         {
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
+            ConfigurationFile wConfigurationFile = GetConfig(provider,  provider.SourceInfo);
             Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
 
             wConfigurationFile.Groups.Remove(g);
@@ -538,7 +538,7 @@ namespace Fwk.Configuration
             Set_UPDATE_GROUP();
             System.Text.StringBuilder sqlCommand = new StringBuilder();
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
+            ConfigurationFile wConfigurationFile = GetConfig(provider,  provider.SourceInfo);
             
 
             Database wDataBase = null;
@@ -588,7 +588,7 @@ namespace Fwk.Configuration
             Set_UPDATE_PROP();
             System.Text.StringBuilder sqlCommand = new StringBuilder();
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider.BaseConfigFile,  provider.SourceInfo);
+            ConfigurationFile wConfigurationFile = GetConfig(provider,  provider.SourceInfo);
 
 
             Database wDataBase = null;
@@ -638,7 +638,7 @@ namespace Fwk.Configuration
         /// <returns></returns>
         internal static ConfigurationFile RefreshConfigurationFile(ConfigProviderElement provider)
         {
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.Name);
             if (wConfigurationFile == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Error al intentar eremover un archivo de configuracion: El archivo ", provider.BaseConfigFile, " no se encuentra"));

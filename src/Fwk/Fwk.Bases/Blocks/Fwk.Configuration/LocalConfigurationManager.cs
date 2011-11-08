@@ -53,13 +53,13 @@ namespace Fwk.Configuration
 
             ConfigurationFile wConfigurationFile = GetConfig(provider);
 
-            if (!wConfigurationFile.BaseConfigFile)
-            {
-                TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
-                te.ErrorId = "8005";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
-                throw te;
-            }
+            //if (!wConfigurationFile.BaseConfigFile)
+            //{
+            //    TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
+            //    te.ErrorId = "8005";
+            //    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
+            //    throw te;
+            //}
 
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             if (wGroup == null)
@@ -113,13 +113,13 @@ namespace Fwk.Configuration
 
             ConfigurationFile wConfigurationFile = GetConfig(provider);
 
-            if (!wConfigurationFile.BaseConfigFile)
-            {
-                TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
-                te.ErrorId = "8005";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
-                throw te;
-            }
+            //if (!wConfigurationFile.BaseConfigFile)
+            //{
+            //    TechnicalException te = new TechnicalException("El archivo solicitado no es un archivo de configuración válido.");
+            //    te.ErrorId = "8005";
+            //    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+            //    throw te;
+            //}
 
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
             if (wGroup == null)
@@ -165,7 +165,7 @@ namespace Fwk.Configuration
         static ConfigurationFile GetConfig(ConfigProviderElement provider)
         {
 
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.Name);
 
             if (wConfigurationFile == null)
             {
@@ -174,7 +174,7 @@ namespace Fwk.Configuration
 
             }
 
-         
+
 
             return wConfigurationFile;
 
@@ -195,6 +195,8 @@ namespace Fwk.Configuration
         static ConfigurationFile SetConfigurationFile(ConfigProviderElement provider)
         {
             ConfigurationFile wConfigurationFile = new ConfigurationFile();
+
+
             string wFullFileName;
             if (System.IO.File.Exists(provider.BaseConfigFile))
             {
@@ -208,7 +210,7 @@ namespace Fwk.Configuration
 
             if (!System.IO.File.Exists(wFullFileName))
             {
-                TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuración ", provider.BaseConfigFile, " no existe. ", Environment.NewLine, "Revisar en el archivo .config de la aplicacion la configuración del proveedor [",  provider.Name,"]"));
+                TechnicalException te = new TechnicalException(string.Concat("El archivo de artchivo de configuración ", provider.BaseConfigFile, " no existe. ", Environment.NewLine, "Revisar en el archivo .config de la aplicacion la configuración del proveedor [", provider.Name, "]"));
                 te.ErrorId = "8011";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
                 throw te;
@@ -227,12 +229,7 @@ namespace Fwk.Configuration
                 wConfigurationFile.Encrypted = wConfigurationFile.Encrypted;
                 wConfigurationFile.ForceUpdate = wConfigurationFile.ForceUpdate;
                 wConfigurationFile.CurrentVersion = wConfigurationFile.CurrentVersion;
-                wConfigurationFile.BaseConfigFile = wConfigurationFile.BaseConfigFile;
-
-            }
-            else
-            {
-                wConfigurationFile.BaseConfigFile = true;
+                wConfigurationFile.ProviderName = provider.Name;
 
             }
 
@@ -260,7 +257,7 @@ namespace Fwk.Configuration
             try
             {
 
-                FileFunctions.SaveTextFile(provider.BaseConfigFile, wConfigurationFile.GetXml(), false);
+                FileFunctions.SaveTextFile(wConfigurationFile.FileName, wConfigurationFile.GetXml(), false);
             }
             catch (System.UnauthorizedAccessException)
             {
@@ -286,7 +283,7 @@ namespace Fwk.Configuration
 
             try
             {
-                FileFunctions.SaveTextFile(provider.BaseConfigFile, wConfigurationFile.GetXml(), false);
+                FileFunctions.SaveTextFile(wConfigurationFile.FileName, wConfigurationFile.GetXml(), false);
             }
             catch (System.UnauthorizedAccessException)
             {
@@ -313,7 +310,7 @@ namespace Fwk.Configuration
 
             try
             {
-                FileFunctions.SaveTextFile(provider.BaseConfigFile, wConfigurationFile.GetXml(), false);
+                FileFunctions.SaveTextFile(wConfigurationFile.FileName, wConfigurationFile.GetXml(), false);
             }
             catch (System.UnauthorizedAccessException)
             {
@@ -340,7 +337,7 @@ namespace Fwk.Configuration
 
             try
             {
-                FileFunctions.SaveTextFile(provider.BaseConfigFile, wConfigurationFile.GetXml(), false);
+                FileFunctions.SaveTextFile(wConfigurationFile.FileName, wConfigurationFile.GetXml(), false);
             }
             catch (System.UnauthorizedAccessException)
             {
@@ -368,7 +365,7 @@ namespace Fwk.Configuration
             g.Name = newGroupName;
             try
             {
-                FileFunctions.SaveTextFile(provider.BaseConfigFile, wConfigurationFile.GetXml(), false);
+                FileFunctions.SaveTextFile(wConfigurationFile.FileName, wConfigurationFile.GetXml(), false);
             }
             catch (System.UnauthorizedAccessException)
             {
@@ -398,7 +395,7 @@ namespace Fwk.Configuration
 
             try
             {
-                FileFunctions.SaveTextFile(provider.BaseConfigFile, wConfigurationFile.GetXml(), false);
+                FileFunctions.SaveTextFile(wConfigurationFile.FileName, wConfigurationFile.GetXml(), false);
             }
             catch (System.UnauthorizedAccessException)
             {
@@ -417,8 +414,8 @@ namespace Fwk.Configuration
         /// <returns></returns>
         internal static ConfigurationFile RefreshConfigurationFile(ConfigProviderElement provider)
         {
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.BaseConfigFile);
-  
+            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.Name);
+
             if (wConfigurationFile == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Error al intentar eremover un archivo de configuracion: El archivo ", provider.BaseConfigFile, " no se encuentra"));
