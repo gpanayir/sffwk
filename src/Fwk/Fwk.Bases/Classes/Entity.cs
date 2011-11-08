@@ -437,13 +437,10 @@ namespace Fwk.Bases
     /// <summary>
     /// 
     /// </summary>
+    [DebuggerVisualizer(typeof(IEntityVisualizer))]
     [Serializable]
     public abstract class BaseEntity : IBaseEntity
     {
-        
-        
-
-
 
         #region ICloneable Members
         /// <summary>
@@ -524,7 +521,7 @@ namespace Fwk.Bases
         ///</summary>
         public override string ToString()
         {
-            
+
             return HelperFunctions.TypeFunctions.ToString(this);
         }
         /// <summary>
@@ -580,6 +577,6 @@ namespace Fwk.Bases
 
             return sb.ToString();
         }
-        #endregion 
+        #endregion
     }
 }
