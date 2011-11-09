@@ -19,6 +19,28 @@ namespace ConfigurationApp
     {
         System.Configuration.Configuration configuration;
         public ConfigProviderElement CreatedProvider;
+
+        public frmCreateProvider(string fileName)
+        {
+            InitializeComponent();
+
+            txtConfigFileName.Text = fileName;
+            ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+            map.ExeConfigFilename = System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.Name + ".config";
+            configuration = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+
+            cboType.SelectedIndex = 0;
+
+            foreach (ConnectionStringSettings cnn in ConfigurationManager.ConnectionStrings)
+            {
+                if (!cnn.Name.Equals("LocalSqlServer"))
+                    cboCnnStrings.Items.Add(cnn.Name);
+            }
+            cboCnnStrings.SelectedIndex = 0;
+            txtName.Focus();
+        }
+
+
         public frmCreateProvider()
         {
             InitializeComponent();

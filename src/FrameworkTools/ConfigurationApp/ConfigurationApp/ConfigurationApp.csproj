@@ -132,8 +132,6 @@
     <None Include="AppConfig.old\SecctionsAndGroupsConfig.cs.old" />
     <None Include="AppConfig.old\TreeNodeConfig.cs.old" />
     <None Include="AppConfig.old\WrapperConfig.cs.old" />
-    <Compile Include="Class\CnnString.cs" />
-    <Compile Include="Class\ConfigManagerSettings.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\TemplateProvider.cs" />
     <Compile Include="ConfigManager\ConfigManagerControl.cs" />

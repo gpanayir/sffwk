@@ -98,9 +98,10 @@ namespace ConfigurationApp.Forms
             // 
             // treeView1
             // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeView1.AllowDrop = true;
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.BackColor = System.Drawing.Color.White;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.FullRowSelect = true;
@@ -108,7 +109,7 @@ namespace ConfigurationApp.Forms
             this.treeView1.ImageKey = "EditInformationHS.png";
             this.treeView1.ImageList = this.imgImages;
             this.treeView1.Location = new System.Drawing.Point(7, 2);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
             treeNode1.ContextMenuStrip = this.mnConfigManagerRoot;
             treeNode1.ImageKey = "EditInformationHS.png";
@@ -121,9 +122,11 @@ namespace ConfigurationApp.Forms
             this.treeView1.ShowNodeToolTips = true;
             this.treeView1.Size = new System.Drawing.Size(353, 394);
             this.treeView1.TabIndex = 1;
-            this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
+            this.treeView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView1_DragDrop);
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView1_DragEnter);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
+            this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
             // 
             // imgImages
             // 
@@ -156,7 +159,7 @@ namespace ConfigurationApp.Forms
             this.tsMenuItemNewGroup,
             this.exploreToolStripMenuItem});
             this.mnCnfgManFile.Name = "mnContextConfigManager";
-            this.mnCnfgManFile.Size = new System.Drawing.Size(154, 146);
+            this.mnCnfgManFile.Size = new System.Drawing.Size(154, 124);
             // 
             // tsMenuItemSaveFile
             // 
@@ -233,7 +236,7 @@ namespace ConfigurationApp.Forms
             // 
             this.toolStripMenuItem2.Image = global::ConfigurationApp.Properties.Resources.Delete;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 24);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(127, 24);
             this.toolStripMenuItem2.Text = "Quit";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -241,19 +244,20 @@ namespace ConfigurationApp.Forms
             // 
             this.toolStripMenuItem3.Image = global::ConfigurationApp.Properties.Resources.Refresh;
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 24);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(127, 24);
             this.toolStripMenuItem3.Text = "Refresh";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // dockPanelConfigManager
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(365, 399);
             this.CloseButton = false;
             this.Controls.Add(this.treeView1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "dockPanelConfigManager";
             this.TabText = "Config Manager";
             this.Text = "Config Manager";
