@@ -87,7 +87,7 @@ namespace ConfigurationApp
                 TreeNode wFileNode = new TreeNode(wConfigurationFile.FileName);
 
                 wFileNode.ToolTipText = string.Concat("Proveedor tipo: ", provider.ConfigProviderType.ToString()); ;
-                wDictionary.Add("FullFileName", wConfigurationFile.BaseConfigFile);
+                wDictionary.Add("FullFileName", wConfigurationFile.ProviderName);
                 wDictionary.Add("ConfigurationFile", wConfigurationFile);
                 wDictionary.Add("provider", provider.Name);
 

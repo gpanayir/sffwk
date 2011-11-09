@@ -19,6 +19,29 @@ namespace ConfigurationApp
     {
         System.Configuration.Configuration configuration;
         public ConfigProviderElement CreatedProvider;
+
+        public frmCreateProvider(string fileName)
+        {
+            InitializeComponent();
+
+            txtConfigFileName.Text = fileName;
+            txtSource.Text = fileName;
+            ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+            map.ExeConfigFilename = System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.Name + ".config";
+            configuration = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+
+            cboType.SelectedIndex = 0;
+
+            foreach (ConnectionStringSettings cnn in ConfigurationManager.ConnectionStrings)
+            {
+                if (!cnn.Name.Equals("LocalSqlServer"))
+                    cboCnnStrings.Items.Add(cnn.Name);
+            }
+            cboCnnStrings.SelectedIndex = 0;
+            txtName.Focus();
+        }
+
+
         public frmCreateProvider()
         {
             InitializeComponent();
@@ -67,17 +90,7 @@ namespace ConfigurationApp
                 wDialog.ShowReadOnly = true;
                 if (wDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ////Fwk.Configuration.Common.ConfigurationFile file = new Fwk.Configuration.Common.ConfigurationFile();
-
-                    ////try
-                    ////{
-                    ////    file.SetXml(Fwk.HelperFunctions.FileFunctions.OpenTextFile(wSchemaDialog.FileName));
-                    ////}
-                    ////catch
-                    ////{
-                    ////    base.ExceptionViewer.Show(new Exception("Incorrect configuration file"));
-                    ////    return;
-                    ////}
+         
                     if (CheckFile(wDialog.FileName))
                         txtSource.Text = wDialog.FileName;
                 }
@@ -122,7 +135,7 @@ namespace ConfigurationApp
                 txtName.Focus();
                 return false;
             }
-            if (cboType.Text == "local")
+            if (cboType.Text == "xml")
             {
                 if (CheckFile(txtSource.Text) == false)
                     return false; 
