@@ -416,15 +416,12 @@ namespace Fwk.Configuration
         {
             ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.Name);
 
-            if (wConfigurationFile == null)
+            if (wConfigurationFile != null)
             {
-                TechnicalException te = new TechnicalException(string.Concat("Error al intentar eremover un archivo de configuracion: El archivo ", provider.BaseConfigFile, " no se encuentra"));
-                te.ErrorId = "8012";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(LocalFileConfigurationManager));
-                throw te;
+                _Repository.RemoveConfigurationFile(wConfigurationFile);
+                wConfigurationFile = null;
             }
-            _Repository.RemoveConfigurationFile(wConfigurationFile);
-            wConfigurationFile = null;
+          
             wConfigurationFile = SetConfigurationFile(provider);
             _Repository.AddConfigurationFile(wConfigurationFile);
 
