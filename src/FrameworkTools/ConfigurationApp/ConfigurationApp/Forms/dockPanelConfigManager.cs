@@ -461,7 +461,8 @@ namespace ConfigurationApp.Forms
                 using (frmCreateProvider frm = new frmCreateProvider(files[0]))
                 {
 
-                    frm.ShowDialog();
+                    if(frm.ShowDialog()== DialogResult.OK)
+                        RefreshAllFiles();
                 }
 
         }
