@@ -499,7 +499,7 @@ namespace Fwk.Security.ActiveDirectory
                 userDirectoryEntry.Invoke("SetPassword", new object[] { password });
                 if (unlockAccount) userDirectoryEntry.Properties["LockOutTime"].Value = 0;
 
-                userDirectoryEntry.Properties["pwdLastSet"].Value = -1;//must be changed at the next logon.
+                userDirectoryEntry.Properties["pwdLastSet"].Value = 0;// -1;//must be changed at the next logon.
 
                 userDirectoryEntry.CommitChanges();
                 userDirectoryEntry.Close();
