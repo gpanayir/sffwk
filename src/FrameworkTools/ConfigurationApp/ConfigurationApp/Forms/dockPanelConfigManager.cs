@@ -201,6 +201,10 @@ namespace ConfigurationApp.Forms
 
 
         }
+        public void QuitFile()
+        { 
+        
+        }
         #endregion
 
         #region [Keys & Settings]
@@ -436,7 +440,8 @@ namespace ConfigurationApp.Forms
 
         private void tsMenuItemQuitFile_Click(object sender, EventArgs e)
         {
-
+            ConfigManagerControl.QuitFile(GetTreeNodeFile());
+            RefreshAllFiles();
         }
 
         private void tsMenuItemRefreshFile_Click(object sender, EventArgs e)
