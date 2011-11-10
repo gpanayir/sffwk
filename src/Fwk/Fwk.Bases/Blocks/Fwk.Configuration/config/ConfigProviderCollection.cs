@@ -39,6 +39,7 @@ namespace Fwk.ConfigSection
         {
             return ((ConfigProviderElement)element).Name;
         }
+        
         #endregion
 
         #region <public properties>
@@ -67,6 +68,14 @@ namespace Fwk.ConfigSection
         #endregion
 
         #region <public methods>
+        public void Remove(int index)
+        {
+            BaseRemoveAt(index);
+        }
+        public void Remove(ConfigProviderElement configProviderElement)
+        {
+            BaseRemove(configProviderElement);
+        }
         /// <summary>
         /// Retorna el índice del proveedor de configuracion.
         /// </summary>
@@ -74,6 +83,7 @@ namespace Fwk.ConfigSection
         /// <returns>índice</returns>
         public int IndexOf(ConfigProviderElement configProviderElement)
         {
+            
             return BaseIndexOf(configProviderElement);
         }
         /// <summary>
