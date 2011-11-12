@@ -32,10 +32,12 @@
             // 
             // UserControlBase
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AllowDrop = true;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "UserControlBase";
-            this.Size = new System.Drawing.Size(445, 170);
+            this.Size = new System.Drawing.Size(593, 209);
             this.ResumeLayout(false);
 
         }

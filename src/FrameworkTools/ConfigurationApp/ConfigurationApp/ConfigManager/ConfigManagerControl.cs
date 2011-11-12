@@ -141,7 +141,31 @@ namespace ConfigurationApp
 
 
 
+        internal static void QuitFile(TreeNode node)
+        {
+            
+            ListDictionary wDictionary = (ListDictionary)node.Tag;
+            try
+            {
 
+                System.Configuration.Configuration configuration;
+                ExeConfigurationFileMap map = new ExeConfigurationFileMap();
+                map.ExeConfigFilename = System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.Name + ".config";
+                configuration = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+                ConfigProviderElement prov = Fwk.Configuration.ConfigurationManager.ConfigProvider.GetProvider(wDictionary["provider"].ToString());
+
+                Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Remove(prov);
+
+                configuration.Save(ConfigurationSaveMode.Minimal, true);
+
+                
+            }
+            catch (Exception ex)
+            {
+
+                FwkMessageView.Show(ex, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
+            }
+        }
 
 
 

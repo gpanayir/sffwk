@@ -55,9 +55,9 @@ namespace ConfigurationApp
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(3, 60);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
@@ -69,6 +69,7 @@ namespace ConfigurationApp
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.AllowDrop = true;
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.Size = new System.Drawing.Size(1099, 569);
             this.splitContainer1.SplitterDistance = 344;
@@ -243,7 +244,7 @@ namespace ConfigurationApp
             this.label1.Size = new System.Drawing.Size(904, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Para agregar  un nuevo ConfigManager debe editar el archivo .config de esta aplic" +
-                "acion agregando un nuevo proveedor.-";
+    "acion agregando un nuevo proveedor.-";
             // 
             // frmMain
             // 
