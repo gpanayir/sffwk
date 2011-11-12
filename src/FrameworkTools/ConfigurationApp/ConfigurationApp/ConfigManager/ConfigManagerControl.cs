@@ -148,18 +148,11 @@ namespace ConfigurationApp
             try
             {
 
-
-
                 System.Configuration.Configuration configuration;
                 ExeConfigurationFileMap map = new ExeConfigurationFileMap();
                 map.ExeConfigFilename = System.Reflection.Assembly.GetExecutingAssembly().ManifestModule.Name + ".config";
                 configuration = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
-             
-
-                //ConfigProviderSection config = (ConfigProviderSection)configuration.Sections["FwkConfigProvider"];
-                ConfigProviderElement prov =
-                    Fwk.Configuration.ConfigurationManager.ConfigProvider.GetProvider(wDictionary["provider"].ToString());
-                
+                ConfigProviderElement prov = Fwk.Configuration.ConfigurationManager.ConfigProvider.GetProvider(wDictionary["provider"].ToString());
 
                 Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Remove(prov);
 

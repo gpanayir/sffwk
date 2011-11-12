@@ -4,6 +4,8 @@ using ConfigurationApp.Common;
 using ConfigurationApp.Forms;
 using ConfigurationApp.IsolatedStorage;
 using Fwk.ConfigSection;
+using System.Reflection;
+
 
 namespace ConfigurationApp
 {
@@ -16,7 +18,7 @@ namespace ConfigurationApp
             InitializeComponent();
 
             InitializeDocPanels();
-
+            this.Text = string.Concat(this.Text, " version ", Assembly.GetExecutingAssembly().GetName().Version.ToString());
             //if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
                 _dockPanelConfigManager.LoadFiles();
         }
