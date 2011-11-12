@@ -39,6 +39,7 @@ namespace Fwk.ConfigSection
         {
             return ((ConfigProviderElement)element).Name;
         }
+        
         #endregion
 
         #region <public properties>
@@ -68,21 +69,50 @@ namespace Fwk.ConfigSection
 
         #region <public methods>
         /// <summary>
-        /// Retorna el índice del proveedor de configuracion.
+        /// Elimina un proveedor por indice
         /// </summary>
-        /// <param name="configProviderElement">ConfigProviderElement que se desea conocer su </param>
-        /// <returns>índice</returns>
-        public int IndexOf(ConfigProviderElement configProviderElement)
+        /// <param name="index"></param>
+        public void Remove(int index)
         {
-            return BaseIndexOf(configProviderElement);
+            BaseRemoveAt(index);
+        }
+  
+        /// <summary>
+        /// Elimina un proveedor  
+        /// </summary>
+        /// <param name="configProvider"></param>
+        public void Remove(ConfigProviderElement configProvider)
+        {
+            if (BaseIndexOf(configProvider) >= 0)
+                BaseRemove(configProvider.Name);
+        }
+
+     
+        /// <summary>
+        /// Elimina un proveedor por su nombre
+        /// </summary>
+        /// <param name="name"></param>
+        public void Remove(string name)
+        {
+            BaseRemove(name);
         }
         /// <summary>
-        /// 
+        /// Retorna el índice del proveedor de configuracion.
         /// </summary>
-        /// <param name="element"></param>
-        public void Add(ConfigProviderElement element)
+        /// <param name="configProvider">configProvider que se desea conocer su </param>
+        /// <returns>índice</returns>
+        public int IndexOf(ConfigProviderElement configProvider)
         {
-            base.BaseAdd(element, true);
+
+            return BaseIndexOf(configProvider);
+        }
+        /// <summary>
+        /// Agrega un nuevo proveedor a la coleccion Providers .-
+        /// </summary>
+        /// <param name="configProvider"></param>
+        public void Add(ConfigProviderElement configProvider)
+        {
+            base.BaseAdd(configProvider, true);
         }
 
         /// <summary>
