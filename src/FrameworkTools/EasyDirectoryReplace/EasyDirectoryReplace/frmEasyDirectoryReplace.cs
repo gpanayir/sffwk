@@ -17,7 +17,7 @@ namespace EasyDirectoryReplace
             InitializeComponent();
          
             if(_Store.ReplacePatternDefault != null)
-                replacePattern1.Populate(_Store.ReplacePatternDefault);
+                replacePatternControl1.Populate(_Store.ReplacePatternDefault);
            
             PopulatePanel();
 
@@ -287,15 +287,15 @@ namespace EasyDirectoryReplace
         void FillReplacePaternList(bool addDefaultToList)
         {
             if (_Store.ReplacePatternList == null) return;
-                
+            _Store.ReplacePatternList.Clear();    
             foreach (Control c in flowLayoutPanel1.Controls)
             {
                 _Store.ReplacePatternList.Add(((ReplacePatternControl)c).ReplacePattern);
             }
             if (addDefaultToList)
-                _Store.ReplacePatternList.Add(replacePattern1.ReplacePattern);
+                _Store.ReplacePatternList.Add(replacePatternControl1.ReplacePattern);
             else
-                _Store.ReplacePatternDefault = replacePattern1.ReplacePattern;
+                _Store.ReplacePatternDefault = replacePatternControl1.ReplacePattern;
 
         }
         void PopulatePanel()
@@ -313,18 +313,10 @@ namespace EasyDirectoryReplace
 
 
 
-        public static void AddtoPanel(Control pControlToAdd, Control pContainerControl)
+        public  void AddtoPanel(ReplacePatternControl pControlToAdd, Control pContainerControl)
         {
 
-            //if (pContainerControl.Contains(pControlToAdd)) return;
-
-            pControlToAdd.Location = new System.Drawing.Point(1, 1);
-            pControlToAdd.Width = pContainerControl.Width - 60;
-            pControlToAdd.Height = pContainerControl.Height - 60;
-            pControlToAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                   | System.Windows.Forms.AnchorStyles.Left)
-                   | System.Windows.Forms.AnchorStyles.Right)));
-         
+            pControlToAdd.OnRemoveEvent += new EventHandler(replacePatternControl1_OnRemoveEvent);
             pContainerControl.Controls.Add(pControlToAdd);
 
         }
@@ -333,15 +325,17 @@ namespace EasyDirectoryReplace
         {
             ReplacePatternControl wReplacePatternControl = new ReplacePatternControl();
 
-            wReplacePatternControl.OnRemoveEvent += new EventHandler(wReplacePatternControl_OnRemoveEvent);
+            
             AddtoPanel(wReplacePatternControl, flowLayoutPanel1);
         }
 
-        void wReplacePatternControl_OnRemoveEvent(object sender, EventArgs e)
+      
+
+        private void replacePatternControl1_OnRemoveEvent(object sender, EventArgs e)
         {
-            ((ReplacePatternControl)sender).OnRemoveEvent -= new EventHandler(wReplacePatternControl_OnRemoveEvent);
+            ((ReplacePatternControl)sender).OnRemoveEvent -= new EventHandler(replacePatternControl1_OnRemoveEvent);
             flowLayoutPanel1.Controls.Remove((ReplacePatternControl)sender);
-                     
+
         }
     }
 }
