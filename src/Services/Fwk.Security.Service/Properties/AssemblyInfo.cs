@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Fwk.Security.Service")]
-[assembly: AssemblyDescription("Assemblie que comprende capas SVC,SVC, BC, BE de seguridad")]
+
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 

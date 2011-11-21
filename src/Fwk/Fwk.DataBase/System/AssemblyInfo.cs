@@ -7,8 +7,6 @@ using System.Reflection;
 //
 
 [assembly: AssemblyTitle("Fwk.DataBase")]
-[assembly: AssemblyDescription("")]
-
 
 
 

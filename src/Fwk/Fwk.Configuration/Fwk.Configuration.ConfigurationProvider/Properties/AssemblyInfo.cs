@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Fwk.Configuration.ConfigurationProvider")]
-[assembly: AssemblyDescription("")]
+
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 

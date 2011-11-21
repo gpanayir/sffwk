@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Fwk.Bases")]
-[assembly: AssemblyDescription("")]
+
 //[assembly: AssemblyConfiguration("")]
 //[assembly: AssemblyCompany(ProductInfo.PRODUCT_Company)]
 //[assembly: AssemblyProduct(ProductInfo.PRODUCT_Name)]
