@@ -19,7 +19,12 @@ namespace SerealsVeriFIER
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Sereal.VerifyMd5Hash(txtImput.Text, txtMD5Value.Text);
+            if(Sereal.VerifyMd5Hash(txtImput.Text, txtMD5Value.Text))
+            {
+                MessageBox.Show("Is valid");
+            }
+            else
+                MessageBox.Show("Is invalid");
         }
     }
 }
