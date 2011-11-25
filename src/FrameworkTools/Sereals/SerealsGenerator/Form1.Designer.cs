@@ -44,6 +44,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnValidateMD5 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnDate = new System.Windows.Forms.Button();
             this.btnEncrypt = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtEncryptedValue = new System.Windows.Forms.TextBox();
@@ -52,13 +55,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtKeyValue = new System.Windows.Forms.TextBox();
             this.btnGenerateKey = new System.Windows.Forms.Button();
-            this.btnDate = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label9 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtNroSerie = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -108,6 +112,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -125,7 +130,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(763, 299);
+            this.tabPage1.Size = new System.Drawing.Size(766, 387);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "MD5 Gen";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -149,7 +154,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(763, 299);
+            this.tabPage3.Size = new System.Drawing.Size(766, 387);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "MD5 verifier";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -216,6 +221,34 @@
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Encrypt";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label9.Location = new System.Drawing.Point(19, 88);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(79, 17);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "expiration";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(121, 88);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.TabIndex = 17;
+            // 
+            // btnDate
+            // 
+            this.btnDate.Location = new System.Drawing.Point(624, 179);
+            this.btnDate.Name = "btnDate";
+            this.btnDate.Size = new System.Drawing.Size(75, 23);
+            this.btnDate.TabIndex = 16;
+            this.btnDate.Text = "<-- date";
+            this.btnDate.UseVisualStyleBackColor = true;
+            this.btnDate.Click += new System.EventHandler(this.btnDate_Click);
             // 
             // btnEncrypt
             // 
@@ -290,33 +323,33 @@
             this.btnGenerateKey.UseVisualStyleBackColor = true;
             this.btnGenerateKey.Click += new System.EventHandler(this.btnGenerateKey_Click);
             // 
-            // btnDate
+            // tabPage4
             // 
-            this.btnDate.Location = new System.Drawing.Point(624, 179);
-            this.btnDate.Name = "btnDate";
-            this.btnDate.Size = new System.Drawing.Size(75, 23);
-            this.btnDate.TabIndex = 16;
-            this.btnDate.Text = "<-- date";
-            this.btnDate.UseVisualStyleBackColor = true;
-            this.btnDate.Click += new System.EventHandler(this.btnDate_Click);
+            this.tabPage4.Controls.Add(this.label10);
+            this.tabPage4.Controls.Add(this.txtNroSerie);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(766, 387);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "Hardware Values";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // label10
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(121, 88);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 17;
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(40, 33);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(155, 17);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Drive 0 Sereial Number";
             // 
-            // label9
+            // txtNroSerie
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label9.Location = new System.Drawing.Point(19, 88);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(79, 17);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "expiration";
+            this.txtNroSerie.Location = new System.Drawing.Point(43, 53);
+            this.txtNroSerie.Name = "txtNroSerie";
+            this.txtNroSerie.Size = new System.Drawing.Size(574, 22);
+            this.txtNroSerie.TabIndex = 3;
             // 
             // Form1
             // 
@@ -339,6 +372,8 @@
             this.tabPage3.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -371,6 +406,9 @@
         private System.Windows.Forms.Button btnDate;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtNroSerie;
     }
 }
 

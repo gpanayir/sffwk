@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using Sereals;
+using System.Management;
 
 namespace SerealsGenerator
 {
@@ -16,16 +17,13 @@ namespace SerealsGenerator
         public Form1()
         {
             InitializeComponent();
+            init();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            
-            
+           
                 string hash = Sereal.GetMd5Hash(txtImput.Text);
-
-
 
                 txtMD5Value.Text = hash;
 
@@ -72,9 +70,38 @@ namespace SerealsGenerator
             txtValueToEncrypt.Text = string.Concat(f.Day,"|",f.Month,"|",f.Year);
         }
 
-     
-        
+         void init()
+        {
+            txtNroSerie.Text = GetDriverSerealNumber();
+        }
 
+
+
+
+  
+
+        public String GetDriverSerealNumber()
+        {                                                                   
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("select Index,SerialNumber from Win32_DiskDrive where Index = 0");
+
+            foreach (ManagementObject share in searcher.Get())
+            {
+                //if (Convert.ToInt32(share["Index"]).Equals(0))
+                //{
+                    return share["SerialNumber"].ToString();
+                //}
+            }
+
+            return string.Empty;
+        }
+       
 
     }
+    [Serializable]
+    public struct NetworkAdapters
+    {
+        public String MACAddress;
+        public Int32 AdapterTypeID;
+    }
+
 }
