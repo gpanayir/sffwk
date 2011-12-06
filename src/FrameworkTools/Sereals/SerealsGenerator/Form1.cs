@@ -81,21 +81,65 @@ namespace SerealsGenerator
   
 
         public String GetDriverSerealNumber()
-        {                                                                   
+        {
+            OSVersion version = GetOSVersion();                               
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("select Index,SerialNumber from Win32_DiskDrive where Index = 0");
 
-            foreach (ManagementObject share in searcher.Get())
-            {
-                //if (Convert.ToInt32(share["Index"]).Equals(0))
-                //{
-                    return share["SerialNumber"].ToString();
-                //}
-            }
+           OSVersion v =  GetOSVersion();
+           if (v == OSVersion.Windows_7)
+           {
+               searcher = new ManagementObjectSearcher("select Index,SerialNumber from Win32_DiskDrive where Index = 0");
+               foreach (ManagementObject share in searcher.Get())
+               {
+                   //if (Convert.ToInt32(share["Index"]).Equals(0))
+                   //{
+                   return share["SerialNumber"].ToString();
+                   //}
+               }
+           }
+           if( v == OSVersion.Windows_XP)
+           {
+               searcher = new ManagementObjectSearcher("select Name,VolumeSerialNumber from Win32_LogicalDisk ");
+
+               foreach (ManagementObject partion in searcher.Get())
+               { //hdd = Convert.ToString(partion["VolumeSerialNumber"]); 
+                   if (partion["Name"].Equals("C:")) 
+                       return partion["VolumeSerialNumber"].ToString(); 
+               }
+           }
 
             return string.Empty;
         }
+
+        public OSVersion GetOSVersion()
+        {
+            int _MajorVersion = Environment.OSVersion.Version.Major;
+            switch (_MajorVersion)
+            {
+                case 5: return  OSVersion.Windows_XP;
+                case 6:
+                    {
+                        switch (Environment.OSVersion.Version.Minor)
+                        {
+                            case 0: return OSVersion.Windows_Vista;
+                            case 1: return OSVersion.Windows_7;
+                            default: return OSVersion.Windows_Vista_and_above;
+                        }
+                   
+                    }
+                default: return OSVersion.Unknown;
+            }
+        }
        
 
+    }
+    public enum OSVersion
+    {
+        Windows_Vista=0,
+        Windows_7 =1,
+        Windows_XP = 5,
+        Windows_Vista_and_above = 1000,
+        Unknown = 1001
     }
     [Serializable]
     public struct NetworkAdapters
