@@ -102,7 +102,7 @@ namespace SerealsGenerator
                searcher = new ManagementObjectSearcher("select Name,VolumeSerialNumber from Win32_LogicalDisk ");
 
                foreach (ManagementObject partion in searcher.Get())
-               { //hdd = Convert.ToString(partion["VolumeSerialNumber"]); 
+               {
                    if (partion["Name"].Equals("C:")) 
                        return partion["VolumeSerialNumber"].ToString(); 
                }
