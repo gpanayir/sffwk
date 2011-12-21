@@ -130,7 +130,7 @@ namespace Fwk.Security.Cryptography
             }
             return keyFileName;
         }
-+
+
 
         void CreateSymmetricAlgorithmProvider()
         {
