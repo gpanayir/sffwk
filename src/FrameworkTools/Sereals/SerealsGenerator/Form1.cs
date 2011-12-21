@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 using Sereals;
 using System.Management;
+using Fwk.Bases;
 
 namespace SerealsGenerator
 {
@@ -133,14 +134,7 @@ namespace SerealsGenerator
        
 
     }
-    public enum OSVersion
-    {
-        Windows_Vista=0,
-        Windows_7 =1,
-        Windows_XP = 5,
-        Windows_Vista_and_above = 1000,
-        Unknown = 1001
-    }
+
     [Serializable]
     public struct NetworkAdapters
     {
