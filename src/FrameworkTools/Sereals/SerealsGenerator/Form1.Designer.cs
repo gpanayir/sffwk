@@ -312,6 +312,7 @@
             this.txtKeyValue.Name = "txtKeyValue";
             this.txtKeyValue.Size = new System.Drawing.Size(574, 22);
             this.txtKeyValue.TabIndex = 3;
+            this.txtKeyValue.Text = "7gp6CZ+Y8BZULbjOOkT86vi8HnrtyaIQ6WiLhdY48jY=$PbUiRifcU1q8Egl96hC7tw==";
             // 
             // btnGenerateKey
             // 

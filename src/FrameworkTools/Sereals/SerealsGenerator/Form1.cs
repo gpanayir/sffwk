@@ -56,7 +56,7 @@ namespace SerealsGenerator
 
         private void btnValidateMD5_Click(object sender, EventArgs e)
         {
-            if (Sereal.VerifyMd5Hash(txtImput.Text, txtMD5Value.Text))
+            if (Sereal.VerifyMd5Hash(textBox2.Text, textBox1.Text))
             {
                 MessageBox.Show("Is valid");
             }
