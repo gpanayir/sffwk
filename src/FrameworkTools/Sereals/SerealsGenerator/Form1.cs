@@ -131,6 +131,13 @@ namespace SerealsGenerator
                 default: return OSVersion.Unknown;
             }
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime f = dateTimePicker1.Value;
+
+            txtValueToEncrypt.Text = string.Concat(f.Day, "|", f.Month, "|", f.Year);
+        }
        
 
     }
