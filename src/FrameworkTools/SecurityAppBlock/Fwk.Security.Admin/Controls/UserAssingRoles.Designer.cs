@@ -154,7 +154,7 @@
             this.usersGrid1.Location = new System.Drawing.Point(15, 47);
             this.usersGrid1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.usersGrid1.Name = "usersGrid1";
-            this.usersGrid1.Size = new System.Drawing.Size(666, 548);
+            this.usersGrid1.Size = new System.Drawing.Size(677, 548);
             this.usersGrid1.TabIndex = 22;
             this.usersGrid1.OnUserChange += new Fwk.Security.Admin.UserChangeHandler(this.usersGrid1_OnUserChange);
             // 
