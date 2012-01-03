@@ -20,6 +20,7 @@ namespace Fwk.Security.Admin
 {
     public partial class frmAdmin : frmSecBase
     {
+        bool onInit = true;
        SecurityControlBase currontSecurityControlBase;
         public static MembershipProvider Provider = Membership.Provider;
         public static Boolean CurrentProviderConnectedOk = false;
@@ -54,6 +55,26 @@ namespace Fwk.Security.Admin
 
         private void cmbProviders_EditValueChanged(object sender, EventArgs e)
         {
+            
+                Connect();
+        }
+
+        private void frmAdmin_Load(object sender, EventArgs e)
+        {
+            cmbProviders.Properties.DataSource = FwkMembership.GetAllMembershiproviderNameArray();
+            cmbProviders.ItemIndex = 0;
+            navBarControl1.SelectedLink = navBarItem2.Links[0];
+            
+            onInit = false;
+        }
+
+        private void btnRefreshConnection_Click(object sender, EventArgs e)
+        {
+            Connect();
+        }
+
+        void Connect()
+        {
             try
             {
 
@@ -65,17 +86,21 @@ namespace Fwk.Security.Admin
 
                 lblServer.Text = cnn.DataSource;
                 lblDatabase.Text = cnn.InitialCatalog;
-                DataBase.Metadata m = new DataBase.Metadata(cnn);
-                
-                if (m.TestConnection())
+                if (!onInit)
                 {
-                    CurrentProviderConnectedOk = true;
-                    lblConnectionStatus.Text = "Connected";
-                }
-                else
-                {
-                    CurrentProviderConnectedOk = false;
-                    lblConnectionStatus.Text = "Disconected";
+                    DataBase.Metadata m = new DataBase.Metadata(cnn);
+
+                    if (m.TestConnection())
+                    {
+                        CurrentProviderConnectedOk = true;
+                        lblConnectionStatus.Text = "Connected";
+                    }
+                    else
+                    {
+                        CurrentProviderConnectedOk = false;
+                        lblConnectionStatus.Text = "Disconected";
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -84,7 +109,6 @@ namespace Fwk.Security.Admin
                 lblConnectionStatus.Text = "Disconected";
                 base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
             }
-
             if (currontSecurityControlBase == null)
             {
                 this.Cursor = Cursors.Arrow;
@@ -92,9 +116,8 @@ namespace Fwk.Security.Admin
             }
             try
             {
-
                 currontSecurityControlBase.Initialize();
-                
+
             }
             catch (Exception ex)
             {
@@ -104,14 +127,6 @@ namespace Fwk.Security.Admin
             }
             this.Cursor = Cursors.Arrow;
         }
-
-        private void frmAdmin_Load(object sender, EventArgs e)
-        {
-            cmbProviders.Properties.DataSource = FwkMembership.GetAllMembershiproviderNameArray();
-            cmbProviders.ItemIndex = 0;
-
-        }
-
        
        
        
