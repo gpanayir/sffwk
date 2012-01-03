@@ -349,10 +349,10 @@ namespace Fwk.Security.Admin
             this.lblConnectionStatus.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConnectionStatus.ForeColor = System.Drawing.Color.Tomato;
             this.lblConnectionStatus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblConnectionStatus.Location = new System.Drawing.Point(401, 15);
+            this.lblConnectionStatus.Location = new System.Drawing.Point(380, 15);
             this.lblConnectionStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConnectionStatus.Name = "lblConnectionStatus";
-            this.lblConnectionStatus.Size = new System.Drawing.Size(124, 20);
+            this.lblConnectionStatus.Size = new System.Drawing.Size(108, 20);
             this.lblConnectionStatus.TabIndex = 25;
             this.lblConnectionStatus.Text = "Server";
             // 
