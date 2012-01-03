@@ -51,9 +51,9 @@
             this.label9.Image = global::Fwk.Security.Admin.Properties.Resources.Users;
             this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Location = new System.Drawing.Point(4, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 23);
+            this.label9.Size = new System.Drawing.Size(78, 28);
             this.label9.TabIndex = 18;
             this.label9.Text = "Users";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -62,9 +62,9 @@
             // 
             this.grdUsers.AllowUserToAddRows = false;
             this.grdUsers.AllowUserToDeleteRows = false;
-            this.grdUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdUsers.AutoGenerateColumns = false;
             this.grdUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.grdUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -76,11 +76,13 @@
             this.isLockedOutDataGridViewCheckBoxColumn,
             this.isApprovedDataGridViewCheckBoxColumn});
             this.grdUsers.DataSource = this.userByAppBindingSource;
-            this.grdUsers.Location = new System.Drawing.Point(0, 60);
+            this.grdUsers.Location = new System.Drawing.Point(0, 74);
+            this.grdUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdUsers.MultiSelect = false;
             this.grdUsers.Name = "grdUsers";
             this.grdUsers.ReadOnly = true;
-            this.grdUsers.Size = new System.Drawing.Size(608, 382);
+            this.grdUsers.RowTemplate.Height = 24;
+            this.grdUsers.Size = new System.Drawing.Size(710, 470);
             this.grdUsers.TabIndex = 17;
             this.grdUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdUsers_CellClick);
             // 
@@ -132,21 +134,23 @@
             // 
             // textEdit1
             // 
-            this.textEdit1.Location = new System.Drawing.Point(6, 34);
+            this.textEdit1.Location = new System.Drawing.Point(7, 42);
+            this.textEdit1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(320, 20);
+            this.textEdit1.Size = new System.Drawing.Size(373, 22);
             this.textEdit1.TabIndex = 19;
             this.textEdit1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textEdit1_KeyPress);
             // 
             // UsersGrid
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textEdit1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.grdUsers);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "UsersGrid";
-            this.Size = new System.Drawing.Size(611, 445);
+            this.Size = new System.Drawing.Size(713, 548);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userByAppBindingSource)).EndInit();

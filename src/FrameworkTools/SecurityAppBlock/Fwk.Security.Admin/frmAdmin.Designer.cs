@@ -57,6 +57,7 @@ namespace Fwk.Security.Admin
             this.lblServer = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblDatabase = new System.Windows.Forms.Label();
+            this.lblConnectionStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbProviders.Properties)).BeginInit();
@@ -65,7 +66,7 @@ namespace Fwk.Security.Admin
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(764, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 0;
@@ -118,7 +119,7 @@ namespace Fwk.Security.Admin
             this.navBarItem_RulesEdit,
             this.navBarItem_Encrypt});
             this.navBarControl1.Location = new System.Drawing.Point(9, 89);
-            this.navBarControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.navBarControl1.Margin = new System.Windows.Forms.Padding(4);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 177;
             this.navBarControl1.Size = new System.Drawing.Size(236, 686);
@@ -261,7 +262,7 @@ namespace Fwk.Security.Admin
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelControl1.AutoSize = true;
             this.panelControl1.Location = new System.Drawing.Point(253, 89);
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1044, 690);
             this.panelControl1.TabIndex = 5;
@@ -282,7 +283,7 @@ namespace Fwk.Security.Admin
             // cmbProviders
             // 
             this.cmbProviders.Location = new System.Drawing.Point(144, 13);
-            this.cmbProviders.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProviders.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProviders.Name = "cmbProviders";
             this.cmbProviders.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -342,11 +343,25 @@ namespace Fwk.Security.Admin
             this.lblDatabase.TabIndex = 24;
             this.lblDatabase.Text = "Database";
             // 
+            // lblConnectionStatus
+            // 
+            this.lblConnectionStatus.BackColor = System.Drawing.Color.White;
+            this.lblConnectionStatus.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConnectionStatus.ForeColor = System.Drawing.Color.Tomato;
+            this.lblConnectionStatus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblConnectionStatus.Location = new System.Drawing.Point(401, 15);
+            this.lblConnectionStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblConnectionStatus.Name = "lblConnectionStatus";
+            this.lblConnectionStatus.Size = new System.Drawing.Size(124, 20);
+            this.lblConnectionStatus.TabIndex = 25;
+            this.lblConnectionStatus.Text = "Server";
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1313, 801);
+            this.Controls.Add(this.lblConnectionStatus);
             this.Controls.Add(this.lblDatabase);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblServer);
@@ -358,7 +373,7 @@ namespace Fwk.Security.Admin
             this.Controls.Add(this.lbltitle);
             this.Controls.Add(this.button1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmAdmin";
             this.Text = "Security admin";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -399,6 +414,7 @@ namespace Fwk.Security.Admin
         private System.Windows.Forms.Label lblServer;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblDatabase;
+        private System.Windows.Forms.Label lblConnectionStatus;
     }
 }
 

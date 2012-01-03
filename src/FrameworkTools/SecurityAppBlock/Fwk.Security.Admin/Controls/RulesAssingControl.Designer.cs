@@ -90,12 +90,13 @@
             // 
             // txtRuleExpression
             // 
-            this.txtRuleExpression.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRuleExpression.Location = new System.Drawing.Point(10, 524);
+            this.txtRuleExpression.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRuleExpression.Location = new System.Drawing.Point(12, 645);
+            this.txtRuleExpression.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRuleExpression.Multiline = true;
             this.txtRuleExpression.Name = "txtRuleExpression";
-            this.txtRuleExpression.Size = new System.Drawing.Size(697, 53);
+            this.txtRuleExpression.Size = new System.Drawing.Size(812, 64);
             this.txtRuleExpression.TabIndex = 20;
             // 
             // btnCreateRule
@@ -104,9 +105,10 @@
             this.btnCreateRule.Appearance.Options.UseBackColor = true;
             this.btnCreateRule.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
             this.btnCreateRule.Image = global::Fwk.Security.Admin.Properties.Resources.save_16;
-            this.btnCreateRule.Location = new System.Drawing.Point(407, 7);
+            this.btnCreateRule.Location = new System.Drawing.Point(475, 9);
+            this.btnCreateRule.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCreateRule.Name = "btnCreateRule";
-            this.btnCreateRule.Size = new System.Drawing.Size(96, 23);
+            this.btnCreateRule.Size = new System.Drawing.Size(112, 28);
             this.btnCreateRule.TabIndex = 19;
             this.btnCreateRule.Text = "Save rule ";
             this.btnCreateRule.Click += new System.EventHandler(this.btnCreateRule_Click);
@@ -115,17 +117,18 @@
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label11.Location = new System.Drawing.Point(3, 12);
+            this.label11.Location = new System.Drawing.Point(3, 15);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(138, 16);
+            this.label11.Size = new System.Drawing.Size(161, 20);
             this.label11.TabIndex = 17;
             this.label11.Text = "Enter the rule name";
             // 
             // txtRuleName
             // 
-            this.txtRuleName.Location = new System.Drawing.Point(147, 9);
+            this.txtRuleName.Location = new System.Drawing.Point(171, 11);
+            this.txtRuleName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRuleName.Name = "txtRuleName";
-            this.txtRuleName.Size = new System.Drawing.Size(190, 21);
+            this.txtRuleName.Size = new System.Drawing.Size(221, 23);
             this.txtRuleName.TabIndex = 0;
             this.txtRuleName.Validating += new System.ComponentModel.CancelEventHandler(this.textRuleName_Validating);
             // 
@@ -135,10 +138,11 @@
             this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.grdUserExcluded);
             this.tabPage3.Controls.Add(this.grdAllUser);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(697, 427);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage3.Size = new System.Drawing.Size(814, 529);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Excludes Users";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -149,9 +153,9 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(3, 3);
+            this.label2.Location = new System.Drawing.Point(3, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(691, 34);
+            this.label2.Size = new System.Drawing.Size(806, 42);
             this.label2.TabIndex = 19;
             this.label2.Text = "Add excluded users";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -162,9 +166,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Fwk.Security.Admin.Properties.Resources.impt_24;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(313, 133);
+            this.button1.Location = new System.Drawing.Point(365, 164);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(103, 32);
+            this.button1.Size = new System.Drawing.Size(120, 39);
             this.button1.TabIndex = 18;
             this.button1.Text = "Exclude user";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -173,20 +178,21 @@
             // 
             // grdUserExcluded
             // 
-            this.grdUserExcluded.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.grdUserExcluded.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grdUserExcluded.AutoGenerateColumns = false;
             this.grdUserExcluded.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdUserExcluded.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.userNameDataGridViewTextBoxColumn1,
             this.appNameDataGridViewTextBoxColumn1});
             this.grdUserExcluded.DataSource = this.userExcludedBindingSource;
-            this.grdUserExcluded.Location = new System.Drawing.Point(422, 40);
+            this.grdUserExcluded.Location = new System.Drawing.Point(492, 49);
+            this.grdUserExcluded.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdUserExcluded.Name = "grdUserExcluded";
             this.grdUserExcluded.ReadOnly = true;
-            this.grdUserExcluded.Size = new System.Drawing.Size(253, 377);
+            this.grdUserExcluded.RowTemplate.Height = 24;
+            this.grdUserExcluded.Size = new System.Drawing.Size(295, 464);
             this.grdUserExcluded.TabIndex = 14;
-            
             // 
             // userNameDataGridViewTextBoxColumn1
             // 
@@ -204,18 +210,20 @@
             // 
             // grdAllUser
             // 
-            this.grdAllUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.grdAllUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grdAllUser.AutoGenerateColumns = false;
             this.grdAllUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdAllUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.userNameDataGridViewTextBoxColumn,
             this.appNameDataGridViewTextBoxColumn});
             this.grdAllUser.DataSource = this.userBindingSource;
-            this.grdAllUser.Location = new System.Drawing.Point(15, 40);
+            this.grdAllUser.Location = new System.Drawing.Point(17, 49);
+            this.grdAllUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdAllUser.Name = "grdAllUser";
             this.grdAllUser.ReadOnly = true;
-            this.grdAllUser.Size = new System.Drawing.Size(292, 381);
+            this.grdAllUser.RowTemplate.Height = 24;
+            this.grdAllUser.Size = new System.Drawing.Size(341, 469);
             this.grdAllUser.TabIndex = 13;
             this.grdAllUser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdAllUser_CellClick);
             // 
@@ -239,10 +247,11 @@
             this.tabPage2.Controls.Add(this.btnAsignarRoles);
             this.tabPage2.Controls.Add(this.grdAssignedRoles);
             this.tabPage2.Controls.Add(this.grdAllRoles);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(697, 427);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPage2.Size = new System.Drawing.Size(814, 529);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Includes roles";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -253,9 +262,9 @@
             this.lbltitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbltitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbltitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbltitle.Location = new System.Drawing.Point(3, 3);
+            this.lbltitle.Location = new System.Drawing.Point(3, 4);
             this.lbltitle.Name = "lbltitle";
-            this.lbltitle.Size = new System.Drawing.Size(691, 34);
+            this.lbltitle.Size = new System.Drawing.Size(808, 42);
             this.lbltitle.TabIndex = 18;
             this.lbltitle.Text = "Add roles ";
             this.lbltitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -266,9 +275,10 @@
             this.btnAsignarRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAsignarRoles.Image = global::Fwk.Security.Admin.Properties.Resources.impt_24;
             this.btnAsignarRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAsignarRoles.Location = new System.Drawing.Point(272, 134);
+            this.btnAsignarRoles.Location = new System.Drawing.Point(317, 165);
+            this.btnAsignarRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAsignarRoles.Name = "btnAsignarRoles";
-            this.btnAsignarRoles.Size = new System.Drawing.Size(89, 32);
+            this.btnAsignarRoles.Size = new System.Drawing.Size(104, 39);
             this.btnAsignarRoles.TabIndex = 17;
             this.btnAsignarRoles.Text = "Add Roles";
             this.btnAsignarRoles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -277,18 +287,20 @@
             // 
             // grdAssignedRoles
             // 
-            this.grdAssignedRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.grdAssignedRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grdAssignedRoles.AutoGenerateColumns = false;
             this.grdAssignedRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdAssignedRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rolNameDataGridViewTextBoxColumn1});
             this.grdAssignedRoles.ContextMenuStrip = this.contextMenuStrip1;
             this.grdAssignedRoles.DataSource = this.rolAssignedBindingSource;
-            this.grdAssignedRoles.Location = new System.Drawing.Point(377, 40);
+            this.grdAssignedRoles.Location = new System.Drawing.Point(440, 49);
+            this.grdAssignedRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdAssignedRoles.Name = "grdAssignedRoles";
             this.grdAssignedRoles.ReadOnly = true;
-            this.grdAssignedRoles.Size = new System.Drawing.Size(299, 368);
+            this.grdAssignedRoles.RowTemplate.Height = 24;
+            this.grdAssignedRoles.Size = new System.Drawing.Size(349, 453);
             this.grdAssignedRoles.TabIndex = 11;
             this.grdAssignedRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAssignedRoles_MouseDown);
             // 
@@ -315,21 +327,23 @@
             // 
             // grdAllRoles
             // 
-            this.grdAllRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.grdAllRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grdAllRoles.AutoGenerateColumns = false;
             this.grdAllRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdAllRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rolNameDataGridViewTextBoxColumn});
             this.grdAllRoles.DataSource = this.rolBindingSource;
-            this.grdAllRoles.Location = new System.Drawing.Point(6, 40);
+            this.grdAllRoles.Location = new System.Drawing.Point(7, 49);
+            this.grdAllRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdAllRoles.Name = "grdAllRoles";
             this.grdAllRoles.ReadOnly = true;
+            this.grdAllRoles.RowTemplate.Height = 24;
             this.grdAllRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdAllRoles.Size = new System.Drawing.Size(260, 368);
+            this.grdAllRoles.Size = new System.Drawing.Size(303, 453);
             this.grdAllRoles.TabIndex = 10;
-            this.grdAllRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAllRoles_MouseDown);
             this.grdAllRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdAllRoles_CellClick);
+            this.grdAllRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAllRoles_MouseDown);
             // 
             // rolNameDataGridViewTextBoxColumn
             // 
@@ -340,15 +354,16 @@
             // 
             // tabControl2
             // 
-            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl2.Controls.Add(this.tabPage2);
             this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Location = new System.Drawing.Point(6, 42);
+            this.tabControl2.Location = new System.Drawing.Point(7, 52);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(705, 453);
+            this.tabControl2.Size = new System.Drawing.Size(822, 558);
             this.tabControl2.TabIndex = 15;
             // 
             // label1
@@ -356,15 +371,15 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(11, 503);
+            this.label1.Location = new System.Drawing.Point(13, 619);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 16);
+            this.label1.Size = new System.Drawing.Size(161, 20);
             this.label1.TabIndex = 21;
             this.label1.Text = "Expression";
             // 
             // RulesAssingControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCreateRule);
@@ -372,8 +387,9 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtRuleName);
             this.Controls.Add(this.tabControl2);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "RulesAssingControl";
-            this.Size = new System.Drawing.Size(727, 582);
+            this.Size = new System.Drawing.Size(848, 716);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolAssignedBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).EndInit();
