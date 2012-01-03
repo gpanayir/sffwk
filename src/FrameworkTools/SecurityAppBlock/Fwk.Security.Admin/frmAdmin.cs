@@ -57,7 +57,7 @@ namespace Fwk.Security.Admin
             try
             {
 
-
+                this.Cursor = Cursors.WaitCursor;
                 frmAdmin.Provider = Membership.Providers[cmbProviders.Text];
 
                 string cnnString = FwkMembership.GetProvider_ConnectionString(frmAdmin.Provider.Name);
@@ -85,7 +85,11 @@ namespace Fwk.Security.Admin
                 base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
             }
 
-            if (currontSecurityControlBase == null) return;
+            if (currontSecurityControlBase == null)
+            {
+                this.Cursor = Cursors.Arrow;
+                return;
+            }
             try
             {
 
@@ -98,7 +102,7 @@ namespace Fwk.Security.Admin
                 lblConnectionStatus.Text = "Disconected";
                 base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
             }
-
+            this.Cursor = Cursors.Arrow;
         }
 
         private void frmAdmin_Load(object sender, EventArgs e)
