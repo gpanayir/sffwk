@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="User_AddRoleErrorMessage" xml:space="preserve">
     <value>Please select a user name and select or enter a role.</value>
@@ -322,5 +322,8 @@ Result: user is authorized</value>
   </data>
   <data name="Rule_NotExist" xml:space="preserve">
     <value>The rule {0} not exist</value>
+  </data>
+  <data name="ConnectionStringNotExist" xml:space="preserve">
+    <value>The connection string {0} not exist. Please check {1} provider security settings .-</value>
   </data>
 </root>

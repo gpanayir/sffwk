@@ -32,7 +32,9 @@ namespace Fwk.Security
     /// </summary>
     public partial class FwkMembership
     {
-       
+       /// <summary>
+       /// Dictionary con (providerName,cnnstringName)
+       /// </summary>
         static Dictionary<string, string> providerCnnStrings;
       
 
@@ -49,6 +51,7 @@ namespace Fwk.Security
             _MembershipSection = (MembershipSection)System.Configuration.ConfigurationManager.GetSection("system.web/membership");
             providerCnnStrings = new Dictionary<string, string>();
         }
+
 
 
         /// <summary>
@@ -95,7 +98,25 @@ namespace Fwk.Security
             return wSqlMembershipProvider;
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <returns></returns>
+        public static string GetProvider_ConnectionString(string providerName)
+        {
+            string cnnStringName  = GetProvider_ConnectionStringName(providerName);
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName] != null)
+                return System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString;
+            else
+            {
+                TechnicalException te = new TechnicalException(string.Format(Resource.ConnectionStringNotExist,cnnStringName, providerName));
+                te.ErrorId = "4000";
+                //te.Source = "FwkMembership block";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
+            }
+        }
         /// <summary>
         /// Obtiene la cadena de coneccion relacionada al proveedor
         /// </summary>
