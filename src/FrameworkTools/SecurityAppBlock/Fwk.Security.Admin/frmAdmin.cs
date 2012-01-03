@@ -94,11 +94,15 @@ namespace Fwk.Security.Admin
                     {
                         CurrentProviderConnectedOk = true;
                         lblConnectionStatus.Text = "Connected";
+                        this.btnRefreshConnection.Image = global::Fwk.Security.Admin.Properties.Resources.Connection_Check;
+                        this.btnRefreshConnection.Text = "Refresh";
                     }
                     else
                     {
                         CurrentProviderConnectedOk = false;
                         lblConnectionStatus.Text = "Disconected";
+                        this.btnRefreshConnection.Image = global::Fwk.Security.Admin.Properties.Resources.Connection_Warning;
+                        this.btnRefreshConnection.Text = "Try reconnect";
                     }
 
                 }
@@ -107,6 +111,9 @@ namespace Fwk.Security.Admin
             {
                 CurrentProviderConnectedOk = false;
                 lblConnectionStatus.Text = "Disconected";
+                this.btnRefreshConnection.Image = global::Fwk.Security.Admin.Properties.Resources.Connection_Warning;
+                this.btnRefreshConnection.Text = "Try reconnect";
+
                 base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
             }
             if (currontSecurityControlBase == null)

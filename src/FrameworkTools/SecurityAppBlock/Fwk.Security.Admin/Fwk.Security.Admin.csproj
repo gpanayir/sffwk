@@ -387,6 +387,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="group_16.ico" />
+    <None Include="Resources\Connection Error.bmp" />
+    <None Include="Resources\Connection Check.bmp" />
+    <None Include="Resources\Connection Warning.bmp" />
     <None Include="Resources\search_32.png" />
     <None Include="Resources\search_24.png" />
     <None Include="Resources\search_16.png" />

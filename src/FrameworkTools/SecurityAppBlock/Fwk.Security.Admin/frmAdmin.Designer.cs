@@ -371,9 +371,10 @@ namespace Fwk.Security.Admin
             // 
             // btnRefreshConnection
             // 
-            this.btnRefreshConnection.Location = new System.Drawing.Point(269, 78);
+            this.btnRefreshConnection.Image = global::Fwk.Security.Admin.Properties.Resources.Connection_Warning;
+            this.btnRefreshConnection.Location = new System.Drawing.Point(256, 52);
             this.btnRefreshConnection.Name = "btnRefreshConnection";
-            this.btnRefreshConnection.Size = new System.Drawing.Size(119, 30);
+            this.btnRefreshConnection.Size = new System.Drawing.Size(133, 35);
             this.btnRefreshConnection.TabIndex = 26;
             this.btnRefreshConnection.Text = "Try connect";
             this.btnRefreshConnection.Click += new System.EventHandler(this.btnRefreshConnection_Click);

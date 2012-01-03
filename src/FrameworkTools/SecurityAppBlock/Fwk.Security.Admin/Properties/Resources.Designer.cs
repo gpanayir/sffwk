@@ -283,6 +283,27 @@ namespace Fwk.Security.Admin.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Connection_Check {
+            get {
+                object obj = ResourceManager.GetObject("Connection_Check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Connection_Error {
+            get {
+                object obj = ResourceManager.GetObject("Connection_Error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Connection_Warning {
+            get {
+                object obj = ResourceManager.GetObject("Connection_Warning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap copy_16 {
             get {
                 object obj = ResourceManager.GetObject("copy_16", resourceCulture);
