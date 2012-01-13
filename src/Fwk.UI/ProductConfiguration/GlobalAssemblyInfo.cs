@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 
-[assembly: AssemblyCompany("Fwk Global BPO.")]
+[assembly: AssemblyCompany("Fwk Pelsoft .")]
 [assembly: AssemblyProduct(".: Fwk libraries - :.")]
-[assembly: AssemblyCopyright("Copyright � Fwk Global BPO 2010")]
+[assembly: AssemblyCopyright("Copyright  Fwk  2010")]
 
 
 [assembly: AssemblyTrademark("")]
