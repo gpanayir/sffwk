@@ -1,0 +1,153 @@
+
+<ArrayOfBarGroup>
+  <BarGroup>
+    <EntityState>Unchanged</EntityState>
+    <Id>iGestion</Id>
+    <Caption>Gestion</Caption>
+    <ToolTipText>a</ToolTipText>
+    <Enabled>true</Enabled>
+    <GroupStyle>LargeIconsList</GroupStyle>
+    <Index>0</Index>
+    <ContainTree>false</ContainTree>
+    <Buttons>
+      <ButtonBase>
+        <EntityState>Unchanged</EntityState>
+        <Id>iInscripcion</Id>
+        <Caption>Inscripcion</Caption>
+        <ToolTipText />
+        <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAzdJREFUOE+Fk31M1HUcxz/0RA4f2JpmqaNsHmtmUWYZJ+6yO1YwDwIsToIQGk8V+7FbLRLsGAqBHETHk54cqGcxyscYGChogZYU1xxJs/DKzNVW0YP/0qvv73fz8r++22e/33f7vt7vz96ffSIA+b9TaIuwqDfR8+ZI3G23iNQcwhVmdAG9CqwSrcqiSit/Vlxb02Sk+nkJujYJFemC/q3Pv5/2UjvNhfaAurucG8VlwHrtKRM8eULbS4ISwFNuobtN46D/LT5sLeGkz0l//Vqa3nwUU5GXyPJporZNhWCn0xl3xns7fw0LX3UKPa8JRxosdJYIfiV8pFI4vkM43Sh0uNcw13WZp4/C4vZrSHJyclDTNPweBz+PbeDKqTUMdcWzvWQV6enp1L1qCsPjHYKv9XEW7fyF0mFYvm8WSUpKspSVlWnveTKCP54rZerTYo7teora0lW0VSZw/O25hrMOT+5VHfnimf/OnzxTP8HqmgCSmJio5eTkzHS57QQHV/P9sJnxAyber1pC8eZH6K68Owx/2yN81riA/ZE3MRG3kPOxcxCbzZaanZ3tqnsjOTg1up1L3/jp79xI+7bHyMpM4aMmk+Gsw1eOCRcbhDMr5sMOO79a7wqFmJGRkerW7g18px5d2CcE9ghj76rwaqM41RIZhn8bEq62ClNr72S2q5DZlKWI2WxO1cMqf/1lThyu4erlQQ7ur6Cu8jmsVit9XpvhrMPXTgt/d6ksHoigb9OtNNbFhDpwOBzRBfaYrvG99zF5dD2jHYv4crcw6ovh4gc3h+F/xtUoxxYQe2ghzmkbWeceDgmoScwU5WcpNzvTZ7cy6H+B7pp48jc/wa7qOMNZh5lczNnzD7FheAU7/8hEu5DwXwdFjnVaf3MsX/QkMOB5kIHmZbRUxRP8ODYM88N6Ji6lkDa60oALek0hAX0SudmZgd4KYbBW6KsKBemtWs6Qd5nhrMP8XsjkT062eJbOFORFNam9uccQUGHlqjPiri7m6897GTnho6U2l7wX0/DWrzPgwMCTaifMhxWUe31/jE2+8VKdJa5mtUzuLcpdEz7ZPY+T3iXBhlfucOluN769/v8vfzY6xsxr7kgAAAAASUVORK5CYII=</Image>
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <LargeImage>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</LargeImage>
+        <Hint />
+        <Shortcut />
+      </ButtonBase>
+      <ButtonBase>
+        <EntityState>Unchanged</EntityState>
+        <Id>iHistorial</Id>
+        <Caption>Historial de registros</Caption>
+        <ToolTipText>Historial de registros</ToolTipText>
+        <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAv5JREFUOE91k19MU1ccx89e90CaPTQhhoyHJTzspQk8+cJ9GAyGFZMZE6PJSuaWMLPYpAv4j/TiSCU1WiV12jDGKBtqSr0quKm0XFT+FDXtlEyICCWIQpSkJVSDCH527mUUsmS/5Jd7zje/7+ec3y/nfgAII4qKiiwy3Far1ZaXl3c7nU7/GggEpoqLi9WcnJyvcnNz+woKCmyZTOaq2+1WTZMRBkBRFIssTJWWlqp2u13xer0OaU5WVVWpJSUlemFhocWoM1LqmsvlUtf3plheXu4sKyvLioamHrA7GhoacFR8rNV9KXzffS70bz8T+vc7rM4zzcHkkSpFlsnbSzF/d+XWxP6KD1trK4Ves10knF8IXHaB/8yPeGp2EjxVgxbw0fVziGjbCKfbu2jyRDAgBkCd1gSeahtXgyqxAY3HTxMkJpeIjKboji4QDr+j4/f3hEJQXx/Gc9xPby9ZgPPVTUHPJZVleafmlmccO/ac2lodT+NPXLjwgkgE+vqgrS1OXV0dZ89eZ3BwA6AMNwtCPoXXEnC+eZbOTti3r5rDh4+bxoEBGIqmuO/XiPg6ePQIM9dbsA2eE1w8qbAgAa2/pbl2DQmZ4XKjhmZ38KfNRuQjQXyL4KlbZWICM02AMcn2g7KFXxTm5eZ67yq3bsGdO9D9jUp3roX+vQ4SBRamPhG8iCeZnYW5uU2AYK1IXfbmIzVu31vlxg155SF4+BDGx+FJWDfNr1wO0mlYXIRMZhOgqVroHYcEM4tvuTu0TDQK8TiMjcHkJDzfpZD6VPDmrwRLS7CyspbZFk58LbSuBsHUswX6et+g6zAystbnzIOkaX6/LZ/VVePtbEQWoO4WauioYOLvl8Qi8/T3w+jo2umpcz4olKMKGA8V5ueSRMI+OgM/aMYjNIcoF84rbjnI9osMd88Qi8m+n8D0tAQ8TjIe0+kKqkn/UXurrN0hM/tvmIB/IYrftUfvaelneBj+CGm0N6n6CVe5Uxps63X//WYBm0HS4Nh8yv+ZDf0fjtSkH97grEYAAAAASUVORK5CYII=</Image>
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <LargeImage>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</LargeImage>
+        <Hint />
+        <Shortcut />
+      </ButtonBase>
+      <ButtonBase>
+        <EntityState>Unchanged</EntityState>
+        <Id>x25</Id>
+        <Caption>Registro de usuarios</Caption>
+        <ToolTipText />
+        <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAi5JREFUOE91k99LU2EYx+0v8CboNgm66CayIIrAFgURxbqpq8DLuunCfthFhEhSFra0UWxZrcxszYZKlmSgtMKpzU23WNCa27Tlpk3dNGs6+fScc1q4cXzg4bwv7/v9PL/eswEoUWzMXq4tdGz2u2+/4QLvdQ8VgOKjz3fAzycQOgbfjkP4JIyf4nfMxLT3Ii7zxpr83bVfVay471k5TF0HfxkEd8KXffD1MKEhm4Cfkg5W427e0t9dW1KqCxhp3SWABhHuVYWET0CkkqjHQmYmJJDHLEeqGbZtjesChlt2Q+K2lGBUU2fiLEyeIxurY2gkB380iN8hAf5lrfYvvxm07dEAEpXJKohf0TKatvBhMMXcfI7eN1OMtRv0AR8fSc1Jsyb+cVXWdyHVBnMdjMei9Lgg4IsScB7QB7iaKzRAvFaNyqwD0m9hcYClxRDeyCorvyL4nQf1AX0WISfvSBlNEtku4nci/iS1h2E5QSaXhVyasZfSYL0e9N47pKU9I2Ob7xaxW8QREWUUwX8bbV8H0GOWg0SjlvqCFLz0GVZSBWJl43uxTgmvm44IwCQAp1q3Gn1V0i4yr32dKbwyHZWx1UvXuzRAdrJQmpuXs048ts36Pei6JQ9IGV8ekJEy5AkvBKsIdW7Dbd2E86YR6+Uzad0mdjTIDxQ9TXLASKCtjD6Lgdb68zyou+G73+ixWa1Uim9fKy54iQqg5dqluYcNjn65WCNeIV5aLCje/wVBxQTLKJQI/QAAAABJRU5ErkJggg==</Image>
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <LargeImage>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</LargeImage>
+        <Hint />
+        <Shortcut />
+      </ButtonBase>
+    </Buttons>
+    <MenuBarTree />
+  </BarGroup>
+  <BarGroup>
+    <EntityState>Unchanged</EntityState>
+    <Id>hhh</Id>
+    <Caption>campañas</Caption>
+    <ToolTipText>campañas</ToolTipText>
+    <Enabled>true</Enabled>
+    <GroupStyle>SmallIconsList</GroupStyle>
+    <Index>0</Index>
+    <ContainTree>true</ContainTree>
+    <Buttons />
+    <MenuBarTree>
+      <TreeNodeButton>
+        <EntityState>Unchanged</EntityState>
+        <Id>altas</Id>
+        <Caption>altas</Caption>
+        <ToolTipText />
+        <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAgJJREFUOE9jZkACmkHd8lFp1Wd+ijrwvLi04SiyHEE2SHNm9/47n778+n/owrP/BtELqoCaGAlqBCkAaU5u23fn5uMP/68/hOCNRx78N4hbTNgQkOaYxt139px7/n/XaSA+g8Dztt0CGrIUvyGagb15fauv/p+34z4C73wIZD8A87tXXv9vlLAcryESap61C+oWXP7ftvz2/3YQXnEHgpffAYrd+l87//J/oyRUQ7TDp8rqxSxyAgUBKKCk1LzqF5TMvPK/ZO7N/6VzbwHxbTBdAsJzbv4vnIEwRDNoirxP2fY7uhEze2GBDDWkaUHujOv/c2bc/Z8zE4hngeg7QP6d/9kzbv/PmXb1v0H84lrvit13Gpbe+a8TPrMfOZaghrQsKJx9+3/h/Ef/i6C4cN6j/xD84H/hrBv/KxY++F+39OF/vcjZKAbAvaPu07KgbOH9/1XLXmDgyqXP/oNw29rn//Wi5mAYgGRI64LapY//N697h4Kb1r7737Tmzf/+Le+ABszDagDCEL/OBY2rnv3v3vIFij//79ryCYyn7f783yBmAU4DwIbImESbBtcffDF974//k3Yh4+//5x78gd8Aw6gp8pFtJ+/MPfT7/4z9mHjR0d94DWA1Sdtwp3jOrf/FwPRQPPcOEN+F0kD2nNv/i4ByBjG4w4Ad6AUTIHYggBUAF8+FzL0W2KwAAAAASUVORK5CYII=</Image>
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <Hint />
+        <Shortcut />
+        <ParentID>asd</ParentID>
+      </TreeNodeButton>
+      <TreeNodeButton>
+        <EntityState>Unchanged</EntityState>
+        <Id>hijo</Id>
+        <Caption>hijo</Caption>
+        <ToolTipText />
+        <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAQVJREFUOE9jYBgFlIeAbqNQR/vu8v+de8v/d+2r+N+9vxKMew6AcBUUQ8RA8iDcsaf8f/Qi1/9A2zkY9KqFJ2y6tuT/qsuz/q++PPv/mqtz/q+F4WtANggD+SDxNVfmgNWtujTrf/nmJJABAgz69aIT+k4W/m8+mvy/9XjK//YTKf87Tqb+7zidhsCngOyTKf/bgPItx1L+Nx1J+p+x3gdigGGj+ITVDzr/L75b83/J/VowXvqw7v8yNLzkQR1E/l7N/0VAtWW7IhAGNB8B2Z76vx1sc/r/ThA+m/6/+2zG/y4g7jyTDhbvALqk7UQq2BWxq+wgBgCBAhA7kIEtwIE4CigPAQDkm9AfqSUvXwAAAABJRU5ErkJggg==</Image>
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <Hint />
+        <Shortcut />
+        <ParentID />
+      </TreeNodeButton>
+      <TreeNodeButton>
+        <EntityState>Unchanged</EntityState>
+        <Id>df</Id>
+        <Caption>sd</Caption>
+        <ToolTipText />
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <Hint />
+        <Shortcut />
+      </TreeNodeButton>
+      <TreeNodeButton>
+        <EntityState>Unchanged</EntityState>
+        <Id>asd</Id>
+        <Caption>asda</Caption>
+        <ToolTipText>asd</ToolTipText>
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <Hint />
+        <Shortcut />
+        <ParentID>df</ParentID>
+      </TreeNodeButton>
+      <TreeNodeButton>
+        <EntityState>Unchanged</EntityState>
+        <Id>asedasrewqr</Id>
+        <Caption>aseraer</Caption>
+        <ToolTipText>arsar</ToolTipText>
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <Hint />
+        <Shortcut>asdrfsad</Shortcut>
+        <ParentID>hijo</ParentID>
+      </TreeNodeButton>
+      <TreeNodeButton>
+        <EntityState>Unchanged</EntityState>
+        <Id>111111111111111</Id>
+        <Caption>22222</Caption>
+        <ToolTipText />
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <Hint />
+        <Shortcut />
+        <ParentID>asedasrewqr</ParentID>
+      </TreeNodeButton>
+      <TreeNodeButton>
+        <EntityState>Unchanged</EntityState>
+        <Id>asdytry</Id>
+        <Caption>asdrtytry</Caption>
+        <ToolTipText />
+        <Enabled>true</Enabled>
+        <AuthorizationRuleName />
+        <AssemblyInfo />
+        <Hint />
+        <Shortcut />
+        <ParentID>df</ParentID>
+      </TreeNodeButton>
+    </MenuBarTree>
+  </BarGroup>
+</ArrayOfBarGroup>

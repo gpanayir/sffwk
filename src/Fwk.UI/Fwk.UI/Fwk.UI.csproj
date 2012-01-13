@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{935FB335-4248-4FEB-ADF9-D0342EFAA517}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fwk.UI</RootNamespace>
+    <AssemblyName>Fwk.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v10.2.Core, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.OfficeSkins.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Tutorials.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v10.2.UI, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v10.2.Core, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v10.2.Extensions, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpellChecker.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.SpellChecker.v10.2.Core, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraWizard.v10.2, Version=10.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="FileHelpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\FileHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\Fwk.Bases.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Bases.Connector, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\Fwk.Bases.Connector.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Bases.FrontEnd, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\Fwk.Bases.FrontEnd.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Controls.Win32, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\Fwk.Controls.Win32.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\Fwk.DataBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Security, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\Fwk.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Security.Service, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\Fwk.Security.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\StaticLibs\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SmoEnum, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\ProductConfiguration\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Controls\CommonEnumComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CommonEnumComboBox.Designer.cs">
+      <DependentUpon>CommonEnumComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EnumComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\EnumComboBox.Designer.cs">
+      <DependentUpon>EnumComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FileControls\UC_FileSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FileControls\UC_FileSelection.Designer.cs">
+      <DependentUpon>UC_FileSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Grid\UC_GridGenericWithToolbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Grid\UC_GridGenericWithToolbar.designer.cs">
+      <DependentUpon>UC_GridGenericWithToolbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Grid\GridNoEditWithGroup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Grid\GridNoEditWithGroupInfoRegistrator.cs" />
+    <Compile Include="Controls\Grid\GridNoEditWithGroupView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Grid\GridSimpleEditNoGroup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Grid\GridSimpleEditNoGroupInfoRegistrator.cs" />
+    <Compile Include="Controls\Grid\GridSimpleEditNoGroupView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Menu\FRM_AssemblyExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Menu\FRM_AssemblyExplorer.designer.cs">
+      <DependentUpon>FRM_AssemblyExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Menu\UC_TreeNavBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Menu\UC_TreeNavBar.Designer.cs">
+      <DependentUpon>UC_TreeNavBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\FRM_Wizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\FRM_Wizard.Designer.cs">
+      <DependentUpon>FRM_Wizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\ImportControls\BaseFileDescriptor.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\CharSeparatedColumn.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\CharSeparatedFileDescriptor.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\CharSeparatedFileParser.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\Exceptions\InvalidCsvFileException.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\IFileParser.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\ProgressChangeHandler.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\TXTColumn.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\TXTFileDescriptor.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\TXTFileParser.cs" />
+    <Compile Include="Controls\Wizard\ImportControls\UC_TXTColumnsEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\ImportDataFromDataOrigin.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\ImportDataFromDataOrigin.Designer.cs">
+      <DependentUpon>ImportDataFromDataOrigin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_AuthenticationBD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_AuthenticationBD.Designer.cs">
+      <DependentUpon>UC_AuthenticationBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_ExcelWorkSheets.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_ExcelWorkSheets.Designer.cs">
+      <DependentUpon>UC_ExcelWorkSheets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_FlatText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_FlatText.Designer.cs">
+      <DependentUpon>UC_FlatText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_GridPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_GridPreview.Designer.cs">
+      <DependentUpon>UC_GridPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_Importar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_Importar.Designer.cs">
+      <DependentUpon>UC_Importar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_MapeoColumnas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_MapeoColumnas.Designer.cs">
+      <DependentUpon>UC_MapeoColumnas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_OrigenDeDatos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_OrigenDeDatos.Designer.cs">
+      <DependentUpon>UC_OrigenDeDatos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_SeparatedText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_SeparatedText.Designer.cs">
+      <DependentUpon>UC_SeparatedText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_TablasBD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_TablasBD.Designer.cs">
+      <DependentUpon>UC_TablasBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_WizzardMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Wizard\UC_WizzardMain.Designer.cs">
+      <DependentUpon>UC_WizzardMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wizard\WizardBE\ColumnsMappingBE.cs" />
+    <Compile Include="Securiry\FRM_AuthenticationForm_ASPNet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\FRM_AuthenticationForm_ASPNet.Designer.cs">
+      <DependentUpon>FRM_AuthenticationForm_ASPNet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Rules\FRM_RuleSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\Rules\FRM_RuleSelector.Designer.cs">
+      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Menu\IControlDesigner.cs" />
+    <Compile Include="Securiry\Rules\UC_RuleSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\Rules\UC_RuleSelector.Designer.cs">
+      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageView\ExceptionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageView\ExceptionView.designer.cs">
+      <DependentUpon>ExceptionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageView\ExceptionViewComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageView\ExceptionViewComponent.Designer.cs">
+      <DependentUpon>ExceptionViewComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageView\FormWaitComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageView\FormWaitComponent.Designer.cs">
+      <DependentUpon>FormWaitComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageView\frmWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageView\frmWait.Designer.cs">
+      <DependentUpon>frmWait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageView\MessageBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageView\MessageBase.Designer.cs">
+      <DependentUpon>MessageBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageView\MessageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageView\MessageView.designer.cs">
+      <DependentUpon>MessageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageView\MessageViewComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageView\MessageViewComponent.Designer.cs">
+      <DependentUpon>MessageViewComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageView\MessageViewHelper.cs" />
+    <Compile Include="Controls\MessageView\SimpleMessageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageView\SimpleMessageView.Designer.cs">
+      <DependentUpon>SimpleMessageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MessageView\SimpleMessageViewComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageView\SimpleMessageViewComponent.Designer.cs">
+      <DependentUpon>SimpleMessageViewComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TreeList\NodesOperation.cs" />
+    <Compile Include="Controls\UC_AceptCancelButtonBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UC_AceptCancelButtonBar.Designer.cs">
+      <DependentUpon>UC_AceptCancelButtonBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UC_AssigmentBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UC_AssigmentBase.Designer.cs">
+      <DependentUpon>UC_AssigmentBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_CmbDBBaseList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_CmbDBBaseList.Designer.cs">
+      <DependentUpon>UC_CmbDBBaseList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_CmbDBServerList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_CmbDBServerList.Designer.cs">
+      <DependentUpon>UC_CmbDBServerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_CmbDBTableList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_CmbDBTableList.Designer.cs">
+      <DependentUpon>UC_CmbDBTableList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_DataBaseLogin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_DataBaseLogin.Designer.cs">
+      <DependentUpon>UC_DataBaseLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_GrdDBTableColumns.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataBase\UC_GrdDBTableColumns.Designer.cs">
+      <DependentUpon>UC_GrdDBTableColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_ComboBoxLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_ComboBoxLabel.Designer.cs">
+      <DependentUpon>UC_ComboBoxLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_LabelTitle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_LabelTitle.Designer.cs">
+      <DependentUpon>UC_LabelTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\ComboBoxBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\ComboBoxBase.Designer.cs">
+      <DependentUpon>ComboBoxBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\ComboBoxDxBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\ComboBoxDxBase.designer.cs">
+      <DependentUpon>ComboBoxDxBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\LabelBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\LabelBase.Designer.cs">
+      <DependentUpon>LabelBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_SearchTypeComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_SearchTypeComboBox.Designer.cs">
+      <DependentUpon>UC_SearchTypeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\TextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\TextBox.Designer.cs">
+      <DependentUpon>TextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_TextBoxLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_TextBoxLabel.Designer.cs">
+      <DependentUpon>UC_TextBoxLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UC_ExportToolBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UC_ExportToolBar.Designer.cs">
+      <DependentUpon>UC_ExportToolBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\TextMemoEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\TextMemoEdit.Designer.cs">
+      <DependentUpon>TextMemoEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IAuthorizationControl.cs" />
+    <Compile Include="Controls\Menu\Class\ButtonClickArgs.cs" />
+    <Compile Include="Controls\Menu\Class\MenuNavBar.cs" />
+    <Compile Include="Controls\Menu\Class\PopupButton.cs" />
+    <Compile Include="Controls\Menu\Class\SimpleButton.cs" />
+    <Compile Include="Controls\Menu\Class\ToolBar.cs" />
+    <Compile Include="Controls\Menu\Helper.cs" />
+    <Compile Include="Controls\Menu\UC_ToolBarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Menu\UC_ToolBarControl.designer.cs">
+      <DependentUpon>UC_ToolBarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UC_ToolBarListEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UC_ToolBarListEditor.Designer.cs">
+      <DependentUpon>UC_ToolBarListEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UC_UserControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UC_UserControlBase.designer.cs">
+      <DependentUpon>UC_UserControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Designers\FwkControlDesigner.cs" />
+    <Compile Include="Controls\Designers\WorkingAreaControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Designers\WorkingAreaControl.Designer.cs">
+      <DependentUpon>WorkingAreaControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Designers\WorkingAreaDesigner.cs" />
+    <Compile Include="Controls\FindControls\FindEventArg.cs" />
+    <Compile Include="Controls\FindControls\UC_TextFind.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FindControls\UC_TextFind.Designer.cs">
+      <DependentUpon>UC_TextFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FindControls\UC_TextFindContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FindControls\UC_TextFindContainer.Designer.cs">
+      <DependentUpon>UC_TextFindContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FindControls\UC_TextFindPopUp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FindControls\UC_TextFindPopUp.Designer.cs">
+      <DependentUpon>UC_TextFindPopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsBase\FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsBase\FormBase.Designer.cs">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsBase\FormMDIChildBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsBase\FormMDIChildBase.Designer.cs">
+      <DependentUpon>FormMDIChildBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsBase\FormDialogBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsBase\FormDialogBase.Designer.cs">
+      <DependentUpon>FormDialogBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsBase\FormBaseNotify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsBase\FormBaseNotify.Designer.cs">
+      <DependentUpon>FormBaseNotify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RichEdit\DemoUtils.cs" />
+    <Compile Include="Controls\RichEdit\UC_RrichEditBarMannagerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RichEdit\UC_RrichEditBarMannagerControl.Designer.cs">
+      <DependentUpon>UC_RrichEditBarMannagerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RichEdit\UC_RrichEditSimpleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RichEdit\UC_RrichEditSimpleControl.Designer.cs">
+      <DependentUpon>UC_RrichEditSimpleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\DataBase\UC_CmbDBBaseList.resx">
+      <DependentUpon>UC_CmbDBBaseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FileControls\UC_FileSelection.resx">
+      <DependentUpon>UC_FileSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Grid\UC_GridGenericWithToolbar.resx">
+      <DependentUpon>UC_GridGenericWithToolbar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Grid\GridNoEditWithGroup.resx">
+      <DependentUpon>GridNoEditWithGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Grid\GridSimpleEditNoGroup.resx">
+      <DependentUpon>GridSimpleEditNoGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Menu\FRM_AssemblyExplorer.resx">
+      <DependentUpon>FRM_AssemblyExplorer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Menu\UC_TreeNavBar.resx">
+      <DependentUpon>UC_TreeNavBar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\FRM_Wizard.resx">
+      <DependentUpon>FRM_Wizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\ImportControls\UC_TXTColumnsEditor.resx">
+      <DependentUpon>UC_TXTColumnsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_AuthenticationBD.resx">
+      <DependentUpon>UC_AuthenticationBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_ExcelWorkSheets.resx">
+      <DependentUpon>UC_ExcelWorkSheets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_FlatText.resx">
+      <DependentUpon>UC_FlatText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_GridPreview.resx">
+      <DependentUpon>UC_GridPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_Importar.resx">
+      <DependentUpon>UC_Importar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_MapeoColumnas.resx">
+      <DependentUpon>UC_MapeoColumnas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_OrigenDeDatos.resx">
+      <DependentUpon>UC_OrigenDeDatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_SeparatedText.resx">
+      <DependentUpon>UC_SeparatedText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_TablasBD.resx">
+      <DependentUpon>UC_TablasBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Wizard\UC_WizzardMain.resx">
+      <DependentUpon>UC_WizzardMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\FRM_AuthenticationForm_ASPNet.resx">
+      <DependentUpon>FRM_AuthenticationForm_ASPNet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Rules\FRM_RuleSelector.resx">
+      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Rules\UC_RuleSelector.resx">
+      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MessageView\ExceptionView.resx">
+      <DependentUpon>ExceptionView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MessageView\frmWait.resx">
+      <DependentUpon>frmWait.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MessageView\MessageBase.resx">
+      <DependentUpon>MessageBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MessageView\MessageView.resx">
+      <DependentUpon>MessageView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MessageView\SimpleMessageView.resx">
+      <DependentUpon>SimpleMessageView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UC_AceptCancelButtonBar.resx">
+      <DependentUpon>UC_AceptCancelButtonBar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UC_AssigmentBase.resx">
+      <DependentUpon>UC_AssigmentBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataBase\UC_CmbDBServerList.resx">
+      <DependentUpon>UC_CmbDBServerList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\UC_ComboBoxLabel.resx">
+      <DependentUpon>UC_ComboBoxLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\UC_LabelTitle.resx">
+      <DependentUpon>UC_LabelTitle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\ComboBoxBase.resx">
+      <DependentUpon>ComboBoxBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\ComboBoxDxBase.resx">
+      <DependentUpon>ComboBoxDxBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\LabelBase.resx">
+      <DependentUpon>LabelBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\UC_SearchTypeComboBox.resx">
+      <DependentUpon>UC_SearchTypeComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\TextBox.resx">
+      <DependentUpon>TextBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\UC_TextBoxLabel.resx">
+      <DependentUpon>UC_TextBoxLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UC_ExportToolBar.resx">
+      <DependentUpon>UC_ExportToolBar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Menu\UC_ToolBarControl.resx">
+      <DependentUpon>UC_ToolBarControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UC_ToolBarListEditor.resx">
+      <DependentUpon>UC_ToolBarListEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UC_UserControlBase.resx">
+      <DependentUpon>UC_UserControlBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsBase\FormBase.resx">
+      <DependentUpon>FormBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsBase\FormMDIChildBase.resx">
+      <DependentUpon>FormMDIChildBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsBase\FormDialogBase.resx">
+      <DependentUpon>FormDialogBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsBase\FormBaseNotify.resx">
+      <DependentUpon>FormBaseNotify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RichEdit\UC_RrichEditBarMannagerControl.resx">
+      <DependentUpon>UC_RrichEditBarMannagerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RichEdit\UC_RrichEditSimpleControl.resx">
+      <DependentUpon>UC_RrichEditSimpleControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FindControls\UC_TextFind.resx">
+      <DependentUpon>UC_TextFind.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FindControls\UC_TextFindContainer.resx">
+      <DependentUpon>UC_TextFindContainer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FindControls\UC_TextFindPopUp.resx">
+      <DependentUpon>UC_TextFindPopUp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\strings.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RichEdit\Ribbon.resx">
+      <DependentUpon>UC_RrichEditRibbonControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Editors\UC_TitleControl.resx">
+      <DependentUpon>UC_TitleControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\FRM_AuthenticationForm.resx">
+      <DependentUpon>FRM_AuthenticationForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Roles\FRM_RoleMain.resx">
+      <DependentUpon>FRM_RoleMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Roles\FRM_RoleAssign.resx">
+      <DependentUpon>FRM_RoleAssign.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Roles\FRM_RoleDelete.resx">
+      <DependentUpon>FRM_RoleDelete.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Roles\FRM_RoleNew.resx">
+      <DependentUpon>FRM_RoleNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Roles\UC_RoleDelete.resx">
+      <DependentUpon>UC_RoleDelete.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Roles\UC_RoleMain.resx">
+      <DependentUpon>UC_RoleMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Roles\UC_RoleNew.resx">
+      <DependentUpon>UC_RoleNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Roles\UC_RolesGrid.resx">
+      <DependentUpon>UC_RolesGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\Rules\UC_RulesMain.resx">
+      <DependentUpon>UC_RulesMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\FRM_UserChangePassword.resx">
+      <DependentUpon>FRM_UserChangePassword.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\FRM_UserResetPassword.resx">
+      <DependentUpon>FRM_UserResetPassword.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\User\FRM_UserMain.resx">
+      <DependentUpon>FRM_UserMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\User\UC_Reset.resx">
+      <DependentUpon>UC_Reset.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\User\UC_UserAdmin.resx">
+      <DependentUpon>UC_UserAdmin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\User\UC_UserChangePassword.resx">
+      <DependentUpon>UC_UserChangePassword.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\User\UC_UsersMain.resx">
+      <DependentUpon>UC_UsersMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Securiry\User\FRM_UserNew.resx">
+      <DependentUpon>FRM_UserNew.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Controls\RichEdit\UC_RrichEditRibbonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RichEdit\UC_RrichEditRibbonControl.Designer.cs">
+      <DependentUpon>UC_RrichEditRibbonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_TitleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Editors\UC_TitleControl.Designer.cs">
+      <DependentUpon>UC_TitleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Securiry\FRM_AuthenticationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\FRM_AuthenticationForm.Designer.cs">
+      <DependentUpon>FRM_AuthenticationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Roles\FRM_RoleMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\Roles\FRM_RoleMain.Designer.cs">
+      <DependentUpon>FRM_RoleMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Roles\FRM_RoleAssign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\Roles\FRM_RoleAssign.Designer.cs">
+      <DependentUpon>FRM_RoleAssign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Roles\FRM_RoleDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\Roles\FRM_RoleDelete.Designer.cs">
+      <DependentUpon>FRM_RoleDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Roles\FRM_RoleNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\Roles\FRM_RoleNew.Designer.cs">
+      <DependentUpon>FRM_RoleNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Roles\Roles.cs" />
+    <Compile Include="Securiry\Roles\UC_RoleDelete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\Roles\UC_RoleDelete.Designer.cs">
+      <DependentUpon>UC_RoleDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Roles\UC_RoleMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\Roles\UC_RoleMain.Designer.cs">
+      <DependentUpon>UC_RoleMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Roles\UC_RoleNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\Roles\UC_RoleNew.Designer.cs">
+      <DependentUpon>UC_RoleNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Roles\UC_RolesGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\Roles\UC_RolesGrid.Designer.cs">
+      <DependentUpon>UC_RolesGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\Rules\UC_RulesMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\Rules\UC_RulesMain.Designer.cs">
+      <DependentUpon>UC_RulesMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\FRM_UserChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\FRM_UserChangePassword.Designer.cs">
+      <DependentUpon>FRM_UserChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\FRM_UserResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\FRM_UserResetPassword.Designer.cs">
+      <DependentUpon>FRM_UserResetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\User\FRM_UserMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\User\FRM_UserMain.Designer.cs">
+      <DependentUpon>FRM_UserMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\User\UC_Reset.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\User\UC_Reset.Designer.cs">
+      <DependentUpon>UC_Reset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\User\UC_UserAdmin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\User\UC_UserAdmin.Designer.cs">
+      <DependentUpon>UC_UserAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\User\UC_UserChangePassword.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\User\UC_UserChangePassword.Designer.cs">
+      <DependentUpon>UC_UserChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\User\UC_UsersMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Securiry\User\UC_UsersMain.Designer.cs">
+      <DependentUpon>UC_UsersMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Securiry\User\FRM_UserNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Securiry\User\FRM_UserNew.Designer.cs">
+      <DependentUpon>FRM_UserNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Menu\UC_NavMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Menu\UC_NavMenu.Designer.cs">
+      <DependentUpon>UC_NavMenu.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_32.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_24.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_16.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloseImage.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MaxImage.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MinImage.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exclamation_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exclamation_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exclamation_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exclamation_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\srch_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\srch_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ulock_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ulock_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ulock_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_cancel_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_cancel_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_cancel_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_cancel_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_edit_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_edit_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_edit_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_edit_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_2_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_2_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save as_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_2_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_2_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_find_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_find_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_find_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_find_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_del_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_del_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_de_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_del_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\collapce_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Expand_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_apply_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_apply_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\apply_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help %28Alt 2%29_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help %28Alt 2%29_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help %28Alt 2%29_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_new_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_new_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_new_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_new_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_new_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\expandVertical_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\expandVertical_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\collapseVertical_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\collapseVertical_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page_excel_16x16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDF_16x16.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Excel-16x16.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Explorer-16x16.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\html_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\note_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xml_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_export_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fwk.UI.Common\Fwk.UI.Common.csproj">
+      <Project>{C1EE0BC8-7BEA-4FE5-82C8-BF7D7C7E67F6}</Project>
+      <Name>Fwk.UI.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inbox_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\al.exe.config" />
+    <None Include="Properties\genallusres.bat" />
+    <None Include="Resources\inbox_back_32.png" />
+    <None Include="Securiry\DataSources\Fwk.Security.FwkCategory.datasource" />
+    <None Include="Securiry\DataSources\Fwk.Security.FwkCategoryList.datasource" />
+    <None Include="Securiry\DataSources\Fwk.Security.BE.UsersBE.datasource" />
+    <None Include="Securiry\DataSources\Fwk.Security.BE.UsersBEList.datasource" />
+    <None Include="Securiry\DataSources\Fwk.Security.FwkAuthorizationRuleList.datasource" />
+    <None Include="Securiry\DataSources\Fwk.Security.Common.RolList.datasource" />
+    <None Include="Securiry\DataSources\Fwk.Security.Common.User.datasource" />
+    <None Include="Securiry\DataSources\Fwk.Security.Common.UserList.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\al.exe" />
+    <Content Include="Properties\ResGen.exe" />
+    <None Include="Properties\DataSources\Fwk.UI.Controls.Menu.MenuBarTreeNode.datasource" />
+    <None Include="Resources\button-blue.png" />
+    <None Include="Resources\add_16.gif" />
+    <None Include="Resources\add_24.gif" />
+    <None Include="Resources\add_32.gif" />
+    <None Include="Resources\cancl_24.gif" />
+    <None Include="Resources\cancl_32.gif" />
+    <None Include="Resources\close_16.gif" />
+    <None Include="Resources\close_24.gif" />
+    <None Include="Resources\close_32.gif" />
+    <None Include="Resources\cancl_16.gif" />
+    <None Include="Resources\del_24.gif" />
+    <None Include="Resources\del_32.gif" />
+    <None Include="Resources\del_16.gif" />
+    <None Include="Resources\Down_16.png" />
+    <None Include="Resources\Down_24.png" />
+    <None Include="Resources\Down_32.png" />
+    <Content Include="Resources\file_export.png" />
+    <None Include="Resources\Up_16.png" />
+    <None Include="Resources\Up_24.png" />
+    <None Include="Resources\Up_32.png" />
+    <None Include="Resources\refresh_32.png" />
+    <None Include="Resources\refresh_24.png" />
+    <None Include="Resources\refresh_16.png" />
+    <Content Include="Securiry\Roles\SecurityRolesToolbar.xml" />
+    <Content Include="Securiry\Rules\SecurityRulesToolbar.xml" />
+    <Content Include="Securiry\User\SecurityUserToolbar.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Securiry\Groups\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
