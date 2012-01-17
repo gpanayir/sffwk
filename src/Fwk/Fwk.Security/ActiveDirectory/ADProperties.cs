@@ -318,7 +318,9 @@ namespace Fwk.Security.ActiveDirectory
         /// 
         /// </summary>
         public const String DESCRIPTION = "description";
-        
+
+        public const String LOCKOUTTIME = "lockoutTime";
+        public const String ISACCOUNTLOCKED = "IsAccountLocked";
 
     }
 }
