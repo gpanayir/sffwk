@@ -68,7 +68,7 @@
             this.lblRolesByUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRolesByUser.Image = global::Fwk.Security.Admin.Properties.Resources.Users;
             this.lblRolesByUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblRolesByUser.Location = new System.Drawing.Point(454, 38);
+            this.lblRolesByUser.Location = new System.Drawing.Point(456, 78);
             this.lblRolesByUser.Name = "lblRolesByUser";
             this.lblRolesByUser.Size = new System.Drawing.Size(92, 20);
             this.lblRolesByUser.TabIndex = 21;
@@ -228,11 +228,11 @@
             this.grdRoles1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rolNameDataGridViewTextBoxColumn});
             this.grdRoles1.DataSource = this.bindingSourceRoles1;
-            this.grdRoles1.Location = new System.Drawing.Point(457, 62);
+            this.grdRoles1.Location = new System.Drawing.Point(457, 111);
             this.grdRoles1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdRoles1.Name = "grdRoles1";
             this.grdRoles1.RowTemplate.Height = 24;
-            this.grdRoles1.Size = new System.Drawing.Size(292, 460);
+            this.grdRoles1.Size = new System.Drawing.Size(292, 411);
             this.grdRoles1.TabIndex = 20;
             // 
             // rolNameDataGridViewTextBoxColumn
