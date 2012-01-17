@@ -1,7 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{C3617487-99C1-4DEE-BCAC-9203B8EAB3F0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bases", "Bases", "{08CFB3CE-4AC8-4F86-BF35-65BB41EE7CD8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blocking", "Blocking", "{9CB84A9F-53FA-4801-BC82-1DE70BFAA42F}"
@@ -41,33 +39,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Criptography.Test", "Test\Fwk.Criptography.Test\Fwk.Criptography.Test.csproj", "{6DE96512-F2C4-4285-8E77-56C2C7999A7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.DataBase", "Fwk.DataBase\Fwk.DataBase.csproj", "{87C826E0-D87A-4C89-94ED-3B1044746A34}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Configuration.ConfigurationProvider", "Fwk.Configuration\Fwk.Configuration.ConfigurationProvider\Fwk.Configuration.ConfigurationProvider.csproj", "{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Fwk.Configuration.ConfigurationService", "Fwk.Configuration\Fwk.Configuration.ConfigurationService\", "{3200C835-9EFB-4961-93F4-AA7EA1869E7A}"
-	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = "Svn"
-		SccAuxPath = "Svn"
-		SccLocalPath = "Svn"
-		SccProvider = "SubversionScc"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{1654A893-0408-474E-873C-E79F00D7587C}|Fwk.Bases.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/Fwk.Configuration.ConfigurationService"
-		Debug.AspNetCompiler.PhysicalPath = "Fwk.Configuration\Fwk.Configuration.ConfigurationService\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Fwk.Configuration.ConfigurationService\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/Fwk.Configuration.ConfigurationService"
-		Release.AspNetCompiler.PhysicalPath = "Fwk.Configuration\Fwk.Configuration.ConfigurationService\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Fwk.Configuration.ConfigurationService\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "51990"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Mail.Test", "Test\Fwk.Mail.Test\Fwk.Mail.Test.csproj", "{17877545-938E-45FF-BDDC-78E43944CBEE}"
 EndProject
@@ -227,25 +198,6 @@ Global
 		{87C826E0-D87A-4C89-94ED-3B1044746A34}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87C826E0-D87A-4C89-94ED-3B1044746A34}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{87C826E0-D87A-4C89-94ED-3B1044746A34}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Release|.NET.ActiveCfg = Release|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A}.Release|.NET.ActiveCfg = Debug|Any CPU
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
 		{17877545-938E-45FF-BDDC-78E43944CBEE}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{17877545-938E-45FF-BDDC-78E43944CBEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17877545-938E-45FF-BDDC-78E43944CBEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -328,8 +280,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9AADFCD2-B965-42B4-A1AC-0FE50437EBBE} = {C3617487-99C1-4DEE-BCAC-9203B8EAB3F0}
-		{3200C835-9EFB-4961-93F4-AA7EA1869E7A} = {C3617487-99C1-4DEE-BCAC-9203B8EAB3F0}
 		{1654A893-0408-474E-873C-E79F00D7587C} = {08CFB3CE-4AC8-4F86-BF35-65BB41EE7CD8}
 		{A1F08B2F-7D75-4BD4-8BD3-B98C582013EC} = {08CFB3CE-4AC8-4F86-BF35-65BB41EE7CD8}
 		{87C826E0-D87A-4C89-94ED-3B1044746A34} = {08CFB3CE-4AC8-4F86-BF35-65BB41EE7CD8}
