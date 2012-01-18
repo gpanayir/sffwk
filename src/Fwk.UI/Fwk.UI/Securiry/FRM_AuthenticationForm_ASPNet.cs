@@ -196,44 +196,40 @@ namespace Fwk.UI.Security.Controls
             return true;
         }
 
+        /// <summary>
+        /// Llama al formulario de cambio e clave si es necesario
+        /// </summary>
+        /// <param name="pChangePassword">India que si o si se deba cambiar</param>
+        /// <returns></returns>
         private bool ValidateChangePassword(Boolean pChangePassword)
         {
             //Validamos si el usuario debe Cambiar el password
-            if (FormBase.IndentityUserInfo.MustChangePassword.Value)
+            //Si el usuario no debe cambiar el password, validamos que el usuario haya hecho click en "Cambiar clave". pChangePassword
+            if (FormBase.IndentityUserInfo.MustChangePassword.Value || pChangePassword)
+               return changepwd(txtUserName.Text);
+
+            //Como el usuario no está obligado a cambiar la clave, no nos importa si la cambio o no así que siempre devolvemos true.
+            return true;
+        }
+
+        /// <summary>
+        /// Llama al formulario de cambio e clave
+        /// </summary>
+        /// <param name="userName">Nombre de usuario a mostrar</param>
+        /// <returns></returns>
+        bool changepwd(string userName)
+        {
+            using (FRM_UserChangePassword wFrmChangePassword = new FRM_UserChangePassword())
             {
-                FRM_UserChangePassword wFrmChangePassword = new FRM_UserChangePassword();
-
                 //Le pasamos al Formulario de Cambio de Password el nombre de usuario
-                wFrmChangePassword.Populate(txtUserName.Text);
-
+                wFrmChangePassword.Populate(userName);
                 //Si devuelve OK significa que pasó las validaciones de cambio de password, entonces devolvemos True.
                 if (wFrmChangePassword.ShowDialog() == DialogResult.OK)
                     return true;
                 else
                     return false;
             }
-
-            //Si el usuario no debe cambiar el password, validamos que el usuario haya hecho click en "Cambiar clave".
-            else
-            {
-                if (pChangePassword)
-                {
-                    FRM_UserChangePassword wFrmChangePassword = new FRM_UserChangePassword();
-
-                    //Le pasamos al Formulario de Cambio de Password el nombre de usuario
-                    wFrmChangePassword.Populate(txtUserName.Text);
-                
-                    if (wFrmChangePassword.ShowDialog() == DialogResult.OK)
-                        return true;
-                    else
-                        return false;
-                }
-                //Como el usuario no está obligado a cambiar la clave, no nos importa si la cambio o no así que siempre devolvemos true.
-                return true;
-            }
         }
-
- 
 
         #endregion
 

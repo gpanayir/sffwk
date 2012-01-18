@@ -386,7 +386,7 @@ namespace Fwk.UI.Controller
         {
             SearchAllRulesReq req = new SearchAllRulesReq();
 
-            req.CacheSettings.CacheOnClientSide = true;
+            req.CacheSettings.CacheOnClientSide = false;
             SearchAllRulesRes res = req.ExecuteService<SearchAllRulesReq, SearchAllRulesRes>(req);
 
             if (res.Error != null)

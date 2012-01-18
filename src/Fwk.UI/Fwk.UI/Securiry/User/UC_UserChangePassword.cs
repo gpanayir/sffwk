@@ -45,24 +45,7 @@ namespace Fwk.UI.Security.Controls
 
         #endregion
 
-        public bool ChangePassword()
-        {
-            //Validamos que no haya errores en el UserControl
-            if (!dxErrorProvider1.HasErrors && ValidateUC())
-            {
-                //Cambiamos el Password
-                SecurityController.UserChangePassword(_UserName, txtOldPassword.Text, txtNewPassword.Text);
-                return true;
-            }
-            else
-                return false;
-        }
-
-
-        public bool ValidateUC()
-        {
-            return (txtOldPassword.ValidateValue() & txtNewPassword.ValidateValue() & txtPasswordConfirm.ValidateValue());
-        }
+       
 
         private void UC_UserChangePassword_Load(object sender, EventArgs e)
         {
