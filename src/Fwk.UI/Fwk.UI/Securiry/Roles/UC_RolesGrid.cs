@@ -25,13 +25,13 @@ namespace Fwk.UI.Security.Controls
         RolGridList _SelectedRoleGridList = new RolGridList ();
         bool _OnlyChecked = false;
         
-        [Category("Bigbang")]
+        [Category("Pelsoft")]
         public event EventHandler OnRolClick;
         #endregion
 
         #region Properties
         [Browsable(true)]
-        [Category("Bigbang")]
+        [Category("Pelsoft")]
         public bool OnlyChecked
         {
             get

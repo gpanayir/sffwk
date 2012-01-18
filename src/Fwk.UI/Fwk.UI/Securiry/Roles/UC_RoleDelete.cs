@@ -26,7 +26,7 @@ namespace Fwk.UI.Security.Controls
         public void DeleteRole()
         {
             SecurityController.DeleteRole(txtRoles.Text);
-            Fwk.UI.Controls.SimpleMessageView.Show("El rol ha sido eliminado con éxito", "BigBang", System.Windows.Forms.MessageBoxButtons.OK, Fwk.UI.Common.MessageBoxIcon.Information);
+            Fwk.UI.Controls.SimpleMessageView.Show("El rol ha sido eliminado con éxito", "Pelsoft", System.Windows.Forms.MessageBoxButtons.OK, Fwk.UI.Common.MessageBoxIcon.Information);
         }
 
         private void txtRoles_Validating(object sender, System.ComponentModel.CancelEventArgs e)

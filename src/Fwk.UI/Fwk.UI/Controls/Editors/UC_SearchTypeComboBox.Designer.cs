@@ -58,12 +58,12 @@ namespace Fwk.UI.Controls
             this.cmbSearchType.Size = new System.Drawing.Size(276, 21);
             this.cmbSearchType.TabIndex = 0;
             // 
-            // BigBangTipoBusquedaCombo
+            // PelsoftTipoBusquedaCombo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cmbSearchType);
-            this.Name = "BigBangTipoBusquedaCombo";
+            this.Name = "PelsoftTipoBusquedaCombo";
             this.Size = new System.Drawing.Size(284, 22);
             this.ResumeLayout(false);
 

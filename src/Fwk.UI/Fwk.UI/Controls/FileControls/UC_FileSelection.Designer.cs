@@ -50,7 +50,7 @@ namespace Fwk.UI.Controls
             this.buttonEdit.Properties.LookAndFeel.SkinName = "iMaginary";
             this.buttonEdit.Properties.Mask.SaveLiteral = false;
             this.buttonEdit.Properties.Mask.ShowPlaceHolders = false;
-            this.buttonEdit.Size = new System.Drawing.Size(204, 20);
+            this.buttonEdit.Size = new System.Drawing.Size(238, 22);
             this.buttonEdit.TabIndex = 0;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule1.ErrorText = "Cargue";
@@ -63,13 +63,14 @@ namespace Fwk.UI.Controls
             // 
             this.dxValidationProvider.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Auto;
             // 
-            // BigBangFileSelectionWithLabel
+            // UC_FileSelection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonEdit);
-            this.Name = "BigBangFileSelectionWithLabel";
-            this.Size = new System.Drawing.Size(204, 20);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "UC_FileSelection";
+            this.Size = new System.Drawing.Size(238, 25);
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider)).EndInit();
             this.ResumeLayout(false);

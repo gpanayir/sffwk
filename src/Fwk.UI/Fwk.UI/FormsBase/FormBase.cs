@@ -25,7 +25,7 @@ namespace Fwk.UI.Forms
     /// <summary>
     /// Formulario base del cual heredan todos los formularios de bignbang.- 
     /// Este formulario inicializa la seguridad y dispone de metodos y propiedades estaticos utiles para los demas
-    /// componentes de bigbang.-
+    /// componentes de Pelsoft.-
     /// 
     /// Realiza manejo de exepciones no controladas .-
     /// </summary>
@@ -158,6 +158,10 @@ namespace Fwk.UI.Forms
             ExceptionViewComponent wExceptionViewer = new ExceptionViewComponent();
             wExceptionViewer.ButtonsYesNoVisible = DevExpress.XtraBars.BarItemVisibility.Always;
             wExceptionViewer.Title = "Error no manejado";
+            if (wException != null)
+            {
+                wExceptionViewer.Title = string.Concat(wExceptionViewer.Title, " : ", wException.Source);
+            }
             #region Log del error en la base de datos o dicha configuracion
             bool wLogError = logError;
 

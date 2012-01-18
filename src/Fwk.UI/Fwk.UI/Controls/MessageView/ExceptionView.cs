@@ -28,14 +28,14 @@ namespace Fwk.UI.Controls
         private string _Source = String.Empty;
         private string _Detail = String.Empty;
 
-        [CategoryAttribute("Bigbang.Factory"), Description("")]
+        [CategoryAttribute("Pelsoft.Factory"), Description("")]
         public string Source
         {
             get { return _Source; }
             set { _Source = value; }
         }
         
-        [CategoryAttribute("Bigbang.Factory"), Description("")]
+        [CategoryAttribute("Pelsoft.Factory"), Description("")]
         public string Detail
         {
             get { return _Detail; }
@@ -44,7 +44,7 @@ namespace Fwk.UI.Controls
         /// <summary>
         ///Color del texbox
         /// </summary>
-        [CategoryAttribute("Bigbang.Factory"), Description("")]
+        [CategoryAttribute("Pelsoft.Factory"), Description("")]
         public Color TextMessageColor
         {
             set { txtMessage.BackColor = value; }
@@ -53,7 +53,7 @@ namespace Fwk.UI.Controls
         /// <summary>
         ///Color de texto del Mensaje
         /// </summary>
-        [CategoryAttribute("Bigbang.Factory"), Description("")]
+        [CategoryAttribute("Pelsoft.Factory"), Description("")]
         public Color TextMessageForeColor
         {
             set { txtMessage.ForeColor = value; }
@@ -62,7 +62,7 @@ namespace Fwk.UI.Controls
         /// <summary>
         ///Visibilidad de los botones Yes / No
         /// </summary>
-        [CategoryAttribute("Bigbang.Factory"), Description("")]
+        [CategoryAttribute("Pelsoft.Factory"), Description("")]
         public BarItemVisibility ButtonsYesNoVisible
         {
             set

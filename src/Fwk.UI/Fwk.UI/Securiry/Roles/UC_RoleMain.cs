@@ -264,7 +264,7 @@ namespace Fwk.UI.Security.Controls
                         }
                     }
 
-                    Fwk.UI.Controls.SimpleMessageView.Show(string.Format("La/s regla/s fueron asociadas al rol {0} correctamente", _SelectedRole), "BigBang", MessageBoxButtons.OK, Fwk.UI.Common.MessageBoxIcon.Information);
+                    Fwk.UI.Controls.SimpleMessageView.Show(string.Format("La/s regla/s fueron asociadas al rol {0} correctamente", _SelectedRole), "Pelsoft", MessageBoxButtons.OK, Fwk.UI.Common.MessageBoxIcon.Information);
 
                     if (wRulesForRole_ToUpdate == null)
                         return;
@@ -319,10 +319,10 @@ namespace Fwk.UI.Security.Controls
             str.AppendLine();
             str.AppendLine("¿Desea continuar?");
 
-            if (Fwk.UI.Controls.SimpleMessageView.Show(str.ToString(), "BigBang", MessageBoxButtons.YesNo, Fwk.UI.Common.MessageBoxIcon.Question) == DialogResult.Yes)
+            if (Fwk.UI.Controls.SimpleMessageView.Show(str.ToString(), "Pelsoft", MessageBoxButtons.YesNo, Fwk.UI.Common.MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 SecurityController.RulesUpdateService(_SelectedRole, wRulesForRole_ToUpdate, true);
-                Fwk.UI.Controls.SimpleMessageView.Show(string.Format("El rol {0} fue actualizado con éxito", _SelectedRole), "BigBang", MessageBoxButtons.OK, Fwk.UI.Common.MessageBoxIcon.Information);
+                Fwk.UI.Controls.SimpleMessageView.Show(string.Format("El rol {0} fue actualizado con éxito", _SelectedRole), "Pelsoft", MessageBoxButtons.OK, Fwk.UI.Common.MessageBoxIcon.Information);
                 grdViewRules.ClearSelection();
                 Initialize(true);
             }

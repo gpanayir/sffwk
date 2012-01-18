@@ -9,6 +9,7 @@ namespace Fwk.UI.Common
 {
     public class Exceptions
     {
+
         public class ExceptionEventArgs : EventArgs
         {
             private Exception _ex;
@@ -25,17 +26,28 @@ namespace Fwk.UI.Common
 
         public static Exception ProcessException(ServiceError err)
         {
-            if (err.Type == "FunctionalException")
+
+            Exception ex = null;
+            switch (err.Type)
             {
-                return new FunctionalException(err.Message + Environment.NewLine + err.InnerMessageException);
+                case "FunctionalException":
+                    ex = new FunctionalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
+                    ex.Source = err.Source;
+                    ((FunctionalException)ex).ErrorId = err.ErrorId;
+                    break;
+                case "TechnicalException":
+                    ex = new TechnicalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
+                    ex.Source = err.Source;
+                    ((TechnicalException)ex).ErrorId = err.ErrorId;
+                    break;
+                default:
+                    ex = new Exception(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
+                    ex.Source = err.Source;
+                    break;
             }
-            if (err.Type == "TechnicalException")
-            {
-                return new TechnicalException(err.Message + Environment.NewLine + err.InnerMessageException);
-            }
-            return new Exception(err.Message + Environment.NewLine + err.InnerMessageException);
+            return ex;
         }
-        
+
     }
 
 }

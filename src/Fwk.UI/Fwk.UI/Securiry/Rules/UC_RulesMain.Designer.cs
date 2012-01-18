@@ -53,7 +53,7 @@ namespace Fwk.UI.Security.Controls.Rules
             // MessageViewer
             // 
             this.MessageViewer.IconSize = Fwk.UI.Common.IconSize.Medium;
-            this.MessageViewer.Title = "Bigbang";
+            this.MessageViewer.Title = "Pelsoft";
             // 
             // bindingSourceRules
             // 

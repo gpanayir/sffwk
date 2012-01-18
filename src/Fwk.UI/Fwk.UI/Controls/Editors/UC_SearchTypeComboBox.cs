@@ -22,7 +22,7 @@ namespace Fwk.UI.Controls
             get { return (SearchtypeEnum)Enum.Parse(typeof(SearchtypeEnum), cmbSearchType.Text); }
         }
         
-        public ComboBoxBase BigBangControl
+        public ComboBoxBase PelsoftControl
         {
             get { return cmbSearchType; }
         }
