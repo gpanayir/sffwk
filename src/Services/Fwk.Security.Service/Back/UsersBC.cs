@@ -135,6 +135,16 @@ namespace Fwk.Security.BC
         }
 
         /// <summary>
+        /// Resetea clave de usuario estableciendo una nueva-
+        /// </summary>
+        /// <param name="userName">Nombre de usuario a resetear clave</param>
+        /// <param name="password">Nueva clave</param>
+        public void ResetPassword(string userName,string password)
+        {
+            ChangePassword(userName, string.Empty, password);
+        }
+
+        /// <summary>
         /// Valida si el usuario existe. y si no le falta el nombre
         /// </summary>
         /// <param name="pUser">UsersBE a validar.</param>
