@@ -38,6 +38,7 @@ namespace Fwk.Security.Admin.Controls
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
+            if (!ValidateControls()) return;
             string wMessage = string.Empty;
             using (new WaitCursorHelper(this))
             {
@@ -49,40 +50,10 @@ namespace Fwk.Security.Admin.Controls
                     else
                         FwkMembership.CreateUser(txtUserName.Text, txtPassword.Text, txtEmail.Text, txtQuest.Text, txtAnsw.Text, chkApproved.Checked, out wStatus, frmAdmin.Provider.Name);
 
-                    switch (wStatus)
+                    if (wStatus == MembershipCreateStatus.Success)
                     {
-                        case MembershipCreateStatus.InvalidEmail:
-                            {
-                                wMessage = "Invalid Email";
-                                break;
-                            }
 
-                        case MembershipCreateStatus.InvalidPassword:
-                            {
-                                wMessage = "Invalid Password";
-                                break;
-                            }
-                        case MembershipCreateStatus.InvalidQuestion:
-                            {
-                                wMessage = "Invalid Question";
-                                break;
-                            }
-                        case MembershipCreateStatus.InvalidUserName:
-                            {
-                                wMessage = "Invalid Username";
-                                break;
-                            }
-                        case MembershipCreateStatus.DuplicateEmail:
-                            {
-                                wMessage = "Duplicate Email";
-                                break;
-                            }
-                        case MembershipCreateStatus.Success:
-                            {
-                                wMessage = String.Format(Properties.Resources.UserCreatedMessage, txtUserName.Text);
-                                break;
-                            }
-
+                        wMessage = String.Format(Properties.Resources.UserCreatedMessage, txtUserName.Text);
                     }
                     MessageViewInfo.Show(wMessage);
                     this.Initialize();
@@ -107,6 +78,27 @@ namespace Fwk.Security.Admin.Controls
             {
                 MessageViewInfo.Show("Log not sussefully");
             }
+        }
+
+        bool ValidateControls()
+        {
+            errorProvider1.Clear();
+            if (string.IsNullOrEmpty(txtUserName.Text))
+            {
+                errorProvider1.SetError(txtUserName, "El nombre de usuario es requerido");
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtPassword.Text) )
+            {
+                errorProvider1.SetError(txtPassword, "El pasword de usuario es requerido");
+                return false;
+            }
+            if (!txtConfirmPassword.Text.Trim().Equals(txtPassword.Text.Trim(),StringComparison.Ordinal))
+            {
+                errorProvider1.SetError(txtConfirmPassword, "La confrirmacion y password no coinciden");
+                return false;
+            }
+            return true;
         }
     }
 }

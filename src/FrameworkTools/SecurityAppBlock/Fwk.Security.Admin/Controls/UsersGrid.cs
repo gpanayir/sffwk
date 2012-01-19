@@ -19,7 +19,7 @@ namespace Fwk.Security.Admin
         public event UserChangeHandler OnUserChange;
         List<User> userList;
 
-        List<User> selectedUserList = new List<User> ();
+        List<User> selectedUserList = new List<User>();
         [Browsable(false)]
         public List<User> SelectedUserList
         {
@@ -28,39 +28,24 @@ namespace Fwk.Security.Admin
                 GetSelecteds();
                 return selectedUserList;
             }
-
         }
 
         public UsersGrid()
         {
             InitializeComponent();
-            userByAppBindingSource.DataSource = userList;
-
-        }
-
-        private void grdUsers_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (grdUsers.CurrentRow == null) return;
-            CurrentUser = ((User)grdUsers.CurrentRow.DataBoundItem);
-            if (CurrentUser == null) return;
-
-            if (OnUserChange != null)
-            {
-                OnUserChange(CurrentUser, FwkMembership.GetRolesForUser(CurrentUser.UserName, frmAdmin.Provider.Name));
-            }
-
-
             
+     
         }
+
+      
 
         public override void Initialize()
         {
-          
-                userList = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
-          
-            grdUsers.DataSource = userList;
-            grdUsers.Refresh();
+            
+            userList = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
+            userByAppBindingSource.DataSource = userList;
+            gridView1.RefreshData();
+        
         }
 
 
@@ -68,10 +53,11 @@ namespace Fwk.Security.Admin
         private void textEdit1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != (char)Keys.Enter) return;
+         
             if (string.IsNullOrEmpty(textEdit1.Text))
             {
-                grdUsers.DataSource = userList;
-                grdUsers.Refresh();
+                userByAppBindingSource.DataSource = userList;
+                gridView1.RefreshData();
             }
             string strFind = textEdit1.Text.ToUpper();
             var list = from u in userList
@@ -80,20 +66,38 @@ namespace Fwk.Security.Admin
                         u.Email.ToUpper().Contains(strFind)
                        select u;
 
-            grdUsers.DataSource = list.ToList<User>();
-            grdUsers.Refresh();
+     
+            userByAppBindingSource.DataSource = list.ToList<User>();
+            gridView1.RefreshData(); ;
+            
         }
+        
 
         public void GetSelecteds()
         {
             selectedUserList.Clear();
-            foreach (DataGridViewRow row in grdUsers.SelectedRows)
+            foreach (int rowIndex in gridView1.GetSelectedRows())
             {
-                selectedUserList.Add(((User)row.DataBoundItem));
+                
+                selectedUserList.Add((User)gridView1.GetRow(rowIndex));
             }
-            
+
         }
 
-       
+  
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            if (gridView1.GetRow(e.FocusedRowHandle) == null) return;
+            CurrentUser = ((User)gridView1.GetRow(e.FocusedRowHandle));
+            if (CurrentUser == null) return;
+
+            if (OnUserChange != null)
+            {
+                OnUserChange(CurrentUser, FwkMembership.GetRolesForUser(CurrentUser.UserName, frmAdmin.Provider.Name));
+            }
+        }
+
+
     }
 }

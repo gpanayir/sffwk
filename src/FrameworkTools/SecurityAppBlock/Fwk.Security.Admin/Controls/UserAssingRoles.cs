@@ -17,6 +17,7 @@ namespace Fwk.Security.Admin.Controls
     [DefaultEvent("NewSecurityInfoCreated")]
     public partial class UserAssingRoles : SecurityControlBase
     {
+        RolList selectedRolList = null;
         /// <summary>
         /// Representa la informacion del tipo de control a instanciar 
         /// 
@@ -45,17 +46,23 @@ namespace Fwk.Security.Admin.Controls
         {
 
             if (usersGrid1.CurrentUser == null) return;
-            RolList wRolList = new RolList();
+            RolList wNewRolList = new RolList();
             using (new WaitCursorHelper(this))
             {
                 foreach (object obj in lstBoxRoles.CheckedItems)
                 {
-                    wRolList.Add((Rol)obj);
+                    wNewRolList.Add((Rol)obj);
                 }
 
                 try
                 {
-                    FwkMembership.CreateRolesToUser(wRolList, usersGrid1.CurrentUser.UserName, frmAdmin.Provider.Name);
+                    if (selectedRolList != null)
+                    {
+                        FwkMembership.RemoveUserFromRoles(usersGrid1.CurrentUser.UserName, selectedRolList, frmAdmin.Provider.Name);
+                        selectedRolList = null;
+                    }
+                    FwkMembership.CreateRolesToUser(wNewRolList, usersGrid1.CurrentUser.UserName, frmAdmin.Provider.Name);
+                    selectedRolList = wNewRolList;
                 }
                 catch (Exception ex)
                 {
@@ -89,8 +96,9 @@ namespace Fwk.Security.Admin.Controls
 
         private void usersGrid1_OnUserChange(User user, RolList roles)
         {
-            bindingSourceUserRole.DataSource = roles;
-                lblSelectedUser.Text = user.UserName;
+            lblSelectedUser.Text = user.UserName;
+            selectedRolList = roles;
+            MachRolesGrid(roles);
         }
 
         private void UserAssingRoles_Load(object sender, EventArgs e)
@@ -98,7 +106,23 @@ namespace Fwk.Security.Admin.Controls
             usersGrid1.Initialize();
         }
 
-        
+        void MachRolesGrid(RolList roles)
+        {
+           lstBoxRoles.UnSelectAll();
+
+            RolList list = (RolList)((System.Windows.Forms.BindingSource)(lstBoxRoles.DataSource)).List;
+            foreach (Rol lstRol in list)
+            {
+           
+                if (roles.Any(p => p.RolName.Equals(lstRol.RolName)))
+                {
+                    int i = lstBoxRoles.FindItem(lstRol);
+                    object  odj = lstBoxRoles.GetItem(i);
+                    lstBoxRoles.SetItemChecked(i, true);
+                    
+                }
+            }
+        }
 
         
 

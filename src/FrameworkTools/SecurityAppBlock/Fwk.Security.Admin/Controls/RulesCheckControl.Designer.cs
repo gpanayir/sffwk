@@ -38,27 +38,29 @@
             this.rulesComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.fwkMessageViewInfo = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // authorizationResultsTextBox
             // 
-            this.authorizationResultsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.authorizationResultsTextBox.Location = new System.Drawing.Point(0, 116);
+            this.authorizationResultsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.authorizationResultsTextBox.Location = new System.Drawing.Point(0, 143);
+            this.authorizationResultsTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.authorizationResultsTextBox.Multiline = true;
             this.authorizationResultsTextBox.Name = "authorizationResultsTextBox";
             this.authorizationResultsTextBox.ReadOnly = true;
             this.authorizationResultsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.authorizationResultsTextBox.Size = new System.Drawing.Size(596, 310);
+            this.authorizationResultsTextBox.Size = new System.Drawing.Size(695, 381);
             this.authorizationResultsTextBox.TabIndex = 39;
             this.authorizationResultsTextBox.TabStop = false;
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(18, 71);
+            this.label7.Location = new System.Drawing.Point(21, 87);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(167, 53);
+            this.label7.Size = new System.Drawing.Size(195, 65);
             this.label7.TabIndex = 38;
             this.label7.Text = "Determine if user is authorized to perform a task";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -69,9 +71,10 @@
             this.authorizeUsingIdentityRoleRulesButton.Image = global::Fwk.Security.Admin.Properties.Resources.Button_ok;
             this.authorizeUsingIdentityRoleRulesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.authorizeUsingIdentityRoleRulesButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.authorizeUsingIdentityRoleRulesButton.Location = new System.Drawing.Point(204, 84);
+            this.authorizeUsingIdentityRoleRulesButton.Location = new System.Drawing.Point(238, 103);
+            this.authorizeUsingIdentityRoleRulesButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.authorizeUsingIdentityRoleRulesButton.Name = "authorizeUsingIdentityRoleRulesButton";
-            this.authorizeUsingIdentityRoleRulesButton.Size = new System.Drawing.Size(79, 26);
+            this.authorizeUsingIdentityRoleRulesButton.Size = new System.Drawing.Size(92, 32);
             this.authorizeUsingIdentityRoleRulesButton.TabIndex = 37;
             this.authorizeUsingIdentityRoleRulesButton.Text = "Check";
             this.authorizeUsingIdentityRoleRulesButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -79,27 +82,28 @@
             // 
             // identityTextBox
             // 
-            this.identityTextBox.Location = new System.Drawing.Point(17, 35);
+            this.identityTextBox.Location = new System.Drawing.Point(20, 43);
+            this.identityTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.identityTextBox.Name = "identityTextBox";
-            this.identityTextBox.Size = new System.Drawing.Size(168, 21);
+            this.identityTextBox.Size = new System.Drawing.Size(195, 23);
             this.identityTextBox.TabIndex = 36;
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(330, 11);
+            this.label5.Location = new System.Drawing.Point(385, 14);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(260, 16);
+            this.label5.Size = new System.Drawing.Size(303, 20);
             this.label5.TabIndex = 31;
             this.label5.Text = "Enter the rule to be used to check authorization";
             // 
             // label4
             // 
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(330, 40);
+            this.label4.Location = new System.Drawing.Point(385, 49);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 15);
+            this.label4.Size = new System.Drawing.Size(44, 18);
             this.label4.TabIndex = 32;
             this.label4.Text = "Rule";
             // 
@@ -107,10 +111,11 @@
             // 
             this.rulesComboBox.DisplayMember = "Name";
             this.rulesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.rulesComboBox.ItemHeight = 13;
-            this.rulesComboBox.Location = new System.Drawing.Point(374, 35);
+            this.rulesComboBox.ItemHeight = 16;
+            this.rulesComboBox.Location = new System.Drawing.Point(436, 43);
+            this.rulesComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rulesComboBox.Name = "rulesComboBox";
-            this.rulesComboBox.Size = new System.Drawing.Size(216, 21);
+            this.rulesComboBox.Size = new System.Drawing.Size(251, 24);
             this.rulesComboBox.TabIndex = 33;
             this.rulesComboBox.ValueMember = "Expression";
             // 
@@ -120,9 +125,9 @@
             this.label2.Image = global::Fwk.Security.Admin.Properties.Resources.User;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(14, 4);
+            this.label2.Location = new System.Drawing.Point(16, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 23);
+            this.label2.Size = new System.Drawing.Size(149, 28);
             this.label2.TabIndex = 40;
             this.label2.Text = "Enter user name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -137,9 +142,9 @@
             this.fwkMessageViewInfo.TextMessageForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.fwkMessageViewInfo.Title = "Security admin";
             // 
-            // CheckRulesControl
+            // RulesCheckControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.authorizationResultsTextBox);
@@ -149,8 +154,10 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.rulesComboBox);
-            this.Name = "CheckRulesControl";
-            this.Size = new System.Drawing.Size(601, 450);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Name = "RulesCheckControl";
+            this.Size = new System.Drawing.Size(701, 554);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

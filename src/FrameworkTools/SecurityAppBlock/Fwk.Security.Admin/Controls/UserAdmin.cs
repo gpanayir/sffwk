@@ -45,7 +45,7 @@ namespace Fwk.Security.Admin.Controls
 
                 bindingSourceRoles1.DataSource = FwkMembership.GetAllRoles(frmAdmin.Provider.Name);
 
-                FillRolesByUser();
+                
             }
         }
 
@@ -53,13 +53,7 @@ namespace Fwk.Security.Admin.Controls
 
 
 
-        void FillRolesByUser()
-        {
-            if (usersGrid1.CurrentUser == null) return;
-
-            lblRolesByUser.Text = "User roles " + usersGrid1.CurrentUser.UserName;
-
-        }
+       
 
         private void btnUsersList_Click(object sender, EventArgs e)
         {
