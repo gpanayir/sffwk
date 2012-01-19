@@ -42,7 +42,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\corrsf71bi01\bigbang\Tools\ServiceManagement\</InstallUrl>
     <MinimumRequiredVersion>1.0.0.4</MinimumRequiredVersion>
-    <CreateWebPageOnPublish>false</CreateWebPageOnPublish>
     <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
