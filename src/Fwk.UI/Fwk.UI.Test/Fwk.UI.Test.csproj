@@ -116,7 +116,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\StaticLibs\Fwk.Security.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Security.Service, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>

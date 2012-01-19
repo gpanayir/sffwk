@@ -28,6 +28,7 @@ using Fwk.Security.ISVC.UpdateUser;
 using Fwk.Security.ISVC.GetUserInfoByParams;
 using Fwk.Security.ISVC.AuthenticateUser;
 using Fwk.Security.ISVC.SearchDomainsUrls;
+using Fwk.Security.ISVC.ResetUserPassword;
 using Fwk.UI.Common;
 
 
@@ -177,7 +178,27 @@ namespace Fwk.UI.Controller
             }
 
         }
+        /// <summary>
+        /// Cambiar el password de un usuario
+        /// </summary>
+        /// <param name="pUserName">Nombre de usuario</param>
+        /// <param name="pNewPassword">Password Nuevo</param>
+        internal static void UserResetPassword(String pUserName, String pPassword)
+        {
 
+            ResetUserPasswordReq req = new ResetUserPasswordReq();
+   
+            req.BusinessData.UserName = pUserName;
+
+            req.BusinessData.NewPassword = pPassword;
+            ResetUserPasswordRes res = req.ExecuteService<ResetUserPasswordReq, ResetUserPasswordRes>(req);
+
+            if (res.Error != null)
+            {
+                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+            }
+
+        }
         /// <summary>
         /// Obtiene todos los usuarios
         /// </summary>

@@ -93,7 +93,7 @@ namespace Fwk.UI.Controls
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            string fileName = ShowSaveFileDialog("documento de planilla de c�lculo", "Documento de planilla de c�lculo (*.xls)|*.xls");
+            string fileName = ShowSaveFileDialog("documento de planilla de cálculo", "Documento de planilla de cálculo (*.xls)|*.xls");
 
             if (!string.IsNullOrEmpty(fileName))
             {
@@ -201,7 +201,7 @@ namespace Fwk.UI.Controls
             }
             catch (Exception ex)
             {
-                simpleMessageViewComponent1.Show(string.Format("No se pudo exportar la grilla. Error: {0}", ex.Message.ToString()));
+                simpleMessageViewComponent2.Show(string.Format("No se pudo exportar la grilla. Error: {0}", ex.Message.ToString()));
             }
             finally
             {

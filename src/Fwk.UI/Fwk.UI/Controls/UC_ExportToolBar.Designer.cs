@@ -180,7 +180,7 @@ namespace Fwk.UI.Controls
         private DevExpress.Utils.ToolTipController toolTipController1;
         private DevExpress.XtraEditors.PopupContainerEdit popupContainerEdit1;
         private DevExpress.XtraEditors.PopupContainerControl popupContainerControl1;
-        private Fwk.UI.Controls.SimpleMessageViewComponent simpleMessageViewComponent1;
+        
         private SimpleMessageViewComponent simpleMessageViewComponent2;
 
 

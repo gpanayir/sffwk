@@ -43,7 +43,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\</OutputPath>
+    <OutputPath>bin\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -57,6 +57,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a">
@@ -151,10 +154,6 @@
     <Reference Include="Fwk.Security, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\StaticLibs\Fwk.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Security.Service, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\StaticLibs\Fwk.Security.Service.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -853,10 +852,6 @@
       <DependentUpon>FRM_UserMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\User\UC_Reset.resx">
-      <DependentUpon>UC_Reset.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Securiry\User\UC_UserAdmin.resx">
       <DependentUpon>UC_UserAdmin.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -978,12 +973,6 @@
     </Compile>
     <Compile Include="Securiry\User\FRM_UserMain.Designer.cs">
       <DependentUpon>FRM_UserMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\User\UC_Reset.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\User\UC_Reset.Designer.cs">
-      <DependentUpon>UC_Reset.cs</DependentUpon>
     </Compile>
     <Compile Include="Securiry\User\UC_UserAdmin.cs">
       <SubType>UserControl</SubType>
@@ -1398,7 +1387,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetDir)$(TargetName).*"  "$(ProjectDir)..\..\Libraries\Framework\$(TargetName).*"</PostBuildEvent>
   </PropertyGroup>
 </Project>

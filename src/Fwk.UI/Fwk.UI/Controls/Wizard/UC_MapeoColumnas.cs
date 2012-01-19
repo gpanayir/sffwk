@@ -25,7 +25,7 @@ namespace Fwk.UI.Controls.Wizard
         private List<String> _ColumnsTarget;
         private DataOriginTypeEnum _MappingType = DataOriginTypeEnum.None;
         private List<String> _ColumnsSource;
-        private ColumnsMappingBEList _DataTableMapped;
+        
         private DataTable _DataToImport;
 
         #endregion

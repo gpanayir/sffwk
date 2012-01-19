@@ -51,14 +51,14 @@ namespace Fwk.UI.Security.Controls
 
         private void aceptCancelButtonBar1_ClickOkCancelEvent(object sender, DialogResult result)
         {
-            if(result == System.Windows.Forms.DialogResult.Cancel)
+            if (result == System.Windows.Forms.DialogResult.Cancel)
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 
             if (ChangePassword())
             {
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
-           
+
         }
 
         public bool ChangePassword()

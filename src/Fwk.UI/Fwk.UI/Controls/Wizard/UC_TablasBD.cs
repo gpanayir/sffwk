@@ -21,8 +21,8 @@ namespace Fwk.UI.Controls.Wizard
         String _NameServer = String.Empty;
         Server _Server;
         Database _DataBase;
-        List<String> _Tables;
-        private Object _Urn;
+        
+     
         private Table _TableSelected;
         private List<String> _ColumnsSelected;
         private ColumnsMappingBEList _ColumnasAMapear;

@@ -8,35 +8,38 @@ using System.Text;
 using System.Windows.Forms;
 using Fwk.UI.Controls;
 using Fwk.UI.Forms;
+using Fwk.UI.Controller;
 
 namespace Fwk.UI.Security.Controls
 {
     public partial class FRM_UserResetPassword : FormDialogBase
     {
+      
+        private string _userName;
+
         public FRM_UserResetPassword(string pUserName)
         {
             InitializeComponent();
-            uC_Reset1.UserName = pUserName;
+            _userName = pUserName;
         }
+   
 
-        //protected override bool SaveForm()
-        //{
-        //    try
-        //    {
-        //        uC_Reset1.ResetPassword();
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        this.MessageViewer.Show(ex);
-        //        return false;
-        //    }
-        //    return true;
-        //}
-
-        //protected override bool CancelForm()
-        //{
-        //    return true;
-        //}
+        private void aceptCancelButtonBar1_ClickOkCancelEvent(object sender, DialogResult result)
+        {
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    SecurityController.UserResetPassword(_userName, txtnewPassword.Text);
+                }
+                catch (Exception ex)
+                {
+                    this.MessageViewer.Show(ex);
+                }
+            }
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
 
    }
 }
