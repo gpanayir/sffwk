@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Fwk.Bases.Connector, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -76,10 +75,6 @@
     <ProjectReference Include="..\Fwk.Security\Fwk.Security.csproj">
       <Project>{5659954E-96C0-4D30-8728-DF8BD381A63D}</Project>
       <Name>Fwk.Security</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fwk.Security.Service\Fwk.Security.Service.csproj">
-      <Project>{5659954E-96C0-4D30-8728-DF8BD381A63D}</Project>
-      <Name>Fwk.Security.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

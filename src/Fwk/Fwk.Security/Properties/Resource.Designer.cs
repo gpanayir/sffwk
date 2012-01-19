@@ -115,6 +115,15 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The connection string {0} not exist. Please check {1} provider security settings .-.
+        /// </summary>
+        public static string ConnectionStringNotExist {
+            get {
+                return ResourceManager.GetString("ConnectionStringNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The identity was added to the cache and can be retrieved using the token {0}.
         /// </summary>
         public static string CreateTokenMessage {

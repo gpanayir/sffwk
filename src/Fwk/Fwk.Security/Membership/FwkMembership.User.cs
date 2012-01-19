@@ -47,6 +47,13 @@ namespace Fwk.Security
             MembershipCreateStatus status;
             //wProvider.CreateUser(userName, password, email, string.Empty, string.Empty, true, status);
             FwkMembership.CreateUser(userName, password, email, null, null, true, out  status, wProvider.Name);
+            if (status != MembershipCreateStatus.Success)
+            {
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Concat("Fwk Membership error", GetErrorMessage(status)));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4005";
+                throw te;
+            }
         }
 
         /// <summary>
@@ -65,6 +72,8 @@ namespace Fwk.Security
             //FwkIdentity wFwkIdentity = new FwkIdentity();            
             MembershipCreateStatus s;
             CreateUser(userName, password, string.Empty, null, null, true, out s, wProvider.Name);
+
+          
         }
 
 
@@ -97,6 +106,8 @@ namespace Fwk.Security
 
             if (newUser != null)
                 wUsuario = new User(newUser);
+                
+
             return wUsuario;
 
         }
@@ -189,7 +200,10 @@ namespace Fwk.Security
             }
             catch (Exception ex)
             {
-                throw ex;
+                Fwk.Exceptions.TechnicalException te = new TechnicalException("Fwk membership user error ",ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
 
             return wUsersList;
@@ -600,6 +614,6 @@ namespace Fwk.Security
         
         #endregion
 
-       
+
     }
 }

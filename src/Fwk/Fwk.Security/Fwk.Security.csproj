@@ -95,6 +95,7 @@
     </Reference>
     <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
@@ -199,6 +200,7 @@
     <Compile Include="Service\SVC\Users\CreateUserService.cs" />
     <Compile Include="Service\SVC\Users\GetUserInfoByParamsService.cs" />
     <Compile Include="Service\SVC\Users\RemoveUserFromRoleService.cs" />
+    <Compile Include="Service\SVC\Users\ResetUserPassword.cs" />
     <Compile Include="Service\SVC\Users\SearchAllUsersService.cs" />
     <Compile Include="Service\SVC\Users\UpdateUserService.cs" />
   </ItemGroup>
