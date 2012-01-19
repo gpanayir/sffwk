@@ -108,10 +108,6 @@
       <Project>{5659954E-96C0-4D30-8728-DF8BD381A63D}</Project>
       <Name>Fwk.Security</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fwk.Security.Service\Fwk.Security.Service.csproj">
-      <Project>{5659954E-96C0-4D30-8728-DF8BD381A63D}</Project>
-      <Name>Fwk.Security.Service</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ServiceMetadataConfig.xml" />

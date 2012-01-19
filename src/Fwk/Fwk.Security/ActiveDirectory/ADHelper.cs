@@ -319,7 +319,7 @@ namespace Fwk.Security.ActiveDirectory
         }
 
 
-
+       
         /// <summary>
         /// Unlock user
         /// </summary>
@@ -338,9 +338,9 @@ namespace Fwk.Security.ActiveDirectory
 
                 if (userDirectoryEntry != null)
                 {
-                    if (userDirectoryEntry.Properties.Contains("LockOutTime"))
+                    if (userDirectoryEntry.Properties.Contains(ADProperties.LOCKOUTTIME))
                     {
-                        userDirectoryEntry.Properties["LockOutTime"].Value = 0;
+                        userDirectoryEntry.Properties["LockOutTime"].Value = 0x0000;
                         userDirectoryEntry.CommitChanges();
                         userDirectoryEntry.Close();
                     }

@@ -173,6 +173,54 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\Back\UsersBC.cs" />
+    <Compile Include="Services\Back\UsersDAC.cs" />
+    <Compile Include="Services\ISVC\ActiveDirectory\SearchAllUsers.cs" />
+    <Compile Include="Services\ISVC\ActiveDirectory\SearchDomainsUrls.cs" />
+    <Compile Include="Services\ISVC\Roles\AssignRolesToUser.cs" />
+    <Compile Include="Services\ISVC\Roles\CreateRoles.cs" />
+    <Compile Include="Services\ISVC\Roles\DeleteRole.cs" />
+    <Compile Include="Services\ISVC\Roles\SearchAllRoles.cs" />
+    <Compile Include="Services\ISVC\Roles\SearchRolesForUser.cs" />
+    <Compile Include="Services\ISVC\RulesCategory\CreateRulesCategory.cs" />
+    <Compile Include="Services\ISVC\RulesCategory\DeleteRulesCategory.cs" />
+    <Compile Include="Services\ISVC\RulesCategory\SearchAllRuleCategory.cs" />
+    <Compile Include="Services\ISVC\RulesCategory\SearchRulesCategoryByParam.cs" />
+    <Compile Include="Services\ISVC\RulesCategory\UpdateRulesCategory.cs" />
+    <Compile Include="Services\ISVC\Rules\CreateRules.cs" />
+    <Compile Include="Services\ISVC\Rules\SearchAllRules.cs" />
+    <Compile Include="Services\ISVC\Rules\UpdateRules.cs" />
+    <Compile Include="Services\ISVC\Users\AuthenticateUser.cs" />
+    <Compile Include="Services\ISVC\Users\CreateUsers.cs" />
+    <Compile Include="Services\ISVC\Users\GetUserInfoByName.cs" />
+    <Compile Include="Services\ISVC\Users\RemoveUsersFromRol.cs" />
+    <Compile Include="Services\ISVC\Users\SearchAllUsers.cs" />
+    <Compile Include="Services\ISVC\Users\SearchUsersByParam.cs" />
+    <Compile Include="Services\ISVC\Users\UpdateUser.cs" />
+    <Compile Include="Services\ISVC\Users\UserInfo.cs" />
+    <Compile Include="Services\ISVC\Users\UsersBE.cs" />
+    <Compile Include="Services\Statics.cs" />
+    <Compile Include="Services\SVC\Category\CreateRulesCategoryService.cs" />
+    <Compile Include="Services\SVC\Category\DeleteRulesCategoryService.cs" />
+    <Compile Include="Services\SVC\Category\SearchAllRuleCategoryService.cs" />
+    <Compile Include="Services\SVC\Category\SearchRulesCategoryByParamService.cs" />
+    <Compile Include="Services\SVC\Category\UpdateRulesCategoryService.cs" />
+    <Compile Include="Services\SVC\Roles\AssignRolesToUserService.cs" />
+    <Compile Include="Services\SVC\Roles\CreateRoleService.cs" />
+    <Compile Include="Services\SVC\Roles\DeleteRolService.cs" />
+    <Compile Include="Services\SVC\Roles\SearchAllRolesService.cs" />
+    <Compile Include="Services\SVC\Roles\SearchRolesForUserService.cs" />
+    <Compile Include="Services\SVC\Rules\CreateRuleService.cs" />
+    <Compile Include="Services\SVC\Rules\SearchAllRulesService.cs" />
+    <Compile Include="Services\SVC\Rules\UpdateRulesService.cs" />
+    <Compile Include="Services\SVC\SearchDomainsUrlsService.cs" />
+    <Compile Include="Services\SVC\Users\AuthenticateUserService.cs" />
+    <Compile Include="Services\SVC\Users\CreateUserService.cs" />
+    <Compile Include="Services\SVC\Users\GetUserInfoByParamsService.cs" />
+    <Compile Include="Services\SVC\Users\RemoveUserFromRoleService.cs" />
+    <Compile Include="Services\SVC\Users\ResetUserPassword.cs" />
+    <Compile Include="Services\SVC\Users\SearchAllUsersService.cs" />
+    <Compile Include="Services\SVC\Users\UpdateUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />
@@ -250,6 +298,9 @@
     <Content Include="ActiveDirectory\doc\LDAP_Query_AllUsers.txt" />
     <Content Include="ActiveDirectory\doc\LDAP_Query_Group.txt" />
     <Content Include="ActiveDirectory\doc\Propiedades.txt" />
+    <Content Include="Services\metadata\ServiceMetadataConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
