@@ -154,6 +154,53 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Service\Back\UsersBC.cs" />
+    <Compile Include="Service\Back\UsersDAC.cs" />
+    <Compile Include="Service\ISVC\ActiveDirectory\SearchAllUsers.cs" />
+    <Compile Include="Service\ISVC\ActiveDirectory\SearchDomainsUrls.cs" />
+    <Compile Include="Service\ISVC\Roles\AssignRolesToUser.cs" />
+    <Compile Include="Service\ISVC\Roles\CreateRoles.cs" />
+    <Compile Include="Service\ISVC\Roles\DeleteRole.cs" />
+    <Compile Include="Service\ISVC\Roles\SearchAllRoles.cs" />
+    <Compile Include="Service\ISVC\Roles\SearchRolesForUser.cs" />
+    <Compile Include="Service\ISVC\RulesCategory\CreateRulesCategory.cs" />
+    <Compile Include="Service\ISVC\RulesCategory\DeleteRulesCategory.cs" />
+    <Compile Include="Service\ISVC\RulesCategory\SearchAllRuleCategory.cs" />
+    <Compile Include="Service\ISVC\RulesCategory\SearchRulesCategoryByParam.cs" />
+    <Compile Include="Service\ISVC\RulesCategory\UpdateRulesCategory.cs" />
+    <Compile Include="Service\ISVC\Rules\CreateRules.cs" />
+    <Compile Include="Service\ISVC\Rules\SearchAllRules.cs" />
+    <Compile Include="Service\ISVC\Rules\UpdateRules.cs" />
+    <Compile Include="Service\ISVC\Users\AuthenticateUser.cs" />
+    <Compile Include="Service\ISVC\Users\CreateUsers.cs" />
+    <Compile Include="Service\ISVC\Users\GetUserInfoByName.cs" />
+    <Compile Include="Service\ISVC\Users\RemoveUsersFromRol.cs" />
+    <Compile Include="Service\ISVC\Users\SearchAllUsers.cs" />
+    <Compile Include="Service\ISVC\Users\SearchUsersByParam.cs" />
+    <Compile Include="Service\ISVC\Users\UpdateUser.cs" />
+    <Compile Include="Service\ISVC\Users\UserInfo.cs" />
+    <Compile Include="Service\ISVC\Users\UsersBE.cs" />
+    <Compile Include="Service\Statics.cs" />
+    <Compile Include="Service\SVC\Category\CreateRulesCategoryService.cs" />
+    <Compile Include="Service\SVC\Category\DeleteRulesCategoryService.cs" />
+    <Compile Include="Service\SVC\Category\SearchAllRuleCategoryService.cs" />
+    <Compile Include="Service\SVC\Category\SearchRulesCategoryByParamService.cs" />
+    <Compile Include="Service\SVC\Category\UpdateRulesCategoryService.cs" />
+    <Compile Include="Service\SVC\Roles\AssignRolesToUserService.cs" />
+    <Compile Include="Service\SVC\Roles\CreateRoleService.cs" />
+    <Compile Include="Service\SVC\Roles\DeleteRolService.cs" />
+    <Compile Include="Service\SVC\Roles\SearchAllRolesService.cs" />
+    <Compile Include="Service\SVC\Roles\SearchRolesForUserService.cs" />
+    <Compile Include="Service\SVC\Rules\CreateRuleService.cs" />
+    <Compile Include="Service\SVC\Rules\SearchAllRulesService.cs" />
+    <Compile Include="Service\SVC\Rules\UpdateRulesService.cs" />
+    <Compile Include="Service\SVC\SearchDomainsUrlsService.cs" />
+    <Compile Include="Service\SVC\Users\AuthenticateUserService.cs" />
+    <Compile Include="Service\SVC\Users\CreateUserService.cs" />
+    <Compile Include="Service\SVC\Users\GetUserInfoByParamsService.cs" />
+    <Compile Include="Service\SVC\Users\RemoveUserFromRoleService.cs" />
+    <Compile Include="Service\SVC\Users\SearchAllUsersService.cs" />
+    <Compile Include="Service\SVC\Users\UpdateUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />
@@ -220,6 +267,9 @@
     <Content Include="ActiveDirectory\doc\LDAP_Query_AllUsers.txt" />
     <Content Include="ActiveDirectory\doc\LDAP_Query_Group.txt" />
     <Content Include="ActiveDirectory\doc\Propiedades.txt" />
+    <Content Include="Service\metadata\ServiceMetadataConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

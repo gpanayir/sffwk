@@ -383,6 +383,18 @@ namespace Fwk.Security
 
         }
 
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="email">e-mail</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+       /// <returns>Nombre del usuario</returns>
+        public static string GetUserNameByEmail(string email, string providerName)
+        {
+               SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            return wProvider.GetUserNameByEmail(email);
+        }
+
         /// <summary>
         /// Obtiene una lista de usuarios de un determinado rol.- Solo obtiene nombre de usuario
         /// </summary>

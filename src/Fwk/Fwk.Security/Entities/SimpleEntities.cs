@@ -19,50 +19,53 @@ namespace Fwk.Security.Common
     [XmlInclude(typeof(User)), Serializable]
     public class User
     {
-        
-           string[] _Roles;
 
+        string[] _Roles;
 
-    
+        public object ProviderId { get; set; }
+
         AuthenticationModeEnum _AuthenticationMode = AuthenticationModeEnum.WindowsIntegrated;
 
 
 
-        public string DNI{get;set;}
+        public string DNI { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime? ModifiedDate{get;set;}
+        public DateTime? ModifiedDate { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         public DateTime? CreationDate { get; set; }
-    
-        /// <summary>
-        /// 
-        /// </summary>
-        public int? ModifiedByUserId{get;set;}
 
         /// <summary>
         /// 
         /// </summary>
-        public bool? MustChangePassword{get;set;}
-   
+        public int? ModifiedByUserId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool? MustChangePassword { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         string _FirstName;
 
         /// <summary>
         /// 
         /// </summary>
-        public string FirstName{get;set;}
-      
+        public string FirstName { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public string LastName{get;set;}
-       
-     
+        public string LastName { get; set; }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -76,59 +79,59 @@ namespace Fwk.Security.Common
         /// Este valor es para comp'atibilidad con sistenmas existentes
         /// 
         /// </summary>
-        public int? UserId{get;set;}
-       
+        public int? UserId { get; set; }
+
         /// <summary>
         /// Answer security password
         /// </summary>
-        public string AnswerPassword{get;set;}
-     
+        public string AnswerPassword { get; set; }
+
         /// <summary>
         /// Question security password
         /// </summary>
-        public string QuestionPassword{get;set;}
-     
+        public string QuestionPassword { get; set; }
+
         /// <summary>
         /// User Password
         /// </summary>
-        public string Password{get;set;}
-       
+        public string Password { get; set; }
+
         /// <summary>
         /// User comment or description
         /// </summary>
-        public string Comment{get;set;}
-                
+        public string Comment { get; set; }
+
         /// <summary>
         /// Application name
         /// </summary>
-        public string AppName{get;set;}
-    
+        public string AppName { get; set; }
+
         /// <summary>
         /// User name
         /// </summary>
-        public string UserName{get;set;}
-    
+        public string UserName { get; set; }
+
         /// <summary>
         /// Last user activity
         /// </summary>
-        public DateTime LastActivityDate{get;set;}
-  
+        public DateTime LastActivityDate { get; set; }
+
         /// <summary>
         /// Get User Lock
         /// </summary>
-        public bool IsLockedOut{get;set;}
-     
+        public bool IsLockedOut { get; set; }
+
         /// <summary>
         /// User Approved 
         /// </summary>
-        public bool IsApproved{get;set;}
-      
+        public bool IsApproved { get; set; }
+
         /// <summary>
         /// User Email
         /// </summary>
-        public String Email{get;set;}
-  
-    
+        public String Email { get; set; }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -144,6 +147,7 @@ namespace Fwk.Security.Common
         public User(MembershipUser pMembershipUser)
         {
             UserId = 0;
+            ProviderId = pMembershipUser.ProviderUserKey;
             UserName = pMembershipUser.UserName;
             LastActivityDate = pMembershipUser.LastActivityDate;
             IsLockedOut = pMembershipUser.IsLockedOut;
@@ -152,6 +156,7 @@ namespace Fwk.Security.Common
             Comment = pMembershipUser.Comment;
             QuestionPassword = pMembershipUser.PasswordQuestion;
             CreationDate = pMembershipUser.CreationDate;
+
         }
 
         /// <summary>
@@ -174,7 +179,7 @@ namespace Fwk.Security.Common
         /// Crea el array de roles.- Eleimina los qe exuisten 
         /// </summary>
         /// <param name="rolList"><see cref="RolList"/></param>
-        public void AddRoles(RolList rolList)        
+        public void AddRoles(RolList rolList)
         {
             _Roles = new String[rolList.Count];
             int i = 0;
@@ -194,7 +199,7 @@ namespace Fwk.Security.Common
             RolList lst = new RolList();
             foreach (string r in _Roles)
             {
-                lst.Add(new Rol (r));
+                lst.Add(new Rol(r));
             }
             return lst;
         }
@@ -229,13 +234,24 @@ namespace Fwk.Security.Common
     [XmlInclude(typeof(Rol)), Serializable]
     public class Rol
     {
-
-        public Rol(){}
+        /// <summary>
+        /// 
+        /// </summary>
+        public Rol() { }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pname"></param>
         public Rol(string pname)
         {
             _RolName = pname;
         }
-        public Rol(string name,string description)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        public Rol(string name, string description)
         {
             _RolName = name;
             _Description = description;
@@ -277,7 +293,7 @@ namespace Fwk.Security.Common
         /// <returns></returns>
         public String[] GetArrayNames()
         {
-    
+
             StringBuilder list = new StringBuilder();
             if (this == null || this.Count == 0)
             {
@@ -288,7 +304,7 @@ namespace Fwk.Security.Common
                 list.Append(r.RolName);
                 list.Append(",");
             }
-           
+
             list.Remove(list.Length - 1, 1);
             return list.ToString().Split(',');
         }
