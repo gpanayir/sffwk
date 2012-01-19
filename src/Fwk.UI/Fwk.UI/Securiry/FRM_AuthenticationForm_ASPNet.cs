@@ -45,16 +45,16 @@ namespace Fwk.UI.Security.Controls
             
         }
       
-  
-       
-
-
         public string Auth_Title_Text
         {
             get { return this.lbllTitle.Text; }
             set { this.lbllTitle.Text = value; }
         }
-
+        public Font Auth_Title_Font
+        {
+            get { return this.lbllTitle.Font ; }
+            set { this.lbllTitle.Font = value; }
+        }
         public Image Auth_Title_Image
         {
             get { return this.imgTitle.Image; }

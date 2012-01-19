@@ -45,7 +45,7 @@ namespace Fwk.UI.Controls
             this.btn_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btn_Cancel.CausesValidation = false;
             this.btn_Cancel.Image = global::Fwk.UI.Properties.Resources.cancl_16;
-            this.btn_Cancel.Location = new System.Drawing.Point(418, 1);
+            this.btn_Cancel.Location = new System.Drawing.Point(345, 1);
             this.btn_Cancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(114, 27);
@@ -57,7 +57,7 @@ namespace Fwk.UI.Controls
             // 
             this.btn_Acept.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btn_Acept.Image = global::Fwk.UI.Properties.Resources.apply_16;
-            this.btn_Acept.Location = new System.Drawing.Point(292, 1);
+            this.btn_Acept.Location = new System.Drawing.Point(219, 1);
             this.btn_Acept.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Acept.Name = "btn_Acept";
             this.btn_Acept.Size = new System.Drawing.Size(119, 27);
@@ -73,7 +73,7 @@ namespace Fwk.UI.Controls
             this.Controls.Add(this.btn_Acept);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UC_AceptCancelButtonBar";
-            this.Size = new System.Drawing.Size(536, 28);
+            this.Size = new System.Drawing.Size(463, 28);
             this.ResumeLayout(false);
 
         }

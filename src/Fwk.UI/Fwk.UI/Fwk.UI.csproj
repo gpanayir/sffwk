@@ -326,6 +326,12 @@
       <DependentUpon>UC_WizzardMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Wizard\WizardBE\ColumnsMappingBE.cs" />
+    <Compile Include="Securiry\AuthenticationFormComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Securiry\AuthenticationFormComponent.Designer.cs">
+      <DependentUpon>AuthenticationFormComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Securiry\FRM_AuthenticationForm_ASPNet.cs">
       <SubType>Form</SubType>
     </Compile>

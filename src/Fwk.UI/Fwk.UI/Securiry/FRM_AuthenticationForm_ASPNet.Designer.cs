@@ -32,7 +32,6 @@ namespace Fwk.UI.Security.Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_AuthenticationForm_ASPNet));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.txtPassword = new Fwk.UI.Controls.TextBox(this.components);
             this.txtUserName = new Fwk.UI.Controls.TextBox(this.components);
@@ -100,7 +99,6 @@ namespace Fwk.UI.Security.Controls
             this.txtUserName.TabIndex = 0;
             this.txtUserName.TexMaxLength = 50;
             this.txtUserName.TextBoxType = Fwk.UI.Common.TextBoxTypeEnum.Nothing;
-            
             this.txtUserName.Validating += new System.ComponentModel.CancelEventHandler(this.txtUserName_Validating);
             // 
             // label1
@@ -133,7 +131,7 @@ namespace Fwk.UI.Security.Controls
             this.lbllTitle.BackColor = System.Drawing.Color.White;
             this.lbllTitle.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbllTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbllTitle.Location = new System.Drawing.Point(60, 12);
+            this.lbllTitle.Location = new System.Drawing.Point(58, 12);
             this.lbllTitle.Name = "lbllTitle";
             this.lbllTitle.Size = new System.Drawing.Size(79, 45);
             this.lbllTitle.TabIndex = 449;
@@ -149,7 +147,7 @@ namespace Fwk.UI.Security.Controls
             this.panel1.Location = new System.Drawing.Point(8, 5);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(361, 61);
+            this.panel1.Size = new System.Drawing.Size(387, 61);
             this.panel1.TabIndex = 450;
             // 
             // imgTitle
@@ -168,12 +166,10 @@ namespace Fwk.UI.Security.Controls
             this.aceptCancelButtonBar1.AceptButtonText = "&Aceptar";
             this.aceptCancelButtonBar1.AceptButtonVisible = true;
             this.aceptCancelButtonBar1.BottomsVisible = true;
-            
             this.aceptCancelButtonBar1.CancelButtonEnabled = true;
             this.aceptCancelButtonBar1.CancelButtonText = "&Cancelar";
             this.aceptCancelButtonBar1.CancelButtonVisible = true;
             this.aceptCancelButtonBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            
             this.aceptCancelButtonBar1.Location = new System.Drawing.Point(3, 226);
             this.aceptCancelButtonBar1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.aceptCancelButtonBar1.Name = "aceptCancelButtonBar1";
