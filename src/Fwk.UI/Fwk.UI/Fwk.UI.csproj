@@ -190,6 +190,10 @@
     <Compile Include="..\ProductConfiguration\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Common\CommonEnums.cs" />
+    <Compile Include="Common\Exceptions.cs" />
+    <Compile Include="Common\HelperFunctions.cs" />
+    <Compile Include="Common\WaitCursorHelper.cs" />
     <Compile Include="Controls\CommonEnumComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1310,12 +1314,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\warning_32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Fwk.UI.Common\Fwk.UI.Common.csproj">
-      <Project>{C1EE0BC8-7BEA-4FE5-82C8-BF7D7C7E67F6}</Project>
-      <Name>Fwk.UI.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\inbox_32.png" />
