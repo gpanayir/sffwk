@@ -19,6 +19,7 @@ namespace Fwk.UI
     public partial class UC_NavMenu : DevExpress.XtraNavBar.NavBarControl
     {
         int treeCount = 0;
+        public bool IsOnDesignMode = false;
         Fwk.UI.Controls.Menu.MenuNavBar _MenuBar;
 
         public Fwk.UI.Controls.Menu.MenuNavBar MenuBar
@@ -109,7 +110,7 @@ namespace Fwk.UI
         {
             if (_MenuBar == null)
                 return;
-
+            
             foreach (BarGroup wBarGroup in _MenuBar)
             {
                 Add_BarGroup(wBarGroup, false);
@@ -209,7 +210,7 @@ namespace Fwk.UI
             //navBarGroupControlContainer.TabIndex = treeCount;
             navBarGroup.ControlContainer = navBarGroupControlContainer;
 
-            treeList.Populate(wBarGroup.MenuBarTree);
+            treeList.Populate(wBarGroup.MenuBarTree,this.IsOnDesignMode);
 
             treeList.Dock = System.Windows.Forms.DockStyle.Fill;
             treeList.Location = new System.Drawing.Point(0, 0);
@@ -218,7 +219,8 @@ namespace Fwk.UI
             treeList.Tag = wBarGroup.MenuBarTree;
             treeList.OnNodeClick += new OnNodeClickHandler(treeList_OnNodeClick);
             treeList.OnTreeViewClick += new EventHandler(treeList_OnTreeViewClick);
-
+            SetTreeDesignMode(treeList);
+            
             treeCount++;
 
 
@@ -226,7 +228,16 @@ namespace Fwk.UI
 
             this.ResumeLayout(false);
         }
+        void SetTreeDesignMode(UC_TreeNavBar treeList)
+        {
+            if (IsOnDesignMode)
+            {
+                treeList.AllowDrop = true;
 
+                this.AllowDrop = true;
+                
+            }
+        }
         void Update_UC_TreeNavBar(DevExpress.XtraNavBar.NavBarGroup navBarGroup, TreeNodeButton pMenuBarTreeNode)
         {
             BarGroup wBarGroup = (BarGroup)navBarGroup.Tag;
@@ -235,7 +246,7 @@ namespace Fwk.UI
             UC_TreeNavBar treeList = (UC_TreeNavBar)((System.Windows.Forms.Control)(navBarGroup.ControlContainer)).Controls[0];
             //treeList = navBarGroup
 
-            treeList.Populate(wBarGroup.MenuBarTree);
+            treeList.Populate(wBarGroup.MenuBarTree,this.IsOnDesignMode);
 
         }
 

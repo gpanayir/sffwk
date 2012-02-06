@@ -54,7 +54,7 @@ namespace Fwk.UI.Controls.Menu
         /// </summary>
         /// <param name="pMenuBarTreeNodes"></param>
         /// <returns></returns>
-        public void Populate(TreeNodeButtons pMenuBarTreeNodes)
+        public void Populate(TreeNodeButtons pMenuBarTreeNodes,bool designmode)
         {
             treeList1.FocusedNodeChanged -= new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(treeList1_FocusedNodeChanged);
             treeList1.BeginUpdate();
@@ -68,6 +68,14 @@ namespace Fwk.UI.Controls.Menu
 
             treeList1.ExpandAll();
             treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(treeList1_FocusedNodeChanged);
+
+            if (designmode)
+            {
+                treeList1.AllowDrop = designmode;
+                this.treeList1.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
+                this.treeList1.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeList1_DragEnter);
+            }
+
         }
 
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
@@ -111,6 +119,16 @@ namespace Fwk.UI.Controls.Menu
                 e.NodeImageIndex = 1;
             else
                 e.NodeImageIndex = 0;
+
+        }
+
+        private void treeList1_DragEnter(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void treeList1_DragDrop(object sender, DragEventArgs e)
+        {
 
         }
 

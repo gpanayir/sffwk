@@ -32,7 +32,7 @@ namespace Fwk.UI.Test
                 wStrr.AppendLine(" Hola " + i);
             }
 
-            Fwk.UI.Controls.SimpleMessageView.Show(wStrr.ToString(), "BigBang", MessageBoxButtons.YesNo, Fwk.UI.Common.MessageBoxIcon.Question);
+            Fwk.UI.Controls.SimpleMessageView.Show(wStrr.ToString(), "Pelsoft", MessageBoxButtons.YesNo, Fwk.UI.Common.MessageBoxIcon.Question);
         }
 
         private void ButtonBase1_Click(object sender, EventArgs e)

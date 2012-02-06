@@ -29,20 +29,19 @@ namespace Fwk.Tools.Menu
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_MenuBarDesigner));
             this.grpEditionContainer = new DevExpress.XtraEditors.GroupControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btnMoveUp = new DevExpress.XtraEditors.SimpleButton();
             this.btnMoveDown = new DevExpress.XtraEditors.SimpleButton();
-            this.menuFileBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.menuFileBindingSource = new System.Windows.Forms.BindingSource();
             this.lblFileRemoved = new System.Windows.Forms.Label();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.lstFiles = new DevExpress.XtraEditors.ListBoxControl();
@@ -73,17 +72,17 @@ namespace Fwk.Tools.Menu
             // 
             // grpEditionContainer
             // 
-            this.grpEditionContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpEditionContainer.Location = new System.Drawing.Point(307, 54);
+            this.grpEditionContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpEditionContainer.Location = new System.Drawing.Point(358, 66);
             this.grpEditionContainer.LookAndFeel.SkinName = "Blue";
             this.grpEditionContainer.LookAndFeel.UseDefaultLookAndFeel = false;
             this.grpEditionContainer.LookAndFeel.UseWindowsXPTheme = true;
             this.grpEditionContainer.Margin = new System.Windows.Forms.Padding(0);
             this.grpEditionContainer.Name = "grpEditionContainer";
             this.grpEditionContainer.ShowCaption = false;
-            this.grpEditionContainer.Size = new System.Drawing.Size(497, 352);
+            this.grpEditionContainer.Size = new System.Drawing.Size(580, 433);
             this.grpEditionContainer.TabIndex = 1;
             // 
             // barButtonItem1
@@ -117,21 +116,55 @@ namespace Fwk.Tools.Menu
             this.barButtonItem3});
             this.barManager1.MaxItemId = 3;
             // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(3, 5);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1177, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(3, 570);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1177, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(3, 5);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 565);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1180, 5);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 565);
+            // 
             // btnMoveUp
             // 
             this.btnMoveUp.Image = global::Fwk.Tools.Menu.Properties.Resources.down_16;
-            this.btnMoveUp.Location = new System.Drawing.Point(276, 151);
+            this.btnMoveUp.Location = new System.Drawing.Point(322, 186);
+            this.btnMoveUp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMoveUp.Name = "btnMoveUp";
-            this.btnMoveUp.Size = new System.Drawing.Size(28, 25);
+            this.btnMoveUp.Size = new System.Drawing.Size(33, 31);
             this.btnMoveUp.TabIndex = 4;
             this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
             // 
             // btnMoveDown
             // 
             this.btnMoveDown.Image = global::Fwk.Tools.Menu.Properties.Resources.up_16;
-            this.btnMoveDown.Location = new System.Drawing.Point(276, 119);
+            this.btnMoveDown.Location = new System.Drawing.Point(322, 146);
+            this.btnMoveDown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMoveDown.Name = "btnMoveDown";
-            this.btnMoveDown.Size = new System.Drawing.Size(28, 26);
+            this.btnMoveDown.Size = new System.Drawing.Size(33, 32);
             this.btnMoveDown.TabIndex = 5;
             this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
             // 
@@ -144,9 +177,9 @@ namespace Fwk.Tools.Menu
             this.lblFileRemoved.AutoSize = true;
             this.lblFileRemoved.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lblFileRemoved.ForeColor = System.Drawing.Color.Red;
-            this.lblFileRemoved.Location = new System.Drawing.Point(331, 6);
+            this.lblFileRemoved.Location = new System.Drawing.Point(386, 7);
             this.lblFileRemoved.Name = "lblFileRemoved";
-            this.lblFileRemoved.Size = new System.Drawing.Size(275, 19);
+            this.lblFileRemoved.Size = new System.Drawing.Size(345, 24);
             this.lblFileRemoved.TabIndex = 19;
             this.lblFileRemoved.Text = "Este archivo no existe o fue removido";
             this.lblFileRemoved.Visible = false;
@@ -155,9 +188,10 @@ namespace Fwk.Tools.Menu
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefresh.Image = global::Fwk.Tools.Menu.Properties.Resources.refresh_32;
-            this.btnRefresh.Location = new System.Drawing.Point(962, 6);
+            this.btnRefresh.Location = new System.Drawing.Point(1122, 7);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(44, 37);
+            this.btnRefresh.Size = new System.Drawing.Size(51, 46);
             this.btnRefresh.TabIndex = 18;
             this.btnRefresh.ToolTip = "Refresh preview";
             this.btnRefresh.Visible = false;
@@ -165,68 +199,73 @@ namespace Fwk.Tools.Menu
             // 
             // lstFiles
             // 
-            this.lstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstFiles.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.menuFileBindingSource, "Name", true));
             this.lstFiles.DataSource = this.menuFileBindingSource;
             this.lstFiles.DisplayMember = "Name";
-            this.lstFiles.Location = new System.Drawing.Point(3, 31);
+            this.lstFiles.Location = new System.Drawing.Point(3, 38);
+            this.lstFiles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstFiles.Name = "lstFiles";
-            this.lstFiles.Size = new System.Drawing.Size(190, 426);
+            this.lstFiles.Size = new System.Drawing.Size(222, 524);
             this.lstFiles.TabIndex = 20;
-            this.lstFiles.Click += new System.EventHandler(this.lstFiles_Click);
             this.lstFiles.SelectedIndexChanged += new System.EventHandler(this.lstFiles_SelectedIndexChanged);
+            this.lstFiles.Click += new System.EventHandler(this.lstFiles_Click);
             // 
             // lblSelectedFileName
             // 
             this.lblSelectedFileName.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lblSelectedFileName.Appearance.Options.UseFont = true;
-            this.lblSelectedFileName.Location = new System.Drawing.Point(205, 30);
+            this.lblSelectedFileName.Location = new System.Drawing.Point(239, 37);
+            this.lblSelectedFileName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblSelectedFileName.Name = "lblSelectedFileName";
-            this.lblSelectedFileName.Size = new System.Drawing.Size(19, 13);
+            this.lblSelectedFileName.Size = new System.Drawing.Size(24, 17);
             this.lblSelectedFileName.TabIndex = 21;
             this.lblSelectedFileName.Text = "[...]";
             // 
             // uC_NavMenu1
             // 
             this.uC_NavMenu1.ActiveGroup = null;
+            this.uC_NavMenu1.AllowDrop = false;
             this.uC_NavMenu1.ContentButtonHint = null;
             this.uC_NavMenu1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uC_NavMenu1.Location = new System.Drawing.Point(3, 17);
+            this.uC_NavMenu1.Location = new System.Drawing.Point(3, 21);
+            this.uC_NavMenu1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uC_NavMenu1.MenuBar = null;
             this.uC_NavMenu1.Name = "uC_NavMenu1";
             this.uC_NavMenu1.OptionsNavPane.ExpandedWidth = 140;
             this.uC_NavMenu1.OptionsNavPane.ShowOverflowPanel = false;
             this.uC_NavMenu1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.uC_NavMenu1.Size = new System.Drawing.Size(261, 332);
+            this.uC_NavMenu1.Size = new System.Drawing.Size(304, 409);
             this.uC_NavMenu1.TabIndex = 24;
             this.uC_NavMenu1.Text = "uC_NavMenu1";
-            this.uC_NavMenu1.ActiveGroupChanged += new DevExpress.XtraNavBar.NavBarGroupEventHandler(this.uC_NavMenu1_ActiveGroupChanged);
             this.uC_NavMenu1.OnLinkButtonClick += new Fwk.UI.Controls.Menu.MenuButtonClickHandler(this.uC_NavMenu1_MenuButtonClick);
+            this.uC_NavMenu1.ActiveGroupChanged += new DevExpress.XtraNavBar.NavBarGroupEventHandler(this.uC_NavMenu1_ActiveGroupChanged);
             // 
             // btnAddNavBar
             // 
-            this.btnAddNavBar.Location = new System.Drawing.Point(308, 13);
+            this.btnAddNavBar.Location = new System.Drawing.Point(359, 16);
+            this.btnAddNavBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddNavBar.Name = "btnAddNavBar";
-            this.btnAddNavBar.Size = new System.Drawing.Size(82, 23);
+            this.btnAddNavBar.Size = new System.Drawing.Size(96, 28);
             this.btnAddNavBar.TabIndex = 25;
             this.btnAddNavBar.Text = "Add gropup";
             this.btnAddNavBar.Click += new System.EventHandler(this.btnAddNavBar_Click);
             // 
             // btnAddNavItem
             // 
-            this.btnAddNavItem.Location = new System.Drawing.Point(391, 13);
+            this.btnAddNavItem.Location = new System.Drawing.Point(456, 16);
+            this.btnAddNavItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddNavItem.Name = "btnAddNavItem";
-            this.btnAddNavItem.Size = new System.Drawing.Size(82, 23);
+            this.btnAddNavItem.Size = new System.Drawing.Size(96, 28);
             this.btnAddNavItem.TabIndex = 26;
             this.btnAddNavItem.Text = "Add item";
             this.btnAddNavItem.Click += new System.EventHandler(this.btnAddNavItem_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.groupBox2);
@@ -235,28 +274,33 @@ namespace Fwk.Tools.Menu
             this.groupBox1.Controls.Add(this.grpEditionContainer);
             this.groupBox1.Controls.Add(this.btnMoveDown);
             this.groupBox1.Controls.Add(this.btnMoveUp);
-            this.groupBox1.Location = new System.Drawing.Point(199, 46);
+            this.groupBox1.Location = new System.Drawing.Point(232, 57);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(807, 412);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(941, 507);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(7, 13);
+            this.textBox1.Location = new System.Drawing.Point(8, 16);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(266, 21);
+            this.textBox1.Size = new System.Drawing.Size(310, 23);
             this.textBox1.TabIndex = 28;
             this.textBox1.Visible = false;
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.uC_NavMenu1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 54);
+            this.groupBox2.Location = new System.Drawing.Point(7, 66);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(267, 352);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Size = new System.Drawing.Size(311, 433);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             // 
@@ -272,9 +316,9 @@ namespace Fwk.Tools.Menu
             this.removeFiletoolStripBtn,
             this.toolStripSeparator,
             this.toolStripSeparator1});
-            this.toolStripAppClientConfig.Location = new System.Drawing.Point(6, 3);
+            this.toolStripAppClientConfig.Location = new System.Drawing.Point(7, 4);
             this.toolStripAppClientConfig.Name = "toolStripAppClientConfig";
-            this.toolStripAppClientConfig.Size = new System.Drawing.Size(139, 25);
+            this.toolStripAppClientConfig.Size = new System.Drawing.Size(170, 25);
             this.toolStripAppClientConfig.TabIndex = 28;
             this.toolStripAppClientConfig.Text = "toolStrip1";
             // 
@@ -343,13 +387,14 @@ namespace Fwk.Tools.Menu
             // 
             // FRM_MenuBarDesigner
             // 
+            this.AllowDrop = true;
             this.Appearance.BackColor = System.Drawing.Color.Snow;
             this.Appearance.ForeColor = System.Drawing.Color.Transparent;
             this.Appearance.Options.UseBackColor = true;
             this.Appearance.Options.UseForeColor = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 467);
+            this.ClientSize = new System.Drawing.Size(1183, 575);
             this.Controls.Add(this.toolStripAppClientConfig);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblSelectedFileName);
@@ -363,12 +408,14 @@ namespace Fwk.Tools.Menu
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.LookAndFeel.SkinName = "Blue";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MinimumSize = new System.Drawing.Size(1020, 499);
             this.Name = "FRM_MenuBarDesigner";
+            this.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Text = "Main menu designer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.MenuDesigner_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuBarDesigner_FormClosing);
+            this.Load += new System.EventHandler(this.MenuDesigner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grpEditionContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuFileBindingSource)).EndInit();

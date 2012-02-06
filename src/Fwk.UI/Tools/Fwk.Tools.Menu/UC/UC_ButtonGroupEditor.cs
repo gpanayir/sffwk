@@ -54,7 +54,7 @@ namespace Fwk.Tools.Menu
             {
                 base.AceptButtonText = "Agregar grupo";
             }
-             if (ActionType == Fwk.UI.Common.ActionTypes.Edit)
+            if (ActionType == Fwk.UI.Common.ActionTypes.Edit)
             {
                 base.AceptButtonText = "Aplicar cambio al grupo";
             }
@@ -76,7 +76,7 @@ namespace Fwk.Tools.Menu
                 return;
             }
 
-            
+
 
             _CopyGroup.Id = txtId.Text;
             _CopyGroup.Caption = txtCaption.Text;
@@ -98,6 +98,11 @@ namespace Fwk.Tools.Menu
         private void buttonGroupsBindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
             //OnEditorValueChanges();
+        }
+
+        private void ButtonBase1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

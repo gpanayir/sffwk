@@ -43,10 +43,12 @@ namespace Fwk.UI.Controls.Menu
             // standaloneBarDockControl1
             // 
             this.defaultToolTipController.SetAllowHtmlText(this.standaloneBarDockControl1, DevExpress.Utils.DefaultBoolean.Default);
+            this.standaloneBarDockControl1.CausesValidation = false;
             this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(0, 0);
+            this.standaloneBarDockControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(768, 60);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(896, 74);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barManager1
@@ -82,18 +84,38 @@ namespace Fwk.UI.Controls.Menu
             // barDockControlTop
             // 
             this.defaultToolTipController.SetAllowHtmlText(this.barDockControlTop, DevExpress.Utils.DefaultBoolean.Default);
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(896, 0);
             // 
             // barDockControlBottom
             // 
             this.defaultToolTipController.SetAllowHtmlText(this.barDockControlBottom, DevExpress.Utils.DefaultBoolean.Default);
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 71);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(896, 0);
             // 
             // barDockControlLeft
             // 
             this.defaultToolTipController.SetAllowHtmlText(this.barDockControlLeft, DevExpress.Utils.DefaultBoolean.Default);
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 71);
             // 
             // barDockControlRight
             // 
             this.defaultToolTipController.SetAllowHtmlText(this.barDockControlRight, DevExpress.Utils.DefaultBoolean.Default);
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(896, 0);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 71);
             // 
             // defaultToolTipController
             // 
@@ -102,17 +124,18 @@ namespace Fwk.UI.Controls.Menu
             // 
             this.defaultToolTipController.DefaultController.AutoPopDelay = 500;
             // 
-            // ToolBarControl
+            // UC_ToolBarControl
             // 
             this.defaultToolTipController.SetAllowHtmlText(this, DevExpress.Utils.DefaultBoolean.Default);
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.Controls.Add(this.standaloneBarDockControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "ToolBarControl";
-            this.Size = new System.Drawing.Size(768, 58);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Name = "UC_ToolBarControl";
+            this.Size = new System.Drawing.Size(896, 71);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
 

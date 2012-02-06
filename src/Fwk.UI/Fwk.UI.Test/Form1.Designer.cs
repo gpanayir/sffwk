@@ -38,11 +38,9 @@ namespace Fwk.UI.Test
             this.richEditBarController1 = new DevExpress.XtraRichEdit.UI.RichEditBarController();
             this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.fwkFlatTextBox1 = new Fwk.Bases.FrontEnd.Controls.FwkFlatTextBox(this.components);
-         
             this.fwkNumericTextBox1 = new Fwk.Bases.FrontEnd.Controls.FwkNumericTextBox();
             this.fwkAutoComboBox1 = new Fwk.Bases.FrontEnd.Controls.FwkAutoComboBox();
             this.formConnector1 = new Fwk.Bases.FrontEnd.Controls.FormConnector(this.components);
-            
             this.simpleMessageViewComponent1 = new Fwk.UI.Controls.SimpleMessageViewComponent(this.components);
             this.importDataFromDataOrigin1 = new Fwk.UI.Controls.Wizard.ImportDataFromDataOrigin(this.components);
             this.button2 = new System.Windows.Forms.Button();
@@ -51,8 +49,6 @@ namespace Fwk.UI.Test
             this.uC_AuthenticationBD1 = new Fwk.UI.Controls.Wizard.UC_AuthenticationBD();
             ((System.ComponentModel.ISupportInitialize)(this.richEditBarController1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).BeginInit();
-
-            ((System.ComponentModel.ISupportInitialize)(this.uC_LabelTitle2.Working_Image)).BeginInit();
             this.uC_LabelTitle2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,20 +93,22 @@ namespace Fwk.UI.Test
             this.fwkFlatTextBox1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fwkFlatTextBox1.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
             this.fwkFlatTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.fwkFlatTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.fwkFlatTextBox1.Name = "fwkFlatTextBox1";
             this.fwkFlatTextBox1.NotAllowedCharactersErrorText = "";
             this.fwkFlatTextBox1.Required = false;
             this.fwkFlatTextBox1.RequiredErrorText = null;
-            this.fwkFlatTextBox1.Size = new System.Drawing.Size(100, 21);
+            this.fwkFlatTextBox1.Size = new System.Drawing.Size(132, 24);
             this.fwkFlatTextBox1.TabIndex = 21;
             this.fwkFlatTextBox1.TextBoxType = Fwk.Bases.FrontEnd.Controls.TextBoxTypeEnum.Nothing;
- 
+            // 
             // fwkNumericTextBox1
             // 
-            this.fwkNumericTextBox1.Location = new System.Drawing.Point(537, 53);
+            this.fwkNumericTextBox1.Location = new System.Drawing.Point(716, 65);
+            this.fwkNumericTextBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.fwkNumericTextBox1.Name = "fwkNumericTextBox1";
             this.fwkNumericTextBox1.NumericType = Fwk.Bases.FrontEnd.Controls.FwkNumericTextBox.NumericTypeEnum.Int;
-            this.fwkNumericTextBox1.Size = new System.Drawing.Size(142, 21);
+            this.fwkNumericTextBox1.Size = new System.Drawing.Size(189, 26);
             this.fwkNumericTextBox1.TabIndex = 18;
             this.fwkNumericTextBox1.TextBoxBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.fwkNumericTextBox1.TextBoxEnabled = true;
@@ -134,14 +132,15 @@ namespace Fwk.UI.Test
             this.fwkAutoComboBox1.InactiveArrowColor = System.Drawing.SystemColors.ControlDark;
             this.fwkAutoComboBox1.InactiveBorderColor = System.Drawing.SystemColors.ControlDark;
             this.fwkAutoComboBox1.InactiveButtonColor = System.Drawing.SystemColors.Control;
-            this.fwkAutoComboBox1.Location = new System.Drawing.Point(344, 26);
+            this.fwkAutoComboBox1.Location = new System.Drawing.Point(459, 32);
+            this.fwkAutoComboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.fwkAutoComboBox1.Name = "fwkAutoComboBox1";
             this.fwkAutoComboBox1.NullTextValue = null;
             this.fwkAutoComboBox1.ReadOnly = false;
             this.fwkAutoComboBox1.ReadOnlyColor = System.Drawing.SystemColors.Control;
             this.fwkAutoComboBox1.Required = false;
             this.fwkAutoComboBox1.RequiredErrorText = null;
-            this.fwkAutoComboBox1.Size = new System.Drawing.Size(121, 21);
+            this.fwkAutoComboBox1.Size = new System.Drawing.Size(160, 25);
             this.fwkAutoComboBox1.TabIndex = 17;
             // 
             // formConnector1
@@ -152,7 +151,7 @@ namespace Fwk.UI.Test
             this.formConnector1.FormClassName = null;
             this.formConnector1.FormStartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.formConnector1.FormWindowState = System.Windows.Forms.FormWindowState.Normal;
-           
+            // 
             // simpleMessageViewComponent1
             // 
             this.simpleMessageViewComponent1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(245)))), ((int)(((byte)(241)))));
@@ -169,9 +168,10 @@ namespace Fwk.UI.Test
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(604, 129);
+            this.button2.Location = new System.Drawing.Point(805, 159);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 83);
+            this.button2.Size = new System.Drawing.Size(100, 102);
             this.button2.TabIndex = 6;
             this.button2.Text = "Wizard Importar Registros";
             this.button2.UseVisualStyleBackColor = true;
@@ -183,9 +183,10 @@ namespace Fwk.UI.Test
             this.uC_LabelTitle2.Appearance.Options.UseBackColor = true;
             this.uC_LabelTitle2.IconVisible = true;
             this.uC_LabelTitle2.Image = ((System.Drawing.Image)(resources.GetObject("uC_LabelTitle2.Image")));
-            this.uC_LabelTitle2.Location = new System.Drawing.Point(329, 216);
+            this.uC_LabelTitle2.Location = new System.Drawing.Point(439, 266);
+            this.uC_LabelTitle2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uC_LabelTitle2.Name = "uC_LabelTitle2";
-            this.uC_LabelTitle2.Size = new System.Drawing.Size(352, 24);
+            this.uC_LabelTitle2.Size = new System.Drawing.Size(469, 30);
             this.uC_LabelTitle2.TabIndex = 8;
             this.uC_LabelTitle2.TitleBackColor = System.Drawing.Color.Transparent;
             this.uC_LabelTitle2.TitleFont = new System.Drawing.Font("Tahoma", 10F);
@@ -196,6 +197,7 @@ namespace Fwk.UI.Test
             // 
             this.uC_LabelTitle2.Working_Image.Image = ((System.Drawing.Image)(resources.GetObject("uC_LabelTitle2.Working_Image.Image")));
             this.uC_LabelTitle2.Working_Image.Location = new System.Drawing.Point(344, 55);
+            this.uC_LabelTitle2.Working_Image.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.uC_LabelTitle2.Working_Image.Name = "Working_Image";
             this.uC_LabelTitle2.Working_Image.Size = new System.Drawing.Size(18, 23);
             this.uC_LabelTitle2.Working_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -205,13 +207,15 @@ namespace Fwk.UI.Test
             // uC_ExportToolBar1
             // 
             this.uC_ExportToolBar1.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.uC_ExportToolBar1.Appearance.ForeColor = System.Drawing.SystemColors.ControlText;
             this.uC_ExportToolBar1.Appearance.Options.UseBackColor = true;
-            this.uC_ExportToolBar1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.uC_ExportToolBar1.Appearance.Options.UseForeColor = true;
             this.uC_ExportToolBar1.GridControl = null;
             this.uC_ExportToolBar1.GridViewToExport = null;
-            this.uC_ExportToolBar1.Location = new System.Drawing.Point(466, 129);
+            this.uC_ExportToolBar1.Location = new System.Drawing.Point(621, 159);
+            this.uC_ExportToolBar1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uC_ExportToolBar1.Name = "uC_ExportToolBar1";
-            this.uC_ExportToolBar1.Size = new System.Drawing.Size(29, 23);
+            this.uC_ExportToolBar1.Size = new System.Drawing.Size(39, 28);
             this.uC_ExportToolBar1.TabIndex = 15;
             // 
             // uC_AuthenticationBD1
@@ -219,34 +223,33 @@ namespace Fwk.UI.Test
             this.uC_AuthenticationBD1.AcceptButton = null;
             this.uC_AuthenticationBD1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.uC_AuthenticationBD1.CancelButton = null;
-            this.uC_AuthenticationBD1.Location = new System.Drawing.Point(56, 236);
+            
+            this.uC_AuthenticationBD1.Location = new System.Drawing.Point(611, 266);
+            this.uC_AuthenticationBD1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.uC_AuthenticationBD1.Name = "uC_AuthenticationBD1";
             this.uC_AuthenticationBD1.NameServer = "";
             this.uC_AuthenticationBD1.ServerSelected = null;
-            this.uC_AuthenticationBD1.Size = new System.Drawing.Size(299, 340);
+            this.uC_AuthenticationBD1.Size = new System.Drawing.Size(399, 418);
             this.uC_AuthenticationBD1.TabIndex = 22;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(767, 605);
+            this.ClientSize = new System.Drawing.Size(1023, 745);
             this.Controls.Add(this.uC_AuthenticationBD1);
             this.Controls.Add(this.uC_ExportToolBar1);
             this.Controls.Add(this.uC_LabelTitle2);
             this.Controls.Add(this.button2);
-
             this.Controls.Add(this.fwkAutoComboBox1);
             this.Controls.Add(this.fwkNumericTextBox1);
-
             this.Controls.Add(this.fwkFlatTextBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.richEditBarController1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxErrorProvider1)).EndInit();
-   
-            ((System.ComponentModel.ISupportInitialize)(this.uC_LabelTitle2.Working_Image)).EndInit();
             this.uC_LabelTitle2.ResumeLayout(false);
             this.uC_LabelTitle2.PerformLayout();
             this.ResumeLayout(false);

@@ -20,7 +20,7 @@ namespace Fwk.UI.Common
         public static class Masck
         {
             static string spesialCharacters = "#aAD";
-            public static string GetBigbangMasck(string input)
+            public static string GetPelsoftMasck(string input)
             {
                 StringBuilder resultMASCK = new StringBuilder();
                 //D

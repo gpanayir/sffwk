@@ -144,6 +144,7 @@ namespace Fwk.Tools.Menu
         /// <param name="e"></param>
         private void btnAddNavBar_Click(object sender, EventArgs e)
         {
+            if (_SelectedMenuFile == null) return;
             _CurrentBarGroup = new BarGroup();
             _CurrentBarGroup.EntityState = Fwk.Bases.EntityState.Added;
             if (uC_NavMenu1.MenuBar == null) uC_NavMenu1.MenuBar = new MenuNavBar();
@@ -164,6 +165,7 @@ namespace Fwk.Tools.Menu
         /// <param name="e"></param>
         private void btnAddNavItem_Click(object sender, EventArgs e)
         {
+            if (uC_NavMenu1.ActiveGroup == null) return;
             //Si se agrega a un arbol es un TreeNodeButton
             if (((BarGroup)uC_NavMenu1.ActiveGroup.Tag).ContainTree)
             {
@@ -228,6 +230,7 @@ namespace Fwk.Tools.Menu
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
+            if (_SelectedMenuFile == null) return;
             _SelectedMenuFile.MenuBar =  uC_NavMenu1.MenuBar;//GenerateMenuBarFromTree();
             SaveToFile(_SelectedMenuFile);
         }
@@ -341,6 +344,7 @@ namespace Fwk.Tools.Menu
         void LoadFromFile()
         {
             _SelectedMenuFile.MenuBar = MenuNavBar.GetFromXml<MenuNavBar>(FileFunctions.OpenTextFile(_SelectedMenuFile.FullName));
+            uC_NavMenu1.IsOnDesignMode = true;
             uC_NavMenu1.Load(_SelectedMenuFile.MenuBar);
 
         }
@@ -398,6 +402,7 @@ namespace Fwk.Tools.Menu
 
         private void btnMoveDown_Click(object sender, EventArgs e)
         {
+            if (uC_NavMenu1.ActiveGroup == null) return;
             //Tomar el grupo activo
             BarGroup barToMove = (BarGroup)uC_NavMenu1.ActiveGroup.Tag;
 
@@ -413,6 +418,7 @@ namespace Fwk.Tools.Menu
 
         private void btnMoveUp_Click(object sender, EventArgs e)
         {
+            if (uC_NavMenu1.ActiveGroup == null) return;
             //Tomar el grupo activo
             BarGroup barToMove = (BarGroup)uC_NavMenu1.ActiveGroup.Tag;
             //Si es sobre si mismo retornar

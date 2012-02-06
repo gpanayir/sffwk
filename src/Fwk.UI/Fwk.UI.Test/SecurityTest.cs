@@ -33,28 +33,7 @@ namespace Fwk.UI.Test
             }
         }
 
-        private void navBarItem1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            UC_UsersMain wUserMain = new UC_UsersMain();
-            
-            DevExpress.XtraTab.XtraTabPage wPagina = xtraTabControl1.TabPages.Add();
-            wPagina.Text = wUserMain.Name;
-            wPagina.Controls.Add(wUserMain);
-            wPagina.ShowCloseButton = DevExpress.Utils.DefaultBoolean.True;
-            wUserMain.Dock = DockStyle.Fill;         
-        }
-
-        private void navBarItem2_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
-            UC_RoleMain wRoleMain = new UC_RoleMain();
-            DevExpress.XtraTab.XtraTabPage wPagina = xtraTabControl1.TabPages.Add();
-            wPagina.Text = wRoleMain.Name;
-            wPagina.Controls.Add(wRoleMain);
-            wPagina.ShowCloseButton = DevExpress.Utils.DefaultBoolean.True;
-            wRoleMain.Dock = DockStyle.Fill;     
-        }
-
-      
+       
 
         private void navBarItem3_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {

@@ -52,6 +52,7 @@ namespace Fwk.UI.Controls.Menu
             this.treeList1.ImageIndexFieldName = "";
             this.treeList1.KeyFieldName = "Id";
             this.treeList1.Location = new System.Drawing.Point(0, 0);
+            this.treeList1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsMenu.EnableColumnMenu = false;
             this.treeList1.OptionsMenu.EnableFooterMenu = false;
@@ -67,16 +68,18 @@ namespace Fwk.UI.Controls.Menu
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageComboBox1});
             this.treeList1.SelectImageList = this.imageCollection1;
-            this.treeList1.Size = new System.Drawing.Size(250, 459);
+            this.treeList1.Size = new System.Drawing.Size(292, 565);
             this.treeList1.TabIndex = 0;
             this.treeList1.ToolTipController = this.toolTipController1;
             this.treeList1.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.Dark;
-            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             this.treeList1.GetSelectImage += new DevExpress.XtraTreeList.GetSelectImageEventHandler(this.treeList1_GetSelectImage);
+            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
+   
             // 
             // colCaption
             // 
             this.colCaption.FieldName = "Caption";
+            this.colCaption.MinWidth = 33;
             this.colCaption.Name = "colCaption";
             this.colCaption.OptionsColumn.AllowEdit = false;
             this.colCaption.OptionsColumn.AllowSort = false;
@@ -111,11 +114,12 @@ namespace Fwk.UI.Controls.Menu
             // 
             // UC_TreeNavBar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.treeList1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UC_TreeNavBar";
-            this.Size = new System.Drawing.Size(250, 459);
+            this.Size = new System.Drawing.Size(292, 565);
             this.Load += new System.EventHandler(this.UC_TreeNavBar_Load);
             this.Click += new System.EventHandler(this.UC_TreeNavBar_Click);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();

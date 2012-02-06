@@ -28,9 +28,16 @@ namespace Fwk.UI
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // UC_NavMenu
+            // 
             this.OptionsNavPane.ShowOverflowPanel = false;
+            this.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion

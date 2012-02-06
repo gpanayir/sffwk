@@ -29,7 +29,7 @@ namespace Fwk.Tools.Menu
         public Main()
         {
             InitializeComponent();
-            //Common.Controls.Menu.ToolBar toolBar = new BigBang.FrontEnd.Common.Controls.Menu.ToolBar();
+            //Common.Controls.Menu.ToolBar toolBar = new Pelsoft.FrontEnd.Common.Controls.Menu.ToolBar();
             //toolBar.Add(new ButtonBase());
             //Common.Controls.Menu.Helper.SaveToolBarToFile(toolBar, "prueba.xml");
             Init();

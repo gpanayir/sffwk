@@ -122,7 +122,7 @@
       <Keys>
         <Key name="ConnectionString" encrypted="false">
           
-          <Value><![CDATA[Initial Catalog=FwkBlocking;Data Source=CORRSF71DES01;User ID=BigBang ;Password=B1gB4ng+01]]></Value>
+          <Value><![CDATA[Initial Catalog=FwkBlocking;Data Source=CORRSF71DES01;User ID=Pelsoft ;Password=B1gB4ng+01]]></Value>
         </Key>
         <Key name="PerformBlocking" encrypted="false">
           
@@ -155,7 +155,7 @@
         </Key>
       </Keys>
     </Group>
-    <Group name="BigBangWeb">
+    <Group name="PelsoftWeb">
       
       <Keys>
         <Key name="GlobalPendingsHourRange" encrypted="false">
@@ -221,7 +221,7 @@
       <Keys>
         <Key name="ProductName" encrypted="false">
           
-          <Value><![CDATA[BigBang - Desarrollo]]></Value>
+          <Value><![CDATA[Pelsoft - Desarrollo]]></Value>
         </Key>
       </Keys>
     </Group>

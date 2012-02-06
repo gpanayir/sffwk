@@ -38,7 +38,6 @@ namespace Fwk.UI.Test
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.uC_RoleMain1 = new Fwk.UI.Security.Controls.UC_RoleMain();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -48,9 +47,9 @@ namespace Fwk.UI.Test
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(274, 4);
+            this.label1.Location = new System.Drawing.Point(320, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(345, 24);
+            this.label1.Size = new System.Drawing.Size(434, 29);
             this.label1.TabIndex = 1;
             this.label1.Text = "Test de componentes Fwk.libs.Security";
             // 
@@ -67,10 +66,11 @@ namespace Fwk.UI.Test
             this.navBarItem1,
             this.navBarItem2,
             this.navBarItem3});
-            this.navBarControl1.Location = new System.Drawing.Point(6, 54);
+            this.navBarControl1.Location = new System.Drawing.Point(7, 66);
+            this.navBarControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
-            this.navBarControl1.Size = new System.Drawing.Size(140, 550);
+            this.navBarControl1.Size = new System.Drawing.Size(163, 677);
             this.navBarControl1.TabIndex = 8;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -84,12 +84,7 @@ namespace Fwk.UI.Test
             // 
             // navBarItem1
             // 
-            this.navBarItem1.AppearanceHotTracked.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.navBarItem1.AppearanceHotTracked.Options.UseBackColor = true;
-            this.navBarItem1.CanDrag = false;
-            this.navBarItem1.Caption = "User Main";
-            this.navBarItem1.Name = "navBarItem1";
-            this.navBarItem1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem1_LinkClicked);
+            
             // 
             // navBarGroup2
             // 
@@ -101,9 +96,7 @@ namespace Fwk.UI.Test
             // 
             // navBarItem2
             // 
-            this.navBarItem2.Caption = "Roles Main";
-            this.navBarItem2.Name = "navBarItem2";
-            this.navBarItem2.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem2_LinkClicked);
+            
             // 
             // navBarGroup3
             // 
@@ -122,9 +115,10 @@ namespace Fwk.UI.Test
             // panel1
             // 
             this.panel1.Controls.Add(this.xtraTabControl1);
-            this.panel1.Location = new System.Drawing.Point(152, 54);
+            this.panel1.Location = new System.Drawing.Point(177, 66);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(793, 560);
+            this.panel1.Size = new System.Drawing.Size(925, 689);
             this.panel1.TabIndex = 9;
             // 
             // xtraTabControl1
@@ -132,31 +126,25 @@ namespace Fwk.UI.Test
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.HeaderButtons = ((DevExpress.XtraTab.TabButtons)((DevExpress.XtraTab.TabButtons.Close | DevExpress.XtraTab.TabButtons.Default)));
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControl1.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabControl1.Size = new System.Drawing.Size(793, 560);
+            this.xtraTabControl1.Size = new System.Drawing.Size(925, 689);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             // 
-            // uC_RoleMain1
-            // 
-            this.uC_RoleMain1.AcceptButton = null;
-            this.uC_RoleMain1.CancelButton = null;
-            this.uC_RoleMain1.Location = new System.Drawing.Point(36, 32);
-            this.uC_RoleMain1.Name = "uC_RoleMain1";
-            this.uC_RoleMain1.Size = new System.Drawing.Size(762, 456);
-            this.uC_RoleMain1.TabIndex = 0;
-            // 
             // SecurityTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(952, 620);
+            this.ClientSize = new System.Drawing.Size(1111, 763);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.navBarControl1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "SecurityTest";
+            this.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Text = "SecurityTest";
             this.Load += new System.EventHandler(this.SecurityTest_Load);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
@@ -179,6 +167,6 @@ namespace Fwk.UI.Test
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem3;
-        private Fwk.UI.Security.Controls.UC_RoleMain uC_RoleMain1;
+       
     }
 }

@@ -625,6 +625,9 @@
       <DependentUpon>FRM_AssemblyExplorer.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Menu\UC_NavMenu.resx">
+      <DependentUpon>UC_NavMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Menu\UC_TreeNavBar.resx">
       <DependentUpon>UC_TreeNavBar.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -814,38 +817,6 @@
       <DependentUpon>FRM_AuthenticationForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Roles\FRM_RoleMain.resx">
-      <DependentUpon>FRM_RoleMain.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Roles\FRM_RoleAssign.resx">
-      <DependentUpon>FRM_RoleAssign.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Roles\FRM_RoleDelete.resx">
-      <DependentUpon>FRM_RoleDelete.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Roles\FRM_RoleNew.resx">
-      <DependentUpon>FRM_RoleNew.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Roles\UC_RoleDelete.resx">
-      <DependentUpon>UC_RoleDelete.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Roles\UC_RoleMain.resx">
-      <DependentUpon>UC_RoleMain.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Roles\UC_RoleNew.resx">
-      <DependentUpon>UC_RoleNew.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Roles\UC_RolesGrid.resx">
-      <DependentUpon>UC_RolesGrid.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Securiry\Rules\UC_RulesMain.resx">
       <DependentUpon>UC_RulesMain.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -856,26 +827,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Securiry\FRM_UserResetPassword.resx">
       <DependentUpon>FRM_UserResetPassword.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\User\FRM_UserMain.resx">
-      <DependentUpon>FRM_UserMain.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\User\UC_UserAdmin.resx">
-      <DependentUpon>UC_UserAdmin.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\User\UC_UserChangePassword.resx">
-      <DependentUpon>UC_UserChangePassword.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\User\UC_UsersMain.resx">
-      <DependentUpon>UC_UsersMain.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\User\FRM_UserNew.resx">
-      <DependentUpon>FRM_UserNew.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -911,55 +862,6 @@
     <Compile Include="Securiry\FRM_AuthenticationForm.Designer.cs">
       <DependentUpon>FRM_AuthenticationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Securiry\Roles\FRM_RoleMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Securiry\Roles\FRM_RoleMain.Designer.cs">
-      <DependentUpon>FRM_RoleMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\Roles\FRM_RoleAssign.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Securiry\Roles\FRM_RoleAssign.Designer.cs">
-      <DependentUpon>FRM_RoleAssign.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\Roles\FRM_RoleDelete.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Securiry\Roles\FRM_RoleDelete.Designer.cs">
-      <DependentUpon>FRM_RoleDelete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\Roles\FRM_RoleNew.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Securiry\Roles\FRM_RoleNew.Designer.cs">
-      <DependentUpon>FRM_RoleNew.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\Roles\Roles.cs" />
-    <Compile Include="Securiry\Roles\UC_RoleDelete.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\Roles\UC_RoleDelete.Designer.cs">
-      <DependentUpon>UC_RoleDelete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\Roles\UC_RoleMain.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\Roles\UC_RoleMain.Designer.cs">
-      <DependentUpon>UC_RoleMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\Roles\UC_RoleNew.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\Roles\UC_RoleNew.Designer.cs">
-      <DependentUpon>UC_RoleNew.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\Roles\UC_RolesGrid.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\Roles\UC_RolesGrid.Designer.cs">
-      <DependentUpon>UC_RolesGrid.cs</DependentUpon>
-    </Compile>
     <Compile Include="Securiry\Rules\UC_RulesMain.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -977,36 +879,6 @@
     </Compile>
     <Compile Include="Securiry\FRM_UserResetPassword.Designer.cs">
       <DependentUpon>FRM_UserResetPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\User\FRM_UserMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Securiry\User\FRM_UserMain.Designer.cs">
-      <DependentUpon>FRM_UserMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\User\UC_UserAdmin.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\User\UC_UserAdmin.Designer.cs">
-      <DependentUpon>UC_UserAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\User\UC_UserChangePassword.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\User\UC_UserChangePassword.Designer.cs">
-      <DependentUpon>UC_UserChangePassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\User\UC_UsersMain.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\User\UC_UsersMain.Designer.cs">
-      <DependentUpon>UC_UsersMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\User\FRM_UserNew.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Securiry\User\FRM_UserNew.Designer.cs">
-      <DependentUpon>FRM_UserNew.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Menu\UC_NavMenu.cs">
       <SubType>Component</SubType>
@@ -1358,13 +1230,9 @@
     <None Include="Resources\refresh_32.png" />
     <None Include="Resources\refresh_24.png" />
     <None Include="Resources\refresh_16.png" />
-    <Content Include="Securiry\Roles\SecurityRolesToolbar.xml" />
     <Content Include="Securiry\Rules\SecurityRulesToolbar.xml" />
-    <Content Include="Securiry\User\SecurityUserToolbar.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Securiry\Groups\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
