@@ -88,6 +88,15 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The application named {0} for cnnstringName {1} not exist. Pleasse check the app config file to ensure the correct application name..
+        /// </summary>
+        public static string ApplicationName_NotExist {
+            get {
+                return ResourceManager.GetString("ApplicationName_NotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authenticate user.
         /// </summary>
         public static string AuthenticateTitleMessage {
@@ -340,7 +349,7 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The rule provider fot provider named {0} not exist in config file.-  Check the following rule provider named  &quot;{0}&quot;  in the appconfig file.-.
+        ///   Looks up a localized string similar to The rule provider for provider named {0} not exist in config file.-  Check the following rule provider named  &quot;{0}&quot;  in the appconfig file.-.
         /// </summary>
         public static string RuleProvider_NotExist {
             get {

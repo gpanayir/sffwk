@@ -42,6 +42,7 @@ namespace Fwk.Security.Admin.Controls
                 _RuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
                 fwkAuthorizationRuleBindingSource.DataSource = _RuleList;
                 grdRules.RefreshDataSource();
+
             }
         }
        
@@ -128,14 +129,27 @@ namespace Fwk.Security.Admin.Controls
         GridHitInfo _GridHitInfo = null;
         private void treeList1_MouseDown(object sender, MouseEventArgs e)
         {
-            _TreeListHitInfo = treeList1.CalcHitInfo(new Point(e.X, e.Y)); ;
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                _TreeListHitInfo = treeList1.CalcHitInfo(new Point(e.X, e.Y));
+
+                if (_TreeListHitInfo.Node != null)
+                {
+                    _ParentFwkCategory = (FwkCategory)treeList1.GetDataRecordByNode(_TreeListHitInfo.Node);
+                    lblParentCategoryName.Text =  _ParentFwkCategory.Name;
+                    lblParentCategory.Visible = true;
+                }
+                else
+                {
+                    lblParentCategoryName.Text = string.Empty;
+                    lblParentCategory.Visible = false;
+                    _ParentFwkCategory = null;
+                }
+                popupContainerControl2.Show();
+            }
         }
 
-        private void treeList1_MouseMove(object sender, MouseEventArgs e)
-        {
-           
-
-        }
+       
         #endregion
         #region (Grilla) Eventos y Métodos Drag hacia otro componente 
         private void grdRules_MouseDown(object sender, MouseEventArgs e)
@@ -183,10 +197,10 @@ namespace Fwk.Security.Admin.Controls
         }
         private void treeList1_DragDrop(object sender, DragEventArgs e)
         {
-            TreeListNode wOverNode = null;
+         
             TreeListHitInfo wHitInfo = treeList1.CalcHitInfo(treeList1.PointToClient(new Point(e.X, e.Y)));
-            if (wHitInfo.Node != null)
-                wOverNode = wHitInfo.Node;
+            if (wHitInfo.Node == null)
+               return;
 
             List<FwkAuthorizationRule> wRuleList = (List<FwkAuthorizationRule>)e.Data.GetData(typeof(List<FwkAuthorizationRule>));
 
@@ -298,20 +312,6 @@ namespace Fwk.Security.Admin.Controls
 
        
 
-        private void popupContainerEdit_AddText_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
-        {
-            if (_ParentFwkCategory == null)
-            {
-                lblParentCategoryName.Text = String.Empty;
-                chkUseParent.Enabled = false;
-            }
-            else
-            {
-                chkUseParent.Enabled = true;
-                lblParentCategoryName.Text = _ParentFwkCategory.Name;
-            }
-        }
-
         private void simpleButton_OkCreateCategory_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(textEdit1.Text) && _ParentFwkCategory!=null)
@@ -333,11 +333,10 @@ namespace Fwk.Security.Admin.Controls
             FwkCategory wFwkCategory = new FwkCategory();
 
             wFwkCategory.Name = textEdit1.Text.Trim();
-            if (chkUseParent.Checked)
+            if (_ParentFwkCategory != null)
                 wFwkCategory.ParentId = _ParentFwkCategory.CategoryId;
             else
                 wFwkCategory.ParentId = 0;
-
 
             try
             {
@@ -347,6 +346,7 @@ namespace Fwk.Security.Admin.Controls
             }
             catch (Exception ex)
             { throw ex; }
+            popupContainerControl2.Hide();
         }
 
 
@@ -376,6 +376,11 @@ namespace Fwk.Security.Admin.Controls
 
             fwkAuthorizationRuleBindingSource.DataSource = list.ToList<FwkAuthorizationRule>();
             grdRules.RefreshDataSource();
+        }
+
+        private void popupContainerControl2_Leave(object sender, EventArgs e)
+        {
+            popupContainerControl2.Hide();
         }
 
        

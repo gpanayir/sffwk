@@ -195,7 +195,7 @@ namespace Fwk.Security.Admin.Controls
             grdAssignedRoles.Refresh();
             txtRuleExpression.Text = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
         }
-        //private DataGridViewCell clickedCell;
+       
         private void grdAssignedRoles_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -206,8 +206,7 @@ namespace Fwk.Security.Admin.Controls
                 {
                     grdAssignedRoles.Rows[hit.RowIndex].Selected = true;
                     //clickedCell = grdAssignedRoles.Rows[hit.RowIndex].Cells[hit.ColumnIndex];
-                    //if (grdAssignedRoles.Rows[hit.RowIndex].DataBoundItem!=null)
-                    //    contextMenuStrip1.Show(e.X, e.Y);
+            
                 }
             }
         }

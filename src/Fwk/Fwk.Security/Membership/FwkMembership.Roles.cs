@@ -230,10 +230,8 @@ namespace Fwk.Security
                 wCmd.CommandType = CommandType.Text;
                 wDataBase.ExecuteNonQuery(wCmd);
             }
-            catch (TechnicalException err)
-            {
-                throw err;
-            }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
