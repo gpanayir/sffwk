@@ -51,12 +51,13 @@
             this.btnAsignarRoles = new System.Windows.Forms.Button();
             this.grdAssignedRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdAllRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolAssignedBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
@@ -67,8 +68,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAllUser)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAssignedRoles)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,19 +106,19 @@
             this.btnCreateRule.Appearance.Options.UseBackColor = true;
             this.btnCreateRule.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
             this.btnCreateRule.Image = global::Fwk.Security.Admin.Properties.Resources.save_16;
-            this.btnCreateRule.Location = new System.Drawing.Point(475, 9);
+            this.btnCreateRule.Location = new System.Drawing.Point(482, 62);
             this.btnCreateRule.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCreateRule.Name = "btnCreateRule";
             this.btnCreateRule.Size = new System.Drawing.Size(112, 28);
             this.btnCreateRule.TabIndex = 19;
-            this.btnCreateRule.Text = "Save rule ";
+            this.btnCreateRule.Text = "Save";
             this.btnCreateRule.Click += new System.EventHandler(this.btnCreateRule_Click);
             // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label11.Location = new System.Drawing.Point(3, 15);
+            this.label11.Location = new System.Drawing.Point(10, 68);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(161, 20);
             this.label11.TabIndex = 17;
@@ -125,7 +126,7 @@
             // 
             // txtRuleName
             // 
-            this.txtRuleName.Location = new System.Drawing.Point(171, 11);
+            this.txtRuleName.Location = new System.Drawing.Point(178, 64);
             this.txtRuleName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRuleName.Name = "txtRuleName";
             this.txtRuleName.Size = new System.Drawing.Size(221, 23);
@@ -142,7 +143,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage3.Size = new System.Drawing.Size(814, 529);
+            this.tabPage3.Size = new System.Drawing.Size(814, 486);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Excludes Users";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -155,7 +156,7 @@
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.Location = new System.Drawing.Point(3, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(806, 42);
+            this.label2.Size = new System.Drawing.Size(808, 42);
             this.label2.TabIndex = 19;
             this.label2.Text = "Add excluded users";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,7 +192,7 @@
             this.grdUserExcluded.Name = "grdUserExcluded";
             this.grdUserExcluded.ReadOnly = true;
             this.grdUserExcluded.RowTemplate.Height = 24;
-            this.grdUserExcluded.Size = new System.Drawing.Size(295, 464);
+            this.grdUserExcluded.Size = new System.Drawing.Size(295, 421);
             this.grdUserExcluded.TabIndex = 14;
             // 
             // userNameDataGridViewTextBoxColumn1
@@ -223,7 +224,7 @@
             this.grdAllUser.Name = "grdAllUser";
             this.grdAllUser.ReadOnly = true;
             this.grdAllUser.RowTemplate.Height = 24;
-            this.grdAllUser.Size = new System.Drawing.Size(341, 469);
+            this.grdAllUser.Size = new System.Drawing.Size(341, 426);
             this.grdAllUser.TabIndex = 13;
             this.grdAllUser.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdAllUser_CellClick);
             // 
@@ -251,7 +252,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage2.Size = new System.Drawing.Size(814, 529);
+            this.tabPage2.Size = new System.Drawing.Size(814, 486);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Includes roles";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -287,43 +288,37 @@
             // 
             // grdAssignedRoles
             // 
+            this.grdAssignedRoles.AllowUserToDeleteRows = false;
             this.grdAssignedRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.grdAssignedRoles.AutoGenerateColumns = false;
-            this.grdAssignedRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdAssignedRoles.BackgroundColor = System.Drawing.Color.White;
+            this.grdAssignedRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.grdAssignedRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rolNameDataGridViewTextBoxColumn1});
-            this.grdAssignedRoles.ContextMenuStrip = this.contextMenuStrip1;
             this.grdAssignedRoles.DataSource = this.rolAssignedBindingSource;
             this.grdAssignedRoles.Location = new System.Drawing.Point(440, 49);
             this.grdAssignedRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdAssignedRoles.Name = "grdAssignedRoles";
             this.grdAssignedRoles.ReadOnly = true;
-            this.grdAssignedRoles.RowTemplate.Height = 24;
-            this.grdAssignedRoles.Size = new System.Drawing.Size(349, 453);
+            this.grdAssignedRoles.RowHeadersVisible = false;
+            this.grdAssignedRoles.RowHeadersWidth = 250;
+            this.grdAssignedRoles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.grdAssignedRoles.RowTemplate.ContextMenuStrip = this.contextMenuStrip1;
+            this.grdAssignedRoles.RowTemplate.Height = 40;
+            this.grdAssignedRoles.Size = new System.Drawing.Size(349, 410);
             this.grdAssignedRoles.TabIndex = 11;
             this.grdAssignedRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAssignedRoles_MouseDown);
             // 
             // rolNameDataGridViewTextBoxColumn1
             // 
+            this.rolNameDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.rolNameDataGridViewTextBoxColumn1.DataPropertyName = "RolName";
-            this.rolNameDataGridViewTextBoxColumn1.HeaderText = "RolName";
+            this.rolNameDataGridViewTextBoxColumn1.HeaderText = "Assigned roles";
             this.rolNameDataGridViewTextBoxColumn1.Name = "rolNameDataGridViewTextBoxColumn1";
             this.rolNameDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeSelectedsToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
-            // 
-            // removeSelectedsToolStripMenuItem
-            // 
-            this.removeSelectedsToolStripMenuItem.Name = "removeSelectedsToolStripMenuItem";
-            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.removeSelectedsToolStripMenuItem.Text = "Remove selecteds";
-            this.removeSelectedsToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedsToolStripMenuItem_Click);
+            this.rolNameDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.rolNameDataGridViewTextBoxColumn1.Width = 118;
             // 
             // grdAllRoles
             // 
@@ -340,7 +335,7 @@
             this.grdAllRoles.ReadOnly = true;
             this.grdAllRoles.RowTemplate.Height = 24;
             this.grdAllRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdAllRoles.Size = new System.Drawing.Size(303, 453);
+            this.grdAllRoles.Size = new System.Drawing.Size(303, 410);
             this.grdAllRoles.TabIndex = 10;
             this.grdAllRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdAllRoles_CellClick);
             this.grdAllRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAllRoles_MouseDown);
@@ -352,6 +347,20 @@
             this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
             this.rolNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeSelectedsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
+            // 
+            // removeSelectedsToolStripMenuItem
+            // 
+            this.removeSelectedsToolStripMenuItem.Name = "removeSelectedsToolStripMenuItem";
+            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.removeSelectedsToolStripMenuItem.Text = "Remove selecteds";
+            this.removeSelectedsToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedsToolStripMenuItem_Click);
+            // 
             // tabControl2
             // 
             this.tabControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -359,11 +368,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl2.Controls.Add(this.tabPage2);
             this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Location = new System.Drawing.Point(7, 52);
+            this.tabControl2.Location = new System.Drawing.Point(7, 95);
             this.tabControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(822, 558);
+            this.tabControl2.Size = new System.Drawing.Size(822, 515);
             this.tabControl2.TabIndex = 15;
             // 
             // label1
@@ -377,16 +386,30 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Expression";
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(848, 42);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Create new bussiness rule";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // RulesAssingControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnCreateRule);
             this.Controls.Add(this.txtRuleExpression);
+            this.Controls.Add(this.btnCreateRule);
+            this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtRuleName);
-            this.Controls.Add(this.tabControl2);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "RulesAssingControl";
             this.Size = new System.Drawing.Size(848, 716);
@@ -400,8 +423,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAllUser)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdAssignedRoles)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -424,7 +447,6 @@
         private System.Windows.Forms.Label lbltitle;
         private System.Windows.Forms.Button btnAsignarRoles;
         private System.Windows.Forms.DataGridView grdAssignedRoles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rolNameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridView grdAllRoles;
         private System.Windows.Forms.DataGridViewTextBoxColumn rolNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.TabPage tabPage3;
@@ -438,5 +460,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem removeSelectedsToolStripMenuItem;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rolNameDataGridViewTextBoxColumn1;
     }
 }

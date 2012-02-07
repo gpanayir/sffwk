@@ -39,7 +39,7 @@ namespace Fwk.Security.Admin.Controls
             using (new WaitCursorHelper(this))
             {
 
-                _RuleList = FwkMembership.GetRulesAuxList(Membership.ApplicationName);
+                _RuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
                 fwkAuthorizationRuleBindingSource.DataSource = _RuleList;
                 grdRules.RefreshDataSource();
             }
@@ -212,7 +212,7 @@ namespace Fwk.Security.Admin.Controls
             //Si cambiaron una o mas reglas
             if (_ParentFwkCategory.EntityState == Fwk.Bases.EntityState.Changed)
             {
-                FwkMembership.CreateRuleInCategory(_ParentFwkCategory, Membership.ApplicationName);
+                FwkMembership.CreateRuleInCategory(_ParentFwkCategory, frmAdmin.Provider.ApplicationName);
                 //Agrego las rules a la grilla sobre
                 grdRulesByCategory.DataSource = _ParentFwkCategory.FwkRulesInCategoryList;
                 grdRulesByCategory.RefreshDataSource();
@@ -315,7 +315,7 @@ namespace Fwk.Security.Admin.Controls
         private void simpleButton_OkCreateCategory_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(textEdit1.Text) && _ParentFwkCategory!=null)
-                if (FwkMembership.ExistCategory(textEdit1.Text.Trim(), _ParentFwkCategory.CategoryId, Membership.ApplicationName))
+                if (FwkMembership.ExistCategory(textEdit1.Text.Trim(), _ParentFwkCategory.CategoryId, frmAdmin.Provider.ApplicationName))
                 {
                     MessageViewInfo.Show(string.Format("Category {0} already exist", textEdit1.Text.Trim()));
                     return;
@@ -341,7 +341,7 @@ namespace Fwk.Security.Admin.Controls
 
             try
             {
-                FwkMembership.CreateCategory(wFwkCategory, Membership.ApplicationName);
+                FwkMembership.CreateCategory(wFwkCategory, frmAdmin.Provider.ApplicationName);
                 MessageViewInfo.Show("Category was successfully created");
                 PopulateAsync();
             }
