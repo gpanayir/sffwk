@@ -22,7 +22,7 @@ namespace Fwk.Tools.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace Fwk.Tools.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BigBang.FrontEnd.Survey.Tools.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fwk.Tools.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Fwk.Tools.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -60,91 +60,91 @@ namespace Fwk.Tools.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap add {
+        public static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap add_16 {
+        public static System.Drawing.Bitmap add_16 {
             get {
                 object obj = ResourceManager.GetObject("add_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap folder_new {
+        public static System.Drawing.Bitmap folder_new {
             get {
                 object obj = ResourceManager.GetObject("folder_new", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap fwk_answer {
+        public static System.Drawing.Bitmap fwk_answer {
             get {
                 object obj = ResourceManager.GetObject("fwk_answer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap fwk_cancel {
+        public static System.Drawing.Bitmap fwk_cancel {
             get {
                 object obj = ResourceManager.GetObject("fwk_cancel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap fwk_delete_16x {
+        public static System.Drawing.Bitmap fwk_delete_16x {
             get {
                 object obj = ResourceManager.GetObject("fwk_delete_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap fwk_error {
+        public static System.Drawing.Bitmap fwk_error {
             get {
                 object obj = ResourceManager.GetObject("fwk_error", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap fwk_find {
+        public static System.Drawing.Bitmap fwk_find {
             get {
                 object obj = ResourceManager.GetObject("fwk_find", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap fwk_Refresh {
+        public static System.Drawing.Bitmap fwk_Refresh {
             get {
                 object obj = ResourceManager.GetObject("fwk_Refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap search_16 {
+        public static System.Drawing.Bitmap search_16 {
             get {
                 object obj = ResourceManager.GetObject("search_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap TortoiseAdded {
+        public static System.Drawing.Bitmap TortoiseAdded {
             get {
                 object obj = ResourceManager.GetObject("TortoiseAdded", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Window_full_screen_16x16 {
+        public static System.Drawing.Bitmap Window_full_screen_16x16 {
             get {
                 object obj = ResourceManager.GetObject("Window_full_screen_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Window_nofullscreen {
+        public static System.Drawing.Bitmap Window_nofullscreen {
             get {
                 object obj = ResourceManager.GetObject("Window_nofullscreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
