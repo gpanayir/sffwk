@@ -78,7 +78,7 @@
             this.toolStripSeparator,
             this.toolStripSeparator1,
             this.refreshToolStripButton});
-            this.toolStripAppClientConfig.Location = new System.Drawing.Point(4, 4);
+            this.toolStripAppClientConfig.Location = new System.Drawing.Point(5, 5);
             this.toolStripAppClientConfig.Name = "toolStripAppClientConfig";
             this.toolStripAppClientConfig.Size = new System.Drawing.Size(139, 25);
             this.toolStripAppClientConfig.TabIndex = 12;
@@ -147,26 +147,28 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.Controls.Add(this.btnAdd);
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(483, 4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(644, 5);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(645, 43);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(860, 53);
             this.flowLayoutPanel1.TabIndex = 42;
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = Fwk.Tools.Properties.Resources.add;
+            this.btnAdd.Image = global::Fwk.Tools.Properties.Resources.add;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(3, 3);
+            this.btnAdd.Location = new System.Drawing.Point(4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(72, 35);
+            this.btnAdd.Size = new System.Drawing.Size(96, 43);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -177,11 +179,11 @@
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-    
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(81, 3);
+            this.btnEdit.Location = new System.Drawing.Point(108, 4);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(69, 35);
+            this.btnEdit.Size = new System.Drawing.Size(92, 43);
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "Edit";
             this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -194,9 +196,10 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDelete.Image = global::Fwk.Tools.Properties.Resources.fwk_delete_16x;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(156, 4);
+            this.btnDelete.Location = new System.Drawing.Point(208, 5);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(69, 34);
+            this.btnDelete.Size = new System.Drawing.Size(92, 42);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -205,8 +208,8 @@
             // 
             // treeList1
             // 
-            this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.treeList1.Appearance.SelectedRow.BackColor = System.Drawing.Color.White;
             this.treeList1.Appearance.SelectedRow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.treeList1.Appearance.SelectedRow.ForeColor = System.Drawing.Color.Maroon;
@@ -223,11 +226,12 @@
             this.colSelectedImage,
             this.colSelectedImageIndex});
             this.treeList1.DataSource = this.menuItemSurveyBindingSource;
-            this.treeList1.Location = new System.Drawing.Point(4, 57);
+            this.treeList1.Location = new System.Drawing.Point(5, 70);
+            this.treeList1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeList1.Name = "treeList1";
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageEdit1});
-            this.treeList1.Size = new System.Drawing.Size(466, 522);
+            this.treeList1.Size = new System.Drawing.Size(621, 642);
             this.treeList1.TabIndex = 43;
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             // 
@@ -304,16 +308,17 @@
             // 
             // menuItemSurveyBindingSource
             // 
-            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.SurveyMenu.MenuItemSurvey);
+            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.SurveyMenu.MenuItem);
             // 
             // lblFileLoad
             // 
             this.lblFileLoad.AutoSize = true;
             this.lblFileLoad.BackColor = System.Drawing.Color.White;
             this.lblFileLoad.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblFileLoad.Location = new System.Drawing.Point(5, 43);
+            this.lblFileLoad.Location = new System.Drawing.Point(2, 41);
+            this.lblFileLoad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFileLoad.Name = "lblFileLoad";
-            this.lblFileLoad.Size = new System.Drawing.Size(30, 13);
+            this.lblFileLoad.Size = new System.Drawing.Size(38, 17);
             this.lblFileLoad.TabIndex = 44;
             this.lblFileLoad.Text = "File: ";
             // 
@@ -339,23 +344,25 @@
             // 
             // menuItemEditorSurvey1
             // 
-            this.menuItemEditorSurvey1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.menuItemEditorSurvey1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.menuItemEditorSurvey1.CategoryChange = false;
-            this.menuItemEditorSurvey1.Location = new System.Drawing.Point(483, 61);
+            this.menuItemEditorSurvey1.Location = new System.Drawing.Point(644, 75);
+            this.menuItemEditorSurvey1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.menuItemEditorSurvey1.MenuItemSelected = null;
             this.menuItemEditorSurvey1.Name = "menuItemEditorSurvey1";
             this.menuItemEditorSurvey1.ShowAction = Fwk.Tools.Action.Query;
-            this.menuItemEditorSurvey1.Size = new System.Drawing.Size(629, 521);
+            this.menuItemEditorSurvey1.Size = new System.Drawing.Size(839, 641);
             this.menuItemEditorSurvey1.TabIndex = 45;
             // 
             // btnMenuPreview
             // 
             this.btnMenuPreview.Image = global::Fwk.Tools.Properties.Resources.search_16;
-            this.btnMenuPreview.Location = new System.Drawing.Point(299, 4);
+            this.btnMenuPreview.Location = new System.Drawing.Point(399, 5);
+            this.btnMenuPreview.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMenuPreview.Name = "btnMenuPreview";
-            this.btnMenuPreview.Size = new System.Drawing.Size(112, 23);
+            this.btnMenuPreview.Size = new System.Drawing.Size(149, 28);
             this.btnMenuPreview.TabIndex = 47;
             this.btnMenuPreview.Text = "Menu Preview";
             this.btnMenuPreview.Click += new System.EventHandler(this.btnMenuPreview_Click);
@@ -363,18 +370,19 @@
             // btnAddCategory1
             // 
             this.btnAddCategory1.Image = global::Fwk.Tools.Properties.Resources.add_16;
-            this.btnAddCategory1.Location = new System.Drawing.Point(159, 4);
+            this.btnAddCategory1.Location = new System.Drawing.Point(212, 5);
+            this.btnAddCategory1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddCategory1.Name = "btnAddCategory1";
-            this.btnAddCategory1.Size = new System.Drawing.Size(123, 23);
+            this.btnAddCategory1.Size = new System.Drawing.Size(164, 28);
             this.btnAddCategory1.TabIndex = 48;
             this.btnAddCategory1.Text = "Add category root";
             this.btnAddCategory1.Click += new System.EventHandler(this.btnAddCategory1_Click);
             // 
-            // frmMainDevExpress
+            // FRM_MainDevExpress
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1124, 623);
+            this.ClientSize = new System.Drawing.Size(1499, 767);
             this.Controls.Add(this.btnAddCategory1);
             this.Controls.Add(this.btnMenuPreview);
             this.Controls.Add(this.menuItemEditorSurvey1);
@@ -382,7 +390,8 @@
             this.Controls.Add(this.treeList1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.toolStripAppClientConfig);
-            this.Name = "frmMainDevExpress";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "FRM_MainDevExpress";
             this.Text = "Menu designer";
             this.Leave += new System.EventHandler(this.frmMainDevExpress_Leave);
             this.toolStripAppClientConfig.ResumeLayout(false);

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Fwk.Tools.SurveyMenu
 {
-    public delegate void MenuItemClickHandler(MenuItemSurvey pMenuItemSelected, MenuEventArgs Args);
+    public delegate void MenuItemClickHandler(MenuItem pMenuItemSelected, MenuEventArgs Args);
 
     [DefaultEvent("MenuItemClick")]
     public partial class UC_TreeListMenuControl : UserControl
@@ -20,12 +20,12 @@ namespace Fwk.Tools.SurveyMenu
         #region Declarations
         bool _viewImage = true;
         bool _OnInitLoad = true;
-        MenuItemSurvey _MenuItemSelected = null;
+        MenuItem _MenuItemSelected = null;
         #endregion
 
         #region Properties & Events
         [Browsable(false)]
-        public MenuItemSurvey MenuItemSelected
+        public MenuItem MenuItemSelected
         {
             get { return _MenuItemSelected; }
             set { _MenuItemSelected = value; }
@@ -108,7 +108,7 @@ namespace Fwk.Tools.SurveyMenu
             if (e.Node.TreeList.FocusedColumn.Name == "colTypeImage" && _viewImage == true) 
                 return;
 
-            _MenuItemSelected = (MenuItemSurvey)treeList1.GetDataRecordByNode(e.Node);
+            _MenuItemSelected = (MenuItem)treeList1.GetDataRecordByNode(e.Node);
 
             if (_MenuItemSelected != null)
             {

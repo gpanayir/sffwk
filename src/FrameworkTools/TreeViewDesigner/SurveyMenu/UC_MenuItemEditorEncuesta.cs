@@ -46,9 +46,9 @@ namespace Fwk.Tools.SurveyMenu
             }
         }
 
-        MenuItemSurvey _MenuItemSelected;
+        MenuItem _MenuItemSelected;
         [Browsable(false)]
-        public MenuItemSurvey MenuItemSelected
+        public MenuItem MenuItemSelected
         {
             get { return _MenuItemSelected; }
             set { _MenuItemSelected = value; }

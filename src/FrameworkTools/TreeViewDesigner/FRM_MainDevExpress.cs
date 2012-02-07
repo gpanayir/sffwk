@@ -18,9 +18,9 @@ namespace Fwk.Tools.SurveyMenu
         #region Members
 
         bool _Saved = false;
-        MenuItemSurveyList _MenuItemSurveyList;
+        MenuItemList _MenuItemSurveyList;
         string _CurrentFullFileName;
-        MenuItemSurvey _MenuItemSelected;
+        MenuItem _MenuItemSelected;
 
         #endregion
 
@@ -35,7 +35,7 @@ namespace Fwk.Tools.SurveyMenu
 
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
-            _MenuItemSurveyList = new MenuItemSurveyList();
+            _MenuItemSurveyList = new MenuItemList();
             _CurrentFullFileName = FileFunctions.OpenFileDialog_New(_MenuItemSurveyList.GetXml(), FileFunctions.OpenFilterEnums.OpenXmlFilter, true);
 
             LoadMenuFile();
@@ -116,7 +116,7 @@ namespace Fwk.Tools.SurveyMenu
         /// <author>moviedo</author>
         private void AddMenuItem()
         {
-            MenuItemSurvey wMenuItemNew = new MenuItemSurvey();
+            MenuItem wMenuItemNew = new MenuItem();
 
             if (_MenuItemSurveyList == null)
                 return;
@@ -177,7 +177,7 @@ namespace Fwk.Tools.SurveyMenu
                     //Si la categoria cambio. hay que cambiar la categoria de los hijos inmediatos que no son categorias .-
                     if (frm.CategoryChange)
                     {
-                        foreach (MenuItemSurvey menuChild in _MenuItemSurveyList)
+                        foreach (MenuItem menuChild in _MenuItemSurveyList)
                         {
                             if (menuChild.ParentID == _MenuItemSelected.ID && !menuChild.IsCategory)
                                 menuChild.Category = _MenuItemSelected.Category;
@@ -203,7 +203,7 @@ namespace Fwk.Tools.SurveyMenu
                 }
             }
 
-            MenuItemSurvey wMenuItemNewCategory = new MenuItemSurvey();
+            MenuItem wMenuItemNewCategory = new MenuItem();
 
             if (_MenuItemSelected == null)
                 wMenuItemNewCategory.ParentID = 0;
@@ -222,7 +222,7 @@ namespace Fwk.Tools.SurveyMenu
 
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
-            _MenuItemSelected = (MenuItemSurvey)treeList1.GetDataRecordByNode(e.Node);
+            _MenuItemSelected = (MenuItem)treeList1.GetDataRecordByNode(e.Node);
 
             if (_MenuItemSelected != null)
             {
@@ -236,7 +236,7 @@ namespace Fwk.Tools.SurveyMenu
         {
             if (pNode.ParentNode != null)
             {
-                MenuItemSurvey wMenuItemSurvey = (MenuItemSurvey)treeList1.GetDataRecordByNode(pNode.ParentNode);
+                MenuItem wMenuItemSurvey = (MenuItem)treeList1.GetDataRecordByNode(pNode.ParentNode);
                 if (wMenuItemSurvey != null)
                 {
                     if (!string.IsNullOrEmpty(wMenuItemSurvey.Category))

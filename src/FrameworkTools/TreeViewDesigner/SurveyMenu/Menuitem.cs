@@ -12,55 +12,13 @@ namespace Fwk.Tools
 
 
 
-    [XmlInclude(typeof(RootMenu)), Serializable]
-    public class RootMenu : Entity
-    {
-        private MenuImageList _ImageList = new MenuImageList ();
-
-        public MenuImageList MenuImageList
-        {
-            get { return _ImageList; }
-            set { _ImageList = value; }
-        }
-
-
-        public static RootMenu GetRootMenuFromXml(String pXml)
-        {
-            return RootMenu.GetFromXml<RootMenu>( pXml);
-        }
-
-        MenuItem _MenuItem = new MenuItem ();
-
-        public MenuItem MenuItem
-        {
-            get { return _MenuItem; }
-            set { _MenuItem = value; }
-        }
-    }
-
 
     [Serializable]
     public class MenuItem : Entity
     {
-        private MenuImageList _ImageList = null;
-
-        public MenuImageList MenuImageList
-        {
-            get { return _ImageList; }
-            set { _ImageList = value; }
-        }
-
+    
         #region Declarations
 
-        String _Category;
-        /// <summary>
-        /// Determina una categoria para agrupar los MenuItem
-        /// </summary>
-        public String Category
-        {
-            get { return _Category; }
-            set { _Category = value; }
-        }
         Boolean _Enabled = true;
 
         public Boolean Enabled
@@ -68,13 +26,9 @@ namespace Fwk.Tools
             get { return _Enabled; }
             set { _Enabled = value; }
         }
-        Boolean _IsCategory = false;
+       
 
-        public Boolean IsCategory
-        {
-            get { return _IsCategory; }
-            set { _IsCategory = value; }
-        }
+       
         String _DisplayName;
 
         public String DisplayName
@@ -131,74 +85,24 @@ namespace Fwk.Tools
             set { m_NodeImageIndexImageIndex = value; }
         }
 
-        //String _XmlChilds;
-
-        //public String XmlChilds
-        //{
-        //    get { return _XmlChilds; }
-        //    set
-        //    {
-        //        _XmlChilds = value;
-        //        LoadMenuItemList();
-        //    }
-        //}
-        MenuItemList _MenuItemList = new MenuItemList();
-
-        public MenuItemList MenuItemList
-        {
-            get { return _MenuItemList; }
-            set
-            {
-                _MenuItemList = value;
-            }
-        }
         #endregion
 
-        //MenuItemList LoadMenuItemList()
-        //{
 
-        //    _MenuItemList = MenuItemList.GetMenuItemListFromXml(GetXmlChilds());
 
-        //    return _MenuItemList;
-        //}
-
-        public void AddChild(MenuItem pMenuItemChild)
+        private int _ID;
+        public int ID
         {
-            SearchEntityArg search = new SearchEntityArg("DisplayName", pMenuItemChild.DisplayName);
-
-            if (_MenuItemList.FindAll(search).Count == 0)
-                _MenuItemList.Add(pMenuItemChild);
-            else
-            {
-                _MenuItemList.Remove(_MenuItemList.Find(search));
-            }
+            get { return _ID; }
+            set { _ID = value; }
+        }
+        private int _ParentID;
+        public int ParentID
+        {
+            get { return _ParentID; }
+            set { _ParentID = value; }
         }
 
-        //public void SetXmlChilds()
-        //{
-        //    _XmlChilds = "<![CDATA[" + _MenuItemList.GetXml() + "]]>";
-        //}
-        //string GetXmlChilds()
-        //{
-        //    string str;
-        //    XmlDocument doc = Fwk.Xml.Document.DocumentCreateFromString("<root>" + _XmlChilds + "</root>");
-
-
-        //    str = doc.FirstChild.InnerText;
-        //    doc = null;
-        //    return str;
-        //}
-
-        /// <summary>
-        /// Metodo estatico que retorna un objeto MenuItem apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>Keys</returns>
-        public static MenuItem GetMenuItemFromXml(String pXml)
-        {
-            return Entity.GetFromXml<MenuItem>( pXml);
-        }
-
+        
     }
 
     /// <summary>
@@ -207,16 +111,7 @@ namespace Fwk.Tools
     [XmlRoot("MenuItemList"), SerializableAttribute]
     public class MenuItemList : Entities<MenuItem>
     {
-        /// <summary>
-        /// Metodo estatico que retorna un objeto MenuItemList apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>Keys</returns>
-        public static MenuItemList GetMenuItemListFromXml(String pXml)
-        {
-            return MenuItemList.GetFromXml<MenuItemList>(pXml);
-        }
-        
+       
     }
 
 
@@ -251,15 +146,7 @@ namespace Fwk.Tools
     [XmlRoot("MenuImageList"), SerializableAttribute]
     public class MenuImageList : Entities<MenuImage>
     {
-        /// <summary>
-        /// Metodo estatico que retorna un objeto MenuImageList apartir de un xml.-
-        /// </summary>
-        /// <param name="pXml">String con el xml</param>
-        /// <returns>Keys</returns>
-        public static MenuImageList GetMenuImageListFromXml(String pXml)
-        {
-            return MenuImageList.GetFromXml<MenuImageList>( pXml);
-        }
+        
     }
 
 }

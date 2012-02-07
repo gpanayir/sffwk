@@ -167,7 +167,7 @@
             // 
             // menuItemSurveyBindingSource
             // 
-            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.SurveyMenu.MenuItemSurvey);
+            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.SurveyMenu.MenuItem);
             // 
             // repositoryItemPictureEdit1
             // 

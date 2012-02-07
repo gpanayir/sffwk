@@ -26,7 +26,7 @@ namespace Fwk.Tools.SurveyMenu
 
         #region Constructor
 
-        public FRM_EditSurvey(MenuItemSurvey pMenuItemSurvey, Action pAction)
+        public FRM_EditSurvey(MenuItem pMenuItemSurvey, Action pAction)
         {
             InitializeComponent();
             menuItemEditorSurvey1.ShowAction = pAction;
