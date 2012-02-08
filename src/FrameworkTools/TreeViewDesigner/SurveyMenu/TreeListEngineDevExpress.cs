@@ -53,7 +53,7 @@ namespace Fwk.Tools.SurveyMenu
                 return null;
             
             String wXml = Fwk.HelperFunctions.FileFunctions.OpenTextFile(pFullFileName);
-            MenuItemSurveyList = MenuItemList.GetMenuItemSurveyListFromXml(wXml);
+            MenuItemSurveyList = MenuItemList.GetFromXml<MenuItemList>(wXml);
             return MenuItemSurveyList;
         }
     }

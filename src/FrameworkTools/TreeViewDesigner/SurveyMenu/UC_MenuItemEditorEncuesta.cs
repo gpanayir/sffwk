@@ -12,7 +12,7 @@ using Fwk.HelperFunctions;
 namespace Fwk.Tools.SurveyMenu
 {
 
-    public partial class UC_MenuItemEditorEncuesta : UserControl
+    public partial class UC_MenuItemEditor : UserControl
     {
         #region Declarations
 
@@ -58,7 +58,7 @@ namespace Fwk.Tools.SurveyMenu
 
         #region Constructor
 
-        public UC_MenuItemEditorEncuesta()
+        public UC_MenuItemEditor()
         {
             InitializeComponent();
         }
@@ -76,15 +76,15 @@ namespace Fwk.Tools.SurveyMenu
             if (this.pictureBoxImageSelected.Image != null && m_Image_Sel_Extension != null)
                 _MenuItemSelected.NodeSelectedImage = Fwk.Tools.Helper.LoadImage(this.pictureBoxImageSelected.Image, m_Image_Sel_Extension);
 
-            if (this.pictureBoxTypeImage.Image != null && m_ImageType_Extension !=null)
-                _MenuItemSelected.TypeImage = Fwk.Tools.Helper.LoadImage(this.pictureBoxTypeImage.Image, m_ImageType_Extension);
+            //if (this.pictureBoxTypeImage.Image != null && m_ImageType_Extension !=null)
+            //    _MenuItemSelected.TypeImage = Fwk.Tools.Helper.LoadImage(this.pictureBoxTypeImage.Image, m_ImageType_Extension);
 
             _MenuItemSelected.AssemblyInfo = this.txtAssembly.Text;
             _MenuItemSelected.DisplayName = this.txtDisplayName.Text;
           
             _MenuItemSelected.ToolTipInfo = txtToolTipInfo.Text;
             _MenuItemSelected.Enabled = this.checkBoxEnabled.Enabled;
-            _MenuItemSelected.Category = txtCategory.Text;
+            //_MenuItemSelected.Category = txtCategory.Text;
         }
 
 
@@ -116,12 +116,12 @@ namespace Fwk.Tools.SurveyMenu
 
 
 
-            if (_MenuItemSelected.TypeImage != null)
-                this.pictureBoxTypeImage.Image = TypeFunctions.ConvertByteArrayToImage(_MenuItemSelected.TypeImage);
-            else
-                pictureBoxTypeImage.Image = null;
+            //if (_MenuItemSelected.TypeImage != null)
+            //    this.pictureBoxTypeImage.Image = TypeFunctions.ConvertByteArrayToImage(_MenuItemSelected.TypeImage);
+            //else
+            //    pictureBoxTypeImage.Image = null;
 
-            SetCategoryEnabled(_MenuItemSelected.IsCategory);
+            //SetCategoryEnabled(_MenuItemSelected.IsCategory);
             SetShowAction();
         }
 
@@ -179,7 +179,7 @@ namespace Fwk.Tools.SurveyMenu
           
             txtToolTipInfo.Enabled = pEnable;
 
-            txtCategory.Enabled = pEnable && _MenuItemSelected.IsCategory;
+            //txtCategory.Enabled = pEnable && _MenuItemSelected.IsCategory;
             checkBoxEnabled.Enabled = pEnable;
             btnImage.Enabled = pEnable;
             btnSelectedImage.Enabled = pEnable;

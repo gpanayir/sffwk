@@ -56,7 +56,7 @@
             this.lblFileLoad = new System.Windows.Forms.Label();
             this.fwkMessageView_Warning = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.fwkMessageView_Error = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
-            this.menuItemEditorSurvey1 = new Fwk.Tools.SurveyMenu.UC_MenuItemEditorEncuesta();
+            this.menuItemEditorSurvey1 = new Fwk.Tools.SurveyMenu.UC_MenuItemEditor();
             this.btnMenuPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddCategory1 = new DevExpress.XtraEditors.SimpleButton();
             this.toolStripAppClientConfig.SuspendLayout();
@@ -154,7 +154,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(644, 5);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(860, 53);
             this.flowLayoutPanel1.TabIndex = 42;
@@ -163,14 +163,14 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Image = global::Fwk.Tools.Properties.Resources.add;
+            this.btnAdd.Image = global::Fwk.Tools.Properties.Resources.add_window;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(4, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(96, 43);
+            this.btnAdd.Size = new System.Drawing.Size(115, 43);
             this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "Add";
+            this.btnAdd.Text = "Add child";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -179,13 +179,14 @@
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEdit.Image = global::Fwk.Tools.Properties.Resources.save;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(108, 4);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEdit.Location = new System.Drawing.Point(127, 4);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(92, 43);
+            this.btnEdit.Size = new System.Drawing.Size(106, 43);
             this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "Edit child";
             this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -194,14 +195,14 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDelete.Image = global::Fwk.Tools.Properties.Resources.fwk_delete_16x;
+            this.btnDelete.Image = global::Fwk.Tools.Properties.Resources.remove_window;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(208, 5);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Location = new System.Drawing.Point(241, 5);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(92, 42);
+            this.btnDelete.Size = new System.Drawing.Size(125, 42);
             this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Text = "Delete child";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -227,7 +228,7 @@
             this.colSelectedImageIndex});
             this.treeList1.DataSource = this.menuItemSurveyBindingSource;
             this.treeList1.Location = new System.Drawing.Point(5, 70);
-            this.treeList1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeList1.Margin = new System.Windows.Forms.Padding(4);
             this.treeList1.Name = "treeList1";
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageEdit1});
@@ -308,7 +309,7 @@
             // 
             // menuItemSurveyBindingSource
             // 
-            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.SurveyMenu.MenuItem);
+            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.MenuItem);
             // 
             // lblFileLoad
             // 
@@ -349,7 +350,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.menuItemEditorSurvey1.CategoryChange = false;
             this.menuItemEditorSurvey1.Location = new System.Drawing.Point(644, 75);
-            this.menuItemEditorSurvey1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.menuItemEditorSurvey1.Margin = new System.Windows.Forms.Padding(5);
             this.menuItemEditorSurvey1.MenuItemSelected = null;
             this.menuItemEditorSurvey1.Name = "menuItemEditorSurvey1";
             this.menuItemEditorSurvey1.ShowAction = Fwk.Tools.Action.Query;
@@ -359,8 +360,8 @@
             // btnMenuPreview
             // 
             this.btnMenuPreview.Image = global::Fwk.Tools.Properties.Resources.search_16;
-            this.btnMenuPreview.Location = new System.Drawing.Point(399, 5);
-            this.btnMenuPreview.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMenuPreview.Location = new System.Drawing.Point(181, 5);
+            this.btnMenuPreview.Margin = new System.Windows.Forms.Padding(4);
             this.btnMenuPreview.Name = "btnMenuPreview";
             this.btnMenuPreview.Size = new System.Drawing.Size(149, 28);
             this.btnMenuPreview.TabIndex = 47;
@@ -370,12 +371,12 @@
             // btnAddCategory1
             // 
             this.btnAddCategory1.Image = global::Fwk.Tools.Properties.Resources.add_16;
-            this.btnAddCategory1.Location = new System.Drawing.Point(212, 5);
-            this.btnAddCategory1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddCategory1.Location = new System.Drawing.Point(472, 41);
+            this.btnAddCategory1.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddCategory1.Name = "btnAddCategory1";
-            this.btnAddCategory1.Size = new System.Drawing.Size(164, 28);
+            this.btnAddCategory1.Size = new System.Drawing.Size(154, 28);
             this.btnAddCategory1.TabIndex = 48;
-            this.btnAddCategory1.Text = "Add category root";
+            this.btnAddCategory1.Text = "Add root";
             this.btnAddCategory1.Click += new System.EventHandler(this.btnAddCategory1_Click);
             // 
             // FRM_MainDevExpress
@@ -390,7 +391,7 @@
             this.Controls.Add(this.treeList1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.toolStripAppClientConfig);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FRM_MainDevExpress";
             this.Text = "Menu designer";
             this.Leave += new System.EventHandler(this.frmMainDevExpress_Leave);
@@ -423,7 +424,7 @@
         private System.Windows.Forms.Label lblFileLoad;
         private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageView_Warning;
         private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageView_Error;
-        private UC_MenuItemEditorEncuesta menuItemEditorSurvey1;
+        private UC_MenuItemEditor menuItemEditorSurvey1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colTypeImage;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colEnabled;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDisplayName;

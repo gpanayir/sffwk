@@ -1,6 +1,6 @@
 ﻿namespace Fwk.Tools.SurveyMenu
 {
-    partial class UC_MenuItemEditorEncuesta
+    partial class UC_MenuItemEditor
     {
         /// <summary> 
         /// Required designer variable.

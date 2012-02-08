@@ -54,7 +54,13 @@ namespace Fwk.Tools
             set { _ToolTipInfo = value; }
         }
 
-      
+        private System.Byte[] _Image;
+        [System.Xml.Serialization.XmlElementAttribute("Image", DataType = "base64Binary")]
+        public System.Byte[] Image
+        {
+            get { return _Image; }
+            set { _Image = value; }
+        }
 
         private System.Byte[] m_NodeImage;
         [System.Xml.Serialization.XmlElementAttribute("NodeImage", DataType = "base64Binary")]
@@ -84,7 +90,7 @@ namespace Fwk.Tools
             get { return m_NodeImageIndexImageIndex; }
             set { m_NodeImageIndexImageIndex = value; }
         }
-
+        public string AuthRule { get; set; }    
         #endregion
 
 
@@ -102,7 +108,11 @@ namespace Fwk.Tools
             set { _ParentID = value; }
         }
 
-        
+
+
+        public bool IsCategory { get; set; }
+
+        public string Category { get; set; }
     }
 
     /// <summary>

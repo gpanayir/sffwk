@@ -74,6 +74,13 @@ namespace Fwk.Tools.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap add_window {
+            get {
+                object obj = ResourceManager.GetObject("add_window", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap folder_new {
             get {
                 object obj = ResourceManager.GetObject("folder_new", resourceCulture);
@@ -119,6 +126,20 @@ namespace Fwk.Tools.Properties {
         public static System.Drawing.Bitmap fwk_Refresh {
             get {
                 object obj = ResourceManager.GetObject("fwk_Refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap remove_window {
+            get {
+                object obj = ResourceManager.GetObject("remove_window", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap save {
+            get {
+                object obj = ResourceManager.GetObject("save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

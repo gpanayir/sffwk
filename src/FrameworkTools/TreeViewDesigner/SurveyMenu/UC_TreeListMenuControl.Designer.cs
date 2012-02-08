@@ -52,9 +52,9 @@
             // 
             // treeList1
             // 
-            this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeList1.Appearance.FixedLine.BackColor = System.Drawing.Color.White;
             this.treeList1.Appearance.FixedLine.Options.UseBackColor = true;
             this.treeList1.Appearance.TreeLine.BorderColor = System.Drawing.Color.White;
@@ -74,12 +74,13 @@
             this.colSelectedImageIndex});
             this.treeList1.DataSource = this.menuItemSurveyBindingSource;
             this.treeList1.FixedLineWidth = 1;
-            this.treeList1.Location = new System.Drawing.Point(3, 24);
+            this.treeList1.Location = new System.Drawing.Point(4, 30);
+            this.treeList1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeList1.Name = "treeList1";
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageEdit1,
             this.repositoryItemPictureEdit1});
-            this.treeList1.Size = new System.Drawing.Size(308, 385);
+            this.treeList1.Size = new System.Drawing.Size(411, 474);
             this.treeList1.TabIndex = 44;
             this.treeList1.ToolTipController = this.toolTipController1;
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
@@ -101,7 +102,7 @@
             this.colDisplayName.OptionsColumn.ReadOnly = true;
             this.colDisplayName.Visible = true;
             this.colDisplayName.VisibleIndex = 0;
-            this.colDisplayName.Width = 178;
+            this.colDisplayName.Width = 191;
             // 
             // colTypeImage
             // 
@@ -112,7 +113,7 @@
             this.colTypeImage.OptionsColumn.ReadOnly = true;
             this.colTypeImage.Visible = true;
             this.colTypeImage.VisibleIndex = 1;
-            this.colTypeImage.Width = 116;
+            this.colTypeImage.Width = 202;
             // 
             // repositoryItemImageEdit1
             // 
@@ -167,7 +168,7 @@
             // 
             // menuItemSurveyBindingSource
             // 
-            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.SurveyMenu.MenuItem);
+            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.MenuItem);
             // 
             // repositoryItemPictureEdit1
             // 
@@ -176,22 +177,24 @@
             // btnchangeImageView
             // 
             this.btnchangeImageView.Image = global::Fwk.Tools.Properties.Resources.Window_full_screen_16x16;
-            this.btnchangeImageView.Location = new System.Drawing.Point(5, 1);
+            this.btnchangeImageView.Location = new System.Drawing.Point(7, 1);
+            this.btnchangeImageView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnchangeImageView.Name = "btnchangeImageView";
-            this.btnchangeImageView.Size = new System.Drawing.Size(132, 20);
+            this.btnchangeImageView.Size = new System.Drawing.Size(176, 25);
             this.btnchangeImageView.TabIndex = 45;
             this.btnchangeImageView.Text = "Ver imagenes";
             this.btnchangeImageView.Click += new System.EventHandler(this.btnchangeImageView_Click);
             // 
-            // TreeListMenuControl
+            // UC_TreeListMenuControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Controls.Add(this.btnchangeImageView);
             this.Controls.Add(this.treeList1);
-            this.Name = "TreeListMenuControl";
-            this.Size = new System.Drawing.Size(319, 414);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "UC_TreeListMenuControl";
+            this.Size = new System.Drawing.Size(425, 510);
             this.Load += new System.EventHandler(this.TreeListMenuControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).EndInit();

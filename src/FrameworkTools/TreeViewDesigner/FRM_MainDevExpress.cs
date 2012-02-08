@@ -116,24 +116,23 @@ namespace Fwk.Tools.SurveyMenu
         /// <author>moviedo</author>
         private void AddMenuItem()
         {
-            MenuItem wMenuItemNew = new MenuItem();
+     
 
             if (_MenuItemSurveyList == null)
                 return;
 
-            if (_MenuItemSelected == null)
-            {
-                AddCategory();
-                return;
-
-            }
-
+            //if (_MenuItemSelected == null)
+            //{
+            //    AddCategory();
+            //    return;
+            //}
             if (!_MenuItemSelected.IsCategory)
             {
                 fwkMessageView_Error.Show("The selected menu item is not category menu");
                 return;
             }
 
+            MenuItem wMenuItemNew = new MenuItem();
             wMenuItemNew.ParentID = _MenuItemSelected.ID;
             wMenuItemNew.Category = _MenuItemSelected.Category;
 
@@ -146,6 +145,7 @@ namespace Fwk.Tools.SurveyMenu
 
                     _MenuItemSurveyList.Add(wMenuItemNew);
                     treeList1.RefreshDataSource();
+                    treeList1.ExpandAll();
                 }
             }
 
@@ -173,7 +173,7 @@ namespace Fwk.Tools.SurveyMenu
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     treeList1.RefreshDataSource();
-
+                    treeList1.ExpandAll();
                     //Si la categoria cambio. hay que cambiar la categoria de los hijos inmediatos que no son categorias .-
                     if (frm.CategoryChange)
                     {
@@ -189,7 +189,11 @@ namespace Fwk.Tools.SurveyMenu
             _Saved = false;
         }
 
-        private void AddCategory()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="menuItem"></param>
+        private void AddCategory(MenuItem menuItem)
         {
             if (_MenuItemSurveyList == null)
                 return;
@@ -205,10 +209,10 @@ namespace Fwk.Tools.SurveyMenu
 
             MenuItem wMenuItemNewCategory = new MenuItem();
 
-            if (_MenuItemSelected == null)
+            if (menuItem == null)
                 wMenuItemNewCategory.ParentID = 0;
             else
-                wMenuItemNewCategory.ParentID = _MenuItemSelected.ID;
+                wMenuItemNewCategory.ParentID = menuItem.ID;
 
             wMenuItemNewCategory.ID = _MenuItemSurveyList.Count + 1;
             wMenuItemNewCategory.DisplayName = "Category " + (_MenuItemSurveyList.Count + 1);
@@ -217,6 +221,7 @@ namespace Fwk.Tools.SurveyMenu
             _MenuItemSurveyList.Add(wMenuItemNewCategory);
 
             treeList1.RefreshDataSource();
+            treeList1.ExpandAll();
             _Saved = false;
         }
 
@@ -268,7 +273,7 @@ namespace Fwk.Tools.SurveyMenu
 
         private void btnAddCategory1_Click(object sender, EventArgs e)
         {
-            AddCategory();
+            AddCategory(null);
         }
 
         private void btnMenuPreview_Click(object sender, EventArgs e)

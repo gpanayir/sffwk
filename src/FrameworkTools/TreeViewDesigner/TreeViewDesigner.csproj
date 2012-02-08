@@ -204,6 +204,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Window_nofullscreen.ico" />
+    <None Include="Resources\add-window.png" />
+    <None Include="Resources\remove-window.png" />
+    <None Include="Resources\save.png" />
     <Content Include="Resources\Window full screen 16x16.gif" />
     <None Include="Resources\search_16.png" />
     <None Include="Resources\add_16.png" />
