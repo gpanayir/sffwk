@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Fwk.HelperFunctions;
 using DevExpress.XtraTreeList.Nodes;
+using Fwk.Caching;
 
 
 namespace Fwk.Tools.SurveyMenu
@@ -16,9 +17,10 @@ namespace Fwk.Tools.SurveyMenu
     public partial class FRM_MainDevExpress : Form
     {
         #region Members
-
+        static FwkSimpleStorageBase<ClientUserSettings> storage = new FwkSimpleStorageBase<ClientUserSettings>();
         bool _Saved = false;
-        MenuItemList _MenuItemSurveyList;
+        TreeMenu menu;
+        //MenuItemList menu.ItemList;
         string _CurrentFullFileName;
         MenuItem _MenuItemSelected;
 
@@ -35,8 +37,10 @@ namespace Fwk.Tools.SurveyMenu
 
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
-            _MenuItemSurveyList = new MenuItemList();
-            _CurrentFullFileName = FileFunctions.OpenFileDialog_New(_MenuItemSurveyList.GetXml(), FileFunctions.OpenFilterEnums.OpenXmlFilter, true);
+            menu = new TreeMenu();
+            
+            
+            _CurrentFullFileName = FileFunctions.OpenFileDialog_New(menu.GetXml(), FileFunctions.OpenFilterEnums.OpenXmlFilter, true);
 
             LoadMenuFile();
         }
@@ -48,10 +52,17 @@ namespace Fwk.Tools.SurveyMenu
 
             try
             {
-                this.menuItemSurveyBindingSource.DataSource = _MenuItemSurveyList = TreeListEngineDevExpress.LoadMenuFromFile(_CurrentFullFileName);
+                
+                menu = TreeListEngineDevExpress.LoadMenuFromFile(_CurrentFullFileName);
+                RefreshImageList();
+
+                this.menuItemSurveyBindingSource.DataSource = menu.ItemList  ;
+                RefreshImageList();
                 treeList1.ExpandAll();
                 treeList1.RefreshDataSource();
                 lblFileLoad.Text = String.Concat("File ", _CurrentFullFileName);
+                storage.StorageObject.File = _CurrentFullFileName;
+                storage.Save();
             }
             catch (InvalidOperationException)
             {
@@ -68,7 +79,7 @@ namespace Fwk.Tools.SurveyMenu
             if (String.IsNullOrEmpty(_CurrentFullFileName))
                 return;
 
-            TreeListEngineDevExpress.SaveMenuToFile(_CurrentFullFileName, _MenuItemSurveyList);
+            TreeListEngineDevExpress.SaveMenuToFile(_CurrentFullFileName, menu);
             _Saved = true;
             fwkMessageView_Warning.Show("Menu sussefully saved");
         }
@@ -81,6 +92,7 @@ namespace Fwk.Tools.SurveyMenu
                 return;
 
             LoadMenuFile();
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -103,7 +115,7 @@ namespace Fwk.Tools.SurveyMenu
             if (_MenuItemSelected != null)
                 if (fwkMessageView_Warning.Show("Are you sure you want to delette the item menu " + _MenuItemSelected.DisplayName) == DialogResult.OK)
                 {
-                    _MenuItemSurveyList.Remove(_MenuItemSelected);
+                    menu.ItemList.Remove(_MenuItemSelected);
                     treeList1.RefreshDataSource();
                 }
         }
@@ -118,7 +130,7 @@ namespace Fwk.Tools.SurveyMenu
         {
      
 
-            if (_MenuItemSurveyList == null)
+            if (menu.ItemList == null)
                 return;
 
             //if (_MenuItemSelected == null)
@@ -136,14 +148,14 @@ namespace Fwk.Tools.SurveyMenu
             wMenuItemNew.ParentID = _MenuItemSelected.ID;
             wMenuItemNew.Category = _MenuItemSelected.Category;
 
-            using (FRM_EditSurvey wFrm = new FRM_EditSurvey(wMenuItemNew, Action.New))
+            using (FRM_EditSurvey wFrm = new FRM_EditSurvey(menu, wMenuItemNew, Action.New))
             {
                 if (wFrm.ShowDialog() == DialogResult.OK)
                 {
                     if (_MenuItemSelected != null)
-                        wMenuItemNew.ID = _MenuItemSurveyList.Count + 1;
+                        wMenuItemNew.ID = menu.ItemList.Count + 1;
 
-                    _MenuItemSurveyList.Add(wMenuItemNew);
+                    menu.ItemList.Add(wMenuItemNew);
                     treeList1.RefreshDataSource();
                     treeList1.ExpandAll();
                 }
@@ -159,7 +171,7 @@ namespace Fwk.Tools.SurveyMenu
         /// <author>moviedo</author>
         private void EditMenuItem()
         {
-            if (_MenuItemSurveyList == null)
+            if (menu.ItemList == null)
                 return;
 
             if (_MenuItemSelected == null)
@@ -168,7 +180,7 @@ namespace Fwk.Tools.SurveyMenu
                 return;
             }
             //Load del Pelsoftulario de edicion de menues
-            using (FRM_EditSurvey frm = new FRM_EditSurvey(_MenuItemSelected, Action.Edit))
+            using (FRM_EditSurvey frm = new FRM_EditSurvey(menu, _MenuItemSelected, Action.Edit))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
@@ -177,7 +189,7 @@ namespace Fwk.Tools.SurveyMenu
                     //Si la categoria cambio. hay que cambiar la categoria de los hijos inmediatos que no son categorias .-
                     if (frm.CategoryChange)
                     {
-                        foreach (MenuItem menuChild in _MenuItemSurveyList)
+                        foreach (MenuItem menuChild in menu.ItemList)
                         {
                             if (menuChild.ParentID == _MenuItemSelected.ID && !menuChild.IsCategory)
                                 menuChild.Category = _MenuItemSelected.Category;
@@ -195,7 +207,7 @@ namespace Fwk.Tools.SurveyMenu
         /// <param name="menuItem"></param>
         private void AddCategory(MenuItem menuItem)
         {
-            if (_MenuItemSurveyList == null)
+            if (menu.ItemList == null)
                 return;
 
             if (_MenuItemSelected != null)
@@ -214,11 +226,11 @@ namespace Fwk.Tools.SurveyMenu
             else
                 wMenuItemNewCategory.ParentID = menuItem.ID;
 
-            wMenuItemNewCategory.ID = _MenuItemSurveyList.Count + 1;
-            wMenuItemNewCategory.DisplayName = "Category " + (_MenuItemSurveyList.Count + 1);
+            wMenuItemNewCategory.ID = menu.ItemList.Count + 1;
+            wMenuItemNewCategory.DisplayName = "Category " + (menu.ItemList.Count + 1);
             wMenuItemNewCategory.Category = wMenuItemNewCategory.DisplayName;
             wMenuItemNewCategory.IsCategory = true;
-            _MenuItemSurveyList.Add(wMenuItemNewCategory);
+            menu.ItemList.Add(wMenuItemNewCategory);
 
             treeList1.RefreshDataSource();
             treeList1.ExpandAll();
@@ -232,7 +244,8 @@ namespace Fwk.Tools.SurveyMenu
             if (_MenuItemSelected != null)
             {
                 menuItemEditorSurvey1.ShowAction = Action.Query;
-                menuItemEditorSurvey1.MenuItemSelected = _MenuItemSelected;
+                menuItemEditorSurvey1.MenuItem = _MenuItemSelected;
+                menuItemEditorSurvey1.TreeMenu = menu;
                 menuItemEditorSurvey1.Populate();
             }
         }
@@ -263,11 +276,14 @@ namespace Fwk.Tools.SurveyMenu
                     if (String.IsNullOrEmpty(_CurrentFullFileName))
                         return;
 
-                    TreeListEngineDevExpress.SaveMenuToFile(_CurrentFullFileName, _MenuItemSurveyList);
+                    TreeListEngineDevExpress.SaveMenuToFile(_CurrentFullFileName, menu.ItemList);
 
                     fwkMessageView_Warning.Show("Menu sussefully saved");
                 }
             }
+
+            storage.StorageObject.File = _CurrentFullFileName;
+            storage.Save();
         }
 
 
@@ -282,6 +298,51 @@ namespace Fwk.Tools.SurveyMenu
             {
                 frm.ShowDialog();
             }
+        }
+
+        private void FRM_MainDevExpress_Load(object sender, EventArgs e)
+        {
+            storage.Load();
+
+            if (storage.StorageObject == null)
+                storage.InitObject();
+            else
+            {
+                if (System.IO.File.Exists(storage.StorageObject.File))
+                {
+                    _CurrentFullFileName = storage.StorageObject.File;
+                    LoadMenuFile();
+                }
+            }
+        }
+
+        void AddImageToImageList()
+        {
+            //imageList1.Images.Add();
+        }
+
+        void RefreshImageList()
+        {
+            imageList1.Images.Clear();
+            
+            foreach (MenuImage mi in menu.ImageList.OrderBy<MenuImage, int>(p => p.Index))
+            {
+                imageList1.Images.Add(mi.Image);
+            }
+
+          
+        }
+    }
+
+    [Serializable]
+    public class ClientUserSettings
+    {
+        string file;
+
+        public string File
+        {
+            get { return file; }
+            set { file = value; }
         }
 
     }

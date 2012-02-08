@@ -23,9 +23,9 @@ namespace Fwk.Tools.SurveyMenu
             get { return _CategoryChange; }
             set { _CategoryChange = value; }
         }
-        string m_Image_Sel_Extension;
-        string m_Image_Extension;
-        string m_ImageType_Extension;
+        int? m_Image_Sel_index;
+        int? m_Image_index;
+        int? m_ImageType_index;
     
         /// <summary>
         /// Almacena la acción a realizar por el Pelsoftulario
@@ -46,14 +46,20 @@ namespace Fwk.Tools.SurveyMenu
             }
         }
 
+        TreeMenu menu;
+        [Browsable(false)]
+        public TreeMenu TreeMenu
+        {
+            get { return menu; }
+            set { menu = value; }
+        }
         MenuItem _MenuItemSelected;
         [Browsable(false)]
-        public MenuItem MenuItemSelected
+        public MenuItem MenuItem
         {
             get { return _MenuItemSelected; }
             set { _MenuItemSelected = value; }
         }
-
         #endregion
 
         #region Constructor
@@ -70,14 +76,14 @@ namespace Fwk.Tools.SurveyMenu
         /// </summary>
         public void FillMenuItem()
         {
-            if (this.pictureBoxImage.Image != null && m_Image_Extension != null)
-                _MenuItemSelected.NodeImage = Fwk.Tools.Helper.LoadImage(this.pictureBoxImage.Image, m_Image_Extension);
+            if (this.pictureBoxImage.Image != null)
+                _MenuItemSelected.NodeImageIndex = m_Image_index;
             
-            if (this.pictureBoxImageSelected.Image != null && m_Image_Sel_Extension != null)
-                _MenuItemSelected.NodeSelectedImage = Fwk.Tools.Helper.LoadImage(this.pictureBoxImageSelected.Image, m_Image_Sel_Extension);
+            if (this.pictureBoxImageSelected.Image != null )
+                _MenuItemSelected.NodeSelectedImageIndex =  m_Image_Sel_index;
 
-            //if (this.pictureBoxTypeImage.Image != null && m_ImageType_Extension !=null)
-            //    _MenuItemSelected.TypeImage = Fwk.Tools.Helper.LoadImage(this.pictureBoxTypeImage.Image, m_ImageType_Extension);
+            //if (this.pictureBoxImage.Image != null)
+            //    _MenuItemSelected.NodeImageIndex = _NodeImageIndex;
 
             _MenuItemSelected.AssemblyInfo = this.txtAssembly.Text;
             _MenuItemSelected.DisplayName = this.txtDisplayName.Text;
@@ -115,13 +121,6 @@ namespace Fwk.Tools.SurveyMenu
                 pictureBoxImage.Image = null;
 
 
-
-            //if (_MenuItemSelected.TypeImage != null)
-            //    this.pictureBoxTypeImage.Image = TypeFunctions.ConvertByteArrayToImage(_MenuItemSelected.TypeImage);
-            //else
-            //    pictureBoxTypeImage.Image = null;
-
-            //SetCategoryEnabled(_MenuItemSelected.IsCategory);
             SetShowAction();
         }
 
@@ -142,29 +141,39 @@ namespace Fwk.Tools.SurveyMenu
 
         private void btnSelImageType_Click(object sender, EventArgs e)
         {
-            SelImage(this.pictureBoxTypeImage,ref m_ImageType_Extension);
+            SelImage(this.pictureBoxTypeImage,ref m_ImageType_index);
 
         }
         private void btnSelectedImage_Click(object sender, EventArgs e)
         {
-            SelImage(this.pictureBoxImageSelected, ref m_Image_Sel_Extension);
+            SelImage(this.pictureBoxImageSelected, ref m_Image_Sel_index);
         }
         private void btnImage_Click(object sender, EventArgs e)
         {
-            SelImage(this.pictureBoxImage, ref m_Image_Extension);
+            SelImage(this.pictureBoxImage, ref m_Image_index);
         }
        
-        private void SelImage(PictureBox pPictureBox, ref string pImage_Extension)
+        private void SelImage(PictureBox pPictureBox, ref int? index)
         {
 
-            if (_MenuItemSelected == null) return ;
-            string imgFile = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(FileFunctions.OpenFilterEnums.OpenImageFilter);
-            if (String.IsNullOrEmpty(imgFile)) return ; 
+            //if (_MenuItemSelected == null) return ;
+            //string imgFile = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(FileFunctions.OpenFilterEnums.OpenImageFilter);
+            //if (String.IsNullOrEmpty(imgFile)) return ; 
 
 
 
-            pPictureBox.Image = new Bitmap(imgFile);
-            pImage_Extension  = System.IO.Path.GetExtension(imgFile);
+            //pPictureBox.Image = new Bitmap(imgFile);
+            //pImage_Extension  = System.IO.Path.GetExtension(imgFile);
+
+            using (frmImageList frm = new frmImageList())
+            {
+                frm.Populate(menu);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                   pPictureBox.Image = frm.SelectedImage.Image;
+                   index = frm.SelectedImage.Index;
+                }
+            }
         }
 
 

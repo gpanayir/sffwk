@@ -24,16 +24,28 @@ namespace Fwk.Tools
                 case ".jpg":
                     {
                         imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Jpeg);
-
                         break;
                     }
                 case ".gif":
                     {
                         imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Gif);
-
                         break;
                     }
-
+                case ".png":
+                    {
+                        imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Png);
+                        break;
+                    }
+                case ".icon":
+                    {
+                        imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Icon);
+                        break;
+                    }
+                case ".tiff":
+                    {
+                        imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Tiff);
+                        break;
+                    }
             }
 
 

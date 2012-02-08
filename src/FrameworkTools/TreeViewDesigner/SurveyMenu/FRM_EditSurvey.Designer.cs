@@ -66,7 +66,7 @@
             this.menuItemEditorSurvey1.CategoryChange = false;
             this.menuItemEditorSurvey1.Location = new System.Drawing.Point(16, 15);
             this.menuItemEditorSurvey1.Margin = new System.Windows.Forms.Padding(5);
-            this.menuItemEditorSurvey1.MenuItemSelected = null;
+            this.menuItemEditorSurvey1.MenuItem = null;
             this.menuItemEditorSurvey1.Name = "menuItemEditorSurvey1";
             this.menuItemEditorSurvey1.ShowAction = Fwk.Tools.Action.Query;
             this.menuItemEditorSurvey1.Size = new System.Drawing.Size(769, 539);

@@ -53,6 +53,7 @@
             this.colSelectedImage = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colSelectedImageIndex = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.menuItemSurveyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.lblFileLoad = new System.Windows.Forms.Label();
             this.fwkMessageView_Warning = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.fwkMessageView_Error = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
@@ -230,9 +231,13 @@
             this.treeList1.Location = new System.Drawing.Point(5, 70);
             this.treeList1.Margin = new System.Windows.Forms.Padding(4);
             this.treeList1.Name = "treeList1";
+            this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
+            this.treeList1.OptionsView.ShowColumns = false;
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageEdit1});
+            this.treeList1.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.ShowAlways;
             this.treeList1.Size = new System.Drawing.Size(621, 642);
+            this.treeList1.StateImageList = this.imageList1;
             this.treeList1.TabIndex = 43;
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             // 
@@ -244,18 +249,23 @@
             this.colDisplayName.FieldName = "DisplayName";
             this.colDisplayName.Name = "colDisplayName";
             this.colDisplayName.Visible = true;
-            this.colDisplayName.VisibleIndex = 0;
-            this.colDisplayName.Width = 222;
+            this.colDisplayName.VisibleIndex = 1;
+            this.colDisplayName.Width = 522;
             // 
             // colTypeImage
             // 
             this.colTypeImage.Caption = "TypeImage";
             this.colTypeImage.ColumnEdit = this.repositoryItemImageEdit1;
             this.colTypeImage.FieldName = "TypeImage";
+            this.colTypeImage.MinWidth = 33;
             this.colTypeImage.Name = "colTypeImage";
+            this.colTypeImage.OptionsColumn.AllowMove = false;
+            this.colTypeImage.OptionsColumn.AllowSize = false;
+            this.colTypeImage.OptionsColumn.FixedWidth = true;
+            this.colTypeImage.OptionsColumn.ReadOnly = true;
             this.colTypeImage.Visible = true;
-            this.colTypeImage.VisibleIndex = 1;
-            this.colTypeImage.Width = 223;
+            this.colTypeImage.VisibleIndex = 0;
+            this.colTypeImage.Width = 81;
             // 
             // repositoryItemImageEdit1
             // 
@@ -311,6 +321,13 @@
             // 
             this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.MenuItem);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList1.Images.SetKeyName(0, "");
+            this.imageList1.Images.SetKeyName(1, "");
+            // 
             // lblFileLoad
             // 
             this.lblFileLoad.AutoSize = true;
@@ -351,11 +368,12 @@
             this.menuItemEditorSurvey1.CategoryChange = false;
             this.menuItemEditorSurvey1.Location = new System.Drawing.Point(644, 75);
             this.menuItemEditorSurvey1.Margin = new System.Windows.Forms.Padding(5);
-            this.menuItemEditorSurvey1.MenuItemSelected = null;
+            this.menuItemEditorSurvey1.MenuItem = null;
             this.menuItemEditorSurvey1.Name = "menuItemEditorSurvey1";
             this.menuItemEditorSurvey1.ShowAction = Fwk.Tools.Action.Query;
             this.menuItemEditorSurvey1.Size = new System.Drawing.Size(839, 641);
             this.menuItemEditorSurvey1.TabIndex = 45;
+            this.menuItemEditorSurvey1.TreeMenu = null;
             // 
             // btnMenuPreview
             // 
@@ -394,6 +412,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FRM_MainDevExpress";
             this.Text = "Menu designer";
+            this.Load += new System.EventHandler(this.FRM_MainDevExpress_Load);
             this.Leave += new System.EventHandler(this.frmMainDevExpress_Leave);
             this.toolStripAppClientConfig.ResumeLayout(false);
             this.toolStripAppClientConfig.PerformLayout();
@@ -437,5 +456,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repositoryItemImageEdit1;
         private DevExpress.XtraEditors.SimpleButton btnMenuPreview;
         private DevExpress.XtraEditors.SimpleButton btnAddCategory1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

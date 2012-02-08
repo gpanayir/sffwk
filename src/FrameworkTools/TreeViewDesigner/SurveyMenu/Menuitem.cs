@@ -9,14 +9,30 @@ using System.Drawing;
 
 namespace Fwk.Tools
 {
+    [Serializable]
+    public class TreeMenu : Entity
+    {
+        MenuItemList _ItemList = new MenuItemList();
 
+        public MenuItemList ItemList
+        {
+            get { return _ItemList; }
+            set { _ItemList = value; }
+        }
+        MenuImageList _ImageList = new MenuImageList();
 
+        public MenuImageList ImageList
+        {
+            get { return _ImageList; }
+            set { _ImageList = value; }
+        }
+    }
 
 
     [Serializable]
     public class MenuItem : Entity
     {
-    
+
         #region Declarations
 
         Boolean _Enabled = true;
@@ -26,9 +42,9 @@ namespace Fwk.Tools
             get { return _Enabled; }
             set { _Enabled = value; }
         }
-       
 
-       
+
+
         String _DisplayName;
 
         public String DisplayName
@@ -77,20 +93,20 @@ namespace Fwk.Tools
             get { return m_NodeSelectedImage; }
             set { m_NodeSelectedImage = value; }
         }
-        int m_NodeSelectedImageIndex;
-        public int NodeSelectedImageIndex
+        int? m_NodeSelectedImageIndex;
+        public int? NodeSelectedImageIndex
         {
             get { return m_NodeSelectedImageIndex; }
             set { m_NodeSelectedImageIndex = value; }
         }
 
-        int m_NodeImageIndexImageIndex;
-        public int NodeImageIndex
+        int? m_NodeImageIndexImageIndex;
+        public int? NodeImageIndex
         {
             get { return m_NodeImageIndexImageIndex; }
             set { m_NodeImageIndexImageIndex = value; }
         }
-        public string AuthRule { get; set; }    
+        public string AuthRule { get; set; }
         #endregion
 
 
@@ -121,9 +137,17 @@ namespace Fwk.Tools
     [XmlRoot("MenuItemList"), SerializableAttribute]
     public class MenuItemList : Entities<MenuItem>
     {
-       
+
     }
 
+    /// <summary>
+    /// Contiene las imagenes del menu
+    /// </summary>
+    [XmlRoot("MenuImageList"), SerializableAttribute]
+    public class MenuImageList : Entities<MenuImage>
+    {
+
+    }
 
     [Serializable]
     public class MenuImage : Entity
@@ -137,26 +161,35 @@ namespace Fwk.Tools
             set { _Index = value; }
         }
 
-        
 
 
-        private System.Byte[] m_Image;
-        [System.Xml.Serialization.XmlElementAttribute("Image", DataType = "base64Binary")]
-        public System.Byte[] Image
+
+        private System.Byte[] m_ImageBytes;
+        [System.Xml.Serialization.XmlElementAttribute("ImageBytes", DataType = "base64Binary")]
+        public System.Byte[] ImageBytes
         {
-            get { return m_Image; }
-            set { m_Image = value; }
+            get { return m_ImageBytes; }
+            set { m_ImageBytes = value; }
         }
-    }
 
+        private Image m_Image;
+        [System.Xml.Serialization.XmlIgnore()]
+        public Image Image
+        {
+            get
+            {
+                if (ImageBytes != null)
+                    return Fwk.HelperFunctions.TypeFunctions.ConvertByteArrayToImage(ImageBytes);
+                else
+                    return null;
 
-    /// <summary>
-    /// Contiene las imagenes del menu
-    /// </summary>
-    [XmlRoot("MenuImageList"), SerializableAttribute]
-    public class MenuImageList : Entities<MenuImage>
-    {
-        
+            }
+
+        }
+        public void SetIamge(Image i, string extension)
+        {
+            m_ImageBytes = Helper.LoadImage(i, extension);
+        }
     }
 
 }

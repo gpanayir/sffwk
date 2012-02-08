@@ -11,7 +11,7 @@ namespace Fwk.Tools.SurveyMenu
 {
     public class TreeListEngineDevExpress
     {
-        public static MenuItemList MenuItemSurveyList;
+       // public static MenuItemList MenuItemSurveyList;
         static TreeListEngineDevExpress()
         {
             //Ahora se lee de un archivo de configuración
@@ -43,8 +43,8 @@ namespace Fwk.Tools.SurveyMenu
         /// </summary>
         /// <param name="pFullFileName"></param>
         /// <returns></returns>
-        
-        public static MenuItemList LoadMenuFromFile(String pFullFileName)
+
+        public static TreeMenu LoadMenuFromFile(String pFullFileName)
         {
             //Application.StartupPath
             if (String.IsNullOrEmpty(pFullFileName)) 
@@ -53,8 +53,8 @@ namespace Fwk.Tools.SurveyMenu
                 return null;
             
             String wXml = Fwk.HelperFunctions.FileFunctions.OpenTextFile(pFullFileName);
-            MenuItemSurveyList = MenuItemList.GetFromXml<MenuItemList>(wXml);
-            return MenuItemSurveyList;
+           return TreeMenu.GetFromXml<TreeMenu>(wXml);
+            
         }
     }
 }

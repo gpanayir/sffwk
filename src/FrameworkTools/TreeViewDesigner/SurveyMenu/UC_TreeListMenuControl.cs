@@ -82,17 +82,23 @@ namespace Fwk.Tools.SurveyMenu
 
         public void Populate(string pFullFileName)
         {
-            this.menuItemSurveyBindingSource.DataSource = TreeListEngineDevExpress.LoadMenuFromFile(pFullFileName);
+            TreeMenu menu = TreeListEngineDevExpress.LoadMenuFromFile(pFullFileName);
+            this.menuItemSurveyBindingSource.DataSource = menu.ItemList;
+
+            foreach (MenuImage mi in menu.ImageList.OrderBy<MenuImage, int>(p => p.Index))
+            {
+                imageList1.Images.Add(mi.Image);
+            }
             treeList1.ExpandAll();
             treeList1.RefreshDataSource();
         }
 
-        public void Populate()
-        {
-            this.menuItemSurveyBindingSource.DataSource = TreeListEngineDevExpress.MenuItemSurveyList;
-            treeList1.ExpandAll();
-            treeList1.RefreshDataSource();
-        }
+        //public void Populate()
+        //{
+        //    this.menuItemSurveyBindingSource.DataSource = TreeListEngineDevExpress.MenuItemSurveyList;
+        //    treeList1.ExpandAll();
+        //    treeList1.RefreshDataSource();
+        //}
 
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {

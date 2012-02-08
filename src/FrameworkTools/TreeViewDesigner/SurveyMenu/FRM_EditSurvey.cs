@@ -26,11 +26,12 @@ namespace Fwk.Tools.SurveyMenu
 
         #region Constructor
 
-        public FRM_EditSurvey(MenuItem pMenuItemSurvey, Action pAction)
+        public FRM_EditSurvey(TreeMenu menu, MenuItem pMenuItemSurvey, Action pAction)
         {
             InitializeComponent();
             menuItemEditorSurvey1.ShowAction = pAction;
-            menuItemEditorSurvey1.MenuItemSelected = pMenuItemSurvey;
+            menuItemEditorSurvey1.MenuItem = pMenuItemSurvey;
+            menuItemEditorSurvey1.TreeMenu = menu;
             menuItemEditorSurvey1.Populate();
         }
 

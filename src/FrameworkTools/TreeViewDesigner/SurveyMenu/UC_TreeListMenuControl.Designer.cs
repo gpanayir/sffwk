@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_TreeListMenuControl));
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.colEnabled = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colDisplayName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -44,6 +45,7 @@
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.btnchangeImageView = new DevExpress.XtraEditors.SimpleButton();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemSurveyBindingSource)).BeginInit();
@@ -75,7 +77,7 @@
             this.treeList1.DataSource = this.menuItemSurveyBindingSource;
             this.treeList1.FixedLineWidth = 1;
             this.treeList1.Location = new System.Drawing.Point(4, 30);
-            this.treeList1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeList1.Margin = new System.Windows.Forms.Padding(4);
             this.treeList1.Name = "treeList1";
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageEdit1,
@@ -178,12 +180,19 @@
             // 
             this.btnchangeImageView.Image = global::Fwk.Tools.Properties.Resources.Window_full_screen_16x16;
             this.btnchangeImageView.Location = new System.Drawing.Point(7, 1);
-            this.btnchangeImageView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnchangeImageView.Margin = new System.Windows.Forms.Padding(4);
             this.btnchangeImageView.Name = "btnchangeImageView";
             this.btnchangeImageView.Size = new System.Drawing.Size(176, 25);
             this.btnchangeImageView.TabIndex = 45;
             this.btnchangeImageView.Text = "Ver imagenes";
             this.btnchangeImageView.Click += new System.EventHandler(this.btnchangeImageView_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList1.Images.SetKeyName(0, "");
+            this.imageList1.Images.SetKeyName(1, "");
             // 
             // UC_TreeListMenuControl
             // 
@@ -192,7 +201,7 @@
             this.AutoScroll = true;
             this.Controls.Add(this.btnchangeImageView);
             this.Controls.Add(this.treeList1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UC_TreeListMenuControl";
             this.Size = new System.Drawing.Size(425, 510);
             this.Load += new System.EventHandler(this.TreeListMenuControl_Load);
@@ -227,6 +236,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraEditors.SimpleButton btnchangeImageView;
         private DevExpress.Utils.ToolTipController toolTipController1;
+        private System.Windows.Forms.ImageList imageList1;
 
     }
 }
