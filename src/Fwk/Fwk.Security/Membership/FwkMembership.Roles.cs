@@ -30,14 +30,19 @@ namespace Fwk.Security
             if(string.IsNullOrEmpty(providerName))
                providerName = GetSqlMembershipProvider( providerName).Name;
             
+
             try
             {
-                foreach (string s in Roles.Providers[providerName].GetAllRoles())
+                foreach (string s in GetRoleProvider(providerName).GetAllRoles())
                 {
                     r = new Rol(s);
                     wRoleList.Add(r);
                 }
 
+            }
+            catch (TechnicalException err)
+            {
+                throw err;
             }
             catch (System.NullReferenceException)
             {
@@ -74,7 +79,7 @@ namespace Fwk.Security
 
             try
             {
-                foreach (string s in Roles.Providers[providerName].GetRolesForUser(userName))
+                foreach (string s in GetRoleProvider(providerName).GetRolesForUser(userName))
                 {
                     r = new Rol(s);
                     wRoleList.Add(r);
@@ -108,9 +113,13 @@ namespace Fwk.Security
                 providerName = GetSqlMembershipProvider(providerName).Name;
             try
             {
-              
-                return  Roles.Providers[providerName].GetRolesForUser(userName);
+
+                return GetRoleProvider(providerName).GetRolesForUser(userName);
                 
+            }
+            catch (TechnicalException err)
+            {
+                throw err;
             }
             catch (Exception ex)
             {
@@ -137,7 +146,7 @@ namespace Fwk.Security
                 providerName = GetSqlMembershipProvider(providerName).Name;
             try
             {
-                if (!Roles.Providers[providerName].RoleExists(roleName))
+                if (!GetRoleProvider(providerName).RoleExists(roleName))
                 {
                     Roles.Providers[providerName].CreateRole(roleName);
                     if(!string.IsNullOrEmpty(description))
@@ -178,7 +187,7 @@ namespace Fwk.Security
             try
             {
 
-                if (Roles.Providers[providerName].GetUsersInRole(roleName).Length == 0)
+                if (GetRoleProvider(providerName).GetUsersInRole(roleName).Length == 0)
                     Roles.Providers[providerName].DeleteRole(roleName, true);
                 else
                 {
@@ -230,8 +239,7 @@ namespace Fwk.Security
                 wCmd.CommandType = CommandType.Text;
                 wDataBase.ExecuteNonQuery(wCmd);
             }
-            catch (TechnicalException tx)
-            { throw tx; }
+   
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
@@ -256,7 +264,7 @@ namespace Fwk.Security
                 ///var users = from s in userList select s.UserName;
                 foreach (User wUser in userList)
                 {
-                    if (!Roles.Providers[providerName].IsUserInRole(wUser.UserName, rolName))
+                    if (!GetRoleProvider(providerName).IsUserInRole(wUser.UserName, rolName))
                     {
                         Roles.Providers[providerName].AddUsersToRoles(new string[] { wUser.UserName }, new string[] { rolName });
                     }

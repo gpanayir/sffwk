@@ -230,7 +230,7 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The security provider {0} not found.
+        ///   Looks up a localized string similar to The security {1} provider {0} not found.
         /// </summary>
         public static string ProviderNameNotFound {
             get {
@@ -291,6 +291,15 @@ namespace Fwk.Security.Properties {
         public static string RoleExist {
             get {
                 return ResourceManager.GetString("RoleExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are some problems while trying to get roles config information, please check the config fale from your application {0}.
+        /// </summary>
+        public static string RoleProviderConfigError {
+            get {
+                return ResourceManager.GetString("RoleProviderConfigError", resourceCulture);
             }
         }
         
