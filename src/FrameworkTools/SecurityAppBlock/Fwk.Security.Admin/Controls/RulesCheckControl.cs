@@ -91,7 +91,7 @@ namespace Fwk.Security.Admin.Controls
             this.ruleProvider  = ControlsFactory.CreateAuthorizationProvider(frmAdmin.Provider.Name);
 
 
-            rulesComboBox.DataSource = FwkMembership.GetRulesList(frmAdmin.Provider.ApplicationName);
+            rulesComboBox.DataSource = FwkMembership.GetRulesList(frmAdmin.Provider.Name);
 
         }
 
