@@ -38,7 +38,8 @@ namespace Fwk.UI.Controller
     {
         static ClientServiceBase _ClientServiceBase;
         static UserList _UserList;
-
+        public static string WrapperSecurityProvider { get; set; }
+        
         public static UserList UserList
         {
             get { return _UserList; }
@@ -94,7 +95,7 @@ namespace Fwk.UI.Controller
             GetUserInfoByParamsReq req = new GetUserInfoByParamsReq();
             req.BusinessData.UserName = pName;
 
-            GetUserInfoByParamsRes res = _ClientServiceBase.ExecuteService<GetUserInfoByParamsReq, GetUserInfoByParamsRes>(req);
+            GetUserInfoByParamsRes res = _ClientServiceBase.ExecuteService<GetUserInfoByParamsReq, GetUserInfoByParamsRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -117,7 +118,7 @@ namespace Fwk.UI.Controller
             req.BusinessData.User = pUser;
             req.BusinessData.User.Roles = pRolList.GetArrayNames();
 
-            CreateUserRes res = _ClientServiceBase.ExecuteService<CreateUserReq, CreateUserRes>(req);
+            CreateUserRes res = _ClientServiceBase.ExecuteService<CreateUserReq, CreateUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -144,7 +145,7 @@ namespace Fwk.UI.Controller
                 req.BusinessData.ChangePassword.New = pUser.Password;
                 req.BusinessData.ChangePassword.Old = string.Empty;
             }
-            UpdateUserRes res = req.ExecuteService<UpdateUserReq, UpdateUserRes>(req);
+            UpdateUserRes res = req.ExecuteService<UpdateUserReq, UpdateUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
             {
@@ -170,7 +171,7 @@ namespace Fwk.UI.Controller
             req.BusinessData.ChangePassword = new ChangePassword();
             req.BusinessData.ChangePassword.New = pNewPassword;
             req.BusinessData.ChangePassword.Old = pPassword;
-            UpdateUserRes res = req.ExecuteService<UpdateUserReq, UpdateUserRes>(req);
+            UpdateUserRes res = req.ExecuteService<UpdateUserReq, UpdateUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
             {
@@ -191,7 +192,7 @@ namespace Fwk.UI.Controller
             req.BusinessData.UserName = pUserName;
 
             req.BusinessData.NewPassword = pPassword;
-            ResetUserPasswordRes res = req.ExecuteService<ResetUserPasswordReq, ResetUserPasswordRes>(req);
+            ResetUserPasswordRes res = req.ExecuteService<ResetUserPasswordReq, ResetUserPasswordRes>(WrapperSecurityProvider, req);
 
             if (res.Error != null)
             {
@@ -208,7 +209,7 @@ namespace Fwk.UI.Controller
             SearchAllUsersReq req = new SearchAllUsersReq();
 
             //req.BusinessData.Activeflag = pActiveflag;
-            SearchAllUsersRes res = req.ExecuteService<SearchAllUsersReq, SearchAllUsersRes>(req);
+            SearchAllUsersRes res = req.ExecuteService<SearchAllUsersReq, SearchAllUsersRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
             {
@@ -276,7 +277,7 @@ namespace Fwk.UI.Controller
             req.BusinessData.Domain = pDomain;
             req.BusinessData.AuthenticationMode = pAuthenticationMode;
 
-            AuthenticateUserRes res = _ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(req);
+            AuthenticateUserRes res = _ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -298,7 +299,7 @@ namespace Fwk.UI.Controller
             CreateRoleReq req = new CreateRoleReq();
             req.BusinessData.Rol = new Rol(pRoleName);
 
-            CreateRoleRes res = req.ExecuteService<CreateRoleReq, CreateRoleRes>(req);
+            CreateRoleRes res = req.ExecuteService<CreateRoleReq, CreateRoleRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -317,7 +318,7 @@ namespace Fwk.UI.Controller
             req.BusinessData.RolName = pRoleName;
 
 
-            DeleteRoleRes res = req.ExecuteService<DeleteRoleReq, DeleteRoleRes>(req);
+            DeleteRoleRes res = req.ExecuteService<DeleteRoleReq, DeleteRoleRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -334,7 +335,7 @@ namespace Fwk.UI.Controller
             SearchAllRolesReq req = new SearchAllRolesReq();
 
             req.BusinessData.UserName = userName;
-            SearchAllRolesRes res = req.ExecuteService<SearchAllRolesReq, SearchAllRolesRes>(req);
+            SearchAllRolesRes res = req.ExecuteService<SearchAllRolesReq, SearchAllRolesRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -355,7 +356,7 @@ namespace Fwk.UI.Controller
 
             req.BusinessData.Username = pUserName;
             req.BusinessData.RolList = pRolList;
-            AssignRolesToUserRes res = req.ExecuteService<AssignRolesToUserReq, AssignRolesToUserRes>(req);
+            AssignRolesToUserRes res = req.ExecuteService<AssignRolesToUserReq, AssignRolesToUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -372,7 +373,7 @@ namespace Fwk.UI.Controller
 
             req.BusinessData.Username = pUserName;
 
-            SearchRolesForUserRes res = req.ExecuteService<SearchRolesForUserReq, SearchRolesForUserRes>(req);
+            SearchRolesForUserRes res = req.ExecuteService<SearchRolesForUserReq, SearchRolesForUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -387,7 +388,7 @@ namespace Fwk.UI.Controller
         {
             SearchAllRulesCategoryReq req = new SearchAllRulesCategoryReq();
 
-            SearchAllRulesCategoryRes res = req.ExecuteService<SearchAllRulesCategoryReq, SearchAllRulesCategoryRes>(req);
+            SearchAllRulesCategoryRes res = req.ExecuteService<SearchAllRulesCategoryReq, SearchAllRulesCategoryRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -408,7 +409,7 @@ namespace Fwk.UI.Controller
             SearchAllRulesReq req = new SearchAllRulesReq();
 
             req.CacheSettings.CacheOnClientSide = false;
-            SearchAllRulesRes res = req.ExecuteService<SearchAllRulesReq, SearchAllRulesRes>(req);
+            SearchAllRulesRes res = req.ExecuteService<SearchAllRulesReq, SearchAllRulesRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
@@ -438,7 +439,7 @@ namespace Fwk.UI.Controller
 
             req.BusinessData.FwkAuthorizationRuleList = pRulesList;
 
-            UpdateRulesRes res = req.ExecuteService<UpdateRulesReq, UpdateRulesRes>(req);
+            UpdateRulesRes res = req.ExecuteService<UpdateRulesReq, UpdateRulesRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
                 Fwk.UI.Common.Exceptions.ProcessException(res.Error);

@@ -66,17 +66,23 @@ namespace Fwk.UI.Security.Controls
                     this.imgTitle.Visible =false;
             }
         }
+       
  
 
         #endregion
 
         #region Constructor
-
+        
         public FRM_AuthenticationForm_ASPNet()
         {
             InitializeComponent();
         }
-
+        public FRM_AuthenticationForm_ASPNet(string securityProvider)
+        {
+            SecurityController.WrapperSecurityProvider = securityProvider;
+            InitializeComponent();
+            
+        }
         #endregion
 
         #region Methods
