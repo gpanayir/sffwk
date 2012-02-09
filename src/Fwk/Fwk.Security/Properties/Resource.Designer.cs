@@ -295,7 +295,7 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are some problems while trying to get roles config information, please check the config fale from your application {0}.
+        ///   Looks up a localized string similar to There are some problems while trying to get roles config information, please check the config fale from your application .
         /// </summary>
         public static string RoleProviderConfigError {
             get {

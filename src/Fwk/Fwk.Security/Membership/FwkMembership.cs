@@ -118,7 +118,7 @@ namespace Fwk.Security
 
             if (wSqlMembershipProvider == null)
             {
-                TechnicalException te = new TechnicalException(string.Format(Resource.ProviderNameNotFound, providerName));
+                TechnicalException te = new TechnicalException(string.Format(Resource.ProviderNameNotFound, providerName, "membership"));
                 te.ErrorId = "4001";
                 //te.Source = "FwkMembership block";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);

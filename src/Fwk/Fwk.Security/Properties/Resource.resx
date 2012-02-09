@@ -330,6 +330,6 @@ Result: user is authorized</value>
     <value>The application named {0} for cnnstringName {1} not exist. Pleasse check the app config file to ensure the correct application name.</value>
   </data>
   <data name="RoleProviderConfigError" xml:space="preserve">
-    <value>There are some problems while trying to get roles config information, please check the config fale from your application {0}</value>
+    <value>There are some problems while trying to get roles config information, please check the config fale from your application </value>
   </data>
 </root>
