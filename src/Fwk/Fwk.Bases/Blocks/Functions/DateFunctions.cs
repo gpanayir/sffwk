@@ -5,11 +5,11 @@ using System.Data.SqlTypes;
 namespace Fwk.HelperFunctions
 {
 
-	/// <summary>
-	/// Utilidades para fechas.
-	/// </summary>
-	public class DateFunctions
-	{
+    /// <summary>
+    /// Utilidades para fechas.
+    /// </summary>
+    public class DateFunctions
+    {
         /// <summary>
         /// 
         /// </summary>
@@ -32,99 +32,99 @@ namespace Fwk.HelperFunctions
             /// </summary>
             FromSeconds
         }
-		/// <summary>
-		/// Algoritmo que determina si hay o no InterSección entre dos rangos de fechas
-		/// </summary>
-		/// <param name="D1">Fecha Desde del primer rango</param>
-		/// <param name="H1">Fecha Hasta del primer rango</param>
-		/// <param name="D2">Fecha Desde del segundo rango</param>
-		/// <param name="H2">Fecha Hasta del segundo rango</param>
-		/// <returns>Retorna el rango de InterSección en una DataRow un bool que dice si hay o no interseccion</returns>
+        /// <summary>
+        /// Algoritmo que determina si hay o no InterSección entre dos rangos de fechas
+        /// </summary>
+        /// <param name="D1">Fecha Desde del primer rango</param>
+        /// <param name="H1">Fecha Hasta del primer rango</param>
+        /// <param name="D2">Fecha Desde del segundo rango</param>
+        /// <param name="H2">Fecha Hasta del segundo rango</param>
+        /// <returns>Retorna el rango de InterSección en una DataRow un bool que dice si hay o no interseccion</returns>
         /// <Date>29-03-2006</Date>
         /// <Author>moviedo</Author>
-		public static DataTable Interseccion(DateTime D1,DateTime H1,DateTime D2,DateTime H2)
-		{
+        public static DataTable Interseccion(DateTime D1, DateTime H1, DateTime D2, DateTime H2)
+        {
 
-			DateTime Dr;
-			DateTime Hr;
+            DateTime Dr;
+            DateTime Hr;
 
-			bool wInterseccion ;
+            bool wInterseccion;
 
-			if(D1 < D2 )
-			{
-				//D1-----------H1
-				// D2-------------H2
-				if (D2 > H1)
-				{
-					Dr = new DateTime(1899,12,31);
-					Hr = new DateTime(1899,12,31);
-					wInterseccion = false ;
-				}
-				else
-				{
-					//D1-----------H1
-					// D2-------------H2
-					if (H1 < H2)
-					{ 
-						Dr =D2;
-						Hr = H1;
-						wInterseccion = true;
-					}
-					else
-					{
-						//D1--------------------------H1
-						// D2-------------H2
-						Dr = D2;
-						Hr = H2;
-						wInterseccion = true;
-					}
-				}
-			}
-			else
-			{ // D1-------------H1
-				//D2-------------H2
-				if (D1>H2)
-				{
-					Dr = new DateTime(1899,12,31);
-					Hr = new DateTime(1899,12,31);
-					wInterseccion = false ;
-				}
-				else
-				{
-					// D1-------------H1
-					//D2-------------H2
-					if (H2 < H1)
-					{
-						Dr =D1;
-						Hr = H2;
-						wInterseccion = true;
-					}
-					else
-					{ //D1---------------------------------H1
-						// D2-------------H2
-						Dr = D1;
-						Hr = H1;
-						wInterseccion = true;
-					}
-				}
-			}
-			DataTable wDtt = new DataTable ();
-			DataColumn wDC = new DataColumn ();
-			wDC.ColumnName ="Dr";
-			wDtt.Columns .Add (wDC);
-			wDC = new DataColumn ();
-			wDC.ColumnName ="Hr";
-			wDtt.Columns .Add (wDC);
-			wDC = new DataColumn ();
-			wDC.ColumnName ="Interseccion";
-			wDtt.Columns .Add (wDC);
-			DataRow wDtr = wDtt.NewRow ();
-			wDtr["Dr"]= Dr;
-			wDtr["Hr"]= Hr;
-			wDtr["Interseccion"]= wInterseccion;
-			wDtt.Rows.Add (wDtr); 
-			return wDtt;
-		}
+            if (D1 < D2)
+            {
+                //D1-----------H1
+                // D2-------------H2
+                if (D2 > H1)
+                {
+                    Dr = new DateTime(1899, 12, 31);
+                    Hr = new DateTime(1899, 12, 31);
+                    wInterseccion = false;
+                }
+                else
+                {
+                    //D1-----------H1
+                    // D2-------------H2
+                    if (H1 < H2)
+                    {
+                        Dr = D2;
+                        Hr = H1;
+                        wInterseccion = true;
+                    }
+                    else
+                    {
+                        //D1--------------------------H1
+                        // D2-------------H2
+                        Dr = D2;
+                        Hr = H2;
+                        wInterseccion = true;
+                    }
+                }
+            }
+            else
+            { // D1-------------H1
+                //D2-------------H2
+                if (D1 > H2)
+                {
+                    Dr = new DateTime(1899, 12, 31);
+                    Hr = new DateTime(1899, 12, 31);
+                    wInterseccion = false;
+                }
+                else
+                {
+                    // D1-------------H1
+                    //D2-------------H2
+                    if (H2 < H1)
+                    {
+                        Dr = D1;
+                        Hr = H2;
+                        wInterseccion = true;
+                    }
+                    else
+                    { //D1---------------------------------H1
+                        // D2-------------H2
+                        Dr = D1;
+                        Hr = H1;
+                        wInterseccion = true;
+                    }
+                }
+            }
+            DataTable wDtt = new DataTable();
+            DataColumn wDC = new DataColumn();
+            wDC.ColumnName = "Dr";
+            wDtt.Columns.Add(wDC);
+            wDC = new DataColumn();
+            wDC.ColumnName = "Hr";
+            wDtt.Columns.Add(wDC);
+            wDC = new DataColumn();
+            wDC.ColumnName = "Interseccion";
+            wDtt.Columns.Add(wDC);
+            DataRow wDtr = wDtt.NewRow();
+            wDtr["Dr"] = Dr;
+            wDtr["Hr"] = Hr;
+            wDtr["Interseccion"] = wInterseccion;
+            wDtt.Rows.Add(wDtr);
+            return wDtt;
+        }
 
         /// <summary>
         /// Retorna un string con el formato hh:mm:ss.-
@@ -185,7 +185,7 @@ namespace Fwk.HelperFunctions
         /// <Author>Andres Aguirre</Author>
         public static DateTime GetLastDayOfMonth(Int16 pMonth, Int16 pYear)
         {
-            return GetFirstDayOfMonth(pYear, pMonth).AddMonths(1).AddTicks(-1); 
+            return GetFirstDayOfMonth(pYear, pMonth).AddMonths(1).AddTicks(-1);
         }
 
         /// <summary>
@@ -214,10 +214,10 @@ namespace Fwk.HelperFunctions
         /// <param name="date"></param>
         /// <param name="separator"></param>
         /// <returns></returns>
-        public static string Get_Year_Mont_Day_String(DateTime date , char separator )
+        public static string Get_Year_Mont_Day_String(DateTime date, char separator)
         {
             return date.ToString("yyyy-MM-dd").Replace('-', separator);
-           
+
         }
 
         /// <summary>
@@ -230,19 +230,19 @@ namespace Fwk.HelperFunctions
         {
             //date > MaxValue                                               o  date < MinValue
             return (DateTime.Compare(date, SqlDateTime.MaxValue.Value) > 0) || (DateTime.Compare(date, SqlDateTime.MinValue.Value) < 0);
-         
-       }
-          /// <summary>
+
+        }
+        /// <summary>
         /// Retorna la fecha en formato YYYY[sep]MM[sep]dd
         /// EJ: 2010_11_02_41_33_1
         /// </summary>
         /// <param name="date"></param>
         /// <param name="separator"></param>
         /// <returns></returns>
-        public static string Get_Year_Mont_Day_Hour_Min_Sec_String(DateTime date , char separator )
+        public static string Get_Year_Mont_Day_Hour_Min_Sec_String(DateTime date, char separator)
         {
             return date.ToString("yyyy-MM-dd hh:mm:ss").Replace('-', separator).Replace(':', separator);
-           
+
         }
         /// <summary>
         /// Convierte DateTime a UnixTimeStamp (Total acumulado en segundo desde 1-ENE-1970 hasta la fecha pasada por parametros)
@@ -269,7 +269,38 @@ namespace Fwk.HelperFunctions
             return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(unixTimeStamp);
         }
 
-        
-	}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="birthDate"></param>
+        /// <returns>Years,Months and Days</returns>
+        public static void Get_Age(DateTime birthDate, out int ageInYears, out int ageInMonths, out int ageInDays)
+        {
+            DateTime dateOfBirth = birthDate;
+            DateTime currentDate = DateTime.Now;
+            ageInYears = 0;
+            ageInMonths = 0;
+            ageInDays = 0;
+            ageInDays = currentDate.Day - dateOfBirth.Day;
+            ageInMonths = currentDate.Month - dateOfBirth.Month;
+            ageInYears = currentDate.Year - dateOfBirth.Year;
+            if (ageInDays < 0)
+            {
+                ageInDays += DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
+                ageInMonths = ageInMonths--;
+                if (ageInMonths < 0)
+                {
+                    ageInMonths += 12;
+                    ageInYears--;
+                }
+            }
+            if (ageInMonths < 0)
+            {
+                ageInMonths += 12;
+                ageInYears--;
+            }
+            //return String.Format("Años {0}, meses {1}, dias {2}", ageInYears, ageInMonths, ageInDays);
+        }
+    }
 
 }
