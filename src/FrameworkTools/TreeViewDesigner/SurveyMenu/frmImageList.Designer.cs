@@ -70,7 +70,7 @@
             // 
             // menuImageListBindingSource
             // 
-            this.menuImageListBindingSource.DataSource = typeof(Fwk.Tools.MenuImageList);
+            this.menuImageListBindingSource.DataSource = typeof(Fwk.UI.Controls.Menu.Tree.MenuImageList);
             // 
             // gridView1
             // 

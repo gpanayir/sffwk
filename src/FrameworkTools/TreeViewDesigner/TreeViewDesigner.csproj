@@ -12,7 +12,8 @@
     <AssemblyName>Fwk.Tools</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <StartupObject>Fwk.Tools.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -70,6 +71,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\StaticLibs\Fwk.Bases.FrontEnd.dll</HintPath>
     </Reference>
+    <Reference Include="Fwk.UI, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Framework\Fwk.UI.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -90,17 +95,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SurveyMenu\frmImageList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SurveyMenu\frmImageList.Designer.cs">
       <DependentUpon>frmImageList.cs</DependentUpon>
     </Compile>
-    <Compile Include="SurveyMenu\FRM_EditSurvey.cs">
+    <Compile Include="SurveyMenu\FRM_EditMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SurveyMenu\FRM_EditSurvey.Designer.cs">
-      <DependentUpon>FRM_EditSurvey.cs</DependentUpon>
+    <Compile Include="SurveyMenu\FRM_EditMenu.Designer.cs">
+      <DependentUpon>FRM_EditMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="SurveyMenu\FRM_TestMenu.cs">
       <SubType>Form</SubType>
@@ -141,8 +151,8 @@
     <EmbeddedResource Include="SurveyMenu\frmImageList.resx">
       <DependentUpon>frmImageList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SurveyMenu\FRM_EditSurvey.resx">
-      <DependentUpon>FRM_EditSurvey.cs</DependentUpon>
+    <EmbeddedResource Include="SurveyMenu\FRM_EditMenu.resx">
+      <DependentUpon>FRM_EditMenu.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SurveyMenu\FRM_TestMenu.resx">
@@ -178,6 +188,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\MenuImageList.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\fwk_Refresh.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -229,9 +243,7 @@
     <None Include="Resources\folder_new.png" />
     <None Include="Resources\TortoiseAdded2.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Bases\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

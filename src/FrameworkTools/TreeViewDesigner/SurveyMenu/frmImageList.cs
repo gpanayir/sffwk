@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Fwk.HelperFunctions;
+using Fwk.UI.Controls.Menu.Tree;
 
 namespace Fwk.Tools.SurveyMenu
 {
@@ -17,18 +18,12 @@ namespace Fwk.Tools.SurveyMenu
             InitializeComponent();
         }
 
-     TreeMenu   _menu = null;
-        public void Populate(TreeMenu menu)
+        
+        public void Populate(MenuImageList images)
         {
 
-            _menu = menu;
-           
-            foreach (MenuImage mi in menu.ImageList.OrderBy<MenuImage, int>(p => p.Index))
-            {
-                imageList1.Images.Add(mi.Image);
-            }
-        
-            menuImageListBindingSource.DataSource = _menu.ImageList;
+      
+            menuImageListBindingSource.DataSource = images;
             gridView1.RefreshData();
         }
 
@@ -41,17 +36,17 @@ namespace Fwk.Tools.SurveyMenu
         private void SelImage()
         {
             
-            string imgFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(FileFunctions.OpenFilterEnums.OpenImageFilter);
-             if (String.IsNullOrEmpty(imgFileName)) 
-                 return;
+            //string imgFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(FileFunctions.OpenFilterEnums.OpenImageFilter);
+            // if (String.IsNullOrEmpty(imgFileName)) 
+            //     return;
              
-            MenuImage menuImage = new MenuImage ();
-            Image image=Image.FromFile(imgFileName);
+            //MenuImage menuImage = new MenuImage ();
+            //Image image=Image.FromFile(imgFileName);
 
-            menuImage.Index = _menu.ImageList.Count+1;
-            menuImage.SetIamge(image, System.IO.Path.GetExtension(imgFileName));
-            _menu.ImageList.Add(menuImage);
-            gridView1.RefreshData();
+            //menuImage.Index = _menu.ImageList.Count+1;
+            //menuImage.SetIamge(image, System.IO.Path.GetExtension(imgFileName));
+            //_menu.ImageList.Add(menuImage);
+            //gridView1.RefreshData();
 
             
         }

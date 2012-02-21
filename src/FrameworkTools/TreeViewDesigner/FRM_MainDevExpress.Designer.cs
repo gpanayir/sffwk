@@ -53,7 +53,7 @@
             this.colSelectedImage = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colSelectedImageIndex = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.menuItemSurveyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.lblFileLoad = new System.Windows.Forms.Label();
             this.fwkMessageView_Warning = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.fwkMessageView_Error = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
@@ -235,10 +235,12 @@
             this.treeList1.OptionsView.ShowColumns = false;
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemImageEdit1});
+            this.treeList1.SelectImageList = this.imageList2;
             this.treeList1.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.ShowAlways;
-            this.treeList1.Size = new System.Drawing.Size(621, 642);
-            this.treeList1.StateImageList = this.imageList1;
+            this.treeList1.Size = new System.Drawing.Size(481, 642);
+            this.treeList1.StateImageList = this.imageList2;
             this.treeList1.TabIndex = 43;
+            this.treeList1.UseWaitCursor = true;
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             // 
             // colDisplayName
@@ -257,7 +259,7 @@
             this.colTypeImage.Caption = "TypeImage";
             this.colTypeImage.ColumnEdit = this.repositoryItemImageEdit1;
             this.colTypeImage.FieldName = "TypeImage";
-            this.colTypeImage.MinWidth = 33;
+            this.colTypeImage.MinWidth = 49;
             this.colTypeImage.Name = "colTypeImage";
             this.colTypeImage.OptionsColumn.AllowMove = false;
             this.colTypeImage.OptionsColumn.AllowSize = false;
@@ -319,14 +321,18 @@
             // 
             // menuItemSurveyBindingSource
             // 
-            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.MenuItem);
+            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.UI.Controls.Menu.Tree.MenuItem);
             // 
-            // imageList1
+            // imageList2
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Magenta;
-            this.imageList1.Images.SetKeyName(0, "");
-            this.imageList1.Images.SetKeyName(1, "");
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList2.Images.SetKeyName(0, "");
+            this.imageList2.Images.SetKeyName(1, "");
+            this.imageList2.Images.SetKeyName(2, "Favorites (Remove).png");
+            this.imageList2.Images.SetKeyName(3, "Folder (Add).png");
+            this.imageList2.Images.SetKeyName(4, "Document (Add).png");
+            this.imageList2.Images.SetKeyName(5, "Clipboard.png");
             // 
             // lblFileLoad
             // 
@@ -366,6 +372,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.menuItemEditorSurvey1.CategoryChange = false;
+            this.menuItemEditorSurvey1.imageComboBoxEdit1_EditValueChanged = null;
             this.menuItemEditorSurvey1.Location = new System.Drawing.Point(644, 75);
             this.menuItemEditorSurvey1.Margin = new System.Windows.Forms.Padding(5);
             this.menuItemEditorSurvey1.MenuItem = null;
@@ -389,7 +396,7 @@
             // btnAddCategory1
             // 
             this.btnAddCategory1.Image = global::Fwk.Tools.Properties.Resources.add_16;
-            this.btnAddCategory1.Location = new System.Drawing.Point(472, 41);
+            this.btnAddCategory1.Location = new System.Drawing.Point(351, 2);
             this.btnAddCategory1.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddCategory1.Name = "btnAddCategory1";
             this.btnAddCategory1.Size = new System.Drawing.Size(154, 28);
@@ -456,6 +463,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repositoryItemImageEdit1;
         private DevExpress.XtraEditors.SimpleButton btnMenuPreview;
         private DevExpress.XtraEditors.SimpleButton btnAddCategory1;
-        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ImageList imageList2;
     }
 }

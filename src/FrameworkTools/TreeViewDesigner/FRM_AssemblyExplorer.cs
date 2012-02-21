@@ -11,6 +11,7 @@ using System.Collections;
 using Fwk.AssemblyExplorer;
 using Fwk.Bases;
 using Fwk.HelperFunctions;
+using Fwk.UI.Controls.Menu.Tree;
 
 
 
@@ -22,14 +23,14 @@ namespace Fwk.Tools
         #region Members
 
         private String _BaseClassNameFilter;
-        private MenuItem _SelectedPelsoft = null;
+        private Fwk.UI.Controls.Menu.Tree.MenuItem _SelectedPelsoft = null;
 
         #endregion
 
         #region Properties
 
         [Browsable(false)]
-        public MenuItem SelectedPelsoft
+        public Fwk.UI.Controls.Menu.Tree.MenuItem SelectedPelsoft
         {
             get { return _SelectedPelsoft; }
             set { _SelectedPelsoft = value; }
@@ -60,7 +61,7 @@ namespace Fwk.Tools
      
             if (wSchemaDialog.ShowDialog() == DialogResult.OK)
             {
-                MenuItem wMenuItem = new MenuItem();
+                Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItem = new Fwk.UI.Controls.Menu.Tree.MenuItem();
                 Assembly wAssembly = new Assembly(wSchemaDialog.FileName);
                 lblFileName.Text = wSchemaDialog.FileName;
 
@@ -70,7 +71,7 @@ namespace Fwk.Tools
                     {
                         if (wAssemblyClass.BaseType.Name.Contains(_BaseClassNameFilter))
                         {
-                            wMenuItem = new MenuItem();
+                            wMenuItem = new Fwk.UI.Controls.Menu.Tree.MenuItem();
                             wMenuItem.AssemblyInfo = wAssemblyClass.FullyQualifiedName;
                             
                             wMenuItemList.Add(wMenuItem);
@@ -85,7 +86,7 @@ namespace Fwk.Tools
         private void listBox1_Click(object sender, EventArgs e)
         {
             if (((System.Windows.Forms.ListBox)(sender)).Text != String.Empty)
-                _SelectedPelsoft = (MenuItem)((System.Windows.Forms.ListBox)(sender)).SelectedItem;
+                _SelectedPelsoft = (Fwk.UI.Controls.Menu.Tree.MenuItem)((System.Windows.Forms.ListBox)(sender)).SelectedItem;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

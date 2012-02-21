@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Fwk.HelperFunctions;
 using DevExpress.XtraTreeList.Nodes;
 using Fwk.Caching;
+using Fwk.UI.Controls.Menu.Tree;
 
 
 namespace Fwk.Tools.SurveyMenu
@@ -22,7 +23,7 @@ namespace Fwk.Tools.SurveyMenu
         TreeMenu menu;
         //MenuItemList menu.ItemList;
         string _CurrentFullFileName;
-        MenuItem _MenuItemSelected;
+        Fwk.UI.Controls.Menu.Tree.MenuItem _MenuItemSelected;
 
         #endregion
 
@@ -54,15 +55,18 @@ namespace Fwk.Tools.SurveyMenu
             {
                 
                 menu = TreeListEngineDevExpress.LoadMenuFromFile(_CurrentFullFileName);
-                RefreshImageList();
-
+             
+             
                 this.menuItemSurveyBindingSource.DataSource = menu.ItemList  ;
-                RefreshImageList();
+       
                 treeList1.ExpandAll();
                 treeList1.RefreshDataSource();
                 lblFileLoad.Text = String.Concat("File ", _CurrentFullFileName);
                 storage.StorageObject.File = _CurrentFullFileName;
                 storage.Save();
+
+                menuItemEditorSurvey1.imgList = this.imageList2;
+                menuItemEditorSurvey1.PopulateImage(); 
             }
             catch (InvalidOperationException)
             {
@@ -128,7 +132,7 @@ namespace Fwk.Tools.SurveyMenu
         /// <author>moviedo</author>
         private void AddMenuItem()
         {
-     
+
 
             if (menu.ItemList == null)
                 return;
@@ -144,16 +148,18 @@ namespace Fwk.Tools.SurveyMenu
                 return;
             }
 
-            MenuItem wMenuItemNew = new MenuItem();
+            Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemNew = new Fwk.UI.Controls.Menu.Tree.MenuItem();
             wMenuItemNew.ParentID = _MenuItemSelected.ID;
             wMenuItemNew.Category = _MenuItemSelected.Category;
 
-            using (FRM_EditSurvey wFrm = new FRM_EditSurvey(menu, wMenuItemNew, Action.New))
+
+            using (FRM_EditMenu wFrm = new FRM_EditMenu(menu, wMenuItemNew, Action.New))
             {
+                wFrm.ImageList = this.imageList2;
                 if (wFrm.ShowDialog() == DialogResult.OK)
                 {
                     if (_MenuItemSelected != null)
-                        wMenuItemNew.ID = menu.ItemList.Count + 1;
+                        wMenuItemNew.ID = menu.GetNewID();
 
                     menu.ItemList.Add(wMenuItemNew);
                     treeList1.RefreshDataSource();
@@ -180,7 +186,7 @@ namespace Fwk.Tools.SurveyMenu
                 return;
             }
             //Load del Pelsoftulario de edicion de menues
-            using (FRM_EditSurvey frm = new FRM_EditSurvey(menu, _MenuItemSelected, Action.Edit))
+            using (FRM_EditMenu frm = new FRM_EditMenu(menu, _MenuItemSelected, Action.Edit))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
@@ -189,7 +195,7 @@ namespace Fwk.Tools.SurveyMenu
                     //Si la categoria cambio. hay que cambiar la categoria de los hijos inmediatos que no son categorias .-
                     if (frm.CategoryChange)
                     {
-                        foreach (MenuItem menuChild in menu.ItemList)
+                        foreach (Fwk.UI.Controls.Menu.Tree.MenuItem menuChild in menu.ItemList)
                         {
                             if (menuChild.ParentID == _MenuItemSelected.ID && !menuChild.IsCategory)
                                 menuChild.Category = _MenuItemSelected.Category;
@@ -205,7 +211,7 @@ namespace Fwk.Tools.SurveyMenu
         /// 
         /// </summary>
         /// <param name="menuItem"></param>
-        private void AddCategory(MenuItem menuItem)
+        private void AddCategory(Fwk.UI.Controls.Menu.Tree.MenuItem menuItem)
         {
             if (menu.ItemList == null)
                 return;
@@ -219,7 +225,7 @@ namespace Fwk.Tools.SurveyMenu
                 }
             }
 
-            MenuItem wMenuItemNewCategory = new MenuItem();
+            Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemNewCategory = new Fwk.UI.Controls.Menu.Tree.MenuItem();
 
             if (menuItem == null)
                 wMenuItemNewCategory.ParentID = 0;
@@ -239,10 +245,11 @@ namespace Fwk.Tools.SurveyMenu
 
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
-            _MenuItemSelected = (MenuItem)treeList1.GetDataRecordByNode(e.Node);
+            _MenuItemSelected = (Fwk.UI.Controls.Menu.Tree.MenuItem)treeList1.GetDataRecordByNode(e.Node);
 
             if (_MenuItemSelected != null)
             {
+                //menuItemEditorSurvey1.imgList= this.imageList1;
                 menuItemEditorSurvey1.ShowAction = Action.Query;
                 menuItemEditorSurvey1.MenuItem = _MenuItemSelected;
                 menuItemEditorSurvey1.TreeMenu = menu;
@@ -254,7 +261,7 @@ namespace Fwk.Tools.SurveyMenu
         {
             if (pNode.ParentNode != null)
             {
-                MenuItem wMenuItemSurvey = (MenuItem)treeList1.GetDataRecordByNode(pNode.ParentNode);
+                Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemSurvey = (Fwk.UI.Controls.Menu.Tree.MenuItem)treeList1.GetDataRecordByNode(pNode.ParentNode);
                 if (wMenuItemSurvey != null)
                 {
                     if (!string.IsNullOrEmpty(wMenuItemSurvey.Category))
@@ -294,7 +301,7 @@ namespace Fwk.Tools.SurveyMenu
 
         private void btnMenuPreview_Click(object sender, EventArgs e)
         {
-            using (FRM_TestMenu frm = new FRM_TestMenu(_CurrentFullFileName))
+            using (FRM_TestMenu frm = new FRM_TestMenu(_CurrentFullFileName,this.imageList2))
             {
                 frm.ShowDialog();
             }
@@ -316,22 +323,9 @@ namespace Fwk.Tools.SurveyMenu
             }
         }
 
-        void AddImageToImageList()
-        {
-            //imageList1.Images.Add();
-        }
+      
 
-        void RefreshImageList()
-        {
-            imageList1.Images.Clear();
-            
-            foreach (MenuImage mi in menu.ImageList.OrderBy<MenuImage, int>(p => p.Index))
-            {
-                imageList1.Images.Add(mi.Image);
-            }
-
-          
-        }
+     
     }
 
     [Serializable]

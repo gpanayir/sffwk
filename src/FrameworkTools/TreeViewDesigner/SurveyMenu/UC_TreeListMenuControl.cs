@@ -6,12 +6,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Fwk.UI.Controls.Menu.Tree;
 
 
 
 namespace Fwk.Tools.SurveyMenu
 {
-    public delegate void MenuItemClickHandler(MenuItem pMenuItemSelected, MenuEventArgs Args);
+    public delegate void MenuItemClickHandler(Fwk.UI.Controls.Menu.Tree.MenuItem pMenuItemSelected, MenuEventArgs Args);
 
     [DefaultEvent("MenuItemClick")]
     public partial class UC_TreeListMenuControl : UserControl
@@ -20,24 +21,17 @@ namespace Fwk.Tools.SurveyMenu
         #region Declarations
         bool _viewImage = true;
         bool _OnInitLoad = true;
-        MenuItem _MenuItemSelected = null;
+        Fwk.UI.Controls.Menu.Tree.MenuItem _MenuItemSelected = null;
         #endregion
 
         #region Properties & Events
         [Browsable(false)]
-        public MenuItem MenuItemSelected
+        public Fwk.UI.Controls.Menu.Tree.MenuItem MenuItemSelected
         {
             get { return _MenuItemSelected; }
             set { _MenuItemSelected = value; }
         }
-        //MenuItemSurveyList _MenuItemSurveyList = null;
-
-        //[Browsable(false)]
-        //public MenuItemSurveyList MenuItemSurveyList
-        //{
-        //    get { return _MenuItemSurveyList; }
-        //    set { _MenuItemSurveyList = value; }
-        //}
+   
 
         public String DisplayTextCaption
         {
@@ -80,15 +74,16 @@ namespace Fwk.Tools.SurveyMenu
         #endregion
 
 
-        public void Populate(string pFullFileName)
+        public void Populate(string pFullFileName,ImageList imgList)
         {
+            this.imageList1 = imgList;
             TreeMenu menu = TreeListEngineDevExpress.LoadMenuFromFile(pFullFileName);
             this.menuItemSurveyBindingSource.DataSource = menu.ItemList;
 
-            foreach (MenuImage mi in menu.ImageList.OrderBy<MenuImage, int>(p => p.Index))
-            {
-                imageList1.Images.Add(mi.Image);
-            }
+            //foreach (MenuImage mi in menu.ImageList.OrderBy<MenuImage, int>(p => p.Index))
+            //{
+            //    imageList1.Images.Add(mi.Image);
+            //}
             treeList1.ExpandAll();
             treeList1.RefreshDataSource();
         }
@@ -114,7 +109,7 @@ namespace Fwk.Tools.SurveyMenu
             if (e.Node.TreeList.FocusedColumn.Name == "colTypeImage" && _viewImage == true) 
                 return;
 
-            _MenuItemSelected = (MenuItem)treeList1.GetDataRecordByNode(e.Node);
+            _MenuItemSelected = (Fwk.UI.Controls.Menu.Tree.MenuItem)treeList1.GetDataRecordByNode(e.Node);
 
             if (_MenuItemSelected != null)
             {

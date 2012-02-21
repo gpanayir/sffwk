@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Fwk.HelperFunctions;
+using DevExpress.XtraEditors.Controls;
+using Fwk.UI.Controls.Menu.Tree;
 
 
 namespace Fwk.Tools.SurveyMenu
@@ -15,7 +17,8 @@ namespace Fwk.Tools.SurveyMenu
     public partial class UC_MenuItemEditor : UserControl
     {
         #region Declarations
-
+        public ImageList imgList;
+ 
         bool _CategoryChange = false;
         [Browsable(false)]
         public bool CategoryChange
@@ -53,9 +56,9 @@ namespace Fwk.Tools.SurveyMenu
             get { return menu; }
             set { menu = value; }
         }
-        MenuItem _MenuItemSelected;
+        Fwk.UI.Controls.Menu.Tree.MenuItem _MenuItemSelected;
         [Browsable(false)]
-        public MenuItem MenuItem
+        public Fwk.UI.Controls.Menu.Tree.MenuItem MenuItem
         {
             get { return _MenuItemSelected; }
             set { _MenuItemSelected = value; }
@@ -76,14 +79,10 @@ namespace Fwk.Tools.SurveyMenu
         /// </summary>
         public void FillMenuItem()
         {
-            if (this.pictureBoxImage.Image != null)
-                _MenuItemSelected.NodeImageIndex = m_Image_index;
-            
-            if (this.pictureBoxImageSelected.Image != null )
-                _MenuItemSelected.NodeSelectedImageIndex =  m_Image_Sel_index;
 
-            //if (this.pictureBoxImage.Image != null)
-            //    _MenuItemSelected.NodeImageIndex = _NodeImageIndex;
+            _MenuItemSelected.SelectedImageIndex = m_Image_Sel_index;
+
+            _MenuItemSelected.ImageIndex = m_Image_index;
 
             _MenuItemSelected.AssemblyInfo = this.txtAssembly.Text;
             _MenuItemSelected.DisplayName = this.txtDisplayName.Text;
@@ -91,6 +90,8 @@ namespace Fwk.Tools.SurveyMenu
             _MenuItemSelected.ToolTipInfo = txtToolTipInfo.Text;
             _MenuItemSelected.Enabled = this.checkBoxEnabled.Enabled;
             //_MenuItemSelected.Category = txtCategory.Text;
+
+       
         }
 
 
@@ -103,27 +104,56 @@ namespace Fwk.Tools.SurveyMenu
 
             this.txtDisplayName.Text = _MenuItemSelected.DisplayName;
             this.txtAssembly.Text = _MenuItemSelected.AssemblyInfo;
-           
+
             this.txtToolTipInfo.Text = _MenuItemSelected.ToolTipInfo;
             this.checkBoxEnabled.Checked = _MenuItemSelected.Enabled;
             this.txtCategory.Text = _MenuItemSelected.Category;
 
 
 
-            if (_MenuItemSelected.NodeSelectedImage != null)
-                this.pictureBoxImageSelected.Image = TypeFunctions.ConvertByteArrayToImage(_MenuItemSelected.NodeSelectedImage);
-            else
-                pictureBoxImageSelected.Image = null;
+            //if (_MenuItemSelected.NodeSelectedImage != null)
+            //    this.pictureBoxImageSelected.Image = TypeFunctions.ConvertByteArrayToImage(_MenuItemSelected.NodeSelectedImage);
+            //else
+            //    pictureBoxImageSelected.Image = null;
 
-            if (_MenuItemSelected.NodeImage != null)
-                this.pictureBoxImage.Image = TypeFunctions.ConvertByteArrayToImage(_MenuItemSelected.NodeImage);
-            else
-                pictureBoxImage.Image = null;
+            //if (_MenuItemSelected.NodeImage != null)
+            //    this.pictureBoxImage.Image = TypeFunctions.ConvertByteArrayToImage(_MenuItemSelected.NodeImage);
+            //else
+            //    pictureBoxImage.Image = null;
+          
 
 
             SetShowAction();
         }
+        MenuImageList menuImageList;
+        public void PopulateImage()
+        {
+            int i = 0;
+            menuImageList = new MenuImageList();
+            MenuImage menuImage = null;
+            foreach (Image img in imgList.Images)
+            {
+                menuImage = new MenuImage();
+                menuImage.Index = i;
+                menuImage.ImageBytes = Fwk.HelperFunctions.TypeFunctions.ConvertImageToByteArray(img, System.Drawing.Imaging.ImageFormat.Png);
+                i++;
+                menuImageList.Add(menuImage);
+            }
 
+
+            MenuImage m = menuImageList.Get(_MenuItemSelected.ImageIndex.Value);
+            if (m != null)
+            {
+                m_Image_index = m.Index;
+                pictureBoxImage.Image = m.Image;
+            }
+             m = menuImageList.Get(_MenuItemSelected.SelectedImageIndex.Value);
+             if (m != null)
+             {
+                 m_Image_Sel_index = m.Index;
+                 pictureBoxImageSelected.Image = m.Image;
+             }
+        }
         private void btnAssemblyinfo_Click(object sender, EventArgs e)
         {
             using (FRM_AssemblyExplorer frm = new FRM_AssemblyExplorer("QuestionControlBase"))
@@ -156,18 +186,10 @@ namespace Fwk.Tools.SurveyMenu
         private void SelImage(PictureBox pPictureBox, ref int? index)
         {
 
-            //if (_MenuItemSelected == null) return ;
-            //string imgFile = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(FileFunctions.OpenFilterEnums.OpenImageFilter);
-            //if (String.IsNullOrEmpty(imgFile)) return ; 
-
-
-
-            //pPictureBox.Image = new Bitmap(imgFile);
-            //pImage_Extension  = System.IO.Path.GetExtension(imgFile);
-
+          
             using (frmImageList frm = new frmImageList())
             {
-                frm.Populate(menu);
+                frm.Populate(menuImageList);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                    pPictureBox.Image = frm.SelectedImage.Image;
@@ -190,8 +212,8 @@ namespace Fwk.Tools.SurveyMenu
 
             //txtCategory.Enabled = pEnable && _MenuItemSelected.IsCategory;
             checkBoxEnabled.Enabled = pEnable;
-            btnImage.Enabled = pEnable;
-            btnSelectedImage.Enabled = pEnable;
+            btn_ImageIndex.Enabled = pEnable;
+            btn_SelectedImageIndex.Enabled = pEnable;
             btnAssemblyinfo.Enabled = pEnable;
 
             btnSelImageType.Enabled = pEnable;
@@ -269,5 +291,13 @@ namespace Fwk.Tools.SurveyMenu
             }
  
         }
+
+        public EventHandler imageComboBoxEdit1_EditValueChanged { get; set; }
+
+
+
+       
+
+       
     }
 }

@@ -15,11 +15,11 @@ namespace Fwk.Tools.SurveyMenu
 
         #region Constructor
 
-        public FRM_TestMenu(string file)
+        public FRM_TestMenu(string file,ImageList imgList)
         {
             InitializeComponent();
 
-            treeListMenuControl1.Populate(file);
+            treeListMenuControl1.Populate(file,imgList);
         }
 
         #endregion

@@ -60,7 +60,7 @@
             // 
             // menuItemListBindingSource
             // 
-            this.menuItemListBindingSource.DataSource = typeof(Fwk.Tools.MenuItemList);
+            this.menuItemListBindingSource.DataSource = typeof(Fwk.UI.Controls.Menu.Tree.MenuItemList);
             // 
             // btnSearAssemblie
             // 

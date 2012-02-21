@@ -41,11 +41,11 @@
             this.colImage = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colSelectedImage = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colSelectedImageIndex = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuItemSurveyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.btnchangeImageView = new DevExpress.XtraEditors.SimpleButton();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemSurveyBindingSource)).BeginInit();
@@ -74,6 +74,7 @@
             this.colImage,
             this.colSelectedImage,
             this.colSelectedImageIndex});
+            this.treeList1.ColumnsImageList = this.imageList1;
             this.treeList1.DataSource = this.menuItemSurveyBindingSource;
             this.treeList1.FixedLineWidth = 1;
             this.treeList1.Location = new System.Drawing.Point(4, 30);
@@ -103,8 +104,8 @@
             this.colDisplayName.OptionsColumn.AllowSort = false;
             this.colDisplayName.OptionsColumn.ReadOnly = true;
             this.colDisplayName.Visible = true;
-            this.colDisplayName.VisibleIndex = 0;
-            this.colDisplayName.Width = 191;
+            this.colDisplayName.VisibleIndex = 1;
+            this.colDisplayName.Width = 316;
             // 
             // colTypeImage
             // 
@@ -114,8 +115,8 @@
             this.colTypeImage.Name = "colTypeImage";
             this.colTypeImage.OptionsColumn.ReadOnly = true;
             this.colTypeImage.Visible = true;
-            this.colTypeImage.VisibleIndex = 1;
-            this.colTypeImage.Width = 202;
+            this.colTypeImage.VisibleIndex = 0;
+            this.colTypeImage.Width = 77;
             // 
             // repositoryItemImageEdit1
             // 
@@ -168,9 +169,16 @@
             this.colSelectedImageIndex.Name = "colSelectedImageIndex";
             this.colSelectedImageIndex.Width = 50;
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList1.Images.SetKeyName(0, "");
+            this.imageList1.Images.SetKeyName(1, "");
+            // 
             // menuItemSurveyBindingSource
             // 
-            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.Tools.MenuItem);
+            this.menuItemSurveyBindingSource.DataSource = typeof(Fwk.UI.Controls.Menu.Tree.MenuItem);
             // 
             // repositoryItemPictureEdit1
             // 
@@ -186,13 +194,6 @@
             this.btnchangeImageView.TabIndex = 45;
             this.btnchangeImageView.Text = "Ver imagenes";
             this.btnchangeImageView.Click += new System.EventHandler(this.btnchangeImageView_Click);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Magenta;
-            this.imageList1.Images.SetKeyName(0, "");
-            this.imageList1.Images.SetKeyName(1, "");
             // 
             // UC_TreeListMenuControl
             // 
