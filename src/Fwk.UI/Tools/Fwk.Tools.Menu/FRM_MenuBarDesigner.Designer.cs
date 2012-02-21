@@ -29,19 +29,20 @@ namespace Fwk.Tools.Menu
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_MenuBarDesigner));
             this.grpEditionContainer = new DevExpress.XtraEditors.GroupControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btnMoveUp = new DevExpress.XtraEditors.SimpleButton();
             this.btnMoveDown = new DevExpress.XtraEditors.SimpleButton();
-            this.menuFileBindingSource = new System.Windows.Forms.BindingSource();
+            this.menuFileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblFileRemoved = new System.Windows.Forms.Label();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.lstFiles = new DevExpress.XtraEditors.ListBoxControl();
@@ -318,7 +319,7 @@ namespace Fwk.Tools.Menu
             this.toolStripSeparator1});
             this.toolStripAppClientConfig.Location = new System.Drawing.Point(7, 4);
             this.toolStripAppClientConfig.Name = "toolStripAppClientConfig";
-            this.toolStripAppClientConfig.Size = new System.Drawing.Size(170, 25);
+            this.toolStripAppClientConfig.Size = new System.Drawing.Size(139, 25);
             this.toolStripAppClientConfig.TabIndex = 28;
             this.toolStripAppClientConfig.Text = "toolStrip1";
             // 
