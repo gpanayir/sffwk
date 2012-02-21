@@ -1,4 +1,4 @@
-﻿namespace Fwk.Tools.SurveyMenu
+﻿namespace Fwk.Tools.TreeView
 {
     partial class UC_MenuItemEditor
     {

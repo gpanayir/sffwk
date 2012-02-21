@@ -11,7 +11,7 @@ using DevExpress.XtraEditors.Controls;
 using Fwk.UI.Controls.Menu.Tree;
 
 
-namespace Fwk.Tools.SurveyMenu
+namespace Fwk.Tools.TreeView
 {
 
     public partial class UC_MenuItemEditor : UserControl

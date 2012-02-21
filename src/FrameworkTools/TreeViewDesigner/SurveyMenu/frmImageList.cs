@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using Fwk.HelperFunctions;
 using Fwk.UI.Controls.Menu.Tree;
 
-namespace Fwk.Tools.SurveyMenu
+namespace Fwk.Tools.TreeView
 {
     public partial class frmImageList : Form
     {

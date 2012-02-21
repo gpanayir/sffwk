@@ -1,4 +1,4 @@
-﻿namespace Fwk.Tools.SurveyMenu
+﻿namespace Fwk.Tools.TreeView
 {
     partial class FRM_TestMenu
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.treeListMenuControl1 = new Fwk.Tools.SurveyMenu.UC_TreeListMenuControl();
+            this.treeListMenuControl1 = new Fwk.Tools.TreeView.UC_TreeListMenuControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.SuspendLayout();
             // 

@@ -12,7 +12,7 @@ using Fwk.Caching;
 using Fwk.UI.Controls.Menu.Tree;
 
 
-namespace Fwk.Tools.SurveyMenu
+namespace Fwk.Tools.TreeView
 {
 
     public partial class FRM_MainDevExpress : Form
@@ -53,20 +53,18 @@ namespace Fwk.Tools.SurveyMenu
 
             try
             {
-                
+
                 menu = TreeListEngineDevExpress.LoadMenuFromFile(_CurrentFullFileName);
-             
-             
-                this.menuItemSurveyBindingSource.DataSource = menu.ItemList  ;
-       
+                this.menuItemSurveyBindingSource.DataSource = menu.ItemList;
                 treeList1.ExpandAll();
                 treeList1.RefreshDataSource();
+
                 lblFileLoad.Text = String.Concat("File ", _CurrentFullFileName);
                 storage.StorageObject.File = _CurrentFullFileName;
                 storage.Save();
 
                 menuItemEditorSurvey1.imgList = this.imageList2;
-                menuItemEditorSurvey1.PopulateImage(); 
+                menuItemEditorSurvey1.PopulateImage();
             }
             catch (InvalidOperationException)
             {
@@ -78,6 +76,17 @@ namespace Fwk.Tools.SurveyMenu
             }
         }
 
+        public override void Refresh()
+        {
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            this.treeList1.StateImageList = this.imageList2;
+            this.treeList1.SelectImageList = this.imageList2;
+
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+    
+            //treeList1.Refresh();
+            base.Refresh();
+        }
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(_CurrentFullFileName))
@@ -321,6 +330,12 @@ namespace Fwk.Tools.SurveyMenu
                     LoadMenuFile();
                 }
             }
+            Refresh();
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+           
         }
 
       

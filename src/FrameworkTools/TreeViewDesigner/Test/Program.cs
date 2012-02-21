@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Fwk.Tools.TreeView;
 
-namespace Fwk.Tools
+namespace Test
 {
     static class Program
     {
@@ -16,7 +15,7 @@ namespace Fwk.Tools
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FRM_MainDevExpress());
+            Application.Run(new Form1());
         }
     }
 }

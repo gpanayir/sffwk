@@ -1,4 +1,4 @@
-﻿namespace Fwk.Tools.SurveyMenu
+﻿namespace Fwk.Tools.TreeView
 {
     partial class FRM_MainDevExpress
     {
@@ -57,9 +57,10 @@
             this.lblFileLoad = new System.Windows.Forms.Label();
             this.fwkMessageView_Warning = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.fwkMessageView_Error = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
-            this.menuItemEditorSurvey1 = new Fwk.Tools.SurveyMenu.UC_MenuItemEditor();
+            this.menuItemEditorSurvey1 = new Fwk.Tools.TreeView.UC_MenuItemEditor();
             this.btnMenuPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddCategory1 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.toolStripAppClientConfig.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
@@ -240,7 +241,6 @@
             this.treeList1.Size = new System.Drawing.Size(481, 642);
             this.treeList1.StateImageList = this.imageList2;
             this.treeList1.TabIndex = 43;
-            this.treeList1.UseWaitCursor = true;
             this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             // 
             // colDisplayName
@@ -327,12 +327,7 @@
             // 
             this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
             this.imageList2.TransparentColor = System.Drawing.Color.Magenta;
-            this.imageList2.Images.SetKeyName(0, "");
-            this.imageList2.Images.SetKeyName(1, "");
-            this.imageList2.Images.SetKeyName(2, "Favorites (Remove).png");
-            this.imageList2.Images.SetKeyName(3, "Folder (Add).png");
-            this.imageList2.Images.SetKeyName(4, "Document (Add).png");
-            this.imageList2.Images.SetKeyName(5, "Clipboard.png");
+            this.imageList2.Images.SetKeyName(0, "Clipboard.png");
             // 
             // lblFileLoad
             // 
@@ -404,11 +399,23 @@
             this.btnAddCategory1.Text = "Add root";
             this.btnAddCategory1.Click += new System.EventHandler(this.btnAddCategory1_Click);
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Image = global::Fwk.Tools.Properties.Resources.add_16;
+            this.simpleButton1.Location = new System.Drawing.Point(494, 75);
+            this.simpleButton1.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(154, 28);
+            this.simpleButton1.TabIndex = 49;
+            this.simpleButton1.Text = "Add root";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // FRM_MainDevExpress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1499, 767);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.btnAddCategory1);
             this.Controls.Add(this.btnMenuPreview);
             this.Controls.Add(this.menuItemEditorSurvey1);
@@ -463,6 +470,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemImageEdit repositoryItemImageEdit1;
         private DevExpress.XtraEditors.SimpleButton btnMenuPreview;
         private DevExpress.XtraEditors.SimpleButton btnAddCategory1;
-        private System.Windows.Forms.ImageList imageList2;
+        public System.Windows.Forms.ImageList imageList2;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

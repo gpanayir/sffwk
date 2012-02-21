@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Fwk.UI.Controls.Menu.Tree;
 
 
-namespace Fwk.Tools.SurveyMenu
+namespace Fwk.Tools.TreeView
 {
     public partial class FRM_EditMenu : Form
     {

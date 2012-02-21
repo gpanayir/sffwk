@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 
-namespace Fwk.Tools.SurveyMenu
+namespace Fwk.Tools.TreeView
 {
     public partial class FRM_TestMenu : Form
     {

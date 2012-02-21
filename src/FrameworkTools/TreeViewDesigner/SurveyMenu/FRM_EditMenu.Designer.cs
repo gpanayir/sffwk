@@ -1,4 +1,4 @@
-﻿namespace Fwk.Tools.SurveyMenu
+﻿namespace Fwk.Tools.TreeView
 {
     partial class FRM_EditMenu
     {
@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_EditMenu));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.menuItemEditorSurvey1 = new Fwk.Tools.SurveyMenu.UC_MenuItemEditor();
+            this.menuItemEditorSurvey1 = new Fwk.Tools.TreeView.UC_MenuItemEditor();
             this.SuspendLayout();
             // 
             // btnCancel

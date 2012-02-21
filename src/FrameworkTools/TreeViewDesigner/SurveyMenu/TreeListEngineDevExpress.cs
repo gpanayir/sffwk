@@ -8,7 +8,7 @@ using Fwk.Bases;
 using System.Windows.Forms;
 using Fwk.UI.Controls.Menu.Tree;
 
-namespace Fwk.Tools.SurveyMenu
+namespace Fwk.Tools.TreeView
 {
     public class TreeListEngineDevExpress
     {
@@ -17,7 +17,7 @@ namespace Fwk.Tools.SurveyMenu
         {
             //Ahora se lee de un archivo de configuración
             //string wFileName = System.IO.Path.Combine(Application.StartupPath, "QuestionSurveyMenu.xml");
-            //string wFileName = Fwk.Configuration.ConfigurationManager.GetProperty("ApplicationMenu", "QuestionSurveyMenu").ToString();
+            //string wFileName = Fwk.Configuration.ConfigurationManager.GetProperty("ApplicationMenu", "QuestionTreeView").ToString();
 
             //TreeListEngineDevExpress.LoadMenuFromFile(wFileName);
         }

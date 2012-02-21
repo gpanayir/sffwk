@@ -10,7 +10,7 @@ using Fwk.UI.Controls.Menu.Tree;
 
 
 
-namespace Fwk.Tools.SurveyMenu
+namespace Fwk.Tools.TreeView
 {
     public delegate void MenuItemClickHandler(Fwk.UI.Controls.Menu.Tree.MenuItem pMenuItemSelected, MenuEventArgs Args);
 
@@ -84,17 +84,17 @@ namespace Fwk.Tools.SurveyMenu
             //{
             //    imageList1.Images.Add(mi.Image);
             //}
+
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            this.treeList1.StateImageList = this.imageList1;
+            this.treeList1.SelectImageList = this.imageList1;
+
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             treeList1.ExpandAll();
             treeList1.RefreshDataSource();
         }
 
-        //public void Populate()
-        //{
-        //    this.menuItemSurveyBindingSource.DataSource = TreeListEngineDevExpress.MenuItemSurveyList;
-        //    treeList1.ExpandAll();
-        //    treeList1.RefreshDataSource();
-        //}
-
+       
         private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
             if (_OnInitLoad) 
@@ -122,6 +122,8 @@ namespace Fwk.Tools.SurveyMenu
         private void TreeListMenuControl_Load(object sender, EventArgs e)
         {
             _OnInitLoad = false;
+        
+    
         }
 
         /// <summary>
