@@ -50,15 +50,16 @@ namespace Fwk.Tools.TreeView
         {
             if (String.IsNullOrEmpty(_CurrentFullFileName))
                 return;
-
+            menuItemEditorSurvey1.imgList = this.imageList2;
+            menuItemEditorSurvey1.PopulateImage();
             try
             {
 
                 menu = TreeListEngineDevExpress.LoadMenuFromFile(_CurrentFullFileName);
                 this.menuItemSurveyBindingSource.DataSource = menu.ItemList;
-            
 
-            
+
+
             }
             catch (InvalidOperationException)
             {
@@ -67,15 +68,14 @@ namespace Fwk.Tools.TreeView
             catch (Exception ex2)
             {
                 fwkMessageView_Error.Show(ex2);
-            }   
+            }
             treeList1.ExpandAll();
-                treeList1.RefreshDataSource();
-                lblFileLoad.Text = String.Concat("File ", _CurrentFullFileName);
-                storage.StorageObject.File = _CurrentFullFileName;
-                storage.Save();
+            treeList1.RefreshDataSource();
+            lblFileLoad.Text = String.Concat("File ", _CurrentFullFileName);
+            storage.StorageObject.File = _CurrentFullFileName;
+            storage.Save();
 
-                menuItemEditorSurvey1.imgList = this.imageList2;
-                menuItemEditorSurvey1.PopulateImage();
+           
         }
 
         public override void Refresh()
@@ -262,15 +262,13 @@ namespace Fwk.Tools.TreeView
 
             if (_MenuItemSelected != null)
             {
-                if(menuItemEditorSurvey1.imgList == null)
-                menuItemEditorSurvey1.imgList= this.imageList2;
-
+              
                 
                 menuItemEditorSurvey1.ShowAction = Action.Query;
                 menuItemEditorSurvey1.MenuItem = _MenuItemSelected;
                 menuItemEditorSurvey1.TreeMenu = menu;
                 menuItemEditorSurvey1.Populate();
-                menuItemEditorSurvey1.PopulateImage();
+                
             }
         }
 

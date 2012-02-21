@@ -111,17 +111,20 @@ namespace Fwk.Tools.TreeView
 
 
 
-            //if (_MenuItemSelected.NodeSelectedImage != null)
-            //    this.pictureBoxImageSelected.Image = TypeFunctions.ConvertByteArrayToImage(_MenuItemSelected.NodeSelectedImage);
-            //else
-            //    pictureBoxImageSelected.Image = null;
 
-            //if (_MenuItemSelected.NodeImage != null)
-            //    this.pictureBoxImage.Image = TypeFunctions.ConvertByteArrayToImage(_MenuItemSelected.NodeImage);
-            //else
-            //    pictureBoxImage.Image = null;
-          
 
+            MenuImage m = menuImageList.Get(_MenuItemSelected.ImageIndex);
+            if (m != null)
+            {
+                m_Image_index = m.Index;
+                pictureBoxImage.Image = m.Image;
+            }
+            m = menuImageList.Get(_MenuItemSelected.SelectedImageIndex);
+            if (m != null)
+            {
+                m_Image_Sel_index = m.Index;
+                pictureBoxImageSelected.Image = m.Image;
+            }
 
             SetShowAction();
         }
@@ -141,18 +144,7 @@ namespace Fwk.Tools.TreeView
             }
 
 
-            MenuImage m = menuImageList.Get(_MenuItemSelected.ImageIndex);
-            if (m != null)
-            {
-                m_Image_index = m.Index;
-                pictureBoxImage.Image = m.Image;
-            }
-             m = menuImageList.Get(_MenuItemSelected.SelectedImageIndex);
-             if (m != null)
-             {
-                 m_Image_Sel_index = m.Index;
-                 pictureBoxImageSelected.Image = m.Image;
-             }
+         
         }
         private void btnAssemblyinfo_Click(object sender, EventArgs e)
         {
