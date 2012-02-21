@@ -98,14 +98,14 @@ namespace Fwk.UI.Controls.Menu.Tree
             get { return m_NodeSelectedImage; }
             set { m_NodeSelectedImage = value; }
         }
-        int? selectedImageIndex;
+        int? selectedImageIndex = -1;
         public int? SelectedImageIndex
         {
             get { return selectedImageIndex; }
             set { selectedImageIndex = value; }
         }
 
-        int? imageIndex;
+        int? imageIndex = -1;
         public int? ImageIndex 
         {
             get { return imageIndex; }
@@ -151,8 +151,14 @@ namespace Fwk.UI.Controls.Menu.Tree
     [XmlRoot("MenuImageList"), SerializableAttribute]
     public class MenuImageList : Entities<MenuImage>
     {
-        public MenuImage Get(int index)
-        { 
+        public MenuImage Get(int? index)
+        {
+            if (index.HasValue == false) 
+            {MenuImage mi=new MenuImage ();
+                mi.Index = -1;
+
+                return mi;
+            }
             var item = from s in this where s.Index.Equals(index) select s;
 
             return item.FirstOrDefault<MenuImage>();
