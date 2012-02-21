@@ -141,13 +141,13 @@ namespace Fwk.Tools.TreeView
             }
 
 
-            MenuImage m = menuImageList.Get(_MenuItemSelected.ImageIndex.Value);
+            MenuImage m = menuImageList.Get(_MenuItemSelected.ImageIndex);
             if (m != null)
             {
                 m_Image_index = m.Index;
                 pictureBoxImage.Image = m.Image;
             }
-             m = menuImageList.Get(_MenuItemSelected.SelectedImageIndex.Value);
+             m = menuImageList.Get(_MenuItemSelected.SelectedImageIndex);
              if (m != null)
              {
                  m_Image_Sel_index = m.Index;

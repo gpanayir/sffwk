@@ -56,15 +56,9 @@ namespace Fwk.Tools.TreeView
 
                 menu = TreeListEngineDevExpress.LoadMenuFromFile(_CurrentFullFileName);
                 this.menuItemSurveyBindingSource.DataSource = menu.ItemList;
-                treeList1.ExpandAll();
-                treeList1.RefreshDataSource();
+            
 
-                lblFileLoad.Text = String.Concat("File ", _CurrentFullFileName);
-                storage.StorageObject.File = _CurrentFullFileName;
-                storage.Save();
-
-                menuItemEditorSurvey1.imgList = this.imageList2;
-                menuItemEditorSurvey1.PopulateImage();
+            
             }
             catch (InvalidOperationException)
             {
@@ -73,7 +67,15 @@ namespace Fwk.Tools.TreeView
             catch (Exception ex2)
             {
                 fwkMessageView_Error.Show(ex2);
-            }
+            }   
+            treeList1.ExpandAll();
+                treeList1.RefreshDataSource();
+                lblFileLoad.Text = String.Concat("File ", _CurrentFullFileName);
+                storage.StorageObject.File = _CurrentFullFileName;
+                storage.Save();
+
+                menuItemEditorSurvey1.imgList = this.imageList2;
+                menuItemEditorSurvey1.PopulateImage();
         }
 
         public override void Refresh()
@@ -225,26 +227,28 @@ namespace Fwk.Tools.TreeView
             if (menu.ItemList == null)
                 return;
 
-            if (_MenuItemSelected != null)
-            {
-                if (!_MenuItemSelected.IsCategory)
-                {
-                    fwkMessageView_Warning.Show("Select any category menu to execute this action.-");
-                    return;
-                }
-            }
+            //if (_MenuItemSelected != null)
+            //{
+            //    if (!_MenuItemSelected.IsCategory)
+            //    {
+            //        fwkMessageView_Warning.Show("Select any category menu to execute this action.-");
+            //        return;
+            //    }
+            //}
 
             Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemNewCategory = new Fwk.UI.Controls.Menu.Tree.MenuItem();
 
-            if (menuItem == null)
+            //if (menuItem == null)
                 wMenuItemNewCategory.ParentID = 0;
-            else
-                wMenuItemNewCategory.ParentID = menuItem.ID;
+            //else
+            //    wMenuItemNewCategory.ParentID = menuItem.ID;
 
-            wMenuItemNewCategory.ID = menu.ItemList.Count + 1;
-            wMenuItemNewCategory.DisplayName = "Category " + (menu.ItemList.Count + 1);
+            wMenuItemNewCategory.ID = menu.GetNewID();
+            wMenuItemNewCategory.DisplayName = "Category " + (wMenuItemNewCategory.ID);
             wMenuItemNewCategory.Category = wMenuItemNewCategory.DisplayName;
             wMenuItemNewCategory.IsCategory = true;
+            wMenuItemNewCategory.ImageIndex = 0;
+            wMenuItemNewCategory.SelectedImageIndex = 0;
             menu.ItemList.Add(wMenuItemNewCategory);
 
             treeList1.RefreshDataSource();
@@ -258,11 +262,15 @@ namespace Fwk.Tools.TreeView
 
             if (_MenuItemSelected != null)
             {
-                //menuItemEditorSurvey1.imgList= this.imageList1;
+                if(menuItemEditorSurvey1.imgList == null)
+                menuItemEditorSurvey1.imgList= this.imageList2;
+
+                
                 menuItemEditorSurvey1.ShowAction = Action.Query;
                 menuItemEditorSurvey1.MenuItem = _MenuItemSelected;
                 menuItemEditorSurvey1.TreeMenu = menu;
                 menuItemEditorSurvey1.Populate();
+                menuItemEditorSurvey1.PopulateImage();
             }
         }
 
