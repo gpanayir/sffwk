@@ -55,7 +55,7 @@ namespace Fwk.UI.Forms
         /// <summary>
         /// MAntiene un unico objeto SecurityController
         /// </summary>
-        static SingletonFactory<SecurityController> _Controllerfactory = new SingletonFactory<SecurityController>();
+        //static SingletonFactory<SecurityController> _Controllerfactory = new SingletonFactory<SecurityController>();
         public static User IndentityUserInfo;
 
         #endregion

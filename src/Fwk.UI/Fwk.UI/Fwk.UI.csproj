@@ -238,6 +238,7 @@
     <Compile Include="Controls\Menu\FRM_AssemblyExplorer.designer.cs">
       <DependentUpon>FRM_AssemblyExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Menu\Tree\MenuTree.cs" />
     <Compile Include="Controls\Menu\UC_TreeNavBar.cs">
       <SubType>UserControl</SubType>
     </Compile>

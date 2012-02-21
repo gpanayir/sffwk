@@ -8,6 +8,8 @@ using System.Collections;
 using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Fwk.UI.Common
 {
@@ -280,6 +282,43 @@ namespace Fwk.UI.Common
             }
 
         }
-    
+        public static Byte[] LoadImage(Image pImage, string pExtension)
+        {
+            Byte[] imgByte = null;
+            switch (pExtension.ToLower())
+            {
+                case "":
+                case null:
+                case ".jpeg":
+                case ".jpg":
+                    {
+                        imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Jpeg);
+                        break;
+                    }
+                case ".gif":
+                    {
+                        imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Gif);
+                        break;
+                    }
+                case ".png":
+                    {
+                        imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Png);
+                        break;
+                    }
+                case ".icon":
+                    {
+                        imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Icon);
+                        break;
+                    }
+                case ".tiff":
+                    {
+                        imgByte = TypeFunctions.ConvertImageToByteArray(pImage, ImageFormat.Tiff);
+                        break;
+                    }
+            }
+
+
+            return imgByte;
+        }
     }
 }

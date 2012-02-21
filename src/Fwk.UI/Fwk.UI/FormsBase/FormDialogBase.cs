@@ -40,33 +40,7 @@ namespace Fwk.UI.Forms
 
         #endregion
 
-        #region [Abstract Methods]
-
-        /// <summary>
-        /// Método que deben sobreescribir las clases que heredan
-        /// de este formulario para guardar los datos modificados
-        /// </summary>
-        /// <returns>True: si se pudieron almacenar correctamente los datos modificados por el form (Cierra el formulario).
-        ///          False: si ocurrió un error almacenando los datos(No Cierra el form.)</returns>
-        //protected virtual bool SaveForm()
-        //{
-        //    DialogResult = DialogResult.OK;
-        //    return true;
-
-        //}
-
-        /// <summary>
-        /// Método que deben sobreescribir las clases que heredan
-        /// de este formulario para cancelar las modificaciones sobre los datos del form.
-        /// </summary>
-        /// <returns>True: si se desea cancelar las modificaciones realizadas (Cierra el form).
-        ///          False: si no se desea cancelar las modificaciones realizadas (No cierra el form).</returns>
-        //protected virtual bool CancelForm()
-        //{
-        //    DialogResult = DialogResult.Cancel;
-        //    return true;
-        //}
-        #endregion
+        
 
         #region [Form Event Handling]
 
@@ -92,11 +66,7 @@ namespace Fwk.UI.Forms
                 DialogResult = DialogResult.Cancel;
                 this.Close();
             }
-                //if (CancelForm())
-                //{
-
-               
-            //}
+    
         }
     }
 
