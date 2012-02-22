@@ -107,11 +107,12 @@ namespace Fwk.Tools.TreeView
 
             this.txtToolTipInfo.Text = _MenuItemSelected.ToolTipInfo;
             this.checkBoxEnabled.Checked = _MenuItemSelected.Enabled;
-            this.txtCategory.Text = _MenuItemSelected.Category;
 
 
-
-
+            if (_MenuItemSelected.ParentID.Equals(0))
+                this.txtCategory.Text = "Is root node";
+            else
+                this.txtCategory.Text = FRM_MainDevExpress.Menu.ItemList.Get(_MenuItemSelected.ParentID).DisplayName;
 
             MenuImage m = menuImageList.Get(_MenuItemSelected.ImageIndex);
             if (m != null)
@@ -128,6 +129,7 @@ namespace Fwk.Tools.TreeView
 
             SetShowAction();
         }
+
         MenuImageList menuImageList;
         public void PopulateImage()
         {
@@ -202,7 +204,7 @@ namespace Fwk.Tools.TreeView
           
             txtToolTipInfo.Enabled = pEnable;
 
-            //txtCategory.Enabled = pEnable && _MenuItemSelected.IsCategory;
+            txtCategory.Enabled = false;// && _MenuItemSelected.IsCategory;
             checkBoxEnabled.Enabled = pEnable;
             btn_ImageIndex.Enabled = pEnable;
             btn_SelectedImageIndex.Enabled = pEnable;
@@ -269,7 +271,7 @@ namespace Fwk.Tools.TreeView
 
         private void txtCategory_Validated(object sender, EventArgs e)
         {
-            if (_MenuItemSelected.IsCategory && _ShowAction == Action.Edit)
+            if (_MenuItemSelected.ParentID.Equals(0)  && _ShowAction == Action.Edit)
             {
                 if (string.IsNullOrEmpty(txtCategory.Text))
                 {
@@ -277,7 +279,7 @@ namespace Fwk.Tools.TreeView
                     return;
                 }
                 //Determina si la categoria fue modificada
-                _CategoryChange = (string.Compare(txtCategory.Text, _MenuItemSelected.Category) != 0);
+                //_CategoryChange = (string.Compare(txtCategory.Text, _MenuItemSelected.Category) != 0);
              
                 errorProvider1.SetError((Control)sender, String.Empty);
             }

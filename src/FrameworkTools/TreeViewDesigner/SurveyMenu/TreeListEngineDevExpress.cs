@@ -40,11 +40,10 @@ namespace Fwk.Tools.TreeView
             Fwk.HelperFunctions.FileFunctions.SaveTextFile(pFullFileName, pMenuItemRoot.GetXml(), false);
         }
         /// <summary>
-        /// Restablece el valor estatico de MenuItemSurveyList
+        /// Restablece el valor estatico de MenuItemList
         /// </summary>
         /// <param name="pFullFileName"></param>
         /// <returns></returns>
-
         public static TreeMenu LoadMenuFromFile(String pFullFileName)
         {
             //Application.StartupPath

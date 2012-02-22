@@ -22,11 +22,11 @@ namespace Fwk.Tools.TreeView
 
         #region Properties
 
-        [Browsable(false)]
-        public bool CategoryChange
-        {
-            get { return menuItemEditorSurvey1.CategoryChange; }
-        }
+        //[Browsable(false)]
+        //public bool CategoryChange
+        //{
+        //    get { return menuItemEditorSurvey1.CategoryChange; }
+        //}
 
         #endregion
 

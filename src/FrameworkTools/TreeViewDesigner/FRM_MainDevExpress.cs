@@ -20,7 +20,7 @@ namespace Fwk.Tools.TreeView
         #region Members
         static FwkSimpleStorageBase<ClientUserSettings> storage = new FwkSimpleStorageBase<ClientUserSettings>();
         bool _Saved = false;
-        TreeMenu menu;
+        internal static TreeMenu Menu;
         //MenuItemList menu.ItemList;
         string _CurrentFullFileName;
         Fwk.UI.Controls.Menu.Tree.MenuItem _MenuItemSelected;
@@ -38,10 +38,10 @@ namespace Fwk.Tools.TreeView
 
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
-            menu = new TreeMenu();
+            Menu = new TreeMenu();
             
             
-            _CurrentFullFileName = FileFunctions.OpenFileDialog_New(menu.GetXml(), FileFunctions.OpenFilterEnums.OpenXmlFilter, true);
+            _CurrentFullFileName = FileFunctions.OpenFileDialog_New(Menu.GetXml(), FileFunctions.OpenFilterEnums.OpenXmlFilter, true);
 
             LoadMenuFile();
         }
@@ -55,8 +55,8 @@ namespace Fwk.Tools.TreeView
             try
             {
 
-                menu = TreeListEngineDevExpress.LoadMenuFromFile(_CurrentFullFileName);
-                this.menuItemSurveyBindingSource.DataSource = menu.ItemList;
+                Menu = TreeListEngineDevExpress.LoadMenuFromFile(_CurrentFullFileName);
+                this.menuItemSurveyBindingSource.DataSource = Menu.ItemList;
 
 
 
@@ -74,8 +74,7 @@ namespace Fwk.Tools.TreeView
             lblFileLoad.Text = String.Concat("File ", _CurrentFullFileName);
             storage.StorageObject.File = _CurrentFullFileName;
             storage.Save();
-
-           
+         
         }
 
         public override void Refresh()
@@ -94,7 +93,7 @@ namespace Fwk.Tools.TreeView
             if (String.IsNullOrEmpty(_CurrentFullFileName))
                 return;
 
-            TreeListEngineDevExpress.SaveMenuToFile(_CurrentFullFileName, menu);
+            TreeListEngineDevExpress.SaveMenuToFile(_CurrentFullFileName, Menu);
             _Saved = true;
             fwkMessageView_Warning.Show("Menu sussefully saved");
         }
@@ -130,7 +129,7 @@ namespace Fwk.Tools.TreeView
             if (_MenuItemSelected != null)
                 if (fwkMessageView_Warning.Show("Are you sure you want to delette the item menu " + _MenuItemSelected.DisplayName) == DialogResult.OK)
                 {
-                    menu.ItemList.Remove(_MenuItemSelected);
+                    Menu.ItemList.Remove(_MenuItemSelected);
                     treeList1.RefreshDataSource();
                 }
         }
@@ -145,7 +144,7 @@ namespace Fwk.Tools.TreeView
         {
 
 
-            if (menu.ItemList == null)
+            if (Menu.ItemList == null)
                 return;
 
             //if (_MenuItemSelected == null)
@@ -153,26 +152,26 @@ namespace Fwk.Tools.TreeView
             //    AddCategory();
             //    return;
             //}
-            if (!_MenuItemSelected.IsCategory)
+            if (_MenuItemSelected.ParentID!=0)
             {
-                fwkMessageView_Error.Show("The selected menu item is not category menu");
+                fwkMessageView_Error.Show("The selected menu item is not root menu");
                 return;
             }
 
             Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemNew = new Fwk.UI.Controls.Menu.Tree.MenuItem();
             wMenuItemNew.ParentID = _MenuItemSelected.ID;
-            wMenuItemNew.Category = _MenuItemSelected.Category;
+            //wMenuItemNew.Category = _MenuItemSelected.Category;
 
 
-            using (FRM_EditMenu wFrm = new FRM_EditMenu(menu, wMenuItemNew, Action.New))
+            using (FRM_EditMenu wFrm = new FRM_EditMenu(Menu, wMenuItemNew, Action.New))
             {
                 wFrm.ImageList = this.imageList2;
                 if (wFrm.ShowDialog() == DialogResult.OK)
                 {
                     if (_MenuItemSelected != null)
-                        wMenuItemNew.ID = menu.GetNewID();
+                        wMenuItemNew.ID = Menu.GetNewID();
 
-                    menu.ItemList.Add(wMenuItemNew);
+                    Menu.ItemList.Add(wMenuItemNew);
                     treeList1.RefreshDataSource();
                     treeList1.ExpandAll();
                 }
@@ -188,7 +187,7 @@ namespace Fwk.Tools.TreeView
         /// <author>moviedo</author>
         private void EditMenuItem()
         {
-            if (menu.ItemList == null)
+            if (Menu.ItemList == null)
                 return;
 
             if (_MenuItemSelected == null)
@@ -197,21 +196,21 @@ namespace Fwk.Tools.TreeView
                 return;
             }
             //Load del Pelsoftulario de edicion de menues
-            using (FRM_EditMenu frm = new FRM_EditMenu(menu, _MenuItemSelected, Action.Edit))
+            using (FRM_EditMenu frm = new FRM_EditMenu(Menu, _MenuItemSelected, Action.Edit))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     treeList1.RefreshDataSource();
                     treeList1.ExpandAll();
                     //Si la categoria cambio. hay que cambiar la categoria de los hijos inmediatos que no son categorias .-
-                    if (frm.CategoryChange)
-                    {
-                        foreach (Fwk.UI.Controls.Menu.Tree.MenuItem menuChild in menu.ItemList)
-                        {
-                            if (menuChild.ParentID == _MenuItemSelected.ID && !menuChild.IsCategory)
-                                menuChild.Category = _MenuItemSelected.Category;
-                        }
-                    }
+                    //if (frm.CategoryChange)
+                    //{
+                    //    foreach (Fwk.UI.Controls.Menu.Tree.MenuItem menuChild in menu.ItemList)
+                    //    {
+                    //        if (menuChild.ParentID == _MenuItemSelected.ID && !menuChild.IsCategory)
+                    //            menuChild.Category = _MenuItemSelected.Category;
+                    //    }
+                    //}
                 }
             }
 
@@ -224,32 +223,18 @@ namespace Fwk.Tools.TreeView
         /// <param name="menuItem"></param>
         private void AddCategory(Fwk.UI.Controls.Menu.Tree.MenuItem menuItem)
         {
-            if (menu.ItemList == null)
+            if (Menu.ItemList == null)
                 return;
 
-            //if (_MenuItemSelected != null)
-            //{
-            //    if (!_MenuItemSelected.IsCategory)
-            //    {
-            //        fwkMessageView_Warning.Show("Select any category menu to execute this action.-");
-            //        return;
-            //    }
-            //}
-
             Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemNewCategory = new Fwk.UI.Controls.Menu.Tree.MenuItem();
-
-            //if (menuItem == null)
-                wMenuItemNewCategory.ParentID = 0;
-            //else
-            //    wMenuItemNewCategory.ParentID = menuItem.ID;
-
-            wMenuItemNewCategory.ID = menu.GetNewID();
-            wMenuItemNewCategory.DisplayName = "Category " + (wMenuItemNewCategory.ID);
-            wMenuItemNewCategory.Category = wMenuItemNewCategory.DisplayName;
-            wMenuItemNewCategory.IsCategory = true;
+            wMenuItemNewCategory.ParentID = 0;
+            wMenuItemNewCategory.ID = Menu.GetNewID();
+            wMenuItemNewCategory.DisplayName = "Root node " + (wMenuItemNewCategory.ID);
+            //wMenuItemNewCategory.Category = wMenuItemNewCategory.DisplayName;
+            //wMenuItemNewCategory.IsCategory = true;
             wMenuItemNewCategory.ImageIndex = 0;
             wMenuItemNewCategory.SelectedImageIndex = 0;
-            menu.ItemList.Add(wMenuItemNewCategory);
+            Menu.ItemList.Add(wMenuItemNewCategory);
 
             treeList1.RefreshDataSource();
             treeList1.ExpandAll();
@@ -266,28 +251,28 @@ namespace Fwk.Tools.TreeView
                 
                 menuItemEditorSurvey1.ShowAction = Action.Query;
                 menuItemEditorSurvey1.MenuItem = _MenuItemSelected;
-                menuItemEditorSurvey1.TreeMenu = menu;
+                menuItemEditorSurvey1.TreeMenu = Menu;
                 menuItemEditorSurvey1.Populate();
                 
             }
         }
 
-        string GetParentCategory(TreeListNode pNode)
-        {
-            if (pNode.ParentNode != null)
-            {
-                Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemSurvey = (Fwk.UI.Controls.Menu.Tree.MenuItem)treeList1.GetDataRecordByNode(pNode.ParentNode);
-                if (wMenuItemSurvey != null)
-                {
-                    if (!string.IsNullOrEmpty(wMenuItemSurvey.Category))
-                    {
-                        return wMenuItemSurvey.Category;
-                    }
-                }
-            }
+        //string GetParentCategory(TreeListNode pNode)
+        //{
+        //    if (pNode.ParentNode != null)
+        //    {
+        //        Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemSurvey = (Fwk.UI.Controls.Menu.Tree.MenuItem)treeList1.GetDataRecordByNode(pNode.ParentNode);
+        //        if (wMenuItemSurvey != null)
+        //        {
+        //            if (!string.IsNullOrEmpty(wMenuItemSurvey.Category))
+        //            {
+        //                return wMenuItemSurvey.Category;
+        //            }
+        //        }
+        //    }
 
-            return string.Empty;
-        }
+        //    return string.Empty;
+        //}
 
         private void frmMainDevExpress_Leave(object sender, EventArgs e)
         {
@@ -298,7 +283,7 @@ namespace Fwk.Tools.TreeView
                     if (String.IsNullOrEmpty(_CurrentFullFileName))
                         return;
 
-                    TreeListEngineDevExpress.SaveMenuToFile(_CurrentFullFileName, menu.ItemList);
+                    TreeListEngineDevExpress.SaveMenuToFile(_CurrentFullFileName, Menu.ItemList);
 
                     fwkMessageView_Warning.Show("Menu sussefully saved");
                 }

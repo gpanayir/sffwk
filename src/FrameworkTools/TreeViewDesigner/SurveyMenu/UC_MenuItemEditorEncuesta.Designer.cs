@@ -106,9 +106,9 @@
             this.lblCategory.Location = new System.Drawing.Point(35, 41);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(65, 17);
+            this.lblCategory.Size = new System.Drawing.Size(50, 17);
             this.lblCategory.TabIndex = 61;
-            this.lblCategory.Text = "Category";
+            this.lblCategory.Text = "Parent";
             // 
             // groupControl1
             // 
