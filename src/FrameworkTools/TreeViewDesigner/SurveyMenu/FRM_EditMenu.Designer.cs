@@ -73,7 +73,7 @@
             this.menuItemEditorSurvey1.Size = new System.Drawing.Size(769, 539);
             this.menuItemEditorSurvey1.TabIndex = 0;
             this.menuItemEditorSurvey1.TreeMenu = null;
-            this.menuItemEditorSurvey1.Load += new System.EventHandler(this.menuItemEditorSurvey1_Load);
+            
             // 
             // FRM_EditMenu
             // 

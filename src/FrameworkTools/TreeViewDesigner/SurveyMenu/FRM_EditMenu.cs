@@ -48,10 +48,7 @@ namespace Fwk.Tools.TreeView
             menuItemEditorSurvey1.FillMenuItem();
         }
 
-        private void menuItemEditorSurvey1_Load(object sender, EventArgs e)
-        {
-            menuItemEditorSurvey1.PopulateImage();   
-        }
+     
 
     }
 }

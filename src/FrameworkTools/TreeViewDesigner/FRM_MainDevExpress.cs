@@ -21,6 +21,7 @@ namespace Fwk.Tools.TreeView
         static FwkSimpleStorageBase<ClientUserSettings> storage = new FwkSimpleStorageBase<ClientUserSettings>();
         bool _Saved = false;
         internal static TreeMenu Menu;
+        
         //MenuItemList menu.ItemList;
         string _CurrentFullFileName;
         Fwk.UI.Controls.Menu.Tree.MenuItem _MenuItemSelected;
@@ -51,13 +52,13 @@ namespace Fwk.Tools.TreeView
             if (String.IsNullOrEmpty(_CurrentFullFileName))
                 return;
             menuItemEditorSurvey1.imgList = this.imageList2;
-            menuItemEditorSurvey1.PopulateImage();
+          
             try
             {
 
                 Menu = TreeListEngineDevExpress.LoadMenuFromFile(_CurrentFullFileName);
                 this.menuItemSurveyBindingSource.DataSource = Menu.ItemList;
-
+                PopulateImage();
 
 
             }
@@ -77,6 +78,22 @@ namespace Fwk.Tools.TreeView
          
         }
 
+        
+        public void PopulateImage()
+        {
+            int i = 0;
+            Menu.ImageList = new MenuImageList();
+            MenuImage menuImage = null;
+            foreach (Image img in imageList2.Images)
+            {
+                menuImage = new MenuImage();
+                menuImage.Index = i;
+                menuImage.ImageBytes = Fwk.HelperFunctions.TypeFunctions.ConvertImageToByteArray(img, System.Drawing.Imaging.ImageFormat.Png);
+                i++;
+                Menu.ImageList.Add(menuImage);
+            }
+
+        }
         public override void Refresh()
         {
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
@@ -142,27 +159,21 @@ namespace Fwk.Tools.TreeView
         /// <author>moviedo</author>
         private void AddMenuItem()
         {
-
-
             if (Menu.ItemList == null)
                 return;
 
-            //if (_MenuItemSelected == null)
-            //{
-            //    AddCategory();
-            //    return;
-            //}
-            if (_MenuItemSelected.ParentID!=0)
+            // Esto hace que solo se desarrolle hasta arbol de nivel dos.
+            int parentId = 0;
+          
+            if (_MenuItemSelected.ParentID ==0)
             {
-                fwkMessageView_Error.Show("The selected menu item is not root menu");
-                return;
+                parentId = _MenuItemSelected.ID;
             }
+            else
+                parentId = _MenuItemSelected.ParentID;
 
             Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemNew = new Fwk.UI.Controls.Menu.Tree.MenuItem();
-            wMenuItemNew.ParentID = _MenuItemSelected.ID;
-            //wMenuItemNew.Category = _MenuItemSelected.Category;
-
-
+            wMenuItemNew.ParentID = parentId;
             using (FRM_EditMenu wFrm = new FRM_EditMenu(Menu, wMenuItemNew, Action.New))
             {
                 wFrm.ImageList = this.imageList2;
@@ -179,7 +190,7 @@ namespace Fwk.Tools.TreeView
 
             _Saved = false;
         }
-
+        
         /// <summary>
         /// Edita un  MenuItem de negocio.
         /// </summary>
@@ -257,22 +268,7 @@ namespace Fwk.Tools.TreeView
             }
         }
 
-        //string GetParentCategory(TreeListNode pNode)
-        //{
-        //    if (pNode.ParentNode != null)
-        //    {
-        //        Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemSurvey = (Fwk.UI.Controls.Menu.Tree.MenuItem)treeList1.GetDataRecordByNode(pNode.ParentNode);
-        //        if (wMenuItemSurvey != null)
-        //        {
-        //            if (!string.IsNullOrEmpty(wMenuItemSurvey.Category))
-        //            {
-        //                return wMenuItemSurvey.Category;
-        //            }
-        //        }
-        //    }
 
-        //    return string.Empty;
-        //}
 
         private void frmMainDevExpress_Leave(object sender, EventArgs e)
         {

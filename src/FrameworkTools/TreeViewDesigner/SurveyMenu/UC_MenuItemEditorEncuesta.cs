@@ -114,13 +114,13 @@ namespace Fwk.Tools.TreeView
             else
                 this.txtCategory.Text = FRM_MainDevExpress.Menu.ItemList.Get(_MenuItemSelected.ParentID).DisplayName;
 
-            MenuImage m = menuImageList.Get(_MenuItemSelected.ImageIndex);
+            MenuImage m = FRM_MainDevExpress.Menu.ImageList.Get(_MenuItemSelected.ImageIndex);
             if (m != null)
             {
                 m_Image_index = m.Index;
                 pictureBoxImage.Image = m.Image;
             }
-            m = menuImageList.Get(_MenuItemSelected.SelectedImageIndex);
+            m = FRM_MainDevExpress.Menu.ImageList.Get(_MenuItemSelected.SelectedImageIndex);
             if (m != null)
             {
                 m_Image_Sel_index = m.Index;
@@ -130,24 +130,9 @@ namespace Fwk.Tools.TreeView
             SetShowAction();
         }
 
-        MenuImageList menuImageList;
-        public void PopulateImage()
-        {
-            int i = 0;
-            menuImageList = new MenuImageList();
-            MenuImage menuImage = null;
-            foreach (Image img in imgList.Images)
-            {
-                menuImage = new MenuImage();
-                menuImage.Index = i;
-                menuImage.ImageBytes = Fwk.HelperFunctions.TypeFunctions.ConvertImageToByteArray(img, System.Drawing.Imaging.ImageFormat.Png);
-                i++;
-                menuImageList.Add(menuImage);
-            }
+  
 
 
-         
-        }
         private void btnAssemblyinfo_Click(object sender, EventArgs e)
         {
             using (FRM_AssemblyExplorer frm = new FRM_AssemblyExplorer("QuestionControlBase"))
@@ -183,7 +168,7 @@ namespace Fwk.Tools.TreeView
           
             using (frmImageList frm = new frmImageList())
             {
-                frm.Populate(menuImageList);
+                frm.Populate();
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                    pPictureBox.Image = frm.SelectedImage.Image;

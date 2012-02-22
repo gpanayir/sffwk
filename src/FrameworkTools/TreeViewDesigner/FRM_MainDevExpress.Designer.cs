@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_MainDevExpress));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.toolStripAppClientConfig = new System.Windows.Forms.ToolStrip();
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -60,7 +61,6 @@
             this.menuItemEditorSurvey1 = new Fwk.Tools.TreeView.UC_MenuItemEditor();
             this.btnMenuPreview = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddCategory1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.toolStripAppClientConfig.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
@@ -213,6 +213,15 @@
             // 
             this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeList1.Appearance.FocusedCell.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+            this.treeList1.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Maroon;
+            this.treeList1.Appearance.FocusedCell.Options.UseFont = true;
+            this.treeList1.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.treeList1.Appearance.FocusedRow.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+            this.treeList1.Appearance.FocusedRow.ForeColor = System.Drawing.Color.Black;
+            this.treeList1.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.treeList1.Appearance.FocusedRow.Options.UseFont = true;
+            this.treeList1.Appearance.FocusedRow.Options.UseForeColor = true;
             this.treeList1.Appearance.SelectedRow.BackColor = System.Drawing.Color.White;
             this.treeList1.Appearance.SelectedRow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.treeList1.Appearance.SelectedRow.ForeColor = System.Drawing.Color.Maroon;
@@ -245,7 +254,7 @@
             // 
             // colDisplayName
             // 
-            this.colDisplayName.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colDisplayName.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.colDisplayName.AppearanceCell.Options.UseFont = true;
             this.colDisplayName.Caption = "DisplayName";
             this.colDisplayName.FieldName = "DisplayName";
@@ -273,8 +282,12 @@
             // 
             this.repositoryItemImageEdit1.AutoHeight = false;
             this.repositoryItemImageEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, false, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.repositoryItemImageEdit1.Name = "repositoryItemImageEdit1";
+            this.repositoryItemImageEdit1.ReadOnly = true;
+            this.repositoryItemImageEdit1.ShowDropDown = DevExpress.XtraEditors.Controls.ShowDropDown.Never;
+            this.repositoryItemImageEdit1.ShowIcon = false;
+            this.repositoryItemImageEdit1.ShowMenu = false;
             // 
             // colEnabled
             // 
@@ -399,23 +412,11 @@
             this.btnAddCategory1.Text = "Add root";
             this.btnAddCategory1.Click += new System.EventHandler(this.btnAddCategory1_Click);
             // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Image = global::Fwk.Tools.Properties.Resources.add_16;
-            this.simpleButton1.Location = new System.Drawing.Point(494, 75);
-            this.simpleButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(154, 28);
-            this.simpleButton1.TabIndex = 49;
-            this.simpleButton1.Text = "Add root";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
             // FRM_MainDevExpress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1499, 767);
-            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.btnAddCategory1);
             this.Controls.Add(this.btnMenuPreview);
             this.Controls.Add(this.menuItemEditorSurvey1);
@@ -471,6 +472,5 @@
         private DevExpress.XtraEditors.SimpleButton btnMenuPreview;
         private DevExpress.XtraEditors.SimpleButton btnAddCategory1;
         public System.Windows.Forms.ImageList imageList2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

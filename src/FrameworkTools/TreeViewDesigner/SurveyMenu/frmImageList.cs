@@ -19,11 +19,11 @@ namespace Fwk.Tools.TreeView
         }
 
         
-        public void Populate(MenuImageList images)
+        public void Populate()
         {
 
-      
-            menuImageListBindingSource.DataSource = images;
+
+            menuImageListBindingSource.DataSource = FRM_MainDevExpress.Menu.ImageList;
             gridView1.RefreshData();
         }
 
