@@ -131,9 +131,9 @@ namespace Fwk.UI.Controls.Menu.Tree
 
 
 
-        public bool IsCategory { get; set; }
+        //public bool IsCategory { get; set; }
 
-        public string Category { get; set; }
+        //public string Category { get; set; }
     }
 
     /// <summary>
@@ -142,7 +142,11 @@ namespace Fwk.UI.Controls.Menu.Tree
     [XmlRoot("MenuItemList"), SerializableAttribute]
     public class MenuItemList : Entities<MenuItem>
     {
-
+        public MenuItem Get(int? id)
+        {
+            var item = from s in this where s.ID.Equals(id) select s;
+            return item.FirstOrDefault<MenuItem>();
+        }
     }
 
     /// <summary>
