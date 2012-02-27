@@ -137,7 +137,7 @@ namespace Fwk.UI.Controls.Menu.Tree
     }
 
     /// <summary>
-    /// Contiene las columnas de un objeto Table .-
+    /// Contiene las columnas de un objeto Table .-                                                                                                                  
     /// </summary>
     [XmlRoot("MenuItemList"), SerializableAttribute]
     public class MenuItemList : Entities<MenuItem>
