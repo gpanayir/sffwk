@@ -181,6 +181,7 @@ namespace Fwk.Bases
         /// <param name="providerName">Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher</param>
         internal static void InitWrapper(string providerName)
         {
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             if (!_WraperPepository.ContainsKey(providerName))
             {
                 try
