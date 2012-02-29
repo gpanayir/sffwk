@@ -301,6 +301,23 @@ namespace Fwk.HelperFunctions
             }
             //return String.Format("Años {0}, meses {1}, dias {2}", ageInYears, ageInMonths, ageInDays);
         }
+
+        /// <summary>
+        /// Retorna fecha con hora 00:00:00
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        public static DateTime GetStartDateTime(DateTime d)
+        {
+//            startDate = DateTime.Parse(string.Format("{0} 00:00:00", startDate.ToShortDateString()), CultureInfo.GetCultureInfo("en-US"));
+  //          endDate = DateTime.Parse(string.Format("{0} 11:59:59", endDate.ToShortDateString()), CultureInfo.GetCultureInfo("en-US"));
+
+            return new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
+        }
+        public static DateTime GetEndDateTime(DateTime d)
+        {
+            return new DateTime(d.Year, d.Month, d.Day, 23, 59, 59);
+        }
     }
 
 }
