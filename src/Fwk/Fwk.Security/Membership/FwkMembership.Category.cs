@@ -62,6 +62,8 @@ namespace Fwk.Security
 
 
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
@@ -122,6 +124,8 @@ namespace Fwk.Security
 
                 return wCategoryList;
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
 
@@ -165,6 +169,8 @@ namespace Fwk.Security
                 }
 
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
 
@@ -278,6 +284,8 @@ namespace Fwk.Security
                 }
 
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
 
@@ -385,6 +393,8 @@ namespace Fwk.Security
                 }
 
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
 
@@ -434,6 +444,8 @@ namespace Fwk.Security
                 }
 
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
 

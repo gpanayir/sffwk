@@ -210,6 +210,20 @@ namespace Fwk.Bases
 
     }
 
+    [Serializable]
+    public struct NetworkAdapters
+    {
+        public String MACAddress;
+        public Int32 AdapterTypeID;
+    }
+    public enum OSVersion
+    {
+        Windows_Vista = 0,
+        Windows_7 = 1,
+        Windows_XP = 5,
+        Windows_Vista_and_above = 1000,
+        Unknown = 1001
+    }
 
     public enum AuthenticationModeEnum
     {

@@ -51,6 +51,8 @@ namespace Fwk.Security
                 return rules_byRol.ToList<FwkAuthorizationRule>();
 
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (InvalidOperationException)
             {
              
@@ -98,6 +100,8 @@ namespace Fwk.Security
 
 
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
@@ -147,6 +151,8 @@ namespace Fwk.Security
                     return new FwkAuthorizationRule(waspnet_Rule.name,waspnet_Rule.expression,waspnet_Rule.ApplicationId.Value);
                 }
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
 
@@ -181,9 +187,6 @@ namespace Fwk.Security
         /// <returns></returns>
         public static NamedElementCollection<FwkAuthorizationRule> GetRules(string applicationName, string connectionStringName)
         {
-
-
-
             FwkAuthorizationRule rule = null;
             NamedElementCollection<FwkAuthorizationRule> wRules = null;
             try
@@ -210,6 +213,8 @@ namespace Fwk.Security
 
                 return wRules;
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingAlls_Error, applicationName), ex);
@@ -266,6 +271,8 @@ namespace Fwk.Security
 
                 return wRules;
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
 
@@ -324,6 +331,8 @@ namespace Fwk.Security
 
                 return wRules;
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingAlls_Error, applicationName), ex);
@@ -371,6 +380,8 @@ namespace Fwk.Security
 
                 return wExist;
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingData_Error, pRuleName), ex);
@@ -442,6 +453,8 @@ namespace Fwk.Security
                 wDataBase.ExecuteNonQuery(wCmd);
 
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(string.Format(Resource.Rule_Crate_Error, rule.Name), ex);
@@ -502,6 +515,8 @@ namespace Fwk.Security
                 wDataBase.ExecuteNonQuery(wCmd);
 
             }
+            catch (TechnicalException tx)
+            { throw tx; }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);

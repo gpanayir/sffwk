@@ -70,8 +70,38 @@ namespace Fwk.Security
             return list;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <returns></returns>
+        public static RoleProvider GetRoleProvider(string providerName)
+        {
+            try
+            {
+                RoleProvider rol = Roles.Providers[providerName];
+                if (rol == null)
+                {
+                    TechnicalException te = new TechnicalException(string.Format(Resource.ProviderNameNotFound, providerName, "rol"));
+                    te.ErrorId = "4001";
+                    //te.Source = "FwkMembership block";
+                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                    throw te;
 
-
+                }
+                return rol;
+            }
+            catch (System.Configuration.ConfigurationException c)
+            {
+                TechnicalException te = new TechnicalException(Resource.RoleProviderConfigError, c);
+                te.ErrorId = "4001";
+                //te.Source = "FwkMembership block";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
+            }
+           
+          
+        }
         /// <summary>
         /// Esta fncion permite encontrar el proveedor Sql configurado por medio de su nombre
         /// </summary>
@@ -88,7 +118,7 @@ namespace Fwk.Security
 
             if (wSqlMembershipProvider == null)
             {
-                TechnicalException te = new TechnicalException(string.Format(Resource.ProviderNameNotFound, providerName));
+                TechnicalException te = new TechnicalException(string.Format(Resource.ProviderNameNotFound, providerName, "membership"));
                 te.ErrorId = "4001";
                 //te.Source = "FwkMembership block";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);

@@ -118,10 +118,10 @@ namespace Fwk.ServiceManagement
         {
             ServiceConfigurationCollection svcList = null;
 
-            //no esta cargado el provider
+            //Si no esta cargado el provider en el repositorio
             if (!_Repository.ContainsKey(provider.Name))
             {
-
+                #region xml
                 if (provider.ProviderType == ServiceProviderType.xml)
                 {
                     svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
@@ -135,10 +135,14 @@ namespace Fwk.ServiceManagement
                     watcher.Changed += new FileSystemEventHandler(watcher_Changed);
 
                 }
+                #endregion
+
+                #region sqldatabase
                 if (provider.ProviderType == ServiceProviderType.sqldatabase)
                 {
                     svcList = DatabaseServiceConfigurationManager.GetAllServices(provider.ApplicationId, provider.SourceInfo);
                 }
+                #endregion
 
                 _Repository.Add(provider.Name, svcList);
             }
@@ -157,7 +161,7 @@ namespace Fwk.ServiceManagement
         {
             try
             {
-                //Busco todos los providers que esten asociados al mismo archivo. Esta es una situacion qmuy rara pero podria darce
+                //Busco todos los providers que esten asociados al mismo archivo. Esta es una situacion muy rara pero podria darce
                 foreach (ServiceProviderElement provider in _ProviderSection.Providers)
                 {
                     if (e.Name.Equals(provider.SourceInfo) && provider.ProviderType == ServiceProviderType.xml)

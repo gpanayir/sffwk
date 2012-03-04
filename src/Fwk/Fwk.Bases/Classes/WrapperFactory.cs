@@ -89,7 +89,7 @@ namespace Fwk.Bases
             where TResponse : IServiceContract, new()
         {
             TResponse wResponse = new TResponse();
-
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             InitWrapper(providerName);
 
             Boolean wExecuteOndispatcher = true;
@@ -181,6 +181,7 @@ namespace Fwk.Bases
         /// <param name="providerName">Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher</param>
         internal static void InitWrapper(string providerName)
         {
+            
             if (!_WraperPepository.ContainsKey(providerName))
             {
                 try
@@ -228,6 +229,7 @@ namespace Fwk.Bases
         /// <param name="providerName"></param>
         public static IServiceWrapper GetWrapper(string providerName)
         {
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             InitWrapper(providerName);
 
             if (providerName.Equals(_ProviderSection.DefaultProviderName))

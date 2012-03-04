@@ -13,9 +13,9 @@ namespace Fwk.Bases
     /// <summary>
     /// 
     /// </summary>
-    public class ClientServiceBase 
+    public class ClientServiceBase
     {
-      
+
 
         /// <summary>
         /// 
@@ -31,7 +31,7 @@ namespace Fwk.Bases
         {
 
             return WrapperFactory.ExecuteService<TRequest, TResponse>(providerName, pRequest);
-         
+
 
         }
 
@@ -46,14 +46,10 @@ namespace Fwk.Bases
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {
-
             return this.ExecuteService<TRequest, TResponse>(string.Empty, pRequest);
-
-            
-
         }
 
-       
+
 
         #region [ServiceConfiguration]
         /// <summary>
@@ -65,10 +61,11 @@ namespace Fwk.Bases
         /// <author>moviedo</author>
         public ServiceConfigurationCollection GetAllServices(string providerName)
         {
-           WrapperFactory.InitWrapper(providerName);
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
+            WrapperFactory.InitWrapper(providerName);
 
-           return WrapperFactory._WraperPepository[providerName].GetAllServices();
-            
+            return WrapperFactory._WraperPepository[providerName].GetAllServices();
+
         }
         /// <summary>
         /// Recupera la configuración de un servicio de negocio.
@@ -80,6 +77,7 @@ namespace Fwk.Bases
         /// <author>moviedo</author>
         public ServiceConfiguration GetServiceConfiguration(string providerName, string pServiceName)
         {
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             WrapperFactory.InitWrapper(providerName);
             return WrapperFactory._WraperPepository[providerName].GetServiceConfiguration(pServiceName);
         }
@@ -93,8 +91,9 @@ namespace Fwk.Bases
         /// <author>moviedo</author>
         public void SetServiceConfiguration(string providerName, String pServiceName, ServiceConfiguration pServiceConfiguration)
         {
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             WrapperFactory.InitWrapper(providerName);
-            WrapperFactory._WraperPepository[providerName].SetServiceConfiguration(pServiceName, pServiceConfiguration); 
+            WrapperFactory._WraperPepository[providerName].SetServiceConfiguration(pServiceName, pServiceConfiguration);
         }
 
         /// <summary>
@@ -106,8 +105,9 @@ namespace Fwk.Bases
         /// <author>moviedo</author>
         public void AddServiceConfiguration(string providerName, ServiceConfiguration pServiceConfiguration)
         {
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             WrapperFactory.InitWrapper(providerName);
-            WrapperFactory._WraperPepository[providerName].AddServiceConfiguration(pServiceConfiguration); 
+            WrapperFactory._WraperPepository[providerName].AddServiceConfiguration(pServiceConfiguration);
         }
 
         /// <summary>
@@ -119,9 +119,10 @@ namespace Fwk.Bases
         /// <author>moviedo</author>
         public void DeleteServiceConfiguration(string providerName, string pServiceName)
         {
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             WrapperFactory.InitWrapper(providerName);
 
-            WrapperFactory._WraperPepository[providerName].DeleteServiceConfiguration(pServiceName); 
+            WrapperFactory._WraperPepository[providerName].DeleteServiceConfiguration(pServiceName);
         }
 
         /// <summary>
@@ -130,11 +131,12 @@ namespace Fwk.Bases
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <returns></returns>
-        public  List<String> GetAllApplicationsId(string providerName)
+        public List<String> GetAllApplicationsId(string providerName)
         {
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             WrapperFactory.InitWrapper(providerName);
-                
-            return WrapperFactory._WraperPepository[providerName].GetAllApplicationsId(); 
+
+            return WrapperFactory._WraperPepository[providerName].GetAllApplicationsId();
         }
 
 
@@ -143,8 +145,9 @@ namespace Fwk.Bases
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <returns></returns>
-        public  Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
+        public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
         {
+            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             WrapperFactory.InitWrapper(providerName);
             return WrapperFactory._WraperPepository[providerName].GetProviderInfo(providerName);
         }

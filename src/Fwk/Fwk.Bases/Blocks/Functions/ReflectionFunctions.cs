@@ -104,8 +104,26 @@ namespace Fwk.HelperFunctions
             return wResult;
         }
 
+        /// <summary>
+        /// Crea un objeto de tipo T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static T CreateInstance<T>()
+        {
+            return (T)Activator.CreateInstance(typeof(T));
+        }
 
 
+        /// <summary>
+        /// Crea un objeto de tipo T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static T CreateInstance<T>(object[] constructorParams)
+        {
+            return (T)Activator.CreateInstance(typeof(T), constructorParams);
+        }
 
         /// <summary>
         /// Crea instancia de un objetos a partir de de su nombre largo y sus parametros.
@@ -126,7 +144,12 @@ namespace Fwk.HelperFunctions
         }
           
            
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pAssemblyString"></param>
+        /// <param name="pClassName"></param>
+        /// <param name="pAssembly"></param>
 		private static void ExtractTypeInformation(string pAssemblyString, out string pClassName, out string pAssembly)
 		{
 			// Divide el assemblyString según la coma y guarda el resultado
