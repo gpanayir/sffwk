@@ -222,7 +222,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data_Dataset.ico" />
-    <None Include="Fwk.ServiceManagement.Tools.Win32_TemporaryKey.pfx" />
     <None Include="Resources\prntpv_16.png" />
     <None Include="Resources\EditService.ico" />
     <None Include="Resources\AddService.ico" />

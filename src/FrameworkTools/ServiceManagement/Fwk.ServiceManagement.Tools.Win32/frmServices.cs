@@ -58,7 +58,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddService(); ucbServiceGrid1.RefreshServices();
+            AddService(); 
+            ucbServiceGrid1.RefreshServices();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -87,10 +88,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             }
 
             ServiceConfiguration wServiceNew = new ServiceConfiguration();
+            
             if (frmEdit.ShowNew(ref wServiceNew) == DialogResult.OK)
             {
                 wServiceNew.CreatedUserName = Environment.UserName;
                 wServiceNew.CreatedDateTime = System.DateTime.Now;
+                wServiceNew.ApplicationId = CurrentProvider.ApplicationId;
                 try
                 {
                     //ucbServiceGrid1.Add(wServiceNew);
