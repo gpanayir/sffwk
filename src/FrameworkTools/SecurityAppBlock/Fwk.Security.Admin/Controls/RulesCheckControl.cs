@@ -89,9 +89,9 @@ namespace Fwk.Security.Admin.Controls
 
             //this.cache = SecurityCacheFactory.GetSecurityCacheProvider("ProveedorAlmacenCaching");
             this.ruleProvider  = ControlsFactory.CreateAuthorizationProvider(frmAdmin.Provider.Name);
-            
 
-            rulesComboBox.DataSource = FwkMembership.GetRulesList(Membership.ApplicationName);
+
+            rulesComboBox.DataSource = FwkMembership.GetRulesList(frmAdmin.Provider.Name);
 
         }
 

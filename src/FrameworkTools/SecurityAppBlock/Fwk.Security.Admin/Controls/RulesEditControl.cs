@@ -44,7 +44,7 @@ namespace Fwk.Security.Admin.Controls
 
 
 
-                _CategoryList = FwkMembership.GetAllCategories(Membership.ApplicationName);
+                _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.ApplicationName);
                 treeList1.BeginUnboundLoad();
 
                 this.fwkCategoryBindingSource.DataSource = _CategoryList;
@@ -116,7 +116,7 @@ namespace Fwk.Security.Admin.Controls
             try
             {
 
-                _CategoryList = FwkMembership.GetAllCategories(Membership.ApplicationName);
+                _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.ApplicationName);
 
             }
             catch (Exception err)
@@ -149,7 +149,7 @@ namespace Fwk.Security.Admin.Controls
 
             Fwk.Security.FwkAuthorizationRule rule = (Fwk.Security.FwkAuthorizationRule)((BindingSource)grdRulesByCategory.DataSource).Current;
             if (rule == null) return;
-            _CurrentRule = FwkMembership.GetRule(rule.Name, Membership.ApplicationName);
+            _CurrentRule = FwkMembership.GetRule(rule.Name, frmAdmin.Provider.ApplicationName);
             if (_CurrentRule == null)
             {
                 MessageViewInfo.Show("Esta regla y fue eliminada .- Es posible que la categoria seleccionada no esta sincronizada con las reglas.-");

@@ -129,7 +129,7 @@ namespace Fwk.Security.Admin.Controls
                 errorProvider1.SetError(txtRuleName, "Rule name must not be empty");
                 return;
             }
-            if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), Membership.ApplicationName))
+            if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), frmAdmin.Provider.ApplicationName))
             {
                 MessageViewInfo.Show(String.Format("The rule {0} exist", txtRuleName.Text));
                 txtRuleName.Focus();
@@ -141,7 +141,7 @@ namespace Fwk.Security.Admin.Controls
                 FwkAuthorizationRule wFwkAuthorizationRule = new FwkAuthorizationRule();
                 wFwkAuthorizationRule.Name = txtRuleName.Text;
                 wFwkAuthorizationRule.Expression = txtRuleExpression.Text;
-                FwkMembership.CreateRule(wFwkAuthorizationRule, Membership.ApplicationName);
+                FwkMembership.CreateRule(wFwkAuthorizationRule, frmAdmin.Provider.ApplicationName);
                 MessageViewInfo.Show(String.Format(Properties.Resources.RuleCreatedMessage, txtRuleName.Text));
                 NewSecurityInfoCreatedHandler();
             }
@@ -185,22 +185,30 @@ namespace Fwk.Security.Admin.Controls
 
         private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        
+       
             foreach (DataGridViewRow row in grdAssignedRoles.SelectedRows)
             {
-
-                _AssignedRolList.Remove(((Rol)row.DataBoundItem));
-
-          
+               _AssignedRolList.Remove(((Rol)row.DataBoundItem));
             }
             grdAssignedRoles.DataSource = null;
             grdAssignedRoles.DataSource = _AssignedRolList;
+            grdAssignedRoles.Refresh();
             txtRuleExpression.Text = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
         }
-
+       
         private void grdAssignedRoles_MouseDown(object sender, MouseEventArgs e)
         {
-
+            if (e.Button == MouseButtons.Right)
+            {
+                grdAssignedRoles.ClearSelection();
+                DataGridView.HitTestInfo hit = grdAssignedRoles.HitTest(e.X, e.Y);
+                if (hit.Type == DataGridViewHitTestType.Cell)
+                {
+                    grdAssignedRoles.Rows[hit.RowIndex].Selected = true;
+                    //clickedCell = grdAssignedRoles.Rows[hit.RowIndex].Cells[hit.ColumnIndex];
+            
+                }
+            }
         }
 
         private void grdAllRoles_MouseDown(object sender, MouseEventArgs e)
