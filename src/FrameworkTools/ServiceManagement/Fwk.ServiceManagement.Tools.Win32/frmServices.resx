@@ -112,52 +112,50 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="MessageViewer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>150, 17</value>
+  <metadata name="MessageViewer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 60</value>
   </metadata>
-  <metadata name="ExceptionViewer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="ExceptionViewer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnCnnString.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAStJREFUWEftlgEO
-        wyAIRT16j9abdWHml19F1NKlWaLJYjotPD5YSWmNpUBAgW3bjplfwJX9qji/jmQ+7/t+yIrsD0PMRAxA
-        AMgchrgTtTiWISp0IUYizDrbciMHZdSl3SoV2KCG4aCedW8bxIpa/jMVUFnbTq9R530AgWE45TWO3AS4
-        6xxKeTXBYLKvCaDkcwpATq8m2KkLMAthGeaI2R5AOwqkr0Qy7BnreWZjvVMxBMAFJPn1IGwAHMD6eA4B
-        sFM+y6pIW4FSejyznW4R/rUCr9eAn4Kcum4KIjXwugK9nuDnCqxTMFoDfDOe/QBXp+Zy7kvYSkH5xTT7
-        QQBETsFIF9XsBZ9QINTpPqFACEBeVgi90UZuw3CLzeScR+82NCs5LEFhwCuqp319AGSstXZGkJxGAAAA
-        AElFTkSuQmCC
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAErSURBVFhH7ZYBDsMgCEU9eo/Wm3Vh5pdfRdTSpVmiyWI6
+        LTw+WElpjaVAQIFt246ZX8CV/ao4v45kPu/7fsiK7A9DzEQMQADIHIa4E7U4liEqdCFGIsw623IjB2XU
+        pd0qFdighuGgnnVvG8SKWv4zFVBZ206vUed9AIFhOOU1jtwEuOscSnk1wWCyrwmg5HMKQE6vJtipCzAL
+        YRnmiNkeQDsKpK9EMuwZ63lmY71TMQTABST59SBsABzA+ngOAbBTPsuqSFuBUno8s51uEf61Aq/XgJ+C
+        nLpuCiI18LoCvZ7g5wqsUzBaA3wznv0AV6fmcu5L2EpB+cU0+0EARE7BSBfV7AWfUCDU6T6hQAhAXlYI
+        vdFGbsNwi83knEfvNjQrOSxBYcArqqd9fQBkrLV2RpCcRgAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="btnRefresh.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAdtJREFUOE9jYCAA
-        Jux89z993ov/hNTB5Zs3vPnft/0dGE/f+/7/RKABEVOf/bevPU/YkFn7P/yfe/ADWCPI5p5t7/5XrX79
-        P2Ty0/8O9Zf+u7Tfx25I19a3YI2Tdr3/X7j01f/AiU//e/c++e/T9+S/LxB79Tz579n95L9N+VHsBvTv
-        ePc/DehPg4T5/+VtU//LWsb914+d/d+u6vR/145H/51b7/63rTr1XzdyCqYBFStf/3frfPxfzbvmv6Rh
-        EIoCV6C4TdmR/3oxM/4rOuX+l7NJwTTAtuL4fw2/JqxOA9ms7Fr0X9o0AuiqeMKBCIuKhFnPwYqN01b+
-        l7NOIl4jKPRn7vvwP3r6M+I1gWwCaVxw+OP/2Qc+/C9Z/uq/ScZaDAOm7Xn/P2kOxGUoABR1M4C2tm9+
-        C05xoLgGhTiyIlAU5y9++d8sexOmAZHTnv0PnPAUHM+g2ADRkcCUV7f2zX+QraDEBOJrh/aBYwLDBXbV
-        Z/7b1Zz979hw9b9Ty63/jk3X/zs13wDTViX7/2sFd/6XsYjFHoUw00CaQUnVJGPNf42Alv9KLgXgBCVt
-        FvlfyiTsv5JzPuFABWUWreAusE0gp4LiX827lrBGmCusSw/91wnrJ00TUDMAzMUwDuC/G8wAAAAASUVO
-        RK5CYII=
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAHbSURBVDhPY2AgACbsfPc/fd6L/4TUweWbN7z537f9HRhP
+        3/v+/0SgARFTn/23rz1P2JBZ+z/8n3vwA1gjyOaebe/+V61+/T9k8tP/DvWX/ru038duSNfWt2CNk3a9
+        /1+49NX/wIlP/3v3Pvnv0/fkvy8Qe/U8+e/Z/eS/TflR7Ab073j3Pw3oT4OE+f/lbVP/y1rG/dePnf3f
+        rur0f9eOR/+dW+/+t6069V83cgqmARUrX/9363z8X8275r+kYRCKAleguE3Zkf96MTP+Kzrl/pezScE0
+        wLbi+H8NvyasTgPZrOxa9F/aNALoqnjCgQiLioRZz8GKjdNW/pezTiJeIyj0Z+778D96+jPiNYFsAmlc
+        cPjj/9kHPvwvWf7qv0nGWgwDpu15/z9pDsRlKAAUdTOAtrZvfgtOcaC4BoU4siJQFOcvfvnfLHsTpgGR
+        0579D5zwFBzPoNgA0ZHAlFe39s1/kK2gxATia4f2gWMCwwV21Wf+29Wc/e/YcPW/U8ut/45N1/87Nd8A
+        01Yl+/9rBXf+l7GIxR6FMNNAmkFJ1SRjzX+NgJb/Si4F4AQlbRb5X8ok7L+Scz7hQAVlFq3gLrBNIKeC
+        4l/Nu5awRpgrrEsP/dcJ6ydNE1AzAMzFMA7gvxvMAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>278, 17</value>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 103</value>
   </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>377, 17</value>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 146</value>
   </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>83</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

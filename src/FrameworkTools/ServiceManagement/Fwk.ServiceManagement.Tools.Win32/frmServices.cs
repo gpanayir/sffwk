@@ -131,8 +131,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             ServiceConfiguration clon = ucbServiceGrid1.CurentServiceConfiguration.Clone();
             if (frmEdit.ShowEdit(clon) == DialogResult.OK)
             {
-                Fwk.ServiceManagement.ServiceMetadata.SetServiceConfiguration(CurrentProvider.Name, _AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
-                //base.Wrapper.SetServiceConfiguration(CurrentProvider.Name, _AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
+                //Fwk.ServiceManagement.ServiceMetadata.SetServiceConfiguration(CurrentProvider.Name, _AuxServiceName, ucbServiceGrid1.CurentServiceConfiguration);
+                Fwk.ServiceManagement.ServiceMetadata.SetServiceConfiguration(CurrentProvider.Name, _AuxServiceName, clon);
                 ServiceConfiguration s = ucbServiceGrid1.CurentServiceConfiguration;
                
                 Fwk.HelperFunctions.ReflectionFunctions.MapProperties<ServiceConfiguration>(clon, ref s);
