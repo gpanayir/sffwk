@@ -19,7 +19,7 @@ namespace Fwk.HelperFunctions
         /// <summary>
         /// Indica el principio de los tiempos 
         /// </summary>
-        public static  DateTime FirshOfTimes { get; set; }
+        public static  DateTime BeginningOfTimes { get; set; }
 
         /// <summary>
         /// Indica el fin de los tiempos
@@ -53,7 +53,7 @@ namespace Fwk.HelperFunctions
         static DateFunctions()
         {
             NullDateTime = new DateTime(1, 1, 1, 0, 0, 0);
-            FirshOfTimes = new DateTime(1000,1, 1, 0, 0, 0);
+            BeginningOfTimes = new DateTime(1000, 1, 1, 0, 0, 0);
             EndOfTimes = new DateTime(9999, 1, 1, 0, 0, 0);
         }
         /// <summary>

@@ -156,7 +156,7 @@ namespace Fwk.Security.BE
         /// <returns>UsersBE</returns>
         public static UserInfo GetUserInfoFromXml(String pXml)
         {
-            return (UserInfo)Entity.GetObjectFromXml(typeof(UserInfo), pXml);
+            return (UserInfo)Entity.GetFromXml<UserInfo>( pXml);
         }
         #endregion
     }
