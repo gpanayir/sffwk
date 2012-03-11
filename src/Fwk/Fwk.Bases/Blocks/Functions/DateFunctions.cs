@@ -10,6 +10,22 @@ namespace Fwk.HelperFunctions
     /// </summary>
     public class DateFunctions
     {
+
+        /// <summary>
+        /// Valor constante que reoprecenta el separador '.'
+        /// </summary>
+        public static  DateTime NullDateTime { get; set; }
+
+        /// <summary>
+        /// Indica el principio de los tiempos 
+        /// </summary>
+        public static  DateTime FirshOfTimes { get; set; }
+
+        /// <summary>
+        /// Indica el fin de los tiempos
+        /// </summary>
+        public static  DateTime EndOfTimes { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -31,6 +47,14 @@ namespace Fwk.HelperFunctions
             /// 
             /// </summary>
             FromSeconds
+        }
+
+
+        static DateFunctions()
+        {
+            NullDateTime = new DateTime(1, 1, 1, 0, 0, 0);
+            FirshOfTimes = new DateTime(1000,1, 1, 0, 0, 0);
+            EndOfTimes = new DateTime(9999, 1, 1, 0, 0, 0);
         }
         /// <summary>
         /// Algoritmo que determina si hay o no InterSección entre dos rangos de fechas
@@ -199,13 +223,6 @@ namespace Fwk.HelperFunctions
         {
             return string.Format("{0:s}", pDateTime);
         }
-        /// <summary>
-        /// Valor constante que reoprecenta el separador '.'
-        /// </summary>
-        public static DateTime NullDateTime
-        {
-            get { return new DateTime(1, 1, 1, 0, 0, 0); }
-        }
 
         /// <summary>
         /// Retorna la fecha en formato YYYY[sep]MM[sep]dd
@@ -303,17 +320,23 @@ namespace Fwk.HelperFunctions
         }
 
         /// <summary>
-        /// Retorna fecha con hora 00:00:00
+        /// Retorna fecha con hh:mm:ss  00:00:00
         /// </summary>
         /// <param name="d"></param>
         /// <returns></returns>
         public static DateTime GetStartDateTime(DateTime d)
         {
-//            startDate = DateTime.Parse(string.Format("{0} 00:00:00", startDate.ToShortDateString()), CultureInfo.GetCultureInfo("en-US"));
-  //          endDate = DateTime.Parse(string.Format("{0} 11:59:59", endDate.ToShortDateString()), CultureInfo.GetCultureInfo("en-US"));
+            //            startDate = DateTime.Parse(string.Format("{0} 00:00:00", startDate.ToShortDateString()), CultureInfo.GetCultureInfo("en-US"));
+            //          endDate = DateTime.Parse(string.Format("{0} 11:59:59", endDate.ToShortDateString()), CultureInfo.GetCultureInfo("en-US"));
 
             return new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
         }
+
+        /// <summary>
+        /// Retorna la fecha con hh:mm:ss = 23:59:59
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
         public static DateTime GetEndDateTime(DateTime d)
         {
             return new DateTime(d.Year, d.Month, d.Day, 23, 59, 59);
