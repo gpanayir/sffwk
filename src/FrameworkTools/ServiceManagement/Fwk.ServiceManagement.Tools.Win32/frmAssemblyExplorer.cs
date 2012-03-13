@@ -87,7 +87,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         void LoadAssembly()
         {
-           
+
             try
             {
                 Assembly wAssembly = new Assembly(_StorageFactory.StorageObject.AssemblyPath);
@@ -116,7 +116,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
                     }
                 }
 
-                serviceConfigurationCollectionBindingSource.DataSource = list;
+                var ordenedList = from x in list orderby x.Name select x;
+                serviceConfigurationCollectionBindingSource.DataSource = ordenedList;
             }
             catch (System.Reflection.ReflectionTypeLoadException rx)
             {

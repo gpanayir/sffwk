@@ -45,15 +45,20 @@
             // 
             // listBox1
             // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.DataSource = this.serviceConfigurationCollectionBindingSource;
             this.listBox1.DisplayMember = "Name";
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 70);
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(16, 86);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(627, 212);
+            this.listBox1.Size = new System.Drawing.Size(835, 260);
             this.listBox1.TabIndex = 77;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // serviceConfigurationCollectionBindingSource
             // 
@@ -64,9 +69,10 @@
             this.btnSearAssemblie.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSearAssemblie.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.mostrar;
             this.btnSearAssemblie.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearAssemblie.Location = new System.Drawing.Point(561, 18);
+            this.btnSearAssemblie.Location = new System.Drawing.Point(748, 22);
+            this.btnSearAssemblie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSearAssemblie.Name = "btnSearAssemblie";
-            this.btnSearAssemblie.Size = new System.Drawing.Size(28, 23);
+            this.btnSearAssemblie.Size = new System.Drawing.Size(37, 28);
             this.btnSearAssemblie.TabIndex = 79;
             this.btnSearAssemblie.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSearAssemblie.UseVisualStyleBackColor = true;
@@ -82,9 +88,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 54);
+            this.label2.Location = new System.Drawing.Point(16, 66);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.Size = new System.Drawing.Size(88, 17);
             this.label2.TabIndex = 80;
             this.label2.Text = "Service list";
             // 
@@ -92,9 +99,10 @@
             // 
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOk.Location = new System.Drawing.Point(573, 288);
+            this.btnOk.Location = new System.Drawing.Point(764, 354);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(66, 23);
+            this.btnOk.Size = new System.Drawing.Size(88, 28);
             this.btnOk.TabIndex = 81;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -104,9 +112,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 22);
+            this.label1.Location = new System.Drawing.Point(16, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(39, 17);
             this.label1.TabIndex = 82;
             this.label1.Text = "File:";
             // 
@@ -117,9 +126,10 @@
             this.lblFileName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFileName.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblFileName.Location = new System.Drawing.Point(49, 22);
+            this.lblFileName.Location = new System.Drawing.Point(65, 27);
+            this.lblFileName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(506, 15);
+            this.lblFileName.Size = new System.Drawing.Size(674, 18);
             this.lblFileName.TabIndex = 83;
             this.lblFileName.Text = "..";
             // 
@@ -129,17 +139,18 @@
             this.lblServiceName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblServiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblServiceName.ForeColor = System.Drawing.Color.CadetBlue;
-            this.lblServiceName.Location = new System.Drawing.Point(88, 54);
+            this.lblServiceName.Location = new System.Drawing.Point(117, 66);
+            this.lblServiceName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblServiceName.Name = "lblServiceName";
-            this.lblServiceName.Size = new System.Drawing.Size(0, 13);
+            this.lblServiceName.Size = new System.Drawing.Size(0, 17);
             this.lblServiceName.TabIndex = 84;
             // 
             // frmAssemblyExplorer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(643, 316);
+            this.ClientSize = new System.Drawing.Size(857, 389);
             this.Controls.Add(this.lblServiceName);
             this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.label1);
@@ -148,6 +159,7 @@
             this.Controls.Add(this.btnSearAssemblie);
             this.Controls.Add(this.listBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAssemblyExplorer";
