@@ -287,7 +287,7 @@ namespace Fwk.HelperFunctions
         }
 
         /// <summary>
-        /// 
+        /// Obtiene la edad
         /// </summary>
         /// <param name="birthDate"></param>
         /// <returns>Years,Months and Days</returns>
