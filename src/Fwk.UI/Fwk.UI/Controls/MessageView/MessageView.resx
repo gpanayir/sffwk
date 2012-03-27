@@ -112,19 +112,19 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lbOptionalMessage.Location" type="System.Drawing.Point, System.Drawing">
     <value>71, 24</value>
   </data>
   <data name="lbOptionalMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
+    <value>0, 16</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lbOptionalMessage.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
@@ -140,15 +140,21 @@
   <data name="&gt;&gt;lbOptionalMessage.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtMessage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="txtMessage.Location" type="System.Drawing.Point, System.Drawing">
     <value>45, 9</value>
   </data>
+  <data name="txtMessage.Properties.Appearance.BackColor" type="System.Drawing.Color, System.Drawing">
+    <value>White</value>
+  </data>
+  <data name="txtMessage.Properties.Appearance.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>Black</value>
+  </data>
   <data name="txtMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 108</value>
+    <value>407, 115</value>
   </data>
   <data name="txtMessage.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -168,8 +174,11 @@
   <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="btnOk.Appearance.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>Black</value>
+  </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 3</value>
+    <value>318, 3</value>
   </data>
   <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 21</value>
@@ -198,8 +207,11 @@
   <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="btnCancel.Appearance.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>Black</value>
+  </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 3</value>
+    <value>387, 3</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 21</value>
@@ -225,14 +237,14 @@
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
   <data name="btnNo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="btnNo.Appearance.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>Black</value>
+  </data>
   <data name="btnNo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 3</value>
+    <value>250, 3</value>
   </data>
   <data name="btnNo.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 21</value>
@@ -261,8 +273,11 @@
   <data name="btnYes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="btnYes.Appearance.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>Black</value>
+  </data>
   <data name="btnYes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>129, 3</value>
+    <value>184, 3</value>
   </data>
   <data name="btnYes.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 21</value>
@@ -288,14 +303,17 @@
   <data name="&gt;&gt;btnYes.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="flowLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
   <data name="flowLayoutPanel1.FlowDirection" type="System.Windows.Forms.FlowDirection, System.Windows.Forms">
     <value>RightToLeft</value>
   </data>
   <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 123</value>
+    <value>3, 130</value>
   </data>
   <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>397, 30</value>
+    <value>452, 30</value>
   </data>
   <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -304,7 +322,7 @@
     <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -328,7 +346,7 @@
     <value>imgIcon</value>
   </data>
   <data name="&gt;&gt;imgIcon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;imgIcon.Parent" xml:space="preserve">
     <value>$this</value>
@@ -336,23 +354,29 @@
   <data name="&gt;&gt;imgIcon.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="MessageView.Appearance.ForeColor" type="System.Drawing.Color, System.Drawing">
+    <value>PaleGoldenrod</value>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>7, 16</value>
   </data>
   <data name="$this.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>403, 158</value>
+    <value>458, 164</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 5, 3, 5</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>291, 114</value>
+    <value>338, 134</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
@@ -364,6 +388,6 @@
     <value>MessageView</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.XtraForm, DevExpress.Utils.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>Fwk.UI.Controls.MessageBase, Fwk.UI, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

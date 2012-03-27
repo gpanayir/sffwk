@@ -142,7 +142,7 @@ namespace Fwk.UI.Controls
         private void FrmTechnicalMsg_Load(object sender, EventArgs e)
         {
 
-            txtSource.Text = _Source;
+            lblSource.Text = _Source;
             txtMessage.Text = base.Message;
             txtDetail.Text = _Detail;
          
@@ -248,6 +248,16 @@ namespace Fwk.UI.Controls
         {
             this.DialogResult = DialogResult.No;
             this.Close();
+        }
+
+        private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Clipboard.SetText(txtDetail.Text);
+        }
+
+        private void btnSave_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Fwk.HelperFunctions.FileFunctions.OpenFileDialog_New(txtDetail.Text, Fwk.HelperFunctions.FileFunctions.OpenFilterEnums.OpenTextAndXmlFilter, false);
         }
        
     }

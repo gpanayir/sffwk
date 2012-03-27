@@ -32,7 +32,6 @@ namespace Fwk.UI.Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtSource = new DevExpress.XtraEditors.MemoEdit();
             this.txtMessage = new DevExpress.XtraEditors.MemoEdit();
             this.txtDetail = new DevExpress.XtraEditors.MemoEdit();
             this.imgFormExpansion = new System.Windows.Forms.ImageList(this.components);
@@ -53,49 +52,37 @@ namespace Fwk.UI.Controls
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
-            this.lblMessage = new DevExpress.XtraEditors.LabelControl();
             this.lblSource = new DevExpress.XtraEditors.LabelControl();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSource.Properties)).BeginInit();
+            this.labelOrigen = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtMessage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctlBarManager)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtSource
-            // 
-            this.txtSource.Location = new System.Drawing.Point(72, 30);
-            this.txtSource.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSource.Name = "txtSource";
-            this.txtSource.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtSource.Properties.Appearance.Options.UseBackColor = true;
-            this.txtSource.Properties.ReadOnly = true;
-            this.txtSource.Size = new System.Drawing.Size(331, 36);
-            this.txtSource.TabIndex = 16;
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(72, 102);
+            this.txtMessage.Location = new System.Drawing.Point(49, 71);
             this.txtMessage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtMessage.Properties.Appearance.Options.UseBackColor = true;
             this.txtMessage.Properties.ReadOnly = true;
-            this.txtMessage.Size = new System.Drawing.Size(331, 96);
+            this.txtMessage.Size = new System.Drawing.Size(364, 127);
             this.txtMessage.TabIndex = 17;
             // 
             // txtDetail
             // 
+            this.txtDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDetail.Location = new System.Drawing.Point(7, 247);
             this.txtDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDetail.Name = "txtDetail";
             this.txtDetail.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtDetail.Properties.Appearance.Options.UseBackColor = true;
-            this.txtDetail.Size = new System.Drawing.Size(397, 164);
+            this.txtDetail.Size = new System.Drawing.Size(397, 0);
             this.txtDetail.TabIndex = 18;
             // 
             // imgFormExpansion
@@ -108,7 +95,7 @@ namespace Fwk.UI.Controls
             // 
             this.imgIcon.BackColor = System.Drawing.Color.Transparent;
             this.imgIcon.Image = global::Fwk.UI.Properties.Resources.error_32;
-            this.imgIcon.Location = new System.Drawing.Point(14, 37);
+            this.imgIcon.Location = new System.Drawing.Point(1, 48);
             this.imgIcon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.imgIcon.Name = "imgIcon";
             this.imgIcon.Size = new System.Drawing.Size(42, 44);
@@ -189,6 +176,7 @@ namespace Fwk.UI.Controls
             this.btnSave.Glyph = global::Fwk.UI.Properties.Resources.save_as_16;
             this.btnSave.Id = 3;
             this.btnSave.Name = "btnSave";
+            this.btnSave.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSave_ItemClick);
             // 
             // btnMail
             // 
@@ -203,6 +191,7 @@ namespace Fwk.UI.Controls
             this.barButtonItem2.Glyph = global::Fwk.UI.Properties.Resources.copy_16;
             this.barButtonItem2.Id = 5;
             this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
             // btnOk
             // 
@@ -243,7 +232,7 @@ namespace Fwk.UI.Controls
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 241);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 243);
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.barDockControlBottom.Size = new System.Drawing.Size(411, 0);
             // 
@@ -253,7 +242,7 @@ namespace Fwk.UI.Controls
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 241);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 243);
             // 
             // barDockControlRight
             // 
@@ -261,7 +250,7 @@ namespace Fwk.UI.Controls
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(411, 0);
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 241);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 243);
             // 
             // barButtonItem1
             // 
@@ -278,62 +267,53 @@ namespace Fwk.UI.Controls
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
             // 
-            // lblMessage
-            // 
-            this.lblMessage.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessage.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(80, 75);
-            this.lblMessage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(49, 17);
-            this.lblMessage.TabIndex = 20;
-            this.lblMessage.Text = "Mensaje";
-            // 
             // lblSource
             // 
-            this.lblSource.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.lblSource.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSource.Location = new System.Drawing.Point(79, 6);
-            this.lblSource.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSource.Appearance.BackColor = System.Drawing.Color.White;
+            this.lblSource.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblSource.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+            this.lblSource.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblSource.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
+            this.lblSource.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblSource.Location = new System.Drawing.Point(60, 8);
             this.lblSource.Name = "lblSource";
-            this.lblSource.Size = new System.Drawing.Size(40, 17);
-            this.lblSource.TabIndex = 19;
-            this.lblSource.Text = "Origen";
+            this.lblSource.Size = new System.Drawing.Size(348, 27);
+            this.lblSource.TabIndex = 27;
             // 
-            // panelControl1
+            // labelOrigen
             // 
-            this.panelControl1.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.panelControl1.Appearance.Options.UseBackColor = true;
-            this.panelControl1.Location = new System.Drawing.Point(72, 4);
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(331, 22);
-            this.panelControl1.TabIndex = 21;
+            this.labelOrigen.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelOrigen.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelOrigen.Location = new System.Drawing.Point(7, 12);
+            this.labelOrigen.Name = "labelOrigen";
+            this.labelOrigen.Size = new System.Drawing.Size(42, 16);
+            this.labelOrigen.TabIndex = 28;
+            this.labelOrigen.Text = "Origen";
             // 
-            // panelControl2
+            // labelControl2
             // 
-            this.panelControl2.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.panelControl2.Appearance.Options.UseBackColor = true;
-            this.panelControl2.Location = new System.Drawing.Point(72, 73);
-            this.panelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(331, 22);
-            this.panelControl2.TabIndex = 22;
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.labelControl2.Location = new System.Drawing.Point(49, 48);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(54, 16);
+            this.labelControl2.TabIndex = 29;
+            this.labelControl2.Text = "Mensaje";
             // 
             // ExceptionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(411, 241);
-            this.Controls.Add(this.standaloneBarDockControl1);
-            this.Controls.Add(this.lblMessage);
+            this.ClientSize = new System.Drawing.Size(411, 243);
+            this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.labelOrigen);
             this.Controls.Add(this.lblSource);
+            this.Controls.Add(this.standaloneBarDockControl1);
             this.Controls.Add(this.txtDetail);
             this.Controls.Add(this.txtMessage);
-            this.Controls.Add(this.txtSource);
             this.Controls.Add(this.imgIcon);
-            this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -342,13 +322,10 @@ namespace Fwk.UI.Controls
             this.Name = "ExceptionView";
             this.Text = "FrmTechnicalMsg";
             this.Load += new System.EventHandler(this.FrmTechnicalMsg_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtSource.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMessage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctlBarManager)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,7 +335,6 @@ namespace Fwk.UI.Controls
 
         private DevExpress.XtraEditors.MemoEdit txtDetail;
         private DevExpress.XtraEditors.MemoEdit txtMessage;
-        private DevExpress.XtraEditors.MemoEdit txtSource;
         private System.Windows.Forms.PictureBox imgIcon;
         private System.Windows.Forms.ImageList imgFormExpansion;
         private DevExpress.XtraBars.BarManager ctlBarManager;
@@ -375,11 +351,10 @@ namespace Fwk.UI.Controls
         private DevExpress.XtraBars.BarButtonItem btnSave;
         private DevExpress.XtraBars.BarButtonItem btnMail;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraEditors.LabelControl lblMessage;
-        private DevExpress.XtraEditors.LabelControl lblSource;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraBars.BarButtonItem btnOk;
         private DevExpress.XtraBars.BarButtonItem btnNo;
+        private DevExpress.XtraEditors.LabelControl lblSource;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelOrigen;
     }
 }

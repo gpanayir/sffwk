@@ -55,8 +55,8 @@ namespace Fwk.UI.Controls
             resources.ApplyResources(this.txtMessage, "txtMessage");
             this.txtMessage.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtMessage.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.txtMessage.Properties.Appearance.BackColor = ((System.Drawing.Color)(resources.GetObject("txtMessage.Properties.Appearance.BackColor")));
+            this.txtMessage.Properties.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("txtMessage.Properties.Appearance.ForeColor")));
             this.txtMessage.Properties.Appearance.Options.UseBackColor = true;
             this.txtMessage.Properties.Appearance.Options.UseForeColor = true;
             this.txtMessage.Properties.ReadOnly = true;
@@ -64,7 +64,7 @@ namespace Fwk.UI.Controls
             // btnOk
             // 
             resources.ApplyResources(this.btnOk, "btnOk");
-            this.btnOk.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnOk.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("btnOk.Appearance.ForeColor")));
             this.btnOk.Appearance.Options.UseForeColor = true;
             this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOk.Name = "btnOk";
@@ -73,7 +73,7 @@ namespace Fwk.UI.Controls
             // btnCancel
             // 
             resources.ApplyResources(this.btnCancel, "btnCancel");
-            this.btnCancel.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnCancel.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("btnCancel.Appearance.ForeColor")));
             this.btnCancel.Appearance.Options.UseForeColor = true;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.Name = "btnCancel";
@@ -81,17 +81,17 @@ namespace Fwk.UI.Controls
             // 
             // flowLayoutPanel1
             // 
-            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Controls.Add(this.btnCancel);
             this.flowLayoutPanel1.Controls.Add(this.btnOk);
             this.flowLayoutPanel1.Controls.Add(this.btnNo);
             this.flowLayoutPanel1.Controls.Add(this.btnYes);
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // btnNo
             // 
             resources.ApplyResources(this.btnNo, "btnNo");
-            this.btnNo.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnNo.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("btnNo.Appearance.ForeColor")));
             this.btnNo.Appearance.Options.UseForeColor = true;
             this.btnNo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNo.Name = "btnNo";
@@ -100,7 +100,7 @@ namespace Fwk.UI.Controls
             // btnYes
             // 
             resources.ApplyResources(this.btnYes, "btnYes");
-            this.btnYes.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.btnYes.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("btnYes.Appearance.ForeColor")));
             this.btnYes.Appearance.Options.UseForeColor = true;
             this.btnYes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnYes.Name = "btnYes";
@@ -116,7 +116,7 @@ namespace Fwk.UI.Controls
             // 
             // MessageView
             // 
-            this.Appearance.ForeColor = System.Drawing.Color.PaleGoldenrod;
+            this.Appearance.ForeColor = ((System.Drawing.Color)(resources.GetObject("MessageView.Appearance.ForeColor")));
             this.Appearance.Options.UseForeColor = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -127,12 +127,8 @@ namespace Fwk.UI.Controls
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.LookAndFeel.SkinName = "Money Twins";
             this.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "MessageView";
-            this.Opacity = 0.9;
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.Opacity = 0.9D;
             ((System.ComponentModel.ISupportInitialize)(this.txtMessage.Properties)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgIcon)).EndInit();
