@@ -172,7 +172,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="fwk.snk" />
     <None Include="Properties\DataSources\Fwk.Logging.Event.datasource" />
     <None Include="Properties\Settings.settings">

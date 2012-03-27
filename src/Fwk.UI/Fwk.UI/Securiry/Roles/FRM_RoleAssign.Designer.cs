@@ -36,29 +36,33 @@ namespace Fwk.UI.Security
             this.aceptCancelButtonBar1.AceptButtonVisible = true;
             this.aceptCancelButtonBar1.BottomsVisible = true;
             this.aceptCancelButtonBar1.CancelButtonVisible = true;
-            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(7, 537);
-            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(833, 23);
+            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(9, 659);
+            this.aceptCancelButtonBar1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(970, 28);
             this.aceptCancelButtonBar1.ClickOkCancelEvent += new Fwk.UI.Common.ClickOkCancelHandler(this.aceptCancelButtonBar1_ClickOkCancelEvent);
             // 
             // uC_RoleMain1
             // 
             this.uC_RoleMain1.AcceptButton = null;
-            this.uC_RoleMain1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.uC_RoleMain1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.uC_RoleMain1.CancelButton = null;
             this.uC_RoleMain1.Location = new System.Drawing.Point(-1, 2);
+            this.uC_RoleMain1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.uC_RoleMain1.Name = "uC_RoleMain1";
-            this.uC_RoleMain1.Size = new System.Drawing.Size(838, 529);
+            this.uC_RoleMain1.Size = new System.Drawing.Size(978, 651);
             this.uC_RoleMain1.TabIndex = 0;
             // 
             // FRM_RoleAssign
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(847, 567);
+            this.ClientSize = new System.Drawing.Size(988, 698);
             this.Controls.Add(this.uC_RoleMain1);
+            this.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.Name = "FRM_RoleAssign";
+            this.Padding = new System.Windows.Forms.Padding(9, 11, 9, 11);
             this.Text = "Asignación de roles";
             this.Controls.SetChildIndex(this.uC_RoleMain1, 0);
             this.Controls.SetChildIndex(this.aceptCancelButtonBar1, 0);

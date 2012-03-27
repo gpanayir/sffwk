@@ -1,4 +1,4 @@
-
+USE Celam
 /****** Objeto:  Table [dbo].[aspnet_Rules]    Fecha de la secuencia de comandos: 04/26/2010 10:19:43 ******/
 SET ANSI_NULLS ON
 GO

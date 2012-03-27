@@ -51,12 +51,13 @@ namespace Fwk.UI.Security.Controls
             // 
             this.grdRoles.DataSource = this.bindingRoles;
             this.grdRoles.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.grdRoles.Location = new System.Drawing.Point(0, 23);
+            this.grdRoles.Location = new System.Drawing.Point(0, 29);
             this.grdRoles.MainView = this.grdRolesView;
+            this.grdRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdRoles.Name = "grdRoles";
             this.grdRoles.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1});
-            this.grdRoles.Size = new System.Drawing.Size(249, 223);
+            this.grdRoles.Size = new System.Drawing.Size(290, 274);
             this.grdRoles.TabIndex = 9;
             this.grdRoles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdRolesView});
@@ -127,22 +128,23 @@ namespace Fwk.UI.Security.Controls
             // lblSelectedRol
             // 
             this.lblSelectedRol.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.lblSelectedRol.Appearance.Options.UseFont = true;
             this.lblSelectedRol.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblSelectedRol.Location = new System.Drawing.Point(0, 0);
+            this.lblSelectedRol.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblSelectedRol.Name = "lblSelectedRol";
-            this.lblSelectedRol.Size = new System.Drawing.Size(249, 19);
+            this.lblSelectedRol.Size = new System.Drawing.Size(290, 23);
             this.lblSelectedRol.TabIndex = 34;
             this.lblSelectedRol.Text = "lblRol";
             // 
             // UC_RolesGrid
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblSelectedRol);
             this.Controls.Add(this.grdRoles);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "UC_RolesGrid";
-            this.Size = new System.Drawing.Size(249, 246);
+            this.Size = new System.Drawing.Size(290, 303);
             this.Load += new System.EventHandler(this.UC_RolesGrid_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).EndInit();

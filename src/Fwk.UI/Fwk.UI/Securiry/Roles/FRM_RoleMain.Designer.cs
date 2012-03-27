@@ -36,22 +36,24 @@ namespace Fwk.UI.Security
             this.uC_RoleMain1.AcceptButton = null;
             this.uC_RoleMain1.CancelButton = null;
             this.uC_RoleMain1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uC_RoleMain1.Location = new System.Drawing.Point(3, 3);
+            this.uC_RoleMain1.Location = new System.Drawing.Point(3, 6);
             this.uC_RoleMain1.Margin = new System.Windows.Forms.Padding(0);
             this.uC_RoleMain1.Name = "uC_RoleMain1";
-            this.uC_RoleMain1.Size = new System.Drawing.Size(860, 614);
+            this.uC_RoleMain1.Size = new System.Drawing.Size(1004, 751);
             this.uC_RoleMain1.TabIndex = 0;
             this.uC_RoleMain1.Load += new System.EventHandler(this.uC_RoleMain1_Load);
             // 
             // FRM_RoleMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 620);
+            this.ClientSize = new System.Drawing.Size(1010, 763);
             this.Controls.Add(this.uC_RoleMain1);
+            this.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FRM_RoleMain";
+            this.Padding = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Roles";
             this.ResumeLayout(false);

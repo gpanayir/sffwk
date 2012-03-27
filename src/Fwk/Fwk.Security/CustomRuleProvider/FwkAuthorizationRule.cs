@@ -179,6 +179,15 @@ namespace Fwk.Security
         }
 
         #endregion
+
+         #region IComparable Members
+
+         public int CompareTo(object obj)
+         {
+             throw new NotImplementedException();
+         }
+
+         #endregion
     }
 
     /// <summary>
@@ -219,10 +228,28 @@ namespace Fwk.Security
 
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pFwkAuthorizationRuleauxList"></param>
         public void Populate(FwkAuthorizationRuleAuxList pFwkAuthorizationRuleauxList)
         {
             pFwkAuthorizationRuleauxList.ForEach(a => this.Add(new FwkAuthorizationRule(a)));
         }
+
+        #region IComparable Members
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
     /// <summary>
     /// Categorias de reglass
