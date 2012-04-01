@@ -202,7 +202,7 @@ namespace ConfigurationApp
             this.btnQuitProvider.Size = new System.Drawing.Size(23, 22);
             this.btnQuitProvider.Text = "Quit";
             this.btnQuitProvider.ToolTipText = "Quit the selected file";
-            this.btnQuitProvider.Click += new System.EventHandler(this.btnQuitProvider_Click);
+            
             // 
             // btnExport
             // 

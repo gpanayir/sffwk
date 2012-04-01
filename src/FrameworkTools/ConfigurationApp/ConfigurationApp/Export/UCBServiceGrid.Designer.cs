@@ -165,7 +165,7 @@ namespace ConfigurationApp
             // 
             // fwkConfigMannagerBindingSource
             // 
-            this.fwkConfigMannagerBindingSource.DataSource = typeof(Fwk.Bases.Blocks.Fwk.Configuration.config.fwk_ConfigMannager);
+            this.fwkConfigMannagerBindingSource.DataSource = typeof(Fwk.ConfigData.fwk_ConfigMannager);
             // 
             // configurationFileNameDataGridViewTextBoxColumn
             // 

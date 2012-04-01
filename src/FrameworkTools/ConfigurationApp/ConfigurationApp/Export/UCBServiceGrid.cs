@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Fwk.HelperFunctions;
 using Fwk.Bases;
 using Fwk.Configuration.Common;
-using Fwk.Bases.Blocks.Fwk.Configuration.config;
+using Fwk.ConfigData;
 namespace ConfigurationApp
 {
     
@@ -23,9 +23,9 @@ namespace ConfigurationApp
     public partial class UCBServiceGrid : UserControl
     {
         bool init = true;
-        List<Fwk.Bases.Blocks.Fwk.Configuration.config.fwk_ConfigMannager> _ConfigList;
+        List<fwk_ConfigMannager> _ConfigList;
 
-        public List<Fwk.Bases.Blocks.Fwk.Configuration.config.fwk_ConfigMannager> ConfigList
+        public List<fwk_ConfigMannager> ConfigList
         {
             get { return ConfigList; }
            
