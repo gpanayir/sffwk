@@ -12,8 +12,6 @@ namespace Fwk.Bases
 	{
         string _CompanyId;
         //string _SecurityProviderName;
-
-        
 		string _UserName;
         string _HostName;
         string _ServerName;
@@ -60,7 +58,6 @@ namespace Fwk.Bases
             get { return _ServerTime; }
             set { _ServerTime = value; }
         }
-
 
         /// <summary>
         /// Indica el usuario logueado en el host que inicio el servicio.-

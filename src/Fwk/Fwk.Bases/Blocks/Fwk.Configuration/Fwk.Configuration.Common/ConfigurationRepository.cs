@@ -97,18 +97,16 @@ namespace Fwk.Configuration.Common
             }
 
             _DictionaryFiles.Remove(pConfigurationFile.ProviderName);
+       }
 
-
-        }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ProviderName"></param>
+        /// <param name="providerName"></param>
         /// <returns></returns>
         public bool ExistConfigurationFile(string providerName)
         {
             return _DictionaryFiles.ContainsKey(providerName);
-
         }
     }
 
@@ -243,6 +241,9 @@ namespace Fwk.Configuration.Common
     }
     
 
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlRoot("Groups"), SerializableAttribute]
     public class Groups : BaseEntities<Group>
     {
@@ -259,9 +260,6 @@ namespace Fwk.Configuration.Common
 
             return wItem.First<Group>();
         }
-
-        
-
     }
 
 

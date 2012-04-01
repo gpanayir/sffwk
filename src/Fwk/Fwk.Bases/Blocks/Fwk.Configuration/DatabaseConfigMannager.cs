@@ -13,8 +13,8 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using Fwk.ConfigSection;
 using Fwk.Exceptions;
-using Fwk.Bases.Blocks.Fwk.Configuration;
-using Fwk.Bases.Blocks.Fwk.Configuration.config;
+
+using Fwk.ConfigData;
 
 namespace Fwk.Configuration
 {
@@ -145,7 +145,7 @@ namespace Fwk.Configuration
         /// Devuelve el contenido completo de un archivo de configuración
         /// dado el nombre de archivo.
         /// </summary>
-        /// <param name="pFileName">Nombre de archivo</param>
+        /// <param name="provider">Nombre de archivo</param>
         /// <param name="pCnnStringName">Nombre de cadena de coneccion.</param>
         /// <returns><see cref="ConfigurationFile"/></returns>
         /// <Author>Marcelo Oviedo</Author>
@@ -158,6 +158,7 @@ namespace Fwk.Configuration
             if (wConfigurationFile == null)
             {
                 wConfigurationFile = GetFromDatabase(provider.BaseConfigFile, pCnnStringName);
+                wConfigurationFile.ProviderName = provider.Name;
                 _Repository.AddConfigurationFile(wConfigurationFile);
 
             }
@@ -183,6 +184,7 @@ namespace Fwk.Configuration
             Group g = null;
             Key k = null;
             wConfigurationFile.FileName = pFileName;
+            
             if (System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", pCnnStringName));
@@ -193,7 +195,7 @@ namespace Fwk.Configuration
             try
             {
 
-                using (configdataDataContext dc = new configdataDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName].ConnectionString))
+                using (FwkDatacontext dc = new FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName].ConnectionString))
                 {
 
                     IEnumerable<fwk_ConfigMannager> fwk_ConfigMannagerList = from s in dc.fwk_ConfigMannagers
@@ -246,15 +248,14 @@ namespace Fwk.Configuration
         /// <param name="groupName">Nombre del gruop que contiene las propiedades</param>
         internal static void AddProperty(ConfigProviderElement provider, Key key, string groupName)
         {
-            Set_INSERT();
+
             System.Text.StringBuilder sqlCommand = new StringBuilder();
 
             ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);  //_Repository.GetConfigurationFile(provider.BaseConfigFile);
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
             wGroup.Keys.Add(key);
 
-            Database wDataBase = null;
-            DbCommand wCmd = null;
+       
             if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
@@ -262,24 +263,26 @@ namespace Fwk.Configuration
                 te.ErrorId = "8200";
                 throw te;
             }
+            fwk_ConfigMannager confg;
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(provider.SourceInfo);
+                using (FwkDatacontext dc = new FwkDatacontext())
+                {
+                 
+                        confg = new fwk_ConfigMannager();
+                        confg.ConfigurationFileName = provider.BaseConfigFile;
+                        confg.key = key.Name;
+                        confg.encrypted = key.Encrypted;
+                        confg.value = key.Value.Text;
+                        confg.group = groupName;
+                      
+                        dc.fwk_ConfigMannagers.InsertOnSubmit(confg);
 
-
-                sqlCommand.Append(_INSERT);
-                sqlCommand.Replace("$key$", key.Name);
-                sqlCommand.Replace("$encrypted$", key.Encrypted.ToString());
-                sqlCommand.Replace("$value$", key.Value.Text);
-
-                sqlCommand.Replace("$ConfigurationFileName$", provider.BaseConfigFile);
-                //sqlCommand.Replace("$AppId$", provider.ApplicationId);
-                sqlCommand.Replace("$group$", wGroup.Name);
-                wCmd = wDataBase.GetSqlStringCommand(sqlCommand.ToString());
-                wCmd.CommandType = CommandType.Text;
-
-                wDataBase.ExecuteNonQuery(wCmd);
-            }
+                    
+                    dc.SubmitChanges();
+                }
+      
+           }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
@@ -298,15 +301,8 @@ namespace Fwk.Configuration
         internal static void AddGroup(ConfigProviderElement provider, Group group)
         {
 
-
-
             ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);
 
-            //if (!wConfigurationFile.BaseConfigFile)
-            //{
-            //    ///TODO: manejo de exepcion de configuracion
-            //    throw new Exception("El archivo solicitado no es un archivo de configuración válido.");
-            //}
             if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
@@ -315,32 +311,26 @@ namespace Fwk.Configuration
                 throw te;
             }
             wConfigurationFile.Groups.Add(group);
+            fwk_ConfigMannager confg;
 
-            Set_INSERT();
-            System.Text.StringBuilder sqlCommand = new StringBuilder();
-
-
-            Database wDataBase = null;
-            DbCommand wCmd = null;
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(provider.SourceInfo);
-
-
-                foreach (Key k in group.Keys)
+                using (FwkDatacontext dc = new FwkDatacontext())
                 {
-                    sqlCommand.Append(_INSERT);
-                    sqlCommand.Replace("$key$", k.Name);
-                    sqlCommand.Replace("$encrypted$", k.Encrypted.ToString());
-                    sqlCommand.Replace("$value$", k.Value.Text);
+                    foreach (Key k in group.Keys)
+                    {
+                        confg = new fwk_ConfigMannager();
+                        confg.ConfigurationFileName = provider.BaseConfigFile;
+                        confg.key = k.Name;
+                        confg.encrypted = k.Encrypted;
+                        confg.value = k.Value.Text;
+                        confg.group = group.Name;
+                        dc.fwk_ConfigMannagers.InsertOnSubmit(confg);
+                        
+                    }
+                    dc.SubmitChanges();
                 }
-                sqlCommand.Replace("$ConfigurationFileName$", provider.BaseConfigFile);
-                //sqlCommand.Replace("$AppId$", provider.ApplicationId);
-                sqlCommand.Replace("$group$", group.Name);
-                wCmd = wDataBase.GetSqlStringCommand(sqlCommand.ToString());
-                wCmd.CommandType = CommandType.Text;
 
-                wDataBase.ExecuteNonQuery(wCmd);
             }
             catch (Exception ex)
             {
@@ -351,100 +341,67 @@ namespace Fwk.Configuration
             }
         }
 
-        static string _INSERT;
-        static void Set_INSERT()
-        {
+    
+        //static string _UPDATE_GROUP;
+        //static void Set_UPDATE_GROUP()
+        //{
 
-            if (string.IsNullOrEmpty(_INSERT))
-            {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder(1000);
+        //    if (string.IsNullOrEmpty(_UPDATE_GROUP))
+        //    {
+        //        System.Text.StringBuilder sb = new System.Text.StringBuilder(1000);
 
-                sb.Append(@"	INSERT INTO [fwk_ConfigMannager]");
-                sb.Append(@"    ([ConfigurationFileName]");
-                //sb.Append(@"     ,[AppId]");
-                sb.Append(@"     ,[group]");
-                sb.Append(@"     ,[key]");
-                sb.Append(@"    ,[encrypted]");
-                sb.Append(@"    ,[value])");
+        //        sb.Append(@"	UPDATE  [fwk_ConfigMannager]");
 
+        //        sb.Append(@" SET   [group] = '$newgroupname$'");
 
-                sb.Append(@"	VALUES (");
+        //        sb.Append(@"	WHERE ");
 
-                sb.Append(@"		'$ConfigurationFileName$',");
-                //sb.Append(@"		'$AppId$',");
-                sb.Append(@"		'$group$',");
-                sb.Append(@"		'$key$',");
-                sb.Append(@"		'$encrypted$',");
-                sb.Append(@"		'$value$')");
-
-
-
-                _INSERT = sb.ToString();
-            }
-
-
-
-        }
-        static string _UPDATE_GROUP;
-        static void Set_UPDATE_GROUP()
-        {
-
-            if (string.IsNullOrEmpty(_UPDATE_GROUP))
-            {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder(1000);
-
-                sb.Append(@"	UPDATE  [fwk_ConfigMannager]");
-
-                sb.Append(@" SET   [group] = '$newgroupname$'");
-
-                sb.Append(@"	WHERE ");
-
-                sb.Append(@"[ConfigurationFileName] =	'$ConfigurationFileName$'");
-                //sb.Append(@" AND	[AppId] =	'$AppId$'");
-                sb.Append(@" AND	[group] =	'$group$'");
+        //        sb.Append(@"[ConfigurationFileName] =	'$ConfigurationFileName$'");
+        //        //sb.Append(@" AND	[AppId] =	'$AppId$'");
+        //        sb.Append(@" AND	[group] =	'$group$'");
 
 
 
 
 
-                _UPDATE_GROUP = sb.ToString();
-            }
+        //        _UPDATE_GROUP = sb.ToString();
+        //    }
 
 
 
 
-        }
-        static string _UPDATE_PROP;
-        static void Set_UPDATE_PROP()
-        {
+        //}
+        //static string _UPDATE_PROP;
+        //static void Set_UPDATE_PROP()
+        //{
 
-            if (string.IsNullOrEmpty(_UPDATE_PROP))
-            {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder(1000);
+        //    if (string.IsNullOrEmpty(_UPDATE_PROP))
+        //    {
+        //        System.Text.StringBuilder sb = new System.Text.StringBuilder(1000);
 
-                sb.Append(@"	UPDATE  [fwk_ConfigMannager]");
-
-
-                sb.Append(@" SET    [key] = '$newkeyname$'");
-                sb.Append(@"    ,[encrypted]= '$encrypted$'");
-                sb.Append(@"    ,[value] = '$value$'");
-
-                sb.Append(@"	WHERE ");
-
-                sb.Append(@" [ConfigurationFileName] =	'$ConfigurationFileName$'");
-                //sb.Append(@" AND	[AppId] =	'$AppId$'");
-                sb.Append(@" AND	[group] =	'$group$'");
-                sb.Append(@" AND	[key] =	    '$key$'");
+        //        sb.Append(@"	UPDATE  [fwk_ConfigMannager]");
 
 
+        //        sb.Append(@" SET    [key] = '$newkeyname$'");
+        //        sb.Append(@"    ,[encrypted]= '$encrypted$'");
+        //        sb.Append(@"    ,[value] = '$value$'");
 
+        //        sb.Append(@"	WHERE ");
 
-                _UPDATE_PROP = sb.ToString();
-            }
+        //        sb.Append(@" [ConfigurationFileName] =	'$ConfigurationFileName$'");
+        //        //sb.Append(@" AND	[AppId] =	'$AppId$'");
+        //        sb.Append(@" AND	[group] =	'$group$'");
+        //        sb.Append(@" AND	[key] =	    '$key$'");
 
 
 
-        }
+
+        //        _UPDATE_PROP = sb.ToString();
+        //    }
+
+
+
+        //}
 
         /// <summary>
         /// Elimina una porpiedad de la cinfuguracion
@@ -535,14 +492,12 @@ namespace Fwk.Configuration
         /// <param name="newGroupName">Nuevo nombre del grupo</param>
         internal static void ChangeGroupName(ConfigProviderElement provider, string groupName, string newGroupName)
         {
-            Set_UPDATE_GROUP();
-            System.Text.StringBuilder sqlCommand = new StringBuilder();
+            //Set_UPDATE_GROUP();
+            //System.Text.StringBuilder sqlCommand = new StringBuilder();
 
             ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);
 
 
-            Database wDataBase = null;
-            DbCommand wCmd = null;
             if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
@@ -552,19 +507,23 @@ namespace Fwk.Configuration
             }
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(provider.SourceInfo);
 
+                using (FwkDatacontext dc = new FwkDatacontext())
+                {
 
-                sqlCommand.Append(_UPDATE_GROUP);
-                sqlCommand.Replace("$newgroupname$", newGroupName);
-                sqlCommand.Replace("$group$", groupName);
-                sqlCommand.Replace("$ConfigurationFileName$", provider.BaseConfigFile);
-                //sqlCommand.Replace("$AppId$", provider.ApplicationId);
+                    
+                  var configs = dc.fwk_ConfigMannagers.Where(p=>
+                        p.group.Equals(groupName)
+                        && p.ConfigurationFileName.Equals(provider.BaseConfigFile));
 
-                wCmd = wDataBase.GetSqlStringCommand(sqlCommand.ToString());
-                wCmd.CommandType = CommandType.Text;
+                    foreach (fwk_ConfigMannager confg in configs)
+                    {
+                       confg.group = newGroupName;
+                    }
+                    dc.SubmitChanges();
+                }
 
-                wDataBase.ExecuteNonQuery(wCmd);
+   
             }
             catch (Exception ex)
             {
@@ -585,14 +544,14 @@ namespace Fwk.Configuration
         /// <param name="propertyName">Nombre de la propiedad que se mofdifico.- Este valor es el original sin modificacion</param>
         internal static void ChangeProperty(ConfigProviderElement provider, string groupName, Key property, string propertyName)
         {
-            Set_UPDATE_PROP();
-            System.Text.StringBuilder sqlCommand = new StringBuilder();
+            ////Set_UPDATE_PROP();
+            //System.Text.StringBuilder sqlCommand = new StringBuilder();
 
             ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);
 
 
-            Database wDataBase = null;
-            DbCommand wCmd = null;
+            //Database wDataBase = null;
+            //DbCommand wCmd = null;
             if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
@@ -602,23 +561,37 @@ namespace Fwk.Configuration
             }
             try
             {
-                wDataBase = DatabaseFactory.CreateDatabase(provider.SourceInfo);
+                using (FwkDatacontext dc = new FwkDatacontext())
+                {
+
+                    var  prop = dc.fwk_ConfigMannagers.Where(p =>
+
+                            p.key.Equals(propertyName, StringComparison.OrdinalIgnoreCase)
+                            && p.group.Equals(groupName, StringComparison.OrdinalIgnoreCase)
+                          && p.ConfigurationFileName.Equals(provider.BaseConfigFile, StringComparison.OrdinalIgnoreCase)).FirstOrDefault<fwk_ConfigMannager>();
+
+                    prop.value = property.Value.Text;
+                    prop.encrypted = property.Encrypted;
+                    prop.key = property.Name;
+                    dc.SubmitChanges();
+                }
+                //wDataBase = DatabaseFactory.CreateDatabase(provider.SourceInfo);
 
 
-                sqlCommand.Append(_UPDATE_PROP);
-                sqlCommand.Replace("$newkeyname$", property.Name);
-                sqlCommand.Replace("$key$", propertyName);
-                sqlCommand.Replace("$group$", groupName);
-                sqlCommand.Replace("$ConfigurationFileName$", provider.BaseConfigFile);
-                //sqlCommand.Replace("$AppId$", provider.ApplicationId);
-                sqlCommand.Replace("$encrypted$", property.Encrypted.ToString());
-                sqlCommand.Replace("$value$", property.Value.Text);
+                //sqlCommand.Append(_UPDATE_PROP);
+                //sqlCommand.Replace("$newkeyname$", property.Name);
+                //sqlCommand.Replace("$key$", propertyName);
+                //sqlCommand.Replace("$group$", groupName);
+                //sqlCommand.Replace("$ConfigurationFileName$", provider.BaseConfigFile);
+                ////sqlCommand.Replace("$AppId$", provider.ApplicationId);
+                //sqlCommand.Replace("$encrypted$", property.Encrypted.ToString());
+                //sqlCommand.Replace("$value$", property.Value.Text);
 
 
-                wCmd = wDataBase.GetSqlStringCommand(sqlCommand.ToString());
-                wCmd.CommandType = CommandType.Text;
+                //wCmd = wDataBase.GetSqlStringCommand(sqlCommand.ToString());
+                //wCmd.CommandType = CommandType.Text;
 
-                wDataBase.ExecuteNonQuery(wCmd);
+                //wDataBase.ExecuteNonQuery(wCmd);
             }
             catch (Exception ex)
             {

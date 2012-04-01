@@ -109,12 +109,12 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Blocks\Functions\WindowsFunction.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager_CRUD.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\config\configdata.designer.cs">
+    <Compile Include="Blocks\FwkData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>configdata.dbml</DependentUpon>
+      <DependentUpon>FwkData.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager_CRUD.cs" />
     <Compile Include="Blocks\Fwk.Configuration\DatabaseConfigMannager.cs" />
     <Compile Include="Blocks\Fwk.Net\CommonClass.cs" />
     <Compile Include="Blocks\Fwk.Net\Ftp\FTPComponent.cs">
@@ -277,19 +277,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SingletonFactoryArray.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="BackEnd.cd" />
+    <None Include="Blocks\FwkData.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>FwkData.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="fwk.snk" />
     <None Include="Blocks\Fwk.Caching\Caching.cd" />
     <None Include="Blocks\Fwk.Caching\ConfigCaching_App.config" />
     <None Include="Blocks\Fwk.Logging\diagrams\Diagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Blocks\Fwk.Configuration\config\configdata.dbml.layout">
-      <DependentUpon>configdata.dbml</DependentUpon>
+    <None Include="Blocks\FwkData.dbml.layout">
+      <DependentUpon>FwkData.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="Blocks\Fwk.Mail\FwkMailAgent.resx">
       <DependentUpon>FwkMailAgent.cs</DependentUpon>
@@ -339,15 +349,14 @@
   <ItemGroup>
     <Content Include="Blocks\Fwk.Caching\Configurations.xml" />
     <None Include="Blocks\Fwk.Configuration\app.config" />
-    <None Include="Blocks\Fwk.Configuration\config\configdata.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>configdata.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
     <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />
     <Content Include="Blocks\Fwk.Exceptions\FrameworkErrors.txt" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\db5.png" />
     <None Include="RequestResponse.cd" />
     <None Include="Resources\mail_16.png" />
