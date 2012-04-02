@@ -608,7 +608,7 @@ namespace Fwk.HelperFunctions
 
             PropertyInfo[] pi = t.GetProperties();
 
-            sb.Append("Properties for: " + o.GetType().Name + System.Environment.NewLine);
+            sb.Append(string.Concat("Properties for: " , o.GetType().Name , System.Environment.NewLine));
             foreach (PropertyInfo i in pi)
             {
                 if (!(i.Name.CompareTo("CanUndo") == 0 ||
@@ -617,7 +617,7 @@ namespace Fwk.HelperFunctions
                     try
                     {
 
-                        sb.Append("\t" + i.Name + "(" + i.PropertyType.ToString() + "): ");
+                        sb.Append(string.Concat("\t" , i.Name , "(" , i.PropertyType.ToString() , "): "));
                         if (null != i.GetValue(o, null))
                         {
                             sb.Append(i.GetValue(o, null).ToString());
@@ -637,7 +637,7 @@ namespace Fwk.HelperFunctions
             {
                 try
                 {
-                    sb.Append("\t" + i.Name + "(" + i.FieldType.ToString() + "): ");
+                    sb.Append(string.Concat("\t" , i.Name , "(" , i.FieldType.ToString() , "): "));
                     if (null != i.GetValue(o))
                     {
                         sb.Append(i.GetValue(o).ToString());
