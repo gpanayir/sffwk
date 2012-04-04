@@ -32,6 +32,7 @@ namespace Fwk.UI.Security.Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_AuthenticationForm_ASPNet));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.txtPassword = new Fwk.UI.Controls.TextBox(this.components);
             this.txtUserName = new Fwk.UI.Controls.TextBox(this.components);
@@ -152,7 +153,7 @@ namespace Fwk.UI.Security.Controls
             // 
             // imgTitle
             // 
-            this.imgTitle.Image = global::Fwk.UI.Properties.Resources.button_blue;
+            this.imgTitle.Image = global::Fwk.UI.Properties.Resources.ulock_32;
             this.imgTitle.Location = new System.Drawing.Point(3, 7);
             this.imgTitle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.imgTitle.Name = "imgTitle";
@@ -199,6 +200,7 @@ namespace Fwk.UI.Security.Controls
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -206,7 +208,7 @@ namespace Fwk.UI.Security.Controls
             this.Name = "FRM_AuthenticationForm_ASPNet";
             this.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Iniciar sesión en ";
             this.Load += new System.EventHandler(this.AuthenticationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();

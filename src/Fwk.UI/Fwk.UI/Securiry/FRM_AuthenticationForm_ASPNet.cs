@@ -135,16 +135,15 @@ namespace Fwk.UI.Security.Controls
                     return false;
                 }
             }
-
             catch (Fwk.Exceptions.FunctionalException funcionalEx)
             {
                 this.MessageViewer.Title = "Mensaje de seguridad";
                 this.MessageViewer.Show(funcionalEx);
                 return false;
             }
-
             catch (Exception ex)
             {
+                this.MessageViewer.Title = "Mensaje de seguridad";
                 this.ExceptionViewer.Show(ex);
                 return false;
             }

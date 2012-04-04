@@ -160,7 +160,7 @@ namespace Fwk.UI.Controls
 
             _FwkMessageView.Message = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
 
-      
+            _FwkMessageView.StartPosition = FormStartPosition.CenterParent;
             _FwkMessageView.ShowDialog();
             return _FwkMessageView.DialogResult;
         }
