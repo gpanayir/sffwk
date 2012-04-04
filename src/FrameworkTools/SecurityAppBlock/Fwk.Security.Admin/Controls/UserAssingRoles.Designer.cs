@@ -128,7 +128,7 @@
             this.lblRolesByUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRolesByUser.Image = global::Fwk.Security.Admin.Properties.Resources.Users;
             this.lblRolesByUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblRolesByUser.Location = new System.Drawing.Point(782, 59);
+            this.lblRolesByUser.Location = new System.Drawing.Point(804, 59);
             this.lblRolesByUser.Name = "lblRolesByUser";
             this.lblRolesByUser.Size = new System.Drawing.Size(82, 20);
             this.lblRolesByUser.TabIndex = 23;
