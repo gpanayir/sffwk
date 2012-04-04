@@ -41,8 +41,16 @@ namespace Fwk.Security.Admin
 
         public override void Initialize()
         {
-            
-            userList = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
+            try
+            {
+                userList = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
+            }
+            catch (Exception ex)
+            {
+                base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
+                return;
+            }
+            //userList = SecurityController.GetAllUsers(true).ToList<User>();
             userByAppBindingSource.DataSource = userList;
             gridView1.RefreshData();
         
@@ -94,6 +102,7 @@ namespace Fwk.Security.Admin
 
             if (OnUserChange != null)
             {
+                
                 OnUserChange(CurrentUser, FwkMembership.GetRolesForUser(CurrentUser.UserName, frmAdmin.Provider.Name));
             }
         }

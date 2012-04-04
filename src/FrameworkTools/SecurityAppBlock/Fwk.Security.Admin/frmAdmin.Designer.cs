@@ -43,7 +43,7 @@ namespace Fwk.Security.Admin
             this.navBarItem_RoleCreate = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup_Rules = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem_CreateRule = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem_Check = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem_Check_Rule = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_CategoryCreate = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_RulesEdit = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -118,7 +118,7 @@ namespace Fwk.Security.Admin
             this.navBarItem_CreateRule,
             this.navBarItem_CategoryCreate,
             this.navBarItem_AssingRoles,
-            this.navBarItem_Check,
+            this.navBarItem_Check_Rule,
             this.navBarItem_RulesEdit,
             this.navBarItem_Encrypt});
             this.navBarControl1.Location = new System.Drawing.Point(9, 124);
@@ -193,7 +193,7 @@ namespace Fwk.Security.Admin
             this.navBarGroup_Rules.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup_Rules.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CreateRule),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_Check),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_Check_Rule),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CategoryCreate),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_RulesEdit)});
             this.navBarGroup_Rules.LargeImage = global::Fwk.Security.Admin.Properties.Resources.admin_24;
@@ -209,10 +209,10 @@ namespace Fwk.Security.Admin
             // 
             // navBarItem_Check
             // 
-            this.navBarItem_Check.Caption = "Check rule";
-            this.navBarItem_Check.LargeImage = global::Fwk.Security.Admin.Properties.Resources.access_control_ok_32;
-            this.navBarItem_Check.Name = "navBarItem_Check";
-            this.navBarItem_Check.Tag = "Fwk.Security.Admin.Controls.RulesCheckControl, Fwk.Security.Admin";
+            this.navBarItem_Check_Rule.Caption = "Check rule";
+            this.navBarItem_Check_Rule.LargeImage = global::Fwk.Security.Admin.Properties.Resources.access_control_ok_32;
+            this.navBarItem_Check_Rule.Name = "navBarItem_Check";
+            this.navBarItem_Check_Rule.Tag = "Fwk.Security.Admin.Controls.RulesCheckControl, Fwk.Security.Admin";
             // 
             // navBarItem_CategoryCreate
             // 
@@ -429,7 +429,7 @@ namespace Fwk.Security.Admin
         private DevExpress.XtraNavBar.NavBarItem navBarItem_CreateRule;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_CategoryCreate;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_AssingRoles;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem_Check;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem_Check_Rule;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_RulesEdit;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.LookUpEdit cmbProviders;

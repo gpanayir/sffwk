@@ -113,6 +113,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.DataBase.dll</HintPath>
     </Reference>
+    <Reference Include="Fwk.UI.Common, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Framework\Fwk.UI.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
     </Reference>
@@ -261,6 +265,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityController.cs" />
     <EmbeddedResource Include="Controls\ConnectionStringsCrypt.resx">
       <DependentUpon>ConnectionStringsCrypt.cs</DependentUpon>
       <SubType>Designer</SubType>
