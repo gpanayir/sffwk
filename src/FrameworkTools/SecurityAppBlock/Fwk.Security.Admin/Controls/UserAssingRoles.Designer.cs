@@ -55,7 +55,7 @@
             this.lstBoxRoles.CheckOnClick = true;
             this.lstBoxRoles.DataSource = this.rolListBindingSource;
             this.lstBoxRoles.DisplayMember = "RolName";
-            this.lstBoxRoles.Location = new System.Drawing.Point(785, 85);
+            this.lstBoxRoles.Location = new System.Drawing.Point(804, 83);
             this.lstBoxRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstBoxRoles.Name = "lstBoxRoles";
             this.lstBoxRoles.Size = new System.Drawing.Size(193, 503);
