@@ -20,7 +20,7 @@ namespace Fwk.Security.Admin.Controls
 
         internal static bool Authorize(IPrincipal principal, string context)
         {
-            if (_SecurityRuleProviderList.Count  == 0)
+            if (_SecurityRuleProviderList.Count == 0)
             {
                 throw new Exception("Debe crear al menos un proiveedor ");
             }
@@ -89,24 +89,24 @@ namespace Fwk.Security.Admin.Controls
             }
             else
             {
-                 wSecurityControl = (SecurityControlBase)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(pName);
+                wSecurityControl = (SecurityControlBase)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(pName);
                 _SecurityControlList.Add(pName, wSecurityControl);
                 isNew = true;
-              
+
             }
             return wSecurityControl;
         }
 
-        internal static void  RomoveAllControls()
+        internal static void RomoveAllControls()
         {
-            
-            _SecurityControlList.Clear ();
+
+            _SecurityControlList.Clear();
         }
 
         internal static SecurityControlBase Show(NavBarItemLink pItem, Control pContainer)
         {
-            SecurityControlBase wSecurityControl  = Get(pItem);
-            
+            SecurityControlBase wSecurityControl = Get(pItem);
+
             AddtoPanel(wSecurityControl, pContainer);
             try
             {
@@ -116,29 +116,27 @@ namespace Fwk.Security.Admin.Controls
             {
                 pContainer.Controls.Clear();
                 throw ex;
-               
-                
+
+
             }
-            
+
 
             return wSecurityControl;
         }
-     
+
 
         static void AddtoPanel(Control pControlToAdd, Control pContainerControl)
         {
 
-            if (pContainerControl.Contains(pControlToAdd)) return;
+            if (!pContainerControl.Contains(pControlToAdd))
+            {
+                pContainerControl.Controls.Add(pControlToAdd);
+                pControlToAdd.Dock = DockStyle.Fill;
+                //pContainerControl.Controls.Clear();
 
-            pControlToAdd.Location = new System.Drawing.Point(1, 1);
-            pControlToAdd.Width = pContainerControl.Width - 60;
-            pControlToAdd.Height = pContainerControl.Height - 60;
-            pControlToAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                   | System.Windows.Forms.AnchorStyles.Left)
-                   | System.Windows.Forms.AnchorStyles.Right)));
-            pContainerControl.Controls.Clear();
-            pContainerControl.Controls.Add(pControlToAdd);
-
+            }
+            pControlToAdd.Dock = DockStyle.Fill;
+            pControlToAdd.BringToFront();
         }
     }
 }

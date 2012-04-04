@@ -68,7 +68,7 @@
             this.groupControl2.Location = new System.Drawing.Point(3, 4);
             this.groupControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(738, 103);
+            this.groupControl2.Size = new System.Drawing.Size(820, 103);
             this.groupControl2.TabIndex = 19;
             this.groupControl2.Text = "Rol properties";
             // 
@@ -86,6 +86,7 @@
             this.txtDescription.Location = new System.Drawing.Point(240, 60);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtDescription.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtDescription.Size = new System.Drawing.Size(238, 22);
@@ -102,13 +103,13 @@
             // 
             // txtRolName
             // 
-            this.txtRolName.Location = new System.Drawing.Point(5, 56);
+            this.txtRolName.Location = new System.Drawing.Point(5, 60);
             this.txtRolName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRolName.Name = "txtRolName";
             this.txtRolName.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtRolName.Properties.Appearance.Options.UseBackColor = true;
-            this.txtRolName.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-            this.txtRolName.Size = new System.Drawing.Size(178, 24);
+            this.txtRolName.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.txtRolName.Size = new System.Drawing.Size(178, 22);
             this.txtRolName.TabIndex = 6;
             this.txtRolName.Validating += new System.ComponentModel.CancelEventHandler(this.txtRolName_Validating);
             // 
@@ -144,7 +145,7 @@
             this.grdUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdUsers.Name = "grdUsers";
             this.grdUsers.RowTemplate.Height = 24;
-            this.grdUsers.Size = new System.Drawing.Size(356, 431);
+            this.grdUsers.Size = new System.Drawing.Size(356, 482);
             this.grdUsers.TabIndex = 22;
             this.grdUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdUsers_KeyDown);
             // 
@@ -180,7 +181,8 @@
             this.grdRoles.Location = new System.Drawing.Point(3, 148);
             this.grdRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdRoles.Name = "grdRoles";
-            this.grdRoles.Size = new System.Drawing.Size(352, 431);
+            this.grdRoles.RowTemplate.Height = 24;
+            this.grdRoles.Size = new System.Drawing.Size(352, 482);
             this.grdRoles.TabIndex = 20;
             this.grdRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdRoles2_CellClick);
             // 
@@ -248,7 +250,7 @@
             this.Controls.Add(this.groupControl2);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "RolesCreate";
-            this.Size = new System.Drawing.Size(751, 603);
+            this.Size = new System.Drawing.Size(833, 654);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);

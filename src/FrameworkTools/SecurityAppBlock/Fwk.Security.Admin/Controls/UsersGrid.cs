@@ -60,23 +60,23 @@ namespace Fwk.Security.Admin
 
         private void textEdit1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar != (char)Keys.Enter) return;
+            //if (e.KeyChar != (char)Keys.Enter) return;
          
-            if (string.IsNullOrEmpty(textEdit1.Text))
-            {
-                userByAppBindingSource.DataSource = userList;
-                gridView1.RefreshData();
-            }
-            string strFind = textEdit1.Text.ToUpper();
-            var list = from u in userList
-                       where
-                        u.UserName.ToUpper().Contains(strFind) ||
-                        u.Email.ToUpper().Contains(strFind)
-                       select u;
+            //if (string.IsNullOrEmpty(textEdit1.Text))
+            //{
+            //    userByAppBindingSource.DataSource = userList;
+            //    gridView1.RefreshData();
+            //}
+            //string strFind = textEdit1.Text.ToUpper();
+            //var list = from u in userList
+            //           where
+            //            u.UserName.ToUpper().Contains(strFind) ||
+            //            u.Email.ToUpper().Contains(strFind)
+            //           select u;
 
      
-            userByAppBindingSource.DataSource = list.ToList<User>();
-            gridView1.RefreshData(); ;
+            //userByAppBindingSource.DataSource = list.ToList<User>();
+            //gridView1.RefreshData(); ;
             
         }
         

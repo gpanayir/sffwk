@@ -45,7 +45,8 @@
             // 
             // lstBoxRoles
             // 
-            this.lstBoxRoles.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lstBoxRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstBoxRoles.Appearance.BackColor = System.Drawing.Color.White;
             this.lstBoxRoles.Appearance.BackColor2 = System.Drawing.Color.White;
             this.lstBoxRoles.Appearance.BorderColor = System.Drawing.Color.White;
@@ -54,10 +55,10 @@
             this.lstBoxRoles.CheckOnClick = true;
             this.lstBoxRoles.DataSource = this.rolListBindingSource;
             this.lstBoxRoles.DisplayMember = "RolName";
-            this.lstBoxRoles.Location = new System.Drawing.Point(720, 156);
+            this.lstBoxRoles.Location = new System.Drawing.Point(785, 85);
             this.lstBoxRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstBoxRoles.Name = "lstBoxRoles";
-            this.lstBoxRoles.Size = new System.Drawing.Size(240, 425);
+            this.lstBoxRoles.Size = new System.Drawing.Size(193, 503);
             this.lstBoxRoles.TabIndex = 13;
             this.lstBoxRoles.ValueMember = "RolName";
             // 
@@ -67,12 +68,12 @@
             // 
             // btnAsignarRoles
             // 
-            this.btnAsignarRoles.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAsignarRoles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAsignarRoles.BackColor = System.Drawing.Color.White;
             this.btnAsignarRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAsignarRoles.Image = global::Fwk.Security.Admin.Properties.Resources.file_add_16;
             this.btnAsignarRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAsignarRoles.Location = new System.Drawing.Point(591, 80);
+            this.btnAsignarRoles.Location = new System.Drawing.Point(658, 22);
             this.btnAsignarRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAsignarRoles.Name = "btnAsignarRoles";
             this.btnAsignarRoles.Size = new System.Drawing.Size(118, 34);
@@ -118,16 +119,16 @@
             this.usersGrid1.Location = new System.Drawing.Point(-1, 50);
             this.usersGrid1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.usersGrid1.Name = "usersGrid1";
-            this.usersGrid1.Size = new System.Drawing.Size(725, 544);
+            this.usersGrid1.Size = new System.Drawing.Size(799, 542);
             this.usersGrid1.TabIndex = 22;
             this.usersGrid1.OnUserChange += new Fwk.Security.Admin.UserChangeHandler(this.usersGrid1_OnUserChange);
             // 
             // lblRolesByUser
             // 
-            this.lblRolesByUser.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblRolesByUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRolesByUser.Image = global::Fwk.Security.Admin.Properties.Resources.Users;
             this.lblRolesByUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblRolesByUser.Location = new System.Drawing.Point(720, 132);
+            this.lblRolesByUser.Location = new System.Drawing.Point(782, 59);
             this.lblRolesByUser.Name = "lblRolesByUser";
             this.lblRolesByUser.Size = new System.Drawing.Size(82, 20);
             this.lblRolesByUser.TabIndex = 23;
@@ -145,9 +146,8 @@
             this.Controls.Add(this.btnAsignarRoles);
             this.Controls.Add(this.usersGrid1);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.MaximumSize = new System.Drawing.Size(985, 594);
             this.Name = "UserAssingRoles";
-            this.Size = new System.Drawing.Size(985, 594);
+            this.Size = new System.Drawing.Size(1003, 592);
             this.Load += new System.EventHandler(this.UserAssingRoles_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lstBoxRoles)).EndInit();
