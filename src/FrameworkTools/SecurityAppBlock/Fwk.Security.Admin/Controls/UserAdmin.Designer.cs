@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRolesByUser = new System.Windows.Forms.Label();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,9 +49,9 @@
             this.btnUsersList = new System.Windows.Forms.Button();
             this.usersGrid1 = new Fwk.Security.Admin.UsersGrid();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtComments = new DevExpress.XtraEditors.TextEdit();
             this.btnchangePwd = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
+            this.txtComments = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -65,10 +66,9 @@
             // 
             // lblRolesByUser
             // 
-            this.lblRolesByUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRolesByUser.Image = global::Fwk.Security.Admin.Properties.Resources.Users;
             this.lblRolesByUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblRolesByUser.Location = new System.Drawing.Point(456, 78);
+            this.lblRolesByUser.Location = new System.Drawing.Point(813, 59);
             this.lblRolesByUser.Name = "lblRolesByUser";
             this.lblRolesByUser.Size = new System.Drawing.Size(92, 20);
             this.lblRolesByUser.TabIndex = 21;
@@ -77,8 +77,7 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupControl1.Controls.Add(this.label4);
             this.groupControl1.Controls.Add(this.label3);
             this.groupControl1.Controls.Add(this.txtQuest);
@@ -88,10 +87,10 @@
             this.groupControl1.Controls.Add(this.txtEmail);
             this.groupControl1.Controls.Add(this.txtUserName);
             this.groupControl1.Controls.Add(this.label2);
-            this.groupControl1.Location = new System.Drawing.Point(10, 618);
+            this.groupControl1.Location = new System.Drawing.Point(10, 392);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(738, 159);
+            this.groupControl1.Size = new System.Drawing.Size(763, 159);
             this.groupControl1.TabIndex = 22;
             this.groupControl1.Text = "User properties";
             // 
@@ -194,7 +193,7 @@
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Image = global::Fwk.Security.Admin.Properties.Resources.file_del_16;
             this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRemove.Location = new System.Drawing.Point(246, 2);
+            this.btnRemove.Location = new System.Drawing.Point(259, 4);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(117, 32);
@@ -210,7 +209,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Image = global::Fwk.Security.Admin.Properties.Resources.file_edit_16;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(124, 2);
+            this.btnUpdate.Location = new System.Drawing.Point(138, 4);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(115, 32);
@@ -221,18 +220,39 @@
             // 
             // grdRoles1
             // 
+            this.grdRoles1.AllowDrop = true;
+            this.grdRoles1.AllowUserToAddRows = false;
+            this.grdRoles1.AllowUserToDeleteRows = false;
+            this.grdRoles1.AllowUserToOrderColumns = true;
+            this.grdRoles1.AllowUserToResizeColumns = false;
+            this.grdRoles1.AllowUserToResizeRows = false;
             this.grdRoles1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grdRoles1.AutoGenerateColumns = false;
+            this.grdRoles1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grdRoles1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdRoles1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdRoles1.ColumnHeadersVisible = false;
             this.grdRoles1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rolNameDataGridViewTextBoxColumn});
             this.grdRoles1.DataSource = this.bindingSourceRoles1;
-            this.grdRoles1.Location = new System.Drawing.Point(457, 111);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 7.8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdRoles1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.grdRoles1.GridColor = System.Drawing.Color.White;
+            this.grdRoles1.Location = new System.Drawing.Point(816, 92);
             this.grdRoles1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grdRoles1.MultiSelect = false;
             this.grdRoles1.Name = "grdRoles1";
+            this.grdRoles1.ReadOnly = true;
+            this.grdRoles1.RowHeadersVisible = false;
             this.grdRoles1.RowTemplate.Height = 24;
-            this.grdRoles1.Size = new System.Drawing.Size(292, 411);
+            this.grdRoles1.Size = new System.Drawing.Size(214, 201);
             this.grdRoles1.TabIndex = 20;
             // 
             // rolNameDataGridViewTextBoxColumn
@@ -240,6 +260,7 @@
             this.rolNameDataGridViewTextBoxColumn.DataPropertyName = "RolName";
             this.rolNameDataGridViewTextBoxColumn.HeaderText = "RolName";
             this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
+            this.rolNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // bindingSourceRoles1
             // 
@@ -251,10 +272,10 @@
             this.btnUsersList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsersList.Image = global::Fwk.Security.Admin.Properties.Resources.fwk_Refresh;
             this.btnUsersList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsersList.Location = new System.Drawing.Point(2, 4);
+            this.btnUsersList.Location = new System.Drawing.Point(7, 4);
             this.btnUsersList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUsersList.Name = "btnUsersList";
-            this.btnUsersList.Size = new System.Drawing.Size(117, 30);
+            this.btnUsersList.Size = new System.Drawing.Size(122, 32);
             this.btnUsersList.TabIndex = 19;
             this.btnUsersList.Text = "    Refresh users";
             this.btnUsersList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -263,13 +284,12 @@
             // 
             // usersGrid1
             // 
-            this.usersGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.usersGrid1.Location = new System.Drawing.Point(3, 42);
+            this.usersGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.usersGrid1.Location = new System.Drawing.Point(-2, 46);
             this.usersGrid1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.usersGrid1.Name = "usersGrid1";
-            this.usersGrid1.Size = new System.Drawing.Size(447, 496);
+            this.usersGrid1.Size = new System.Drawing.Size(798, 270);
             this.usersGrid1.TabIndex = 23;
             this.usersGrid1.OnUserChange += new Fwk.Security.Admin.UserChangeHandler(this.usersGrid1_OnUserChange);
             // 
@@ -278,24 +298,11 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(7, 542);
+            this.label5.Location = new System.Drawing.Point(7, 316);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 20);
+            this.label5.Size = new System.Drawing.Size(373, 20);
             this.label5.TabIndex = 30;
             this.label5.Text = "Comments";
-            // 
-            // txtComments
-            // 
-            this.txtComments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComments.Location = new System.Drawing.Point(10, 565);
-            this.txtComments.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtComments.Name = "txtComments";
-            this.txtComments.Properties.Appearance.BackColor = System.Drawing.Color.White;
-            this.txtComments.Properties.Appearance.Options.UseBackColor = true;
-            this.txtComments.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
-            this.txtComments.Size = new System.Drawing.Size(692, 24);
-            this.txtComments.TabIndex = 29;
             // 
             // btnchangePwd
             // 
@@ -303,10 +310,10 @@
             this.btnchangePwd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnchangePwd.Image = global::Fwk.Security.Admin.Properties.Resources.lock_16;
             this.btnchangePwd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnchangePwd.Location = new System.Drawing.Point(370, 4);
+            this.btnchangePwd.Location = new System.Drawing.Point(408, 4);
             this.btnchangePwd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnchangePwd.Name = "btnchangePwd";
-            this.btnchangePwd.Size = new System.Drawing.Size(117, 32);
+            this.btnchangePwd.Size = new System.Drawing.Size(188, 32);
             this.btnchangePwd.TabIndex = 31;
             this.btnchangePwd.Text = "Change password";
             this.btnchangePwd.UseVisualStyleBackColor = false;
@@ -318,7 +325,7 @@
             this.btnApprove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApprove.Image = global::Fwk.Security.Admin.Properties.Resources.lock_16;
             this.btnApprove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnApprove.Location = new System.Drawing.Point(510, 4);
+            this.btnApprove.Location = new System.Drawing.Point(602, 4);
             this.btnApprove.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(117, 32);
@@ -327,24 +334,36 @@
             this.btnApprove.UseVisualStyleBackColor = false;
             this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
             // 
+            // txtComments
+            // 
+            this.txtComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtComments.Location = new System.Drawing.Point(10, 339);
+            this.txtComments.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtComments.Name = "txtComments";
+            this.txtComments.Properties.Appearance.BackColor = System.Drawing.Color.White;
+            this.txtComments.Properties.Appearance.Options.UseBackColor = true;
+            this.txtComments.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
+            this.txtComments.Size = new System.Drawing.Size(765, 45);
+            this.txtComments.TabIndex = 29;
+            // 
             // UserAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.btnchangePwd);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtComments);
-            this.Controls.Add(this.usersGrid1);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.lblRolesByUser);
             this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnUsersList);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.usersGrid1);
+            this.Controls.Add(this.lblRolesByUser);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.grdRoles1);
-            this.Controls.Add(this.btnUsersList);
+            this.Controls.Add(this.txtComments);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "UserAdmin";
-            this.Size = new System.Drawing.Size(763, 795);
+            this.Size = new System.Drawing.Size(1043, 569);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -381,8 +400,8 @@
         private DevExpress.XtraEditors.TextEdit txtAnsw;
         private System.Windows.Forms.CheckBox chkApproved;
         private System.Windows.Forms.Label label5;
-        private DevExpress.XtraEditors.TextEdit txtComments;
         private System.Windows.Forms.Button btnchangePwd;
         private System.Windows.Forms.Button btnApprove;
+        private DevExpress.XtraEditors.MemoEdit txtComments;
     }
 }

@@ -332,8 +332,8 @@
             this.popupContainerEdit_AddText.Location = new System.Drawing.Point(526, 1);
             this.popupContainerEdit_AddText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.popupContainerEdit_AddText.Name = "popupContainerEdit_AddText";
-            this.popupContainerEdit_AddText.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("popupContainerEdit_AddText.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            //this.popupContainerEdit_AddText.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            //new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("popupContainerEdit_AddText.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.popupContainerEdit_AddText.Properties.CloseOnLostFocus = false;
             this.popupContainerEdit_AddText.Properties.PopupControl = this.popupContainerControl2;
             this.popupContainerEdit_AddText.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;

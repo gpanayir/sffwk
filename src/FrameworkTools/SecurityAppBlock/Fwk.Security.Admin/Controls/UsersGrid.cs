@@ -41,8 +41,16 @@ namespace Fwk.Security.Admin
 
         public override void Initialize()
         {
-            
-            userList = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
+            try
+            {
+                userList = FwkMembership.GetAllUsers(frmAdmin.Provider.Name);
+            }
+            catch (Exception ex)
+            {
+                base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
+                return;
+            }
+            //userList = SecurityController.GetAllUsers(true).ToList<User>();
             userByAppBindingSource.DataSource = userList;
             gridView1.RefreshData();
         
@@ -52,23 +60,23 @@ namespace Fwk.Security.Admin
 
         private void textEdit1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar != (char)Keys.Enter) return;
+            //if (e.KeyChar != (char)Keys.Enter) return;
          
-            if (string.IsNullOrEmpty(textEdit1.Text))
-            {
-                userByAppBindingSource.DataSource = userList;
-                gridView1.RefreshData();
-            }
-            string strFind = textEdit1.Text.ToUpper();
-            var list = from u in userList
-                       where
-                        u.UserName.ToUpper().Contains(strFind) ||
-                        u.Email.ToUpper().Contains(strFind)
-                       select u;
+            //if (string.IsNullOrEmpty(textEdit1.Text))
+            //{
+            //    userByAppBindingSource.DataSource = userList;
+            //    gridView1.RefreshData();
+            //}
+            //string strFind = textEdit1.Text.ToUpper();
+            //var list = from u in userList
+            //           where
+            //            u.UserName.ToUpper().Contains(strFind) ||
+            //            u.Email.ToUpper().Contains(strFind)
+            //           select u;
 
      
-            userByAppBindingSource.DataSource = list.ToList<User>();
-            gridView1.RefreshData(); ;
+            //userByAppBindingSource.DataSource = list.ToList<User>();
+            //gridView1.RefreshData(); ;
             
         }
         
@@ -94,6 +102,7 @@ namespace Fwk.Security.Admin
 
             if (OnUserChange != null)
             {
+                
                 OnUserChange(CurrentUser, FwkMembership.GetRolesForUser(CurrentUser.UserName, frmAdmin.Provider.Name));
             }
         }
