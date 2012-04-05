@@ -17,18 +17,7 @@ namespace Fwk.HelperFunctions
 	/// <Author>moviedo</Author>
 	public class FormatFunctions
 	{
-		#region --[NullToString]--
-		/// <summary>
-		/// Retorna vacio si el nombre del campo es igual a NULL.-
-		/// </summary>
-		/// <param name="pFieldName">El nombre del campo.-</param>
-		public static string NullToString(string pFieldName)
-		{
-			if(pFieldName == null) return String.Empty;
-			return pFieldName;
-		}
-
-		#endregion
+	
 
 		#region --[ObjectToBytes]--
 		/// <summary>

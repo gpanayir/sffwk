@@ -56,7 +56,7 @@ namespace Fwk.ServiceManagement
 
                     if (wServiceConfiguration == null)
                     {
-                        throw new Fwk.Exceptions.TechnicalException("El servicio " + serviceName + " no se encuentra configurado.");
+                        throw new Fwk.Exceptions.TechnicalException(string.Concat("El servicio " , serviceName , " no se encuentra configurado."));
                     }
 
                 }
@@ -124,7 +124,7 @@ namespace Fwk.ServiceManagement
             
             if (GetServiceConfiguration(serviceName,applicationId,cnnString) == null)
             {
-                Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException("El servicio " + pServiceConfiguration.Name + " no se actualizó por que no se encontro configurado en la base de datos.");
+                Fwk.Exceptions.TechnicalException wTex = new Fwk.Exceptions.TechnicalException(string.Concat("El servicio " , pServiceConfiguration.Name , " no se actualizó por que no se encontro configurado en la base de datos."));
                 wTex.ErrorId = "7002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(wTex);
                 throw wTex;
@@ -255,7 +255,7 @@ namespace Fwk.ServiceManagement
                     if (wAffected == 0)
                     {
                       
-                        TechnicalException te = new TechnicalException("El servicio " + serviceName + " no se eliminó por no encontrarse configurado.");
+                        TechnicalException te = new TechnicalException(string.Concat("El servicio " , serviceName , " no se eliminó por no encontrarse configurado."));
                         ExceptionHelper.SetTechnicalException<DatabaseServiceConfigurationManager>(te);
                         te.ErrorId = "7002";
                         throw te;

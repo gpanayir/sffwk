@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Mails" EntityNamespace="Fwk.ConfigData" ContextNamespace="Fwk.ConfigData" Class="FwkDatacontext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SANTANA\SQLEXPRESS;Initial Catalog=Mails;Integrated Security=True" SettingsObjectName="Fwk.Bases.Properties.Settings" SettingsPropertyName="MailsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.fwk_ConfigMannager" Member="fwk_ConfigMannagers">
+    <Type Name="fwk_ConfigMannager">
+      <Column Name="ConfigurationFileName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[group]" Member="group" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[key]" Member="key" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="encrypted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="value" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.fwk_Logs" Member="fwk_Logs">
+    <Type Name="fwk_Log">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Message" Type="System.Data.Linq.Binary" DbType="VarBinary(2000) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Source" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="LogType" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Machine" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LogDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserLoginName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="AppId" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
