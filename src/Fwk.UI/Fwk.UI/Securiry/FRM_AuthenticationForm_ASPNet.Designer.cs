@@ -157,7 +157,7 @@ namespace Fwk.UI.Security.Controls
             this.imgTitle.Location = new System.Drawing.Point(3, 7);
             this.imgTitle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.imgTitle.Name = "imgTitle";
-            this.imgTitle.Size = new System.Drawing.Size(58, 53);
+            this.imgTitle.Size = new System.Drawing.Size(58, 47);
             this.imgTitle.TabIndex = 450;
             this.imgTitle.TabStop = false;
             // 

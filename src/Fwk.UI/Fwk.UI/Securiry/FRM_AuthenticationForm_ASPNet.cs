@@ -44,7 +44,11 @@ namespace Fwk.UI.Security.Controls
             get { return txtPassword.Text; }
             
         }
-      
+        public PictureBox Picture
+        {
+            get { return this.imgTitle; }
+            set { this.imgTitle= value; }
+        }
         public string Auth_Title_Text
         {
             get { return this.lbllTitle.Text; }
