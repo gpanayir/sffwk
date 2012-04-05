@@ -35,7 +35,7 @@ namespace SecurityAppBlock.Use
             ruleProvider = wFwkAuthorizationRuleProvider;
 
             //Estas reglas podrian venir de un servicio
-            rulesComboBox.DataSource = wFwkAuthorizationRuleProvider.GetAuthorizationRules();// FwkMembership.GetRulesList(Membership.ApplicationName);
+            rulesComboBox.DataSource = wFwkAuthorizationRuleProvider.GetAuthorizationRules();// FwkMembership.GetRulesList(frmAdmin.Provider.ApplicationName);
 
         }
 
