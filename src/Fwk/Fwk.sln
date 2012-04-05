@@ -1,7 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{C3617487-99C1-4DEE-BCAC-9203B8EAB3F0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bases", "Bases", "{08CFB3CE-4AC8-4F86-BF35-65BB41EE7CD8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blocking", "Blocking", "{9CB84A9F-53FA-4801-BC82-1DE70BFAA42F}"
