@@ -43,7 +43,7 @@ namespace Fwk.Security.Admin
             this.navBarItem_RoleCreate = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup_Rules = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem_CreateRule = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem_Check = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem_Check_Rule = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_CategoryCreate = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem_RulesEdit = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -103,6 +103,8 @@ namespace Fwk.Security.Admin
             // navBarControl1
             // 
             this.navBarControl1.ActiveGroup = this.navBarGroup_Users;
+            this.navBarControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.navBarControl1.ContentButtonHint = null;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup_Users,
@@ -118,7 +120,7 @@ namespace Fwk.Security.Admin
             this.navBarItem_CreateRule,
             this.navBarItem_CategoryCreate,
             this.navBarItem_AssingRoles,
-            this.navBarItem_Check,
+            this.navBarItem_Check_Rule,
             this.navBarItem_RulesEdit,
             this.navBarItem_Encrypt});
             this.navBarControl1.Location = new System.Drawing.Point(9, 124);
@@ -193,7 +195,7 @@ namespace Fwk.Security.Admin
             this.navBarGroup_Rules.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.LargeIconsText;
             this.navBarGroup_Rules.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CreateRule),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_Check),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_Check_Rule),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_CategoryCreate),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem_RulesEdit)});
             this.navBarGroup_Rules.LargeImage = global::Fwk.Security.Admin.Properties.Resources.admin_24;
@@ -207,12 +209,12 @@ namespace Fwk.Security.Admin
             this.navBarItem_CreateRule.Name = "navBarItem_CreateRule";
             this.navBarItem_CreateRule.Tag = "Fwk.Security.Admin.Controls.RulesAssingControl, Fwk.Security.Admin";
             // 
-            // navBarItem_Check
+            // navBarItem_Check_Rule
             // 
-            this.navBarItem_Check.Caption = "Check rule";
-            this.navBarItem_Check.LargeImage = global::Fwk.Security.Admin.Properties.Resources.access_control_ok_32;
-            this.navBarItem_Check.Name = "navBarItem_Check";
-            this.navBarItem_Check.Tag = "Fwk.Security.Admin.Controls.RulesCheckControl, Fwk.Security.Admin";
+            this.navBarItem_Check_Rule.Caption = "Check rule";
+            this.navBarItem_Check_Rule.LargeImage = global::Fwk.Security.Admin.Properties.Resources.access_control_ok_32;
+            this.navBarItem_Check_Rule.Name = "navBarItem_Check_Rule";
+            this.navBarItem_Check_Rule.Tag = "Fwk.Security.Admin.Controls.RulesCheckControl, Fwk.Security.Admin";
             // 
             // navBarItem_CategoryCreate
             // 
@@ -268,7 +270,7 @@ namespace Fwk.Security.Admin
             this.panelControl1.Location = new System.Drawing.Point(253, 122);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1044, 657);
+            this.panelControl1.Size = new System.Drawing.Size(1044, 653);
             this.panelControl1.TabIndex = 5;
             // 
             // userAdmin1
@@ -277,7 +279,7 @@ namespace Fwk.Security.Admin
             this.userAdmin1.Location = new System.Drawing.Point(2, 2);
             this.userAdmin1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.userAdmin1.Name = "userAdmin1";
-            this.userAdmin1.Size = new System.Drawing.Size(1040, 653);
+            this.userAdmin1.Size = new System.Drawing.Size(1040, 649);
             this.userAdmin1.TabIndex = 0;
             // 
             // label2
@@ -372,9 +374,9 @@ namespace Fwk.Security.Admin
             // btnRefreshConnection
             // 
             this.btnRefreshConnection.Image = global::Fwk.Security.Admin.Properties.Resources.Connection_Warning;
-            this.btnRefreshConnection.Location = new System.Drawing.Point(256, 52);
+            this.btnRefreshConnection.Location = new System.Drawing.Point(289, 42);
             this.btnRefreshConnection.Name = "btnRefreshConnection";
-            this.btnRefreshConnection.Size = new System.Drawing.Size(133, 35);
+            this.btnRefreshConnection.Size = new System.Drawing.Size(131, 44);
             this.btnRefreshConnection.TabIndex = 26;
             this.btnRefreshConnection.Text = "Try connect";
             this.btnRefreshConnection.Click += new System.EventHandler(this.btnRefreshConnection_Click);
@@ -429,7 +431,7 @@ namespace Fwk.Security.Admin
         private DevExpress.XtraNavBar.NavBarItem navBarItem_CreateRule;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_CategoryCreate;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_AssingRoles;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem_Check;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem_Check_Rule;
         private DevExpress.XtraNavBar.NavBarItem navBarItem_RulesEdit;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.LookUpEdit cmbProviders;

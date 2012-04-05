@@ -69,6 +69,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdUsers.AutoGenerateColumns = false;
             this.grdUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grdUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.grdUsers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.grdUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rolNameDataGridViewTextBoxColumn});

@@ -16,26 +16,27 @@ using Fwk.Security;
 using Fwk.Security.Admin.Controls;
 using System.Reflection;
 
-namespace Fwk.Security.Admin 
+namespace Fwk.Security.Admin
 {
     public partial class frmAdmin : frmSecBase
     {
         bool onInit = true;
-       SecurityControlBase currontSecurityControlBase;
+        SecurityControlBase currontSecurityControlBase;
         public static MembershipProvider Provider = Membership.Provider;
         public static Boolean CurrentProviderConnectedOk = false;
         public frmAdmin()
         {
-    
+
             InitializeComponent();
             this.Text = string.Concat(this.Text, " version ", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            SetEnabledItems();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             User user = FwkMembership.GetUser(Environment.UserName, frmAdmin.Provider.Name);
         }
-        
+
         private void navBarControl1_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             try
@@ -49,14 +50,14 @@ namespace Fwk.Security.Admin
             {
                 base.MessageViewInfo.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
             }
-            
-           
+
+
         }
 
         private void cmbProviders_EditValueChanged(object sender, EventArgs e)
         {
-            
-                Connect();
+
+            Connect();
         }
 
         private void frmAdmin_Load(object sender, EventArgs e)
@@ -64,7 +65,7 @@ namespace Fwk.Security.Admin
             cmbProviders.Properties.DataSource = FwkMembership.GetAllMembershiproviderNameArray();
             cmbProviders.ItemIndex = 0;
             navBarControl1.SelectedLink = navBarItem2.Links[0];
-            
+
             onInit = false;
         }
 
@@ -134,8 +135,24 @@ namespace Fwk.Security.Admin
             }
             this.Cursor = Cursors.Arrow;
         }
-       
-       
-       
+
+
+        void SetEnabledItems()
+        {
+            bool IsSoftwareFactory = false;
+            if (System.Configuration.ConfigurationManager.AppSettings["sf"] != null)
+            {
+
+                Boolean.TryParse(System.Configuration.ConfigurationManager.AppSettings["sf"], out IsSoftwareFactory);
+
+            }
+
+            navBarItem_Encrypt.Enabled =
+                        navBarItem_RulesEdit.Enabled =
+                navBarItem_CategoryCreate.Enabled =
+                navBarItem_Check_Rule.Enabled = navBarItem_CreateRule.Enabled =
+               navBarItem_RoleCreate.Enabled = IsSoftwareFactory;
+
+        }
     }
 }

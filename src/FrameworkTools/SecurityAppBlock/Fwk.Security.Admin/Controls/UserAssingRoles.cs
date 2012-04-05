@@ -108,7 +108,7 @@ namespace Fwk.Security.Admin.Controls
 
         void MachRolesGrid(RolList roles)
         {
-           lstBoxRoles.UnCheckAll();
+           lstBoxRoles.UnSelectAll();
 
             RolList list = (RolList)((System.Windows.Forms.BindingSource)(lstBoxRoles.DataSource)).List;
             foreach (Rol lstRol in list)

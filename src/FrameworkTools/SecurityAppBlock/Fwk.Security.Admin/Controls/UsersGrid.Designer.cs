@@ -74,12 +74,12 @@
             this.colIsApproved});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsFind.AlwaysVisible = true;
+            
             this.gridView1.OptionsMenu.EnableColumnMenu = false;
             this.gridView1.OptionsMenu.EnableFooterMenu = false;
             this.gridView1.OptionsMenu.EnableGroupPanelMenu = false;
-            this.gridView1.OptionsMenu.ShowAutoFilterRowItem = false;
-            this.gridView1.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
+            
+            
             this.gridView1.OptionsMenu.ShowGroupSortSummaryItems = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowVertLines = false;
