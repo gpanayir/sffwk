@@ -30,6 +30,7 @@ using Fwk.Security.ISVC.AuthenticateUser;
 using Fwk.Security.ISVC.SearchDomainsUrls;
 using Fwk.Security.ISVC.ResetUserPassword;
 using Fwk.UI.Common;
+using Fwk.Security.ISVC.ValidateUserExist;
 
 
 namespace Fwk.UI.Controller
@@ -109,7 +110,7 @@ namespace Fwk.UI.Controller
         /// <param name="pUser">Usuario</param>
         /// <param name="pPassword">Password</param>
         /// <param name="pMail">Mail del usuario</param>
-        internal static void CreateUser(User pUser, RolList pRolList)
+        public static void CreateUser(User pUser, RolList pRolList)
         {
 
             CreateUserReq req = new CreateUserReq();
@@ -285,6 +286,21 @@ namespace Fwk.UI.Controller
             return  res.BusinessData.UserInfo;
         }
 
+
+        public static Boolean ValidateUserExist(String username)
+        {
+            ValidateUserExistReq req = new ValidateUserExistReq();
+
+            
+            req.BusinessData.UserName = username;
+            
+            ValidateUserExistRes res = _ClientServiceBase.ExecuteService<ValidateUserExistReq, ValidateUserExistRes>(WrapperSecurityProvider, req);
+
+            if (res.Error != null)
+                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+            
+            return res.BusinessData.Exist;
+        }
 
         #endregion
 
