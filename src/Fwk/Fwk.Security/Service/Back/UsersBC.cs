@@ -183,7 +183,15 @@ namespace Fwk.Security.BC
             pRolList = FwkMembership.GetRolesForUser(pUserName, _ProviderName);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUserName"></param>
+        /// <returns></returns>
+        public bool Exist(string pUserName)
+        {
+            return  Fwk.Security.FwkMembership.UserExist(pUserName, _ProviderName);
+        }
         /// <summary>
         /// Obtiene el usauario de las Membership
         ///   Si es NULL lanza Ex dentro de la llamada anterior

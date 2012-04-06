@@ -59,18 +59,18 @@ namespace Fwk.Security
             _ApplicationId = applicationId;
 
         }
-         /// <summary>
+        /// <summary>
         /// Initializes a new instance of the <see cref="FwkAuthorizationRuleAux"/> class with the specified name and expression.
         /// </summary>
         /// <param name="pFwkAuthorizationRule">Framework rule</param>
-        public FwkAuthorizationRule(FwkAuthorizationRuleAux pFwkAuthorizationRule): base(pFwkAuthorizationRule.Name)
-            
+        public FwkAuthorizationRule(FwkAuthorizationRuleAux pFwkAuthorizationRule)
+            : base(pFwkAuthorizationRule.Name)
         {
             _ApplicationId = pFwkAuthorizationRule.ApplicationId;
             _ApplicationName = pFwkAuthorizationRule.ApplicationName;
             _CategoryId = pFwkAuthorizationRule.CategoryId;
             _Expression = pFwkAuthorizationRule.Expression;
-           
+
 
         }
         /// <summary>
@@ -131,7 +131,7 @@ namespace Fwk.Security
         }
 
 
-        
+
         #region IEntity Members IBaseEntity Members
 
         public System.Data.DataSet GetDataSet()
@@ -173,23 +173,15 @@ namespace Fwk.Security
         /// 
         /// </summary>
         /// <returns></returns>
-         object ICloneable.Clone()
+        object ICloneable.Clone()
         {
             return this.MemberwiseClone();
         }
 
         #endregion
 
-         #region IComparable Members
 
-         public int CompareTo(object obj)
-         {
-             throw new NotImplementedException();
-         }
-
-         #endregion
     }
-
     /// <summary>
     /// Lista de reglas de autorizacion
     /// </summary>
@@ -237,20 +229,9 @@ namespace Fwk.Security
             pFwkAuthorizationRuleauxList.ForEach(a => this.Add(new FwkAuthorizationRule(a)));
         }
 
-        #region IComparable Members
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public int CompareTo(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
+       
     }
+
     /// <summary>
     /// Categorias de reglass
     /// </summary>
@@ -439,18 +420,19 @@ namespace Fwk.Security
             _Expression = newExpresion;
         }
 
-
-        
     }
 
     /// <summary>
     /// Esta clace es una auxiliar de FwkAuthorizationRuleList con la exepcion de que no  hereda de NamedConfigurationElement
     /// lo que la hace serializable .-
     /// </summary>
-
     [XmlRoot("FwkAuthorizationRuleAuxList"), SerializableAttribute]
     public class FwkAuthorizationRuleAuxList:Entities<FwkAuthorizationRuleAux>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pFwkAuthorizationRuleList"></param>
         public void Populate(FwkAuthorizationRuleList pFwkAuthorizationRuleList)
         {
             pFwkAuthorizationRuleList.ForEach(a=> this.Add(new  FwkAuthorizationRuleAux(a)));  
