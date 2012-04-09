@@ -161,7 +161,7 @@ namespace Fwk.UI.Controller
         /// <param name="pUserName">Nombre de usuario</param>
         /// <param name="pPassword">Password viejo</param>
         /// <param name="pNewPassword">Password Nuevo</param>
-        internal static void UserChangePassword(String pUserName, String pPassword, String pNewPassword)
+        public static void UserChangePassword(String pUserName, String pPassword, String pNewPassword)
         {
 
             UpdateUserReq req = new UpdateUserReq();
@@ -185,7 +185,7 @@ namespace Fwk.UI.Controller
         /// </summary>
         /// <param name="pUserName">Nombre de usuario</param>
         /// <param name="pNewPassword">Password Nuevo</param>
-        internal static void UserResetPassword(String pUserName, String pPassword)
+        public static void UserResetPassword(String pUserName, String pPassword)
         {
 
             ResetUserPasswordReq req = new ResetUserPasswordReq();
@@ -205,7 +205,7 @@ namespace Fwk.UI.Controller
         /// Obtiene todos los usuarios
         /// </summary>
         /// <returns>UserList</returns>
-        internal static UserList GetAllUsers(bool? pActiveflag)
+        public static UserList GetAllUsers(bool? pActiveflag)
         {
             SearchAllUsersReq req = new SearchAllUsersReq();
 
@@ -224,7 +224,7 @@ namespace Fwk.UI.Controller
         /// </summary>
         /// <param name="pUserName">Nombre de Usuario</param>
         /// <param name="pUserApprove">Approbe or unapprobe</param>
-        internal static void UserApprove(string pUserName, bool pUserApprove)
+        public static void UserApprove(string pUserName, bool pUserApprove)
         {
             try
             {
