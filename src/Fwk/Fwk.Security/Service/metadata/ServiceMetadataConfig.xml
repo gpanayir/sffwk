@@ -1,6 +1,5 @@
 <ServiceConfigurationCollection>
-
-  <ServiceConfiguration name="ValidateUserExistService">
+ <ServiceConfiguration name="ValidateUserExistService">
     <CreatedUserName>pelsoft</CreatedUserName>
     <CreatedDateTime>2012-04-06T12:35:47.0558685-03:00</CreatedDateTime>
     <Description>Este servicio permite realizar validación de si un usuario existe en una base de datos ASPNetMembership</Description>
@@ -11,8 +10,7 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-  </ServiceConfiguration>
-  
+  </ServiceConfiguration>  
   <ServiceConfiguration name="GetAllActiveUsersInfoService">
     <CreatedUserName>pelsoft</CreatedUserName>
     <CreatedDateTime>2009-06-17T17:30:55.55297-03:00</CreatedDateTime>
@@ -23,10 +21,7 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadUncommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
-
   <ServiceConfiguration name="AuthenticateUserService">
     <CreatedUserName>pelsoft</CreatedUserName>
     <CreatedDateTime>2009-06-24T12:35:47.0558685-03:00</CreatedDateTime>
@@ -38,8 +33,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAuthorizationRulesService">
     <CreatedUserName>pelsoft</CreatedUserName>

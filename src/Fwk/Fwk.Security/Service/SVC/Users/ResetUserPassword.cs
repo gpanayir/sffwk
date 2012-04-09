@@ -51,14 +51,10 @@ namespace Fwk.Security.ISVC.ResetUserPassword
 
 
     [Serializable]
-    public class ResetUserPasswordRes : Response<Result>
+    public class ResetUserPasswordRes : Response<DummyContract>
     {
     }
 
-    [XmlInclude(typeof(Result)), Serializable]
-    public class Result : Entity
-    {
-    }
 
    
 
