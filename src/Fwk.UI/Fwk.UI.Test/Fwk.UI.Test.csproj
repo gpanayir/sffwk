@@ -242,9 +242,6 @@
     <None Include="Resources\add_32.png" />
     <None Include="Resources\admin_16.png" />
     <None Include="Resources\admin_24.png" />
-    <Content Include="ServiceMetadataConfig.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="TextFile1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
