@@ -12,7 +12,7 @@ namespace Fwk.Bases
 	{
         string _CompanyId;
         //string _SecurityProviderName;
-		string _UserName;
+		string _UserId;
         string _HostName;
         string _ServerName;
         DateTime _ServerTime = new DateTime();
@@ -62,12 +62,22 @@ namespace Fwk.Bases
         /// <summary>
         /// Indica el usuario logueado en el host que inicio el servicio.-
         /// </summary>
+        [Obsolete("UserName se dejara de utilizar en proximas versiones de fwk, en su lugar utilice UserId")]
 		public string UserName
 		{
-			get { return _UserName; }
-			set { _UserName = value; }
+			get { return _UserId; }
+			set { _UserId = value; }
 		}
 
+        /// <summary>
+        /// Indica el identificador usuario logueado en el host que inicio el servicio.-
+        /// Aqui puede alojar valores de cualquier tipo (guid,int, string, etc) llevados a String.-
+        /// </summary>
+        public string UserId
+        {
+            get { return _UserId; }
+            set { _UserId = value; }
+        }
         /// <summary>
         /// Identificador de empresa, cliente donde este instalado o para quien este instalado.-
         /// Utiil para identificar logs, discriminar conecciones, etc.-
