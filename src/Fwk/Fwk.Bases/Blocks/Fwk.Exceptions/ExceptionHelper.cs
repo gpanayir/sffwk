@@ -108,7 +108,7 @@ namespace Fwk.Exceptions
             {
                 case "FunctionalException":
                     {
-                        ex = new FunctionalException(err.Message + Environment.NewLine + err.InnerMessageException);
+                        ex = new FunctionalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
                         ex.Source = err.Source;
                         ((FunctionalException)ex).ErrorId = err.ErrorId;
                         //((FunctionalException)ex).StackTrace = err.StackTrace;
@@ -116,7 +116,7 @@ namespace Fwk.Exceptions
                     }
                 case "TechnicalException":
                     {
-                        ex = new TechnicalException(err.Message + Environment.NewLine + err.InnerMessageException);
+                        ex = new TechnicalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
                         ex.Source = err.Source;
                         ((TechnicalException)ex).ErrorId = err.ErrorId;
                         ((TechnicalException)ex).Machine = err.Machine;
@@ -129,7 +129,7 @@ namespace Fwk.Exceptions
                     }
                 default:
                     {
-                        ex = new Exception(err.Message + Environment.NewLine + err.InnerMessageException);
+                        ex = new Exception(String.Concat(err.Message , Environment.NewLine , err.InnerMessageException));
                         //ex.StackTrace = err.StackTrace;
                         break;
                     }
