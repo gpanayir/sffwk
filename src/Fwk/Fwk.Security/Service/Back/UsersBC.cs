@@ -48,7 +48,7 @@ namespace Fwk.Security.BC
             User wNewUser = FwkMembership.CreateUser(pUser.UserName, pUser.Password, pUser.Email,
                                                           pUser.QuestionPassword, pUser.AnswerPassword,
                                                           pUser.IsApproved, out pStatus, _ProviderName);
-
+            
             // se inserta el usuario custom
             if (pStatus == MembershipCreateStatus.Success)
             {
@@ -59,6 +59,8 @@ namespace Fwk.Security.BC
                     RolList roleList = pUser.GetRolList();
                     FwkMembership.CreateRolesToUser(roleList, pUser.UserName, _ProviderName);
                 }
+                pUser.ProviderId = wNewUser.ProviderId;
+                wNewUser = null;
             }
             else
             {

@@ -243,6 +243,11 @@ namespace Fwk.Exceptions
                 wMessage.AppendLine("Message: ");
                 wMessage.AppendLine(ex.Message);
             }
+            if (!String.IsNullOrEmpty(ex.StackTrace))
+            {
+                wMessage.Append("\r\n-----------StackTrace------------------\r\n");
+                wMessage.AppendLine(ex.StackTrace);
+            }
             return wMessage.ToString();
         }
 
