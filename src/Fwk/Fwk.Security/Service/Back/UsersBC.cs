@@ -48,7 +48,7 @@ namespace Fwk.Security.BC
             User wNewUser = FwkMembership.CreateUser(pUser.UserName, pUser.Password, pUser.Email,
                                                           pUser.QuestionPassword, pUser.AnswerPassword,
                                                           pUser.IsApproved, out pStatus, _ProviderName);
-
+            
             // se inserta el usuario custom
             if (pStatus == MembershipCreateStatus.Success)
             {
@@ -59,6 +59,8 @@ namespace Fwk.Security.BC
                     RolList roleList = pUser.GetRolList();
                     FwkMembership.CreateRolesToUser(roleList, pUser.UserName, _ProviderName);
                 }
+                pUser.ProviderId = wNewUser.ProviderId;
+                wNewUser = null;
             }
             else
             {
@@ -183,7 +185,15 @@ namespace Fwk.Security.BC
             pRolList = FwkMembership.GetRolesForUser(pUserName, _ProviderName);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pUserName"></param>
+        /// <returns></returns>
+        public bool Exist(string pUserName)
+        {
+            return  Fwk.Security.FwkMembership.UserExist(pUserName, _ProviderName);
+        }
         /// <summary>
         /// Obtiene el usauario de las Membership
         ///   Si es NULL lanza Ex dentro de la llamada anterior

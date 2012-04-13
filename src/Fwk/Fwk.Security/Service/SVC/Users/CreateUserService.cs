@@ -16,6 +16,11 @@ namespace Fwk.Security.SVC
     /// </summary>
     public class CreateUserService : BusinessService<CreateUserReq, CreateUserRes>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pServiceRequest"></param>
+        /// <returns></returns>
         public override CreateUserRes Execute(CreateUserReq pServiceRequest)
         {
 
@@ -24,7 +29,7 @@ namespace Fwk.Security.SVC
 
             wUserBC.Create(pServiceRequest.BusinessData.User);
 
-            //TODO: Ver por que se çretorna la entidad completa
+            //TODO: Ver por que se retorna la entidad completa
             wRes.BusinessData.UserId = pServiceRequest.BusinessData.User.UserId.Value;
             
 

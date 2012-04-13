@@ -203,6 +203,8 @@
     <Compile Include="Service\SVC\Users\ResetUserPassword.cs" />
     <Compile Include="Service\SVC\Users\SearchAllUsersService.cs" />
     <Compile Include="Service\SVC\Users\UpdateUserService.cs" />
+    <Compile Include="Service\SVC\Users\ValidateUserExistIsvc.cs" />
+    <Compile Include="Service\SVC\Users\ValidateUserExistService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />

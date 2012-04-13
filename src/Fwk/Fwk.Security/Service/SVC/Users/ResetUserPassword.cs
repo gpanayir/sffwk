@@ -17,8 +17,13 @@ namespace Fwk.Security.SVC
     /// <summary>
     /// Este servicio permite resetear la clave de un usuario 
     /// </summary>
-    public class ResetUserPassword : BusinessService<ResetUserPasswordReq, ResetUserPasswordRes>
+    public class ResetUserPasswordService : BusinessService<ResetUserPasswordReq, ResetUserPasswordRes>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pServiceRequest"></param>
+        /// <returns></returns>
         public override ResetUserPasswordRes Execute(ResetUserPasswordReq pServiceRequest)
         {
             ResetUserPasswordRes wRes = new ResetUserPasswordRes();
@@ -31,34 +36,46 @@ namespace Fwk.Security.SVC
 
 namespace Fwk.Security.ISVC.ResetUserPassword
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class ResetUserPasswordReq : Request<Param>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ResetUserPasswordReq()
         {
             this.ServiceName = "ResetUserPasswordService";
         }
     }
 
-
+    /// <summary>
+    /// Parametros de reseteo
+    /// </summary>
     [XmlInclude(typeof(Param)), Serializable]
     public class Param : Entity
     {
+        /// <summary>
+        /// Nombre de usuario al que se le resseteara la password
+        /// </summary>
         public String UserName {get;set;}
+
+        /// <summary>
+        /// Buevo valor de la password
+        /// </summary>
         public String NewPassword { get; set; }
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
-    public class ResetUserPasswordRes : Response<Result>
+    public class ResetUserPasswordRes : Response<DummyContract>
     {
     }
 
-    [XmlInclude(typeof(Result)), Serializable]
-    public class Result : Entity
-    {
-    }
 
    
 

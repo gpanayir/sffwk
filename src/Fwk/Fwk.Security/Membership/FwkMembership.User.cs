@@ -267,7 +267,20 @@ namespace Fwk.Security
                 throw te;
             }
         }
+        /// <summary>
+        /// Determina si existe el usuario para un determinado proveedor de seguridad. 
+        /// </summary>
+        /// <param name="userName">Nombre de usuario a chequear</param>
+        /// <param name="providerName">Proveedor de seguridad configurado</param>
+        /// <returns></returns>
+        public static Boolean UserExist(String userName, string providerName)
+        {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            MembershipUser wMembershipUser = wProvider.GetUser(userName, false);
 
+            return (wMembershipUser != null);
+            
+        }
         /// <summary>
         /// Desaprueva un usuario
         /// </summary>

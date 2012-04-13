@@ -1,4 +1,16 @@
 <ServiceConfigurationCollection>
+ <ServiceConfiguration name="ValidateUserExistService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2012-04-06T12:35:47.0558685-03:00</CreatedDateTime>
+    <Description>Este servicio permite realizar validación de si un usuario existe en una base de datos ASPNetMembership</Description>
+    <Handler>Fwk.Security.SVC.ValidateUserExistService, Fwk.Security, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.ValidateUserExist.ValidateUserExistReq, Fwk.Security, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.ValidateUserExist.ValidateUserExistRes, Fwk.Security, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>  
   <ServiceConfiguration name="GetAllActiveUsersInfoService">
     <CreatedUserName>pelsoft</CreatedUserName>
     <CreatedDateTime>2009-06-17T17:30:55.55297-03:00</CreatedDateTime>
@@ -199,7 +211,7 @@
   <ServiceConfiguration name="CreateUsersService">
     <CreatedUserName>pelsoft</CreatedUserName>
     <CreatedDateTime>2009-08-06T17:07:12.9249876-03:00</CreatedDateTime>
-    <Description>CreaciÃ³n usuarios Service.</Description>
+    <Description>Creación usuarios Service.</Description>
     <Handler>Fwk.Security.SVC.CreateUsersService, Fwk.Security, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Fwk.Security.ISVC.CreateUsers.CreateUsersRequest, Fwk.Security, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
     <Response>Fwk.Security.ISVC.CreateUsers.CreateUsersResponse, Fwk.Security, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
