@@ -177,8 +177,8 @@
     <Compile Include="Service\SVC\Users\ValidateUserExistService.cs" />
     <Compile Include="Service\Back\UsersBC.cs" />
     <Compile Include="Service\Back\UsersDAC.cs" />
-    <Compile Include="Service\ISVC\ActiveDirectory\SearchAllUsers.cs" />
-    <Compile Include="Service\ISVC\ActiveDirectory\SearchDomainsUrls.cs" />
+    <Compile Include="Service\SVC\ActiveDirectory\SearchAllUsers.cs" />
+    <Compile Include="Service\SVC\ActiveDirectory\SearchDomainsUrls.cs" />
     <Compile Include="Service\SVC\Roles\AssignRolesToUser.cs" />
     <Compile Include="Service\SVC\Roles\CreateRoles.cs" />
     <Compile Include="Service\SVC\Roles\DeleteRole.cs" />
