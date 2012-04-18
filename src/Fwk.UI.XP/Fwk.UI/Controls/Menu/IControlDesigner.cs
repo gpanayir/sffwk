@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
+
+///TODO Eliminar esto
 
 namespace Fwk.UI.Controls
 {
