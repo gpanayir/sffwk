@@ -139,18 +139,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\StaticLibs\Fwk.Bases.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases.FrontEnd, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\StaticLibs\Fwk.Bases.FrontEnd.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Controls.Win32, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\StaticLibs\Fwk.Controls.Win32.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\StaticLibs\Fwk.DataBase.dll</HintPath>
-    </Reference>
     <Reference Include="Fwk.Security, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\StaticLibs\Fwk.Security.dll</HintPath>
