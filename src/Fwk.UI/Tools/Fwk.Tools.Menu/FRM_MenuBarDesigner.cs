@@ -20,7 +20,7 @@ using Fwk.UI.Common;
 
 namespace Fwk.Tools.Menu
 {
-    public partial class FRM_MenuBarDesigner : FormBase, IControlDesigner
+    public partial class FRM_MenuBarDesigner : FormBase
     {
         #region [Private Vars]
         FwkCache _FwkCache = null;

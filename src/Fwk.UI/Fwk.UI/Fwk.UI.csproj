@@ -237,7 +237,6 @@
     <Compile Include="Securiry\FRM_AuthenticationForm_ASPNet.Designer.cs">
       <DependentUpon>FRM_AuthenticationForm_ASPNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Menu\IControlDesigner.cs" />
     <Compile Include="Controls\MessageView\ExceptionView.cs">
       <SubType>Form</SubType>
     </Compile>
