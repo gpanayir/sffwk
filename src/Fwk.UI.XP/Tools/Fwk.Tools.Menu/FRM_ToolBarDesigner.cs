@@ -18,7 +18,7 @@ using Fwk.UI.Controls.Menu;
 
 namespace Fwk.Tools.Menu
 {
-    public partial class FRM_ToolBarDesigner : FormBase, IControlDesigner
+    public partial class FRM_ToolBarDesigner : FormBase
     {
 
         #region [Private Vars]

@@ -139,18 +139,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\StaticLibs\Fwk.Bases.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases.FrontEnd, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\StaticLibs\Fwk.Bases.FrontEnd.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Controls.Win32, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\StaticLibs\Fwk.Controls.Win32.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\StaticLibs\Fwk.DataBase.dll</HintPath>
-    </Reference>
     <Reference Include="Fwk.Security, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\StaticLibs\Fwk.Security.dll</HintPath>
@@ -212,26 +200,6 @@
     <Compile Include="Controls\FileControls\UC_FileSelection.Designer.cs">
       <DependentUpon>UC_FileSelection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Grid\UC_GridGenericWithToolbar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Grid\UC_GridGenericWithToolbar.designer.cs">
-      <DependentUpon>UC_GridGenericWithToolbar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Grid\GridNoEditWithGroup.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Grid\GridNoEditWithGroupInfoRegistrator.cs" />
-    <Compile Include="Controls\Grid\GridNoEditWithGroupView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Grid\GridSimpleEditNoGroup.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Grid\GridSimpleEditNoGroupInfoRegistrator.cs" />
-    <Compile Include="Controls\Grid\GridSimpleEditNoGroupView.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\Menu\FRM_AssemblyExplorer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,92 +213,6 @@
     <Compile Include="Controls\Menu\UC_TreeNavBar.Designer.cs">
       <DependentUpon>UC_TreeNavBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Wizard\FRM_Wizard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\FRM_Wizard.Designer.cs">
-      <DependentUpon>FRM_Wizard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\ImportControls\BaseFileDescriptor.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\CharSeparatedColumn.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\CharSeparatedFileDescriptor.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\CharSeparatedFileParser.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\Exceptions\InvalidCsvFileException.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\IFileParser.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\ProgressChangeHandler.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\TXTColumn.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\TXTFileDescriptor.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\TXTFileParser.cs" />
-    <Compile Include="Controls\Wizard\ImportControls\UC_TXTColumnsEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\ImportDataFromDataOrigin.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\ImportDataFromDataOrigin.Designer.cs">
-      <DependentUpon>ImportDataFromDataOrigin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_AuthenticationBD.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_AuthenticationBD.Designer.cs">
-      <DependentUpon>UC_AuthenticationBD.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_ExcelWorkSheets.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_ExcelWorkSheets.Designer.cs">
-      <DependentUpon>UC_ExcelWorkSheets.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_FlatText.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_FlatText.Designer.cs">
-      <DependentUpon>UC_FlatText.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_GridPreview.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_GridPreview.Designer.cs">
-      <DependentUpon>UC_GridPreview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_Importar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_Importar.Designer.cs">
-      <DependentUpon>UC_Importar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_MapeoColumnas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_MapeoColumnas.Designer.cs">
-      <DependentUpon>UC_MapeoColumnas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_OrigenDeDatos.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_OrigenDeDatos.Designer.cs">
-      <DependentUpon>UC_OrigenDeDatos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_SeparatedText.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_SeparatedText.Designer.cs">
-      <DependentUpon>UC_SeparatedText.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_TablasBD.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_TablasBD.Designer.cs">
-      <DependentUpon>UC_TablasBD.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_WizzardMain.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Wizard\UC_WizzardMain.Designer.cs">
-      <DependentUpon>UC_WizzardMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Wizard\WizardBE\ColumnsMappingBE.cs" />
     <Compile Include="Securiry\AuthenticationFormComponent.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -342,19 +224,6 @@
     </Compile>
     <Compile Include="Securiry\FRM_AuthenticationForm_ASPNet.Designer.cs">
       <DependentUpon>FRM_AuthenticationForm_ASPNet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\Rules\FRM_RuleSelector.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Securiry\Rules\FRM_RuleSelector.Designer.cs">
-      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Menu\IControlDesigner.cs" />
-    <Compile Include="Securiry\Rules\UC_RuleSelector.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\Rules\UC_RuleSelector.Designer.cs">
-      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\MessageView\ExceptionView.cs">
       <SubType>Form</SubType>
@@ -610,18 +479,6 @@
     <EmbeddedResource Include="Controls\FileControls\UC_FileSelection.resx">
       <DependentUpon>UC_FileSelection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Grid\UC_GridGenericWithToolbar.resx">
-      <DependentUpon>UC_GridGenericWithToolbar.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Grid\GridNoEditWithGroup.resx">
-      <DependentUpon>GridNoEditWithGroup.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Grid\GridSimpleEditNoGroup.resx">
-      <DependentUpon>GridSimpleEditNoGroup.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Menu\FRM_AssemblyExplorer.resx">
       <DependentUpon>FRM_AssemblyExplorer.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -633,52 +490,8 @@
       <DependentUpon>UC_TreeNavBar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\FRM_Wizard.resx">
-      <DependentUpon>FRM_Wizard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\ImportControls\UC_TXTColumnsEditor.resx">
-      <DependentUpon>UC_TXTColumnsEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_AuthenticationBD.resx">
-      <DependentUpon>UC_AuthenticationBD.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_ExcelWorkSheets.resx">
-      <DependentUpon>UC_ExcelWorkSheets.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_FlatText.resx">
-      <DependentUpon>UC_FlatText.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_GridPreview.resx">
-      <DependentUpon>UC_GridPreview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_Importar.resx">
-      <DependentUpon>UC_Importar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_MapeoColumnas.resx">
-      <DependentUpon>UC_MapeoColumnas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_OrigenDeDatos.resx">
-      <DependentUpon>UC_OrigenDeDatos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_SeparatedText.resx">
-      <DependentUpon>UC_SeparatedText.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_TablasBD.resx">
-      <DependentUpon>UC_TablasBD.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Wizard\UC_WizzardMain.resx">
-      <DependentUpon>UC_WizzardMain.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Securiry\FRM_AuthenticationForm_ASPNet.resx">
       <DependentUpon>FRM_AuthenticationForm_ASPNet.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Rules\FRM_RuleSelector.resx">
-      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Rules\UC_RuleSelector.resx">
-      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MessageView\ExceptionView.resx">
@@ -818,10 +631,6 @@
       <DependentUpon>FRM_AuthenticationForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Securiry\Rules\UC_RulesMain.resx">
-      <DependentUpon>UC_RulesMain.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Securiry\FRM_UserChangePassword.resx">
       <DependentUpon>FRM_UserChangePassword.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -862,12 +671,6 @@
     </Compile>
     <Compile Include="Securiry\FRM_AuthenticationForm.Designer.cs">
       <DependentUpon>FRM_AuthenticationForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Securiry\Rules\UC_RulesMain.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Securiry\Rules\UC_RulesMain.Designer.cs">
-      <DependentUpon>UC_RulesMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Securiry\FRM_UserChangePassword.cs">
       <SubType>Form</SubType>
@@ -1231,7 +1034,6 @@
     <None Include="Resources\refresh_32.png" />
     <None Include="Resources\refresh_24.png" />
     <None Include="Resources\refresh_16.png" />
-    <Content Include="Securiry\Rules\SecurityRulesToolbar.xml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

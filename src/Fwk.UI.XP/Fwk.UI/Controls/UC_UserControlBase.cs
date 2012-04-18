@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using Microsoft.Practices.EnterpriseLibrary.Security;
+
 using System.Security.Principal;
 using System.Web.Security;
 using Fwk.UI.Forms;
