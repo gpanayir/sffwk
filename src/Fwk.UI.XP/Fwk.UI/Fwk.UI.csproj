@@ -293,36 +293,6 @@
     <Compile Include="Controls\UC_AssigmentBase.Designer.cs">
       <DependentUpon>UC_AssigmentBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DataBase\UC_CmbDBBaseList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DataBase\UC_CmbDBBaseList.Designer.cs">
-      <DependentUpon>UC_CmbDBBaseList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DataBase\UC_CmbDBServerList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DataBase\UC_CmbDBServerList.Designer.cs">
-      <DependentUpon>UC_CmbDBServerList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DataBase\UC_CmbDBTableList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DataBase\UC_CmbDBTableList.Designer.cs">
-      <DependentUpon>UC_CmbDBTableList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DataBase\UC_DataBaseLogin.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DataBase\UC_DataBaseLogin.Designer.cs">
-      <DependentUpon>UC_DataBaseLogin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DataBase\UC_GrdDBTableColumns.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\DataBase\UC_GrdDBTableColumns.Designer.cs">
-      <DependentUpon>UC_GrdDBTableColumns.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Editors\UC_ComboBoxLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -473,9 +443,6 @@
       <DependentUpon>UC_RrichEditSimpleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\DataBase\UC_CmbDBBaseList.resx">
-      <DependentUpon>UC_CmbDBBaseList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FileControls\UC_FileSelection.resx">
       <DependentUpon>UC_FileSelection.cs</DependentUpon>
     </EmbeddedResource>
@@ -520,10 +487,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UC_AssigmentBase.resx">
       <DependentUpon>UC_AssigmentBase.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataBase\UC_CmbDBServerList.resx">
-      <DependentUpon>UC_CmbDBServerList.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Editors\UC_ComboBoxLabel.resx">
