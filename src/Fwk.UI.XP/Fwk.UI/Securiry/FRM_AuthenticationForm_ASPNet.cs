@@ -278,7 +278,7 @@ namespace Fwk.UI.Security.Controls
         private void EnableDisableFieldsByAuthenticationMode(bool pValue)
         {
             txtUserName.Enabled = pValue;
-            aceptCancelButtonBar1.AceptButtonEnabled = pValue;
+            uC_AceptCancelButtonBar1.AceptButtonEnabled = pValue;
         }
 
       
@@ -313,6 +313,8 @@ namespace Fwk.UI.Security.Controls
         }
 
         #endregion
+
+        
 
     }
 }
