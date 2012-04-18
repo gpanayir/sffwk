@@ -31,7 +31,7 @@ namespace Fwk.UI.Forms
             this.aceptCancelButtonBar1 = new Fwk.UI.Controls.UC_AceptCancelButtonBar();
             this.SuspendLayout();
             // 
-            // uC_AceptCancelButtonBar1
+            // aceptCancelButtonBar1
             // 
             this.aceptCancelButtonBar1.AceptButtonEnabled = true;
             this.aceptCancelButtonBar1.AceptButtonText = "&Aceptar";
@@ -43,7 +43,7 @@ namespace Fwk.UI.Forms
             this.aceptCancelButtonBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.aceptCancelButtonBar1.Location = new System.Drawing.Point(8, 469);
             this.aceptCancelButtonBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.aceptCancelButtonBar1.Name = "uC_AceptCancelButtonBar1";
+            this.aceptCancelButtonBar1.Name = "aceptCancelButtonBar1";
             this.aceptCancelButtonBar1.Size = new System.Drawing.Size(699, 28);
             this.aceptCancelButtonBar1.TabIndex = 0;
             // 
@@ -67,6 +67,8 @@ namespace Fwk.UI.Forms
         #endregion
 
         public Controls.UC_AceptCancelButtonBar aceptCancelButtonBar1;
+
+
 
 
 
