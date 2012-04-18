@@ -78,6 +78,8 @@
     <Reference Include="DevExpress.XtraEditors.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraGrid.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraNavBar.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -149,6 +151,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UC\FRM_RuleSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UC\FRM_RuleSelector.Designer.cs">
+      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\GridNoEditWithGroup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\GridNoEditWithGroupInfoRegistrator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UC\GridNoEditWithGroupView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UC\UC_ButtonGroupEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +189,18 @@
     </Compile>
     <Compile Include="UC\UC_PopupButtonEditor.Designer.cs">
       <DependentUpon>UC_PopupButtonEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_RuleSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UC_RuleSelector.Designer.cs">
+      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_RulesMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UC_RulesMain.Designer.cs">
+      <DependentUpon>UC_RulesMain.cs</DependentUpon>
     </Compile>
     <Compile Include="UC\UC_SimpleButtonEditor.cs">
       <SubType>UserControl</SubType>
@@ -199,6 +228,14 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC\FRM_RuleSelector.resx">
+      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\GridNoEditWithGroup.resx">
+      <DependentUpon>GridNoEditWithGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC\UC_ButtonGroupEditor.resx">
       <DependentUpon>UC_ButtonGroupEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -213,6 +250,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UC_PopupButtonEditor.resx">
       <DependentUpon>UC_PopupButtonEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UC_RuleSelector.resx">
+      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UC_RulesMain.resx">
+      <DependentUpon>UC_RulesMain.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UC_SimpleButtonEditor.resx">

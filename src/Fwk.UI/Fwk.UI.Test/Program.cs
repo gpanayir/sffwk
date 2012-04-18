@@ -15,7 +15,7 @@ namespace Fwk.UI.Test
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Fwk.UI.Test.Form1());
+            Application.Run(new Fwk.UI.Test.UsoDeMenu());
         }
     }
 }
