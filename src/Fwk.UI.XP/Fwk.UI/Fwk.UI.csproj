@@ -429,19 +429,6 @@
     <Compile Include="FormsBase\FormBaseNotify.Designer.cs">
       <DependentUpon>FormBaseNotify.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RichEdit\DemoUtils.cs" />
-    <Compile Include="Controls\RichEdit\UC_RrichEditBarMannagerControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\RichEdit\UC_RrichEditBarMannagerControl.Designer.cs">
-      <DependentUpon>UC_RrichEditBarMannagerControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\RichEdit\UC_RrichEditSimpleControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\RichEdit\UC_RrichEditSimpleControl.Designer.cs">
-      <DependentUpon>UC_RrichEditSimpleControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\FileControls\UC_FileSelection.resx">
       <DependentUpon>UC_FileSelection.cs</DependentUpon>
@@ -553,14 +540,6 @@
       <DependentUpon>FormBaseNotify.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\RichEdit\UC_RrichEditBarMannagerControl.resx">
-      <DependentUpon>UC_RrichEditBarMannagerControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\RichEdit\UC_RrichEditSimpleControl.resx">
-      <DependentUpon>UC_RrichEditSimpleControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FindControls\UC_TextFind.resx">
       <DependentUpon>UC_TextFind.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -580,10 +559,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\RichEdit\Ribbon.resx">
-      <DependentUpon>UC_RrichEditRibbonControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Editors\UC_TitleControl.resx">
@@ -615,12 +590,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="Controls\RichEdit\UC_RrichEditRibbonControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\RichEdit\UC_RrichEditRibbonControl.Designer.cs">
-      <DependentUpon>UC_RrichEditRibbonControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Editors\UC_TitleControl.cs">
       <SubType>UserControl</SubType>
