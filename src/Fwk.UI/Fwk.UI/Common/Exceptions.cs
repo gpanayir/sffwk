@@ -24,29 +24,7 @@ namespace Fwk.UI.Common
             }
         }
 
-        public static Exception ProcessException(ServiceError err)
-        {
-
-            Exception ex = null;
-            switch (err.Type)
-            {
-                case "FunctionalException":
-                    ex = new FunctionalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
-                    ex.Source = err.Source;
-                    ((FunctionalException)ex).ErrorId = err.ErrorId;
-                    break;
-                case "TechnicalException":
-                    ex = new TechnicalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
-                    ex.Source = err.Source;
-                    ((TechnicalException)ex).ErrorId = err.ErrorId;
-                    break;
-                default:
-                    ex = new Exception(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
-                    ex.Source = err.Source;
-                    break;
-            }
-            return ex;
-        }
+        
 
     }
 
