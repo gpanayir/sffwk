@@ -341,12 +341,6 @@
     <Compile Include="Controls\Editors\UC_TextBoxLabel.Designer.cs">
       <DependentUpon>UC_TextBoxLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UC_ExportToolBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UC_ExportToolBar.Designer.cs">
-      <DependentUpon>UC_ExportToolBar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Editors\TextMemoEdit.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -506,10 +500,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Editors\UC_TextBoxLabel.resx">
       <DependentUpon>UC_TextBoxLabel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UC_ExportToolBar.resx">
-      <DependentUpon>UC_ExportToolBar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Menu\UC_ToolBarControl.resx">

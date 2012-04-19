@@ -192,7 +192,7 @@ namespace Fwk.UI.Controls.Menu.Tree
             set { m_ImageBytes = value; }
         }
 
-        private Image m_Image;
+        //private Image m_Image;
         [System.Xml.Serialization.XmlIgnore()]
         public Image Image
         {
