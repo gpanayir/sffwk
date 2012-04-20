@@ -22,7 +22,7 @@ namespace Fwk.Tools.TreeView
         public void Populate()
         {
 
-
+            if (FRM_MainDevExpress.Menu == null) return;
             menuImageListBindingSource.DataSource = FRM_MainDevExpress.Menu.ImageList;
             gridView1.RefreshData();
         }
@@ -62,7 +62,8 @@ namespace Fwk.Tools.TreeView
         private void gridView1_Click(object sender, EventArgs e)
         {
             SelectedImage = ((MenuImage)gridControl1.FocusedView.GetRow(gridView1.FocusedRowHandle));
-            pictureBoxImageSelected.Image = SelectedImage.Image;
+            if(SelectedImage!=null)
+                pictureBoxImageSelected.Image = SelectedImage.Image;
         }
 
         private void gridView1_DoubleClick(object sender, EventArgs e)

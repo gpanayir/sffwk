@@ -159,7 +159,7 @@ namespace Fwk.Tools.TreeView
         /// <author>moviedo</author>
         private void AddMenuItem()
         {
-            if (Menu.ItemList == null)
+            if (Menu == null ||  Menu.ItemList == null)
                 return;
 
             // Esto hace que solo se desarrolle hasta arbol de nivel dos.
@@ -198,7 +198,7 @@ namespace Fwk.Tools.TreeView
         /// <author>moviedo</author>
         private void EditMenuItem()
         {
-            if (Menu.ItemList == null)
+            if (Menu == null || Menu.ItemList == null)
                 return;
 
             if (_MenuItemSelected == null)
@@ -234,7 +234,7 @@ namespace Fwk.Tools.TreeView
         /// <param name="menuItem"></param>
         private void AddCategory(Fwk.UI.Controls.Menu.Tree.MenuItem menuItem)
         {
-            if (Menu.ItemList == null)
+            if (Menu==null ||Menu.ItemList == null)
                 return;
 
             Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemNewCategory = new Fwk.UI.Controls.Menu.Tree.MenuItem();

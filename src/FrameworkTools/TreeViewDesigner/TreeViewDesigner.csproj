@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Fwk.Tools</RootNamespace>
-    <AssemblyName>TreeViewDesigner</AssemblyName>
+    <AssemblyName>Fwk.Tools.TreeViewDesigner</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>
