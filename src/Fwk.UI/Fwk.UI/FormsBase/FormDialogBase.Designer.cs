@@ -28,6 +28,7 @@ namespace Fwk.UI.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDialogBase));
             this.aceptCancelButtonBar1 = new Fwk.UI.Controls.UC_AceptCancelButtonBar();
             this.SuspendLayout();
             // 
@@ -41,10 +42,10 @@ namespace Fwk.UI.Forms
             this.aceptCancelButtonBar1.CancelButtonText = "&Cancelar";
             this.aceptCancelButtonBar1.CancelButtonVisible = true;
             this.aceptCancelButtonBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(8, 469);
+            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(8, 465);
             this.aceptCancelButtonBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.aceptCancelButtonBar1.Name = "aceptCancelButtonBar1";
-            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(699, 28);
+            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(699, 32);
             this.aceptCancelButtonBar1.TabIndex = 0;
             // 
             // FormDialogBase
@@ -52,6 +53,7 @@ namespace Fwk.UI.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.ClientSize = new System.Drawing.Size(715, 506);
             this.Controls.Add(this.aceptCancelButtonBar1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximizeBox = false;

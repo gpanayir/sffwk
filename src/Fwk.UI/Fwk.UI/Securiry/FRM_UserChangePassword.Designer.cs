@@ -30,15 +30,15 @@ namespace Fwk.UI.Security.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_UserChangePassword));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.txtPasswordConfirm = new Fwk.UI.Controls.TextBox(this.components);
-            this.txtNewPassword = new Fwk.UI.Controls.TextBox(this.components);
-            this.txtOldPassword = new Fwk.UI.Controls.TextBox(this.components);
+            this.txtPasswordConfirm = new Fwk.UI.Controls.TextBox();
+            this.txtNewPassword = new Fwk.UI.Controls.TextBox();
+            this.txtOldPassword = new Fwk.UI.Controls.TextBox();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPasswordConfirm.Properties)).BeginInit();
@@ -52,9 +52,9 @@ namespace Fwk.UI.Security.Controls
             this.aceptCancelButtonBar1.AceptButtonVisible = true;
             this.aceptCancelButtonBar1.BottomsVisible = true;
             this.aceptCancelButtonBar1.CancelButtonVisible = true;
-            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(9, 148);
+            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(2, 158);
             this.aceptCancelButtonBar1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(506, 28);
+            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(523, 28);
             this.aceptCancelButtonBar1.TabIndex = 3;
             this.aceptCancelButtonBar1.ClickOkCancelEvent += new Fwk.UI.Common.ClickOkCancelHandler(this.aceptCancelButtonBar1_ClickOkCancelEvent);
             // 
@@ -67,10 +67,10 @@ namespace Fwk.UI.Security.Controls
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(9, 11);
+            this.groupControl1.Location = new System.Drawing.Point(2, 2);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(506, 137);
+            this.groupControl1.Size = new System.Drawing.Size(523, 156);
             this.groupControl1.TabIndex = 5;
             this.groupControl1.Text = "Datos contraseña";
             // 
@@ -161,11 +161,12 @@ namespace Fwk.UI.Security.Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 187);
+            this.ClientSize = new System.Drawing.Size(527, 188);
             this.Controls.Add(this.groupControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.Name = "FRM_UserChangePassword";
-            this.Padding = new System.Windows.Forms.Padding(9, 11, 9, 11);
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.Text = "Cambiar contraseña";
             this.Controls.SetChildIndex(this.aceptCancelButtonBar1, 0);
             this.Controls.SetChildIndex(this.groupControl1, 0);

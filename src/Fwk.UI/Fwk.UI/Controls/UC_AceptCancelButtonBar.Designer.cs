@@ -32,6 +32,8 @@ namespace Fwk.UI.Controls
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.btn_Cancel = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Acept = new DevExpress.XtraEditors.SimpleButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // navBarGroup1
@@ -45,10 +47,10 @@ namespace Fwk.UI.Controls
             this.btn_Cancel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btn_Cancel.CausesValidation = false;
             this.btn_Cancel.Image = global::Fwk.UI.Properties.Resources.cancl_16;
-            this.btn_Cancel.Location = new System.Drawing.Point(345, 1);
+            this.btn_Cancel.Location = new System.Drawing.Point(346, 4);
             this.btn_Cancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(114, 27);
+            this.btn_Cancel.Size = new System.Drawing.Size(114, 26);
             this.btn_Cancel.TabIndex = 1;
             this.btn_Cancel.Text = "&Cancelar";
             this.btn_Cancel.Click += new System.EventHandler(this.ButtonBase_Cancel_Click);
@@ -57,7 +59,7 @@ namespace Fwk.UI.Controls
             // 
             this.btn_Acept.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btn_Acept.Image = global::Fwk.UI.Properties.Resources.apply_16;
-            this.btn_Acept.Location = new System.Drawing.Point(219, 1);
+            this.btn_Acept.Location = new System.Drawing.Point(221, 4);
             this.btn_Acept.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_Acept.Name = "btn_Acept";
             this.btn_Acept.Size = new System.Drawing.Size(119, 27);
@@ -65,15 +67,27 @@ namespace Fwk.UI.Controls
             this.btn_Acept.Text = "&Aceptar";
             this.btn_Acept.Click += new System.EventHandler(this.ButtonBase_Acept_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.flowLayoutPanel1.Controls.Add(this.btn_Cancel);
+            this.flowLayoutPanel1.Controls.Add(this.btn_Acept);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(463, 34);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
             // UC_AceptCancelButtonBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btn_Cancel);
-            this.Controls.Add(this.btn_Acept);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UC_AceptCancelButtonBar";
-            this.Size = new System.Drawing.Size(463, 28);
+            this.Size = new System.Drawing.Size(463, 34);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -83,5 +97,6 @@ namespace Fwk.UI.Controls
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraEditors.SimpleButton btn_Cancel;
         private DevExpress.XtraEditors.SimpleButton btn_Acept;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

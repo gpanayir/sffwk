@@ -33,11 +33,10 @@ namespace Fwk.UI.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBase));
-            this.ToolTipControl = new DevExpress.Utils.ToolTipController(this.components);
-            this.ExceptionViewer = new Fwk.UI.Controls.ExceptionViewComponent(this.components);
-            this.MessageViewer = new Fwk.UI.Controls.MessageViewerComponent(this.components);
+            this.ToolTipControl = new DevExpress.Utils.ToolTipController();
+            this.ExceptionViewer = new Fwk.UI.Controls.ExceptionViewComponent();
+            this.MessageViewer = new Fwk.UI.Controls.MessageViewerComponent();
             this.SuspendLayout();
             // 
             // ExceptionViewer
@@ -60,12 +59,13 @@ namespace Fwk.UI.Forms
             // 
             // FormBase
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(614, 413);
+            this.ClientSize = new System.Drawing.Size(716, 508);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormBase";
-            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "FormBase";
             this.ResumeLayout(false);

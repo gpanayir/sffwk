@@ -28,18 +28,17 @@ namespace Fwk.UI.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_ExportToolBar));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnExcel = new DevExpress.XtraEditors.SimpleButton();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.btnPDF = new DevExpress.XtraEditors.SimpleButton();
             this.btnTXT = new DevExpress.XtraEditors.SimpleButton();
             this.btnHTML = new DevExpress.XtraEditors.SimpleButton();
             this.btnXML = new DevExpress.XtraEditors.SimpleButton();
             this.popupContainerEdit1 = new DevExpress.XtraEditors.PopupContainerEdit();
             this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
-            this.simpleMessageViewComponent2 = new Fwk.UI.Controls.SimpleMessageViewComponent(this.components);
+            this.simpleMessageViewComponent2 = new Fwk.UI.Controls.SimpleMessageViewComponent();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
             this.popupContainerControl1.SuspendLayout();

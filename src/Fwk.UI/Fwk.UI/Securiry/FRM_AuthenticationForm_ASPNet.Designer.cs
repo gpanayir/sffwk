@@ -31,14 +31,13 @@ namespace Fwk.UI.Security.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_AuthenticationForm_ASPNet));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.txtPassword = new Fwk.UI.Controls.TextBox(this.components);
-            this.txtUserName = new Fwk.UI.Controls.TextBox(this.components);
+            this.txtPassword = new Fwk.UI.Controls.TextBox();
+            this.txtUserName = new Fwk.UI.Controls.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
+            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider();
             this.lbllTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.imgTitle = new System.Windows.Forms.PictureBox();
@@ -59,7 +58,7 @@ namespace Fwk.UI.Security.Controls
             this.groupControl1.Controls.Add(this.txtUserName);
             this.groupControl1.Controls.Add(this.label1);
             this.groupControl1.Controls.Add(this.lblPassword);
-            this.groupControl1.Location = new System.Drawing.Point(8, 85);
+            this.groupControl1.Location = new System.Drawing.Point(8, 79);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(363, 130);
@@ -171,10 +170,10 @@ namespace Fwk.UI.Security.Controls
             this.aceptCancelButtonBar1.CancelButtonText = "&Cancelar";
             this.aceptCancelButtonBar1.CancelButtonVisible = true;
             this.aceptCancelButtonBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(3, 226);
+            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(3, 224);
             this.aceptCancelButtonBar1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.aceptCancelButtonBar1.Name = "aceptCancelButtonBar1";
-            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(392, 28);
+            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(392, 30);
             this.aceptCancelButtonBar1.TabIndex = 3;
             this.aceptCancelButtonBar1.ClickOkCancelEvent += new Fwk.UI.Common.ClickOkCancelHandler(this.aceptCancelButtonBar1_ClickOkCancelEvent);
             // 

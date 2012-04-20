@@ -28,6 +28,7 @@ namespace Fwk.UI.Security.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_UserResetPassword));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.txtnewPassword = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -41,8 +42,8 @@ namespace Fwk.UI.Security.Controls
             this.aceptCancelButtonBar1.AceptButtonVisible = true;
             this.aceptCancelButtonBar1.BottomsVisible = true;
             this.aceptCancelButtonBar1.CancelButtonVisible = true;
-            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(9, 153);
-            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(673, 32);
+            this.aceptCancelButtonBar1.Location = new System.Drawing.Point(2, 162);
+            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(687, 32);
             this.aceptCancelButtonBar1.ClickOkCancelEvent += new Fwk.UI.Common.ClickOkCancelHandler(this.aceptCancelButtonBar1_ClickOkCancelEvent);
             // 
             // groupControl1
@@ -50,17 +51,17 @@ namespace Fwk.UI.Security.Controls
             this.groupControl1.Controls.Add(this.txtnewPassword);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(9, 11);
+            this.groupControl1.Location = new System.Drawing.Point(2, 2);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(673, 142);
+            this.groupControl1.Size = new System.Drawing.Size(687, 160);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Datos contraseña";
             // 
             // txtnewPassword
             // 
             this.txtnewPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtnewPassword.Location = new System.Drawing.Point(136, 71);
+            this.txtnewPassword.Location = new System.Drawing.Point(143, 80);
             this.txtnewPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtnewPassword.Name = "txtnewPassword";
             this.txtnewPassword.Properties.PasswordChar = '*';
@@ -70,7 +71,7 @@ namespace Fwk.UI.Security.Controls
             // labelControl2
             // 
             this.labelControl2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl2.Location = new System.Drawing.Point(22, 74);
+            this.labelControl2.Location = new System.Drawing.Point(29, 83);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(107, 16);
@@ -83,9 +84,10 @@ namespace Fwk.UI.Security.Controls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(691, 196);
             this.Controls.Add(this.groupControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.Name = "FRM_UserResetPassword";
-            this.Padding = new System.Windows.Forms.Padding(9, 11, 9, 11);
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.Text = "Restablecer contraseña";
             this.Controls.SetChildIndex(this.aceptCancelButtonBar1, 0);
             this.Controls.SetChildIndex(this.groupControl1, 0);

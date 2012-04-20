@@ -943,7 +943,6 @@
     <Content Include="Properties\al.exe" />
     <Content Include="Properties\ResGen.exe" />
     <None Include="Properties\DataSources\Fwk.UI.Controls.Menu.MenuBarTreeNode.datasource" />
-    <None Include="Resources\button-blue.png" />
     <None Include="Resources\add_16.gif" />
     <None Include="Resources\add_24.gif" />
     <None Include="Resources\add_32.gif" />
