@@ -109,6 +109,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Blocks\Functions\WindowsFunction.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\Services\GetFwkConfigurationService.cs" />
     <Compile Include="Blocks\FwkData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,7 +154,7 @@
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationRepository.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\Utils.cs" />
     <Compile Include="Blocks\Fwk.Configuration\LocalConfigurationManager.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\RemoteConfigurationManager.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\ServiceConfigurationManager.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\LoggingSection.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElement.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElementCollection.cs" />
@@ -368,6 +369,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
