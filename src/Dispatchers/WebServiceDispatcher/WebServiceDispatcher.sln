@@ -1,43 +1,28 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebServiceDispatcher", ".", "{DDEC3C17-29C4-42F8-A2E1-88381A170136}"
-	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = "Svn"
-		SccAuxPath = "Svn"
-		SccLocalPath = "Svn"
-		SccProvider = "SubversionScc"
-		TargetFramework = "3.5"
-		Debug.AspNetCompiler.VirtualPath = "/WebServiceDispatcher"
-		Debug.AspNetCompiler.PhysicalPath = "..\WebServiceDispatcher\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WebServiceDispatcher\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/WebServiceDispatcher"
-		Release.AspNetCompiler.PhysicalPath = "..\WebServiceDispatcher\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\WebServiceDispatcher\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1119"
-	EndProjectSection
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServiceDispatcher", "WebServiceDispatcher.csproj", "{EFA632D2-F98A-4650-8BBA-075E67CB7D29}"
 EndProject
+
+
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|.NET = Debug|.NET
-		Release|.NET = Release|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DDEC3C17-29C4-42F8-A2E1-88381A170136}.Debug|.NET.ActiveCfg = Debug|.NET
-		{DDEC3C17-29C4-42F8-A2E1-88381A170136}.Debug|.NET.Build.0 = Debug|.NET
-		{DDEC3C17-29C4-42F8-A2E1-88381A170136}.Release|.NET.ActiveCfg = Debug|.NET
-		{DDEC3C17-29C4-42F8-A2E1-88381A170136}.Release|.NET.Build.0 = Debug|.NET
+		{EFA632D2-F98A-4650-8BBA-075E67CB7D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFA632D2-F98A-4650-8BBA-075E67CB7D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFA632D2-F98A-4650-8BBA-075E67CB7D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFA632D2-F98A-4650-8BBA-075E67CB7D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{842A24D2-7052-4D70-BCBB-728FE29E0385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{842A24D2-7052-4D70-BCBB-728FE29E0385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{842A24D2-7052-4D70-BCBB-728FE29E0385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{842A24D2-7052-4D70-BCBB-728FE29E0385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDFB2B90-2A11-4D6A-B8A8-EFC5FB2FBDD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDFB2B90-2A11-4D6A-B8A8-EFC5FB2FBDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDFB2B90-2A11-4D6A-B8A8-EFC5FB2FBDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDFB2B90-2A11-4D6A-B8A8-EFC5FB2FBDD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
