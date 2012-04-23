@@ -284,28 +284,7 @@
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
   </ServiceConfiguration>
-  <ServiceConfiguration name="CrearProfecionalService">
-    <CreatedUserName>marcelo</CreatedUserName>
-    <CreatedDateTime>2012-02-17T15:41:26.4679911-03:00</CreatedDateTime>
-    <Handler>Health.Svc.CrearProfecionalService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CrearProfecional.CrearProfecionalReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CrearProfecional.CrearProfecionalRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>true</Available>
-    <Audit>false</Audit>
-    <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
-    <IsolationLevel>ReadCommitted</IsolationLevel>
-  </ServiceConfiguration>
-  <ServiceConfiguration name="CrearPacienteService">
-    <CreatedUserName>marcelo</CreatedUserName>
-    <CreatedDateTime>2012-02-17T15:41:45.9020838-03:00</CreatedDateTime>
-    <Handler>Health.Svc.CrearPacienteService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CrearPaciente.CrearPacienteReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CrearPaciente.CrearPacienteRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>true</Available>
-    <Audit>false</Audit>
-    <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
-    <IsolationLevel>ReadCommitted</IsolationLevel>
-  </ServiceConfiguration>
+  
 	<ServiceConfiguration name="GetFwkConfigurationService">
 
 		<CreatedUserName>moviedo</CreatedUserName>
