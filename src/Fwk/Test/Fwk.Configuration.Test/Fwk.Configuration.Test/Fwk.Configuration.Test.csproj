@@ -91,7 +91,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Configuration.config" />
     <None Include="Properties\DataSources\Fwk.Configuration.Common.Group.datasource" />
     <None Include="Properties\DataSources\Fwk.Configuration.Common.Key.datasource" />
@@ -147,6 +149,7 @@
     </Content>
     <Content Include="Metasvc.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
