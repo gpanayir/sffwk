@@ -22,7 +22,7 @@ namespace Fwk.Configuration.Test
         {
             try
             {
-                textBox1.Text = ConfigurationManager.GetProperty("RemoteProvider", "ValidationExceptionMessage", "NullOrEmptyField");
+                textBox4.Text = ConfigurationManager.GetProperty("svc", "ClientMessages", "contrato_comercial_obligatorio");
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }

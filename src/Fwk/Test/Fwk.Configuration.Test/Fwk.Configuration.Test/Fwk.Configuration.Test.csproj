@@ -58,6 +58,14 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -135,6 +143,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Fwk.Bases.Connector\Fwk.Bases.Connector.csproj">
+      <Project>{A1F08B2F-7D75-4BD4-8BD3-B98C582013EC}</Project>
+      <Name>Fwk.Bases.Connector</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Fwk.Bases\Fwk.Bases.csproj">
       <Project>{1654A893-0408-474E-873C-E79F00D7587C}</Project>
       <Name>Fwk.Bases</Name>

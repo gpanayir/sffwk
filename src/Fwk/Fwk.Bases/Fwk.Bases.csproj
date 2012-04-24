@@ -286,7 +286,9 @@
     <Compile Include="SingletonFactoryArray.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="BackEnd.cd" />
     <None Include="Blocks\FwkData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

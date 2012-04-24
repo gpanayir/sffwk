@@ -36,26 +36,30 @@ namespace Fwk.Configuration.Test
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnGetProvider = new System.Windows.Forms.Button();
-            this.txtGroupName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.encryptedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.canUndoDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.canRedoDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.keyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnGetGroupKeys = new System.Windows.Forms.Button();
+            this.txtGroupName = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.txtProrpetieName = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnGetProvider = new System.Windows.Forms.Button();
             this.grdGroups = new System.Windows.Forms.DataGridView();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.canUndoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.canRedoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnGetGroupKeys = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.xmlConfitFile = new System.Windows.Forms.TextBox();
@@ -64,43 +68,42 @@ namespace Fwk.Configuration.Test
             this.btnLoadConfigFile = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtProrpetieName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.keyBindingSource)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroups)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 154);
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.ForestGreen;
+            this.button1.Location = new System.Drawing.Point(212, 21);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 28);
+            this.button1.Size = new System.Drawing.Size(213, 37);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Get Value From KEY";
+            this.button1.Text = "GetProperty";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(156, 159);
+            this.textBox1.BackColor = System.Drawing.Color.Beige;
+            this.textBox1.Location = new System.Drawing.Point(431, 26);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(213, 20);
+            this.textBox1.Size = new System.Drawing.Size(386, 20);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "group:ClientMessages  key: contrato_comercial_obligatorio";
             // 
             // tabControl1
             // 
@@ -118,13 +121,14 @@ namespace Fwk.Configuration.Test
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBox4);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(949, 552);
+            this.tabPage1.Size = new System.Drawing.Size(949, 566);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Configuracion Remota";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -132,9 +136,9 @@ namespace Fwk.Configuration.Test
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(25, 11);
+            this.pictureBox1.Location = new System.Drawing.Point(24, 97);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(424, 137);
+            this.pictureBox1.Size = new System.Drawing.Size(903, 393);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
@@ -156,6 +160,159 @@ namespace Fwk.Configuration.Test
             this.tabPage2.Text = "Configuracion Local";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(149, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "File name";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.btnGetGroupKeys);
+            this.groupBox3.Controls.Add(this.txtGroupName);
+            this.groupBox3.Location = new System.Drawing.Point(363, 53);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(564, 381);
+            this.groupBox3.TabIndex = 18;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Group";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 17);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Group name";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn1,
+            this.encryptedDataGridViewCheckBoxColumn,
+            this.valueDataGridViewTextBoxColumn,
+            this.canUndoDataGridViewCheckBoxColumn1});
+            this.dataGridView1.DataSource = this.keyBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 71);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(539, 304);
+            this.dataGridView1.TabIndex = 8;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            // 
+            // encryptedDataGridViewCheckBoxColumn
+            // 
+            this.encryptedDataGridViewCheckBoxColumn.DataPropertyName = "Encrypted";
+            this.encryptedDataGridViewCheckBoxColumn.HeaderText = "Encrypted";
+            this.encryptedDataGridViewCheckBoxColumn.Name = "encryptedDataGridViewCheckBoxColumn";
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            // 
+            // canUndoDataGridViewCheckBoxColumn1
+            // 
+            this.canUndoDataGridViewCheckBoxColumn1.HeaderText = "CanUndo";
+            this.canUndoDataGridViewCheckBoxColumn1.Name = "canUndoDataGridViewCheckBoxColumn1";
+            this.canUndoDataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.canUndoDataGridViewCheckBoxColumn1.Visible = false;
+            // 
+            // keyBindingSource
+            // 
+            this.keyBindingSource.DataSource = typeof(Fwk.Configuration.Common.Key);
+            // 
+            // btnGetGroupKeys
+            // 
+            this.btnGetGroupKeys.Location = new System.Drawing.Point(267, 19);
+            this.btnGetGroupKeys.Name = "btnGetGroupKeys";
+            this.btnGetGroupKeys.Size = new System.Drawing.Size(106, 28);
+            this.btnGetGroupKeys.TabIndex = 6;
+            this.btnGetGroupKeys.Text = "Get Group Keys";
+            this.btnGetGroupKeys.UseVisualStyleBackColor = true;
+            this.btnGetGroupKeys.Click += new System.EventHandler(this.btnGetGroupKeys_Click);
+            // 
+            // txtGroupName
+            // 
+            this.txtGroupName.Location = new System.Drawing.Point(10, 36);
+            this.txtGroupName.Name = "txtGroupName";
+            this.txtGroupName.Size = new System.Drawing.Size(213, 20);
+            this.txtGroupName.TabIndex = 9;
+            this.txtGroupName.Text = "ExceptionMessages";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.txtProrpetieName);
+            this.groupBox2.Location = new System.Drawing.Point(365, 440);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(564, 91);
+            this.groupBox2.TabIndex = 17;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Propertie";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(34, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Value";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(101, 53);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(392, 28);
+            this.textBox2.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Provider name";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(330, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(109, 28);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Get propertie";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txtProrpetieName
+            // 
+            this.txtProrpetieName.Location = new System.Drawing.Point(101, 19);
+            this.txtProrpetieName.Name = "txtProrpetieName";
+            this.txtProrpetieName.Size = new System.Drawing.Size(192, 20);
+            this.txtProrpetieName.TabIndex = 15;
             // 
             // textBox3
             // 
@@ -195,70 +352,6 @@ namespace Fwk.Configuration.Test
             this.btnGetProvider.UseVisualStyleBackColor = true;
             this.btnGetProvider.Click += new System.EventHandler(this.btnGetProvider_Click);
             // 
-            // txtGroupName
-            // 
-            this.txtGroupName.Location = new System.Drawing.Point(10, 36);
-            this.txtGroupName.Name = "txtGroupName";
-            this.txtGroupName.Size = new System.Drawing.Size(213, 20);
-            this.txtGroupName.TabIndex = 9;
-            this.txtGroupName.Text = "ExceptionMessages";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn1,
-            this.encryptedDataGridViewCheckBoxColumn,
-            this.valueDataGridViewTextBoxColumn,
-            this.canUndoDataGridViewCheckBoxColumn1,
-            this.canRedoDataGridViewCheckBoxColumn1});
-            this.dataGridView1.DataSource = this.keyBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 71);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(539, 304);
-            this.dataGridView1.TabIndex = 8;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            // 
-            // encryptedDataGridViewCheckBoxColumn
-            // 
-            this.encryptedDataGridViewCheckBoxColumn.DataPropertyName = "Encrypted";
-            this.encryptedDataGridViewCheckBoxColumn.HeaderText = "Encrypted";
-            this.encryptedDataGridViewCheckBoxColumn.Name = "encryptedDataGridViewCheckBoxColumn";
-            // 
-            // valueDataGridViewTextBoxColumn
-            // 
-            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
-            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
-            // 
-            // canUndoDataGridViewCheckBoxColumn1
-            // 
-            this.canUndoDataGridViewCheckBoxColumn1.HeaderText = "CanUndo";
-            this.canUndoDataGridViewCheckBoxColumn1.Name = "canUndoDataGridViewCheckBoxColumn1";
-            this.canUndoDataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.canUndoDataGridViewCheckBoxColumn1.Visible = false;
-            // 
-            // canRedoDataGridViewCheckBoxColumn1
-            // 
-            this.canRedoDataGridViewCheckBoxColumn1.DataPropertyName = "CanRedo";
-            this.canRedoDataGridViewCheckBoxColumn1.HeaderText = "CanRedo";
-            this.canRedoDataGridViewCheckBoxColumn1.Name = "canRedoDataGridViewCheckBoxColumn1";
-            this.canRedoDataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.canRedoDataGridViewCheckBoxColumn1.Visible = false;
-            // 
-            // keyBindingSource
-            // 
-            this.keyBindingSource.DataSource = typeof(Fwk.Configuration.Common.Key);
-            // 
             // grdGroups
             // 
             this.grdGroups.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -266,9 +359,7 @@ namespace Fwk.Configuration.Test
             this.grdGroups.AutoGenerateColumns = false;
             this.grdGroups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdGroups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.canUndoDataGridViewCheckBoxColumn,
-            this.canRedoDataGridViewCheckBoxColumn});
+            this.nameDataGridViewTextBoxColumn});
             this.grdGroups.DataSource = this.groupBindingSource;
             this.grdGroups.Location = new System.Drawing.Point(7, 70);
             this.grdGroups.Name = "grdGroups";
@@ -281,53 +372,9 @@ namespace Fwk.Configuration.Test
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
-            // canUndoDataGridViewCheckBoxColumn
-            // 
-            this.canUndoDataGridViewCheckBoxColumn.DataPropertyName = "CanUndo";
-            this.canUndoDataGridViewCheckBoxColumn.HeaderText = "CanUndo";
-            this.canUndoDataGridViewCheckBoxColumn.Name = "canUndoDataGridViewCheckBoxColumn";
-            this.canUndoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.canUndoDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // canRedoDataGridViewCheckBoxColumn
-            // 
-            this.canRedoDataGridViewCheckBoxColumn.DataPropertyName = "CanRedo";
-            this.canRedoDataGridViewCheckBoxColumn.HeaderText = "CanRedo";
-            this.canRedoDataGridViewCheckBoxColumn.Name = "canRedoDataGridViewCheckBoxColumn";
-            this.canRedoDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.canRedoDataGridViewCheckBoxColumn.Visible = false;
-            // 
             // groupBindingSource
             // 
             this.groupBindingSource.DataSource = typeof(Fwk.Configuration.Common.Group);
-            // 
-            // btnGetGroupKeys
-            // 
-            this.btnGetGroupKeys.Location = new System.Drawing.Point(267, 19);
-            this.btnGetGroupKeys.Name = "btnGetGroupKeys";
-            this.btnGetGroupKeys.Size = new System.Drawing.Size(106, 28);
-            this.btnGetGroupKeys.TabIndex = 6;
-            this.btnGetGroupKeys.Text = "Get Group Keys";
-            this.btnGetGroupKeys.UseVisualStyleBackColor = true;
-            this.btnGetGroupKeys.Click += new System.EventHandler(this.btnGetGroupKeys_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(330, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 28);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Get propertie";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(101, 53);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(392, 28);
-            this.textBox2.TabIndex = 5;
             // 
             // tabPage3
             // 
@@ -339,7 +386,7 @@ namespace Fwk.Configuration.Test
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(949, 552);
+            this.tabPage3.Size = new System.Drawing.Size(949, 566);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Config File";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -417,75 +464,15 @@ namespace Fwk.Configuration.Test
             this.label2.TabIndex = 1;
             this.label2.Text = "Fwk configuration";
             // 
-            // txtProrpetieName
+            // textBox4
             // 
-            this.txtProrpetieName.Location = new System.Drawing.Point(101, 19);
-            this.txtProrpetieName.Name = "txtProrpetieName";
-            this.txtProrpetieName.Size = new System.Drawing.Size(192, 20);
-            this.txtProrpetieName.TabIndex = 15;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Provider name";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.txtProrpetieName);
-            this.groupBox2.Location = new System.Drawing.Point(365, 440);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(564, 91);
-            this.groupBox2.TabIndex = 17;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Propertie";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 13);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Value";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.dataGridView1);
-            this.groupBox3.Controls.Add(this.btnGetGroupKeys);
-            this.groupBox3.Controls.Add(this.txtGroupName);
-            this.groupBox3.Location = new System.Drawing.Point(363, 53);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(564, 381);
-            this.groupBox3.TabIndex = 18;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Group";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 17);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 13);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Group name";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(149, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 13);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "File name";
+            this.textBox4.BackColor = System.Drawing.Color.White;
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.textBox4.Location = new System.Drawing.Point(431, 61);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(386, 21);
+            this.textBox4.TabIndex = 3;
             // 
             // frmConfigurationTest
             // 
@@ -500,17 +487,17 @@ namespace Fwk.Configuration.Test
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.keyBindingSource)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGroups)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -558,6 +545,7 @@ namespace Fwk.Configuration.Test
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
 
