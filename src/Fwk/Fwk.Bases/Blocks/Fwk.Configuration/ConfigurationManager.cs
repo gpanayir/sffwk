@@ -193,11 +193,11 @@ namespace Fwk.Configuration
               
                 case ConfigProviderType.sqldatabase:
                     {
-                        return DatabaseConfigMannager.GetGroup(provider.BaseConfigFile, provider.BaseConfigFile);
+                        return DatabaseConfigMannager.GetGroup(configProvider, pGroupName);
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return ServiceConfigurationManager.GetGroup(provider.BaseConfigFile, provider.BaseConfigFile);
+                        return ServiceConfigurationManager.GetGroup(configProvider, pGroupName);
                     }
             }
             return null;
