@@ -351,6 +351,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Blocks\Fwk.Caching\Configurations.xml" />
+    <Content Include="ServiceMetadataConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Blocks\Fwk.Configuration\app.config" />
     <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
     <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
