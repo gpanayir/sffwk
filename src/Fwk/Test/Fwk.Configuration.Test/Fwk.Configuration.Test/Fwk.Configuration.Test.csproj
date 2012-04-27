@@ -153,6 +153,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\..\Fwk.Bases\ServiceMetadataConfig.xml">
+      <Link>ServiceMetadataConfig.xml</Link>
+    </Content>
     <Content Include="ConfigurationManager_01.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
