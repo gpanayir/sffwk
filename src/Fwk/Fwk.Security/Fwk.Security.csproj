@@ -300,9 +300,6 @@
     <Content Include="ActiveDirectory\doc\LDAP_Query_AllUsers.txt" />
     <Content Include="ActiveDirectory\doc\LDAP_Query_Group.txt" />
     <Content Include="ActiveDirectory\doc\Propiedades.txt" />
-    <Content Include="Service\metadata\ServiceMetadataConfig.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
