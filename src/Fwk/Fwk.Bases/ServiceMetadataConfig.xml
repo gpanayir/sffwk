@@ -1,0 +1,522 @@
+<ServiceConfigurationCollection>
+	<ServiceConfiguration name="GetFwkConfigurationService">
+		<CreatedUserName>moviedo</CreatedUserName>
+		<CreatedDateTime>2012-01-26T16:35:17.7223497-03:00</CreatedDateTime>
+		<Description></Description>
+		<Handler>Fwk.Configuration.SVC.GetFwkConfigurationService, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+		<Request>Fwk.Configuration.ISVC.GetFwkConfigurationReq, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+		<Response>Fwk.Configuration.ISVC.GetFwkConfigurationRes, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+		<Available>true</Available>
+		<Audit>false</Audit>
+		<TransactionalBehaviour>Suppres</TransactionalBehaviour>
+		<IsolationLevel>ReadCommitted</IsolationLevel>
+		<Timeout>0</Timeout>
+		<Cacheable>false</Cacheable>
+	</ServiceConfiguration>
+ <ServiceConfiguration name="ValidateUserExistService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2012-04-06T12:35:47.0558685-03:00</CreatedDateTime>
+    <Description>Este servicio permite realizar validación de si un usuario existe en una base de datos ASPNetMembership</Description>
+    <Handler>Fwk.Security.SVC.ValidateUserExistService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.ValidateUserExist.ValidateUserExistReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.ValidateUserExist.ValidateUserExistRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>  
+  <ServiceConfiguration name="GetAllActiveUsersInfoService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-06-17T17:30:55.55297-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetAllActiveUsersInfoService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetAllActiveUsersInfo.Req.GetAllActiveUsersInfoRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetAllActiveUsersInfo.Res.GetAllActiveUsersInfoResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadUncommitted</IsolationLevel>
+  </ServiceConfiguration>
+  <ServiceConfiguration name="AuthenticateUserService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-06-24T12:35:47.0558685-03:00</CreatedDateTime>
+    <Description>Este servicio permite realizar autenticacion de usuario con seguridad integrada o mixta.- Si la seguridad es mixta no es necesario pasar como parametro el password y hay que establecer el valor WindowsAtentication = true</Description>
+    <Handler>Fwk.Security.SVC.AuthenticateUserService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.AuthenticateUser.AuthenticateUserReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.AuthenticateUser.AuthenticateUserRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetAuthorizationRulesService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-06-25T17:19:19.9302428-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetAuthorizationRulesService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetAuthorizationRules.GetAuthorizationRulesReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetAuthorizationRules.GetAuthorizationRulesRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="CreateRulesCategoryService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-06T16:55:52.9605295-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.CreateRulesCategoryService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.CreateRulesCategory.req.CreateRulesCategoryRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.CreateRulesCategory.res.CreateRulesCategoryResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="DeleteRulesCategoryService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-06T16:56:30.0987067-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.DeleteRulesCategoryService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.DeleteRulesCategory.req.DeleteRulesCategoryRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.DeleteRulesCategory.res.DeleteRulesCategoryResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetRulesCategoryByParamService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-06T16:56:54.9616075-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetRulesCategoryByParamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetRulesCategoryByParam.Req.GetRulesCategoryByParamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetRulesCategoryByParam.Res.GetRulesCategoryByParamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>Chaos</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="UpdateRulesCategoryService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-13T10:27:44.7281542-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.UpdateRulesCategoryService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.UpdateRulesCategory.req.UpdateRulesCategoryRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.UpdateRulesCategory.res.UpdateRulesCategoryResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetUserInfoByName">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-06-11T09:42:10.2892224-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetUserInfoByName, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetUserInfoByName.Req.GetUserInfoByNameRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetUserInfoByName.Resp.GetUserInfoByNameResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>Snapshot</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="CreateRulesService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-14T16:30:26.6078968-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.CreateRulesService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.CreateRules.Req.CreateRulesRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.CreateRules.Res.CreateRulesResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetAllRulesService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-15T15:11:03.481398-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetAllRulesService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetAllRules.GetAllRulesReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetAllRules.GetAllRulesRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadUncommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="SearchAllRolesService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-15T15:11:03.481398-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.SearchAllRolesService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.SearchAllRoles.SearchAllRolesReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.SearchAllRoles.SearchAllRolesRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadUncommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="UpdateRulesWithCategoryService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-17T17:59:14.2598717-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.UpdateRulesWithCategoryService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.UpdateRulesWithCategory.Req.UpdateRulesWithCategoryRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.UpdateRulesWithCategory.Res.UpdateRulesWithCategoryResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="UpdateRulesService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-21T10:26:44.3151955-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.UpdateRulesService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.UpdateRules.UpdateRulesRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.UpdateRules.UpdateRulesResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetTeamByParamService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-28T12:09:44.7064638-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetTeamByParamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetTeamByParam.Req.GetTeamByParamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetTeamByParam.Res.GetTeamByParamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadUncommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="CreateTeamService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-28T12:10:10.0461588-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.CreateTeamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.CreateTeam.Req.CreateTeamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.CreateTeam.Res.CreateTeamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="CreateUsersService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-08-06T17:07:12.9249876-03:00</CreatedDateTime>
+    <Description>Creación usuarios Service.</Description>
+    <Handler>Fwk.Security.SVC.CreateUsersService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.CreateUsers.CreateUsersRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.CreateUsers.CreateUsersResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadUncommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="DeleteTeamService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-08-21T10:48:32.4792168-03:00</CreatedDateTime>
+    <Description>Servicio que permite eliminar uno o mas equipos.</Description>
+    <Handler>Fwk.Security.SVC.SVC.DeleteTeamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.DeleteTeam.Req.DeleteTeamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.DeleteTeam.Res.DeleteTeamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadUncommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="SearchUnassignedUsersService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-09-11T17:51:43.3280035-03:00</CreatedDateTime>
+    <Description>Obtiene los usuarios sin jefe.</Description>
+    <Handler>Fwk.Security.SVC.SearchUnassignedUsersService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.SearchUnassignedUsers.SearchUnassignedUsersRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.SearchUnassignedUsers.SearchUnassignedUsersResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadUncommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="SearchAllUsers">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-11-19T11:33:05.632228-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.SearchAllUsers, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetAllUsers.GetAllUsersReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetAllUsers.GetAllUsersRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetAllRulesCategoryService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-07-06T16:55:04.1093023-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetAllRulesCategoryService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetAllRulesCategory.req.GetAllRulesCategoryRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetAllRulesCategory.res.GetAllRulesCategoryResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetUserService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-11-19T12:20:24.3416725-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetUserService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetUser.GetUserReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetUser.GetUserRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="UpdateUserService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-11-21T10:38:45.4634864-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.UpdateUserService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.UpdateUser.UpdateUserReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.UpdateUser.UpdateUserRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>
+  
+  <ServiceConfiguration name="ResetUserPasswordService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-11-21T10:38:45.4634864-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.ResetUserPasswordService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.ResetUserPassword.ResetUserPasswordReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.ResetUserPassword.ResetUserPasswordRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>
+  
+  <ServiceConfiguration name="CreateRoleService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-11-23T11:46:37.306058-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.CreateRoleService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.CreateRole.CreateRoleReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.CreateRole.CreateRoleRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadUncommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="DeleteRoleService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2009-11-23T11:47:14.103875-03:00</CreatedDateTime>
+    <Description>se saco la transaccion para que no de error el MDSCT</Description>
+    <Handler>Fwk.Security.SVC.DeleteRoleService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.DeleteRole.DeleteRoleReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.DeleteRole.DeleteRoleRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetUnassignedUsersByParamService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-01-07T12:22:57.5558559-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetUnassignedUsersByParamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetUserAdditionalAttributes_ByParamService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-01-13T15:00:14.077537-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetUserAdditionalAttributes_ByParamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="SaveUserAdditionalAttributesService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-01-14T15:07:58.612115-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.SaveUserAdditionalAttributesService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.SaveUserAdditionalAttributes.SaveUserAdditionalAttributesRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.SaveUserAdditionalAttributes.SaveUserAdditionalAttributesResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetUserAdditionalAttributesValues_ByParamService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-01-18T16:25:42.3396302-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetUserAdditionalAttributesValues_ByParamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetUserAdditionalAttributesValues.GetUserAdditionalAttributesValues_ByParamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetUserAdditionalAttributesValues.GetUserAdditionalAttributesValues_ByParamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="UserAdditionalAttributesValues_Exist_ByUserAttributeIdService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-01-18T16:25:55.2148774-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.SVC.UserAdditionalAttributesValues_Exist_ByUserAttributeIdService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.UserAdditionalAttributesValues_Exist_ByUserAttributeId.UserAdditionalAttributesValues_Exist_ByUserAttributeIdRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.UserAdditionalAttributesValues_Exist_ByUserAttributeId.UserAdditionalAttributesValues_Exist_ByUserAttributeIdResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="SaveUserAdditionalAttributesValuesService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-01-20T15:12:05.1784906-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.SaveUserAdditionalAttributesValuesService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.SaveUserAdditionalAttributesValues.SaveUserAdditionalAttributesValuesRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.SaveUserAdditionalAttributesValues.SaveUserAdditionalAttributesValuesResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Required</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="UpdateUserAdditionalAttributesValuesService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-01-21T10:42:35.7837556-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.UpdateUserAdditionalAttributesValuesService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.UpdateUserAdditionalAttributesValues.UpdateUserAdditionalAttributesValuesRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.UpdateUserAdditionalAttributesValues.UpdateUserAdditionalAttributesValuesResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Required</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="AssembleTeamService">
+    <CreatedUserName>abrondani</CreatedUserName>
+    <CreatedDateTime>2010-02-22T17:08:57.8305087-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.AssembleTeamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.Team.AssembleTeamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.Team.AssembleTeamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Required</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="CreateUsersBatchService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-03-31T17:36:11.4624151-03:00</CreatedDateTime>
+    <Description>importa usuarios</Description>
+    <Handler>Fwk.Security.SVC.CreateUsersBatchService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.CreateUsersBatch.CreateUsersBatchRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.CreateUsersBatch.CreateUsersBatchResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Required</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="SearchDomainsUrlsService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-04-29T13:06:08.3843005-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.SearchDomainsUrlsService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.SearchDomainsUrls.SearchDomainsUrlsRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.SearchDomainsUrls.SearchDomainsUrlsResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>false</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="GetRolesForUserService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-04-29T15:40:05.1866612-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.GetRolesForUserService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.GetRolesForUser.GetRolesForUserReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.GetRolesForUser.GetRolesForUserRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>false</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="RemoveUserFromRoleService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-04-29T15:40:57.4217048-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.RemoveUserFromRoleService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.RemoveUserFromRole.RemoveUserFromRoleReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.RemoveUserFromRole.RemoveUserFromRoleRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>false</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+  <ServiceConfiguration name="AssignRolesToUserService">
+    <CreatedUserName>pelsoft</CreatedUserName>
+    <CreatedDateTime>2010-04-29T15:41:28.5627284-03:00</CreatedDateTime>
+    <Handler>Fwk.Security.SVC.AssignRolesToUserService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.AssignRolesToUser.AssignRolesToUserReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.AssignRolesToUser.AssignRolesToUserRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>false</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+
+
+  </ServiceConfiguration>
+</ServiceConfigurationCollection>
