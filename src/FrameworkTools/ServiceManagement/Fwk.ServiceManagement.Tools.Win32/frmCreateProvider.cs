@@ -208,7 +208,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 config.Providers.Add(newProvider);
 
                 configuration.Save(ConfigurationSaveMode.Minimal, true);
-
+                
                 ServiceMetadata.ProviderSection.Providers.Add(newProvider);
             }
             catch (Exception ex)
