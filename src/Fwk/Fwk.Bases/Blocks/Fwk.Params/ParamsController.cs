@@ -47,7 +47,7 @@ namespace Fwk.Params
         /// </summary>
         /// <param name="wrapperProviderName">Proveedor que espesifica el despachador de servicios</param>
         /// <param name="paramId"></param>
-        /// <param name="name"></param>
+        /// <param name="parentId"></param>
         /// <param name="userId"></param>
         /// <param name="companyId"></param>
         public static void DeleteParam(string wrapperProviderName,int? paramId,int? parentId, string userId, string companyId)
@@ -72,11 +72,11 @@ namespace Fwk.Params
         /// <param name="pParam"></param>
         /// <param name="userId"></param>
         /// <param name="companyId"></param>
-        internal static void CreateParam(string wrapperProviderName,ParamBE pParam, string userId, string companyId)
+        internal static void CreateParam(string wrapperProviderName,ParamBE pParam, string companyId)
         {
             CreateParamReq req = new CreateParamReq();
             req.BusinessData = pParam;
-            req.ContextInformation.UserId = userId;
+            req.ContextInformation.UserId = pParam.UserId.ToString();
             req.ContextInformation.CompanyId = companyId;
 
             CreateParamRes res = req.ExecuteService<CreateParamReq, CreateParamRes>(wrapperProviderName,req);
