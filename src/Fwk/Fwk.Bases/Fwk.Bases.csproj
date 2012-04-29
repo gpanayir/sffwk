@@ -113,8 +113,8 @@
     <Compile Include="Blocks\Fwk.Params\CreateParamService.cs" />
     <Compile Include="Blocks\Fwk.Params\DeleteParamService.cs" />
     <Compile Include="Blocks\Fwk.Params\ParamBE.cs" />
-    <Compile Include="Blocks\Fwk.Params\ParamComercialBC.cs" />
-    <Compile Include="Blocks\Fwk.Params\ParamComercialDAC.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamsDAC.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamsController.cs" />
     <Compile Include="Blocks\Fwk.Params\SearchParamByParamsService.cs" />
     <Compile Include="Blocks\FwkData.designer.cs">
       <AutoGen>True</AutoGen>
@@ -295,7 +295,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="BackEnd.cd" />
     <None Include="Blocks\FwkData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>FwkData.designer.cs</LastGenOutput>

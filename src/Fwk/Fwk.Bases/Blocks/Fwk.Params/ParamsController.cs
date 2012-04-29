@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Fwk.Params.Isvc.CreateParam;
 using Fwk.Params.Isvc.SearchParams;
 using Fwk.Params.Isvc.DeleteParam;
 using Fwk.Params.BE;
-using Fwk.Params.Isvc.CreateParam;
+
 
 namespace Fwk.Params
 {
@@ -19,24 +20,22 @@ namespace Fwk.Params
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="wrapperProviderName">Proveedor que espesifica el despachador de servicios</param>
         /// <param name="paramTypeId"></param>
         /// <param name="parentId"></param>
-        /// <param name="providerId"></param>
+        /// <param name="userId"></param>
         /// <param name="companyId"></param>
-        /// <returns></returns>
-        public static ParamList SearchParams(int? paramTypeId, int? parentId, string providerId, string companyId)
+        /// <returns>Lista de registros de la tabla param</returns>
+        public static ParamList SearchParams(string wrapperProviderName,int? paramTypeId, int? parentId, string userId, string companyId)
         {
             SearchParamsReq req = new SearchParamsReq();
             req.BusinessData.ParamTypeId = paramTypeId;
             req.BusinessData.ParentId = parentId;
             req.BusinessData.Enabled = true;
-
-#if (DEBUG ==false)
-            req.ContextInformation.UserId = providerId;
-#endif
+            req.ContextInformation.UserId = userId;
             req.ContextInformation.CompanyId = companyId;
 
-            SearchParamsRes res = req.ExecuteService<SearchParamsReq, SearchParamsRes>(req);
+            SearchParamsRes res = req.ExecuteService<SearchParamsReq, SearchParamsRes>(wrapperProviderName,req);
 
             if (res.Error != null)
                 throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
@@ -46,11 +45,12 @@ namespace Fwk.Params
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="wrapperProviderName">Proveedor que espesifica el despachador de servicios</param>
         /// <param name="paramId"></param>
         /// <param name="name"></param>
         /// <param name="userId"></param>
         /// <param name="companyId"></param>
-        public static void DeleteParam(int? paramId,int? parentId, string userId, string companyId)
+        public static void DeleteParam(string wrapperProviderName,int? paramId,int? parentId, string userId, string companyId)
         {
             DeleteParamReq req = new DeleteParamReq();
             req.BusinessData.ParamId = paramId;
@@ -58,7 +58,7 @@ namespace Fwk.Params
             req.ContextInformation.UserId = userId;
             req.ContextInformation.CompanyId = companyId;
 
-            DeleteParamRes res = req.ExecuteService<DeleteParamReq, DeleteParamRes>(req);
+            DeleteParamRes res = req.ExecuteService<DeleteParamReq, DeleteParamRes>(wrapperProviderName,req);
 
             if (res.Error != null)
                 throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
@@ -68,17 +68,18 @@ namespace Fwk.Params
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="wrapperProviderName">Proveedor que espesifica el despachador de servicios</param>
         /// <param name="pParam"></param>
         /// <param name="userId"></param>
         /// <param name="companyId"></param>
-        internal static void CreateParam(ParamBE pParam, string userId, string companyId)
+        internal static void CreateParam(string wrapperProviderName,ParamBE pParam, string userId, string companyId)
         {
             CreateParamReq req = new CreateParamReq();
             req.BusinessData = pParam;
             req.ContextInformation.UserId = userId;
             req.ContextInformation.CompanyId = companyId;
 
-            CreateParamRes res = req.ExecuteService<CreateParamReq, CreateParamRes>(req);
+            CreateParamRes res = req.ExecuteService<CreateParamReq, CreateParamRes>(wrapperProviderName,req);
 
             if (res.Error != null)
                 throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
