@@ -170,7 +170,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
                 //base.Wrapper.DeleteServiceConfiguration(CurrentProvider.Name, ucbServiceGrid1.CurentServiceConfiguration.Name);
             }
 
-
+            ctrlService1.EntityParam = ucbServiceGrid1.CurentServiceConfiguration;
+            ctrlService1.Populate();
 		}
 
 		#endregion

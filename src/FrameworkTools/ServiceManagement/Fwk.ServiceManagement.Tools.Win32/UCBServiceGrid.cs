@@ -311,6 +311,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
 
             serviceConfigurationCollectionBindingSource.DataSource = _SelecdedServices;
+            _CurrentServiceConfiguration = grdServices.GetSelectedEntity<ServiceConfiguration>();
         }
         private void cmbSearchType_Click(object sender, EventArgs e)
         {
