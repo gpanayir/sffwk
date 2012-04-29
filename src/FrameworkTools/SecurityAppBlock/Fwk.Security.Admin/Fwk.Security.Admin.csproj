@@ -165,15 +165,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\ConnectionStringsCrypt.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\ConnectionStringsCrypt.cs" />
     <Compile Include="Controls\ConnectionStringsCrypt.Designer.cs">
       <DependentUpon>ConnectionStringsCrypt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\frmChangePwd.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Controls\frmChangePwd.cs" />
     <Compile Include="Controls\frmChangePwd.Designer.cs">
       <DependentUpon>frmChangePwd.cs</DependentUpon>
     </Compile>
@@ -189,65 +185,45 @@
     <Compile Include="Controls\frmUserFind.Designer.cs">
       <DependentUpon>frmUserFind.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RolesGrid.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\RolesGrid.cs" />
     <Compile Include="Controls\RolesGrid.Designer.cs">
       <DependentUpon>RolesGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\RuleObjetoSource.cs" />
-    <Compile Include="Controls\RulesEditControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\RulesEditControl.cs" />
     <Compile Include="Controls\RulesEditControl.Designer.cs">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CategoryCreate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\CategoryCreate.cs" />
     <Compile Include="Controls\CategoryCreate.Designer.cs">
       <DependentUpon>CategoryCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserAssingRoles.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\UserAssingRoles.cs" />
     <Compile Include="Controls\UserAssingRoles.Designer.cs">
       <DependentUpon>UserAssingRoles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RulesAssingControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\RulesAssingControl.cs" />
     <Compile Include="Controls\RulesAssingControl.Designer.cs">
       <DependentUpon>RulesAssingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RulesCheckControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\RulesCheckControl.cs" />
     <Compile Include="Controls\RulesCheckControl.Designer.cs">
       <DependentUpon>RulesCheckControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ControlsFactory.cs" />
-    <Compile Include="Controls\RolesCreate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\RolesCreate.cs" />
     <Compile Include="Controls\RolesCreate.Designer.cs">
       <DependentUpon>RolesCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserCretate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\UserCretate.cs" />
     <Compile Include="Controls\UserCretate.Designer.cs">
       <DependentUpon>UserCretate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SecurityControlBase.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\SecurityControlBase.cs" />
     <Compile Include="Controls\SecurityControlBase.Designer.cs">
       <DependentUpon>SecurityControlBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserAdmin.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\UserAdmin.cs" />
     <Compile Include="Controls\UserAdmin.Designer.cs">
       <DependentUpon>UserAdmin.cs</DependentUpon>
     </Compile>
@@ -344,9 +320,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Controls\UsersGrid.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\UsersGrid.cs" />
     <Compile Include="Controls\UsersGrid.Designer.cs">
       <DependentUpon>UsersGrid.cs</DependentUpon>
     </Compile>

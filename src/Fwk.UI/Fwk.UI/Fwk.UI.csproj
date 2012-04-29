@@ -182,34 +182,24 @@
     <Compile Include="Common\Exceptions.cs" />
     <Compile Include="Common\HelperFunctions.cs" />
     <Compile Include="Common\WaitCursorHelper.cs" />
-    <Compile Include="Controls\CommonEnumComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\CommonEnumComboBox.cs" />
     <Compile Include="Controls\CommonEnumComboBox.Designer.cs">
       <DependentUpon>CommonEnumComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\EnumComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\EnumComboBox.cs" />
     <Compile Include="Controls\EnumComboBox.Designer.cs">
       <DependentUpon>EnumComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FileControls\UC_FileSelection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\FileControls\UC_FileSelection.cs" />
     <Compile Include="Controls\FileControls\UC_FileSelection.Designer.cs">
       <DependentUpon>UC_FileSelection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Menu\FRM_AssemblyExplorer.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Controls\Menu\FRM_AssemblyExplorer.cs" />
     <Compile Include="Controls\Menu\FRM_AssemblyExplorer.designer.cs">
       <DependentUpon>FRM_AssemblyExplorer.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Menu\Tree\MenuTree.cs" />
-    <Compile Include="Controls\Menu\UC_TreeNavBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\Menu\UC_TreeNavBar.cs" />
     <Compile Include="Controls\Menu\UC_TreeNavBar.Designer.cs">
       <DependentUpon>UC_TreeNavBar.cs</DependentUpon>
     </Compile>
@@ -219,15 +209,11 @@
     <Compile Include="Securiry\AuthenticationFormComponent.Designer.cs">
       <DependentUpon>AuthenticationFormComponent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Securiry\FRM_AuthenticationForm_ASPNet.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Securiry\FRM_AuthenticationForm_ASPNet.cs" />
     <Compile Include="Securiry\FRM_AuthenticationForm_ASPNet.Designer.cs">
       <DependentUpon>FRM_AuthenticationForm_ASPNet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MessageView\ExceptionView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Controls\MessageView\ExceptionView.cs" />
     <Compile Include="Controls\MessageView\ExceptionView.designer.cs">
       <DependentUpon>ExceptionView.cs</DependentUpon>
     </Compile>
@@ -243,21 +229,15 @@
     <Compile Include="Controls\MessageView\FormWaitComponent.Designer.cs">
       <DependentUpon>FormWaitComponent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MessageView\frmWait.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Controls\MessageView\frmWait.cs" />
     <Compile Include="Controls\MessageView\frmWait.Designer.cs">
       <DependentUpon>frmWait.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MessageView\MessageBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Controls\MessageView\MessageBase.cs" />
     <Compile Include="Controls\MessageView\MessageBase.Designer.cs">
       <DependentUpon>MessageBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MessageView\MessageView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Controls\MessageView\MessageView.cs" />
     <Compile Include="Controls\MessageView\MessageView.designer.cs">
       <DependentUpon>MessageView.cs</DependentUpon>
     </Compile>
@@ -268,9 +248,7 @@
       <DependentUpon>MessageViewComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\MessageView\MessageViewHelper.cs" />
-    <Compile Include="Controls\MessageView\SimpleMessageView.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Controls\MessageView\SimpleMessageView.cs" />
     <Compile Include="Controls\MessageView\SimpleMessageView.Designer.cs">
       <DependentUpon>SimpleMessageView.cs</DependentUpon>
     </Compile>
@@ -281,9 +259,7 @@
       <DependentUpon>SimpleMessageViewComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\TreeList\NodesOperation.cs" />
-    <Compile Include="Controls\UC_AceptCancelButtonBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\UC_AceptCancelButtonBar.cs" />
     <Compile Include="Controls\UC_AceptCancelButtonBar.Designer.cs">
       <DependentUpon>UC_AceptCancelButtonBar.cs</DependentUpon>
     </Compile>
@@ -293,15 +269,11 @@
     <Compile Include="Controls\UC_AssigmentBase.Designer.cs">
       <DependentUpon>UC_AssigmentBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Editors\UC_ComboBoxLabel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\Editors\UC_ComboBoxLabel.cs" />
     <Compile Include="Controls\Editors\UC_ComboBoxLabel.Designer.cs">
       <DependentUpon>UC_ComboBoxLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Editors\UC_LabelTitle.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\Editors\UC_LabelTitle.cs" />
     <Compile Include="Controls\Editors\UC_LabelTitle.Designer.cs">
       <DependentUpon>UC_LabelTitle.cs</DependentUpon>
     </Compile>
@@ -311,45 +283,31 @@
     <Compile Include="Controls\Editors\ComboBoxBase.Designer.cs">
       <DependentUpon>ComboBoxBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Editors\ComboBoxDxBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\Editors\ComboBoxDxBase.cs" />
     <Compile Include="Controls\Editors\ComboBoxDxBase.designer.cs">
       <DependentUpon>ComboBoxDxBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Editors\LabelBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\Editors\LabelBase.cs" />
     <Compile Include="Controls\Editors\LabelBase.Designer.cs">
       <DependentUpon>LabelBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Editors\UC_SearchTypeComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\Editors\UC_SearchTypeComboBox.cs" />
     <Compile Include="Controls\Editors\UC_SearchTypeComboBox.Designer.cs">
       <DependentUpon>UC_SearchTypeComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Editors\TextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\Editors\TextBox.cs" />
     <Compile Include="Controls\Editors\TextBox.Designer.cs">
       <DependentUpon>TextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Editors\UC_TextBoxLabel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\Editors\UC_TextBoxLabel.cs" />
     <Compile Include="Controls\Editors\UC_TextBoxLabel.Designer.cs">
       <DependentUpon>UC_TextBoxLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UC_ExportToolBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\UC_ExportToolBar.cs" />
     <Compile Include="Controls\UC_ExportToolBar.Designer.cs">
       <DependentUpon>UC_ExportToolBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Editors\TextMemoEdit.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\Editors\TextMemoEdit.cs" />
     <Compile Include="Controls\Editors\TextMemoEdit.Designer.cs">
       <DependentUpon>TextMemoEdit.cs</DependentUpon>
     </Compile>
@@ -360,21 +318,15 @@
     <Compile Include="Controls\Menu\Class\SimpleButton.cs" />
     <Compile Include="Controls\Menu\Class\ToolBar.cs" />
     <Compile Include="Controls\Menu\Helper.cs" />
-    <Compile Include="Controls\Menu\UC_ToolBarControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\Menu\UC_ToolBarControl.cs" />
     <Compile Include="Controls\Menu\UC_ToolBarControl.designer.cs">
       <DependentUpon>UC_ToolBarControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UC_ToolBarListEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\UC_ToolBarListEditor.cs" />
     <Compile Include="Controls\UC_ToolBarListEditor.Designer.cs">
       <DependentUpon>UC_ToolBarListEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UC_UserControlBase.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\UC_UserControlBase.cs" />
     <Compile Include="Controls\UC_UserControlBase.designer.cs">
       <DependentUpon>UC_UserControlBase.cs</DependentUpon>
     </Compile>
@@ -387,45 +339,31 @@
     </Compile>
     <Compile Include="Controls\Designers\WorkingAreaDesigner.cs" />
     <Compile Include="Controls\FindControls\FindEventArg.cs" />
-    <Compile Include="Controls\FindControls\UC_TextFind.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\FindControls\UC_TextFind.cs" />
     <Compile Include="Controls\FindControls\UC_TextFind.Designer.cs">
       <DependentUpon>UC_TextFind.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FindControls\UC_TextFindContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\FindControls\UC_TextFindContainer.cs" />
     <Compile Include="Controls\FindControls\UC_TextFindContainer.Designer.cs">
       <DependentUpon>UC_TextFindContainer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FindControls\UC_TextFindPopUp.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\FindControls\UC_TextFindPopUp.cs" />
     <Compile Include="Controls\FindControls\UC_TextFindPopUp.Designer.cs">
       <DependentUpon>UC_TextFindPopUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsBase\FormBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="FormsBase\FormBase.cs" />
     <Compile Include="FormsBase\FormBase.Designer.cs">
       <DependentUpon>FormBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsBase\FormMDIChildBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="FormsBase\FormMDIChildBase.cs" />
     <Compile Include="FormsBase\FormMDIChildBase.Designer.cs">
       <DependentUpon>FormMDIChildBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsBase\FormDialogBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="FormsBase\FormDialogBase.cs" />
     <Compile Include="FormsBase\FormDialogBase.Designer.cs">
       <DependentUpon>FormDialogBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsBase\FormBaseNotify.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="FormsBase\FormBaseNotify.cs" />
     <Compile Include="FormsBase\FormBaseNotify.Designer.cs">
       <DependentUpon>FormBaseNotify.cs</DependentUpon>
     </Compile>
@@ -591,34 +529,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Controls\Editors\UC_TitleControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Controls\Editors\UC_TitleControl.cs" />
     <Compile Include="Controls\Editors\UC_TitleControl.Designer.cs">
       <DependentUpon>UC_TitleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\SecurityController.cs" />
-    <Compile Include="Securiry\FRM_AuthenticationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Securiry\FRM_AuthenticationForm.cs" />
     <Compile Include="Securiry\FRM_AuthenticationForm.Designer.cs">
       <DependentUpon>FRM_AuthenticationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Securiry\FRM_UserChangePassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Securiry\FRM_UserChangePassword.cs" />
     <Compile Include="Securiry\FRM_UserChangePassword.Designer.cs">
       <DependentUpon>FRM_UserChangePassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Securiry\FRM_UserResetPassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Securiry\FRM_UserResetPassword.cs" />
     <Compile Include="Securiry\FRM_UserResetPassword.Designer.cs">
       <DependentUpon>FRM_UserResetPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Menu\UC_NavMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\Menu\UC_NavMenu.cs" />
     <Compile Include="Controls\Menu\UC_NavMenu.Designer.cs">
       <DependentUpon>UC_NavMenu.cs</DependentUpon>
     </Compile>

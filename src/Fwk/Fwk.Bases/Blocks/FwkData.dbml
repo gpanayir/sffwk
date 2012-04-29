@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Mails" EntityNamespace="Fwk.ConfigData" ContextNamespace="Fwk.ConfigData" Class="FwkDatacontext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=SANTANA\SQLEXPRESS;Initial Catalog=Mails;Integrated Security=True" SettingsObjectName="Fwk.Bases.Properties.Settings" SettingsPropertyName="MailsConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="fwktest" EntityNamespace="Fwk.ConfigData" ContextNamespace="Fwk.ConfigData" Class="FwkDatacontext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MOVIEDO\SQLEXPRESS;Initial Catalog=fwktest;Integrated Security=True" SettingsObjectName="Fwk.Bases.Properties.Settings" SettingsPropertyName="fwktestConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.fwk_ConfigMannager" Member="fwk_ConfigMannagers">
     <Type Name="fwk_ConfigMannager">
       <Column Name="ConfigurationFileName" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -19,6 +19,29 @@
       <Column Name="LogDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UserLoginName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="AppId" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ParamType" Member="ParamTypes">
+    <Type Name="ParamType">
+      <Column Name="ParamTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ParamTypeRefId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="ParamType_ParamType" Member="ParamTypes" ThisKey="ParamTypeId" OtherKey="ParamTypeRefId" Type="ParamType" />
+      <Association Name="ParamType_Param" Member="Params" ThisKey="ParamTypeId" OtherKey="ParamTypeId" Type="Param" />
+      <Association Name="ParamType_ParamType" Member="ParamType1" ThisKey="ParamTypeRefId" OtherKey="ParamTypeId" Type="ParamType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Param" Member="Params">
+    <Type Name="Param">
+      <Column Name="ParamId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ParamTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParamRefId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="Param_Param" Member="Params" ThisKey="ParamId" OtherKey="ParamRefId" Type="Param" />
+      <Association Name="Param_Param" Member="Param1" ThisKey="ParamRefId" OtherKey="ParamId" Type="Param" IsForeignKey="true" />
+      <Association Name="ParamType_Param" Member="ParamType" ThisKey="ParamTypeId" OtherKey="ParamTypeId" Type="ParamType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

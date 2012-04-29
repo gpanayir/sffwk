@@ -142,15 +142,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestFormBase\FormBase_2.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="TestFormBase\FormBase_2.cs" />
     <Compile Include="TestFormBase\FormBase_2.Designer.cs">
       <DependentUpon>FormBase_2.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="MessageTest.cs" />
     <Compile Include="MessageTest.Designer.cs">
       <DependentUpon>MessageTest.cs</DependentUpon>
     </Compile>
@@ -188,15 +184,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TestFormBase\FormUseBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="TestFormBase\FormUseBase.cs" />
     <Compile Include="TestFormBase\FormUseBase.Designer.cs">
       <DependentUpon>FormUseBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsoDeMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="UsoDeMenu.cs" />
     <Compile Include="UsoDeMenu.Designer.cs">
       <DependentUpon>UsoDeMenu.cs</DependentUpon>
     </Compile>

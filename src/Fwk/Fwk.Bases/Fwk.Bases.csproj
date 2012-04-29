@@ -110,6 +110,12 @@
     </Compile>
     <Compile Include="Blocks\Functions\WindowsFunction.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Services\GetFwkConfigurationService.cs" />
+    <Compile Include="Blocks\Fwk.Params\CreateParamService.cs" />
+    <Compile Include="Blocks\Fwk.Params\DeleteParamService.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamBE.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamComercialBC.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamComercialDAC.cs" />
+    <Compile Include="Blocks\Fwk.Params\SearchParamByParamsService.cs" />
     <Compile Include="Blocks\FwkData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
