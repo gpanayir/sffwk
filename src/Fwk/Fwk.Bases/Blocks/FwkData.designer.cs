@@ -36,12 +36,12 @@ namespace Fwk.ConfigData
     partial void Insertfwk_Log(fwk_Log instance);
     partial void Updatefwk_Log(fwk_Log instance);
     partial void Deletefwk_Log(fwk_Log instance);
-    partial void InsertParamType(ParamType instance);
-    partial void UpdateParamType(ParamType instance);
-    partial void DeleteParamType(ParamType instance);
     partial void InsertParam(Param instance);
     partial void UpdateParam(Param instance);
     partial void DeleteParam(Param instance);
+    partial void InsertParamType(ParamType instance);
+    partial void UpdateParamType(ParamType instance);
+    partial void DeleteParamType(ParamType instance);
     #endregion
 		
 		public FwkDatacontext() : 
@@ -90,19 +90,19 @@ namespace Fwk.ConfigData
 			}
 		}
 		
-		public System.Data.Linq.Table<ParamType> ParamTypes
-		{
-			get
-			{
-				return this.GetTable<ParamType>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Param> Params
 		{
 			get
 			{
 				return this.GetTable<Param>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ParamType> ParamTypes
+		{
+			get
+			{
+				return this.GetTable<ParamType>();
 			}
 		}
 	}
@@ -495,237 +495,6 @@ namespace Fwk.ConfigData
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ParamType")]
-	public partial class ParamType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ParamTypeId;
-		
-		private string _Name;
-		
-		private System.Nullable<int> _ParamTypeRefId;
-		
-		private string _Description;
-		
-		private EntitySet<ParamType> _ParamTypes;
-		
-		private EntitySet<Param> _Params;
-		
-		private EntityRef<ParamType> _ParamType1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnParamTypeIdChanging(int value);
-    partial void OnParamTypeIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnParamTypeRefIdChanging(System.Nullable<int> value);
-    partial void OnParamTypeRefIdChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    #endregion
-		
-		public ParamType()
-		{
-			this._ParamTypes = new EntitySet<ParamType>(new Action<ParamType>(this.attach_ParamTypes), new Action<ParamType>(this.detach_ParamTypes));
-			this._Params = new EntitySet<Param>(new Action<Param>(this.attach_Params), new Action<Param>(this.detach_Params));
-			this._ParamType1 = default(EntityRef<ParamType>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParamTypeId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ParamTypeId
-		{
-			get
-			{
-				return this._ParamTypeId;
-			}
-			set
-			{
-				if ((this._ParamTypeId != value))
-				{
-					this.OnParamTypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._ParamTypeId = value;
-					this.SendPropertyChanged("ParamTypeId");
-					this.OnParamTypeIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParamTypeRefId", DbType="Int")]
-		public System.Nullable<int> ParamTypeRefId
-		{
-			get
-			{
-				return this._ParamTypeRefId;
-			}
-			set
-			{
-				if ((this._ParamTypeRefId != value))
-				{
-					if (this._ParamType1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnParamTypeRefIdChanging(value);
-					this.SendPropertyChanging();
-					this._ParamTypeRefId = value;
-					this.SendPropertyChanged("ParamTypeRefId");
-					this.OnParamTypeRefIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NChar(10)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ParamType_ParamType", Storage="_ParamTypes", ThisKey="ParamTypeId", OtherKey="ParamTypeRefId")]
-		public EntitySet<ParamType> ParamTypes
-		{
-			get
-			{
-				return this._ParamTypes;
-			}
-			set
-			{
-				this._ParamTypes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ParamType_Param", Storage="_Params", ThisKey="ParamTypeId", OtherKey="ParamTypeId")]
-		public EntitySet<Param> Params
-		{
-			get
-			{
-				return this._Params;
-			}
-			set
-			{
-				this._Params.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ParamType_ParamType", Storage="_ParamType1", ThisKey="ParamTypeRefId", OtherKey="ParamTypeId", IsForeignKey=true)]
-		public ParamType ParamType1
-		{
-			get
-			{
-				return this._ParamType1.Entity;
-			}
-			set
-			{
-				ParamType previousValue = this._ParamType1.Entity;
-				if (((previousValue != value) 
-							|| (this._ParamType1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ParamType1.Entity = null;
-						previousValue.ParamTypes.Remove(this);
-					}
-					this._ParamType1.Entity = value;
-					if ((value != null))
-					{
-						value.ParamTypes.Add(this);
-						this._ParamTypeRefId = value.ParamTypeId;
-					}
-					else
-					{
-						this._ParamTypeRefId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ParamType1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ParamTypes(ParamType entity)
-		{
-			this.SendPropertyChanging();
-			entity.ParamType1 = this;
-		}
-		
-		private void detach_ParamTypes(ParamType entity)
-		{
-			this.SendPropertyChanging();
-			entity.ParamType1 = null;
-		}
-		
-		private void attach_Params(Param entity)
-		{
-			this.SendPropertyChanging();
-			entity.ParamType = this;
-		}
-		
-		private void detach_Params(Param entity)
-		{
-			this.SendPropertyChanging();
-			entity.ParamType = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Param")]
 	public partial class Param : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -946,6 +715,192 @@ namespace Fwk.ConfigData
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ParamType")]
+	public partial class ParamType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ParamTypeId;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _ParentId;
+		
+		private string _Description;
+		
+		private bool _Enabled;
+		
+		private EntitySet<Param> _Params;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnParamTypeIdChanging(int value);
+    partial void OnParamTypeIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnParentIdChanging(System.Nullable<int> value);
+    partial void OnParentIdChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnEnabledChanging(bool value);
+    partial void OnEnabledChanged();
+    #endregion
+		
+		public ParamType()
+		{
+			this._Params = new EntitySet<Param>(new Action<Param>(this.attach_Params), new Action<Param>(this.detach_Params));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParamTypeId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ParamTypeId
+		{
+			get
+			{
+				return this._ParamTypeId;
+			}
+			set
+			{
+				if ((this._ParamTypeId != value))
+				{
+					this.OnParamTypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._ParamTypeId = value;
+					this.SendPropertyChanged("ParamTypeId");
+					this.OnParamTypeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId", DbType="Int")]
+		public System.Nullable<int> ParentId
+		{
+			get
+			{
+				return this._ParentId;
+			}
+			set
+			{
+				if ((this._ParentId != value))
+				{
+					this.OnParentIdChanging(value);
+					this.SendPropertyChanging();
+					this._ParentId = value;
+					this.SendPropertyChanged("ParentId");
+					this.OnParentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NChar(10)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Enabled", DbType="Bit NOT NULL")]
+		public bool Enabled
+		{
+			get
+			{
+				return this._Enabled;
+			}
+			set
+			{
+				if ((this._Enabled != value))
+				{
+					this.OnEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._Enabled = value;
+					this.SendPropertyChanged("Enabled");
+					this.OnEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ParamType_Param", Storage="_Params", ThisKey="ParamTypeId", OtherKey="ParamTypeId")]
+		public EntitySet<Param> Params
+		{
+			get
+			{
+				return this._Params;
+			}
+			set
+			{
+				this._Params.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Params(Param entity)
+		{
+			this.SendPropertyChanging();
+			entity.ParamType = this;
+		}
+		
+		private void detach_Params(Param entity)
+		{
+			this.SendPropertyChanging();
+			entity.ParamType = null;
 		}
 	}
 }

@@ -21,17 +21,6 @@
       <Column Name="AppId" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ParamType" Member="ParamTypes">
-    <Type Name="ParamType">
-      <Column Name="ParamTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ParamTypeRefId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="ParamType_ParamType" Member="ParamTypes" ThisKey="ParamTypeId" OtherKey="ParamTypeRefId" Type="ParamType" />
-      <Association Name="ParamType_Param" Member="Params" ThisKey="ParamTypeId" OtherKey="ParamTypeId" Type="Param" />
-      <Association Name="ParamType_ParamType" Member="ParamType1" ThisKey="ParamTypeRefId" OtherKey="ParamTypeId" Type="ParamType" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Param" Member="Params">
     <Type Name="Param">
       <Column Name="ParamId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -41,6 +30,16 @@
       <Column Name="Description" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
       <Column Name="Enabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="ParamType_Param" Member="ParamType" ThisKey="ParamTypeId" OtherKey="ParamTypeId" Type="ParamType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ParamType" Member="ParamTypes">
+    <Type Name="ParamType">
+      <Column Name="ParamTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Enabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ParamType_Param" Member="Params" ThisKey="ParamTypeId" OtherKey="ParamTypeId" Type="Param" />
     </Type>
   </Table>
 </Database>

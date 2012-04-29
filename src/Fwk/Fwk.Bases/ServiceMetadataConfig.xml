@@ -1,19 +1,18 @@
+
 <ServiceConfigurationCollection>
-	<ServiceConfiguration name="GetFwkConfigurationService">
-		<CreatedUserName>moviedo</CreatedUserName>
-		<CreatedDateTime>2012-01-26T16:35:17.7223497-03:00</CreatedDateTime>
-		<Description></Description>
-		<Handler>Fwk.Configuration.SVC.GetFwkConfigurationService, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-		<Request>Fwk.Configuration.ISVC.GetFwkConfigurationReq, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-		<Response>Fwk.Configuration.ISVC.GetFwkConfigurationRes, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-		<Available>true</Available>
-		<Audit>false</Audit>
-		<TransactionalBehaviour>Suppres</TransactionalBehaviour>
-		<IsolationLevel>ReadCommitted</IsolationLevel>
-		<Timeout>0</Timeout>
-		<Cacheable>false</Cacheable>
-	</ServiceConfiguration>
- <ServiceConfiguration name="ValidateUserExistService">
+  <ServiceConfiguration name="GetFwkConfigurationService">
+    <CreatedUserName>moviedo</CreatedUserName>
+    <CreatedDateTime>2012-01-26T16:35:17.7223497-03:00</CreatedDateTime>
+    <Description />
+    <Handler>Fwk.Configuration.SVC.GetFwkConfigurationService, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Configuration.ISVC.GetFwkConfigurationReq, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Configuration.ISVC.GetFwkConfigurationRes, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+  </ServiceConfiguration>
+  <ServiceConfiguration name="ValidateUserExistService">
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2012-04-06T12:35:47.0558685-03:00</CreatedDateTime>
     <Description>Este servicio permite realizar validación de si un usuario existe en una base de datos ASPNetMembership</Description>
@@ -24,7 +23,7 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-  </ServiceConfiguration>  
+  </ServiceConfiguration>
   <ServiceConfiguration name="GetAllActiveUsersInfoService">
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-06-17T17:30:55.55297-03:00</CreatedDateTime>
@@ -58,8 +57,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateRulesCategoryService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -71,8 +68,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteRulesCategoryService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -84,8 +79,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRulesCategoryByParamService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -97,8 +90,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>Chaos</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRulesCategoryService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -110,8 +101,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="GetUserInfoByName">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -123,8 +112,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>Snapshot</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateRulesService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -136,8 +123,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllRulesService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -149,8 +134,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadUncommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchAllRolesService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -162,8 +145,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadUncommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRulesWithCategoryService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -175,8 +156,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateRulesService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -188,8 +167,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="GetTeamByParamService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -201,8 +178,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadUncommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateTeamService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -214,8 +189,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateUsersService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -228,8 +201,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadUncommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteTeamService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -242,8 +213,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadUncommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchUnassignedUsersService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -256,8 +225,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadUncommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchAllUsers">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -269,8 +236,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="GetAllRulesCategoryService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -282,8 +247,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="GetUserService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -295,8 +258,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateUserService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -309,7 +270,6 @@
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
   </ServiceConfiguration>
-  
   <ServiceConfiguration name="ResetUserPasswordService">
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-21T10:38:45.4634864-03:00</CreatedDateTime>
@@ -321,7 +281,6 @@
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
   </ServiceConfiguration>
-  
   <ServiceConfiguration name="CreateRoleService">
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-11-23T11:46:37.306058-03:00</CreatedDateTime>
@@ -332,8 +291,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadUncommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="DeleteRoleService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -346,34 +303,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
-  </ServiceConfiguration>
-  <ServiceConfiguration name="GetUnassignedUsersByParamService">
-    <CreatedUserName>moviedo</CreatedUserName>
-    <CreatedDateTime>2010-01-07T12:22:57.5558559-03:00</CreatedDateTime>
-    <Handler>Fwk.Security.SVC.GetUnassignedUsersByParamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>true</Available>
-    <Audit>false</Audit>
-    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
-    <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
-  </ServiceConfiguration>
-  <ServiceConfiguration name="GetUserAdditionalAttributes_ByParamService">
-    <CreatedUserName>moviedo</CreatedUserName>
-    <CreatedDateTime>2010-01-13T15:00:14.077537-03:00</CreatedDateTime>
-    <Handler>Fwk.Security.SVC.GetUserAdditionalAttributes_ByParamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>true</Available>
-    <Audit>false</Audit>
-    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
-    <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="SaveUserAdditionalAttributesService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -385,21 +314,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
-  </ServiceConfiguration>
-  <ServiceConfiguration name="GetUserAdditionalAttributesValues_ByParamService">
-    <CreatedUserName>moviedo</CreatedUserName>
-    <CreatedDateTime>2010-01-18T16:25:42.3396302-03:00</CreatedDateTime>
-    <Handler>Fwk.Security.SVC.GetUserAdditionalAttributesValues_ByParamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Fwk.Security.ISVC.GetUserAdditionalAttributesValues.GetUserAdditionalAttributesValues_ByParamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Fwk.Security.ISVC.GetUserAdditionalAttributesValues.GetUserAdditionalAttributesValues_ByParamResponse, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>true</Available>
-    <Audit>false</Audit>
-    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
-    <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="UserAdditionalAttributesValues_Exist_ByUserAttributeIdService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -411,8 +325,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="SaveUserAdditionalAttributesValuesService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -424,8 +336,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateUserAdditionalAttributesValuesService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -437,8 +347,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="AssembleTeamService">
     <CreatedUserName>abrondani</CreatedUserName>
@@ -450,8 +358,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="CreateUsersBatchService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -464,8 +370,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Required</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchDomainsUrlsService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -477,8 +381,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="GetRolesForUserService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -490,8 +392,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="RemoveUserFromRoleService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -503,8 +403,6 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
   </ServiceConfiguration>
   <ServiceConfiguration name="AssignRolesToUserService">
     <CreatedUserName>moviedo</CreatedUserName>
@@ -516,7 +414,29 @@
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
-
-
+  </ServiceConfiguration>
+  <ServiceConfiguration name="SearchParamsService">
+    <CreatedUserName>marcelo</CreatedUserName>
+    <CreatedDateTime>2012-04-29T12:42:51.6027596-03:00</CreatedDateTime>
+    <Handler>Fwk.Params.Svc.SearchParamsService, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Params.Isvc.SearchParams.SearchParamsReq, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Params.Isvc.SearchParams.SearchParamsRes, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>false</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+    <ApplicationId>Framework</ApplicationId>
+  </ServiceConfiguration>
+  <ServiceConfiguration name="SearchParamTypeService">
+    <CreatedUserName>marcelo</CreatedUserName>
+    <CreatedDateTime>2012-04-29T12:43:02.4513801-03:00</CreatedDateTime>
+    <Handler>Fwk.Params.Svc.SearchParamTypeService, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Params.Isvc.SearchParamType.SearchParamTypeReq, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Params.Isvc.SearchParamType.SearchParamTypeRes, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Available>true</Available>
+    <Audit>false</Audit>
+    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
+    <IsolationLevel>ReadCommitted</IsolationLevel>
+    <ApplicationId>Framework</ApplicationId>
   </ServiceConfiguration>
 </ServiceConfigurationCollection>

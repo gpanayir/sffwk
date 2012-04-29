@@ -20,11 +20,11 @@ namespace Fwk.Params.Back
         /// 
         /// </summary>
         /// <param name="paramTypeId">Tipo (gasto, clase, forma pago etc)</param>
-        /// <param name="ParentId">Relacion con otro param</param>
+        /// <param name="parentId">Relacion con otro param</param>
         /// <param name="enabled">Vigentes o no</param>
         /// <param name="cnnStringName">Cadena de coneccion</param>
         /// <returns></returns>
-        public static ParamList RetriveByParams(int? paramTypeId, int? ParentId, bool? enabled, string cnnStringName)
+        public static ParamList RetriveByParams(int? paramTypeId, int? parentId, bool? enabled, string cnnStringName)
         {
 
 
@@ -37,7 +37,7 @@ namespace Fwk.Params.Back
                     var rulesinCat = from s in dc.Params where 
                                         (paramTypeId.HasValue || s.ParamTypeId.Equals(paramTypeId))
                                         &&
-                                           (ParentId.HasValue || s.ParentId.Equals(ParentId))
+                                           (parentId.HasValue || s.ParentId.Equals(parentId))
                                         &&
                                            (enabled.HasValue || s.Enabled.Equals(enabled))
                                      select s;
@@ -119,10 +119,11 @@ namespace Fwk.Params.Back
         /// <summary>
         /// Retorna todos los registros de la tabla ParamType
         /// </summary>
-        /// <param name="paramTypeId"></param>
+        /// <param name="parentId"></param>
+        /// <param name="enabled"></param>
         /// <param name="cnnStringName"></param>
         /// <returns></returns>
-        public static ParamTypeList RetriveAllParamType(int? paramTypeId, string cnnStringName)
+        public static ParamTypeList RetriveParamType(int? parentId,bool? enabled, string cnnStringName)
         {
 
             ParamTypeList wList = new ParamTypeList();
@@ -131,7 +132,12 @@ namespace Fwk.Params.Back
             {
                 using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
                 {
-                    var types = from s in dc.ParamTypes where s.ParamTypeRefId == paramTypeId select s;
+                    var types = from s in dc.ParamTypes where
+
+                                  (parentId.HasValue || s.ParentId.Equals(parentId))
+                                        &&
+                                           (enabled.HasValue || s.Enabled.Equals(enabled))
+                                select s;
                     foreach (Fwk.ConfigData.ParamType tp in types.ToList<Fwk.ConfigData.ParamType>())
                     { 
                         wBE = new ParamTypeBE();

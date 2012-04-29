@@ -115,7 +115,8 @@
     <Compile Include="Blocks\Fwk.Params\ParamBE.cs" />
     <Compile Include="Blocks\Fwk.Params\ParamsDAC.cs" />
     <Compile Include="Blocks\Fwk.Params\ParamsController.cs" />
-    <Compile Include="Blocks\Fwk.Params\SearchParamByParamsService.cs" />
+    <Compile Include="Blocks\Fwk.Params\SearchParamService.cs" />
+    <Compile Include="Blocks\Fwk.Params\SearchParamTypeService.cs" />
     <Compile Include="Blocks\FwkData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
