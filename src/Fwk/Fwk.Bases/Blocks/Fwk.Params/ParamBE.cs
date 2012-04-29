@@ -75,19 +75,19 @@ namespace Fwk.Params.BE
         /// <summary>
         /// 
         /// </summary>
-        public Nullable<global::System.Int32> ParamRefId
+        public Nullable<global::System.Int32> ParentId
         {
             get
             {
-                return _ParamRefId;
+                return _ParentId;
             }
             set
             {
-                _ParamRefId = value;
+                _ParentId = value;
             }
         }
 
-        private Nullable<global::System.Int32> _ParamRefId;
+        private Nullable<global::System.Int32> _ParentId;
 
 
 
@@ -257,7 +257,7 @@ namespace Fwk.Params.BE
         /// <summary>
         /// Empty Constructor
         /// </summary>
-        public ParamTypeIdBE() { }
+        public ParamTypeBE() { }
 
        
 

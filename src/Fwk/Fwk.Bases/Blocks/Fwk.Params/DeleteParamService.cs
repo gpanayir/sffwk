@@ -17,8 +17,8 @@ namespace Fwk.Params.Svc
         public override DeleteParamRes Execute(DeleteParamReq pServiceRequest)
         {
             DeleteParamRes wRes = new DeleteParamRes();
-            ParametroBC wParametroBC = new ParametroBC(pServiceRequest.ContextInformation.CompanyId);
-            wParametroBC.Delete(pServiceRequest.BusinessData.IdParametro, pServiceRequest.BusinessData.Name);
+
+            ParamDAC.Delete(pServiceRequest.BusinessData.ParamId,pServiceRequest.BusinessData.ParentId, pServiceRequest.BusinessData.CnnStringName);
             return wRes;
         }
 
@@ -41,22 +41,21 @@ namespace Fwk.Params.Isvc.DeleteParam
     [XmlInclude(typeof(Params)), Serializable]
     public class Params : Entity
     {
-        string name;
+      
 
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? ParamId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CnnStringName { get; set; }
 
-        int _Id;
-
-        public int IdParametro
-        {
-            get { return _Id; }
-            set { _Id = value; }
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? ParentId { get; set; }
     }
 
 

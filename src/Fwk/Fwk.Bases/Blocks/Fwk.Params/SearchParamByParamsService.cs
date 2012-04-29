@@ -18,8 +18,8 @@ namespace Fwk.Params.Svc
             SearchParamsRes wRes = new SearchParamsRes();
 
 
-            wRes.BusinessData = ParametroDAC.GetByParams(pServiceRequest.BusinessData.IdTipoParametro,
-                pServiceRequest.BusinessData.IdParametroRef, pServiceRequest.BusinessData.Vigente,
+            wRes.BusinessData = ParamDAC.RetriveByParams(pServiceRequest.BusinessData.ParamTypeId,
+                pServiceRequest.BusinessData.ParentId, pServiceRequest.BusinessData.Enabled,
                 pServiceRequest.ContextInformation.CompanyId);
             return wRes;
         }
@@ -42,28 +42,22 @@ namespace Fwk.Params.Isvc.SearchParams
     [XmlInclude(typeof(Params)), Serializable]
     public class Params : Entity
     {
-        bool? vigente;
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool? Enabled { get; set; }
 
-        public bool? Vigente
-        {
-            get { return vigente; }
-            set { vigente = value; }
-        }
-
-        int? _IdTipoParametro;
-
-        public int? IdTipoParametro
-        {
-            get { return _IdTipoParametro; }
-            set { _IdTipoParametro = value; }
-        }
-        int? _IdParametroRef;
-
-        public int? IdParametroRef
-        {
-            get { return _IdParametroRef; }
-            set { _IdParametroRef = value; }
-        }
+        /// <summary>
+        /// Tipo de parametro
+        /// </summary>
+        public int? ParamTypeId{ get; set; }
+        
+        
+        /// <summary>
+        /// Param de referencia. Referencia a un parametro padre
+        /// </summary>
+        public int? ParentId { get; set; }
+        
     }
 
 
