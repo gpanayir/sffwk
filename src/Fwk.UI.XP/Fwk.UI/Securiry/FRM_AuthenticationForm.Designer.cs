@@ -188,7 +188,7 @@ namespace Fwk.UI.Security.Controls
             // 
             // imgTitle
             // 
-            this.imgTitle.Image = global::Fwk.UI.Properties.Resources.button_blue;
+            
             this.imgTitle.Location = new System.Drawing.Point(3, -2);
             this.imgTitle.Name = "imgTitle";
             this.imgTitle.Size = new System.Drawing.Size(50, 50);

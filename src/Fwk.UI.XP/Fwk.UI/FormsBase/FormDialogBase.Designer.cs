@@ -28,7 +28,6 @@ namespace Fwk.UI.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDialogBase));
             this.aceptCancelButtonBar1 = new Fwk.UI.Controls.UC_AceptCancelButtonBar();
             this.SuspendLayout();
             // 
@@ -44,13 +43,13 @@ namespace Fwk.UI.Forms
             this.aceptCancelButtonBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.aceptCancelButtonBar1.Location = new System.Drawing.Point(7, 381);
             this.aceptCancelButtonBar1.Name = "aceptCancelButtonBar1";
-            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(599, 23);
+            this.aceptCancelButtonBar1.Size = new System.Drawing.Size(655, 23);
             this.aceptCancelButtonBar1.TabIndex = 0;
             // 
             // FormDialogBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(613, 411);
+            this.ClientSize = new System.Drawing.Size(669, 411);
             this.Controls.Add(this.aceptCancelButtonBar1);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
