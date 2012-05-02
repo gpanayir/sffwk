@@ -28,6 +28,7 @@ namespace Fwk.UI.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMDIChildBase));
             this.SuspendLayout();
             // 
             // FormMDIChildBase

@@ -160,7 +160,9 @@
     <Compile Include="UC\GridNoEditWithGroup.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UC\GridNoEditWithGroupInfoRegistrator.cs" />
+    <Compile Include="UC\GridNoEditWithGroupInfoRegistrator.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UC\GridNoEditWithGroupView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -232,6 +234,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC\GridNoEditWithGroup.resx">
       <DependentUpon>GridNoEditWithGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UC_ButtonGroupEditor.resx">
       <DependentUpon>UC_ButtonGroupEditor.cs</DependentUpon>
@@ -445,7 +448,6 @@
     <None Include="Resources\down_16.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="UC\SecurityRulesToolbar.xml" />
     <None Include="Properties\DataSources\Fwk.UI.Controls.Menu.ButtonBase.datasource" />
     <None Include="Properties\DataSources\Fwk.UI.Controls.Menu.MenuBar.datasource" />
     <None Include="Properties\DataSources\Fwk.UI.Controls.Menu.PopupButton.datasource" />

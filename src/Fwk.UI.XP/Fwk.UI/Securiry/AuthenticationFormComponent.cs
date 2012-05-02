@@ -13,7 +13,7 @@ namespace Fwk.UI.Security.Controls
     public partial class AuthenticationFormComponent : Control
     {
         #region [Properties]
-        
+        private FRM_AuthenticationForm_ASPNet _Form;
         
        
 
