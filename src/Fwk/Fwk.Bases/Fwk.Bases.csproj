@@ -359,6 +359,7 @@
     <Content Include="Blocks\Fwk.Caching\Configurations.xml" />
     <Content Include="ServiceMetadataConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Blocks\Fwk.Configuration\app.config" />
     <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />

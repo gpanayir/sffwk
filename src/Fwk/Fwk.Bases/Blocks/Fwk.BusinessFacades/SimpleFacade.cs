@@ -101,8 +101,8 @@ namespace Fwk.BusinessFacades
             }
             catch (Exception ex)
             {
-                
-                throw ExceptionHelper.ProcessException(ex);
+                throw ex;
+                //throw ExceptionHelper.ProcessException(ex);
             }
            
         }
@@ -152,7 +152,8 @@ namespace Fwk.BusinessFacades
             }
             catch (Exception ex)
             {
-                throw ExceptionHelper.ProcessException(ex);
+                throw ex;
+                //throw ExceptionHelper.ProcessException(ex);
             }
             
         }
@@ -242,7 +243,7 @@ namespace Fwk.BusinessFacades
             }
             catch (Exception e)
             {
-                wServiceInfo = e.Message;
+                wServiceInfo = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
                 
             }
             

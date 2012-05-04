@@ -74,9 +74,10 @@ namespace Fwk.ServiceManagement
             catch (Exception ex)
             {
                 string strError = string.Concat("Error al inicializar la metadata de los servicios  \r\n ",
-                "Metadata :", xmlConfigFile, Environment.NewLine);
+                "Nombre de archivo :", xmlConfigFile, Environment.NewLine);
 
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(strError.ToString(), ex);
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException(strError, ex);
+
                 if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
                     te.Source = string.Concat("Despachador de servicios en ", Environment.MachineName);
                 else

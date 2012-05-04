@@ -217,7 +217,8 @@ namespace Fwk.BusinessFacades.Utils
             {
                 wResponse = GetResponse(pServiceConfiguration);// (IServiceContract)ReflectionFunctions.CreateInstance(pServiceConfiguration.Response);
 
-                if ((ex.InnerException is TechnicalException))
+                //if ((ex.InnerException is TechnicalException))
+                if ((ex is TechnicalException))
                 {
                     TechnicalException tx = (TechnicalException)ex.InnerException;
                     wResponse.Error = new ServiceError();
@@ -230,7 +231,8 @@ namespace Fwk.BusinessFacades.Utils
 
                 }
 
-                if ((ex.InnerException is FunctionalException))
+                //if ((ex.InnerException is FunctionalException))
+                 if ((ex is FunctionalException))
                 {
                     FunctionalException fx = (FunctionalException)ex.InnerException;
                     wResponse.Error = new ServiceError();
@@ -266,7 +268,7 @@ namespace Fwk.BusinessFacades.Utils
                     wResponse.Error = new ServiceError();
 
 
-                    wResponse.Error.Message = ex.Message;// "No se encuentra configurado el servicio " + pServiceConfiguration.Name;
+                    wResponse.Error.Message = ex.Message;
 
                     FillServiceError(wResponse.Error, ex);
 
@@ -346,24 +348,18 @@ namespace Fwk.BusinessFacades.Utils
         /// </summary>
         /// <param name="pServiceError"></param>
         /// <param name="pException"></param>
-         static void FillServiceError(ServiceError pServiceError, Exception pException)
+        static void FillServiceError(ServiceError pServiceError, Exception pException)
         {
             pServiceError.Type = pException.GetType().Name;
-
-            //pServiceError.Assembly = "Fwk.BusinessFacades";
-            //pServiceError.Class = "FacadeHelper";
-            //pServiceError.Namespace = "Fwk.BusinessFacades.Utils";
-
             pServiceError.UserName = Environment.UserName;
             pServiceError.Machine = Environment.MachineName;
-
             if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
                 pServiceError.Source = "Despachador de servicios en " + Environment.MachineName;
             else
                 pServiceError.Source = ConfigurationsHelper.HostApplicationName;
 
-            if (pException.InnerException != null)
-                pServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException.InnerException);
+            //if (pException.InnerException != null)
+             pServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException);
         }
         /// <summary>
         /// Completa el error del que va dentro del Request con informacion de :
