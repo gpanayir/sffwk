@@ -42,8 +42,8 @@ namespace Fwk.UI.Security.Controls
             this.lbllTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.imgTitle = new System.Windows.Forms.PictureBox();
-            this.btnChangePassword = new DevExpress.XtraEditors.SimpleButton();
             this.aceptCancelButtonBar1 = new Fwk.UI.Controls.UC_AceptCancelButtonBar();
+            this.btnChangePassword = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
@@ -231,9 +231,9 @@ namespace Fwk.UI.Security.Controls
         private System.Windows.Forms.Label lbllTitle;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox imgTitle;
+        private Fwk.UI.Controls.UC_AceptCancelButtonBar aceptCancelButtonBar1;
         private Fwk.UI.Controls.TextBox txtPassword;
         private Fwk.UI.Controls.TextBox txtUserName;
         private DevExpress.XtraEditors.SimpleButton btnChangePassword;
-        private UC_AceptCancelButtonBar aceptCancelButtonBar1;
     }
 }

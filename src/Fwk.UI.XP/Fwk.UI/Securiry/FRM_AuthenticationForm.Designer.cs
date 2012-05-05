@@ -60,6 +60,8 @@ namespace Fwk.UI.Security.Controls
             // 
             // groupControl1
             // 
+            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl1.Controls.Add(this.cmbDominios);
             this.groupControl1.Controls.Add(this.lblDominio);
             this.groupControl1.Controls.Add(this.txtPassword);
@@ -188,7 +190,7 @@ namespace Fwk.UI.Security.Controls
             // 
             // imgTitle
             // 
-            
+            this.imgTitle.Image = global::Fwk.UI.Properties.Resources.ulock_32;
             this.imgTitle.Location = new System.Drawing.Point(3, -2);
             this.imgTitle.Name = "imgTitle";
             this.imgTitle.Size = new System.Drawing.Size(50, 50);
