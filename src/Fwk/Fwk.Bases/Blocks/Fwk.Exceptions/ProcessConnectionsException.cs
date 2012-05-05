@@ -85,8 +85,7 @@ namespace Fwk.Exceptions
             else
                 wServiceError.Source = ConfigurationsHelper.HostApplicationName;
 
-           
-            wServiceError.Type = pEx.GetType().FullName;
+            wServiceError.Type = ExceptionHelper.GetFwkExceptionTypesName(pEx);//pEx.GetType().FullName;
 
             return wServiceError;
         }

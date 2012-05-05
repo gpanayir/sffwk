@@ -106,7 +106,7 @@ namespace Fwk.Exceptions
             Exception ex;
             switch (err.Type)
             {
-                case "FunctionalException":
+                case "FunctionalException": case "Fwk.Exceptions.FunctionalException":
                     {
                         ex = new FunctionalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
                         ex.Source = err.Source;
@@ -114,7 +114,7 @@ namespace Fwk.Exceptions
                         //((FunctionalException)ex).StackTrace = err.StackTrace;
                         break;
                     }
-                case "TechnicalException":
+                case "TechnicalException": case "Fwk.Exceptions.TechnicalException":
                     {
                         ex = new TechnicalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
                         ex.Source = err.Source;
@@ -129,7 +129,7 @@ namespace Fwk.Exceptions
                     }
                 default:
                     {
-                        ex = new Exception(String.Concat(err.Message , Environment.NewLine , err.InnerMessageException));
+                        ex = new Exception(err.Message  , err.InnerMessageException);
                         //ex.StackTrace = err.StackTrace;
                         break;
                     }
@@ -285,6 +285,7 @@ namespace Fwk.Exceptions
         {
             if (ex.GetType() == typeof(FunctionalException))
             {
+
                 return FwkExceptionTypes.FunctionalException;
             }
             if (ex.GetType() == typeof(TechnicalException))
@@ -295,7 +296,20 @@ namespace Fwk.Exceptions
             return FwkExceptionTypes.OtherException;
 
         }
+        public static string GetFwkExceptionTypesName(Exception ex)
+        {
+            if (ex.GetType() == typeof(FunctionalException))
+            {
+                return Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException);
+            }
+            if (ex.GetType() == typeof(TechnicalException))
+            {
+                return Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.TechnicalException);
+            }
 
+            return return Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.OtherException);;
+
+        }
         /// <summary>
         /// Retorna el error id de la excepción
         /// </summary>
