@@ -129,7 +129,7 @@ namespace Fwk.Exceptions
                     }
                 default:
                     {
-                        ex = new Exception(err.Message  , err.InnerMessageException);
+                        ex = new Exception(err.Message  , new Exception( err.InnerMessageException));
                         //ex.StackTrace = err.StackTrace;
                         break;
                     }
@@ -300,14 +300,14 @@ namespace Fwk.Exceptions
         {
             if (ex.GetType() == typeof(FunctionalException))
             {
-                return Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException);
+                return  FwkExceptionTypes.FunctionalException.ToString();
             }
             if (ex.GetType() == typeof(TechnicalException))
             {
-                return Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.TechnicalException);
+                return  FwkExceptionTypes.TechnicalException.ToString();
             }
 
-            return return Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.OtherException);;
+            return FwkExceptionTypes.OtherException.ToString();
 
         }
         /// <summary>
