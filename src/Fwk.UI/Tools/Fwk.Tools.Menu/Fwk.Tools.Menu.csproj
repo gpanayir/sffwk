@@ -126,11 +126,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Files.cs" />
-    <Compile Include="FRM_MenuBarDesigner.cs" />
+    <Compile Include="FRM_MenuBarDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FRM_MenuBarDesigner.Designer.cs">
       <DependentUpon>FRM_MenuBarDesigner.cs</DependentUpon>
     </Compile>
-    <Compile Include="FRM_ToolBarDesigner.cs" />
+    <Compile Include="FRM_ToolBarDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FRM_ToolBarDesigner.Designer.cs">
       <DependentUpon>FRM_ToolBarDesigner.cs</DependentUpon>
     </Compile>
@@ -147,40 +151,60 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UC\FRM_RuleSelector.cs" />
+    <Compile Include="UC\FRM_RuleSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UC\FRM_RuleSelector.Designer.cs">
       <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\GridNoEditWithGroup.cs" />
+    <Compile Include="UC\GridNoEditWithGroup.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UC\GridNoEditWithGroupInfoRegistrator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UC\GridNoEditWithGroupView.cs" />
-    <Compile Include="UC\UC_ButtonGroupEditor.cs" />
+    <Compile Include="UC\GridNoEditWithGroupView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\UC_ButtonGroupEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UC\UC_ButtonGroupEditor.Designer.cs">
       <DependentUpon>UC_ButtonGroupEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\UC_MenuEditor.cs" />
+    <Compile Include="UC\UC_MenuEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UC\UC_MenuEditor.Designer.cs">
       <DependentUpon>UC_MenuEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\UC_MenuItemEditor.cs" />
+    <Compile Include="UC\UC_MenuItemEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UC\UC_MenuItemEditor.Designer.cs">
       <DependentUpon>UC_MenuItemEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\UC_PopupButtonEditor.cs" />
+    <Compile Include="UC\UC_PopupButtonEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UC\UC_PopupButtonEditor.Designer.cs">
       <DependentUpon>UC_PopupButtonEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\UC_RuleSelector.cs" />
+    <Compile Include="UC\UC_RuleSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UC\UC_RuleSelector.Designer.cs">
       <DependentUpon>UC_RuleSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\UC_RulesMain.cs" />
+    <Compile Include="UC\UC_RulesMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UC\UC_RulesMain.Designer.cs">
       <DependentUpon>UC_RulesMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\UC_SimpleButtonEditor.cs" />
+    <Compile Include="UC\UC_SimpleButtonEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UC\UC_SimpleButtonEditor.Designer.cs">
       <DependentUpon>UC_SimpleButtonEditor.cs</DependentUpon>
     </Compile>

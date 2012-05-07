@@ -31,13 +31,14 @@ namespace Fwk.UI.Security.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_AuthenticationForm_ASPNet));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.txtPassword = new Fwk.UI.Controls.TextBox();
-            this.txtUserName = new Fwk.UI.Controls.TextBox();
+            this.txtPassword = new Fwk.UI.Controls.TextBox(this.components);
+            this.txtUserName = new Fwk.UI.Controls.TextBox(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider();
+            this.dxErrorProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider(this.components);
             this.lbllTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.imgTitle = new System.Windows.Forms.PictureBox();
@@ -54,6 +55,8 @@ namespace Fwk.UI.Security.Controls
             // 
             // groupControl1
             // 
+            this.groupControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupControl1.Controls.Add(this.txtPassword);
             this.groupControl1.Controls.Add(this.txtUserName);
             this.groupControl1.Controls.Add(this.label1);
@@ -184,7 +187,7 @@ namespace Fwk.UI.Security.Controls
             this.btnChangePassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(104, 27);
-            this.btnChangePassword.TabIndex = 4;
+            this.btnChangePassword.TabIndex = 44;
             this.btnChangePassword.Text = "Cambiar clave";
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
