@@ -53,7 +53,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(16, 86);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(835, 260);
             this.listBox1.TabIndex = 77;
@@ -70,7 +70,7 @@
             this.btnSearAssemblie.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.mostrar;
             this.btnSearAssemblie.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearAssemblie.Location = new System.Drawing.Point(748, 22);
-            this.btnSearAssemblie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearAssemblie.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearAssemblie.Name = "btnSearAssemblie";
             this.btnSearAssemblie.Size = new System.Drawing.Size(37, 28);
             this.btnSearAssemblie.TabIndex = 79;
@@ -91,16 +91,16 @@
             this.label2.Location = new System.Drawing.Point(16, 66);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 17);
+            this.label2.Size = new System.Drawing.Size(367, 17);
             this.label2.TabIndex = 80;
-            this.label2.Text = "Service list";
+            this.label2.Text = "Not yet included services in the current cprovider";
             // 
             // btnOk
             // 
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOk.Location = new System.Drawing.Point(764, 354);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(88, 28);
             this.btnOk.TabIndex = 81;
@@ -159,7 +159,7 @@
             this.Controls.Add(this.btnSearAssemblie);
             this.Controls.Add(this.listBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAssemblyExplorer";

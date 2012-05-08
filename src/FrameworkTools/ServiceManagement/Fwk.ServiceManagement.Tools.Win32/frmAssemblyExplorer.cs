@@ -29,7 +29,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             get { return _SelectedServiceConfiguration; }
             set { _SelectedServiceConfiguration = value; }
         }
-
+        ServiceConfigurationCollection Services; 
         /// <summary>
         /// 
         /// </summary>
@@ -39,7 +39,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
             if (!string.IsNullOrEmpty(_StorageFactory.StorageObject.AssemblyPath))
             {
-                
+               Services = Fwk.ServiceManagement.ServiceMetadata.GetAllServices(frmServices.CurrentProvider.Name);
                 LoadAssembly();
             }
         }
@@ -101,17 +101,20 @@ namespace Fwk.ServiceManagement.Tools.Win32
                     {
                         if (wAssemblyClass.BaseType.Name.Contains("BusinessService"))
                         {
-                            s = new Fwk.Bases.ServiceConfiguration();
-                            //Service name
-                            s.Name = wAssemblyClass.Name;
-                            s.Handler = wAssemblyClass.FullyQualifiedName;
-                            //Request
-                            s.Request = wAssemblyClass.Methods[0].Parameters[0].ParameterType.AssemblyQualifiedName;
+                            if (!Services.Exists(p => p.Name.Equals(wAssemblyClass.Name.Trim())))
+                            {
+                                s = new Fwk.Bases.ServiceConfiguration();
+                                //Service name
+                                s.Name = wAssemblyClass.Name;
+                                s.Handler = wAssemblyClass.FullyQualifiedName;
+                                //Request
+                                s.Request = wAssemblyClass.Methods[0].Parameters[0].ParameterType.AssemblyQualifiedName;
 
-                            //Response
-                            s.Response = wAssemblyClass.Methods[0].ReturnType.AssemblyQualifiedName;
+                                //Response
+                                s.Response = wAssemblyClass.Methods[0].ReturnType.AssemblyQualifiedName;
 
-                            list.Add(s);
+                                list.Add(s);
+                            }
                         }
                     }
                 }
@@ -128,8 +131,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             {
 
                 base.ExceptionViewer.Show(ex);
-
-                _StorageFactory.Clear();
+                _StorageFactory.StorageObject.AssemblyPath = string.Empty;
+                _StorageFactory.Save();
             }
         }
 
