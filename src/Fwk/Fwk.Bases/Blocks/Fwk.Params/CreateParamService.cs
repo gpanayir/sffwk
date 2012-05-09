@@ -16,7 +16,7 @@ namespace Fwk.Params.Svc
         {
             CreateParamRes wRes = new CreateParamRes();
 
-            ParamDAC.Create(pServiceRequest.BusinessData, new Guid(pServiceRequest.ContextInformation.UserId), pServiceRequest.ContextInformation.CompanyId);
+            ParamDAC.Create(pServiceRequest.BusinessData, new Guid(pServiceRequest.ContextInformation.UserId), pServiceRequest.ContextInformation.AppId);
 
             return wRes;
         }

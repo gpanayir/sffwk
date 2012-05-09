@@ -33,7 +33,7 @@ namespace Fwk.Params
             req.BusinessData.ParentId = parentId;
             req.BusinessData.Enabled = true;
             req.ContextInformation.UserId = userId;
-            req.ContextInformation.CompanyId = companyId;
+            req.ContextInformation.AppId = companyId;
 
             SearchParamsRes res = req.ExecuteService<SearchParamsReq, SearchParamsRes>(wrapperProviderName,req);
 
@@ -56,7 +56,7 @@ namespace Fwk.Params
             req.BusinessData.ParamId = paramId;
             req.BusinessData.ParentId = parentId;
             req.ContextInformation.UserId = userId;
-            req.ContextInformation.CompanyId = companyId;
+            req.ContextInformation.AppId = companyId;
 
             DeleteParamRes res = req.ExecuteService<DeleteParamReq, DeleteParamRes>(wrapperProviderName,req);
 
@@ -77,7 +77,7 @@ namespace Fwk.Params
             CreateParamReq req = new CreateParamReq();
             req.BusinessData = pParam;
             req.ContextInformation.UserId = pParam.UserId.ToString();
-            req.ContextInformation.CompanyId = companyId;
+            req.ContextInformation.AppId = companyId;
 
             CreateParamRes res = req.ExecuteService<CreateParamReq, CreateParamRes>(wrapperProviderName,req);
 

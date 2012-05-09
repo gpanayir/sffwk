@@ -19,7 +19,7 @@ namespace Fwk.Params.Svc
 
 
             wRes.BusinessData = ParamDAC.RetriveParamType(pServiceRequest.BusinessData.ParamTypeId,
-                 pServiceRequest.BusinessData.Enabled, pServiceRequest.ContextInformation.CompanyId);
+                 pServiceRequest.BusinessData.Enabled, pServiceRequest.ContextInformation.AppId);
             return wRes;
         }
 

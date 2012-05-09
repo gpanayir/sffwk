@@ -79,14 +79,11 @@ namespace Fwk.Bases
             set { _UserId = value; }
         }
         /// <summary>
-        /// Identificador de empresa, cliente donde este instalado o para quien este instalado.-
-        /// Utiil para identificar logs, discriminar conecciones, etc.-
+        /// Identificador de aplicaion,cliente donde este instalado o para quien este instalado.-
+        /// Utiil para identificar logs, discriminar cadenas de conecciones, etc.-
         /// </summary>
-        public string CompanyId
-        {
-            get { return _CompanyId; }
-            set { _CompanyId = value; }
-        }
+        public string AppId { get; set; }
+        
 
         ///// <summary>
         ///// 
