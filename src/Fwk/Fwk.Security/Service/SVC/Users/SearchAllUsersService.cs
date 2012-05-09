@@ -18,7 +18,7 @@ namespace Fwk.Security.SVC
         public override SearchAllUsersRes Execute(SearchAllUsersReq pServiceRequest)
         {
             SearchAllUsersRes wRes = new SearchAllUsersRes();
-            UserBC wBC = new UserBC(pServiceRequest.ContextInformation.CompanyId,pServiceRequest.SecurityProviderName);
+            UserBC wBC = new UserBC(pServiceRequest.ContextInformation.AppId,pServiceRequest.SecurityProviderName);
 
             //if (string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
             //    pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;

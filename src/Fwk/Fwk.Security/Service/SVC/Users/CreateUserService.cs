@@ -25,7 +25,7 @@ namespace Fwk.Security.SVC
         {
 
             CreateUserRes wRes = new CreateUserRes();
-            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.AppId, pServiceRequest.SecurityProviderName);
 
             wUserBC.Create(pServiceRequest.BusinessData.User);
 

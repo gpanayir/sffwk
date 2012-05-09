@@ -22,7 +22,7 @@ namespace Fwk.Security.SVC
         {
             GetUserInfoByParamsRes wRes = new GetUserInfoByParamsRes();
 
-            UserBC userBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+            UserBC userBC = new UserBC(pServiceRequest.ContextInformation.AppId, pServiceRequest.SecurityProviderName);
 
 
             RolList wRolList = new RolList();

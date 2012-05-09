@@ -18,7 +18,7 @@ namespace Fwk.Security.SVC
         {
             SearchDomainsUrlsResponse wResponse = new SearchDomainsUrlsResponse();
 
-            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId,pServiceRequest.SecurityProviderName);
+            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.AppId,pServiceRequest.SecurityProviderName);
 
             List<DomainUrlInfo> wDomainUrlInfoList = ADHelper.DomainsUrl_GetList(pServiceRequest.SecurityProviderName);
             wResponse.BusinessData.DomainsNameList = wUserBC.MapListDomainToListString(wDomainUrlInfoList);

@@ -19,7 +19,7 @@ namespace Fwk.Security.SVC
         public override AssignRolesToUserRes Execute(AssignRolesToUserReq pServiceRequest)
         {
             AssignRolesToUserRes wRes = new AssignRolesToUserRes();
-            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.AppId, pServiceRequest.SecurityProviderName);
            
             if (string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
                 pServiceRequest.BusinessData.ApplicationName = System.Web.Security.Membership.ApplicationName;
