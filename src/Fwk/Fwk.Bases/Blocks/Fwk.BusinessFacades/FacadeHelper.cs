@@ -210,9 +210,34 @@ namespace Fwk.BusinessFacades.Utils
 
                 FillServiceError(wResponse.Error, ex);
 
-                pserviError = wResponse.Error;
+                //pserviError = wResponse.Error;
             }
+            catch (System.Reflection.TargetInvocationException ex)
+            {
+                wResponse = GetResponse(pServiceConfiguration);
+                if ((ex.InnerException is TechnicalException))
+                {
+                    wResponse.Error = GetServiceError(ex.InnerException);
+                }
+                if ((ex.InnerException is FunctionalException))
+                {
+                    wResponse.Error = GetServiceError(ex.InnerException);
+                }
+               
+            }
+            catch (TypeLoadException tl)
+            {
+                wResponse = GetResponse(pServiceConfiguration);
+                System.Text.StringBuilder wMessage = new StringBuilder();
+                wResponse.Error = new ServiceError();
 
+                wResponse.Error.ErrorId = "7002";
+                wMessage.Append("No se encuentra el o los assemblies para cargar el servicio " + pServiceConfiguration.Name);
+                wMessage.AppendLine();
+                wMessage.AppendLine(tl.Message);
+                wResponse.Error.Message = wMessage.ToString();
+                FillServiceError(wResponse.Error, tl);
+            }
             catch (Exception ex)
             {
                 wResponse = GetResponse(pServiceConfiguration);// (IServiceContract)ReflectionFunctions.CreateInstance(pServiceConfiguration.Response);
@@ -220,60 +245,37 @@ namespace Fwk.BusinessFacades.Utils
                 //if ((ex.InnerException is TechnicalException))
                 if ((ex is TechnicalException))
                 {
-                    TechnicalException tx = (TechnicalException)ex.InnerException;
-                    wResponse.Error = new ServiceError();
-
-                    wResponse.Error.ErrorId = tx.ErrorId;
-                    wResponse.Error.Message = tx.Message;
-                    wResponse.Error.Source = tx.Source;
-
-                    FillServiceError(wResponse.Error, tx);
-
+                    wResponse.Error = GetServiceError(ex);
                 }
 
                 //if ((ex.InnerException is FunctionalException))
-                 if ((ex is FunctionalException))
+                if ((ex is FunctionalException))
                 {
-                    FunctionalException fx = (FunctionalException)ex.InnerException;
-                    wResponse.Error = new ServiceError();
-
-                    wResponse.Error.ErrorId = fx.ErrorId;
-                    wResponse.Error.Message = fx.Message;
-                    wResponse.Error.Source = fx.Source;
-                    wResponse.Error.Severity = Enum.GetName(typeof(FunctionalException.ExceptionSeverity), fx.Severity);
-
-
-                    wResponse.InitializeServerContextInformation();
-
-                    FillServiceError(wResponse.Error, fx);
-
+                    wResponse.Error = GetServiceError(ex);
                 }
-                if (ex is System.TypeLoadException)
-                {
+                //if (ex is System.TypeLoadException)
+                //{
 
-                    System.Text.StringBuilder wMessage = new StringBuilder();
-                    wResponse.Error = new ServiceError();
+                //    System.Text.StringBuilder wMessage = new StringBuilder();
+                //    wResponse.Error = new ServiceError();
 
-                    wResponse.Error.ErrorId = "7002";
-                    wMessage.Append("No se encuentra el o los assemblies para cargar el servicio " + pServiceConfiguration.Name);
-                    wMessage.AppendLine("");
-                    wMessage.AppendLine(ex.Message);
-                    wResponse.Error.Message = wMessage.ToString();
-                    FillServiceError(wResponse.Error, ex);
+                //    wResponse.Error.ErrorId = "7002";
+                //    wMessage.Append("No se encuentra el o los assemblies para cargar el servicio " + pServiceConfiguration.Name);
+                //    wMessage.AppendLine();
+                //    wMessage.AppendLine(ex.Message);
+                //    wResponse.Error.Message = wMessage.ToString();
+                //    FillServiceError(wResponse.Error, ex);
 
-                }
+                //}
 
                 if (wResponse.Error == null)
                 {
                     wResponse.Error = new ServiceError();
-
-
                     wResponse.Error.Message = ex.Message;
-
                     FillServiceError(wResponse.Error, ex);
 
                 }
-                pserviError = wResponse.Error;
+                //pserviError = wResponse.Error;
             }
 
             #endregion
@@ -287,8 +289,8 @@ namespace Fwk.BusinessFacades.Utils
                 Audit.LogSuccessfulExecution(pRequest, wResponse);
             }
             //Si ocurre un error cualquiera se loguea el mismo
-            if (pserviError != null)
-                Audit.LogNonSucessfulExecution(pserviError, pServiceConfiguration);
+            if (wResponse.Error != null)
+                Audit.LogNonSucessfulExecution(wResponse.Error, pServiceConfiguration);
             #endregion
 
 
@@ -296,8 +298,37 @@ namespace Fwk.BusinessFacades.Utils
 
             return wResponse;
 
+        }
 
+        static ServiceError GetServiceError(Exception e)
+        {
+            ServiceError err = null;
+            if ((e is TechnicalException))
+            {
+                TechnicalException tx = (TechnicalException)e;
+                err = new ServiceError();
 
+                err.ErrorId = tx.ErrorId;
+                err.Message = tx.Message;
+                err.Source = tx.Source;
+
+                FillServiceError(err, tx);
+
+            }
+
+            if ((e is FunctionalException))
+            {
+                FunctionalException fx = (FunctionalException)e;
+                err = new ServiceError();
+                err.ErrorId = fx.ErrorId;
+                err.Message = fx.Message;
+                err.Source = fx.Source;
+                err.Severity = Enum.GetName(typeof(FunctionalException.ExceptionSeverity), fx.Severity);
+                FillServiceError(err, fx);
+
+            }
+
+            return err;
         }
 
 

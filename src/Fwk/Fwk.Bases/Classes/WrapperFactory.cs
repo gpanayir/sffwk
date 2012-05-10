@@ -89,7 +89,8 @@ namespace Fwk.Bases
             where TResponse : IServiceContract, new()
         {
             TResponse wResponse = new TResponse();
-            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
+            //if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
+            if (providerName.Equals(_ProviderSection.DefaultProviderName))  providerName = String.Empty;
             InitWrapper(providerName);
 
             Boolean wExecuteOndispatcher = true;
@@ -229,7 +230,8 @@ namespace Fwk.Bases
         /// <param name="providerName"></param>
         public static IServiceWrapper GetWrapper(string providerName)
         {
-            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
+            //if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
+            if (providerName.Equals(_ProviderSection.DefaultProviderName)) providerName = String.Empty;
             InitWrapper(providerName);
 
             if (providerName.Equals(_ProviderSection.DefaultProviderName))

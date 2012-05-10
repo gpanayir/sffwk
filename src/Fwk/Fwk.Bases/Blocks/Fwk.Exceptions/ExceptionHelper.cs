@@ -104,11 +104,30 @@ namespace Fwk.Exceptions
         public static Exception ProcessException(ServiceError err)
         {
             Exception ex;
+            Exception inner=null;
+            if (!String.IsNullOrEmpty(err.InnerMessageException))
+                inner = new Exception(err.InnerMessageException);
             switch (err.Type)
             {
                 case "FunctionalException": case "Fwk.Exceptions.FunctionalException":
                     {
-                        ex = new FunctionalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
+                        
+                        if (inner!=null)
+                        {
+                            
+                            if (!String.IsNullOrEmpty(err.ErrorId))
+                                ex = new FunctionalException(Convert.ToInt32(err.ErrorId), inner, err.Message);
+                            else
+                                ex = new FunctionalException(null, inner, err.Message);
+                        }
+                        else
+                        {
+                            if (!String.IsNullOrEmpty(err.ErrorId))
+                                ex = new FunctionalException(Convert.ToInt32(err.ErrorId),  err.Message);
+                            else
+                                ex = new FunctionalException(err.Message);
+                        }
+                        
                         ex.Source = err.Source;
                         ((FunctionalException)ex).ErrorId = err.ErrorId;
                         //((FunctionalException)ex).StackTrace = err.StackTrace;
@@ -116,7 +135,7 @@ namespace Fwk.Exceptions
                     }
                 case "TechnicalException": case "Fwk.Exceptions.TechnicalException":
                     {
-                        ex = new TechnicalException(String.Concat(err.Message, Environment.NewLine, err.InnerMessageException));
+                        ex = new TechnicalException(err.Message, inner);
                         ex.Source = err.Source;
                         ((TechnicalException)ex).ErrorId = err.ErrorId;
                         ((TechnicalException)ex).Machine = err.Machine;
@@ -129,7 +148,7 @@ namespace Fwk.Exceptions
                     }
                 default:
                     {
-                        ex = new Exception(err.Message  , new Exception( err.InnerMessageException));
+                        ex = new Exception(err.Message  , inner);
                         //ex.StackTrace = err.StackTrace;
                         break;
                     }
