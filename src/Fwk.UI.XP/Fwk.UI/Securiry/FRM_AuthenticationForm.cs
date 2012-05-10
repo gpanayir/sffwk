@@ -58,13 +58,17 @@ namespace Fwk.UI.Security.Controls
             set { _IsEnvironmentUser = value; }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Auth_Title_Text
         {
             get { return this.lbllTitle.Text; }
             set { this.lbllTitle.Text = value; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public Image Auth_Title_Image
         {
             get { return this.imgTitle.Image; }
@@ -357,10 +361,13 @@ namespace Fwk.UI.Security.Controls
         {
             if (result == DialogResult.OK)
             {
-                //Validamos el valor que devuelve AcceptForm para ver si debemos cerrar o no el Formulario de Login
-                if (AcceptForm(false))
+                using (WaitCursorHelper waitn = new WaitCursorHelper(this))
                 {
-                    this.Close();
+                    //Validamos el valor que devuelve AcceptForm para ver si debemos cerrar o no el Formulario de Login
+                    if (AcceptForm(false))
+                    {
+                        this.Close();
+                    }
                 }
             }
             else

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using Fwk.UI.Forms;
 using Fwk.UI.Controller;
+using Fwk.Security.Common;
 
 namespace Fwk.UI.Security.Controls
 {
@@ -66,16 +67,19 @@ namespace Fwk.UI.Security.Controls
             //Validamos que no haya errores en el UserControl
             if (!dxErrorProvider1.HasErrors && ValidateUC())
             {
-                //Cambiamos el Password
-                try
+                using (WaitCursorHelper waitn = new WaitCursorHelper(this))
                 {
-                    SecurityController.UserChangePassword(UserName, txtOldPassword.Text, txtNewPassword.Text);
-                    MessageViewer.Show("Su contraseña fue cambiada exitosamente");
-                }
-                catch (Exception ex)
-                {
-                    this.ExceptionViewer.Show(ex);
-                    return false;
+                    //Cambiamos el Password
+                    try
+                    {
+                        SecurityController.UserChangePassword(UserName, txtOldPassword.Text, txtNewPassword.Text);
+                        MessageViewer.Show("Su contraseña fue cambiada exitosamente");
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ExceptionViewer.Show(ex);
+                        return false;
+                    }
                 }
                 return true;
             }

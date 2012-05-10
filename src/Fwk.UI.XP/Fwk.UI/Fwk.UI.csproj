@@ -194,12 +194,6 @@
     <Compile Include="Controls\EnumComboBox.Designer.cs">
       <DependentUpon>EnumComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FileControls\UC_FileSelection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\FileControls\UC_FileSelection.Designer.cs">
-      <DependentUpon>UC_FileSelection.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Menu\FRM_AssemblyExplorer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -424,9 +418,6 @@
       <DependentUpon>FormBaseNotify.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\FileControls\UC_FileSelection.resx">
-      <DependentUpon>UC_FileSelection.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Menu\FRM_AssemblyExplorer.resx">
       <DependentUpon>FRM_AssemblyExplorer.cs</DependentUpon>
       <SubType>Designer</SubType>

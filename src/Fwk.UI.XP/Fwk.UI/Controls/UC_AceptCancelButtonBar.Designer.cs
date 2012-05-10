@@ -32,6 +32,8 @@ namespace Fwk.UI.Controls
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.btn_Cancel = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Acept = new DevExpress.XtraEditors.SimpleButton();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // navBarGroup1
@@ -65,15 +67,27 @@ namespace Fwk.UI.Controls
             this.btn_Acept.Text = "&Aceptar";
             this.btn_Acept.Click += new System.EventHandler(this.ButtonBase_Acept_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.flowLayoutPanel1.Controls.Add(this.btn_Cancel);
+            this.flowLayoutPanel1.Controls.Add(this.btn_Acept);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(463, 34);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
             // UC_AceptCancelButtonBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btn_Cancel);
-            this.Controls.Add(this.btn_Acept);
+  			this.Controls.Add(this.flowLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UC_AceptCancelButtonBar";
             this.Size = new System.Drawing.Size(463, 28);
+			this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -83,5 +97,6 @@ namespace Fwk.UI.Controls
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraEditors.SimpleButton btn_Cancel;
         private DevExpress.XtraEditors.SimpleButton btn_Acept;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
