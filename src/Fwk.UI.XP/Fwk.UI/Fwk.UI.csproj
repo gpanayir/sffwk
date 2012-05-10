@@ -311,29 +311,11 @@
     <Compile Include="Controls\Editors\ComboBoxDxBase.designer.cs">
       <DependentUpon>ComboBoxDxBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Editors\LabelBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Editors\LabelBase.Designer.cs">
-      <DependentUpon>LabelBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Editors\UC_SearchTypeComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Editors\UC_SearchTypeComboBox.Designer.cs">
-      <DependentUpon>UC_SearchTypeComboBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Editors\TextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Editors\TextBox.Designer.cs">
       <DependentUpon>TextBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Editors\UC_TextBoxLabel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Editors\UC_TextBoxLabel.Designer.cs">
-      <DependentUpon>UC_TextBoxLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Editors\TextMemoEdit.cs">
       <SubType>Component</SubType>
@@ -477,20 +459,8 @@
       <DependentUpon>ComboBoxDxBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Editors\LabelBase.resx">
-      <DependentUpon>LabelBase.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Editors\UC_SearchTypeComboBox.resx">
-      <DependentUpon>UC_SearchTypeComboBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Editors\TextBox.resx">
       <DependentUpon>TextBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Editors\UC_TextBoxLabel.resx">
-      <DependentUpon>UC_TextBoxLabel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Menu\UC_ToolBarControl.resx">
@@ -542,10 +512,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Editors\UC_TitleControl.resx">
-      <DependentUpon>UC_TitleControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Securiry\FRM_AuthenticationForm.resx">
       <DependentUpon>FRM_AuthenticationForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -571,12 +537,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="Controls\Editors\UC_TitleControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Editors\UC_TitleControl.Designer.cs">
-      <DependentUpon>UC_TitleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Securiry\FRM_AuthenticationForm.cs">

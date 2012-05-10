@@ -117,6 +117,8 @@ namespace Fwk.Tools.Menu
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.textEdit1);
             this.Controls.Add(this.labelControl1);
+            this.LookAndFeel.SkinName = "Black";
+            this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UC_MenuEditor";
             this.Size = new System.Drawing.Size(451, 289);
