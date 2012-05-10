@@ -48,10 +48,10 @@ namespace Fwk.UI.Controls.Designers
                 //this.EnableDesignMode(((UC_ComboBoxLabel)this.Control).Working_LabelControl, "Working_LabelControl");
                 this.EnableDesignMode(((UC_LabelTitle)this.Control).Working_Image, "Working_Image");
             }
-            if (this.Component is UC_TextBoxLabel)
-            {
-                this.EnableDesignMode(((UC_TextBoxLabel)this.Control).WorkingArea_Control, "WorkingArea_Control");
-            }
+            //if (this.Component is UC_TextBoxLabel)
+            //{
+            //    this.EnableDesignMode(((UC_TextBoxLabel)this.Control).WorkingArea_Control, "WorkingArea_Control");
+            //}
             currentBorderStyle = ((DevExpress.XtraEditors.XtraUserControl)this.Control).BorderStyle;
         }
 
@@ -70,21 +70,21 @@ namespace Fwk.UI.Controls.Designers
         }
         protected override void OnMouseHover()
         {
-            if (this.Component is UC_TextBoxLabel)
-            {
-                ((UC_TextBoxLabel)this.Control).WorkingArea_Control.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            //if (this.Component is UC_TextBoxLabel)
+            //{
+            //    ((UC_TextBoxLabel)this.Control).WorkingArea_Control.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
-            }
+            //}
             base.OnMouseHover();
         }
 
         protected override void OnMouseLeave()
         {
-            if (this.Component is UC_TextBoxLabel)
-            {
-                ((UC_TextBoxLabel)this.Control).WorkingArea_Control.BorderStyle = currentBorderStyle;
+            //if (this.Component is UC_TextBoxLabel)
+            //{
+            //    ((UC_TextBoxLabel)this.Control).WorkingArea_Control.BorderStyle = currentBorderStyle;
 
-            }
+            //}
             base.OnMouseLeave();
         }
     }
