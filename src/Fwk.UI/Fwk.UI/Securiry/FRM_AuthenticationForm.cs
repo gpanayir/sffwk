@@ -357,10 +357,13 @@ namespace Fwk.UI.Security.Controls
         {
             if (result == DialogResult.OK)
             {
-                //Validamos el valor que devuelve AcceptForm para ver si debemos cerrar o no el Formulario de Login
-                if (AcceptForm(false))
+                using (WaitCursorHelper waitn = new WaitCursorHelper(this))
                 {
-                    this.Close();
+                    //Validamos el valor que devuelve AcceptForm para ver si debemos cerrar o no el Formulario de Login
+                    if (AcceptForm(false))
+                    {
+                        this.Close();
+                    }
                 }
             }
             else
