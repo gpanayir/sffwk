@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using Fwk.UI.Controls;
 using Fwk.UI.Forms;
 using Fwk.UI.Controller;
+using Fwk.UI.Common;
+
+
 
 namespace Fwk.UI.Security.Controls
 {
@@ -28,13 +31,17 @@ namespace Fwk.UI.Security.Controls
         {
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                try
+                
+                using (WaitCursorHelper waitn = new WaitCursorHelper(this))
                 {
-                    SecurityController.UserResetPassword(_userName, txtnewPassword.Text);
-                }
-                catch (Exception ex)
-                {
-                    this.MessageViewer.Show(ex);
+                    try
+                    {
+                        SecurityController.UserResetPassword(_userName, txtnewPassword.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.MessageViewer.Show(ex);
+                    }
                 }
             }
             if (result == System.Windows.Forms.DialogResult.Cancel)

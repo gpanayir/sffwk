@@ -58,13 +58,17 @@ namespace Fwk.UI.Security.Controls
             set { _IsEnvironmentUser = value; }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Auth_Title_Text
         {
             get { return this.lbllTitle.Text; }
             set { this.lbllTitle.Text = value; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public Image Auth_Title_Image
         {
             get { return this.imgTitle.Image; }
