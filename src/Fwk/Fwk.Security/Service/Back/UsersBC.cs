@@ -285,7 +285,7 @@ namespace Fwk.Security.BC
             //// Se baja el Flag MustChangePassword porque es solo para autenticación Mixta, no importa el valor que tenga
             //wUserInfo.MustChangePassword = false;
 
-            return wLoginResult;
+            
         }
 
         /// <summary>

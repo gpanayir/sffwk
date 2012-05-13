@@ -136,7 +136,6 @@ namespace Fwk.BusinessFacades.Utils
         /// <author>moviedo</author>
         public static IServiceContract RunNonTransactionalProcess(IServiceContract pRequest, ServiceConfiguration serviceConfiguration)
         {
-
             ServiceError wServiceError = null;
             return RunService(pRequest, serviceConfiguration, out wServiceError);
         }
@@ -188,7 +187,6 @@ namespace Fwk.BusinessFacades.Utils
 
                 wMessage.Append("o alguna de sus dependencias: \r\n");
 
-
                 wMessage.Append("Servicio: ");
                 wMessage.Append(pServiceConfiguration.Handler);
                 wMessage.Append(Environment.NewLine);
@@ -207,23 +205,14 @@ namespace Fwk.BusinessFacades.Utils
                 #endregion
 
                 wResponse.Error.Message = wMessage.ToString();
-
                 FillServiceError(wResponse.Error, ex);
 
-                //pserviError = wResponse.Error;
             }
             catch (System.Reflection.TargetInvocationException ex)
             {
                 wResponse = GetResponse(pServiceConfiguration);
-                if ((ex.InnerException is TechnicalException))
-                {
-                    wResponse.Error = GetServiceError(ex.InnerException);
-                }
-                if ((ex.InnerException is FunctionalException))
-                {
-                    wResponse.Error = GetServiceError(ex.InnerException);
-                }
-               
+                wResponse.Error = GetServiceError(ex.InnerException);
+
             }
             catch (TypeLoadException tl)
             {
@@ -241,41 +230,7 @@ namespace Fwk.BusinessFacades.Utils
             catch (Exception ex)
             {
                 wResponse = GetResponse(pServiceConfiguration);// (IServiceContract)ReflectionFunctions.CreateInstance(pServiceConfiguration.Response);
-
-                //if ((ex.InnerException is TechnicalException))
-                if ((ex is TechnicalException))
-                {
-                    wResponse.Error = GetServiceError(ex);
-                }
-
-                //if ((ex.InnerException is FunctionalException))
-                if ((ex is FunctionalException))
-                {
-                    wResponse.Error = GetServiceError(ex);
-                }
-                //if (ex is System.TypeLoadException)
-                //{
-
-                //    System.Text.StringBuilder wMessage = new StringBuilder();
-                //    wResponse.Error = new ServiceError();
-
-                //    wResponse.Error.ErrorId = "7002";
-                //    wMessage.Append("No se encuentra el o los assemblies para cargar el servicio " + pServiceConfiguration.Name);
-                //    wMessage.AppendLine();
-                //    wMessage.AppendLine(ex.Message);
-                //    wResponse.Error.Message = wMessage.ToString();
-                //    FillServiceError(wResponse.Error, ex);
-
-                //}
-
-                if (wResponse.Error == null)
-                {
-                    wResponse.Error = new ServiceError();
-                    wResponse.Error.Message = ex.Message;
-                    FillServiceError(wResponse.Error, ex);
-
-                }
-                //pserviError = wResponse.Error;
+                wResponse.Error = GetServiceError(ex);
             }
 
             #endregion
@@ -327,7 +282,29 @@ namespace Fwk.BusinessFacades.Utils
                 FillServiceError(err, fx);
 
             }
+            //if (e is System.TypeLoadException)
+            //{
 
+            //    System.Text.StringBuilder wMessage = new StringBuilder();
+            //    err = new ServiceError();
+
+            //    err.ErrorId = "7002";
+            //    wMessage.Append("No se encuentra el o los assemblies para cargar el servicio " + pServiceConfiguration.Name);
+            //    wMessage.AppendLine();
+            //    wMessage.AppendLine(e.Message);
+            //    err.Message = wMessage.ToString();
+            //    FillServiceError(err, e);
+
+            //}
+
+            if (err == null)
+            {
+                err = new ServiceError();
+                if (e.InnerException != null)
+                    e = e.InnerException;
+                err.Message = e.Message;
+                FillServiceError(err, e);
+            }
             return err;
         }
 
