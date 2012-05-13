@@ -266,8 +266,8 @@ namespace Fwk.UI.Forms
 
             //if (FormBase.IndentityUserInfo == null)
             FormBase.IndentityUserInfo = SecurityController.AuthenticateUser(pName, pPassword, pAuthenticationMode, pDomain, pIsEnvironmentUser);
-
-            FormBase.IndentityUserInfo.AuthenticationMode = pAuthenticationMode;
+            if(FormBase.IndentityUserInfo!=null)
+                FormBase.IndentityUserInfo.AuthenticationMode = pAuthenticationMode;
         }
 
 
