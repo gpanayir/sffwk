@@ -167,7 +167,11 @@ namespace Fwk.Bases.Connector
             {
                 pReq.InitializeHostContextInformation();
                 string wResult = ExecuteService( pReq.ServiceName, pReq.GetXml());
-                wResponse.SetXml(wResult);
+                //wResponse.SetXml(wResult);
+                //16/05/2012 Se deja esta serializacion se comenta la anterior
+                //Motivo: Cuando el Response implementaba un BussinesData escalar o entidad no List y se retornaba Null (en BussinesData)
+                //No se podia hace un SetXml
+                wResponse = (TResponse)Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(TResponse),wResult);
                 wResponse.InitializeHostContextInformation();
             }
             catch(Exception ex)

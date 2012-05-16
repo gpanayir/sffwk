@@ -16,7 +16,7 @@ namespace Fwk.Bases
     /// </summary>
     /// <typeparam name="T">Tipo generico que hereda de la clase Entity y que hacepta la clase coleccion en cuestion.-</typeparam>
     /// <Author>Marcelo .F. Oviedo</Author>
-    [DebuggerVisualizer(typeof(IEntityVisualizer))]
+    //[DebuggerVisualizer(typeof(IEntityVisualizer))]
     [Serializable]
     public  class Entities<T> : List<T>, IEntity where T : Entity
     {
