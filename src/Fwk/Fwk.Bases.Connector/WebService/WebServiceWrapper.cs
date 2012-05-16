@@ -47,15 +47,15 @@ namespace Fwk.Bases.Connector
             set { _ServiceMetadataProviderName = value; }
         }
 
-        string _CompanyId = string.Empty;
+        string _AppId = string.Empty;
 
         /// <summary>
         /// Identificador de empresa
         /// </summary>
-        public string CompanyId
+        public string AppId
         {
-            get { return _CompanyId; }
-            set { _CompanyId = value; }
+            get { return _AppId; }
+            set { _AppId = value; }
         }
 
     
@@ -172,14 +172,14 @@ namespace Fwk.Bases.Connector
                 //Motivo: Cuando el Response implementaba un BussinesData escalar o entidad no List y se retornaba Null (en BussinesData)
                 //No se podia hace un SetXml
                 wResponse = (TResponse)Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(TResponse),wResult);
-                wResponse.InitializeHostContextInformation();
+                //wResponse.InitializeHostContextInformation();
             }
             catch(Exception ex)
             {
                 wResponse.Error = ProcessConnectionsException.Process(ex, _URL);
             }
 
-            wResponse.InitializeHostContextInformation();
+            //wResponse.InitializeHostContextInformation();
             return wResponse;
         }
         

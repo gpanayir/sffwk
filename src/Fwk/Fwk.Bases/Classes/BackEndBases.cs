@@ -58,14 +58,14 @@ namespace Fwk.Bases
     /// </summary>
     public class BaseBC
     {
-        private string _CompanyId;
+        private string _AppId;
 
         /// <summary>
         /// Identificador de empresa
         /// </summary>
         protected string CompanyId
         {
-            get { return _CompanyId; }
+            get { return _AppId; }
         }
         /// <summary>
         /// Cosntructor unico
@@ -73,7 +73,7 @@ namespace Fwk.Bases
         /// <param name="pCompanyId">Identificador de empresa</param>
         public BaseBC(string pCompanyId)
         {
-            _CompanyId = pCompanyId;
+            _AppId = pCompanyId;
         }
         
 

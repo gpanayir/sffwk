@@ -47,15 +47,15 @@ namespace Fwk.Bases.Connector
             set { _ServiceMetadataProviderName = value; }
         }
 
-        string _CompanyId = string.Empty;
+        string _AppId = string.Empty;
 
         /// <summary>
         /// Identificador de empresa
         /// </summary>
-        public string CompanyId
+        public string AppId
         {
-            get { return _CompanyId; }
-            set { _CompanyId = value; }
+            get { return _AppId; }
+            set { _AppId = value; }
         }
 
     
@@ -152,15 +152,16 @@ namespace Fwk.Bases.Connector
             {
                 pReq.InitializeHostContextInformation();
                 string wResult = ExecuteService( pReq.ServiceName, pReq.GetXml());
-                wResponse.SetXml(wResult);
-                wResponse.InitializeHostContextInformation();
+                //wResponse.SetXml(wResult);
+                wResponse = (TResponse)Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(TResponse), wResult);
+                //wResponse.InitializeHostContextInformation();
             }
             catch(Exception ex)
             {
                 wResponse.Error = ProcessConnectionsException.Process(ex, _URL);
             }
 
-            wResponse.InitializeHostContextInformation();
+            //wResponse.InitializeHostContextInformation();
             return wResponse;
         }
         
