@@ -21,7 +21,7 @@ namespace Fwk.Security.SVC
         public override ValidateUserExistRes Execute(ValidateUserExistReq pServiceRequest)
         {
             ValidateUserExistRes wRes = new ValidateUserExistRes();
-            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.AppId, pServiceRequest.SecurityProviderName);
             //solo para case AuthenticationModeEnum.ASPNETMemberShips:
             wRes.BusinessData.Exist = wUserBC.Exist(pServiceRequest.BusinessData.UserName);
 

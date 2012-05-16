@@ -104,19 +104,38 @@ namespace Fwk.Exceptions
         public static Exception ProcessException(ServiceError err)
         {
             Exception ex;
+            Exception inner=null;
+            if (!String.IsNullOrEmpty(err.InnerMessageException))
+                inner = new Exception(err.InnerMessageException);
             switch (err.Type)
             {
-                case "FunctionalException":
+                case "FunctionalException": case "Fwk.Exceptions.FunctionalException":
                     {
-                        ex = new FunctionalException(err.Message + Environment.NewLine + err.InnerMessageException);
+                        
+                        if (inner!=null)
+                        {
+                            
+                            if (!String.IsNullOrEmpty(err.ErrorId))
+                                ex = new FunctionalException(Convert.ToInt32(err.ErrorId), inner, err.Message);
+                            else
+                                ex = new FunctionalException(null, inner, err.Message);
+                        }
+                        else
+                        {
+                            if (!String.IsNullOrEmpty(err.ErrorId))
+                                ex = new FunctionalException(Convert.ToInt32(err.ErrorId),  err.Message);
+                            else
+                                ex = new FunctionalException(err.Message);
+                        }
+                        
                         ex.Source = err.Source;
                         ((FunctionalException)ex).ErrorId = err.ErrorId;
                         //((FunctionalException)ex).StackTrace = err.StackTrace;
                         break;
                     }
-                case "TechnicalException":
+                case "TechnicalException": case "Fwk.Exceptions.TechnicalException":
                     {
-                        ex = new TechnicalException(err.Message + Environment.NewLine + err.InnerMessageException);
+                        ex = new TechnicalException(err.Message, inner);
                         ex.Source = err.Source;
                         ((TechnicalException)ex).ErrorId = err.ErrorId;
                         ((TechnicalException)ex).Machine = err.Machine;
@@ -129,7 +148,7 @@ namespace Fwk.Exceptions
                     }
                 default:
                     {
-                        ex = new Exception(err.Message + Environment.NewLine + err.InnerMessageException);
+                        ex = new Exception(err.Message  , inner);
                         //ex.StackTrace = err.StackTrace;
                         break;
                     }
@@ -243,6 +262,11 @@ namespace Fwk.Exceptions
                 wMessage.AppendLine("Message: ");
                 wMessage.AppendLine(ex.Message);
             }
+            if (!String.IsNullOrEmpty(ex.StackTrace))
+            {
+                wMessage.Append("\r\n-----------StackTrace------------------\r\n");
+                wMessage.AppendLine(ex.StackTrace);
+            }
             return wMessage.ToString();
         }
 
@@ -280,6 +304,7 @@ namespace Fwk.Exceptions
         {
             if (ex.GetType() == typeof(FunctionalException))
             {
+
                 return FwkExceptionTypes.FunctionalException;
             }
             if (ex.GetType() == typeof(TechnicalException))
@@ -290,7 +315,20 @@ namespace Fwk.Exceptions
             return FwkExceptionTypes.OtherException;
 
         }
+        public static string GetFwkExceptionTypesName(Exception ex)
+        {
+            if (ex.GetType() == typeof(FunctionalException))
+            {
+                return  FwkExceptionTypes.FunctionalException.ToString();
+            }
+            if (ex.GetType() == typeof(TechnicalException))
+            {
+                return  FwkExceptionTypes.TechnicalException.ToString();
+            }
 
+            return FwkExceptionTypes.OtherException.ToString();
+
+        }
         /// <summary>
         /// Retorna el error id de la excepción
         /// </summary>

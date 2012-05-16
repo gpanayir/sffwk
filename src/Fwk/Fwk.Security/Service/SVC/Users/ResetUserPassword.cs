@@ -27,7 +27,7 @@ namespace Fwk.Security.SVC
         public override ResetUserPasswordRes Execute(ResetUserPasswordReq pServiceRequest)
         {
             ResetUserPasswordRes wRes = new ResetUserPasswordRes();
-            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.AppId, pServiceRequest.SecurityProviderName);
             wUserBC.ResetPassword(pServiceRequest.BusinessData.UserName, pServiceRequest.BusinessData.NewPassword);
             return wRes;
         }

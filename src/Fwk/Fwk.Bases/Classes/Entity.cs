@@ -106,7 +106,7 @@ namespace Fwk.Bases
     /// </code>
     ///</example>
     /// <Author>Marcelo .F. Oviedo</Author> 
-    [DebuggerVisualizer(typeof(IEntityVisualizer))]
+    //[DebuggerVisualizer(typeof(IEntityVisualizer))]
     [Serializable]
     public abstract class Entity:IEntity
     {

@@ -22,7 +22,7 @@ namespace Fwk.Security.SVC
         public override UpdateUserRes Execute(UpdateUserReq pServiceRequest)
         {
             UpdateUserRes wRes = new UpdateUserRes();
-            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.AppId, pServiceRequest.SecurityProviderName);
            
             if (string.IsNullOrEmpty(pServiceRequest.BusinessData.UserName))
                 pServiceRequest.BusinessData.UserName = pServiceRequest.BusinessData.UsersBE.UserName;

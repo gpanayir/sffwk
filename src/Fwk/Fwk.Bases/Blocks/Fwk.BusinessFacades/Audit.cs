@@ -27,11 +27,11 @@ namespace Fwk.BusinessFacades.Utils
             s.AppendLine("Se ha intentado ejecutar un servicio que está configurado como no disponible.");
             s.AppendLine("Service :");
             s.AppendLine(pConfig.Handler);
-            pServiceError.Type = typeof(TechnicalException).Name;
+            pServiceError.Type = FwkExceptionTypes.TechnicalException.ToString();
             pServiceError.Message = s.ToString();
             pServiceError.ErrorId = "7006";
             pServiceError.Assembly = "Fwk.BusinessFacades";
-            pServiceError.Class = "FacadeHelper";
+            pServiceError.Class = "Audit";
             pServiceError.Namespace = "Fwk.BusinessFacades";
             pServiceError.UserName = Environment.UserName;
             pServiceError.Machine = Environment.MachineName;

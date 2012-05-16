@@ -12,17 +12,17 @@ namespace Fwk.HelperFunctions
     {
 
         /// <summary>
-        /// Valor constante que reoprecenta el separador '.'
+        /// Valor constante que reprecenta el separador una fecha = 01/01/0001
         /// </summary>
         public static  DateTime NullDateTime { get; set; }
 
         /// <summary>
-        /// Indica el principio de los tiempos 
+        /// Indica el principio de los tiempos  = 01/01/1000
         /// </summary>
         public static  DateTime BeginningOfTimes { get; set; }
 
         /// <summary>
-        /// Indica el fin de los tiempos
+        /// Indica el fin de los tiempos = 01/01/9999
         /// </summary>
         public static  DateTime EndOfTimes { get; set; }
 

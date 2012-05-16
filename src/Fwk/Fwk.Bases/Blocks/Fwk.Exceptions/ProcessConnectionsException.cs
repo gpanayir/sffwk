@@ -85,8 +85,7 @@ namespace Fwk.Exceptions
             else
                 wServiceError.Source = ConfigurationsHelper.HostApplicationName;
 
-           
-            wServiceError.Type = pEx.GetType().FullName;
+            wServiceError.Type = ExceptionHelper.GetFwkExceptionTypesName(pEx);//pEx.GetType().FullName;
 
             return wServiceError;
         }
@@ -125,7 +124,7 @@ namespace Fwk.Exceptions
             wServiceError.Message = wMessage.ToString();
             wServiceError.ErrorId = "6000";
             if (pException.InnerException != null)
-                wServiceError.InnerMessageException = pException.InnerException.Message;
+                wServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException.InnerException); 
 
             wMessage = null;
 
@@ -151,7 +150,7 @@ namespace Fwk.Exceptions
 
             wServiceError.Message = wMessage.ToString();
             if (soapException.InnerException != null)
-                wServiceError.InnerMessageException = soapException.InnerException.Message;
+                wServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(soapException.InnerException); 
 
             wMessage = null;
 
@@ -177,7 +176,7 @@ namespace Fwk.Exceptions
 
             wServiceError.Message = wMessage.ToString();
             if (configurationErrorsException.InnerException != null)
-                wServiceError.InnerMessageException = configurationErrorsException.InnerException.Message;
+                wServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(configurationErrorsException.InnerException); 
 
             wMessage = null;
 
@@ -213,7 +212,7 @@ namespace Fwk.Exceptions
 
             wServiceError.Message = wMessage.ToString();
             if (pWebException.InnerException != null)
-                wServiceError.InnerMessageException = pWebException.InnerException.Message;
+                wServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pWebException.InnerException); 
 
             wMessage = null;
 

@@ -104,6 +104,8 @@
     <Compile Include="Blocks\Functions\WindowsFunction.cs" />
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager_CRUD.cs" />
     <Compile Include="Blocks\Fwk.Configuration\DatabaseConfigMannager.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\ServiceConfigurationManager.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\Services\GetFwkConfigurationService.cs" />
     <Compile Include="Blocks\Fwk.Net\CommonClass.cs" />
     <Compile Include="Blocks\Fwk.Net\Ftp\FTPComponent.cs">
       <SubType>Component</SubType>
@@ -112,6 +114,13 @@
       <DependentUpon>FTPComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="Blocks\Fwk.Net\Ftp\FtpUtil.cs" />
+    <Compile Include="Blocks\Fwk.Params\CreateParamService.cs" />
+    <Compile Include="Blocks\Fwk.Params\DeleteParamService.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamBE.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamsController.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamsDAC.cs" />
+    <Compile Include="Blocks\Fwk.Params\SearchParamService.cs" />
+    <Compile Include="Blocks\Fwk.Params\SearchParamTypeService.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\FwkSymetricAlg.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\ISymetriCypher.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\SymetricCypherFactory.cs" />
@@ -146,7 +155,6 @@
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationRepository.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\Utils.cs" />
     <Compile Include="Blocks\Fwk.Configuration\LocalConfigurationManager.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\RemoteConfigurationManager.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\LoggingSection.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElement.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElementCollection.cs" />
@@ -278,7 +286,6 @@
     <Compile Include="SingletonFactoryArray.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BackEnd.cd" />
     <None Include="fwk.snk" />
     <None Include="Blocks\Fwk.Caching\Caching.cd" />
     <None Include="Blocks\Fwk.Caching\ConfigCaching_App.config" />
@@ -334,6 +341,7 @@
     <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />
     <Content Include="Blocks\Fwk.Exceptions\FrameworkErrors.txt" />
+    <Content Include="ServiceMetadataConfig.xml" />
     <None Include="Blocks\FwkData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>FwkData.designer.cs</LastGenOutput>

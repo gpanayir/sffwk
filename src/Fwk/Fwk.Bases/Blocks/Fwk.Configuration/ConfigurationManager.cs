@@ -135,7 +135,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return null;
+                        return ServiceConfigurationManager.GetProperty(configProvider ,pGroupName, pPropertyName);;
                     }
             }
             return null;
@@ -165,7 +165,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return null;
+                        return ServiceConfigurationManager.GetConfigurationFile(provider); 
                         
                     }
             }
@@ -193,11 +193,11 @@ namespace Fwk.Configuration
               
                 case ConfigProviderType.sqldatabase:
                     {
-                        return DatabaseConfigMannager.GetGroup(provider.BaseConfigFile, provider.BaseConfigFile);
+                        return DatabaseConfigMannager.GetGroup(configProvider, pGroupName);
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return null;
+                        return ServiceConfigurationManager.GetGroup(configProvider, pGroupName);
                     }
             }
             return null;
@@ -320,7 +320,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return ;
+                        DatabaseConfigMannager.AddProperty(provider, key, groupName); break;
                     }
             }
         }
@@ -348,7 +348,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return ;
+                        ServiceConfigurationManager.AddGroup(provider, group); break;
                     }
             }
         }
@@ -378,7 +378,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return;
+                        ServiceConfigurationManager.RemoveProperty(provider, groupName, propertyName); break; 
                     }
             }
         }
@@ -405,7 +405,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return;
+                        ServiceConfigurationManager.RemoveGroup(provider, groupName); break;
                     }
             }
         }
@@ -433,7 +433,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return;
+                        ServiceConfigurationManager.ChangeGroupName(provider, groupName, newGroupName); break;
                     }
             }
         }
@@ -462,7 +462,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return;
+                        ServiceConfigurationManager.ChangeProperty(provider, groupName, property, propertyName); break; 
                     }
             }
         }
@@ -489,7 +489,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        return null;
+                        ServiceConfigurationManager.RefreshConfigurationFile(provider); break;
                     }
             }
             return null;

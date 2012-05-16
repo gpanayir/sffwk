@@ -20,15 +20,16 @@ namespace Fwk.Mail
         private String _Host;
         private Boolean _SSL;
         Fwk.ConfigSection.MailAgentElement _MailAgentProvider;
-       
+
         public ProtocolMailBase()
         {
-            
-                _MailAgentProvider = Fwk.ConfigSection.MailAgentFactory.GetProvider();
-            
+
+            _MailAgentProvider = Fwk.ConfigSection.MailAgentFactory.GetProvider();
+
             _Host = _MailAgentProvider.HostMail;
             _SSL = _MailAgentProvider.UseSSL;
         }
+
         public ProtocolMailBase(string mailAgentProviderName)
         {
 

@@ -136,7 +136,6 @@ namespace Fwk.BusinessFacades.Utils
         /// <author>moviedo</author>
         public static IServiceContract RunNonTransactionalProcess(IServiceContract pRequest, ServiceConfiguration serviceConfiguration)
         {
-
             ServiceError wServiceError = null;
             return RunService(pRequest, serviceConfiguration, out wServiceError);
         }
@@ -188,7 +187,6 @@ namespace Fwk.BusinessFacades.Utils
 
                 wMessage.Append("o alguna de sus dependencias: \r\n");
 
-
                 wMessage.Append("Servicio: ");
                 wMessage.Append(pServiceConfiguration.Handler);
                 wMessage.Append(Environment.NewLine);
@@ -207,71 +205,32 @@ namespace Fwk.BusinessFacades.Utils
                 #endregion
 
                 wResponse.Error.Message = wMessage.ToString();
-
                 FillServiceError(wResponse.Error, ex);
 
-                pserviError = wResponse.Error;
             }
+            catch (System.Reflection.TargetInvocationException ex)
+            {
+                wResponse = GetResponse(pServiceConfiguration);
+                wResponse.Error = GetServiceError(ex.InnerException);
 
+            }
+            catch (TypeLoadException tl)
+            {
+                wResponse = GetResponse(pServiceConfiguration);
+                System.Text.StringBuilder wMessage = new StringBuilder();
+                wResponse.Error = new ServiceError();
+
+                wResponse.Error.ErrorId = "7002";
+                wMessage.Append("No se encuentra el o los assemblies para cargar el servicio " + pServiceConfiguration.Name);
+                wMessage.AppendLine();
+                wMessage.AppendLine(tl.Message);
+                wResponse.Error.Message = wMessage.ToString();
+                FillServiceError(wResponse.Error, tl);
+            }
             catch (Exception ex)
             {
                 wResponse = GetResponse(pServiceConfiguration);// (IServiceContract)ReflectionFunctions.CreateInstance(pServiceConfiguration.Response);
-
-                if ((ex.InnerException is TechnicalException))
-                {
-                    TechnicalException tx = (TechnicalException)ex.InnerException;
-                    wResponse.Error = new ServiceError();
-
-                    wResponse.Error.ErrorId = tx.ErrorId;
-                    wResponse.Error.Message = tx.Message;
-                    wResponse.Error.Source = tx.Source;
-
-                    FillServiceError(wResponse.Error, tx);
-
-                }
-
-                if ((ex.InnerException is FunctionalException))
-                {
-                    FunctionalException fx = (FunctionalException)ex.InnerException;
-                    wResponse.Error = new ServiceError();
-
-                    wResponse.Error.ErrorId = fx.ErrorId;
-                    wResponse.Error.Message = fx.Message;
-                    wResponse.Error.Source = fx.Source;
-                    wResponse.Error.Severity = Enum.GetName(typeof(FunctionalException.ExceptionSeverity), fx.Severity);
-
-
-                    wResponse.InitializeServerContextInformation();
-
-                    FillServiceError(wResponse.Error, fx);
-
-                }
-                if (ex is System.TypeLoadException)
-                {
-
-                    System.Text.StringBuilder wMessage = new StringBuilder();
-                    wResponse.Error = new ServiceError();
-
-                    wResponse.Error.ErrorId = "7002";
-                    wMessage.Append("No se encuentra el o los assemblies para cargar el servicio " + pServiceConfiguration.Name);
-                    wMessage.AppendLine("");
-                    wMessage.AppendLine(ex.Message);
-                    wResponse.Error.Message = wMessage.ToString();
-                    FillServiceError(wResponse.Error, ex);
-
-                }
-
-                if (wResponse.Error == null)
-                {
-                    wResponse.Error = new ServiceError();
-
-
-                    wResponse.Error.Message = ex.Message;// "No se encuentra configurado el servicio " + pServiceConfiguration.Name;
-
-                    FillServiceError(wResponse.Error, ex);
-
-                }
-                pserviError = wResponse.Error;
+                wResponse.Error = GetServiceError(ex);
             }
 
             #endregion
@@ -285,8 +244,8 @@ namespace Fwk.BusinessFacades.Utils
                 Audit.LogSuccessfulExecution(pRequest, wResponse);
             }
             //Si ocurre un error cualquiera se loguea el mismo
-            if (pserviError != null)
-                Audit.LogNonSucessfulExecution(pserviError, pServiceConfiguration);
+            if (wResponse.Error != null)
+                Audit.LogNonSucessfulExecution(wResponse.Error, pServiceConfiguration);
             #endregion
 
 
@@ -294,8 +253,59 @@ namespace Fwk.BusinessFacades.Utils
 
             return wResponse;
 
+        }
 
+        static ServiceError GetServiceError(Exception e)
+        {
+            ServiceError err = null;
+            if ((e is TechnicalException))
+            {
+                TechnicalException tx = (TechnicalException)e;
+                err = new ServiceError();
 
+                err.ErrorId = tx.ErrorId;
+                err.Message = tx.Message;
+                err.Source = tx.Source;
+
+                FillServiceError(err, tx);
+
+            }
+
+            if ((e is FunctionalException))
+            {
+                FunctionalException fx = (FunctionalException)e;
+                err = new ServiceError();
+                err.ErrorId = fx.ErrorId;
+                err.Message = fx.Message;
+                err.Source = fx.Source;
+                err.Severity = Enum.GetName(typeof(FunctionalException.ExceptionSeverity), fx.Severity);
+                FillServiceError(err, fx);
+
+            }
+            //if (e is System.TypeLoadException)
+            //{
+
+            //    System.Text.StringBuilder wMessage = new StringBuilder();
+            //    err = new ServiceError();
+
+            //    err.ErrorId = "7002";
+            //    wMessage.Append("No se encuentra el o los assemblies para cargar el servicio " + pServiceConfiguration.Name);
+            //    wMessage.AppendLine();
+            //    wMessage.AppendLine(e.Message);
+            //    err.Message = wMessage.ToString();
+            //    FillServiceError(err, e);
+
+            //}
+
+            if (err == null)
+            {
+                err = new ServiceError();
+                if (e.InnerException != null)
+                    e = e.InnerException;
+                err.Message = e.Message;
+                FillServiceError(err, e);
+            }
+            return err;
         }
 
 
@@ -346,24 +356,18 @@ namespace Fwk.BusinessFacades.Utils
         /// </summary>
         /// <param name="pServiceError"></param>
         /// <param name="pException"></param>
-         static void FillServiceError(ServiceError pServiceError, Exception pException)
+        static void FillServiceError(ServiceError pServiceError, Exception pException)
         {
-            pServiceError.Type = pException.GetType().Name;
-
-            //pServiceError.Assembly = "Fwk.BusinessFacades";
-            //pServiceError.Class = "FacadeHelper";
-            //pServiceError.Namespace = "Fwk.BusinessFacades.Utils";
-
+            pServiceError.Type = ExceptionHelper.GetFwkExceptionTypesName(pException);
             pServiceError.UserName = Environment.UserName;
             pServiceError.Machine = Environment.MachineName;
-
             if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
                 pServiceError.Source = "Despachador de servicios en " + Environment.MachineName;
             else
                 pServiceError.Source = ConfigurationsHelper.HostApplicationName;
 
-            if (pException.InnerException != null)
-                pServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException.InnerException);
+            //if (pException.InnerException != null)
+             pServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException);
         }
         /// <summary>
         /// Completa el error del que va dentro del Request con informacion de :

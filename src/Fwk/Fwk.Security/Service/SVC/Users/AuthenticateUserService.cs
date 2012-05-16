@@ -17,7 +17,7 @@ namespace Fwk.Security.SVC
         public override AuthenticateUserRes Execute(AuthenticateUserReq pServiceRequest)
         {
             AuthenticateUserRes wRes = new AuthenticateUserRes();
-            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.AppId, pServiceRequest.SecurityProviderName);
             RolList wRolList = new RolList();
             User wUser = new User();
 
@@ -66,7 +66,7 @@ namespace Fwk.Security.SVC
         public override AuthenticateUserRes Execute(AuthenticateUserReq pServiceRequest)
         {
             AuthenticateUserRes wRes = new AuthenticateUserRes();
-            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.CompanyId, pServiceRequest.SecurityProviderName);
+            UserBC wUserBC = new UserBC(pServiceRequest.ContextInformation.AppId, pServiceRequest.SecurityProviderName);
             RolList wRolList = new RolList();
             User wUser = new User();
 

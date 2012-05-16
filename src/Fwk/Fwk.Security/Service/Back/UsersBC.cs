@@ -12,7 +12,7 @@ using Fwk.Exceptions;
 using Fwk.Security.BE;
 using Fwk.Security.Common;
 using Fwk.Security.ActiveDirectory;
-using Fwk.Security.DAC;
+//using Fwk.Security.DAC;
 
 namespace Fwk.Security.BC
 {
@@ -48,7 +48,7 @@ namespace Fwk.Security.BC
             User wNewUser = FwkMembership.CreateUser(pUser.UserName, pUser.Password, pUser.Email,
                                                           pUser.QuestionPassword, pUser.AnswerPassword,
                                                           pUser.IsApproved, out pStatus, _ProviderName);
-            
+
             // se inserta el usuario custom
             if (pStatus == MembershipCreateStatus.Success)
             {
@@ -141,7 +141,7 @@ namespace Fwk.Security.BC
         /// </summary>
         /// <param name="userName">Nombre de usuario a resetear clave</param>
         /// <param name="password">Nueva clave</param>
-        public void ResetPassword(string userName,string password)
+        public void ResetPassword(string userName, string password)
         {
             ChangePassword(userName, string.Empty, password);
         }
@@ -192,7 +192,7 @@ namespace Fwk.Security.BC
         /// <returns></returns>
         public bool Exist(string pUserName)
         {
-            return  Fwk.Security.FwkMembership.UserExist(pUserName, _ProviderName);
+            return Fwk.Security.FwkMembership.UserExist(pUserName, _ProviderName);
         }
         /// <summary>
         /// Obtiene el usauario de las Membership
@@ -285,7 +285,7 @@ namespace Fwk.Security.BC
             //// Se baja el Flag MustChangePassword porque es solo para autenticación Mixta, no importa el valor que tenga
             //wUserInfo.MustChangePassword = false;
 
-            return wLoginResult;
+            
         }
 
         /// <summary>

@@ -89,7 +89,8 @@ namespace Fwk.Bases
             where TResponse : IServiceContract, new()
         {
             TResponse wResponse = new TResponse();
-            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
+            //if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
+            if (providerName.Equals(_ProviderSection.DefaultProviderName))  providerName = String.Empty;
             InitWrapper(providerName);
 
             Boolean wExecuteOndispatcher = true;
@@ -98,8 +99,8 @@ namespace Fwk.Bases
             {
                 IServiceContract res = null;
                 IRequest req = (IRequest)pRequest;
-                 if(string.IsNullOrEmpty(req.ContextInformation.CompanyId))
-                    req.ContextInformation.CompanyId = _WraperPepository[providerName].CompanyId;
+                 if(string.IsNullOrEmpty(req.ContextInformation.AppId))
+                    req.ContextInformation.AppId = _WraperPepository[providerName].CompanyId;
 
                 // Caching del servicio.
                 if (req.CacheSettings != null && req.CacheSettings.CacheOnClientSide) //--------------------------------------->>> Implement the cache factory
@@ -229,7 +230,8 @@ namespace Fwk.Bases
         /// <param name="providerName"></param>
         public static IServiceWrapper GetWrapper(string providerName)
         {
-            if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
+            //if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
+            if (providerName.Equals(_ProviderSection.DefaultProviderName)) providerName = String.Empty;
             InitWrapper(providerName);
 
             if (providerName.Equals(_ProviderSection.DefaultProviderName))
