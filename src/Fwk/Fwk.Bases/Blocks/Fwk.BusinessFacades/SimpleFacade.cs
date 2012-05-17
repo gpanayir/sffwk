@@ -63,8 +63,8 @@ namespace Fwk.BusinessFacades
             }
             Boolean wExecuteOndispatcher = true;
          
-            try
-            {
+            //try
+            //{
                 IRequest req = (IRequest)pRequest;
                 ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,pRequest.ServiceName);
 
@@ -98,12 +98,12 @@ namespace Fwk.BusinessFacades
 
                 
                 return wResult;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw ExceptionHelper.ProcessException(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //    //throw ExceptionHelper.ProcessException(ex);
+            //}
            
         }
    
@@ -120,8 +120,8 @@ namespace Fwk.BusinessFacades
         public string ExecuteService(string providerName, string serviceName, string pXmlRequest)
         {
             string wResult;
-            try
-            {
+            //try
+            //{
                 ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,serviceName);
                 
                 IServiceContract wRequest = (IServiceContract)ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
@@ -149,12 +149,12 @@ namespace Fwk.BusinessFacades
                 wResult = ExecuteService(providerName,wRequest).GetXml();
                 
                 return wResult;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-                //throw ExceptionHelper.ProcessException(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //    //throw ExceptionHelper.ProcessException(ex);
+            //}
             
         }
 

@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{7D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BFD5DA09-926A-4BED-8548-5369E13D2013}"
 	ProjectSection(SolutionItems) = preProject
-		Fwk.vsmdi = Fwk.vsmdi
+		Fwk1.vsmdi = Fwk1.vsmdi
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
 EndProject
@@ -54,7 +54,7 @@ Global
 		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Fwk.vsmdi
+		CategoryFile = Fwk1.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -215,6 +215,7 @@ Global
 		{3F12C172-FC60-414D-A2B4-8578FD9B3837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F12C172-FC60-414D-A2B4-8578FD9B3837}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F12C172-FC60-414D-A2B4-8578FD9B3837}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3F12C172-FC60-414D-A2B4-8578FD9B3837}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{3F12C172-FC60-414D-A2B4-8578FD9B3837}.Release|.NET.ActiveCfg = Release|Any CPU
 		{3F12C172-FC60-414D-A2B4-8578FD9B3837}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F12C172-FC60-414D-A2B4-8578FD9B3837}.Release|Any CPU.Build.0 = Release|Any CPU

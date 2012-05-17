@@ -208,6 +208,7 @@ namespace Fwk.Bases
                     w.ProviderName = provider.Name;
                     w.SourceInfo = provider.SourceInfo;
                     w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
+                    w.AppId = provider.AppId;
                     _WraperPepository.Add(providerName, w);
 
                 }

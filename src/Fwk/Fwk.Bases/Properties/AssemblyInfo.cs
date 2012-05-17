@@ -36,3 +36,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 
 //[assembly: AssemblyFileVersion("1.0.0.0")]
+
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Fwk.UnitTest")]

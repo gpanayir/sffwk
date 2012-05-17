@@ -388,7 +388,7 @@
     <Handler>Fwk.Security.SVC.GetRolesForUserService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Fwk.Security.ISVC.GetRolesForUser.GetRolesForUserReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
     <Response>Fwk.Security.ISVC.GetRolesForUser.GetRolesForUserRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>false</Available>
+    <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
@@ -399,7 +399,7 @@
     <Handler>Fwk.Security.SVC.RemoveUserFromRoleService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Fwk.Security.ISVC.RemoveUserFromRole.RemoveUserFromRoleReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
     <Response>Fwk.Security.ISVC.RemoveUserFromRole.RemoveUserFromRoleRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>false</Available>
+    <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
@@ -410,8 +410,8 @@
     <Handler>Fwk.Security.SVC.AssignRolesToUserService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Fwk.Security.ISVC.AssignRolesToUser.AssignRolesToUserReq, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
     <Response>Fwk.Security.ISVC.AssignRolesToUser.AssignRolesToUserRes, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>false</Available>
-    <Audit>false</Audit>
+    <Available>true</Available>
+    <Audit>true</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
   </ServiceConfiguration>
@@ -421,7 +421,7 @@
     <Handler>Fwk.Params.Svc.SearchParamsService, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Fwk.Params.Isvc.SearchParams.SearchParamsReq, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
     <Response>Fwk.Params.Isvc.SearchParams.SearchParamsRes, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>false</Available>
+    <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
     <IsolationLevel>ReadCommitted</IsolationLevel>
