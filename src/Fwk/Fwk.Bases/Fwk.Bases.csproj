@@ -296,6 +296,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Blocks\Fwk.Configuration\Fwk.Configuration.cd" />
     <None Include="Blocks\FwkData.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>FwkData.designer.cs</LastGenOutput>
