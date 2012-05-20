@@ -349,7 +349,7 @@
     <IsolationLevel>ReadCommitted</IsolationLevel>
   </ServiceConfiguration>
   <ServiceConfiguration name="AssembleTeamService">
-    <CreatedUserName>abrondani</CreatedUserName>
+    <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2010-02-22T17:08:57.8305087-03:00</CreatedDateTime>
     <Handler>Fwk.Security.SVC.AssembleTeamService, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Fwk.Security.ISVC.Team.AssembleTeamRequest, Fwk.Security, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
