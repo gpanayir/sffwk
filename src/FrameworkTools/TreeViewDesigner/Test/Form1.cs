@@ -19,6 +19,7 @@ namespace Test
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             Fwk.Tools.TreeView.FRM_MainDevExpress frm = new Fwk.Tools.TreeView.FRM_MainDevExpress();
+            frm.AssemblybaseType = "Form,UserControl";
             frm.imageList2 = this.imageList2;
             frm.ShowDialog();
         }

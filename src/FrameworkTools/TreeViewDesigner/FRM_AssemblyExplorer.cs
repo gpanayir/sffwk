@@ -22,7 +22,7 @@ namespace Fwk.Tools
     {
         #region Members
 
-        private String _BaseClassNameFilter;
+        private List<String> _BaseClassNameFilter =null ;
         private Fwk.UI.Controls.Menu.Tree.MenuItem _SelectedPelsoft = null;
 
         #endregion
@@ -43,7 +43,9 @@ namespace Fwk.Tools
         public FRM_AssemblyExplorer(String pBaseClassNameFilter)
         {
             InitializeComponent();
-            _BaseClassNameFilter = pBaseClassNameFilter;
+            _BaseClassNameFilter = pBaseClassNameFilter.Split(',').ToList<String>(); 
+
+            
         }
 
         #endregion
@@ -69,12 +71,15 @@ namespace Fwk.Tools
                 {
                     if (wAssemblyClass.BaseType != null)
                     {
-                        if (wAssemblyClass.BaseType.Name.Contains(_BaseClassNameFilter))
+                        foreach(string filter in _BaseClassNameFilter)
+                        {
+                        if (wAssemblyClass.BaseType.Name.Contains(filter))
                         {
                             wMenuItem = new Fwk.UI.Controls.Menu.Tree.MenuItem();
                             wMenuItem.AssemblyInfo = wAssemblyClass.FullyQualifiedName;
                             
                             wMenuItemList.Add(wMenuItem);
+                        }
                         }
                     }
                 }
