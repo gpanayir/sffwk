@@ -14,6 +14,7 @@ namespace Fwk.Tools.TreeView
 {
     public partial class FRM_EditMenu : Form
     {
+        
         public ImageList ImageList
         {
             get { return menuItemEditorSurvey1.imgList; }
@@ -32,13 +33,15 @@ namespace Fwk.Tools.TreeView
 
         #region Constructor
 
-        public FRM_EditMenu(TreeMenu menu, Fwk.UI.Controls.Menu.Tree.MenuItem  pMenuItemSurvey, Action pAction)
+        public FRM_EditMenu(TreeMenu menu, Fwk.UI.Controls.Menu.Tree.MenuItem  pMenuItemSurvey, Action pAction, string assemblybaseType)
         {
             InitializeComponent();
             menuItemEditorSurvey1.ShowAction = pAction;
             menuItemEditorSurvey1.MenuItem = pMenuItemSurvey;
             menuItemEditorSurvey1.TreeMenu = menu;
+            menuItemEditorSurvey1.AssemblyBaseType = assemblybaseType;
             menuItemEditorSurvey1.Populate();
+            
         }
 
         #endregion

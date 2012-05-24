@@ -130,12 +130,12 @@ namespace Fwk.Tools.TreeView
             SetShowAction();
         }
 
-  
 
 
+        public string AssemblyBaseType { get; set; }
         private void btnAssemblyinfo_Click(object sender, EventArgs e)
         {
-            using (FRM_AssemblyExplorer frm = new FRM_AssemblyExplorer("QuestionControlBase"))
+            using (FRM_AssemblyExplorer frm = new FRM_AssemblyExplorer(AssemblyBaseType))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {

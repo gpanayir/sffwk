@@ -18,6 +18,7 @@ namespace Fwk.Tools.TreeView
     public partial class FRM_MainDevExpress : Form
     {
         #region Members
+        public string AssemblybaseType { get; set; }
         static FwkSimpleStorageBase<ClientUserSettings> storage = new FwkSimpleStorageBase<ClientUserSettings>();
         bool _Saved = false;
         internal static TreeMenu Menu;
@@ -174,7 +175,7 @@ namespace Fwk.Tools.TreeView
 
             Fwk.UI.Controls.Menu.Tree.MenuItem wMenuItemNew = new Fwk.UI.Controls.Menu.Tree.MenuItem();
             wMenuItemNew.ParentID = parentId;
-            using (FRM_EditMenu wFrm = new FRM_EditMenu(Menu, wMenuItemNew, Action.New))
+            using (FRM_EditMenu wFrm = new FRM_EditMenu(Menu, wMenuItemNew, Action.New,this.AssemblybaseType))
             {
                 wFrm.ImageList = this.imageList2;
                 if (wFrm.ShowDialog() == DialogResult.OK)
@@ -207,7 +208,7 @@ namespace Fwk.Tools.TreeView
                 return;
             }
             //Load del Pelsoftulario de edicion de menues
-            using (FRM_EditMenu frm = new FRM_EditMenu(Menu, _MenuItemSelected, Action.Edit))
+            using (FRM_EditMenu frm = new FRM_EditMenu(Menu, _MenuItemSelected, Action.Edit,this.AssemblybaseType))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
