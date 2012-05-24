@@ -304,11 +304,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\*.pdb" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\*vshost*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\$(TargetFileName)manifest" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\ServiceManagement\$(TargetName).application" &gt;&gt; nul 
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
