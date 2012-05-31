@@ -63,6 +63,7 @@
             // 
             // menuItemEditorSurvey1
             // 
+            this.menuItemEditorSurvey1.AssemblyBaseType = null;
             this.menuItemEditorSurvey1.CategoryChange = false;
             this.menuItemEditorSurvey1.imageComboBoxEdit1_EditValueChanged = null;
             this.menuItemEditorSurvey1.Location = new System.Drawing.Point(16, 15);
@@ -73,7 +74,6 @@
             this.menuItemEditorSurvey1.Size = new System.Drawing.Size(769, 539);
             this.menuItemEditorSurvey1.TabIndex = 0;
             this.menuItemEditorSurvey1.TreeMenu = null;
-            
             // 
             // FRM_EditMenu
             // 

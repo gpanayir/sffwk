@@ -72,17 +72,31 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\StaticLibs\Fwk.Bases.FrontEnd.dll</HintPath>
     </Reference>
+    <Reference Include="Fwk.Security, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Framework\Fwk.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Fwk.UI, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Framework\Fwk.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -96,6 +110,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FRM_RuleSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_RuleSelector.Designer.cs">
+      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -148,6 +168,21 @@
     <Compile Include="SurveyMenu\Menuitem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UC_RuleSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_RuleSelector.Designer.cs">
+      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC_RulesMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_RulesMain.Designer.cs">
+      <DependentUpon>UC_RulesMain.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FRM_RuleSelector.resx">
+      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="SurveyMenu\frmImageList.resx">
       <DependentUpon>frmImageList.cs</DependentUpon>
@@ -186,6 +221,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UC_RuleSelector.resx">
+      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_RulesMain.resx">
+      <DependentUpon>UC_RulesMain.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\MenuImageList.datasource" />

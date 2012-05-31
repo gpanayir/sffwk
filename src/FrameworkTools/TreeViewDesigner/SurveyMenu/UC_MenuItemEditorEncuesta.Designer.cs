@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_MenuItemEditor));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.btnAuthorizationRule = new DevExpress.XtraEditors.ButtonEdit();
             this.txtCategory = new System.Windows.Forms.TextBox();
             this.lblCategory = new System.Windows.Forms.Label();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -54,7 +56,10 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.fwkMessageView_Error = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTag = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAuthorizationRule.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImageSelected)).BeginInit();
@@ -68,6 +73,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.txtTag);
+            this.groupBox1.Controls.Add(this.labelControl5);
+            this.groupBox1.Controls.Add(this.btnAuthorizationRule);
             this.groupBox1.Controls.Add(this.txtCategory);
             this.groupBox1.Controls.Add(this.lblCategory);
             this.groupBox1.Controls.Add(this.groupControl1);
@@ -87,6 +96,29 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Menu item info";
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(37, 427);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(104, 16);
+            this.labelControl5.TabIndex = 63;
+            this.labelControl5.Text = "Authorization Rule";
+            // 
+            // btnAuthorizationRule
+            // 
+            this.btnAuthorizationRule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAuthorizationRule.Location = new System.Drawing.Point(155, 424);
+            this.btnAuthorizationRule.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAuthorizationRule.Name = "btnAuthorizationRule";
+            this.btnAuthorizationRule.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.btnAuthorizationRule.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.btnAuthorizationRule.Size = new System.Drawing.Size(534, 22);
+            this.btnAuthorizationRule.TabIndex = 62;
+            this.btnAuthorizationRule.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnAuthorizationRule_ButtonClick);
             // 
             // txtCategory
             // 
@@ -232,7 +264,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(35, 458);
+            this.label6.Location = new System.Drawing.Point(35, 471);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 17);
@@ -244,10 +276,10 @@
             this.txtToolTipInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtToolTipInfo.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtToolTipInfo.Location = new System.Drawing.Point(136, 454);
+            this.txtToolTipInfo.Location = new System.Drawing.Point(155, 467);
             this.txtToolTipInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtToolTipInfo.Name = "txtToolTipInfo";
-            this.txtToolTipInfo.Size = new System.Drawing.Size(553, 22);
+            this.txtToolTipInfo.Size = new System.Drawing.Size(534, 22);
             this.txtToolTipInfo.TabIndex = 54;
             // 
             // checkBoxEnabled
@@ -281,20 +313,20 @@
             this.txtAssembly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAssembly.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtAssembly.Location = new System.Drawing.Point(136, 354);
+            this.txtAssembly.Location = new System.Drawing.Point(155, 354);
             this.txtAssembly.Margin = new System.Windows.Forms.Padding(4);
             this.txtAssembly.Multiline = true;
             this.txtAssembly.Name = "txtAssembly";
-            this.txtAssembly.Size = new System.Drawing.Size(553, 61);
+            this.txtAssembly.Size = new System.Drawing.Size(534, 40);
             this.txtAssembly.TabIndex = 14;
             // 
             // btnAssemblyinfo
             // 
             this.btnAssemblyinfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAssemblyinfo.Location = new System.Drawing.Point(711, 357);
+            this.btnAssemblyinfo.Location = new System.Drawing.Point(697, 358);
             this.btnAssemblyinfo.Margin = new System.Windows.Forms.Padding(4);
             this.btnAssemblyinfo.Name = "btnAssemblyinfo";
-            this.btnAssemblyinfo.Size = new System.Drawing.Size(40, 62);
+            this.btnAssemblyinfo.Size = new System.Drawing.Size(40, 31);
             this.btnAssemblyinfo.TabIndex = 13;
             this.btnAssemblyinfo.Text = "...";
             this.btnAssemblyinfo.UseVisualStyleBackColor = true;
@@ -342,6 +374,27 @@
             this.imageList1.Images.SetKeyName(0, "");
             this.imageList1.Images.SetKeyName(1, "");
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(35, 526);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 17);
+            this.label5.TabIndex = 65;
+            this.label5.Text = "Tag";
+            // 
+            // txtTag
+            // 
+            this.txtTag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTag.ForeColor = System.Drawing.Color.SteelBlue;
+            this.txtTag.Location = new System.Drawing.Point(155, 522);
+            this.txtTag.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTag.Name = "txtTag";
+            this.txtTag.Size = new System.Drawing.Size(534, 22);
+            this.txtTag.TabIndex = 64;
+            // 
             // UC_MenuItemEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -352,6 +405,7 @@
             this.Size = new System.Drawing.Size(769, 590);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAuthorizationRule.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
@@ -389,5 +443,9 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btn_ImageIndex;
         private System.Windows.Forms.Button btn_SelectedImageIndex;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.ButtonEdit btnAuthorizationRule;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtTag;
     }
 }

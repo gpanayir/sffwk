@@ -18,7 +18,7 @@ namespace Fwk.Tools.TreeView
     {
         #region Declarations
         public ImageList imgList;
- 
+
         bool _CategoryChange = false;
         [Browsable(false)]
         public bool CategoryChange
@@ -29,7 +29,7 @@ namespace Fwk.Tools.TreeView
         int? m_Image_Sel_index;
         int? m_Image_index;
         int? m_ImageType_index;
-    
+
         /// <summary>
         /// Almacena la acción a realizar por el Pelsoftulario
         /// </summary>
@@ -44,7 +44,7 @@ namespace Fwk.Tools.TreeView
             set
             {
                 _ShowAction = value;
-               
+
 
             }
         }
@@ -86,16 +86,15 @@ namespace Fwk.Tools.TreeView
 
             _MenuItemSelected.AssemblyInfo = this.txtAssembly.Text;
             _MenuItemSelected.DisplayName = this.txtDisplayName.Text;
-          
+
             _MenuItemSelected.ToolTipInfo = txtToolTipInfo.Text;
             _MenuItemSelected.Enabled = this.checkBoxEnabled.Enabled;
-            //_MenuItemSelected.Category = txtCategory.Text;
-
-       
+            _MenuItemSelected.AuthorizationRuleName = this.btnAuthorizationRule.Text;
+            _MenuItemSelected.Tag = this.txtTag.Text;
         }
 
 
-    
+
         /// <summary>
         /// Rellena los valores del menu    
         /// </summary>
@@ -107,7 +106,8 @@ namespace Fwk.Tools.TreeView
 
             this.txtToolTipInfo.Text = _MenuItemSelected.ToolTipInfo;
             this.checkBoxEnabled.Checked = _MenuItemSelected.Enabled;
-
+            this.btnAuthorizationRule.Text = _MenuItemSelected.AuthorizationRuleName;
+            this.txtTag.Text = _MenuItemSelected.Tag;
 
             if (_MenuItemSelected.ParentID.Equals(0))
                 this.txtCategory.Text = "Is root node";
@@ -142,7 +142,7 @@ namespace Fwk.Tools.TreeView
                     if (frm.SelectedPelsoft != null)
                     {
                         txtAssembly.Text = frm.SelectedPelsoft.AssemblyInfo;
-                       
+
                     }
                 }
             }
@@ -150,7 +150,7 @@ namespace Fwk.Tools.TreeView
 
         private void btnSelImageType_Click(object sender, EventArgs e)
         {
-            SelImage(this.pictureBoxTypeImage,ref m_ImageType_index);
+            SelImage(this.pictureBoxTypeImage, ref m_ImageType_index);
 
         }
         private void btnSelectedImage_Click(object sender, EventArgs e)
@@ -161,18 +161,18 @@ namespace Fwk.Tools.TreeView
         {
             SelImage(this.pictureBoxImage, ref m_Image_index);
         }
-       
+
         private void SelImage(PictureBox pPictureBox, ref int? index)
         {
 
-          
+
             using (frmImageList frm = new frmImageList())
             {
                 frm.Populate();
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                   pPictureBox.Image = frm.SelectedImage.Image;
-                   index = frm.SelectedImage.Index;
+                    pPictureBox.Image = frm.SelectedImage.Image;
+                    index = frm.SelectedImage.Index;
                 }
             }
         }
@@ -186,7 +186,7 @@ namespace Fwk.Tools.TreeView
         {
             txtAssembly.Enabled = pEnable;
             txtDisplayName.Enabled = pEnable;
-          
+
             txtToolTipInfo.Enabled = pEnable;
 
             txtCategory.Enabled = false;// && _MenuItemSelected.IsCategory;
@@ -205,7 +205,7 @@ namespace Fwk.Tools.TreeView
         {
             txtAssembly.Text = String.Empty;
             txtDisplayName.Text = String.Empty;
-         
+
             txtToolTipInfo.Text = String.Empty;
             checkBoxEnabled.Enabled = false;
             pictureBoxImageSelected.Image = null;
@@ -249,14 +249,14 @@ namespace Fwk.Tools.TreeView
             }
             if (this.ParentForm != null)
                 this.ParentForm.Text = wTitle;
-        
+
         }
 
-      
+
 
         private void txtCategory_Validated(object sender, EventArgs e)
         {
-            if (_MenuItemSelected.ParentID.Equals(0)  && _ShowAction == Action.Edit)
+            if (_MenuItemSelected.ParentID.Equals(0) && _ShowAction == Action.Edit)
             {
                 if (string.IsNullOrEmpty(txtCategory.Text))
                 {
@@ -265,18 +265,25 @@ namespace Fwk.Tools.TreeView
                 }
                 //Determina si la categoria fue modificada
                 //_CategoryChange = (string.Compare(txtCategory.Text, _MenuItemSelected.Category) != 0);
-             
+
                 errorProvider1.SetError((Control)sender, String.Empty);
             }
- 
+
         }
 
         public EventHandler imageComboBoxEdit1_EditValueChanged { get; set; }
 
+        private void btnAuthorizationRule_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            FRM_RuleSelector wRuleSelectorForm = new FRM_RuleSelector();
+            wRuleSelectorForm.OnSelectRule += new EventHandler(wRuleSelectorForm_OnSelectRule);
+            wRuleSelectorForm.AllowRulesMultiSelect = false;
+            wRuleSelectorForm.ShowDialog();
+        }
 
-
-       
-
-       
+        void wRuleSelectorForm_OnSelectRule(object sender, EventArgs e)
+        {
+            btnAuthorizationRule.Text = ((FRM_RuleSelector)sender).SelectedRule.Name;// wRuleSelectorForm.se //((AuthorizationRuleData)sender).Name; 
+        }
     }
 }
