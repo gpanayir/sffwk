@@ -196,6 +196,9 @@ namespace Fwk.Tools.TreeView
             btnAssemblyinfo.Enabled = pEnable;
 
             btnSelImageType.Enabled = pEnable;
+
+            btnAuthorizationRule.Enabled = pEnable;
+            txtTag.Enabled = pEnable;
         }
 
         /// <summary>

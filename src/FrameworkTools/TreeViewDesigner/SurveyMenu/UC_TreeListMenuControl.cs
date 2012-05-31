@@ -76,7 +76,9 @@ namespace Fwk.Tools.TreeView
 
         public void Populate(string pFullFileName,ImageList imgList)
         {
+            if (string.IsNullOrEmpty(pFullFileName)) return;
             this.imageList1 = imgList;
+
             TreeMenu menu = TreeListEngineDevExpress.LoadMenuFromFile(pFullFileName);
             this.menuItemSurveyBindingSource.DataSource = menu.ItemList;
 

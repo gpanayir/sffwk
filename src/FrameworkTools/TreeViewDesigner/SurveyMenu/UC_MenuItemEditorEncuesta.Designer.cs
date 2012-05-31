@@ -115,7 +115,6 @@
             this.btnAuthorizationRule.Name = "btnAuthorizationRule";
             this.btnAuthorizationRule.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.btnAuthorizationRule.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.btnAuthorizationRule.Size = new System.Drawing.Size(534, 22);
             this.btnAuthorizationRule.TabIndex = 62;
             this.btnAuthorizationRule.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnAuthorizationRule_ButtonClick);
