@@ -63,121 +63,134 @@ namespace Fwk.Tools.Menu
             // 
             // panelControl1
             // 
-            this.panelControl1.Location = new System.Drawing.Point(3, 341);
+            this.panelControl1.Location = new System.Drawing.Point(3, 418);
             this.panelControl1.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.panelControl1.Size = new System.Drawing.Size(558, 33);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.panelControl1.Size = new System.Drawing.Size(652, 41);
             this.panelControl1.Visible = true;
             // 
             // txtToolTip
             // 
-            this.txtToolTip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtToolTip.Location = new System.Drawing.Point(90, 73);
+            this.txtToolTip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtToolTip.Location = new System.Drawing.Point(105, 90);
+            this.txtToolTip.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtToolTip.Name = "txtToolTip";
-            this.txtToolTip.Size = new System.Drawing.Size(463, 20);
+            this.txtToolTip.Size = new System.Drawing.Size(540, 22);
             this.txtToolTip.TabIndex = 12;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(8, 76);
+            this.labelControl3.Location = new System.Drawing.Point(9, 94);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(63, 13);
+            this.labelControl3.Size = new System.Drawing.Size(77, 16);
             this.labelControl3.TabIndex = 11;
             this.labelControl3.Text = "ToolTip Text:";
             // 
             // txtCaption
             // 
-            this.txtCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCaption.Location = new System.Drawing.Point(90, 47);
+            this.txtCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCaption.Location = new System.Drawing.Point(105, 58);
+            this.txtCaption.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCaption.Name = "txtCaption";
-            this.txtCaption.Size = new System.Drawing.Size(463, 20);
+            this.txtCaption.Size = new System.Drawing.Size(540, 22);
             this.txtCaption.TabIndex = 10;
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(8, 50);
+            this.labelControl2.Location = new System.Drawing.Point(9, 62);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(41, 13);
+            this.labelControl2.Size = new System.Drawing.Size(48, 16);
             this.labelControl2.TabIndex = 9;
             this.labelControl2.Text = "Caption:";
             // 
             // txtId
             // 
-            this.txtId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtId.Location = new System.Drawing.Point(90, 21);
-            this.txtId.MinimumSize = new System.Drawing.Size(81, 20);
+            this.txtId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtId.Location = new System.Drawing.Point(105, 26);
+            this.txtId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtId.MinimumSize = new System.Drawing.Size(94, 20);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(194, 20);
+            this.txtId.Size = new System.Drawing.Size(226, 22);
             this.txtId.TabIndex = 8;
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(8, 24);
+            this.labelControl1.Location = new System.Drawing.Point(9, 30);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(50, 13);
+            this.labelControl1.Size = new System.Drawing.Size(57, 16);
             this.labelControl1.TabIndex = 7;
             this.labelControl1.Text = "Button ID:";
             // 
             // txtShortCut
             // 
-            this.txtShortCut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtShortCut.Location = new System.Drawing.Point(90, 99);
+            this.txtShortCut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtShortCut.Location = new System.Drawing.Point(105, 122);
+            this.txtShortCut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtShortCut.Name = "txtShortCut";
-            this.txtShortCut.Size = new System.Drawing.Size(463, 20);
+            this.txtShortCut.Size = new System.Drawing.Size(540, 22);
             this.txtShortCut.TabIndex = 16;
             // 
             // txtAssemblyInfo
             // 
-            this.txtAssemblyInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAssemblyInfo.Location = new System.Drawing.Point(105, 267);
+            this.txtAssemblyInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAssemblyInfo.Location = new System.Drawing.Point(122, 329);
+            this.txtAssemblyInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAssemblyInfo.Name = "txtAssemblyInfo";
             this.txtAssemblyInfo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtAssemblyInfo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.txtAssemblyInfo.Size = new System.Drawing.Size(447, 20);
+            this.txtAssemblyInfo.Size = new System.Drawing.Size(521, 22);
             this.txtAssemblyInfo.TabIndex = 18;
             this.txtAssemblyInfo.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.txtAssemblyInfo_ButtonClick);
             // 
             // pctSmallImage
             // 
             this.pctSmallImage.EditValue = global::Fwk.Tools.Menu.Properties.Resources.docs_16;
-            this.pctSmallImage.Location = new System.Drawing.Point(94, 23);
+            this.pctSmallImage.Location = new System.Drawing.Point(110, 28);
+            this.pctSmallImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pctSmallImage.Name = "pctSmallImage";
-            this.pctSmallImage.Size = new System.Drawing.Size(41, 31);
+            this.pctSmallImage.Size = new System.Drawing.Size(48, 38);
             this.pctSmallImage.TabIndex = 20;
             // 
             // btnLoadSmallImage
             // 
-            this.btnLoadSmallImage.Location = new System.Drawing.Point(154, 31);
+            this.btnLoadSmallImage.Location = new System.Drawing.Point(180, 38);
+            this.btnLoadSmallImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLoadSmallImage.Name = "btnLoadSmallImage";
-            this.btnLoadSmallImage.Size = new System.Drawing.Size(23, 23);
+            this.btnLoadSmallImage.Size = new System.Drawing.Size(27, 28);
             this.btnLoadSmallImage.TabIndex = 21;
             this.btnLoadSmallImage.Text = "...";
             this.btnLoadSmallImage.Click += new System.EventHandler(this.btnLoadIcon_Click);
             // 
             // btnAuthorizationRule
             // 
-            this.btnAuthorizationRule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAuthorizationRule.Location = new System.Drawing.Point(105, 299);
+            this.btnAuthorizationRule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAuthorizationRule.Location = new System.Drawing.Point(122, 368);
+            this.btnAuthorizationRule.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAuthorizationRule.Name = "btnAuthorizationRule";
             this.btnAuthorizationRule.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.btnAuthorizationRule.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.btnAuthorizationRule.Size = new System.Drawing.Size(447, 20);
+            this.btnAuthorizationRule.Size = new System.Drawing.Size(521, 22);
             this.btnAuthorizationRule.TabIndex = 22;
             this.btnAuthorizationRule.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnAuthorizationRule_ButtonClick);
             this.btnAuthorizationRule.EditValueChanged += new System.EventHandler(this.btnAuthorizationRule_EditValueChanged);
             // 
             // btnLoadLargeImage
             // 
-            this.btnLoadLargeImage.Location = new System.Drawing.Point(154, 83);
+            this.btnLoadLargeImage.Location = new System.Drawing.Point(180, 102);
+            this.btnLoadLargeImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLoadLargeImage.Name = "btnLoadLargeImage";
-            this.btnLoadLargeImage.Size = new System.Drawing.Size(23, 23);
+            this.btnLoadLargeImage.Size = new System.Drawing.Size(27, 28);
             this.btnLoadLargeImage.TabIndex = 26;
             this.btnLoadLargeImage.Text = "...";
             this.btnLoadLargeImage.Click += new System.EventHandler(this.btnLoadLargeImage_Click);
@@ -185,9 +198,10 @@ namespace Fwk.Tools.Menu
             // pctLargeImage
             // 
             this.pctLargeImage.EditValue = global::Fwk.Tools.Menu.Properties.Resources.docs_32;
-            this.pctLargeImage.Location = new System.Drawing.Point(96, 69);
+            this.pctLargeImage.Location = new System.Drawing.Point(112, 85);
+            this.pctLargeImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pctLargeImage.Name = "pctLargeImage";
-            this.pctLargeImage.Size = new System.Drawing.Size(39, 37);
+            this.pctLargeImage.Size = new System.Drawing.Size(45, 46);
             this.pctLargeImage.TabIndex = 25;
             // 
             // grpImages
@@ -198,55 +212,63 @@ namespace Fwk.Tools.Menu
             this.grpImages.Controls.Add(this.pctLargeImage);
             this.grpImages.Controls.Add(this.pctSmallImage);
             this.grpImages.Controls.Add(this.btnLoadSmallImage);
-            this.grpImages.Location = new System.Drawing.Point(3, 125);
+            this.grpImages.Location = new System.Drawing.Point(3, 154);
+            this.grpImages.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpImages.Name = "grpImages";
-            this.grpImages.Size = new System.Drawing.Size(542, 121);
+            this.grpImages.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpImages.Size = new System.Drawing.Size(632, 149);
             this.grpImages.TabIndex = 27;
             this.grpImages.TabStop = false;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(8, 31);
+            this.labelControl6.Location = new System.Drawing.Point(9, 38);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(55, 13);
+            this.labelControl6.Size = new System.Drawing.Size(71, 16);
             this.labelControl6.TabIndex = 31;
             this.labelControl6.Text = "Small image";
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(4, 83);
+            this.labelControl7.Location = new System.Drawing.Point(5, 102);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(58, 13);
+            this.labelControl7.Size = new System.Drawing.Size(71, 16);
             this.labelControl7.TabIndex = 32;
             this.labelControl7.Text = "Large image";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(8, 106);
+            this.labelControl4.Location = new System.Drawing.Point(9, 130);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(47, 13);
+            this.labelControl4.Size = new System.Drawing.Size(55, 16);
             this.labelControl4.TabIndex = 28;
             this.labelControl4.Text = "ShortCut:";
             // 
             // assemblyInfoLabel
             // 
-            this.assemblyInfoLabel.Location = new System.Drawing.Point(10, 270);
+            this.assemblyInfoLabel.Location = new System.Drawing.Point(12, 332);
+            this.assemblyInfoLabel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.assemblyInfoLabel.Name = "assemblyInfoLabel";
-            this.assemblyInfoLabel.Size = new System.Drawing.Size(72, 13);
+            this.assemblyInfoLabel.Size = new System.Drawing.Size(85, 16);
             this.assemblyInfoLabel.TabIndex = 29;
             this.assemblyInfoLabel.Text = "Assembly Info:";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(11, 306);
+            this.labelControl5.Location = new System.Drawing.Point(13, 377);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(88, 13);
+            this.labelControl5.Size = new System.Drawing.Size(104, 16);
             this.labelControl5.TabIndex = 30;
             this.labelControl5.Text = "Authorization Rule";
+            this.labelControl5.Click += new System.EventHandler(this.labelControl5_Click);
             // 
             // UC_ButtonBaseEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.assemblyInfoLabel);
@@ -264,9 +286,10 @@ namespace Fwk.Tools.Menu
             this.LookAndFeel.SkinName = "Black";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.MinimumSize = new System.Drawing.Size(564, 377);
+            this.MinimumSize = new System.Drawing.Size(658, 464);
             this.Name = "UC_ButtonBaseEditor";
-            this.Size = new System.Drawing.Size(564, 377);
+            this.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Size = new System.Drawing.Size(658, 464);
             this.Controls.SetChildIndex(this.panelControl1, 0);
             this.Controls.SetChildIndex(this.labelControl1, 0);
             this.Controls.SetChildIndex(this.txtId, 0);

@@ -75,18 +75,19 @@ namespace Fwk.Tools.Menu
             // 
             // ctlTreeViewMenuBar
             // 
-            this.ctlTreeViewMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.ctlTreeViewMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ctlTreeViewMenuBar.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colCaption,
             this.colObjeto});
-            this.ctlTreeViewMenuBar.Location = new System.Drawing.Point(202, 74);
+            this.ctlTreeViewMenuBar.Location = new System.Drawing.Point(236, 91);
+            this.ctlTreeViewMenuBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ctlTreeViewMenuBar.Name = "ctlTreeViewMenuBar";
             this.ctlTreeViewMenuBar.OptionsBehavior.PopulateServiceColumns = true;
             this.ctlTreeViewMenuBar.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.ctlTreeViewMenuBar.OptionsSelection.UseIndicatorForSelection = true;
             this.ctlTreeViewMenuBar.ShowButtonMode = DevExpress.XtraTreeList.ShowButtonModeEnum.ShowForFocusedRow;
-            this.ctlTreeViewMenuBar.Size = new System.Drawing.Size(166, 528);
+            this.ctlTreeViewMenuBar.Size = new System.Drawing.Size(194, 650);
             this.ctlTreeViewMenuBar.TabIndex = 0;
             this.ctlTreeViewMenuBar.TreeLineStyle = DevExpress.XtraTreeList.LineStyle.Light;
             this.ctlTreeViewMenuBar.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.ctlTreeViewMenuBar_FocusedNodeChanged);
@@ -112,21 +113,22 @@ namespace Fwk.Tools.Menu
             // 
             // grpEditionContainer
             // 
-            this.grpEditionContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpEditionContainer.Location = new System.Drawing.Point(459, 108);
+            this.grpEditionContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpEditionContainer.Location = new System.Drawing.Point(535, 133);
             this.grpEditionContainer.Margin = new System.Windows.Forms.Padding(0);
             this.grpEditionContainer.Name = "grpEditionContainer";
-            this.grpEditionContainer.Size = new System.Drawing.Size(558, 497);
+            this.grpEditionContainer.Size = new System.Drawing.Size(651, 612);
             this.grpEditionContainer.TabIndex = 1;
             // 
             // btnDelete
             // 
             this.btnDelete.Image = global::Fwk.Tools.Menu.Properties.Resources.close_16;
-            this.btnDelete.Location = new System.Drawing.Point(265, 46);
+            this.btnDelete.Location = new System.Drawing.Point(309, 57);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(47, 25);
+            this.btnDelete.Size = new System.Drawing.Size(55, 31);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "-";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -135,9 +137,10 @@ namespace Fwk.Tools.Menu
             // 
             this.btnAddNew.DropDownControl = this.popNew;
             this.btnAddNew.Image = global::Fwk.Tools.Menu.Properties.Resources.add_16;
-            this.btnAddNew.Location = new System.Drawing.Point(202, 45);
+            this.btnAddNew.Location = new System.Drawing.Point(236, 55);
+            this.btnAddNew.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(57, 26);
+            this.btnAddNew.Size = new System.Drawing.Size(66, 32);
             this.btnAddNew.TabIndex = 3;
             this.btnAddNew.Text = "+";
             // 
@@ -175,6 +178,38 @@ namespace Fwk.Tools.Menu
             this.barManager1.MaxItemId = 5;
             this.barManager1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barManager1_ItemClick);
             // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(3, 5);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1194, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(3, 747);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1194, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(3, 5);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 742);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1197, 5);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 742);
+            // 
             // barButtonItem1
             // 
             this.barButtonItem1.Caption = "Menu";
@@ -184,9 +219,10 @@ namespace Fwk.Tools.Menu
             // btnMoveUp
             // 
             this.btnMoveUp.Image = global::Fwk.Tools.Menu.Properties.Resources.up_16;
-            this.btnMoveUp.Location = new System.Drawing.Point(374, 108);
+            this.btnMoveUp.Location = new System.Drawing.Point(436, 133);
+            this.btnMoveUp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMoveUp.Name = "btnMoveUp";
-            this.btnMoveUp.Size = new System.Drawing.Size(49, 27);
+            this.btnMoveUp.Size = new System.Drawing.Size(57, 33);
             this.btnMoveUp.TabIndex = 4;
             this.btnMoveUp.Text = "Up";
             this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
@@ -194,9 +230,10 @@ namespace Fwk.Tools.Menu
             // btnMoveDown
             // 
             this.btnMoveDown.Image = global::Fwk.Tools.Menu.Properties.Resources.down_16;
-            this.btnMoveDown.Location = new System.Drawing.Point(374, 141);
+            this.btnMoveDown.Location = new System.Drawing.Point(436, 174);
+            this.btnMoveDown.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMoveDown.Name = "btnMoveDown";
-            this.btnMoveDown.Size = new System.Drawing.Size(49, 30);
+            this.btnMoveDown.Size = new System.Drawing.Size(57, 37);
             this.btnMoveDown.TabIndex = 5;
             this.btnMoveDown.Text = "Dn";
             this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
@@ -205,21 +242,23 @@ namespace Fwk.Tools.Menu
             // 
             this.toolBarControl1.AcceptButton = null;
             this.toolBarControl1.AllowCheckAuthorization = false;
-            this.toolBarControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolBarControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.toolBarControl1.CancelButton = null;
-            this.toolBarControl1.Location = new System.Drawing.Point(459, 26);
+            this.toolBarControl1.Location = new System.Drawing.Point(535, 32);
+            this.toolBarControl1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.toolBarControl1.Name = "toolBarControl1";
-            this.toolBarControl1.Size = new System.Drawing.Size(558, 56);
+            this.toolBarControl1.Size = new System.Drawing.Size(651, 69);
             this.toolBarControl1.TabIndex = 6;
             this.toolBarControl1.ToolBar = null;
             // 
             // btnRefresh
             // 
             this.btnRefresh.Image = global::Fwk.Tools.Menu.Properties.Resources.refresh_32;
-            this.btnRefresh.Location = new System.Drawing.Point(414, 30);
+            this.btnRefresh.Location = new System.Drawing.Point(483, 37);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(43, 36);
+            this.btnRefresh.Size = new System.Drawing.Size(50, 44);
             this.btnRefresh.TabIndex = 7;
             this.btnRefresh.ToolTip = "Refresh preview";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -260,7 +299,7 @@ namespace Fwk.Tools.Menu
             this.removeFiletoolStripBtn,
             this.toolStripSeparator,
             this.toolStripSeparator1});
-            this.toolStripAppClientConfig.Location = new System.Drawing.Point(4, 4);
+            this.toolStripAppClientConfig.Location = new System.Drawing.Point(5, 5);
             this.toolStripAppClientConfig.Name = "toolStripAppClientConfig";
             this.toolStripAppClientConfig.Size = new System.Drawing.Size(139, 25);
             this.toolStripAppClientConfig.TabIndex = 13;
@@ -331,14 +370,15 @@ namespace Fwk.Tools.Menu
             // 
             // lstFiles
             // 
-            this.lstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.lstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lstFiles.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.menuFileBindingSource, "Name", true));
             this.lstFiles.DataSource = this.menuFileBindingSource;
             this.lstFiles.DisplayMember = "Name";
-            this.lstFiles.Location = new System.Drawing.Point(6, 45);
+            this.lstFiles.Location = new System.Drawing.Point(7, 55);
+            this.lstFiles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstFiles.Name = "lstFiles";
-            this.lstFiles.Size = new System.Drawing.Size(190, 557);
+            this.lstFiles.Size = new System.Drawing.Size(222, 686);
             this.lstFiles.TabIndex = 15;
             this.lstFiles.Click += new System.EventHandler(this.lstFiles_Click);
             // 
@@ -347,26 +387,27 @@ namespace Fwk.Tools.Menu
             this.lblFileRemoved.AutoSize = true;
             this.lblFileRemoved.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lblFileRemoved.ForeColor = System.Drawing.Color.Red;
-            this.lblFileRemoved.Location = new System.Drawing.Point(464, 85);
+            this.lblFileRemoved.Location = new System.Drawing.Point(541, 105);
             this.lblFileRemoved.Name = "lblFileRemoved";
-            this.lblFileRemoved.Size = new System.Drawing.Size(268, 19);
+            this.lblFileRemoved.Size = new System.Drawing.Size(336, 24);
             this.lblFileRemoved.TabIndex = 16;
             this.lblFileRemoved.Text = "Este archivo no exite o fue removido";
             this.lblFileRemoved.Visible = false;
             // 
             // lblSelectedFileName
             // 
-            this.lblSelectedFileName.Location = new System.Drawing.Point(170, 7);
+            this.lblSelectedFileName.Location = new System.Drawing.Point(198, 9);
+            this.lblSelectedFileName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblSelectedFileName.Name = "lblSelectedFileName";
-            this.lblSelectedFileName.Size = new System.Drawing.Size(43, 13);
+            this.lblSelectedFileName.Size = new System.Drawing.Size(53, 16);
             this.lblSelectedFileName.TabIndex = 14;
             this.lblSelectedFileName.Text = "file name";
             // 
             // FRM_ToolBarDesigner
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1029, 611);
+            this.ClientSize = new System.Drawing.Size(1200, 752);
             this.Controls.Add(this.lblFileRemoved);
             this.Controls.Add(this.lstFiles);
             this.Controls.Add(this.lblSelectedFileName);
@@ -383,10 +424,12 @@ namespace Fwk.Tools.Menu
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "FRM_ToolBarDesigner";
+            this.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Text = "Child menu designer";
-            this.Load += new System.EventHandler(this.MenuDesigner_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ToolBarDesigner_FormClosing);
+            this.Load += new System.EventHandler(this.MenuDesigner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ctlTreeViewMenuBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpEditionContainer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popNew)).EndInit();

@@ -129,9 +129,9 @@ namespace Fwk.UI.Controls.Menu.Tree
             set { _ParentID = value; }
         }
 
+        public string AuthorizationRuleName { get; set; }
 
-
-        //public bool IsCategory { get; set; }
+        public string  Tag { get; set; }
 
         //public string Category { get; set; }
     }
