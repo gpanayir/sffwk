@@ -237,14 +237,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ApplicationMenu\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Fwk.UI\Fwk.UI.csproj">
       <Project>{935FB335-4248-4FEB-ADF9-D0342EFAA517}</Project>
       <Name>Fwk.UI</Name>
-      <Private>False</Private>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ApplicationMenu\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
