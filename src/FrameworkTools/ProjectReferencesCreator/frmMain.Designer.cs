@@ -366,7 +366,7 @@
             this.chkAllusLibs.Name = "chkAllusLibs";
             this.chkAllusLibs.Size = new System.Drawing.Size(66, 17);
             this.chkAllusLibs.TabIndex = 16;
-            this.chkAllusLibs.Text = "Allus libs";
+            this.chkAllusLibs.Text = "Pelsoft libs";
             this.chkAllusLibs.UseVisualStyleBackColor = true;
             this.chkAllusLibs.CheckedChanged += new System.EventHandler(this.chkAllusLibs_CheckedChanged);
             // 
