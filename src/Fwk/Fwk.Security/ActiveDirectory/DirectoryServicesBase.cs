@@ -89,7 +89,7 @@ namespace Fwk.Security.ActiveDirectory
         ///Ej: 
         ///LDAP://domain/DC=xxx,DC=com
         ///LDAP://CORRSF71NT13.actionlinecba.org/DC=actionlinecba,DC=org
-        ///LDAP://Corba362nt01.alcomovistar.com.ar/OU=Movistar Sabattini,dc=alcomovistar,dc=com,dc=ar
+        ///LDAP://Corba362nt01.alcopelsoft.com.ar/OU=pelsoft Sabattini,dc=alcopelsoft,dc=com,dc=ar
         /// </summary>
         public String LDAPPath
         {
