@@ -11,7 +11,7 @@ using Fwk.Transaction;
 using Fwk.Security.ISVC.AuthenticateUser;
 using Fwk.Security.ISVC.CreateUsers;
 using Fwk.Bases;
-using Fwk.Security.ISVC.SearchAllUsers;
+using Fwk.Security.ISVC.SearchPelsofters;
 using Fwk.Security.BE;
 using Fwk.Security.ISVC.GetUserInfoByParams;
 using Fwk.Security.ISVC.UpdateUser;
@@ -41,14 +41,14 @@ namespace Fwk.Security.Service.Test
         
 
         [TestMethod]
-        public void SearchAllUsersService()
+        public void SearchPelsoftersService()
         {
             string strErrorResult = string.Empty;
 
-            SearchAllUsersReq req = new SearchAllUsersReq();
+            SearchPelsoftersReq req = new SearchPelsoftersReq();
 
 
-            SearchAllUsersRes res = ClientServiceBase.ExecuteService<SearchAllUsersReq, SearchAllUsersRes>(req);
+            SearchPelsoftersRes res = ClientServiceBase.ExecuteService<SearchPelsoftersReq, SearchPelsoftersRes>(req);
             if (res.Error != null)
             {
                 strErrorResult = Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message;
@@ -60,14 +60,14 @@ namespace Fwk.Security.Service.Test
         }
 
         [TestMethod]
-        public void SearchAllUsersService_WithProvider()
+        public void SearchPelsoftersService_WithProvider()
         {
             string strErrorResult = string.Empty;
 
-            SearchAllUsersReq req = new SearchAllUsersReq();
+            SearchPelsoftersReq req = new SearchPelsoftersReq();
 
 
-            SearchAllUsersRes res = ClientServiceBase.ExecuteService<SearchAllUsersReq, SearchAllUsersRes>("XML_test",req);
+            SearchPelsoftersRes res = ClientServiceBase.ExecuteService<SearchPelsoftersReq, SearchPelsoftersRes>("XML_test",req);
             if (res.Error != null)
             {
                 strErrorResult = Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message;

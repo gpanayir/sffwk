@@ -5,7 +5,7 @@
   </TestList>
   <TestList name="Security" id="916940be-e8a6-42a6-9c12-9dd34865ea62" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
     <TestLinks>
-      <TestLink id="bfdbc977-2d08-8440-e2fe-64fa65515917" name="SearchAllUsersService" storage="..\services\fwk.security.service.test\bin\debug\fwk.security.service.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="bfdbc977-2d08-8440-e2fe-64fa65515917" name="SearchPelsoftersService" storage="..\services\fwk.security.service.test\bin\debug\fwk.security.service.test.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
   <TestList name="Fwk.Loggin" id="96f829e3-7b35-4827-a593-6fea0a384b2f" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">

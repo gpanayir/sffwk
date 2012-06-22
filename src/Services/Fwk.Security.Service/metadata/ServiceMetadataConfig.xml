@@ -1,11 +1,11 @@
 
 <ServiceConfigurationCollection>
-  <ServiceConfiguration name="SearchAllUsersService">
+  <ServiceConfiguration name="SearchPelsoftersService">
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2010-08-11T12:40:09.995661-03:00</CreatedDateTime>
-    <Handler>Fwk.Security.SVC.SearchAllUsersService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Fwk.Security.ISVC.SearchAllUsers.SearchAllUsersReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Fwk.Security.ISVC.SearchAllUsers.SearchAllUsersRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Fwk.Security.SVC.SearchPelsoftersService, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Fwk.Security.ISVC.SearchPelsofters.SearchPelsoftersReq, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Fwk.Security.ISVC.SearchPelsofters.SearchPelsoftersRes, Fwk.Security.Service, Version=3.1.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>

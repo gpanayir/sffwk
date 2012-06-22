@@ -164,7 +164,7 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns>lista de <see cref="User"/></returns>
-        public static List<User> GetAllUsers(string providerName)
+        public static List<User> GetPelsofters(string providerName)
         {
             SqlMembershipProvider provider = GetSqlMembershipProvider(providerName);
           
@@ -176,12 +176,12 @@ namespace Fwk.Security
 
             try
             {
-                MembershipUserCollection list = provider.GetAllUsers(0, pageSize, out totalUsers);
+                MembershipUserCollection list = provider.GetPelsofters(0, pageSize, out totalUsers);
                 totalPages = ((totalUsers - 1) / pageSize) + 1;
                 AddUsers(wUsersList, list);
                 for (int currentPage = 1; currentPage < totalPages; currentPage++)
                 {
-                    list = provider.GetAllUsers(currentPage, pageSize, out totalUsers);
+                    list = provider.GetPelsofters(currentPage, pageSize, out totalUsers);
                     AddUsers(wUsersList, list);
                    
                 }

@@ -316,17 +316,17 @@ namespace Fwk.Security.BC
             return wUser;
         }
 
-        public UserList GetAllUser()
+        public UserList GetPelsofter()
         {
           
 
             // Se obtienen los usuarios de las memberships
             UserList pUserList = new UserList();
-            pUserList.AddRange(FwkMembership.GetAllUsers(_ProviderName));
+            pUserList.AddRange(FwkMembership.GetPelsofters(_ProviderName));
 
             // Se obtienen los usuarios Custom
             //if(pCustomUserStoreProcedure != String.Empty)
-            //    wResult = UsersDAC.SearchAllUsers(_ProviderName, pCustomUserStoreProcedure);
+            //    wResult = UsersDAC.SearchPelsofters(_ProviderName, pCustomUserStoreProcedure);
 
             return pUserList;
         }

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Fwk.Bases;
 using Fwk.Security.BE;
 using Fwk.Security;
-using Fwk.Security.ISVC.SearchAllUsers;
+using Fwk.Security.ISVC.SearchPelsofters;
 using Fwk.Security.Common;
 using Fwk.Security.DAC;
 using Fwk.Security.BC;
@@ -13,17 +13,17 @@ using Fwk.Security.BC;
 
 namespace Fwk.Security.SVC
 {
-    public class SearchAllUsersService : BusinessService<SearchAllUsersReq, SearchAllUsersRes>
+    public class SearchPelsoftersService : BusinessService<SearchPelsoftersReq, SearchPelsoftersRes>
     {
-        public override SearchAllUsersRes Execute(SearchAllUsersReq pServiceRequest)
+        public override SearchPelsoftersRes Execute(SearchPelsoftersReq pServiceRequest)
         {
-            SearchAllUsersRes wRes = new SearchAllUsersRes();
+            SearchPelsoftersRes wRes = new SearchPelsoftersRes();
             UserBC wBC = new UserBC(pServiceRequest.ContextInformation.CompanyId,pServiceRequest.SecurityProviderName);
 
             //if (string.IsNullOrEmpty(pServiceRequest.BusinessData.ApplicationName))
             //    pServiceRequest.BusinessData.ApplicationName = Membership.ApplicationName;
 
-            wRes.BusinessData.UserList = wBC.GetAllUser();
+            wRes.BusinessData.UserList = wBC.GetPelsofter();
             
 
             return wRes;

@@ -42,7 +42,7 @@ namespace Fwk.Security.Service.Test
             base.Tx.InitScope();
             CreateRole_No_Service("Role_1");
 
-            List<User> userList = Fwk.Security.FwkMembership.GetAllUsers(null);
+            List<User> userList = Fwk.Security.FwkMembership.GetPelsofters(null);
             if (userList.Count > 0)
             {
                 AssignRolesToUser_No_Service(userList[0].UserName, "Role_1");
@@ -178,7 +178,7 @@ namespace Fwk.Security.Service.Test
             SearchRolesForUserService svc = new SearchRolesForUserService();
             SearchRolesForUserReq req = new SearchRolesForUserReq();
 
-            List<User> userList = Fwk.Security.FwkMembership.GetAllUsers(null);
+            List<User> userList = Fwk.Security.FwkMembership.GetPelsofters(null);
             if (userList.Count > 0)
             {
                 req.BusinessData.Username = userList[0].UserName;

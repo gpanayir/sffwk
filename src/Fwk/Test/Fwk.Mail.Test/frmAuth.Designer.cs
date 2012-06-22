@@ -40,7 +40,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(268, 20);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "pruebadesarrollo@tesa.allus.com.ar";
+            this.textBox1.Text = "pruebadesarrollo@tesa.Pelsoft.com.ar";
             // 
             // textBox2
             // 

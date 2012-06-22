@@ -8,22 +8,22 @@ using Fwk.Security.Common;
 using System.Data.SqlClient;
 
 
-namespace Fwk.Security.ISVC.SearchAllUsers
+namespace Fwk.Security.ISVC.SearchPelsofters
 {
 
     [Serializable]
-    public class SearchAllUsersReq : Request<DummyContract>
+    public class SearchPelsoftersReq : Request<DummyContract>
     {
-        public SearchAllUsersReq()
+        public SearchPelsoftersReq()
         {
-            this.ServiceName = "SearchAllUsersService";
+            this.ServiceName = "SearchPelsoftersService";
         }
     }
 
   
 
     [Serializable]
-    public class SearchAllUsersRes : Response<Result>
+    public class SearchPelsoftersRes : Response<Result>
     {
 
     }

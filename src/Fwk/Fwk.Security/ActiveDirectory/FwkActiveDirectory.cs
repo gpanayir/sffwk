@@ -202,7 +202,7 @@ namespace Fwk.Security.Common
         /// Obtiene todo los usuarios pertenecientes al dominio.-
         /// objectClass = person
         /// </summary>
-        public List<FwkIdentity> GetAllUsers()
+        public List<FwkIdentity> GetPelsofters()
         {
             List<FwkIdentity> userList = null;
             ExecutepQuery("(&(objectClass=person))", "sAMAccountName", out userList);

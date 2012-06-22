@@ -11,7 +11,7 @@ using Fwk.Transaction;
 using Fwk.Security.ISVC.AuthenticateUser;
 using Fwk.Security.ISVC.CreateUsers;
 using Fwk.Bases;
-using Fwk.Security.ISVC.SearchAllUsers;
+using Fwk.Security.ISVC.SearchPelsofters;
 using Fwk.Security.BE;
 using Fwk.Security.ISVC.GetUserInfoByParams;
 using Fwk.Security.ISVC.UpdateUser;
@@ -33,15 +33,15 @@ namespace ServiceTest
        
    
         [TestMethod]
-        public void SearchAllUsers_NoService()
+        public void SearchPelsofters_NoService()
         {
             string strErrorResult = string.Empty;
-            SearchAllUsersService svc = new SearchAllUsersService();
-            SearchAllUsersReq req = new SearchAllUsersReq();
+            SearchPelsoftersService svc = new SearchPelsoftersService();
+            SearchPelsoftersReq req = new SearchPelsoftersReq();
             
             try
             {
-               SearchAllUsersRes res = svc.Execute(req);
+               SearchPelsoftersRes res = svc.Execute(req);
             }
             catch (Exception ex)
             {
@@ -135,25 +135,25 @@ namespace ServiceTest
         [TestMethod()]
         public void AuthenticateUserReq_WindowsAuthenticationDomainUser_UsuarioNoExiste()
         {
-            AuthenticateUserReq_WindowsAuthenticationDomainUser("usuarioNOExiste", "sarasa", "ALLUS-AR");
+            AuthenticateUserReq_WindowsAuthenticationDomainUser("usuarioNOExiste", "sarasa", "Pelsoft-AR");
         }
 
         [TestMethod()]
         public void AuthenticateUserReq_WindowsAuthenticationDomainUser_Ok()
         {
-            AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo2", "Allus+123", "ALLUS-AR");
+            AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo2", "Pelsoft+123", "Pelsoft-AR");
         }
 
         [TestMethod()]
         public void AuthenticateUserReq_WindowsAuthenticationDomainUser_InactiveUser()
         {
-            AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo2", "Allus+123", "ALLUS-AR");
+            AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo2", "Pelsoft+123", "Pelsoft-AR");
         }
 
         [TestMethod()]
         public void AuthenticateUserReq_WindowsAuthenticationDomainUser_WrongPassword()
         {
-            AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo1", "passwordchoto", "ALLUS-AR");
+            AuthenticateUserReq_WindowsAuthenticationDomainUser("pdesarrollo1", "passwordchoto", "Pelsoft-AR");
         }
 
         public void AuthenticateUserReq_WindowsAuthenticationDomainUser(string pUserName, string pPassword, string pDomain)
