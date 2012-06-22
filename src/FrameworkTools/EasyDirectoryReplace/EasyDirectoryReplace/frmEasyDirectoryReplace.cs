@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.IO;
 using System.Windows.Forms;
 using Fwk.HelperFunctions;
@@ -48,8 +49,12 @@ namespace EasyDirectoryReplace
             {
                 //cargo todos los archivos del origen
                 String[] wFiles = Directory.GetFiles(txtRuta1.Text, "*", SearchOption.AllDirectories);
+                String[] wDirectories;
                 //cargo todos los directorios del origen
-                String[] wDirectories = Directory.GetDirectories(txtRuta1.Text, "*", SearchOption.AllDirectories);
+                if(chkIgnoreSvn.Checked)
+                 wDirectories = Directory.GetDirectories(txtRuta1.Text, "*", SearchOption.AllDirectories).Where<string>(p=> p.StartsWith(".svn")==false).ToArray();
+                    else
+                 wDirectories = Directory.GetDirectories(txtRuta1.Text, "*", SearchOption.AllDirectories);
 
 
                 progressBar1.Maximum = wFiles.Length + wDirectories.Length + 1;

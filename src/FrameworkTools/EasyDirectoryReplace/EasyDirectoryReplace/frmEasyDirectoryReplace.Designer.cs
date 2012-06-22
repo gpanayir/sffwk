@@ -42,6 +42,7 @@ namespace EasyDirectoryReplace
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnProcess = new System.Windows.Forms.Button();
             this.replacePatternControl1 = new EasyDirectoryReplace.ReplacePatternControl();
+            this.chkIgnoreSvn = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,7 @@ namespace EasyDirectoryReplace
             this.txtRuta1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtRuta1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtRuta1.Location = new System.Drawing.Point(19, 37);
-            this.txtRuta1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRuta1.Margin = new System.Windows.Forms.Padding(4);
             this.txtRuta1.Name = "txtRuta1";
             this.txtRuta1.Size = new System.Drawing.Size(585, 22);
             this.txtRuta1.TabIndex = 2;
@@ -61,7 +62,7 @@ namespace EasyDirectoryReplace
             this.txtRuta2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtRuta2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtRuta2.Location = new System.Drawing.Point(17, 96);
-            this.txtRuta2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRuta2.Margin = new System.Windows.Forms.Padding(4);
             this.txtRuta2.Name = "txtRuta2";
             this.txtRuta2.Size = new System.Drawing.Size(585, 22);
             this.txtRuta2.TabIndex = 3;
@@ -72,7 +73,7 @@ namespace EasyDirectoryReplace
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(15, 473);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(1481, 16);
             this.progressBar1.TabIndex = 6;
@@ -111,9 +112,9 @@ namespace EasyDirectoryReplace
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtRuta2);
             this.groupBox2.Location = new System.Drawing.Point(16, 15);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(656, 144);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
@@ -128,7 +129,7 @@ namespace EasyDirectoryReplace
             this.btnOpenDest.Image = global::EasyDirectoryReplace.Properties.Resources.forum_search;
             this.btnOpenDest.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenDest.Location = new System.Drawing.Point(612, 96);
-            this.btnOpenDest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOpenDest.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpenDest.Name = "btnOpenDest";
             this.btnOpenDest.Size = new System.Drawing.Size(35, 23);
             this.btnOpenDest.TabIndex = 14;
@@ -146,7 +147,7 @@ namespace EasyDirectoryReplace
             this.btnOpenSource.Image = global::EasyDirectoryReplace.Properties.Resources.forum_search;
             this.btnOpenSource.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenSource.Location = new System.Drawing.Point(613, 37);
-            this.btnOpenSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOpenSource.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpenSource.Name = "btnOpenSource";
             this.btnOpenSource.Size = new System.Drawing.Size(35, 23);
             this.btnOpenSource.TabIndex = 13;
@@ -162,7 +163,7 @@ namespace EasyDirectoryReplace
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(724, 15);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(771, 450);
             this.flowLayoutPanel1.TabIndex = 13;
@@ -177,7 +178,7 @@ namespace EasyDirectoryReplace
             this.btnAdd.Image = global::EasyDirectoryReplace.Properties.Resources.folder_new_16;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(400, 405);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(281, 31);
             this.btnAdd.TabIndex = 14;
@@ -196,7 +197,7 @@ namespace EasyDirectoryReplace
             this.btnProcess.Image = global::EasyDirectoryReplace.Properties.Resources.Untitled__243_;
             this.btnProcess.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProcess.Location = new System.Drawing.Point(16, 405);
-            this.btnProcess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnProcess.Margin = new System.Windows.Forms.Padding(4);
             this.btnProcess.Name = "btnProcess";
             this.btnProcess.Size = new System.Drawing.Size(225, 38);
             this.btnProcess.TabIndex = 1;
@@ -216,12 +217,25 @@ namespace EasyDirectoryReplace
             this.replacePatternControl1.TabIndex = 15;
             this.replacePatternControl1.OnRemoveEvent += new System.EventHandler(this.replacePatternControl1_OnRemoveEvent);
             // 
+            // chkIgnoreSvn
+            // 
+            this.chkIgnoreSvn.AutoSize = true;
+            this.chkIgnoreSvn.Checked = true;
+            this.chkIgnoreSvn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIgnoreSvn.Location = new System.Drawing.Point(28, 166);
+            this.chkIgnoreSvn.Name = "chkIgnoreSvn";
+            this.chkIgnoreSvn.Size = new System.Drawing.Size(190, 21);
+            this.chkIgnoreSvn.TabIndex = 15;
+            this.chkIgnoreSvn.Text = "Ignore subversion folders";
+            this.chkIgnoreSvn.UseVisualStyleBackColor = true;
+            // 
             // frmEasyReplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1512, 497);
+            this.Controls.Add(this.chkIgnoreSvn);
             this.Controls.Add(this.replacePatternControl1);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -229,7 +243,7 @@ namespace EasyDirectoryReplace
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnProcess);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmEasyReplace";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "File system easy replace";
@@ -237,6 +251,7 @@ namespace EasyDirectoryReplace
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -255,6 +270,7 @@ namespace EasyDirectoryReplace
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnAdd;
         private ReplacePatternControl replacePatternControl1;
+        private System.Windows.Forms.CheckBox chkIgnoreSvn;
     }
 }
 
