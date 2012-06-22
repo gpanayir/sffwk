@@ -70,7 +70,7 @@
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(180, 20);
             this.txtDomain.TabIndex = 13;
-            this.txtDomain.Text = "Allus-ar";
+            this.txtDomain.Text = "Pelsoft-ar";
             // 
             // btnSearchInDomain
             // 

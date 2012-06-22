@@ -74,11 +74,11 @@ namespace Fwk.Security.ActiveDirectory
         protected string _LDAPPassword;
 
         /// <summary>
-        /// Domain name ej allus-ar
+        /// Domain name ej Pelsoft-ar
         /// </summary>
         protected string _LDAPDomainName;
         /// <summary>
-        /// Domain name ej allus-ar
+        /// Domain name ej Pelsoft-ar
         /// </summary>
         public  string LDAPDomainName
         {
