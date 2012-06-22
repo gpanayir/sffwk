@@ -87,13 +87,13 @@ namespace Fwk.ConfigSection
         /// <summary>
         /// 
         /// </summary>
-        [ConfigurationProperty("companyId", IsRequired = true, IsKey = false),
+        [ConfigurationProperty("appId", IsRequired = true, IsKey = false),
          StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
-        public string CompanyId 
+        public string AppId 
         {
             get
             {
-                return (string)this["companyId"];
+                return (string)this["appId"];
             }
         }
         

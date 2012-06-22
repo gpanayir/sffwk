@@ -33,9 +33,9 @@ namespace Fwk.Bases
       
 
         /// <summary>
-        /// identificador de empresa
+        /// identificador de aplicacion
         /// </summary>
-        string CompanyId { get; set; }
+        string AppId { get; set; }
 		/// <summary>
 		/// Ejecuta un servicio de negocio.
 		/// </summary>

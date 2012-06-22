@@ -9,7 +9,7 @@ using Fwk.Remoting;
 namespace Fwk.Bases.Connector
 {
     /// <summary>
-    /// 
+    /// Wrapper espesializado para una conexión a travez de RemotingConfiguration
     /// </summary>
     [Serializable]
     public class RemotingWrapper :IServiceWrapper
@@ -47,15 +47,15 @@ namespace Fwk.Bases.Connector
             set { _ServiceMetadataProviderName = value; }
         }
 
-        string _CompanyId = string.Empty;
+        string _AppId = string.Empty;
 
         /// <summary>
-        /// Identificador de empresa
+        /// Identificador de aplicacion o de empresa
         /// </summary>
-        public string CompanyId
+        public string AppId
         {
-            get { return _CompanyId; }
-            set { _CompanyId = value; }
+            get { return _AppId; }
+            set { _AppId = value; }
         }
 
         #region IServiceInterfaceWrapper Members
