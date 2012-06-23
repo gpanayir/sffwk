@@ -103,7 +103,7 @@
             this.cmbDomains.FormattingEnabled = true;
             this.cmbDomains.Items.AddRange(new object[] {
             "allus-ar",
-            "alcomovistar"});
+            "pelsoft"});
             this.cmbDomains.Location = new System.Drawing.Point(138, 125);
             this.cmbDomains.Name = "cmbDomains";
             this.cmbDomains.Size = new System.Drawing.Size(175, 23);
