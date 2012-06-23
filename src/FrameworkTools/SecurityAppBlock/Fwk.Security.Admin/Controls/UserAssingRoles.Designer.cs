@@ -130,7 +130,7 @@
             this.lblRolesByUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblRolesByUser.Location = new System.Drawing.Point(804, 59);
             this.lblRolesByUser.Name = "lblRolesByUser";
-            this.lblRolesByUser.Size = new System.Drawing.Size(82, 20);
+            this.lblRolesByUser.Size = new System.Drawing.Size(113, 20);
             this.lblRolesByUser.TabIndex = 23;
             this.lblRolesByUser.Text = "All roles";
             this.lblRolesByUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

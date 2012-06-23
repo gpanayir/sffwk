@@ -32,7 +32,7 @@
 //            _Domain = pDomain;
 //            DirectoryEntry adRoot = new DirectoryEntry("LDAP://" + _Domain, null, null, AuthenticationTypes.Secure);
 
-//            //DirectoryEntry adRoot = new DirectoryEntry( "LDAP://CORRSF71NT13.actionlinecba.org/DC=actionlinecba,DC=org", Environment.UserName, "Lincelin4", AuthenticationTypes.Secure);
+//            //DirectoryEntry adRoot = new DirectoryEntry( "LDAP://CORRSF71NT13.Datacom.org/DC=Datacom,DC=org", Environment.UserName, "Lincelin4", AuthenticationTypes.Secure);
 
 //            _Searcher = new DirectorySearcher(adRoot);
 //            //_Searcher.SearchScope = SearchScope.Subtree;
@@ -101,7 +101,7 @@
 //                DirectoryEntry directoryEntryGroup = result.GetDirectoryEntry();
 
 
-//                //CN=BD03_AgenteSQLServer,OU=Desarrollo,OU=Sistemas,DC=actionlinecba,DC=org"
+//                //CN=BD03_AgenteSQLServer,OU=Desarrollo,OU=Sistemas,DC=Datacom,DC=org"
 //                foreach (string strMember in directoryEntryGroup.Properties["member"])
 //                {
 

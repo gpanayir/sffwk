@@ -6,7 +6,7 @@ cn = Romero Victorica Jose
 sn = Romero Victorica
 description = Usuario Personal Action Line
 givenName = Jose Luis
-distinguishedName = CN=Romero Victorica Jose,OU=Operaciones,DC=actionlinecba,DC=org
+distinguishedName = CN=Romero Victorica Jose,OU=Operaciones,DC=Datacom,DC=org
 instanceType = 4
 whenCreated = 29/04/2004 06:55:31 p.m.
 whenChanged = 13/11/2008 05:24:26 p.m.
@@ -33,11 +33,11 @@ accountExpires = System.__ComObject
 logonCount = 3455
 sAMAccountName = JRomero
 sAMAccountType = 805306368
-userPrincipalName = JRomero@actionlinecba.org
+userPrincipalName = JRomero@Datacom.org
 lockoutTime = System.__ComObject
-objectCategory = CN=Person,CN=Schema,CN=Configuration,DC=actionlinecba,DC=org
+objectCategory = CN=Person,CN=Schema,CN=Configuration,DC=Datacom,DC=org
 lastLogonTimestamp = System.__ComObject
-mail = jromero@actionlinecba.com.ar
+mail = jromero@Datacom.com.ar
 nTSecurityDescriptor = System.__ComObject
 
 
@@ -47,13 +47,13 @@ nTSecurityDescriptor = System.__ComObject
 objectClass			= System.Object[]
 cn					= CORRSF71TS01
 userCertificate		= System.Byte[]
-distinguishedName	= CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
+distinguishedName	= CN=CORRSF71TS01,OU=Domain Controllers,DC=Datacom,DC=org
 instanceType		= 4
 whenCreated			= 13/08/2004 07:02:58 p.m.
 whenChanged			= 12/11/2008 12:24:42 a.m.
 displayName			= CORRSF71TS01$
 uSNCreated			= System.__ComObject
-memberOf			= CN=Publicadores de certificados,CN=Users,DC=actionlinecba,DC=org
+memberOf			= CN=Publicadores de certificados,CN=Users,DC=Datacom,DC=org
 uSNChanged			= System.__ComObject
 name				= CORRSF71TS01
 
@@ -76,13 +76,13 @@ sAMAccountType			= 805306369
 operatingSystem			= Windows Server 2003
 operatingSystemVersion		= 5.2 (3790)
 operatingSystemServicePack = Service Pack 2
-serverReferenceBL		= CN=CORRSF71TS01,CN=Servers,CN=RosarioSantaFe71,CN=Sites,CN=Configuration,DC=actionlinecba,DC=org
-dNSHostName				= corrsf71ts01.actionlinecba.org
-rIDSetReferences		= CN=RID Set,CN=CORRSF71TS01,OU=Domain Controllers,DC=actionlinecba,DC=org
+serverReferenceBL		= CN=CORRSF71TS01,CN=Servers,CN=RosarioSantaFe71,CN=Sites,CN=Configuration,DC=Datacom,DC=org
+dNSHostName				= corrsf71ts01.Datacom.org
+rIDSetReferences		= CN=RID Set,CN=CORRSF71TS01,OU=Domain Controllers,DC=Datacom,DC=org
 servicePrincipalName = System.Object[]
-objectCategory = CN=Computer,CN=Schema,CN=Configuration,DC=actionlinecba,DC=org
+objectCategory = CN=Computer,CN=Schema,CN=Configuration,DC=Datacom,DC=org
 isCriticalSystemObject = True
-frsComputerReferenceBL = CN=CORRSF71TS01,CN=Domain System Volume (SYSVOL share),CN=File Replication Service,CN=System,DC=actionlinecba,DC=org
+frsComputerReferenceBL = CN=CORRSF71TS01,CN=Domain System Volume (SYSVOL share),CN=File Replication Service,CN=System,DC=Datacom,DC=org
 dSCorePropagationData = System.Object[]
 lastLogonTimestamp = System.__ComObject
 nTSecurityDescriptor = System.__ComObject

@@ -52,7 +52,7 @@ namespace Fwk.Security
         /// </summary>       
         /// <param name="userName">Dominio del usuario a impersonalizar</param>
         /// <param name="password">password</param>
-        /// <param name="domain">Dominio ej allus-ar</param>
+        /// <param name="domain">Dominio ej Pelsoft</param>
         public Impersonation(string userName, string password, string domain)
         {
 

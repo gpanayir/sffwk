@@ -74,11 +74,11 @@ namespace Fwk.Security.ActiveDirectory
         protected string _LDAPPassword;
 
         /// <summary>
-        /// Domain name ej allus-ar
+        /// Domain name ej Pelsoft
         /// </summary>
         protected string _LDAPDomainName;
         /// <summary>
-        /// Domain name ej allus-ar
+        /// Domain name ej Pelsoft
         /// </summary>
         public  string LDAPDomainName
         {
@@ -88,8 +88,8 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         ///Ej: 
         ///LDAP://domain/DC=xxx,DC=com
-        ///LDAP://CORRSF71NT13.actionlinecba.org/DC=actionlinecba,DC=org
-        ///LDAP://Corba362nt01.alcomovistar.com.ar/OU=Movistar Sabattini,dc=alcomovistar,dc=com,dc=ar
+        ///LDAP://CORRSF71NT13.Datacom.org/DC=Datacom,DC=org
+        ///LDAP://Pc1.alcoDatacom.com.ar/OU=Datacom Sabattini,dc=alcoDatacom,dc=com,dc=ar
         /// </summary>
         public String LDAPPath
         {

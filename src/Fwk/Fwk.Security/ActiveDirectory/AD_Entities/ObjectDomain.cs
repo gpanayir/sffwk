@@ -159,7 +159,7 @@ namespace Fwk.Security.Common
         }
 
         /// <summary>
-        /// CN=GS_CalidadTP_R,OU=Avanzados,OU=Analistas,OU=Seguridad,DC=actionlinecba,DC=org
+        /// CN=GS_CalidadTP_R,OU=Avanzados,OU=Analistas,OU=Seguridad,DC=Datacom,DC=org
         /// </summary>
         public string DistinguishedName
         {
@@ -216,7 +216,7 @@ namespace Fwk.Security.Common
             if (pDirectoryEntry.Properties.Contains("objectCategory"))
                 base.Category = pDirectoryEntry.Properties["objectCategory"][0].ToString();
             
-            //ej:CN=GS_Comite_comunicacion_RW,OU=Seguridad,DC=actionlinecba,DC=org
+            //ej:CN=GS_Comite_comunicacion_RW,OU=Seguridad,DC=Datacom,DC=org
             if (pDirectoryEntry.Properties.Contains("distinguishedName"))
             {
                 _DistinguishedName = pDirectoryEntry.Properties["distinguishedName"][0].ToString();
@@ -238,7 +238,7 @@ namespace Fwk.Security.Common
         /// <summary>
         /// Info de active directory respecto al grupo. No es el nombre 
         /// </summary>
-        /// <param name="pNameInfo">Cadena: "CN=GS_Bin_Desarrollo_RW,OU=Seguridad,DC=actionlinecba,DC=org"</param>
+        /// <param name="pNameInfo">Cadena: "CN=GS_Bin_Desarrollo_RW,OU=Seguridad,DC=Datacom,DC=org"</param>
         public ObjectDomainGroup(string pNameInfo)
         {
             _ActiveDirectoryUsers = new List<FwkIdentity>();

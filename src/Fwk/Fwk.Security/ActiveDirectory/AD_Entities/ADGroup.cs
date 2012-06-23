@@ -52,8 +52,8 @@ namespace Fwk.Security.ActiveDirectory
 
         /// <summary>
         /// Ejemplos:
-        /// CN=GS_Comite_comunicacion_RW,OU=Seguridad,DC=actionlinecba,DC=org
-        /// CN=GS_CalidadTP_R,OU=Avanzados,OU=Analistas,OU=Seguridad,DC=actionlinecba,DC=org
+        /// CN=GS_Comite_comunicacion_RW,OU=Seguridad,DC=Datacom,DC=org
+        /// CN=GS_CalidadTP_R,OU=Avanzados,OU=Analistas,OU=Seguridad,DC=Datacom,DC=org
         /// </summary>
         public string DistinguishedName
         {
@@ -62,7 +62,7 @@ namespace Fwk.Security.ActiveDirectory
 
         /// <summary>
         /// Defines the Active Directory Schema category. For example, objectCategory = Person
-        /// Ej: CN=Group,CN=Schema,CN=Configuration,DC=actionlinecba,DC=org
+        /// Ej: CN=Group,CN=Schema,CN=Configuration,DC=Datacom,DC=org
         /// </summary>
         public string Category
         {
@@ -184,7 +184,7 @@ namespace Fwk.Security.ActiveDirectory
             //if (pDirectoryEntry.Properties.Contains("objectCategory"))
             //    base.Category = pDirectoryEntry.Properties["objectCategory"][0].ToString();
 
-            //ej:CN=GS_Comite_comunicacion_RW,OU=Seguridad,DC=actionlinecba,DC=org
+            //ej:CN=GS_Comite_comunicacion_RW,OU=Seguridad,DC=Datacom,DC=org
             if (!String.IsNullOrEmpty(_DistinguishedName))
             {
                 SetNameInfo(_DistinguishedName);
