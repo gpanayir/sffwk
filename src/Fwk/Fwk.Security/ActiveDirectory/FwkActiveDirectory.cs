@@ -202,7 +202,7 @@
 //        /// Obtiene todo los usuarios pertenecientes al dominio.-
 //        /// objectClass = person
 //        /// </summary>
-//        public List<FwkIdentity> GetAllUsers()
+//        public List<FwkIdentity> Getpelsofters()
 //        {
 //            List<FwkIdentity> userList = null;
 //            ExecutepQuery("(&(objectClass=person))", "sAMAccountName", out userList);

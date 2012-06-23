@@ -84,10 +84,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WcfCommonTest\WcfCommon.csproj">
-      <Project>{8CEAEEBE-58C4-49EB-B5FE-CD480CA40419}</Project>
-      <Name>WcfCommon</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WcfDispatcher\WcfDispatcher.csproj">
       <Project>{01286891-AE8E-4A3A-B7EB-E22FCECC3F05}</Project>
       <Name>WcfDispatcher</Name>

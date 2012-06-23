@@ -3,7 +3,7 @@
 
 
 del *.pdb 
-del Fwk.*.xml
+ECHO ** no se eliminan del Fwk.*.xml **
 del *.config 
 
 @ECHO OFF
