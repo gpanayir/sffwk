@@ -88,42 +88,12 @@ namespace Fwk.Security.AD.TestLogin
             }
             //urls = new List<DomainUrlInfo>();
             //DomainUrlInfo wDomainUrlInfo = new DomainUrlInfo();
-            //wDomainUrlInfo.DomainName = "allus-ar";
+            //wDomainUrlInfo.DomainName = "pelsoft-ar";
             ////wDomainUrlInfo.Usr = "ReseteoClaveWeb";
-            ////wDomainUrlInfo.Pwd = " R3s3t30W3b";
+            ////wDomainUrlInfo.Pwd = "";
             ////wDomainUrlInfo.Usr = "moviedo";
-            ////wDomainUrlInfo.Pwd = "Lincelin8";
+            ////wDomainUrlInfo.Pwd = "";
 
-            //wDomainUrlInfo.LDAPPath = "LDAP://172.22.12.142:389/DC=allus,DC=ar";
-            ////wDomainUrlInfo.LDAPPAth = "LDAP://172.22.12.141/DC=allus,DC=ar";
-            //urls.Add(wDomainUrlInfo);
-            //wDomainUrlInfo.Usr = "pruebadesarrollo";
-            //wDomainUrlInfo.Pwd = "Prueba+456";
-
-
-            //wDomainUrlInfo = new DomainUrlInfo();
-            //wDomainUrlInfo.DomainName = "alco";
-            //wDomainUrlInfo.LDAPPath = "LDAP://172.22.12.109/DC=actionlinecba,DC=org";
-            //wDomainUrlInfo.Usr = "pruebadesarrollo";
-            //wDomainUrlInfo.Pwd = "Prueba+456";
-            //urls.Add(wDomainUrlInfo);
-
-            //wDomainUrlInfo = new DomainUrlInfo();
-            //wDomainUrlInfo.DomainName = "movistar";
-            //wDomainUrlInfo.LDAPPath = "LDAP://10.64.27.5/DC=alcomovistar,DC=com,DC=ar";
-            //wDomainUrlInfo.Usr = "pruebadesarrollo";
-            //wDomainUrlInfo.Pwd = "Prueba+456";
-            //urls.Add(wDomainUrlInfo);
-
-
-
-
-            //wDomainUrlInfo = new DomainUrlInfo();
-            //wDomainUrlInfo.DomainName = "allus.pe";
-            //wDomainUrlInfo.LDAPPath = "LDAP://10.200.154.5:389/DC=allus,DC=pe";
-            //wDomainUrlInfo.Usr = "pruebadesarrollo";
-            //wDomainUrlInfo.Pwd = "Prueba+456";
-            //urls.Add(wDomainUrlInfo);
 
 
         }
@@ -163,9 +133,9 @@ namespace Fwk.Security.AD.TestLogin
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddRootCert("AllusCerts/RootAlcomovistar.cer");
-            AddRootCert("AllusCerts/RootAllusArgent.cer");
-            AddRootCert("AllusCerts/RootAllusPeru.cer");
+            AddRootCert("pelsoftCerts/RootAlcomovistar.cer");
+            AddRootCert("pelsoftCerts/RootpelsoftArgent.cer");
+            AddRootCert("pelsoftCerts/RootpelsoftPeru.cer");
         }
 
         void AddRootCert(String pCertFilePath)
