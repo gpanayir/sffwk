@@ -15,8 +15,8 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// Ej: 
         /// LDAP://domain/DC=xxx,DC=com
-        /// LDAP://CORRSF71NT13.actionlinecba.org/DC=actionlinecba,DC=org
-        /// LDAP://Corba362nt01.alcopelsoft.com.ar/OU=pelsoft Sabattini,dc=alcopelsoft,dc=com,dc=ar
+        /// LDAP://CORRSF71NT13.Datacom.org/DC=Datacom,DC=org
+        /// LDAP://Corba362nt01.Pelsoft.com.ar/OU=pelsoft Sabattini,dc=Pelsoft,dc=com,dc=ar
         /// </summary>
         String LDAPPath { get; }
         /// <summary>

@@ -62,7 +62,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// DN Es uno de los mas importantes atributos LDAP
         /// CN=Jay Jamieson, OU= Newport,DC=cp,DC=com
-        /// CN=GS_CalidadTP_R,OU=Avanzados,OU=Analistas,OU=Seguridad,DC=actionlinecba,DC=org
+        /// CN=GS_CalidadTP_R,OU=Avanzados,OU=Analistas,OU=Seguridad,DC=Datacom,DC=org
         /// </summary>
         public const String DISTINGUISHEDNAME = "distinguishedName";
         /// <summary>
@@ -227,7 +227,7 @@ namespace Fwk.Security.ActiveDirectory
         
         /// <summary>
         /// Defines the Active Directory Schema category. For example, objectCategory = Person
-        /// Ej: CN=Group,CN=Schema,CN=Configuration,DC=actionlinecba,DC=org
+        /// Ej: CN=Group,CN=Schema,CN=Configuration,DC=Datacom,DC=org
         /// </summary>
         public const String OBJECTCATEGORY = "objectCategory";
         /// <summary>
