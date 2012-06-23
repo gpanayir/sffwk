@@ -74,14 +74,14 @@ namespace Fwk.Security.AD.TestLogin
             }
             //urls = new List<DomainUrlInfo>();
             //DomainUrlInfo wDomainUrlInfo = new DomainUrlInfo();
-            //wDomainUrlInfo.DomainName = "allus-ar";
+            //wDomainUrlInfo.DomainName = "pelsoft-ar";
             ////wDomainUrlInfo.Usr = "ReseteoClaveWeb";
             ////wDomainUrlInfo.Pwd = " R3s3t30W3b";
             ////wDomainUrlInfo.Usr = "moviedo";
-            ////wDomainUrlInfo.Pwd = "Lincelin8";
+            ////wDomainUrlInfo.Pwd = "ddd";
 
-            //wDomainUrlInfo.LDAPPath = "LDAP://172.22.12.142:389/DC=allus,DC=ar";
-            ////wDomainUrlInfo.LDAPPAth = "LDAP://172.22.12.141/DC=allus,DC=ar";
+            //wDomainUrlInfo.LDAPPath = "LDAP://172.22.12.142:389/DC=pelsoft,DC=ar";
+            ////wDomainUrlInfo.LDAPPAth = "LDAP://172.22.12.141/DC=pelsoft,DC=ar";
             //urls.Add(wDomainUrlInfo);
             //wDomainUrlInfo.Usr = "pruebadesarrollo";
             //wDomainUrlInfo.Pwd = "Prueba+456";
@@ -89,24 +89,24 @@ namespace Fwk.Security.AD.TestLogin
 
             //wDomainUrlInfo = new DomainUrlInfo();
             //wDomainUrlInfo.DomainName = "alco";
-            //wDomainUrlInfo.LDAPPath = "LDAP://172.22.12.109/DC=actionlinecba,DC=org";
+            //wDomainUrlInfo.LDAPPath = "LDAP://172.22.12.109/DC=pelsoft,DC=org";
             //wDomainUrlInfo.Usr = "pruebadesarrollo";
             //wDomainUrlInfo.Pwd = "Prueba+456";
             //urls.Add(wDomainUrlInfo);
 
             //wDomainUrlInfo = new DomainUrlInfo();
-            //wDomainUrlInfo.DomainName = "movistar";
-            //wDomainUrlInfo.LDAPPath = "LDAP://10.64.27.5/DC=alcomovistar,DC=com,DC=ar";
+            //wDomainUrlInfo.DomainName = "pelsoft";
+            //wDomainUrlInfo.LDAPPath = "LDAP://10.64.27.5/DC=pelsoft,DC=com,DC=ar";
             //wDomainUrlInfo.Usr = "pruebadesarrollo";
-            //wDomainUrlInfo.Pwd = "Prueba+456";
+            //wDomainUrlInfo.Pwd = "";
             //urls.Add(wDomainUrlInfo);
 
 
 
 
             //wDomainUrlInfo = new DomainUrlInfo();
-            //wDomainUrlInfo.DomainName = "allus.pe";
-            //wDomainUrlInfo.LDAPPath = "LDAP://10.200.154.5:389/DC=allus,DC=pe";
+            //wDomainUrlInfo.DomainName = "pelsoft.pe";
+            //wDomainUrlInfo.LDAPPath = "LDAP://10.200.154.5:389/DC=pelsoft,DC=pe";
             //wDomainUrlInfo.Usr = "pruebadesarrollo";
             //wDomainUrlInfo.Pwd = "Prueba+456";
             //urls.Add(wDomainUrlInfo);
