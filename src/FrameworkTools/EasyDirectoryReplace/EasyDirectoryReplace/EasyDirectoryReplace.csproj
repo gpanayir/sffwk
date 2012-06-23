@@ -178,12 +178,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\EasyDirectoryReplace\*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\EasyDirectoryReplace\*.pdb" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\EasyDirectoryReplace\*vshost*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\EasyDirectoryReplace\*.manifest" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\EasyDirectoryReplace\*.application" &gt;&gt; nul 
-
+    <PostBuildEvent>
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
