@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +23,7 @@ namespace Fwk.UI.Forms
 {
 
     /// <summary>
-    /// Formulario base del cual heredan todos los formularios de bignbang.- 
+    /// Formulario base del cual heredan todos los formularios .- 
     /// Este formulario inicializa la seguridad y dispone de metodos y propiedades estaticos utiles para los demas
     /// componentes de Pelsoft.-
     /// 

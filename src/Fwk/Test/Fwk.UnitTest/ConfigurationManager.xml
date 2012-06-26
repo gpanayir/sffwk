@@ -1,4 +1,4 @@
-
+﻿
 <ConfigurationFile>
   
   <Encrypted>false</Encrypted>
@@ -90,31 +90,31 @@
       <Keys>
         <Key name="Main" encrypted="false"> 
           
-          <Value><![CDATA[D:\Projects\Allus\Bigbang_Entrgas\Piloto_1\main.xml]]></Value>
+          <Value><![CDATA[D:\Projects\Pelsoft\Piloto_1\main.xml]]></Value>
         </Key>
         <Key name="CampaingMainToolBar" encrypted="false">
           
-          <Value><![CDATA[D:\Projects\Allus\Bigbang_Entrgas\Piloto_1\CampaingMainToolBar.xml]]></Value>
+          <Value><![CDATA[D:\Projects\Pelsoft\Piloto_1\CampaingMainToolBar.xml]]></Value>
         </Key>
         <Key name="SecurityUserToolbar" encrypted="false">
           
-          <Value><![CDATA[D:\Projects\Allus\Bigbang_Entrgas\Piloto_1\SecurityUserToolbar.xml]]></Value>
+          <Value><![CDATA[D:\Projects\Pelsoft\Piloto_1\SecurityUserToolbar.xml]]></Value>
         </Key>
         <Key name="SecurityRulesToolbar" encrypted="false">
           
-          <Value><![CDATA[D:\Projects\Allus\Bigbang_Entrgas\Piloto_1\SecurityRulesToolbar.xml]]></Value>
+          <Value><![CDATA[D:\Projects\Pelsoft\Piloto_1\SecurityRulesToolbar.xml]]></Value>
         </Key>
         <Key name="SecurityRolesToolbar" encrypted="false">
           
-          <Value><![CDATA[D:\Projects\Allus\Bigbang_Entrgas\Piloto_1\SecurityRolesToolbar.xml]]></Value>
+          <Value><![CDATA[D:\Projects\Pelsoft\Piloto_1\SecurityRolesToolbar.xml]]></Value>
         </Key>
         <Key name="SurveyMainToolBar" encrypted="false">
           
-          <Value><![CDATA[D:\Projects\Allus\Bigbang_Entrgas\Piloto_1\SurveyMainToolBar.xml]]></Value>
+          <Value><![CDATA[D:\Projects\Pelsoft\Piloto_1\SurveyMainToolBar.xml]]></Value>
         </Key>
         <Key name="SecurityGroupsToolbar" encrypted="false">
           
-          <Value><![CDATA[D:\Projects\Allus\Bigbang_Entrgas\Piloto_1\SecurityGroupsToolbar.xml]]></Value>
+          <Value><![CDATA[D:\Projects\Pelsoft\Piloto_1\SecurityGroupsToolbar.xml]]></Value>
         </Key>
       </Keys>
     </Group>
