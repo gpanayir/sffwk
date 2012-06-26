@@ -89,7 +89,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
             this.txtPassword.TabIndex = 62;
-            this.txtPassword.Text = "Allus+123";
+            this.txtPassword.Text = "Pelsoft+123";
             // 
             // btnCheck
             // 
@@ -112,7 +112,7 @@
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(525, 20);
             this.txtPath.TabIndex = 68;
-            this.txtPath.Text = "LDAP://172.22.12.142:389/DC=allus,DC=ar";
+            this.txtPath.Text = "LDAP://172.22.12.142:389/DC=Pelsoft,DC=ar";
             // 
             // lstDomains
             // 
@@ -186,7 +186,7 @@
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(525, 20);
             this.txtDomain.TabIndex = 75;
-            this.txtDomain.Text = "allus.ar";
+            this.txtDomain.Text = "Pelsoft.ar";
             // 
             // button4
             // 
@@ -241,7 +241,7 @@
             this.txtPath2.Name = "txtPath2";
             this.txtPath2.Size = new System.Drawing.Size(525, 20);
             this.txtPath2.TabIndex = 71;
-            this.txtPath2.Text = "LDAP://172.22.12.141:389/DC=allus,DC=ar";
+            this.txtPath2.Text = "LDAP://172.22.12.141:389/DC=Pelsoft,DC=ar";
             // 
             // label4
             // 
@@ -291,7 +291,7 @@
             this.txtDomainC.Name = "txtDomainC";
             this.txtDomainC.Size = new System.Drawing.Size(138, 20);
             this.txtDomainC.TabIndex = 81;
-            this.txtDomainC.Text = "allus";
+            this.txtDomainC.Text = "Pelsoft";
             // 
             // btnUser_Get_ByName
             // 

@@ -43,7 +43,7 @@ namespace Fwk.CodeGenerator
 
         static FwkGeneratorHelper()
         {
-            roottemplate = Path.Combine(HelperFunctions.ProgramFilesx86(), @"Allus Global BPO\FwkTemplates\tt\");
+            roottemplate = Path.Combine(HelperFunctions.ProgramFilesx86(), @"Pelsoft Fwk\FwkTemplates\tt\");
             
             _TemplateDocument = (TemplateDocument)HelperFunctions.DeserializeFromXml(typeof(TemplateDocument), GetFileTemplate("Templates.xml"));
             _MappingTypes = (MappingTypes)HelperFunctions.DeserializeFromXml(typeof(MappingTypes), GetFileTemplate("MappingType.xml"));

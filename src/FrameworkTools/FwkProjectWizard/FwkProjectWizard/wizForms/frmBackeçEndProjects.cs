@@ -90,9 +90,9 @@ namespace Fwk.Wizard
             StringBuilder str = new StringBuilder ("Ingrese aqui el nombre del proyecto y su modulo ");
 
             str.AppendLine(Environment.NewLine);
-            str.AppendLine("ej: Allus.Meucci.Cliente");
+            str.AppendLine("ej: MyEmpresa.Cliente");
             //str.AppendLine(Environment.NewLine);
-            str.AppendLine("ej: Allus.Bigbang.Encuestas");
+            str.AppendLine("ej: MiEmpresa.Encuestas");
             //str.AppendLine(Environment.NewLine);
             return str.ToString();
         }

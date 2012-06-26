@@ -105,7 +105,7 @@
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(178, 20);
             this.txtDomain.TabIndex = 61;
-            this.txtDomain.Text = "Allus-ar";
+            this.txtDomain.Text = "pelsoft-ar";
             this.txtDomain.TextChanged += new System.EventHandler(this.txtDomain_TextChanged);
             // 
             // label2

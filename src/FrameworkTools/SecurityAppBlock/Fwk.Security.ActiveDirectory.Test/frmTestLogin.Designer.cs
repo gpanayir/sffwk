@@ -61,7 +61,7 @@
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(178, 20);
             this.txtDomain.TabIndex = 3;
-            this.txtDomain.Text = "Allus-ar";
+            this.txtDomain.Text = "Pelsoft-ar";
             // 
             // txtPassword
             // 
