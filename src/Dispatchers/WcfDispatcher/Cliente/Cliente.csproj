@@ -31,30 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Allus.Libs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang\trunk\src\Libraries\Allus.Libs.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.BackEnd.Common.BE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang_Entrgas\Services\remoting\BigBang.BackEnd.Common.BE.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="BigBang.Common.Campaing.BE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang_Entrgas\Services\remoting\BigBang.Common.Campaing.BE.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common.RecordSet.BE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang_Entrgas\Services\remoting\BigBang.Common.RecordSet.BE.dll</HintPath>
-    </Reference>
-    <Reference Include="BigBang.Common.Survey.BE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang_Entrgas\Services\remoting\BigBang.Common.Survey.BE.dll</HintPath>
-    </Reference>
+  
     <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Allus\Bigbang_Entrgas\Services\remoting\Fwk.Bases.dll</HintPath>
+      <HintPath>Fwk.Bases.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
