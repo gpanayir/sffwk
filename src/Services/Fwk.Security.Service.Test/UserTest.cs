@@ -441,7 +441,7 @@ namespace ServiceTest
           
 
             SearchDomainsUrlsRequest wRequest = new SearchDomainsUrlsRequest();
-            wRequest.BusinessData.ConnectionString = "BigBangConnectionString";
+            wRequest.BusinessData.ConnectionString = "ConnectionString";
             SearchDomainsUrlsService svc = new SearchDomainsUrlsService();
 
             try

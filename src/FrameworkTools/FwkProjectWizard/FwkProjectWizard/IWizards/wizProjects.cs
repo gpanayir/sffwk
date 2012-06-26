@@ -32,7 +32,7 @@ namespace Fwk.Wizard
             
 
             ////Creo el destino con el npmbre del proyecto
-            //// Ej: Motorola.bigbang.Clientes
+ 
             //System.IO.DirectoryInfo destinationDir = System.IO.Directory.CreateDirectory(System.IO.Path.Combine(solutionDir.Parent.FullName, fwkprojectname));
 
 

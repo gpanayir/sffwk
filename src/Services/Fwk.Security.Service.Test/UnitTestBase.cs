@@ -43,7 +43,7 @@ namespace Fwk.Bases.Test
             get { return _StrExceptionMessage; }
             set { _StrExceptionMessage = value; }
         }
-        String xmlPath = @"\\Corrsf71bi01\BigBang\test";
+        String xmlPath = @"\\pc1\test";
 
         protected String XmlPath
         {

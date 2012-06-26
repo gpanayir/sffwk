@@ -26,10 +26,10 @@ namespace Fwk.Security.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PELSOFT\\SQLEXPRESS;Initial Catalog=bigbang;Integrated Security=True")]
-        public string bigbangConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PELSOFT\\SQLEXPRESS;Initial Catalog=pelsoft;Integrated Security=True")]
+        public string pelsoftConnectionString {
             get {
-                return ((string)(this["bigbangConnectionString"]));
+                return ((string)(this["pelsoftConnectionString"]));
             }
         }
         

@@ -31,7 +31,7 @@
     <GenerateManifests>false</GenerateManifests>
     <SignManifests>true</SignManifests>
     <TargetZone>LocalIntranet</TargetZone>
-    <PublishUrl>\\corrsf71bi01\bigbang\Tools\ServiceManagement\</PublishUrl>
+    <PublishUrl>\\corrsf71bi01\pelsoft\Tools\ServiceManagement\</PublishUrl>
     <Install>false</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
