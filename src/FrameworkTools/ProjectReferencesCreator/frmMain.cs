@@ -283,8 +283,8 @@ namespace ProjectReferencesCreator
                 updateRefVersions1.ClearLogs();
                 if (chkFramework.Checked)
                     updateRefVersions1.Start(txtRootVersion.Text, txtNewVersion_Fwk.Text, ReferenceType.Fwk);
-                if (chkAllusLibs.Checked)
-                    updateRefVersions1.Start(txtRootVersion.Text, txtNewVersion_AllusLibs.Text, ReferenceType.AllusLibs);
+                if (chk_FWK_UILibs.Checked)
+                    updateRefVersions1.Start(txtRootVersion.Text, txtNewVersion_FWK_UI_Libs.Text, ReferenceType.FWK_UI_Libs);
                 if (chlEnterpriseLibrary.Checked)
                     updateRefVersions1.Start(txtRootVersion.Text, txtNewVersion_EnterpriseLibrary.Text, ReferenceType.EnterpriseLibrary);
 
@@ -299,7 +299,7 @@ namespace ProjectReferencesCreator
             txtRootVersion.Text = string.Empty;
             txtNewVersion_Fwk.Text = string.Empty;
             txtNewVersion_EnterpriseLibrary.Text = string.Empty;
-            txtNewVersion_AllusLibs.Text = string.Empty;
+            txtNewVersion_FWK_UI_Libs.Text = string.Empty;
         }
        
 
@@ -308,9 +308,9 @@ namespace ProjectReferencesCreator
             txtNewVersion_Fwk.Enabled = chkFramework.Checked;
         }
 
-        private void chkAllusLibs_CheckedChanged(object sender, EventArgs e)
+        private void chkFWK_UI_Libs_CheckedChanged(object sender, EventArgs e)
         {
-            txtNewVersion_AllusLibs.Enabled = chkAllusLibs.Checked;
+            txtNewVersion_FWK_UI_Libs.Enabled = chk_FWK_UILibs.Checked;
         }
 
         private void chlEnterpriseLibrary_CheckedChanged(object sender, EventArgs e)

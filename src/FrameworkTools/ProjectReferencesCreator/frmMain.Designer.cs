@@ -50,10 +50,10 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtNewVersion_EnterpriseLibrary = new System.Windows.Forms.MaskedTextBox();
-            this.txtNewVersion_AllusLibs = new System.Windows.Forms.MaskedTextBox();
+            this.txtNewVersion_FWK_UI_Libs = new System.Windows.Forms.MaskedTextBox();
             this.txtNewVersion_Fwk = new System.Windows.Forms.MaskedTextBox();
             this.chlEnterpriseLibrary = new System.Windows.Forms.CheckBox();
-            this.chkAllusLibs = new System.Windows.Forms.CheckBox();
+            this.chk_FWK_UILibs = new System.Windows.Forms.CheckBox();
             this.chkFramework = new System.Windows.Forms.CheckBox();
             this.btnUpdateVersions = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -290,10 +290,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.txtNewVersion_EnterpriseLibrary);
-            this.groupBox1.Controls.Add(this.txtNewVersion_AllusLibs);
+            this.groupBox1.Controls.Add(this.txtNewVersion_FWK_UI_Libs);
             this.groupBox1.Controls.Add(this.txtNewVersion_Fwk);
             this.groupBox1.Controls.Add(this.chlEnterpriseLibrary);
-            this.groupBox1.Controls.Add(this.chkAllusLibs);
+            this.groupBox1.Controls.Add(this.chk_FWK_UILibs);
             this.groupBox1.Controls.Add(this.chkFramework);
             this.groupBox1.Controls.Add(this.btnUpdateVersions);
             this.groupBox1.Controls.Add(this.label5);
@@ -316,20 +316,20 @@
             this.txtNewVersion_EnterpriseLibrary.Size = new System.Drawing.Size(153, 26);
             this.txtNewVersion_EnterpriseLibrary.TabIndex = 21;
             // 
-            // txtNewVersion_AllusLibs
+            // txtNewVersion_FWK_UI_Libs
             // 
-            this.txtNewVersion_AllusLibs.Culture = new System.Globalization.CultureInfo("en-US");
-            this.txtNewVersion_AllusLibs.Enabled = false;
-            this.txtNewVersion_AllusLibs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewVersion_AllusLibs.ForeColor = System.Drawing.Color.Maroon;
-            this.txtNewVersion_AllusLibs.Location = new System.Drawing.Point(100, 87);
-            this.txtNewVersion_AllusLibs.Mask = "9.9.9.9";
-            this.txtNewVersion_AllusLibs.Name = "txtNewVersion_AllusLibs";
-            this.txtNewVersion_AllusLibs.ResetOnPrompt = false;
-            this.txtNewVersion_AllusLibs.ResetOnSpace = false;
-            this.txtNewVersion_AllusLibs.Size = new System.Drawing.Size(72, 26);
-            this.txtNewVersion_AllusLibs.TabIndex = 20;
-            this.txtNewVersion_AllusLibs.Text = "2343";
+            this.txtNewVersion_FWK_UI_Libs.Culture = new System.Globalization.CultureInfo("en-US");
+            this.txtNewVersion_FWK_UI_Libs.Enabled = false;
+            this.txtNewVersion_FWK_UI_Libs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewVersion_FWK_UI_Libs.ForeColor = System.Drawing.Color.Maroon;
+            this.txtNewVersion_FWK_UI_Libs.Location = new System.Drawing.Point(100, 87);
+            this.txtNewVersion_FWK_UI_Libs.Mask = "9.9.9.9";
+            this.txtNewVersion_FWK_UI_Libs.Name = "txtNewVersion_FWK_UI_Libs";
+            this.txtNewVersion_FWK_UI_Libs.ResetOnPrompt = false;
+            this.txtNewVersion_FWK_UI_Libs.ResetOnSpace = false;
+            this.txtNewVersion_FWK_UI_Libs.Size = new System.Drawing.Size(72, 26);
+            this.txtNewVersion_FWK_UI_Libs.TabIndex = 20;
+            this.txtNewVersion_FWK_UI_Libs.Text = "2343";
             // 
             // txtNewVersion_Fwk
             // 
@@ -358,17 +358,17 @@
             this.chlEnterpriseLibrary.UseVisualStyleBackColor = true;
             this.chlEnterpriseLibrary.CheckedChanged += new System.EventHandler(this.chlEnterpriseLibrary_CheckedChanged);
             // 
-            // chkAllusLibs
+            // chkFWK_UI_Libs
             // 
-            this.chkAllusLibs.AutoSize = true;
-            this.chkAllusLibs.ForeColor = System.Drawing.Color.Blue;
-            this.chkAllusLibs.Location = new System.Drawing.Point(6, 96);
-            this.chkAllusLibs.Name = "chkAllusLibs";
-            this.chkAllusLibs.Size = new System.Drawing.Size(66, 17);
-            this.chkAllusLibs.TabIndex = 16;
-            this.chkAllusLibs.Text = "Allus libs";
-            this.chkAllusLibs.UseVisualStyleBackColor = true;
-            this.chkAllusLibs.CheckedChanged += new System.EventHandler(this.chkAllusLibs_CheckedChanged);
+            this.chk_FWK_UILibs.AutoSize = true;
+            this.chk_FWK_UILibs.ForeColor = System.Drawing.Color.Blue;
+            this.chk_FWK_UILibs.Location = new System.Drawing.Point(6, 96);
+            this.chk_FWK_UILibs.Name = "chkFWK_UI_Libs";
+            this.chk_FWK_UILibs.Size = new System.Drawing.Size(66, 17);
+            this.chk_FWK_UILibs.TabIndex = 16;
+            this.chk_FWK_UILibs.Text = "FWK_UI_ libs";
+            this.chk_FWK_UILibs.UseVisualStyleBackColor = true;
+            this.chk_FWK_UILibs.CheckedChanged += new System.EventHandler(this.chkFWK_UI_Libs_CheckedChanged);
             // 
             // chkFramework
             // 
@@ -526,11 +526,11 @@
         private System.Windows.Forms.Label label5;
         private UpdateRefVersions updateRefVersions1;
         private System.Windows.Forms.CheckBox chkFramework;
-        private System.Windows.Forms.CheckBox chkAllusLibs;
+        private System.Windows.Forms.CheckBox chk_FWK_UILibs;
         private System.Windows.Forms.CheckBox chlEnterpriseLibrary;
         private System.Windows.Forms.MaskedTextBox txtNewVersion_Fwk;
         private System.Windows.Forms.MaskedTextBox txtNewVersion_EnterpriseLibrary;
-        private System.Windows.Forms.MaskedTextBox txtNewVersion_AllusLibs;
+        private System.Windows.Forms.MaskedTextBox txtNewVersion_FWK_UI_Libs;
     }
 }
 
