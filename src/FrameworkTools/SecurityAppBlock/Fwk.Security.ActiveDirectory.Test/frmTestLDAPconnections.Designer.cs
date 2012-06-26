@@ -291,7 +291,7 @@
             this.txtDomainC.Name = "txtDomainC";
             this.txtDomainC.Size = new System.Drawing.Size(138, 20);
             this.txtDomainC.TabIndex = 81;
-            this.txtDomainC.Text = "allus";
+            this.txtDomainC.Text = "Pelsoft";
             // 
             // btnUser_Get_ByName
             // 

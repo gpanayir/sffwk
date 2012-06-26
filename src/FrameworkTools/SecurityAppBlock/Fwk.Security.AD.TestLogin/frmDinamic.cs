@@ -126,9 +126,9 @@ namespace Fwk.Security.AD.TestLogin
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddRootCert("AllusCerts/RootAlcomovistar.cer");
-            AddRootCert("AllusCerts/RootAllusArgent.cer");
-            AddRootCert("AllusCerts/RootAllusPeru.cer");
+            AddRootCert("PelsoftCerts/RootAC.cer");
+            AddRootCert("PelsoftCerts/RootPelsoftArgent.cer");
+            AddRootCert("PelsoftCerts/RootPelsoftZZ.cer");
         }
 
         void AddRootCert(String pCertFilePath)

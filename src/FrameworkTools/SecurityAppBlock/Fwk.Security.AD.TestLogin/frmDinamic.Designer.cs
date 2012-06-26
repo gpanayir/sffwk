@@ -102,7 +102,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
             this.txtPassword.TabIndex = 66;
-            this.txtPassword.Text = "Allus+123";
+            this.txtPassword.Text = "Pelsoft+123";
             // 
             // lblURL
             // 
@@ -165,7 +165,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(182, 22);
             this.button1.TabIndex = 77;
-            this.button1.Text = "Install Allus Root Certs";
+            this.button1.Text = "Install Pelsoft Root Certs";
             this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);

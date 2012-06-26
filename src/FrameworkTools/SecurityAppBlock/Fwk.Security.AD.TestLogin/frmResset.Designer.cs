@@ -163,7 +163,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
             this.txtPassword.TabIndex = 81;
-            this.txtPassword.Text = "Allus+123";
+            this.txtPassword.Text = "Pelsoft+123";
             // 
             // txtError
             // 
