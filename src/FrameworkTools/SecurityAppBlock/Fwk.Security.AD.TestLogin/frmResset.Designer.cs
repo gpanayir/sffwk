@@ -102,7 +102,7 @@
             this.cmbDomains.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDomains.FormattingEnabled = true;
             this.cmbDomains.Items.AddRange(new object[] {
-            "allus-ar",
+            "Pelsoft-ar",
             "pelsoft"});
             this.cmbDomains.Location = new System.Drawing.Point(138, 125);
             this.cmbDomains.Name = "cmbDomains";
@@ -163,7 +163,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
             this.txtPassword.TabIndex = 81;
-            this.txtPassword.Text = "Allus+123";
+            this.txtPassword.Text = "Pelsoft+123";
             // 
             // txtError
             // 
