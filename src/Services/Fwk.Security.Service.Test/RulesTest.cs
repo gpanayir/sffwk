@@ -113,7 +113,7 @@ namespace Security
             SearchAllRulesReq req = new SearchAllRulesReq();
             SearchAllRulesRes res = new SearchAllRulesRes();
             SearchAllRulesService svc = new SearchAllRulesService();
-            //res.ContextInformation.CompanyId = "bigbang";
+            //res.ContextInformation.CompanyId = "pelsoft";
             //req.SecurityProviderName = "tesa";
             req.SecurityProviderName = SecurityProviderName;
 
