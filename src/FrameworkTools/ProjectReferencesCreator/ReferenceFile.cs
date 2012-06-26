@@ -123,7 +123,7 @@ namespace ProjectReferencesCreator
     { 
         Fwk,
         EnterpriseLibrary,
-        AllusLibs
+        FWK_UI_Libs
     }
     [Serializable]
     public class ReferenceFileList : Fwk.Bases.Entities<ReferenceFile>
@@ -132,7 +132,7 @@ namespace ProjectReferencesCreator
          public static event EventHandler MessagEvent;
          const string VERSION_TEMPLATE = "$ASSEMBLY$, Version=$VERSION$, Culture=neutral, processorArchitecture=MSIL";
          const string EnterpriseLibrary = "Microsoft.Practices.EnterpriseLibrary.";
-         const string AllusLibs = "Allus.Libs";
+         const string FWK_UI_Libs = "fwk.ui";
 
         private static List<string> fwkList;
         
@@ -147,6 +147,7 @@ namespace ProjectReferencesCreator
             fwkList.Add("Fwk.Controls.Win32");
             fwkList.Add("Fwk.Bases.FrontEnd");
             fwkList.Add("Fwk.Security.Service");
+            fwkList.Add("Fwk.UI");
   
         }
 
@@ -330,9 +331,9 @@ namespace ProjectReferencesCreator
                                         }
                                         break;
                                     }
-                                case ReferenceType.AllusLibs:
+                                case ReferenceType.FWK_UI_Libs:
                                     {
-                                        if (assemblyName.Contains(AllusLibs))
+                                        if (assemblyName.Contains(FWK_UI_Libs))
                                         {
                                             Fwk.Xml.NodeAttribute.AttributeSet(xmlNode_Reference, "Include", VERSION_TEMPLATE.Replace("$ASSEMBLY$", assemblyName).Replace("$VERSION$", newVersion));
                                             wReferenceFile.Udated = true;
