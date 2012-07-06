@@ -52,6 +52,8 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnFindRoles = new System.Windows.Forms.Button();
+            this.contextMenu_Categories = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.iAddNewCategory = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -65,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            this.contextMenu_Categories.SuspendLayout();
             this.SuspendLayout();
             // 
             // rolBindingSource
@@ -79,7 +82,7 @@
             this.lbltitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbltitle.Location = new System.Drawing.Point(0, 0);
             this.lbltitle.Name = "lbltitle";
-            this.lbltitle.Size = new System.Drawing.Size(885, 34);
+            this.lbltitle.Size = new System.Drawing.Size(1032, 42);
             this.lbltitle.TabIndex = 20;
             this.lbltitle.Text = "Edit rules";
             this.lbltitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -89,24 +92,25 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.removeSelectedsToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 28);
             // 
             // removeSelectedsToolStripMenuItem
             // 
             this.removeSelectedsToolStripMenuItem.Name = "removeSelectedsToolStripMenuItem";
-            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(197, 24);
             this.removeSelectedsToolStripMenuItem.Text = "Remove selecteds";
             this.removeSelectedsToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedsToolStripMenuItem_Click);
             // 
             // grdRulesByCategory
             // 
-            this.grdRulesByCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.grdRulesByCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grdRulesByCategory.DataSource = this.fwkRulesInCategoryListBindingSource;
-            this.grdRulesByCategory.Location = new System.Drawing.Point(311, 60);
+            this.grdRulesByCategory.Location = new System.Drawing.Point(363, 74);
             this.grdRulesByCategory.MainView = this.grdViewRulesByCategory;
+            this.grdRulesByCategory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdRulesByCategory.Name = "grdRulesByCategory";
-            this.grdRulesByCategory.Size = new System.Drawing.Size(272, 380);
+            this.grdRulesByCategory.Size = new System.Drawing.Size(317, 468);
             this.grdRulesByCategory.TabIndex = 31;
             this.grdRulesByCategory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdViewRulesByCategory,
@@ -164,31 +168,38 @@
             // treeList1
             // 
             this.treeList1.AllowDrop = true;
-            this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.treeList1.Appearance.FocusedCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.treeList1.Appearance.FocusedCell.Options.UseFont = true;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.colName});
+            this.treeList1.ContextMenuStrip = this.contextMenu_Categories;
             this.treeList1.DataSource = this.fwkCategoryBindingSource;
             this.treeList1.FixedLineWidth = 1;
             this.treeList1.KeyFieldName = "CategoryId";
-            this.treeList1.Location = new System.Drawing.Point(4, 60);
+            this.treeList1.Location = new System.Drawing.Point(5, 74);
+            this.treeList1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
             this.treeList1.OptionsView.EnableAppearanceEvenRow = true;
             this.treeList1.OptionsView.ShowHorzLines = false;
             this.treeList1.OptionsView.ShowVertLines = false;
             this.treeList1.ParentFieldName = "ParentId";
-            this.treeList1.Size = new System.Drawing.Size(290, 380);
+            this.treeList1.Size = new System.Drawing.Size(338, 468);
             this.treeList1.StateImageList = this.imageList1;
             this.treeList1.TabIndex = 30;
+            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
             this.treeList1.Click += new System.EventHandler(this.treeList1_Click);
+            this.treeList1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeList1_KeyDown);
+            this.treeList1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseClick);
+            this.treeList1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseDown);
             // 
             // colName
             // 
             this.colName.Caption = "Name";
             this.colName.FieldName = "Name";
+            this.colName.MinWidth = 33;
             this.colName.Name = "colName";
             this.colName.OptionsColumn.AllowEdit = false;
             this.colName.OptionsColumn.ReadOnly = true;
@@ -207,43 +218,44 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(7, 41);
+            this.labelControl1.Location = new System.Drawing.Point(8, 50);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(70, 16);
+            this.labelControl1.Size = new System.Drawing.Size(91, 21);
             this.labelControl1.TabIndex = 32;
             this.labelControl1.Text = "Categories";
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(311, 41);
+            this.labelControl2.Location = new System.Drawing.Point(363, 50);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(35, 16);
+            this.labelControl2.Size = new System.Drawing.Size(47, 21);
             this.labelControl2.TabIndex = 33;
             this.labelControl2.Text = "Rules";
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(600, 38);
+            this.labelControl3.Location = new System.Drawing.Point(700, 47);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(35, 16);
+            this.labelControl3.Size = new System.Drawing.Size(47, 21);
             this.labelControl3.TabIndex = 34;
             this.labelControl3.Text = "Roles";
             // 
             // grdRoles
             // 
-            this.grdRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.grdRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.grdRoles.ContextMenuStrip = this.contextMenuStrip1;
             this.grdRoles.DataSource = this.rolBindingSource;
-            this.grdRoles.Location = new System.Drawing.Point(600, 60);
+            this.grdRoles.Location = new System.Drawing.Point(700, 74);
             this.grdRoles.MainView = this.grdViewRoles;
+            this.grdRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grdRoles.Name = "grdRoles";
-            this.grdRoles.Size = new System.Drawing.Size(272, 380);
+            this.grdRoles.Size = new System.Drawing.Size(317, 468);
             this.grdRoles.TabIndex = 35;
             this.grdRoles.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdViewRoles,
@@ -291,18 +303,33 @@
             this.btnFindRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFindRoles.Image = global::Fwk.Security.Admin.Properties.Resources.search_16;
             this.btnFindRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFindRoles.Location = new System.Drawing.Point(647, 38);
+            this.btnFindRoles.Location = new System.Drawing.Point(755, 47);
+            this.btnFindRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnFindRoles.Name = "btnFindRoles";
-            this.btnFindRoles.Size = new System.Drawing.Size(95, 20);
+            this.btnFindRoles.Size = new System.Drawing.Size(111, 25);
             this.btnFindRoles.TabIndex = 36;
             this.btnFindRoles.Text = "...";
             this.btnFindRoles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFindRoles.UseVisualStyleBackColor = false;
             this.btnFindRoles.Click += new System.EventHandler(this.btnFindRoles_Click);
             // 
+            // contextMenu_Categories
+            // 
+            this.contextMenu_Categories.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.iAddNewCategory});
+            this.contextMenu_Categories.Name = "contextMenuStrip1";
+            this.contextMenu_Categories.Size = new System.Drawing.Size(223, 28);
+            // 
+            // iAddNewCategory
+            // 
+            this.iAddNewCategory.Name = "iAddNewCategory";
+            this.iAddNewCategory.Size = new System.Drawing.Size(222, 24);
+            this.iAddNewCategory.Text = "Agregar subcategoria";
+            this.iAddNewCategory.Click += new System.EventHandler(this.iAddNewCategory_Click);
+            // 
             // RulesEditControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnFindRoles);
             this.Controls.Add(this.grdRoles);
@@ -312,8 +339,9 @@
             this.Controls.Add(this.treeList1);
             this.Controls.Add(this.lbltitle);
             this.Controls.Add(this.grdRulesByCategory);
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "RulesEditControl";
-            this.Size = new System.Drawing.Size(885, 456);
+            this.Size = new System.Drawing.Size(1032, 561);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -327,6 +355,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            this.contextMenu_Categories.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,5 +385,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private System.Windows.Forms.Button btnFindRoles;
         private System.Windows.Forms.BindingSource fwkRulesInCategoryListBindingSource;
+        private System.Windows.Forms.ContextMenuStrip contextMenu_Categories;
+        private System.Windows.Forms.ToolStripMenuItem iAddNewCategory;
     }
 }

@@ -98,7 +98,7 @@ namespace Fwk.Security.Admin
             GetUserInfoByParamsRes res = _ClientServiceBase.ExecuteService<GetUserInfoByParamsReq, GetUserInfoByParamsRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
 
             return res.BusinessData.UserInfo;
         }
@@ -121,7 +121,7 @@ namespace Fwk.Security.Admin
             CreateUserRes res = _ClientServiceBase.ExecuteService<CreateUserReq, CreateUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
 
             //pUser.UserId = response.BusinessData.NewUserId;
         }
@@ -149,7 +149,7 @@ namespace Fwk.Security.Admin
 
             if (res.Error != null)
             {
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
             }
 
         }
@@ -175,7 +175,7 @@ namespace Fwk.Security.Admin
 
             if (res.Error != null)
             {
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
             }
 
         }
@@ -196,7 +196,7 @@ namespace Fwk.Security.Admin
 
             if (res.Error != null)
             {
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
             }
 
         }
@@ -213,7 +213,7 @@ namespace Fwk.Security.Admin
 
             if (res.Error != null)
             {
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
             }
             return res.BusinessData.UserList;
         }
@@ -280,7 +280,7 @@ namespace Fwk.Security.Admin
             AuthenticateUserRes res = _ClientServiceBase.ExecuteService<AuthenticateUserReq, AuthenticateUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
             ///TODO: arreglar AuthenticateUserRes
             return  res.BusinessData.UserInfo;
         }
@@ -302,7 +302,7 @@ namespace Fwk.Security.Admin
             CreateRoleRes res = req.ExecuteService<CreateRoleReq, CreateRoleRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
 
         }
 
@@ -321,7 +321,7 @@ namespace Fwk.Security.Admin
             DeleteRoleRes res = req.ExecuteService<DeleteRoleReq, DeleteRoleRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
 
         }
 
@@ -338,7 +338,7 @@ namespace Fwk.Security.Admin
             SearchAllRolesRes res = req.ExecuteService<SearchAllRolesReq, SearchAllRolesRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
 
             return res.BusinessData.RolList;
         }
@@ -359,7 +359,7 @@ namespace Fwk.Security.Admin
             AssignRolesToUserRes res = req.ExecuteService<AssignRolesToUserReq, AssignRolesToUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
         }
 
         /// <summary>
@@ -376,7 +376,7 @@ namespace Fwk.Security.Admin
             SearchRolesForUserRes res = req.ExecuteService<SearchRolesForUserReq, SearchRolesForUserRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
 
             return res.BusinessData.RolList;
         }
@@ -391,7 +391,7 @@ namespace Fwk.Security.Admin
             SearchAllRulesCategoryRes res = req.ExecuteService<SearchAllRulesCategoryReq, SearchAllRulesCategoryRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
 
             return res.BusinessData;
         }
@@ -412,7 +412,7 @@ namespace Fwk.Security.Admin
             SearchAllRulesRes res = req.ExecuteService<SearchAllRulesReq, SearchAllRulesRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
 
             return res.BusinessData;
         }
@@ -442,7 +442,7 @@ namespace Fwk.Security.Admin
             UpdateRulesRes res = req.ExecuteService<UpdateRulesReq, UpdateRulesRes>(WrapperSecurityProvider,req);
 
             if (res.Error != null)
-                Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
         }
 
         //TODO: usar scripts
@@ -507,7 +507,7 @@ namespace Fwk.Security.Admin
             res = _ClientServiceBase.ExecuteService<SearchDomainsUrlsRequest, SearchDomainsUrlsResponse>(req);
 
             if (res.Error != null)
-                throw Fwk.UI.Common.Exceptions.ProcessException(res.Error);
+                throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
 
             return res.BusinessData.DomainsNameList;
         }

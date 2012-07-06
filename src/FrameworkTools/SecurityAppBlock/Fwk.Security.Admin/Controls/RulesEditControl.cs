@@ -11,6 +11,7 @@ using Fwk.Security.Common;
 using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using System.Web.Security;
 using System.Runtime.Remoting.Messaging;
+using DevExpress.XtraTreeList;
 
 namespace Fwk.Security.Admin.Controls
 {
@@ -230,6 +231,99 @@ namespace Fwk.Security.Admin.Controls
                 grdRoles.RefreshDataSource();
             }
             SetMessageViewToDefault();
+        }
+
+        private void iAddNewCategory_Click(object sender, EventArgs e)
+        {
+            using (frmAddName frm = new frmAddName())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    if (!string.IsNullOrEmpty(frm.Tag.ToString()) && _CurrentCategory != null)
+                        if (FwkMembership.ExistCategory(frm.Tag.ToString().Trim(), _CurrentCategory.CategoryId, frmAdmin.Provider.ApplicationName))
+                        {
+                            MessageViewInfo.Show(string.Format("Category {0} already exist", frm.Tag.ToString()));
+                            return;
+                        }
+                        else
+                            Create_Categoty(frm.Tag.ToString());
+                }
+            }
+
+
+        }
+
+        void Create_Categoty(string name)
+        {
+
+
+            FwkCategory wFwkCategory = new FwkCategory();
+
+            wFwkCategory.Name = name;
+            if (_ParentFwkCategory != null)
+                wFwkCategory.ParentId = _ParentFwkCategory.CategoryId;
+            else
+                wFwkCategory.ParentId = 0;
+
+            try
+            {
+                FwkMembership.CreateCategory(wFwkCategory, frmAdmin.Provider.ApplicationName);
+                MessageViewInfo.Show("Category was successfully created");
+                PopulateAsync();
+            }
+            catch (Exception ex)
+            { throw ex; }
+
+        }
+
+        FwkCategory _CurrentCategory = null;
+        private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+        {
+            if (e.Node == null) return;
+             _CurrentCategory = (FwkCategory)treeList1.GetDataRecordByNode(e.Node);
+            //if (!String.IsNullOrEmpty(item.AssemblyInfo))
+            //{
+            //    AddContronToPannel(item, null);
+            //}
+        }
+
+        private void treeList1_KeyDown(object sender, KeyEventArgs e)
+        {
+            TreeList tl = sender as TreeList;
+            if (tl.FocusedNode != null)
+            {
+                if (e.KeyCode == Keys.Right)
+                {
+                    if (!tl.FocusedNode.Expanded && tl.FocusedNode.HasChildren)
+                        tl.FocusedNode.Expanded = true;
+                    else tl.MoveNextVisible();
+                }
+                if (e.KeyCode == Keys.Left)
+                {
+                    if (tl.FocusedNode.Expanded)
+                        tl.FocusedNode.Expanded = false;
+                    else tl.MovePrevVisible();
+                }
+            }
+        }
+
+        private void treeList1_MouseClick(object sender, MouseEventArgs e)
+        {
+            TreeList tl = sender as TreeList;
+            if (tl.FocusedNode != null)
+                if (tl.FocusedNode.HasChildren)
+                    tl.FocusedNode.Expanded = !tl.FocusedNode.Expanded;
+        }
+        TreeListHitInfo _HitInfo = null;
+        private void treeList1_MouseDown(object sender, MouseEventArgs e)
+        {
+            _HitInfo = treeList1.CalcHitInfo(new Point(e.X, e.Y));
+            _CurrentCategory = (FwkCategory)treeList1.GetDataRecordByNode(_HitInfo.Node);
+
+            if (_CurrentCategory != null)
+            {
+                
+            }
         }
     }
 }
