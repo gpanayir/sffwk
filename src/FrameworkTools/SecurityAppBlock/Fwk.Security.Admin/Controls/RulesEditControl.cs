@@ -12,6 +12,7 @@ using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using System.Web.Security;
 using System.Runtime.Remoting.Messaging;
 using DevExpress.XtraTreeList;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace Fwk.Security.Admin.Controls
 {
@@ -24,6 +25,7 @@ namespace Fwk.Security.Admin.Controls
         FwkCategoryList _CategoryList;
         FwkCategory _ParentFwkCategory;
         List<AuthorizationRuleData> _RuleList;
+        List<FwkAuthorizationRule> _AllRuleList;
         FwkAuthorizationRule _CurrentRule;
         /// <summary>
         /// Representa la informacion del tipo de control a instanciar 
@@ -36,14 +38,16 @@ namespace Fwk.Security.Admin.Controls
                 return typeof(RulesEditControl).AssemblyQualifiedName;
             }
         }
-
+      
         public override void Initialize()
         {
             //txtRuleName.Focus();
             using (new WaitCursorHelper(this))
             {
 
-
+                _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
+                fwkAuthorizationRuleBindingSource.DataSource = _AllRuleList;
+                grdAllRules.RefreshDataSource();
 
                 _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.ApplicationName);
                 treeList1.BeginUnboundLoad();
@@ -324,6 +328,96 @@ namespace Fwk.Security.Admin.Controls
             {
                 
             }
+        }      
+        
+        #region (Grilla) Eventos y Métodos Drag hacia otro componente 
+
+        private void treeList1_DragDrop(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
         }
+
+        private void treeList1_DragOver(object sender, DragEventArgs e)
+        {
+            TreeListHitInfo wHitInfo = treeList1.CalcHitInfo(treeList1.PointToClient(new Point(e.X, e.Y)));
+            if (wHitInfo.Node == null)
+                return;
+
+            List<FwkAuthorizationRule> wRuleList = (List<FwkAuthorizationRule>)e.Data.GetData(typeof(List<FwkAuthorizationRule>));
+
+            if (wRuleList != null)
+            {
+                //FwkAuthorizationRule wRule2;
+                _ParentFwkCategory = (FwkCategory)treeList1.GetDataRecordByNode(wHitInfo.Node);
+
+                #region Add Rules to Category
+                foreach (FwkAuthorizationRule rule in wRuleList)
+                {
+                    if (!_ParentFwkCategory.FwkRulesInCategoryList.Any<FwkAuthorizationRule>(p => p.Name == rule.Name))
+                    {
+                        //wRule2 = new FwkAuthorizationRule();
+                        //wRule2.Name = rule.Name;
+                        //wRule2.CategoryId = _ParentFwkCategory.CategoryId;
+                        _ParentFwkCategory.FwkRulesInCategoryList.Add(rule.Clone());
+                        _ParentFwkCategory.EntityState = Fwk.Bases.EntityState.Changed;
+                    }
+                }
+                #endregion
+            }
+            //Si cambiaron una o mas reglas
+            if (_ParentFwkCategory.EntityState == Fwk.Bases.EntityState.Changed)
+            {
+                FwkMembership.CreateRuleInCategory(_ParentFwkCategory, frmAdmin.Provider.ApplicationName);
+                //Agrego las rules a la grilla sobre
+                grdRulesByCategory.DataSource = _ParentFwkCategory.FwkRulesInCategoryList;
+                grdRulesByCategory.RefreshDataSource();
+                treeList1.RefreshDataSource();
+                _ParentFwkCategory.EntityState = Fwk.Bases.EntityState.Unchanged;
+            }
+        }
+
+       
+
+    
+              #endregion
+        #region (Grilla) Eventos y Métodos Drag hacia otro componente
+        GridHitInfo _GridHitInfo = null;
+        private void gridView_AllRules_MouseDown(object sender, MouseEventArgs e)
+        {
+            _GridHitInfo = grdViewRulesByCategory.CalcHitInfo(new Point(e.X, e.Y));
+        }
+
+        private void gridView_AllRules_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_GridHitInfo == null || e.Button != MouseButtons.Left || _GridHitInfo.HitTest == GridHitTest.RowIndicator)
+                return;
+
+            Rectangle dragRect = new Rectangle(new Point(_GridHitInfo.HitPoint.X - SystemInformation.DragSize.Width / 2,
+                                                                                    _GridHitInfo.HitPoint.Y - SystemInformation.DragSize.Height / 2), SystemInformation.DragSize);
+
+            if (!dragRect.Contains(new Point(e.X, e.Y)))
+            {
+                if (_GridHitInfo.InRowCell)
+                {
+                    FwkAuthorizationRule rule = null;
+                    List<FwkAuthorizationRule> wRuleList = new List<FwkAuthorizationRule>();
+                    //Recorro todas las filas seleccionadas y obtengo el UserId y el Name y los agrego a la lista de usuarios
+                    foreach (int wFila in gridView_AllRules.GetSelectedRows())
+                    {
+                        //rule = new FwkRulesInCategory(((NamedConfigurationElement)(grdViewRules.GetRow(wFila))).Name);
+                        rule = (FwkAuthorizationRule)(gridView_AllRules.GetRow(wFila));
+                        wRuleList.Add(rule.Clone());
+                    }
+
+                    grdAllRules.DoDragDrop(wRuleList, DragDropEffects.Move);
+
+                    //Dejamos seleccionada a la fila que tiene el foco
+                    gridView_AllRules.SelectRow(gridView_AllRules.FocusedRowHandle);
+                }
+            }
+        }
+
+        #endregion
+
     }
 }
