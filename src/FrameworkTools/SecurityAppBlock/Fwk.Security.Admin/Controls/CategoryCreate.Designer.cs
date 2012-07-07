@@ -58,6 +58,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.colImage = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fwkCategoryBindingSource)).BeginInit();
@@ -93,6 +94,7 @@
             this.treeList1.Appearance.FocusedCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.treeList1.Appearance.FocusedCell.Options.UseFont = true;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.colImage,
             this.colName});
             this.treeList1.DataSource = this.fwkCategoryBindingSource;
             this.treeList1.FixedLineWidth = 1;
@@ -391,6 +393,12 @@
             this.labelControl3.TabIndex = 37;
             this.labelControl3.Text = "Categories";
             // 
+            // colImage
+            // 
+            this.colImage.Name = "colImage";
+            this.colImage.Visible = true;
+            this.colImage.VisibleIndex = 1;
+            // 
             // CategoryCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -458,5 +466,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.Label lblParentCategoryName;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colImage;
     }
 }

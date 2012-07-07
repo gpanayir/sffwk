@@ -123,34 +123,16 @@
   <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="rolBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>340, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>872, 17</value>
-  </metadata>
-  <metadata name="fwkRulesInCategoryListBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1362, 17</value>
-  </metadata>
-  <metadata name="fwkCategoryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>509, 17</value>
-  </metadata>
-  <metadata name="aspnetRulesInCategoryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1054, 17</value>
-  </metadata>
-  <metadata name="contextMenu_Categories.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1671, 17</value>
-  </metadata>
   <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>746, 17</value>
+    <value>509, 17</value>
   </metadata>
   <data name="imageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADS
-        CQAAAk1TRnQBSQFMAgEBAwEAATQBAAE0AQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
-        AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA0
+        CgAAAk1TRnQBSQFMAgEBBAEAAYQBAAGEAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
         AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
@@ -177,23 +159,43 @@
         AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
         AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
         AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
-        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wEADoUBoQEADoUBoQQA
-        AaEJhQGhEgAOogGFAQAOogGFBAABhQmiAYUSAAEVDCMBFAGFAQABFQsjAUQBogGFBAABhQGiByMBogGF
-        EgABIwEaChsBGgEjAaEBAAEjARoKGwFzARQBoQQAAaEBhQEjBJkCIwGFAaESAAFKARoBSgrzAUoCAAFE
-        ARwBcwnzARsBSgcAASMCmQQjFAABSgEaAUsK8wFLAgABSgEaAUsBGwnzAXMBhgYAAUoDmQJKFQABSwHw
-        AUsK9AFLAgABSgHwAXMBmQn0AZkBEgYAAUoCmQNKFQABSwHwAUsK/wFLAgABSwHwAZkBHAn/AfMBSwGh
-        BAABhgFLApkCSwGGFQABSwHxAVEK9gFRAgABSwLxAXMB9An2ARwBhgIAAaEBZwFLAZkCGgGZAksBZwGh
-        EwABSwHxAXMK/wFzAgABSwHzAfEBHAEaCf8BGgHrAQABhgFLAZkBGgEbAxoBmQEcAksBhhIAAXMB8Qx0
-        AgABcwH0AfEBvAx0AQABUQHzA/QB8wUaAksSAAFzC/IBUQMAAXMB/wEbCfIBUQQAAXMB8wL/AZkBHAFz
-        ARwDGgJREgABugbwAZEFcwMAAboB8gHxBPABkQVzBAABhgFzAZkB8wEcAaYBZQFsAZEBHAJzAYYSAAG6
-        AfIE8wHyAboIAAG6AfIE8wHyAboKAAGhAa4BdAMcAQABbAFzAa4BoRMAAa0GugGtCAABrQa6Aa0MAAGn
-        AXMDAAGQAac7AAGnAosBpxYAAUIBTQE+BwABPgMAASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/8CAAEB
-        AQABAQHgAQMDAAEBAQABAQHgAQMDAAEBAQABAQHgAQMDAAEBAQABAQHgAQMDAAEDAQABAwH4AQ8DAAED
-        AQABAQH4AR8DAAEDAQABAQH4AR8DAAEDAgAB8AEfAwABAwIAAcABBwMAAQMCAAGAAQMDAAEDAgABgAED
-        AwABBwEAAQcBgAEDAwABBwEAAQcBgAEDAwAB/wEAAf8BwAGHAwAB/wEAAf8B8wGfAgAE/wH8AT8CAAs=
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD//8A/wD/AP8ABQAOhQGh
+        AQAOhQGhBAABoQmFAaESAA6iAYUBAA6iAYUEAAGFCaIBhRIAARUMIwEUAYUBAAEVCyMBRAGiAYUEAAGF
+        AaIHIwGiAYUSAAEjARoKGwEaASMBoQEAASMBGgobAXMBFAGhBAABoQGFASMEmQIjAYUBoQIAAv8M9AL/
+        AUoBGgFKCvMBSgIAAUQBHAFzCfMBGwFKBwABIwKZBCMEAAH/AfAB7wr3Ae8B8AH/AUoBGgFLCvMBSwIA
+        AUoBGgFLARsJ8wFzAYYGAAFKA5kCSgUAAfQBbQwRAW0B9AFLAfABSwr0AUsCAAFKAfABcwGZCfQBmQES
+        BgABSgKZA0oFAAH0ARQMGgEUAfQBSwHwAUsK/wFLAgABSwHwAZkBHAn/AfMBSwGhBAABhgFLApkCSwGG
+        BQAB9AESDJMBEgH0AUsB8QFRCvYBUQIAAUsC8QFzAfQJ9gEcAYYCAAGhAWcBSwGZAhoBmQJLAWcBoQMA
+        AfQBbQyTAW0B9AFLAfEBcwr/AXMCAAFLAfMB8QEcARoJ/wEaAesBAAGGAUsBmQEaARsDGgGZARwCSwGG
+        AgAB/wHsDPIB7AH/AXMB8Qx0AgABcwH0AfEBvAx0AQABUQHzA/QB8wUaAksCAAH/AQcM7AEHAf8Bcwvy
+        AVEDAAFzAf8BGwnyAVEEAAFzAfMC/wGZARwBcwEcAxoCURIAAboG8AGRBXMDAAG6AfIB8QTwAZEFcwQA
+        AYYBcwGZAfMBHAGmAWUBbAGRARwCcwGGEgABugHyBPMB8gG6CAABugHyBPMB8gG6CgABoQGuAXQDHAEA
+        AWwBcwGuAaETAAGtBroBrQgAAa0GugGtDAABpwFzAwABkAGnOwABpwKLAacWAAFCAU0BPgcAAT4DAAEo
+        AwABQAMAASADAAEBAQABAQYAAQEWAAP/ggABAQEAAQEB4AEDAv8BAAEBAQABAQHgAQMC/wEAAQEBAAEB
+        AeABAwL/AQABAQEAAQEB4AEDAwABAwEAAQMB+AEPAwABAwEAAQEB+AEfAwABAwEAAQEB+AEfAwABAwIA
+        AfABHwMAAQMCAAHAAQcDAAEDAgABgAEDAwABAwIAAYABAwMAAQcBAAEHAYABAwL/AQABBwEAAQcBgAED
+        Av8BAAH/AQAB/wHAAYcC/wEAAf8BAAH/AfMBnwb/AfwBPwL/Cw==
 </value>
   </data>
-  <metadata name="fwkAuthorizationRuleBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="rolBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>340, 17</value>
+  </metadata>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>635, 17</value>
+  </metadata>
+  <metadata name="fwkRulesInCategoryListBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 60</value>
+  </metadata>
+  <metadata name="aspnetRulesInCategoryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>817, 17</value>
+  </metadata>
+  <metadata name="contextMenu_Categories.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>326, 60</value>
+  </metadata>
+  <metadata name="categoryTreeBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>845, 60</value>
+  </metadata>
+  <metadata name="fwkAuthorizationRuleBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>548, 60</value>
   </metadata>
 </root>

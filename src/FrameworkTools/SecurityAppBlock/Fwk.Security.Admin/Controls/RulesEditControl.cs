@@ -18,12 +18,14 @@ namespace Fwk.Security.Admin.Controls
 {
     public partial class RulesEditControl : SecurityControlBase
     {
+        CategoryTree _CurrentCategory = null;
         Rol _SelectedRol = null;
-        User _SelectedUser = null;
+
         UserList _ExcludeUserList = new UserList();
         RolList _AssignedRolList = new RolList();
         FwkCategoryList _CategoryList;
-        FwkCategory _ParentFwkCategory;
+        CategoryTreeList _CategoryTreeList;
+        CategoryTree _ParentFwkCategory;
         List<AuthorizationRuleData> _RuleList;
         List<FwkAuthorizationRule> _AllRuleList;
         FwkAuthorizationRule _CurrentRule;
@@ -38,7 +40,7 @@ namespace Fwk.Security.Admin.Controls
                 return typeof(RulesEditControl).AssemblyQualifiedName;
             }
         }
-      
+
         public override void Initialize()
         {
             //txtRuleName.Focus();
@@ -50,11 +52,13 @@ namespace Fwk.Security.Admin.Controls
                 grdAllRules.RefreshDataSource();
 
                 _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.ApplicationName);
+                _CategoryTreeList = CategoryTreeList.Retrive_CategoryTreeList(_CategoryList);
                 treeList1.BeginUnboundLoad();
 
-                this.fwkCategoryBindingSource.DataSource = _CategoryList;
+                this.categoryTreeBindingSource.DataSource = _CategoryTreeList;
                 treeList1.RefreshDataSource();
                 treeList1.EndUnboundLoad();
+                treeList1.ExpandAll();
             }
         }
         public RulesEditControl()
@@ -104,7 +108,7 @@ namespace Fwk.Security.Admin.Controls
 
                 }
                 treeList1.BeginUnboundLoad();
-                this.fwkCategoryBindingSource.DataSource = _CategoryList;
+                this.categoryTreeBindingSource.DataSource = _CategoryTreeList;
                 treeList1.RefreshDataSource();
                 treeList1.EndUnboundLoad();
 
@@ -122,7 +126,7 @@ namespace Fwk.Security.Admin.Controls
             {
 
                 _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.ApplicationName);
-
+                _CategoryTreeList = CategoryTreeList.Retrive_CategoryTreeList(_CategoryList);
             }
             catch (Exception err)
             {
@@ -139,36 +143,36 @@ namespace Fwk.Security.Admin.Controls
 
         private void treeList1_Click(object sender, EventArgs e)
         {
-            if (treeList1.FocusedNode != null)
-            {
-                _ParentFwkCategory = (FwkCategory)treeList1.GetDataRecordByNode(treeList1.FocusedNode);
-                aspnetRulesInCategoryBindingSource.DataSource = _ParentFwkCategory.FwkRulesInCategoryList;
+            //if (treeList1.FocusedNode != null)
+            //{
+            //    _ParentFwkCategory = (CategoryTree)treeList1.GetDataRecordByNode(treeList1.FocusedNode);
+            //    aspnetRulesInCategoryBindingSource.DataSource = _ParentFwkCategory.FwkRulesInCategoryList;
 
 
-                grdRulesByCategory.RefreshDataSource();
-            }
+            //    grdRulesByCategory.RefreshDataSource();
+            //}
         }
 
         private void grdRulesByCategory_Click(object sender, EventArgs e)
         {
 
-            Fwk.Security.FwkAuthorizationRule rule = (Fwk.Security.FwkAuthorizationRule)((BindingSource)grdRulesByCategory.DataSource).Current;
-            if (rule == null) return;
-            _CurrentRule = FwkMembership.GetRule(rule.Name, frmAdmin.Provider.ApplicationName);
-            if (_CurrentRule == null)
-            {
-                MessageViewInfo.Show("Esta regla y fue eliminada .- Es posible que la categoria seleccionada no esta sincronizada con las reglas.-");
-                rolBindingSource.DataSource = null;
-            }
-            else
-            {
-                _AssignedRolList = new RolList();
-                _ExcludeUserList = new UserList();
-                FwkMembership.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.Expression, out _AssignedRolList, out _ExcludeUserList);
-                rolBindingSource.DataSource = _AssignedRolList;
-            }
+            //Fwk.Security.FwkAuthorizationRule rule = (Fwk.Security.FwkAuthorizationRule)((BindingSource)grdRulesByCategory.DataSource).Current;
+            //if (rule == null) return;
+            //_CurrentRule = FwkMembership.GetRule(rule.Name, frmAdmin.Provider.ApplicationName);
+            //if (_CurrentRule == null)
+            //{
+            //    MessageViewInfo.Show("Esta regla y fue eliminada .- Es posible que la categoria seleccionada no esta sincronizada con las reglas.-");
+            //    rolBindingSource.DataSource = null;
+            //}
+            //else
+            //{
+            //    _AssignedRolList = new RolList();
+            //    _ExcludeUserList = new UserList();
+            //    FwkMembership.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.Expression, out _AssignedRolList, out _ExcludeUserList);
+            //    rolBindingSource.DataSource = _AssignedRolList;
+            //}
 
-            grdRoles.RefreshDataSource();
+            //grdRoles.RefreshDataSource();
         }
 
         private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -189,7 +193,7 @@ namespace Fwk.Security.Admin.Controls
                     {
                         if (!_AssignedRolList.Any(r => r.RolName.Trim().Equals(rol.RolName.Trim(), StringComparison.OrdinalIgnoreCase)))
                         {
-                             //addedRole = new Rol(rol.RolName);
+                            //addedRole = new Rol(rol.RolName);
                             _AssignedRolList.Add(rol);
                         }
                     }
@@ -220,15 +224,15 @@ namespace Fwk.Security.Admin.Controls
             MessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question;
             if (MessageViewInfo.Show("Are you sure to remove selected roles from current rule : " + _CurrentRule.Name) == DialogResult.Yes)
             {
-               
-            
+
+
                 foreach (int wFila in grdViewRoles.GetSelectedRows())
                 {
                     _AssignedRolList.Remove((Rol)grdViewRoles.GetRow(wFila));
                 }
 
                 _CurrentRule.Expression = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
-                FwkMembership.UpdateRule(_CurrentRule,Membership.Provider.Name);
+                FwkMembership.UpdateRule(_CurrentRule, Membership.Provider.Name);
 
                 rolBindingSource.DataSource = null;
                 rolBindingSource.DataSource = _AssignedRolList;
@@ -244,7 +248,7 @@ namespace Fwk.Security.Admin.Controls
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     if (!string.IsNullOrEmpty(frm.Tag.ToString()) && _CurrentCategory != null)
-                        if (FwkMembership.ExistCategory(frm.Tag.ToString().Trim(), _CurrentCategory.CategoryId, frmAdmin.Provider.ApplicationName))
+                        if (FwkMembership.ExistCategory(frm.Tag.ToString().Trim(), Convert.ToInt32(_CurrentCategory.Id), frmAdmin.Provider.ApplicationName))
                         {
                             MessageViewInfo.Show(string.Format("Category {0} already exist", frm.Tag.ToString()));
                             return;
@@ -265,7 +269,7 @@ namespace Fwk.Security.Admin.Controls
 
             wFwkCategory.Name = name;
             if (_ParentFwkCategory != null)
-                wFwkCategory.ParentId = _ParentFwkCategory.CategoryId;
+                wFwkCategory.ParentId = Convert.ToInt32(_ParentFwkCategory.Id);
             else
                 wFwkCategory.ParentId = 0;
 
@@ -279,17 +283,25 @@ namespace Fwk.Security.Admin.Controls
             { throw ex; }
 
         }
-
-        FwkCategory _CurrentCategory = null;
-        private void treeList1_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (e.Node == null) return;
-             _CurrentCategory = (FwkCategory)treeList1.GetDataRecordByNode(e.Node);
-            //if (!String.IsNullOrEmpty(item.AssemblyInfo))
-            //{
-            //    AddContronToPannel(item, null);
-            //}
+            if (_CurrentCategory.IsCategory == false)
+            {
+                //Obtengo el padre
+                _ParentFwkCategory = _CategoryTreeList.Where(p => p.Id.Equals(_CurrentCategory.ParentId)).FirstOrDefault<CategoryTree>();
+                _ParentFwkCategory.RemoveRule(_CurrentCategory.Id);
+                try
+                {
+                    FwkMembership.CreateRuleInCategory(_ParentFwkCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+                    MessageViewInfo.Show("Rule was successfully removed from category");
+                    PopulateAsync();
+                }
+                catch (Exception ex)
+                { throw ex; }
+            }
         }
+
+
 
         private void treeList1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -313,31 +325,27 @@ namespace Fwk.Security.Admin.Controls
 
         private void treeList1_MouseClick(object sender, MouseEventArgs e)
         {
-            TreeList tl = sender as TreeList;
-            if (tl.FocusedNode != null)
-                if (tl.FocusedNode.HasChildren)
-                    tl.FocusedNode.Expanded = !tl.FocusedNode.Expanded;
+            //TreeList tl = sender as TreeList;
+            //if (tl.FocusedNode != null)
+            //    if (tl.FocusedNode.HasChildren)
+            //        tl.FocusedNode.Expanded = !tl.FocusedNode.Expanded;
         }
         TreeListHitInfo _HitInfo = null;
         private void treeList1_MouseDown(object sender, MouseEventArgs e)
         {
             _HitInfo = treeList1.CalcHitInfo(new Point(e.X, e.Y));
-            _CurrentCategory = (FwkCategory)treeList1.GetDataRecordByNode(_HitInfo.Node);
+            if (_HitInfo.Node == null) return;
+            _CurrentCategory = (CategoryTree)treeList1.GetDataRecordByNode(_HitInfo.Node);
 
-            if (_CurrentCategory != null)
-            {
-                
-            }
-        }      
-        
-        #region (Grilla) Eventos y Métodos Drag hacia otro componente 
 
-        private void treeList1_DragDrop(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Move;
+            iAddNewCategory.Enabled = _CurrentCategory.IsCategory;
+            treeList1.SetFocusedNode(_HitInfo.Node);
+
         }
 
-        private void treeList1_DragOver(object sender, DragEventArgs e)
+        #region (Grilla) Eventos y Métodos Drag hacia otro componente
+
+        private void treeList1_DragDrop(object sender, DragEventArgs e)
         {
             TreeListHitInfo wHitInfo = treeList1.CalcHitInfo(treeList1.PointToClient(new Point(e.X, e.Y)));
             if (wHitInfo.Node == null)
@@ -348,17 +356,22 @@ namespace Fwk.Security.Admin.Controls
             if (wRuleList != null)
             {
                 //FwkAuthorizationRule wRule2;
-                _ParentFwkCategory = (FwkCategory)treeList1.GetDataRecordByNode(wHitInfo.Node);
+                _ParentFwkCategory = (CategoryTree)treeList1.GetDataRecordByNode(wHitInfo.Node);
+                if (_ParentFwkCategory.IsCategory == false)
+                {
 
+                    return;
+                }
                 #region Add Rules to Category
                 foreach (FwkAuthorizationRule rule in wRuleList)
                 {
-                    if (!_ParentFwkCategory.FwkRulesInCategoryList.Any<FwkAuthorizationRule>(p => p.Name == rule.Name))
+                    if (!_ParentFwkCategory.Rules.Any<CategoryTree>(p => p.Name == rule.Name))
                     {
                         //wRule2 = new FwkAuthorizationRule();
                         //wRule2.Name = rule.Name;
                         //wRule2.CategoryId = _ParentFwkCategory.CategoryId;
-                        _ParentFwkCategory.FwkRulesInCategoryList.Add(rule.Clone());
+                        CategoryTree newRule = _ParentFwkCategory.AddRule(rule);
+                        this._CategoryTreeList.Add(newRule);
                         _ParentFwkCategory.EntityState = Fwk.Bases.EntityState.Changed;
                     }
                 }
@@ -367,19 +380,32 @@ namespace Fwk.Security.Admin.Controls
             //Si cambiaron una o mas reglas
             if (_ParentFwkCategory.EntityState == Fwk.Bases.EntityState.Changed)
             {
-                FwkMembership.CreateRuleInCategory(_ParentFwkCategory, frmAdmin.Provider.ApplicationName);
+                FwkMembership.CreateRuleInCategory(_ParentFwkCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
                 //Agrego las rules a la grilla sobre
-                grdRulesByCategory.DataSource = _ParentFwkCategory.FwkRulesInCategoryList;
-                grdRulesByCategory.RefreshDataSource();
-                treeList1.RefreshDataSource();
+                //grdRulesByCategory.DataSource = _ParentFwkCategory.FwkCategory.FwkRulesInCategoryList;
+                //grdRulesByCategory.RefreshDataSource();
+                //treeList1.RefreshDataSource();
                 _ParentFwkCategory.EntityState = Fwk.Bases.EntityState.Unchanged;
+                treeList1.RefreshDataSource();
+                treeList1.ExpandAll();
             }
         }
 
-       
+        private void treeList1_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+            if (_ParentFwkCategory != null)
+                if (_ParentFwkCategory.IsCategory == false)
+                {
+                    e.Effect = DragDropEffects.None;
 
-    
-              #endregion
+                }
+        }
+
+
+
+
+        #endregion
         #region (Grilla) Eventos y Métodos Drag hacia otro componente
         GridHitInfo _GridHitInfo = null;
         private void gridView_AllRules_MouseDown(object sender, MouseEventArgs e)
@@ -397,27 +423,147 @@ namespace Fwk.Security.Admin.Controls
 
             if (!dragRect.Contains(new Point(e.X, e.Y)))
             {
-                if (_GridHitInfo.InRowCell)
+                //if (_GridHitInfo.InRowCell)
+                //{
+                FwkAuthorizationRule rule = null;
+                List<FwkAuthorizationRule> wRuleList = new List<FwkAuthorizationRule>();
+                //Recorro todas las filas seleccionadas y obtengo el UserId y el Name y los agrego a la lista de usuarios
+                foreach (int wFila in gridView_AllRules.GetSelectedRows())
                 {
-                    FwkAuthorizationRule rule = null;
-                    List<FwkAuthorizationRule> wRuleList = new List<FwkAuthorizationRule>();
-                    //Recorro todas las filas seleccionadas y obtengo el UserId y el Name y los agrego a la lista de usuarios
-                    foreach (int wFila in gridView_AllRules.GetSelectedRows())
-                    {
-                        //rule = new FwkRulesInCategory(((NamedConfigurationElement)(grdViewRules.GetRow(wFila))).Name);
-                        rule = (FwkAuthorizationRule)(gridView_AllRules.GetRow(wFila));
-                        wRuleList.Add(rule.Clone());
-                    }
-
-                    grdAllRules.DoDragDrop(wRuleList, DragDropEffects.Move);
-
-                    //Dejamos seleccionada a la fila que tiene el foco
-                    gridView_AllRules.SelectRow(gridView_AllRules.FocusedRowHandle);
+                    //rule = new FwkRulesInCategory(((NamedConfigurationElement)(grdViewRules.GetRow(wFila))).Name);
+                    rule = (FwkAuthorizationRule)(gridView_AllRules.GetRow(wFila));
+                    wRuleList.Add(rule.Clone());
                 }
+
+                grdAllRules.DoDragDrop(wRuleList, DragDropEffects.Move);
+
+                //Dejamos seleccionada a la fila que tiene el foco
+                gridView_AllRules.SelectRow(gridView_AllRules.FocusedRowHandle);
+                //}
             }
         }
 
         #endregion
+
+
+
+    }
+
+    public class CategoryTreeList : Fwk.Bases.Entities<CategoryTree>
+    {
+        public static CategoryTreeList Retrive_CategoryTreeList(FwkCategoryList pFwkCategoryList)
+        {
+            CategoryTreeList list = new CategoryTreeList();
+            CategoryTreeList list2 = new CategoryTreeList();
+            var wCategoryTreeList = from p in pFwkCategoryList select new CategoryTree(p);
+
+
+            foreach (CategoryTree category in wCategoryTreeList)
+            {
+                if (category.Id == "11")
+                {
+                    string i = category.Id;
+                }
+                list.Add((CategoryTree)category.Clone());
+
+                //CategoryTree rule = null;
+                //foreach (FwkAuthorizationRule r in category.FwkCategory.FwkRulesInCategoryList)
+                //{
+                //    rule = new CategoryTree();
+                //    rule.Name = r.Name.Trim();
+                //    rule.ParentId = category.Id;
+                //    rule.Id = string.Concat(category.id, "_", r.Name.Trim());
+                //    rule.IsCategory = false;
+                //}
+                foreach (CategoryTree r in category.Rules)
+                {
+                    list.Add((CategoryTree)r.Clone());
+                }
+            }
+            return list;
+        }
+    }
+
+    public class CategoryTree : Fwk.Bases.Entity
+    {
+        public CategoryTree(FwkCategory pFwkCategory)
+        {
+            Rules = new List<CategoryTree>();
+            this.FwkCategory = pFwkCategory;
+            this.Id = pFwkCategory.CategoryId.ToString();
+
+            this.Name = pFwkCategory.Name;
+            if (pFwkCategory.ParentId.HasValue)
+                ParentId = pFwkCategory.ParentId.Value.ToString();
+            else
+                ParentId = "0";
+
+            if (pFwkCategory.FwkRulesInCategoryList != null)
+            {
+
+                CategoryTree rule = null;
+                foreach (FwkAuthorizationRule r in pFwkCategory.FwkRulesInCategoryList)
+                {
+                    rule = new CategoryTree();
+                    rule.Name = r.Name.Trim();
+                    rule.ParentId = this.Id;
+                    rule.Id = string.Concat(this.Id, "_", r.Name.Trim());
+                    rule.IsCategory = false;
+                    this.Rules.Add(rule);
+                }
+            }
+        }
+        public CategoryTree()
+        {
+            Rules = new List<CategoryTree>();
+        }
+
+        public CategoryTree AddRule(FwkAuthorizationRule pFwkAuthorizationRule)
+        {
+            CategoryTree rule = new CategoryTree();
+            rule.Name = pFwkAuthorizationRule.Name.Trim();
+            rule.ParentId = this.Id;
+            rule.Id = string.Concat(this.Id, "_", pFwkAuthorizationRule.Name.Trim());
+            rule.IsCategory = false;
+            //this.Rules.Add(rule);
+            FwkCategory.FwkRulesInCategoryList.Add(pFwkAuthorizationRule);
+            return rule;
+        }
+
+        public void RemoveRule(string rule_id)
+        {
+            var r = this.Rules.Where(p => p.Id.Equals(rule_id)).FirstOrDefault();
+
+            //for (int i = 0; i <= FwkCategory.FwkRulesInCategoryList.Count; i++)
+            //{
+            //    if (FwkCategory.FwkRulesInCategoryList[i].Name.Equals(r.Name))
+            //    {
+            //        FwkCategory.FwkRulesInCategoryList.RemoveAt(i);
+            //        break;
+            //    }
+            //}
+             var r1 = FwkCategory.FwkRulesInCategoryList.Where(p => p.Name.Trim().Equals(r.Name.Trim())).FirstOrDefault();
+            FwkCategory.FwkRulesInCategoryList.Remove(r1);
+
+            this.Rules.Remove(r);
+        }
+
+        public string Id { get; set; }
+        public string ParentId { get; set; }
+        public string Name { get; set; }
+        bool _IsCategory = true;
+
+        public bool IsCategory
+        {
+            get { return _IsCategory; }
+            set { _IsCategory = value; }
+        }
+
+        public List<CategoryTree> Rules { get; set; }
+
+        [System.Xml.Serialization.XmlIgnore]
+        public FwkCategory FwkCategory { get; set; }
+
 
     }
 }

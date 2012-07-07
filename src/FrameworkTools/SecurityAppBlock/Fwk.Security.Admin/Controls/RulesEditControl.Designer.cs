@@ -30,13 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RulesEditControl));
+            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
+            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
+            this.colImg = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.rolBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbltitle = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdRulesByCategory = new DevExpress.XtraGrid.GridControl();
             this.fwkRulesInCategoryListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.fwkCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grdViewRulesByCategory = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -45,7 +49,7 @@
             this.colName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.contextMenu_Categories = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.iAddNewCategory = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.categoryTreeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -55,29 +59,65 @@
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnFindRoles = new System.Windows.Forms.Button();
             this.grdAllRules = new DevExpress.XtraGrid.GridControl();
+            this.fwkAuthorizationRuleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView_AllRules = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.fwkAuthorizationRuleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRuleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdRulesByCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fwkRulesInCategoryListBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRulesByCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspnetRulesInCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             this.contextMenu_Categories.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoryTreeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRoles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAllRules)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkAuthorizationRuleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_AllRules)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkAuthorizationRuleBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // colImg
+            // 
+            this.colImg.ColumnEdit = this.repositoryItemImageComboBox1;
+            this.colImg.FieldName = "IsCategory";
+            this.colImg.MinWidth = 33;
+            this.colImg.Name = "colImg";
+            this.colImg.OptionsColumn.AllowEdit = false;
+            this.colImg.OptionsColumn.ReadOnly = true;
+            this.colImg.Visible = true;
+            this.colImg.VisibleIndex = 0;
+            this.colImg.Width = 76;
+            // 
+            // repositoryItemImageComboBox1
+            // 
+            this.repositoryItemImageComboBox1.AutoHeight = false;
+            this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemImageComboBox1.Items.AddRange(new DevExpress.XtraEditors.Controls.ImageComboBoxItem[] {
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", true, 0),
+            new DevExpress.XtraEditors.Controls.ImageComboBoxItem("", false, 3)});
+            this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
+            this.repositoryItemImageComboBox1.ReadOnly = true;
+            this.repositoryItemImageComboBox1.SmallImages = this.imageList1;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "folder-closed_16.png");
+            this.imageList1.Images.SetKeyName(1, "folder-open_16.png");
+            this.imageList1.Images.SetKeyName(2, "admin_16.png");
+            this.imageList1.Images.SetKeyName(3, "del_16.ico");
             // 
             // rolBindingSource
             // 
@@ -126,15 +166,6 @@
             this.gridView3});
             this.grdRulesByCategory.Click += new System.EventHandler(this.grdRulesByCategory_Click);
             // 
-            // fwkRulesInCategoryListBindingSource
-            // 
-            this.fwkRulesInCategoryListBindingSource.DataMember = "FwkRulesInCategoryList";
-            this.fwkRulesInCategoryListBindingSource.DataSource = this.fwkCategoryBindingSource;
-            // 
-            // fwkCategoryBindingSource
-            // 
-            this.fwkCategoryBindingSource.DataSource = typeof(Fwk.Security.FwkCategory);
-            // 
             // grdViewRulesByCategory
             // 
             this.grdViewRulesByCategory.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -179,26 +210,51 @@
             this.treeList1.AllowDrop = true;
             this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeList1.Appearance.FocusedCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.treeList1.Appearance.FocusedCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.treeList1.Appearance.FocusedCell.Options.UseFont = true;
+            this.treeList1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat;
             this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.colName});
+            this.colName,
+            this.colImg});
             this.treeList1.ContextMenuStrip = this.contextMenu_Categories;
-            this.treeList1.DataSource = this.fwkCategoryBindingSource;
+            this.treeList1.DataSource = this.categoryTreeBindingSource;
             this.treeList1.FixedLineWidth = 1;
-            this.treeList1.KeyFieldName = "CategoryId";
+            styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+            styleFormatCondition1.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
+            styleFormatCondition1.Appearance.Options.UseFont = true;
+            styleFormatCondition1.Appearance.Options.UseForeColor = true;
+            styleFormatCondition1.ApplyToRow = true;
+            styleFormatCondition1.Column = this.colImg;
+            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition1.Value1 = true;
+            styleFormatCondition2.Appearance.ForeColor = System.Drawing.Color.DimGray;
+            styleFormatCondition2.Appearance.Options.UseForeColor = true;
+            styleFormatCondition2.ApplyToRow = true;
+            styleFormatCondition2.Column = this.colImg;
+            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition2.Value1 = false;
+            this.treeList1.FormatConditions.AddRange(new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition[] {
+            styleFormatCondition1,
+            styleFormatCondition2});
+            this.treeList1.KeyFieldName = "Id";
             this.treeList1.Location = new System.Drawing.Point(332, 75);
             this.treeList1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.treeList1.Name = "treeList1";
+            this.treeList1.OptionsMenu.EnableColumnMenu = false;
+            this.treeList1.OptionsMenu.EnableFooterMenu = false;
             this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
-            this.treeList1.OptionsView.EnableAppearanceEvenRow = true;
+            this.treeList1.OptionsView.AutoWidth = false;
+            this.treeList1.OptionsView.ShowColumns = false;
             this.treeList1.OptionsView.ShowHorzLines = false;
             this.treeList1.OptionsView.ShowVertLines = false;
             this.treeList1.ParentFieldName = "ParentId";
+            this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemImageComboBox1});
+            this.treeList1.RowHeight = 35;
             this.treeList1.Size = new System.Drawing.Size(315, 530);
             this.treeList1.StateImageList = this.imageList1;
             this.treeList1.TabIndex = 30;
-            this.treeList1.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeList1_FocusedNodeChanged);
+
             this.treeList1.Click += new System.EventHandler(this.treeList1_Click);
             this.treeList1.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
             this.treeList1.DragOver += new System.Windows.Forms.DragEventHandler(this.treeList1_DragOver);
@@ -215,30 +271,29 @@
             this.colName.OptionsColumn.AllowEdit = false;
             this.colName.OptionsColumn.ReadOnly = true;
             this.colName.Visible = true;
-            this.colName.VisibleIndex = 0;
-            this.colName.Width = 126;
+            this.colName.VisibleIndex = 1;
+            this.colName.Width = 221;
             // 
             // contextMenu_Categories
             // 
             this.contextMenu_Categories.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.iAddNewCategory});
+            this.iAddNewCategory,
+            this.eliminarToolStripMenuItem,
+            this.addRuleToolStripMenuItem});
             this.contextMenu_Categories.Name = "contextMenuStrip1";
-            this.contextMenu_Categories.Size = new System.Drawing.Size(223, 28);
+            this.contextMenu_Categories.Size = new System.Drawing.Size(198, 98);
             // 
             // iAddNewCategory
             // 
+            this.iAddNewCategory.Image = global::Fwk.Security.Admin.Properties.Resources.folder_new_16;
             this.iAddNewCategory.Name = "iAddNewCategory";
-            this.iAddNewCategory.Size = new System.Drawing.Size(222, 24);
-            this.iAddNewCategory.Text = "Agregar subcategoria";
+            this.iAddNewCategory.Size = new System.Drawing.Size(197, 24);
+            this.iAddNewCategory.Text = "Add sub-category";
             this.iAddNewCategory.Click += new System.EventHandler(this.iAddNewCategory_Click);
             // 
-            // imageList1
+            // categoryTreeBindingSource
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "folder-closed_16.png");
-            this.imageList1.Images.SetKeyName(1, "folder-open_16.png");
-            this.imageList1.Images.SetKeyName(2, "admin_16.png");
+            this.categoryTreeBindingSource.DataSource = typeof(Fwk.Security.Admin.Controls.CategoryTree);
             // 
             // labelControl1
             // 
@@ -354,6 +409,10 @@
             this.gridView4});
             this.grdAllRules.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseDown);
             // 
+            // fwkAuthorizationRuleBindingSource
+            // 
+            this.fwkAuthorizationRuleBindingSource.DataSource = typeof(Fwk.Security.FwkAuthorizationRule);
+            // 
             // gridView_AllRules
             // 
             this.gridView_AllRules.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -390,9 +449,20 @@
             this.gridView4.GridControl = this.grdAllRules;
             this.gridView4.Name = "gridView4";
             // 
-            // fwkAuthorizationRuleBindingSource
+            // eliminarToolStripMenuItem
             // 
-            this.fwkAuthorizationRuleBindingSource.DataSource = typeof(Fwk.Security.FwkAuthorizationRule);
+            this.eliminarToolStripMenuItem.Image = global::Fwk.Security.Admin.Properties.Resources.cancel_16;
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(197, 24);
+            this.eliminarToolStripMenuItem.Text = "Remove";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            // 
+            // addRuleToolStripMenuItem
+            // 
+            this.addRuleToolStripMenuItem.Image = global::Fwk.Security.Admin.Properties.Resources.admin_24;
+            this.addRuleToolStripMenuItem.Name = "addRuleToolStripMenuItem";
+            this.addRuleToolStripMenuItem.Size = new System.Drawing.Size(197, 24);
+            this.addRuleToolStripMenuItem.Text = "Add rule";
             // 
             // RulesEditControl
             // 
@@ -411,23 +481,24 @@
             this.Name = "RulesEditControl";
             this.Size = new System.Drawing.Size(1032, 623);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdRulesByCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fwkRulesInCategoryListBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkCategoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRulesByCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspnetRulesInCategoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             this.contextMenu_Categories.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.categoryTreeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewRoles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdAllRules)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fwkAuthorizationRuleBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_AllRules)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fwkAuthorizationRuleBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,7 +514,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colName;
-        private System.Windows.Forms.BindingSource fwkCategoryBindingSource;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem removeSelectedsToolStripMenuItem;
@@ -464,5 +534,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
         private System.Windows.Forms.BindingSource fwkAuthorizationRuleBindingSource;
+        private System.Windows.Forms.BindingSource categoryTreeBindingSource;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colImg;
+        private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addRuleToolStripMenuItem;
     }
 }

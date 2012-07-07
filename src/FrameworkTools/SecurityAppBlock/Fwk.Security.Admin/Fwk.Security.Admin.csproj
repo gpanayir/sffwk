@@ -364,6 +364,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\Fwk.Security.Admin.Controls.CategoryTree.datasource" />
     <None Include="Resources\sitebuild_icon.gif" />
   </ItemGroup>
   <ItemGroup>
