@@ -48,7 +48,9 @@
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             this.colName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.contextMenu_Categories = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.iAddNewCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAddNewCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.mRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRuleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoryTreeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -63,8 +65,8 @@
             this.gridView_AllRules = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addRuleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblCurrentCategory = new DevExpress.XtraEditors.LabelControl();
+            this.lblSelectedRule = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rolBindingSource)).BeginInit();
@@ -254,10 +256,11 @@
             this.treeList1.Size = new System.Drawing.Size(315, 530);
             this.treeList1.StateImageList = this.imageList1;
             this.treeList1.TabIndex = 30;
-
             this.treeList1.Click += new System.EventHandler(this.treeList1_Click);
             this.treeList1.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
+            this.treeList1.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeList1_DragEnter);
             this.treeList1.DragOver += new System.Windows.Forms.DragEventHandler(this.treeList1_DragOver);
+            this.treeList1.DragLeave += new System.EventHandler(this.treeList1_DragLeave);
             this.treeList1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeList1_KeyDown);
             this.treeList1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseClick);
             this.treeList1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseDown);
@@ -277,23 +280,38 @@
             // contextMenu_Categories
             // 
             this.contextMenu_Categories.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.iAddNewCategory,
-            this.eliminarToolStripMenuItem,
+            this.mAddNewCategory,
+            this.mRemove,
             this.addRuleToolStripMenuItem});
             this.contextMenu_Categories.Name = "contextMenuStrip1";
-            this.contextMenu_Categories.Size = new System.Drawing.Size(198, 98);
+            this.contextMenu_Categories.Size = new System.Drawing.Size(198, 76);
             // 
-            // iAddNewCategory
+            // mAddNewCategory
             // 
-            this.iAddNewCategory.Image = global::Fwk.Security.Admin.Properties.Resources.folder_new_16;
-            this.iAddNewCategory.Name = "iAddNewCategory";
-            this.iAddNewCategory.Size = new System.Drawing.Size(197, 24);
-            this.iAddNewCategory.Text = "Add sub-category";
-            this.iAddNewCategory.Click += new System.EventHandler(this.iAddNewCategory_Click);
+            this.mAddNewCategory.Image = global::Fwk.Security.Admin.Properties.Resources.folder_new_16;
+            this.mAddNewCategory.Name = "mAddNewCategory";
+            this.mAddNewCategory.Size = new System.Drawing.Size(197, 24);
+            this.mAddNewCategory.Text = "Add sub-category";
+            this.mAddNewCategory.Click += new System.EventHandler(this.mAddNewCategory_Click);
+            // 
+            // mRemove
+            // 
+            this.mRemove.Image = global::Fwk.Security.Admin.Properties.Resources.cancel_16;
+            this.mRemove.Name = "mRemove";
+            this.mRemove.Size = new System.Drawing.Size(197, 24);
+            this.mRemove.Text = "Remove";
+            this.mRemove.Click += new System.EventHandler(this.mRemove_Click);
+            // 
+            // addRuleToolStripMenuItem
+            // 
+            this.addRuleToolStripMenuItem.Image = global::Fwk.Security.Admin.Properties.Resources.admin_24;
+            this.addRuleToolStripMenuItem.Name = "addRuleToolStripMenuItem";
+            this.addRuleToolStripMenuItem.Size = new System.Drawing.Size(197, 24);
+            this.addRuleToolStripMenuItem.Text = "Add rule";
             // 
             // categoryTreeBindingSource
             // 
-            this.categoryTreeBindingSource.DataSource = typeof(Fwk.Security.Admin.Controls.CategoryTree);
+            this.categoryTreeBindingSource.DataSource = typeof(Fwk.Security.Admin.CategoryTree);
             // 
             // labelControl1
             // 
@@ -420,19 +438,19 @@
             this.gridView_AllRules.GridControl = this.grdAllRules;
             this.gridView_AllRules.Name = "gridView_AllRules";
             this.gridView_AllRules.OptionsFilter.AllowFilterEditor = false;
+            this.gridView_AllRules.OptionsFind.AlwaysVisible = true;
             this.gridView_AllRules.OptionsLayout.Columns.AddNewColumns = false;
             this.gridView_AllRules.OptionsMenu.EnableColumnMenu = false;
             this.gridView_AllRules.OptionsMenu.EnableFooterMenu = false;
             this.gridView_AllRules.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridView_AllRules.OptionsMenu.ShowGroupSortSummaryItems = false;
-            this.gridView_AllRules.OptionsSelection.InvertSelection = true;
             this.gridView_AllRules.OptionsSelection.MultiSelect = true;
             this.gridView_AllRules.OptionsSelection.UseIndicatorForSelection = false;
             this.gridView_AllRules.OptionsView.ShowColumnHeaders = false;
             this.gridView_AllRules.OptionsView.ShowDetailButtons = false;
             this.gridView_AllRules.OptionsView.ShowGroupPanel = false;
-            this.gridView_AllRules.OptionsView.ShowIndicator = false;
             this.gridView_AllRules.OptionsView.ShowVertLines = false;
+            this.gridView_AllRules.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseDown);
             this.gridView_AllRules.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseMove);
             // 
             // gridColumn3
@@ -449,25 +467,28 @@
             this.gridView4.GridControl = this.grdAllRules;
             this.gridView4.Name = "gridView4";
             // 
-            // eliminarToolStripMenuItem
+            // lblCurrentCategory
             // 
-            this.eliminarToolStripMenuItem.Image = global::Fwk.Security.Admin.Properties.Resources.cancel_16;
-            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(197, 24);
-            this.eliminarToolStripMenuItem.Text = "Remove";
-            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
+            this.lblCurrentCategory.Location = new System.Drawing.Point(446, 51);
+            this.lblCurrentCategory.Name = "lblCurrentCategory";
+            this.lblCurrentCategory.Size = new System.Drawing.Size(75, 16);
+            this.lblCurrentCategory.TabIndex = 38;
+            this.lblCurrentCategory.Text = "labelControl4";
             // 
-            // addRuleToolStripMenuItem
+            // lblSelectedRule
             // 
-            this.addRuleToolStripMenuItem.Image = global::Fwk.Security.Admin.Properties.Resources.admin_24;
-            this.addRuleToolStripMenuItem.Name = "addRuleToolStripMenuItem";
-            this.addRuleToolStripMenuItem.Size = new System.Drawing.Size(197, 24);
-            this.addRuleToolStripMenuItem.Text = "Add rule";
+            this.lblSelectedRule.Location = new System.Drawing.Point(5, 50);
+            this.lblSelectedRule.Name = "lblSelectedRule";
+            this.lblSelectedRule.Size = new System.Drawing.Size(75, 16);
+            this.lblSelectedRule.TabIndex = 39;
+            this.lblSelectedRule.Text = "labelControl4";
             // 
             // RulesEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblSelectedRule);
+            this.Controls.Add(this.lblCurrentCategory);
             this.Controls.Add(this.grdAllRules);
             this.Controls.Add(this.btnFindRoles);
             this.Controls.Add(this.grdRoles);
@@ -528,7 +549,7 @@
         private System.Windows.Forms.Button btnFindRoles;
         private System.Windows.Forms.BindingSource fwkRulesInCategoryListBindingSource;
         private System.Windows.Forms.ContextMenuStrip contextMenu_Categories;
-        private System.Windows.Forms.ToolStripMenuItem iAddNewCategory;
+        private System.Windows.Forms.ToolStripMenuItem mAddNewCategory;
         private DevExpress.XtraGrid.GridControl grdAllRules;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView_AllRules;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
@@ -537,7 +558,9 @@
         private System.Windows.Forms.BindingSource categoryTreeBindingSource;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colImg;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
-        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mRemove;
         private System.Windows.Forms.ToolStripMenuItem addRuleToolStripMenuItem;
+        private DevExpress.XtraEditors.LabelControl lblCurrentCategory;
+        private DevExpress.XtraEditors.LabelControl lblSelectedRule;
     }
 }

@@ -165,6 +165,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryTree.cs" />
     <Compile Include="Controls\ConnectionStringsCrypt.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -368,12 +369,10 @@
     <None Include="Resources\sitebuild_icon.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\DataSources\Fwk.Security.Test.UserByApp.datasource" />
     <None Include="Resources\Untitled %28142%29.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\Fwk.Security.FwkAuthorizationRule.datasource" />
-    <None Include="Properties\DataSources\Fwk.Security.Test.RolList.datasource" />
     <None Include="Resources\Untitled %28142%291.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -407,6 +406,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="group_16.ico" />
+    <EmbeddedResource Include="Resources\copy_24.ico" />
+    <EmbeddedResource Include="Resources\move_16.ico" />
     <None Include="Resources\Connection Error.bmp" />
     <None Include="Resources\Connection Check.bmp" />
     <None Include="Resources\Connection Warning.bmp" />
