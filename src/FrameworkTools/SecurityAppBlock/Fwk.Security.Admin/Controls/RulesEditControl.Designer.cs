@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RulesEditControl));
-            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition3 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
-            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition4 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
+            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
+            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
             this.colImg = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -52,7 +52,6 @@
             this.lblCurrentCategory = new DevExpress.XtraEditors.LabelControl();
             this.lblSelectedRule = new DevExpress.XtraEditors.LabelControl();
             this.btnAddNewRule = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
@@ -124,23 +123,23 @@
             this.treeList1.ContextMenuStrip = this.contextMenu_Categories;
             this.treeList1.DataSource = this.categoryTreeBindingSource;
             this.treeList1.FixedLineWidth = 1;
-            styleFormatCondition3.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
-            styleFormatCondition3.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
-            styleFormatCondition3.Appearance.Options.UseFont = true;
-            styleFormatCondition3.Appearance.Options.UseForeColor = true;
-            styleFormatCondition3.ApplyToRow = true;
-            styleFormatCondition3.Column = this.colImg;
-            styleFormatCondition3.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition3.Value1 = true;
-            styleFormatCondition4.Appearance.ForeColor = System.Drawing.Color.DimGray;
-            styleFormatCondition4.Appearance.Options.UseForeColor = true;
-            styleFormatCondition4.ApplyToRow = true;
-            styleFormatCondition4.Column = this.colImg;
-            styleFormatCondition4.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition4.Value1 = false;
+            styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+            styleFormatCondition1.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
+            styleFormatCondition1.Appearance.Options.UseFont = true;
+            styleFormatCondition1.Appearance.Options.UseForeColor = true;
+            styleFormatCondition1.ApplyToRow = true;
+            styleFormatCondition1.Column = this.colImg;
+            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition1.Value1 = true;
+            styleFormatCondition2.Appearance.ForeColor = System.Drawing.Color.DimGray;
+            styleFormatCondition2.Appearance.Options.UseForeColor = true;
+            styleFormatCondition2.ApplyToRow = true;
+            styleFormatCondition2.Column = this.colImg;
+            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition2.Value1 = false;
             this.treeList1.FormatConditions.AddRange(new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition[] {
-            styleFormatCondition3,
-            styleFormatCondition4});
+            styleFormatCondition1,
+            styleFormatCondition2});
             this.treeList1.KeyFieldName = "Id";
             this.treeList1.Location = new System.Drawing.Point(558, 75);
             this.treeList1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -167,6 +166,7 @@
             this.treeList1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeList1_KeyDown);
             this.treeList1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseClick);
             this.treeList1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseDown);
+            this.treeList1.MouseLeave += new System.EventHandler(this.treeList1_MouseLeave);
             // 
             // colName
             // 
@@ -241,8 +241,9 @@
             this.grdAllRules.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView_AllRules,
             this.gridView4});
-            this.grdAllRules.DragEnter += new System.Windows.Forms.DragEventHandler(this.grdAllRules_DragEnter);
+            this.grdAllRules.DragOver += new System.Windows.Forms.DragEventHandler(this.grdAllRules_DragOver);
             this.grdAllRules.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseDown);
+            this.grdAllRules.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseMove);
             // 
             // fwkAuthorizationRuleBindingSource
             // 
@@ -310,21 +311,10 @@
             this.btnAddNewRule.Text = "Add Rule";
             this.btnAddNewRule.Click += new System.EventHandler(this.btnAddNewRule_Click);
             // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Image = global::Fwk.Security.Admin.Properties.Resources.file_add_16;
-            this.simpleButton1.Location = new System.Drawing.Point(353, 45);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(105, 26);
-            this.simpleButton1.TabIndex = 41;
-            this.simpleButton1.Text = "Add Rule";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
             // RulesEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.lblSelectedRule);
             this.Controls.Add(this.btnAddNewRule);
             this.Controls.Add(this.grdAllRules);
@@ -371,6 +361,5 @@
         private DevExpress.XtraEditors.LabelControl lblCurrentCategory;
         private DevExpress.XtraEditors.LabelControl lblSelectedRule;
         private DevExpress.XtraEditors.SimpleButton btnAddNewRule;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
