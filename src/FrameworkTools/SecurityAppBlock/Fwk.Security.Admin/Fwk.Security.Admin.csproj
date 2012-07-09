@@ -178,6 +178,12 @@
     <Compile Include="Controls\frmAddName.Designer.cs">
       <DependentUpon>frmAddName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\frmAddRule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\frmAddRule.Designer.cs">
+      <DependentUpon>frmAddRule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\frmChangePwd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,12 +214,6 @@
     </Compile>
     <Compile Include="Controls\RulesEditControl.Designer.cs">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\CategoryCreate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\CategoryCreate.Designer.cs">
-      <DependentUpon>CategoryCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserAssingRoles.cs">
       <SubType>UserControl</SubType>
@@ -280,6 +280,9 @@
     <EmbeddedResource Include="Controls\frmAddName.resx">
       <DependentUpon>frmAddName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\frmAddRule.resx">
+      <DependentUpon>frmAddRule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\frmChangePwd.resx">
       <DependentUpon>frmChangePwd.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -298,10 +301,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\RulesEditControl.resx">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CategoryCreate.resx">
-      <DependentUpon>CategoryCreate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserAssingRoles.resx">

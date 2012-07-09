@@ -176,71 +176,13 @@ namespace Fwk.Security.Admin.Controls
             //grdRoles.RefreshDataSource();
         }
 
-        private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RemoveItem();
-
-        }
-
-        private void btnFindRoles_Click(object sender, EventArgs e)
-        {
-            using (frmRolesFind frm = new frmRolesFind())
-            {
-
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    //Rol addedRole;
-                    foreach (Rol rol in frm.SelectedRoleList)
-                    {
-                        if (!_AssignedRolList.Any(r => r.RolName.Trim().Equals(rol.RolName.Trim(), StringComparison.OrdinalIgnoreCase)))
-                        {
-                            //addedRole = new Rol(rol.RolName);
-                            _AssignedRolList.Add(rol);
-                        }
-                    }
-                    _CurrentRule.Expression = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
-                    FwkMembership.UpdateRule(_CurrentRule, frmAdmin.Provider.Name);
-
-
-                    rolBindingSource.DataSource = _AssignedRolList;
-                    grdRoles.RefreshDataSource();
-                }
+       
 
 
 
-            }
-        }
+     
 
-        private void grdRoles_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                RemoveItem();
-            }
-        }
-
-        void RemoveItem()
-        {
-            MessageViewInfo.MessageBoxButtons = MessageBoxButtons.YesNo;
-            MessageViewInfo.MessageBoxIcon = Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Question;
-            if (MessageViewInfo.Show("Are you sure to remove selected roles from current rule : " + _CurrentRule.Name) == DialogResult.Yes)
-            {
-
-
-                foreach (int wFila in grdViewRoles.GetSelectedRows())
-                {
-                    _AssignedRolList.Remove((Rol)grdViewRoles.GetRow(wFila));
-                }
-
-                _CurrentRule.Expression = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
-                FwkMembership.UpdateRule(_CurrentRule, Membership.Provider.Name);
-
-                rolBindingSource.DataSource = null;
-                rolBindingSource.DataSource = _AssignedRolList;
-                grdRoles.RefreshDataSource();
-            }
-            SetMessageViewToDefault();
-        }
+     
 
         private void mAddNewCategory_Click(object sender, EventArgs e)
         {
@@ -290,7 +232,7 @@ namespace Fwk.Security.Admin.Controls
             {
                 //Obtengo el padre
                 _ParentFwkCategory = _CategoryTreeList.Where(p => p.Id.Equals(_CurrentCategory.ParentId)).FirstOrDefault<CategoryTree>();
-                _ParentFwkCategory.RemoveRule(_CurrentCategory.Id);
+                _ParentFwkCategory.RemoveRule(_CurrentCategory.Name);
                 _CategoryTreeList.RemoveItem(_CurrentCategory.Id);//No es necesario ya que se ejecurara luego --> PopulateAsync
                 try
                 {
@@ -362,8 +304,11 @@ namespace Fwk.Security.Admin.Controls
                 lblCurrentCategory.Text = _CurrentCategory.Name;
                 if (_CurrentCategory.IsCategory == false)
                 {
-                    return;
+                    //Obtengo el padre
+                    _ParentFwkCategory = _CategoryTreeList.Where(p => p.Id.Equals(_CurrentCategory.ParentId)).FirstOrDefault<CategoryTree>();
+                    _CurrentCategory = _ParentFwkCategory;
                 }
+                
                 #region Add Rules to Category
                 foreach (FwkAuthorizationRule rule in wRuleList)
                 {
@@ -386,17 +331,13 @@ namespace Fwk.Security.Admin.Controls
                 treeList1.RefreshDataSource();
                 treeList1.ExpandAll();
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void treeList1_DragOver(object sender, DragEventArgs e)
         {
-            //e.Effect = DragDropEffects.Move;
-            //if (_ParentFwkCategory != null)
-            //    if (_ParentFwkCategory.IsCategory == false)
-            //    {
-            //        e.Effect = DragDropEffects.None;
 
-            //    }
             TreeListHitInfo hi = treeList1.CalcHitInfo(treeList1.PointToClient(new Point(e.X, e.Y)));
             _CurrentCategory = (CategoryTree)treeList1.GetDataRecordByNode(hi.Node);
             if (_CurrentCategory == null)
@@ -405,20 +346,9 @@ namespace Fwk.Security.Admin.Controls
             {
                 lblCurrentCategory.Text = _CurrentCategory.Name;
 
-                if (_CurrentCategory.IsCategory)
-                    e.Effect = DragDropEffects.Move;
-
-                if (!_CurrentCategory.IsCategory)
-                    e.Effect = DragDropEffects.None;
+                e.Effect = DragDropEffects.Move;
             }
-            //TreeListNode node = GetDragNode(e.Data);
-            //if (node == null)
-            //{
-            //    if (hi.HitInfoType == HitInfoType.Empty || hi.Node != null)
-            //        e.Effect = DragDropEffects.Move;
-            //    else
-            //        e.Effect = DragDropEffects.None;
-            //}
+          
 
             SetDragCursor(e.Effect);
         }
@@ -431,42 +361,21 @@ namespace Fwk.Security.Admin.Controls
             Cursor = Cursors.Default;
         }
 
-        private void treeList1_DragEnter(object sender, DragEventArgs e)
-        {
-            //TreeListHitInfo hi = treeList1.CalcHitInfo(treeList1.PointToClient(new Point(e.X, e.Y)));
-            //_CurrentCategory = (CategoryTree)treeList1.GetDataRecordByNode(hi.Node);
-            //if (_CurrentCategory == null)
-            //    e.Effect = DragDropEffects.None;
-            //if (_CurrentCategory != null)
-            //{
-            //    lblCurrentCategory.Text = _CurrentCategory.Name;
-
-            //    if (_CurrentCategory.IsCategory)
-            //        e.Effect = DragDropEffects.Move;
-
-            //    if (!_CurrentCategory.IsCategory)
-            //        e.Effect = DragDropEffects.None;
-            //}
-
-            //SetDragCursor(e.Effect);
-        }
+        
         private void SetDragCursor(DragDropEffects e)
         {
-          
-            
-
-           // Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream("<Fwk.Security.Admin>.<foldername(optional)>.<filename>.<filenameExtention>");
-           
             if (e == DragDropEffects.Move)
                 Cursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.move_16.ico"));
             if (e == DragDropEffects.Copy)
                 Cursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.copy_24.ico"));
             if (e == DragDropEffects.None)
                 Cursor = Cursors.No;
+
         }
 
 
         #endregion
+
         #region (Grilla) Eventos y Métodos Drag hacia otro componente
         GridHitInfo _GridHitInfo = null;
         private void gridView_AllRules_MouseDown(object sender, MouseEventArgs e)
@@ -482,33 +391,58 @@ namespace Fwk.Security.Admin.Controls
             if (_GridHitInfo == null || e.Button != MouseButtons.Left || _GridHitInfo.HitTest == GridHitTest.RowIndicator)
                 return;
 
-            Rectangle dragRect = new Rectangle(new Point(_GridHitInfo.HitPoint.X - SystemInformation.DragSize.Width / 2,
-                                                                                    _GridHitInfo.HitPoint.Y - SystemInformation.DragSize.Height / 2), SystemInformation.DragSize);
-
-            if (!dragRect.Contains(new Point(e.X, e.Y)))
-            {
-                //if (_GridHitInfo.InRowCell)
-                //{
+            
+                if (_GridHitInfo.InRowCell)
+                {
                 FwkAuthorizationRule rule = null;
                 List<FwkAuthorizationRule> wRuleList = new List<FwkAuthorizationRule>();
                 //Recorro todas las filas seleccionadas y obtengo el UserId y el Name y los agrego a la lista de usuarios
                 foreach (int wFila in gridView_AllRules.GetSelectedRows())
                 {
-                    //rule = new FwkRulesInCategory(((NamedConfigurationElement)(grdViewRules.GetRow(wFila))).Name);
                     rule = (FwkAuthorizationRule)(gridView_AllRules.GetRow(wFila));
                     wRuleList.Add(rule.Clone());
                 }
 
                 grdAllRules.DoDragDrop(wRuleList, DragDropEffects.Move);
                 lblSelectedRule.Text = wRuleList[0].Name;
-                //Dejamos seleccionada a la fila que tiene el foco
-                //gridView_AllRules.SelectRow(gridView_AllRules.FocusedRowHandle);
-                //}
-            }
+    
+                }
+         
         }
-   
+        private void grdAllRules_DragEnter(object sender, DragEventArgs e)
+        {
+            //SetDragCursor( DragDropEffects.Move);
+        }
         #endregion
 
+        private void treeList1_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+            e.UseDefaultCursors = false;
+        }
+
+        private void btnAddNewRule_Click(object sender, EventArgs e)
+        {
+            using (frmAddRule frm = new frmAddRule())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+ 
+                }
+            }
+        }
+
+
+        private void treeList1_GetStateImage(object sender, GetStateImageEventArgs e)
+        {
+
+            //if(e.Node.GetDisplayText("Name") == "Folder")
+            e.NodeImageIndex = e.Node.Expanded ? 1 : 0;
+
+            //else if(e.Node.GetDisplayText("Type") == "File") e.NodeImageIndex = 2;
+            //else e.NodeImageIndex = 3;
+        }
+
+       
        
 
       

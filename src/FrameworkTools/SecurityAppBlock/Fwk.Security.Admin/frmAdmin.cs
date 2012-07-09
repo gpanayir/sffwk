@@ -43,8 +43,8 @@ namespace Fwk.Security.Admin
             {
                 currontSecurityControlBase = ControlsFactory.Show(e.Link, this.panelControl1);
                 //Esto se hace de esta manera ya que el tree listo no se carga correctamente la  primera vez que se levanta el control
-                if (currontSecurityControlBase.GetType() == typeof(CategoryCreate))
-                    ((CategoryCreate)currontSecurityControlBase).PopulateAsync();
+                if (currontSecurityControlBase.GetType() == typeof(RulesEditControl))
+                    ((RulesEditControl)currontSecurityControlBase).PopulateAsync();
             }
             catch (Exception ex)
             {
@@ -148,7 +148,7 @@ namespace Fwk.Security.Admin
             }
 
             navBarItem_Encrypt.Enabled =
-                        navBarItem_RulesEdit.Enabled =
+              
                 navBarItem_CategoryCreate.Enabled =
                 navBarItem_Check_Rule.Enabled = navBarItem_CreateRule.Enabled =
                navBarItem_RoleCreate.Enabled = IsSoftwareFactory;

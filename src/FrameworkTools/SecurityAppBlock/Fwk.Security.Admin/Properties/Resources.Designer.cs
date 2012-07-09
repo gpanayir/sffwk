@@ -1098,6 +1098,15 @@ namespace Fwk.Security.Admin.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to The rule {0} was successfully updated.
+        /// </summary>
+        internal static string RuleUpdatedMessage {
+            get {
+                return ResourceManager.GetString("RuleUpdatedMessage", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap save_16 {
             get {
                 object obj = ResourceManager.GetObject("save_16", resourceCulture);

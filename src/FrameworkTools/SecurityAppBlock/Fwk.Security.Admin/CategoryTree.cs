@@ -10,16 +10,13 @@ namespace Fwk.Security.Admin
         public static CategoryTreeList Retrive_CategoryTreeList(FwkCategoryList pFwkCategoryList)
         {
             CategoryTreeList list = new CategoryTreeList();
-            //CategoryTreeList list2 = new CategoryTreeList();
+    
             var wCategoryTreeList = from p in pFwkCategoryList select new CategoryTree(p);
 
 
             foreach (CategoryTree category in wCategoryTreeList)
             {
-                //if (category.Id == "11")
-                //{
-                //    string i = category.Id;
-                //}
+            
                 list.Add((CategoryTree)category.Clone());
 
                 CategoryTree rule = null;
@@ -32,10 +29,7 @@ namespace Fwk.Security.Admin
                     rule.Id = string.Concat(category.Id, "_", r.Name.Trim());
                     list.Add(rule);
                 }
-                //foreach (CategoryTree r in category.Rules)
-                //{
-                //    list.Add((CategoryTree)r.Clone());
-                //}
+               
             }
             return list;
         }
@@ -102,20 +96,11 @@ namespace Fwk.Security.Admin
 
         public void RemoveRule(string rule_nanme)
         {
-            //var r = this.Rules.Where(p => p.Id.Equals(rule_id)).FirstOrDefault();
-
-            //for (int i = 0; i <= FwkCategory.FwkRulesInCategoryList.Count; i++)
-            //{
-            //    if (FwkCategory.FwkRulesInCategoryList[i].Name.Equals(r.Name))
-            //    {
-            //        FwkCategory.FwkRulesInCategoryList.RemoveAt(i);
-            //        break;
-            //    }
-            //}
+         
             var r1 = FwkCategory.FwkRulesInCategoryList.Where(p => p.Name.Trim().Equals(rule_nanme.Trim())).FirstOrDefault();
             FwkCategory.FwkRulesInCategoryList.Remove(r1);
 
-            //this.Rules.Remove(r);
+          
         }
 
         public string Id { get; set; }
@@ -128,8 +113,6 @@ namespace Fwk.Security.Admin
             get { return _IsCategory; }
             set { _IsCategory = value; }
         }
-
-        //public List<CategoryTree> Rules { get; set; }
 
         [System.Xml.Serialization.XmlIgnore]
         public FwkCategory FwkCategory { get; set; }
