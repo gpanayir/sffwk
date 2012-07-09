@@ -422,11 +422,14 @@ namespace Fwk.Security.Admin.Controls
 
         private void btnAddNewRule_Click(object sender, EventArgs e)
         {
-            using (frmAddRule frm = new frmAddRule())
+            using (frmRulesAdmin frm = new frmRulesAdmin())
             {
+                
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
- 
+                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
+                    fwkAuthorizationRuleBindingSource.DataSource = _AllRuleList;
+                    grdAllRules.RefreshDataSource();
                 }
             }
         }

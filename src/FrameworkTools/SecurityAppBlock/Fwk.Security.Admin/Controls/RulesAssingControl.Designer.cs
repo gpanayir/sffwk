@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.rolAssignedBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rolBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userExcludedBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rolAssignedBindingSource = new System.Windows.Forms.BindingSource();
+            this.rolBindingSource = new System.Windows.Forms.BindingSource();
+            this.userExcludedBindingSource = new System.Windows.Forms.BindingSource();
+            this.userBindingSource = new System.Windows.Forms.BindingSource();
             this.txtRuleExpression = new System.Windows.Forms.TextBox();
             this.btnCreateRule = new DevExpress.XtraEditors.SimpleButton();
             this.label11 = new System.Windows.Forms.Label();
@@ -51,10 +50,10 @@
             this.btnAsignarRoles = new System.Windows.Forms.Button();
             this.grdAssignedRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdAllRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -68,8 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAllUser)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdAssignedRoles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,7 +117,7 @@
             // 
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
             this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label11.Location = new System.Drawing.Point(10, 68);
+            this.label11.Location = new System.Drawing.Point(2, 66);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(161, 20);
             this.label11.TabIndex = 17;
@@ -126,7 +125,7 @@
             // 
             // txtRuleName
             // 
-            this.txtRuleName.Location = new System.Drawing.Point(178, 64);
+            this.txtRuleName.Location = new System.Drawing.Point(170, 62);
             this.txtRuleName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRuleName.Name = "txtRuleName";
             this.txtRuleName.Size = new System.Drawing.Size(221, 23);
@@ -320,6 +319,20 @@
             this.rolNameDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.rolNameDataGridViewTextBoxColumn1.Width = 118;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeSelectedsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
+            // 
+            // removeSelectedsToolStripMenuItem
+            // 
+            this.removeSelectedsToolStripMenuItem.Name = "removeSelectedsToolStripMenuItem";
+            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.removeSelectedsToolStripMenuItem.Text = "Remove selecteds";
+            this.removeSelectedsToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedsToolStripMenuItem_Click);
+            // 
             // grdAllRoles
             // 
             this.grdAllRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -346,20 +359,6 @@
             this.rolNameDataGridViewTextBoxColumn.HeaderText = "RolName";
             this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
             this.rolNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeSelectedsToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(173, 26);
-            // 
-            // removeSelectedsToolStripMenuItem
-            // 
-            this.removeSelectedsToolStripMenuItem.Name = "removeSelectedsToolStripMenuItem";
-            this.removeSelectedsToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.removeSelectedsToolStripMenuItem.Text = "Remove selecteds";
-            this.removeSelectedsToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedsToolStripMenuItem_Click);
             // 
             // tabControl2
             // 
@@ -408,8 +407,8 @@
             this.Controls.Add(this.txtRuleExpression);
             this.Controls.Add(this.btnCreateRule);
             this.Controls.Add(this.tabControl2);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtRuleName);
+            this.Controls.Add(this.label11);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "RulesAssingControl";
             this.Size = new System.Drawing.Size(848, 716);
@@ -423,8 +422,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdAllUser)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdAssignedRoles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdAllRoles)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

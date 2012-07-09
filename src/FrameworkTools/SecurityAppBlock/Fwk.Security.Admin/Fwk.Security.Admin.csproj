@@ -178,12 +178,6 @@
     <Compile Include="Controls\frmAddName.Designer.cs">
       <DependentUpon>frmAddName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\frmAddRule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\frmAddRule.Designer.cs">
-      <DependentUpon>frmAddRule.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\frmChangePwd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +189,12 @@
     </Compile>
     <Compile Include="Controls\frmRolesFind.Designer.cs">
       <DependentUpon>frmRolesFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\frmRulesAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\frmRulesAdmin.Designer.cs">
+      <DependentUpon>frmRulesAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\frmUserFind.cs">
       <SubType>Form</SubType>
@@ -280,9 +280,6 @@
     <EmbeddedResource Include="Controls\frmAddName.resx">
       <DependentUpon>frmAddName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\frmAddRule.resx">
-      <DependentUpon>frmAddRule.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\frmChangePwd.resx">
       <DependentUpon>frmChangePwd.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -290,6 +287,9 @@
     <EmbeddedResource Include="Controls\frmRolesFind.resx">
       <DependentUpon>frmRolesFind.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\frmRulesAdmin.resx">
+      <DependentUpon>frmRulesAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\frmUserFind.resx">
       <DependentUpon>frmUserFind.cs</DependentUpon>
