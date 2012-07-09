@@ -245,6 +245,22 @@ namespace Fwk.Security.Admin.Controls
                 catch (Exception ex)
                 { throw ex; }
             }
+            else
+            {
+                DialogResult r = MessageBox.Show("Will have to delete the category and recursively all its subcategories","Rules mannager", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (r == DialogResult.Yes)
+                {
+                    try
+                    {
+                        FwkMembership.RemoveCategory(_CurrentCategory.FwkCategory.CategoryId, frmAdmin.Provider.ApplicationName);
+                        MessageViewInfo.Show("Category was successfully removed ");
+                        PopulateAsync();
+                    }
+                    catch (Exception ex)
+                    { throw ex; }
+                }
+ 
+            }
         }
 
 
@@ -285,6 +301,10 @@ namespace Fwk.Security.Admin.Controls
             lblCurrentCategory.Text = _CurrentCategory.Name;
 
             mAddNewCategory.Enabled = _CurrentCategory.IsCategory;
+            if (_CurrentCategory.IsCategory)
+                mRemove.Text = "Remove category";
+            else
+                mRemove.Text = "Remove rule";
             treeList1.SetFocusedNode(_HitInfo.Node);
 
         }
