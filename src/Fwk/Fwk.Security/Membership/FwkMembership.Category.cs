@@ -323,6 +323,7 @@ namespace Fwk.Security
                 //Remueve recursivamente todos los hijos asta la ultima subcategoria
                 foreach (FwkCategory wFwkCategory in subCategories)
                 {
+                    
                     RemoveCategory(wFwkCategory.CategoryId, applicationName, connectionStringName);
                 }
             }
