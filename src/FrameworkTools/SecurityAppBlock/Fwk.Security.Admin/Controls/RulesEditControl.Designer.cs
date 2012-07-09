@@ -262,7 +262,7 @@
             this.gridView_AllRules.OptionsMenu.EnableFooterMenu = false;
             this.gridView_AllRules.OptionsMenu.EnableGroupPanelMenu = false;
             this.gridView_AllRules.OptionsMenu.ShowGroupSortSummaryItems = false;
-            this.gridView_AllRules.OptionsSelection.MultiSelect = true;
+            this.gridView_AllRules.OptionsSelection.InvertSelection = true;
             this.gridView_AllRules.OptionsSelection.UseIndicatorForSelection = false;
             this.gridView_AllRules.OptionsView.ShowColumnHeaders = false;
             this.gridView_AllRules.OptionsView.ShowDetailButtons = false;

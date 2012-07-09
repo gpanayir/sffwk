@@ -476,12 +476,7 @@ namespace Fwk.Security.Admin.Controls
 
         private void treeList1_GetStateImage(object sender, GetStateImageEventArgs e)
         {
-
-            //if(e.Node.GetDisplayText("Name") == "Folder")
             e.NodeImageIndex = e.Node.Expanded ? 1 : 0;
-
-            //else if(e.Node.GetDisplayText("Type") == "File") e.NodeImageIndex = 2;
-            //else e.NodeImageIndex = 3;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
