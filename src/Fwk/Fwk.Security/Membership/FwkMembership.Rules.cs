@@ -31,7 +31,7 @@ namespace Fwk.Security
         }
         
         /// <summary>
-        /// 
+        /// Retorna las reglas en las que esta vinculado un Rol
         /// </summary>
         /// <param name="roleName">Nombre del rol.</param>
         /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
@@ -567,6 +567,8 @@ namespace Fwk.Security
 
 
         }
+
+       
         #endregion
     }
 }

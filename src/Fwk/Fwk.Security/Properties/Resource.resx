@@ -240,7 +240,7 @@ This block requires a database configured with the ASP.NET services schema. Plea
     <value>Role {0} is not empty, have users associates.</value>
   </data>
   <data name="RuleCreatedMessage" xml:space="preserve">
-    <value>The rule {0} created.-</value>
+    <value>The rule {0} was successfully created</value>
   </data>
   <data name="RuleResultFalseMessage" xml:space="preserve">
     <value>Rule: {0}
@@ -331,5 +331,8 @@ Result: user is authorized</value>
   </data>
   <data name="RoleProviderConfigError" xml:space="preserve">
     <value>There are some problems while trying to get roles config information, please check the config fale from your application </value>
+  </data>
+  <data name="RuleUpdatedMessage" xml:space="preserve">
+    <value>The rule {0} was successfully updated</value>
   </data>
 </root>
