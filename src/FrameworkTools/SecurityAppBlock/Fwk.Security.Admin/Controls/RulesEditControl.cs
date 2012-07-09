@@ -41,7 +41,7 @@ namespace Fwk.Security.Admin.Controls
                 return typeof(RulesEditControl).AssemblyQualifiedName;
             }
         }
-
+        Cursor moveCursor;
         public override void Initialize()
         {
             //txtRuleName.Focus();
@@ -60,6 +60,8 @@ namespace Fwk.Security.Admin.Controls
                 treeList1.RefreshDataSource();
                 treeList1.EndUnboundLoad();
                 treeList1.ExpandAll();
+
+                 moveCursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.move_16.ico"));
             }
         }
         public RulesEditControl()
@@ -365,11 +367,11 @@ namespace Fwk.Security.Admin.Controls
         private void SetDragCursor(DragDropEffects e)
         {
             if (e == DragDropEffects.Move)
-                Cursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.move_16.ico"));
+                Cursor = moveCursor;//new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.move_16.ico"));
             if (e == DragDropEffects.Copy)
                 Cursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.copy_24.ico"));
             if (e == DragDropEffects.None)
-                Cursor = Cursors.No;
+               Cursor = Cursors.No;
 
         }
 
@@ -384,16 +386,33 @@ namespace Fwk.Security.Admin.Controls
             _CurrentRule = ((FwkAuthorizationRule)gridView_AllRules.GetRow(_GridHitInfo.RowHandle));
             if (_CurrentRule != null)
                 lblSelectedRule.Text = _CurrentRule.Name;
+            if (_GridHitInfo.InRowCell)
+            {
+                FwkAuthorizationRule rule = null;
+                List<FwkAuthorizationRule> wRuleList = new List<FwkAuthorizationRule>();
+                Recorro todas las filas seleccionadas y obtengo el UserId y el Name y los agrego a la lista de usuarios
+                foreach (int wFila in gridView_AllRules.GetSelectedRows())
+                {
+                    rule = (FwkAuthorizationRule)(gridView_AllRules.GetRow(wFila));
+                    wRuleList.Add(rule.Clone());
+                }
+
+                grdAllRules.DoDragDrop(wRuleList, DragDropEffects.Move);
+                lblSelectedRule.Text = wRuleList[0].Name;
+                SetDragCursor(DragDropEffects.Move);
+
+            }
+            
         }
 
         private void gridView_AllRules_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_GridHitInfo == null || e.Button != MouseButtons.Left || _GridHitInfo.HitTest == GridHitTest.RowIndicator)
-                return;
+            //if (_GridHitInfo == null || e.Button != MouseButtons.Left || _GridHitInfo.HitTest == GridHitTest.RowIndicator)
+            //    return;
 
-            
-                if (_GridHitInfo.InRowCell)
-                {
+
+            if (_GridHitInfo.InRowCell)
+            {
                 FwkAuthorizationRule rule = null;
                 List<FwkAuthorizationRule> wRuleList = new List<FwkAuthorizationRule>();
                 //Recorro todas las filas seleccionadas y obtengo el UserId y el Name y los agrego a la lista de usuarios
@@ -405,13 +424,34 @@ namespace Fwk.Security.Admin.Controls
 
                 grdAllRules.DoDragDrop(wRuleList, DragDropEffects.Move);
                 lblSelectedRule.Text = wRuleList[0].Name;
-    
-                }
-         
+                SetDragCursor(DragDropEffects.Move);
+               
+            }
+
         }
+
         private void grdAllRules_DragEnter(object sender, DragEventArgs e)
         {
-            //SetDragCursor( DragDropEffects.Move);
+            //if (_GridHitInfo == null || e.Button != MouseButtons.Left || _GridHitInfo.HitTest == GridHitTest.RowIndicator)
+            //    return;
+
+
+            //if (_GridHitInfo.InRowCell)
+            //{
+            //    FwkAuthorizationRule rule = null;
+            //    List<FwkAuthorizationRule> wRuleList = new List<FwkAuthorizationRule>();
+            //    //Recorro todas las filas seleccionadas y obtengo el UserId y el Name y los agrego a la lista de usuarios
+            //    foreach (int wFila in gridView_AllRules.GetSelectedRows())
+            //    {
+            //        rule = (FwkAuthorizationRule)(gridView_AllRules.GetRow(wFila));
+            //        wRuleList.Add(rule.Clone());
+            //    }
+
+            //    grdAllRules.DoDragDrop(wRuleList, DragDropEffects.Move);
+            //    lblSelectedRule.Text = wRuleList[0].Name;
+            //    SetDragCursor(DragDropEffects.Move);
+
+            //}
         }
         #endregion
 
@@ -443,6 +483,11 @@ namespace Fwk.Security.Admin.Controls
 
             //else if(e.Node.GetDisplayText("Type") == "File") e.NodeImageIndex = 2;
             //else e.NodeImageIndex = 3;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            SetDragCursor(DragDropEffects.Move);
         }
 
        
