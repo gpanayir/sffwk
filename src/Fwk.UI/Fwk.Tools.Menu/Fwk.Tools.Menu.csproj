@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{829A3247-A6B8-41B1-95AC-D2D8218F3791}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fwk.Tools.Menu</RootNamespace>
+    <AssemblyName>Fwk.Tools.Menu</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v11.1.Core, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Security, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Framework\Fwk.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Files.cs" />
+    <Compile Include="FRM_MenuBarDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_MenuBarDesigner.Designer.cs">
+      <DependentUpon>FRM_MenuBarDesigner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRM_ToolBarDesigner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_ToolBarDesigner.Designer.cs">
+      <DependentUpon>FRM_ToolBarDesigner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="main.Designer.cs">
+      <DependentUpon>main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FRM_MenuBarDesigner.resx">
+      <DependentUpon>FRM_MenuBarDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRM_ToolBarDesigner.resx">
+      <DependentUpon>FRM_ToolBarDesigner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\FRM_RuleSelector.resx">
+      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UC_ButtonGroupEditor.resx">
+      <DependentUpon>UC_ButtonGroupEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UC_MenuEditor.resx">
+      <DependentUpon>UC_MenuEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UC_MenuItemEditor.resx">
+      <DependentUpon>UC_MenuItemEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UC_PopupButtonEditor.resx">
+      <DependentUpon>UC_PopupButtonEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UC_RuleSelector.resx">
+      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UC_RulesMain.resx">
+      <DependentUpon>UC_RulesMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UC_SimpleButtonEditor.resx">
+      <DependentUpon>UC_SimpleButtonEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <Compile Include="UC\FRM_RuleSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UC\FRM_RuleSelector.Designer.cs">
+      <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_ButtonGroupEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UC_ButtonGroupEditor.Designer.cs">
+      <DependentUpon>UC_ButtonGroupEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_MenuEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UC_MenuEditor.Designer.cs">
+      <DependentUpon>UC_MenuEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_MenuItemEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UC_MenuItemEditor.Designer.cs">
+      <DependentUpon>UC_MenuItemEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_PopupButtonEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UC_PopupButtonEditor.Designer.cs">
+      <DependentUpon>UC_PopupButtonEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_RuleSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UC_RuleSelector.Designer.cs">
+      <DependentUpon>UC_RuleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_RulesMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UC_RulesMain.Designer.cs">
+      <DependentUpon>UC_RulesMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UC_SimpleButtonEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UC_SimpleButtonEditor.Designer.cs">
+      <DependentUpon>UC_SimpleButtonEditor.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_16.png" />
+    <None Include="Resources\apply_16.png" />
+    <None Include="Resources\cancel_16.png" />
+    <None Include="Resources\cancel_24.png" />
+    <None Include="Resources\close_16.png" />
+    <None Include="Resources\close_24.png" />
+    <None Include="Resources\docs_16.png" />
+    <None Include="Resources\docs_24.png" />
+    <None Include="Resources\docs_32.png" />
+    <None Include="Resources\down_16.png" />
+    <None Include="Resources\file_apply_16.png" />
+    <None Include="Resources\file_apply_32.png" />
+    <None Include="Resources\file_cancel_16.png" />
+    <None Include="Resources\file_cancel_32.png" />
+    <None Include="Resources\file_del_16.png" />
+    <None Include="Resources\file_del_32.png" />
+    <None Include="Resources\file_edit_16.png" />
+    <None Include="Resources\file_edit_32.png" />
+    <None Include="Resources\file_find_16.png" />
+    <None Include="Resources\file_find_32.png" />
+    <None Include="Resources\file_new_16.png" />
+    <None Include="Resources\file_new_32.png" />
+    <None Include="Resources\folder_new_16.png" />
+    <None Include="Resources\folder_new_24.png" />
+    <None Include="Resources\folder_new_32.png" />
+    <None Include="Resources\preview_16.png" />
+    <None Include="Resources\preview_24.png" />
+    <None Include="Resources\preview_32.png" />
+    <None Include="Resources\preview_48.png" />
+    <None Include="Resources\question_16.png" />
+    <None Include="Resources\question_24.png" />
+    <None Include="Resources\question_32.png" />
+    <None Include="Resources\refresh_32.png" />
+    <None Include="Resources\save_16.png" />
+    <None Include="Resources\save_32.png" />
+    <None Include="Resources\save_as_large_32.png" />
+    <None Include="Resources\save_as_small_16.png" />
+    <None Include="Resources\tools_16.png" />
+    <None Include="Resources\tools_24.png" />
+    <None Include="Resources\up_16.png" />
+    <Content Include="tools_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fwk.UI\Fwk.UI.csproj">
+      <Project>{716F5956-983B-4687-A239-B5779FB366E0}</Project>
+      <Name>Fwk.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
