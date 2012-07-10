@@ -89,7 +89,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(178, 20);
             this.txtPassword.TabIndex = 62;
-            this.txtPassword.Text = "Pelsoft+666";
+            this.txtPassword.Text = "Pelsoft+123";
             // 
             // btnCheck
             // 
@@ -186,7 +186,7 @@
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(525, 20);
             this.txtDomain.TabIndex = 75;
-            this.txtDomain.Text = "Pelsoft.es";
+            this.txtDomain.Text = "Pelsoft.ar";
             // 
             // button4
             // 
