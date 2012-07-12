@@ -93,10 +93,15 @@ namespace Fwk.Security.Admin.Controls
             _ExcludeUserList = new UserList();
              FwkMembership.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.Expression, out _AssignedRolList, out _ExcludeUserList);
 
-             rolBindingSource.DataSource = _AssignedRolList;
-             userExcludedBindingSource.DataSource = _ExcludeUserList;
-
+             //rolBindingSource.DataSource = _AssignedRolList;
+             //userExcludedBindingSource.DataSource = _ExcludeUserList;
+             txtRuleExpression.Text = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+             grdAssignedRoles.DataSource = null;
+             grdAssignedRoles.DataSource = _AssignedRolList;
+             grdUserExcluded.DataSource = null;
+             grdUserExcluded.DataSource = _AssignedRolList;
              grdUserExcluded.Refresh();
+             grdAssignedRoles.Refresh();
         }
 
         private void grdAllRoles_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -173,6 +178,8 @@ namespace Fwk.Security.Admin.Controls
             NewSecurityInfoCreatedHandler();
         }
         
+
+
         void FillSelectedRoles()
         {
             selectedRoles.Clear();
