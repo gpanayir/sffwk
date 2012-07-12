@@ -206,15 +206,34 @@ namespace Fwk.Security.Admin.Controls
 
         }
 
+        private void addRootcategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (frmAddName frm = new frmAddName())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    if (!string.IsNullOrEmpty(frm.Tag.ToString()))
+                        if (FwkMembership.ExistCategory(frm.Tag.ToString().Trim(), 0, frmAdmin.Provider.ApplicationName))
+                        {
+                            MessageViewInfo.Show(string.Format("Category {0} already exist", frm.Tag.ToString()));
+                            return;
+                        }
+                        else
+                        {
+                            _CurrentCategory = null;
+                            Create_Categoty(frm.Tag.ToString());
+                        }
+                }
+            }
+        }
+
         void Create_Categoty(string name)
         {
-
-
             FwkCategory wFwkCategory = new FwkCategory();
 
             wFwkCategory.Name = name;
-            if (_ParentFwkCategory != null)
-                wFwkCategory.ParentId = Convert.ToInt32(_ParentFwkCategory.Id);
+            if (_CurrentCategory  != null)
+                wFwkCategory.ParentId = Convert.ToInt32(_CurrentCategory.Id);
             else
                 wFwkCategory.ParentId = 0;
 
@@ -228,6 +247,7 @@ namespace Fwk.Security.Admin.Controls
             { throw ex; }
 
         }
+
         private void mRemove_Click(object sender, EventArgs e)
         {
             if (_CurrentCategory.IsCategory == false)
@@ -262,7 +282,6 @@ namespace Fwk.Security.Admin.Controls
  
             }
         }
-
 
 
         private void treeList1_KeyDown(object sender, KeyEventArgs e)
@@ -493,6 +512,23 @@ namespace Fwk.Security.Admin.Controls
         {
             Cursor = Cursors.Default;
         }
+
+        private void gridView_AllRules_DoubleClick(object sender, EventArgs e)
+        {
+            if (_CurrentRule == null) return;
+            using (frmRulesAdmin frm = new frmRulesAdmin(_CurrentRule.Name))
+            {
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
+                    fwkAuthorizationRuleBindingSource.DataSource = _AllRuleList;
+                    grdAllRules.RefreshDataSource();
+                }
+            }
+        }
+
+       
 
        
        

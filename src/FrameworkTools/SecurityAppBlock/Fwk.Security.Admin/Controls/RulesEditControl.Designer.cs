@@ -42,6 +42,7 @@
             this.mAddNewCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.mRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.addRuleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addRootcategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.categoryTreeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.grdAllRules = new DevExpress.XtraGrid.GridControl();
@@ -185,15 +186,16 @@
             this.contextMenu_Categories.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mAddNewCategory,
             this.mRemove,
-            this.addRuleToolStripMenuItem});
+            this.addRuleToolStripMenuItem,
+            this.addRootcategoryToolStripMenuItem});
             this.contextMenu_Categories.Name = "contextMenuStrip1";
-            this.contextMenu_Categories.Size = new System.Drawing.Size(198, 76);
+            this.contextMenu_Categories.Size = new System.Drawing.Size(203, 100);
             // 
             // mAddNewCategory
             // 
             this.mAddNewCategory.Image = global::Fwk.Security.Admin.Properties.Resources.folder_new_16;
             this.mAddNewCategory.Name = "mAddNewCategory";
-            this.mAddNewCategory.Size = new System.Drawing.Size(197, 24);
+            this.mAddNewCategory.Size = new System.Drawing.Size(202, 24);
             this.mAddNewCategory.Text = "Add sub-category";
             this.mAddNewCategory.Click += new System.EventHandler(this.mAddNewCategory_Click);
             // 
@@ -201,7 +203,7 @@
             // 
             this.mRemove.Image = global::Fwk.Security.Admin.Properties.Resources.cancel_16;
             this.mRemove.Name = "mRemove";
-            this.mRemove.Size = new System.Drawing.Size(197, 24);
+            this.mRemove.Size = new System.Drawing.Size(202, 24);
             this.mRemove.Text = "Remove";
             this.mRemove.Click += new System.EventHandler(this.mRemove_Click);
             // 
@@ -209,8 +211,16 @@
             // 
             this.addRuleToolStripMenuItem.Image = global::Fwk.Security.Admin.Properties.Resources.admin_24;
             this.addRuleToolStripMenuItem.Name = "addRuleToolStripMenuItem";
-            this.addRuleToolStripMenuItem.Size = new System.Drawing.Size(197, 24);
+            this.addRuleToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
             this.addRuleToolStripMenuItem.Text = "Add rule";
+            // 
+            // addRootcategoryToolStripMenuItem
+            // 
+            this.addRootcategoryToolStripMenuItem.Image = global::Fwk.Security.Admin.Properties.Resources.Folder_2_Down;
+            this.addRootcategoryToolStripMenuItem.Name = "addRootcategoryToolStripMenuItem";
+            this.addRootcategoryToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
+            this.addRootcategoryToolStripMenuItem.Text = "Add root-category";
+            this.addRootcategoryToolStripMenuItem.Click += new System.EventHandler(this.addRootcategoryToolStripMenuItem_Click);
             // 
             // categoryTreeBindingSource
             // 
@@ -270,6 +280,7 @@
             this.gridView_AllRules.OptionsView.ShowVertLines = false;
             this.gridView_AllRules.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseDown);
             this.gridView_AllRules.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseMove);
+            this.gridView_AllRules.DoubleClick += new System.EventHandler(this.gridView_AllRules_DoubleClick);
             // 
             // gridColumn3
             // 
@@ -361,5 +372,6 @@
         private DevExpress.XtraEditors.LabelControl lblCurrentCategory;
         private DevExpress.XtraEditors.LabelControl lblSelectedRule;
         private DevExpress.XtraEditors.SimpleButton btnAddNewRule;
+        private System.Windows.Forms.ToolStripMenuItem addRootcategoryToolStripMenuItem;
     }
 }
