@@ -365,8 +365,7 @@ namespace Fwk.Security.Admin.Controls
                 }
 
                 #region Add Rules to Category
-                //foreach (FwkAuthorizationRule rule in wRuleList)
-                //{
+
                 if (!_CurrentCategory.AnyRule(rule.Name))
                 {
 
@@ -374,17 +373,9 @@ namespace Fwk.Security.Admin.Controls
                     //this._CategoryTreeList.Add(newRule);
                     FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
                 }
-                //}
+        
                 #endregion
-                //Si cambiaron una o mas reglas
-                //if (_CurrentCategory.EntityState == Fwk.Bases.EntityState.Changed)
-                //{
-                //    FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
-
-                //    //_CurrentCategory.EntityState = Fwk.Bases.EntityState.Unchanged;
-                //    //treeList1.RefreshDataSource();
-                //    //treeList1.ExpandAll();
-                //}
+          
                 PopulateAsync();
             }
 
@@ -439,8 +430,7 @@ namespace Fwk.Security.Admin.Controls
                   
                     if (!_CurrentCategory.AnyRule(wCategoryTree_ToMove.Name))
                     {
-                        //try
-                        //{
+                     
                             _CurrentCategory.AddRule(wCategoryTree_ToMove.FwkAuthorizationRule);
                             FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
 
@@ -448,9 +438,7 @@ namespace Fwk.Security.Admin.Controls
                             _ParentFwkCategory = _CategoryTreeList.Where(p => p.Id.Equals(wCategoryTree_ToMove.ParentId)).FirstOrDefault<CategoryTree>();
                             _ParentFwkCategory.RemoveRule(wCategoryTree_ToMove.Name);
                             FwkMembership.CreateRuleInCategory(_ParentFwkCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
-                        //}
-                        //catch (Exception ex)
-                        //{ throw ex; }
+                       
                     }
 
 
