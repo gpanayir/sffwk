@@ -683,6 +683,13 @@ namespace Fwk.Security.Admin.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Folder_2_Down {
+            get {
+                object obj = ResourceManager.GetObject("Folder 2 Down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap folder_new_16 {
             get {
                 object obj = ResourceManager.GetObject("folder_new_16", resourceCulture);

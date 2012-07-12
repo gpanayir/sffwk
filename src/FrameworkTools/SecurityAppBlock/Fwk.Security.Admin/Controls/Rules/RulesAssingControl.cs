@@ -35,7 +35,11 @@ namespace Fwk.Security.Admin.Controls
             if (NewSecurityInfoCreated != null)
                 NewSecurityInfoCreated(this);
         }
-
+        public bool ButtonSaveVisible
+        {
+            get{return btnCreateRule.Visible;}
+            set { btnCreateRule.Visible=value; }
+        }
         Rol _SelectedRol = null;
         User _SelectedUser = null;
 
@@ -110,12 +114,7 @@ namespace Fwk.Security.Admin.Controls
                 errorProvider1.SetError(txtRuleName, "Rule name must not be empty");
                 return false;
             }
-            if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), frmAdmin.Provider.ApplicationName))
-            {
-                MessageViewInfo.Show(String.Format("The rule {0} exist", txtRuleName.Text));
-                txtRuleName.Focus();
-                return false;
-            }
+           
 
             try
             {
@@ -126,9 +125,18 @@ namespace Fwk.Security.Admin.Controls
 
                 if (base.State == Bases.EntityUpdateEnum.NEW)
                 {
+                    if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), frmAdmin.Provider.ApplicationName))
+                    {
+                        MessageViewInfo.Show(String.Format("The rule {0} exist", txtRuleName.Text));
+                        txtRuleName.Focus();
+                        return false;
+                    }
                     FwkMembership.CreateRule(_CurrentRule, frmAdmin.Provider.ApplicationName);
 
                     MessageViewInfo.Show(String.Format(Properties.Resources.RuleCreatedMessage, txtRuleName.Text));
+
+                    this.btnCreateRule.Enabled = false;
+
                 }
                 if (base.State == Bases.EntityUpdateEnum.UPDATED)
                 {

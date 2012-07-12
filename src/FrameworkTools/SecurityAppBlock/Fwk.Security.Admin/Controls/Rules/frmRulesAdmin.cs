@@ -15,13 +15,18 @@ namespace Fwk.Security.Admin.Controls
         
         public frmRulesAdmin()
         {
-
+            
             InitializeComponent();
+            rulesAssingControl1.State = Bases.EntityUpdateEnum.NEW;
+            rulesAssingControl1.ButtonSaveVisible = false;
         }
         public frmRulesAdmin(string ruleName)
         {
-            RuleName = ruleName;
+            this.RuleName = ruleName;
+        
             InitializeComponent();
+            rulesAssingControl1.State = Bases.EntityUpdateEnum.UPDATED;
+            rulesAssingControl1.ButtonSaveVisible = false;
         }
         private void aceptCancelButtonBar1_ClickOkCancelEvent(object sender, DialogResult result)
         {

@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rolAssignedBindingSource = new System.Windows.Forms.BindingSource();
-            this.rolBindingSource = new System.Windows.Forms.BindingSource();
-            this.userExcludedBindingSource = new System.Windows.Forms.BindingSource();
-            this.userBindingSource = new System.Windows.Forms.BindingSource();
+            this.components = new System.ComponentModel.Container();
+            this.rolAssignedBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rolBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userExcludedBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtRuleExpression = new System.Windows.Forms.TextBox();
             this.btnCreateRule = new DevExpress.XtraEditors.SimpleButton();
             this.label11 = new System.Windows.Forms.Label();
@@ -50,7 +51,7 @@
             this.btnAsignarRoles = new System.Windows.Forms.Button();
             this.grdAssignedRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeSelectedsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grdAllRoles = new System.Windows.Forms.DataGridView();
             this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,6 +97,7 @@
             this.txtRuleExpression.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRuleExpression.Multiline = true;
             this.txtRuleExpression.Name = "txtRuleExpression";
+            this.txtRuleExpression.ReadOnly = true;
             this.txtRuleExpression.Size = new System.Drawing.Size(812, 64);
             this.txtRuleExpression.TabIndex = 20;
             // 

@@ -166,96 +166,96 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryTree.cs" />
-    <Compile Include="Controls\ConnectionStringsCrypt.cs">
+    <Compile Include="Controls\Common\ConnectionStringsCrypt.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ConnectionStringsCrypt.Designer.cs">
+    <Compile Include="Controls\Common\ConnectionStringsCrypt.Designer.cs">
       <DependentUpon>ConnectionStringsCrypt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\frmAddName.cs">
+    <Compile Include="Controls\Common\frmAddName.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\frmAddName.Designer.cs">
+    <Compile Include="Controls\Common\frmAddName.Designer.cs">
       <DependentUpon>frmAddName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\frmChangePwd.cs">
+    <Compile Include="Controls\Users\frmChangePwd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\frmChangePwd.Designer.cs">
+    <Compile Include="Controls\Users\frmChangePwd.Designer.cs">
       <DependentUpon>frmChangePwd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\frmRolesFind.cs">
+    <Compile Include="Controls\Roles\frmRolesFind.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\frmRolesFind.Designer.cs">
+    <Compile Include="Controls\Roles\frmRolesFind.Designer.cs">
       <DependentUpon>frmRolesFind.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\frmRulesAdmin.cs">
+    <Compile Include="Controls\Rules\frmRulesAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\frmRulesAdmin.Designer.cs">
+    <Compile Include="Controls\Rules\frmRulesAdmin.Designer.cs">
       <DependentUpon>frmRulesAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\frmUserFind.cs">
+    <Compile Include="Controls\Users\frmUserFind.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\frmUserFind.Designer.cs">
+    <Compile Include="Controls\Users\frmUserFind.Designer.cs">
       <DependentUpon>frmUserFind.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RolesGrid.cs">
+    <Compile Include="Controls\Roles\RolesGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\RolesGrid.Designer.cs">
+    <Compile Include="Controls\Roles\RolesGrid.Designer.cs">
       <DependentUpon>RolesGrid.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RuleObjetoSource.cs" />
-    <Compile Include="Controls\RulesEditControl.cs">
+    <Compile Include="Controls\Rules\RuleObjetoSource.cs" />
+    <Compile Include="Controls\Rules\RulesEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\RulesEditControl.Designer.cs">
+    <Compile Include="Controls\Rules\RulesEditControl.Designer.cs">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserAssingRoles.cs">
+    <Compile Include="Controls\Users\UserAssingRoles.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UserAssingRoles.Designer.cs">
+    <Compile Include="Controls\Users\UserAssingRoles.Designer.cs">
       <DependentUpon>UserAssingRoles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RulesAssingControl.cs">
+    <Compile Include="Controls\Rules\RulesAssingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\RulesAssingControl.Designer.cs">
+    <Compile Include="Controls\Rules\RulesAssingControl.Designer.cs">
       <DependentUpon>RulesAssingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\RulesCheckControl.cs">
+    <Compile Include="Controls\Rules\RulesCheckControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\RulesCheckControl.Designer.cs">
+    <Compile Include="Controls\Rules\RulesCheckControl.Designer.cs">
       <DependentUpon>RulesCheckControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ControlsFactory.cs" />
-    <Compile Include="Controls\RolesCreate.cs">
+    <Compile Include="Controls\Common\ControlsFactory.cs" />
+    <Compile Include="Controls\Roles\RolesCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\RolesCreate.Designer.cs">
+    <Compile Include="Controls\Roles\RolesCreate.Designer.cs">
       <DependentUpon>RolesCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserCretate.cs">
+    <Compile Include="Controls\Users\UserCretate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UserCretate.Designer.cs">
+    <Compile Include="Controls\Users\UserCretate.Designer.cs">
       <DependentUpon>UserCretate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SecurityControlBase.cs">
+    <Compile Include="Controls\Common\SecurityControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SecurityControlBase.Designer.cs">
+    <Compile Include="Controls\Common\SecurityControlBase.Designer.cs">
       <DependentUpon>SecurityControlBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserAdmin.cs">
+    <Compile Include="Controls\Users\UserAdmin.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UserAdmin.Designer.cs">
+    <Compile Include="Controls\Users\UserAdmin.Designer.cs">
       <DependentUpon>UserAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAdmin.cs">
@@ -273,61 +273,61 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityController.cs" />
-    <EmbeddedResource Include="Controls\ConnectionStringsCrypt.resx">
+    <EmbeddedResource Include="Controls\Common\ConnectionStringsCrypt.resx">
       <DependentUpon>ConnectionStringsCrypt.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\frmAddName.resx">
+    <EmbeddedResource Include="Controls\Common\frmAddName.resx">
       <DependentUpon>frmAddName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\frmChangePwd.resx">
+    <EmbeddedResource Include="Controls\Users\frmChangePwd.resx">
       <DependentUpon>frmChangePwd.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\frmRolesFind.resx">
+    <EmbeddedResource Include="Controls\Roles\frmRolesFind.resx">
       <DependentUpon>frmRolesFind.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\frmRulesAdmin.resx">
+    <EmbeddedResource Include="Controls\Rules\frmRulesAdmin.resx">
       <DependentUpon>frmRulesAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\frmUserFind.resx">
+    <EmbeddedResource Include="Controls\Users\frmUserFind.resx">
       <DependentUpon>frmUserFind.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\RolesGrid.resx">
+    <EmbeddedResource Include="Controls\Roles\RolesGrid.resx">
       <DependentUpon>RolesGrid.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\RulesEditControl.resx">
+    <EmbeddedResource Include="Controls\Rules\RulesEditControl.resx">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UserAssingRoles.resx">
+    <EmbeddedResource Include="Controls\Users\UserAssingRoles.resx">
       <DependentUpon>UserAssingRoles.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\RulesAssingControl.resx">
+    <EmbeddedResource Include="Controls\Rules\RulesAssingControl.resx">
       <DependentUpon>RulesAssingControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\RulesCheckControl.resx">
+    <EmbeddedResource Include="Controls\Rules\RulesCheckControl.resx">
       <DependentUpon>RulesCheckControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\RolesCreate.resx">
+    <EmbeddedResource Include="Controls\Roles\RolesCreate.resx">
       <DependentUpon>RolesCreate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SecurityControlBase.resx">
+    <EmbeddedResource Include="Controls\Common\SecurityControlBase.resx">
       <DependentUpon>SecurityControlBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UserCretate.resx">
+    <EmbeddedResource Include="Controls\Users\UserCretate.resx">
       <DependentUpon>UserCretate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UserAdmin.resx">
+    <EmbeddedResource Include="Controls\Users\UserAdmin.resx">
       <DependentUpon>UserAdmin.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -344,7 +344,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UsersGrid.resx">
+    <EmbeddedResource Include="Controls\Users\UsersGrid.resx">
       <DependentUpon>UsersGrid.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -353,10 +353,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Controls\UsersGrid.cs">
+    <Compile Include="Controls\Users\UsersGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UsersGrid.Designer.cs">
+    <Compile Include="Controls\Users\UsersGrid.Designer.cs">
       <DependentUpon>UsersGrid.cs</DependentUpon>
     </Compile>
     <None Include="App.config">
@@ -405,6 +405,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="group_16.ico" />
+    <None Include="Resources\Folder 2 Down.bmp" />
     <EmbeddedResource Include="Resources\copy_24.ico" />
     <EmbeddedResource Include="Resources\move_16.ico" />
     <None Include="Resources\Connection Error.bmp" />

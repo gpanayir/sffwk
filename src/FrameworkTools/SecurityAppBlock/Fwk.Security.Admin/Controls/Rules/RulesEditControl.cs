@@ -27,7 +27,7 @@ namespace Fwk.Security.Admin.Controls
         FwkCategoryList _CategoryList;
         CategoryTreeList _CategoryTreeList;
         CategoryTree _ParentFwkCategory;
-        List<AuthorizationRuleData> _RuleList;
+        
         List<FwkAuthorizationRule> _AllRuleList;
         FwkAuthorizationRule _CurrentRule;
         /// <summary>
@@ -405,6 +405,7 @@ namespace Fwk.Security.Admin.Controls
         
         private void SetDragCursor(DragDropEffects e)
         {
+            return;
             if (e == DragDropEffects.Move)
                 Cursor = moveCursor;//new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.move_16.ico"));
             if (e == DragDropEffects.Copy)
@@ -422,9 +423,9 @@ namespace Fwk.Security.Admin.Controls
         private void gridView_AllRules_MouseDown(object sender, MouseEventArgs e)
         {
             _GridHitInfo = gridView_AllRules.CalcHitInfo(new Point(e.X, e.Y));
-            //_CurrentRule = ((FwkAuthorizationRule)gridView_AllRules.GetRow(_GridHitInfo.RowHandle));
-            //if (_CurrentRule != null)
-            //    lblSelectedRule.Text = _CurrentRule.Name;
+            _CurrentRule = ((FwkAuthorizationRule)gridView_AllRules.GetRow(_GridHitInfo.RowHandle));
+            if (_CurrentRule != null)
+                lblSelectedRule.Text = _CurrentRule.Name;
             //if (_GridHitInfo.InRowCell)
             //{
             //    FwkAuthorizationRule rule = null;
@@ -448,7 +449,7 @@ namespace Fwk.Security.Admin.Controls
         {
             if (_GridHitInfo == null || e.Button != MouseButtons.Left || _GridHitInfo.HitTest == GridHitTest.RowIndicator)
                 return;
-            _CurrentRule = ((FwkAuthorizationRule)gridView_AllRules.GetRow(_GridHitInfo.RowHandle));
+            //_CurrentRule = ((FwkAuthorizationRule)gridView_AllRules.GetRow(_GridHitInfo.RowHandle));
 
             if (_GridHitInfo.InRowCell)
             {
