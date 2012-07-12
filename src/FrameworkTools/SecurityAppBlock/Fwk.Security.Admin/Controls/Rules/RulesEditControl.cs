@@ -20,14 +20,14 @@ namespace Fwk.Security.Admin.Controls
     public partial class RulesEditControl : SecurityControlBase
     {
         CategoryTree _CurrentCategory = null;
-       
+
 
         UserList _ExcludeUserList = new UserList();
         RolList _AssignedRolList = new RolList();
         FwkCategoryList _CategoryList;
         CategoryTreeList _CategoryTreeList;
         CategoryTree _ParentFwkCategory;
-        
+
         List<FwkAuthorizationRule> _AllRuleList;
         FwkAuthorizationRule _CurrentRule;
         /// <summary>
@@ -61,7 +61,7 @@ namespace Fwk.Security.Admin.Controls
                 treeList1.EndUnboundLoad();
                 treeList1.ExpandAll();
 
-                 moveCursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.move_16.ico"));
+                moveCursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.move_16.ico"));
             }
         }
         public RulesEditControl()
@@ -114,6 +114,7 @@ namespace Fwk.Security.Admin.Controls
                 this.categoryTreeBindingSource.DataSource = _CategoryTreeList;
                 treeList1.RefreshDataSource();
                 treeList1.EndUnboundLoad();
+                treeList1.ExpandAll();
 
             }
         }
@@ -178,13 +179,13 @@ namespace Fwk.Security.Admin.Controls
             //grdRoles.RefreshDataSource();
         }
 
-       
 
 
 
-     
 
-     
+
+
+
 
         private void mAddNewCategory_Click(object sender, EventArgs e)
         {
@@ -232,7 +233,7 @@ namespace Fwk.Security.Admin.Controls
             FwkCategory wFwkCategory = new FwkCategory();
 
             wFwkCategory.Name = name;
-            if (_CurrentCategory  != null)
+            if (_CurrentCategory != null)
                 wFwkCategory.ParentId = Convert.ToInt32(_CurrentCategory.Id);
             else
                 wFwkCategory.ParentId = 0;
@@ -267,7 +268,7 @@ namespace Fwk.Security.Admin.Controls
             }
             else
             {
-                DialogResult r = MessageBox.Show("Will have to delete the category and recursively all its subcategories","Rules mannager", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult r = MessageBox.Show("Will have to delete the category and recursively all its subcategories", "Rules mannager", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (r == DialogResult.Yes)
                 {
                     try
@@ -279,7 +280,7 @@ namespace Fwk.Security.Admin.Controls
                     catch (Exception ex)
                     { throw ex; }
                 }
- 
+
             }
         }
 
@@ -326,21 +327,34 @@ namespace Fwk.Security.Admin.Controls
                 mRemove.Text = "Remove rule";
             treeList1.SetFocusedNode(_HitInfo.Node);
 
+
+            treeList1.DoDragDrop(_CurrentCategory, DragDropEffects.Move);
+
         }
 
         #region (Tree List) Eventos y Métodos Drag hacia otro componente
 
         private void treeList1_DragDrop(object sender, DragEventArgs e)
         {
+            FwkAuthorizationRule rule = null;
+            CategoryTree wCategoryTree_ToMove = null;
             TreeListHitInfo wHitInfo = treeList1.CalcHitInfo(treeList1.PointToClient(new Point(e.X, e.Y)));
             if (wHitInfo.Node == null)
                 return;
-
+            if (e.Data.GetType() == typeof(FwkAuthorizationRule))
+            {
+                rule = e.Data.GetData(typeof(FwkAuthorizationRule)) as FwkAuthorizationRule;
+            }
+            else
+            {
+                wCategoryTree_ToMove = e.Data.GetData(typeof(CategoryTree)) as CategoryTree;
+            }
             //List<FwkAuthorizationRule> wRuleList = e.Data.GetData(typeof(List<FwkAuthorizationRule>)) as List<FwkAuthorizationRule>;
-            FwkAuthorizationRule rule = e.Data.GetData(typeof(FwkAuthorizationRule)) as FwkAuthorizationRule;
+            //FwkAuthorizationRule rule = e.Data.GetData(typeof(FwkAuthorizationRule)) as FwkAuthorizationRule;
+            #region Move rule
             if (rule != null)
             {
-            
+
                 _CurrentCategory = (CategoryTree)treeList1.GetDataRecordByNode(wHitInfo.Node);
                 lblCurrentCategory.Text = _CurrentCategory.Name;
                 if (_CurrentCategory.IsCategory == false)
@@ -349,30 +363,102 @@ namespace Fwk.Security.Admin.Controls
                     _ParentFwkCategory = _CategoryTreeList.Where(p => p.Id.Equals(_CurrentCategory.ParentId)).FirstOrDefault<CategoryTree>();
                     _CurrentCategory = _ParentFwkCategory;
                 }
-                
+
                 #region Add Rules to Category
                 //foreach (FwkAuthorizationRule rule in wRuleList)
                 //{
                 if (!_CurrentCategory.AnyRule(rule.Name))
-                    {
+                {
 
-                        CategoryTree newRule = _CurrentCategory.AddRule(rule);
-                        this._CategoryTreeList.Add(newRule);
-                        _CurrentCategory.EntityState = Fwk.Bases.EntityState.Changed;
-                    }
+                   _CurrentCategory.AddRule(rule);
+                    //this._CategoryTreeList.Add(newRule);
+                    FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+                }
                 //}
                 #endregion
+                //Si cambiaron una o mas reglas
+                //if (_CurrentCategory.EntityState == Fwk.Bases.EntityState.Changed)
+                //{
+                //    FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+
+                //    //_CurrentCategory.EntityState = Fwk.Bases.EntityState.Unchanged;
+                //    //treeList1.RefreshDataSource();
+                //    //treeList1.ExpandAll();
+                //}
+                PopulateAsync();
             }
-            //Si cambiaron una o mas reglas
-            if (_CurrentCategory.EntityState == Fwk.Bases.EntityState.Changed)
+
+            #endregion
+
+
+            if (wCategoryTree_ToMove != null)
             {
-                FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+                if (wCategoryTree_ToMove.Id == _CurrentCategory.Id)
+                {
+                    Cursor = Cursors.Default;
+                    return;
+                }
 
-                _CurrentCategory.EntityState = Fwk.Bases.EntityState.Unchanged;
-                treeList1.RefreshDataSource();
-                treeList1.ExpandAll();
+                #region Mueve una categoria 
+                if (wCategoryTree_ToMove.IsCategory)
+                {
+                    if (_CurrentCategory.IsCategory == false)
+                    {
+                        //Obtengo el padre de la categoria destino 
+                        _ParentFwkCategory = _CategoryTreeList.Where(p => p.Id.Equals(_CurrentCategory.ParentId)).FirstOrDefault<CategoryTree>();
+                        _CurrentCategory = _ParentFwkCategory;
+                    }
+                    if (wCategoryTree_ToMove.ParentId == _CurrentCategory.Id)
+                    {
+                        Cursor = Cursors.Default;
+                        return;
+                    }
+
+                    FwkMembership.UpdateParentCategory(
+                        wCategoryTree_ToMove.FwkCategory.CategoryId,
+                        wCategoryTree_ToMove.FwkCategory.ParentId.Value,
+                        _CurrentCategory.FwkCategory.CategoryId,
+                        frmAdmin.Provider.ApplicationName);
+                }
+                #endregion
+
+                #region Mueve una regla a otra categoria
+                if (wCategoryTree_ToMove.IsCategory== false)
+                {
+                    if (_CurrentCategory.IsCategory == false)
+                    {
+                        //Obtengo el padre de la categoria destino 
+                        _CurrentCategory = _CategoryTreeList.Where(p => p.Id.Equals(_CurrentCategory.ParentId)).FirstOrDefault<CategoryTree>();
+                        
+                    }
+                    if (wCategoryTree_ToMove.ParentId == _CurrentCategory.Id)
+                    {
+                        Cursor = Cursors.Default;
+                        return;
+                    }
+                  
+                    if (!_CurrentCategory.AnyRule(wCategoryTree_ToMove.Name))
+                    {
+                        //try
+                        //{
+                            _CurrentCategory.AddRule(wCategoryTree_ToMove.FwkAuthorizationRule);
+                            FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+
+                            //Obtengo el padre de la regla a mover para eliminarle la regla
+                            _ParentFwkCategory = _CategoryTreeList.Where(p => p.Id.Equals(wCategoryTree_ToMove.ParentId)).FirstOrDefault<CategoryTree>();
+                            _ParentFwkCategory.RemoveRule(wCategoryTree_ToMove.Name);
+                            FwkMembership.CreateRuleInCategory(_ParentFwkCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+                        //}
+                        //catch (Exception ex)
+                        //{ throw ex; }
+                    }
+
+
+                }
+                #endregion
+
+                PopulateAsync();   
             }
-
             Cursor = Cursors.Default;
         }
 
@@ -387,35 +473,31 @@ namespace Fwk.Security.Admin.Controls
             {
                 lblCurrentCategory.Text = _CurrentCategory.Name;
 
-                e.Effect = DragDropEffects.Move;
+               e.Effect = DragDropEffects.Move;
             }
-          
 
-            SetDragCursor(e.Effect);
+
+            SetDragCursor(DragDropEffects.Move);
         }
-        private TreeListNode GetDragNode(IDataObject data)
-        {
-            return data.GetData(typeof(TreeListNode)) as TreeListNode;
-        }
+
+
         private void treeList1_DragLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
         }
 
-        
+
         private void SetDragCursor(DragDropEffects e)
         {
-            return;
+            // return;
             if (e == DragDropEffects.Move)
                 Cursor = moveCursor;//new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.move_16.ico"));
             if (e == DragDropEffects.Copy)
                 Cursor = new Cursor(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("Fwk.Security.Admin.Resources.copy_24.ico"));
             if (e == DragDropEffects.None)
-               Cursor = Cursors.No;
+                Cursor = Cursors.No;
 
         }
-
-
         #endregion
 
         #region (Grilla) Eventos y Métodos Drag hacia otro componente
@@ -426,23 +508,7 @@ namespace Fwk.Security.Admin.Controls
             _CurrentRule = ((FwkAuthorizationRule)gridView_AllRules.GetRow(_GridHitInfo.RowHandle));
             if (_CurrentRule != null)
                 lblSelectedRule.Text = _CurrentRule.Name;
-            //if (_GridHitInfo.InRowCell)
-            //{
-            //    FwkAuthorizationRule rule = null;
-            //    List<FwkAuthorizationRule> wRuleList = new List<FwkAuthorizationRule>();
-            //    //Recorro todas las filas seleccionadas y obtengo el UserId y el Name y los agrego a la lista de usuarios
-            //    foreach (int wFila in gridView_AllRules.GetSelectedRows())
-            //    {
-            //        rule = (FwkAuthorizationRule)(gridView_AllRules.GetRow(wFila));
-            //        wRuleList.Add(rule.Clone());
-            //    }
 
-            //    grdAllRules.DoDragDrop(wRuleList, DragDropEffects.Move);
-            //    lblSelectedRule.Text = wRuleList[0].Name;
-            //    SetDragCursor(DragDropEffects.Move);
-
-            //}
-            
         }
 
         private void gridView_AllRules_MouseMove(object sender, MouseEventArgs e)
@@ -450,7 +516,7 @@ namespace Fwk.Security.Admin.Controls
             if (_GridHitInfo == null || e.Button != MouseButtons.Left || _GridHitInfo.HitTest == GridHitTest.RowIndicator)
                 return;
             //_CurrentRule = ((FwkAuthorizationRule)gridView_AllRules.GetRow(_GridHitInfo.RowHandle));
-
+          
             if (_GridHitInfo.InRowCell)
             {
                 //FwkAuthorizationRule rule = null;
@@ -464,14 +530,18 @@ namespace Fwk.Security.Admin.Controls
 
                 grdAllRules.DoDragDrop(_CurrentRule, DragDropEffects.Move);
                 lblSelectedRule.Text = _CurrentRule.Name;
-                
+
                 SetDragCursor(DragDropEffects.Move);
-               
+
             }
 
         }
-
-      
+        private void grdAllRules_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+            SetDragCursor(DragDropEffects.Move);
+        }
+     
         #endregion
 
         private void treeList1_GiveFeedback(object sender, GiveFeedbackEventArgs e)
@@ -483,7 +553,7 @@ namespace Fwk.Security.Admin.Controls
         {
             using (frmRulesAdmin frm = new frmRulesAdmin())
             {
-                
+
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
@@ -501,13 +571,10 @@ namespace Fwk.Security.Admin.Controls
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            SetDragCursor(DragDropEffects.Move);
+            // SetDragCursor(DragDropEffects.Move);
         }
 
-        private void grdAllRules_DragOver(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Move;
-        }
+
 
         private void treeList1_MouseLeave(object sender, EventArgs e)
         {
@@ -531,16 +598,23 @@ namespace Fwk.Security.Admin.Controls
 
        
 
-       
-       
-
       
-
-
-
     }
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -27,6 +27,7 @@ namespace Fwk.Security.Admin
                     rule.IsCategory = false;
                     rule.ParentId = category.Id;
                     rule.Id = string.Concat(category.Id, "_", r.Name.Trim());
+                    rule.FwkAuthorizationRule = r;
                     list.Add(rule);
                 }
                
@@ -76,14 +77,14 @@ namespace Fwk.Security.Admin
 
         public CategoryTree AddRule(FwkAuthorizationRule pFwkAuthorizationRule)
         {
-            CategoryTree rule = new CategoryTree();
-            rule.Name = pFwkAuthorizationRule.Name.Trim();
-            rule.ParentId = this.Id;
-            rule.Id = string.Concat(this.Id, "_", pFwkAuthorizationRule.Name.Trim());
-            rule.IsCategory = false;
- 
+            CategoryTree wCategoryTree = new CategoryTree();
+            wCategoryTree.Name = pFwkAuthorizationRule.Name.Trim();
+            wCategoryTree.ParentId = this.Id;
+            wCategoryTree.Id = string.Concat(this.Id, "_", pFwkAuthorizationRule.Name.Trim());
+            wCategoryTree.IsCategory = false;
+            FwkAuthorizationRule = pFwkAuthorizationRule;
             FwkCategory.FwkRulesInCategoryList.Add(pFwkAuthorizationRule);
-            return rule;
+            return wCategoryTree;
         }
 
         public bool AnyRule(string ruleName)
@@ -93,7 +94,13 @@ namespace Fwk.Security.Admin
             else
                 return false;
         }
-
+        public FwkAuthorizationRule GetRule(string ruleName)
+        {
+            return this.FwkCategory.FwkRulesInCategoryList.Where<FwkAuthorizationRule>(p => p.Name.Trim().Equals(ruleName.Trim())).FirstOrDefault<FwkAuthorizationRule>();
+                
+            
+            
+        }
         public void RemoveRule(string rule_nanme)
         {
          
@@ -116,7 +123,7 @@ namespace Fwk.Security.Admin
 
         [System.Xml.Serialization.XmlIgnore]
         public FwkCategory FwkCategory { get; set; }
-
-
+        [System.Xml.Serialization.XmlIgnore]
+        public FwkAuthorizationRule FwkAuthorizationRule { get; set; }
     }
 }

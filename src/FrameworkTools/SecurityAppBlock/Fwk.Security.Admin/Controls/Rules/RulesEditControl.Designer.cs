@@ -168,6 +168,7 @@
             this.treeList1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseClick);
             this.treeList1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseDown);
             this.treeList1.MouseLeave += new System.EventHandler(this.treeList1_MouseLeave);
+            
             // 
             // colName
             // 
@@ -278,6 +279,7 @@
             this.gridView_AllRules.OptionsView.ShowDetailButtons = false;
             this.gridView_AllRules.OptionsView.ShowGroupPanel = false;
             this.gridView_AllRules.OptionsView.ShowVertLines = false;
+            
             this.gridView_AllRules.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseDown);
             this.gridView_AllRules.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseMove);
             this.gridView_AllRules.DoubleClick += new System.EventHandler(this.gridView_AllRules_DoubleClick);

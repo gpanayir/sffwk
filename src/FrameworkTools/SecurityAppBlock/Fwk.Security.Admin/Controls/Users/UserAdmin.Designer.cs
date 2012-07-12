@@ -70,7 +70,7 @@
             this.lblRolesByUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblRolesByUser.Location = new System.Drawing.Point(813, 59);
             this.lblRolesByUser.Name = "lblRolesByUser";
-            this.lblRolesByUser.Size = new System.Drawing.Size(92, 20);
+            this.lblRolesByUser.Size = new System.Drawing.Size(135, 20);
             this.lblRolesByUser.TabIndex = 21;
             this.lblRolesByUser.Text = "User roles";
             this.lblRolesByUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -252,7 +252,7 @@
             this.grdRoles1.ReadOnly = true;
             this.grdRoles1.RowHeadersVisible = false;
             this.grdRoles1.RowTemplate.Height = 24;
-            this.grdRoles1.Size = new System.Drawing.Size(214, 201);
+            this.grdRoles1.Size = new System.Drawing.Size(214, 430);
             this.grdRoles1.TabIndex = 20;
             // 
             // rolNameDataGridViewTextBoxColumn

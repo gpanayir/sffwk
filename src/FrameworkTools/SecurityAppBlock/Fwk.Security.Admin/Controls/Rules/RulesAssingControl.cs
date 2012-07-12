@@ -93,8 +93,7 @@ namespace Fwk.Security.Admin.Controls
             _ExcludeUserList = new UserList();
              FwkMembership.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.Expression, out _AssignedRolList, out _ExcludeUserList);
 
-             //rolBindingSource.DataSource = _AssignedRolList;
-             //userExcludedBindingSource.DataSource = _ExcludeUserList;
+    
              txtRuleExpression.Text = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
              grdAssignedRoles.DataSource = null;
              grdAssignedRoles.DataSource = _AssignedRolList;
