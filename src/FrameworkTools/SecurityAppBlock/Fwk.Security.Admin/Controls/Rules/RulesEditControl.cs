@@ -343,11 +343,7 @@ namespace Fwk.Security.Admin.Controls
                 return;
 
             rule = e.Data.GetData(typeof(FwkAuthorizationRule)) as FwkAuthorizationRule;
-            //if (e.Data.GetType() == typeof(FwkAuthorizationRule))
-            //{
-            //    rule = e.Data.GetData(typeof(FwkAuthorizationRule)) as FwkAuthorizationRule;
-            //}
-            //else
+        
             if(rule ==null)
             {
                 wCategoryTree_ToMove = e.Data.GetData(typeof(CategoryTree)) as CategoryTree;
@@ -373,7 +369,6 @@ namespace Fwk.Security.Admin.Controls
                 {
 
                    _CurrentCategory.AddRule(rule);
-                    //this._CategoryTreeList.Add(newRule);
                     FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
                 }
         
@@ -443,7 +438,7 @@ namespace Fwk.Security.Admin.Controls
                             FwkMembership.CreateRuleInCategory(_ParentFwkCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
                        
                     }
-
+           
 
                 }
                 #endregion
