@@ -82,7 +82,7 @@ namespace Fwk.Security.Admin
             wCategoryTree.ParentId = this.Id;
             wCategoryTree.Id = string.Concat(this.Id, "_", pFwkAuthorizationRule.Name.Trim());
             wCategoryTree.IsCategory = false;
-            FwkAuthorizationRule = pFwkAuthorizationRule;
+            wCategoryTree.FwkAuthorizationRule = pFwkAuthorizationRule;
             FwkCategory.FwkRulesInCategoryList.Add(pFwkAuthorizationRule);
             return wCategoryTree;
         }

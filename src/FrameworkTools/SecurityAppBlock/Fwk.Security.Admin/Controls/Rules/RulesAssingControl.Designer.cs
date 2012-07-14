@@ -353,7 +353,7 @@
             this.grdAllRoles.Size = new System.Drawing.Size(303, 410);
             this.grdAllRoles.TabIndex = 10;
             this.grdAllRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdAllRoles_CellClick);
-            this.grdAllRoles.MouseDown += new System.Windows.Forms.MouseEventHandler(this.grdAllRoles_MouseDown);
+            
             // 
             // rolNameDataGridViewTextBoxColumn
             // 

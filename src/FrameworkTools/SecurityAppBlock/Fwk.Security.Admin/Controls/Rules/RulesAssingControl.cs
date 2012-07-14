@@ -18,6 +18,7 @@ namespace Fwk.Security.Admin.Controls
     [DefaultEvent("NewSecurityInfoCreated")]
     public partial class RulesAssingControl : SecurityControlBase
     {
+
         /// <summary>
         /// Representa la informacion del tipo de control a instanciar 
         /// 
@@ -45,7 +46,7 @@ namespace Fwk.Security.Admin.Controls
 
         UserList _ExcludeUserList = new UserList();
         RolList _AssignedRolList = new RolList();
-
+        internal FwkAuthorizationRule _CurrentRule = null;
         List<Rol> selectedRoles = new List<Rol>();
         public RulesAssingControl()
         {
@@ -76,11 +77,16 @@ namespace Fwk.Security.Admin.Controls
             if (this.State == Bases.EntityUpdateEnum.UPDATED)
             {
                 label3.Text = "Update bussiness rule";
-                txtRuleName.Enabled = false;
+                //txtRuleName.Enabled = false;
             }
             
         }
-        internal FwkAuthorizationRule _CurrentRule = null;
+        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ruleName"></param>
         public void Populate(string ruleName)
         {
             txtRuleName.Text = ruleName;
@@ -91,16 +97,16 @@ namespace Fwk.Security.Admin.Controls
 
             _AssignedRolList = new RolList();
             _ExcludeUserList = new UserList();
-             FwkMembership.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.Expression, out _AssignedRolList, out _ExcludeUserList);
+            FwkMembership.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.Expression, out _AssignedRolList, out _ExcludeUserList);
 
-    
-             txtRuleExpression.Text = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
-             grdAssignedRoles.DataSource = null;
-             grdAssignedRoles.DataSource = _AssignedRolList;
-             grdUserExcluded.DataSource = null;
-             grdUserExcluded.DataSource = _AssignedRolList;
-             grdUserExcluded.Refresh();
-             grdAssignedRoles.Refresh();
+
+            txtRuleExpression.Text = FwkMembership.BuildRuleExpression(_AssignedRolList, _ExcludeUserList);
+            grdAssignedRoles.DataSource = null;
+            grdAssignedRoles.DataSource = _AssignedRolList;
+            grdUserExcluded.DataSource = null;
+            grdUserExcluded.DataSource = _AssignedRolList;
+            grdUserExcluded.Refresh();
+            grdAssignedRoles.Refresh();
         }
 
         private void grdAllRoles_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -124,11 +130,12 @@ namespace Fwk.Security.Admin.Controls
             {
                 if (_CurrentRule == null)
                     _CurrentRule = new FwkAuthorizationRule();
-                _CurrentRule.Name = txtRuleName.Text;
+               
                 _CurrentRule.Expression = txtRuleExpression.Text;
 
                 if (base.State == Bases.EntityUpdateEnum.NEW)
                 {
+                    _CurrentRule.Name = txtRuleName.Text;
                     if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), frmAdmin.Provider.ApplicationName))
                     {
                         MessageViewInfo.Show(String.Format("The rule {0} exist", txtRuleName.Text));
@@ -144,7 +151,17 @@ namespace Fwk.Security.Admin.Controls
                 }
                 if (base.State == Bases.EntityUpdateEnum.UPDATED)
                 {
-                    FwkMembership.UpdateRule(_CurrentRule, frmAdmin.Provider.ApplicationName);
+                    //Si Cambio el nombre
+                    if (_CurrentRule.Name.Trim().CompareTo(txtRuleName.Text.Trim()) != 0)
+                    {
+                        FwkMembership.UpdateRuleAndRuleName(_CurrentRule, txtRuleName.Text.Trim(), frmAdmin.Provider.ApplicationName);
+
+                    }
+                    else
+                    {
+
+                        FwkMembership.UpdateRule(_CurrentRule, frmAdmin.Provider.ApplicationName);
+                    }
 
                     MessageViewInfo.Show(String.Format(Properties.Resources.RuleUpdatedMessage, txtRuleName.Text));
                 }
@@ -194,13 +211,7 @@ namespace Fwk.Security.Admin.Controls
             _SelectedUser = ((User)grdAllUser.CurrentRow.DataBoundItem);
         }
 
-        private void btnAddExcludedUser_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-       
-
+     
        
        
 
@@ -271,15 +282,7 @@ namespace Fwk.Security.Admin.Controls
             }
         }
 
-        private void grdAllRoles_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void grdUserExcluded_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
+       
        
     }
 }

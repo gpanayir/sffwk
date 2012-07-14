@@ -155,10 +155,10 @@ namespace Fwk.Security
                                  from p in dc.aspnet_RulesInCategories
 
                                  where
-                                 s.name.Equals(p.RuleName)
+                                 s.Id.Equals(p.RuleId)
                                  &&
                                  p.CategoryId == pCategoryId
-                                 select new FwkAuthorizationRule { Name = s.name, Expression = s.expression };
+                                 select new FwkAuthorizationRule { Id = s.Id,Description = s.Description, Name = s.name, Expression = s.expression };
 
 
 
@@ -214,7 +214,7 @@ namespace Fwk.Security
                 foreach (FwkAuthorizationRule rule in pFwkCategory.FwkRulesInCategoryList)
                 {
                     str.Append(FwkMembershipScripts.RuleInCategory_i);
-                    str.Replace("[RuleName]", rule.Name);
+                    str.Replace("[RuleId]", rule.Id.ToString());
                 }
                 str.Replace("[CategoryId]", pFwkCategory.CategoryId.ToString());
                 str.Replace("[ApplicationId]", id.ToString());
@@ -310,7 +310,7 @@ namespace Fwk.Security
 
 
         /// <summary>
-        /// Remueve una categoria y sus subcategorias recursivamente
+        /// Elimina de la base de datos una categoria y sus subcategorias recursivamente
         /// </summary>
         /// <param name="parentFwkCategoryId"></param>
         /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
@@ -441,6 +441,64 @@ namespace Fwk.Security
                     //    contain = dc.aspnet_RulesInCategories.Any<aspnet_RulesInCategory>(p => p.CategoryId == parentFwkCategoryId && p.ApplicationId == wApplicationId);
 
                     return contain;
+
+                }
+
+            }
+            catch (TechnicalException tx)
+            { throw tx; }
+            catch (Exception ex)
+            {
+
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
+            }
+        }
+
+
+        /// <summary>
+        /// Actualiza parent category id una determinada categoria
+        /// </summary>
+        /// <param name="category_to_move_Id"></param>
+        /// <param name="currentParentCategoryId"></param>
+        /// <param name="newParentCategoryId"></param>
+        /// <param name="providerName"></param>
+        public static void UpdateParentCategory(int category_to_move_Id, int currentParentCategoryId, int newParentCategoryId, string providerName)
+        {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            UpdateParentCategory(category_to_move_Id, currentParentCategoryId, newParentCategoryId,wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
+        }
+        /// <summary>
+        /// Actualiza parent category id una determinada categoria
+        /// </summary>
+        /// <param name="category_to_move_Id"></param>
+        /// <param name="currentParentCategoryId"></param>
+        /// <param name="newParentCategoryId"></param>
+        /// <param name="applicationName"></param>
+        /// <param name="connectionStringName"></param>
+        public static void UpdateParentCategory(int category_to_move_Id, int currentParentCategoryId, int newParentCategoryId, string applicationName, string connectionStringName)
+        {
+            try
+            {
+                Guid wApplicationId = GetApplication(applicationName, connectionStringName);
+                using (Fwk.Security.RuleProviderDataContext dc =
+                    new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                {
+
+                    aspnet_RulesCategory waspnet_RulesCategory = dc.aspnet_RulesCategories.Where<aspnet_RulesCategory>(p =>
+                        p.CategoryId == category_to_move_Id 
+                    && p.ParentCategoryId == currentParentCategoryId 
+                    && p.ApplicationId == wApplicationId).FirstOrDefault();
+
+                    if (waspnet_RulesCategory != null)
+                    {
+                        waspnet_RulesCategory.ParentCategoryId = newParentCategoryId;
+                        dc.SubmitChanges();
+                    }
+
+                    
 
                 }
 

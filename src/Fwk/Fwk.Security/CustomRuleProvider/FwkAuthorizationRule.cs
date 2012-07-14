@@ -71,6 +71,10 @@ namespace Fwk.Security
             _CategoryId = pFwkAuthorizationRule.CategoryId;
             _Expression = pFwkAuthorizationRule.Expression;
 
+            _Description = pFwkAuthorizationRule.Description;
+            _Id = pFwkAuthorizationRule.Id;
+            
+
 
         }
         /// <summary>
@@ -130,8 +134,36 @@ namespace Fwk.Security
             _Expression = newExpresion;
         }
 
-
-
+        int _Id;
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                _Id = value;
+            }
+        }
+        string _Description;
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                _Description = value;
+            }
+        }
         #region IEntity Members IBaseEntity Members
 
         public System.Data.DataSet GetDataSet()
@@ -372,6 +404,38 @@ namespace Fwk.Security
             set { _ApplicationName = value; }
         }
 
+
+
+        int _Id;
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                _Id = value;
+            }
+        }
+        string _Description;
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                _Description = value;
+            }
+        }
         #endregion 
 
         /// <summary>
@@ -395,7 +459,8 @@ namespace Fwk.Security
             _CategoryId = pFwkAuthorizationRule.CategoryId;
             _Expression = pFwkAuthorizationRule.Expression;
             _Name = pFwkAuthorizationRule.Name;
-
+            _Id = pFwkAuthorizationRule.Id;
+            _Description = pFwkAuthorizationRule.Description;
         }
 
         /// <summary>

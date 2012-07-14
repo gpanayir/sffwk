@@ -341,11 +341,14 @@ namespace Fwk.Security.Admin.Controls
             TreeListHitInfo wHitInfo = treeList1.CalcHitInfo(treeList1.PointToClient(new Point(e.X, e.Y)));
             if (wHitInfo.Node == null)
                 return;
-            if (e.Data.GetType() == typeof(FwkAuthorizationRule))
-            {
-                rule = e.Data.GetData(typeof(FwkAuthorizationRule)) as FwkAuthorizationRule;
-            }
-            else
+
+            rule = e.Data.GetData(typeof(FwkAuthorizationRule)) as FwkAuthorizationRule;
+            //if (e.Data.GetType() == typeof(FwkAuthorizationRule))
+            //{
+            //    rule = e.Data.GetData(typeof(FwkAuthorizationRule)) as FwkAuthorizationRule;
+            //}
+            //else
+            if(rule ==null)
             {
                 wCategoryTree_ToMove = e.Data.GetData(typeof(CategoryTree)) as CategoryTree;
             }
@@ -524,6 +527,7 @@ namespace Fwk.Security.Admin.Controls
             }
 
         }
+
         private void grdAllRules_DragOver(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Move;
