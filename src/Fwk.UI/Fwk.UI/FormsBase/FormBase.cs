@@ -49,7 +49,7 @@ namespace Fwk.UI.Forms
 
         #region Authorization Factory
 
-        internal static IAuthorizationProvider RuleProvider;
+        public static IAuthorizationProvider RuleProvider;
         public static IPrincipal Principal;
         public static string IdentityName;
         /// <summary>
