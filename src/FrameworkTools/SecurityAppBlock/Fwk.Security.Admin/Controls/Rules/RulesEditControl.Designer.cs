@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RulesEditControl));
-            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
-            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
+            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition3 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
+            DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition styleFormatCondition4 = new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition();
             this.colImg = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -53,6 +53,10 @@
             this.lblCurrentCategory = new DevExpress.XtraEditors.LabelControl();
             this.lblSelectedRule = new DevExpress.XtraEditors.LabelControl();
             this.btnAddNewRule = new DevExpress.XtraEditors.SimpleButton();
+            this.contextMenu_Rules = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mDeleteRule = new System.Windows.Forms.ToolStripMenuItem();
+            this.mCreateRuele = new System.Windows.Forms.ToolStripMenuItem();
+            this.mUpdateRule = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
@@ -62,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fwkAuthorizationRuleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_AllRules)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            this.contextMenu_Rules.SuspendLayout();
             this.SuspendLayout();
             // 
             // colImg
@@ -124,23 +129,23 @@
             this.treeList1.ContextMenuStrip = this.contextMenu_Categories;
             this.treeList1.DataSource = this.categoryTreeBindingSource;
             this.treeList1.FixedLineWidth = 1;
-            styleFormatCondition1.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
-            styleFormatCondition1.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
-            styleFormatCondition1.Appearance.Options.UseFont = true;
-            styleFormatCondition1.Appearance.Options.UseForeColor = true;
-            styleFormatCondition1.ApplyToRow = true;
-            styleFormatCondition1.Column = this.colImg;
-            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition1.Value1 = true;
-            styleFormatCondition2.Appearance.ForeColor = System.Drawing.Color.DimGray;
-            styleFormatCondition2.Appearance.Options.UseForeColor = true;
-            styleFormatCondition2.ApplyToRow = true;
-            styleFormatCondition2.Column = this.colImg;
-            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
-            styleFormatCondition2.Value1 = false;
+            styleFormatCondition3.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold);
+            styleFormatCondition3.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
+            styleFormatCondition3.Appearance.Options.UseFont = true;
+            styleFormatCondition3.Appearance.Options.UseForeColor = true;
+            styleFormatCondition3.ApplyToRow = true;
+            styleFormatCondition3.Column = this.colImg;
+            styleFormatCondition3.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition3.Value1 = true;
+            styleFormatCondition4.Appearance.ForeColor = System.Drawing.Color.DimGray;
+            styleFormatCondition4.Appearance.Options.UseForeColor = true;
+            styleFormatCondition4.ApplyToRow = true;
+            styleFormatCondition4.Column = this.colImg;
+            styleFormatCondition4.Condition = DevExpress.XtraGrid.FormatConditionEnum.Equal;
+            styleFormatCondition4.Value1 = false;
             this.treeList1.FormatConditions.AddRange(new DevExpress.XtraTreeList.StyleFormatConditions.StyleFormatCondition[] {
-            styleFormatCondition1,
-            styleFormatCondition2});
+            styleFormatCondition3,
+            styleFormatCondition4});
             this.treeList1.KeyFieldName = "Id";
             this.treeList1.Location = new System.Drawing.Point(558, 75);
             this.treeList1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -150,7 +155,6 @@
             this.treeList1.OptionsSelection.UseIndicatorForSelection = true;
             this.treeList1.OptionsView.AutoWidth = false;
             this.treeList1.OptionsView.ShowColumns = false;
-            this.treeList1.OptionsView.ShowHorzLines = false;
             this.treeList1.OptionsView.ShowVertLines = false;
             this.treeList1.ParentFieldName = "ParentId";
             this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -159,7 +163,6 @@
             this.treeList1.Size = new System.Drawing.Size(423, 530);
             this.treeList1.StateImageList = this.imageList1;
             this.treeList1.TabIndex = 30;
-            this.treeList1.Click += new System.EventHandler(this.treeList1_Click);
             this.treeList1.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeList1_DragDrop);
             this.treeList1.DragOver += new System.Windows.Forms.DragEventHandler(this.treeList1_DragOver);
             this.treeList1.DragLeave += new System.EventHandler(this.treeList1_DragLeave);
@@ -168,7 +171,6 @@
             this.treeList1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseClick);
             this.treeList1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeList1_MouseDown);
             this.treeList1.MouseLeave += new System.EventHandler(this.treeList1_MouseLeave);
-            
             // 
             // colName
             // 
@@ -242,6 +244,7 @@
             this.grdAllRules.AllowDrop = true;
             this.grdAllRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.grdAllRules.ContextMenuStrip = this.contextMenu_Rules;
             this.grdAllRules.DataSource = this.fwkAuthorizationRuleBindingSource;
             this.grdAllRules.Location = new System.Drawing.Point(5, 75);
             this.grdAllRules.MainView = this.gridView_AllRules;
@@ -279,7 +282,6 @@
             this.gridView_AllRules.OptionsView.ShowDetailButtons = false;
             this.gridView_AllRules.OptionsView.ShowGroupPanel = false;
             this.gridView_AllRules.OptionsView.ShowVertLines = false;
-            
             this.gridView_AllRules.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseDown);
             this.gridView_AllRules.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridView_AllRules_MouseMove);
             this.gridView_AllRules.DoubleClick += new System.EventHandler(this.gridView_AllRules_DoubleClick);
@@ -300,19 +302,21 @@
             // 
             // lblCurrentCategory
             // 
+            this.lblCurrentCategory.Appearance.ForeColor = System.Drawing.Color.DimGray;
             this.lblCurrentCategory.Location = new System.Drawing.Point(672, 51);
             this.lblCurrentCategory.Name = "lblCurrentCategory";
-            this.lblCurrentCategory.Size = new System.Drawing.Size(75, 16);
+            this.lblCurrentCategory.Size = new System.Drawing.Size(7, 16);
             this.lblCurrentCategory.TabIndex = 38;
-            this.lblCurrentCategory.Text = "labelControl4";
+            this.lblCurrentCategory.Text = "_";
             // 
             // lblSelectedRule
             // 
+            this.lblSelectedRule.Appearance.ForeColor = System.Drawing.Color.DimGray;
             this.lblSelectedRule.Location = new System.Drawing.Point(5, 50);
             this.lblSelectedRule.Name = "lblSelectedRule";
-            this.lblSelectedRule.Size = new System.Drawing.Size(75, 16);
+            this.lblSelectedRule.Size = new System.Drawing.Size(4, 16);
             this.lblSelectedRule.TabIndex = 39;
-            this.lblSelectedRule.Text = "labelControl4";
+            this.lblSelectedRule.Text = ".";
             // 
             // btnAddNewRule
             // 
@@ -323,6 +327,39 @@
             this.btnAddNewRule.TabIndex = 40;
             this.btnAddNewRule.Text = "Add Rule";
             this.btnAddNewRule.Click += new System.EventHandler(this.btnAddNewRule_Click);
+            // 
+            // contextMenu_Rules
+            // 
+            this.contextMenu_Rules.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mDeleteRule,
+            this.mCreateRuele,
+            this.mUpdateRule});
+            this.contextMenu_Rules.Name = "contextMenuStrip1";
+            this.contextMenu_Rules.Size = new System.Drawing.Size(234, 98);
+            // 
+            // mDeleteRule
+            // 
+            this.mDeleteRule.Image = global::Fwk.Security.Admin.Properties.Resources.cancel_16;
+            this.mDeleteRule.Name = "mDeleteRule";
+            this.mDeleteRule.Size = new System.Drawing.Size(233, 24);
+            this.mDeleteRule.Text = "Remove from database";
+            this.mDeleteRule.Click += new System.EventHandler(this.mDeleteRule_Click);
+            // 
+            // mCreateRuele
+            // 
+            this.mCreateRuele.Image = global::Fwk.Security.Admin.Properties.Resources.admin_24;
+            this.mCreateRuele.Name = "mCreateRuele";
+            this.mCreateRuele.Size = new System.Drawing.Size(233, 24);
+            this.mCreateRuele.Text = "Create new";
+            this.mCreateRuele.Click += new System.EventHandler(this.mCreateRuele_Click);
+            // 
+            // mUpdateRule
+            // 
+            this.mUpdateRule.Image = global::Fwk.Security.Admin.Properties.Resources.Folder_2_Down;
+            this.mUpdateRule.Name = "mUpdateRule";
+            this.mUpdateRule.Size = new System.Drawing.Size(233, 24);
+            this.mUpdateRule.Text = "Update";
+            this.mUpdateRule.Click += new System.EventHandler(this.mUpdateRule_Click);
             // 
             // RulesEditControl
             // 
@@ -347,6 +384,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fwkAuthorizationRuleBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_AllRules)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            this.contextMenu_Rules.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,5 +413,9 @@
         private DevExpress.XtraEditors.LabelControl lblSelectedRule;
         private DevExpress.XtraEditors.SimpleButton btnAddNewRule;
         private System.Windows.Forms.ToolStripMenuItem addRootcategoryToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenu_Rules;
+        private System.Windows.Forms.ToolStripMenuItem mDeleteRule;
+        private System.Windows.Forms.ToolStripMenuItem mCreateRuele;
+        private System.Windows.Forms.ToolStripMenuItem mUpdateRule;
     }
 }
