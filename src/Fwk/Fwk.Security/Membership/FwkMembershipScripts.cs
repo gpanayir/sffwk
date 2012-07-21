@@ -189,13 +189,14 @@ namespace Fwk.Security
                 sb.Append(@"	INSERT INTO dbo.aspnet_Rules");
                 sb.Append(@"		(expression ");
                 sb.Append(@"		,[name]");
+                sb.Append(@"		,[Description]");
                 sb.Append(@"		,ApplicationId)");
-                sb.Append(@"		,Description)");
+                
                 sb.Append(@"	VALUES (");
                 sb.Append(@"		'[expression]',");
                 sb.Append(@"		'[rulename]',");
                 sb.Append(@"		'[description]',");
-                sb.Append(@"		CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')) ");
+                sb.Append(@"		 CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')) ");
 
 
                 _Rule_i = sb.ToString();

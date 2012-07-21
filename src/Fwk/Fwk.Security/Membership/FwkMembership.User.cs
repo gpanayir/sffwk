@@ -563,7 +563,7 @@ namespace Fwk.Security
             {
                 foreach (Rol rol in pRolList)
                 {
-                    if (Roles.IsUserInRole(userName, rol.RolName))
+                    if (Roles.Providers[wProvider.Name].IsUserInRole(userName, rol.RolName))
                         //Roles.RemoveUserFromRoles(userName, new string[] { rol.RolName });
                         Roles.Providers[wProvider.Name].RemoveUsersFromRoles(new string[] { userName }, pRolList.GetArrayNames());
 

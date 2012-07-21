@@ -29,7 +29,7 @@ namespace Fwk.Security
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             return GetRulesByRole(roleName, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
-        
+
         /// <summary>
         /// Retorna las reglas en las que esta vinculado un Rol
         /// </summary>
@@ -55,7 +55,7 @@ namespace Fwk.Security
             { throw tx; }
             catch (InvalidOperationException)
             {
-             
+
                 TechnicalException te = new TechnicalException(string.Format(Resource.Role_WithoutRules, roleName));
                 te.ErrorId = "4002";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
@@ -70,7 +70,7 @@ namespace Fwk.Security
             }
         }
 
-        
+
         /// <summary>
         /// Verifica si alguna regla en la base de datos esta vinculada al rol
         /// </summary>
@@ -123,7 +123,7 @@ namespace Fwk.Security
             return GetRule(ruleName, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
-      
+
         /// <summary>
         /// 
         /// </summary>
@@ -148,7 +148,7 @@ namespace Fwk.Security
 
 
                     }
-                    FwkAuthorizationRule rule =new FwkAuthorizationRule(waspnet_Rule.name,waspnet_Rule.expression,waspnet_Rule.ApplicationId.Value);
+                    FwkAuthorizationRule rule = new FwkAuthorizationRule(waspnet_Rule.name, waspnet_Rule.expression, waspnet_Rule.ApplicationId.Value);
                     rule.Description = waspnet_Rule.Description;
                     rule.Id = waspnet_Rule.Id;
                     return rule;
@@ -164,7 +164,7 @@ namespace Fwk.Security
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 throw te;
             }
-           
+
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Fwk.Security
             return GetRules(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
-        
+
 
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace Fwk.Security
             {
                 TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingAlls_Error, applicationName), ex);
                 te.ErrorId = "4003";
-               
+
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 throw te;
             }
@@ -248,8 +248,6 @@ namespace Fwk.Security
         /// <returns></returns>
         public static List<AuthorizationRuleData> GetRulesList(string applicationName, string connectionStringName)
         {
-
-
             AuthorizationRuleData rule = null;
             List<AuthorizationRuleData> wRules = null;
             try
@@ -268,10 +266,6 @@ namespace Fwk.Security
                         wRules.Add(rule);
                     }
                 }
-
-
-
-
                 return wRules;
             }
             catch (TechnicalException tx)
@@ -281,7 +275,7 @@ namespace Fwk.Security
 
                 TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingAlls_Error, applicationName), ex);
                 te.ErrorId = "4004";
-               
+
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 throw te;
             }
@@ -298,6 +292,7 @@ namespace Fwk.Security
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             return GetRulesAuxList(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
+
         /// <summary>
         /// Retorna una lista de reglas de una determinada coneccion 
         /// </summary>
@@ -312,7 +307,7 @@ namespace Fwk.Security
             FwkAuthorizationRuleList wRules = null;
             try
             {
-               
+
 
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
                 wRules = new FwkAuthorizationRuleList();
@@ -396,13 +391,6 @@ namespace Fwk.Security
             }
         }
 
-    
-
-
-
-
-
-
         /// <summary>
         /// crea una regla rule si es que la regla todavia no existe
         /// </summary>
@@ -415,7 +403,7 @@ namespace Fwk.Security
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             string cnn = GetProvider_ConnectionStringName(wProvider.Name);
-           
+
 
             CreateRule(rule, wProvider.ApplicationName, cnn);
         }
@@ -449,7 +437,11 @@ namespace Fwk.Security
                 str.Replace("[ApplicationId]", wApplicationId.ToString());
                 str.Replace("[rulename]", rule.Name.Trim());
                 str.Replace("[expression]", rule.Expression);
-                str.Replace("[description]", rule.Expression);
+
+                if (!String.IsNullOrEmpty(rule.Description))
+                    str.Replace("[description]", rule.Description.Trim());
+                else
+                    str.Replace("[description]", string.Empty);
 
                 wCmd = wDataBase.GetSqlStringCommand(str.ToString());
                 wCmd.CommandType = CommandType.Text;
@@ -474,7 +466,6 @@ namespace Fwk.Security
         /// <summary>
         /// Update rule and also allow change the name.-
         /// Update all rules in category relationships
-        /// 
         /// </summary>
         /// <param name="rule">Rule object <see cref="FwkAuthorizationRule"/></param>
         /// <param name="newRuleName">New rule name</param>
@@ -483,24 +474,11 @@ namespace Fwk.Security
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
 
-           
 
-            //Obtener todas las rules in category y cambiar nombre
-            //using (Fwk.Security.RuleProviderDataContext dc =
-            //    new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[GetProvider_ConnectionStringName(wProvider.Name)].ConnectionString))
-            //{
-            //    var rules = dc.aspnet_RulesInCategories.Where(p => p.RuleName.Trim().Equals(rule.Name.Trim()));
-
-            //    foreach (aspnet_RulesInCategory r in rules)
-            //    {
-            //        r.RuleName = newRuleName;
-            //    }
-            //    dc.SubmitChanges();
-            //}
 
 
             //Actualiza solo la regla
-            UpdateRule(rule,newRuleName,wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
+            UpdateRule(rule, newRuleName, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
 
@@ -512,7 +490,7 @@ namespace Fwk.Security
         public static void UpdateRule(FwkAuthorizationRule rule, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            UpdateRule(rule, string.Empty, wProvider.ApplicationName,GetProvider_ConnectionStringName(wProvider.Name));
+            UpdateRule(rule, string.Empty, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
 
         /// <summary>
@@ -530,38 +508,26 @@ namespace Fwk.Security
                 te.ErrorId = "4004";
                 throw te;
             }
-            //Database wDataBase = null;
-            //DbCommand wCmd = null;
+
 
             try
             {
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
 
-                //wDataBase = DatabaseFactory.CreateDatabase(connectionStringName);
-                //StringBuilder str = new StringBuilder(FwkMembershipScripts.Rule_u);
-                //str.Replace("[ApplicationId]", wApplicationId.ToString());
-                //str.Replace("[rulename]", rule.Name.Trim());
-                //str.Replace("[expression]", rule.Expression);
 
-                //wCmd = wDataBase.GetSqlStringCommand(str.ToString());
-                //wCmd.CommandType = CommandType.Text;
-
-
-
-                //wDataBase.ExecuteNonQuery(wCmd);
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
-                { 
-                   var ruleToUpdate = dc.aspnet_Rules.Where(p=>p.Id.Equals(rule.Id)).FirstOrDefault();
-                  
+                {
+                    var ruleToUpdate = dc.aspnet_Rules.Where(p => p.Id.Equals(rule.Id)).FirstOrDefault();
+
                     if (!string.IsNullOrEmpty(newRuleName))
                         ruleToUpdate.name = newRuleName;
 
-                   ruleToUpdate.expression = rule.Expression;
-                   ruleToUpdate.Description = rule.Description;
-                   
-                   dc.SubmitChanges();
+                    ruleToUpdate.expression = rule.Expression;
+                    ruleToUpdate.Description = rule.Description;
+
+                    dc.SubmitChanges();
                 }
-            
+
             }
             catch (Exception ex)
             {
@@ -614,7 +580,51 @@ namespace Fwk.Security
 
         }
 
-       
+        /// <summary>
+        /// Elimina una regla de la base de datos
+        /// </summary>
+        /// <param name="ruleName"></param>
+        /// <param name="providerName"></param>
+        public static void DeleteRule(string ruleName, string providerName)
+        {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+            DeleteRule(ruleName, wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
+        }
+
+        /// <summary>
+        /// Elimina una regla de la base de datos
+        /// </summary>
+        /// <param name="ruleName"></param>
+        /// <param name="applicationName"></param>
+        /// <param name="connectionStringName"></param>
+        /// <returns></returns>
+        public static void DeleteRule(string ruleName, string applicationName, string connectionStringName)
+        {
+
+            aspnet_Rule waspnet_Rule = null;
+            try
+            {
+
+                Guid wApplicationId = GetApplication(applicationName, connectionStringName);
+
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                {
+                    waspnet_Rule = dc.aspnet_Rules.First<aspnet_Rule>(s => s.name.Equals(ruleName.Trim()) && s.ApplicationId.Equals(wApplicationId));
+                    dc.aspnet_Rules.DeleteOnSubmit(waspnet_Rule);
+                    dc.SubmitChanges();
+                }
+            }
+            catch (TechnicalException tx)
+            { throw tx; }
+            catch (Exception ex)
+            {
+
+                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingData_Error, ruleName), ex);
+                te.ErrorId = "4003";
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                throw te;
+            }
+        }
         #endregion
     }
 }
