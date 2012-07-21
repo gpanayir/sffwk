@@ -71,14 +71,14 @@
             this.btnAsignarRoles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAsignarRoles.BackColor = System.Drawing.Color.White;
             this.btnAsignarRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAsignarRoles.Image = global::Fwk.Security.Admin.Properties.Resources.file_add_16;
+            this.btnAsignarRoles.Image = global::Fwk.Security.Admin.Properties.Resources.save_16;
             this.btnAsignarRoles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAsignarRoles.Location = new System.Drawing.Point(658, 22);
+            this.btnAsignarRoles.Location = new System.Drawing.Point(3, 9);
             this.btnAsignarRoles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAsignarRoles.Name = "btnAsignarRoles";
-            this.btnAsignarRoles.Size = new System.Drawing.Size(118, 34);
+            this.btnAsignarRoles.Size = new System.Drawing.Size(140, 34);
             this.btnAsignarRoles.TabIndex = 14;
-            this.btnAsignarRoles.Text = "Add Roles";
+            this.btnAsignarRoles.Text = "Save changes";
             this.btnAsignarRoles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAsignarRoles.UseVisualStyleBackColor = false;
             this.btnAsignarRoles.Click += new System.EventHandler(this.btnAsignarRoles_Click);
@@ -92,7 +92,7 @@
             this.lblSelectedUser.AutoSize = true;
             this.lblSelectedUser.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.lblSelectedUser.ForeColor = System.Drawing.Color.Maroon;
-            this.lblSelectedUser.Location = new System.Drawing.Point(180, 19);
+            this.lblSelectedUser.Location = new System.Drawing.Point(348, 17);
             this.lblSelectedUser.Name = "lblSelectedUser";
             this.lblSelectedUser.Size = new System.Drawing.Size(76, 17);
             this.lblSelectedUser.TabIndex = 18;
@@ -104,7 +104,7 @@
             this.label2.Image = global::Fwk.Security.Admin.Properties.Resources.User;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(13, 13);
+            this.label2.Location = new System.Drawing.Point(193, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(137, 28);
             this.label2.TabIndex = 21;
