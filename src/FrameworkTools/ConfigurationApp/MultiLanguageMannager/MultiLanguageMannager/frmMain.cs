@@ -12,6 +12,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using System.Runtime.Remoting.Messaging;
 using Fwk.Exceptions;
+using System.Reflection;
 
 namespace MultiLanguageMannager
 {
@@ -27,6 +28,15 @@ namespace MultiLanguageMannager
         private void frmMain_Load(object sender, EventArgs e)
         {
             PopulateAsync();
+            string product = string.Empty;
+
+                // Get all Product attributes on this assembly
+                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+                // If there aren't any Product attributes, return an empty string
+                if (attributes.Length != 0)
+                    product= ((AssemblyProductAttribute)attributes[0]).Product;
+
+                this.Text = String.Concat(product, " version ", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
         }
 
 
