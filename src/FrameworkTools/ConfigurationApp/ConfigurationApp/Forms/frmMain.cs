@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace ConfigurationApp
 {
-    public partial class frmMain : Fwk.Bases.FrontEnd.FrmBase
+    public partial class frmMain : Form
     {
 
         #region [Private members]

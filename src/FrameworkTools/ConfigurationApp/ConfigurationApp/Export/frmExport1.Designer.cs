@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.source = new System.Windows.Forms.ComboBox();
             this.dest = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -52,7 +51,7 @@
             // dest
             // 
             this.dest.FormattingEnabled = true;
-            this.dest.Location = new System.Drawing.Point(496, 68);
+            this.dest.Location = new System.Drawing.Point(547, 68);
             this.dest.Name = "dest";
             this.dest.Size = new System.Drawing.Size(233, 21);
             this.dest.TabIndex = 1;
@@ -121,14 +120,14 @@
             // 
             // provider2
             // 
-            this.provider2.Location = new System.Drawing.Point(487, 91);
+            this.provider2.Location = new System.Drawing.Point(487, 100);
             this.provider2.Name = "provider2";
-            this.provider2.Size = new System.Drawing.Size(583, 137);
+            this.provider2.Size = new System.Drawing.Size(583, 122);
             this.provider2.TabIndex = 3;
             // 
             // provider1
             // 
-            this.provider1.Location = new System.Drawing.Point(4, 77);
+            this.provider1.Location = new System.Drawing.Point(4, 89);
             this.provider1.Name = "provider1";
             this.provider1.Size = new System.Drawing.Size(477, 120);
             this.provider1.TabIndex = 2;

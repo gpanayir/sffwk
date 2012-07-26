@@ -161,11 +161,13 @@
       <DependentUpon>cnnstring.cs</DependentUpon>
     </Compile>
     <Compile Include="Export\frmCreateProvider.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Export\frmCreateProvider.Designer.cs">
       <DependentUpon>frmCreateProvider.cs</DependentUpon>
     </Compile>
     <Compile Include="Export\frmExport1.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Export\frmExport1.Designer.cs">
       <DependentUpon>frmExport1.cs</DependentUpon>
@@ -182,27 +184,38 @@
     <Compile Include="Export\UCBServiceGrid.Designer.cs">
       <DependentUpon>UCBServiceGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\dockPanelConfigManager.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\dockPanelConfigManager.Designer.cs">
       <DependentUpon>dockPanelConfigManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmMain.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmNewGroup.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmNewGroup.Designer.cs">
       <DependentUpon>frmNewGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UCKey.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\UCKey.Designer.cs">
       <DependentUpon>UCKey.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UserControlBase.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\UserControlBase.Designer.cs">
       <DependentUpon>UserControlBase.cs</DependentUpon>
@@ -257,7 +270,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -268,6 +283,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Forms\frmNewKey.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmNewKey.Designer.cs">
       <DependentUpon>frmNewKey.cs</DependentUpon>
@@ -383,12 +399,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.pdb" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.manifest" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*.application" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\ConfigurationApp\*vshost*.*" &gt;&gt; nul
-
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
