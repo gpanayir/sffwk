@@ -162,7 +162,12 @@ namespace MultiLanguageMannager
 
                 DelegateWithOutAndRefParameters del = (DelegateWithOutAndRefParameters)result.AsyncDelegate;
                 del.EndInvoke(out ex, res);
+                if (ex != null)
+                {
 
+                    MessageBox.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
+                    return;
+                }
                 gridControl2.DataSource = _configPivotDts;
                 gridControl2.RefreshDataSource();
                 gridView2.RefreshData();
@@ -224,19 +229,14 @@ namespace MultiLanguageMannager
             DbCommand wCmd = null;
 
 
-            try
-            {
-                wDataBase = DatabaseFactory.CreateDatabase("bb");
-                wCmd = wDataBase.GetStoredProcCommand("fwk_ConfigMannager_PIVOT");
-                wDataBase.AddInParameter(wCmd, "columns", System.Data.DbType.String, columns);
+
+            wDataBase = DatabaseFactory.CreateDatabase("bb");
+            wCmd = wDataBase.GetStoredProcCommand("fwk_ConfigMannager_PIVOT");
+            wDataBase.AddInParameter(wCmd, "columns", System.Data.DbType.String, columns);
 
 
-                return wDataBase.ExecuteDataSet(wCmd);
-            }
-            catch (Exception ex)
-            {
-                throw Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
-            }
+            return wDataBase.ExecuteDataSet(wCmd);
+
         }
 
       
