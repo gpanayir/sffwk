@@ -13,6 +13,7 @@ using System.Data.Common;
 using System.Runtime.Remoting.Messaging;
 using Fwk.Exceptions;
 using System.Reflection;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace MultiLanguageMannager
 {
@@ -237,6 +238,48 @@ namespace MultiLanguageMannager
 
             return wDataBase.ExecuteDataSet(wCmd);
 
+        }
+        GridHitInfo _GridHitInfo = null;
+        private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_fwk_ConfigMannager != null)
+            {
+               
+                //string key = gridView2.GetDataRow(_GridHitInfo.RowHandle)["key"].ToString();
+                //string group = gridView2.GetDataRow(_GridHitInfo.RowHandle)["group"].ToString();
+                string key = _fwk_ConfigMannager["key"].ToString();
+                string group = _fwk_ConfigMannager["group"].ToString();
+
+                using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["bb"].ConnectionString))
+                {
+                    var records = dc.fwk_ConfigMannagers.Where(p => 
+                                                p.group.Equals(group)
+                                           && p.key.Equals(key));
+
+                    foreach (fwk_ConfigMannager config in records)
+                    {
+                        dc.fwk_ConfigMannagers.DeleteOnSubmit(config);
+                    }
+                    dc.SubmitChanges();
+                }
+            }
+            this.PopulateAsync();
+        }
+        DataRow _fwk_ConfigMannager;
+        private void gridView2_MouseDown(object sender, MouseEventArgs e)
+        {
+            _GridHitInfo = gridView2.CalcHitInfo(new Point(e.X, e.Y));
+            if (_GridHitInfo.RowHandle < 0)
+            {
+                _fwk_ConfigMannager = null;
+                contextMenuStrip1.Enabled = false;
+            }
+            else
+            {
+                _fwk_ConfigMannager = gridView2.GetDataRow(_GridHitInfo.RowHandle);
+                contextMenuStrip1.Enabled = true;
+            }
+           
         }
 
       

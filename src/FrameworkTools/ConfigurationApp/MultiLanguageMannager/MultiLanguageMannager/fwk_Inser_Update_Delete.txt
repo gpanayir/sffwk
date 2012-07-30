@@ -1,0 +1,11 @@
+﻿
+UPDATE [dbo].[fwk_ConfigMannager]   
+SET [ConfigurationFileName] = 'bb_config.es-AR' WHERE ConfigurationFileName = 'ConfigurationManager_Test'
+ 
+--DELETE FROM dbo.fwk_ConfigMannager WHERE ConfigurationFileName = 'bb_config.en-ES'
+ 
+ 
+
+INSERT  INTO [dbo].[fwk_ConfigMannager]  ([ConfigurationFileName]  ,[group] ,[key],[encrypted],[value]  )
+SELECT 'bb_config.en-US' ,[group],  [key],[encrypted],[value]
+FROM dbo.fwk_ConfigMannager WHERE ConfigurationFileName = 'bb_config.es-AR'

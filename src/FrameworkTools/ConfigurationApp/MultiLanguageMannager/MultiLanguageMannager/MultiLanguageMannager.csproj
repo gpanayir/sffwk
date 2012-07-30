@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fwk_ConfigMannager_PIVOT.txt" />
+    <Content Include="fwk_Inser_Update_Delete.txt" />
     <Content Include="tools_16.ico" />
   </ItemGroup>
   <ItemGroup>
