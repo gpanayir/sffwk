@@ -31,26 +31,26 @@ namespace MultiLanguageMannager
             PopulateAsync();
             string product = string.Empty;
 
-                // Get all Product attributes on this assembly
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-                // If there aren't any Product attributes, return an empty string
-                if (attributes.Length != 0)
-                    product= ((AssemblyProductAttribute)attributes[0]).Product;
+            // Get all Product attributes on this assembly
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+            // If there aren't any Product attributes, return an empty string
+            if (attributes.Length != 0)
+                product = ((AssemblyProductAttribute)attributes[0]).Product;
 
-                this.Text = String.Concat(product, " version ", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
+            this.Text = String.Concat(product, " version ", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
         }
 
 
         void buildgrid()
         {
-      
+
             ConfigMannagerGrid p;
 
             StringBuilder providerColumns = new StringBuilder();
             for (int i = 0; i < Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Count; i++)
             {
-                providerColumns.Append(string.Concat("[",Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers[i].Name,"]"));
-                if (i < Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Count-1)
+                providerColumns.Append(string.Concat("[", Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers[i].Name, "]"));
+                if (i < Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Count - 1)
                     providerColumns.Append(",");
                 //string providerName = Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers[i].Name;
                 //ConfigurationFile file = Fwk.Configuration.ConfigurationManager.GetConfigurationFile(providerName);
@@ -71,14 +71,14 @@ namespace MultiLanguageMannager
             }
 
             _configPivotDts = RetrivePivotedConfigs(providerColumns.ToString()).Tables[0];
-           
-      
+
+
         }
 
 
 
 
-    
+
 
         private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
@@ -88,12 +88,12 @@ namespace MultiLanguageMannager
             string key = gridView2.GetDataRow(e.RowHandle)["key"].ToString();
             string group = gridView2.GetDataRow(e.RowHandle)["group"].ToString();
 
-            
+
             try
             {
                 using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["bb"].ConnectionString))
                 {
-                
+
 
                     //Verifico que clave y valor exista
                     wExist = dc.fwk_ConfigMannagers.Any(p => p.ConfigurationFileName.Equals(language)
@@ -102,9 +102,9 @@ namespace MultiLanguageMannager
 
                     if (wExist)
                     {
-                         record = dc.fwk_ConfigMannagers.Where(p => p.ConfigurationFileName.Equals(language)
-                                           && p.group.Equals(group)
-                                           && p.key.Equals(key)).FirstOrDefault < fwk_ConfigMannager>();
+                        record = dc.fwk_ConfigMannagers.Where(p => p.ConfigurationFileName.Equals(language)
+                                          && p.group.Equals(group)
+                                          && p.key.Equals(key)).FirstOrDefault<fwk_ConfigMannager>();
 
                         record.value = e.Value.ToString().Trim();
                     }
@@ -124,12 +124,12 @@ namespace MultiLanguageMannager
             {
                 throw ex;
             }
-            
-         
-        }
-        
 
-       
+
+        }
+
+
+
 
         #region PopulateSync
 
@@ -178,20 +178,20 @@ namespace MultiLanguageMannager
                 gridView2.Columns[1].OptionsColumn.AllowEdit = false;
                 gridView2.Columns[1].OptionsColumn.ReadOnly = false;
 
-                
+
                 gridView2.Columns[0].AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
                 gridView2.Columns[0].AppearanceCell.ForeColor = System.Drawing.Color.SteelBlue;
                 gridView2.Columns[0].AppearanceCell.Options.UseBackColor = true;
                 gridView2.Columns[0].AppearanceCell.Options.UseFont = true;
                 gridView2.Columns[0].AppearanceCell.Options.UseForeColor = true;
 
-                gridView2.Columns[0].GroupIndex =0;
+                gridView2.Columns[0].GroupIndex = 0;
                 gridView2.Columns[1].AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
                 gridView2.Columns[1].AppearanceCell.ForeColor = System.Drawing.Color.SteelBlue;
                 gridView2.Columns[1].AppearanceCell.Options.UseBackColor = true;
                 gridView2.Columns[1].AppearanceCell.Options.UseFont = true;
                 gridView2.Columns[1].AppearanceCell.Options.UseForeColor = true;
-             
+
 
             }
         }
@@ -244,7 +244,7 @@ namespace MultiLanguageMannager
         {
             if (_fwk_ConfigMannager != null)
             {
-               
+
                 //string key = gridView2.GetDataRow(_GridHitInfo.RowHandle)["key"].ToString();
                 //string group = gridView2.GetDataRow(_GridHitInfo.RowHandle)["group"].ToString();
                 string key = _fwk_ConfigMannager["key"].ToString();
@@ -252,7 +252,7 @@ namespace MultiLanguageMannager
 
                 using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["bb"].ConnectionString))
                 {
-                    var records = dc.fwk_ConfigMannagers.Where(p => 
+                    var records = dc.fwk_ConfigMannagers.Where(p =>
                                                 p.group.Equals(group)
                                            && p.key.Equals(key));
 
@@ -269,21 +269,72 @@ namespace MultiLanguageMannager
         private void gridView2_MouseDown(object sender, MouseEventArgs e)
         {
             _GridHitInfo = gridView2.CalcHitInfo(new Point(e.X, e.Y));
+            _fwk_ConfigMannager = gridView2.GetDataRow(_GridHitInfo.RowHandle);
             if (_GridHitInfo.RowHandle < 0)
             {
-                _fwk_ConfigMannager = null;
-                contextMenuStrip1.Enabled = false;
+
+                addNewKeyToolStripMenuItem.Enabled = true;
+                removeSelectedsToolStripMenuItem.Enabled = false;
+
             }
             else
             {
-                _fwk_ConfigMannager = gridView2.GetDataRow(_GridHitInfo.RowHandle);
-                contextMenuStrip1.Enabled = true;
+
+                removeSelectedsToolStripMenuItem.Enabled = true;
+                addNewKeyToolStripMenuItem.Enabled = true;
             }
-           
+
         }
 
-      
+        private void addNewKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string language;
+            string group = _fwk_ConfigMannager["group"].ToString();
+            Boolean wExist = false;
+            fwk_ConfigMannager record = null;
 
+            using (frmAdd frm = new frmAdd(group))
+            {
+              
+                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    string key  = frm.Key;
+                    try
+                    {
+                        using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["bb"].ConnectionString))
+                        {
+                            for (int i = 0; i < Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Count; i++)
+                            {
+                                language = Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers[i].Name;
+                                //Verifico que clave y valor exista
+                                wExist = dc.fwk_ConfigMannagers.Any(p => p.ConfigurationFileName.Equals(language)
+                                && p.group.Equals(group)
+                                && p.key.Equals(key));
 
+                                if (wExist)
+                                {
+                                    this.MessageViewer.Show(String.Format("Ya existe la clave {0} en el grupo {1} para alguno de los lenguajes", key, group));
+                                    continue;
+                                }
+                                else
+                                {
+                                    record = new fwk_ConfigMannager();
+                                    record.ConfigurationFileName = language;
+                                    record.group = group;
+                                    record.key = key;
+                                    dc.fwk_ConfigMannagers.InsertOnSubmit(record);
+                                }
+                                dc.SubmitChanges();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ExceptionViewer.Show(ex);
+                    }
+                    this.PopulateAsync();
+                }
+            }
+        }
     }
 }

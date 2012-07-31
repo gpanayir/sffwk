@@ -112,6 +112,12 @@
       <DependentUpon>Config.dbml</DependentUpon>
     </Compile>
     <Compile Include="ConfigMannagerGrid.cs" />
+    <Compile Include="frmAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdd.Designer.cs">
+      <DependentUpon>frmAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     <None Include="Config.dbml.layout">
       <DependentUpon>Config.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frmAdd.resx">
+      <DependentUpon>frmAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>

@@ -44,6 +44,7 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.addNewKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.configMannagerGridBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -140,9 +141,10 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeSelectedsToolStripMenuItem});
+            this.removeSelectedsToolStripMenuItem,
+            this.addNewKeyToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 28);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 74);
             // 
             // removeSelectedsToolStripMenuItem
             // 
@@ -192,6 +194,13 @@
             this.xtraTabPage2.Size = new System.Drawing.Size(1176, 703);
             this.xtraTabPage2.Text = "Params";
             // 
+            // addNewKeyToolStripMenuItem
+            // 
+            this.addNewKeyToolStripMenuItem.Name = "addNewKeyToolStripMenuItem";
+            this.addNewKeyToolStripMenuItem.Size = new System.Drawing.Size(197, 24);
+            this.addNewKeyToolStripMenuItem.Text = "Add new key";
+            this.addNewKeyToolStripMenuItem.Click += new System.EventHandler(this.addNewKeyToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -236,6 +245,7 @@
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private System.Windows.Forms.ToolStripMenuItem addNewKeyToolStripMenuItem;
 
     }
 }
