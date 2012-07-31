@@ -1,0 +1,42 @@
+﻿
+GO
+/****** Objeto:  StoredProcedure [dbo].[ParamCampings_PIVOT]    Fecha de la secuencia de comandos: 07/26/2012 14:30:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+ create PROCEDURE [dbo].[ParamCampings_PIVOT]
+      @columns VARCHAR(2000)
+ AS
+ --DECLARE @columns2 VARCHAR(2000)
+--SET @columns2 = 'bb_config.en-US,bb_config.es-AR,bb_config.es-AR_local'
+                             
+ 
+DECLARE @query VARCHAR(4000)
+ 
+SET @query = '
+Select ParamCapaingId ,[Name] , ' + @columns + ' FROM (
+SELECT *
+FROM Campaings.ParamCampaings ) p
+PIVOT
+(
+MAX([value])
+FOR Language IN (' + @columns + ')
+)
+AS p'
+--select @query
+EXECUTE(@query)
+----SELECT * FROM fwk_ConfigMannager
+--SELECT [key] ,[bb_config.en-ES] ,[bb_config.es-AR] FROM (
+--
+--SELECT * FROM fwk_ConfigMannager) p
+--PIVOT
+--( 
+--MAX([value])
+--	FOR ConfigurationFileName IN ([bb_config.en-ES] ,[bb_config.es-AR])
+--)
+--AS p
+--

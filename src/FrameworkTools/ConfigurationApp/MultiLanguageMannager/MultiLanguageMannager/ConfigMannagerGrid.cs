@@ -7,7 +7,7 @@ namespace MultiLanguageMannager
 {
     public class ConfigMannagerGridList : Fwk.Bases.BaseEntities<ConfigMannagerGrid>
     { }
-        [Serializable]
+    [Serializable]
     public class ConfigMannagerGrid : Fwk.Bases.BaseEntity
     {
         public string Provider { get; set; }

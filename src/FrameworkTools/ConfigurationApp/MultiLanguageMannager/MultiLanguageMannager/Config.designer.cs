@@ -22,7 +22,7 @@ namespace MultiLanguageMannager
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="fwktest")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BB_Desarrollo_5_0")]
 	public partial class ConfigDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,13 +33,10 @@ namespace MultiLanguageMannager
     partial void Insertfwk_ConfigMannager(fwk_ConfigMannager instance);
     partial void Updatefwk_ConfigMannager(fwk_ConfigMannager instance);
     partial void Deletefwk_ConfigMannager(fwk_ConfigMannager instance);
+    partial void InsertParamCampaing(ParamCampaing instance);
+    partial void UpdateParamCampaing(ParamCampaing instance);
+    partial void DeleteParamCampaing(ParamCampaing instance);
     #endregion
-		
-		public ConfigDataContext() : 
-				base(global::MultiLanguageMannager.Properties.Settings.Default.fwktestConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
 		
 		public ConfigDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -70,6 +67,14 @@ namespace MultiLanguageMannager
 			get
 			{
 				return this.GetTable<fwk_ConfigMannager>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ParamCampaing> ParamCampaings
+		{
+			get
+			{
+				return this.GetTable<ParamCampaing>();
 			}
 		}
 		
@@ -214,6 +219,188 @@ namespace MultiLanguageMannager
 					this._value = value;
 					this.SendPropertyChanged("value");
 					this.OnvalueChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="Campaings.ParamCampaings")]
+	public partial class ParamCampaing : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ParamCapaingId;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _ParamCampaingIdRelated;
+		
+		private string _Remarks;
+		
+		private string _Language;
+		
+		private int _Id;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnParamCapaingIdChanging(int value);
+    partial void OnParamCapaingIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnParamCampaingIdRelatedChanging(System.Nullable<int> value);
+    partial void OnParamCampaingIdRelatedChanged();
+    partial void OnRemarksChanging(string value);
+    partial void OnRemarksChanged();
+    partial void OnLanguageChanging(string value);
+    partial void OnLanguageChanged();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    #endregion
+		
+		public ParamCampaing()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParamCapaingId", DbType="Int NOT NULL")]
+		public int ParamCapaingId
+		{
+			get
+			{
+				return this._ParamCapaingId;
+			}
+			set
+			{
+				if ((this._ParamCapaingId != value))
+				{
+					this.OnParamCapaingIdChanging(value);
+					this.SendPropertyChanging();
+					this._ParamCapaingId = value;
+					this.SendPropertyChanged("ParamCapaingId");
+					this.OnParamCapaingIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParamCampaingIdRelated", DbType="Int")]
+		public System.Nullable<int> ParamCampaingIdRelated
+		{
+			get
+			{
+				return this._ParamCampaingIdRelated;
+			}
+			set
+			{
+				if ((this._ParamCampaingIdRelated != value))
+				{
+					this.OnParamCampaingIdRelatedChanging(value);
+					this.SendPropertyChanging();
+					this._ParamCampaingIdRelated = value;
+					this.SendPropertyChanged("ParamCampaingIdRelated");
+					this.OnParamCampaingIdRelatedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="VarChar(500)")]
+		public string Remarks
+		{
+			get
+			{
+				return this._Remarks;
+			}
+			set
+			{
+				if ((this._Remarks != value))
+				{
+					this.OnRemarksChanging(value);
+					this.SendPropertyChanging();
+					this._Remarks = value;
+					this.SendPropertyChanged("Remarks");
+					this.OnRemarksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="VarChar(20)")]
+		public string Language
+		{
+			get
+			{
+				return this._Language;
+			}
+			set
+			{
+				if ((this._Language != value))
+				{
+					this.OnLanguageChanging(value);
+					this.SendPropertyChanging();
+					this._Language = value;
+					this.SendPropertyChanged("Language");
+					this.OnLanguageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}

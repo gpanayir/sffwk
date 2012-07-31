@@ -148,7 +148,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Config.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Config.designer.cs</LastGenOutput>
@@ -172,6 +174,7 @@
   <ItemGroup>
     <Content Include="fwk_ConfigMannager_PIVOT.txt" />
     <Content Include="fwk_Inser_Update_Delete.txt" />
+    <Content Include="fwk_Params_PIVOT.txt" />
     <Content Include="tools_16.ico" />
   </ItemGroup>
   <ItemGroup>
