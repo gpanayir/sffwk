@@ -1,6 +1,6 @@
-﻿
+﻿USE [BB_Desarrollo_5_0]
 GO
-/****** Objeto:  StoredProcedure [dbo].[ParamCampings_PIVOT]    Fecha de la secuencia de comandos: 07/26/2012 14:30:30 ******/
+/****** Object:  StoredProcedure [dbo].[ParamCampings_PIVOT]    Script Date: 08/01/2012 09:28:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8,7 +8,7 @@ GO
 
 
 
- create PROCEDURE [dbo].[ParamCampings_PIVOT]
+ ALTER PROCEDURE [dbo].[ParamCampings_PIVOT]
       @columns VARCHAR(2000)
  AS
  --DECLARE @columns2 VARCHAR(2000)
@@ -18,25 +18,31 @@ GO
 DECLARE @query VARCHAR(4000)
  
 SET @query = '
-Select ParamCapaingId ,[Name] , ' + @columns + ' FROM (
-SELECT *
-FROM Campaings.ParamCampaings ) p
-PIVOT
+Select Codigo  , ParamCampaingIdRelated,Tipo,  ' + @columns + ' FROM (
+SELECT pc.ParamCapaingId as Codigo,pc.ParamCampaingIdRelated,pc.Name,PCRelated.Name AS Tipo,pc.Remarks,pc.[Language]   
+FROM Campaings.ParamCampaings as pc
+
+INNER JOIN  Campaings.ParamCampaings AS PCRelated ON PCRelated.ParamCapaingId = pc.ParamCampaingIdRelated
+  ) as SourceTable
+	PIVOT
 (
-MAX([value])
-FOR Language IN (' + @columns + ')
+MAX([Name])
+FOR [Language] IN (' + @columns + ')
 )
-AS p'
---select @query
+AS p '
+
 EXECUTE(@query)
-----SELECT * FROM fwk_ConfigMannager
---SELECT [key] ,[bb_config.en-ES] ,[bb_config.es-AR] FROM (
---
---SELECT * FROM fwk_ConfigMannager) p
---PIVOT
---( 
---MAX([value])
---	FOR ConfigurationFileName IN ([bb_config.en-ES] ,[bb_config.es-AR])
---)
+--Select ParamCapaingId  , ParamCampaingIdRelated,Tipo, [bb_config.en-US],[bb_config.es-AR] 
+
+--FROM (
+--SELECT pc.ParamCapaingId ,pc.Name,pc.ParamCampaingIdRelated,PCRelated.Name AS Tipo,pc.Remarks,pc.[Language]   
+--FROM Campaings.ParamCampaings as pc
+
+--INNER JOIN  Campaings.ParamCampaings AS PCRelated ON PCRelated.ParamCapaingId = pc.ParamCampaingIdRelated
+--  ) as SourceTable
+--	PIVOT
+--	(
+--	MAX([Name])
+--	FOR Language IN ([bb_config.en-US],[bb_config.es-AR])
+--	)
 --AS p
---

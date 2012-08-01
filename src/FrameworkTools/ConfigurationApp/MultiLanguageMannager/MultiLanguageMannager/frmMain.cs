@@ -20,8 +20,13 @@ namespace MultiLanguageMannager
     public delegate void DelegateWithOutAndRefParameters(out Exception ex);
     public partial class frmMain : Fwk.UI.Forms.FormBase
     {
+        GridHitInfo _GridHitInfo = null;
+        GridHitInfo _GridHitInfoParam = null;
         ConfigMannagerGridList _ConfigMannagerGridList = new ConfigMannagerGridList();
-        DataTable _configPivotDts = null;
+        DataTable _configPivotDtt = null;
+        DataTable _paramsPivotDtt;
+        DataRow _fwk_ConfigMannager;
+        DataRow _param;
         public frmMain()
         {
             InitializeComponent();
@@ -52,83 +57,81 @@ namespace MultiLanguageMannager
                 providerColumns.Append(string.Concat("[", Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers[i].Name, "]"));
                 if (i < Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Count - 1)
                     providerColumns.Append(",");
-                //string providerName = Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers[i].Name;
-                //ConfigurationFile file = Fwk.Configuration.ConfigurationManager.GetConfigurationFile(providerName);
-                //foreach (Group grp in file.Groups)
-                //{
-                //    foreach (Key k in grp.Keys)
-                //    {
-                //        p = new ConfigMannagerGrid();
-                //        p.Provider = providerName;
-                //        p.Group = grp.Name;
-                //        p.Key = k.Name;
-                //        p.Value = k.Value.Text;
-                //        _ConfigMannagerGridList.Add(p);
-                //    }
-                //}
-
-
+         
             }
-
-            _configPivotDts = RetrivePivotedConfigs(providerColumns.ToString()).Tables[0];
-
+            _configPivotDtt = MultilanguageDAC.RetrivePivotedConfigs(providerColumns.ToString()).Tables[0];
+            _paramsPivotDtt = MultilanguageDAC.RetrivePivotedParams(providerColumns.ToString()).Tables[0];
 
         }
-
-
-
-
-
-
+        
         private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            bool wExist = false;
-            fwk_ConfigMannager record;
+            
             string language = e.Column.ToString();
-            string key = gridView2.GetDataRow(e.RowHandle)["key"].ToString();
-            string group = gridView2.GetDataRow(e.RowHandle)["group"].ToString();
+            string key = gridView_config.GetDataRow(e.RowHandle)["key"].ToString();
+            string group = gridView_config.GetDataRow(e.RowHandle)["group"].ToString();
 
 
             try
             {
-                using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["bb"].ConnectionString))
-                {
-
-
-                    //Verifico que clave y valor exista
-                    wExist = dc.fwk_ConfigMannagers.Any(p => p.ConfigurationFileName.Equals(language)
-                    && p.group.Equals(group)
-                    && p.key.Equals(key));
-
-                    if (wExist)
-                    {
-                        record = dc.fwk_ConfigMannagers.Where(p => p.ConfigurationFileName.Equals(language)
-                                          && p.group.Equals(group)
-                                          && p.key.Equals(key)).FirstOrDefault<fwk_ConfigMannager>();
-
-                        record.value = e.Value.ToString().Trim();
-                    }
-
-                    else
-                    {
-                        record = new fwk_ConfigMannager();
-                        record.ConfigurationFileName = language;
-                        record.group = group;
-                        record.key = key;
-                        dc.fwk_ConfigMannagers.InsertOnSubmit(record);
-                    }
-                    dc.SubmitChanges();
-                }
+                MultilanguageDAC.CreateORUpdateKey(language, group, key, e.Value.ToString().Trim());
             }
             catch (Exception ex)
             {
-                throw ex;
+                this.ExceptionViewer.Show(ex);
             }
 
 
         }
 
+        private void gridView2_MouseDown(object sender, MouseEventArgs e)
+        {
+            _GridHitInfo = gridView_config.CalcHitInfo(new Point(e.X, e.Y));
+            _fwk_ConfigMannager = gridView_config.GetDataRow(_GridHitInfo.RowHandle);
+            if (_GridHitInfo.RowHandle < 0)
+            {
+                addNewKeyToolStripMenuItem.Enabled = true;
+                removeSelectedsToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                removeSelectedsToolStripMenuItem.Enabled = true;
+                addNewKeyToolStripMenuItem.Enabled = true;
+            }
 
+        }
+        private void gridView_Params_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            string language = e.Column.ToString();
+            int wParamCampaingIdRelated = Convert.ToInt32(gridView_Params.GetDataRow(e.RowHandle)["ParamCampaingIdRelated"]);
+            int tipo = Convert.ToInt32(gridView_Params.GetDataRow(e.RowHandle)["codigo"]);
+
+
+            try
+            {
+                MultilanguageDAC.CreateORUpdate_Param(language, tipo, wParamCampaingIdRelated, e.Value.ToString().Trim());
+            }
+            catch (Exception ex)
+            {
+                this.ExceptionViewer.Show(ex);
+            }
+        }
+        
+        private void gridView_Params_MouseDown(object sender, MouseEventArgs e)
+        {
+            _GridHitInfoParam = gridView_Params.CalcHitInfo(new Point(e.X, e.Y));
+            _param = gridView_Params.GetDataRow(_GridHitInfoParam.RowHandle);
+            if (_GridHitInfoParam.RowHandle < 0)
+            {
+                addNewKeyToolStripMenuItem.Enabled = true;
+                removeSelectedsToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                removeSelectedsToolStripMenuItem.Enabled = true;
+                addNewKeyToolStripMenuItem.Enabled = true;
+            }
+        }
 
 
         #region PopulateSync
@@ -169,29 +172,53 @@ namespace MultiLanguageMannager
                     MessageBox.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
                     return;
                 }
-                gridControl2.DataSource = _configPivotDts;
-                gridControl2.RefreshDataSource();
-                gridView2.RefreshData();
+                gridControl_config.DataSource = _configPivotDtt;
+                gridControl_config.RefreshDataSource();
+                gridView_config.RefreshData();
 
-                gridView2.Columns[0].OptionsColumn.AllowEdit = false;
-                gridView2.Columns[0].OptionsColumn.ReadOnly = false;
-                gridView2.Columns[1].OptionsColumn.AllowEdit = false;
-                gridView2.Columns[1].OptionsColumn.ReadOnly = false;
+                gridView_config.Columns[0].OptionsColumn.AllowEdit = false;
+                gridView_config.Columns[0].OptionsColumn.ReadOnly = false;
+                gridView_config.Columns[1].OptionsColumn.AllowEdit = false;
+                gridView_config.Columns[1].OptionsColumn.ReadOnly = false;
 
 
-                gridView2.Columns[0].AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-                gridView2.Columns[0].AppearanceCell.ForeColor = System.Drawing.Color.SteelBlue;
-                gridView2.Columns[0].AppearanceCell.Options.UseBackColor = true;
-                gridView2.Columns[0].AppearanceCell.Options.UseFont = true;
-                gridView2.Columns[0].AppearanceCell.Options.UseForeColor = true;
+                gridView_config.Columns[0].AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+                gridView_config.Columns[0].AppearanceCell.ForeColor = System.Drawing.Color.SteelBlue;
+                gridView_config.Columns[0].AppearanceCell.Options.UseBackColor = true;
+                gridView_config.Columns[0].AppearanceCell.Options.UseFont = true;
+                gridView_config.Columns[0].AppearanceCell.Options.UseForeColor = true;
 
-                gridView2.Columns[0].GroupIndex = 0;
-                gridView2.Columns[1].AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-                gridView2.Columns[1].AppearanceCell.ForeColor = System.Drawing.Color.SteelBlue;
-                gridView2.Columns[1].AppearanceCell.Options.UseBackColor = true;
-                gridView2.Columns[1].AppearanceCell.Options.UseFont = true;
-                gridView2.Columns[1].AppearanceCell.Options.UseForeColor = true;
+                gridView_config.Columns[0].GroupIndex = 0;
+                gridView_config.Columns[1].AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+                gridView_config.Columns[1].AppearanceCell.ForeColor = System.Drawing.Color.SteelBlue;
+                gridView_config.Columns[1].AppearanceCell.Options.UseBackColor = true;
+                gridView_config.Columns[1].AppearanceCell.Options.UseFont = true;
+                gridView_config.Columns[1].AppearanceCell.Options.UseForeColor = true;
 
+
+                gridControl_Params.DataSource = _paramsPivotDtt;
+                gridControl_Params.RefreshDataSource();
+                gridView_Params.RefreshData();
+
+                //ParamCapaingId ParamCampaingIdRelated Tipo  
+                gridView_Params.Columns[0].OptionsColumn.AllowEdit = false;
+                gridView_Params.Columns[0].OptionsColumn.ReadOnly = false;
+                gridView_Params.Columns[1].Visible = false;
+                gridView_Params.Columns[2].OptionsColumn.AllowEdit = false;
+                gridView_Params.Columns[2].OptionsColumn.ReadOnly = false;
+
+                gridView_Params.Columns[0].AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+                gridView_Params.Columns[0].AppearanceCell.ForeColor = System.Drawing.Color.SteelBlue;
+                gridView_Params.Columns[0].AppearanceCell.Options.UseBackColor = true;
+                gridView_Params.Columns[0].AppearanceCell.Options.UseFont = true;
+                gridView_Params.Columns[0].AppearanceCell.Options.UseForeColor = true;
+
+                gridView_Params.Columns[2].GroupIndex = 0;
+                gridView_Params.Columns[2].AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+                gridView_Params.Columns[2].AppearanceCell.ForeColor = System.Drawing.Color.SteelBlue;
+                gridView_Params.Columns[2].AppearanceCell.Options.UseBackColor = true;
+                gridView_Params.Columns[2].AppearanceCell.Options.UseFont = true;
+                gridView_Params.Columns[2].AppearanceCell.Options.UseForeColor = true;
 
             }
         }
@@ -217,116 +244,42 @@ namespace MultiLanguageMannager
 
         #endregion
 
-
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             buildgrid();
-
-
         }
-        public DataSet RetrivePivotedConfigs(String columns)
-        {
-            Database wDataBase = null;
-            DbCommand wCmd = null;
 
-
-
-            wDataBase = DatabaseFactory.CreateDatabase("bb");
-            wCmd = wDataBase.GetStoredProcCommand("fwk_ConfigMannager_PIVOT");
-            wDataBase.AddInParameter(wCmd, "columns", System.Data.DbType.String, columns);
-
-
-            return wDataBase.ExecuteDataSet(wCmd);
-
-        }
-        GridHitInfo _GridHitInfo = null;
+ 
+        
         private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_fwk_ConfigMannager != null)
             {
-
-                //string key = gridView2.GetDataRow(_GridHitInfo.RowHandle)["key"].ToString();
-                //string group = gridView2.GetDataRow(_GridHitInfo.RowHandle)["group"].ToString();
                 string key = _fwk_ConfigMannager["key"].ToString();
                 string group = _fwk_ConfigMannager["group"].ToString();
 
-                using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["bb"].ConnectionString))
-                {
-                    var records = dc.fwk_ConfigMannagers.Where(p =>
-                                                p.group.Equals(group)
-                                           && p.key.Equals(key));
-
-                    foreach (fwk_ConfigMannager config in records)
-                    {
-                        dc.fwk_ConfigMannagers.DeleteOnSubmit(config);
-                    }
-                    dc.SubmitChanges();
-                }
+                MultilanguageDAC.Remove(group, key);
             }
             this.PopulateAsync();
         }
-        DataRow _fwk_ConfigMannager;
-        private void gridView2_MouseDown(object sender, MouseEventArgs e)
-        {
-            _GridHitInfo = gridView2.CalcHitInfo(new Point(e.X, e.Y));
-            _fwk_ConfigMannager = gridView2.GetDataRow(_GridHitInfo.RowHandle);
-            if (_GridHitInfo.RowHandle < 0)
-            {
 
-                addNewKeyToolStripMenuItem.Enabled = true;
-                removeSelectedsToolStripMenuItem.Enabled = false;
-
-            }
-            else
-            {
-
-                removeSelectedsToolStripMenuItem.Enabled = true;
-                addNewKeyToolStripMenuItem.Enabled = true;
-            }
-
-        }
-
+        
+       
         private void addNewKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string language;
             string group = _fwk_ConfigMannager["group"].ToString();
-            Boolean wExist = false;
-            fwk_ConfigMannager record = null;
-
             using (frmAdd frm = new frmAdd(group))
             {
               
                 if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     string key  = frm.Key;
+                    string errMsg=string.Empty; 
                     try
                     {
-                        using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["bb"].ConnectionString))
-                        {
-                            for (int i = 0; i < Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Count; i++)
-                            {
-                                language = Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers[i].Name;
-                                //Verifico que clave y valor exista
-                                wExist = dc.fwk_ConfigMannagers.Any(p => p.ConfigurationFileName.Equals(language)
-                                && p.group.Equals(group)
-                                && p.key.Equals(key));
-
-                                if (wExist)
-                                {
-                                    this.MessageViewer.Show(String.Format("Ya existe la clave {0} en el grupo {1} para alguno de los lenguajes", key, group));
-                                    continue;
-                                }
-                                else
-                                {
-                                    record = new fwk_ConfigMannager();
-                                    record.ConfigurationFileName = language;
-                                    record.group = group;
-                                    record.key = key;
-                                    dc.fwk_ConfigMannagers.InsertOnSubmit(record);
-                                }
-                                dc.SubmitChanges();
-                            }
-                        }
+                        MultilanguageDAC.CreateNewKey(group, key, out errMsg);
+                        this.MessageViewer.Show(errMsg);
+                       
                     }
                     catch (Exception ex)
                     {
@@ -336,5 +289,51 @@ namespace MultiLanguageMannager
                 }
             }
         }
+
+        private void iRemoveParameter_Click(object sender, EventArgs e)
+        {
+            if (_param != null)
+            {
+                
+                int paramCampaingId = Convert.ToInt32(_param["ParamCampaingId"]);
+
+                MultilanguageDAC.Remove_Param(paramCampaingId);
+            }
+            this.PopulateAsync();
+
+        }
+
+        private void iAddParameter_Click(object sender, EventArgs e)
+        {
+            int wParamCampaingIdRelated = Convert.ToInt32(_param["ParamCampaingIdRelated"]);
+            string wRelated = _param["Tipo"].ToString().Trim();
+            
+
+            using (frmAddParam frm = new frmAddParam(wRelated))
+            {
+
+                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    frm.Param.ParamCampaingIdRelated = wParamCampaingIdRelated;
+                    string errMsg = string.Empty;
+                    try
+                    {
+                        //TODO: Latter
+                        MultilanguageDAC.CreateNewParam(frm.Param, wRelated, out errMsg);
+                        this.MessageViewer.Show(errMsg);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ExceptionViewer.Show(ex);
+                    }
+                    this.PopulateAsync();
+                }
+            }
+
+        }
+
+      
+       
     }
 }
