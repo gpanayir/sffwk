@@ -120,7 +120,14 @@ namespace MultiLanguageMannager
             return wDataBase.ExecuteDataSet(wCmd);
         }
 
-        internal static void CreateORUpdate_Param(string language, int paramCampaingIdRelated, int codigo, string name)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="language">Lenguaje</param>
+        /// <param name="paramCampaingIdRelated">Padre o tipo</param>
+        /// <param name="paramCapaingId">Codigo de param o identificador</param>
+        /// <param name="name"></param>
+        internal static void CreateORUpdate_Param(string language, int paramCampaingIdRelated, int paramCapaingId, string name)
         {
             using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["bb"].ConnectionString))
             {
@@ -129,13 +136,14 @@ namespace MultiLanguageMannager
 
                 //Verifico que clave y valor exista
                 wExist = dc.ParamCampaings.Any(p => p.Language.Equals(language)
-                && p.ParamCapaingId.Equals(codigo));
+                      && p.ParamCampaingIdRelated.Equals(paramCampaingIdRelated)
+                       && p.ParamCapaingId.Equals(paramCapaingId));
 
                 if (wExist)
                 {
                     record = dc.ParamCampaings.Where(p => p.Language.Equals(language)
                                       && p.ParamCampaingIdRelated.Equals(paramCampaingIdRelated)
-                                      && p.ParamCapaingId.Equals(codigo)).FirstOrDefault<ParamCampaing>();
+                                      && p.ParamCapaingId.Equals(paramCapaingId)).FirstOrDefault<ParamCampaing>();
 
                     record.Name = name;// e.Value.ToString().Trim();
                 }
@@ -144,7 +152,7 @@ namespace MultiLanguageMannager
                 {
                     record = new ParamCampaing();
                     record.Language = language;
-                    record.ParamCapaingId = codigo;
+                    record.ParamCapaingId = paramCapaingId;
                     record.ParamCampaingIdRelated = paramCampaingIdRelated;
                     //record.Remarks = "";
                     record.Name = name;

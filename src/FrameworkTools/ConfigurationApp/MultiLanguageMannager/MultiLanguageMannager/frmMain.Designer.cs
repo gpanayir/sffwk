@@ -43,6 +43,7 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl_Params)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridView_Params)).BeginInit();
@@ -174,10 +175,20 @@
             // 
             // xtraTabPage2
             // 
+            this.xtraTabPage2.Controls.Add(this.label1);
             this.xtraTabPage2.Controls.Add(this.gridControl_Params);
             this.xtraTabPage2.Name = "xtraTabPage2";
             this.xtraTabPage2.Size = new System.Drawing.Size(1176, 703);
             this.xtraTabPage2.Text = "Params";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(630, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
             // 
             // frmMain
             // 
@@ -186,11 +197,13 @@
             this.ClientSize = new System.Drawing.Size(1188, 742);
             this.Controls.Add(this.xtraTabControl1);
             this.IsMdiContainer = true;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "frmMain";
             this.Padding = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Text = "Administrar lenguajes";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl_Params)).EndInit();
             this.contextMenuStrip2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridView_Params)).EndInit();
@@ -202,6 +215,7 @@
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
+            this.xtraTabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -222,6 +236,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem iRemoveParameter;
         private System.Windows.Forms.ToolStripMenuItem iAddParameter;
+        private System.Windows.Forms.Label label1;
 
     }
 }

@@ -104,12 +104,13 @@ namespace MultiLanguageMannager
         {
             string language = e.Column.ToString();
             int wParamCampaingIdRelated = Convert.ToInt32(gridView_Params.GetDataRow(e.RowHandle)["ParamCampaingIdRelated"]);
-            int tipo = Convert.ToInt32(gridView_Params.GetDataRow(e.RowHandle)["codigo"]);
+            int wParamCampaingId = Convert.ToInt32(gridView_Params.GetDataRow(e.RowHandle)["codigo"]);
 
 
             try
             {
-                MultilanguageDAC.CreateORUpdate_Param(language, tipo, wParamCampaingIdRelated, e.Value.ToString().Trim());
+                MultilanguageDAC.CreateORUpdate_Param(language,  wParamCampaingIdRelated,wParamCampaingId, e.Value.ToString().Trim());
+                //PopulateAsync();
             }
             catch (Exception ex)
             {
@@ -121,6 +122,10 @@ namespace MultiLanguageMannager
         {
             _GridHitInfoParam = gridView_Params.CalcHitInfo(new Point(e.X, e.Y));
             _param = gridView_Params.GetDataRow(_GridHitInfoParam.RowHandle);
+            //label1.Text = string.Concat(_GridHitInfoParam.RowHandle.ToString(), 
+            //    " InGroupPanel: ", _GridHitInfoParam.InGroupPanel.ToString(),
+            //    " InGroupColumn: ", _GridHitInfoParam.InGroupColumn.ToString());
+         
             if (_GridHitInfoParam.RowHandle < 0)
             {
                 addNewKeyToolStripMenuItem.Enabled = true;
@@ -141,6 +146,7 @@ namespace MultiLanguageMannager
         /// </summary>
         public void PopulateAsync()
         {
+            Cursor.Current = Cursors.WaitCursor;
             Exception ex = null;
             DelegateWithOutAndRefParameters s = new DelegateWithOutAndRefParameters(Populate);
 
@@ -219,7 +225,31 @@ namespace MultiLanguageMannager
                 gridView_Params.Columns[2].AppearanceCell.Options.UseBackColor = true;
                 gridView_Params.Columns[2].AppearanceCell.Options.UseFont = true;
                 gridView_Params.Columns[2].AppearanceCell.Options.UseForeColor = true;
+                Cursor.Current = Cursors.Default;
+                int rowHandler = 0;
+                if (xtraTabControl1.SelectedTabPage == xtraTabPage2)
+                {
+                    if (_GridHitInfoParam != null)
+                    {
+                        if (_GridHitInfoParam.RowHandle < 0)
+                            rowHandler = _GridHitInfoParam.RowHandle;
+                        else
+                            rowHandler = gridView_Params.GetParentRowHandle(_GridHitInfoParam.RowHandle);
+                        gridView_Params.ExpandGroupRow(rowHandler);
+                    }
 
+                }
+                if (xtraTabControl1.SelectedTabPage == xtraTabPage1)
+                {
+                    if (_GridHitInfo != null)
+                    {
+                        if (_GridHitInfo.RowHandle < 0)
+                            rowHandler = _GridHitInfo.RowHandle;
+                        else
+                            rowHandler = gridView_config.GetParentRowHandle(_GridHitInfo.RowHandle);
+                        gridView_config.ExpandGroupRow(rowHandler);
+                    }
+                }
             }
         }
 
@@ -294,8 +324,8 @@ namespace MultiLanguageMannager
         {
             if (_param != null)
             {
-                
-                int paramCampaingId = Convert.ToInt32(_param["ParamCampaingId"]);
+
+                int paramCampaingId = Convert.ToInt32(_param["Codigo"]);
 
                 MultilanguageDAC.Remove_Param(paramCampaingId);
             }
@@ -331,6 +361,15 @@ namespace MultiLanguageMannager
                 }
             }
 
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.KeyCode == System.Windows.Forms.Keys.F5)
+            {
+                PopulateAsync();
+            }
         }
 
       

@@ -81,14 +81,14 @@
             this.txtKey.Location = new System.Drawing.Point(226, 75);
             this.txtKey.Name = "txtKey";
             this.txtKey.Size = new System.Drawing.Size(303, 23);
-            this.txtKey.TabIndex = 7;
+            this.txtKey.TabIndex = 2;
             // 
             // btnOk
             // 
             this.btnOk.Location = new System.Drawing.Point(445, 200);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(84, 28);
-            this.btnOk.TabIndex = 6;
+            this.btnOk.TabIndex = 4;
             this.btnOk.Text = "Aceptar";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -115,7 +115,7 @@
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(303, 69);
-            this.txtRemark.TabIndex = 11;
+            this.txtRemark.TabIndex = 3;
             // 
             // label4
             // 
@@ -134,7 +134,7 @@
             this.txtCode.Location = new System.Drawing.Point(226, 46);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(303, 23);
-            this.txtCode.TabIndex = 13;
+            this.txtCode.TabIndex = 1;
             // 
             // frmAddParam
             // 

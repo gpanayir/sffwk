@@ -43,6 +43,7 @@ namespace MultiLanguageMannager
                 errorProvider1.SetError(txtCode, "Ingrese solo valores numericos para el codigo EJ: 1000, 2001, 89, etc ");
                 return;
             }
+            _Param = new ParamCampaing();
             _Param.ParamCapaingId = res;
             _Param.Name = txtKey.Text;
             _Param.Remarks = txtRemark.Text;
