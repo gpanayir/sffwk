@@ -17,7 +17,7 @@ namespace Fwk.Params.Back
 
 
         /// <summary>
-        /// 
+        /// Retorna parametros por id, id padre, y filtra x vigentes o no vigentes
         /// </summary>
         /// <param name="paramTypeId">Tipo (gasto, clase, forma pago etc)</param>
         /// <param name="parentId">Relacion con otro param</param>
@@ -117,11 +117,11 @@ namespace Fwk.Params.Back
         }
 
         /// <summary>
-        /// Retorna todos los registros de la tabla ParamType
+        /// Retorna registros de la tabla ParamType por parametros. Permite filtrar por padre y vigencia
         /// </summary>
-        /// <param name="parentId"></param>
-        /// <param name="enabled"></param>
-        /// <param name="cnnStringName"></param>
+        /// <param name="parentId">Id tipo parametro padre</param>
+        /// <param name="enabled">Vigencia</param>
+        /// <param name="cnnStringName">Cadena de conexion</param>
         /// <returns></returns>
         public static ParamTypeList RetriveParamType(int? parentId,bool? enabled, string cnnStringName)
         {
@@ -265,7 +265,7 @@ namespace Fwk.Params.Back
             //{
             //    throw ex;
             //}
-            return true;
+            throw new NotImplementedException("Fwk Delete Param no esta implementado");
         }
 
     }

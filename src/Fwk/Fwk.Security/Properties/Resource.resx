@@ -240,7 +240,7 @@ This block requires a database configured with the ASP.NET services schema. Plea
     <value>Role {0} is not empty, have users associates.</value>
   </data>
   <data name="RuleCreatedMessage" xml:space="preserve">
-    <value>The rule {0} created.-</value>
+    <value>The rule {0} was successfully created</value>
   </data>
   <data name="RuleResultFalseMessage" xml:space="preserve">
     <value>Rule: {0}
@@ -280,7 +280,7 @@ Result: user is authorized</value>
  Parameters: 0 - username (string) </comment>
   </data>
   <data name="ProviderNameNotFound" xml:space="preserve">
-    <value>The security provider {0} not found</value>
+    <value>The security {1} provider {0} not found</value>
   </data>
   <data name="Role_WithoutRules" xml:space="preserve">
     <value>The {0} not contain rules.-</value>
@@ -315,7 +315,7 @@ Result: user is authorized</value>
  Parameters: 0 - username (string), 1 -creation status(MembershipCreateStatus)</comment>
   </data>
   <data name="RuleProvider_NotExist" xml:space="preserve">
-    <value>The rule provider fot provider named {0} not exist in config file.-  Check the following rule provider named  "{0}"  in the appconfig file.-</value>
+    <value>The rule provider for provider named {0} not exist in config file.-  Check the following rule provider named  "{0}"  in the appconfig file.-</value>
   </data>
   <data name="Rule_ExistError" xml:space="preserve">
     <value>Ther rule  {0} already exists.</value>
@@ -323,13 +323,16 @@ Result: user is authorized</value>
   <data name="Rule_NotExist" xml:space="preserve">
     <value>The rule {0} not exist</value>
   </data>
-  <data name="ApplicationName_NotExist" xml:space="preserve">
-    <value>The application named {0} for cnnstringName {1} not exist. Pleasse check the app config file to ensure the correct application name.</value>
-  </data>
   <data name="ConnectionStringNotExist" xml:space="preserve">
     <value>The connection string {0} not exist. Please check {1} provider security settings .-</value>
   </data>
+  <data name="ApplicationName_NotExist" xml:space="preserve">
+    <value>The application named {0} for cnnstringName {1} not exist. Pleasse check the app config file to ensure the correct application name.</value>
+  </data>
   <data name="RoleProviderConfigError" xml:space="preserve">
     <value>There are some problems while trying to get roles config information, please check the config fale from your application </value>
+  </data>
+  <data name="RuleUpdatedMessage" xml:space="preserve">
+    <value>The rule {0} was successfully updated</value>
   </data>
 </root>

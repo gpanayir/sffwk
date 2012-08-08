@@ -46,15 +46,15 @@ namespace Fwk.Bases.Connector
             set { _ServiceMetadataProviderName = value; }
         }
 
-        string _CompanyId = string.Empty;
+        string _AppId = string.Empty;
 
         /// <summary>
         /// Identificador de empresa
         /// </summary>
-        public string CompanyId
+        public string AppId
         {
-            get { return _CompanyId; }
-            set { _CompanyId = value; }
+            get { return _AppId; }
+            set { _AppId = value; }
         }
         #endregion 
 
@@ -73,7 +73,7 @@ namespace Fwk.Bases.Connector
 
             pReq.InitializeHostContextInformation();
             IServiceContract wResponse = _SimpleFacade.ExecuteService(_ServiceMetadataProviderName, pReq);
-            wResponse.InitializeHostContextInformation();
+            //wResponse.InitializeHostContextInformation();
 
             return wResponse;
         }

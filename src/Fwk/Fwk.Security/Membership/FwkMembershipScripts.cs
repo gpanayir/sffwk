@@ -121,12 +121,14 @@ namespace Fwk.Security
 
                 sb.Append(@"	INSERT INTO aspnet_RulesInCategory");
                 sb.Append(@"		(CategoryId");
-                sb.Append(@"		,RuleName");
+                sb.Append(@"		,RuleId");
                 sb.Append(@"		,ApplicationId)");
+        
 
                 sb.Append(@"	VALUES (");
                 sb.Append(@"		[CategoryId],");
-                sb.Append(@"		'[RuleName]',");
+                sb.Append(@"		'[RuleId]',");
+          
                 sb.Append(@"		CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')) ");
 
 
@@ -146,7 +148,7 @@ namespace Fwk.Security
                 sb.Append(@"		(ParentCategoryId");
                 sb.Append(@"		,[Name]");
                 sb.Append(@"		,ApplicationId)");
-
+   
                 sb.Append(@"	VALUES (");
                 sb.Append(@"		[ParentCategoryId],");
                 sb.Append(@"		'[CategoryName]',");
@@ -181,18 +183,20 @@ namespace Fwk.Security
 
             if (string.IsNullOrEmpty(_Rule_i))
             {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder(5000);
+                System.Text.StringBuilder sb = new System.Text.StringBuilder(4000);
 
 
                 sb.Append(@"	INSERT INTO dbo.aspnet_Rules");
                 sb.Append(@"		(expression ");
                 sb.Append(@"		,[name]");
+                sb.Append(@"		,[Description]");
                 sb.Append(@"		,ApplicationId)");
-
+                
                 sb.Append(@"	VALUES (");
                 sb.Append(@"		'[expression]',");
                 sb.Append(@"		'[rulename]',");
-                sb.Append(@"		CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')) ");
+                sb.Append(@"		'[description]',");
+                sb.Append(@"		 CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]')) ");
 
 
                 _Rule_i = sb.ToString();

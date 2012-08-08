@@ -103,7 +103,7 @@ namespace Fwk.Security
           
         }
         /// <summary>
-        /// Esta fncion permite encontrar el proveedor Sql configurado por medio de su nombre
+        /// Esta funcion permite encontrar el proveedor Sql configurado por medio de su nombre
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>

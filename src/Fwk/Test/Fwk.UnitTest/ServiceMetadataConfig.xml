@@ -1,7 +1,7 @@
 
 <ServiceConfigurationCollection>
   <ServiceConfiguration name="CreateSurveyService">
-    
+
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
     <Handler>Test.SVC.CreateSurveyService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Test.Common.ISVC.CreateSurvey.req.CreateSurveyRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -14,7 +14,6 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="UpdateSurveyService">
-    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
     <Handler>Test.SVC.UpdateSurveyService, Test.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Test.Common.ISVC.UpdateSurvey.UpdateSurveyRequest, Test.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -27,7 +26,6 @@
     <Cacheable>false</Cacheable>
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchParamsByTypeService">
-    
     <CreatedDateTime>0001-01-01T00:00:00</CreatedDateTime>
     <Handler>Test.BackEnd.Common.SVC.SearchParamsByTypeService, Test.BackEnd.Common.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Test.BackEnd.Common.ISVC.SearchParamsByType.req.SearchParamsByTypeRequest, Test.BackEnd.Common.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -1125,7 +1123,7 @@
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordSetsByParamsAllService">
     
-    <CreatedUserName>abrondani</CreatedUserName>
+    <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-12-15T09:33:42.0738346-03:00</CreatedDateTime>
     <Description>Servicio de búsqueda de RecordSets por parametros con campañas, usuarios y encuestas.</Description>
     <Handler>Test.BackEnd.RecordSet.SVC.RecordSets.SearchRecordSetsByParamsAllService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
@@ -1155,7 +1153,7 @@
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordsCountService">
     
-    <CreatedUserName>abrondani</CreatedUserName>
+    <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2009-12-21T17:21:46.8020084-03:00</CreatedDateTime>
     <Handler>Test.BackEnd.RecordSet.SVC.Record.SearchRecordsCountService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
     <Request>Test.Common.RecordSet.ISVC.SearchRecordsCount.SearchRecordsCountRequest, Test.Common.RecordSet.ISVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -1327,7 +1325,7 @@
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordSetAttributesService">
     
-    <CreatedUserName>abrondani</CreatedUserName>
+    <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2010-01-25T16:30:42.2946334-03:00</CreatedDateTime>
     <Description>Busqueda de atributos de un lote.</Description>
     <Handler>Test.BackEnd.RecordSet.SVC.RecordSets.SearchRecordSetAttributesService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
@@ -1357,7 +1355,7 @@
   </ServiceConfiguration>
   <ServiceConfiguration name="SearchRecordsAttributesService">
     
-    <CreatedUserName>abrondani</CreatedUserName>
+    <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2010-01-26T16:35:17.7223497-03:00</CreatedDateTime>
     <Description>Servicio que busca los registros y sus atributos que cumplen con los criterios de búsqueda recibidos.</Description>
     <Handler>Test.BackEnd.RecordSet.SVC.Record.SearchRecordsAttributesService, Test.BackEnd.RecordSet.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>

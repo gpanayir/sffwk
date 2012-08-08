@@ -220,7 +220,7 @@
 //        /// <param name="pProviderName">Nombre del proveedor de seguridad</param>
 //        /// <param name="pCustomUserStoreProcedure">Nombre del Store procedure que se debe ejecutar</param>
 //        /// <returns></returns>
-//        public static DataSet SearchAllUsers(String pProviderName,String pCustomUserStoreProcedure)
+//        public static DataSet Searchpelsofters(String pProviderName,String pCustomUserStoreProcedure)
 //        {
 //            Database wDatabase = null;
 //            DbCommand wCmd = null;

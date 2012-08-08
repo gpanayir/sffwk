@@ -230,7 +230,7 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The security provider {0} not found.
+        ///   Looks up a localized string similar to The security {1} provider {0} not found.
         /// </summary>
         public static string ProviderNameNotFound {
             get {
@@ -349,7 +349,7 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The rule {0} created.-.
+        ///   Looks up a localized string similar to The rule {0} was successfully created.
         /// </summary>
         public static string RuleCreatedMessage {
             get {
@@ -358,7 +358,7 @@ namespace Fwk.Security.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The rule provider fot provider named {0} not exist in config file.-  Check the following rule provider named  &quot;{0}&quot;  in the appconfig file.-.
+        ///   Looks up a localized string similar to The rule provider for provider named {0} not exist in config file.-  Check the following rule provider named  &quot;{0}&quot;  in the appconfig file.-.
         /// </summary>
         public static string RuleProvider_NotExist {
             get {
@@ -383,6 +383,15 @@ namespace Fwk.Security.Properties {
         public static string RuleResultTrueMessage {
             get {
                 return ResourceManager.GetString("RuleResultTrueMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The rule {0} was successfully updated.
+        /// </summary>
+        public static string RuleUpdatedMessage {
+            get {
+                return ResourceManager.GetString("RuleUpdatedMessage", resourceCulture);
             }
         }
         
