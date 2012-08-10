@@ -30,7 +30,7 @@ namespace ConfigurationApp
         /// Lista de archivos App.Config, en esta lista se almacenan los nombres completo de todos los archivos abiertos 
         /// de modo que quede un registro en memoria de los archivos con los cuales se esta trabajando.-
         /// </summary>
-        internal static List<String> _ConfigMannagerFilesList = new List<string>();
+        internal static List<String> _ConfigManagerFilesList = new List<string>();
         #region [File]
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace ConfigurationApp
             {
 
                 TechnicalException te = new Fwk.Exceptions.TechnicalException("It's not valid configuration manager file", er);
-                FwkMessageView.Show(te, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
+                FwkMessageView.Show(te, "Config manager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
 
             }
             catch (TechnicalException er1)
@@ -134,7 +134,7 @@ namespace ConfigurationApp
                 }
                 else
                 {
-                    FwkMessageView.Show(er1, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
+                    FwkMessageView.Show(er1, "Config manager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
                 }
             }
         }
@@ -163,7 +163,7 @@ namespace ConfigurationApp
             catch (Exception ex)
             {
 
-                FwkMessageView.Show(ex, "Config mannager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
+                FwkMessageView.Show(ex, "Config manager", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
             }
         }
 

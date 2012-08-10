@@ -23,9 +23,9 @@ namespace ConfigurationApp
     public partial class UCBServiceGrid : UserControl
     {
         bool init = true;
-        List<fwk_ConfigMannager> _ConfigList;
+        List<fwk_ConfigManager> _ConfigList;
 
-        public List<fwk_ConfigMannager> ConfigList
+        public List<fwk_ConfigManager> ConfigList
         {
             get { return ConfigList; }
            
@@ -54,13 +54,13 @@ namespace ConfigurationApp
             {
 
                 _ConfigurationFile = value;
-                _ConfigList = new List<fwk_ConfigMannager>();
-                fwk_ConfigMannager config = null;
+                _ConfigList = new List<fwk_ConfigManager>();
+                fwk_ConfigManager config = null;
                 foreach (Group group in _ConfigurationFile.Groups)
                 {
                     foreach (Key k in group.Keys)
                     {
-                        config = new fwk_ConfigMannager();
+                        config = new fwk_ConfigManager();
                         config.ConfigurationFileName = _ConfigurationFile.FileName;
                         config.group = group.Name;
                         config.key = k.Name;
@@ -136,7 +136,7 @@ namespace ConfigurationApp
     
             if (_ConfigurationFile == null) return;
 
-            IEnumerable<fwk_ConfigMannager> list = from s in ConfigList
+            IEnumerable<fwk_ConfigManager> list = from s in ConfigList
                                                    where s.key.Contains(txtXmlFilePath.Text) 
                                                      select s;
 

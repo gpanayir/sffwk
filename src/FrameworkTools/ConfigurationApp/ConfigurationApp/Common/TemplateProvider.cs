@@ -85,7 +85,7 @@ namespace ConfigurationApp.Common
     public enum ConfigurationType
     {
         ApplicationConfiuration = 0,
-        ConfigurationMannager = 1
+        ConfigurationManager = 1
     }
     /// <summary>
     /// Componente proveedor de templates .- Lee el archico Templates.xml

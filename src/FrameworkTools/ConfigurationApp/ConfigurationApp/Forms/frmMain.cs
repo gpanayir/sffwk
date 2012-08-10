@@ -67,7 +67,7 @@ namespace ConfigurationApp
 
         private void tsButtonConfigManagerShow_Click(object sender, EventArgs e)
         {
-            if (!_WorkSpace.Contains(ConfigurationType.ConfigurationMannager))
+            if (!_WorkSpace.Contains(ConfigurationType.ConfigurationManager))
             {
                 _dockPanelConfigManager = new dockPanelConfigManager();
 
@@ -81,13 +81,13 @@ namespace ConfigurationApp
 
                 _dockPanelConfigManager.Show(dockPanel1, Fwk.Controls.Win32.DockState.DockLeft);
 
-                _WorkSpace.Add(_dockPanelConfigManager, ConfigurationType.ConfigurationMannager); 
+                _WorkSpace.Add(_dockPanelConfigManager, ConfigurationType.ConfigurationManager); 
             }
         }
 
         void _dockPanelConfigManager_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _WorkSpace.Remove(ConfigurationType.ConfigurationMannager); 
+            _WorkSpace.Remove(ConfigurationType.ConfigurationManager); 
         }
         void _dockPanelAppConfigClient_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -147,7 +147,7 @@ namespace ConfigurationApp
             _dockPanelConfigManager = new dockPanelConfigManager();
             _dockPanelConfigManager.Storage = _Storage;
 
-            if (!_WorkSpace.Contains(ConfigurationType.ConfigurationMannager))
+            if (!_WorkSpace.Contains(ConfigurationType.ConfigurationManager))
             {
                 _dockPanelConfigManager = new dockPanelConfigManager();
 
@@ -161,7 +161,7 @@ namespace ConfigurationApp
 
                 _dockPanelConfigManager.Show(dockPanel1, Fwk.Controls.Win32.DockState.DockLeft);
 
-                _WorkSpace.Add(_dockPanelConfigManager, ConfigurationType.ConfigurationMannager);
+                _WorkSpace.Add(_dockPanelConfigManager, ConfigurationType.ConfigurationManager);
             }
 
 

@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="fwk_ConfigMannager" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Fwk.Bases.Blocks.Fwk.Configuration.config.fwk_ConfigMannager, Fwk.Bases, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="fwk_ConfigManager" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>Fwk.Bases.Blocks.Fwk.Configuration.config.fwk_ConfigManager, Fwk.Bases, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>
