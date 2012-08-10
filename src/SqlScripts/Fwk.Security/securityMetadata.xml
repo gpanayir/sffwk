@@ -1,6 +1,6 @@
 <ServiceConfigurationCollection>
 	<ServiceConfiguration name="GetAllActiveUsersInfoService">
-		<CreatedUserName>sbiglia</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-06-17T17:30:55.55297-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.GetAllActiveUsersInfoService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetAllActiveUsersInfo.Req.GetAllActiveUsersInfoRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -40,7 +40,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="CreateRulesCategoryService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-06T16:55:52.9605295-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.CreateRulesCategoryService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.CreateRulesCategory.req.CreateRulesCategoryRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -53,7 +53,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="DeleteRulesCategoryService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-06T16:56:30.0987067-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.DeleteRulesCategoryService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.DeleteRulesCategory.req.DeleteRulesCategoryRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -66,7 +66,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="GetRulesCategoryByParamService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-06T16:56:54.9616075-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.GetRulesCategoryByParamService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetRulesCategoryByParam.Req.GetRulesCategoryByParamRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -79,7 +79,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="UpdateRulesCategoryService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-13T10:27:44.7281542-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.UpdateRulesCategoryService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.UpdateRulesCategory.req.UpdateRulesCategoryRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -92,7 +92,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="GetUserInfoByName">
-		<CreatedUserName>sbiglia</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-06-11T09:42:10.2892224-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.GetUserInfoByName, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetUserInfoByName.Req.GetUserInfoByNameRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -105,7 +105,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="CreateRulesService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-14T16:30:26.6078968-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.CreateRulesService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.CreateRules.Req.CreateRulesRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -144,7 +144,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="UpdateRulesWithCategoryService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-17T17:59:14.2598717-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.UpdateRulesWithCategoryService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.UpdateRulesWithCategory.Req.UpdateRulesWithCategoryRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -170,7 +170,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="GetTeamByParamService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-28T12:09:44.7064638-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.GetTeamByParamService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetTeamByParam.Req.GetTeamByParamRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -183,7 +183,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="CreateTeamService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-28T12:10:10.0461588-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.CreateTeamService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.CreateTeam.Req.CreateTeamRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -251,7 +251,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="GetAllRulesCategoryService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2009-07-06T16:55:04.1093023-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.GetAllRulesCategoryService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetAllRulesCategory.req.GetAllRulesCategoryRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -317,7 +317,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="GetUnassignedUsersByParamService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-01-07T12:22:57.5558559-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.GetUnassignedUsersByParamService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetUnassignedUsersByParam.GetUnassignedUsersByParamRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -330,7 +330,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="GetUserAdditionalAttributes_ByParamService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-01-13T15:00:14.077537-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.GetUserAdditionalAttributes_ByParamService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetUserAdditionalAttributes_ByParam.GetUserAdditionalAttributes_ByParamRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -343,7 +343,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="SaveUserAdditionalAttributesService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-01-14T15:07:58.612115-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.SaveUserAdditionalAttributesService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.SaveUserAdditionalAttributes.SaveUserAdditionalAttributesRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -356,7 +356,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="GetUserAdditionalAttributesValues_ByParamService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-01-18T16:25:42.3396302-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.GetUserAdditionalAttributesValues_ByParamService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetUserAdditionalAttributesValues.GetUserAdditionalAttributesValues_ByParamRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -369,7 +369,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="UserAdditionalAttributesValues_Exist_ByUserAttributeIdService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-01-18T16:25:55.2148774-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.SVC.UserAdditionalAttributesValues_Exist_ByUserAttributeIdService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.UserAdditionalAttributesValues_Exist_ByUserAttributeId.UserAdditionalAttributesValues_Exist_ByUserAttributeIdRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -382,7 +382,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="SaveUserAdditionalAttributesValuesService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-01-20T15:12:05.1784906-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.SaveUserAdditionalAttributesValuesService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.SaveUserAdditionalAttributesValues.SaveUserAdditionalAttributesValuesRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -395,7 +395,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="UpdateUserAdditionalAttributesValuesService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-01-21T10:42:35.7837556-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.UpdateUserAdditionalAttributesValuesService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.UpdateUserAdditionalAttributesValues.UpdateUserAdditionalAttributesValuesRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -421,7 +421,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="CreateUsersBatchService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-03-31T17:36:11.4624151-03:00</CreatedDateTime>
 		<Description>importa usuarios</Description>
 		<Handler>Fwk.Security.SVC.CreateUsersBatchService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
@@ -435,7 +435,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="SearchDomainsUrlsService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-04-29T13:06:08.3843005-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.SearchDomainsUrlsService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.SearchDomainsUrls.SearchDomainsUrlsRequest, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -448,7 +448,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="GetRolesForUserService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-04-29T15:40:05.1866612-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.GetRolesForUserService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.GetRolesForUser.GetRolesForUserReq, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -461,7 +461,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="RemoveUserFromRoleService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-04-29T15:40:57.4217048-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.RemoveUserFromRoleService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.RemoveUserFromRole.RemoveUserFromRoleReq, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
@@ -474,7 +474,7 @@
 		
 	</ServiceConfiguration>
 	<ServiceConfiguration name="AssignRolesToUserService">
-		<CreatedUserName>AAguirre</CreatedUserName>
+		<CreatedUserName>moviedo</CreatedUserName>
 		<CreatedDateTime>2010-04-29T15:41:28.5627284-03:00</CreatedDateTime>
 		<Handler>Fwk.Security.SVC.AssignRolesToUserService, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
 		<Request>Fwk.Security.ISVC.AssignRolesToUser.AssignRolesToUserReq, Fwk.Security.Service, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
