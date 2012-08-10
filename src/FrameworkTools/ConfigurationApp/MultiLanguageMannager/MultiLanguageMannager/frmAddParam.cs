@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace MultiLanguageMannager
+namespace MultiLanguageManager
 {
     public partial class frmAddParam : DevExpress.XtraEditors.XtraForm
     {

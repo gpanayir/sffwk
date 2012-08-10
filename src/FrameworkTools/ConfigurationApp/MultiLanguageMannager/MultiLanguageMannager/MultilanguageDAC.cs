@@ -6,7 +6,7 @@ using System.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 
-namespace MultiLanguageMannager
+namespace MultiLanguageManager
 {
     internal class MultilanguageDAC
     {
@@ -16,30 +16,30 @@ namespace MultiLanguageMannager
             using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings["bb"].ConnectionString))
             {
                 bool wExist = false;
-                fwk_ConfigMannager record;
+                fwk_ConfigManager record;
 
                 //Verifico que clave y valor exista
-                wExist = dc.fwk_ConfigMannagers.Any(p => p.ConfigurationFileName.Equals(language)
+                wExist = dc.fwk_ConfigManagers.Any(p => p.ConfigurationFileName.Equals(language)
                 && p.group.Equals(group)
                 && p.key.Equals(key));
 
                 if (wExist)
                 {
-                    record = dc.fwk_ConfigMannagers.Where(p => p.ConfigurationFileName.Equals(language)
+                    record = dc.fwk_ConfigManagers.Where(p => p.ConfigurationFileName.Equals(language)
                                       && p.group.Equals(group)
-                                      && p.key.Equals(key)).FirstOrDefault<fwk_ConfigMannager>();
+                                      && p.key.Equals(key)).FirstOrDefault<fwk_ConfigManager>();
 
                     record.value = value;// e.Value.ToString().Trim();
                 }
 
                 else
                 {
-                    record = new fwk_ConfigMannager();
+                    record = new fwk_ConfigManager();
                     record.ConfigurationFileName = language;
                     record.group = group;
                     record.key = key;
                     record.value = value;
-                    dc.fwk_ConfigMannagers.InsertOnSubmit(record);
+                    dc.fwk_ConfigManagers.InsertOnSubmit(record);
                 }
                 dc.SubmitChanges();
             }
@@ -48,7 +48,7 @@ namespace MultiLanguageMannager
         {
             string language;
             errorMsg = string.Empty;
-            fwk_ConfigMannager record = null;
+            fwk_ConfigManager record = null;
             Boolean wExist = false;
             using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringNAme].ConnectionString))
             {
@@ -56,7 +56,7 @@ namespace MultiLanguageMannager
                 {
                     language = Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers[i].Name;
                     //Verifico que clave y valor exista
-                    wExist = dc.fwk_ConfigMannagers.Any(p => p.ConfigurationFileName.Equals(language)
+                    wExist = dc.fwk_ConfigManagers.Any(p => p.ConfigurationFileName.Equals(language)
                     && p.group.Equals(group)
                     && p.key.Equals(key));
 
@@ -68,11 +68,11 @@ namespace MultiLanguageMannager
                     }
                     else
                     {
-                        record = new fwk_ConfigMannager();
+                        record = new fwk_ConfigManager();
                         record.ConfigurationFileName = language;
                         record.group = group;
                         record.key = key;
-                        dc.fwk_ConfigMannagers.InsertOnSubmit(record);
+                        dc.fwk_ConfigManagers.InsertOnSubmit(record);
                     }
                     dc.SubmitChanges();
                 }
@@ -83,13 +83,13 @@ namespace MultiLanguageMannager
         {
             using (ConfigDataContext dc = new ConfigDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringNAme].ConnectionString))
             {
-                var records = dc.fwk_ConfigMannagers.Where(p =>
+                var records = dc.fwk_ConfigManagers.Where(p =>
                                             p.group.Equals(group)
                                        && p.key.Equals(key));
 
-                foreach (fwk_ConfigMannager config in records)
+                foreach (fwk_ConfigManager config in records)
                 {
-                    dc.fwk_ConfigMannagers.DeleteOnSubmit(config);
+                    dc.fwk_ConfigManagers.DeleteOnSubmit(config);
                 }
                 dc.SubmitChanges();
             }
@@ -101,7 +101,7 @@ namespace MultiLanguageMannager
             DbCommand wCmd = null;
 
             wDataBase = DatabaseFactory.CreateDatabase(cnnStringNAme);
-            wCmd = wDataBase.GetStoredProcCommand("fwk_ConfigMannager_PIVOT");
+            wCmd = wDataBase.GetStoredProcCommand("fwk_ConfigManager_PIVOT");
             wDataBase.AddInParameter(wCmd, "columns", System.Data.DbType.String, columns);
 
             return wDataBase.ExecuteDataSet(wCmd);

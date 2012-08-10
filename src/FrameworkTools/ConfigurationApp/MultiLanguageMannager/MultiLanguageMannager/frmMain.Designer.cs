@@ -1,4 +1,4 @@
-﻿namespace MultiLanguageMannager
+﻿namespace MultiLanguageManager
 {
     partial class frmMain
     {

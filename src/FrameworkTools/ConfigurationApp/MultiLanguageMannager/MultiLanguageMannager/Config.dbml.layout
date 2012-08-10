@@ -3,7 +3,7 @@
   <DataContextMoniker Name="/ConfigDataContext" />
   <nestedChildShapes>
     <classShape Id="cb80a8d5-6410-42e2-8ac0-462001d8935f" absoluteBounds="1.125, 2.375, 2, 1.7708968098958327">
-      <DataClassMoniker Name="/ConfigDataContext/fwk_ConfigMannager" />
+      <DataClassMoniker Name="/ConfigDataContext/fwk_ConfigManager" />
       <nestedChildShapes>
         <elementListCompartment Id="189bf15d-e8bb-468b-90ae-8e2cd769d203" absoluteBounds="1.1400000000000001, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>

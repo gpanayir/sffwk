@@ -15,7 +15,7 @@ using Fwk.Exceptions;
 using System.Reflection;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
-namespace MultiLanguageMannager
+namespace MultiLanguageManager
 {
     public delegate void DelegateWithOutAndRefParameters(out Exception ex);
     public partial class frmMain : Fwk.UI.Forms.FormBase
@@ -25,7 +25,7 @@ namespace MultiLanguageMannager
         ConfigMannagerGridList _ConfigMannagerGridList = new ConfigMannagerGridList();
         DataTable _configPivotDtt = null;
         DataTable _paramsPivotDtt;
-        DataRow _fwk_ConfigMannager;
+        DataRow _fwk_ConfigManager;
         DataRow _param;
         public frmMain()
         {
@@ -49,7 +49,7 @@ namespace MultiLanguageMannager
         void buildgrid()
         {
 
-            ConfigMannagerGrid p;
+            ConfigManagerGrid p;
 
             StringBuilder providerColumns = new StringBuilder();
             for (int i = 0; i < Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Count; i++)
@@ -87,7 +87,7 @@ namespace MultiLanguageMannager
         private void gridView2_MouseDown(object sender, MouseEventArgs e)
         {
             _GridHitInfo = gridView_config.CalcHitInfo(new Point(e.X, e.Y));
-            _fwk_ConfigMannager = gridView_config.GetDataRow(_GridHitInfo.RowHandle);
+            _fwk_ConfigManager = gridView_config.GetDataRow(_GridHitInfo.RowHandle);
             if (_GridHitInfo.RowHandle < 0)
             {
                 addNewKeyToolStripMenuItem.Enabled = true;
@@ -283,10 +283,10 @@ namespace MultiLanguageMannager
         
         private void removeSelectedsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_fwk_ConfigMannager != null)
+            if (_fwk_ConfigManager != null)
             {
-                string key = _fwk_ConfigMannager["key"].ToString();
-                string group = _fwk_ConfigMannager["group"].ToString();
+                string key = _fwk_ConfigManager["key"].ToString();
+                string group = _fwk_ConfigManager["group"].ToString();
 
                 MultilanguageDAC.Remove(group, key);
             }
@@ -297,7 +297,7 @@ namespace MultiLanguageMannager
        
         private void addNewKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string group = _fwk_ConfigMannager["group"].ToString();
+            string group = _fwk_ConfigManager["group"].ToString();
             using (frmAdd frm = new frmAdd(group))
             {
               

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MultiLanguageMannager
+namespace MultiLanguageManager
 {
-    public class ConfigMannagerGridList : Fwk.Bases.BaseEntities<ConfigMannagerGrid>
+    public class ConfigMannagerGridList : Fwk.Bases.BaseEntities<ConfigManagerGrid>
     { }
     [Serializable]
-    public class ConfigMannagerGrid : Fwk.Bases.BaseEntity
+    public class ConfigManagerGrid : Fwk.Bases.BaseEntity
     {
         public string Provider { get; set; }
         public string Group { get; set; }

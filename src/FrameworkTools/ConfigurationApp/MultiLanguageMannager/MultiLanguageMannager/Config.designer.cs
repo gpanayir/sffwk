@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MultiLanguageMannager
+namespace MultiLanguageManager
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -30,9 +30,9 @@ namespace MultiLanguageMannager
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertfwk_ConfigMannager(fwk_ConfigMannager instance);
-    partial void Updatefwk_ConfigMannager(fwk_ConfigMannager instance);
-    partial void Deletefwk_ConfigMannager(fwk_ConfigMannager instance);
+    partial void Insertfwk_ConfigManager(fwk_ConfigManager instance);
+    partial void Updatefwk_ConfigManager(fwk_ConfigManager instance);
+    partial void Deletefwk_ConfigManager(fwk_ConfigManager instance);
     partial void InsertParamCampaing(ParamCampaing instance);
     partial void UpdateParamCampaing(ParamCampaing instance);
     partial void DeleteParamCampaing(ParamCampaing instance);
@@ -62,11 +62,11 @@ namespace MultiLanguageMannager
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<fwk_ConfigMannager> fwk_ConfigMannagers
+		public System.Data.Linq.Table<fwk_ConfigManager> fwk_ConfigManagers
 		{
 			get
 			{
-				return this.GetTable<fwk_ConfigMannager>();
+				return this.GetTable<fwk_ConfigManager>();
 			}
 		}
 		
@@ -78,16 +78,16 @@ namespace MultiLanguageMannager
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.fwk_ConfigMannager_PIVOT")]
-		public int fwk_ConfigMannager_PIVOT([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(2000)")] string columns2)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.fwk_ConfigManager_PIVOT")]
+		public int fwk_ConfigManager_PIVOT([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(2000)")] string columns2)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), columns2);
 			return ((int)(result.ReturnValue));
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fwk_ConfigMannager")]
-	public partial class fwk_ConfigMannager : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fwk_ConfigManager")]
+	public partial class fwk_ConfigManager : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -118,7 +118,7 @@ namespace MultiLanguageMannager
     partial void OnvalueChanged();
     #endregion
 		
-		public fwk_ConfigMannager()
+		public fwk_ConfigManager()
 		{
 			OnCreated();
 		}
