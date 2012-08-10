@@ -19,14 +19,14 @@ using Fwk.ConfigData;
 namespace Fwk.Configuration
 {
     /// <summary>
-    /// Configuration mannager con origen en base de datos SQL Server.-
+    /// Configuration manager con origen en base de datos SQL Server.-
     /// </summary>
-    class DatabaseConfigMannager
+    class DatabaseConfigManager
     {
         static ConfigurationRepository _Repository;
 
 
-        static DatabaseConfigMannager()
+        static DatabaseConfigManager()
         {
             if (_Repository == null)
             {
@@ -172,7 +172,7 @@ namespace Fwk.Configuration
             if (System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", pCnnStringName));
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
@@ -182,14 +182,14 @@ namespace Fwk.Configuration
                 using (FwkDatacontext dc = new FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[pCnnStringName].ConnectionString))
                 {
 
-                    IEnumerable<fwk_ConfigMannager> fwk_ConfigMannagerList = from s in dc.fwk_ConfigMannagers
+                    IEnumerable<fwk_ConfigManager> fwk_ConfigManagerList = from s in dc.fwk_ConfigManagers
                                                                              where s.ConfigurationFileName.Equals(pFileName)
 
                                                                              select s;
 
 
 
-                    foreach (fwk_ConfigMannager fwk_Config in fwk_ConfigMannagerList.OrderBy(p => p.group))
+                    foreach (fwk_ConfigManager fwk_Config in fwk_ConfigManagerList.OrderBy(p => p.group))
                     {
                         if (!groupAuxiliar.Equals(fwk_Config.group))
                         {
@@ -213,7 +213,7 @@ namespace Fwk.Configuration
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
@@ -235,7 +235,7 @@ namespace Fwk.Configuration
             if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
@@ -247,20 +247,20 @@ namespace Fwk.Configuration
 
 
 
-            fwk_ConfigMannager confg;
+            fwk_ConfigManager confg;
             try
             {
                 using (FwkDatacontext dc = new FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo].ConnectionString))
                 {
 
-                    confg = new fwk_ConfigMannager();
+                    confg = new fwk_ConfigManager();
                     confg.ConfigurationFileName = provider.BaseConfigFile;
                     confg.key = key.Name;
                     confg.encrypted = key.Encrypted;
                     confg.value = key.Value.Text;
                     confg.group = groupName;
 
-                    dc.fwk_ConfigMannagers.InsertOnSubmit(confg);
+                    dc.fwk_ConfigManagers.InsertOnSubmit(confg);
 
 
                     dc.SubmitChanges();
@@ -270,7 +270,7 @@ namespace Fwk.Configuration
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
 
@@ -287,7 +287,7 @@ namespace Fwk.Configuration
             if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
@@ -295,7 +295,7 @@ namespace Fwk.Configuration
 
 
             wConfigurationFile.Groups.Add(group);
-            fwk_ConfigMannager confg;
+            fwk_ConfigManager confg;
 
             try
             {
@@ -303,13 +303,13 @@ namespace Fwk.Configuration
                 {
                     foreach (Key k in group.Keys)
                     {
-                        confg = new fwk_ConfigMannager();
+                        confg = new fwk_ConfigManager();
                         confg.ConfigurationFileName = provider.BaseConfigFile;
                         confg.key = k.Name;
                         confg.encrypted = k.Encrypted;
                         confg.value = k.Value.Text;
                         confg.group = group.Name;
-                        dc.fwk_ConfigMannagers.InsertOnSubmit(confg);
+                        dc.fwk_ConfigManagers.InsertOnSubmit(confg);
 
                     }
                     dc.SubmitChanges();
@@ -319,7 +319,7 @@ namespace Fwk.Configuration
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
@@ -339,7 +339,7 @@ namespace Fwk.Configuration
             Group g = wConfigurationFile.Groups.GetFirstByName(groupName);
             Key k = g.Keys.GetFirstByName(propertyName);
             g.Keys.Remove(k);
-            System.Text.StringBuilder sqlCommand = new StringBuilder("Delete from [fwk_ConfigMannager] where ");
+            System.Text.StringBuilder sqlCommand = new StringBuilder("Delete from [fwk_ConfigManager] where ");
             sqlCommand.AppendLine(string.Concat("ConfigurationFileName = '", provider.BaseConfigFile, "'"));
             sqlCommand.AppendLine(string.Concat("and [group] = '", groupName, "'"));
             sqlCommand.AppendLine(string.Concat("and [key] = '", propertyName, "'"));
@@ -365,7 +365,7 @@ namespace Fwk.Configuration
 
 
 
-            System.Text.StringBuilder sqlCommand = new StringBuilder("Delete from [fwk_ConfigMannager] where ");
+            System.Text.StringBuilder sqlCommand = new StringBuilder("Delete from [fwk_ConfigManager] where ");
             sqlCommand.AppendLine(string.Concat("ConfigurationFileName = '", provider.BaseConfigFile, "'"));
             sqlCommand.AppendLine(string.Concat("and [group] = '", groupName, "'"));
 
@@ -381,7 +381,7 @@ namespace Fwk.Configuration
             if (System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", cnnStringName));
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
@@ -401,7 +401,7 @@ namespace Fwk.Configuration
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
@@ -419,7 +419,7 @@ namespace Fwk.Configuration
             if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
@@ -435,11 +435,11 @@ namespace Fwk.Configuration
                 {
 
 
-                    var configs = dc.fwk_ConfigMannagers.Where(p =>
+                    var configs = dc.fwk_ConfigManagers.Where(p =>
                           p.group.Equals(groupName)
                           && p.ConfigurationFileName.Equals(provider.BaseConfigFile));
 
-                    foreach (fwk_ConfigMannager confg in configs)
+                    foreach (fwk_ConfigManager confg in configs)
                     {
                         confg.group = newGroupName;
                     }
@@ -451,7 +451,7 @@ namespace Fwk.Configuration
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
 
@@ -470,7 +470,7 @@ namespace Fwk.Configuration
             if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
             }
@@ -483,11 +483,11 @@ namespace Fwk.Configuration
                 using (FwkDatacontext dc = new FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo].ConnectionString))
                 {
 
-                    var prop = dc.fwk_ConfigMannagers.Where(p =>
+                    var prop = dc.fwk_ConfigManagers.Where(p =>
 
                             p.key.Equals(propertyName, StringComparison.OrdinalIgnoreCase)
                             && p.group.Equals(groupName, StringComparison.OrdinalIgnoreCase)
-                          && p.ConfigurationFileName.Equals(provider.BaseConfigFile, StringComparison.OrdinalIgnoreCase)).FirstOrDefault<fwk_ConfigMannager>();
+                          && p.ConfigurationFileName.Equals(provider.BaseConfigFile, StringComparison.OrdinalIgnoreCase)).FirstOrDefault<fwk_ConfigManager>();
 
                     prop.value = property.Value.Text;
                     prop.encrypted = property.Encrypted;
@@ -499,7 +499,7 @@ namespace Fwk.Configuration
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
-                ExceptionHelper.SetTechnicalException<DatabaseConfigMannager>(te);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
                 te.ErrorId = "8200";
                 throw te;
 

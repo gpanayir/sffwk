@@ -30,9 +30,6 @@ namespace Fwk.ConfigData
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertfwk_ConfigMannager(fwk_ConfigMannager instance);
-    partial void Updatefwk_ConfigMannager(fwk_ConfigMannager instance);
-    partial void Deletefwk_ConfigMannager(fwk_ConfigMannager instance);
     partial void Insertfwk_Log(fwk_Log instance);
     partial void Updatefwk_Log(fwk_Log instance);
     partial void Deletefwk_Log(fwk_Log instance);
@@ -42,6 +39,9 @@ namespace Fwk.ConfigData
     partial void InsertParamType(ParamType instance);
     partial void UpdateParamType(ParamType instance);
     partial void DeleteParamType(ParamType instance);
+    partial void Insertfwk_ConfigManager(fwk_ConfigManager instance);
+    partial void Updatefwk_ConfigManager(fwk_ConfigManager instance);
+    partial void Deletefwk_ConfigManager(fwk_ConfigManager instance);
     #endregion
 		
 		public FwkDatacontext() : 
@@ -74,14 +74,6 @@ namespace Fwk.ConfigData
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<fwk_ConfigMannager> fwk_ConfigMannagers
-		{
-			get
-			{
-				return this.GetTable<fwk_ConfigMannager>();
-			}
-		}
-		
 		public System.Data.Linq.Table<fwk_Log> fwk_Logs
 		{
 			get
@@ -105,162 +97,12 @@ namespace Fwk.ConfigData
 				return this.GetTable<ParamType>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fwk_ConfigMannager")]
-	public partial class fwk_ConfigMannager : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _ConfigurationFileName;
-		
-		private string _group;
-		
-		private string _key;
-		
-		private bool _encrypted;
-		
-		private string _value;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnConfigurationFileNameChanging(string value);
-    partial void OnConfigurationFileNameChanged();
-    partial void OngroupChanging(string value);
-    partial void OngroupChanged();
-    partial void OnkeyChanging(string value);
-    partial void OnkeyChanged();
-    partial void OnencryptedChanging(bool value);
-    partial void OnencryptedChanged();
-    partial void OnvalueChanging(string value);
-    partial void OnvalueChanged();
-    #endregion
-		
-		public fwk_ConfigMannager()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfigurationFileName", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string ConfigurationFileName
+		public System.Data.Linq.Table<fwk_ConfigManager> fwk_ConfigManagers
 		{
 			get
 			{
-				return this._ConfigurationFileName;
-			}
-			set
-			{
-				if ((this._ConfigurationFileName != value))
-				{
-					this.OnConfigurationFileNameChanging(value);
-					this.SendPropertyChanging();
-					this._ConfigurationFileName = value;
-					this.SendPropertyChanged("ConfigurationFileName");
-					this.OnConfigurationFileNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[group]", Storage="_group", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string group
-		{
-			get
-			{
-				return this._group;
-			}
-			set
-			{
-				if ((this._group != value))
-				{
-					this.OngroupChanging(value);
-					this.SendPropertyChanging();
-					this._group = value;
-					this.SendPropertyChanged("group");
-					this.OngroupChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[key]", Storage="_key", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string key
-		{
-			get
-			{
-				return this._key;
-			}
-			set
-			{
-				if ((this._key != value))
-				{
-					this.OnkeyChanging(value);
-					this.SendPropertyChanging();
-					this._key = value;
-					this.SendPropertyChanged("key");
-					this.OnkeyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_encrypted", DbType="Bit NOT NULL")]
-		public bool encrypted
-		{
-			get
-			{
-				return this._encrypted;
-			}
-			set
-			{
-				if ((this._encrypted != value))
-				{
-					this.OnencryptedChanging(value);
-					this.SendPropertyChanging();
-					this._encrypted = value;
-					this.SendPropertyChanged("encrypted");
-					this.OnencryptedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_value", DbType="NVarChar(1000)")]
-		public string value
-		{
-			get
-			{
-				return this._value;
-			}
-			set
-			{
-				if ((this._value != value))
-				{
-					this.OnvalueChanging(value);
-					this.SendPropertyChanging();
-					this._value = value;
-					this.SendPropertyChanged("value");
-					this.OnvalueChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<fwk_ConfigManager>();
 			}
 		}
 	}
@@ -901,6 +743,164 @@ namespace Fwk.ConfigData
 		{
 			this.SendPropertyChanging();
 			entity.ParamType = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fwk_ConfigManager")]
+	public partial class fwk_ConfigManager : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _ConfigurationFileName;
+		
+		private string _group;
+		
+		private string _key;
+		
+		private bool _encrypted;
+		
+		private string _value;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnConfigurationFileNameChanging(string value);
+    partial void OnConfigurationFileNameChanged();
+    partial void OngroupChanging(string value);
+    partial void OngroupChanged();
+    partial void OnkeyChanging(string value);
+    partial void OnkeyChanged();
+    partial void OnencryptedChanging(bool value);
+    partial void OnencryptedChanged();
+    partial void OnvalueChanging(string value);
+    partial void OnvalueChanged();
+    #endregion
+		
+		public fwk_ConfigManager()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfigurationFileName", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ConfigurationFileName
+		{
+			get
+			{
+				return this._ConfigurationFileName;
+			}
+			set
+			{
+				if ((this._ConfigurationFileName != value))
+				{
+					this.OnConfigurationFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._ConfigurationFileName = value;
+					this.SendPropertyChanged("ConfigurationFileName");
+					this.OnConfigurationFileNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[group]", Storage="_group", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string group
+		{
+			get
+			{
+				return this._group;
+			}
+			set
+			{
+				if ((this._group != value))
+				{
+					this.OngroupChanging(value);
+					this.SendPropertyChanging();
+					this._group = value;
+					this.SendPropertyChanged("group");
+					this.OngroupChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[key]", Storage="_key", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string key
+		{
+			get
+			{
+				return this._key;
+			}
+			set
+			{
+				if ((this._key != value))
+				{
+					this.OnkeyChanging(value);
+					this.SendPropertyChanging();
+					this._key = value;
+					this.SendPropertyChanged("key");
+					this.OnkeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_encrypted", DbType="Bit NOT NULL")]
+		public bool encrypted
+		{
+			get
+			{
+				return this._encrypted;
+			}
+			set
+			{
+				if ((this._encrypted != value))
+				{
+					this.OnencryptedChanging(value);
+					this.SendPropertyChanging();
+					this._encrypted = value;
+					this.SendPropertyChanged("encrypted");
+					this.OnencryptedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_value", DbType="NVarChar(1000)")]
+		public string value
+		{
+			get
+			{
+				return this._value;
+			}
+			set
+			{
+				if ((this._value != value))
+				{
+					this.OnvalueChanging(value);
+					this.SendPropertyChanging();
+					this._value = value;
+					this.SendPropertyChanged("value");
+					this.OnvalueChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
