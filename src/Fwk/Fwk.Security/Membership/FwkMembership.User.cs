@@ -227,7 +227,7 @@ namespace Fwk.Security
         /// <param name="pUser">Objeto <see cref="User"/></param>
         /// <param name="pRolList">Objeto <see cref="RolList"/></param>
         /// <returns></returns>
-        public void GetUserByParams(String userName,string providerName, out User pUser, out RolList pRolList)
+        public static void GetUserByParams(String userName,string providerName, out User pUser, out RolList pRolList)
         {
             pUser = FwkMembership.GetUser(userName, providerName);
             pRolList = FwkMembership.GetRolesForUser(userName, providerName);
