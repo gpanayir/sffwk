@@ -13,7 +13,7 @@ namespace Fwk.Security.SVC
 {
     /// <summary>
     /// Obtiene info del usuario :
-    /// 
+    /// Retorna User y Roles
     /// intenta obtener el usuario en la membership 
     /// </summary>
     public class GetUserInfoByParamsService : BusinessService<GetUserInfoByParamsReq, GetUserInfoByParamsRes>

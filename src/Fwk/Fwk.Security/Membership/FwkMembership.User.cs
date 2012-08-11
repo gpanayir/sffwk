@@ -219,7 +219,19 @@ namespace Fwk.Security
                 usersList.Add(wUserByApp);
             }
         }
-
+        /// <summary>
+        /// Obtiene la informacion de un usuario y su Custom de un usuario, junto a sus roles
+        /// </summary>
+        /// <param name="userName">Nombre de usuario</param>
+        /// <param name="providerName">Nombre del proveedor de membership</param>
+        /// <param name="pUser">Objeto <see cref="User"/></param>
+        /// <param name="pRolList">Objeto <see cref="RolList"/></param>
+        /// <returns></returns>
+        public void GetUserByParams(String userName,string providerName, out User pUser, out RolList pRolList)
+        {
+            pUser = FwkMembership.GetUser(userName, providerName);
+            pRolList = FwkMembership.GetRolesForUser(userName, providerName);
+        }
         /// <summary>
         /// Obtiene un usuario
         /// </summary>
