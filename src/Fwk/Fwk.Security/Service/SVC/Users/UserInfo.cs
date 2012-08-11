@@ -132,6 +132,7 @@ namespace Fwk.Security.BE
         /// </summary>
         /// <param name="userId">Identificador del usuario</param>
         /// <param name="userName">Nombre del usuario</param>
+        /// <param name="fullName">Nombre completo del usuario</param>
         public UserInfo(Int32 userId, string userName, string fullName)
         {
             _userId = userId;
@@ -139,6 +140,11 @@ namespace Fwk.Security.BE
             _fullName = fullName;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="userName"></param>
         public UserInfo(Int32 userId, string userName)
         {
             _userId = userId;
