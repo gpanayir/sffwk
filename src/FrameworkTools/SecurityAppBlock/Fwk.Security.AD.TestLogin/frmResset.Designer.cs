@@ -102,7 +102,7 @@
             this.cmbDomains.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDomains.FormattingEnabled = true;
             this.cmbDomains.Items.AddRange(new object[] {
-            "Pelsoft-ar",
+            "pelsoft-ar",
             "pelsoft"});
             this.cmbDomains.Location = new System.Drawing.Point(138, 125);
             this.cmbDomains.Name = "cmbDomains";

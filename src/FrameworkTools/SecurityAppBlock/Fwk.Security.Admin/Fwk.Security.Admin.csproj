@@ -38,6 +38,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +47,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v9.1, Version=9.1.4.0, Culture=neutral, PublicKeyToken=5377c8e3b72b4073">
@@ -130,6 +132,8 @@
     <Reference Include="System.Design" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -143,11 +147,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryTree.cs" />
     <Compile Include="Controls\ConnectionStringsCrypt.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\ConnectionStringsCrypt.Designer.cs">
       <DependentUpon>ConnectionStringsCrypt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\frmAddName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\frmAddName.Designer.cs">
+      <DependentUpon>frmAddName.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\frmChangePwd.cs">
       <SubType>Form</SubType>
@@ -160,6 +171,12 @@
     </Compile>
     <Compile Include="Controls\frmRolesFind.Designer.cs">
       <DependentUpon>frmRolesFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\frmRulesAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\frmRulesAdmin.Designer.cs">
+      <DependentUpon>frmRulesAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\frmUserFind.cs">
       <SubType>Form</SubType>
@@ -179,12 +196,6 @@
     </Compile>
     <Compile Include="Controls\RulesEditControl.Designer.cs">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\CategoryCreate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\CategoryCreate.Designer.cs">
-      <DependentUpon>CategoryCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserAssingRoles.cs">
       <SubType>UserControl</SubType>
@@ -243,9 +254,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityController.cs" />
     <EmbeddedResource Include="Controls\ConnectionStringsCrypt.resx">
       <DependentUpon>ConnectionStringsCrypt.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\frmAddName.resx">
+      <DependentUpon>frmAddName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\frmChangePwd.resx">
       <DependentUpon>frmChangePwd.cs</DependentUpon>
@@ -254,6 +269,9 @@
     <EmbeddedResource Include="Controls\frmRolesFind.resx">
       <DependentUpon>frmRolesFind.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\frmRulesAdmin.resx">
+      <DependentUpon>frmRulesAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\frmUserFind.resx">
       <DependentUpon>frmUserFind.cs</DependentUpon>
@@ -265,10 +283,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\RulesEditControl.resx">
       <DependentUpon>RulesEditControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CategoryCreate.resx">
-      <DependentUpon>CategoryCreate.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserAssingRoles.resx">
@@ -327,18 +341,19 @@
     <Compile Include="Controls\UsersGrid.Designer.cs">
       <DependentUpon>UsersGrid.cs</DependentUpon>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\Fwk.Security.Admin.Controls.CategoryTree.datasource" />
     <None Include="Resources\sitebuild_icon.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\DataSources\Fwk.Security.Test.UserByApp.datasource" />
     <None Include="Resources\Untitled %28142%29.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\Fwk.Security.FwkAuthorizationRule.datasource" />
-    <None Include="Properties\DataSources\Fwk.Security.Test.RolList.datasource" />
     <None Include="Resources\Untitled %28142%291.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -372,9 +387,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="group_16.ico" />
-    <None Include="Resources\Connection Warning.bmp" />
+    <EmbeddedResource Include="Resources\copy_24.ico" />
+    <EmbeddedResource Include="Resources\move_16.ico" />
     <None Include="Resources\Connection Error.bmp" />
     <None Include="Resources\Connection Check.bmp" />
+    <None Include="Resources\Connection Warning.bmp" />
     <None Include="Resources\search_32.png" />
     <None Include="Resources\search_24.png" />
     <None Include="Resources\search_16.png" />
@@ -547,10 +564,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*.pdb" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*vshost*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*.manifest" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\SecurityAppBlock\*.application" &gt;&gt; nul</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

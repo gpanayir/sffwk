@@ -14,6 +14,7 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 
 namespace Fwk.Security.Admin.Controls
 {
+    [ToolboxItem(true)]
     [DefaultEvent("NewSecurityInfoCreated")]
     public partial class RulesAssingControl : SecurityControlBase
     {
@@ -67,8 +68,32 @@ namespace Fwk.Security.Admin.Controls
                 }
 
             }
-        }
 
+            if (this.State == Bases.EntityUpdateEnum.UPDATED)
+            {
+                label3.Text = "Update bussiness rule";
+                txtRuleName.Enabled = false;
+            }
+            
+        }
+        internal FwkAuthorizationRule _CurrentRule = null;
+        public void Populate(string ruleName)
+        {
+            txtRuleName.Text = ruleName;
+
+            _CurrentRule = FwkMembership.GetRule(ruleName, frmAdmin.Provider.ApplicationName);
+
+            txtRuleExpression.Text = _CurrentRule.Expression;
+
+            _AssignedRolList = new RolList();
+            _ExcludeUserList = new UserList();
+             FwkMembership.BuildRolesAndUsers_FromRuleExpression(_CurrentRule.Expression, out _AssignedRolList, out _ExcludeUserList);
+
+             rolBindingSource.DataSource = _AssignedRolList;
+             userExcludedBindingSource.DataSource = _ExcludeUserList;
+
+             grdUserExcluded.Refresh();
+        }
 
         private void grdAllRoles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -77,8 +102,53 @@ namespace Fwk.Security.Admin.Controls
 
         }
 
+
+        public bool AceptChanges()
+        {
+            if (string.IsNullOrEmpty(txtRuleName.Text))
+            {
+                errorProvider1.SetError(txtRuleName, "Rule name must not be empty");
+                return false;
+            }
+            if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), frmAdmin.Provider.ApplicationName))
+            {
+                MessageViewInfo.Show(String.Format("The rule {0} exist", txtRuleName.Text));
+                txtRuleName.Focus();
+                return false;
+            }
+
+            try
+            {
+                if (_CurrentRule == null)
+                    _CurrentRule = new FwkAuthorizationRule();
+                _CurrentRule.Name = txtRuleName.Text;
+                _CurrentRule.Expression = txtRuleExpression.Text;
+
+                if (base.State == Bases.EntityUpdateEnum.NEW)
+                {
+                    FwkMembership.CreateRule(_CurrentRule, frmAdmin.Provider.ApplicationName);
+
+                    MessageViewInfo.Show(String.Format(Properties.Resources.RuleCreatedMessage, txtRuleName.Text));
+                }
+                if (base.State == Bases.EntityUpdateEnum.UPDATED)
+                {
+                    FwkMembership.UpdateRule(_CurrentRule, frmAdmin.Provider.ApplicationName);
+
+                    MessageViewInfo.Show(String.Format(Properties.Resources.RuleUpdatedMessage, txtRuleName.Text));
+                }
+                NewSecurityInfoCreatedHandler();
+            }
+            catch (Exception ex)
+            {
+                MessageViewInfo.Show(ex);
+                return false;
+            }
+            return true;
+ 
+        }
         private void btnAddRol_Click(object sender, EventArgs e)
         {
+         
             FillSelectedRoles();
             foreach (Rol selectedRol in selectedRoles)
             {
@@ -124,31 +194,7 @@ namespace Fwk.Security.Admin.Controls
 
         private void btnCreateRule_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtRuleName.Text))
-            {
-                errorProvider1.SetError(txtRuleName, "Rule name must not be empty");
-                return;
-            }
-            if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), frmAdmin.Provider.ApplicationName))
-            {
-                MessageViewInfo.Show(String.Format("The rule {0} exist", txtRuleName.Text));
-                txtRuleName.Focus();
-                return;
-            }
-
-            try
-            {
-                FwkAuthorizationRule wFwkAuthorizationRule = new FwkAuthorizationRule();
-                wFwkAuthorizationRule.Name = txtRuleName.Text;
-                wFwkAuthorizationRule.Expression = txtRuleExpression.Text;
-                FwkMembership.CreateRule(wFwkAuthorizationRule, frmAdmin.Provider.ApplicationName);
-                MessageViewInfo.Show(String.Format(Properties.Resources.RuleCreatedMessage, txtRuleName.Text));
-                NewSecurityInfoCreatedHandler();
-            }
-            catch (Exception ex)
-            {
-                MessageViewInfo.Show(ex);
-            }
+            AceptChanges();
 
         }
 

@@ -112,7 +112,7 @@
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(525, 20);
             this.txtPath.TabIndex = 68;
-            this.txtPath.Text = "LDAP://172.22.12.142:389/DC=Pelsoft,DC=ar";
+            this.txtPath.Text = "LDAP://123.22.12.142:389/DC=pelsoft,DC=ar";
             // 
             // lstDomains
             // 

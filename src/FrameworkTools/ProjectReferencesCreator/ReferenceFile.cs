@@ -14,7 +14,7 @@ namespace ProjectReferencesCreator
     public class ReferenceFile : Fwk.Bases.Entity
     {
         /// <summary>
-        /// BigBang.BackEnd.Campaing.BC.csproj.user
+        /// 
         /// </summary>
         string userFilename;
 

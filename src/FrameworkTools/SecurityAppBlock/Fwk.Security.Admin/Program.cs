@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Fwk.UI.Controls;
 
 namespace Fwk.Security.Admin
 {
@@ -15,7 +16,24 @@ namespace Fwk.Security.Admin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAdmin());
+            try
+            {
+                Application.Run(new frmAdmin());
+            }
+            catch (Exception wException)
+            {
+                ExceptionViewComponent wExceptionViewer = new ExceptionViewComponent();
+                wExceptionViewer.ButtonsYesNoVisible = DevExpress.XtraBars.BarItemVisibility.Always;
+                wExceptionViewer.Title = "Error no manejado";
+
+                wExceptionViewer.Title = string.Concat(wExceptionViewer.Title, " : ", wException.Source);
+
+                DialogResult wResult = wExceptionViewer.Show(wExceptionViewer.Title, Fwk.Exceptions.ExceptionHelper.GetAllMessageException(wException), string.Empty, false);
+
+                if (wResult == DialogResult.OK)
+                    Application.Exit();
+            }
+
         }
     }
 }

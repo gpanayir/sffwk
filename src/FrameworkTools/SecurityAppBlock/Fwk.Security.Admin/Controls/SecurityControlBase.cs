@@ -11,6 +11,7 @@ namespace Fwk.Security.Admin.Controls
 {
     public partial class SecurityControlBase : DevExpress.XtraEditors.XtraUserControl
     {
+        public Fwk.Bases.EntityUpdateEnum State = Fwk.Bases.EntityUpdateEnum.NEW;
         public virtual String AssemblySecurityControl
         {
             get { return (string.Empty); }

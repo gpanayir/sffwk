@@ -86,14 +86,7 @@ namespace Fwk.Security.AD.TestLogin
                 lblCheckResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
                 btnCheck.Enabled = false;
             }
-            //urls = new List<DomainUrlInfo>();
-            //DomainUrlInfo wDomainUrlInfo = new DomainUrlInfo();
-            //wDomainUrlInfo.DomainName = "pelsoft-ar";
-            ////wDomainUrlInfo.Usr = "ReseteoClaveWeb";
-            ////wDomainUrlInfo.Pwd = "";
-            ////wDomainUrlInfo.Usr = "moviedo";
-            ////wDomainUrlInfo.Pwd = "";
-
+          
 
 
         }
@@ -133,9 +126,9 @@ namespace Fwk.Security.AD.TestLogin
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddRootCert("pelsoftCerts/RootAlcomovistar.cer");
-            AddRootCert("pelsoftCerts/RootpelsoftArgent.cer");
-            AddRootCert("pelsoftCerts/RootpelsoftPeru.cer");
+            AddRootCert("PelsoftCerts/RootAC.cer");
+            AddRootCert("PelsoftCerts/RootPelsoftArgent.cer");
+            AddRootCert("PelsoftCerts/RootPelsoftZZ.cer");
         }
 
         void AddRootCert(String pCertFilePath)
