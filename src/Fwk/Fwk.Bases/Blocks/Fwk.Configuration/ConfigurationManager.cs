@@ -131,7 +131,7 @@ namespace Fwk.Configuration
              
                 case ConfigProviderType.sqldatabase:
                     {
-                        return DatabaseConfigMannager.GetProperty(configProvider ,pGroupName, pPropertyName);
+                        return DatabaseConfigManager.GetProperty(configProvider ,pGroupName, pPropertyName);
                     }
                 case ConfigProviderType.servicewrapper:
                     {
@@ -161,7 +161,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.sqldatabase:
                     {
-                        return DatabaseConfigMannager.GetConfigurationFile(provider); 
+                        return DatabaseConfigManager.GetConfigurationFile(provider); 
                     }
                 case ConfigProviderType.servicewrapper:
                     {
@@ -193,7 +193,7 @@ namespace Fwk.Configuration
               
                 case ConfigProviderType.sqldatabase:
                     {
-                        return DatabaseConfigMannager.GetGroup(configProvider, pGroupName);
+                        return DatabaseConfigManager.GetGroup(configProvider, pGroupName);
                     }
                 case ConfigProviderType.servicewrapper:
                     {
@@ -315,12 +315,12 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.sqldatabase:
                     {
-                        DatabaseConfigMannager.AddProperty(provider, key, groupName);
+                        DatabaseConfigManager.AddProperty(provider, key, groupName);
                         break;
                     }
                 case ConfigProviderType.servicewrapper:
                     {
-                        DatabaseConfigMannager.AddProperty(provider, key, groupName); break;
+                        DatabaseConfigManager.AddProperty(provider, key, groupName); break;
                     }
             }
         }
@@ -344,7 +344,7 @@ namespace Fwk.Configuration
                
                 case ConfigProviderType.sqldatabase:
                     {
-                        DatabaseConfigMannager.AddGroup(provider, group); break;
+                        DatabaseConfigManager.AddGroup(provider, group); break;
                     }
                 case ConfigProviderType.servicewrapper:
                     {
@@ -374,7 +374,7 @@ namespace Fwk.Configuration
 
                 case ConfigProviderType.sqldatabase:
                     {
-                        DatabaseConfigMannager.RemoveProperty(provider, groupName, propertyName); break;
+                        DatabaseConfigManager.RemoveProperty(provider, groupName, propertyName); break;
                     }
                 case ConfigProviderType.servicewrapper:
                     {
@@ -401,7 +401,7 @@ namespace Fwk.Configuration
             
                 case ConfigProviderType.sqldatabase:
                     {
-                        DatabaseConfigMannager.RemoveGroup(provider, groupName); break;
+                        DatabaseConfigManager.RemoveGroup(provider, groupName); break;
                     }
                 case ConfigProviderType.servicewrapper:
                     {
@@ -429,7 +429,7 @@ namespace Fwk.Configuration
              
                 case ConfigProviderType.sqldatabase:
                     {
-                        DatabaseConfigMannager.ChangeGroupName(provider, groupName,newGroupName); break;
+                        DatabaseConfigManager.ChangeGroupName(provider, groupName,newGroupName); break;
                     }
                 case ConfigProviderType.servicewrapper:
                     {
@@ -458,7 +458,7 @@ namespace Fwk.Configuration
                
                 case ConfigProviderType.sqldatabase:
                     {
-                        DatabaseConfigMannager.ChangeProperty(provider, groupName, property, propertyName); break;
+                        DatabaseConfigManager.ChangeProperty(provider, groupName, property, propertyName); break;
                     }
                 case ConfigProviderType.servicewrapper:
                     {
@@ -485,7 +485,7 @@ namespace Fwk.Configuration
                     }
                 case ConfigProviderType.sqldatabase:
                     {
-                        return DatabaseConfigMannager.RefreshConfigurationFile(provider); 
+                        return DatabaseConfigManager.RefreshConfigurationFile(provider); 
                     }
                 case ConfigProviderType.servicewrapper:
                     {
