@@ -14,7 +14,21 @@ namespace Fwk.Params.BE
     public partial class ParamBE : Fwk.Bases.Entity
     {
         #region Primitive Properties
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                _Id = value;
+            }
+        }
+        private global::System.Int32 _Id;
         /// <summary>
         /// 
         /// </summary>
@@ -32,6 +46,23 @@ namespace Fwk.Params.BE
 
         private global::System.Int32 _ParamId;
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.String Culture
+        {
+            get
+            {
+                return _Culture;
+            }
+            set
+            {
+                _Culture = value;
+            }
+        }
+
+        private global::System.String _Culture;
 
 
         /// <summary>
