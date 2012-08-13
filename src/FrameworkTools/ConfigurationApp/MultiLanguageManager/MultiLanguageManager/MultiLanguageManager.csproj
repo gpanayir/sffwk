@@ -135,6 +135,7 @@
     <Compile Include="MultilanguageDAC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Campaings.ParamCampaing_s_ByRef.txt" />
     <None Include="Config.dbml.layout">
       <DependentUpon>Config.dbml</DependentUpon>
     </None>
@@ -182,6 +183,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AfectedTables.txt" />
     <Content Include="fwk_ConfigManager_PIVOT.txt" />
     <Content Include="fwk_Inser_Update_Delete.txt" />
     <Content Include="fwk_Params_PIVOT.txt" />
