@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Fwk.Bases.FrontEnd")]
-[assembly: AssemblyDescription("Clase base de las aplicaciones Front End que utilizan el framework FWK")]
+
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 
