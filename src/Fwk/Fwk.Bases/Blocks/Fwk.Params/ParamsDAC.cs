@@ -22,9 +22,10 @@ namespace Fwk.Params.Back
         /// <param name="paramTypeId">Tipo (gasto, clase, forma pago etc)</param>
         /// <param name="parentId">Relacion con otro param</param>
         /// <param name="enabled">Vigentes o no</param>
+        /// <param name="culture">Cultura que se desea consultar: th-TH, en-US, es-AR etc etc</param>
         /// <param name="cnnStringName">Cadena de coneccion</param>
         /// <returns></returns>
-        public static ParamList RetriveByParams(int? paramTypeId, int? parentId, bool? enabled, string cnnStringName)
+        public static ParamList RetriveByParams(int? paramTypeId, int? parentId, bool? enabled,string culture, string cnnStringName)
         {
 
 
@@ -34,16 +35,18 @@ namespace Fwk.Params.Back
             {
                 using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
                 {
-                    var rulesinCat = from s in dc.Params where 
+                    var rulesinCat = from s in dc.fwk_Params where 
                                         (paramTypeId.HasValue || s.ParamTypeId.Equals(paramTypeId))
                                         &&
                                            (parentId.HasValue || s.ParentId.Equals(parentId))
                                         &&
-                                           (enabled.HasValue || s.Enabled.Equals(enabled))
+                                           (enabled.HasValue || s.Enabled.Equals(enabled)
+                                             &&
+                                           (string.IsNullOrEmpty(culture) || s.Culture.Equals(culture)))
                                      select s;
 
 
-                    foreach (Fwk.ConfigData.Param param_db in rulesinCat.ToList<Fwk.ConfigData.Param>())
+                    foreach (Fwk.ConfigData.fwk_Param param_db in rulesinCat.ToList<Fwk.ConfigData.fwk_Param>())
                     {
                         wParamBE = new ParamBE();
                         wParamBE.ParamId = param_db.ParamId;
@@ -52,6 +55,8 @@ namespace Fwk.Params.Back
                         wParamBE.Name = param_db.Name;
                         wParamBE.Description = param_db.Description;
                         wParamBE.Enabled = param_db.Enabled;
+                        wParamBE.Culture = param_db.Culture;
+                        wParamBE.Id = param_db.Id;
 
                         wParamList.Add(wParamBE);
                     }
@@ -67,53 +72,7 @@ namespace Fwk.Params.Back
                 throw ex;
             }
 
-            //Database wDatabase = null;
-            //DbCommand wCmd = null;
-
-            //ParamList list = new ParamList();
-            //ParamBE wParamBE = null;
-            //try
-            //{
-            //    wDatabase = DatabaseFactory.CreateDatabase(cnnStringName);
-            //    wCmd = wDatabase.GetStoredProcCommand("Param_s_ByParam");
-
-
-            //    wDatabase.AddInParameter(wCmd, "ParamTypeId", System.Data.DbType.Int32, paramTypeId);
-            //    wDatabase.AddInParameter(wCmd, "ParentId", System.Data.DbType.Int32, ParentId);
-            //    wDatabase.AddInParameter(wCmd, "Enabled", System.Data.DbType.Boolean, enabled);
-        
-                
-            //    IDataReader reader = wDatabase.ExecuteReader(wCmd);
-
-            //    #region Fill wGastoBECollection
-            //    while (reader.Read())
-            //    {
-            //        wParamBE = new ParamBE();
-                    
-            //          wParamBE.ParamId = Convert.ToInt32(reader["ParamId"]);
-            //        if (reader["ParamTypeId"] != DBNull.Value)
-            //            wParamBE.ParamTypeId = Convert.ToInt32(reader["ParamTypeId"]);
-                    
-            //            wParamBE.Name = reader["Name"].ToString().Trim();
-
-            //        if (reader["ParentId"] != DBNull.Value)
-            //            wParamBE.ParentId = Convert.ToInt32(reader["ParentId"]);
-
-            //        list.Add(wParamBE);
-
-            //    }
-            //    #endregion
-
-            //    reader.Dispose();
-
-            //    return list;
-
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+           
         }
 
         /// <summary>

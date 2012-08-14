@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Pelsoft")]
 [assembly: AssemblyProduct(".: Pelsoft Framework - :.")]
 [assembly: AssemblyCopyright("Copyright © PELSOFT  2008")]
+[assembly: AssemblyDescription("Fwk framewor developed by Marcelo F. Oviedo e-mail to: marcelo.oviedo@gmail.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

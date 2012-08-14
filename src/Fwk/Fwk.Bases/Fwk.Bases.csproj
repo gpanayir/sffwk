@@ -102,10 +102,21 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Blocks\Functions\WindowsFunction.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\Services\GetFwkConfigurationService.cs" />
+    <Compile Include="Blocks\Fwk.Params\CreateParamService.cs" />
+    <Compile Include="Blocks\Fwk.Params\DeleteParamService.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamBE.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamsDAC.cs" />
+    <Compile Include="Blocks\Fwk.Params\ParamsController.cs" />
+    <Compile Include="Blocks\Fwk.Params\SearchParamService.cs" />
+    <Compile Include="Blocks\Fwk.Params\SearchParamTypeService.cs" />
+    <Compile Include="Blocks\FwkData.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FwkData.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Blocks\Fwk.Configuration\ConfigurationManager_CRUD.cs" />
     <Compile Include="Blocks\Fwk.Configuration\DatabaseConfigMannager.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\ServiceConfigurationManager.cs" />
-    <Compile Include="Blocks\Fwk.Configuration\Services\GetFwkConfigurationService.cs" />
     <Compile Include="Blocks\Fwk.Net\CommonClass.cs" />
     <Compile Include="Blocks\Fwk.Net\Ftp\FTPComponent.cs">
       <SubType>Component</SubType>
@@ -114,13 +125,6 @@
       <DependentUpon>FTPComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="Blocks\Fwk.Net\Ftp\FtpUtil.cs" />
-    <Compile Include="Blocks\Fwk.Params\CreateParamService.cs" />
-    <Compile Include="Blocks\Fwk.Params\DeleteParamService.cs" />
-    <Compile Include="Blocks\Fwk.Params\ParamBE.cs" />
-    <Compile Include="Blocks\Fwk.Params\ParamsController.cs" />
-    <Compile Include="Blocks\Fwk.Params\ParamsDAC.cs" />
-    <Compile Include="Blocks\Fwk.Params\SearchParamService.cs" />
-    <Compile Include="Blocks\Fwk.Params\SearchParamTypeService.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\FwkSymetricAlg.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\ISymetriCypher.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\SymetricCypherFactory.cs" />
@@ -129,11 +133,6 @@
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderElement.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderSection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\ServiceManagement.cs" />
-    <Compile Include="Blocks\FwkData.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FwkData.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Blocks\Functions\ExportFunctions.cs" />
     <Compile Include="Blocks\Functions\ImportFunctions.cs" />
@@ -155,6 +154,7 @@
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\ConfigurationRepository.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Fwk.Configuration.Common\Utils.cs" />
     <Compile Include="Blocks\Fwk.Configuration\LocalConfigurationManager.cs" />
+    <Compile Include="Blocks\Fwk.Configuration\ServiceConfigurationManager.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\LoggingSection.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElement.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElementCollection.cs" />
@@ -286,16 +286,21 @@
     <Compile Include="SingletonFactoryArray.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Blocks\Fwk.Configuration\Fwk.Configuration.cd" />
+    <None Include="Blocks\FwkData.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>FwkData.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="fwk.snk" />
     <None Include="Blocks\Fwk.Caching\Caching.cd" />
     <None Include="Blocks\Fwk.Caching\ConfigCaching_App.config" />
     <None Include="Blocks\Fwk.Logging\diagrams\Diagram.cd" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Blocks\FwkData.dbml.layout">
+      <DependentUpon>FwkData.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="Blocks\Fwk.Mail\FwkMailAgent.resx">
       <DependentUpon>FwkMailAgent.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -304,9 +309,6 @@
       <DependentUpon>FTPComponent.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Blocks\FwkData.dbml.layout">
-      <DependentUpon>FwkData.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="DialogDebuggerVisualizer\IEntityVisualizerForm.resx">
       <DependentUpon>IEntityVisualizerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -318,6 +320,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
       <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
@@ -333,19 +340,26 @@
       <ProductName>.NET Framework 3.5</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Blocks\Fwk.Caching\Configurations.xml" />
+    <Content Include="ServiceMetadataConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Blocks\Fwk.Configuration\app.config" />
     <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
     <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />
     <Content Include="Blocks\Fwk.Exceptions\FrameworkErrors.txt" />
-    <Content Include="ServiceMetadataConfig.xml" />
-    <None Include="Blocks\FwkData.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>FwkData.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Resources\db5.png" />
     <None Include="RequestResponse.cd" />
@@ -358,6 +372,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

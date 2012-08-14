@@ -19,7 +19,7 @@ namespace Fwk.Params.Svc
 
 
             wRes.BusinessData = ParamDAC.RetriveByParams(pServiceRequest.BusinessData.ParamTypeId,
-                pServiceRequest.BusinessData.ParentId, pServiceRequest.BusinessData.Enabled,
+                pServiceRequest.BusinessData.ParentId, pServiceRequest.BusinessData.Enabled,pServiceRequest.BusinessData.Culture,
                 pServiceRequest.ContextInformation.AppId);
             return wRes;
         }
@@ -57,7 +57,11 @@ namespace Fwk.Params.Isvc.SearchParams
         /// Param de referencia. Referencia a un parametro padre
         /// </summary>
         public int? ParentId { get; set; }
-        
+
+        /// <summary>
+        /// Culture
+        /// </summary>
+        public string Culture { get; set; }
     }
 
 
