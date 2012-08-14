@@ -48,6 +48,7 @@ namespace ConfigurationApp
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.toolStripAppClientConfig.SuspendLayout();
@@ -201,7 +202,7 @@ namespace ConfigurationApp
             this.btnQuitProvider.Size = new System.Drawing.Size(23, 22);
             this.btnQuitProvider.Text = "Quit";
             this.btnQuitProvider.ToolTipText = "Quit the selected file";
-            this.btnQuitProvider.Click += new System.EventHandler(this.btnQuitProvider_Click);
+            
             // 
             // btnExport
             // 
@@ -263,6 +264,7 @@ namespace ConfigurationApp
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.toolStripAppClientConfig.ResumeLayout(false);
             this.toolStripAppClientConfig.PerformLayout();
