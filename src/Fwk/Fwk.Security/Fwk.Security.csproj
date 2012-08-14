@@ -51,6 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Fwk.Security.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,6 +60,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
@@ -117,7 +119,17 @@
     <Compile Include="ActiveDirectory\AD_Entities\DomainUrl.cs" />
     <Compile Include="ActiveDirectory\AD_Entities\ObjectDomain.cs" />
     <Compile Include="ActiveDirectory\AD_Entities\SqlDomainControllers.designer.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\SqlDomainControllers1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SqlDomainControllers.dbml</DependentUpon>
+    </Compile>
     <Compile Include="ActiveDirectory\AD_Entities\SqlDomainURL.designer.cs" />
+    <Compile Include="ActiveDirectory\AD_Entities\SqlDomainURL1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SqlDomainURL.dbml</DependentUpon>
+    </Compile>
     <Compile Include="ActiveDirectory\DirectoryServicesBase.cs" />
     <Compile Include="ActiveDirectory\AD_Entities\DomainController.cs" />
     <Compile Include="ActiveDirectory\FwkActiveDirectory.cs" />
@@ -155,8 +167,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Service\SVC\Users\ValidateUserExistIsvc.cs" />
+    <Compile Include="Service\SVC\Users\ValidateUserExistService.cs" />
     <Compile Include="Service\Back\UsersBC.cs" />
-    <Compile Include="Service\Back\UsersDAC.cs" />
     <Compile Include="Service\SVC\ActiveDirectory\SearchAllUsers.cs" />
     <Compile Include="Service\SVC\ActiveDirectory\SearchDomainsUrls.cs" />
     <Compile Include="Service\SVC\Roles\AssignRolesToUser.cs" />
@@ -203,8 +216,6 @@
     <Compile Include="Service\SVC\Users\ResetUserPassword.cs" />
     <Compile Include="Service\SVC\Users\SearchAllUsersService.cs" />
     <Compile Include="Service\SVC\Users\UpdateUserService.cs" />
-    <Compile Include="Service\SVC\Users\ValidateUserExistIsvc.cs" />
-    <Compile Include="Service\SVC\Users\ValidateUserExistService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />
@@ -245,6 +256,7 @@
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>RuleProvider.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <CustomToolNamespace>Fwk.Security</CustomToolNamespace>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -272,9 +284,7 @@
     <Content Include="ActiveDirectory\doc\LDAP_Query_Group.txt" />
     <Content Include="ActiveDirectory\doc\Propiedades.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\metadata\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
