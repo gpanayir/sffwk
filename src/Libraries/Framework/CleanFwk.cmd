@@ -3,7 +3,7 @@
 
 
 del *.pdb 
-del Fwk.*.xml
+
 del *.config 
 
 @ECHO OFF
