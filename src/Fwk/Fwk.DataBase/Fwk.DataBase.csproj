@@ -48,9 +48,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -98,6 +98,10 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fwk.Bases.FrontEnd, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cryptography, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll</HintPath>
     </Reference>
@@ -221,6 +225,7 @@
     </EmbeddedResource>
     <None Include="Back\UserDefinedTypeScript.sql" />
     <Content Include="DataBaseConfig.xml">
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Back\StoreProceduresScript.sql" />
   </ItemGroup>
@@ -248,10 +253,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Fwk.FrontEnd\Fwk.Bases.FrontEnd\Fwk.Bases.FrontEnd.csproj">
-      <Project>{E882C6F7-0C02-4014-B5E0-BEFD20756C07}</Project>
-      <Name>Fwk.Bases.FrontEnd</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fwk.Bases\Fwk.Bases.csproj">
       <Project>{1654A893-0408-474E-873C-E79F00D7587C}</Project>
       <Name>Fwk.Bases</Name>

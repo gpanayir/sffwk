@@ -42,5 +42,37 @@ namespace Fwk.Security.Properties {
                 return ((string)(this["aspnetdbConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PELSOFT\\SQLEXPRESS;Initial Catalog=bigbang;Integrated Security=True")]
+        public string ConnectionString {
+            get {
+                return ((string)(this["ConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=corrsf71des01;Initial Catalog=GestionCuentas_Logs;Integrated Security" +
+            "=True")]
+        public string GestionCuentas_LogsConnectionString {
+            get {
+                return ((string)(this["GestionCuentas_LogsConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SANTANA\\SQLEXPRESS;Initial Catalog=Health;Integrated Security=True;Mu" +
+            "ltipleActiveResultSets=True;Application Name=EntityFramework")]
+        public string HealthConnectionString {
+            get {
+                return ((string)(this["HealthConnectionString"]));
+            }
+        }
     }
 }

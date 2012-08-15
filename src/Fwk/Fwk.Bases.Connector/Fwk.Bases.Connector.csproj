@@ -25,6 +25,7 @@
     <OldToolsVersion>2.0</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
+	<IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>http://localhost/Fwk.FrontEnd.ServiceIntefaceWrappers/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -37,7 +38,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -51,6 +51,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Fwk.Bases.Connector.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,6 +60,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -66,13 +68,17 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\ProductConfiguration\GlobalAssemblyInfo.cs">
-      <Link>Local\GlobalAssemblyInfo.cs</Link>
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ASPNetSecurity\ASPNetSecurityWrapper.cs" />
     <Compile Include="Local\LocalWrapper.cs" />
@@ -105,6 +111,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Web References\ASPNetSecurity\ASPNet.wsdl" />
+    <None Include="Web References\ASPNetSecurity\MetadataProvider.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ASPNetSecurity\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="WebService\app.config" />
     <None Include="fwk.snk" />
     <None Include="Local\App.config" />
@@ -134,7 +149,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Remoting\App.config" />
+    <None Include="Remoting\App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web References\Singleservice\SingleService.wsdl" />
   </ItemGroup>
   <ItemGroup>
@@ -149,10 +166,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Fwk_Bases_Connector_singleservice_SingleService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost:37288/ASPNet.asmx">
+    <WebReferenceUrl Include="http://localhost:14538/ASPNet.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\ASPNetSecurity\</RelPath>
-      <UpdateFromURL>http://localhost:37288/ASPNet.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:14538/ASPNet.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
