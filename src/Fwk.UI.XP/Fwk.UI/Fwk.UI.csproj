@@ -149,7 +149,7 @@
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\StaticLibs\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
+      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.Smo, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
