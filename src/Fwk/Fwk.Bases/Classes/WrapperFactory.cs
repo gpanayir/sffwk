@@ -215,7 +215,7 @@ namespace Fwk.Bases
                 catch (Exception ex)
                 {
                     ServiceError wServiceError = ProcessConnectionsException.Process(ex);
-                    TechnicalException te = new TechnicalException(wServiceError.Assembly, wServiceError.Namespace, wServiceError.Class, wServiceError.Machine, wServiceError.UserName, wServiceError.Message);
+                    TechnicalException te = new TechnicalException(wServiceError.Assembly, wServiceError.Namespace, wServiceError.Class, wServiceError.Machine, wServiceError.UserName, wServiceError.Message,ex);
 
                     throw te;
 

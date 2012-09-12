@@ -79,7 +79,7 @@ namespace Fwk.Exceptions
 
             wServiceError.UserName = Environment.UserName;
             wServiceError.Machine = Environment.MachineName;
-
+            wServiceError.StackTrace = pEx.StackTrace;
             if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
                 wServiceError.Source = "Cliente " + Environment.MachineName;
             else
@@ -120,13 +120,14 @@ namespace Fwk.Exceptions
             wMessage.AppendLine();
             wMessage.AppendLine("Mensaje: ");
             wMessage.AppendLine(pException.Message);
-
+            wServiceError.StackTrace = pException.StackTrace;
             wServiceError.Message = wMessage.ToString();
             wServiceError.ErrorId = "6000";
             if (pException.InnerException != null)
                 wServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException.InnerException); 
 
             wMessage = null;
+          
 
             return wServiceError;
         }
@@ -147,7 +148,7 @@ namespace Fwk.Exceptions
             wMessage.AppendLine();
             wMessage.AppendLine("Mensaje SOAP: ");
             wMessage.AppendLine(soapException.Message);
-
+            wServiceError.StackTrace= soapException.StackTrace;
             wServiceError.Message = wMessage.ToString();
             if (soapException.InnerException != null)
                 wServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(soapException.InnerException); 
@@ -173,7 +174,7 @@ namespace Fwk.Exceptions
             wMessage.AppendLine();
             wMessage.AppendLine("Mensaje Web: ");
             wMessage.AppendLine(configurationErrorsException.Message);
-
+            wServiceError.StackTrace = configurationErrorsException.StackTrace;
             wServiceError.Message = wMessage.ToString();
             if (configurationErrorsException.InnerException != null)
                 wServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(configurationErrorsException.InnerException); 

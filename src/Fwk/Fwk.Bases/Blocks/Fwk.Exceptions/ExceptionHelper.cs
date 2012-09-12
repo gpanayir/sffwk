@@ -161,6 +161,9 @@ namespace Fwk.Exceptions
 
         /// <summary>
         /// Procesa la excepcion original y la retorna.
+        /// Si es SqlException Number >= 50000 retorna --> FunctionalException
+        /// Si la excepcion es FunctionalException, o TechnicalException directamente las retorna
+        /// Si es cualquier otro tipo de Excepcion, retorna una TechnicalException
         /// </summary>
         /// <param name="exception">Excepcion original.</param>
         /// <param name="sourceObject">Origen.</param>
