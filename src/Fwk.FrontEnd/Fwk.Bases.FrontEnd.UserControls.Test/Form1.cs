@@ -9,7 +9,7 @@ using Fwk.Bases.FrontEnd.Controls.FwkCombo.Design;
  
 namespace Fwk.Bases.FrontEnd.Controls.Test
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Fwk.Bases.FrontEnd.FrmBase
     {
         FacturaBECollection _FacturaBElist = new FacturaBECollection();
         TipoClienteBEList _TipoClienteBEList = new TipoClienteBEList();
