@@ -182,7 +182,7 @@ namespace Fwk.Bases
         /// <param name="providerName">Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher</param>
         internal static void InitWrapper(string providerName)
         {
-            
+
             if (!_WraperPepository.ContainsKey(providerName))
             {
                 try
@@ -204,18 +204,34 @@ namespace Fwk.Bases
 
                     if (provider.Name.Equals(_ProviderSection.DefaultProviderName)) providerName = String.Empty;
 
-                    IServiceWrapper w = (IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
-                    w.ProviderName = provider.Name;
-                    w.SourceInfo = provider.SourceInfo;
-                    w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
-                    w.AppId = provider.AppId;
-                    _WraperPepository.Add(providerName, w);
 
+
+                    //Se pregunta nuevamente debiddo q algun subproceso pueda haber agregado el proveedor antes
+                    if (!_WraperPepository.ContainsKey(providerName))
+                    {
+                        IServiceWrapper w = (IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
+                        w.ProviderName = provider.Name;
+                        w.SourceInfo = provider.SourceInfo;
+                        w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
+                        w.AppId = provider.AppId;
+                        _WraperPepository.Add(providerName, w);
+                    }
+
+                }
+                catch (System.ArgumentException ex1)
+                {
+                    if (!ex1.Message.Contains("same key"))
+                    {
+                        ServiceError wServiceError = ProcessConnectionsException.Process(ex1);
+                        TechnicalException te = new TechnicalException(wServiceError.Assembly, wServiceError.Namespace, wServiceError.Class, wServiceError.Machine, wServiceError.UserName, wServiceError.Message, ex1);
+
+                        throw ex1;
+                    }
                 }
                 catch (Exception ex)
                 {
                     ServiceError wServiceError = ProcessConnectionsException.Process(ex);
-                    TechnicalException te = new TechnicalException(wServiceError.Assembly, wServiceError.Namespace, wServiceError.Class, wServiceError.Machine, wServiceError.UserName, wServiceError.Message,ex);
+                    TechnicalException te = new TechnicalException(wServiceError.Assembly, wServiceError.Namespace, wServiceError.Class, wServiceError.Machine, wServiceError.UserName, wServiceError.Message, ex);
 
                     throw te;
 
