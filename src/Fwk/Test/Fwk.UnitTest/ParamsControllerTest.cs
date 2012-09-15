@@ -54,7 +54,7 @@ namespace Fwk.UnitTest
             pParam.Name = "parameter 1";
             try
             {
-                ParamsController.CreateParam(wrapperProviderName, pParam);
+                //ParamsController.CreateParam(wrapperProviderName, pParam);
             }
             catch(Exception ex)
             {
