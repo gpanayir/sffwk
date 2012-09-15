@@ -153,6 +153,10 @@ namespace Fwk.Bases
      
         /// <summary>
         /// Ejecuta un servicio de negocio. Utiliza el wrapper por defecto
+        /// 
+        /// Si se produce el error:
+        /// The parameter is incorrect. (Exception from HRESULT: 0x80070057 (E_INVALIDARG))
+        /// Se debe a un error que lanza una llamada asincrona en modo debug
         /// </summary>
         /// <param name="req">Datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Dataset con datos de respuesta del servicio.</returns>
@@ -167,7 +171,10 @@ namespace Fwk.Bases
     
         }
         /// <summary>
-        /// 
+        ///  Ejecuta un servicio de negocio. Utiliza el wrapper por defecto
+        /// Si se produce el error:
+        /// The parameter is incorrect. (Exception from HRESULT: 0x80070057 (E_INVALIDARG))
+        /// Se debe a un error que lanza una llamada asincrona en modo debug 
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>

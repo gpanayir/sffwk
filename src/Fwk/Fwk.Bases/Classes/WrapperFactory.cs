@@ -49,6 +49,7 @@ namespace Fwk.Bases
             {
                 //Obtiene la la configuracion del wrapper del archivo .config
                 _ProviderSection = ConfigurationManager.GetSection("FwkWrapper") as WrapperProviderSection;
+
                 if (_ProviderSection == null)
                 {
                     TechnicalException te = new TechnicalException(string.Concat("No se puede cargar la configuracion del wrapper en el cliente, verifique si existe la seccion [FwkWrapper] en el archivo de configuracion."));
@@ -57,6 +58,21 @@ namespace Fwk.Bases
                     throw te;
                 }
 
+                _WraperPepository = new Dictionary<string, IServiceWrapper>();
+                IServiceWrapper w = null;
+                foreach (WrapperProviderElement provider in _ProviderSection.Providers)
+                {
+                    w = (IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
+                    w.ProviderName = provider.Name;
+                    w.SourceInfo = provider.SourceInfo;
+                    w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
+                    w.AppId = provider.AppId;
+                    if (provider.Name.Equals(_ProviderSection.DefaultProviderName))
+                        _WraperPepository.Add(String.Empty, w);
+                    else
+                        _WraperPepository.Add(provider.Name, w);
+
+                }
             }
             catch (System.Configuration.ConfigurationErrorsException ex)
             {
@@ -67,17 +83,16 @@ namespace Fwk.Bases
                 throw te;
             }
 
-            //Inicio la instancia del diccionario de wrappers en el cliente
-            if (_WraperPepository == null)
-            {
-                _WraperPepository = new Dictionary<string, IServiceWrapper>();
-            }
+
 
 
         }
 
         /// <summary>
         /// Ejecuta un servicio de negocio
+        /// Si se produce el error:
+        /// The parameter is incorrect. (Exception from HRESULT: 0x80070057 (E_INVALIDARG))
+        /// Se debe a un error que lanza una llamada asincrona en modo debug  
         /// </summary>
         /// <typeparam name="TRequest">Tipo del Request</typeparam>
         /// <typeparam name="TResponse">Tipo del Response</typeparam>
@@ -89,20 +104,23 @@ namespace Fwk.Bases
             where TResponse : IServiceContract, new()
         {
             TResponse wResponse = new TResponse();
-            //if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
-            if (providerName.Equals(_ProviderSection.DefaultProviderName))  providerName = String.Empty;
-            InitWrapper(providerName);
 
+
+            //no se utiliza mas este codigo debido q los wrappers se cargan en el constructor estatico
+            if (providerName.Equals(_ProviderSection.DefaultProviderName)) providerName = String.Empty;
+            //InitWrapper(providerName);//Comment because avery provider was loaded on static init constructor 
+            CheckWrapperExist(providerName);
             Boolean wExecuteOndispatcher = true;
             //Si no ocurrio algun error
             if (wResponse.Error == null)
             {
                 IServiceContract res = null;
                 IRequest req = (IRequest)pRequest;
-                 if(string.IsNullOrEmpty(req.ContextInformation.AppId))
+                if (string.IsNullOrEmpty(req.ContextInformation.AppId))
                     req.ContextInformation.AppId = _WraperPepository[providerName].AppId;
 
-                // Caching del servicio.
+
+                #region Caching del servicio.
                 if (req.CacheSettings != null && req.CacheSettings.CacheOnClientSide) //--------------------------------------->>> Implement the cache factory
                 {
                     try
@@ -116,10 +134,10 @@ namespace Fwk.Bases
                     }
                     catch (System.Security.SecurityException)
                     {
-                        
+
                     }
                 }
-
+                #endregion
 
                 if (wExecuteOndispatcher)
                 {
@@ -129,15 +147,15 @@ namespace Fwk.Bases
                     }
                     catch (TechnicalException te)
                     {
-                     
-                        if(te.ErrorId.Equals("7201"))
+
+                        if (te.ErrorId.Equals("7201"))
                             wResponse.Error = ProcessConnectionsException.Process(
                                 new TechnicalException(
                                     String.Format(Fwk.Bases.Properties.Resources.Wrapper_ServiceMetadataProviderName_NotExist,
-                                    _WraperPepository[providerName].ProviderName,te)));
+                                    _WraperPepository[providerName].ProviderName, te)));
                         else
-                          wResponse.Error = ProcessConnectionsException.Process(te);
- 
+                            wResponse.Error = ProcessConnectionsException.Process(te);
+
                     }
                     catch (Exception ex)
                     {
@@ -160,6 +178,9 @@ namespace Fwk.Bases
 
         /// <summary>
         /// Ejecuta un servicio de negocio con el proveedor de wrapper por defecto
+        /// Si se produce el error:
+        /// The parameter is incorrect. (Exception from HRESULT: 0x80070057 (E_INVALIDARG))
+        /// Se debe a un error que lanza una llamada asincrona en modo debug  
         /// </summary>
         /// <param name="pRequest">Request con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Dataset con datos de respuesta del servicio.</returns>
@@ -207,26 +228,15 @@ namespace Fwk.Bases
 
 
                     //Se pregunta nuevamente debiddo q algun subproceso pueda haber agregado el proveedor antes
-                    if (!_WraperPepository.ContainsKey(providerName))
-                    {
-                        IServiceWrapper w = (IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
-                        w.ProviderName = provider.Name;
-                        w.SourceInfo = provider.SourceInfo;
-                        w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
-                        w.AppId = provider.AppId;
-                        _WraperPepository.Add(providerName, w);
-                    }
 
-                }
-                catch (System.ArgumentException ex1)
-                {
-                    if (!ex1.Message.Contains("same key"))
-                    {
-                        ServiceError wServiceError = ProcessConnectionsException.Process(ex1);
-                        TechnicalException te = new TechnicalException(wServiceError.Assembly, wServiceError.Namespace, wServiceError.Class, wServiceError.Machine, wServiceError.UserName, wServiceError.Message, ex1);
+                    IServiceWrapper w = (IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
+                    w.ProviderName = provider.Name;
+                    w.SourceInfo = provider.SourceInfo;
+                    w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
+                    w.AppId = provider.AppId;
+                    _WraperPepository.Add(providerName, w);
 
-                        throw ex1;
-                    }
+
                 }
                 catch (Exception ex)
                 {
@@ -240,6 +250,41 @@ namespace Fwk.Bases
             }
         }
 
+        static void CheckWrapperExist(string providerName)
+        {
+            //Dado que el proveedor por defecto es agregado como String.Empty
+            //if (providerName.Equals(_ProviderSection.DefaultProviderName.Trim())) providerName = String.Empty;
+            if (!_WraperPepository.ContainsKey(providerName))
+            {
+                try
+                {
+                    WrapperProviderElement provider = _ProviderSection.GetProvider(providerName);
+
+                    if (provider == null)
+                    {
+                        TechnicalException te;
+                        if (String.IsNullOrEmpty(providerName))
+                            te = new TechnicalException(string.Concat("El proveedor de configuracion del wrapper por defecto del lado del cliente, no existe, verifique en el archivo de configuracion si existe la seccion FwkWrapper y el proveedor por defecto"));
+                        else
+                            te = new TechnicalException(string.Concat("El proveedor de configuracion del wrapper ", providerName, " del lado del cliente, no existe, verifique en el archivo de configuracion si existe la seccion FwkWrapper y el proveedor mencionado"));
+
+                        te.ErrorId = "6000";
+                        Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(WrapperFactory));
+                        throw te;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    ServiceError wServiceError = ProcessConnectionsException.Process(ex);
+                    TechnicalException te = new TechnicalException(wServiceError.Assembly, wServiceError.Namespace, wServiceError.Class, wServiceError.Machine, wServiceError.UserName, wServiceError.Message, ex);
+
+                    throw te;
+
+                }
+
+            }
+        }
 
         /// <summary>
         /// Get wrapper from IServiceWrapper factory`s dictionary
@@ -249,6 +294,7 @@ namespace Fwk.Bases
         {
             //if (String.IsNullOrEmpty(providerName)) providerName = string.Empty;
             if (providerName.Equals(_ProviderSection.DefaultProviderName)) providerName = String.Empty;
+
             InitWrapper(providerName);
 
             if (providerName.Equals(_ProviderSection.DefaultProviderName))
@@ -256,8 +302,8 @@ namespace Fwk.Bases
 
             if (_WraperPepository.ContainsKey(providerName))
             {
-               
-                    return _WraperPepository[providerName];
+
+                return _WraperPepository[providerName];
             }
             throw new Fwk.Exceptions.TechnicalException(string.Concat("No se encuentra el wrapper solicitado [", providerName, "]"));
         }

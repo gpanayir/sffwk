@@ -78,9 +78,12 @@ namespace Fwk.Bases.Connector
             get { return _Proxy; }
             set { _Proxy = value; }
         }
-		/// <summary>
-		/// Ejecuta un servicio de negocio.
-		/// </summary>
+        /// <summary>
+        /// Ejecuta un servicio de negocio.
+        /// Si se produce el error:
+        /// The parameter is incorrect. (Exception from HRESULT: 0x80070057 (E_INVALIDARG))
+        /// Se debe a un error que lanza una llamada asincrona en modo debug  
+        /// </summary>
         /// <param name="pServiceName">Nombre del servicio.</param> 
 		/// <param name="pData">XML con datos de entrada para la  ejecución del servicio.</param>
 		/// <returns>XML con datos de salida del servicio.</returns>
@@ -135,6 +138,9 @@ namespace Fwk.Bases.Connector
         /// <summary>
         /// Ejecuta un servicio de negocio. (Metodo vigente solo por compatibilidad con versiones anteriores donde se pasaba el 
         /// nombre del servicio como parametro.-
+        /// Si se produce el error:
+        /// The parameter is incorrect. (Exception from HRESULT: 0x80070057 (E_INVALIDARG))
+        /// Se debe a un error que lanza una llamada asincrona en modo debug  
         /// </summary>
         /// <param name="pReq">Clase que implementa IServiceContract con datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que implementa IServiceContract con datos de respuesta del servicio.</returns>

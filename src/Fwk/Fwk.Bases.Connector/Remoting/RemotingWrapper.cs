@@ -73,6 +73,9 @@ namespace Fwk.Bases.Connector
 
         /// <summary>
         /// Ejecuta un servicio de negocio.
+        /// Si se produce el error:
+        /// The parameter is incorrect. (Exception from HRESULT: 0x80070057 (E_INVALIDARG))
+        /// Se debe a un error que lanza una llamada asincrona en modo debug  
         /// </summary>
         /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
