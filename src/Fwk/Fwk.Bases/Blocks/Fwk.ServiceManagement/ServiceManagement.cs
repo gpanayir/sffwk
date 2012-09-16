@@ -143,8 +143,13 @@ namespace Fwk.ServiceManagement
                     svcList = DatabaseServiceConfigurationManager.GetAllServices(provider.ApplicationId, provider.SourceInfo);
                 }
                 #endregion
-
-                _Repository.Add(provider.Name, svcList);
+                try
+                {
+                    ///Se agrega try cath debido a que un subproseso pueda intentar agregar un item y aexistente
+                    _Repository.Add(provider.Name, svcList);
+                }
+                catch (Exception ex)
+                { }
             }
             else
                 svcList = _Repository[provider.Name];
