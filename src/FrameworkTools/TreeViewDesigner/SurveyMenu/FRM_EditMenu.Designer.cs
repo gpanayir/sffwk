@@ -71,7 +71,7 @@
             this.menuItemEditorSurvey1.MenuItem = null;
             this.menuItemEditorSurvey1.Name = "menuItemEditorSurvey1";
             this.menuItemEditorSurvey1.ShowAction = Fwk.Tools.Action.Query;
-            this.menuItemEditorSurvey1.Size = new System.Drawing.Size(769, 539);
+            this.menuItemEditorSurvey1.Size = new System.Drawing.Size(769, 567);
             this.menuItemEditorSurvey1.TabIndex = 0;
             this.menuItemEditorSurvey1.TreeMenu = null;
             // 
