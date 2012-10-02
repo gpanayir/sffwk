@@ -100,7 +100,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Fwk\Fwk.Security\Fwk.Security.csproj">
+    <ProjectReference Include="..\..\Fwk.Security\Fwk.Security.csproj">
       <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
       <Name>Fwk.Security</Name>
     </ProjectReference>
@@ -132,7 +132,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\Fwk\Fwk.Bases\ServiceMetadataConfig.xml">
+    <Content Include="..\..\Fwk.Bases\ServiceMetadataConfig.xml">
       <Link>ServiceMetadataConfig.xml</Link>
     </Content>
   </ItemGroup>
