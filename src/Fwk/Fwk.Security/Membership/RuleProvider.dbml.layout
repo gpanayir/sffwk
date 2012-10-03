@@ -26,5 +26,11 @@
         <elementListCompartment Id="bf648509-c71e-4215-935d-dfbeb28e594a" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="db89fd1f-1309-4fd9-880f-dd24f3310226" absoluteBounds="1, 1.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/RuleProviderDataContext/aspnet_Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2c2c7785-799e-421b-93a5-e69ab9f5ae7c" absoluteBounds="1.0150000000000001, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

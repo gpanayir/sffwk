@@ -15,6 +15,54 @@ namespace Fwk.Security
     {
 
         #region [Roles]
+        public static RolList GetAllRoles_FullInfo(string providerName)
+        {
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+
+            return GetAllRoles_FullInfo(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
+        }
+        public static RolList GetAllRoles_FullInfo(string applicationName, string connectionStringName)
+
+
+        {
+
+            RolList wRolList = null;
+            Rol wRol = null;
+             try
+            {
+                Guid wApplicationId = GetApplication(applicationName, connectionStringName);
+                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+                {
+                    var roles = from s in dc.aspnet_Roles where s.ApplicationId == wApplicationId select s;
+
+                    wRolList = new RolList();
+                    foreach (aspnet_Role aspnet_rol in roles)
+                    {
+                        wRol = new Rol();
+                        wRol.Description = aspnet_rol.Description;
+                        
+                            wRol.RolName = aspnet_rol.RoleName;
+
+                            wRolList.Add(wRol);
+                    }
+
+                }
+
+
+
+                return wRolList;
+            }
+            catch (TechnicalException tx)
+            { throw tx; }
+            catch (Exception ex)
+            {
+
+                TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
+            }
+        }
 
         /// <summary>
         /// Obtiene todos los Roles
@@ -101,6 +149,7 @@ namespace Fwk.Security
             return wRoleList;
 
         }
+
         /// <summary>
         /// Obtiene una lista de Roles  de un usuario
         /// </summary>
