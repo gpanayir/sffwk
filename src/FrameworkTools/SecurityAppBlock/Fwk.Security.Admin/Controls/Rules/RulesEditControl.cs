@@ -48,11 +48,11 @@ namespace Fwk.Security.Admin.Controls
             using (new WaitCursorHelper(this))
             {
 
-                _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
+                _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.Name);
                 fwkAuthorizationRuleBindingSource.DataSource = _AllRuleList;
                 grdAllRules.RefreshDataSource();
 
-                _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.ApplicationName);
+                _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.Name);
                 _CategoryTreeList = CategoryTreeList.Retrive_CategoryTreeList(_CategoryList);
                 treeList1.BeginUnboundLoad();
 
@@ -114,7 +114,7 @@ namespace Fwk.Security.Admin.Controls
                 treeList1.EndUnboundLoad();
                 treeList1.ExpandAll();
 
-                _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
+                _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.Name);
                 fwkAuthorizationRuleBindingSource.DataSource = _AllRuleList;
                 grdAllRules.RefreshDataSource();
 
@@ -131,7 +131,7 @@ namespace Fwk.Security.Admin.Controls
             try
             {
 
-                _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.ApplicationName);
+                _CategoryList = FwkMembership.GetAllCategories(frmAdmin.Provider.Name);
                 _CategoryTreeList = CategoryTreeList.Retrive_CategoryTreeList(_CategoryList);
             }
             catch (Exception err)
@@ -164,7 +164,7 @@ namespace Fwk.Security.Admin.Controls
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     if (!string.IsNullOrEmpty(frm.Tag.ToString()) && _CurrentCategory != null)
-                        if (FwkMembership.ExistCategory(frm.Tag.ToString().Trim(), Convert.ToInt32(_CurrentCategory.Id), frmAdmin.Provider.ApplicationName))
+                        if (FwkMembership.ExistCategory(frm.Tag.ToString().Trim(), Convert.ToInt32(_CurrentCategory.Id), frmAdmin.Provider.Name))
                         {
                             MessageViewInfo.Show(string.Format("Category {0} already exist", frm.Tag.ToString()));
                             return;
@@ -184,7 +184,7 @@ namespace Fwk.Security.Admin.Controls
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     if (!string.IsNullOrEmpty(frm.Tag.ToString()))
-                        if (FwkMembership.ExistCategory(frm.Tag.ToString().Trim(), 0, frmAdmin.Provider.ApplicationName))
+                        if (FwkMembership.ExistCategory(frm.Tag.ToString().Trim(), 0, frmAdmin.Provider.Name))
                         {
                             MessageViewInfo.Show(string.Format("Category {0} already exist", frm.Tag.ToString()));
                             return;
@@ -210,7 +210,7 @@ namespace Fwk.Security.Admin.Controls
 
             try
             {
-                FwkMembership.CreateCategory(wFwkCategory, frmAdmin.Provider.ApplicationName);
+                FwkMembership.CreateCategory(wFwkCategory, frmAdmin.Provider.Name);
                 MessageViewInfo.Show("Category was successfully created");
                 PopulateAsync();
             }
@@ -229,7 +229,7 @@ namespace Fwk.Security.Admin.Controls
                 _CategoryTreeList.RemoveItem(_CurrentCategory.Id);//No es necesario ya que se ejecurara luego --> PopulateAsync
                 try
                 {
-                    FwkMembership.CreateRuleInCategory(_ParentFwkCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+                    FwkMembership.CreateRuleInCategory(_ParentFwkCategory.FwkCategory, frmAdmin.Provider.Name);
                     MessageViewInfo.Show("Rule was successfully removed from category");
                     PopulateAsync();
                 }
@@ -243,7 +243,7 @@ namespace Fwk.Security.Admin.Controls
                 {
                     try
                     {
-                        FwkMembership.RemoveCategory(_CurrentCategory.FwkCategory.CategoryId, frmAdmin.Provider.ApplicationName);
+                        FwkMembership.RemoveCategory(_CurrentCategory.FwkCategory.CategoryId, frmAdmin.Provider.Name);
                         MessageViewInfo.Show("Category was successfully removed ");
                         PopulateAsync();
                     }
@@ -342,7 +342,7 @@ namespace Fwk.Security.Admin.Controls
                 {
 
                     _CurrentCategory.AddRule(rule);
-                    FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+                    FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.Name);
                 }
 
                 #endregion
@@ -380,7 +380,7 @@ namespace Fwk.Security.Admin.Controls
                         wCategoryTree_ToMove.FwkCategory.CategoryId,
                         wCategoryTree_ToMove.FwkCategory.ParentId.Value,
                         _CurrentCategory.FwkCategory.CategoryId,
-                        frmAdmin.Provider.ApplicationName);
+                        frmAdmin.Provider.Name);
                 }
                 #endregion
 
@@ -403,12 +403,12 @@ namespace Fwk.Security.Admin.Controls
                     {
 
                         _CurrentCategory.AddRule(wCategoryTree_ToMove.FwkAuthorizationRule);
-                        FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+                        FwkMembership.CreateRuleInCategory(_CurrentCategory.FwkCategory, frmAdmin.Provider.Name);
 
                         //Obtengo el padre de la regla a mover para eliminarle la regla
                         _ParentFwkCategory = _CategoryTreeList.Where(p => p.Id.Equals(wCategoryTree_ToMove.ParentId)).FirstOrDefault<CategoryTree>();
                         _ParentFwkCategory.RemoveRule(wCategoryTree_ToMove.Name);
-                        FwkMembership.CreateRuleInCategory(_ParentFwkCategory.FwkCategory, frmAdmin.Provider.ApplicationName);
+                        FwkMembership.CreateRuleInCategory(_ParentFwkCategory.FwkCategory, frmAdmin.Provider.Name);
 
                     }
 
@@ -516,7 +516,7 @@ namespace Fwk.Security.Admin.Controls
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
+                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.Name);
                     fwkAuthorizationRuleBindingSource.DataSource = _AllRuleList;
                     grdAllRules.RefreshDataSource();
                 }
@@ -546,7 +546,7 @@ namespace Fwk.Security.Admin.Controls
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
+                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.Name);
                     fwkAuthorizationRuleBindingSource.DataSource = _AllRuleList;
                     grdAllRules.RefreshDataSource();
                 }
@@ -561,7 +561,7 @@ namespace Fwk.Security.Admin.Controls
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
+                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.Name);
                     fwkAuthorizationRuleBindingSource.DataSource = _AllRuleList;
                     grdAllRules.RefreshDataSource();
                 }
@@ -584,7 +584,7 @@ namespace Fwk.Security.Admin.Controls
                         if (res == DialogResult.Yes)
                         {
                             category.RemoveRule(_CurrentRule.Name);
-                            FwkMembership.CreateRuleInCategory(category.FwkCategory, frmAdmin.Provider.ApplicationName);
+                            FwkMembership.CreateRuleInCategory(category.FwkCategory, frmAdmin.Provider.Name);
                         }
                     }
 
@@ -593,7 +593,7 @@ namespace Fwk.Security.Admin.Controls
             if (res == DialogResult.Yes)
             {
 
-                FwkMembership.DeleteRule(_CurrentRule.Name, frmAdmin.Provider.ApplicationName);
+                FwkMembership.DeleteRule(_CurrentRule.Name, frmAdmin.Provider.Name);
             }
 
             PopulateAsync();
@@ -606,7 +606,7 @@ namespace Fwk.Security.Admin.Controls
 
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.ApplicationName);
+                    _AllRuleList = FwkMembership.GetRulesAuxList(frmAdmin.Provider.Name);
                     fwkAuthorizationRuleBindingSource.DataSource = _AllRuleList;
                     grdAllRules.RefreshDataSource();
                 }

@@ -91,7 +91,7 @@ namespace Fwk.Security.Admin.Controls
         {
             txtRuleName.Text = ruleName;
 
-            _CurrentRule = FwkMembership.GetRule(ruleName, frmAdmin.Provider.ApplicationName);
+            _CurrentRule = FwkMembership.GetRule(ruleName, frmAdmin.Provider.Name);
 
             txtRuleExpression.Text = _CurrentRule.Expression;
 
@@ -136,13 +136,13 @@ namespace Fwk.Security.Admin.Controls
                 if (base.State == Bases.EntityUpdateEnum.NEW)
                 {
                     _CurrentRule.Name = txtRuleName.Text;
-                    if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), frmAdmin.Provider.ApplicationName))
+                    if (FwkMembership.ExistRule(txtRuleName.Text.Trim(), frmAdmin.Provider.Name))
                     {
                         MessageViewInfo.Show(String.Format("The rule {0} exist", txtRuleName.Text));
                         txtRuleName.Focus();
                         return false;
                     }
-                    FwkMembership.CreateRule(_CurrentRule, frmAdmin.Provider.ApplicationName);
+                    FwkMembership.CreateRule(_CurrentRule, frmAdmin.Provider.Name);
 
                     MessageViewInfo.Show(String.Format(Properties.Resources.RuleCreatedMessage, txtRuleName.Text));
 
@@ -154,13 +154,13 @@ namespace Fwk.Security.Admin.Controls
                     //Si Cambio el nombre
                     if (_CurrentRule.Name.Trim().CompareTo(txtRuleName.Text.Trim()) != 0)
                     {
-                        FwkMembership.UpdateRuleAndRuleName(_CurrentRule, txtRuleName.Text.Trim(), frmAdmin.Provider.ApplicationName);
+                        FwkMembership.UpdateRuleAndRuleName(_CurrentRule, txtRuleName.Text.Trim(), frmAdmin.Provider.Name);
 
                     }
                     else
                     {
 
-                        FwkMembership.UpdateRule(_CurrentRule, frmAdmin.Provider.ApplicationName);
+                        FwkMembership.UpdateRule(_CurrentRule, frmAdmin.Provider.Name);
                     }
 
                     MessageViewInfo.Show(String.Format(Properties.Resources.RuleUpdatedMessage, txtRuleName.Text));
