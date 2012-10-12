@@ -53,18 +53,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Fwk.Bases.Connector, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Fwk.Security.Ldap, Version=1.0.3861.16359, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
     </Reference>
@@ -100,6 +88,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Fwk.Bases.Connector\Fwk.Bases.Connector.csproj">
+      <Project>{A1F08B2F-7D75-4BD4-8BD3-B98C582013EC}</Project>
+      <Name>Fwk.Bases.Connector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fwk.Bases\Fwk.Bases.csproj">
+      <Project>{1654A893-0408-474E-873C-E79F00D7587C}</Project>
+      <Name>Fwk.Bases</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Fwk.DataBase\Fwk.DataBase.csproj">
+      <Project>{87C826E0-D87A-4C89-94ED-3B1044746A34}</Project>
+      <Name>Fwk.DataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Fwk.Security\Fwk.Security.csproj">
       <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
       <Name>Fwk.Security</Name>
@@ -134,6 +134,7 @@
   <ItemGroup>
     <Content Include="..\..\Fwk.Bases\ServiceMetadataConfig.xml">
       <Link>ServiceMetadataConfig.xml</Link>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

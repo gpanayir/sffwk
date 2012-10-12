@@ -21,9 +21,8 @@ namespace Fwk.Security
 
             return GetAllRoles_FullInfo(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
         }
+
         public static RolList GetAllRoles_FullInfo(string applicationName, string connectionStringName)
-
-
         {
 
             RolList wRolList = null;
@@ -272,7 +271,7 @@ namespace Fwk.Security
 
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             StringBuilder str = new StringBuilder("UPDATE aspnet_Roles SET  Description = '[Description]' WHERE (LoweredRoleName = LOWER('[RoleName]')) AND(ApplicationId = CONVERT (UNIQUEIDENTIFIER,'[ApplicationId]') )");
-            Guid id = GetApplication(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
+            Guid id = GetApplication(wProvider.Name, GetProvider_ConnectionStringName(wProvider.Name));
             Database wDataBase = null;
             DbCommand wCmd = null;
             try
