@@ -440,6 +440,8 @@ namespace Fwk.HelperFunctions
         /// <author>Marcelo F. Oviedo</author>
         public static Image ConvertByteArrayToImage(byte[] byteArray)
         {
+            if (byteArray == null)
+                return null;
             Image returnImage = null;
             using (MemoryStream ms = new MemoryStream(byteArray))
             {
