@@ -11,13 +11,22 @@ namespace Fwk.Bases
 	public class ContextInformation
 	{
         string _AppId;
-        //string _SecurityProviderName;
+        string _ProviderName;
 		string _UserId;
         string _HostName;
         string _ServerName;
         DateTime _ServerTime = new DateTime();
         DateTime _HostTime = new DateTime();
 
+        /// <summary>
+        /// Identifica la cultura con la q trabajara el servicio. Util para manejo de decimales 
+        /// Idiomas llamadas a config mannager con texto o mensajes en un determinado idioma.-
+        /// etc.-
+        /// Generalmente este valor es establecido por la Fachada de sevicios en el framework y  es 
+        /// obtenido de la configuracion de Service Metadata Provider. El provider se determina a traves de ExecuteService(providerName,....)
+        /// Si DefaultCulture es distinto e null se utilizara el mismo, de lo contrario se utilizara el obtenido de la configuracion de Service Metadata Provider.
+        /// </summary>
+        public string DefaultCulture { get; set; }
 
         /// <summary>
         /// Indica el host que inicio la peticion del servicio .-
@@ -83,15 +92,24 @@ namespace Fwk.Bases
         /// Utiil para identificar logs, discriminar cadenas de conecciones, etc.-
         /// </summary>
         public string AppId { get; set; }
-        
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public string SecurityProviderName
-        //{
-        //    get { return _SecurityProviderName; }
-        //    set { _SecurityProviderName = value; }
-        //}
+
+        /// <summary>
+        /// Si el run time se encuentra en BackEnd representa el nombre del ServiceMetadataProviderName 
+        /// Si el run time se encuentra en FrontEnd (controller o componentes win 32) representa Wrapper Provider Name
+        /// </summary>
+        public string ProviderName
+        {
+            get { return _ProviderName; }
+            
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ProviderName"></param>
+        internal void SetProviderName(string ProviderName)
+        {
+            _ProviderName = ProviderName;
+        }
 	}
 }

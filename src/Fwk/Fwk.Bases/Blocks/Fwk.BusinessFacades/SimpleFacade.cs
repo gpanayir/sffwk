@@ -57,55 +57,54 @@ namespace Fwk.BusinessFacades
 
                 TechnicalException te = new TechnicalException("El despachador de servicio no pudo continuar debido\r\n a que el nombre del servicio no fue establecido");
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
-                
+
                 te.ErrorId = "7005";
                 throw te;
             }
             Boolean wExecuteOndispatcher = true;
-         
-            //try
-            //{
-                IRequest req = (IRequest)pRequest;
-                ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,pRequest.ServiceName);
 
-                //establezco el nombre del proveedor de seguridad al request
-                req.SecurityProviderName = FacadeHelper.GetProviderInfo(providerName).SecurityProviderName;
+            IRequest req = (IRequest)pRequest;
+            ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName, pRequest.ServiceName);
 
-                // Validación de disponibilidad del servicio.
-                FacadeHelper.ValidateAvailability(wServiceConfiguration, out wResult);
-                if(wResult !=null)
-                    if (wResult.Error != null) return wResult;
 
-                // Caching del servicio.
-                if (req.CacheSettings != null && req.CacheSettings.CacheOnServerSide) //--------->>> Implement the cache factory
-                {
+            
+            //establezco el nombre del proveedor de seguridad al request
+            req.SecurityProviderName = FacadeHelper.GetProviderInfo(providerName).SecurityProviderName;
 
-                    wResult = GetCaheDataById(req, wServiceConfiguration);
-                    if (wResult != null) wExecuteOndispatcher = false;
+            
+            req.ContextInformation.SetProviderName(providerName);
+            if (String.IsNullOrEmpty(req.ContextInformation.DefaultCulture))
+                req.ContextInformation.DefaultCulture = FacadeHelper.GetProviderInfo(providerName).DefaultCulture;
 
-                }
-                // Realiza la ejecucion del servicio
-                if (wExecuteOndispatcher)
-                {
-                    //  ejecución del servicio.
-                    if (wServiceConfiguration.TransactionalBehaviour == Fwk.Transaction.TransactionalBehaviour.Suppres)
-                        wResult = FacadeHelper.RunNonTransactionalProcess(pRequest, wServiceConfiguration);
-                    else
-                        wResult = FacadeHelper.RunTransactionalProcess(pRequest, wServiceConfiguration);
+            // Validación de disponibilidad del servicio.
+            FacadeHelper.ValidateAvailability(wServiceConfiguration, out wResult);
+            if (wResult != null)
+                if (wResult.Error != null) return wResult;
 
-                    
-                }
+            // Caching del servicio.
+            if (req.CacheSettings != null && req.CacheSettings.CacheOnServerSide) //--------->>> Implement the cache factory
+            {
 
-                
-                return wResult;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //    //throw ExceptionHelper.ProcessException(ex);
-            //}
+                wResult = GetCaheDataById(req, wServiceConfiguration);
+                if (wResult != null) wExecuteOndispatcher = false;
+
+            }
+            // Realiza la ejecucion del servicio
+            if (wExecuteOndispatcher)
+            {
+                //  ejecución del servicio.
+                if (wServiceConfiguration.TransactionalBehaviour == Fwk.Transaction.TransactionalBehaviour.Suppres)
+                    wResult = FacadeHelper.RunNonTransactionalProcess(pRequest, wServiceConfiguration);
+                else
+                    wResult = FacadeHelper.RunTransactionalProcess(pRequest, wServiceConfiguration);
+
+
+            }
+
+            return wResult;
+        }    
            
-        }
+        
    
      
         /// <summary>
@@ -120,42 +119,36 @@ namespace Fwk.BusinessFacades
         public string ExecuteService(string providerName, string serviceName, string pXmlRequest)
         {
             string wResult;
-            //try
-            //{
-                ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,serviceName);
-                
-                IServiceContract wRequest = (IServiceContract)ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
-                if (wRequest == null)
-                {
-                    TechnicalException te = new TechnicalException(string.Concat("El despachador de servicio no pudo continuar debido\r\na que no construir el requets del servicio: ",
-                        serviceName, "\r\nVerifique que se encuentre los componentes necesarios para su ejecucion esten en el servidor de aplicación. " ));
 
-                    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
-                    te.Assembly = this.GetType().Assembly.FullName;
-                    te.Source = this.GetType().Assembly.FullName;
-                    te.Class = "SimpleFacade";
-                    te.Namespace = "Fwk.BusinessFacades";
-                    te.Machine = Environment.MachineName;
-                    if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
-                        te.Source = "Despachador de servicios en " + Environment.MachineName;
-                    else
-                        te.Source = ConfigurationsHelper.HostApplicationName;
+            ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName, serviceName);
 
-                    te.ErrorId = "7003";
-                    throw te;
-                }
-                wRequest.SetXml(pXmlRequest);
+            IServiceContract wRequest = (IServiceContract)ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
+            if (wRequest == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("El despachador de servicio no pudo continuar debido\r\na que no construir el requets del servicio: ",
+                    serviceName, "\r\nVerifique que se encuentre los componentes necesarios para su ejecucion esten en el servidor de aplicación. "));
 
-                wResult = ExecuteService(providerName,wRequest).GetXml();
-                
-                return wResult;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //    //throw ExceptionHelper.ProcessException(ex);
-            //}
-            
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
+                te.Assembly = this.GetType().Assembly.FullName;
+                te.Source = this.GetType().Assembly.FullName;
+                te.Class = "SimpleFacade";
+                te.Namespace = "Fwk.BusinessFacades";
+                te.Machine = Environment.MachineName;
+                if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
+                    te.Source = "Despachador de servicios en " + Environment.MachineName;
+                else
+                    te.Source = ConfigurationsHelper.HostApplicationName;
+
+                te.ErrorId = "7003";
+                throw te;
+            }
+            wRequest.SetXml(pXmlRequest);
+
+            wResult = ExecuteService(providerName, wRequest).GetXml();
+
+            return wResult;
+
+
         }
 
 

@@ -117,6 +117,7 @@ namespace Fwk.Bases
 	{
         string _SecurityProviderName;
 
+   
 
         /// <summary>
         /// Nombre del proveedor deseguridad

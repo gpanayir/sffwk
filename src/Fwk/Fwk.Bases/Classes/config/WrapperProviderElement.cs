@@ -96,6 +96,7 @@ namespace Fwk.ConfigSection
                 return (string)this["appId"];
             }
         }
+
         
         
 
