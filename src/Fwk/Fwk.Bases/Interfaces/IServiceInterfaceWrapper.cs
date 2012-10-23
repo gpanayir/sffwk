@@ -30,7 +30,10 @@ namespace Fwk.Bases
         /// </summary>
         string ServiceMetadataProviderName { get; set; }
 
-      
+        /// <summary>
+        /// 
+        /// </summary>
+        string DefaultCulture { get; set; }
 
         /// <summary>
         /// identificador de aplicacion

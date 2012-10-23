@@ -73,8 +73,8 @@ namespace Fwk.BusinessFacades
 
             
             req.ContextInformation.SetProviderName(providerName);
-            if (String.IsNullOrEmpty(req.ContextInformation.DefaultCulture))
-                req.ContextInformation.DefaultCulture = FacadeHelper.GetProviderInfo(providerName).DefaultCulture;
+            //if (String.IsNullOrEmpty(req.ContextInformation.DefaultCulture))
+            //    req.ContextInformation.DefaultCulture = FacadeHelper.GetProviderInfo(providerName).DefaultCulture;
 
             // Validación de disponibilidad del servicio.
             FacadeHelper.ValidateAvailability(wServiceConfiguration, out wResult);

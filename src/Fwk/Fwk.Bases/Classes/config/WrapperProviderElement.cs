@@ -97,9 +97,23 @@ namespace Fwk.ConfigSection
             }
         }
 
-        
-        
 
+
+        /// <summary>
+        ///Cultura por defecto en la que se ejecutan los servicios. Util para definir archivos de configuracion determinados para un lenguage enpesífico
+        ///Valores posibles: 
+        ///Puede ser cualquier nombre standar para definir la cultura
+        ///
+        /// </summary>
+        [ConfigurationProperty("defaultCulture", IsRequired = false, IsKey = false), StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        public string DefaultCulture
+        {
+            get
+            {
+                return (string)this["defaultCulture"];
+            }
+            set { this["defaultCulture"] = value; }
+        }
        
         #endregion
     }

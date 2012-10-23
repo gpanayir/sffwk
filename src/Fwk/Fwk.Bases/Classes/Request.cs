@@ -159,7 +159,7 @@ namespace Fwk.Bases
         /// The parameter is incorrect. (Exception from HRESULT: 0x80070057 (E_INVALIDARG))
         /// Se debe a un error que lanza una llamada asincrona en modo debug
         /// </summary>
-        /// <param name="req">Datos de entrada para la  ejecución del servicio.</param>
+        /// <param name="pRequest">Datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Dataset con datos de respuesta del servicio.</returns>
         /// <date>2007-08-24T00:00:00</date>
         /// <author>moviedo</author>
@@ -194,7 +194,9 @@ namespace Fwk.Bases
        
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlInclude(typeof(DummyContract)), Serializable]
     public class DummyContract:Entity
     { 

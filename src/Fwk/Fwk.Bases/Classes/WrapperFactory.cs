@@ -67,6 +67,7 @@ namespace Fwk.Bases
                     w.SourceInfo = provider.SourceInfo;
                     w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
                     w.AppId = provider.AppId;
+                    w.DefaultCulture = provider.DefaultCulture;
                     if (provider.Name.Equals(_ProviderSection.DefaultProviderName))
                         _WraperPepository.Add(String.Empty, w);
                     else
@@ -119,6 +120,8 @@ namespace Fwk.Bases
                 if (string.IsNullOrEmpty(req.ContextInformation.AppId))
                     req.ContextInformation.AppId = _WraperPepository[providerName].AppId;
 
+                if (String.IsNullOrEmpty(req.ContextInformation.DefaultCulture))
+                    req.ContextInformation.DefaultCulture = _WraperPepository[providerName].DefaultCulture;
 
                 #region Caching del servicio.
                 if (req.CacheSettings != null && req.CacheSettings.CacheOnClientSide) //--------------------------------------->>> Implement the cache factory
@@ -234,6 +237,8 @@ namespace Fwk.Bases
                     w.SourceInfo = provider.SourceInfo;
                     w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
                     w.AppId = provider.AppId;
+                    w.DefaultCulture = provider.DefaultCulture;
+                    
                     _WraperPepository.Add(providerName, w);
 
 
