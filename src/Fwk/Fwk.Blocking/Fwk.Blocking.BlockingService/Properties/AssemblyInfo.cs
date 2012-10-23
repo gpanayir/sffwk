@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("Fwk.Blocking.BlockingService")]
-[assembly: AssemblyDescription("")]
+
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 

@@ -91,7 +91,22 @@ namespace Fwk.ConfigSection
             }
             set { this["securityProviderName"] = value; }
         }
-        
+
+        /// <summary>
+        ///Cultura por defecto en la que se ejecutan los servicios. Util para definir archivos de configuracion determinados para un lenguage enpesífico
+        ///Valores posibles: 
+        ///Puede ser cualquier nombre standar para definir la cultura
+        ///
+        /// </summary>
+        [ConfigurationProperty("defaultCulture", IsRequired = false, IsKey = false), StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        public string DefaultCulture
+        {
+            get
+            {
+                return (string)this["defaultCulture"];
+            }
+            set { this["defaultCulture"] = value; }
+        }
         public override bool IsReadOnly()
         {
             return false;
@@ -160,7 +175,20 @@ namespace Fwk.ConfigSection
         /// </summary>
         public MetadataProvider()
         { }
+        string _DefaultCulture= string.Empty;
 
+
+        /// <summary>
+        /// Reprecenta la cultura con la que trabajara el proveedor de configurador de servicios .- Este valor es utilizado y esta disponible 
+        /// en cada servicio desde la capa SVC hacia abajo 
+        /// 
+        /// Estas son las formas de poder obtenerlo en las capas BackEnd:
+        /// 
+        /// string cultura = Fwk.ServiceManagement.ServiceMetadata.ProviderSection.GetProvider(providerName).DefaultCulture;
+        /// string cultura = pServiceRequest.ContextInformation.DefaultCulture;
+        /// 
+        /// </summary>
+        public string DefaultCulture { get {return _DefaultCulture;} }
         /// <summary>
         /// 
         /// </summary>
@@ -172,6 +200,7 @@ namespace Fwk.ConfigSection
             _Name = provider.Name;
             _SourceInfo = provider.SourceInfo;
             _SecurityProviderName = provider.SecurityProviderName;
+            _DefaultCulture = provider.DefaultCulture;
         }
     }
 }
