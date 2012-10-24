@@ -92,7 +92,11 @@ namespace Fwk.Configuration
 
         }
 
-        public void ChangeProvider(string providerName)
+        /// <summary>
+        /// Permite establecer el proveedor de configuración por defecto sin importar al proveedor por defecto configurado en el app config
+        /// </summary>
+        /// <param name="providerName"></param>
+        public static void ChangeProvider(string providerName)
         {
             _DefaultProvider = _ConfigProvider.GetProvider(providerName);
         }

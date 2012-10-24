@@ -106,15 +106,15 @@ namespace Fwk.ConfigSection
         ///
         /// </summary>
         //[ConfigurationProperty("defaultCulture", IsRequired = false, IsKey = false), StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
-        public string DefaultCulture
-        {
-            get
-            {
-                return defaultCulture;
-            }
-            set { defaultCulture = value; }
-        }
-        string defaultCulture;
+        //public string DefaultCulture
+        //{
+        //    get
+        //    {
+        //        return defaultCulture;
+        //    }
+        //    set { defaultCulture = value; }
+        //}
+        //string defaultCulture;
         #endregion
     }
 }
