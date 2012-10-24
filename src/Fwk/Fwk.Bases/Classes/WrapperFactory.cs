@@ -151,7 +151,7 @@ namespace Fwk.Bases
                     req.ContextInformation.AppId = _WraperPepository[providerName].AppId;
 
                 if (String.IsNullOrEmpty(req.ContextInformation.DefaultCulture))
-                    req.ContextInformation.DefaultCulture = _WraperPepository[providerName].DefaultCulture;
+                    req.ContextInformation.DefaultCulture = _WraperPepository[providerName].ConfigProviderNameWithCultureInfo;
 
                 #region Caching del servicio.
                 if (req.CacheSettings != null && req.CacheSettings.CacheOnClientSide) //--------------------------------------->>> Implement the cache factory

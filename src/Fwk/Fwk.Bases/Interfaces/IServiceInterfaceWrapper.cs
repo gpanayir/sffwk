@@ -33,7 +33,7 @@ namespace Fwk.Bases
         /// <summary>
         /// 
         /// </summary>
-        string DefaultCulture { get; set; }
+        string ConfigProviderNameWithCultureInfo { get; set; }
 
         /// <summary>
         /// identificador de aplicacion
