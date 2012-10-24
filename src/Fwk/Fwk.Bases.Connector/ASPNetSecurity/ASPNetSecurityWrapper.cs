@@ -58,7 +58,16 @@ namespace Fwk.Bases.Connector
             set { _AppId = value; }
         }
 
-    
+        string _DefaultCulture = string.Empty;
+
+        /// <summary>
+        /// DefaultCulture de empresa
+        /// </summary>
+        public string DefaultCulture
+        {
+            get { return _DefaultCulture; }
+            set { _DefaultCulture = value; }
+        }
 		#region IServiceInterfaceWrapper Members 
         ICredentials _Credentials;
         /// <summary>

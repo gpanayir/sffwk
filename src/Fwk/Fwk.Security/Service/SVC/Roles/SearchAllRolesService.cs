@@ -24,9 +24,9 @@ namespace Fwk.Security.SVC
              wRes.BusinessData = new Result();
 
             if(string.IsNullOrEmpty( pServiceRequest.BusinessData.UserName))
-                wRes.BusinessData.RolList = FwkMembership.GetAllRoles(pServiceRequest.SecurityProviderName);
+                wRes.BusinessData.RolList = FwkMembership.GetAllRoles_FullInfo(pServiceRequest.SecurityProviderName);
             else
-                wRes.BusinessData.RolList = FwkMembership.GetRolesForUser(pServiceRequest.BusinessData.UserName, pServiceRequest.SecurityProviderName);
+                wRes.BusinessData.RolList = FwkMembership.GetAllRoles_FullInfo(pServiceRequest.BusinessData.UserName, pServiceRequest.SecurityProviderName);
 
 
 
