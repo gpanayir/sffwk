@@ -92,6 +92,11 @@ namespace Fwk.Configuration
 
         }
 
+        public void ChangeProvider(string providerName)
+        {
+            _DefaultProvider = _ConfigProvider.GetProvider(providerName);
+        }
+ 
         
         /// <summary>
         /// Obtiene una propiedad determinada de un archivo de configuracion Usa proveedor de confuiguraciones establecido por defecto.-
