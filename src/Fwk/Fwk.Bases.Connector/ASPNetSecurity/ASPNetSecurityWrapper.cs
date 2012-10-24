@@ -63,7 +63,7 @@ namespace Fwk.Bases.Connector
         /// <summary>
         /// DefaultCulture de empresa
         /// </summary>
-        public string DefaultCulture
+        public string ConfigProviderNameWithCultureInfo
         {
             get { return _DefaultCulture; }
             set { _DefaultCulture = value; }
