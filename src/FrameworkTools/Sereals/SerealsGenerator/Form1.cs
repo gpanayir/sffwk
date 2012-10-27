@@ -93,7 +93,7 @@ namespace SerealsGenerator
         {
             DateTime f  = dateTimePicker1.Value;
 
-            txtValueToEncrypt.Text = string.Concat(f.Day,"|",f.Month,"|",f.Year);
+            txtDate.Text = string.Concat(f.Day,"|",f.Month,"|",f.Year);
         }
 
          void init()
@@ -161,7 +161,7 @@ namespace SerealsGenerator
         {
             DateTime f = dateTimePicker1.Value;
 
-            txtValueToEncrypt.Text = string.Concat(f.Day, "|", f.Month, "|", f.Year);
+            txtDate.Text = string.Concat(f.Day, "|", f.Month, "|", f.Year);
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -47,10 +47,9 @@
             this.label9 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnEncrypt = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtEncryptedValue = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtValueToEncrypt = new System.Windows.Forms.TextBox();
+            this.txtDate = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtKeyValue = new System.Windows.Forms.TextBox();
             this.btnGenerateKey = new System.Windows.Forms.Button();
@@ -61,7 +60,7 @@
             this.chkDrivers0 = new System.Windows.Forms.CheckBox();
             this.chlDateTime = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtNroSerie = new System.Windows.Forms.TextBox();
             this.txtKey_1 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
@@ -217,17 +216,16 @@
             this.tabPage2.Controls.Add(this.chkDrivers0);
             this.tabPage2.Controls.Add(this.chlDateTime);
             this.tabPage2.Controls.Add(this.label14);
-            this.tabPage2.Controls.Add(this.textBox3);
+            this.tabPage2.Controls.Add(this.txtNroSerie);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.dateTimePicker1);
             this.tabPage2.Controls.Add(this.btnEncrypt);
-            this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.txtEncryptedValue);
             this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.txtValueToEncrypt);
+            this.tabPage2.Controls.Add(this.txtDate);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.txtKeyValue);
             this.tabPage2.Controls.Add(this.btnGenerateKey);
@@ -260,7 +258,7 @@
             // 
             // btnEncrypt
             // 
-            this.btnEncrypt.Location = new System.Drawing.Point(26, 351);
+            this.btnEncrypt.Location = new System.Drawing.Point(145, 325);
             this.btnEncrypt.Name = "btnEncrypt";
             this.btnEncrypt.Size = new System.Drawing.Size(83, 27);
             this.btnEncrypt.TabIndex = 9;
@@ -268,22 +266,12 @@
             this.btnEncrypt.UseVisualStyleBackColor = true;
             this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label5.Location = new System.Drawing.Point(23, 381);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 17);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Encrypted";
-            // 
             // txtEncryptedValue
             // 
-            this.txtEncryptedValue.Location = new System.Drawing.Point(26, 401);
+            this.txtEncryptedValue.Location = new System.Drawing.Point(26, 358);
+            this.txtEncryptedValue.Multiline = true;
             this.txtEncryptedValue.Name = "txtEncryptedValue";
-            this.txtEncryptedValue.Size = new System.Drawing.Size(574, 22);
+            this.txtEncryptedValue.Size = new System.Drawing.Size(695, 65);
             this.txtEncryptedValue.TabIndex = 7;
             // 
             // label4
@@ -297,13 +285,13 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Imput --> value to encrypt";
             // 
-            // txtValueToEncrypt
+            // txtDate
             // 
-            this.txtValueToEncrypt.Location = new System.Drawing.Point(89, 208);
-            this.txtValueToEncrypt.Name = "txtValueToEncrypt";
-            this.txtValueToEncrypt.Size = new System.Drawing.Size(574, 22);
-            this.txtValueToEncrypt.TabIndex = 5;
-            this.txtValueToEncrypt.Text = "31|12|9999";
+            this.txtDate.Location = new System.Drawing.Point(89, 208);
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(574, 22);
+            this.txtDate.TabIndex = 5;
+            this.txtDate.Text = "31|12|9999";
             // 
             // label3
             // 
@@ -411,13 +399,13 @@
             this.label14.TabIndex = 28;
             this.label14.Text = "Drive 0 Sereial Number";
             // 
-            // textBox3
+            // txtNroSerie
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(80, 261);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(574, 22);
-            this.textBox3.TabIndex = 27;
+            this.txtNroSerie.Enabled = false;
+            this.txtNroSerie.Location = new System.Drawing.Point(80, 261);
+            this.txtNroSerie.Name = "txtNroSerie";
+            this.txtNroSerie.Size = new System.Drawing.Size(574, 22);
+            this.txtNroSerie.TabIndex = 27;
             // 
             // txtKey_1
             // 
@@ -429,7 +417,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(26, 179);
+            this.button2.Location = new System.Drawing.Point(26, 212);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(83, 27);
             this.button2.TabIndex = 23;
@@ -442,7 +430,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label15.Location = new System.Drawing.Point(6, 219);
+            this.label15.Location = new System.Drawing.Point(6, 252);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(209, 17);
             this.label15.TabIndex = 25;
@@ -451,8 +439,9 @@
             // txtEncriptedValue_1
             // 
             this.txtEncriptedValue_1.Location = new System.Drawing.Point(22, 125);
+            this.txtEncriptedValue_1.Multiline = true;
             this.txtEncriptedValue_1.Name = "txtEncriptedValue_1";
-            this.txtEncriptedValue_1.Size = new System.Drawing.Size(666, 22);
+            this.txtEncriptedValue_1.Size = new System.Drawing.Size(666, 48);
             this.txtEncriptedValue_1.TabIndex = 24;
             // 
             // label16
@@ -468,9 +457,10 @@
             // 
             // txtResultDecrypt
             // 
-            this.txtResultDecrypt.Location = new System.Drawing.Point(26, 253);
+            this.txtResultDecrypt.Location = new System.Drawing.Point(26, 286);
+            this.txtResultDecrypt.Multiline = true;
             this.txtResultDecrypt.Name = "txtResultDecrypt";
-            this.txtResultDecrypt.Size = new System.Drawing.Size(574, 22);
+            this.txtResultDecrypt.Size = new System.Drawing.Size(676, 74);
             this.txtResultDecrypt.TabIndex = 26;
             // 
             // label10
@@ -522,10 +512,9 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnEncrypt;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtEncryptedValue;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtValueToEncrypt;
+        private System.Windows.Forms.TextBox txtDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtKeyValue;
         private System.Windows.Forms.Button btnGenerateKey;
@@ -545,7 +534,7 @@
         private System.Windows.Forms.CheckBox chkDrivers0;
         private System.Windows.Forms.CheckBox chlDateTime;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtNroSerie;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtResultDecrypt;
