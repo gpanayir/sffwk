@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using Sereals;
 using System.Management;
 using Fwk.Bases;
+using Fwk.Security.Cryptography;
 
 namespace SerealsGenerator
 {
@@ -40,11 +41,35 @@ namespace SerealsGenerator
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtKeyValue.Text))
-            { MessageBox.Show("Generate encryptation key"); txtKeyValue.Focus(); return; }
+            {
+                MessageBox.Show("Generate encryptation key");
+                txtKeyValue.Focus(); return;
+            }
             try
             {
                 Fwk.Security.Cryptography.FwkSymetricAlg gen = new Fwk.Security.Cryptography.FwkSymetricAlg(txtKeyValue.Text);
-                txtEncryptedValue.Text = gen.Encrypt(txtValueToEncrypt.Text);
+
+                if (!chkDrivers0.Checked && !chlDateTime.Checked)
+                {
+                    MessageBox.Show("Seleccione almenos un tipo de entrada");
+                    return;
+                }
+                if (chkDrivers0.Checked && chlDateTime.Checked)
+                {
+                    txtEncryptedValue.Text = gen.Encrypt(string.Concat(txtNroSerie.Text.Trim(), "$", txtDate.Text.Trim()));
+                    return;
+                }
+                if (chkDrivers0.Checked)
+                {
+                    txtEncryptedValue.Text = gen.Encrypt(txtNroSerie.Text.Trim());
+                    return;
+                }
+                if (chlDateTime.Checked)
+                {
+                    txtEncryptedValue.Text = gen.Encrypt(txtDate.Text.Trim());
+                    return;
+                }
+
             }
             catch (Exception ex)
             {
@@ -137,6 +162,21 @@ namespace SerealsGenerator
             DateTime f = dateTimePicker1.Value;
 
             txtValueToEncrypt.Text = string.Concat(f.Day, "|", f.Month, "|", f.Year);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                FwkSymetricAlg a = new FwkSymetricAlg(txtKey_1.Text);
+
+                txtResultDecrypt.Text = a.Dencrypt(txtEncriptedValue_1.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
        
 

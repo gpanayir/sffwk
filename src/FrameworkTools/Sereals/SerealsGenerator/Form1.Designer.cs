@@ -55,8 +55,20 @@
             this.txtKeyValue = new System.Windows.Forms.TextBox();
             this.btnGenerateKey = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.chkDrivers0 = new System.Windows.Forms.CheckBox();
+            this.chlDateTime = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtKey_1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtEncriptedValue_1 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtResultDecrypt = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtNroSerie = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -115,7 +127,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(774, 416);
+            this.tabControl1.Size = new System.Drawing.Size(774, 474);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -202,6 +214,13 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.chkDrivers0);
+            this.tabPage2.Controls.Add(this.chlDateTime);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.textBox3);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.dateTimePicker1);
             this.tabPage2.Controls.Add(this.btnEncrypt);
@@ -215,7 +234,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(766, 387);
+            this.tabPage2.Size = new System.Drawing.Size(766, 445);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Encrypt";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -225,7 +244,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label9.Location = new System.Drawing.Point(19, 88);
+            this.label9.Location = new System.Drawing.Point(88, 141);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(79, 17);
             this.label9.TabIndex = 18;
@@ -233,7 +252,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(121, 88);
+            this.dateTimePicker1.Location = new System.Drawing.Point(190, 141);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 17;
@@ -241,11 +260,11 @@
             // 
             // btnEncrypt
             // 
-            this.btnEncrypt.Location = new System.Drawing.Point(17, 324);
+            this.btnEncrypt.Location = new System.Drawing.Point(26, 351);
             this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(130, 35);
+            this.btnEncrypt.Size = new System.Drawing.Size(83, 27);
             this.btnEncrypt.TabIndex = 9;
-            this.btnEncrypt.Text = "Generate Key";
+            this.btnEncrypt.Text = "Encrypt";
             this.btnEncrypt.UseVisualStyleBackColor = true;
             this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
@@ -254,7 +273,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label5.Location = new System.Drawing.Point(14, 237);
+            this.label5.Location = new System.Drawing.Point(23, 381);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 17);
             this.label5.TabIndex = 8;
@@ -262,7 +281,7 @@
             // 
             // txtEncryptedValue
             // 
-            this.txtEncryptedValue.Location = new System.Drawing.Point(17, 257);
+            this.txtEncryptedValue.Location = new System.Drawing.Point(26, 401);
             this.txtEncryptedValue.Name = "txtEncryptedValue";
             this.txtEncryptedValue.Size = new System.Drawing.Size(574, 22);
             this.txtEncryptedValue.TabIndex = 7;
@@ -272,7 +291,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label4.Location = new System.Drawing.Point(14, 160);
+            this.label4.Location = new System.Drawing.Point(86, 188);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(195, 17);
             this.label4.TabIndex = 6;
@@ -280,7 +299,7 @@
             // 
             // txtValueToEncrypt
             // 
-            this.txtValueToEncrypt.Location = new System.Drawing.Point(17, 180);
+            this.txtValueToEncrypt.Location = new System.Drawing.Point(89, 208);
             this.txtValueToEncrypt.Name = "txtValueToEncrypt";
             this.txtValueToEncrypt.Size = new System.Drawing.Size(574, 22);
             this.txtValueToEncrypt.TabIndex = 5;
@@ -289,7 +308,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(150, 13);
+            this.label3.Location = new System.Drawing.Point(144, 45);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 17);
             this.label3.TabIndex = 4;
@@ -297,7 +316,7 @@
             // 
             // txtKeyValue
             // 
-            this.txtKeyValue.Location = new System.Drawing.Point(153, 33);
+            this.txtKeyValue.Location = new System.Drawing.Point(147, 65);
             this.txtKeyValue.Name = "txtKeyValue";
             this.txtKeyValue.Size = new System.Drawing.Size(574, 22);
             this.txtKeyValue.TabIndex = 3;
@@ -305,9 +324,9 @@
             // 
             // btnGenerateKey
             // 
-            this.btnGenerateKey.Location = new System.Drawing.Point(6, 20);
+            this.btnGenerateKey.Location = new System.Drawing.Point(12, 56);
             this.btnGenerateKey.Name = "btnGenerateKey";
-            this.btnGenerateKey.Size = new System.Drawing.Size(130, 35);
+            this.btnGenerateKey.Size = new System.Drawing.Size(122, 27);
             this.btnGenerateKey.TabIndex = 0;
             this.btnGenerateKey.Text = "Generate Key";
             this.btnGenerateKey.UseVisualStyleBackColor = true;
@@ -316,36 +335,160 @@
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.label10);
-            this.tabPage4.Controls.Add(this.txtNroSerie);
+            this.tabPage4.Controls.Add(this.label16);
+            this.tabPage4.Controls.Add(this.txtResultDecrypt);
+            this.tabPage4.Controls.Add(this.label15);
+            this.tabPage4.Controls.Add(this.txtEncriptedValue_1);
+            this.tabPage4.Controls.Add(this.button2);
+            this.tabPage4.Controls.Add(this.txtKey_1);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(766, 387);
+            this.tabPage4.Size = new System.Drawing.Size(766, 445);
             this.tabPage4.TabIndex = 4;
-            this.tabPage4.Text = "Hardware Values";
+            this.tabPage4.Text = "Expiration time Decript";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.DimGray;
+            this.label11.Location = new System.Drawing.Point(8, 325);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(89, 17);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "3 - Encript ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.DimGray;
+            this.label12.Location = new System.Drawing.Point(6, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(222, 17);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "1 - Generate encriptation key";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.DimGray;
+            this.label13.Location = new System.Drawing.Point(3, 110);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(244, 17);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "2 - Set the the values to encript ";
+            // 
+            // chkDrivers0
+            // 
+            this.chkDrivers0.AutoSize = true;
+            this.chkDrivers0.Location = new System.Drawing.Point(52, 261);
+            this.chkDrivers0.Name = "chkDrivers0";
+            this.chkDrivers0.Size = new System.Drawing.Size(18, 17);
+            this.chkDrivers0.TabIndex = 30;
+            this.chkDrivers0.UseVisualStyleBackColor = true;
+            // 
+            // chlDateTime
+            // 
+            this.chlDateTime.AutoSize = true;
+            this.chlDateTime.Checked = true;
+            this.chlDateTime.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chlDateTime.Location = new System.Drawing.Point(52, 211);
+            this.chlDateTime.Name = "chlDateTime";
+            this.chlDateTime.Size = new System.Drawing.Size(18, 17);
+            this.chlDateTime.TabIndex = 29;
+            this.chlDateTime.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(77, 241);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(155, 17);
+            this.label14.TabIndex = 28;
+            this.label14.Text = "Drive 0 Sereial Number";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Enabled = false;
+            this.textBox3.Location = new System.Drawing.Point(80, 261);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(574, 22);
+            this.textBox3.TabIndex = 27;
+            // 
+            // txtKey_1
+            // 
+            this.txtKey_1.Location = new System.Drawing.Point(26, 61);
+            this.txtKey_1.Name = "txtKey_1";
+            this.txtKey_1.Size = new System.Drawing.Size(647, 22);
+            this.txtKey_1.TabIndex = 5;
+            this.txtKey_1.Text = "7gp6CZ+Y8BZULbjOOkT86vi8HnrtyaIQ6WiLhdY48jY=$PbUiRifcU1q8Egl96hC7tw==";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(26, 179);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(83, 27);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Decrypt";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label15.Location = new System.Drawing.Point(6, 219);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(209, 17);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "3 - Result dencrypted value";
+            // 
+            // txtEncriptedValue_1
+            // 
+            this.txtEncriptedValue_1.Location = new System.Drawing.Point(22, 125);
+            this.txtEncriptedValue_1.Name = "txtEncriptedValue_1";
+            this.txtEncriptedValue_1.Size = new System.Drawing.Size(666, 22);
+            this.txtEncriptedValue_1.TabIndex = 24;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label16.Location = new System.Drawing.Point(3, 105);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(191, 17);
+            this.label16.TabIndex = 27;
+            this.label16.Text = "2 - Input Encrypted value";
+            // 
+            // txtResultDecrypt
+            // 
+            this.txtResultDecrypt.Location = new System.Drawing.Point(26, 253);
+            this.txtResultDecrypt.Name = "txtResultDecrypt";
+            this.txtResultDecrypt.Size = new System.Drawing.Size(574, 22);
+            this.txtResultDecrypt.TabIndex = 26;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(40, 33);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label10.Location = new System.Drawing.Point(10, 30);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(155, 17);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Drive 0 Sereial Number";
-            // 
-            // txtNroSerie
-            // 
-            this.txtNroSerie.Location = new System.Drawing.Point(43, 53);
-            this.txtNroSerie.Name = "txtNroSerie";
-            this.txtNroSerie.Size = new System.Drawing.Size(574, 22);
-            this.txtNroSerie.TabIndex = 3;
+            this.label10.Size = new System.Drawing.Size(99, 17);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "1 - Input key";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(811, 450);
+            this.ClientSize = new System.Drawing.Size(811, 498);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -396,8 +539,20 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox chkDrivers0;
+        private System.Windows.Forms.CheckBox chlDateTime;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtNroSerie;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtResultDecrypt;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtEncriptedValue_1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtKey_1;
     }
 }
 
