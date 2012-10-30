@@ -88,6 +88,12 @@
     <Compile Include="frmEntityFromXmlWhitAttributes.Designer.cs">
       <DependentUpon>frmEntityFromXmlWhitAttributes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmException.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmException.Designer.cs">
+      <DependentUpon>frmException.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmHelperFunctions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     <EmbeddedResource Include="frmEntityFromXmlWhitAttributes.resx">
       <DependentUpon>frmEntityFromXmlWhitAttributes.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmException.resx">
+      <DependentUpon>frmException.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmHelperFunctions.resx">
       <DependentUpon>frmHelperFunctions.cs</DependentUpon>
@@ -223,7 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConfigurationManager.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GetColaboratorDataByParamsResponse.xml" />
     <Content Include="XmlWhitAttributes.xml">
