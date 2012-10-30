@@ -358,7 +358,11 @@ namespace Fwk.BusinessFacades.Utils
         /// <param name="pException"></param>
         static void FillServiceError(ServiceError pServiceError, Exception pException)
         {
-            pServiceError.Type = ExceptionHelper.GetFwkExceptionTypesName(pException);
+            if (ExceptionHelper.GetFwkExceptionTypes(pException) != FwkExceptionTypes.OtherException)
+                pServiceError.Type = ExceptionHelper.GetFwkExceptionTypesName(pException);
+            else
+                pServiceError.Type = pException.GetType().Name;
+
             pServiceError.UserName = Environment.UserName;
             pServiceError.Machine = Environment.MachineName;
             if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
