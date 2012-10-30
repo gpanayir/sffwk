@@ -148,15 +148,17 @@ namespace Fwk.Exceptions
         {
             _Message = pMessage;
         }
+      
         /// <summary>
-        /// FunctionalException.
+        /// Excepcion funcional.
         /// </summary>
-        /// <param name="pMessage"></param>
-        public FunctionalException(int? errorId, string pMessage)
+        /// <param name="errorId">Numero identificador del error</param>
+        /// <param name="message">Mensaje</param>
+        public FunctionalException(int? errorId, string message)
         {
             if (errorId != null)
                 _ErrorId = errorId.ToString();
-            _Message = pMessage;
+            _Message = message;
         }
 
         /// <summary>
@@ -170,10 +172,10 @@ namespace Fwk.Exceptions
         }
 
         /// <summary>
-        /// Excepcion funcional.
+        /// Excepcion funcional lee del configuration mannager por defecto o Configuration Mannager Provider espesificado en el atributo ConfigProviderName
         /// Ej:
-        /// throw new FunctionalException(1000,"SaldoInsuficiente","SaldoCliente")
-        /// throw new FunctionalException(null,"SaldoInsuficiente","SaldoCliente")
+        /// throw new FunctionalException(1000,"SaldoInsuficiente",new String["Alan Parker","50098,65"])
+        /// throw new FunctionalException(null,"SaldoInsuficiente",new String["Alan Parker","50098,65"])
         /// </summary>
         /// <param name="errorId">Id. del error del</param>
         /// <param name="keyExceptionName">Id. del mensaje en el Configuration Manager</param>
@@ -187,28 +189,13 @@ namespace Fwk.Exceptions
             _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
             SetMessage();
         }
-        ///// <summary>
-        ///// Excepcion funcional.
-        ///// Ej:
-        ///// throw new FunctionalException("SaldoInsuficiente","SaldoCliente")
-        ///// </summary>
-        ///// <param name="keyExceptionName">Id. del mensaje en el Configuration Manager</param>
-        ///// <param name="pparams">Parametros a incluir en el mensaje de error. Reemplaza todos los {} deacuerdo al orden especificado</param>
-        //public FunctionalException(string keyExceptionName, params string[] pparams)
-        //    //: this(keyExceptionName, null, pparams)
-        //{
-        //    _KeyExceptionName = keyExceptionName;
-        //    _ParamsArray = pparams;
-        //    _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
-        //    SetMessage();
-        //}
-
+       
         /// <summary>
-        /// Excepcion funcional.
-        /// throw new FunctionalException(70008,"SaldoInsuficiente","FunctionalExceptionGorup","SaldoCliente")
+        /// Excepcion funcional lee del configuration mannager por defecto o Configuration Mannager Provider espesificado en el atributo ConfigProviderName
+        /// throw new FunctionalException(70008,"SaldoInsuficiente","FunctionalExceptionGorup",new String["Alan Parker","50098,65"])
         /// </summary>
         /// <param name="errorId">Id del error funcional</param>
-        /// <param name="keyExceptionName">Id. del mensaje en el Configuration Manager</param>
+        /// <param name="keyExceptionName">Key o Id. del mensaje en el Configuration Manager</param>
         /// <param name="groupExceptionName">Nombre del grupo donde se encuentran los mensajes funcionales, 
         /// si este valor esta vacio se tomara uno por defecto llamadoFunctionalExceptionMessage
         /// </param>
@@ -228,127 +215,74 @@ namespace Fwk.Exceptions
 
         }
 
-        ///// <summary>
-        ///// Excepcion funcional.
-        ///// Ej:
-        ///// throw new FunctionalException("SaldoInsuficiente","FunctionalExceptionGorup","SaldoCliente")
-        ///// throw new FunctionalException("SaldoInsuficiente",String.Empty,"SaldoCliente")
-        ///// </summary>
-        ///// <param name="keyExceptionName">Id. del mensaje en el Configuration Manager</param>
-        ///// <param name="groupExceptionName">Nombre del grupo donde se encuentran los mensajes funcionales, 
-        ///// si este valor esta vacio se tomara uno por defecto llamadoFunctionalExceptionMessage
-        ///// </param>
-        ///// <param name="pparams">Parametros a incluir en el mensaje de error. Reemplaza todos los {} deacuerdo al orden especificado</param>
-        //public FunctionalException(string keyExceptionName, string groupExceptionName, params string[] pparams)
+        string _ConfigProviderName = string.Empty;
 
-        //{
-        //    _KeyExceptionName = keyExceptionName;
-        //    _ParamsArray = pparams;
-        //    if (groupExceptionName.Trim().Length == 0)
-        //        _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
-        //    else
-        //        _GroupExceptionName = groupExceptionName;
-
-        //    SetMessage();
-
-        //}
-        
-            /// <summary>
-        /// Excepcion funcional.
+        /// <summary>
+        /// En caso q la exepcion sea leida de un confiuguration mannager que no sea el default se es espesifica esta propiedad
         /// </summary>
+        public string ConfigProviderName
+        {
+            get { return _ConfigProviderName; }
+            set { _ConfigProviderName = value; }
+        }
+        
+        /// <summary>
+        /// Excepcion funcional lee del configuration mannager por defecto o Configuration Mannager Provider espesificado en el atributo ConfigProviderName
+        /// Ej:
+        /// throw new FunctionalException(70008,"SaldoInsuficiente",ex,new String["Alan Parker","50098,65"])
+        /// </summary>
+        /// 
         /// <param name="errorId">Id del error funcional</param>
         /// <param name="keyExceptionName">Id. del mensaje.</param>
-        /// <param name="pinner">Excepcion original.</param>
-        /// <param name="pparams">Parametros a incluir en el mensaje de error.</param>
-        public FunctionalException(int? errorId, string keyExceptionName, Exception pinner, params string[] pparams)
-            : base(String.Empty, pinner)
+        /// <param name="innerExcepcion">Excepcion original.</param>
+        /// <param name="pparams">Parametros a incluir en el mensaje de error. <example>new String["Param1","Param2"]</example></param>
+        public FunctionalException(int? errorId, string keyExceptionName, Exception innerExcepcion, params string[] pparams)
+            : base(String.Empty, innerExcepcion)
         {
             if (errorId != null)
                 _ErrorId = errorId.ToString();
             _KeyExceptionName = keyExceptionName;
             _ParamsArray = pparams;
-            mex_InternalException = pinner;
+            mex_InternalException = innerExcepcion;
             _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
             SetMessage();
         }
 
-        ///// <summary>
-        ///// Excepcion funcional.
-        ///// </summary>
-        ///// <param name="keyExceptionName">Id. del mensaje.</param>
-        ///// <param name="pinner">Excepcion original.</param>
-        ///// <param name="pparams">Parametros a incluir en el mensaje de error.</param>
-        //public FunctionalException(string keyExceptionName, Exception pinner, params string[] pparams)
-        //    : base(String.Empty, pinner)
-        //{
-        //    _KeyExceptionName = keyExceptionName;
-        //    _ParamsArray = pparams;
-        //    mex_InternalException = pinner;
-        //    _GroupExceptionName = Enum.GetName(typeof(FwkExceptionTypes), FwkExceptionTypes.FunctionalException) + "Message";
-        //    SetMessage();
-        //}
+  
 
         /// <summary>
-        /// Excepcion funcional.
+        /// Excepcion funcional lee del configuration mannager por defecto o Configuration Mannager Provider espesificado en el atributo ConfigProviderName
+        ///  throw new FunctionalException(70008,"SaldoInsuficiente",ex,"FunctionalExceptionGorup",new String["Alan Parker","50098,65"])
         /// </summary>
         /// <param name="errorId">Id del error funcional</param>
         /// <param name="keyExceptionName">Id. del mensaje.</param>
-        /// <param name="pinner">Excepcion original.</param>
+        /// <param name="innerExcepcion">Excepcion original.</param>
         /// <param name="groupExceptionName">Nombre del grupo donde obtener los mensajes. Por defecto es el grupo FunctionalExceptionMassage</param>
-        /// <param name="pparams">Parametros a incluir en el mensaje de error.</param>
-        public FunctionalException(int? errorId, string keyExceptionName, Exception pinner, String groupExceptionName, params string[] pparams)
-            : base(String.Empty, pinner)
+        /// <param name="pparams">Parametros a incluir en el mensaje de error.<example>new String["Param1","Param2"]</example></param>
+        public FunctionalException(int? errorId, string keyExceptionName, Exception innerExcepcion, String groupExceptionName, params string[] pparams)
+            : base(String.Empty, innerExcepcion)
         {
             if (errorId != null)
                 _ErrorId = errorId.ToString();
             _KeyExceptionName = keyExceptionName;
             _ParamsArray = pparams;
             _GroupExceptionName = groupExceptionName;
-            mex_InternalException = pinner;
+            mex_InternalException = innerExcepcion;
             SetMessage();
 
 
         }
 
-        ///// <summary>
-        ///// Excepcion funcional.
-        ///// </summary>
-        ///// <param name="keyExceptionName">Id. del mensaje.</param>
-        ///// <param name="pinner">Excepcion original.</param>
-        ///// <param name="groupExceptionName">Nombre del grupo donde obtener los mensajes. Por defecto es el grupo FunctionalExceptionMassage</param>
-        ///// <param name="pparams">Parametros a incluir en el mensaje de error.</param>
-        //public FunctionalException(string keyExceptionName, Exception pinner, String groupExceptionName, params string[] pparams)
-        //    : base(String.Empty, pinner)
-        //{
-
-        //    _KeyExceptionName = keyExceptionName;
-        //    _ParamsArray = pparams;
-        //    _GroupExceptionName = groupExceptionName;
-        //    mex_InternalException = pinner;
-        //    SetMessage();
-
-            
-        //}
-
-        ///// <summary>
-        ///// Excepcion funcional.
-        ///// </summary>
-        ///// <param name="pinner">Excepcion original.</param>
-        ///// <param name="pmessage">Mensaje de error.</param>
-        //public FunctionalException(Exception pinner, string pmessage): base(pmessage, pinner)
-        //{
-
-        //    _Message = pmessage;
-        //}
+     
 
         /// <summary>
         /// Excepcion funcional.
         /// </summary>
         /// <param name="errorId">Id del error funcional</param>
-        /// <param name="pinner">Excepcion original.</param>
+        /// <param name="innerExcepcion">Excepcion original.</param>
         /// <param name="pmessage">Mensaje de error.</param>
-        public FunctionalException(int? errorId, Exception pinner, string pmessage)
-            : base(pmessage, pinner)
+        public FunctionalException(int? errorId, Exception innerExcepcion, string pmessage)
+            : base(pmessage, innerExcepcion)
         {
             if (errorId != null)
                 _ErrorId = errorId.ToString();
@@ -385,7 +319,7 @@ namespace Fwk.Exceptions
                 // Obtiene el mensaje del Configuration Manager.
                 try
                 {
-                    wMessage = ConfigurationManager.GetProperty(_GroupExceptionName, _KeyExceptionName);
+                    wMessage = ConfigurationManager.GetProperty(_ConfigProviderName, _GroupExceptionName, _KeyExceptionName);
                 }
                 catch (Exception ex)
                 {
@@ -399,8 +333,8 @@ namespace Fwk.Exceptions
                     _ErrorId = FunctionalExceptionEnums.MsgErrorInConfigMannagerNotFount.ToString();
                 }
 
-         
-                SetParametersToMessage(wMessage);
+                _Message = String.Format(wMessage, _ParamsArray);
+                //SetParametersToMessage(wMessage);
             }
             catch (Exception ex)
             {
@@ -415,13 +349,13 @@ namespace Fwk.Exceptions
         void SetParametersToMessage(string message)
         {
             int wParamsNumber = ((_ParamsArray == null) ? 0 : _ParamsArray.Length);
-           
             // Asigna los valores a cada parametro.
             for (int i = 0; i < wParamsNumber; i++)
             {
                 message = message.Replace("{" + i.ToString() + "}", _ParamsArray[i]);
             }
             _Message = message;
+            
         }
         
         #endregion
