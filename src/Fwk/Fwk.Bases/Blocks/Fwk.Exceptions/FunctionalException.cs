@@ -333,8 +333,8 @@ namespace Fwk.Exceptions
                     _ErrorId = FunctionalExceptionEnums.MsgErrorInConfigMannagerNotFount.ToString();
                 }
 
-                _Message = String.Format(wMessage, _ParamsArray);
-                //SetParametersToMessage(wMessage);
+                //_Message = String.Format(wMessage, _ParamsArray);
+                SetParametersToMessage(wMessage);
             }
             catch (Exception ex)
             {

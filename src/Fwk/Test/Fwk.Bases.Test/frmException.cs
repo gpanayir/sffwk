@@ -19,13 +19,15 @@ namespace Fwk.Bases.Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-         
-            
 
-            Fwk.Exceptions.FunctionalException fw = new Fwk.Exceptions.FunctionalException(null, "RecordSetsNull","ValidationExceptionMessage", new string[] { "parametro 1", "parametro 2" });
+
+
+            Fwk.Exceptions.FunctionalException fw = new Fwk.Exceptions.FunctionalException(null, "RecordSetsNull", "ValidationExceptionMessage", new string[] { "parametro 1", "parametro 2" });
+
+            Fwk.Exceptions.FunctionalException fw2 = new Fwk.Exceptions.FunctionalException(null, "RecordSetsNull", "ValidationExceptionMessage",String.Empty,string.Empty);
             fw.ConfigProviderName = "localFile";
-            
-            MessageBox.Show(fw.Message);
+
+            MessageBox.Show(fw2.Message);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -35,8 +37,8 @@ namespace Fwk.Bases.Test
 
             MessageBox.Show(svcError.GetXml());
 
-          Exception ex2 =  Fwk.Exceptions.ExceptionHelper.ProcessException(svcError);
-          Exception ex3 = Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
+            Exception ex2 = Fwk.Exceptions.ExceptionHelper.ProcessException(svcError);
+            Exception ex3 = Fwk.Exceptions.ExceptionHelper.ProcessException(ex);
         }
     }
 }
