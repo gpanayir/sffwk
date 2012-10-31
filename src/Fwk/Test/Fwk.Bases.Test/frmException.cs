@@ -22,12 +22,12 @@ namespace Fwk.Bases.Test
 
 
 
-            Fwk.Exceptions.FunctionalException fw = new Fwk.Exceptions.FunctionalException(null, "RecordSetsNull", "ValidationExceptionMessage", new string[] { "parametro 1", "parametro 2" });
+            Fwk.Exceptions.FunctionalException fw = new Fwk.Exceptions.FunctionalException("localFile",null, "RecordSetsNull", "ValidationExceptionMessage", new string[] { "parametro 1", "parametro 2" });
 
             Fwk.Exceptions.FunctionalException fw2 = new Fwk.Exceptions.FunctionalException(null, "RecordSetsNull", "ValidationExceptionMessage",String.Empty,string.Empty);
-            fw.ConfigProviderName = "localFile";
+            
 
-            MessageBox.Show(fw2.Message);
+            MessageBox.Show(fw.Message);
         }
 
         private void button2_Click(object sender, EventArgs e)
