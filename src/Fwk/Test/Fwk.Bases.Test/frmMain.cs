@@ -41,5 +41,11 @@ namespace Fwk.Bases.Test
             { frm.ShowDialog(); }
 
         }
+
+        private void btnExeptions_Click(object sender, EventArgs e)
+        {
+            using (frmException frm = new frmException())
+            { frm.ShowDialog(); }
+        }
     }
 }

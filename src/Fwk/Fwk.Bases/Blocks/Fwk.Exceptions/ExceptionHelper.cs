@@ -75,12 +75,21 @@ namespace Fwk.Exceptions
                         wServiceError.Namespace = tex.Namespace;
                         wServiceError.Class =  tex.Class;
                         wServiceError.Assembly = tex.Assembly;
+                        
                         break;
                     }
                 case FwkExceptionTypes.FunctionalException:
                     {
                         FunctionalException fex = (FunctionalException)ex;
                         wServiceError.ErrorId = fex.ErrorId;
+                        wServiceError.Type = ex.GetType().Name;
+                        break;
+                    }
+                case FwkExceptionTypes.OtherException:
+                    {
+                        
+                        
+                        wServiceError.Type = ex.GetType().Name;
                         break;
                     }
             }
@@ -149,7 +158,6 @@ namespace Fwk.Exceptions
                 default:
                     {
                         ex = new Exception(err.Message  , inner);
-                        //ex.StackTrace = err.StackTrace;
                         break;
                     }
             }
@@ -318,6 +326,12 @@ namespace Fwk.Exceptions
             return FwkExceptionTypes.OtherException;
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
         public static string GetFwkExceptionTypesName(Exception ex)
         {
             if (ex.GetType() == typeof(FunctionalException))

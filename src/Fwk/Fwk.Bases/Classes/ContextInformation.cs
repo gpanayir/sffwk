@@ -26,7 +26,7 @@ namespace Fwk.Bases
         /// obtenido de la configuracion de Service Metadata Provider. El provider se determina a traves de ExecuteService(providerName,....)
         /// Si DefaultCulture es distinto e null se utilizara el mismo, de lo contrario se utilizara el obtenido de la configuracion de Service Metadata Provider.
         /// </summary>
-        public string DefaultCulture { get; set; }
+        public string ProviderNameWithCultureInfo { get; set; }
 
         /// <summary>
         /// Indica el host que inicio la peticion del servicio .-

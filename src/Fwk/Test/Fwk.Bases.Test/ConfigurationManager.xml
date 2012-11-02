@@ -20,7 +20,7 @@
         </Key>
         <Key name="RecordSetsNull" encrypted="false">
           <EntityState>Unchanged</EntityState>
-          <Value><![CDATA[El Lote no puede estar vacio]]></Value>
+          <Value><![CDATA[El Lote no puede estar vacio {0}, {1}]]></Value>
         </Key>
         <Key name="CampaingNull" encrypted="false">
           <EntityState>Unchanged</EntityState>
