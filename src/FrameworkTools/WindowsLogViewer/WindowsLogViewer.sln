@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsLogViewer", "WindowsLogViewer.csproj", "{0C493F24-E959-49A0-B337-818A3D39AF7F}"
 EndProject
 Global
@@ -13,8 +13,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
