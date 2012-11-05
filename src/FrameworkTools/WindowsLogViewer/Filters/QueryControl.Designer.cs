@@ -59,7 +59,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnClose.BackColor =System.Drawing.Color.White;
             this.btnClose.Image = global::WindowsLogViewer.Properties.Resources.close_241;
             this.btnClose.Location = new System.Drawing.Point(863, 3);
             this.btnClose.Name = "btnClose";
@@ -70,7 +70,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Image = global::WindowsLogViewer.Properties.Resources.refresh;
             this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -84,7 +84,7 @@
             // 
             // btnRefilter
             // 
-            this.btnRefilter.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRefilter.BackColor = System.Drawing.Color.White;
             this.btnRefilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefilter.Image = global::WindowsLogViewer.Properties.Resources.file_edit_16;
             this.btnRefilter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -239,7 +239,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnClear.BackColor = System.Drawing.Color.White;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Image = global::WindowsLogViewer.Properties.Resources.file_edit_16;
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

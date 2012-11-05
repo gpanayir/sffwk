@@ -49,34 +49,37 @@
             // 
             // txtMsg
             // 
-            this.txtMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMsg.Location = new System.Drawing.Point(12, 495);
+            this.txtMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMsg.Location = new System.Drawing.Point(14, 609);
+            this.txtMsg.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMsg.Multiline = true;
             this.txtMsg.Name = "txtMsg";
-            this.txtMsg.Size = new System.Drawing.Size(953, 115);
+            this.txtMsg.Size = new System.Drawing.Size(1111, 141);
             this.txtMsg.TabIndex = 2;
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Location = new System.Drawing.Point(12, 41);
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Location = new System.Drawing.Point(14, 50);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(953, 448);
+            this.tabControl1.Size = new System.Drawing.Size(1112, 551);
             this.tabControl1.TabIndex = 4;
             // 
             // btnHistory
             // 
-            this.btnHistory.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnHistory.BackColor = System.Drawing.Color.White;
             this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHistory.Image = global::WindowsLogViewer.Properties.Resources.View;
             this.btnHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistory.Location = new System.Drawing.Point(157, 12);
+            this.btnHistory.Location = new System.Drawing.Point(183, 15);
+            this.btnHistory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnHistory.Name = "btnHistory";
-            this.btnHistory.Size = new System.Drawing.Size(105, 23);
+            this.btnHistory.Size = new System.Drawing.Size(122, 28);
             this.btnHistory.TabIndex = 12;
             this.btnHistory.Text = "Query";
             this.btnHistory.UseVisualStyleBackColor = false;
@@ -84,13 +87,14 @@
             // 
             // btnNew
             // 
-            this.btnNew.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnNew.BackColor = System.Drawing.Color.White;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.Image = global::WindowsLogViewer.Properties.Resources.add_16;
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNew.Location = new System.Drawing.Point(12, 12);
+            this.btnNew.Location = new System.Drawing.Point(14, 15);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(120, 23);
+            this.btnNew.Size = new System.Drawing.Size(140, 28);
             this.btnNew.TabIndex = 11;
             this.btnNew.Text = "Add new log";
             this.btnNew.UseVisualStyleBackColor = false;
@@ -106,20 +110,21 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(997, 622);
+            this.ClientSize = new System.Drawing.Size(1163, 766);
             this.Controls.Add(this.btnHistory);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.txtMsg);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.LookAndFeel.SkinName = "Blue";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmMain";
             this.Text = "Windows event log viewer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmMain_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventLogBindingSource)).EndInit();
             this.ResumeLayout(false);

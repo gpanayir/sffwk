@@ -57,7 +57,7 @@
             // 
             // btnNew
             // 
-            this.btnNew.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnNew.BackColor = System.Drawing.Color.White;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.Image = global::WindowsLogViewer.Properties.Resources.add_16;
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

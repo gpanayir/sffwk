@@ -43,8 +43,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblError = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.eventLogEntryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.eventLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ImageEvent = new System.Windows.Forms.DataGridViewImageColumn();
             this.entryTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.machineNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +53,8 @@
             this.eventIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.instanceIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.messageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventLogEntryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.eventLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.EventLogControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -72,9 +72,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(609, 7);
+            this.label1.Location = new System.Drawing.Point(710, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 13);
+            this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "Log";
             // 
@@ -82,18 +82,18 @@
             // 
             this.lblWinLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblWinLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblWinLog.Location = new System.Drawing.Point(643, 4);
+            this.lblWinLog.Location = new System.Drawing.Point(750, 5);
             this.lblWinLog.Name = "lblWinLog";
-            this.lblWinLog.Size = new System.Drawing.Size(135, 18);
+            this.lblWinLog.Size = new System.Drawing.Size(157, 22);
             this.lblWinLog.TabIndex = 11;
             // 
             // lblAuditedMachine
             // 
             this.lblAuditedMachine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblAuditedMachine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblAuditedMachine.Location = new System.Drawing.Point(454, 6);
+            this.lblAuditedMachine.Location = new System.Drawing.Point(530, 7);
             this.lblAuditedMachine.Name = "lblAuditedMachine";
-            this.lblAuditedMachine.Size = new System.Drawing.Size(135, 18);
+            this.lblAuditedMachine.Size = new System.Drawing.Size(157, 22);
             this.lblAuditedMachine.TabIndex = 13;
             // 
             // label3
@@ -101,9 +101,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(406, 9);
+            this.label3.Location = new System.Drawing.Point(474, 11);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 12;
             this.label3.Text = "Server";
             // 
@@ -113,9 +113,9 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.lblStatus.Location = new System.Drawing.Point(76, 611);
+            this.lblStatus.Location = new System.Drawing.Point(89, 752);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(49, 13);
+            this.lblStatus.Size = new System.Drawing.Size(62, 17);
             this.lblStatus.TabIndex = 16;
             this.lblStatus.Text = "Paused";
             // 
@@ -124,34 +124,37 @@
             this.pictureStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureStatus.Image = global::WindowsLogViewer.Properties.Resources.ball_yellow;
             this.pictureStatus.InitialImage = null;
-            this.pictureStatus.Location = new System.Drawing.Point(6, 608);
+            this.pictureStatus.Location = new System.Drawing.Point(7, 748);
+            this.pictureStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureStatus.Name = "pictureStatus";
-            this.pictureStatus.Size = new System.Drawing.Size(20, 17);
+            this.pictureStatus.Size = new System.Drawing.Size(23, 21);
             this.pictureStatus.TabIndex = 17;
             this.pictureStatus.TabStop = false;
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnClose.BackColor = System.Drawing.Color.White;
             this.btnClose.Image = global::WindowsLogViewer.Properties.Resources.close_241;
-            this.btnClose.Location = new System.Drawing.Point(798, -1);
+            this.btnClose.Location = new System.Drawing.Point(931, -1);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(42, 34);
+            this.btnClose.Size = new System.Drawing.Size(49, 42);
             this.btnClose.TabIndex = 15;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click_1);
             // 
             // btnClearLogs
             // 
-            this.btnClearLogs.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnClearLogs.BackColor = System.Drawing.Color.White;
             this.btnClearLogs.Enabled = false;
             this.btnClearLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearLogs.Image = global::WindowsLogViewer.Properties.Resources.del_16;
             this.btnClearLogs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClearLogs.Location = new System.Drawing.Point(237, 3);
+            this.btnClearLogs.Location = new System.Drawing.Point(276, 4);
+            this.btnClearLogs.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClearLogs.Name = "btnClearLogs";
-            this.btnClearLogs.Size = new System.Drawing.Size(125, 23);
+            this.btnClearLogs.Size = new System.Drawing.Size(146, 28);
             this.btnClearLogs.TabIndex = 14;
             this.btnClearLogs.Text = "Clear all logs";
             this.btnClearLogs.UseVisualStyleBackColor = false;
@@ -159,13 +162,14 @@
             // 
             // btnStart
             // 
-            this.btnStart.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnStart.BackColor = System.Drawing.Color.White;
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Image = global::WindowsLogViewer.Properties.Resources.play;
             this.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStart.Location = new System.Drawing.Point(14, 4);
+            this.btnStart.Location = new System.Drawing.Point(16, 5);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(88, 23);
+            this.btnStart.Size = new System.Drawing.Size(103, 28);
             this.btnStart.TabIndex = 10;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -177,9 +181,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(26, 610);
+            this.label2.Location = new System.Drawing.Point(30, 751);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 18;
             this.label2.Text = "Status :";
             // 
@@ -189,21 +193,20 @@
             this.lblError.AutoSize = true;
             this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.DimGray;
-            this.lblError.Location = new System.Drawing.Point(148, 610);
+            this.lblError.Location = new System.Drawing.Point(173, 751);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(97, 13);
+            this.lblError.Size = new System.Drawing.Size(125, 17);
             this.lblError.TabIndex = 19;
             this.lblError.Text = " fwk framework 3.1";
             // 
             // dataGridView2
             // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.AutoGenerateColumns = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ImageEvent,
             this.entryTypeDataGridViewTextBoxColumn,
             this.machineNameDataGridViewTextBoxColumn1,
             this.timeGeneratedDataGridViewTextBoxColumn1,
@@ -212,21 +215,16 @@
             this.categoryDataGridViewTextBoxColumn1,
             this.eventIDDataGridViewTextBoxColumn1,
             this.instanceIdDataGridViewTextBoxColumn,
-            this.messageDataGridViewTextBoxColumn1});
+            this.messageDataGridViewTextBoxColumn1,
+            this.ImageEvent});
             this.dataGridView2.DataSource = this.eventLogEntryBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 33);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 41);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(826, 528);
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(964, 650);
             this.dataGridView2.TabIndex = 20;
             this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
-            // 
-            // eventLogEntryBindingSource
-            // 
-            this.eventLogEntryBindingSource.DataSource = typeof(System.Diagnostics.EventLogEntry);
-            // 
-            // eventLogBindingSource
-            // 
-            this.eventLogBindingSource.DataSource = typeof(WindowsLogViewer.EventLog);
             // 
             // ImageEvent
             // 
@@ -300,11 +298,18 @@
             this.messageDataGridViewTextBoxColumn1.ReadOnly = true;
             this.messageDataGridViewTextBoxColumn1.Visible = false;
             // 
+            // eventLogEntryBindingSource
+            // 
+            this.eventLogEntryBindingSource.DataSource = typeof(System.Diagnostics.EventLogEntry);
+            // 
+            // eventLogBindingSource
+            // 
+            this.eventLogBindingSource.DataSource = typeof(WindowsLogViewer.EventLog);
+            // 
             // AuditControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.label2);
@@ -317,8 +322,9 @@
             this.Controls.Add(this.lblWinLog);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AuditControl";
-            this.Size = new System.Drawing.Size(842, 626);
+            this.Size = new System.Drawing.Size(982, 770);
             ((System.ComponentModel.ISupportInitialize)(this.EventLogControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
