@@ -37,9 +37,10 @@ namespace Fwk.ServiceManagement.Tools.Win32
         {
             InitializeComponent();
 
-            if (!string.IsNullOrEmpty(_StorageFactory.StorageObject.AssemblyPath))
-            {
+           
                Services = Fwk.ServiceManagement.ServiceMetadata.GetAllServices(frmServices.CurrentProvider.Name);
+               if (!string.IsNullOrEmpty(_StorageFactory.StorageObject.AssemblyPath))
+               {
                 LoadAssembly();
             }
         }
