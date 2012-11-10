@@ -82,9 +82,9 @@
             this.groupBox1.Controls.Add(this.ckbAvailable);
             this.groupBox1.Controls.Add(this.cboTransactionalBehaviour);
             this.groupBox1.Location = new System.Drawing.Point(3, 25);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(895, 531);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
@@ -103,8 +103,8 @@
             this.txtApplicationId.ErrorIconRightToLeft = true;
             this.txtApplicationId.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtApplicationId.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtApplicationId.Location = new System.Drawing.Point(12, 31);
-            this.txtApplicationId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtApplicationId.Location = new System.Drawing.Point(12, 61);
+            this.txtApplicationId.Margin = new System.Windows.Forms.Padding(4);
             this.txtApplicationId.Name = "txtApplicationId";
             this.txtApplicationId.NotAllowedCharactersErrorText = null;
             this.txtApplicationId.Required = true;
@@ -121,7 +121,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 71);
+            this.label3.Location = new System.Drawing.Point(16, 101);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 17);
@@ -142,8 +142,8 @@
             this.txtResponse.ErrorIconRightToLeft = true;
             this.txtResponse.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtResponse.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtResponse.Location = new System.Drawing.Point(16, 357);
-            this.txtResponse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtResponse.Location = new System.Drawing.Point(16, 387);
+            this.txtResponse.Margin = new System.Windows.Forms.Padding(4);
             this.txtResponse.Name = "txtResponse";
             this.txtResponse.NotAllowedCharactersErrorText = null;
             this.txtResponse.Required = true;
@@ -166,8 +166,8 @@
             this.txtRequest.ErrorIconRightToLeft = true;
             this.txtRequest.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRequest.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtRequest.Location = new System.Drawing.Point(16, 309);
-            this.txtRequest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRequest.Location = new System.Drawing.Point(16, 339);
+            this.txtRequest.Margin = new System.Windows.Forms.Padding(4);
             this.txtRequest.Name = "txtRequest";
             this.txtRequest.NotAllowedCharactersErrorText = null;
             this.txtRequest.Required = true;
@@ -190,8 +190,8 @@
             this.txtHandler.ErrorIconRightToLeft = true;
             this.txtHandler.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtHandler.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtHandler.Location = new System.Drawing.Point(16, 261);
-            this.txtHandler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHandler.Location = new System.Drawing.Point(16, 291);
+            this.txtHandler.Margin = new System.Windows.Forms.Padding(4);
             this.txtHandler.Name = "txtHandler";
             this.txtHandler.NotAllowedCharactersErrorText = null;
             this.txtHandler.Required = true;
@@ -214,8 +214,8 @@
             this.txtName.ErrorIconRightToLeft = true;
             this.txtName.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtName.Location = new System.Drawing.Point(16, 91);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Location = new System.Drawing.Point(16, 121);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.NotAllowedCharactersErrorText = null;
             this.txtName.Required = true;
@@ -239,8 +239,8 @@
             this.txtDescription.ErrorIconRightToLeft = true;
             this.txtDescription.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.InactiveBorderColor = System.Drawing.SystemColors.Control;
-            this.txtDescription.Location = new System.Drawing.Point(16, 151);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescription.Location = new System.Drawing.Point(16, 181);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NotAllowedCharactersErrorText = null;
@@ -253,7 +253,8 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(257, 398);
+            this.label4.ForeColor = System.Drawing.Color.ForestGreen;
+            this.label4.Location = new System.Drawing.Point(257, 428);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 17);
@@ -265,8 +266,8 @@
             this.cboIsolationLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIsolationLevel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboIsolationLevel.FormattingEnabled = true;
-            this.cboIsolationLevel.Location = new System.Drawing.Point(261, 417);
-            this.cboIsolationLevel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboIsolationLevel.Location = new System.Drawing.Point(261, 447);
+            this.cboIsolationLevel.Margin = new System.Windows.Forms.Padding(4);
             this.cboIsolationLevel.Name = "cboIsolationLevel";
             this.cboIsolationLevel.Size = new System.Drawing.Size(199, 24);
             this.cboIsolationLevel.TabIndex = 58;
@@ -275,8 +276,8 @@
             // 
             this.ckbAudit.AutoSize = true;
             this.ckbAudit.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceService, "Audit", true));
-            this.ckbAudit.Location = new System.Drawing.Point(703, 420);
-            this.ckbAudit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ckbAudit.Location = new System.Drawing.Point(703, 450);
+            this.ckbAudit.Margin = new System.Windows.Forms.Padding(4);
             this.ckbAudit.Name = "ckbAudit";
             this.ckbAudit.Size = new System.Drawing.Size(62, 21);
             this.ckbAudit.TabIndex = 61;
@@ -286,7 +287,8 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 395);
+            this.label10.ForeColor = System.Drawing.Color.ForestGreen;
+            this.label10.Location = new System.Drawing.Point(8, 425);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(161, 17);
@@ -296,7 +298,8 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 337);
+            this.label9.ForeColor = System.Drawing.Color.DarkRed;
+            this.label9.Location = new System.Drawing.Point(12, 367);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 17);
@@ -306,7 +309,8 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 289);
+            this.label8.ForeColor = System.Drawing.Color.DarkRed;
+            this.label8.Location = new System.Drawing.Point(12, 319);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(61, 17);
@@ -316,17 +320,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 241);
+            this.label2.ForeColor = System.Drawing.Color.DarkRed;
+            this.label2.Location = new System.Drawing.Point(12, 271);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 17);
+            this.label2.Size = new System.Drawing.Size(55, 17);
             this.label2.TabIndex = 57;
-            this.label2.Text = "Handler";
+            this.label2.Text = "Service";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 132);
+            this.label1.Location = new System.Drawing.Point(16, 162);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 17);
@@ -336,7 +341,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(8, 11);
+            this.lblName.Location = new System.Drawing.Point(8, 41);
             this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(92, 17);
@@ -349,8 +354,8 @@
             this.ckbAvailable.Checked = true;
             this.ckbAvailable.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbAvailable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceService, "Available", true));
-            this.ckbAvailable.Location = new System.Drawing.Point(561, 422);
-            this.ckbAvailable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ckbAvailable.Location = new System.Drawing.Point(561, 452);
+            this.ckbAvailable.Margin = new System.Windows.Forms.Padding(4);
             this.ckbAvailable.Name = "ckbAvailable";
             this.ckbAvailable.Size = new System.Drawing.Size(87, 21);
             this.ckbAvailable.TabIndex = 60;
@@ -362,8 +367,8 @@
             this.cboTransactionalBehaviour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTransactionalBehaviour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboTransactionalBehaviour.FormattingEnabled = true;
-            this.cboTransactionalBehaviour.Location = new System.Drawing.Point(13, 415);
-            this.cboTransactionalBehaviour.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboTransactionalBehaviour.Location = new System.Drawing.Point(13, 445);
+            this.cboTransactionalBehaviour.Margin = new System.Windows.Forms.Padding(4);
             this.cboTransactionalBehaviour.Name = "cboTransactionalBehaviour";
             this.cboTransactionalBehaviour.Size = new System.Drawing.Size(199, 24);
             this.cboTransactionalBehaviour.TabIndex = 56;
@@ -385,7 +390,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ctrlService";
             this.Size = new System.Drawing.Size(899, 560);
             this.groupBox1.ResumeLayout(false);

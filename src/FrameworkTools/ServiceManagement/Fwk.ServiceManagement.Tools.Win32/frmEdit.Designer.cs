@@ -46,8 +46,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // 
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Location = new System.Drawing.Point(748, 625);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOk.Location = new System.Drawing.Point(748, 608);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(100, 28);
             this.btnOk.TabIndex = 10;
@@ -60,8 +60,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(872, 625);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Location = new System.Drawing.Point(872, 608);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 28);
             this.btnCancel.TabIndex = 11;
@@ -77,8 +77,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.btnSearchFile.ForeColor = System.Drawing.Color.DimGray;
             this.btnSearchFile.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.mostrar;
             this.btnSearchFile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearchFile.Location = new System.Drawing.Point(237, 3);
-            this.btnSearchFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchFile.Location = new System.Drawing.Point(276, 0);
+            this.btnSearchFile.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchFile.Name = "btnSearchFile";
             this.btnSearchFile.Size = new System.Drawing.Size(221, 31);
             this.btnSearchFile.TabIndex = 29;
@@ -89,14 +89,16 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // 
             // ctrlService1
             // 
-            this.ctrlService1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlService1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlService1.EntityParam = null;
             this.ctrlService1.EntityResult = null;
             this.ctrlService1.Location = new System.Drawing.Point(0, 0);
             this.ctrlService1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.ctrlService1.Name = "ctrlService1";
             this.ctrlService1.ShowAction = Fwk.ServiceManagement.Tools.Win32.Action.Query;
-            this.ctrlService1.Size = new System.Drawing.Size(991, 666);
+            this.ctrlService1.Size = new System.Drawing.Size(991, 598);
             this.ctrlService1.TabIndex = 28;
             // 
             // frmEdit
@@ -106,14 +108,14 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(991, 666);
+            this.ClientSize = new System.Drawing.Size(991, 649);
             this.Controls.Add(this.btnSearchFile);
             this.Controls.Add(this.ctrlService1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEdit";

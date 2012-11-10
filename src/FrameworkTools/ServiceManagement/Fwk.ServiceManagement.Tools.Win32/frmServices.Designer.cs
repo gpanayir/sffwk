@@ -47,12 +47,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.cmbProviders = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ucbServiceGrid1 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
-            this.provider1 = new Fwk.ServiceManagement.Tools.Win32.provider();
-            this.ctrlService1 = new Fwk.ServiceManagement.Tools.Win32.ctrlService();
             this.label4 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblMetaqadata = new System.Windows.Forms.Label();
+            this.ucbServiceGrid1 = new Fwk.ServiceManagement.Tools.Win32.UCBServiceGrid();
+            this.ctrlService1 = new Fwk.ServiceManagement.Tools.Win32.ctrlService();
+            this.provider1 = new Fwk.ServiceManagement.Tools.Win32.provider();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -69,7 +69,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.btnEdit.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.EditService;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEdit.Location = new System.Drawing.Point(104, 4);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(92, 54);
             this.btnEdit.TabIndex = 1;
@@ -85,7 +85,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.btnAdd.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.AddService;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(4, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(92, 54);
             this.btnAdd.TabIndex = 3;
@@ -101,7 +101,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.btnDelete.Image = global::Fwk.ServiceManagement.Tools.Win32.Properties.Resources.Delete;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDelete.Location = new System.Drawing.Point(204, 4);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(92, 54);
             this.btnDelete.TabIndex = 4;
@@ -234,7 +234,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(7, 31);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -243,8 +243,8 @@ namespace Fwk.ServiceManagement.Tools.Win32
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.provider1);
             this.splitContainer1.Panel2.Controls.Add(this.ctrlService1);
+            this.splitContainer1.Panel2.Controls.Add(this.provider1);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(1597, 718);
@@ -252,48 +252,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 39;
             // 
-            // ucbServiceGrid1
-            // 
-            this.ucbServiceGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ucbServiceGrid1.Applications = null;
-            this.ucbServiceGrid1.CurentServiceConfiguration = null;
-            this.ucbServiceGrid1.Location = new System.Drawing.Point(5, 2);
-            this.ucbServiceGrid1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.ucbServiceGrid1.Name = "ucbServiceGrid1";
-            this.ucbServiceGrid1.Services = null;
-            this.ucbServiceGrid1.Size = new System.Drawing.Size(705, 704);
-            this.ucbServiceGrid1.TabIndex = 0;
-            this.ucbServiceGrid1.OnClickServiceHandler += new Fwk.ServiceManagement.Tools.Win32.OnClickServiceHandler(this.ucbServiceGrid1_OnClickServiceHandler);
-            // 
-            // provider1
-            // 
-            this.provider1.Location = new System.Drawing.Point(12, 9);
-            this.provider1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.provider1.Name = "provider1";
-            this.provider1.Size = new System.Drawing.Size(851, 143);
-            this.provider1.TabIndex = 51;
-            // 
-            // ctrlService1
-            // 
-            this.ctrlService1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlService1.EntityParam = null;
-            this.ctrlService1.EntityResult = null;
-            this.ctrlService1.Location = new System.Drawing.Point(4, 155);
-            this.ctrlService1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.ctrlService1.Name = "ctrlService1";
-            this.ctrlService1.ShowAction = Fwk.ServiceManagement.Tools.Win32.Action.Query;
-            this.ctrlService1.Size = new System.Drawing.Size(859, 486);
-            this.ctrlService1.TabIndex = 47;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label4.Location = new System.Drawing.Point(551, 156);
+            this.label4.Location = new System.Drawing.Point(637, 48);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(23, 17);
@@ -307,9 +271,9 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(17, 657);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(344, 63);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(820, 63);
             this.flowLayoutPanel1.TabIndex = 39;
             // 
             // lblMetaqadata
@@ -323,6 +287,42 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.lblMetaqadata.TabIndex = 45;
             this.lblMetaqadata.Text = "<<<<<<<<<<<<<<<<<";
             // 
+            // ucbServiceGrid1
+            // 
+            this.ucbServiceGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucbServiceGrid1.Applications = null;
+            this.ucbServiceGrid1.CurentServiceConfiguration = null;
+            this.ucbServiceGrid1.Location = new System.Drawing.Point(5, 2);
+            this.ucbServiceGrid1.Margin = new System.Windows.Forms.Padding(5);
+            this.ucbServiceGrid1.Name = "ucbServiceGrid1";
+            this.ucbServiceGrid1.Services = null;
+            this.ucbServiceGrid1.Size = new System.Drawing.Size(705, 704);
+            this.ucbServiceGrid1.TabIndex = 0;
+            this.ucbServiceGrid1.OnClickServiceHandler += new Fwk.ServiceManagement.Tools.Win32.OnClickServiceHandler(this.ucbServiceGrid1_OnClickServiceHandler);
+            // 
+            // ctrlService1
+            // 
+            this.ctrlService1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlService1.EntityParam = null;
+            this.ctrlService1.EntityResult = null;
+            this.ctrlService1.Location = new System.Drawing.Point(8, 107);
+            this.ctrlService1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.ctrlService1.Name = "ctrlService1";
+            this.ctrlService1.ShowAction = Fwk.ServiceManagement.Tools.Win32.Action.Query;
+            this.ctrlService1.Size = new System.Drawing.Size(829, 540);
+            this.ctrlService1.TabIndex = 52;
+            // 
+            // provider1
+            // 
+            this.provider1.Location = new System.Drawing.Point(12, 2);
+            this.provider1.Margin = new System.Windows.Forms.Padding(5);
+            this.provider1.Name = "provider1";
+            this.provider1.Size = new System.Drawing.Size(851, 107);
+            this.provider1.TabIndex = 51;
+            // 
             // frmServices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -332,7 +332,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmServices";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Services configuration";
@@ -373,12 +373,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblMetaqadata;
         private UCBServiceGrid ucbServiceGrid1;
-        private ctrlService ctrlService1;
         private System.Windows.Forms.ToolStripComboBox cmbProviders;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem btnNewProvider;
         private System.Windows.Forms.ToolStripMenuItem providersToolStripMenuItem;
         private provider provider1;
+        private ctrlService ctrlService1;
        
         
 	}
