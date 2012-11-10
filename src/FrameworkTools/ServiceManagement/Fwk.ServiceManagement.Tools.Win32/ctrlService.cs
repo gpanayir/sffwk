@@ -14,7 +14,7 @@ using Fwk.Transaction;
 
 namespace Fwk.ServiceManagement.Tools.Win32
 {
-
+    [ToolboxItem(true)]
     public partial class ctrlService : FwkUserControlBase
     {
 
