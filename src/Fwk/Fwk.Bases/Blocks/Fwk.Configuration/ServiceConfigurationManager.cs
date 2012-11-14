@@ -16,7 +16,7 @@ namespace Fwk.Configuration
     /// Clase que permite obtener informacion de un archivo de configuracion ubicado en un Dispatcher.
     /// Se recomienda utilizar este tipo de configuracion del lado de clientes win 32 o ervicios windows. Los cuales diponen 
     /// una configuracion see<ConfigProviderType></ConfigProviderType> de tipo servicewrapper que apunten a un Wrapper en el mismo .config
-    /// Se utiliza el atributo provider.SourceInfo del proveedor configurado para localizar un wrapper valido en el ciente que se utilizara para conectarce al Dispatcher
+    /// Se utiliza el atributo provider SourceInfo del proveedor configurado para localizar un wrapper valido en el ciente que se utilizara para conectarce al Dispatcher
     /// que contiene dicha configuracion remota
     /// <remarks>
     /// NOTA: Es necesario para que funcione la configuracion tipo servicewrapper disponer del lado del servidor o dispatcher una configuracion de tipo Local (xml) o database 
@@ -185,9 +185,9 @@ namespace Fwk.Configuration
  
 
         /// <summary>
-        /// Busca la configuracion atravez por medio de una llamada a un servicio fwk
+        /// Busca la configuracion <see cref="ConfigurationFile"/> atravez de una llamada a un servicio fwk
         /// Este codigo se ejecuta del lado del clientes es decir en el Wrapper
-        /// Del lado del servidor dispatcher debe existir una configuracion Xml o Database con el mismo nombre de provider que 
+        /// Del lado del servidor (dispatcher) debe existir una configuracion Xml o Database con el mismo nombre de provider que 
         /// realiza la llmada del cliente de tipo Service.
         /// Utiliza provider.SourceInfo para localizar un wrapper valido en el ciente que es e q se utilizara para conectarce al Dispatcher
         /// </summary>
