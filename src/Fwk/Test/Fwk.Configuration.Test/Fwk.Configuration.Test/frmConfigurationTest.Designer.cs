@@ -34,6 +34,7 @@ namespace Fwk.Configuration.Test
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
@@ -68,7 +69,11 @@ namespace Fwk.Configuration.Test
             this.btnLoadConfigFile = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnchangeDefaulProvider = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtDefaulProvider = new System.Windows.Forms.TextBox();
+            this.txtValueChangeDefaultProvider = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -81,6 +86,7 @@ namespace Fwk.Configuration.Test
             ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -113,6 +119,7 @@ namespace Fwk.Configuration.Test
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(1, 71);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -132,6 +139,16 @@ namespace Fwk.Configuration.Test
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Configuracion Remota";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.White;
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.textBox4.Location = new System.Drawing.Point(431, 61);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(386, 21);
+            this.textBox4.TabIndex = 3;
             // 
             // pictureBox1
             // 
@@ -464,15 +481,51 @@ namespace Fwk.Configuration.Test
             this.label2.TabIndex = 1;
             this.label2.Text = "Fwk configuration";
             // 
-            // textBox4
+            // tabPage4
             // 
-            this.textBox4.BackColor = System.Drawing.Color.White;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.textBox4.Location = new System.Drawing.Point(431, 61);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(386, 21);
-            this.textBox4.TabIndex = 3;
+            this.tabPage4.Controls.Add(this.txtValueChangeDefaultProvider);
+            this.tabPage4.Controls.Add(this.label7);
+            this.tabPage4.Controls.Add(this.txtDefaulProvider);
+            this.tabPage4.Controls.Add(this.btnchangeDefaulProvider);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(949, 566);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnchangeDefaulProvider
+            // 
+            this.btnchangeDefaulProvider.Location = new System.Drawing.Point(70, 64);
+            this.btnchangeDefaulProvider.Name = "btnchangeDefaulProvider";
+            this.btnchangeDefaulProvider.Size = new System.Drawing.Size(328, 23);
+            this.btnchangeDefaulProvider.TabIndex = 0;
+            this.btnchangeDefaulProvider.Text = "Change Defaul Provider";
+            this.btnchangeDefaulProvider.UseVisualStyleBackColor = true;
+            this.btnchangeDefaulProvider.Click += new System.EventHandler(this.btnchangeDefaulProvider_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(98, 133);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(106, 13);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "DefaulProvider name";
+            // 
+            // txtDefaulProvider
+            // 
+            this.txtDefaulProvider.Location = new System.Drawing.Point(101, 152);
+            this.txtDefaulProvider.Name = "txtDefaulProvider";
+            this.txtDefaulProvider.Size = new System.Drawing.Size(213, 20);
+            this.txtDefaulProvider.TabIndex = 18;
+            // 
+            // txtValueChangeDefaultProvider
+            // 
+            this.txtValueChangeDefaultProvider.Location = new System.Drawing.Point(143, 245);
+            this.txtValueChangeDefaultProvider.Name = "txtValueChangeDefaultProvider";
+            this.txtValueChangeDefaultProvider.Size = new System.Drawing.Size(213, 20);
+            this.txtValueChangeDefaultProvider.TabIndex = 20;
             // 
             // frmConfigurationTest
             // 
@@ -498,6 +551,8 @@ namespace Fwk.Configuration.Test
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -546,6 +601,11 @@ namespace Fwk.Configuration.Test
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button btnchangeDefaulProvider;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtDefaulProvider;
+        private System.Windows.Forms.TextBox txtValueChangeDefaultProvider;
     }
 }
 

@@ -16,6 +16,7 @@ namespace Fwk.Configuration.Test
         {
             InitializeComponent();
             comboBox1.SelectedIndex = 0;
+            txtDefaulProvider.Text = ConfigurationManager.DefaultProvider.Name;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -152,6 +153,13 @@ namespace Fwk.Configuration.Test
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnchangeDefaulProvider_Click(object sender, EventArgs e)
+        {
+            ConfigurationManager.ChangeDefaultProvider("localFile");
+            txtDefaulProvider.Text = ConfigurationManager.DefaultProvider.Name;
+            txtValueChangeDefaultProvider.Text = ConfigurationManager.GetProperty("ExceptionMessages", "fecha_desde_igual_hasta_error");
         }
     }
 }
