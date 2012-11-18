@@ -63,11 +63,14 @@
   <ItemGroup>
     <Content Include="ActiveDirectory.asmx" />
     <Content Include="ASPNet.asmx" />
+    <Content Include="Security.asmx" />
     <Content Include="ServiceMetadataConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveDirectory.asmx.cs">
@@ -83,6 +86,10 @@
     <Compile Include="Contracts\LoogonUserResult.cs" />
     <Compile Include="Contracts\ActiveDirectoryUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security.asmx.cs">
+      <DependentUpon>Security.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Servicea\ActiveDirectoryService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -113,7 +120,7 @@
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
+          <NTLMAuthentication>True</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
           </CustomServerUrl>
