@@ -7,7 +7,7 @@ using Fwk.Security.ActiveDirectory;
 namespace Fwk.WCF.CentralizedSecurity.Contracts
 {
     [Serializable]
-    public class ActiveDirectoryGroup
+    public class ActiveDirectoryGroup 
     {
 
         /// <summary>

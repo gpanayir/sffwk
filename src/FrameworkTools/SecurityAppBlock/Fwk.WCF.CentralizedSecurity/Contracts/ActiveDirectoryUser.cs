@@ -17,6 +17,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// Reprecenta la propiedad: userAccountControl Se utiliza para dehabilitar una cuenta.-
         /// Valor 514 dehabilita, mientras 512 mantiene la cuenta lista para logon.-
         /// </summary>
+        [DataMember]
         public String UserAccountControl
         {
             get;
@@ -25,6 +26,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String Department
         {
             get;
@@ -33,6 +35,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String FirstName
         {
             get;
@@ -41,6 +44,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String MiddleName
         {
             get;
@@ -49,6 +53,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String LastName
         {
             get;
@@ -57,6 +62,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String LoginName
         {
             get;
@@ -65,6 +71,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String LoginNameWithDomain
         {
             get;
@@ -73,6 +80,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String StreetAddress
         {
             get;
@@ -81,6 +89,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String City
         {
             get;
@@ -89,6 +98,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String State
         {
             get;
@@ -97,6 +107,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String PostalCode
         {
             get;
@@ -105,6 +116,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String Country
         {
             get;
@@ -145,6 +157,7 @@ namespace Fwk.WCF.CentralizedSecurity.Contracts
         /// <summary>
         /// 
         /// </summary>
+        [DataMember]
         public String EmailAddress
         {
             get;
