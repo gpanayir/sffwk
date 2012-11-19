@@ -13,15 +13,12 @@ namespace Fwk.WCF.CentralizedSecurity
     [ServiceContract]
     public interface ICoreSecurity
     {
-
         [OperationContract]
         LoogonUserResult Autenticate(string userName, string password, string domain);
-        
 
         [OperationContract]
         String GetDomainNames();
 
-        // TODO: Add your service operations here
     }
 
 
