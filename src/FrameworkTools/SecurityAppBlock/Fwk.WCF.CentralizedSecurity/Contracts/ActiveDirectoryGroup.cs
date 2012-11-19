@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Fwk.Security.ActiveDirectory;
 
-namespace Fwk.WCF.CentralizedSecurity.Contracts
+namespace CentralizedSecurity.wcf.Contracts
 {
     [Serializable]
     public class ActiveDirectoryGroup 

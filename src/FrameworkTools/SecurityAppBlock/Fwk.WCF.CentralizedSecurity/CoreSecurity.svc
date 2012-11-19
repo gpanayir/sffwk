@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="SecureWcf.CoreSecurity" CodeBehind="CoreSecurity.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="CentralizedSecurity.wcf.CoreSecurity" CodeBehind="CoreSecurity.svc.cs" %>

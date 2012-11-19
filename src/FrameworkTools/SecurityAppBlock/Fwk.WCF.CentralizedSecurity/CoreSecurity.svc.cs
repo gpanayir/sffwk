@@ -6,10 +6,10 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using Fwk.WCF.CentralizedSecurity.Contracts;
-using Fwk.WCF.CentralizedSecurity.Service;
+using CentralizedSecurity.wcf.Contracts;
+using CentralizedSecurity.wcf.Service;
 
-namespace Fwk.WCF.CentralizedSecurity
+namespace CentralizedSecurity.wcf
 {
     public class CoreSecurity : ICoreSecurity
     {
@@ -20,7 +20,7 @@ namespace Fwk.WCF.CentralizedSecurity
 
         public String GetDomainNames()
         {
-            Fwk.WCF.CentralizedSecurity.Contracts.DomainsUrl[] domains = ActiveDirectoryService.GetAllDomainsUrl();
+            CentralizedSecurity.wcf.Contracts.DomainsUrl[] domains = ActiveDirectoryService.GetAllDomainsUrl();
             var list = from d in domains select d.DomainName;
 
             return string.Join(",", list);

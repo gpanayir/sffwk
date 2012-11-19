@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="Fwk.WCF.CentralizedSecurity.ActiveDirecotry" CodeBehind="ActiveDirecotry.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="CentralizedSecurity.wcf.ActiveDirecotry" CodeBehind="ActiveDirecotry.svc.cs" %>

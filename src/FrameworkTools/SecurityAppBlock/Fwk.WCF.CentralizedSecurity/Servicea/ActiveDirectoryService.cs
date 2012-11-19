@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using Fwk.Security.ActiveDirectory;
 using Fwk.Exceptions;
-using Fwk.WCF.CentralizedSecurity.Contracts;
+using CentralizedSecurity.wcf.Contracts;
 
-namespace Fwk.WCF.CentralizedSecurity.Service
+namespace CentralizedSecurity.wcf.Service
 {
     public class ActiveDirectoryService
     {
@@ -163,7 +163,7 @@ namespace Fwk.WCF.CentralizedSecurity.Service
 
 
 
-        internal static Fwk.WCF.CentralizedSecurity.Contracts.DomainsUrl[] GetAllDomainsUrl()
+        internal static CentralizedSecurity.wcf.Contracts.DomainsUrl[] GetAllDomainsUrl()
         {
 
 
@@ -171,9 +171,9 @@ namespace Fwk.WCF.CentralizedSecurity.Service
 
             if (auxlist.Count != 0)
             {
-                var list = from d in auxlist select new Fwk.WCF.CentralizedSecurity.Contracts.DomainsUrl(d);
+                var list = from d in auxlist select new CentralizedSecurity.wcf.Contracts.DomainsUrl(d);
 
-                return list.ToArray<Fwk.WCF.CentralizedSecurity.Contracts.DomainsUrl>();
+                return list.ToArray<CentralizedSecurity.wcf.Contracts.DomainsUrl>();
             }
             else
                 return null;

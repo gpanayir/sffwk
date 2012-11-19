@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Runtime.Serialization;
 
-namespace Fwk.WCF.CentralizedSecurity.Contracts
+namespace CentralizedSecurity.wcf.Contracts
 {
     [DataContract]
     public class LoogonUserResult
