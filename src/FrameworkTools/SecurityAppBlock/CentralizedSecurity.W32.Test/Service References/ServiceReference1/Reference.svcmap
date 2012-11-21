@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="accafbc8-5a96-40cd-a612-e64aa21f2871" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CoreSecurity.xsd" MetadataType="Schema" ID="f06cb4ac-c950-4221-b64c-d3399345d2b7" SourceId="1" SourceUrl="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?xsd=xsd2" />
+    <MetadataFile FileName="CoreSecurity1.xsd" MetadataType="Schema" ID="e3b88b0e-870e-4e43-8c40-df1859855816" SourceId="1" SourceUrl="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?xsd=xsd0" />
+    <MetadataFile FileName="CoreSecurity2.xsd" MetadataType="Schema" ID="aabc9a03-2233-4310-acc7-6333942f49a9" SourceId="1" SourceUrl="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?xsd=xsd1" />
+    <MetadataFile FileName="CoreSecurity.wsdl" MetadataType="Wsdl" ID="cfbae615-9ef5-4484-abe2-6b18786206e7" SourceId="1" SourceUrl="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
