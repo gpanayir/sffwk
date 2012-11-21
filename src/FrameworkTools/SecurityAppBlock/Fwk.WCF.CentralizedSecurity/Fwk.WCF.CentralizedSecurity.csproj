@@ -69,20 +69,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActiveDirecotry.svc.cs">
-      <DependentUpon>ActiveDirecotry.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Contracts\ActiveDirectoryGroup.cs" />
-    <Compile Include="Contracts\ActiveDirectoryUser.cs" />
-    <Compile Include="Contracts\DomainsUrl.cs" />
-    <Compile Include="Contracts\LoogonUserResult.cs" />
-    <Compile Include="CoreSecurity.svc.cs">
-      <DependentUpon>CoreSecurity.svc</DependentUpon>
-    </Compile>
-    <Compile Include="IActiveDirecotry.cs" />
-    <Compile Include="ICoreSecurity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servicea\ActiveDirectoryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -91,6 +78,10 @@
     <ProjectReference Include="..\..\..\Fwk\Fwk.Security\Fwk.Security.csproj">
       <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
       <Name>Fwk.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fwk.WCF.Services\Fwk.WCF.Services.csproj">
+      <Project>{FA61CFD2-61D8-4D9C-B9A9-C344197F31B1}</Project>
+      <Name>Fwk.WCF.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
