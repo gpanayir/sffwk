@@ -63,7 +63,8 @@
   <ItemGroup>
     <Content Include="ActiveDirectory.asmx" />
     <Content Include="ASPNet.asmx" />
-    <Content Include="Security.asmx" />
+    <Content Include="CoreSecurity.asmx" />
+    <Content Include="info.txt" />
     <Content Include="ServiceMetadataConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -86,8 +87,8 @@
     <Compile Include="Contracts\LoogonUserResult.cs" />
     <Compile Include="Contracts\ActiveDirectoryUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security.asmx.cs">
-      <DependentUpon>Security.asmx</DependentUpon>
+    <Compile Include="CoreSecurity.asmx.cs">
+      <DependentUpon>CoreSecurity.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Servicea\ActiveDirectoryService.cs" />

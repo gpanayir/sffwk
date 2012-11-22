@@ -16,8 +16,8 @@ namespace Fwk.CentralizedSecurity
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     [System.Web.Script.Services.ScriptService]
-    
-    public class Security : System.Web.Services.WebService
+
+    public class CoreSecurity : System.Web.Services.WebService
     {
 
         [WebMethod]
@@ -32,6 +32,11 @@ namespace Fwk.CentralizedSecurity
             var list = from d in domains select d.DomainName ;
 
             return string.Join(",",list);
+        }
+        [WebMethod]
+        public String Test()
+        {
+            return "Hi wellcome to Core Security web service " + System.DateTime.Now.ToString();
         }
     }
 }
