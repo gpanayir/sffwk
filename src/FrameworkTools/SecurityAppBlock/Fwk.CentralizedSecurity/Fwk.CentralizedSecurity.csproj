@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActiveDirectory.asmx" />
-    <Content Include="ASPNet.asmx" />
     <Content Include="CoreSecurity.asmx" />
     <Content Include="info.txt" />
     <Content Include="ServiceMetadataConfig.xml">
@@ -76,10 +75,6 @@
   <ItemGroup>
     <Compile Include="ActiveDirectory.asmx.cs">
       <DependentUpon>ActiveDirectory.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ASPNet.asmx.cs">
-      <DependentUpon>ASPNet.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Contracts\ActiveDirectoryGroup.cs" />
