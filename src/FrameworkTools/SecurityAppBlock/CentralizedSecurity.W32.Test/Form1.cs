@@ -27,9 +27,9 @@ namespace CentralizedSecurity.W32.Test
             {
                 using (ServiceReference1.CoreSecurityClient clientProxy = new ServiceReference1.CoreSecurityClient())
                 {
-
-
-                    string x = clientProxy.Test();
+                 CentralizedSecurity.W32.Test.ServiceReference1.LoogonUserResult loogonRes=   clientProxy.Autenticate("moviedo", "Lincelin4", "allus-ar");
+                 string x = GetLoogonUserResult(loogonRes); 
+//                    string x = clientProxy.Test();
 
                     MessageBox.Show(x);
                 }
@@ -38,6 +38,14 @@ namespace CentralizedSecurity.W32.Test
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        string GetLoogonUserResult(CentralizedSecurity.W32.Test.ServiceReference1.LoogonUserResult loogonRes)
+        {
+            StringBuilder s = new StringBuilder(loogonRes.LogResult.ToString());
+            s.AppendLine();
+            s.AppendLine(loogonRes.ErrorMessage);
+            return s.ToString();
         }
         private void button1_Click(object sender, EventArgs e)
         {

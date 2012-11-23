@@ -35,17 +35,17 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(52, 13);
+            this.button1.Location = new System.Drawing.Point(52, 214);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Retrive_DomainsUrl";
+            this.button1.Text = "xxxxxxxx";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(80, 122);
+            this.button2.Location = new System.Drawing.Point(36, 172);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 23);
             this.button2.TabIndex = 1;
@@ -55,11 +55,11 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(52, 55);
+            this.button3.Location = new System.Drawing.Point(64, 12);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(132, 23);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Retrive_DomainsUrl";
+            this.button3.Text = "Test ";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
