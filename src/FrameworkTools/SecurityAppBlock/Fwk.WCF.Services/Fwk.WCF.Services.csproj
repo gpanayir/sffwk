@@ -72,8 +72,8 @@
     <Compile Include="ICoreSecurity.cs" />
     <Compile Include="ICoreSecurityAspnet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servicea\ActiveDirectoryService.cs" />
     <Compile Include="CoreSecurityAspnet.svc.cs" />
+    <Compile Include="Services\ActiveDirectoryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActiveDirecotry.svc" />
