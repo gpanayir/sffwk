@@ -86,7 +86,7 @@
       <DependentUpon>CoreSecurity.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Servicea\ActiveDirectoryService.cs" />
+    <Compile Include="Services\ActiveDirectoryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Fwk\Fwk.Security\Fwk.Security.csproj">
