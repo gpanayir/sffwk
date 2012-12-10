@@ -19,7 +19,7 @@ namespace Fwk.CentralizedSecurity
     {
 
         [WebMethod]
-        public LoogonUserResult Autenticate(string userName, string password, string domain)
+        public LoogonUserResult Authenticate(string userName, string password, string domain)
         {
             return ActiveDirectoryService.User_Logon(userName, password, domain);
         }

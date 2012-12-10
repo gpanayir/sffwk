@@ -21,6 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentralizedSecurity.W32.Test", "CentralizedSecurity.W32.Test\CentralizedSecurity.W32.Test.csproj", "{9442B862-FD75-4EC6-9BDB-ABCF97C74E91}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3} = {9F45B384-90AF-411A-BD0C-D17D8E6E48B3}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecDashboard", "SecDashboard\SecDashboard.csproj", "{97C154B2-B552-4D02-A2C1-2AD5A499D8F0}"
 EndProject

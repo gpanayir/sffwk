@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:5978/CoreSecurity.svc?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CoreSecurity.xsd" MetadataType="Schema" ID="f06cb4ac-c950-4221-b64c-d3399345d2b7" SourceId="1" SourceUrl="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?xsd=xsd2" />
-    <MetadataFile FileName="CoreSecurity1.xsd" MetadataType="Schema" ID="e3b88b0e-870e-4e43-8c40-df1859855816" SourceId="1" SourceUrl="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?xsd=xsd0" />
-    <MetadataFile FileName="CoreSecurity2.xsd" MetadataType="Schema" ID="aabc9a03-2233-4310-acc7-6333942f49a9" SourceId="1" SourceUrl="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?xsd=xsd1" />
-    <MetadataFile FileName="CoreSecurity.wsdl" MetadataType="Wsdl" ID="cfbae615-9ef5-4484-abe2-6b18786206e7" SourceId="1" SourceUrl="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc?wsdl" />
+    <MetadataFile FileName="CoreSecurity3.xsd" MetadataType="Schema" ID="16416076-0643-4b31-8d71-e2b1fd55a3f7" SourceId="1" SourceUrl="http://localhost:5978/CoreSecurity.svc?xsd=xsd0" />
+    <MetadataFile FileName="CoreSecurity1.wsdl" MetadataType="Wsdl" ID="d466f584-b606-4a78-ac03-4e55eac94506" SourceId="1" SourceUrl="http://localhost:5978/CoreSecurity.svc?wsdl" />
+    <MetadataFile FileName="CoreSecurity31.xsd" MetadataType="Schema" ID="abe3a27e-ed9b-4f51-8dd1-3fda7f453aef" SourceId="1" SourceUrl="http://localhost:5978/CoreSecurity.svc?xsd=xsd1" />
+    <MetadataFile FileName="CoreSecurity32.xsd" MetadataType="Schema" ID="342f3edd-82ea-4574-8337-be107cfe6799" SourceId="1" SourceUrl="http://localhost:5978/CoreSecurity.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -21,10 +21,11 @@ namespace Fwk.CentralizedSecurity
     {
 
         [WebMethod]
-        public LoogonUserResult Autenticate(string userName, string password, string domain)
+        public LoogonUserResult Authenticate(string userName, string password, string domain)
         {
             return ActiveDirectoryService.User_Logon(userName, password, domain);
         }
+
         [WebMethod(Description = "Retorna informacion sobre dominios de la empresa")]
         public string Retrive_DomainsUrl()
         {
@@ -33,6 +34,7 @@ namespace Fwk.CentralizedSecurity
 
             return string.Join(",",list);
         }
+
         [WebMethod]
         public String Test()
         {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="n18CVSInGgnybCadIzVUzbkxvKg=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Mq94N8hb+DGaJlWRtCYGB3XvF2U=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ICoreSecurity">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ICoreSecurity" contract="ServiceReference1.ICoreSecurity" bindingType="basicHttpBinding" address="http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc" bindingConfiguration="BasicHttpBinding_ICoreSecurity">
+    <endpoint name="BasicHttpBinding_ICoreSecurity" contract="ServiceReference1.ICoreSecurity" bindingType="basicHttpBinding" address="http://localhost:5978/CoreSecurity.svc" bindingConfiguration="BasicHttpBinding_ICoreSecurity">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://katy.sytes.net/CentralizedSecurity/CoreSecurity.svc</serializedValue>
+          <serializedValue>http://localhost:5978/CoreSecurity.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

@@ -15,7 +15,7 @@ namespace CentralizedSecurity.wcf
     public interface ICoreSecurity
     {
         [OperationContract]
-        LoogonUserResult Autenticate(string userName, string password, string domain);
+        LoogonUserResult Authenticate(string userName, string password, string domain);
 
         [OperationContract]
         String GetDomainNames();

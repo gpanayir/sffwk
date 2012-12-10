@@ -14,31 +14,15 @@ namespace CentralizedSecurity.W32.Test
 {
     public partial class Form1 : Form
     {
+        Fwk.Caching.FwkSimpleStorageBase<Cache> storage = new Fwk.Caching.FwkSimpleStorageBase<Cache>();
         string usr = "moviedo";
-        string pwd = "Lincelin4";
+        string pwd = "Lincelin5";
         public Form1()
         {
             InitializeComponent();
             
         }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (ServiceReference1.CoreSecurityClient clientProxy = new ServiceReference1.CoreSecurityClient())
-                {
-                 CentralizedSecurity.W32.Test.ServiceReference1.LoogonUserResult loogonRes=   clientProxy.Autenticate("moviedo", "Lincelin4", "allus-ar");
-                 string x = GetLoogonUserResult(loogonRes); 
-//                    string x = clientProxy.Test();
-
-                    MessageBox.Show(x);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+       
 
         string GetLoogonUserResult(CentralizedSecurity.W32.Test.ServiceReference1.LoogonUserResult loogonRes)
         {
@@ -47,7 +31,7 @@ namespace CentralizedSecurity.W32.Test
             s.AppendLine(loogonRes.ErrorMessage);
             return s.ToString();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
 
            
@@ -132,26 +116,139 @@ namespace CentralizedSecurity.W32.Test
             //}
         }
         //SecurityReference.SecuritySoapClient client = new SecurityReference.SecuritySoapClient();
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-            //using (SecurityReference.SecuritySoapClient client = new SecurityReference.SecuritySoapClient())
-            //{
-               // client.BeginRetrive_DomainsUrl(Retrive_DomainsUrlCallback, null);
-                
-            //}
-        }
-
+     
         void Retrive_DomainsUrlCallback(IAsyncResult result)
         {
+            txtResult.Text = string.Empty;
+            ServiceReference1.CoreSecurityClient clientProxy = new ServiceReference1.CoreSecurityClient("ws");
+            try
+            {
+                AuthenticateService(clientProxy);
+                txtResult.Text=clientProxy.GetDomainNames();
+                clientProxy.Close();
+            }
+            catch (FaultException fx)
+            {
+                txtResult.Text = "FaultException\r\n" + Fwk.Exceptions.ExceptionHelper.GetAllMessageException(fx);
+                clientProxy.Abort();
+
+            }
+            catch (Exception err)
+            {
+
+                txtResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(err);
+                clientProxy.Abort();
+            }
 
 
-            //string r = client.EndRetrive_DomainsUrl(result);
-            //MessageBox.Show(r);
-            //client.Close();
             
         }
 
-      
+        private void Authenticate_Click(object sender, EventArgs e)
+        {
+            txtResult.Text = string.Empty;
+            ServiceReference1.CoreSecurityClient clientProxy = new ServiceReference1.CoreSecurityClient("ws");
+            try
+            {
+                AuthenticateService(clientProxy);
+
+
+
+                CentralizedSecurity.W32.Test.ServiceReference1.LoogonUserResult loogonRes = clientProxy.Authenticate(txtAuthenticate_UserName.Text,txtAuthenticate_Password.Text,txtAuthenticate_Domain.Text);
+                string x = GetLoogonUserResult(loogonRes);
+                //                    string x = clientProxy.Test();
+                txtResult.Text = x;
+
+                clientProxy.Close();
+            }
+            catch (FaultException fx)
+            {
+                txtResult.Text = "FaultException\r\n" + Fwk.Exceptions.ExceptionHelper.GetAllMessageException(fx);
+                clientProxy.Abort();
+
+            }
+            catch (Exception err)
+            {
+
+                txtResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(err);
+                clientProxy.Abort();
+            }
+        }
+
+        void AuthenticateService(CentralizedSecurity.W32.Test.ServiceReference1.CoreSecurityClient proxyClient)
+        {
+            proxyClient.ClientCredentials.Windows.ClientCredential.UserName = txtUser.Text.Trim();
+            proxyClient.ClientCredentials.Windows.ClientCredential.Password = txtPwd.Text.Trim();
+            proxyClient.ClientCredentials.Windows.ClientCredential.Domain = txtDomain.Text.Trim();
+            if (chkUseProxy.Checked)
+            {
+                WebProxy proxy = new WebProxy(storage.StorageObject.ProxyAddress, false);
+                proxy.Credentials = new NetworkCredential(storage.StorageObject.ProxyUser, storage.StorageObject.ProxyPassword, storage.StorageObject.ProxyDomain);
+                WebRequest.DefaultWebProxy = proxy;
+            }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            storage.Load();
+            chkUseProxy.Checked = storage.StorageObject.UseProxy;
+            txtUserProxy.Text = storage.StorageObject.ProxyUser;
+            txtPwdProxy.Text = storage.StorageObject.ProxyPassword;
+            cmbDomain.Text = storage.StorageObject.ProxyDomain;
+            txtProxyAddress.Text = storage.StorageObject.ProxyAddress;
+
+            txtUser.Text = storage.StorageObject.WCFUser;
+            txtPwd.Text = storage.StorageObject.WCFPassword;
+            txtDomain.Text = storage.StorageObject.WCFDomain;
+        }
+
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+            SaveStorage();
+        }
+
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            SaveStorage();
+            base.OnClosing(e);
+        }
+
+        bool SaveStorage()
+        {
+            try
+            {
+                storage.StorageObject.UseProxy = chkUseProxy.Checked;
+                storage.StorageObject.ProxyUser = txtUserProxy.Text;
+                storage.StorageObject.ProxyPassword = txtPwdProxy.Text;
+                storage.StorageObject.ProxyDomain = cmbDomain.Text;
+                storage.StorageObject.ProxyAddress = txtProxyAddress.Text;
+
+                storage.StorageObject.WCFUser = txtUser.Text;
+                storage.StorageObject.WCFPassword = txtPwd.Text;
+                storage.StorageObject.WCFDomain = txtDomain.Text;
+                storage.Save();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
+                return false;
+            }
+        }
+
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            if (SaveStorage())
+                MessageBox.Show("Settings was successfully saved");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
