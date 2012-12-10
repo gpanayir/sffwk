@@ -147,14 +147,18 @@ namespace CentralizedSecurity.W32.Test
         private void Authenticate_Click(object sender, EventArgs e)
         {
             txtResult.Text = string.Empty;
-            ServiceReference1.CoreSecurityClient clientProxy = new ServiceReference1.CoreSecurityClient("ws");
+            ServiceReference1.CoreSecurityClient clientProxy = null;
             try
             {
+                clientProxy = new ServiceReference1.CoreSecurityClient("BasicHttpBinding_ICoreSecurity");
                 AuthenticateService(clientProxy);
 
 
 
-                CentralizedSecurity.W32.Test.ServiceReference1.LoogonUserResult loogonRes = clientProxy.Authenticate(txtAuthenticate_UserName.Text,txtAuthenticate_Password.Text,txtAuthenticate_Domain.Text);
+                CentralizedSecurity.W32.Test.ServiceReference1.LoogonUserResult loogonRes =
+                    clientProxy.Authenticate(txtAuthenticate_UserName.Text,
+                    txtAuthenticate_Password.Text,
+                    txtAuthenticate_Domain.Text);
                 string x = GetLoogonUserResult(loogonRes);
                 //                    string x = clientProxy.Test();
                 txtResult.Text = x;
@@ -164,14 +168,16 @@ namespace CentralizedSecurity.W32.Test
             catch (FaultException fx)
             {
                 txtResult.Text = "FaultException\r\n" + Fwk.Exceptions.ExceptionHelper.GetAllMessageException(fx);
-                clientProxy.Abort();
+                if (clientProxy != null)
+                    clientProxy.Abort();
 
             }
             catch (Exception err)
             {
 
                 txtResult.Text = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(err);
-                clientProxy.Abort();
+                if (clientProxy != null)
+                    clientProxy.Abort();
             }
         }
 
@@ -201,6 +207,13 @@ namespace CentralizedSecurity.W32.Test
             txtUser.Text = storage.StorageObject.WCFUser;
             txtPwd.Text = storage.StorageObject.WCFPassword;
             txtDomain.Text = storage.StorageObject.WCFDomain;
+
+
+            txtAuthenticate_UserName.Text = storage.StorageObject.AuthUser;
+            txtAuthenticate_Password.Text = storage.StorageObject.AuthPassword;
+            txtAuthenticate_Domain.Text = storage.StorageObject.AuthDomain;
+
+
         }
 
         private void Form1_Leave(object sender, EventArgs e)
@@ -225,9 +238,17 @@ namespace CentralizedSecurity.W32.Test
                 storage.StorageObject.ProxyDomain = cmbDomain.Text;
                 storage.StorageObject.ProxyAddress = txtProxyAddress.Text;
 
+
+
                 storage.StorageObject.WCFUser = txtUser.Text;
                 storage.StorageObject.WCFPassword = txtPwd.Text;
                 storage.StorageObject.WCFDomain = txtDomain.Text;
+
+
+                storage.StorageObject.AuthUser = txtAuthenticate_UserName.Text;
+                storage.StorageObject.AuthPassword = txtAuthenticate_Password.Text;
+                storage.StorageObject.AuthDomain = txtAuthenticate_Domain.Text;
+
                 storage.Save();
                 return true;
             }

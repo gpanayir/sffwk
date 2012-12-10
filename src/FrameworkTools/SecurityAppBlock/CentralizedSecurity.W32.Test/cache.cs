@@ -23,5 +23,10 @@ namespace CentralizedSecurity.W32.Test
         public bool UseProxy { get; set; }
 
         public string ProxyAddress { get; set; }
+
+
+        public string AuthUser { get; set; }
+        public string AuthPassword { get; set; }
+        public string AuthDomain { get; set; }
     }
 }
