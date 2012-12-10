@@ -12,7 +12,7 @@ using System.ServiceModel.Activation;
 
 namespace CentralizedSecurity.wcf
 {
-    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
+    [ServiceBehavior(IncludeExceptionDetailInFaults=WCFHelper.IncludeExceptionDetailInFaults)]
     public class CoreSecurity : ICoreSecurity
     {
         public LoogonUserResult Authenticate(string userName, string password, string domain)
