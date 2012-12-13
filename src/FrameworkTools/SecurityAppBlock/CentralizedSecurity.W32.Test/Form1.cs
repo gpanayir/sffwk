@@ -120,7 +120,7 @@ namespace CentralizedSecurity.W32.Test
         void Retrive_DomainsUrlCallback(IAsyncResult result)
         {
             txtResult.Text = string.Empty;
-            ServiceReference1.CoreSecurityClient clientProxy = new ServiceReference1.CoreSecurityClient("ws");
+            ServiceReference1.CoreSecurityClient clientProxy = new ServiceReference1.CoreSecurityClient("wcf_iis");
             try
             {
                 AuthenticateService(clientProxy);
@@ -150,7 +150,7 @@ namespace CentralizedSecurity.W32.Test
             ServiceReference1.CoreSecurityClient clientProxy = null;
             try
             {
-                clientProxy = new ServiceReference1.CoreSecurityClient("BasicHttpBinding_ICoreSecurity");
+                clientProxy = new ServiceReference1.CoreSecurityClient("wcf_iis");
                 AuthenticateService(clientProxy);
 
 
@@ -183,6 +183,9 @@ namespace CentralizedSecurity.W32.Test
 
         void AuthenticateService(CentralizedSecurity.W32.Test.ServiceReference1.CoreSecurityClient proxyClient)
         {
+            proxyClient.ClientCredentials.UserName.UserName = txtUser.Text.Trim();
+            proxyClient.ClientCredentials.UserName.Password =  txtPwd.Text.Trim();
+            
             proxyClient.ClientCredentials.Windows.ClientCredential.UserName = txtUser.Text.Trim();
             proxyClient.ClientCredentials.Windows.ClientCredential.Password = txtPwd.Text.Trim();
             proxyClient.ClientCredentials.Windows.ClientCredential.Domain = txtDomain.Text.Trim();
