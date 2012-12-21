@@ -186,6 +186,15 @@
     <Content Include="Templates\MappingType.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\Solutions\Projects\Entities\BE.csproj">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\Solutions\Projects\Entities\BE.vstemplate">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\Svc.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -222,13 +231,23 @@
     <Compile Include="CustomWizardPages\wizService.Designer.cs">
       <DependentUpon>wizService.cs</DependentUpon>
     </Compile>
+    <Content Include="Templates\Solutions\Projects\Entities\Common.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Solutions\Projects\Entities\Enums.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Solutions\Projects\Entities\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Compile Include="ValueProviders\ValueProvider.cs" />
     <Content Include="Templates\Items\service.vstemplate">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Solutions\Projects\Controller\Properties\AssemblyInfo.cs">
+    <Content Include="Templates\Solutions\Projects\Frontend\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -264,12 +283,12 @@
     </Compile>
     <Compile Include="Editors\FileChooser.cs" />
     <Compile Include="Editors\MessageEditor.cs" />
-    <Content Include="Templates\Solutions\Projects\Controller\Controller.csproj">
+    <Content Include="Templates\Solutions\Projects\Frontend\Frontend.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Templates\Solutions\Projects\Controller\Controller.vstemplate">
+    <Content Include="Templates\Solutions\Projects\Frontend\Frontend.vstemplate">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <SubType>Designer</SubType>
@@ -466,14 +485,16 @@
       <LastGenOutput>EntityTemplate.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Solutions\Projects\Backend\Entities\EntityFwkGen.tt">
+    <Content Include="Templates\Solutions\Projects\Entities\EntityFwkGen.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TransformOnBuild>False</TransformOnBuild>
     </Content>
-    <Content Include="Templates\Solutions\Projects\Backend\Entities\EntityFwkGen_helper.tt">
+    <Content Include="Templates\Solutions\Projects\Entities\EntityFwkGen_helper.tt">
       <LastGenOutput>EntityFwkGen_helper.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TransformOnBuild>False</TransformOnBuild>
     </Content>
   </ItemGroup>
   <ItemGroup>
