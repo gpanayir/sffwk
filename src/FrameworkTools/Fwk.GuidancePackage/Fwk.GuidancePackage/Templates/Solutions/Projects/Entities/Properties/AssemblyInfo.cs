@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("$safeprojectname$")]
+[assembly: AssemblyTitle("$safeprojectname$.BE")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("$registeredorganization$")]
@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 [assembly: Guid("$guid1$")]
 
 // Version information for an assembly consists of the following four values:
-// 
+//
 //      Major Version
 //      Minor Version 
 //      Build Number

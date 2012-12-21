@@ -28,9 +28,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-
-  
   <ItemGroup>
+
+    <Reference Include="Fwk.Bases.Connector" >
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\...\Libraries\Fwk.Bases.Connector.dll</HintPath>
+    </Reference>
+    
     <Reference Include="Fwk.Bases" >
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\...\Libraries\Fwk.Bases.dll</HintPath>
@@ -55,23 +59,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\...\Libraries\Microsoft.VisualStudio.DebuggerVisualizers.dll</HintPath>
     </Reference>
-    <ProjectReference Include="..\$ProjectNamespace2$.BE\$ProjectNamespace2$.BE.csproj">
-      <Project>$guid1$</Project>
-      <Name>$ProjectNamespace2$.BE</Name>
-    </ProjectReference>
+    
     <Reference Include="System"/>
     <Reference Include="System.Data"/>
     <Reference Include="System.Xml"/>
-
+    
+    
   </ItemGroup>
   <ItemGroup>
 	  <Compile Include="Properties\AssemblyInfo.cs" />
-    <!--<None Include="Entities\EntityFwkGen_helper.tt" />
-    <None Include="Entities\EntityFwkGen.tt" />-->
-    <Folder Include="Services\" />
-    <Folder Include="DAC\" />
-  
- 
+	  
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
 </Project>

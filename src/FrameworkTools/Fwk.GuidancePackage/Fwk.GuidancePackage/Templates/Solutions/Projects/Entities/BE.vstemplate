@@ -1,24 +1,22 @@
 ﻿<VSTemplate Version="2.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
 	<TemplateData>
-		<Name>Backend project</Name>
-		<Description>This project contains entities moden SVC </Description>
+		<Name>Business entity component project</Name>
+		<Description>This project contains entities model BE </Description>
 		<Icon Package="{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}" ID="4547" />
 		<ProjectType>CSharp</ProjectType>
 		<SortOrder>20</SortOrder>
 		<CreateNewFolder>true</CreateNewFolder>
-		<DefaultName>SampleConsole</DefaultName>
+		<DefaultName>BE</DefaultName>
 		<ProvideDefaultName>true</ProvideDefaultName>
 	</TemplateData>
 	<TemplateContent>
-		<Project File="Backend.csproj" ReplaceParameters="true">
-			<ProjectItem ReplaceParameters="true">Properties\AssemblyInfo.cs</ProjectItem>
+		<Project File="BE.csproj" ReplaceParameters="true">
+	<ProjectItem ReplaceParameters="true">Properties\AssemblyInfo.cs</ProjectItem>
+	<ProjectItem ReplaceParameters="true" TargetFileName="Common.cs">Common.cs</ProjectItem>
+	<ProjectItem ReplaceParameters="false" TargetFileName="Enums.cs">Enums.cs</ProjectItem>
+  <ProjectItem ReplaceParameters="false" TargetFileName="EntityFwkGen.tt">EntityFwkGen.tt</ProjectItem>
+  <ProjectItem ReplaceParameters="false" TargetFileName="EntityFwkGen_helper.tt">EntityFwkGen_helper.tt</ProjectItem>
 
-      <Folder Name="Services" TargetFolderName="Services" />
-      <!--<Folder Name="Entities" TargetFolderName="Entities">
-        <ProjectItem ReplaceParameters="false" TargetFileName="EntityFwkGen.tt">EntityFwkGen.tt</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="EntityFwkGen_helper.tt">EntityFwkGen_helper.tt</ProjectItem>
-      </Folder>-->
-      
 	</Project>
     
 	</TemplateContent>

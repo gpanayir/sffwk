@@ -14,16 +14,23 @@
 	</TemplateData>
 	<TemplateContent>
 		<ProjectCollection>
-      <SolutionFolder Name="Controller" >
-        <ProjectTemplateLink ProjectName="$ProjectName$.Controller">Projects\Controller\Controller.vstemplate</ProjectTemplateLink>
+      <SolutionFolder Name="Frontend" >
+        <ProjectTemplateLink ProjectName="$ProjectName$">Projects\Frontend\Frontend.vstemplate</ProjectTemplateLink>
       </SolutionFolder>
 
       <SolutionFolder Name="Backend">
+        <ProjectTemplateLink ProjectName="$ProjectName$.BE">Projects\Entities\BE.vstemplate</ProjectTemplateLink>
         <ProjectTemplateLink ProjectName="$ProjectName$.Backend">Projects\Backend\Backend.vstemplate</ProjectTemplateLink>
       </SolutionFolder>
 
 
     </ProjectCollection>
+
+    <CustomParameters>
+      <CustomParameter Name="$BEProjectName$" Value="$BEProjectName$"/>
+      <CustomParameter Name="$BackendProjectName$" Value="$BackendProjectName$"/>
+    </CustomParameters>
+    
 	</TemplateContent>
 	<WizardExtension>
 		<Assembly>Microsoft.Practices.RecipeFramework.VisualStudio, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</Assembly>
