@@ -51,7 +51,7 @@
             this.infoPanel.BackColor = System.Drawing.SystemColors.Control;
             this.infoPanel.Dock = System.Windows.Forms.DockStyle.None;
             this.infoPanel.Location = new System.Drawing.Point(4, 107);
-            this.infoPanel.Size = new System.Drawing.Size(755, 462);
+            this.infoPanel.Size = new System.Drawing.Size(714, 379);
             // 
             // lblTitle
             // 
@@ -65,7 +65,7 @@
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(774, 103);
+            this.lblTitle.Size = new System.Drawing.Size(722, 103);
             this.lblTitle.TabIndex = 67;
             this.lblTitle.Text = "                              Connection";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -89,7 +89,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(671, 373);
+            this.groupBox1.Size = new System.Drawing.Size(671, 295);
             this.groupBox1.TabIndex = 66;
             this.groupBox1.TabStop = false;
             // 
@@ -97,7 +97,7 @@
             // 
             this.btnCopy.Image = global::Fwk.GuidPk.Properties.Resources.copy_16;
             this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCopy.Location = new System.Drawing.Point(10, 289);
+            this.btnCopy.Location = new System.Drawing.Point(13, 212);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(26, 68);
             this.btnCopy.TabIndex = 76;
@@ -107,7 +107,7 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(299, 210);
+            this.button1.Location = new System.Drawing.Point(346, 154);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(180, 34);
             this.button1.TabIndex = 61;
@@ -119,7 +119,7 @@
             // 
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.ForeColor = System.Drawing.Color.DimGray;
-            this.lblPassword.Location = new System.Drawing.Point(36, 156);
+            this.lblPassword.Location = new System.Drawing.Point(36, 129);
             this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(139, 22);
@@ -130,7 +130,7 @@
             // 
             this.txtCnnString.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCnnString.ForeColor = System.Drawing.Color.SlateGray;
-            this.txtCnnString.Location = new System.Drawing.Point(40, 289);
+            this.txtCnnString.Location = new System.Drawing.Point(40, 212);
             this.txtCnnString.Multiline = true;
             this.txtCnnString.Name = "txtCnnString";
             this.txtCnnString.Size = new System.Drawing.Size(624, 68);
@@ -141,7 +141,7 @@
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPassword.Enabled = false;
             this.txtPassword.ForeColor = System.Drawing.Color.Maroon;
-            this.txtPassword.Location = new System.Drawing.Point(178, 152);
+            this.txtPassword.Location = new System.Drawing.Point(178, 125);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -154,7 +154,7 @@
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.Enabled = false;
             this.txtUserName.ForeColor = System.Drawing.Color.Maroon;
-            this.txtUserName.Location = new System.Drawing.Point(178, 119);
+            this.txtUserName.Location = new System.Drawing.Point(178, 92);
             this.txtUserName.Margin = new System.Windows.Forms.Padding(4);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(255, 22);
@@ -165,7 +165,7 @@
             // 
             this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserName.ForeColor = System.Drawing.Color.DimGray;
-            this.lblUserName.Location = new System.Drawing.Point(36, 126);
+            this.lblUserName.Location = new System.Drawing.Point(36, 99);
             this.lblUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(139, 22);
@@ -176,7 +176,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(11, 54);
+            this.label4.Location = new System.Drawing.Point(11, 27);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(117, 20);
@@ -185,7 +185,7 @@
             // 
             // cmbDataBases
             // 
-            this.cmbDataBases.Location = new System.Drawing.Point(160, 79);
+            this.cmbDataBases.Location = new System.Drawing.Point(160, 52);
             this.cmbDataBases.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDataBases.Name = "cmbDataBases";
             this.cmbDataBases.Size = new System.Drawing.Size(255, 24);
@@ -197,7 +197,7 @@
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(12, 86);
+            this.label6.Location = new System.Drawing.Point(12, 59);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(139, 20);
@@ -208,7 +208,7 @@
             // 
             this.cmbServer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cmbServer.FormattingEnabled = true;
-            this.cmbServer.Location = new System.Drawing.Point(160, 47);
+            this.cmbServer.Location = new System.Drawing.Point(160, 20);
             this.cmbServer.Margin = new System.Windows.Forms.Padding(4);
             this.cmbServer.Name = "cmbServer";
             this.cmbServer.Size = new System.Drawing.Size(255, 24);
@@ -239,7 +239,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.WindowsAutentificaction);
             this.Name = "wizDbSelect_2";
-            this.Size = new System.Drawing.Size(774, 573);
+            this.Size = new System.Drawing.Size(722, 490);
             this.Load += new System.EventHandler(this.wizDbSelect_2_Load);
             this.Controls.SetChildIndex(this.infoPanel, 0);
             this.Controls.SetChildIndex(this.WindowsAutentificaction, 0);

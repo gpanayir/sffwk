@@ -6,14 +6,14 @@
 		<ProjectType>CSharp</ProjectType>
 		<SortOrder>20</SortOrder>
 		<CreateNewFolder>true</CreateNewFolder>
-		<DefaultName>BE</DefaultName>
+		<DefaultName>$safeprojectname$.BE</DefaultName>
 		<ProvideDefaultName>true</ProvideDefaultName>
 	</TemplateData>
 	<TemplateContent>
 		<Project File="BE.csproj" ReplaceParameters="true">
 	<ProjectItem ReplaceParameters="true">Properties\AssemblyInfo.cs</ProjectItem>
 	<ProjectItem ReplaceParameters="true" TargetFileName="Common.cs">Common.cs</ProjectItem>
-	<ProjectItem ReplaceParameters="false" TargetFileName="Enums.cs">Enums.cs</ProjectItem>
+	<ProjectItem ReplaceParameters="true" TargetFileName="Enums.cs">Enums.cs</ProjectItem>
   <ProjectItem ReplaceParameters="false" TargetFileName="EntityFwkGen.tt">EntityFwkGen.tt</ProjectItem>
   <ProjectItem ReplaceParameters="false" TargetFileName="EntityFwkGen_helper.tt">EntityFwkGen_helper.tt</ProjectItem>
 

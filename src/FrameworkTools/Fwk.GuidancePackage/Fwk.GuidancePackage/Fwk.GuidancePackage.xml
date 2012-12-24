@@ -45,12 +45,11 @@
         
         <Argument Name="ProjectNamespace">
           <Converter Type="Microsoft.Practices.RecipeFramework.Library.Converters.NamespaceStringConverter, Microsoft.Practices.RecipeFramework.Library"/>
-          
           <ValueProvider Type="NmsEval"	 Expression="$(ProjectName)">
             <MonitorArgument Name="ProjectName" />
           </ValueProvider>
-        
         </Argument>
+        
         <Argument Name="ProjectNamespace2">
           <ValueProvider Type="NmsEval"	 Expression="$(ProjectName)">
             <MonitorArgument Name="ProjectName" />

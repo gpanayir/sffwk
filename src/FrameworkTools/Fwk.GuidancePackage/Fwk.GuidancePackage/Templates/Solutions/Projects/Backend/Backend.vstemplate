@@ -6,13 +6,14 @@
 		<ProjectType>CSharp</ProjectType>
 		<SortOrder>20</SortOrder>
 		<CreateNewFolder>true</CreateNewFolder>
-		<DefaultName>SampleConsole</DefaultName>
+		<DefaultName>$safeprojectname$.Back</DefaultName>
 		<ProvideDefaultName>true</ProvideDefaultName>
 	</TemplateData>
 	<TemplateContent>
 		<Project File="Backend.csproj" ReplaceParameters="true">
 			<ProjectItem ReplaceParameters="true">Properties\AssemblyInfo.cs</ProjectItem>
 
+      
       <Folder Name="Services" TargetFolderName="Services" />
       <!--<Folder Name="Entities" TargetFolderName="Entities">
         <ProjectItem ReplaceParameters="false" TargetFileName="EntityFwkGen.tt">EntityFwkGen.tt</ProjectItem>

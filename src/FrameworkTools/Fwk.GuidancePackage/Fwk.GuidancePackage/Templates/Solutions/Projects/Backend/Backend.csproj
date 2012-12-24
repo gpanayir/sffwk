@@ -8,8 +8,8 @@
     <ProjectGuid>$guid1$</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>$safeprojectname$</RootNamespace>
-    <AssemblyName>$safeprojectname$</AssemblyName>
+    <RootNamespace>$safeprojectname$.Back</RootNamespace>
+    <AssemblyName>$safeprojectname$.Back</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,14 +55,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\...\Libraries\Microsoft.VisualStudio.DebuggerVisualizers.dll</HintPath>
     </Reference>
-    <ProjectReference Include="..\$ProjectNamespace2$.BE\$ProjectNamespace2$.BE.csproj">
+    <ProjectReference Include="..\$ProjectName$.BE\$ProjectName$.BE.csproj">
       <Project>$guid1$</Project>
-      <Name>$ProjectNamespace2$.BE</Name>
+      <Name>$ProjectName$.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\$BEProjectName$\$BEProjectName$.csproj">
+      <Project>$guid1$</Project>
+      <Name>$ProjectName$.BE</Name>
     </ProjectReference>
     <Reference Include="System"/>
     <Reference Include="System.Data"/>
     <Reference Include="System.Xml"/>
-
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
   </ItemGroup>
   <ItemGroup>
 	  <Compile Include="Properties\AssemblyInfo.cs" />

@@ -232,9 +232,11 @@
       <DependentUpon>wizService.cs</DependentUpon>
     </Compile>
     <Content Include="Templates\Solutions\Projects\Entities\Common.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Solutions\Projects\Entities\Enums.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Solutions\Projects\Entities\Properties\AssemblyInfo.cs">

@@ -49,9 +49,9 @@
             // 
             // infoPanel
             // 
-            this.infoPanel.Location = new System.Drawing.Point(0, 222);
+            this.infoPanel.Location = new System.Drawing.Point(0, 207);
             this.infoPanel.Margin = new System.Windows.Forms.Padding(5);
-            this.infoPanel.Size = new System.Drawing.Size(948, 393);
+            this.infoPanel.Size = new System.Drawing.Size(892, 393);
             // 
             // groupBox1
             // 
@@ -65,7 +65,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(940, 485);
+            this.groupBox1.Size = new System.Drawing.Size(884, 485);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             // 
@@ -86,7 +86,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(807, 144);
+            this.groupBox2.Size = new System.Drawing.Size(751, 144);
             this.groupBox2.TabIndex = 74;
             this.groupBox2.TabStop = false;
             // 
@@ -114,7 +114,7 @@
             this.txtRes.Margin = new System.Windows.Forms.Padding(4);
             this.txtRes.Name = "txtRes";
             this.txtRes.ReadOnly = true;
-            this.txtRes.Size = new System.Drawing.Size(633, 23);
+            this.txtRes.Size = new System.Drawing.Size(577, 23);
             this.txtRes.TabIndex = 11;
             // 
             // label4
@@ -141,7 +141,7 @@
             this.txtReq.Margin = new System.Windows.Forms.Padding(4);
             this.txtReq.Name = "txtReq";
             this.txtReq.ReadOnly = true;
-            this.txtReq.Size = new System.Drawing.Size(633, 23);
+            this.txtReq.Size = new System.Drawing.Size(577, 23);
             this.txtReq.TabIndex = 10;
             // 
             // lblSVC
@@ -168,7 +168,7 @@
             this.txtBE.Margin = new System.Windows.Forms.Padding(4);
             this.txtBE.Name = "txtBE";
             this.txtBE.ReadOnly = true;
-            this.txtBE.Size = new System.Drawing.Size(633, 23);
+            this.txtBE.Size = new System.Drawing.Size(577, 23);
             this.txtBE.TabIndex = 9;
             // 
             // label1
@@ -202,7 +202,7 @@
             this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTestConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTestConnection.ForeColor = System.Drawing.SystemColors.Info;
-            this.btnTestConnection.Location = new System.Drawing.Point(99, 160);
+            this.btnTestConnection.Location = new System.Drawing.Point(43, 160);
             this.btnTestConnection.Margin = new System.Windows.Forms.Padding(4);
             this.btnTestConnection.Name = "btnTestConnection";
             this.btnTestConnection.Size = new System.Drawing.Size(149, 30);
@@ -246,7 +246,7 @@
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(948, 92);
+            this.lblTitle.Size = new System.Drawing.Size(892, 92);
             this.lblTitle.TabIndex = 64;
             this.lblTitle.Text = "Set service info";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -260,7 +260,7 @@
             this.Controls.Add(this.groupBox1);
             this.InfoRTBoxSize = new System.Drawing.Size(661, 74);
             this.Name = "wizService";
-            this.Size = new System.Drawing.Size(948, 615);
+            this.Size = new System.Drawing.Size(892, 600);
             this.Load += new System.EventHandler(this.wizService_Load);
             this.Controls.SetChildIndex(this.infoPanel, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
