@@ -146,11 +146,20 @@ namespace Fwk.Logging.Viewer
 
         void Load_FRM_Document(Fwk.Logging.Targets.Target t)
         {
-            FRM_Document wForm = new FRM_Document();
-            wForm.Populate(t);
-            wForm.MdiParent = this;
-            wForm.Show();
-
+            FRM_Document wForm ;
+            try
+            {
+                wForm = new FRM_Document();
+                wForm.Populate(t);
+                wForm.MdiParent = this;
+                wForm.Show();
+            }
+            catch (InvalidOperationException)
+            { }
+            catch (Exception ex)
+            {
+                this.ExceptionViewer.Show(ex);
+            }
         }
         private void RefreshTabDocument()
         {
@@ -246,14 +255,9 @@ namespace Fwk.Logging.Viewer
 
                 if (!string.IsNullOrEmpty(wFileName))
                 {
-                    try
-                    {
+                  
                         CreateTabDocument(wFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        this.ExceptionViewer.Show(ex);
-                    }
+              
                 }
             }
         }
@@ -265,14 +269,9 @@ namespace Fwk.Logging.Viewer
 
                 if (!string.IsNullOrEmpty(wFileName))
                 {
-                    try
-                    {
+                
                         CreateTabDocument(wFileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        this.ExceptionViewer.Show(ex);
-                    }
+               
                 }
             }
         }

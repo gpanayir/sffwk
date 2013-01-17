@@ -33,15 +33,23 @@ namespace Fwk.Logging.Viewer
             //grdLogs.BindingContextChanged += new EventHandler(grdLogs_BindingContextChanged);
 
             Event ev = new Event();
+            try
+            {
+                Events wEvents = _Target.SearchByParam(ev);
+                currentEvents = Get_EventGridList(wEvents);
+                this.eventGridListBindingSource.DataSource = null;
+                this.eventGridListBindingSource.DataSource = currentEvents;
 
-            Events wEvents = _Target.SearchByParam(ev);
+                grdLogs.Refresh();
 
-            currentEvents = Get_EventGridList(wEvents);
-            this.eventGridListBindingSource.DataSource = null;
-            this.eventGridListBindingSource.DataSource = currentEvents;
+            }
+            catch (InvalidOperationException io)
+            {
+                MessageBox.Show("El archivo no tiene el formato correcto");
 
-            grdLogs.Refresh();
-
+                throw io;
+            }
+        
         }
 
         /// <summary>
