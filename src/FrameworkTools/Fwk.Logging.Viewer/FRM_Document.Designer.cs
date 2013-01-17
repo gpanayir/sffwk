@@ -48,6 +48,8 @@ namespace Fwk.Logging.Viewer
             this.ExceptionViewer = new Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent(this.components);
             this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.filter1 = new Fwk.Logging.Viewer.Filter();
+            this.btnClearLogs = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventGridListBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -230,12 +232,34 @@ namespace Fwk.Logging.Viewer
             this.filter1.TabIndex = 6;
             this.filter1.OnFilterChanged += new Fwk.Logging.Viewer.OnFilterChangedHandler(this.filter1_OnFilterChanged);
             // 
+            // btnClearLogs
+            // 
+            this.btnClearLogs.Location = new System.Drawing.Point(696, 13);
+            this.btnClearLogs.Name = "btnClearLogs";
+            this.btnClearLogs.Size = new System.Drawing.Size(118, 23);
+            this.btnClearLogs.TabIndex = 7;
+            this.btnClearLogs.Text = "Clear all logs";
+            this.btnClearLogs.UseVisualStyleBackColor = true;
+            this.btnClearLogs.Click += new System.EventHandler(this.btnClearLogs_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(696, 42);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Clear selected";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FRM_Document
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1065, 665);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnClearLogs);
             this.Controls.Add(this.filter1);
             this.Controls.Add(this.grdLogs);
             this.Controls.Add(this.panel1);
@@ -271,6 +295,8 @@ namespace Fwk.Logging.Viewer
         private System.Windows.Forms.DataGridViewTextBoxColumn sourceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn appIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn messageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnClearLogs;
+        private System.Windows.Forms.Button button1;
 
     }
 }

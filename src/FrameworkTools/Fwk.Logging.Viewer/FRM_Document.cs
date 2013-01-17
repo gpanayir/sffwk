@@ -56,13 +56,49 @@ namespace Fwk.Logging.Viewer
         /// 
         /// </summary>
         /// <param name="eventIdList"></param>
-        public void Remove(List<string> eventIdList)
+        public void Remove()
         {
-            _Target.Remove(eventIdList);
+            List<Guid> wGuids = new List<Guid>();
+            foreach (DataGridViewRow row in grdLogs.SelectedRows)
+            {
+                wGuids.Add((Guid)row.Cells["Id"].Value);
+            }
+            try
+            {
+                _Target.Remove(wGuids);
+                currentEvents.Remove(wGuids);
+                grdLogs.Refresh();
+
+            }
+            catch (Exception ex)
+            {
+                ExceptionViewer.Show(ex);
+            }
+           
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void RemoveAll()
         {
+             List < Guid > wGuids = new List<Guid>();
+            foreach (DataGridViewRow row in grdLogs.Rows)
+            {
+                wGuids.Add((Guid)row.Cells["Id"].Value);
+            }
+            try
+            {
+                _Target.Remove(wGuids);
+                currentEvents.Remove(wGuids);
+                grdLogs.Refresh();
 
+            }
+            catch (Exception ex)
+            {
+                ExceptionViewer.Show(ex);
+            }
+            
         }
 
 
@@ -208,21 +244,13 @@ namespace Fwk.Logging.Viewer
         {
             if (e.KeyCode == Keys.Delete)
             {
-                List<Guid> wGuids = new List<Guid>();
-                foreach (DataGridViewRow row in grdLogs.SelectedRows)
+                if (grdLogs.SelectedRows.Count != 0)
                 {
-                    wGuids.Add((Guid)row.Cells["Id"].Value);
-                }
-                try
-                {
-                    _Target.Remove(wGuids);
-                    currentEvents.Remove(wGuids);
-                    grdLogs.Refresh();
-
-                }
-                catch (Exception ex)
-                {
-                    ExceptionViewer.Show(ex);
+                    DialogResult d = MessageBox.Show("Se eliminaran los logs seleccionados", "Fwk Logviewer", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (d == System.Windows.Forms.DialogResult.OK)
+                    {
+                        Remove();
+                    }
                 }
             }
         }
@@ -290,6 +318,24 @@ namespace Fwk.Logging.Viewer
             panel1.Controls.Clear();
             panel1.Controls.Add(pControlToAdd);
 
+        }
+
+        private void btnClearLogs_Click(object sender, EventArgs e)
+        {
+          DialogResult d=  MessageBox.Show("Se eliminaran todos los logs","Fwk Logviewer", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+          if (d == System.Windows.Forms.DialogResult.OK)
+          {
+              RemoveAll();
+          }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult d = MessageBox.Show("Se eliminaran los logs seleccionados", "Fwk Logviewer", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (d == System.Windows.Forms.DialogResult.OK)
+            {
+                Remove();
+            }
         }
 
        
