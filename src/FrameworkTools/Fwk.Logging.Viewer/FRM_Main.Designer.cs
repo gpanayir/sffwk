@@ -41,11 +41,10 @@ namespace Fwk.Logging.Viewer
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearAllEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMenu = new System.Windows.Forms.MenuStrip();
             this.fwkMessageViewComponent1 = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
             this.ExceptionViewer = new Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent(this.components);
+            this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlContextMenu.SuspendLayout();
             this.mnuMenu.SuspendLayout();
             this.SuspendLayout();
@@ -132,39 +131,26 @@ namespace Fwk.Logging.Viewer
             // 
             // actionsToolStripMenuItem
             // 
-            this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.refreshToolStripMenuItem,
-            this.clearAllEventsToolStripMenuItem});
+            this.actionsToolStripMenuItem.Image = global::Fwk.Logging.Viewer.Properties.Resources.Refresh;
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
-            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.actionsToolStripMenuItem.Text = "Actions";
-            // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("refreshToolStripMenuItem.Image")));
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
-            // 
-            // clearAllEventsToolStripMenuItem
-            // 
-            this.clearAllEventsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearAllEventsToolStripMenuItem.Image")));
-            this.clearAllEventsToolStripMenuItem.Name = "clearAllEventsToolStripMenuItem";
-            this.clearAllEventsToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.clearAllEventsToolStripMenuItem.Text = "Clear all events";
-            this.clearAllEventsToolStripMenuItem.Click += new System.EventHandler(this.clearAllEventsToolStripMenuItem_Click);
+            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.actionsToolStripMenuItem.Text = "Refresh";
+            this.actionsToolStripMenuItem.Click += new System.EventHandler(this.actionsToolStripMenuItem_Click);
             // 
             // mnuMenu
             // 
+            this.mnuMenu.AllowDrop = true;
             this.mnuMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuFile,
-            this.actionsToolStripMenuItem});
+            this.actionsToolStripMenuItem,
+            this.refreshToolStripMenuItem1});
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
             this.mnuMenu.Size = new System.Drawing.Size(975, 24);
             this.mnuMenu.TabIndex = 2;
             this.mnuMenu.Text = "menuStrip1";
+            this.mnuMenu.DragDrop += new System.Windows.Forms.DragEventHandler(this.mnuMenu_DragDrop);
+            this.mnuMenu.DragEnter += new System.Windows.Forms.DragEventHandler(this.mnuMenu_DragEnter);
             // 
             // fwkMessageViewComponent1
             // 
@@ -183,9 +169,18 @@ namespace Fwk.Logging.Viewer
             this.ExceptionViewer.TextMessageForeColorColor = System.Drawing.SystemColors.WindowText;
             this.ExceptionViewer.Title = "FrmTechnicalMsg";
             // 
+            // refreshToolStripMenuItem1
+            // 
+            this.refreshToolStripMenuItem1.Image = global::Fwk.Logging.Viewer.Properties.Resources.Error;
+            this.refreshToolStripMenuItem1.Name = "refreshToolStripMenuItem1";
+            this.refreshToolStripMenuItem1.Size = new System.Drawing.Size(53, 20);
+            this.refreshToolStripMenuItem1.Text = "Exit";
+            this.refreshToolStripMenuItem1.Click += new System.EventHandler(this.refreshToolStripMenuItem1_Click);
+            // 
             // FRM_Main
             // 
-            this.BackColor = System.Drawing.Color.Gray;
+            this.AllowDrop = true;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(975, 675);
             this.Controls.Add(this.mnuMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -193,8 +188,10 @@ namespace Fwk.Logging.Viewer
             this.KeyPreview = true;
             this.Name = "FRM_Main";
             this.ShowInTaskbar = false;
-            this.Text = "Framework .: Log Viewer :.";
+            this.Text = "Fwk Log Viewer ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FRM_Main_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.FRM_Main_DragEnter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FRM_Main_KeyDown);
             this.ctlContextMenu.ResumeLayout(false);
             this.mnuMenu.ResumeLayout(false);
@@ -221,11 +218,10 @@ namespace Fwk.Logging.Viewer
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearAllEventsToolStripMenuItem;
         private System.Windows.Forms.MenuStrip mnuMenu;
         private Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent fwkMessageViewComponent1;
         private Fwk.Bases.FrontEnd.Controls.FwkExceptionViewComponent ExceptionViewer;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem1;
 
     }
 }

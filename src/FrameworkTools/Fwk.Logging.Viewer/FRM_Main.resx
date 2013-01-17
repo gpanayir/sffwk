@@ -112,21 +112,21 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ctlStatus.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="ctlStatus.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>7, 17</value>
   </metadata>
-  <metadata name="ctlNotify.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="ctlNotify.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>101, 17</value>
   </metadata>
-  <metadata name="ctlContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="ctlContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>193, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ctlNotify.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -247,37 +247,13 @@
         cX+G0Ojf+mCmxEMxqMrpEtXi7isnC42SsIm4B8P+Sv6XH/0L/mMEjI4Ezv4AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="refreshToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAYBJREFUOE+NUiFv
-        wkAYPVxl52pPnqw8W3mybnXk1HJBkAaxLDUTExUIQiYmKhGIiQpEk82QgNvEBD9gYgKBQHTu27sONmBH
-        s+/lpQnc9+7d974Oc5SZG1psnpm44OwT+Nhu2FK9dlxn//wWTkPSK00L4AV4AsbrMUXLiORMUqtIUiYk
-        V5IMENcxiUqQnEqKy5hUqci/9ynIgxaRCSPfogYL33lQDCE6cjhJpymxilEDfKM8OnuTmZjf/8LrkNgQ
-        TY/gG7gG52ABdsH/VJhDxDatdiJWyIqelJnr84J8wImVu9szRukDnnRQutKklqo9Cb+PwQ0Y6eHxTeks
-        JV5xugH0VpON+uzLTpubg3DGAbFDUAftIkfqcPQzYJuQHbJNC0NuZrcvUxxEc+KvidSmVINwk06O59Mc
-        l5kk0RfOt3mZ9x3xO3jbEm1wiTVF9uFdSCpXJDII2gZr2QrAdjJK2nejWSzE2CzSPlYrgL0QPbdDZyK8
-        h724QiPodT0yI/eMvgCve+kTFa8qfAAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="clearAllEventsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAPJJREFUOE+tkyEP
-        gkAcxS8YCAQCgWCQjaCbhehGMWoz+AGcyej4Bs5ocibnJ/A7mGlnu3hGIvHi838gG+rJBGWjsP/7vfd/
-        dzD2jwcBA2yG1izVJcCQXvYLhMTo10OQnKD03PlgTqsiH6A0euh1HayXxu9va6dRCLgMsgJRs1Gz9fgq
-        RkaQlCCq9wz7uuhsEoKTOHNaFIu5D0Hu6XgASZ3wJqcjPQfSYxCdwhn7OO9DA2vj47jNB7VjKS4FuPEc
-        8DFJutlBkqOkG8lty+iE5AJBt9WYRAR+EdMxi6vRhWs168S0t3xA1FW0/3+wmLYXV1PdAS4JinBhxdq3
-        AAAAAElFTkSuQmCC
-</value>
-  </data>
-  <metadata name="mnuMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="mnuMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>322, 17</value>
   </metadata>
-  <metadata name="fwkMessageViewComponent1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="fwkMessageViewComponent1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 54</value>
   </metadata>
-  <metadata name="ExceptionViewer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="ExceptionViewer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>216, 54</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

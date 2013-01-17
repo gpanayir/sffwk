@@ -268,12 +268,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\Entregas\Fwk.Logging.Viewer\*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\Entregas\Fwk.Logging.Viewer\*.pdb" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\Entregas\Fwk.Logging.Viewer\*vshost*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\Entregas\Fwk.Logging.Viewer\*.manifest" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\Entregas\Fwk.Logging.Viewer\*.application" &gt;&gt; nul 
-
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

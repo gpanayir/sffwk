@@ -15,6 +15,7 @@ using System.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using Fwk.Logging;
 using Fwk.HelperFunctions;
+using System.Reflection;
 
 namespace Fwk.Logging.Viewer
 {
@@ -24,6 +25,8 @@ namespace Fwk.Logging.Viewer
         public FRM_Main()
         {
             InitializeComponent();
+
+            this.Text = string.Concat(this.Text, Assembly.GetExecutingAssembly().GetName().Version.ToString());
         }
 
         #region <private event handlers>
@@ -61,12 +64,12 @@ namespace Fwk.Logging.Viewer
         {
             ShowForm();
         }
-        
+
         private void mnuExit_Click(object sender, EventArgs e)
         {
             CloseForm();
         }
-        
+
         private void mnuOpen_Click(object sender, EventArgs e)
         {
             string wFileName = Fwk.HelperFunctions.FileFunctions.OpenFileDialog_Open(Fwk.HelperFunctions.FileFunctions.OpenFilterEnums.OpenXmlFilter);
@@ -75,14 +78,14 @@ namespace Fwk.Logging.Viewer
                 CreateTabDocument(wFileName);
             }
         }
-        
+
         private void mnuOpenFromDB_Click(object sender, EventArgs e)
         {
-            
+
             CreateTabDocumentFromDB();
         }
 
-     
+
         #endregion
 
         #region <private methods>
@@ -108,7 +111,7 @@ namespace Fwk.Logging.Viewer
             this.Activate();
         }
 
-       
+
         private void CreateTabDocumentFromDB()
         {
 
@@ -117,31 +120,28 @@ namespace Fwk.Logging.Viewer
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     if (frm.ConnectionOK)
-                    { 
-                        Fwk.Logging.Targets.Target t = new  Fwk.Logging.Targets .DatabaseTarget();
+                    {
+                        Fwk.Logging.Targets.Target t = new Fwk.Logging.Targets.DatabaseTarget();
                         ((Fwk.Logging.Targets.DatabaseTarget)t).ConnectionString = frm.CnnString.ToString();
 
                         Load_FRM_Document(t);
-                        
+
                     }
                 }
             }
-            
-           
 
-          
+
+
+
         }
 
         private void CreateTabDocument(string pFileName)
         {
-           
-           
-  
-            Fwk.Logging.Targets.Target t = new Fwk.Logging.Targets.XmlTarget();
-            t.FileName = pFileName;
-            Load_FRM_Document(t);
+            Fwk.Logging.Targets.Target xmlFileTarget = new Fwk.Logging.Targets.XmlTarget();
+            xmlFileTarget.FileName = pFileName;
+            Load_FRM_Document(xmlFileTarget);
 
-          
+
         }
 
         void Load_FRM_Document(Fwk.Logging.Targets.Target t)
@@ -150,18 +150,19 @@ namespace Fwk.Logging.Viewer
             wForm.Populate(t);
             wForm.MdiParent = this;
             wForm.Show();
-      
+
         }
         private void RefreshTabDocument()
         {
-            Current_Document.Refresh();
+            if (Current_Document != null)
+                Current_Document.Refresh();
         }
-        
+
         private List<Event> ParseDB(DataSet pLogs)
         {
             List<Event> wEvents = new List<Event>();
 
-          
+
             return wEvents;
         }
 
@@ -176,7 +177,7 @@ namespace Fwk.Logging.Viewer
                 fwkMessageViewComponent1.Show(ex.Message);
                 return null;
             }
-         
+
         }
 
         private List<Event> ParseLogFile(string pFileName)
@@ -205,9 +206,9 @@ namespace Fwk.Logging.Viewer
         private List<Event> ParseXmlFile(string pFileName)
         {
             List<Event> wEvents = new List<Event>();
-          
-           
-            
+
+
+
 
             return wEvents;
         }
@@ -223,9 +224,73 @@ namespace Fwk.Logging.Viewer
 
         }
 
-       
 
-       
+
+
+        private void actionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefreshTabDocument();
+        }
+
+        private void refreshToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+        private void mnuMenu_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string wFileName = ((string[])e.Data.GetData(DataFormats.FileDrop, true))[0];
+
+                if (!string.IsNullOrEmpty(wFileName))
+                {
+                    try
+                    {
+                        CreateTabDocument(wFileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ExceptionViewer.Show(ex);
+                    }
+                }
+            }
+        }
+        private void FRM_Main_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string wFileName = ((string[])e.Data.GetData(DataFormats.FileDrop, true))[0];
+
+                if (!string.IsNullOrEmpty(wFileName))
+                {
+                    try
+                    {
+                        CreateTabDocument(wFileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.ExceptionViewer.Show(ex);
+                    }
+                }
+            }
+        }
+        private void FRM_Main_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void mnuMenu_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+
+
+
     }
 }
 
