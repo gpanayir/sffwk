@@ -116,7 +116,6 @@
             this.txtFullFileName.Name = "txtFullFileName";
             this.txtFullFileName.Size = new System.Drawing.Size(767, 27);
             this.txtFullFileName.TabIndex = 92;
-
             this.txtFullFileName.Leave += new System.EventHandler(this.txtFileName_Leave);
             // 
             // txtFileName
@@ -124,10 +123,11 @@
             this.txtFileName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtFileName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFileName.ForeColor = System.Drawing.Color.DimGray;
+            this.txtFileName.ForeColor = System.Drawing.Color.Black;
             this.txtFileName.Location = new System.Drawing.Point(16, 111);
             this.txtFileName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFileName.Name = "txtFileName";
+            this.txtFileName.ReadOnly = true;
             this.txtFileName.Size = new System.Drawing.Size(406, 27);
             this.txtFileName.TabIndex = 94;
             // 

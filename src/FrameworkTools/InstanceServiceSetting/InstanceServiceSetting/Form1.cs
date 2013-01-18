@@ -52,7 +52,8 @@ namespace InstanceServiceSetting
             {
                 _AssemblyPath = wSchemaDialog.FileName;
 
-           
+                txtFullFileName.Text = _AssemblyPath; 
+                txtFileName.Text = System.IO.Path.GetFileName(_AssemblyPath);
                 LoadAssembly();
             }
         }
@@ -62,8 +63,7 @@ namespace InstanceServiceSetting
             try
             {
                 
-                txtFileName.Text = System.IO.Path.GetFileName(_AssemblyPath);
-                //txtFullFileName.Text = _AssemblyPath;
+
                 Assembly wAssembly = Assembly.LoadFrom(_AssemblyPath);
                
                 bool contain = false;
