@@ -34,6 +34,7 @@
             this.txtServiceName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtFullFileName = new System.Windows.Forms.TextBox();
             this.txtFileName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -104,27 +105,40 @@
             this.label1.TabIndex = 93;
             this.label1.Text = "Service file name (*.exe)";
             // 
+            // txtFullFileName
+            // 
+            this.txtFullFileName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtFullFileName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
+            this.txtFullFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFullFileName.ForeColor = System.Drawing.Color.DimGray;
+            this.txtFullFileName.Location = new System.Drawing.Point(13, 62);
+            this.txtFullFileName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFullFileName.Name = "txtFullFileName";
+            this.txtFullFileName.Size = new System.Drawing.Size(767, 27);
+            this.txtFullFileName.TabIndex = 92;
+            this.txtFullFileName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFileName_KeyDown);
+            this.txtFullFileName.Leave += new System.EventHandler(this.txtFileName_Leave);
+            // 
             // txtFileName
             // 
             this.txtFileName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtFileName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
             this.txtFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFileName.ForeColor = System.Drawing.Color.DimGray;
-            this.txtFileName.Location = new System.Drawing.Point(13, 62);
+            this.txtFileName.Location = new System.Drawing.Point(16, 111);
             this.txtFileName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(767, 27);
-            this.txtFileName.TabIndex = 92;
-            this.txtFileName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFileName_KeyDown);
-            this.txtFileName.Leave += new System.EventHandler(this.txtFileName_Leave);
+            this.txtFileName.Size = new System.Drawing.Size(406, 27);
+            this.txtFileName.TabIndex = 94;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 297);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtFileName);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtFullFileName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtServiceName);
             this.Controls.Add(this.btnOk);
@@ -151,6 +165,7 @@
         private System.Windows.Forms.TextBox txtServiceName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtFullFileName;
         private System.Windows.Forms.TextBox txtFileName;
     }
 }

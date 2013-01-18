@@ -22,15 +22,59 @@ namespace InstanceServiceSetting
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
+            open(string.Empty);
+            //OpenFileDialog wSchemaDialog = new OpenFileDialog();
+            //wSchemaDialog.DefaultExt = "exe";
+            //wSchemaDialog.CheckFileExists = true;
+
+            //wSchemaDialog.Filter = "DLL Files (*.exe)|*.exe|All Files (*.*)|*.*";
+            //wSchemaDialog.ShowReadOnly = true;
+
+
+
+            //if (wSchemaDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    _AssemblyPath = wSchemaDialog.FileName;
+
+            //    //_StorageFactory.Save();
+            //    LoadAssembly();
+            //}
+           
+
+        }
+
+        private void txtFileName_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    if (System.IO.Path.GetFileName(txtFileName.Text) == "")
+            //    {
+ 
+            //    }
+            //    _AssemblyPath = txtFileName.Text;
+            //    LoadAssembly();
+            //}
+        }
+        private void txtFileName_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(System.IO.Path.GetFileName(txtFullFileName.Text)))
+            {
+                open(txtFullFileName.Text);
+            }
+        }
+        void open(string wInitialDirectory )
+        {
             OpenFileDialog wSchemaDialog = new OpenFileDialog();
             wSchemaDialog.DefaultExt = "exe";
             wSchemaDialog.CheckFileExists = true;
 
             wSchemaDialog.Filter = "DLL Files (*.exe)|*.exe|All Files (*.*)|*.*";
             wSchemaDialog.ShowReadOnly = true;
-
-
-
+            if (!string.IsNullOrEmpty(wInitialDirectory))
+            {
+                if (Directory.Exists(wInitialDirectory))
+                    wSchemaDialog.InitialDirectory = wInitialDirectory;
+            }
             if (wSchemaDialog.ShowDialog() == DialogResult.OK)
             {
                 _AssemblyPath = wSchemaDialog.FileName;
@@ -38,35 +82,17 @@ namespace InstanceServiceSetting
                 //_StorageFactory.Save();
                 LoadAssembly();
             }
-           
-
         }
-
-        private void txtFileName_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                _AssemblyPath = txtFileName.Text;
-                LoadAssembly();
-            }
-        }
-        private void txtFileName_Leave(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(txtFileName.Text))
-            {
-                _AssemblyPath = txtFileName.Text;
-                LoadAssembly();
-            }
-        }
-
         void LoadAssembly()
         {
 
             try
             {
-                // Assembly wAssembly = new Assembly(_AssemblyPath);
+                
+                txtFileName.Text = System.IO.Path.GetFileName(_AssemblyPath);
+                //txtFullFileName.Text = _AssemblyPath;
                 Assembly wAssembly = Assembly.LoadFrom(_AssemblyPath);
-                txtFileName.Text = _AssemblyPath;
+               
                 bool contain = false;
                 bool containConfig = false;
                 bool containConfigAppSetting = false;
@@ -143,12 +169,14 @@ namespace InstanceServiceSetting
                 return;
             }
             string path = System.IO.Path.GetDirectoryName(_AssemblyPath);
+            string exeFile = System.IO.Path.GetFileName(_AssemblyPath);
             try
             {
-                SaveTextFile(System.IO.Path.Combine(path, "install.bat"), String.Format("installutil {0}.exe \r\npause", txtServiceName.Text.Trim()));
-                SaveTextFile(System.IO.Path.Combine(path, "UNinstall.bat"), String.Format("installutil {0}.exe -u\r\npause", txtServiceName.Text.Trim()));
+                SaveTextFile(System.IO.Path.Combine(path, "install.bat"), String.Format("installutil {0} \r\npause", exeFile));
+                SaveTextFile(System.IO.Path.Combine(path, "UNinstall.bat"), String.Format("installutil {0} -u\r\npause", exeFile));
 
-
+                SaveTextFile(System.IO.Path.Combine(path, "StartService.bat"), String.Format("net start {0} \r\npause", txtServiceName.Text.Trim()));
+                SaveTextFile(System.IO.Path.Combine(path, "StopService.bat"), String.Format("net stop {0} -u\r\npause", txtServiceName.Text.Trim()));
 
                 foreach (KeyValueConfigurationElement o in configuration.AppSettings.Settings)
                 {
