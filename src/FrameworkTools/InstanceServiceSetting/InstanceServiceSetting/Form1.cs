@@ -23,38 +23,11 @@ namespace InstanceServiceSetting
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             open(string.Empty);
-            //OpenFileDialog wSchemaDialog = new OpenFileDialog();
-            //wSchemaDialog.DefaultExt = "exe";
-            //wSchemaDialog.CheckFileExists = true;
-
-            //wSchemaDialog.Filter = "DLL Files (*.exe)|*.exe|All Files (*.*)|*.*";
-            //wSchemaDialog.ShowReadOnly = true;
-
-
-
-            //if (wSchemaDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    _AssemblyPath = wSchemaDialog.FileName;
-
-            //    //_StorageFactory.Save();
-            //    LoadAssembly();
-            //}
-           
+          
 
         }
 
-        private void txtFileName_KeyDown(object sender, KeyEventArgs e)
-        {
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    if (System.IO.Path.GetFileName(txtFileName.Text) == "")
-            //    {
- 
-            //    }
-            //    _AssemblyPath = txtFileName.Text;
-            //    LoadAssembly();
-            //}
-        }
+        
         private void txtFileName_Leave(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(System.IO.Path.GetFileName(txtFullFileName.Text)))
@@ -79,7 +52,7 @@ namespace InstanceServiceSetting
             {
                 _AssemblyPath = wSchemaDialog.FileName;
 
-                //_StorageFactory.Save();
+           
                 LoadAssembly();
             }
         }

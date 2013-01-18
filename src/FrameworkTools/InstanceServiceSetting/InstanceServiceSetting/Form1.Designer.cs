@@ -116,7 +116,7 @@
             this.txtFullFileName.Name = "txtFullFileName";
             this.txtFullFileName.Size = new System.Drawing.Size(767, 27);
             this.txtFullFileName.TabIndex = 92;
-            this.txtFullFileName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFileName_KeyDown);
+
             this.txtFullFileName.Leave += new System.EventHandler(this.txtFileName_Leave);
             // 
             // txtFileName
