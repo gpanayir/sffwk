@@ -82,7 +82,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
             this.btnSearchFile.Name = "btnSearchFile";
             this.btnSearchFile.Size = new System.Drawing.Size(221, 31);
             this.btnSearchFile.TabIndex = 29;
-            this.btnSearchFile.Text = "Load from assemblie";
+            this.btnSearchFile.Text = "Load from assemby";
             this.btnSearchFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearchFile.UseVisualStyleBackColor = true;
             this.btnSearchFile.Click += new System.EventHandler(this.btnSearchFile_Click);
