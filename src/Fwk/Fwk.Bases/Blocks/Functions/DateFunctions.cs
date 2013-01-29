@@ -286,10 +286,26 @@ namespace Fwk.HelperFunctions
             return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(unixTimeStamp);
         }
 
+
+        /// <summary>
+        /// Convierte una fecha long (generalmente proveninte de unix) a datetime
+        /// </summary>
+        /// <param name="unixDate">Fecha long de unix</param>
+        /// <returns></returns>
+        public static DateTime UnixLongTimeToDateTime(long unixDate)
+        {
+            DateTime start = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return start.AddMilliseconds(unixDate).ToLocalTime();
+        }
+
+
         /// <summary>
         /// Obtiene la edad
         /// </summary>
         /// <param name="birthDate"></param>
+        /// <param name="ageInYears"></param>
+        /// <param name="ageInMonths"></param>
+        /// <param name="ageInDays"></param>
         /// <returns>Years,Months and Days</returns>
         public static void Get_Age(DateTime birthDate, out int ageInYears, out int ageInMonths, out int ageInDays)
         {
@@ -322,24 +338,24 @@ namespace Fwk.HelperFunctions
         /// <summary>
         /// Retorna fecha con hh:mm:ss  00:00:00
         /// </summary>
-        /// <param name="d"></param>
+        /// <param name="datetime"></param>
         /// <returns></returns>
-        public static DateTime GetStartDateTime(DateTime d)
+        public static DateTime GetStartDateTime(DateTime datetime)
         {
             //            startDate = DateTime.Parse(string.Format("{0} 00:00:00", startDate.ToShortDateString()), CultureInfo.GetCultureInfo("en-US"));
             //          endDate = DateTime.Parse(string.Format("{0} 11:59:59", endDate.ToShortDateString()), CultureInfo.GetCultureInfo("en-US"));
 
-            return new DateTime(d.Year, d.Month, d.Day, 0, 0, 0);
+            return new DateTime(datetime.Year, datetime.Month, datetime.Day, 0, 0, 0);
         }
 
         /// <summary>
         /// Retorna la fecha con hh:mm:ss = 23:59:59
         /// </summary>
-        /// <param name="d"></param>
+        /// <param name="datetime"></param>
         /// <returns></returns>
-        public static DateTime GetEndDateTime(DateTime d)
+        public static DateTime GetEndDateTime(DateTime datetime)
         {
-            return new DateTime(d.Year, d.Month, d.Day, 23, 59, 59);
+            return new DateTime(datetime.Year, datetime.Month, datetime.Day, 23, 59, 59);
         }
     }
 

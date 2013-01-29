@@ -134,7 +134,7 @@ namespace Fwk.Logging.Targets
               
             }
             //Si no existe ahora lo agrega
-            if (_Targets.ContainsKey(key))
+            if (!_Targets.ContainsKey(key))
                 _Targets.Add(key, wITarget);
 
             return wITarget;
