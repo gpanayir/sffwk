@@ -33,8 +33,6 @@ namespace Fwk.Security.BC
         /// Crea un nuevo usuario.
         /// </summary>
         /// <param name="pUser">UsuarioBE a crear</param>
-        /// <param name="CustomParameters">Lista de parametros customizados</param>        
-        /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
         /// <returns>UserId del nuevo usuario.</returns>
         public void Create(User pUser)
         {

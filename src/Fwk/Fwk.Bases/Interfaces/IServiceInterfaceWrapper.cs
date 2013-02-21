@@ -49,7 +49,11 @@ namespace Fwk.Bases
 		/// <author>moviedo</author>
         string ExecuteService( string pServiceName, string pData);
 
-       
+        /// <summary>
+        /// Si retorna StringEmpty 
+        /// </summary>
+        /// <returns></returns>
+        string CheckServiceAvailability();
 
         /// <summary>
         /// Ejecuta un servicio de negocio.

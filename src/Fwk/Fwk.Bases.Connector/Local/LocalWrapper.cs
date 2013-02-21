@@ -243,5 +243,18 @@ namespace Fwk.Bases.Connector
             return _SimpleFacade;
         }
         #endregion
+
+        #region IServiceWrapper Members
+
+        /// <summary>
+        /// Chequea la disponibilidad del despachador de servicio
+        /// </summary>
+        /// <returns>Mensaje en caso de que el servicio no esté disponible</returns>
+        public string CheckServiceAvailability()
+        {
+            return _SimpleFacade.CheckServiceAvailability();
+        }
+
+        #endregion
     }
 }

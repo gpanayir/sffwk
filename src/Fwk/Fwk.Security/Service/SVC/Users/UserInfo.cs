@@ -88,6 +88,9 @@ namespace Fwk.Security.BE
         }
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string[] Roles
         {
             get { return _Roles; }
@@ -100,6 +103,9 @@ namespace Fwk.Security.BE
             set { _MustChangePassword = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AuthenticationModeEnum AuthenticationMode
         {
             get

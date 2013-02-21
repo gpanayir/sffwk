@@ -195,8 +195,6 @@ namespace Fwk.Security.Common
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pIsLogin"></param>
-        /// <param name="pAuthenticationType"></param>
         /// <param name="pDirectoryEntry"></param>
         public ObjectDomainGroup(System.DirectoryServices.DirectoryEntry pDirectoryEntry)
         {

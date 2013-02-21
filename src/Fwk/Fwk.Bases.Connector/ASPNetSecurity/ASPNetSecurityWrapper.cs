@@ -320,7 +320,17 @@ namespace Fwk.Bases.Connector
         #endregion [ServiceConfiguration]
 
 
-        
+
+
+        #region IServiceWrapper Members
+
+
+        public string CheckServiceAvailability()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
 

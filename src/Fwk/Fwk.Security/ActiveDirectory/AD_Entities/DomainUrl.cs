@@ -55,21 +55,27 @@ namespace Fwk.Security.ActiveDirectory
             get { return pwd; }
             set { pwd = value; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public int Id
         {
             get { return _Id; }
             set { _Id = value; }
         }
         int _Id;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string SiteName
         {
             get { return _SiteName; }
             set { _SiteName = value; }
         }
         string _SiteName;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string DomainDN
         {
             get { return _DomainDN; }

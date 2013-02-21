@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using System.Data;
+using System.Linq;
 using Fwk.Configuration;
 using Fwk.Logging;
 using Fwk.Exceptions;
@@ -11,6 +12,7 @@ using Fwk.HelperFunctions;
 using Fwk.ServiceManagement;
 using System.Collections.Generic;
 using Fwk.ConfigSection;
+using Fwk.ConfigData;
 
 namespace Fwk.BusinessFacades.Utils
 {
@@ -24,15 +26,15 @@ namespace Fwk.BusinessFacades.Utils
         /// <summary>
         /// Se auditará la  ejecución del servicio, sin importar la configuración del mismo.
         /// </summary>
-        Required,
+        Required=0,
         /// <summary>
         /// Se auditará la  ejecución del servicio si éste está configurado para ser auditado.
         /// </summary>
-        Optional,
+        Optional=1,
         /// <summary>
         /// No se auditará la  ejecución del servicio, sin importar la configuración del mismo.
         /// </summary>
-        None
+        None=3
     }
 
     /// <summary>
@@ -45,7 +47,73 @@ namespace Fwk.BusinessFacades.Utils
     /// <author>moviedo</author>
     public sealed class FacadeHelper
     {
+        internal static fwk_ServiceDispatcher ServiceDispatcherConfig=null;
+        internal static bool Stopped = true;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        static FacadeHelper()
+        {
+            String stringMessage = string.Empty;
+            ReloadConfig(out stringMessage);
+        }
+
+        /// <summary>
+        /// Permite volver a cargar la configuracion si es que en el inicio estatico no lo hiso correctamente
+        /// </summary>
+        internal static void ReloadConfig(out String stringMessage)
+        {
+            stringMessage = string.Empty;
+            if (Stopped)
+            {
+
+                try
+                {
+                    //ConnectionString donde proviene la configuracion del Service Dispatcher
+                    ConfigurationsHelper.ServiceDispatcherConnection = System.Configuration.ConfigurationManager.AppSettings["ServiceDispatcherConnection"];
+                    string serviceDispatcherName = System.Configuration.ConfigurationManager.AppSettings["ServiceDispatcherName"];
+                    if (!String.IsNullOrEmpty(ConfigurationsHelper.ServiceDispatcherConnection) ||
+                        !String.IsNullOrEmpty(serviceDispatcherName))
+                    {
+                        if (System.Configuration.ConfigurationManager.ConnectionStrings[ConfigurationsHelper.ServiceDispatcherConnection] == null)
+                        {
+                            TechnicalException te = new TechnicalException(string.Concat("No se puede encontrar la cadena de conexión : ", ConfigurationsHelper.ServiceDispatcherConnection));
+                            ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
+                            te.ErrorId = "8200";
+                            stringMessage = Audit.LogDispatcherErrorConfig(te).Message;
+                        }
+                        using (FwkDatacontext context = new FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[ConfigurationsHelper.ServiceDispatcherConnection].ConnectionString))
+                        {
+                            ServiceDispatcherConfig = context.fwk_ServiceDispatchers.Where(s => s.InstanseName.Equals(serviceDispatcherName.Trim())).FirstOrDefault();
+
+                            if (ServiceDispatcherConfig == null)
+                            {
+                                TechnicalException te = new TechnicalException(string.Concat("No se puede encontrar la configuracion del despachador de servicio en la base de datos\r\nCadena de conexión : ", ConfigurationsHelper.ServiceDispatcherConnection));
+                                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
+                                te.ErrorId = "7009";
+                                stringMessage = Audit.LogDispatcherErrorConfig(te).Message;
+                            }
+                        }
+
+                        ConfigurationsHelper.HostApplicationName = ServiceDispatcherConfig.InstanseName;
+                        Stopped = false;
+                    }
+                    else
+                    {
+                        Stopped = true;
+
+                        stringMessage = Audit.LogDispatcherErrorConfig(null).Message;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Stopped = true;
+
+                    stringMessage = Audit.LogDispatcherErrorConfig(ex).Message;
+                }
+            }
+        }
 
         #region Run services
         /// <summary>
@@ -238,14 +306,18 @@ namespace Fwk.BusinessFacades.Utils
             pserviError = wResponse.Error;
 
             #region < Log >
-
-            if (pServiceConfiguration.Audit == true)
-            {
+            if ((AuditMode)FacadeHelper.ServiceDispatcherConfig.AuditMode == AuditMode.Required)
                 Audit.LogSuccessfulExecution(pRequest, wResponse);
+            else
+            {
+                if (pServiceConfiguration.Audit == true )
+                {
+                    Audit.LogSuccessfulExecution(pRequest, wResponse);
+                }
             }
             //Si ocurre un error cualquiera se loguea el mismo
             if (wResponse.Error != null)
-                Audit.LogNonSucessfulExecution(wResponse.Error, pServiceConfiguration);
+                Audit.LogNonSucessfulExecution(pRequest, wResponse);//, pServiceConfiguration);
             #endregion
 
 

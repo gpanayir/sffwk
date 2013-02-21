@@ -9,6 +9,7 @@ using Fwk.Bases;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Fwk.HelperFunctions
 {
@@ -546,7 +547,23 @@ namespace Fwk.HelperFunctions
             fw.Close();
             return arrWrite;
         }
-        
+
+        ///// <summary>
+        ///// Convierte cualqyuier objeto a Byte[]
+        ///// </summary>
+        ///// <param name="obj">Cualquier objeto</param>
+        ///// <returns>Byte arrays</returns>
+        //public static byte[] ConvertObjectToByteArray(Object obj)
+        //{
+        //    if (obj == null)
+        //        return null;
+        //    BinaryFormatter bf = new BinaryFormatter();
+        //    MemoryStream ms = new MemoryStream();
+        //    bf.Serialize(ms, obj);
+        //    return ms.ToArray();
+        //}
+
+
         /// <summary>
         /// Toma los elementos de pEntitiCollection y los agrega a la coleccion TEntities
         /// </summary>

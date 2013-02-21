@@ -28,7 +28,6 @@ namespace Fwk.Security
 
         /// <summary>
         /// Initializes a new instance of the 
-        /// <see cref="AuthorizationRuleData"/> class.
         /// </summary>
         public FwkAuthorizationRule()
         {

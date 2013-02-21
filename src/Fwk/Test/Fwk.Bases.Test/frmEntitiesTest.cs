@@ -118,7 +118,7 @@ namespace Fwk.Bases.Test
             Fwk.Bases.ContextInformation wContext = new Fwk.Bases.ContextInformation();
 
             wContext.HostName = Environment.MachineName;
-            wContext.UserName = Environment.UserName;
+            wContext.UserId = Environment.UserName;
             wContext.HostTime = System.DateTime.Now;
 
             req.ContextInformation = wContext;
@@ -211,7 +211,7 @@ namespace Fwk.Bases.Test
             Fwk.Bases.ContextInformation wContext = new Fwk.Bases.ContextInformation();
 
             wContext.HostName = Environment.MachineName;
-            wContext.UserName = Environment.UserName;
+            wContext.UserId = Environment.UserName;
             wContext.ServerTime = System.DateTime.Now;
 
             req.ContextInformation = wContext;

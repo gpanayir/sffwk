@@ -214,6 +214,12 @@ namespace Fwk.Security.ActiveDirectory
 
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pName"></param>
+        /// <param name="pSource"></param>
+        /// <returns></returns>
         public static List<ADGroup> FilterByName(String pName, List<ADGroup> pSource)
         {
             if (pSource == null) return null;

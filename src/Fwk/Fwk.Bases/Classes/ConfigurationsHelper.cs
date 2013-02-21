@@ -68,6 +68,10 @@ namespace Fwk.Bases
         //    get { return Properties.Settings.Default.ServiceConfigurationManagerType; }
 
         //}
-        
+
+
+        public static string ServiceDispatcherConnection { get; set; }
+
+       
     }
 }

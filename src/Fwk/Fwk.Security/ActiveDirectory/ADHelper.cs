@@ -45,7 +45,7 @@ namespace Fwk.Security.ActiveDirectory
      
 
 
-        /// <param name="domain"></param>
+        
         /// <summary>
         /// Esta sobrecarga obtiene datos de impersonalizacion en la tabla Domain controllers atravez de 
         /// la conexion pasada por parametros
@@ -1125,7 +1125,7 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// Obtiene un string con todas las propiedades de un objeto de AD
         /// </summary>
-        /// <param name="pDirectoryEntry"></param>
+        /// <param name="pSearchResult"></param>
         /// <returns></returns>
         static string GetStringProperties(SearchResult pSearchResult)
         {
@@ -1143,11 +1143,11 @@ namespace Fwk.Security.ActiveDirectory
             return slist.ToString();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="memberOf"></param>
-        /// <returns></returns>
+          /// <summary>
+          /// 
+          /// </summary>
+          /// <param name="memberOf"></param>
+          /// <returns></returns>
         public static List<string> GetGroupFromMemberOf(string memberOf)
         {
             int i = 0;

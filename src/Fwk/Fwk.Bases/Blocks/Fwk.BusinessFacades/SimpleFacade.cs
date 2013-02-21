@@ -51,6 +51,13 @@ namespace Fwk.BusinessFacades
         /// <author>moviedo</author>
         public IServiceContract ExecuteService(string providerName, IServiceContract pRequest)
         {
+            if(FacadeHelper.Stopped)
+            {
+                TechnicalException te = new TechnicalException("El despachador no puede responder debido a que ocurrieron problemas en la carga de la configuración del dispatcher");
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
+                te.ErrorId = "7008";
+                throw te;
+            }
             IServiceContract wResult = null;
             if (string.IsNullOrEmpty(pRequest.ServiceName))
             {
@@ -325,6 +332,17 @@ namespace Fwk.BusinessFacades
         public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
         {
             return FacadeHelper.GetProviderInfo(providerName);
+        }
+
+        /// <summary>
+        /// Chequea la disponibilidad del despachador de servicio
+        /// </summary>
+        /// <returns>Mensaje en caso de que el servicio no esté disponible</returns>
+        public String CheckServiceAvailability()
+        {
+            String strMessage = String.Empty;
+            FacadeHelper.ReloadConfig(out strMessage);
+            return strMessage;
         }
 	}
 }

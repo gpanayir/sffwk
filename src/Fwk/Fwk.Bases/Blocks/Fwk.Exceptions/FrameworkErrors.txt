@@ -30,8 +30,17 @@ ErrorId = 7006
  Descripcion =  Se ha intentado ejecutar un servicio que está configurado como no disponible.
 Servicio de configuracion
 
+ErrorId = 7007
+Descripcion: Se ha intentado levantar eldespachador de servicios\r\ndetalles del error: Se produce antesdeque cualquierservicio puda ser ejecutado. Puede que no este configurada 
+en web config los AppSettings    <add key="ServiceDispatcherName" value="" />
+    <add key="ServiceDispatcherConnection" value="" />
 
+ErrorId = 7008
+Descripcion: El despachador no puede responder debido a que ocurrieron problemas en la carga de la configuración del dispatcher
+ErrorId = 7009 
+Descripcion: No se puede encontrar la configuracion del despachador de servicio en la base de datos\r\nCadena de conexión : [CONNECTION_STRING_NAME	]
 
+Descripcion: El despachador no puede responder debido a que ocurrieron problemas en la carga de la configuración del dispatcher
 ErrorId = 7100
  Descripcion =  No tiene permiso para actualizar el archivo 
 Servicio de configuracion

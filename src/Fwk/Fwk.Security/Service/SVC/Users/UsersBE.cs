@@ -18,12 +18,18 @@ using System.Xml;
 
 namespace Fwk.Security.BE
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlRoot("UsersBEList"), SerializableAttribute]
     public class UsersBEList : Entities<UsersBE>
     {
         
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlInclude(typeof(UsersBE)), Serializable]
     public class UsersBE : Entity
     {
@@ -70,6 +76,9 @@ namespace Fwk.Security.BE
         #endregion
 
         #region DNI
+        /// <summary>
+        /// 
+        /// </summary>
         public System.String DNI
         {
             get { return _DNI; }
@@ -217,6 +226,9 @@ namespace Fwk.Security.BE
         #endregion
 
         #region [LastName]
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlElement(ElementName = "LastName", DataType = "string")]
         public System.String LastName
         {

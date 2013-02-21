@@ -42,6 +42,15 @@ namespace Fwk.Remoting
         }
 
         /// <summary>
+        /// Chequea la disponibilidad del despachador de servicio
+        /// </summary>
+        /// <returns>Mensaje en caso de que el servicio no esté disponible</returns>
+        public string CheckServiceAvailability()
+        {
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            return wSimpleFacade.CheckServiceAvailability();
+        }
+        /// <summary>
         /// Obtiene la metadata de un servicio 
         /// </summary>
         /// <param name="providerName">Proveedor de metadata</param>

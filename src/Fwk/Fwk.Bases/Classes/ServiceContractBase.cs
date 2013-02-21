@@ -210,8 +210,8 @@ namespace Fwk.Bases
                 m_Context = new ContextInformation();
 
             m_Context.HostName = Environment.MachineName;
-            if (string.IsNullOrEmpty(m_Context.UserName))
-                m_Context.UserName = Environment.UserName;
+            if (string.IsNullOrEmpty(m_Context.UserId))
+                m_Context.UserId = Environment.UserName;
 
             m_Context.HostTime = DateTime.Now;
             //m_Context.CompanyId = GetCompanyId();

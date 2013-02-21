@@ -213,6 +213,9 @@ namespace Fwk.Security.ActiveDirectory
         ERROR_SERVER_IS_NOT_OPERATIONAL
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum LOGON32
     {
         /// <summary>
