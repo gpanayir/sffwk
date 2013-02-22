@@ -333,7 +333,15 @@ namespace Fwk.BusinessFacades
         {
             return FacadeHelper.GetProviderInfo(providerName);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<Fwk.ConfigSection.MetadataProvider> RetriveProviders()
+        {
+            return FacadeHelper.RetriveProviders();
+        }
+        
         /// <summary>
         /// Chequea la disponibilidad del despachador de servicio
         /// </summary>

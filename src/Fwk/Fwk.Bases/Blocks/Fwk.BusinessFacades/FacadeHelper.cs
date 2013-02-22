@@ -600,6 +600,20 @@ namespace Fwk.BusinessFacades.Utils
 
             return new MetadataProvider(provider);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static List<MetadataProvider> RetriveProviders()
+        {
+            List<MetadataProvider> list = new List<MetadataProvider>();
+            foreach (ServiceProviderElement providerElement in ServiceMetadata.ProviderSection.Providers)
+            {
+                list.Add(new MetadataProvider(providerElement));
+            }
+            return list;
+        }
         #endregion
 
         
@@ -704,5 +718,7 @@ namespace Fwk.BusinessFacades.Utils
    
 
         #endregion
+
+       
     }
 }

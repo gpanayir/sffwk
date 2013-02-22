@@ -4,6 +4,7 @@ using System.Text;
 using Fwk.BusinessFacades;
 using Fwk.Bases;
 using System.Diagnostics;
+using Fwk.BusinessFacades.Utils;
 
 namespace Fwk.Remoting
 {
@@ -146,7 +147,14 @@ namespace Fwk.Remoting
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
             return wSimpleFacade.GetProviderInfo(providerName);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<Fwk.ConfigSection.MetadataProvider> RetriveProviders()
+        {
+            return FacadeHelper.RetriveProviders();
+        }
         /// <summary>
         /// Factory de SimpleFacade
         /// </summary>
