@@ -1,0 +1,196 @@
+﻿.fernandezja {} 
+
+.YodaGrilla .AspNet-GridView
+{
+	width: 90%;
+	line-height : 2em;
+}
+
+.YodaGrilla .AspNet-GridView div.AspNet-GridView-Pagination,
+.YodaGrilla .AspNet-GridView div.AspNet-GridView-Pagination a,
+.YodaGrilla .AspNet-GridView div.AspNet-GridView-Pagination span
+{
+    background: #E9F5DA;
+    font-weight: normal;
+    text-align: center;
+    height: 2em;
+    margin-bottom: 0.3em;
+    padding-top: 0.4em;
+}
+
+.YodaGrilla .AspNet-GridView div.AspNet-GridView-Top
+{
+}
+
+.YodaGrilla .AspNet-GridView div.AspNet-GridView-Bottom
+{
+    margin-top: 0.3em;
+}
+
+.YodaGrilla .AspNet-GridView table
+{
+    border: none;
+    width: 100%;
+}
+
+.YodaGrilla .AspNet-GridView table thead tr th
+{
+    color: #fff;
+    font-weight: bold;
+    background-color:#75895F;
+    text-align:center;
+	border-right: #d3d3d3 1px solid;
+}
+
+.YodaGrilla .AspNet-GridView table thead tr th a
+{
+    color: #fff;
+}
+
+.YodaGrilla .AspNet-GridView table thead tr th table tr td
+{
+	background-color:Transparent;
+	color: #fff;
+    border-bottom:#fff 1px solid;
+}
+
+.YodaGrilla .AspNet-GridView table tbody tr td
+{
+	color: #333333;
+	background: White;
+	border-right: #d3d3d3 1px solid;
+	border-bottom: #d3d3d3 1px solid;
+	margin-left:3px;
+	padding-left:3px;
+}
+
+
+.YodaGrilla .AspNet-GridView table tbody tr.AspNet-GridView-Alternate_Out td,
+.YodaGrilla .AspNet-GridView table tbody tr._Out td 
+{    
+    background-color:#FFF;
+}
+
+.YodaGrilla .AspNet-GridView table tbody tr.AspNet-GridView-Alternate td
+{    
+    background-color:#EAFFEB;
+}
+
+.YodaGrilla .AspNet-GridView table tbody tr.filaSeleccionada td
+{
+    background-color: #FFFF99;
+    color: #666666;
+}
+
+
+
+.YodaGrilla .AspNet-GridView table tbody tr.filaActual td
+{
+   
+}
+.YodaGrilla .AspNet-GridView table tbody tr td.colSeleccion 
+{
+	vertical-align:middle;
+	width:50px;
+}
+.YodaGrilla .AspNet-GridView table tbody tr td.colSeleccion .sel
+{
+    margin-left:3px;    
+}
+.YodaGrilla .AspNet-GridView table tbody tr td.colSeleccion .sel input
+{  
+    float:left;
+}
+
+.YodaGrilla .AspNet-GridView table tbody tr td.colSeleccion .navSel
+{
+	width: 9px;
+	height: 11px;
+	min-width: 9px;
+	min-height: 11px;
+	float:left;
+	margin-top:5px;
+	margin-left:3px;
+}
+.YodaGrilla .AspNet-GridView table tbody tr.filaActual td.colSeleccion .navSel
+{
+
+	background-image: url(imagenes/grilla/grillaIconos_actual.png);
+	background-repeat:no-repeat;
+}
+.YodaGrilla .AspNet-GridView table tbody tr.filaActual td.colSeleccion .sel
+{
+    
+}
+
+
+.YodaGrilla .AspNet-GridView table tbody tr.AspNet-GridView-Selected td
+{
+	background-color:#6699FF;
+}
+
+.YodaGrilla .AspNet-GridView table tfoot tr td
+{
+}
+
+
+.selTest, .YodaGrilla .AspNet-GridView table tbody tr .selTest, .YodaGrilla .AspNet-GridView table tbody .selTest, .YodaGrilla .AspNet-GridView table tbody tr.selTest, .YodaGrilla .AspNet-GridView table tbody tr.selTest td
+{
+	background-color: #ffffcc;
+}
+
+
+/* 
+-------------------------------------------------------------------
+TIPO DE COLUMNAS PARA JEDIS :)
+-------------------------------------------------------------------
+*/
+/*COLUMNA: Imagen*/
+.YodaGrilla .AspNet-GridView table tbody tr td.tipoImagen
+{
+	width:50px;
+	max-width:50px;
+	text-align:center;
+}
+/*  imagen dentro de la columna Imagen*/
+.YodaGrilla .AspNet-GridView table tbody tr td.tipoImagen img
+{
+	width:50px;
+	height:71px;
+}
+
+
+/*COLUMNA: Nombre*/
+.YodaGrilla .AspNet-GridView table tbody tr td.tipoNombre 
+{
+	width:100px;
+}
+.YodaGrilla .AspNet-GridView table th .tipoNombre 
+{
+	
+}
+/*COLUMNA: Fecha*/
+.YodaGrilla .AspNet-GridView table tbody tr td.tipoFecha
+{
+	width:90px;
+	text-align:center;
+}
+
+/*COLUMNA: Especie*/
+.YodaGrilla .AspNet-GridView table tbody tr td.tipoEspecie
+{
+	width:120px;
+	min-width:120px;
+	text-align:center;
+	/*background-color:Fuchsia;*/
+}
+
+/*COLUMNA: Guid*/
+.YodaGrilla .AspNet-GridView table tbody tr td.tipoGuid
+{
+
+	text-align:center;
+	/*background-color:Yellow;*/
+}
+
+
