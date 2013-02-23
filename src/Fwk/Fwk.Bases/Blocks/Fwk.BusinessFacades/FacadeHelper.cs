@@ -34,7 +34,7 @@ namespace Fwk.BusinessFacades.Utils
         /// <summary>
         /// No se auditará la  ejecución del servicio, sin importar la configuración del mismo.
         /// </summary>
-        None=3
+        None=2
     }
 
     /// <summary>
