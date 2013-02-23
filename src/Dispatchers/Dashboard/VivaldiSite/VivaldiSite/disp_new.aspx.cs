@@ -36,7 +36,22 @@ namespace VivaldiSite
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            Fwk.ConfigData.fwk_ServiceDispatcher disp = new Fwk.ConfigData.fwk_ServiceDispatcher();
+            disp.AuditMode = 1;
 
+            disp.CompanyName = "";
+            disp.HostIp = txtServerName.Text;
+            disp.HostName = txtServerName.Text;
+            disp.InstanseName = txtInstanceName.Text;
+            disp.InstanseId = Guid.NewGuid();
+            disp.AuditMode= Convert.ToInt16(cmbAuditMode.SelectedValue);
+
+            using(Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext   ())
+            {
+
+                dc.fwk_ServiceDispatchers.InsertOnSubmit(disp);
+                dc.SubmitChanges();
+            }
         }
     }
 }

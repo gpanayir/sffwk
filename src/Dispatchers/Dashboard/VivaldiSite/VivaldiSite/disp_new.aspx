@@ -68,6 +68,20 @@
         </div>
         <div style="margin-top: 15px">
             <div class="frm_label_2">
+                Auditoria de servicio
+            </div>
+            <div style="width: 300px">
+                <asp:DropDownList ID="cmbAuditMode" CssClass="loging_textbox frm_fieldvalue" runat="server"
+                    Width="300px" DataTextField="Nombre" DataValueField="Id" Height="25px" TabIndex="15">
+                    <asp:ListItem Value="0">Requerido</asp:ListItem>
+                    <asp:ListItem Value="1">Opcional</asp:ListItem>
+                    <asp:ListItem Value="2">Ninguno</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px">
+            <div class="frm_label_2">
                 Tecnologia
             </div>
             <div style="width: 300px">
