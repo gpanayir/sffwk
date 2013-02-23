@@ -64,6 +64,8 @@
     <Content Include="architecture.aspx" />
     <Content Include="contact.aspx" />
     <Content Include="disp_main.aspx" />
+    <Content Include="disp_new.aspx" />
+    <Content Include="disp_singin.aspx" />
     <Content Include="Email_contactenos.htm" />
     <Content Include="img\desckapp.jpg" />
     <Content Include="img\enf\advanced.png" />
@@ -201,6 +203,20 @@
     </Compile>
     <Content Include="App_Code\wcf_service.cs" />
     <Content Include="App_Code\Common.cs" />
+    <Compile Include="disp_new.aspx.cs">
+      <DependentUpon>disp_new.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="disp_new.aspx.designer.cs">
+      <DependentUpon>disp_new.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="disp_singin.aspx.cs">
+      <DependentUpon>disp_singin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="disp_singin.aspx.designer.cs">
+      <DependentUpon>disp_singin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

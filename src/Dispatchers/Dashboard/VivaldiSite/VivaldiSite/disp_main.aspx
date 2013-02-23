@@ -48,7 +48,7 @@
                         width: 174px; margin-right: 10px" />
                 </span>
                 <p class="frm_title frm_sub_title_2" style="">
-                    Logging a un entorno existente 
+                   <a  href="disp_singin.aspx"> Logging a un entorno existente </a> 
                 </p>
                 <p>
                     Ingrese a esta opción para gestionar las diferentes configuraciones de un entorno previamente registrado.
