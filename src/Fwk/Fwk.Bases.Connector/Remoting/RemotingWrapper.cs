@@ -5,6 +5,7 @@ using Fwk.Bases;
 using Fwk.Exceptions;
 using System.Runtime.Remoting;
 using Fwk.Remoting;
+using Fwk.BusinessFacades.Utils;
 
 namespace Fwk.Bases.Connector
 {
@@ -282,6 +283,17 @@ namespace Fwk.Bases.Connector
         {
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
             return wFwkRemoteObject.GetProviderInfo(providerName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<Fwk.ConfigSection.MetadataProvider> RetriveProviders()
+        {
+            FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+            return wFwkRemoteObject.RetriveProviders();
+           
         }
         #endregion [ServiceConfiguration]
 

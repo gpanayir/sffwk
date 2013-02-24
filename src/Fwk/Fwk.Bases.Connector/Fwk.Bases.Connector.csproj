@@ -167,10 +167,10 @@
     <None Include="Web References\Singleservice\SingleService.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://katy.sytes.net/gastosWS/SingleService.asmx">
+    <WebReferenceUrl Include="http://localhost:38091/SingleService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\Singleservice\</RelPath>
-      <UpdateFromURL>http://katy.sytes.net/gastosWS/SingleService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:38091/SingleService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

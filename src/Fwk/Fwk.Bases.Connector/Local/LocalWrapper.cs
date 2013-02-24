@@ -256,5 +256,16 @@ namespace Fwk.Bases.Connector
         }
 
         #endregion
+
+        #region IServiceWrapper Members
+
+
+        public List<ConfigSection.MetadataProvider> RetriveProviders()
+        {
+           
+            return _SimpleFacade.RetriveProviders();
+        }
+
+        #endregion
     }
 }

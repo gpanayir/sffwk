@@ -331,6 +331,16 @@ namespace Fwk.Bases.Connector
         }
 
         #endregion
+
+        #region IServiceWrapper Members
+
+
+        public List<MetadataProvider> RetriveProviders()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
 

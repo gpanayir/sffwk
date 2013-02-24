@@ -125,6 +125,13 @@ namespace Fwk.Bases
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <returns></returns>
         Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+         List<Fwk.ConfigSection.MetadataProvider> RetriveProviders();
+       
         #endregion
     }
 }

@@ -145,7 +145,7 @@ namespace Fwk.Bases.Connector
                     wService.Proxy = _Proxy;
                 if (_Credentials != null)
                     wService.Credentials = _Credentials;
-
+                
                 wService.Url = _URL;
                 wService.ExecuteServiceCompleted += new Fwk.Bases.Connector.Singleservice.ExecuteServiceCompletedEventHandler(wService_ExecuteServiceCompleted);
             }
@@ -385,6 +385,40 @@ namespace Fwk.Bases.Connector
 
             }
         }
+
+        /// <summary>
+        /// Retorna uyn alista de Service Metadata providers configurados en el Web Service Dispatcher
+        /// </summary>
+        /// <returns></returns>
+        public List<Fwk.ConfigSection.MetadataProvider> RetriveProviders()
+        {
+            using (Singleservice.SingleService wService = new Singleservice.SingleService())
+            {
+                if (_Proxy != null)
+                    wService.Proxy = _Proxy;
+                if (_Credentials != null)
+                    wService.Credentials = _Credentials;
+                wService.Url = _URL;
+                Singleservice.MetadataProvider[] webProviderslist = wService.RetriveProviders();
+
+                List<Fwk.ConfigSection.MetadataProvider> providers = new List<MetadataProvider>();
+                MetadataProvider provider = null;
+                foreach (var p in webProviderslist)
+                {
+                    provider = new MetadataProvider();
+                    provider.ApplicationId = p.ApplicationId;
+                    provider.ConfigProviderType = p.ConfigProviderType;
+                    //provider.DefaultCulture = p.DefaultCulture;
+                    provider.Name = p.Name;
+                    provider.SecurityProviderName = p.SecurityProviderName;
+                    provider.SourceInfo = p.SourceInfo;
+                    providers.Add(provider);
+                }
+
+                return providers;
+            }
+        }
+
         /// <summary>
         /// Mapeta  Fwk.Bases.ServiceConfiguration a Fwk.Bases.Connector.SingleService.ServiceConfiguration 
         /// </summary>

@@ -6,7 +6,7 @@
       <Value Profile="(Default)">http://localhost/WebServiceDispatcher/SingleService.asmx</Value>
     </Setting>
     <Setting Name="Fwk_Bases_Connector_singleservice_SingleService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://katy.sytes.net/gastosWS/SingleService.asmx</Value>
+      <Value Profile="(Default)">http://localhost:38091/SingleService.asmx</Value>
     </Setting>
     <Setting Name="Fwk_Bases_Connector_ASPNetSecurity_ASPNet" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:14538/ASPNet.asmx</Value>
