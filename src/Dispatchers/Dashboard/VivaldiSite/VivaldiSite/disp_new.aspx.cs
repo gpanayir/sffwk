@@ -39,7 +39,7 @@ namespace VivaldiSite
             Fwk.ConfigData.fwk_ServiceDispatcher disp = new Fwk.ConfigData.fwk_ServiceDispatcher();
             disp.AuditMode = 1;
 
-            disp.CompanyName = "";
+            disp.CompanyName = txtCompany.Text;
             disp.HostIp = txtServerName.Text;
             disp.HostName = txtServerName.Text;
             disp.InstanseName = txtInstanceName.Text;

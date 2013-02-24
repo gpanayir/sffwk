@@ -43,6 +43,26 @@ public class wcf_service : Iwcf_service
         return "listo";
 
     }
+
+    public Boolean ConnectToWebService(string url)
+    {
+        Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
+        wrapper.SourceInfo = url;
+        int c = 0;
+        try
+        {
+           c= wrapper.RetriveProviders().Count;
+           
+        }
+        catch (Exception exception)
+        {
+             //Response.setStatus(400);
+             //Response.getWriter().write(String.Concat("Ocurrieron errores al intentar conectarce al despachador de servicio", exception.getMessage()));
+            throw new Exception("Ocurrieron errores al intentar conectarce al despachador de servicio", exception);
+            return false;
+        }
+        return true;
+    }
     #endregion
 }
 
@@ -59,5 +79,10 @@ public class wcf_service : Iwcf_service
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Xml)]
         String SendMessage2(string contactName, string message);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+        Boolean ConnectToWebService(string url);
+        
     }
 

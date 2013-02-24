@@ -216,7 +216,7 @@ div.f1st {
       <%--<div class = "frm_group_buttons" style="height:30px; background: url('/img/sprites-t1.gif') repeat-x scroll 0 -281px #000000 ; width:638px;clear: both; height:40px">--%>
       <div class="frm_group_buttons" style="height: 30px; width: 638px; clear: both; height: 40px;
           background-color: White">
-          <input type="image" name="Enviar" alt="Enviar" class="img_box" src="/../img/submit.gif"
+          <input type="image" name="Enviar" alt="Enviar" class="img_box" src="/img/submit.gif"
               style="margin-top: 7; width: 120px; height: 40; border: 1px" onmousedown="SendMessage();" />
       </div>
         </div>

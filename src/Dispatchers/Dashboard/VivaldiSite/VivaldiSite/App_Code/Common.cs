@@ -16,6 +16,8 @@ using System.Drawing.Imaging;
 
 namespace VivaldiSite.DAC
 {
+
+
     public class CommonDAC
     {
         public const string CnnStringName = "VivaldiSite";
@@ -26,7 +28,7 @@ namespace VivaldiSite.DAC
         static Boolean logOnFile = false;
         internal static string AddressTemplate = "ftp://@{0}/{1}/{2}";
       
-
+        
      
 
        
@@ -35,6 +37,7 @@ namespace VivaldiSite.DAC
 
         static CommonDAC()
         {
+            
             //ISymetriCypher = SymetricCypherFactory.Get<RijndaelManaged>(SEED_K);
 
             //if (System.Configuration.ConfigurationManager.AppSettings["logOnFile"] != null)

@@ -36,6 +36,10 @@
     <Reference Include="Fwk.Bases">
       <HintPath>..\..\..\..\fwk\trunk\src\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
+    <Reference Include="Fwk.Bases.Connector, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Fwk.Bases.Connector.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />

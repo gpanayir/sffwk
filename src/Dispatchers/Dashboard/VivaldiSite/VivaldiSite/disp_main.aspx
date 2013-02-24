@@ -31,9 +31,9 @@
                     <img class="img_src" src="/img/new-disp.jpg" alt="" style="float: left; height: 69px;
                         width: 174px; margin-right: 10px" />
                 </span>
-                <p class="frm_title frm_sub_title_2" style="">
+                <a class="frm_title frm_sub_title_2"  href="disp_new.aspx" style="text-decoration: none">
                     Registrar nuevo entorno/dispatcher
-                </p>
+                </a>
                 <p>
                   Esta acción permite crear un nuevo entorno para un despachador de servicio sea Web o Remoting. 
                   El despachador de servicio puede o no estar previamente instalado.
@@ -47,8 +47,8 @@
                     <img class="img_src" src="/img/login.jpg" alt="" style="float: left; height: 69px;
                         width: 174px; margin-right: 10px" />
                 </span>
-                <p class="frm_title frm_sub_title_2" style="">
-                   <a  href="disp_singin.aspx"> Logging a un entorno existente </a> 
+                <p class="frm_title frm_sub_title_2" style="text-decoration: none">
+                   <a  class="frm_title frm_sub_title_2" href="disp_singin.aspx"> Logging a un entorno existente </a> 
                 </p>
                 <p>
                     Ingrese a esta opción para gestionar las diferentes configuraciones de un entorno previamente registrado.
