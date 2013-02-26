@@ -159,6 +159,16 @@ using Fwk.ConfigSection;
             return wSimpleFacade.GetProviderInfo(providerName);
 
         }
+		  /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [WebMethod]
+        public List<MetadataProvider> RetriveProviders()
+        {
+            return FacadeHelper.RetriveProviders();
+
+        }
         /// <summary>
         /// Factory de SimpleFacade
         /// </summary>  
