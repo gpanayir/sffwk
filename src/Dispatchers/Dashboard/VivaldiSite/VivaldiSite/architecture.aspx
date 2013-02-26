@@ -1,83 +1,97 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentCenter" runat="server">
-    <style>
-  .frm_text_type_1
-  {
-  	color: #666666; font-weight: bold; font-family: Arial, Helvetica, sans-serif";
-  	}
- </style>
+     
+    <script type="text/javascript" language="javascript">
+        var varType;
+        var varUrl;
+        var varData;
+        var varContentType;
+        var varDataType;
+        var varProcessData;
+        //refresh windows
+        $(window).load(function () {
 
-    <div class="article_wrap" style="margin: 10px; width: 660px">
-        <div class="frm_title frm_title_3" style="margin-top: 30px; width: 500px">
-            Software Factory Architecture
-        </div>
-        <div>
-            <span>
-                <img class="img_src" src="/img/architexture_01.jpg" alt="" style="float: left; height: 69px;
-                    width: 174px; margin-right: 10px" />
-            </span>
-            <p style="color: #666666; font-weight: bold; font-family: Arial, Helvetica, sans-serif">
-                PelSoft adecua la arquitectura de software necesaria para cada situación. Cuenta
-                con un marco de trabajo propietario de patrones y buenas prácticas utilizadas en
-                muchos proyectos.
-            </p>
-            <p class="MsoNormal">
-                No todos los proyectos de software necesitan ser encarados con el mismo enfoque
-                arquitectónico. Pero si todos deben ser orientados con la visión futura de que en
-                algún momento podrán ser acoplables, expandirse o integrarse para poder coexistir
-                exitosamente con otras soluciones existentes o futuras.<o:p></o:p></p>
-            
-            <span>
-                <img class="img_src" src="/img/fwk01.png" alt="" style="margin-left:250px; float: left; height: 260px;
-                    width: 460px; margin-right: 10px" />
-            </span>
-        </div>
-    </div>
-    <div class="clear"></div>
-    <div class="frm_title frm_title_3" style="margin-top: 30px; width: 500px">
-            Arquitectura diferente para cada solución
-        </div>
-    <div class="clear"></div>
-       <div class="article_wrap" style="margin: 10px; margin-right:100px">
-        <table class="hor-minimalist-b" style="margin-left: 100px">
-            <tr>
-                <td  class ="frm_text_type_1">
-                   N-Tear
-                </td>
-                <td>
-                    <span>
-                        <img class="img_src" src="/img/ntier.gif" alt="" style="margin: 6px; float: left; height: 240px; width: 300px;" />
-                    </span>
-                </td>
-            </tr>
-            
-          
-            <tr>
-               <td  class ="frm_text_type_1">
-                   Encolamiento con MSMQ WCF-Based</td>
-                <td>
-                      <span>
-                        <img class="img_src" src="/img/msmqarch.png" alt="" style="margin: 6px; float: left; height: 240px; width: 300px;" />
-                    </span></td>
-            </tr>
-          
-                <tr>
-               <td class ="frm_text_type_1">
-                   Restful Crud Operation WCF-based</td>
-                <td>
-                      <span>
-                        <img class="img_src" src="/img/rest2.jpg" alt="" style="margin: 6px; float: left; height: 240px; width: 300px;" />
-                    </span></td>
-            </tr>
+            varContentType = "application/json; charset=utf-8";
+            varDataType = "json";
+            varType = "GET";
+            varProcessData = true;
+           
 
-            <tr>
-               <td class ="frm_text_type_1">
-                   WCF</td>
-                <td>
-                      <span>
-                        <img class="img_src" src="/img/wcf.jpg" alt="" style="margin: 6px; float: left; height: 240px; width: 300px;" />
-                    </span></td>
-            </tr>
-        </table>
+        });
+
+        function CallService() {
+            $.ajax({
+                type: varType, //GET or POST or PUT or DELETE verb
+                url: varUrl, // Location of the service
+                data: varData, //Data sent to server
+                contentType: varContentType, // content type sent to server
+                dataType: varDataType, //Expected data format from server
+                processdata: varProcessData, //True or False
+                success: function (msg) {//On Successfull service call
+                    ServiceSucceeded(msg);
+                },
+                error: ServiceFailed// When Service call fails
+            });
+
+        }
+
+        function ServiceSucceeded(result) {
+
+            alert("ok");
+            var connected = result.ConnectToWebServiceResult
+            if (connected == true) {
+                $('#sussefullMsg').css('display', 'block');
+            }
+            else {
+                $('#errorMsg').css('display', 'block');
+            }
+        }
+        function ServiceFailed(response) {
+
+            $('#errorMsg').css('display', 'block');
+           
+        }
+
+        function ConnectToWebService() {
+
+            //$('#sussefullMsg').hide();
+            varUrl = "../../service/wcf_service.svc/ConnectToWebServiceGet?url=" + $('#ContentCenter_txtUrl').val();
+            varData = null;
+            //varUrl = "../../service/wcf_service.svc/ConnectToWebServiceGet";
+            //varData = '{"url": "' + $('#ContentCenter_txtUrl').val() + '"}';
+            CallService();
+        }
+
+            
+    </script>
+    <div style="margin-left: 100px;">
+   
+ 
+        <div class="frm_row" style="height: 150px">
+            <div id="divUrlWebservice" style="margin: 15px; display: block;">
+                <div class="frm_label_1">
+                    Url Web service
+                </div>
+                <div>
+                    <asp:TextBox ID="txtUrl" runat="server" Height="23px" Width="400px" TabIndex="11"
+                        CssClass="loging_textbox frm_fieldvalue">http://localhost:38091/SingleService.asmx</asp:TextBox>
+                          
+                </div>
+                <input id="Submit1" type="submit" value="submit" onclick="ConnectToWebService();return false;" />
+            </div>
+            <div id="sussefullMsg" class="frm-message" style="margin-left:30px;  width:400px ; display: none;height:20px; background-color:#F7F7F7;" >
+                <p>
+                    La conexión al despachador de servicio web fue exitosa</p>
+            </div>
+             <div id="errorMsg" class="frm-error-message" style="display: none; color: Black;">
+                <p>
+                    No es posible la conexión con el servicio</p>
+            </div>
+           
+         
+    
+        </div>
+ 
     </div>
+       
 </asp:Content>

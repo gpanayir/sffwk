@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCenter" runat="server">
+    
     <script type="text/javascript" language="javascript">
         var varType;
         var varUrl;
@@ -12,6 +13,12 @@
         //refresh windows
         $(window).load(function () {
 
+            varContentType = "application/json; charset=utf-8";
+            varDataType = "json";
+            varType = "POST";
+            varProcessData = true;
+            //$.ajaxSetup({ error: myfunc });
+
             $('#divUrlWebservice').css('display', 'block');
 
             $('#divPort').css('display', 'none');
@@ -21,7 +28,7 @@
         });
 
         function WrapperTypeOnChange() {
-            $('#sussefullMsg').hide();
+           //$('#sussefullMsg').hide();
             var combo = document.getElementById("wrappercombo");
             var code = combo.value;
 
@@ -42,16 +49,12 @@
             return false;
         }
 
-        function ReceiveServerData_btnAcept(arg, context) {
-            alert(arg);
-            location.replace("~/disp_dash.aspx");
-        }
+//        function ReceiveServerData_btnAcept(arg, context) {
+//            alert(arg);
+//            location.replace("~/disp_dash.aspx");
+//        }
 
 
-
-
-
-        //Generic function to call AXMX/WCF  Service        
         function CallService() {
             $.ajax({
                 type: varType, //GET or POST or PUT or DELETE verb
@@ -60,60 +63,74 @@
                 contentType: varContentType, // content type sent to server
                 dataType: varDataType, //Expected data format from server
                 processdata: varProcessData, //True or False
-                success: function (msg) {//On Successfull service call
+                success: function (msg) {
                     ServiceSucceeded(msg);
                 },
-                error: function (response,status, error) {
-                    ServiceFailed(response);
+                error: function(xhr, errorType, exception) {
+                ServiceFailed(xhr, errorType, exception);
                 }
+               
             });
            
         }
 
-        function ServiceSucceeded(result, status, error) 
-        {
+        function ServiceSucceeded(result) {
             
             var connected = result.ConnectToWebServiceResult
             if (connected == true) {
-                $('#sussefullMsg').show();
+                $('#sussefullMsg').css('display', 'block');
             }
             else {
-                $('#errorMsg').show();
+                $('#errorMsg').css('display', 'block');
             }
-            varType = null; varUrl = null; varData = null; varContentType = null; varDataType = null; varProcessData = null;
         }
-        function ServiceFailed(response) {
+        function ServiceFailed(response, textStatus, errorThrown) {
+            
+            $('#errorMsg').css('display', 'block');
 
-            $('#errorMsg').show();
-//            var r = jQuery.parseJSON(response);
-//            alert(response.responseText);
-//              alert("Message: " + r.Message);
-//              alert("StackTrace: " + r.StackTrace);
-//              alert("ExceptionType: " + r.ExceptionType);
+            $('#errorMsg').html('');
+            $('#errorMsg').html('<p>No es posible la conexión con el servicio</p>');
 
-//            alert(request.responseText);
-//            alert(xhr.statusText);
-//            alert('Fallo la llamada al servicio: ' + request.status + '' + xhr.statusText);
-//            alert(thrownError);
 
-            varType = null; varUrl = null; varData = null; varContentType = null; varDataType = null; varProcessData = null;
+
+
+//            var errorObj = jQuery.parseJSON(response.responseText);
+
+//             if (!errorObj.Success) {
+//                    if (errorObj.ErrorType != "system") {
+//                        $('#errorMsg').html(errorObj.Message);
+//                        $.blockUI({ message: $('#UserErrorWrapper'),
+//                        css: { width: '400px', height: '300px', overflow: 'scroll' }
+//                     });
+//                }
+//                else {
+//                    window.location = errorObj.ErrorPageUrl;
+//                }
+
+//            var r = jQuery.parseJSON(response.responseText);
+//            alert(r.Message);
+//            if (r.Message == null) {
+
+//                $('#errorMsg').html('<p>No es posible la conexión con el servicio</p>');
+//            }
+//            else {
+//                $('#errorMsg').html('<p> 3' + r.Message + '</p>');
+//            }
+
+
+     
         }
 
         function ConnectToWebService() {
 
             $('#sussefullMsg').hide();
+            $('#errorMsg').hide('');
 //            if (validate_cotrols() == false) {
 //                alert('Por favor verifique todos los datos !!!');
 //                return;
 //            }
-
-            varType = "POST";
             varUrl = "../../service/wcf_service.svc/ConnectToWebService";
             varData = '{"url": "' + $('#ContentCenter_txtUrl').val() + '"}';
-            
-            varContentType = "application/json; charset=utf-8";
-            varDataType = "json";
-            varProcessData = true;
             CallService();
         }
 
@@ -134,7 +151,7 @@
                 Empresa
             </div>
             <div>
-                <asp:TextBox ID="txtCompany" runat="server" Font-Bold="True" TabIndex="1" TextMode="SingleLine"
+                <asp:TextBox ID="txtCompany" runat="server" Font-Bold="True" TabIndex="2" TextMode="SingleLine"
                     Width="300" Height="25px" CssClass="frm_fieldvalue" />
             </div>
         </div>
@@ -146,7 +163,7 @@
                 Server Name
             </div>
             <div>
-                <asp:TextBox ID="txtServerName" runat="server" Font-Bold="True" TabIndex="1" TextMode="SingleLine"
+                <asp:TextBox ID="txtServerName" runat="server" Font-Bold="True" TabIndex="3" TextMode="SingleLine"
                     Width="300" Height="25px" CssClass="frm_fieldvalue" />
             </div>
         </div>
@@ -156,7 +173,7 @@
             </div>
             <div style="width: 300px">
                 <asp:DropDownList ID="cmbAuditMode" CssClass="loging_textbox frm_fieldvalue" runat="server"
-                    Width="300px" DataTextField="Nombre" DataValueField="Id" Height="25px" TabIndex="15">
+                    Width="300px" DataTextField="Nombre" DataValueField="Id" Height="25px" TabIndex="4">
                     <asp:ListItem Value="0">Requerido</asp:ListItem>
                     <asp:ListItem Value="1">Opcional</asp:ListItem>
                     <asp:ListItem Value="2">Ninguno</asp:ListItem>
@@ -169,7 +186,7 @@
                 Tecnologia
             </div>
             <div style="width: 300px">
-                <select id="wrappercombo" class="loging_textbox frm_fieldvalue" style="width: 300px"
+                <select id="wrappercombo" tabindex="5" class="loging_textbox frm_fieldvalue" style="width: 300px"
                     onchange="javascript:WrapperTypeOnChange()">
                     <option value="webservice">Web Service </option>
                     <option value="remoting">Remoting </option>
@@ -181,18 +198,22 @@
                 <div class="frm_label_1">
                     Url Web service
                 </div>
-                <div>
-                    <asp:TextBox ID="txtUrl" runat="server" Height="23px" Width="400px" TabIndex="11"
+                
+                <div class="grid_8">
+                    <asp:TextBox ID="txtUrl" runat="server" Height="23px" Width="453px" TabIndex="10"
                         CssClass="loging_textbox frm_fieldvalue">http://localhost:38091/SingleService.asmx</asp:TextBox>
                           
                 </div>
-                <input id="Submit1" type="submit" value="submit" onmousedown="ConnectToWebService();" />
+                <div class="grid_3">
+                        <input id="Submit1" class="grid_Button grid_Button_confirm" type="submit" tabindex="11" style="width:100px ;height:30px" value="Check url" onclick="ConnectToWebService();return false;" />
+                 </div>
+                
             </div>
             <div id="sussefullMsg" class="frm-message" style="margin-left:30px;  width:400px ; display: none;height:20px; background-color:#F7F7F7;" >
                 <p>
                     La conexión al despachador de servicio web fue exitosa</p>
             </div>
-             <div id="errorMsg" class="frm-error-message" style="display: none; color: Black;">
+             <div id="errorMsg" class="frm-error-message" style="margin-left:36px;  width:400px ; height:20px; display: none; color: Black;">
                 <p>
                     No es posible la conexión con el servicio</p>
             </div>
@@ -200,7 +221,7 @@
                 <div class="frm_label_1">
                     Puerto</div>
                 <div>
-                    <asp:TextBox ID="txtPort" runat="server" Height="23px" Width="500px" TabIndex="11"
+                    <asp:TextBox ID="txtPort" runat="server" Height="23px" Width="500px" TabIndex="201"
                         CssClass="loging_textbox frm_fieldvalue"></asp:TextBox>
                 </div>
             </div>
@@ -208,19 +229,19 @@
                 <div class="frm_label_1">
                     Dirección Ip o nombre de host</div>
                 <div>
-                    <asp:TextBox ID="txtIp" runat="server" Height="23px" Width="300px" TabIndex="11"
+                    <asp:TextBox ID="txtIp" runat="server" Height="23px" Width="300px" TabIndex="21"
                         CssClass="loging_textbox frm_fieldvalue"></asp:TextBox>
                 </div>
             </div>
     
         </div>
         <div style="margin-top: 10px;">
-            <div class="frm_label_2">
+            <div class=" frm_label_2">
                 Texto descriptivo general
             </div>
             <div class="frm_fieldvalue" style="margin-top: 4px">
                 <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" Width="600px"
-                    Height="80px" CssClass="frm_fieldvalue" TabIndex="2" />
+                    Height="80px" CssClass="frm_fieldvalue" TabIndex="22" />
             </div>
         </div>
     </div>

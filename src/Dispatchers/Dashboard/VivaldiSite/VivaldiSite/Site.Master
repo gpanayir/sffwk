@@ -40,7 +40,7 @@
     
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <link href="Styles/Common.css" rel="stylesheet" type="text/css" />
-    <link href="Styles/Vivaldi.Gridview.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/sf_grid.css" rel="stylesheet" type="text/css" />
     <link href="Styles/Menu.css" rel="stylesheet" type="text/css" />
     <link href="Styles/tables.css" rel="stylesheet" type="text/css" />
     <link href="Styles/992_16_5_5.css" rel="stylesheet" type="text/css" />

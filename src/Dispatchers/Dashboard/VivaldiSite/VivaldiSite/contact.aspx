@@ -50,7 +50,7 @@ div.f1st {
                 success: function (msg) {//On Successfull service call
                     ServiceSucceeded(msg);
                 },
-                error: ServiceFailed// When Service call fails
+                error:  ServiceFailed,// When Service call fails
             });
         }
 

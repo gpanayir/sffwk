@@ -56,12 +56,18 @@ public class wcf_service : Iwcf_service
         }
         catch (Exception exception)
         {
+        
              //Response.setStatus(400);
              //Response.getWriter().write(String.Concat("Ocurrieron errores al intentar conectarce al despachador de servicio", exception.getMessage()));
             throw new Exception("Ocurrieron errores al intentar conectarce al despachador de servicio", exception);
             return false;
         }
         return true;
+    }
+    public String ConnectToWebServiceGet(string url)
+    {
+        
+        return "barbaro";
     }
     #endregion
 }
@@ -83,6 +89,9 @@ public class wcf_service : Iwcf_service
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
         Boolean ConnectToWebService(string url);
-        
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+        String ConnectToWebServiceGet(string url);
     }
 
