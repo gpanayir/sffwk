@@ -46,19 +46,28 @@ public class wcf_service : Iwcf_service
 
     public Boolean ConnectToWebService(string url)
     {
+
+        if (DataCoreDAC.Dispatcher_Exist(null, url))
+            throw new Exception("La Url ya se encuentra regiustrada en nuestro sitio");
+
         Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
         wrapper.SourceInfo = url;
         int c = 0;
         try
         {
-           c= wrapper.RetriveProviders().Count;
-           
+            c = wrapper.RetriveProviders().Count;
+
+        }
+        catch (System.Web.Services.Protocols.SoapException er)
+        {
+            throw new Exception("El servicio web no es compatible con un despachador de servicios Fwk V 10.3.0.0", er);
+            return false;
         }
         catch (Exception exception)
         {
-        
-             //Response.setStatus(400);
-             //Response.getWriter().write(String.Concat("Ocurrieron errores al intentar conectarce al despachador de servicio", exception.getMessage()));
+
+            //Response.setStatus(400);
+            //Response.getWriter().write(String.Concat("Ocurrieron errores al intentar conectarce al despachador de servicio", exception.getMessage()));
             throw new Exception("Ocurrieron errores al intentar conectarce al despachador de servicio", exception);
             return false;
         }

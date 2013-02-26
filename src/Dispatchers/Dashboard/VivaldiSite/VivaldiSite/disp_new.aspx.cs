@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using VivaldiSite.DAC;
 
 namespace VivaldiSite
 {
@@ -37,21 +38,19 @@ namespace VivaldiSite
         protected void Button1_Click(object sender, EventArgs e)
         {
             Fwk.ConfigData.fwk_ServiceDispatcher disp = new Fwk.ConfigData.fwk_ServiceDispatcher();
-            disp.AuditMode = 1;
-
+  
             disp.CompanyName = txtCompany.Text;
-            disp.HostIp = txtServerName.Text;
+            
             disp.HostName = txtServerName.Text;
             disp.InstanseName = txtInstanceName.Text;
             disp.InstanseId = Guid.NewGuid();
             disp.AuditMode= Convert.ToInt16(cmbAuditMode.SelectedValue);
 
-            using(Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext   ())
-            {
+            disp.HostIp = txtIp.Text;
+            disp.Port = Convert.ToInt32(txtPort.Text);
+            disp.Url_URI = txtUrl.Text;
 
-                dc.fwk_ServiceDispatchers.InsertOnSubmit(disp);
-                dc.SubmitChanges();
-            }
+            DataCoreDAC.Dispatcher_Create(disp);
         }
     }
 }

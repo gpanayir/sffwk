@@ -85,14 +85,13 @@
             }
         }
         function ServiceFailed(response, textStatus, errorThrown) {
+
+
             
             $('#errorMsg').css('display', 'block');
 
             $('#errorMsg').html('');
             $('#errorMsg').html('<p>No es posible la conexión con el servicio</p>');
-
-
-
 
 //            var errorObj = jQuery.parseJSON(response.responseText);
 
@@ -116,9 +115,7 @@
 //            else {
 //                $('#errorMsg').html('<p> 3' + r.Message + '</p>');
 //            }
-
-
-     
+    
         }
 
         function ConnectToWebService() {
@@ -209,13 +206,14 @@
                  </div>
                 
             </div>
+            <div class="clearfix"></div>
             <div id="sussefullMsg" class="frm-message" style="margin-left:30px;  width:400px ; display: none;height:20px; background-color:#F7F7F7;" >
                 <p>
                     La conexión al despachador de servicio web fue exitosa</p>
             </div>
              <div id="errorMsg" class="frm-error-message" style="margin-left:36px;  width:400px ; height:20px; display: none; color: Black;">
-                <p>
-                    No es posible la conexión con el servicio</p>
+                
+                    No es posible la conexión con el servicio
             </div>
             <div id="divPort" style="margin: 15px; display: none;">
                 <div class="frm_label_1">

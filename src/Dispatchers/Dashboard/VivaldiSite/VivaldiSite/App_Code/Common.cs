@@ -184,7 +184,7 @@ namespace VivaldiSite.DAC
 
 
         /// <summary>
-        /// Este c�digo se encargar� de longitud / anchura en el cambio de tama�o.
+        /// Este cdigo se encargar� de longitud / anchura en el cambio de tama�o.
         /// </summary>
         /// <param name="originalFile"></param>
         /// <param name="reducedFile"></param>

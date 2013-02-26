@@ -217,6 +217,7 @@
     </Compile>
     <Content Include="App_Code\wcf_service.cs" />
     <Content Include="App_Code\Common.cs" />
+    <Compile Include="App_Code\DataCoreDAC.cs" />
     <Compile Include="disp_new.aspx.cs">
       <DependentUpon>disp_new.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
