@@ -42,12 +42,12 @@ namespace Fwk.ConfigData
     partial void Insertfwk_Param(fwk_Param instance);
     partial void Updatefwk_Param(fwk_Param instance);
     partial void Deletefwk_Param(fwk_Param instance);
-    partial void Insertfwk_ServiceDispatcher(fwk_ServiceDispatcher instance);
-    partial void Updatefwk_ServiceDispatcher(fwk_ServiceDispatcher instance);
-    partial void Deletefwk_ServiceDispatcher(fwk_ServiceDispatcher instance);
     partial void Insertfwk_ServiceAudit(fwk_ServiceAudit instance);
     partial void Updatefwk_ServiceAudit(fwk_ServiceAudit instance);
     partial void Deletefwk_ServiceAudit(fwk_ServiceAudit instance);
+    partial void Insertfwk_ServiceDispatcher(fwk_ServiceDispatcher instance);
+    partial void Updatefwk_ServiceDispatcher(fwk_ServiceDispatcher instance);
+    partial void Deletefwk_ServiceDispatcher(fwk_ServiceDispatcher instance);
     #endregion
 		
 		public FwkDatacontext() : 
@@ -112,19 +112,19 @@ namespace Fwk.ConfigData
 			}
 		}
 		
-		public System.Data.Linq.Table<fwk_ServiceDispatcher> fwk_ServiceDispatchers
-		{
-			get
-			{
-				return this.GetTable<fwk_ServiceDispatcher>();
-			}
-		}
-		
 		public System.Data.Linq.Table<fwk_ServiceAudit> fwk_ServiceAudits
 		{
 			get
 			{
 				return this.GetTable<fwk_ServiceAudit>();
+			}
+		}
+		
+		public System.Data.Linq.Table<fwk_ServiceDispatcher> fwk_ServiceDispatchers
+		{
+			get
+			{
+				return this.GetTable<fwk_ServiceDispatcher>();
 			}
 		}
 	}
@@ -978,212 +978,6 @@ namespace Fwk.ConfigData
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fwk_ServiceDispatcher")]
-	public partial class fwk_ServiceDispatcher : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _InstanseName;
-		
-		private short _AuditMode;
-		
-		private string _HostIp;
-		
-		private string _HostName;
-		
-		private string _CompanyName;
-		
-		private System.Data.Linq.Binary _Logo;
-		
-		private System.Nullable<System.Guid> _InstanseId;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnInstanseNameChanging(string value);
-    partial void OnInstanseNameChanged();
-    partial void OnAuditModeChanging(short value);
-    partial void OnAuditModeChanged();
-    partial void OnHostIpChanging(string value);
-    partial void OnHostIpChanged();
-    partial void OnHostNameChanging(string value);
-    partial void OnHostNameChanged();
-    partial void OnCompanyNameChanging(string value);
-    partial void OnCompanyNameChanged();
-    partial void OnLogoChanging(System.Data.Linq.Binary value);
-    partial void OnLogoChanged();
-    partial void OnInstanseIdChanging(System.Nullable<System.Guid> value);
-    partial void OnInstanseIdChanged();
-    #endregion
-		
-		public fwk_ServiceDispatcher()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstanseName", DbType="VarChar(200) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string InstanseName
-		{
-			get
-			{
-				return this._InstanseName;
-			}
-			set
-			{
-				if ((this._InstanseName != value))
-				{
-					this.OnInstanseNameChanging(value);
-					this.SendPropertyChanging();
-					this._InstanseName = value;
-					this.SendPropertyChanged("InstanseName");
-					this.OnInstanseNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditMode", DbType="SmallInt NOT NULL")]
-		public short AuditMode
-		{
-			get
-			{
-				return this._AuditMode;
-			}
-			set
-			{
-				if ((this._AuditMode != value))
-				{
-					this.OnAuditModeChanging(value);
-					this.SendPropertyChanging();
-					this._AuditMode = value;
-					this.SendPropertyChanged("AuditMode");
-					this.OnAuditModeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HostIp", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string HostIp
-		{
-			get
-			{
-				return this._HostIp;
-			}
-			set
-			{
-				if ((this._HostIp != value))
-				{
-					this.OnHostIpChanging(value);
-					this.SendPropertyChanging();
-					this._HostIp = value;
-					this.SendPropertyChanged("HostIp");
-					this.OnHostIpChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HostName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string HostName
-		{
-			get
-			{
-				return this._HostName;
-			}
-			set
-			{
-				if ((this._HostName != value))
-				{
-					this.OnHostNameChanging(value);
-					this.SendPropertyChanging();
-					this._HostName = value;
-					this.SendPropertyChanged("HostName");
-					this.OnHostNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string CompanyName
-		{
-			get
-			{
-				return this._CompanyName;
-			}
-			set
-			{
-				if ((this._CompanyName != value))
-				{
-					this.OnCompanyNameChanging(value);
-					this.SendPropertyChanging();
-					this._CompanyName = value;
-					this.SendPropertyChanged("CompanyName");
-					this.OnCompanyNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Logo", DbType="VarBinary(1000)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Logo
-		{
-			get
-			{
-				return this._Logo;
-			}
-			set
-			{
-				if ((this._Logo != value))
-				{
-					this.OnLogoChanging(value);
-					this.SendPropertyChanging();
-					this._Logo = value;
-					this.SendPropertyChanged("Logo");
-					this.OnLogoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstanseId", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> InstanseId
-		{
-			get
-			{
-				return this._InstanseId;
-			}
-			set
-			{
-				if ((this._InstanseId != value))
-				{
-					this.OnInstanseIdChanging(value);
-					this.SendPropertyChanging();
-					this._InstanseId = value;
-					this.SendPropertyChanged("InstanseId");
-					this.OnInstanseIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fwk_ServiceAudit")]
 	public partial class fwk_ServiceAudit : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1485,6 +1279,260 @@ namespace Fwk.ConfigData
 					this._ServiceError = value;
 					this.SendPropertyChanged("ServiceError");
 					this.OnServiceErrorChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fwk_ServiceDispatcher")]
+	public partial class fwk_ServiceDispatcher : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _InstanseName;
+		
+		private short _AuditMode;
+		
+		private string _HostIp;
+		
+		private string _HostName;
+		
+		private string _CompanyName;
+		
+		private System.Data.Linq.Binary _Logo;
+		
+		private System.Nullable<System.Guid> _InstanseId;
+		
+		private string _Url_URI;
+		
+		private System.Nullable<int> _Port;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInstanseNameChanging(string value);
+    partial void OnInstanseNameChanged();
+    partial void OnAuditModeChanging(short value);
+    partial void OnAuditModeChanged();
+    partial void OnHostIpChanging(string value);
+    partial void OnHostIpChanged();
+    partial void OnHostNameChanging(string value);
+    partial void OnHostNameChanged();
+    partial void OnCompanyNameChanging(string value);
+    partial void OnCompanyNameChanged();
+    partial void OnLogoChanging(System.Data.Linq.Binary value);
+    partial void OnLogoChanged();
+    partial void OnInstanseIdChanging(System.Nullable<System.Guid> value);
+    partial void OnInstanseIdChanged();
+    partial void OnUrl_URIChanging(string value);
+    partial void OnUrl_URIChanged();
+    partial void OnPortChanging(System.Nullable<int> value);
+    partial void OnPortChanged();
+    #endregion
+		
+		public fwk_ServiceDispatcher()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstanseName", DbType="VarChar(200) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string InstanseName
+		{
+			get
+			{
+				return this._InstanseName;
+			}
+			set
+			{
+				if ((this._InstanseName != value))
+				{
+					this.OnInstanseNameChanging(value);
+					this.SendPropertyChanging();
+					this._InstanseName = value;
+					this.SendPropertyChanged("InstanseName");
+					this.OnInstanseNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditMode", DbType="SmallInt NOT NULL")]
+		public short AuditMode
+		{
+			get
+			{
+				return this._AuditMode;
+			}
+			set
+			{
+				if ((this._AuditMode != value))
+				{
+					this.OnAuditModeChanging(value);
+					this.SendPropertyChanging();
+					this._AuditMode = value;
+					this.SendPropertyChanged("AuditMode");
+					this.OnAuditModeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HostIp", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string HostIp
+		{
+			get
+			{
+				return this._HostIp;
+			}
+			set
+			{
+				if ((this._HostIp != value))
+				{
+					this.OnHostIpChanging(value);
+					this.SendPropertyChanging();
+					this._HostIp = value;
+					this.SendPropertyChanged("HostIp");
+					this.OnHostIpChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HostName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string HostName
+		{
+			get
+			{
+				return this._HostName;
+			}
+			set
+			{
+				if ((this._HostName != value))
+				{
+					this.OnHostNameChanging(value);
+					this.SendPropertyChanging();
+					this._HostName = value;
+					this.SendPropertyChanged("HostName");
+					this.OnHostNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyName", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string CompanyName
+		{
+			get
+			{
+				return this._CompanyName;
+			}
+			set
+			{
+				if ((this._CompanyName != value))
+				{
+					this.OnCompanyNameChanging(value);
+					this.SendPropertyChanging();
+					this._CompanyName = value;
+					this.SendPropertyChanged("CompanyName");
+					this.OnCompanyNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Logo", DbType="VarBinary(1000)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Logo
+		{
+			get
+			{
+				return this._Logo;
+			}
+			set
+			{
+				if ((this._Logo != value))
+				{
+					this.OnLogoChanging(value);
+					this.SendPropertyChanging();
+					this._Logo = value;
+					this.SendPropertyChanged("Logo");
+					this.OnLogoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InstanseId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> InstanseId
+		{
+			get
+			{
+				return this._InstanseId;
+			}
+			set
+			{
+				if ((this._InstanseId != value))
+				{
+					this.OnInstanseIdChanging(value);
+					this.SendPropertyChanging();
+					this._InstanseId = value;
+					this.SendPropertyChanged("InstanseId");
+					this.OnInstanseIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Url_URI", DbType="VarChar(1000)")]
+		public string Url_URI
+		{
+			get
+			{
+				return this._Url_URI;
+			}
+			set
+			{
+				if ((this._Url_URI != value))
+				{
+					this.OnUrl_URIChanging(value);
+					this.SendPropertyChanging();
+					this._Url_URI = value;
+					this.SendPropertyChanged("Url_URI");
+					this.OnUrl_URIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Port", DbType="Int")]
+		public System.Nullable<int> Port
+		{
+			get
+			{
+				return this._Port;
+			}
+			set
+			{
+				if ((this._Port != value))
+				{
+					this.OnPortChanging(value);
+					this.SendPropertyChanging();
+					this._Port = value;
+					this.SendPropertyChanged("Port");
+					this.OnPortChanged();
 				}
 			}
 		}

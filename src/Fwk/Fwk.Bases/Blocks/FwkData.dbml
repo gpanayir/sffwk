@@ -44,17 +44,6 @@
       <Association Name="fwk_Param_fwk_Param" Member="fwk_Param1" ThisKey="Id" OtherKey="Id" Type="fwk_Param" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.fwk_ServiceDispatcher" Member="fwk_ServiceDispatchers">
-    <Type Name="fwk_ServiceDispatcher">
-      <Column Name="InstanseName" Type="System.String" DbType="VarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="AuditMode" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="HostIp" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="HostName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="CompanyName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Logo" Type="System.Data.Linq.Binary" DbType="VarBinary(1000)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="InstanseId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.fwk_ServiceAudit" Member="fwk_ServiceAudits">
     <Type Name="fwk_ServiceAudit">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -69,6 +58,19 @@
       <Column Name="Requets" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Response" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="ServiceError" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.fwk_ServiceDispatcher" Member="fwk_ServiceDispatchers">
+    <Type Name="fwk_ServiceDispatcher">
+      <Column Name="InstanseName" Type="System.String" DbType="VarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AuditMode" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="HostIp" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="HostName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Logo" Type="System.Data.Linq.Binary" DbType="VarBinary(1000)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="InstanseId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Url_URI" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
