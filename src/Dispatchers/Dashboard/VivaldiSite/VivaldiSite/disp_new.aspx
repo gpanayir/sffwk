@@ -118,28 +118,7 @@
                 $('#errorMsg_1').html('<p>No es posible la conexión con el servicio</p>');
                 return;
             }
-//            var errorObj = jQuery.parseJSON(response.responseText);
-
-//             if (!errorObj.Success) {
-//                    if (errorObj.ErrorType != "system") {
-//                        $('#errorMsg').html(errorObj.Message);
-//                        $.blockUI({ message: $('#UserErrorWrapper'),
-//                        css: { width: '400px', height: '300px', overflow: 'scroll' }
-//                     });
-//                }
-//                else {
-//                    window.location = errorObj.ErrorPageUrl;
-//                }
-
-//            var r = jQuery.parseJSON(response.responseText);
-//            alert(r.Message);
-//            if (r.Message == null) {
-
-//                $('#errorMsg').html('<p>No es posible la conexión con el servicio</p>');
-//            }
-//            else {
-//                $('#errorMsg').html('<p> 3' + r.Message + '</p>');
-//            }
+      
     
         }
 

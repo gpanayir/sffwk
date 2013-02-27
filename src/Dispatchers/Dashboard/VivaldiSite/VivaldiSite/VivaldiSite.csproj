@@ -79,6 +79,7 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="disp_init.aspx" />
     <Content Include="disp_main.aspx" />
     <Content Include="disp_new.aspx" />
     <Content Include="disp_singin.aspx" />
@@ -200,6 +201,13 @@
     <Compile Include="Clases\Helper.cs" />
     <Compile Include="Clases\SessionProxy.cs" />
     <Compile Include="Clases\wcf_service.svc.cs" />
+    <Compile Include="disp_main.aspx.cs">
+      <DependentUpon>disp_main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="disp_main.aspx.designer.cs">
+      <DependentUpon>disp_main.aspx</DependentUpon>
+    </Compile>
     <Compile Include="disp_new.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>disp_new.aspx</DependentUpon>

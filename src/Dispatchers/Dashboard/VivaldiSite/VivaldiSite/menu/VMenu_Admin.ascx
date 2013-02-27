@@ -14,7 +14,7 @@
 
 <div id="menuv" class  ="menuv">
     <ul>
-        <li><a class="menuv_a" href="/disp_main.aspx" title="Administrar dispatcher">Administrar dispatcher</a></li>
+        <li><a class="menuv_a" href="/disp_init.aspx" title="Administrar dispatcher">Administrar dispatcher</a></li>
         <li><a class="menuv_a" href="/sec_main.aspx" title="Seguridad particular">Seguridad</a></li>
     
     </ul>
