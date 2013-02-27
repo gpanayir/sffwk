@@ -87,7 +87,8 @@
         function ServiceFailed(response, textStatus, errorThrown) {
 
 
-            
+
+         
             $('#errorMsg').css('display', 'block');
 
             $('#errorMsg').html('');
@@ -119,13 +120,13 @@
         }
 
         function ConnectToWebService() {
-
+        
             $('#sussefullMsg').hide();
             $('#errorMsg').hide('');
 //            if (validate_cotrols() == false) {
 //                alert('Por favor verifique todos los datos !!!');
 //                return;
-//            }
+            //            
             varUrl = "../../service/wcf_service.svc/ConnectToWebService";
             varData = '{"url": "' + $('#ContentCenter_txtUrl').val() + '"}';
             CallService();

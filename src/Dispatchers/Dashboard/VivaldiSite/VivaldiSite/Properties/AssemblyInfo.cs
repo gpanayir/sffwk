@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("VivaldiSite")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("pelsoft")]
-[assembly: AssemblyProduct("VivaldiSite")]
-[assembly: AssemblyCopyright("Copyright © pelsoft 2011")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Vivaldi")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("310d693c-05ba-4cbd-9808-010a79342496")]
+[assembly: Guid("e2bd78ef-857b-49d4-b05c-e597704feffa")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CEFE85AE-BC26-4E11-B729-56B8429FA59E}</ProjectGuid>
+    <ProjectGuid>{8458BD39-A7B7-4E02-8A4A-D04EEF9FFE38}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -33,15 +33,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases">
-      <HintPath>..\..\..\..\fwk\trunk\src\Libraries\Framework\Fwk.Bases.dll</HintPath>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\libs\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases.Connector, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="CommentExtractor">
+      <HintPath>..\libs\CommentExtractor.dll</HintPath>
+    </Reference>
+    <Reference Include="CSharpBinding">
+      <HintPath>..\libs\CSharpBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="CSSFriendly">
+      <HintPath>..\libs\CSSFriendly.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Bases">
+      <HintPath>..\libs\Fwk.Bases.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Bases.Connector">
       <HintPath>..\libs\Fwk.Bases.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Security, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Fwk.Bases.Connector.XmlSerializers">
+      <HintPath>..\libs\Fwk.Bases.Connector.XmlSerializers.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Security">
       <HintPath>..\libs\Fwk.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -49,44 +62,45 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
-    <Content Include="Account\ChangePassword.aspx" />
-    <Content Include="Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Account\Login.aspx" />
-    <Content Include="Account\Register.aspx" />
-    <Content Include="architecture.aspx" />
-    <Content Include="contact.aspx" />
     <Content Include="disp_main.aspx" />
     <Content Include="disp_new.aspx" />
     <Content Include="disp_singin.aspx" />
-    <Content Include="Email_contactenos.htm" />
+    <Content Include="img\ActualizarPerfilBig.gif" />
+    <Content Include="img\ActualizarPerfilSmall.gif" />
     <Content Include="img\administrator_add_32.png" />
+    <Content Include="img\architexture_01.jpg" />
     <Content Include="img\arrow-back_24.png" />
+    <Content Include="img\bgr_box.png" />
     <Content Include="img\bulletgreen01.png" />
     <Content Include="img\cal_16.png" />
     <Content Include="img\collapce_16.png" />
     <Content Include="img\config-check-list.jpg" />
     <Content Include="img\confirm_16.png" />
+    <Content Include="img\corner_blue_left.png" />
+    <Content Include="img\corner_blue_right.png" />
+    <Content Include="img\corner_inset_left.png" />
+    <Content Include="img\corner_inset_right.png" />
+    <Content Include="img\corner_left.png" />
+    <Content Include="img\corner_right.png" />
     <Content Include="img\Delete_16.png" />
+    <Content Include="img\dot.gif" />
     <Content Include="img\edit.png" />
     <Content Include="img\enf\advanced.png" />
     <Content Include="img\enf\btn_check_off_pressed %282%29.png" />
@@ -102,6 +116,7 @@
     <Content Include="img\Information_24.png" />
     <Content Include="img\Information_32.png" />
     <Content Include="img\login.jpg" />
+    <Content Include="img\menu_right.png" />
     <Content Include="img\new-disp.jpg" />
     <Content Include="img\new_16.png" />
     <Content Include="img\pelsoft_logo_1.png" />
@@ -127,37 +142,26 @@
     <Content Include="img\Warning.png" />
     <Content Include="img\website.jpg" />
     <Content Include="img\winsvc.jpg" />
-    <Content Include="index.aspx" />
-    <Content Include="img\ActualizarPerfilBig.gif" />
-    <Content Include="img\ActualizarPerfilSmall.gif" />
-    <Content Include="img\architexture_01.jpg" />
-    <Content Include="img\bgr_box.png" />
-    <Content Include="img\corner_blue_left.png" />
-    <Content Include="img\corner_blue_right.png" />
-    <Content Include="img\corner_inset_left.png" />
-    <Content Include="img\corner_inset_right.png" />
-    <Content Include="img\corner_left.png" />
-    <Content Include="img\corner_right.png" />
-    <Content Include="img\dot.gif" />
-    <Content Include="img\menu_right.png" />
     <Content Include="menu\main_menu_2.ascx" />
     <Content Include="menu\VMenu_Admin.ascx" />
-    <Content Include="satelliteapps.aspx" />
     <Content Include="Scripts\fwkhelper.js" />
     <Content Include="Scripts\jquery.quicksearch.js" />
     <Content Include="Scripts\jquery_1.5.js" />
+    <Content Include="Security\ChangePwd.aspx" />
     <Content Include="Security\Email_Forgot_Password.html" />
     <Content Include="Security\Email_RegistrationReq_ToHealth32.htm" />
     <Content Include="Security\Email_UserRegistrationRequest.htm" />
     <Content Include="Security\Email_UserRegistration_Autorized.htm" />
-    <Content Include="service\Service.svc" />
-    <Content Include="service\wcf_service.svc" />
+    <Content Include="Security\Login.aspx" />
+    <Content Include="Security\Logingreg.aspx" />
+    <Content Include="Security\NotAuthorizedUser.aspx" />
+    <Content Include="Security\PasswordResset.aspx" />
     <Content Include="Styles\992_16_5_5.css" />
     <Content Include="Styles\Common.css" />
     <Content Include="Styles\Grd960.css" />
     <Content Include="Styles\Menu.css" />
-    <Content Include="Styles\sf_grid.css" />
     <Content Include="Styles\reset.css" />
+    <Content Include="Styles\sf_grid.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -179,7 +183,7 @@
     <Content Include="Styles\table-images\patternb.png" />
     <Content Include="Styles\table-images\right.png" />
     <Content Include="Styles\tables.css" />
-    <Content Include="svc.aspx" />
+    <Content Include="service\wcf_service.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -191,40 +195,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\ChangePassword.aspx.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ChangePassword.aspx.designer.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
-    <Content Include="service\wcf_service.svc.cs" />
-    <Content Include="service\Common.cs" />
-    <Compile Include="service\DataCoreDAC.cs" />
+    <Compile Include="Clases\Common.cs" />
+    <Compile Include="Clases\DataCoreDAC.cs" />
+    <Compile Include="Clases\Helper.cs" />
+    <Compile Include="Clases\SessionProxy.cs" />
+    <Compile Include="Clases\wcf_service.svc.cs" />
     <Compile Include="disp_new.aspx.cs">
-      <DependentUpon>disp_new.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>disp_new.aspx</DependentUpon>
     </Compile>
     <Compile Include="disp_new.aspx.designer.cs">
       <DependentUpon>disp_new.aspx</DependentUpon>
@@ -239,7 +217,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IService1.cs" />
     <Compile Include="menu\main_menu_2.ascx.cs">
       <DependentUpon>main_menu_2.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -255,8 +232,40 @@
       <DependentUpon>VMenu_Admin.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="service\Service.svc.cs">
-      <DependentUpon>Service.svc</DependentUpon>
+    <Compile Include="Security\ChangePwd.aspx.cs">
+      <DependentUpon>ChangePwd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\ChangePwd.aspx.designer.cs">
+      <DependentUpon>ChangePwd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\Logingreg.aspx.cs">
+      <DependentUpon>Logingreg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\Logingreg.aspx.designer.cs">
+      <DependentUpon>Logingreg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\NotAuthorizedUser.aspx.cs">
+      <DependentUpon>NotAuthorizedUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\NotAuthorizedUser.aspx.designer.cs">
+      <DependentUpon>NotAuthorizedUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\PasswordResset.aspx.cs">
+      <DependentUpon>PasswordResset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\PasswordResset.aspx.designer.cs">
+      <DependentUpon>PasswordResset.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -268,10 +277,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Old_App_Code\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -281,8 +288,8 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>22381</DevelopmentServerPort>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>18596</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

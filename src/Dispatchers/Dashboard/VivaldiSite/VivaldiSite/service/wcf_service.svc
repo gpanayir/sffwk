@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="VivaldiSite.wcf_service" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="wcf_service"  %>
