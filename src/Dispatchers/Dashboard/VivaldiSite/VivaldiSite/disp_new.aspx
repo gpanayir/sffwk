@@ -75,25 +75,49 @@
         }
 
         function ServiceSucceeded(result) {
-            
-            var connected = result.ConnectToWebServiceResult
-            if (connected == true) {
-                $('#sussefullMsg').css('display', 'block');
+
+            if (result.ChekDisponibilityResult != null) {
+
+                if (result.ChekDisponibilityResult == "") {
+
+                    $('#sussefullMsg_1').css('display', 'block');
+                }
+                else {
+                    $('#errorMsg_1').css('display', 'block');
+                    $('#errorMsg_1').html('');
+                    $('#errorMsg_1').html('<p>' + result.ChekDisponibilityResult + '</p>');
+                }
+
             }
-            else {
-                $('#errorMsg').css('display', 'block');
+          
+            if (result.ConnectToWebServiceResult != null) {
+                
+                if (result.ConnectToWebServiceResult == "") {
+                    $('#sussefullMsg').css('display', 'block');
+                }
+                else {
+                    $('#errorMsg').css('display', 'block');
+                    $('#errorMsg').html('');
+                    $('#errorMsg').html('<p>' + result.ConnectToWebServiceResult + '</p>');
+                } 
             }
         }
+
         function ServiceFailed(response, textStatus, errorThrown) {
 
+            if (urrentMethod == 'ConnectToWebService') {
 
-
-         
-            $('#errorMsg').css('display', 'block');
-
-            $('#errorMsg').html('');
-            $('#errorMsg').html('<p>No es posible la conexión con el servicio</p>');
-
+                $('#errorMsg').css('display', 'block');
+                $('#errorMsg').html('');
+                $('#errorMsg').html('<p>No es posible la conexión con el servicio</p>');
+                return;
+            }
+            if (urrentMethod == 'ChekDisponibility') {
+                $('#errorMsg_1').css('display', 'block');
+                $('#errorMsg_1').html('');
+                $('#errorMsg_1').html('<p>No es posible la conexión con el servicio</p>');
+                return;
+            }
 //            var errorObj = jQuery.parseJSON(response.responseText);
 
 //             if (!errorObj.Success) {
@@ -119,10 +143,12 @@
     
         }
 
+        var currentMethod;
         function ConnectToWebService() {
         
             $('#sussefullMsg').hide();
             $('#errorMsg').hide('');
+            currentMethod = 'ConnectToWebService'
 //            if (validate_cotrols() == false) {
 //                alert('Por favor verifique todos los datos !!!');
 //                return;
@@ -131,7 +157,15 @@
             varData = '{"url": "' + $('#ContentCenter_txtUrl').val() + '"}';
             CallService();
         }
-
+        function ChekDisponibility() {
+            currentMethod = 'ChekDisponibility'
+            $('#sussefullMsg_1').hide();
+            $('#errorMsg_1').hide('');
+                   
+            varUrl = "../../service/wcf_service.svc/ChekDisponibility";
+            varData = '{"instanceName": "' + $('#ContentCenter_txtInstanceName').val() + '"}';
+            CallService();
+        }
             
     </script>
     <div style="margin-left: 100px;">
@@ -139,9 +173,23 @@
             <div class="frm_label_2">
                 Nombre de instancia del Dispatcher
             </div>
-            <div>
+            <div class="grid_8">
                 <asp:TextBox ID="txtInstanceName" runat="server" Font-Bold="True" TabIndex="1" TextMode="SingleLine"
                     Width="300" Height="25px" CssClass="frm_fieldvalue" />
+            </div>
+            <div class="grid_3">
+                <input id="Submit2" class="grid_Button grid_Button_confirm" type="submit" tabindex="11"
+                    style="width: 190px; height: 30px" value="Virificar disponibilidad" onclick="ChekDisponibility();return false;" />
+            </div>
+            <div class="clearfix">
+            </div>
+            <div id="sussefullMsg_1" class="frm-message" style="margin-left: 30px; width: 400px;
+                display: none; height: 20px; background-color: #F7F7F7;">
+                <p>
+                    El nombre de instancia esta disponible. </p>
+            </div>
+            <div id="errorMsg_1" class="frm-error-message" style="margin-left: 36px; width: 400px;
+                height: 20px; display: none; color: Black;">
             </div>
         </div>
         <div style="background-color: #FFFFFF; margin-top: 10px; margin-bottom: 5px">

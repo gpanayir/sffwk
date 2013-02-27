@@ -45,11 +45,11 @@ using System.Web;
 
         }
 
-        public Boolean ConnectToWebService(string url)
+        public String ConnectToWebService(string url)
         {
-            return true;
+         
             if (DataCoreDAC.Dispatcher_Exist(null, url))
-                throw new Exception("La Url ya se encuentra regiustrada en nuestro sitio");
+                return "La Url ya se encuentra regiustrada en nuestro sitio";
 
             Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
             wrapper.SourceInfo = url;
@@ -61,7 +61,8 @@ using System.Web;
             }
             catch (System.Web.Services.Protocols.SoapException er)
             {
-                throw new Exception("El servicio web no es compatible con un despachador de servicios Fwk V 10.3.0.0", er);
+               // throw new Exception("El servicio web no es compatible con un despachador de servicios Fwk V 10.3.0.0", er);
+                return String.Concat ("El servicio web no es compatible con un despachador de servicios Fwk V 10.3.0.0\r\n", er.Message);
                 
             }
             catch (Exception exception)
@@ -69,15 +70,21 @@ using System.Web;
 
                 //Response.setStatus(400);
                 //Response.getWriter().write(String.Concat("Ocurrieron errores al intentar conectarce al despachador de servicio", exception.getMessage()));
-                throw new Exception("Ocurrieron errores al intentar conectarce al despachador de servicio", exception);
-                
+                //throw new Exception("Ocurrieron errores al intentar conectarce al despachador de servicio", exception);
+                return exception.Message;
             }
-            return true;
+            return String.Empty;
         }
-        public String ConnectToWebServiceGet(string url)
-        {
 
-            return "barbaro";
+        public String ChekDisponibility(string instanceName)
+        {
+            if (String.IsNullOrEmpty(instanceName))
+
+                return "Ingrese un valor para el nombre de instancia";
+            if (DataCoreDAC.Dispatcher_Exist(instanceName, null))
+                return "El nombre de instancia ya fue registrado";
+
+            return string.Empty;
         }
         #endregion
     }
@@ -97,11 +104,11 @@ using System.Web;
 
         [OperationContract]
         [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
-        Boolean ConnectToWebService(string url);
+        String ConnectToWebService(string url);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
-        String ConnectToWebServiceGet(string url);
+        [WebInvoke(Method = "POST", BodyStyle = WebMessageBodyStyle.Wrapped, ResponseFormat = WebMessageFormat.Json)]
+        String ChekDisponibility(string instanceName);
     }
 
 //}
