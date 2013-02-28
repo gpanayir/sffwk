@@ -4,6 +4,7 @@ using System.Text;
 using Fwk.Bases;
 using Fwk.BusinessFacades;
 using Fwk.Exceptions;
+using Fwk.ConfigSection;
 
 namespace Fwk.Bases.Connector
 {
@@ -260,10 +261,10 @@ namespace Fwk.Bases.Connector
         #region IServiceWrapper Members
 
 
-        public List<ConfigSection.MetadataProvider> RetriveProviders()
+        public Fwk.ConfigSection.DispatcherInfo RetriveDispatcherInfo()
         {
            
-            return _SimpleFacade.RetriveProviders();
+            return _SimpleFacade.RetriveDispatcherInfo();
         }
 
         #endregion

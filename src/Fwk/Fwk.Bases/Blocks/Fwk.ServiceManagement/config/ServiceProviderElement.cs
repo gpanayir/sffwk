@@ -92,7 +92,7 @@ namespace Fwk.ConfigSection
             set { this["securityProviderName"] = value; }
         }
 
-       
+
         public override bool IsReadOnly()
         {
             return false;
@@ -161,7 +161,7 @@ namespace Fwk.ConfigSection
         /// </summary>
         public MetadataProvider()
         { }
-        string _DefaultCulture= string.Empty;
+        string _DefaultCulture = string.Empty;
 
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Fwk.ConfigSection
         /// string cultura = pServiceRequest.ContextInformation.DefaultCulture;
         /// 
         /// </summary>
-        public string DefaultCulture { get {return _DefaultCulture;} }
+        public string DefaultCulture { get { return _DefaultCulture; } }
         /// <summary>
         /// 
         /// </summary>
@@ -189,4 +189,85 @@ namespace Fwk.ConfigSection
             //_DefaultCulture = provider.DefaultCulture;
         }
     }
+
+    /// <summary>
+    /// Información configurada en un dispatcher
+    /// </summary>
+    [XmlInclude(typeof(DispatcherInfo)), Serializable]
+    public class DispatcherInfo : BaseEntity
+    {
+        /// <summary>
+        /// Constructor. Inicializa diccionarios
+        /// </summary>
+        public DispatcherInfo()
+        {
+            MetadataProviders = new List<MetadataProvider>();
+            AppSettings = new Fwk.ConfigSection.DictionarySettingList();
+            CnnStringSettings = new Fwk.ConfigSection.DictionarySettingList();
+
+        }
+        /// <summary>
+        /// Service Metadata Providers  configurados
+        /// </summary>
+        public List<MetadataProvider> MetadataProviders { get; set; }
+
+
+        /// <summary>
+        /// Todos los AppSettings configurados
+        /// </summary>
+        //[XmlArrayItem("AppSetting")]
+        //[XmlArray("AppSettings")]
+        public DictionarySettingList AppSettings
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Lista de cadenas de conección
+        /// </summary>
+        // [XmlArray("CnnStringSettings")]
+        //[XmlArrayItem("CnnStringSetting")]
+        public DictionarySettingList CnnStringSettings
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Cadena de coneccion que posee el dispatcher para obtener su entorno de configuracion. 
+        /// spesifica donde esta registrada la instancia del dispatcher
+        /// </summary>
+        public string ServiceDispatcherConnection { get; set; }
+
+        /// <summary>
+        /// Nombre de instancia del dispatcher
+        /// </summary>
+        public string ServiceDispatcherName { get; set; }
+    }
+
+    //[XmlRoot("DictionarySettingList"), SerializableAttribute]
+    [Serializable]
+    public class DictionarySettingList : List<DictionarySetting>
+    {
+        public void Add(string key, string value)
+        {
+            this.Add(new DictionarySetting(key, value));
+        }
+    }
+
+    //[XmlInclude(typeof(DictionarySetting)), Serializable]
+    [Serializable]
+    public class DictionarySetting //: Fwk.Bases.BaseEntity
+    {
+        public DictionarySetting(string key, string value)
+        {
+            this.Key = key;
+            this.Value = value;
+        }
+        public DictionarySetting()
+        { }
+        public String Key { get; set; }
+        public String Value { get; set; }
+    }
+
 }

@@ -13,6 +13,8 @@ using Fwk.ServiceManagement;
 using System.Collections.Generic;
 using Fwk.ConfigSection;
 using Fwk.ConfigData;
+using System.Web.Configuration;
+using System.Configuration;
 
 namespace Fwk.BusinessFacades.Utils
 {
@@ -605,14 +607,35 @@ namespace Fwk.BusinessFacades.Utils
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<MetadataProvider> RetriveProviders()
+        public static DispatcherInfo RetriveDispatcherInfo()
         {
+            DispatcherInfo dispatcherInfo = new DispatcherInfo();
+
             List<MetadataProvider> list = new List<MetadataProvider>();
             foreach (ServiceProviderElement providerElement in ServiceMetadata.ProviderSection.Providers)
             {
                 list.Add(new MetadataProvider(providerElement));
             }
-            return list;
+            dispatcherInfo.MetadataProviders= list;
+
+
+            dispatcherInfo.ServiceDispatcherConnection = System.Configuration.ConfigurationManager.AppSettings["ServiceDispatcherConnection"];
+            dispatcherInfo.ServiceDispatcherName = System.Configuration.ConfigurationManager.AppSettings["ServiceDispatcherName"];
+
+            foreach (string key in System.Configuration.ConfigurationManager.AppSettings)
+            {
+                dispatcherInfo.AppSettings.Add(key, System.Configuration.ConfigurationManager.AppSettings[key.ToString()].ToString());
+            }
+
+            foreach (System.Configuration.ConnectionStringSettings cnnStringSetting in System.Configuration.ConfigurationManager.ConnectionStrings)
+            {
+                dispatcherInfo.CnnStringSettings.Add(cnnStringSetting.Name, cnnStringSetting.ConnectionString);
+            }
+
+            MembershipSection wMembershipSection = (MembershipSection)System.Configuration.ConfigurationManager.GetSection("system.web/membership");
+
+            
+            return dispatcherInfo;
         }
         #endregion
 
@@ -703,7 +726,7 @@ namespace Fwk.BusinessFacades.Utils
             }
 
 
-            wAssembliesPath = ConfigurationManager.GetProperty("AssembliesPath",
+            wAssembliesPath = Fwk.Configuration.ConfigurationManager.GetProperty("AssembliesPath",
                                                                 serviceConfiguration.
                                                                     ApplicationId);
 

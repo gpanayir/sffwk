@@ -335,7 +335,7 @@ namespace Fwk.Bases.Connector
         #region IServiceWrapper Members
 
 
-        public List<MetadataProvider> RetriveProviders()
+        public DispatcherInfo RetriveDispatcherInfo()
         {
             throw new NotImplementedException();
         }

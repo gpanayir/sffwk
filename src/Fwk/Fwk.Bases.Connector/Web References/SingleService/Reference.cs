@@ -48,7 +48,7 @@ namespace Fwk.Bases.Connector.Singleservice {
         
         private System.Threading.SendOrPostCallback GetProviderInfoOperationCompleted;
         
-        private System.Threading.SendOrPostCallback RetriveProvidersOperationCompleted;
+        private System.Threading.SendOrPostCallback RetriveDispatcherInfoOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -116,7 +116,7 @@ namespace Fwk.Bases.Connector.Singleservice {
         public event GetProviderInfoCompletedEventHandler GetProviderInfoCompleted;
         
         /// <remarks/>
-        public event RetriveProvidersCompletedEventHandler RetriveProvidersCompleted;
+        public event RetriveDispatcherInfoCompletedEventHandler RetriveDispatcherInfoCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ExecuteService", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -396,29 +396,29 @@ namespace Fwk.Bases.Connector.Singleservice {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RetriveProviders", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public MetadataProvider[] RetriveProviders() {
-            object[] results = this.Invoke("RetriveProviders", new object[0]);
-            return ((MetadataProvider[])(results[0]));
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RetriveDispatcherInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public DispatcherInfo RetriveDispatcherInfo() {
+            object[] results = this.Invoke("RetriveDispatcherInfo", new object[0]);
+            return ((DispatcherInfo)(results[0]));
         }
         
         /// <remarks/>
-        public void RetriveProvidersAsync() {
-            this.RetriveProvidersAsync(null);
+        public void RetriveDispatcherInfoAsync() {
+            this.RetriveDispatcherInfoAsync(null);
         }
         
         /// <remarks/>
-        public void RetriveProvidersAsync(object userState) {
-            if ((this.RetriveProvidersOperationCompleted == null)) {
-                this.RetriveProvidersOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRetriveProvidersOperationCompleted);
+        public void RetriveDispatcherInfoAsync(object userState) {
+            if ((this.RetriveDispatcherInfoOperationCompleted == null)) {
+                this.RetriveDispatcherInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRetriveDispatcherInfoOperationCompleted);
             }
-            this.InvokeAsync("RetriveProviders", new object[0], this.RetriveProvidersOperationCompleted, userState);
+            this.InvokeAsync("RetriveDispatcherInfo", new object[0], this.RetriveDispatcherInfoOperationCompleted, userState);
         }
         
-        private void OnRetriveProvidersOperationCompleted(object arg) {
-            if ((this.RetriveProvidersCompleted != null)) {
+        private void OnRetriveDispatcherInfoOperationCompleted(object arg) {
+            if ((this.RetriveDispatcherInfoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.RetriveProvidersCompleted(this, new RetriveProvidersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.RetriveDispatcherInfoCompleted(this, new RetriveDispatcherInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -640,6 +640,7 @@ namespace Fwk.Bases.Connector.Singleservice {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(DispatcherInfo))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(MetadataProvider))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ServiceConfiguration))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
@@ -648,6 +649,108 @@ namespace Fwk.Bases.Connector.Singleservice {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public abstract partial class BaseEntity {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class DictionarySetting {
+        
+        private string keyField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        public string Key {
+            get {
+                return this.keyField;
+            }
+            set {
+                this.keyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.233")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class DispatcherInfo : BaseEntity {
+        
+        private MetadataProvider[] metadataProvidersField;
+        
+        private DictionarySetting[] appSettingsField;
+        
+        private DictionarySetting[] cnnStringSettingsField;
+        
+        private string serviceDispatcherConnectionField;
+        
+        private string serviceDispatcherNameField;
+        
+        /// <remarks/>
+        public MetadataProvider[] MetadataProviders {
+            get {
+                return this.metadataProvidersField;
+            }
+            set {
+                this.metadataProvidersField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DictionarySetting[] AppSettings {
+            get {
+                return this.appSettingsField;
+            }
+            set {
+                this.appSettingsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DictionarySetting[] CnnStringSettings {
+            get {
+                return this.cnnStringSettingsField;
+            }
+            set {
+                this.cnnStringSettingsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ServiceDispatcherConnection {
+            get {
+                return this.serviceDispatcherConnectionField;
+            }
+            set {
+                this.serviceDispatcherConnectionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ServiceDispatcherName {
+            get {
+                return this.serviceDispatcherNameField;
+            }
+            set {
+                this.serviceDispatcherNameField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -867,26 +970,26 @@ namespace Fwk.Bases.Connector.Singleservice {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
-    public delegate void RetriveProvidersCompletedEventHandler(object sender, RetriveProvidersCompletedEventArgs e);
+    public delegate void RetriveDispatcherInfoCompletedEventHandler(object sender, RetriveDispatcherInfoCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.1")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class RetriveProvidersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class RetriveDispatcherInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal RetriveProvidersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal RetriveDispatcherInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public MetadataProvider[] Result {
+        public DispatcherInfo Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((MetadataProvider[])(this.results[0]));
+                return ((DispatcherInfo)(this.results[0]));
             }
         }
     }

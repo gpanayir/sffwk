@@ -130,7 +130,7 @@ namespace Fwk.Bases
         /// 
         /// </summary>
         /// <returns></returns>
-         List<Fwk.ConfigSection.MetadataProvider> RetriveProviders();
+        Fwk.ConfigSection.DispatcherInfo RetriveDispatcherInfo();
        
         #endregion
     }

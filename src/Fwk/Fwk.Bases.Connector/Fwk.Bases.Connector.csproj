@@ -122,6 +122,9 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Web References\Singleservice\DispatcherInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="WebService\app.config" />
     <None Include="fwk.snk" />
     <None Include="Local\App.config" />

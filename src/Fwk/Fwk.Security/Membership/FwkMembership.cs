@@ -38,7 +38,7 @@ namespace Fwk.Security
         static Dictionary<string, string> providerCnnStrings;
       
 
-        static SecuritySettings _SecuritySettings;
+        //static SecuritySettings _SecuritySettings;
         static MembershipSection _MembershipSection;
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Fwk.Security
         /// </summary>
         static FwkMembership()
         {
-            _SecuritySettings = (SecuritySettings)System.Configuration.ConfigurationManager.GetSection("securityConfiguration");
+            //_SecuritySettings = (SecuritySettings)System.Configuration.ConfigurationManager.GetSection("securityConfiguration");
             _MembershipSection = (MembershipSection)System.Configuration.ConfigurationManager.GetSection("system.web/membership");
             providerCnnStrings = new Dictionary<string, string>();
         }

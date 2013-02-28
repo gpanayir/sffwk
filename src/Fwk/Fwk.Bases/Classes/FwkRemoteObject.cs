@@ -151,10 +151,10 @@ namespace Fwk.Remoting
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<Fwk.ConfigSection.MetadataProvider> RetriveProviders()
+        public Fwk.ConfigSection.DispatcherInfo RetriveDispatcherInfo()
         {
             SimpleFacade wSimpleFacade = CreateSimpleFacade();
-            return wSimpleFacade.RetriveProviders();
+            return wSimpleFacade.RetriveDispatcherInfo();
         }
         /// <summary>
         /// Factory de SimpleFacade

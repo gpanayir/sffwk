@@ -4,6 +4,7 @@ using Fwk.Exceptions;
 using System.Collections.Generic;
 using Fwk.ConfigSection;
 using System.Net;
+using System.Data;
 
 namespace Fwk.Bases.Connector
 {
@@ -390,7 +391,7 @@ namespace Fwk.Bases.Connector
         /// Retorna uyn alista de Service Metadata providers configurados en el Web Service Dispatcher
         /// </summary>
         /// <returns></returns>
-        public List<Fwk.ConfigSection.MetadataProvider> RetriveProviders()
+        public DispatcherInfo RetriveDispatcherInfo()
         {
             using (Singleservice.SingleService wService = new Singleservice.SingleService())
             {
@@ -399,11 +400,14 @@ namespace Fwk.Bases.Connector
                 if (_Credentials != null)
                     wService.Credentials = _Credentials;
                 wService.Url = _URL;
-                Singleservice.MetadataProvider[] webProviderslist = wService.RetriveProviders();
 
+              Fwk.Bases.Connector.Singleservice.DispatcherInfo  wsDispatcherInfo = wService.RetriveDispatcherInfo();
+                DispatcherInfo wDispatcherInfo = new DispatcherInfo();
+
+               
                 List<Fwk.ConfigSection.MetadataProvider> providers = new List<MetadataProvider>();
                 MetadataProvider provider = null;
-                foreach (var p in webProviderslist)
+                foreach (var p in wsDispatcherInfo.MetadataProviders)
                 {
                     provider = new MetadataProvider();
                     provider.ApplicationId = p.ApplicationId;
@@ -412,10 +416,17 @@ namespace Fwk.Bases.Connector
                     provider.Name = p.Name;
                     provider.SecurityProviderName = p.SecurityProviderName;
                     provider.SourceInfo = p.SourceInfo;
-                    providers.Add(provider);
+                    wDispatcherInfo.MetadataProviders.Add(provider);
                 }
 
-                return providers;
+                string appSettingsXml = Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(wsDispatcherInfo.AppSettings);
+                wDispatcherInfo.AppSettings = (Fwk.ConfigSection.DictionarySettingList)
+                    Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(Fwk.ConfigSection.DictionarySettingList), appSettingsXml);
+
+                string cnnStringXml = Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(wsDispatcherInfo.CnnStringSettings);
+                wDispatcherInfo.CnnStringSettings = (Fwk.ConfigSection.DictionarySettingList)  
+                    Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(Fwk.ConfigSection.DictionarySettingList), cnnStringXml);
+                return wDispatcherInfo;
             }
         }
 

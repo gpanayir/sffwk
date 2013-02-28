@@ -176,19 +176,43 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
-      <s:element name="RetriveProviders">
+      <s:element name="RetriveDispatcherInfo">
         <s:complexType />
       </s:element>
-      <s:element name="RetriveProvidersResponse">
+      <s:element name="RetriveDispatcherInfoResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="RetriveProvidersResult" type="tns:ArrayOfMetadataProvider" />
+            <s:element minOccurs="0" maxOccurs="1" name="RetriveDispatcherInfoResult" type="tns:DispatcherInfo" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="DispatcherInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MetadataProviders" type="tns:ArrayOfMetadataProvider" />
+              <s:element minOccurs="0" maxOccurs="1" name="AppSettings" type="tns:ArrayOfDictionarySetting" />
+              <s:element minOccurs="0" maxOccurs="1" name="CnnStringSettings" type="tns:ArrayOfDictionarySetting" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceDispatcherConnection" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceDispatcherName" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
       <s:complexType name="ArrayOfMetadataProvider">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="unbounded" name="MetadataProvider" nillable="true" type="tns:MetadataProvider" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDictionarySetting">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DictionarySetting" nillable="true" type="tns:DictionarySetting" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DictionarySetting">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
         </s:sequence>
       </s:complexType>
     </s:schema>
@@ -244,11 +268,11 @@
   <wsdl:message name="GetProviderInfoSoapOut">
     <wsdl:part name="parameters" element="tns:GetProviderInfoResponse" />
   </wsdl:message>
-  <wsdl:message name="RetriveProvidersSoapIn">
-    <wsdl:part name="parameters" element="tns:RetriveProviders" />
+  <wsdl:message name="RetriveDispatcherInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:RetriveDispatcherInfo" />
   </wsdl:message>
-  <wsdl:message name="RetriveProvidersSoapOut">
-    <wsdl:part name="parameters" element="tns:RetriveProvidersResponse" />
+  <wsdl:message name="RetriveDispatcherInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:RetriveDispatcherInfoResponse" />
   </wsdl:message>
   <wsdl:portType name="SingleServiceSoap">
     <wsdl:operation name="ExecuteService">
@@ -286,9 +310,9 @@
       <wsdl:input message="tns:GetProviderInfoSoapIn" />
       <wsdl:output message="tns:GetProviderInfoSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="RetriveProviders">
-      <wsdl:input message="tns:RetriveProvidersSoapIn" />
-      <wsdl:output message="tns:RetriveProvidersSoapOut" />
+    <wsdl:operation name="RetriveDispatcherInfo">
+      <wsdl:input message="tns:RetriveDispatcherInfoSoapIn" />
+      <wsdl:output message="tns:RetriveDispatcherInfoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SingleServiceSoap" type="tns:SingleServiceSoap">
@@ -371,8 +395,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RetriveProviders">
-      <soap:operation soapAction="http://tempuri.org/RetriveProviders" style="document" />
+    <wsdl:operation name="RetriveDispatcherInfo">
+      <soap:operation soapAction="http://tempuri.org/RetriveDispatcherInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -461,8 +485,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RetriveProviders">
-      <soap12:operation soapAction="http://tempuri.org/RetriveProviders" style="document" />
+    <wsdl:operation name="RetriveDispatcherInfo">
+      <soap12:operation soapAction="http://tempuri.org/RetriveDispatcherInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

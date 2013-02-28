@@ -14,6 +14,7 @@ using Fwk.Logging.Targets;
 
 using System.Configuration;
 using System.Collections.Generic;
+using Fwk.ConfigSection;
 
 namespace Fwk.BusinessFacades
 {
@@ -337,9 +338,9 @@ namespace Fwk.BusinessFacades
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<Fwk.ConfigSection.MetadataProvider> RetriveProviders()
+        public DispatcherInfo RetriveDispatcherInfo()
         {
-            return FacadeHelper.RetriveProviders();
+            return FacadeHelper.RetriveDispatcherInfo();
         }
         
         /// <summary>
