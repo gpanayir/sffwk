@@ -14,12 +14,6 @@ namespace VivaldiSite
         {
 
         }
-        public Boolean ConnectToWebService(string url)
-        {
-            Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
-            wrapper.SourceInfo = url;
-
-            return wrapper.RetriveProviders().Count > 0;
-        }
+      
     }
 }

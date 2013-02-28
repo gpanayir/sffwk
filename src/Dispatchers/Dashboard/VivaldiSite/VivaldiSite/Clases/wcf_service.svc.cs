@@ -53,10 +53,10 @@ using System.Web;
 
             Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
             wrapper.SourceInfo = url;
-            int c = 0;
+          
             try
             {
-                c = wrapper.RetriveProviders().Count;
+                var ac = wrapper.GetProviderInfo("");
 
             }
             catch (System.Web.Services.Protocols.SoapException er)
