@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="disp_main.aspx.cs" Inherits="VivaldiSite.disp_main" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCenter" runat="server">
-
+<div class="article_wrap">
     <div style="margin-left: 100px;">
         <div style="background-color: #FFFFFF; margin-top: 10px; margin-bottom: 5px">
             <div class="frm_label_2">
@@ -127,4 +128,13 @@
             </div>
         </div>
     </div>
+</div>
+<div class="article_wrap">
+    <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0">
+        <asp:TabPanel runat="server" HeaderText="Metadata configs" ID="TabPanel1">
+        </asp:TabPanel>
+        <asp:TabPanel runat="server" HeaderText="Connextions strings" ID="TabPanel2">
+        </asp:TabPanel>
+    </asp:TabContainer>
+</div>
 </asp:Content>
