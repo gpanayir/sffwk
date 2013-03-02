@@ -107,7 +107,8 @@ namespace Fwk.ServiceManagement
             return svc;
 
         }
-        private static FileSystemWatcher watcher;
+        ///date:2013-03-02 No se utilizara la actualizacion
+        //private static FileSystemWatcher watcher;
 
         /// <summary>
         /// Obtiene todos los servicios del proveedor de metadata
@@ -121,21 +122,24 @@ namespace Fwk.ServiceManagement
             //Si no esta cargado el provider en el repositorio
             if (!_Repository.ContainsKey(provider.Name))
             {
-                #region xml
-                if (provider.ProviderType == ServiceProviderType.xml)
-                {
-                    svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
+                //#region xml
 
-                    //Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
-                    watcher = new System.IO.FileSystemWatcher();
-                    watcher.Filter = provider.SourceInfo;
-                    watcher.Path = Environment.CurrentDirectory;
-                    watcher.EnableRaisingEvents = true;
+                ///date:2013-03-02 No se utilizara la actualizacion
+                //if (provider.ProviderType == ServiceProviderType.xml)
+                //{
+                //    svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
 
-                    watcher.Changed += new FileSystemEventHandler(watcher_Changed);
+                //    //Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
+                //    watcher = new System.IO.FileSystemWatcher();
+                //    watcher.Filter = provider.SourceInfo;
 
-                }
-                #endregion
+                //    watcher.Path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location;
+                //    watcher.EnableRaisingEvents = true;
+
+                //    watcher.Changed += new FileSystemEventHandler(watcher_Changed);
+
+                //}
+                //#endregion
 
                 #region sqldatabase
                 if (provider.ProviderType == ServiceProviderType.sqldatabase)
@@ -157,40 +161,41 @@ namespace Fwk.ServiceManagement
             return svcList;
         }
 
-        /// <summary>
-        /// Si algun cambio ocurre en el archivo de metadata de algun proveedor xml
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        static void watcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            try
-            {
-                //Busco todos los providers que esten asociados al mismo archivo. Esta es una situacion muy rara pero podria darce
-                foreach (ServiceProviderElement provider in _ProviderSection.Providers)
-                {
-                    if (e.Name.Equals(provider.SourceInfo) && provider.ProviderType == ServiceProviderType.xml)
-                        ReloadAllServices(provider);
-                }
-            }
-            catch (TechnicalException ex)
-            {
-                Fwk.Logging.Event ev = new Event();
-                ev.LogType = EventType.Error;
-                ev.Machine = ex.Machine;
-                ev.User = ex.UserName;
-                String str = string.Concat(
-                    "Se intento modificar la metadata de servicios y se arrojó el siguiente error \r\n",
-                    Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex),
-                    "\r\n la metadata se encuentra en: \r\n",
-                    e.FullPath);
+        ///date:2013-03-02 No se utilizara la actualizacion
+        ///// <summary>
+        ///// Si algun cambio ocurre en el archivo de metadata de algun proveedor xml
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //static void watcher_Changed(object sender, FileSystemEventArgs e)
+        //{
+        //    try
+        //    {
+        //        //Busco todos los providers que esten asociados al mismo archivo. Esta es una situacion muy rara pero podria darce
+        //        foreach (ServiceProviderElement provider in _ProviderSection.Providers)
+        //        {
+        //            if (e.Name.Equals(provider.SourceInfo) && provider.ProviderType == ServiceProviderType.xml)
+        //                ReloadAllServices(provider);
+        //        }
+        //    }
+        //    catch (TechnicalException ex)
+        //    {
+        //        Fwk.Logging.Event ev = new Event();
+        //        ev.LogType = EventType.Error;
+        //        ev.Machine = ex.Machine;
+        //        ev.User = ex.UserName;
+        //        String str = string.Concat(
+        //            "Se intento modificar la metadata de servicios y se arrojó el siguiente error \r\n",
+        //            Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex),
+        //            "\r\n la metadata se encuentra en: \r\n",
+        //            e.FullPath);
 
-                ev.Message.Text = str;
+        //        ev.Message.Text = str;
 
-                Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
+        //        Fwk.Logging.StaticLogger.Log(Fwk.Logging.Targets.TargetType.WindowsEvent, ev, null, null);
 
-            }
-        }
+        //    }
+        //}
 
         /// <summary>
         /// Este metodo elimina quita la lista de servicios del provider en el repositorio deservicios y 
@@ -199,22 +204,22 @@ namespace Fwk.ServiceManagement
         /// <param name="provider">Proveedor de metadata</param>
         static void ReloadAllServices(ServiceProviderElement provider)
         {
+             ///date:2013-03-02 No se utilizara la actualizacion
+            //_Repository.Remove(provider.Name);
 
-            _Repository.Remove(provider.Name);
+            //if (provider.ProviderType == ServiceProviderType.xml)
+            //{
+            //    ServiceConfigurationCollection svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
+                
+            ////    Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
+            //    watcher = new System.IO.FileSystemWatcher();
+            //    watcher.Filter = provider.SourceInfo;
+            //    watcher.Path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //    watcher.EnableRaisingEvents = true;
 
-            if (provider.ProviderType == ServiceProviderType.xml)
-            {
-                ServiceConfigurationCollection svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
+            //    watcher.Changed += new FileSystemEventHandler(watcher_Changed);
 
-                //Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
-                watcher = new System.IO.FileSystemWatcher();
-                watcher.Filter = provider.SourceInfo;
-                watcher.Path = Environment.CurrentDirectory;
-                watcher.EnableRaisingEvents = true;
-
-                watcher.Changed += new FileSystemEventHandler(watcher_Changed);
-
-            }
+            //}
 
 
         }
