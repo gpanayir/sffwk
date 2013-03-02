@@ -69,7 +69,7 @@ namespace Fwk.UI.Controls
             this.txtMessage.Properties.Appearance.BackColor = System.Drawing.Color.White;
             this.txtMessage.Properties.Appearance.Options.UseBackColor = true;
             this.txtMessage.Properties.ReadOnly = true;
-            this.txtMessage.Size = new System.Drawing.Size(364, 127);
+            this.txtMessage.Size = new System.Drawing.Size(350, 127);
             this.txtMessage.TabIndex = 17;
             // 
             // txtDetail
