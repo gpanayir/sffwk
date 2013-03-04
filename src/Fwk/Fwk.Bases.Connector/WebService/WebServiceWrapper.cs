@@ -404,7 +404,8 @@ namespace Fwk.Bases.Connector
               Fwk.Bases.Connector.Singleservice.DispatcherInfo  wsDispatcherInfo = wService.RetriveDispatcherInfo();
                 DispatcherInfo wDispatcherInfo = new DispatcherInfo();
 
-               
+                wDispatcherInfo.ServiceDispatcherConnection = wsDispatcherInfo.ServiceDispatcherConnection;
+                wDispatcherInfo.ServiceDispatcherName = wsDispatcherInfo.ServiceDispatcherName;
                 List<Fwk.ConfigSection.MetadataProvider> providers = new List<MetadataProvider>();
                 MetadataProvider provider = null;
                 foreach (var p in wsDispatcherInfo.MetadataProviders)
@@ -418,15 +419,16 @@ namespace Fwk.Bases.Connector
                     provider.SourceInfo = p.SourceInfo;
                     wDispatcherInfo.MetadataProviders.Add(provider);
                 }
-
-                string appSettingsXml = Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(wsDispatcherInfo.AppSettings);
-                wDispatcherInfo.AppSettings = (Fwk.ConfigSection.DictionarySettingList)
-                    Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(Fwk.ConfigSection.DictionarySettingList), appSettingsXml);
-
-                string cnnStringXml = Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(wsDispatcherInfo.CnnStringSettings);
-                wDispatcherInfo.CnnStringSettings = (Fwk.ConfigSection.DictionarySettingList)  
-                    Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(Fwk.ConfigSection.DictionarySettingList), cnnStringXml);
-                return wDispatcherInfo;
+                foreach (var p in wsDispatcherInfo.AppSettings)
+                {
+                    wDispatcherInfo.AppSettings.Add(new DictionarySetting(p.Key,p.Value));
+                }
+                foreach (var p in wsDispatcherInfo.CnnStringSettings)
+                {
+                    wDispatcherInfo.CnnStringSettings.Add(new DictionarySetting(p.Key, p.Value));
+                }
+              
+               return wDispatcherInfo;
             }
         }
 
