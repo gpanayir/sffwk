@@ -1,5 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="disp_main.aspx.cs" Inherits="VivaldiSite.disp_main" %>
-<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="disp_main.aspx.cs" Inherits="VivaldiSite.disp_main" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajax" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCenter" runat="server">
@@ -85,10 +86,7 @@
                     <asp:TextBox ID="txtUrl" runat="server" Height="23px" Width="453px" TabIndex="10"
                         CssClass="loging_textbox frm_fieldvalue">http://localhost:38091/SingleService.asmx</asp:TextBox>
                 </div>
-                <div class="grid_3">
-                    <input id="Submit1" class="grid_Button grid_Button_confirm" type="submit" tabindex="11"
-                        style="width: 100px; height: 30px" value="Check url" onclick="ConnectToWebService();return false;" />
-                </div>
+               
             </div>
             <div class="clearfix">
             </div>
@@ -127,14 +125,110 @@
                     Height="80px" CssClass="frm_fieldvalue" TabIndex="22" />
             </div>
         </div>
+    </div> 
+    <div class="clear"></div>
+  
+       
+    <div class="frm_row" style="height: 450px;margin-top:15px; margin-left: 100px;">
+
+        
+ 
+
+     <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
+                <ContentTemplate>
+                    <asp:Panel ID="pHeader" runat="server" CssClass="cpHeaderExpand">
+                        <asp:Label ID="Label4" runat="server" Text="Ocurrio un error al conctarce al dispatcher" ForeColor="#CC0066" />
+                    </asp:Panel>
+                    <asp:Panel ID="pBody" runat="server" CssClass="cpBody">
+                        <div id="divError">
+                            <div class="frm-error-message">
+                                <asp:Label ID="msgError" CssClass="" Height="40" Width="600" Visible="true" ForeColor="Maroon"
+                                    runat="server" />
+                            </div>
+                            <div>
+                                <asp:Button ID="btnRefresh" runat="server" OnClick="btnRefresh_Click" Text="Refrescar conexión"
+                                    Font-Size="10" Font-Bold="true" TabIndex="100" BorderStyle="Inset" CssClass="grid_Button grid_Button_send"
+                                    Width="235px" Height="20" BorderColor="#CC3300" />
+                            </div>
+                        </div>
+                        
+                    </asp:Panel>
+                    <ajax:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" TargetControlID="pBody"
+                        CollapseControlID="pHeader" ExpandControlID="pHeader" Collapsed="true" TextLabelID="lblText"
+                        CollapsedText="+ Contraer" ExpandedText="- Expandir"
+                        CollapsedSize="0">
+                    </ajax:CollapsiblePanelExtender>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+     
+
+        <ajax:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="787px"
+             Height="300px">
+            <ajax:TabPanel runat="server" HeaderText="Metadata providers" ID="TabPanel1">
+                <ContentTemplate>
+                   
+                    <h4>
+                        Metadata providers</h4>
+                    <p>
+                        Aqui se listan todos los proveedores configurados en el Web.congfig o exe.config
+                        del dispatcher
+                    </p>
+                    <asp:GridView ID="grid_ServerSettings" runat="server" AutoGenerateColumns="False"
+                        CSSSelectorClass="YodaGrilla" OnRowCommand="grid_ServerSettings_RowCommand" ToolTip="Lista de facturas"
+                        Width="700px" AllowPaging="True">
+                        <PagerSettings Position="TopAndBottom" FirstPageText="Ir al inicio" LastPageText="Ultima pagina"
+                            Mode="NextPreviousFirstLast"></PagerSettings>
+                        <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="LinkButton2" CommandArgument='<%# Eval("key") %>' CommandName="View"
+                                        runat="server" CssClass="icon_edit" Width="40"> 
+                                    </asp:LinkButton>
+                                   
+                                </ItemTemplate>
+
+                                
+                            </asp:TemplateField>
+                             <asp:BoundField DataField="key" HeaderText="key" SortExpression="key" />
+                            <asp:BoundField DataField="Value" HeaderText="Valor" SortExpression="Value" />
+                        </Columns>
+                        <AlternatingRowStyle BackColor="White" />
+                    </asp:GridView>
+                    <asp:ObjectDataSource ID="ds1" runat="server" SelectMethod="Retrive_HealthInstitution"
+                        TypeName="Health.Back.ProfesionalesDAC"></asp:ObjectDataSource>
+                </ContentTemplate>
+            </ajax:TabPanel>
+            <ajax:TabPanel runat="server" HeaderText="Connextions strings" ID="TabPanel2">
+                <ContentTemplate>
+                    <h4>
+                        Connection string</h4>
+                    <p>
+                        Aqui se listan todos las cadenas de conexión configurados en el Web.congfig o exe.config
+                        del dispatcher
+                    </p>
+
+                    <asp:GridView ID="grid_CnnStrings" runat="server" AutoGenerateColumns="False"
+                        CSSSelectorClass="YodaGrilla" OnRowCommand="grid_ServerSettings_RowCommand" ToolTip="Lista de facturas"
+                        Width="700px" AllowPaging="True">
+                        <PagerSettings Position="TopAndBottom" FirstPageText="Ir al inicio" LastPageText="Ultima pagina"
+                            Mode="NextPreviousFirstLast"></PagerSettings>
+                        <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="LinkButton2" CommandArgument='<%# Eval("key") %>' CommandName="View"
+                                        runat="server" CssClass="icon_edit" Width="40"> 
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="Value" HeaderText="Valor" SortExpression="Value" />
+                        </Columns>
+                        <AlternatingRowStyle BackColor="White" />
+                    </asp:GridView>
+                </ContentTemplate>
+            </ajax:TabPanel>
+        </ajax:TabContainer>
     </div>
 </div>
-<div class="article_wrap">
-    <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0">
-        <asp:TabPanel runat="server" HeaderText="Metadata configs" ID="TabPanel1">
-        </asp:TabPanel>
-        <asp:TabPanel runat="server" HeaderText="Connextions strings" ID="TabPanel2">
-        </asp:TabPanel>
-    </asp:TabContainer>
-</div>
+
 </asp:Content>

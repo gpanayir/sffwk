@@ -287,13 +287,8 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:20px}
 .article_ullet_2 p{	margin-left:10px;margin-top:10px;}
 
 /*****************Forms labels title textbox**************************/
-.frm_title
-{
-	margin: 10px;
-	line-height: 1px;
-	padding: 8px 0 5px;
-}
- .frm_title_1
+.frm_title{margin: 10px;line-height:1px;padding: 8px 0 5px;}
+.frm_title_1
 {
 	color: #585858;
     border-bottom: 1px solid #DEDEDE;
@@ -540,5 +535,7 @@ input:focus, textarea:focus {
 	width: 30px;
 }
 
+
  
-       
+
+
