@@ -1,12 +1,6 @@
 ﻿.fernandezja {} 
 
-/* This style sheet is intended to contain OFTEN CHANGED rules used when the GridView control adapter is enabled. */
-/* Empty rules are provided merely as a convenience for your future use or experimentation. */
-
-.YodaGrilla .AspNet-GridView
-{
-	width: 90%;
-}
+.YodaGrilla .AspNet-GridView{width: 90%;}
 
 .YodaGrilla .AspNet-GridView div.AspNet-GridView-Pagination, .YodaGrilla .AspNet-GridView div.AspNet-GridView-Pagination a, .YodaGrilla .AspNet-GridView div.AspNet-GridView-Pagination span
 {
@@ -227,3 +221,33 @@ TIPO DE COLUMNAS PARA JEDIS :)
 
 
 .grid_label{border: 0 none;color: #333333;	cursor: text;	display: inline-block;	font-size: 11px;	font-weight: bold;	line-height: 13px;	margin: 0;	padding: 0;	white-space: normal;}
+
+
+.grid_Header
+{
+	color: white;
+	position: relative;
+	top: expression(this.offsetParent.scrollTop - 2);
+	background-color: #4d7893;
+	font-weight: bold;
+	font-size: 14px;
+	height:39px;
+}
+
+.grid_Row
+{
+	color: #000000;
+	background-color: #FFFFFF;
+	font-weight: normal;
+	font-size: 12px;
+	height:49px;
+}
+
+.grid_AlternateRow
+{
+	color: #000000;
+	background-color: #FFFCE1;
+	font-weight: normal;
+	font-size: 12px;
+	height: 49px;;
+}

@@ -10,7 +10,7 @@
 namespace VivaldiSite {
     
     
-    public partial class disp_main {
+    public partial class disp_main_services {
         
         /// <summary>
         /// txtInstanceName control.
@@ -22,24 +22,6 @@ namespace VivaldiSite {
         protected global::System.Web.UI.WebControls.TextBox txtInstanceName;
         
         /// <summary>
-        /// txtCompany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCompany;
-        
-        /// <summary>
-        /// Msg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Msg;
-        
-        /// <summary>
         /// txtServerName control.
         /// </summary>
         /// <remarks>
@@ -49,58 +31,13 @@ namespace VivaldiSite {
         protected global::System.Web.UI.WebControls.TextBox txtServerName;
         
         /// <summary>
-        /// cmbAuditMode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbAuditMode;
-        
-        /// <summary>
-        /// cmbWrapperType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbWrapperType;
-        
-        /// <summary>
         /// txtUrl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUrl;
-        
-        /// <summary>
-        /// txtPort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPort;
-        
-        /// <summary>
-        /// txtIp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIp;
-        
-        /// <summary>
-        /// txtDescripcion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+        protected global::System.Web.UI.WebControls.Label txtUrl;
         
         /// <summary>
         /// UpdatePanel1 control.
@@ -148,15 +85,6 @@ namespace VivaldiSite {
         protected global::System.Web.UI.WebControls.Label msgError;
         
         /// <summary>
-        /// btnRefresh control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRefresh;
-        
-        /// <summary>
         /// CollapsiblePanelExtender1 control.
         /// </summary>
         /// <remarks>
@@ -164,24 +92,6 @@ namespace VivaldiSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CollapsiblePanelExtender CollapsiblePanelExtender1;
-        
-        /// <summary>
-        /// TabContainer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer TabContainer1;
-        
-        /// <summary>
-        /// TabPanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel1;
         
         /// <summary>
         /// GridViewUpdatePanel control.
@@ -209,23 +119,5 @@ namespace VivaldiSite {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Message;
-        
-        /// <summary>
-        /// TabPanel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel2;
-        
-        /// <summary>
-        /// grid_CnnStrings control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grid_CnnStrings;
     }
 }

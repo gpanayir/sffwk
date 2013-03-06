@@ -97,6 +97,7 @@
   <ItemGroup>
     <Content Include="disp_init.aspx" />
     <Content Include="disp_main.aspx" />
+    <Content Include="disp_main_services.aspx" />
     <Content Include="disp_new.aspx" />
     <Content Include="disp_singin.aspx" />
     <Content Include="img\ActualizarPerfilBig.gif" />
@@ -224,6 +225,13 @@
     <Compile Include="disp_main.aspx.designer.cs">
       <DependentUpon>disp_main.aspx</DependentUpon>
     </Compile>
+    <Compile Include="disp_main_services.aspx.cs">
+      <DependentUpon>disp_main_services.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="disp_main_services.aspx.designer.cs">
+      <DependentUpon>disp_main_services.aspx</DependentUpon>
+    </Compile>
     <Compile Include="disp_new.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>disp_new.aspx</DependentUpon>
@@ -304,6 +312,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Browsers\CSSFriendlyAdapters.browser" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

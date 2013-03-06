@@ -2,10 +2,40 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajax" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" runat="server">
+
+ <script type="text/javascript" language="javascript">
+
+     function call_disp_main_service() {
+         $('#errorMsg_1')
+     }
+ </script>
+<div id="Div3" class ="menuv_header_2" >
+ <p>Entornos</p>
+</div>
+<div id="menuv" class  ="menuv">
+    <ul>
+        <li><a class="menuv_a" href="/disp_searchlist.aspx"  title="Administrar dispatcher">Administrar dispatcher</a></li>
+        <li><a class="menuv_a" href="/sec_main.aspx" title="Seguridad particular">Seguridad</a></li>
+    
+    </ul>
+
+</div>
+
+<div id="Div1" class ="menuv_header_2" >
+ <p>.............. </p>
+</div>
+<div id="Div2" class  ="menuv">
+    <ul>
+        <li><a class="menuv_a" href='<%=this.dire %>' title="Administrar dispatcher">Servicios</a></li>
+        <li><a class="menuv_a" href="sec_main_metadata.aspx" title="Seguridad particular">Metadata providers</a></li>
+     <li><a class="menuv_a" href="sec_main_cnnstr.aspx" title="Seguridad particular">Security</a></li>
+    </ul>
+
+</div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCenter" runat="server">
 <div class="article_wrap">
-    <div style="margin-left: 100px;">
+    <div style="margin-left: 5px;">
         <div style="background-color: #FFFFFF; margin-top: 10px; margin-bottom: 5px">
             <div class="frm_label_2">
                 Nombre de instancia del Dispatcher
@@ -129,7 +159,7 @@
     <div class="clear"></div>
   
        
-    <div class="frm_row" style="height: 450px;margin-top:15px; margin-left: 100px;">
+    <div class="frm_row" style="height: 450px;margin-top:15px; margin-left: 5px;">
 
         
  
@@ -161,42 +191,59 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
 
-     
+
 
         <ajax:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="787px"
              Height="300px">
             <ajax:TabPanel runat="server" HeaderText="Metadata providers" ID="TabPanel1">
                 <ContentTemplate>
-                   
                     <h4>
                         Metadata providers</h4>
                     <p>
                         Aqui se listan todos los proveedores configurados en el Web.congfig o exe.config
                         del dispatcher
                     </p>
-                    <asp:GridView ID="grid_ServerSettings" runat="server" AutoGenerateColumns="False"
-                        CSSSelectorClass="YodaGrilla" OnRowCommand="grid_ServerSettings_RowCommand" ToolTip="Lista de facturas"
-                        Width="700px" AllowPaging="True">
-                        <PagerSettings Position="TopAndBottom" FirstPageText="Ir al inicio" LastPageText="Ultima pagina"
-                            Mode="NextPreviousFirstLast"></PagerSettings>
-                        <Columns>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="LinkButton2" CommandArgument='<%# Eval("key") %>' CommandName="View"
-                                        runat="server" CssClass="icon_edit" Width="40"> 
-                                    </asp:LinkButton>
-                                   
-                                </ItemTemplate>
-
-                                
-                            </asp:TemplateField>
-                             <asp:BoundField DataField="key" HeaderText="key" SortExpression="key" />
-                            <asp:BoundField DataField="Value" HeaderText="Valor" SortExpression="Value" />
-                        </Columns>
-                        <AlternatingRowStyle BackColor="White" />
-                    </asp:GridView>
-                    <asp:ObjectDataSource ID="ds1" runat="server" SelectMethod="Retrive_HealthInstitution"
-                        TypeName="Health.Back.ProfesionalesDAC"></asp:ObjectDataSource>
+                    <asp:UpdatePanel ID="GridViewUpdatePanel" runat="server">
+                        <ContentTemplate>
+                            <div>
+                                <asp:GridView ID="grid_ServerSettings" runat="server" AutoGenerateColumns="False"
+                                    BorderWidth="2" ToolTip="Metadata providers" Width="700px" AllowPaging="True"
+                                    CellPadding="4" GridLines="Vertical" OnRowCommand="grid_ServerSettings_RowCommand"
+                                    OnRowDataBound="grid_ServerSettings_RowDataBound" OnRowUpdating="grid_ServerSettings_RowUpdating"
+                                    ShowFooter="True">
+                                    <PagerSettings Position="TopAndBottom" FirstPageText="Ir al inicio" LastPageText="Ultima pagina"
+                                        Mode="NextPreviousFirstLast"></PagerSettings>
+                                    <Columns>
+                                        <asp:ButtonField Text="SingleClick" CommandName="SingleClick" Visible="False" />
+                                        <asp:TemplateField HeaderText="Nombre">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="LinkButton2" CommandArgument='<%# Eval("key") %>' CommandName="View"
+                                                    runat="server" CssClass="icon_edit" Width="15"> 
+                                              
+                                                </asp:LinkButton>
+                                                <asp:Label ID="IdLabel" Font-Bold="true" Width="250" runat="server" Text='<%# Eval("key") %>'></asp:Label>
+                                                
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                     
+                                        <asp:TemplateField HeaderText="Configuracion">
+                                            <ItemTemplate>
+                                                <asp:Label ID="ValueLabel" runat="server" Text='<%# Eval("Value") %>'  Width="175px"></asp:Label>
+                                                <asp:TextBox ID="Value" runat="server" Text='<%# Eval("Value") %>' Width="175px"
+                                                    Visible="false"></asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <HeaderStyle CssClass="grid_Header" />
+                                    <RowStyle CssClass="grid_Row" />
+                                    <AlternatingRowStyle CssClass="grid_AlternateRow" />
+                                </asp:GridView>
+                                <br />
+                                <br />
+                                <asp:Label ID="Message" runat="server" CssClass="message"></asp:Label>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </ContentTemplate>
             </ajax:TabPanel>
             <ajax:TabPanel runat="server" HeaderText="Connextions strings" ID="TabPanel2">
@@ -209,7 +256,7 @@
                     </p>
 
                     <asp:GridView ID="grid_CnnStrings" runat="server" AutoGenerateColumns="False"
-                        CSSSelectorClass="YodaGrilla" OnRowCommand="grid_ServerSettings_RowCommand" ToolTip="Lista de facturas"
+                        CSSSelectorClass="YodaGrilla" OnRowCommand="grid_ServerSettings_RowCommand" ToolTip="Connection string"
                         Width="700px" AllowPaging="True">
                         <PagerSettings Position="TopAndBottom" FirstPageText="Ir al inicio" LastPageText="Ultima pagina"
                             Mode="NextPreviousFirstLast"></PagerSettings>
@@ -221,6 +268,7 @@
                                     </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:BoundField DataField="key" HeaderText="key" SortExpression="key" />
                             <asp:BoundField DataField="Value" HeaderText="Valor" SortExpression="Value" />
                         </Columns>
                         <AlternatingRowStyle BackColor="White" />
