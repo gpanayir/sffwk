@@ -29,7 +29,14 @@ namespace VivaldiSite
               
                 fwk_ServiceDispatcher disp = DataCoreDAC.Dispatcher_Get(disp_inst);
                 txtUrl.Text = disp.Url_URI;
-                GetAllServices(disp.Url_URI);
+                txtServerName.Text = disp.HostName;
+                txtInstanceName.Text = disp.InstanseName;
+
+               ServiceConfigurationCollection services= GetAllServices(disp.Url_URI);
+
+               grid_ServerSettings.DataSource = services;
+               grid_ServerSettings.DataBind();
+
             }
 
         }

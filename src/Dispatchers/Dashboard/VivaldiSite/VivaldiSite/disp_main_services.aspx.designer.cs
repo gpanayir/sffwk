@@ -94,15 +94,6 @@ namespace VivaldiSite {
         protected global::AjaxControlToolkit.CollapsiblePanelExtender CollapsiblePanelExtender1;
         
         /// <summary>
-        /// GridViewUpdatePanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel GridViewUpdatePanel;
-        
-        /// <summary>
         /// grid_ServerSettings control.
         /// </summary>
         /// <remarks>
