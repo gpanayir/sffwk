@@ -101,7 +101,7 @@ Servicios
                         </asp:TemplateField>
                         
                         <asp:BoundField DataField="TransactionalBehaviour" HeaderText="Tipo de transacciòn" />
-                        <asp:BoundField DataField="ApplicationId" HeaderText="ApplicationId" />
+                        <asp:BoundField DataField="ApplicationId" HeaderText="Aplicaciòn" />
                     </Columns>
                     
                     <HeaderStyle CssClass="grid_Header" />
