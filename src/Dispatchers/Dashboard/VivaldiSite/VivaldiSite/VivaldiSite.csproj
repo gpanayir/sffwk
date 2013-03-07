@@ -98,8 +98,10 @@
     <Content Include="disp_init.aspx" />
     <Content Include="disp_main.aspx" />
     <Content Include="disp_main_services.aspx" />
+    <Content Include="disp_main_service_admin.aspx" />
     <Content Include="disp_new.aspx" />
     <Content Include="disp_singin.aspx" />
+    <Content Include="Email_contactenos.htm" />
     <Content Include="img\ActualizarPerfilBig.gif" />
     <Content Include="img\ActualizarPerfilSmall.gif" />
     <Content Include="img\administrator_add_32.png" />
@@ -231,6 +233,13 @@
     </Compile>
     <Compile Include="disp_main_services.aspx.designer.cs">
       <DependentUpon>disp_main_services.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="disp_main_service_admin.aspx.cs">
+      <DependentUpon>disp_main_service_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="disp_main_service_admin.aspx.designer.cs">
+      <DependentUpon>disp_main_service_admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="disp_new.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>

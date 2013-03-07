@@ -8,7 +8,7 @@ Servicios
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCenter" runat="server">
     <div class="article_wrap">
-        
+     
             <div style="margin-top: 10px; margin-bottom: 5px;height: 50px">
                 <div class="grid_4 frm_label_2">
                     Dispatcher
@@ -18,7 +18,6 @@ Servicios
                         Width="300" Height="25px" Enabled="false" CssClass="frm_fieldvalue" />
                 </div>
             </div>
-            <%--<div class="clearfix"></div>--%>
             <div style="margin-top: 10px; margin-bottom: 5px;height: 50px">
                 <div class="grid_4 frm_label_2">
                     Server Name
@@ -61,6 +60,43 @@ Servicios
                 </asp:UpdatePanel>
                
             </div>
+
+         <div>
+            <h4>
+                        Metadata providers</h4>
+                    <p>
+                        Aqui se listan todos los proveedores configurados en el Web.congfig o exe.config
+                        del dispatcher
+                    </p>
+           
+                                <asp:GridView ID="grdMetadataProvider" runat="server" AutoGenerateColumns="False"
+                                    BorderWidth="2" ToolTip="Metadata providers" Width="700px" AllowPaging="True"
+                                    CellPadding="4" GridLines="Vertical"  >
+                                    <PagerSettings Position="TopAndBottom" FirstPageText="Ir al inicio" LastPageText="Ultima pagina"
+                                        Mode="NextPreviousFirstLast"></PagerSettings>
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Nombre">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="LinkButton2" CommandArgument='<%# Eval("Name") %>' CommandName="View"
+                                                    runat="server" CssClass="icon_edit" Width="15"> 
+                                                </asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Tipo" SortExpression="CreatedUserName">
+                                            <ItemTemplate>
+                                                <asp:Label ID="CreatedUserName" runat="server" Width="90" Text='<%# Bind("ConfigProviderType") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <HeaderStyle CssClass="grid_Header" />
+                                    <RowStyle CssClass="grid_Row" />
+                                    <AlternatingRowStyle CssClass="grid_AlternateRow" />
+                                </asp:GridView>
+                                <br />
+                                <br />
+                                <asp:Label ID="Label1" runat="server" CssClass="message"></asp:Label>
+                            </div>
+
             <div class="frm_row" style="height:50px; margin-top: 7px; margin-left: 5px;">
              <h5>
                     Lista de servicios</h5>
@@ -80,7 +116,7 @@ Servicios
                         
                         
                         <asp:HyperLinkField DataTextField="Name"  HeaderText="Nombre" DataNavigateUrlFields="Name"
-                            DataNavigateUrlFormatString="~/disp_main_service_admin.aspx?id={0}" Target="_parent">
+                            DataNavigateUrlFormatString="~/disp_main_service_admin.aspx?id={0}&url={1}&prov={2}" Target="_parent">
                            
                         </asp:HyperLinkField>
                         <asp:TemplateField HeaderText="Nombre" SortExpression="CreatedUserName">

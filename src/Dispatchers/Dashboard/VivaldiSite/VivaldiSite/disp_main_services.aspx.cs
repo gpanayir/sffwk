@@ -32,22 +32,59 @@ namespace VivaldiSite
                 txtServerName.Text = disp.HostName;
                 txtInstanceName.Text = disp.InstanseName;
 
-               ServiceConfigurationCollection services= GetAllServices(disp.Url_URI);
 
-               grid_ServerSettings.DataSource = services;
-               grid_ServerSettings.DataBind();
+
+              DispatcherInfo   wDispatcherInfo = GetDispatcherInfo(disp.Url_URI);
+              grdMetadataProvider.DataSource = wDispatcherInfo.MetadataProviders;
+              grdMetadataProvider.DataBind();
+
+
+               //ServiceConfigurationCollection services= GetAllServices(disp.Url_URI);
+
+               //grid_ServerSettings.DataSource = services;
+               //grid_ServerSettings.DataBind();
 
             }
 
         }
 
 
-
-        ServiceConfigurationCollection GetAllServices(string url_URI)
+        DispatcherInfo GetDispatcherInfo(string url_URI)
         {
             Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
             wrapper.SourceInfo = url_URI;
 
+            DispatcherInfo wDispatcherInfo = null;
+            #region retrive info from server
+            try
+            {
+                wDispatcherInfo = wrapper.RetriveDispatcherInfo();
+                wDispatcherInfo.MetadataProviders;
+                UpdatePanel1.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                msgError.Text = ex.Message;
+
+                UpdatePanel1.Visible = true;
+                return null;
+            }
+            #endregion
+
+            if (wDispatcherInfo == null)
+            {
+                msgError.Text = "No fue posible establecer conexión con el dispatcher intentelo mas tarde o pongace en contacto con el administrador del mismo";
+                UpdatePanel1.Visible = true;
+
+                return null;
+            }
+            return wDispatcherInfo;
+        }
+        ServiceConfigurationCollection GetAllServices(string url_URI,string serviceMetadataProviderName)
+        {
+            Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
+            wrapper.SourceInfo = url_URI;
+            wrapper.ServiceMetadataProviderName = serviceMetadataProviderName;
             ServiceConfigurationCollection services = null;
             #region retrive info from server
             try

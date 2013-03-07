@@ -244,7 +244,7 @@ namespace VivaldiSite
         {
             Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
             wrapper.SourceInfo = url_URI;
-
+            
             DispatcherInfo wDispatcherInfo = null;
             #region retrive info from server
             try

@@ -198,9 +198,9 @@
             <ajax:TabPanel runat="server" HeaderText="Metadata providers" ID="TabPanel1">
                 <ContentTemplate>
                     <h4>
-                        Metadata providers</h4>
+                        Configuraciones </h4>
                     <p>
-                        Aqui se listan todos los proveedores configurados en el Web.congfig o exe.config
+                        Aqui se listan todos las configuraciones [AppSettings] en el Web.congfig o exe.config
                         del dispatcher
                     </p>
                     <asp:UpdatePanel ID="GridViewUpdatePanel" runat="server">
