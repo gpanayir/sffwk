@@ -72,27 +72,38 @@ Servicios
              <br />
             <div>
                 <asp:GridView ID="grid_ServerSettings" runat="server" AutoGenerateColumns="False"
-                    BorderWidth="1" ToolTip="Servicios" Width="700px" AllowPaging="False" CellPadding="4"
-                    GridLines="Vertical" ShowFooter="True">
-                    <PagerSettings Position="TopAndBottom" FirstPageText="Ir al inicio" LastPageText="Ultima pagina"
-                        Mode="NextPreviousFirstLast"></PagerSettings>
+                    BorderWidth="1" ToolTip="Servicios" Width="710px" AllowPaging="False" CellPadding="1"
+                    GridLines="Vertical" >
+                    <%--<PagerSettings Position="TopAndBottom" FirstPageText="Ir al inicio" LastPageText="Ultima pagina"
+                        Mode="NextPreviousFirstLast"></PagerSettings>--%>
                     <Columns>
-                        <asp:ButtonField Text="SingleClick" CommandName="SingleClick" Visible="False" />
-                        <asp:TemplateField HeaderText="Nombre">
+                        
+                        
+                        <asp:HyperLinkField DataTextField="Name"  HeaderText="Nombre" DataNavigateUrlFields="Name"
+                            DataNavigateUrlFormatString="~/disp_main_service_admin.aspx?id={0}" Target="_parent">
+                           
+                        </asp:HyperLinkField>
+                        <asp:TemplateField HeaderText="Nombre" SortExpression="CreatedUserName">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkButton2" CommandArgument='<%# Eval("Name") %>' CommandName="View"
-                                    runat="server" CssClass="icon_edit" Width="15"> 
-                                              
-                                </asp:LinkButton>
-                                <asp:Label ID="IdLabel" Font-Bold="true" Width="250" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                                <asp:Label ID="CreatedUserName" runat="server" Width="90" Text='<%# Bind("CreatedUserName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="CreatedUserName" HeaderText="User" SortExpression="CreatedUserName" />
-                        <asp:BoundField DataField="CreatedDateTime" HeaderText="Fecha alta" />
-                        <asp:BoundField DataField="Audit" HeaderText="Se audita" />
+                        <asp:TemplateField HeaderText="Fecha" SortExpression="CreatedDateTime">
+                            <ItemTemplate>
+                                <asp:Label ID="CreatedDateTime" runat="server" Width="100" Text='<%# Bind("CreatedDateTime") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField HeaderText="Se audita">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="audit" runat="server" Width="10" Checked='<%# Bind("Audit") %>'></asp:CheckBox>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        
                         <asp:BoundField DataField="TransactionalBehaviour" HeaderText="Tipo de transacciòn" />
                         <asp:BoundField DataField="ApplicationId" HeaderText="ApplicationId" />
                     </Columns>
+                    
                     <HeaderStyle CssClass="grid_Header" />
                     <RowStyle CssClass="grid_Row" />
                     <AlternatingRowStyle CssClass="grid_AlternateRow" />
