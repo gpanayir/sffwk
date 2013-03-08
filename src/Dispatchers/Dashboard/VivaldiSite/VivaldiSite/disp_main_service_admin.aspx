@@ -26,37 +26,37 @@
                     Svc assembly
                 </div>
                 <div>
-                    <asp:TextBox ID="txtSVC" runat="server" Enabled="true" Font-Bold="True" TabIndex="3"
+                    <asp:TextBox ID="txtSVC" runat="server" Enabled="true" Font-Bold="True" TabIndex="2"
                         TextMode="SingleLine" Width="700" Height="25px" CssClass="frm_fieldvalue" />
                 </div>
             </div>
 
-            <div style="margin-top: 10px; margin-bottom: 15px;height: 50px">
-                <div class="frm_label_2">
+            <div style="margin-top: 10px; margin-bottom: 15px;height: 70px">
+                <div class="frm_label_1">
                     Requets assembly
                 </div>
                 <div>
-                    <asp:TextBox ID="txtReq" runat="server" Enabled="true" Font-Bold="True" TabIndex="3"
-                        TextMode="SingleLine" Width="900" Height="25px" CssClass="frm_fieldvalue" />
+                    <asp:TextBox ID="txtReq" runat="server" Enabled="true" Font-Bold="false" TabIndex="10"
+                        TextMode="MultiLine" Width="900" Height="40px" CssClass="" />
                 </div>
             </div>
-            <div style="margin-top: 10px; margin-bottom: 15px;height: 50px">
-                <div class="frm_label_2">
+            <div style="margin-top: 10px; margin-bottom: 15px;height: 70px">
+                <div class="frm_label frm_label_1 ">
                     Response assembly
                 </div>
                 <div>
-                    <asp:TextBox ID="txtRes" runat="server" Enabled="true" Font-Bold="True" TabIndex="3"
-                        TextMode="SingleLine" Width="900" Height="25px" CssClass="frm_fieldvalue" />
+                    <asp:TextBox ID="txtRes" runat="server" Enabled="true" Font-Bold="false" TabIndex="11"
+                        TextMode="MultiLine" Width="900" Height="40px" CssClass="" />
                 </div>
             </div>
 
              <div style="margin-top: 10px; margin-bottom: 5px;height: 50px">
-                <div class="grid_4 frm_label_2">
+                <div class="grid_4 frm_label_1">
                     Audit 
                 </div>
                 <div>
-                    <asp:CheckBox ID="chkAudit" runat="server" Enabled="true"  Font-Bold="True" TabIndex="3"
-                         Width="100" Height="25px" CssClass="frm_fieldvalue" />
+                    <asp:CheckBox ID="chkAudit" runat="server" Enabled="true"  Font-Bold="True" TabIndex="12"
+                         Width="100" Height="25px" CssClass="" />
                 </div>
             </div>
              <div style="margin-top: 10px; margin-bottom: 5px;height: 50px">
@@ -64,7 +64,7 @@
                     Available 
                 </div>
                 <div>
-                    <asp:CheckBox ID="chkAvailable" runat="server" Enabled="true"  Font-Bold="True" TabIndex="3"
+                    <asp:CheckBox ID="chkAvailable" runat="server" Enabled="true"  Font-Bold="True" TabIndex="13"
                          Width="300" Height="25px" CssClass="frm_fieldvalue" />
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 </div>
                 <div>
              <asp:DropDownList ID="cmbTransactionalBehaviour" CssClass="loging_textbox frm_fieldvalue" runat="server"
-                    Width="300px" DataTextField="Name" DataValueField="Id" Height="25px" TabIndex="4">
+                    Width="300px" DataTextField="Name" DataValueField="Id" Height="25px" TabIndex="14">
                     <asp:ListItem Value="0">Support</asp:ListItem>
                     <asp:ListItem Value="1">Required</asp:ListItem>
                     <asp:ListItem Value="2">RequiresNew</asp:ListItem>
@@ -92,7 +92,7 @@
                 </div>
                 <div>
                     <asp:DropDownList ID="cmbIsolationLevel" CssClass="loging_textbox frm_fieldvalue" runat="server"
-                        Width="300px" DataTextField="Name" DataValueField="Id" Height="25px" TabIndex="4">
+                        Width="300px" DataTextField="Name" DataValueField="Id" Height="25px" TabIndex="15">
                         <asp:ListItem Value="1">ReadCommitted</asp:ListItem>
                         <asp:ListItem Value="2">ReadUncommitted</asp:ListItem>
                         <asp:ListItem Value="3">RepeatableRead</asp:ListItem>
