@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="disp_new.aspx.cs" Inherits="VivaldiSite.disp_new" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site2c.Master" AutoEventWireup="true" CodeBehind="disp_new.aspx.cs" Inherits="VivaldiSite.disp_new" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCenter" runat="server">

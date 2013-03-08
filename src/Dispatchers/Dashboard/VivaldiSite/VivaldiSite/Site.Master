@@ -2,7 +2,7 @@
 
 <%@ Register src="menu/main_menu_2.ascx" tagname="main_menu_2" tagprefix="uc1" %>
 
-<%@ Register src="menu/VMenu_Admin.ascx" tagname="VMenu_Admin" tagprefix="uc2" %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -79,16 +79,10 @@
     <div id="master_wrap" class="container_16 box_roun_shadow">
         <div id="master_center_right_wrap">
            
-        <div id="Div3" class="grid_3 omega">
-            <asp:ContentPlaceHolder ID="ContentLeft" runat="server">
-                <uc2:VMenu_Admin ID="VMenu_Admin1" runat="server" />
-            </asp:ContentPlaceHolder>
-        </div>
-        <div id="Div4" class="grid_13 alpha">
+            <div id="Div4" class="grid_16 ">
                 <asp:ContentPlaceHolder ID="ContentCenter" runat="server">
                 </asp:ContentPlaceHolder>
-        </div>
-       
+            </div>
         </div>
         <div class="clear">
         </div>

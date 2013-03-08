@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="disp_main_service_admin.aspx.cs" Inherits="VivaldiSite.disp_main_service_admin" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" runat="server">
-</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCenter" runat="server">
  <div class="article_wrap">
         

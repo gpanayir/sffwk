@@ -16,8 +16,8 @@ namespace VivaldiSite
 
 
         protected void Page_Load(object sender, EventArgs e)
-        {  
-            
+        {
+
             if (Request.QueryString["disp_inst"] == null)
             {
                 //Response.Redirect(WebUserControlsConstants.NavigateUrl_Home);
@@ -26,26 +26,21 @@ namespace VivaldiSite
 
             if (DataCoreDAC.Dispatcher_Exist(disp_inst, null))
             {
-              
+
                 fwk_ServiceDispatcher disp = DataCoreDAC.Dispatcher_Get(disp_inst);
                 txtUrl.Text = disp.Url_URI;
                 txtServerName.Text = disp.HostName;
                 txtInstanceName.Text = disp.InstanseName;
 
+                DispatcherInfo wDispatcherInfo = GetDispatcherInfo(disp.Url_URI);
+                grdMetadataProvider.DataSource = wDispatcherInfo.MetadataProviders;
+                grdMetadataProvider.DataBind();
 
-
-              DispatcherInfo   wDispatcherInfo = GetDispatcherInfo(disp.Url_URI);
-              grdMetadataProvider.DataSource = wDispatcherInfo.MetadataProviders;
-              grdMetadataProvider.DataBind();
-
-
-               //ServiceConfigurationCollection services= GetAllServices(disp.Url_URI);
-
-               //grid_ServerSettings.DataSource = services;
-               //grid_ServerSettings.DataBind();
 
             }
-
+            ServiceConfigurationCollection services = GetAllServices(txtUrl.Text,"");
+            grid_ProviderServices.DataSource = services;
+            grid_ProviderServices.DataBind();
         }
 
 
@@ -59,7 +54,6 @@ namespace VivaldiSite
             try
             {
                 wDispatcherInfo = wrapper.RetriveDispatcherInfo();
-                wDispatcherInfo.MetadataProviders;
                 UpdatePanel1.Visible = false;
             }
             catch (Exception ex)
@@ -80,7 +74,7 @@ namespace VivaldiSite
             }
             return wDispatcherInfo;
         }
-        ServiceConfigurationCollection GetAllServices(string url_URI,string serviceMetadataProviderName)
+        ServiceConfigurationCollection GetAllServices(string url_URI, string serviceMetadataProviderName)
         {
             Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
             wrapper.SourceInfo = url_URI;
@@ -109,6 +103,38 @@ namespace VivaldiSite
                 return null;
             }
             return services;
+        }
+
+
+        string selectedProvider;
+        protected void grdMetadataProvider_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
+
+            switch (e.CommandName)
+            {
+                case ("View"):
+                    {
+
+                        selectedProvider = e.CommandArgument.ToString();
+                        ServiceConfigurationCollection services = GetAllServices(txtUrl.Text, selectedProvider);
+                        grid_ProviderServices.DataSource = services;
+                        grid_ProviderServices.DataBind();
+
+                        break;
+                    }
+            }
+        }
+
+        const string url = "~/disp_main_service_admin.aspx?id={0}&url={1}&prov={2}";
+        protected void grid_ServerSettings_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                var hyperLink = (e.Row.Cells[0].Controls[0]) as HyperLink;
+                if (hyperLink != null)
+                    hyperLink.NavigateUrl = String.Format(url, DataBinder.Eval(e.Row.DataItem, "Name"),txtUrl.Text,this.selectedProvider);
+            }
         }
     }
 }

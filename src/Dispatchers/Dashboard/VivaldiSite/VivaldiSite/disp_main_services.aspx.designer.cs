@@ -112,13 +112,22 @@ namespace VivaldiSite {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// grid_ServerSettings control.
+        /// GridViewUpdatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grid_ServerSettings;
+        protected global::System.Web.UI.UpdatePanel GridViewUpdatePanel;
+        
+        /// <summary>
+        /// grid_ProviderServices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grid_ProviderServices;
         
         /// <summary>
         /// Message control.

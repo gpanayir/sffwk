@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="disp_main.aspx.cs" Inherits="VivaldiSite.disp_main" %>
+﻿<%@ Page Title="" Language="C#" EnableEventValidation="false" MasterPageFile="~/Site2c.Master" AutoEventWireup="true" CodeBehind="disp_main.aspx.cs" Inherits="VivaldiSite.disp_main" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajax" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentLeft" runat="server">
@@ -198,16 +198,15 @@
             <ajax:TabPanel runat="server" HeaderText="Metadata providers" ID="TabPanel1">
                 <ContentTemplate>
                     <h4>
-                        Configuraciones </h4>
+                        Server settings </h4>
                     <p>
-                        Aqui se listan todos las configuraciones [AppSettings] en el Web.congfig o exe.config
-                        del dispatcher
+                        Here we have all the settings, these are physically in the file  Web.congfig o exe.config
                     </p>
                     <asp:UpdatePanel ID="GridViewUpdatePanel" runat="server">
                         <ContentTemplate>
                             <div>
                                 <asp:GridView ID="grid_ServerSettings" runat="server" AutoGenerateColumns="False"
-                                    BorderWidth="2" ToolTip="Metadata providers" Width="700px" AllowPaging="True"
+                                    BorderWidth="2" ToolTip="Server settings" Width="700px" AllowPaging="True"
                                     CellPadding="4" GridLines="Vertical" OnRowCommand="grid_ServerSettings_RowCommand"
                                     OnRowDataBound="grid_ServerSettings_RowDataBound" OnRowUpdating="grid_ServerSettings_RowUpdating"
                                     ShowFooter="True">
@@ -222,7 +221,6 @@
                                               
                                                 </asp:LinkButton>
                                                 <asp:Label ID="IdLabel" Font-Bold="true" Width="250" runat="server" Text='<%# Eval("key") %>'></asp:Label>
-                                                
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                      
@@ -251,8 +249,8 @@
                     <h4>
                         Connection string</h4>
                     <p>
-                        Aqui se listan todos las cadenas de conexión configurados en el Web.congfig o exe.config
-                        del dispatcher
+                        Here are listed all data base connection strings, these are physically in the file  Web.congfig o exe.config
+                        on the server itself
                     </p>
 
                     <asp:GridView ID="grid_CnnStrings" runat="server" AutoGenerateColumns="False"

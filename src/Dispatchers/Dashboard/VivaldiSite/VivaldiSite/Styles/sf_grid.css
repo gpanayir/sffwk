@@ -226,21 +226,22 @@ TIPO DE COLUMNAS PARA JEDIS :)
 .grid_Header
 {
 	color: white;
-	position: relative;
-	top: expression(this.offsetParent.scrollTop - 2);
+	text-align:center;
 	background-color: #4d7893;
 	font-weight: bold;
-	font-size: 14px;
-	height:39px;
+	font-size: 13px;
+	height:30px;
+	border: thin groove #666666;
 }
 
 .grid_Row
 {
+	border: thin groove #666666;
 	color: #000000;
 	background-color: #FFFFFF;
 	font-weight: normal;
 	font-size: 12px;
-	height:49px;
+	height: 35px;
 }
 
 .grid_AlternateRow
@@ -249,5 +250,6 @@ TIPO DE COLUMNAS PARA JEDIS :)
 	background-color: #FFFCE1;
 	font-weight: normal;
 	font-size: 12px;
-	height: 49px;;
+	height:35px;
+	border: thin groove #666666;
 }

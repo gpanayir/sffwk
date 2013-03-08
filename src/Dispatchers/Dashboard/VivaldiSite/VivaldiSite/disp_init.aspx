@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"  %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site2c.Master" AutoEventWireup="true"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentCenter" runat="server">
  <style>
   .frm_text_type_1
