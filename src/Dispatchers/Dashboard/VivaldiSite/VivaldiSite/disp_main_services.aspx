@@ -85,13 +85,14 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="ApplicationId">
                         <ItemTemplate>
-                            <asp:Label ID="lblApplicationId" runat="server" Width="100" Text='<%# Bind("ApplicationId") %>'></asp:Label>
+                            <asp:Label ID="lblApplicationId" runat="server" Width="160" Text='<%# Bind("ApplicationId") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="SourceInfo">
                         <ItemTemplate>
                             <asp:Label ID="lblSourceInfo" runat="server" Width="350" Text='<%# Bind("SourceInfo") %>'></asp:Label>
                         </ItemTemplate>
+                             <ItemStyle Wrap="True" />
                     </asp:TemplateField>
                 </Columns>
                 <HeaderStyle CssClass="grid_Header" />
@@ -131,14 +132,15 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fecha" SortExpression="CreatedDateTime">
                                 <ItemTemplate>
-                                    <asp:Label ID="CreatedDateTime" runat="server" Width="150" Text='<%# Bind("CreatedDateTime") %>'></asp:Label>
+                                    <asp:Label ID="CreatedDateTime" runat="server" Width="190" Text='<%# Bind("CreatedDateTime") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Se audita" ItemStyle-HorizontalAlign="Center" ItemStyle-Wrap="False">
+                            <asp:TemplateField HeaderText="Se audita" ItemStyle-HorizontalAlign="Center"  ItemStyle-Wrap="False">
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="audit"  TextAlign="Left" runat="server" Width="10" Enabled="false" Checked='<%# Bind("Audit") %>'>
+                                    <asp:CheckBox ID="audit"  runat="server" Width="100" Enabled="false" Checked='<%# Bind("Audit") %>'>
                                     </asp:CheckBox>
                                 </ItemTemplate>
+                                     <ItemStyle Wrap="True"  HorizontalAlign="Center" VerticalAlign="Middle"/>
                             </asp:TemplateField>
                             <asp:BoundField DataField="TransactionalBehaviour" HeaderText="Tipo de transacciòn" />
                             <asp:BoundField DataField="ApplicationId" HeaderText="Aplicaciòn" />

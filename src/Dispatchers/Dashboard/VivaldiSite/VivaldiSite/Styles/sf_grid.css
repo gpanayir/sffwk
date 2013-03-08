@@ -226,7 +226,7 @@ TIPO DE COLUMNAS PARA JEDIS :)
 .grid_Header
 {
 	color: white;
-	text-align:center;
+	text-align:left;
 	background-color: #4d7893;
 	font-weight: bold;
 	font-size: 13px;

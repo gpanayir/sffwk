@@ -23,24 +23,26 @@ namespace VivaldiSite
                 //Response.Redirect(WebUserControlsConstants.NavigateUrl_Home);
             }
             string disp_inst = Request.QueryString["disp_inst"].ToString();
-
-            if (DataCoreDAC.Dispatcher_Exist(disp_inst, null))
+            if (!IsPostBack)
             {
+                if (DataCoreDAC.Dispatcher_Exist(disp_inst, null))
+                {
 
-                fwk_ServiceDispatcher disp = DataCoreDAC.Dispatcher_Get(disp_inst);
-                txtUrl.Text = disp.Url_URI;
-                txtServerName.Text = disp.HostName;
-                txtInstanceName.Text = disp.InstanseName;
+                    fwk_ServiceDispatcher disp = DataCoreDAC.Dispatcher_Get(disp_inst);
+                    txtUrl.Text = disp.Url_URI;
+                    txtServerName.Text = disp.HostName;
+                    txtInstanceName.Text = disp.InstanseName;
 
-                DispatcherInfo wDispatcherInfo = GetDispatcherInfo(disp.Url_URI);
-                grdMetadataProvider.DataSource = wDispatcherInfo.MetadataProviders;
-                grdMetadataProvider.DataBind();
+                    DispatcherInfo wDispatcherInfo = GetDispatcherInfo(disp.Url_URI);
+                    grdMetadataProvider.DataSource = wDispatcherInfo.MetadataProviders;
+                    grdMetadataProvider.DataBind();
 
 
+                }
+                ServiceConfigurationCollection services = GetAllServices(txtUrl.Text, "");
+                grid_ProviderServices.DataSource = services;
+                grid_ProviderServices.DataBind();
             }
-            ServiceConfigurationCollection services = GetAllServices(txtUrl.Text,"");
-            grid_ProviderServices.DataSource = services;
-            grid_ProviderServices.DataBind();
         }
 
 
