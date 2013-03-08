@@ -122,12 +122,12 @@ namespace Fwk.ServiceManagement
             //Si no esta cargado el provider en el repositorio
             if (!_Repository.ContainsKey(provider.Name))
             {
-                //#region xml
+                #region xml
 
                 ///date:2013-03-02 No se utilizara la actualizacion
-                //if (provider.ProviderType == ServiceProviderType.xml)
+                if (provider.ProviderType == ServiceProviderType.xml)
                 //{
-                //    svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
+                    svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
 
                 //    //Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
                 //    watcher = new System.IO.FileSystemWatcher();
@@ -139,7 +139,7 @@ namespace Fwk.ServiceManagement
                 //    watcher.Changed += new FileSystemEventHandler(watcher_Changed);
 
                 //}
-                //#endregion
+                #endregion
 
                 #region sqldatabase
                 if (provider.ProviderType == ServiceProviderType.sqldatabase)

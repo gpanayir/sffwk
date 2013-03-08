@@ -236,16 +236,19 @@ namespace Fwk.BusinessFacades
             {
                 wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName,serviceName);
 
-                wServiceInfo = wServiceConfiguration.ToString();
+                wServiceInfo = wServiceConfiguration.GetXml();
             }
             catch (System.NullReferenceException)
             {
-                wServiceInfo = string.Concat("El servicio ", serviceName , " no se encuentra configurado");
+                //TODO: Poner Id error
+                //wServiceInfo = string.Concat("El servicio ", serviceName , " no se encuentra configurado");
+                throw new TechnicalException(string.Concat("El servicio ", serviceName , " no se encuentra configurado"));
             }
             catch (Exception e)
             {
-                wServiceInfo = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
-                
+                //TODO: Poner Id error
+                //wServiceInfo = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
+                throw new TechnicalException(string.Concat("Error al obtener la configuracion del servicio  servicio ", serviceName) , e);
             }
             
             return wServiceInfo;
@@ -261,21 +264,24 @@ namespace Fwk.BusinessFacades
         public String GetServicesList(String providerName, Boolean pViewXML)
         {
             ServiceConfigurationCollection wServiceConfigurationCollection = FacadeHelper.GetAllServices(providerName);
-            StringBuilder strList = new StringBuilder();
-
-            if (pViewXML)
+            
+            if (wServiceConfigurationCollection != null)
             {
-                strList.Append(Fwk.HelperFunctions.SerializationFunctions.SerializeToXml(wServiceConfigurationCollection));
-            }
-            else
-            {
-                foreach (ServiceConfiguration serviceConfiguration in wServiceConfigurationCollection)
+                if (pViewXML)
                 {
-                    strList.AppendLine(serviceConfiguration.Name);
+                    return wServiceConfigurationCollection.GetXml();
+                }
+                else
+                {
+                    StringBuilder strList = new StringBuilder();
+                    foreach (ServiceConfiguration serviceConfiguration in wServiceConfigurationCollection)
+                    {
+                        strList.AppendLine(serviceConfiguration.Name);
+                    }
+                    return strList.ToString();
                 }
             }
-
-            return strList.ToString();
+            return string.Empty;
         }
 
         /// <summary>
