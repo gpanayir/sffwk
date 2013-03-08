@@ -226,7 +226,7 @@
                 
                 <div class="grid_8">
                     <asp:TextBox ID="txtUrl" runat="server" Height="23px" Width="453px" TabIndex="10"
-                        CssClass="loging_textbox frm_fieldvalue">http://localhost:38091/SingleService.asmx</asp:TextBox>
+                        CssClass="loging_textbox frm_fieldvalue"></asp:TextBox>
                           
                 </div>
                 <div class="grid_3">

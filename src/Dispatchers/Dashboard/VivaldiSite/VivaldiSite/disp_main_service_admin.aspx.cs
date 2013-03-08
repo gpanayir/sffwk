@@ -34,6 +34,19 @@ namespace VivaldiSite
             txtSVC.Text = svc.Handler;
             chkAudit.Checked = svc.Audit;
             chkAvailable.Checked = svc.Available;
+            int index = -1;
+            ListItem item = cmbTransactionalBehaviour.Items.FindByText(svc.TransactionalBehaviour.ToString());
+            if (item != null)
+            {
+                index = cmbTransactionalBehaviour.Items.IndexOf(item);
+                cmbTransactionalBehaviour.SelectedIndex = index;
+            }
+            item = cmbIsolationLevel.Items.FindByText(svc.IsolationLevel.ToString());
+            if (item != null)
+            {
+                index = cmbIsolationLevel.Items.IndexOf(item);
+                cmbIsolationLevel.SelectedIndex = index;
+            }
         }
 
 
