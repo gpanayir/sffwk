@@ -16,10 +16,13 @@
                 </span>
         <div>
             <p class="frm_text_type_1">
-                Desde este panel usted tendra acceso a la gestion de todos los despachadores de servicios registrado en este dasboard.
+            From this panel you have access to all service mamnager registered .
+                To make diferents activities avobe listed you mas have the access permision.
                 Para poder realizar las diferentes actividades listadas a continuacion usted debe contar con los permisos necesarios.
-                Para mayor informacion sobre comuniquese con el administrador del sitio. 
-                Tambien puede hacer una lectura rapida de los permisos que tiene asignado en   Mi Perfil.-
+                For more information about, please contact with the site admin.
+               
+                Also, you can do a quick read of your permissions consulting on MyProfile
+                
             </p>
             <div class="clear">
             </div>
