@@ -257,7 +257,7 @@ namespace Fwk.Bases.Connector
         public ServiceConfiguration GetServiceConfiguration(string pServiceName)
         {
             string xmlServices = null;
-            
+
             using (Singleservice.SingleService wService = new Singleservice.SingleService())
             {
                 if (_Proxy != null)
@@ -267,8 +267,15 @@ namespace Fwk.Bases.Connector
                 wService.Url = _URL;
                 xmlServices = wService.GetServiceConfiguration(_ServiceMetadataProviderName, pServiceName);
             }
+            try
+            {
+                return ServiceConfiguration.GetServiceConfigurationFromXml(xmlServices);
+            }
+            catch (Exception ex)
+            {
+                throw ex;// .Error = ProcessConnectionsException.Process(ex, _URL);
+            }
 
-            return ServiceConfiguration.GetServiceConfigurationFromXml(xmlServices); ;
         }
 
         /// <summary>

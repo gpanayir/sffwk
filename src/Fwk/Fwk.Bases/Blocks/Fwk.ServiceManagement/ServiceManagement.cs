@@ -152,7 +152,7 @@ namespace Fwk.ServiceManagement
                     ///Se agrega try cath debido a que un subproseso pueda intentar agregar un item y aexistente
                     _Repository.Add(provider.Name, svcList);
                 }
-                catch (Exception ex)
+                catch (Exception )
                 { }
             }
             else
