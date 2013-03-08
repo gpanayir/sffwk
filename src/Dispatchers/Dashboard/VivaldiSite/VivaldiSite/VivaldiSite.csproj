@@ -160,6 +160,7 @@
     <Content Include="img\viñeta_red_circle.png" />
     <Content Include="img\viñeta_row.png" />
     <Content Include="img\Warning.png" />
+    <Content Include="img\webaccess.jpg" />
     <Content Include="img\website.jpg" />
     <Content Include="img\winsvc.jpg" />
     <Content Include="menu\main_menu_2.ascx" />

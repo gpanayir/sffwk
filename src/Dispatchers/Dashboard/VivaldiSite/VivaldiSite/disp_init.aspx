@@ -8,7 +8,7 @@
  </style>
     <div class="article_wrap" style="margin: 40px; width: 660px">
         <div class="frm_title frm_title_3" style="margin-top: 30px; width: 700px">
-            Gestion de entornos y service dispatchers
+            Enviropment mannager & service dispatchers
         </div>
          <span>
                     <img class="img_src" src="/img/webaccess.jpg" alt="" style="float: left; height: 69px;
@@ -16,9 +16,9 @@
                 </span>
         <div>
             <p class="frm_text_type_1">
-            From this panel you have access to all service mamnager registered .
+                From this panel you have access to all service mamnager registered.
                 To make diferents activities avobe listed you mas have the access permision.
-                Para poder realizar las diferentes actividades listadas a continuacion usted debe contar con los permisos necesarios.
+              
                 For more information about, please contact with the site admin.
                
                 Also, you can do a quick read of your permissions consulting on MyProfile
@@ -35,14 +35,13 @@
                         width: 174px; margin-right: 10px" />
                 </span>
                 <a class="frm_title frm_sub_title_2"  href="disp_new.aspx" style="text-decoration: none">
-                    Registrar nuevo entorno/dispatcher
+                    Register new environment/dispatcher
                 </a>
                 <p>
-                  Esta acción permite crear un nuevo entorno para un despachador de servicio sea Web o Remoting. 
-                  El despachador de servicio puede o no estar previamente instalado.
+                This action allows you create new environment for a dispatcher web or remoting
                 </p>
-                <p>Es recomendable que el despachador de servicio se encuentre instalado y en ejecucion, de modo 
-                que pueda sincronizarce su metadata y configuracion con el entorno que esta registrando.
+                <p>It is recommended that the dispatcher service is installed and running,
+                so you can sincronizarce its metadata and configuration with the environment you are registering.
                 </p>
             </div>
             <div>
@@ -51,10 +50,10 @@
                         width: 174px; margin-right: 10px" />
                 </span>
                 <p class="frm_title frm_sub_title_2" style="text-decoration: none">
-                   <a  class="frm_title frm_sub_title_2" href="disp_singin.aspx"> Logging a un entorno existente </a> 
+                   <a  class="frm_title frm_sub_title_2" href="disp_singin.aspx"> Login to existent environment </a> 
                 </p>
                 <p>
-                    Ingrese a esta opción para gestionar las diferentes configuraciones de un entorno previamente registrado.
+                    Click this option to manage diferents settings for previously environment registered  
                 </p>
             </div>
             
