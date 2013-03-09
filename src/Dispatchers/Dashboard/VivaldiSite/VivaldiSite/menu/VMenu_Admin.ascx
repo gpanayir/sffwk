@@ -9,20 +9,20 @@
 
 
 <div id="Div3" class ="menuv_header_2" >
- <p>Entornos</p>
+ <p>Enviropments</p>
 </div>
 
 <div id="menuv" class  ="menuv">
     <ul>
-        <li><a class="menuv_a" href="/disp_init.aspx" title="Administrar dispatcher">Administrar dispatcher</a></li>
-        <li><a class="menuv_a" href="/sec_main.aspx" title="Seguridad particular">Seguridad</a></li>
+        <li><a class="menuv_a" href="/disp_init.aspx" title="Dispatcher admin">Dispatcher admin</a></li>
+        <li><a class="menuv_a" href="/disp_list.aspx" title="Dispatcher explorer">Consult list</a></li>
     
     </ul>
 
 </div>
 
 <div id="Div4" class ="menuv_header_2" >
- <p>Seguridad global</p>
+ <p>Global security</p>
 </div>
 
 <div id="Div2" class  ="menuv">

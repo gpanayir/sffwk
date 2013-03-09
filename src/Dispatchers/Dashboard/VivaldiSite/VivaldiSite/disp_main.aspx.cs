@@ -19,16 +19,16 @@ namespace VivaldiSite
 
             if (IsCallback)
                 return;
-            //if (Request.QueryString["disp_inst"] == null)
-            //{
-            //    //Response.Redirect(WebUserControlsConstants.NavigateUrl_Home);
-            //}
-            //string disp_inst = Request.QueryString["disp_inst"].ToString();
+            if (Request.QueryString["disp_inst"] == null)
+            {
+                Response.Redirect(WebUserControlsConstants.NavigateUrl_Home);
+            }
+            string disp_inst = Request.QueryString["disp_inst"].ToString();
 
             if (!this.IsPostBack)
             {
 
-                string disp_inst = "Healt_Disp_Test";
+                //string disp_inst = "Healt_Disp_Test";
                 DoWork(disp_inst);
             }            
         }

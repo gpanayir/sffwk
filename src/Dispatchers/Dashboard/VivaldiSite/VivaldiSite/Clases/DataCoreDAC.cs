@@ -50,5 +50,17 @@ namespace VivaldiSite.DAC
                 return dc.fwk_ServiceDispatchers.Where(p => p.InstanseName.Equals(pInstanseName)).FirstOrDefault();
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        internal static List<fwk_ServiceDispatcher> Dispatcher_List()
+        {
+            using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext())
+            {
+                return dc.fwk_ServiceDispatchers.ToList < fwk_ServiceDispatcher>();
+            }
+        }
     }
 }

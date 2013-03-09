@@ -32,7 +32,7 @@
 <ul id="menu"> 
   
    
-    <li><a class="menuv_a"  href="/index.aspx">Inicio</a> 
+    <li><a class="menuv_a"  href="/index.aspx">Home</a> 
     </li> 
     <li><a class="menuv_a" href="/svc.aspx">Servicios</a> 
         <ul id="servicios"> 
@@ -92,12 +92,11 @@
 
 </ul> 
 
-<div style="float:right">
-                <a href="http://ar.linkedin.com/in/marcelooviedo" style="font-size: 12px;
-                    text-decoration: none;"><span style="font: 80% Arial,sans-serif; color: #0783B6;">
-                        <img src="http://www.linkedin.com/img/webpromo/btn_in_20x15.png" width="20" height="15"
-                            alt="Ver el perfil de Marcelo Oviedo en LinkedIn" style="vertical-align: middle"
-                            border="0" />Marcelo Oviedo</span></a>
-
-                         </div>
+    <div style="float: right">
+        <a href="http://ar.linkedin.com/in/marcelooviedo" style="font-size: 12px; text-decoration: none;">
+            <span style="font: 80% Arial,sans-serif; color: #0783B6;">
+                <img src="http://www.linkedin.com/img/webpromo/btn_in_20x15.png" width="20" height="15"
+                    alt="Ver el perfil de Marcelo Oviedo en LinkedIn" style="vertical-align: middle"
+                    border="0" />Marcelo Oviedo</span></a>
+    </div>
 </div>

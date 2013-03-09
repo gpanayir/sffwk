@@ -16,6 +16,8 @@
 	background: #666666;
 	margin-top: 7px;
 }
+
+
 #menuh li {float: left; margin :5px}
 #menuh a
 {
@@ -62,13 +64,12 @@
 
 .menuv a
 {
-	color: #D66A2F;
-	background-position: #FFFFFF;
+	color: #333333;
 	background-color: Transparent;
 	margin: 0;
-	font-family: "lucida grande" ,tahoma,verdana,arial,sans-serif;
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: normal;
+	font-style: normal;
 	text-decoration: none;
 	display: block;
 	padding: 3px;

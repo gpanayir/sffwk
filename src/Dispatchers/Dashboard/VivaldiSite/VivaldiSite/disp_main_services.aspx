@@ -105,9 +105,9 @@
         </div>
         <div class="frm_row" style="height: 50px; margin-top: 7px; margin-left: 5px;">
             <h5>
-                Lista de servicios</h5>
+                Service list</h5>
             <p>
-                Aqui se listan todos los servicios configurados en el dispatcher
+                Services that are registered on spesisfic dispatcher
             </p>
         </div>
         <br />
@@ -142,8 +142,8 @@
                                 </ItemTemplate>
                                      <ItemStyle Wrap="True"  HorizontalAlign="Center" VerticalAlign="Middle"/>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="TransactionalBehaviour" HeaderText="Tipo de transacciòn" />
-                            <asp:BoundField DataField="ApplicationId" HeaderText="Aplicaciòn" />
+                            <asp:BoundField DataField="TransactionalBehaviour" HeaderText="Transactional" />
+                            <asp:BoundField DataField="ApplicationId" HeaderText="ApplicationId" />
                         </Columns>
                         <HeaderStyle CssClass="grid_Header" />
                         <RowStyle CssClass="grid_Row" />

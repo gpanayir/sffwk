@@ -96,12 +96,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="disp_init.aspx" />
+    <Content Include="disp_list.aspx" />
     <Content Include="disp_main.aspx" />
     <Content Include="disp_main_services.aspx" />
     <Content Include="disp_main_service_admin.aspx" />
     <Content Include="disp_new.aspx" />
     <Content Include="disp_singin.aspx" />
     <Content Include="Email_contactenos.htm" />
+    <Content Include="ErrorMessageViewer.aspx" />
     <Content Include="img\ActualizarPerfilBig.gif" />
     <Content Include="img\ActualizarPerfilSmall.gif" />
     <Content Include="img\administrator_add_32.png" />
@@ -221,6 +223,13 @@
     <Compile Include="Clases\Helper.cs" />
     <Compile Include="Clases\SessionProxy.cs" />
     <Compile Include="Clases\wcf_service.svc.cs" />
+    <Compile Include="disp_list.aspx.cs">
+      <DependentUpon>disp_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="disp_list.aspx.designer.cs">
+      <DependentUpon>disp_list.aspx</DependentUpon>
+    </Compile>
     <Compile Include="disp_main.aspx.cs">
       <DependentUpon>disp_main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -255,6 +264,13 @@
     </Compile>
     <Compile Include="disp_singin.aspx.designer.cs">
       <DependentUpon>disp_singin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorMessageViewer.aspx.cs">
+      <DependentUpon>ErrorMessageViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorMessageViewer.aspx.designer.cs">
+      <DependentUpon>ErrorMessageViewer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -9,7 +9,7 @@ using System.Net;
 
 using Fwk.Exceptions;
 
-namespace Health
+namespace VivaldiSite
 {
     internal static class Helper
     {
