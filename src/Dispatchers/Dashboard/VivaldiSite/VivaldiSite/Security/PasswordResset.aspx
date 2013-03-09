@@ -38,7 +38,7 @@
     <br />
     <div>
         <asp:Button ID="btnAcept" runat="server" OnClick="Button1_Click" Text="Enviar dirección"
-            CssClass="btGrisNegrita" Width="200px" />
+            CssClass="frm_btGrisNegrita" Width="200px" />
     </div>
     <div class="loging_label">
         <asp:Label ID="Msg" ForeColor="maroon" runat="server" /><br />

@@ -37,10 +37,24 @@ namespace VivaldiSite.DAC
             return true;
         }
 
-        internal static void Dispatcher_Update(string url)
+        internal static void Dispatcher_Update(fwk_ServiceDispatcher disp)
         {
-            
 
+            using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext())
+            {
+                var disp_db = dc.fwk_ServiceDispatchers.Where(p => p.InstanseName.Equals(disp.InstanseId)).FirstOrDefault();
+
+                disp_db.AuditMode = disp.AuditMode;
+                disp_db.CompanyName = disp.CompanyName;
+                disp_db.HostIp = disp.HostIp;
+                disp_db.HostName = disp.HostName;
+                disp_db.InstanseName = disp.InstanseName;
+                disp_db.Logo = disp.Logo;
+                disp_db.Port = disp.Port;
+                disp_db.Url_URI = disp.Url_URI;
+
+                dc.SubmitChanges();
+            }
         }
 
         internal static fwk_ServiceDispatcher Dispatcher_Get(string pInstanseName)

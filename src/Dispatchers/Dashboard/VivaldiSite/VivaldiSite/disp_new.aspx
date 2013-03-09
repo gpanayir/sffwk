@@ -271,8 +271,8 @@
             </div>
         </div>
     </div>
-       <div style="height: 70px; margin-top: 30px; margin-left: 100px">
+       <div style="height: 70px; margin-top: 30px; margin-left: 100px;float:left;" >
         <asp:Button ID="btnAcept" runat="server" OnClick="Button1_Click" Text="Registrar"
-            TabIndex="100" CssClass="btGrisNegrita" Width="120" Height="2em" />
+            TabIndex="100" CssClass="frm_btGrisNegrita" Width="120" Height="2em" />
     </div>
 </asp:Content>

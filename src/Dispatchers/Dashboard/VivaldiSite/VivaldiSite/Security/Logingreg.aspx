@@ -53,7 +53,7 @@
                                          
                                         <td align="left" colspan="1">
                                             <asp:Button ID="LoginButton" runat="server" CommandName="Login" 
-                                                CssClass="btGrisNegrita" Text="Aceptar" ValidationGroup="Login1" 
+                                                CssClass="frm_btGrisNegrita" Text="Aceptar" ValidationGroup="Login1" 
                                                 Width="120px" onclick="LoginButton_Click"  />
                                         </td>
                                       

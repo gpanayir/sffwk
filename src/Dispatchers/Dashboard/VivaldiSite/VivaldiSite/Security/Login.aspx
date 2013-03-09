@@ -61,7 +61,7 @@
                                          
                                         <td align="left" colspan="1">
                                             <asp:Button ID="LoginButton" runat="server" CommandName="Login" 
-                                                CssClass="btGrisNegrita" Text="Iniciar" ValidationGroup="Login1" 
+                                                CssClass="frm_btGrisNegrita" Text="Iniciar" ValidationGroup="Login1" 
                                                 Width="120px"   />
                                         </td>
                                        <td align="left" colspan="1">
@@ -74,7 +74,7 @@
                         </tr>
                     </table>
                 </LayoutTemplate>
-                <LoginButtonStyle CssClass="btGrisNegrita" />
+                <LoginButtonStyle CssClass="frm_btGrisNegrita" />
                 <CheckBoxStyle CssClass="login_check" />
                 <TitleTextStyle  CssClass="loging_tittle" />
             </asp:Login>

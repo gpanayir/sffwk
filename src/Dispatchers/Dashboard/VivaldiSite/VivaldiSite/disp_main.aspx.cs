@@ -284,5 +284,31 @@ namespace VivaldiSite
         {
             DoWork("Healt_Disp_Test");
         }
+
+        protected void frm_btGrisNegrita_Click(object sender, EventArgs e)
+        {
+            fwk_ServiceDispatcher disp = DataCoreDAC.Dispatcher_Get(txtInstanceName.Text);
+
+
+
+            disp.InstanseName = txtInstanceName.Text;
+            disp.HostIp= txtIp.Text;
+            disp.Port = Convert.ToInt16(txtPort.Text);
+            disp.HostName=txtServerName.Text;
+            disp.Url_URI=txtUrl.Text  ;
+            disp.CompanyName=txtCompany.Text ;
+            disp.AuditMode = Convert.ToInt16(cmbAuditMode.SelectedValue);
+
+            if(Convert.ToInt16(cmbWrapperType.SelectedValue)== 0)
+            {
+                disp.Url_URI = txtUrl.Text;
+            }
+            else
+            {
+                disp.Port = Convert.ToInt32(txtPort.Text);
+                
+            }
+            DataCoreDAC.Dispatcher_Update(disp);
+        }
     }
 }

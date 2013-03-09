@@ -131,7 +131,7 @@
             </div>
             <div id="divPort" style="margin: 15px; display: none;">
                 <div class="frm_label_1">
-                    Puerto</div>
+                    Port</div>
                 <div>
                     <asp:TextBox ID="txtPort" runat="server" Height="23px" Width="500px" TabIndex="201"
                         CssClass="loging_textbox frm_fieldvalue"></asp:TextBox>
@@ -148,7 +148,7 @@
         </div>
         <div style="margin-top: 10px;">
             <div class=" frm_label_2">
-                Texto descriptivo general
+                General description
             </div>
             <div class="frm_fieldvalue" style="margin-top: 4px">
                 <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" Width="600px"
@@ -156,6 +156,11 @@
             </div>
         </div>
     </div> 
+
+       <div style="height: 70px; margin-top: 30px; margin-left: 100px">
+        <asp:Button ID="btnAcept" runat="server" OnClick="frm_btGrisNegrita_Click" Text="Update"
+            TabIndex="100" CssClass="frm_btGrisNegrita" Width="120" Height="2em" />
+    </div>
     <div class="clear"></div>
   
        
