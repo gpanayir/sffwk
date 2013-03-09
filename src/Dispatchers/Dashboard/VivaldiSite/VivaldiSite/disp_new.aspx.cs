@@ -49,8 +49,14 @@ namespace VivaldiSite
             disp.HostIp = txtIp.Text;
             disp.Port = Convert.ToInt32(txtPort.Text);
             disp.Url_URI = txtUrl.Text;
-
-            DataCoreDAC.Dispatcher_Create(disp);
+            try
+            {
+                DataCoreDAC.Dispatcher_Create(disp);
+                Response.Redirect(String.Concat("~/disp_new_wcome.aspx?id=", disp.InstanseName));
+            }
+            catch (Exception ex)
+            { Helper.ProcessWebException(ex); }
+            
         }
     }
 }
