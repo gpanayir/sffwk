@@ -150,7 +150,7 @@
     <div style="margin-left: 100px;">
         <div style="background-color: #FFFFFF; margin-top: 10px; margin-bottom: 5px">
             <div class="frm_label_2">
-                Nombre de instancia del Dispatcher
+                Instance dispatcher name d
             </div>
             <div class="grid_8">
                 <asp:TextBox ID="txtInstanceName" runat="server" Font-Bold="True" TabIndex="1" TextMode="SingleLine"
@@ -165,7 +165,7 @@
             <div id="sussefullMsg_1" class="frm-message" style="margin-left: 30px; width: 400px;
                 display: none; height: 20px; background-color: #F7F7F7;">
                 <p>
-                    El nombre de instancia esta disponible. </p>
+                    The instance name is available </p>
             </div>
             <div id="errorMsg_1" class="frm-error-message" style="margin-left: 36px; width: 400px;
                 height: 20px; display: none; color: Black;">
@@ -173,7 +173,7 @@
         </div>
         <div style="background-color: #FFFFFF; margin-top: 10px; margin-bottom: 5px">
             <div class="frm_label_2">
-                Empresa
+                Company
             </div>
             <div>
                 <asp:TextBox ID="txtCompany" runat="server" Font-Bold="True" TabIndex="2" TextMode="SingleLine"
@@ -185,7 +185,7 @@
         </div>
         <div style="margin-top: 5px">
             <div class="frm_label_2">
-                Server Name
+                Server name
             </div>
             <div>
                 <asp:TextBox ID="txtServerName" runat="server" Font-Bold="True" TabIndex="3" TextMode="SingleLine"
@@ -194,21 +194,21 @@
         </div>
         <div style="margin-top: 15px">
             <div class="frm_label_2">
-                Auditoria de servicio
+                Service audit mode
             </div>
             <div style="width: 300px">
                 <asp:DropDownList ID="cmbAuditMode" CssClass="loging_textbox frm_fieldvalue" runat="server"
                     Width="300px" DataTextField="Nombre" DataValueField="Id" Height="25px" TabIndex="4">
-                    <asp:ListItem Value="0">Requerido</asp:ListItem>
-                    <asp:ListItem Value="1">Opcional</asp:ListItem>
-                    <asp:ListItem Value="2">Ninguno</asp:ListItem>
+                    <asp:ListItem Value="0">Required</asp:ListItem>
+                    <asp:ListItem Value="1">Optional</asp:ListItem>
+                    <asp:ListItem Value="2">None</asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
 
         <div style="margin-top: 15px">
             <div class="frm_label_2">
-                Tecnologia
+                Technology
             </div>
             <div style="width: 300px">
                 <select id="wrappercombo" tabindex="5" class="loging_textbox frm_fieldvalue" style="width: 300px"
@@ -236,16 +236,16 @@
             </div>
             <div class="clearfix"></div>
             <div id="sussefullMsg" class="frm-message" style="margin-left:30px;  width:400px ; display: none;height:20px; background-color:#F7F7F7;" >
-                <p>
-                    La conexión al despachador de servicio web fue exitosa</p>
+                <p> 
+                   The connection to the web service dispatcher was successful</p>
             </div>
              <div id="errorMsg" class="frm-error-message" style="margin-left:36px;  width:400px ; height:20px; display: none; color: Black;">
                 
-                    No es posible la conexión con el servicio
+                   Unable to connect to the service
             </div>
             <div id="divPort" style="margin: 15px; display: none;">
                 <div class="frm_label_1">
-                    Puerto</div>
+                    Port</div>
                 <div>
                     <asp:TextBox ID="txtPort" runat="server" Height="23px" Width="500px" TabIndex="201"
                         CssClass="loging_textbox frm_fieldvalue"></asp:TextBox>
@@ -253,7 +253,7 @@
             </div>
             <div id="divIp" style="margin: 15px; display: none;">
                 <div class="frm_label_1">
-                    Dirección Ip o nombre de host</div>
+                     Ip or Hostname</div>
                 <div>
                     <asp:TextBox ID="txtIp" runat="server" Height="23px" Width="300px" TabIndex="21"
                         CssClass="loging_textbox frm_fieldvalue"></asp:TextBox>
@@ -263,7 +263,7 @@
         </div>
         <div style="margin-top: 10px;">
             <div class=" frm_label_2">
-                Texto descriptivo general
+                General service description
             </div>
             <div class="frm_fieldvalue" style="margin-top: 4px">
                 <asp:TextBox ID="txtDescripcion" runat="server" TextMode="MultiLine" Width="600px"
