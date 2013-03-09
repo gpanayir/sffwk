@@ -299,11 +299,8 @@ namespace VivaldiSite
             disp.CompanyName=txtCompany.Text ;
             disp.AuditMode = Convert.ToInt16(cmbAuditMode.SelectedValue);
 
-            if(Convert.ToInt16(cmbWrapperType.SelectedValue)== 0)
-            {
-                disp.Url_URI = txtUrl.Text;
-            }
-            else
+            if(Convert.ToInt16(cmbWrapperType.SelectedValue)== 1)
+           
             {
                 disp.Port = Convert.ToInt32(txtPort.Text);
                 
