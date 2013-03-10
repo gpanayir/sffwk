@@ -34,14 +34,19 @@ namespace VivaldiSite
                     txtInstanceName.Text = disp.InstanseName;
 
                     DispatcherInfo wDispatcherInfo = GetDispatcherInfo(disp.Url_URI);
-                    grdMetadataProvider.DataSource = wDispatcherInfo.MetadataProviders;
-                    grdMetadataProvider.DataBind();
+                    if (wDispatcherInfo != null)
+                    {
+                        grdMetadataProvider.DataSource = wDispatcherInfo.MetadataProviders;
+                        grdMetadataProvider.DataBind();
 
+
+                        ServiceConfigurationCollection services = GetAllServices(txtUrl.Text, "");
+                        grid_ProviderServices.DataSource = services;
+                        grid_ProviderServices.DataBind();
+                    }
 
                 }
-                ServiceConfigurationCollection services = GetAllServices(txtUrl.Text, "");
-                grid_ProviderServices.DataSource = services;
-                grid_ProviderServices.DataBind();
+
             }
         }
 

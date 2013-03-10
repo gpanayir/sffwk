@@ -35,12 +35,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentCenter" runat="server">
 <div class="article_wrap">
+
+    <div class="frm_title_2" style="padding:8px; text-align:left;margin-top:15px;margin-bottom:20px;background-color:#10547B;color:White">
+    
+            <%=this.instanceName%>
+    </div>
     <div style="margin-left: 5px;">
-        <div style="background-color: #FFFFFF; margin-top: 10px; margin-bottom: 5px">
-            <div class="frm_label_2">
-                Nombre de instancia del Dispatcher
+        <div style="margin-top: 10px; margin-bottom: 5px">
+            <div class="grid_3 frm_label_2">
+                Instanse name
             </div>
-            <div class="grid_8">
+            <div class="grid_5">
                 <asp:TextBox ID="txtInstanceName" runat="server" Font-Bold="True" TabIndex="1" TextMode="SingleLine"
                     Width="300" Height="25px" CssClass="frm_fieldvalue" />
             </div>
@@ -53,18 +58,18 @@
             <div id="sussefullMsg_1" class="frm-message" style="margin-left: 30px; width: 400px;
                 display: none; height: 20px; background-color: #F7F7F7;">
                 <p>
-                    El nombre de instancia esta disponible.
+                    The instance name is available.
                 </p>
             </div>
             <div id="errorMsg_1" class="frm-error-message" style="margin-left: 36px; width: 400px;
                 height: 20px; display: none; color: Black;">
             </div>
         </div>
-        <div style="background-color: #FFFFFF; margin-top: 10px; margin-bottom: 5px">
-            <div class="frm_label_2">
-                Empresa
+        <div style="margin-top: 10px; margin-bottom: 5px">
+            <div class="grid_3 frm_label_2">
+                Company
             </div>
-            <div>
+            <div class="grid_5">
                 <asp:TextBox ID="txtCompany" runat="server" Font-Bold="True" TabIndex="2" TextMode="SingleLine"
                     Width="300" Height="25px" CssClass="frm_fieldvalue" />
             </div>
@@ -72,20 +77,22 @@
         <div class="">
             <asp:Label ID="Msg" ForeColor="maroon" runat="server" /><br />
         </div>
-        <div style="margin-top: 5px">
-            <div class="frm_label_2">
+        <div class="clear"></div>
+        <div style="margin-top: 10px; margin-bottom: 15px">
+            <div class="grid_3 frm_label_2">
                 Server Name
             </div>
-            <div>
+            <div class="grid_8">
                 <asp:TextBox ID="txtServerName" runat="server" Font-Bold="True" TabIndex="3" TextMode="SingleLine"
                     Width="300" Height="25px" CssClass="frm_fieldvalue" />
             </div>
         </div>
-        <div style="margin-top: 15px">
-            <div class="frm_label_2">
-                Auditoria de servicio
+        <div class="clear"></div>
+         <div style="margin-top: 10px; margin-bottom: 15px">
+            <div class="grid_3 frm_label_2">
+                Audit Mode
             </div>
-            <div style="width: 300px">
+            <div class="grid_8" style="">
                 <asp:DropDownList ID="cmbAuditMode" CssClass="loging_textbox frm_fieldvalue" runat="server"
                     Width="300px" DataTextField="Nombre" DataValueField="Id" Height="25px" TabIndex="4">
                     <asp:ListItem Value="0">Requerido</asp:ListItem>
@@ -94,18 +101,20 @@
                 </asp:DropDownList>
             </div>
         </div>
-        <div style="margin-top: 15px">
-            <div class="frm_label_2">
-                Tecnologia
+        <br />
+        <div class="clear"></div>
+     <div style="margin-top: 10px; margin-bottom: 15px">
+            <div class="grid_3 frm_label_2">
+                Technology
             </div>
-            <div style="width: 300px">
-                <asp:DropDownList ID="cmbWrapperType" CssClass="loging_textbox frm_fieldvalue" runat="server"
-                    Enabled="false" Width="300px" DataTextField="Nombre" DataValueField="Id" Height="25px"
-                    TabIndex="4" onchange="javascript:WrapperTypeOnChange()">
-                    <asp:ListItem Value="0">Web Service</asp:ListItem>
-                    <asp:ListItem Value="1">Remoting</asp:ListItem>
-                </asp:DropDownList>
-            </div>
+         <div class="grid_8" style="">
+             <asp:DropDownList ID="cmbWrapperType" CssClass="loging_textbox frm_fieldvalue" runat="server"
+                 Enabled="false" Width="300px" DataTextField="Nombre" DataValueField="Id" Height="25px"
+                 TabIndex="4" onchange="javascript:WrapperTypeOnChange()">
+                 <asp:ListItem Value="0">Web Service</asp:ListItem>
+                 <asp:ListItem Value="1">Remoting</asp:ListItem>
+             </asp:DropDownList>
+         </div>
         </div>
         <div class="frm_row" style="height: 150px">
             <div id="divUrlWebservice" style="margin: 15px; display: block;">
@@ -116,7 +125,6 @@
                     <asp:TextBox ID="txtUrl" runat="server" Height="23px" Width="453px" TabIndex="10"
                         CssClass="loging_textbox frm_fieldvalue">http://localhost:38091/SingleService.asmx</asp:TextBox>
                 </div>
-               
             </div>
             <div class="clearfix">
             </div>
@@ -155,9 +163,8 @@
                     Height="80px" CssClass="frm_fieldvalue" TabIndex="22" />
             </div>
         </div>
-    </div> 
-
-       <div style="height: 70px; margin-top: 30px; margin-left: 100px">
+    </div>
+    <div style="height: 70px; margin-top: 30px; margin-left: 100px">
         <asp:Button ID="btnAcept" runat="server" OnClick="frm_btGrisNegrita_Click" Text="Update"
             TabIndex="100" CssClass="frm_btGrisNegrita" Width="120" Height="2em" />
     </div>
@@ -280,6 +287,6 @@
             </ajax:TabPanel>
         </ajax:TabContainer>
     </div>
-</div>
 
+</div>
 </asp:Content>

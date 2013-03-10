@@ -150,7 +150,7 @@
     <div style="margin-left: 100px;">
         <div style="background-color: #FFFFFF; margin-top: 10px; margin-bottom: 5px">
             <div class="frm_label_2">
-                Instance dispatcher name d
+                Instance dispatcher name
             </div>
             <div class="grid_8">
                 <asp:TextBox ID="txtInstanceName" runat="server" Font-Bold="True" TabIndex="1" TextMode="SingleLine"
@@ -171,7 +171,7 @@
                 height: 20px; display: none; color: Black;">
             </div>
         </div>
-        <div style="background-color: #FFFFFF; margin-top: 10px; margin-bottom: 5px">
+        <div style="margin-top: 10px; margin-bottom: 5px">
             <div class="frm_label_2">
                 Company
             </div>

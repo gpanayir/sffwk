@@ -4,7 +4,7 @@
     <div class="article_wrap">
         <div>
             <h5>
-                Configuración de servicio</h5>
+                Service configuration</h5>
             <p>
             </p>
         </div>
@@ -96,6 +96,6 @@
     </div>
     <div style="height: 70px; margin-top: 30px; margin-left: 100px">
         <asp:Button ID="btnAcept" runat="server" OnClick="frm_btGrisNegrita_Click" Text="Update"
-            TabIndex="100" CssClass="frm_btGrisNegrita" Width="120" Height="2em" />
+            TabIndex="100" CssClass="frm_btn-yellow" Width="120" Height="2em" />
     </div>
 </asp:Content>

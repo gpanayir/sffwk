@@ -33,6 +33,7 @@ namespace VivaldiSite
             }            
         }
         public string dire;
+        public string instanceName;
         public void DoWork(string disp_inst)
         {
 
@@ -45,7 +46,7 @@ namespace VivaldiSite
                 //Fwk.Bases.Connector.WebServiceWrapper wrapper = new Fwk.Bases.Connector.WebServiceWrapper();
                 //wrapper.SourceInfo = disp.Url_URI;
 
-
+                instanceName = disp.InstanseName;
                 txtInstanceName.Text = disp.InstanseName;
                 txtIp.Text = disp.HostIp;
                 txtPort.Text = disp.Port.ToString();
@@ -293,17 +294,17 @@ namespace VivaldiSite
 
             disp.InstanseName = txtInstanceName.Text;
             disp.HostIp= txtIp.Text;
-            disp.Port = Convert.ToInt16(txtPort.Text);
+     
             disp.HostName=txtServerName.Text;
             disp.Url_URI=txtUrl.Text  ;
             disp.CompanyName=txtCompany.Text ;
             disp.AuditMode = Convert.ToInt16(cmbAuditMode.SelectedValue);
 
             if(Convert.ToInt16(cmbWrapperType.SelectedValue)== 1)
-           
             {
-                disp.Port = Convert.ToInt32(txtPort.Text);
-                
+                Int16 val = 0;
+                Int16.TryParse(txtPort.Text, out val);
+                disp.Port = val;
             }
             DataCoreDAC.Dispatcher_Update(disp);
         }

@@ -15,7 +15,9 @@
 <div id="menuv" class  ="menuv">
     <ul>
         <li><a class="menuv_a" href="/disp_init.aspx" title="Dispatcher admin">Dispatcher admin</a></li>
-        <li><a class="menuv_a" href="/disp_list.aspx" title="Dispatcher explorer">Consult list</a></li>
+        <li><a class="menuv_a" href="/disp_list.aspx" title="Dispatcher explorer">Query list</a></li>
+
+        <li><a class="menuv_a" href="/disp_list.aspx" title="Audir errors and all services ">Audit services</a></li>
     
     </ul>
 
@@ -27,17 +29,16 @@
 
 <div id="Div2" class  ="menuv">
     <ul>
-        <li><a class="menuv_a" href="/global_sec.aspx" title="Sepelio y Sepultura">Sepelio y Sepultura</a>
+        <li><a class="menuv_a" href="/global_sec.aspx" title="">Usuarios y grupos</a>
             <ul>
-                <li><a class="menuv_a" href="/Modules/Svc/Sepelio.aspx" title="Necrológico">Necrológico</a></li>
-                <li><a class="menuv_a" href="/Modules/Svc/Sepelio.aspx" title="Necrológico">Reglamento</a></li>
+                <li><a class="menuv_a" href="/a.aspx" title="">Create new user</a></li>
+                <li><a class="menuv_a" href="/a.aspx" title="">Asign users</a></li>
             </ul>
         </li>
-        <li><a class="menuv_a" href="/Modules/Svc/Cementerio.aspx" title="Cementerio Parque">
-            Cementerio Parque</a></li>
-        <li><a class="menuv_a" href="/Modules/Svc/Biblioteca.aspx">Biblioteca pública</a></li>
-        <li><a class="menuv_a" href="/Modules/Svc/Barrios.aspx">Barrios Health</a></li>
-        <li><a class="menuv_a" href="/Modules/Svc/Sepelio.aspx">Ambulancias</a></li>
+      
+        <li><a class="menuv_a" href="/Svc/.aspx">svc </a></li>
+        <li><a class="menuv_a" href="/Svc/.aspx">svc </a></li>
+        <li><a class="menuv_a" href="/Svc/.aspx">svc</a></li>
     </ul>
 
 </div>
