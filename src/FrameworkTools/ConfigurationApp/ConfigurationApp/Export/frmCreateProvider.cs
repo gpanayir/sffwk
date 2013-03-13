@@ -222,10 +222,10 @@ namespace ConfigurationApp
         {
             try
             {
-
+               
                 ConfigProviderSection config = (ConfigProviderSection)configuration.Sections["FwkConfigProvider"];
                 config.Providers.Add(newProvider);
-
+                
                 configuration.Save(ConfigurationSaveMode.Minimal, true);
 
                 Fwk.Configuration.ConfigurationManager.ConfigProvider.Providers.Add(newProvider);
