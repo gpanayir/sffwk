@@ -81,25 +81,26 @@ namespace Fwk.Logging.Targets
                     wParam = wCmd.Parameters.Add("Id", SqlDbType.UniqueIdentifier);
                     wParam.Value = pEvent.Id;
 
-                    wParam = wCmd.Parameters.Add("Message", SqlDbType.VarBinary,2000);
-                    wParam.Value = TypeFunctions.ConvertStringToByteArray(pEvent.Message.Text);
+                    wParam = wCmd.Parameters.Add("Message", SqlDbType.VarChar);
+                    //wParam.Value = TypeFunctions.ConvertStringToByteArray(pEvent.Message.Text);
+                    wParam.Value = pEvent.Message.Text;
 
-                    wParam = wCmd.Parameters.Add("Source", SqlDbType.NVarChar);
+                    wParam = wCmd.Parameters.Add("Source", SqlDbType.VarChar);
                     wParam.Value = pEvent.Source;
 
-                    wParam = wCmd.Parameters.Add("LogType", SqlDbType.NVarChar);
+                    wParam = wCmd.Parameters.Add("LogType", SqlDbType.VarChar);
                     wParam.Value = pEvent.LogType;
 
-                    wParam = wCmd.Parameters.Add("Machine", SqlDbType.NVarChar);
+                    wParam = wCmd.Parameters.Add("Machine", SqlDbType.VarChar);
                     wParam.Value = pEvent.Machine;
                    
                     wParam = wCmd.Parameters.Add("LogDate", SqlDbType.DateTime);
                     wParam.Value = pEvent.LogDate;
 
-                    wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.NVarChar);
+                    wParam = wCmd.Parameters.Add("UserLoginName", SqlDbType.VarChar);
                     wParam.Value = pEvent.User;
 
-                    wParam = wCmd.Parameters.Add("AppId", SqlDbType.NVarChar);
+                    wParam = wCmd.Parameters.Add("AppId", SqlDbType.VarChar);
                     wParam.Value = pEvent.AppId;
 
                     wCmd.ExecuteNonQuery();
