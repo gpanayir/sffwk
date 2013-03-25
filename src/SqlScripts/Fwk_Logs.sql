@@ -20,13 +20,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[fwk_Logs](
 	[Id] [uniqueidentifier] NOT NULL,
-	[Message] [VARBINARY](2000)NOT NULL,
-	[Source] [nvarchar](20) NOT NULL,
-	[LogType] [nvarchar](20) NOT NULL,
-	[Machine] [nvarchar](50) NOT NULL,
+	[Message] [varchar](MAX)NOT NULL,
+	[Source] [varchar](20) NOT NULL,
+	[LogType] [varchar](20) NOT NULL,
+	[Machine] [varchar](50) NOT NULL,
 	[LogDate] [datetime] NOT NULL,
-	[UserLoginName] [nvarchar](100) NOT NULL,
-	[AppId] [nvarchar](100) NULL,
+	[UserLoginName] [varchar](100) NOT NULL,
+	[AppId] [varchar](100) NULL,
  CONSTRAINT [PK_Logs] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -42,7 +42,7 @@ CREATE PROCEDURE [dbo].[fwk_Logs_i]
 (
 	@Id  uniqueidentifier ,
 	@LogDate datetime ,
-	@Message VARBINARY(2000) ,
+	@Message varcahr(MAX) ,
 	@Source nvarchar(20) ,
 	@LogType nvarchar(20) ,
 	@Machine nvarchar(100) ,
