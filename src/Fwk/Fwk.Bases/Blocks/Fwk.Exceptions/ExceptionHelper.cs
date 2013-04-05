@@ -267,15 +267,14 @@ namespace Fwk.Exceptions
             while (ex.InnerException != null)
             {
                 ex = ex.InnerException;
-                wMessage.AppendLine("Source: ");
-                wMessage.AppendLine(ex.Source);
+                wMessage.AppendLine(String.Concat("Source: ",ex.Source));
                 wMessage.AppendLine();
                 wMessage.AppendLine("Message: ");
                 wMessage.AppendLine(ex.Message);
             }
             if (!String.IsNullOrEmpty(ex.StackTrace))
             {
-                wMessage.Append("\r\n-----------StackTrace------------------\r\n");
+                wMessage.AppendLine("\r\n-----------StackTrace------------------\r\n");
                 wMessage.AppendLine(ex.StackTrace);
             }
             return wMessage.ToString();
@@ -296,8 +295,8 @@ namespace Fwk.Exceptions
                 while (ex.InnerException != null)
                 {
                     inner = ex.InnerException;
-                    wMessage.AppendLine("Source: ");
-                    wMessage.AppendLine(inner.Source);
+                    wMessage.AppendLine(String.Concat("Source: ", inner.Source));
+
                     wMessage.AppendLine();
                     wMessage.AppendLine("Message: ");
                     wMessage.AppendLine(inner.Message);
