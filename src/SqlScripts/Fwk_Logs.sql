@@ -21,7 +21,7 @@ GO
 CREATE TABLE [dbo].[fwk_Logs](
 	[Id] [uniqueidentifier] NOT NULL,
 	[Message] [varchar](MAX)NOT NULL,
-	[Source] [varchar](20) NOT NULL,
+	[Source] [varchar](200) NOT NULL,
 	[LogType] [varchar](20) NOT NULL,
 	[Machine] [varchar](50) NOT NULL,
 	[LogDate] [datetime] NOT NULL,
@@ -42,10 +42,10 @@ CREATE PROCEDURE [dbo].[fwk_Logs_i]
 (
 	@Id  uniqueidentifier ,
 	@LogDate datetime ,
-	@Message varcahr(MAX) ,
-	@Source nvarchar(20) ,
-	@LogType nvarchar(20) ,
-	@Machine nvarchar(100) ,
+	@Message varchar(MAX) ,
+	@Source varchar(200) ,
+	@LogType varchar(20) ,
+	@Machine varchar(100) ,
 	@UserLoginName nvarchar(100) ,
 	@AppId nvarchar(100)
 
@@ -116,12 +116,12 @@ GO
 	-- Lista de Parámetros
 	
 	
-	@Source NVarChar(20) = null,
-	@LogType NVarChar(20) = null,
-	@Machine NVarChar(50) = null,
+	@Source VarChar(200) = null,
+	@LogType VarChar(20) = null,
+	@Machine VarChar(50) = null,
 	@LogDateDesde DateTime = null,
 	@LogDateHasta DateTime = null,
-	@UserLoginName NVarChar(100) = NULL,
+	@UserLoginName VarChar(100) = NULL,
 	@AppId NVarChar(100) = null	
 
 	AS
