@@ -207,23 +207,52 @@ namespace Fwk.ServiceManagement
              ///date:2013-03-02 No se utilizara la actualizacion
             //_Repository.Remove(provider.Name);
 
-            //if (provider.ProviderType == ServiceProviderType.xml)
-            //{
-            //    ServiceConfigurationCollection svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
-                
-            ////    Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
-            //    watcher = new System.IO.FileSystemWatcher();
-            //    watcher.Filter = provider.SourceInfo;
-            //    watcher.Path = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            //    watcher.EnableRaisingEvents = true;
+            if (provider.ProviderType == ServiceProviderType.xml)
+            {
+                ServiceConfigurationCollection svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
 
-            //    watcher.Changed += new FileSystemEventHandler(watcher_Changed);
+                //    Habilito FileSystemWatcher para detectar cualquie cambio sobre la metadata
+                //watcher = new System.IO.FileSystemWatcher();
+                //watcher.Filter = provider.SourceInfo;
+                //watcher.Path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                //watcher.EnableRaisingEvents = true;
 
-            //}
+                //watcher.Changed += new FileSystemEventHandler(watcher_Changed);
+
+            }
 
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void RefreshServices()
+        {
+            ServiceConfigurationCollection svcList = null;
+            foreach (ServiceProviderElement provider in _ProviderSection.Providers)
+            {
+                _Repository.Remove(provider.Name);
+                if (provider.ProviderType == ServiceProviderType.xml)
+                {
+                    svcList = XmlServiceConfigurationManager.GetAllServices(provider.SourceInfo);
+                }
+                if (provider.ProviderType == ServiceProviderType.sqldatabase)
+                {
+                    svcList = DatabaseServiceConfigurationManager.GetAllServices(provider.ApplicationId, provider.SourceInfo);
+                }
+
+                try
+                {
+                    //Se agrega try cath debido a que un subproseso pueda intentar agregar un item y aexistente
+                    _Repository.Add(provider.Name, svcList);
+                }
+                catch (Exception)
+                { }
+            }
+
+
+        }
         /// <summary>
         /// Obtiene una lista de metadata de servicios 
         /// </summary>
