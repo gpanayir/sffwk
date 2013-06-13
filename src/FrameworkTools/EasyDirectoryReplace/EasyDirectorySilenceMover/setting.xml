@@ -1,0 +1,7 @@
+﻿<ArrayOfReplacePattern>
+  <ReplacePattern>
+    <From>d:\SourceTest\</From>
+    <To>d:\BackUpPrueva\</To>
+    <ReplaceContent>false</ReplaceContent>
+  </ReplacePattern>
+</ArrayOfReplacePattern>
