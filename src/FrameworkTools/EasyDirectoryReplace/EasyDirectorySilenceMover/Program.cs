@@ -146,16 +146,32 @@ namespace EasyDirectorySilenceMover
             {
                
                  root = GetRoot(dirSource, subDirTo);
-     
-                if (Directory.Exists(root) == false)
-                    Directory.Delete(subDirTo.FullName);
-                else
-                {
-                    RemoveInExistents(dirSource, subDirTo);
-                }
+
+                 if (Directory.Exists(root) == false)
+                 {
+
+                     RemoveRecursive(subDirTo);
+
+                 }
+                 else
+                 {
+                     RemoveInExistents(dirSource, subDirTo);
+                 }
             }
         }
-
+        void RemoveRecursive(DirectoryInfo subDirTo )
+        {
+            foreach (FileInfo f in subDirTo.GetFiles("*", SearchOption.TopDirectoryOnly))
+            {
+                   f.Delete();
+            }
+            DirectoryInfo[] wSubDirectories = subDirTo.GetDirectories("*", SearchOption.TopDirectoryOnly);
+            foreach (DirectoryInfo d in wSubDirectories)
+            {
+                RemoveRecursive(d);
+            }
+            subDirTo.Delete();
+        }
         string GetRoot(DirectoryInfo dirSource, DirectoryInfo subDirTo)
         {
             int index = subDirTo.FullName.IndexOf(dirSource.Name);
