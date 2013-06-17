@@ -20,7 +20,7 @@ namespace EasyDirectorySilenceMover
             //    FileFunctions.SaveTextFile("setting.xml", s.GetXml(), true);
              Engine wEngine = new Engine();
              wEngine.Start();
-             Console.WriteLine("Proceso de backup realzado exitosamente");
+             Console.WriteLine("Proceso de backup finalizado");
              Console.Read();
         }
     }
