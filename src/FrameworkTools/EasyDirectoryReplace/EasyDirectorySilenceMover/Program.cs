@@ -48,7 +48,7 @@ namespace EasyDirectorySilenceMover
             catch (Exception ex)
             {
 
-                Log(String.Concat("Problemas al cargar  setting: /r/n", ex.Message),true);
+                Log(String.Concat("Problemas al cargar  setting: /r/n", ex.Message), true);
                 validateRes = false;
             }
 
@@ -56,29 +56,27 @@ namespace EasyDirectorySilenceMover
             {
                 foreach (ReplacePattern patthern in list)
                 {
-
+                    Log("------------------------------------------------------------------------",false);
                     if (Directory.Exists(patthern.From) == false)
                     {
                         Log(String.Concat("Ruta From no existe: ", patthern.From), true);
                         validateRes = false;
                     }
 
-
                     if (Directory.Exists(patthern.To) == false)
                     {
-
                         Log(String.Concat("Ruta To no existe: ", patthern.To), true);
                         validateRes = false;
                     }
+                    if (validateRes)
+                    {
+                        DoWork(patthern);
+                    }
+                    validateRes = true;
+                    
                 }
             }
-            if (validateRes)
-            {
-                foreach (ReplacePattern patthern in list)
-                {
-                    DoWork(patthern);
-                }
-            }
+
 
         }
 
@@ -106,7 +104,7 @@ namespace EasyDirectorySilenceMover
 
         void Copy(DirectoryInfo dirSource, String destinationRoot)
         {
-            Log("Directprio : " + dirSource.Extension, false);
+            Log("copiando dir : " + dirSource.FullName, false);
             if (Directory.Exists(destinationRoot) == false)
                 Directory.CreateDirectory(destinationRoot);
             FileInfo[] wFiles = dirSource.GetFiles("*", SearchOption.TopDirectoryOnly);

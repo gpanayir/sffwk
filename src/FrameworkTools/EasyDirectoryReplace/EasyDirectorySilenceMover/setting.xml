@@ -4,4 +4,9 @@
     <To>d:\BackUpPrueva\</To>
     <ReplaceContent>false</ReplaceContent>
   </ReplacePattern>
+  <ReplacePattern>
+    <From>d:\SourceTest2\</From>
+    <To>d:\BackUpPrueva\</To>
+    <ReplaceContent>false</ReplaceContent>
+  </ReplacePattern>
 </ArrayOfReplacePattern>
