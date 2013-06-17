@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany(" Pelsoft SF")]
 [assembly: AssemblyProduct("Silence Mover")]
-[assembly: AssemblyCopyright("Copyright ©  2013 ")]
+[assembly: AssemblyCopyright("Copyright © 2013 Pelsoft SF product developed by marcelo.oviedo@gmail.com")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

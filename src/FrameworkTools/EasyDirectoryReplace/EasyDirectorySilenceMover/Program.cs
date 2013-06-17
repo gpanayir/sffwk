@@ -20,6 +20,8 @@ namespace EasyDirectorySilenceMover
             //    FileFunctions.SaveTextFile("setting.xml", s.GetXml(), true);
              Engine wEngine = new Engine();
              wEngine.Start();
+             Console.WriteLine("Proceso de backup realzado exitosamente");
+             Console.Read();
         }
     }
 
@@ -46,7 +48,7 @@ namespace EasyDirectorySilenceMover
             catch (Exception ex)
             {
 
-                Log(String.Concat("Problemas al cargar  setting: /r/n", ex.Message));
+                Log(String.Concat("Problemas al cargar  setting: /r/n", ex.Message),true);
                 validateRes = false;
             }
 
@@ -57,15 +59,15 @@ namespace EasyDirectorySilenceMover
 
                     if (Directory.Exists(patthern.From) == false)
                     {
-                        Log(String.Concat("Ruta From no existe: ", patthern.From));
+                        Log(String.Concat("Ruta From no existe: ", patthern.From), true);
                         validateRes = false;
                     }
 
 
                     if (Directory.Exists(patthern.To) == false)
                     {
-                    
-                        Log(String.Concat("Ruta To no existe: ", patthern.To));
+
+                        Log(String.Concat("Ruta To no existe: ", patthern.To), true);
                         validateRes = false;
                     }
                 }
@@ -86,20 +88,25 @@ namespace EasyDirectorySilenceMover
 
             DirectoryInfo subDirSource = new DirectoryInfo(patthern.From);
             String subDestination = Path.Combine(patthern.To, subDirSource.Name);
+
+            Log("Iinicio proceso de copia",false);
             Copy(subDirSource, subDestination);
 
             DirectoryInfo subDirDestination = new DirectoryInfo(subDestination);
             subDestination = Path.Combine(patthern.From, subDirSource.Name);
 
+            Log("Iinicio proceso de check archivos eliminados", false);
             DirectoryInfo[] wSubDirectories = subDirDestination.GetDirectories("*", SearchOption.TopDirectoryOnly);
             foreach (DirectoryInfo subDirTo in wSubDirectories)
             {
                 RemoveInExistents(subDirSource, subDirTo);
             }
+            
         }
 
         void Copy(DirectoryInfo dirSource, String destinationRoot)
         {
+            Log("Directprio : " + dirSource.Extension, false);
             if (Directory.Exists(destinationRoot) == false)
                 Directory.CreateDirectory(destinationRoot);
             FileInfo[] wFiles = dirSource.GetFiles("*", SearchOption.TopDirectoryOnly);
@@ -186,19 +193,24 @@ namespace EasyDirectorySilenceMover
         
 
 
-        void Log(string msg)
+        void Log(string msg, bool logOnFile)
         {
-            string filename = string.Format(logFileFullName, FileFunctions.Get_Year_Mont_Day_String(DateTime.Now, '-'));
+            if (logOnFile)
+            {
+                string filename = string.Format(logFileFullName, FileFunctions.Get_Year_Mont_Day_String(DateTime.Now, '-'));
 
-            StringBuilder str = new StringBuilder();
-            str.AppendLine("--------------------------------------------------------------------------------------------------");
-            str.AppendLine(String.Concat ("DATE: " , System.DateTime.Now.ToString()));
-            str.AppendLine();
-            str.AppendLine(msg);
-            
-            str.AppendLine("--------------------------------------------------------------------------------------------------");
-            
-            FileFunctions.SaveTextFile(filename,str.ToString(),true);
+                StringBuilder str = new StringBuilder();
+                str.AppendLine("--------------------------------------------------------------------------------------------------");
+                str.AppendLine(String.Concat("DATE: ", System.DateTime.Now.ToString()));
+                str.AppendLine();
+                str.AppendLine(msg);
+
+                str.AppendLine("--------------------------------------------------------------------------------------------------");
+
+                FileFunctions.SaveTextFile(filename, str.ToString(), true);
+            }
+
+            Console.WriteLine(msg);
         }
     }
 }
