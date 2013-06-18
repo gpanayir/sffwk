@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Linq;
 using Fwk.Bases;
 using System.Xml.Serialization;
 
@@ -26,12 +27,11 @@ namespace Fwk.DataBase.DataEntities
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pSPParameterName"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public SPParameter GetSPParameter(string pSPParameterName)
+        public SPParameter GetSPParameter(string name)
         {
-            return this.Find(new SearchEntityArg("Name", pSPParameterName));
-        
+            return this.Where(p => p.Name.Equals(name)).FirstOrDefault<SPParameter>();
         }
         
     }

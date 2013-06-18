@@ -1,4 +1,6 @@
 using System;
+using System.Data;
+using System.Linq;
 using Fwk.Bases;
 using System.Xml.Serialization;
 
@@ -25,11 +27,11 @@ namespace Fwk.DataBase.DataEntities
         /// <summary>
         /// Obtiene una columna determinada .- 
         /// </summary>
-        /// <param name="pColumnName">Nombre de columna  a buscar.-</param>
+        /// <param name="name">Nombre de columna  a buscar.-</param>
         /// <returns>Column, retorna null si no la encuentra.-</returns>
-        public Column GetColumn(string pColumnName)
+        public Column GetColumn(string name)
         {
-            return this.Find(new SearchEntityArg("Name", pColumnName));
+            return this.Where(p => p.Name.Equals(name)).FirstOrDefault<Column>();
         }
        
     }

@@ -1,4 +1,6 @@
 using System;
+using System.Data;
+using System.Linq;
 using Fwk.Bases;
 using System.Xml.Serialization;
 
@@ -24,14 +26,11 @@ namespace Fwk.DataBase.DataEntities
         /// <summary>
         /// Obtiene un Index de la coleccion de Indexes.-
         /// </summary>
-        /// <param name="pIndiceName">Nombre del indice.-</param>
+        /// <param name="name">Nombre del indice.-</param>
         /// <returns>Index</returns>
-        public Index GetIndex(string pIndiceName)
+        public Index GetIndex(string name)
         {
-
-            return this.Find(new SearchEntityArg("Name", pIndiceName));
-            
-
+          return this.Where(p => p.Name.Equals(name)).FirstOrDefault<Index>();
         }
     }
 

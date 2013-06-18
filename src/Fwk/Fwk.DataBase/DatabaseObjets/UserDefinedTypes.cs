@@ -1,4 +1,6 @@
 using System;
+using System.Data;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Fwk.Bases;
@@ -20,12 +22,11 @@ namespace Fwk.DataBase.DataEntities
         /// <summary>
         /// Obtiene una UserDefinedType de la coleccion de UserDefinedTypes .-
         /// </summary>
-        /// <param name="pUserDefinedTypeName">Nombre del tipo definido por el usuario-</param>
+        /// <param name="name">Nombre del tipo definido por el usuario-</param>
         /// <returns>UserDefinedType</returns>
-        public UserDefinedType GetUserDefinedType(string pUserDefinedTypeName)
+        public UserDefinedType GetUserDefinedType(string name)
         {
-            return this.Find(new SearchEntityArg("Name", pUserDefinedTypeName,true));
-
+            return this.Where(p => p.Name.Equals(name)).FirstOrDefault<UserDefinedType>();
         }
     }
 

@@ -1,4 +1,6 @@
 using System;
+using System.Data;
+using System.Linq;
 using Fwk.Bases;
 using System.Xml.Serialization;
 
@@ -25,13 +27,11 @@ namespace Fwk.DataBase.DataEntities
         /// <summary>
         /// Obtienen una tabla determinada en la coleccion de tablas.-
         /// </summary>
-        /// <param name="pTableName">Nombre de la tabla.-</param>
+        /// <param name="name">Nombre de la tabla.-</param>
         /// <returns></returns>
-        public Table GetTable(string pTableName)
+        public Table GetTable(string name)
         {
-            return this.Find(new SearchEntityArg("Name", pTableName, true));
-      
-
+            return this.Where(p => p.Name.Equals(name)).FirstOrDefault<Table>();
         }
 
         /// <summary>

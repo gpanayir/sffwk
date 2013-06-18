@@ -1,4 +1,6 @@
 using System;
+using System.Data;
+using System.Linq;
 using Fwk.Bases;
 using System.Xml.Serialization;
 
@@ -27,13 +29,11 @@ namespace Fwk.DataBase.DataEntities
         /// <summary>
         /// Obtienen el StoreProcedure de la coleccion StoreProcedures.-
         /// </summary>
-        /// <param name="pStoreProcedureName"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public StoreProcedure GetStoreProcedure(string pStoreProcedureName)
+        public StoreProcedure GetStoreProcedure(string name)
         {
-            return this.Find(new SearchEntityArg("Name", pStoreProcedureName));
-       
-
+            return this.Where(p => p.Name.Equals(name)).FirstOrDefault<StoreProcedure>();
         }
         /// <summary>
         /// Indica si StoreProcedure se cargo

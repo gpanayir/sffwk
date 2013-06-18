@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -329,7 +330,7 @@ namespace Fwk.Bases.Test
         private void button11_Click(object sender, EventArgs e)
         {
 
-            ClienteBE c = m_ClienteCollectionBE.Find(new SearchEntityArg("Apellido", "pelsoft",true));
+            ClienteBE c = m_ClienteCollectionBE.Where(p => p.Apellido.Equals( "pelsoft")).FirstOrDefault();
         }
 
         private void button12_Click(object sender, EventArgs e)

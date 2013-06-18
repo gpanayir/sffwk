@@ -1,4 +1,6 @@
 using System;
+using System.Data;
+using System.Linq;
 using Fwk.Bases;
 using System.Xml.Serialization;
 
@@ -18,18 +20,17 @@ namespace Fwk.DataBase.DataEntities
         /// <returns>Keys</returns>
         public static Keys GetSPParameterFromXml(String pXml)
         {
-            return Keys.GetFromXml<Keys>(pXml); 
+            return Keys.GetFromXml<Keys>(pXml);
         }
 
         /// <summary>
         /// Obtiene una Key de la coleccion de Keys.-
         /// </summary>
-        /// <param name="pKeyName">Nombre de la Index.-</param>
+        /// <param name="name">Nombre de la Index.-</param>
         /// <returns>Key</returns>
-        public Key GetKey(string pKeyName)
+        public Key GetKey(string name)
         {
-            return this.Find(new SearchEntityArg("Name", pKeyName));
-
+            return this.Where(p => p.Name.Equals(name)).FirstOrDefault<Key>();
         }
     }
 
