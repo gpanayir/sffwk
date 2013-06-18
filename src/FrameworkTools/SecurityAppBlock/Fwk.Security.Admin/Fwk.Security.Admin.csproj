@@ -173,7 +173,6 @@
       <DependentUpon>frmRolesFind.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\frmRulesAdmin.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\frmRulesAdmin.Designer.cs">
       <DependentUpon>frmRulesAdmin.cs</DependentUpon>
