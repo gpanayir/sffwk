@@ -69,7 +69,7 @@ namespace Fwk.Security.ActiveDirectory.Test
             this.lstBoxRoles = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.btnAsignarRoles = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.fwkMessageViewInfo = new Fwk.Bases.FrontEnd.Controls.FwkMessageViewComponent(this.components);
+            this.fwkMessageViewInfo = new FwkMessageViewComponent(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
             this.groupBox3.SuspendLayout();

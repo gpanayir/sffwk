@@ -26,20 +26,6 @@
     </UpgradeBackupLocation>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>http://localhost/CodeGenerator/</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
-    <UpdateEnabled>true</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -149,6 +135,7 @@
       <DependentUpon>ConnectionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Bases\FrmBase.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Bases\FrmBase.Designer.cs">
       <DependentUpon>FrmBase.cs</DependentUpon>
@@ -170,6 +157,7 @@
     <Compile Include="DACGenController.cs" />
     <Compile Include="No_Used\DataEntityGenEngine.cs" />
     <Compile Include="Forms\DACClasses\frm_DACGenerator.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\DACClasses\frm_DACGenerator.Designer.cs">
       <DependentUpon>frm_DACGenerator.cs</DependentUpon>
@@ -180,6 +168,7 @@
       <DependentUpon>frm_DataEntityGenerator.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmTemplateSetting.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmTemplateSetting.Designer.cs">
       <DependentUpon>FrmTemplateSetting.cs</DependentUpon>
@@ -424,12 +413,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)*.*"  "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*.pdb" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*vshost*.*" &gt;&gt; nul
-del "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*.manifest" &gt;&gt; nul 
-del "$(ProjectDir)..\..\..\..\Entregas\Fwk.CodeGenerator\*.application" &gt;&gt; nul 
-
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

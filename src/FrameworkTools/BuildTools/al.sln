@@ -1,15 +1,19 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigurationApp", "ConfigurationApp", "{34F08673-7A2C-4EB9-B62C-BC6AC218CAAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SecurityAppBlock", "SecurityAppBlock", "{ADC2348D-3D6E-44D6-9F8E-C388F8A2F9A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceManagement", "ServiceManagement", "{5BCC4A07-FA9C-4696-AE44-90F32100F096}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppChecker", "AppChecker", "{EED75AEE-318A-4848-983F-22B18F1ED59F}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppChecker", "..\AppChecker\AppChecker\AppChecker.csproj", "{1D59CBBE-7F97-4E8B-AEF0-FF5680A60EB9}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TextToStringBuilder", "..\TextToStringBuilder\TextToStringBuilder.vbproj", "{A244EACB-56D1-4712-9765-E0C23AA5DEB8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConfigurationApp", "ConfigurationApp", "{34F08673-7A2C-4EB9-B62C-BC6AC218CAAD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationApp", "..\ConfigurationApp\ConfigurationApp\ConfigurationApp.csproj", "{D0CE8EE7-A49D-415F-A631-49846851EDA5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SecurityAppBlock", "SecurityAppBlock", "{ADC2348D-3D6E-44D6-9F8E-C388F8A2F9A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security.ActiveDirectory.Test", "..\SecurityAppBlock\Fwk.Security.ActiveDirectory.Test\Fwk.Security.ActiveDirectory.Test.csproj", "{F34E7964-2942-4129-9236-4F0B1A4F953E}"
 EndProject
@@ -27,11 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGeneratorDataModel", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security", "..\..\Fwk\Fwk.Security\Fwk.Security.csproj", "{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceManagement", "ServiceManagement", "{5BCC4A07-FA9C-4696-AE44-90F32100F096}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.ServiceManagement.Tools.Win32", "..\ServiceManagement\Fwk.ServiceManagement.Tools.Win32\Fwk.ServiceManagement.Tools.Win32.csproj", "{35C67E35-70D2-4AF0-A937-977CCFAB4346}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppChecker", "AppChecker", "{EED75AEE-318A-4848-983F-22B18F1ED59F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppChecker.core", "..\AppChecker\AppChecker.core\AppChecker.core.csproj", "{94CDACBF-864F-4B83-AB95-E20B1F9A14AC}"
 EndProject
@@ -52,7 +52,6 @@ Global
 		{A244EACB-56D1-4712-9765-E0C23AA5DEB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A244EACB-56D1-4712-9765-E0C23AA5DEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A244EACB-56D1-4712-9765-E0C23AA5DEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A244EACB-56D1-4712-9765-E0C23AA5DEB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D0CE8EE7-A49D-415F-A631-49846851EDA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D0CE8EE7-A49D-415F-A631-49846851EDA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0CE8EE7-A49D-415F-A631-49846851EDA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
