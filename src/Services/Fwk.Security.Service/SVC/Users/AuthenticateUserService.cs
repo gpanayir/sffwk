@@ -59,7 +59,7 @@ namespace Fwk.Security.SVC
             #region Autenticacion con FwkMembership
             if (pServiceRequest.BusinessData.AuthenticationMode == AuthenticationModeEnum.Mixed)
             {
-                //utiliza autenticación mixta. Valida contra el usuario de bigbang
+                //utiliza autenticación mixta. Valida contra el usuario de pelsoft
                wUserBC.AuthenticateUser(pServiceRequest.BusinessData.UserName,
                                         pServiceRequest.BusinessData.Password, 
                                         out wUser);
