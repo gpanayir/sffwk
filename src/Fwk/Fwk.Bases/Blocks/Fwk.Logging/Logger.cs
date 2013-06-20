@@ -120,9 +120,8 @@ namespace Fwk.Logging
         /// <param name="pUserName">Nombre usuario.</param>
         ///  <param name="pMachine">Nombre usuario.</param>
         public void Audit(string pSource, string pText, string pUserName, String pMachine)
-        {
-            // Escribe el log.
-            WriteLog(EventType.Audit, pSource, pText);
+       {
+
             // Crea un nuevo Event.
             Event wEvent = new Event( EventType.Audit   , pSource, pText);
             wEvent.User = pUserName;

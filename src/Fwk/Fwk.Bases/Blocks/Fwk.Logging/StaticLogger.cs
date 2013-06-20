@@ -69,24 +69,7 @@ namespace Fwk.Logging
             WriteLogNoConfig(targetType, eventLog, fullFileName, cnnStringName);
         }
 
-        /// <summary>
-        ///  Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
-        /// </summary>
-        /// <param name="targetType">Objetivo de log.</param>
-        /// <param name="eventType">Objetivo de log.</param>
-        /// <param name="pSource">Origen del evento.</param>
-        /// <param name="pText">Mensaje descriptivo del evento.</param>
-        /// <param name="userName">Nombre usuario.</param>
-        ///  <param name="machine">Nombre pc.</param>    
-        //public static void Log(TargetType targetType, EventType eventType, string pSource, string pText, string userName, string machine)
-        //{
-
-        //    Event wEvent = new Event(eventType, pSource, pText);
-        //    wEvent.UserLoginName = userName;
-        //    wEvent.Machine = machine;
-        //    WriteLogNoConfig(targetType, wEvent, string.Empty, string.Empty);
-
-        //}
+       
 
 
 
@@ -112,8 +95,7 @@ namespace Fwk.Logging
             Target wTarget = GetTargetByRule(wRule, path, fileNamePrefix);
             wTarget.Write(ev);
 
-            wRule = null;
-            ev = null;
+       
         }
 
         /// <summary>
