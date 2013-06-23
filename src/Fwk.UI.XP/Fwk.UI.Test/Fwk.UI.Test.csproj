@@ -96,13 +96,11 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\StaticLibs\Fwk.Bases.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Fwk.Bases">
+      <HintPath>..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Security, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\StaticLibs\Fwk.Security.dll</HintPath>
+    <Reference Include="Fwk.Security">
+      <HintPath>..\..\Libraries\Framework\Fwk.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>

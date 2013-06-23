@@ -86,13 +86,11 @@
     <Reference Include="DevExpress.XtraTreeList.v11.1, Version=11.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\StaticLibs\Fwk.Bases.dll</HintPath>
+    <Reference Include="Fwk.Bases">
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Security, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\StaticLibs\Fwk.Security.dll</HintPath>
+    <Reference Include="Fwk.Security">
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Security.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
