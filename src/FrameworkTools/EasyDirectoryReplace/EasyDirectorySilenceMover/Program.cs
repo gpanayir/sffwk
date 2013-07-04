@@ -104,21 +104,33 @@ namespace EasyDirectorySilenceMover
 
         void Copy(DirectoryInfo dirSource, String destinationRoot)
         {
+            try
+            {
             Log("copiando dir : " + dirSource.FullName, false);
             if (Directory.Exists(destinationRoot) == false)
                 Directory.CreateDirectory(destinationRoot);
-            FileInfo[] wFiles = dirSource.GetFiles("*", SearchOption.TopDirectoryOnly);
+           
+                FileInfo[] wFiles = dirSource.GetFiles("*", SearchOption.TopDirectoryOnly);
 
-            foreach (FileInfo f in wFiles)
-            {
-                f.CopyTo(Path.Combine(destinationRoot, f.Name), true);
+                foreach (FileInfo f in wFiles)
+                {
+                    f.CopyTo(Path.Combine(destinationRoot, f.Name), true);
+                }
+                String[] wSubDirectories = Directory.GetDirectories(dirSource.FullName, "*", SearchOption.TopDirectoryOnly);
+                foreach (string dir in wSubDirectories)
+                {
+                    DirectoryInfo subDirSource = new DirectoryInfo(dir);
+                    String subDestination = Path.Combine(destinationRoot, subDirSource.Name);
+                    Copy(subDirSource, subDestination);
+                }
             }
-            String[] wSubDirectories = Directory.GetDirectories(dirSource.FullName, "*", SearchOption.TopDirectoryOnly);
-            foreach (string dir in wSubDirectories)
+            catch (System.UnauthorizedAccessException ex)
             {
-                DirectoryInfo subDirSource = new DirectoryInfo(dir);
-                String subDestination = Path.Combine(destinationRoot, subDirSource.Name);
-                Copy(subDirSource, subDestination);
+                Log(ex.Message, false);
+            }
+            catch (System.Exception e3x)
+            {
+                Log(e3x.Message, false);
             }
         }
 
@@ -126,11 +138,12 @@ namespace EasyDirectorySilenceMover
 
         void RemoveInExistents(DirectoryInfo dirSource, DirectoryInfo dirTo)
         {
+            try{
             string root = GetRoot(dirSource, dirTo);
 
             if (Directory.Exists(root) == false)
             {
-                Directory.Delete(dirTo.FullName);
+                Directory.Delete(dirTo.FullName,true);
                 return;
             }
 
@@ -162,6 +175,11 @@ namespace EasyDirectorySilenceMover
                  {
                      RemoveInExistents(dirSource, subDirTo);
                  }
+            }
+             }
+            catch (Exception ex)
+            {
+                Log(ex.Message, false);
             }
         }
         void RemoveRecursive(DirectoryInfo subDirTo )
