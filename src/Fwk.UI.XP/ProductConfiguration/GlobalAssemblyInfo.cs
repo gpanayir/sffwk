@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 
 [assembly: AssemblyCompany("Fwk Pelsoft .")]
-[assembly: AssemblyProduct(".: Fwk libraries - :.")]
+[assembly: AssemblyProduct(".: Fwk UI libraries for Windows XP- :.")]
 [assembly: AssemblyCopyright("Copyright  Fwk  2010")]
 
 
@@ -22,5 +22,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("10.0.0.0")]
-[assembly: AssemblyFileVersion("10.2.0.2")]
+[assembly: AssemblyVersion("10.3.0.7")]
+[assembly: AssemblyFileVersion("10.3.0.7")]
