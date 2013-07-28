@@ -100,7 +100,10 @@ namespace Fwk.Logging
             // Escribe el log.
             WriteLog(EventType.Warning, pSource, pText);
         }
-
+        public void Warning(string providerName, string pSource, string pText)
+        {
+            WriteLog(providerName,EventType.Warning, pSource, pText);
+        }
         /// <summary>
         /// Escribe el log de un evento de tipo 'Error'.
         /// </summary>
@@ -109,7 +112,11 @@ namespace Fwk.Logging
         public void Error(string pSource, string pText)
         {
             // Escribe el log.
-            WriteLog(EventType.Error, pSource, pText);
+            Error(String.Empty,  pSource, pText);
+        }
+        public void Error(string providerName, string pSource, string pText)
+        {
+            WriteLog(providerName, EventType.Warning, pSource, pText);
         }
 
         /// <summary>
@@ -120,28 +127,69 @@ namespace Fwk.Logging
         /// <param name="pUserName">Nombre usuario.</param>
         ///  <param name="pMachine">Nombre usuario.</param>
         public void Audit(string pSource, string pText, string pUserName, String pMachine)
-       {
-
+        {
+            Audit(String.Empty, pSource,pText,pUserName,pMachine);
+     
+        }
+        /// <summary>
+        /// Escribe el log de un evento de tipo 'audit'.
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <param name="pSource">Origen del evento.</param>
+        /// <param name="pText">Mensaje descriptivo del evento.</param>
+        /// <param name="pUserName">Nombre usuario.</param>
+        ///  <param name="pMachine">Nombre usuario.</param>
+        public void Audit(string providerName,string pSource, string pText, string pUserName, String pMachine)
+        {
+            // Escribe el log.
             // Crea un nuevo Event.
-            Event wEvent = new Event( EventType.Audit   , pSource, pText);
+            Event wEvent = new Event(EventType.Audit, pSource, pText);
             wEvent.User = pUserName;
             wEvent.Machine = pMachine;
-            WriteLog(wEvent);
-     
+            WriteLog(providerName, wEvent);
+
         }
         #endregion
 
         #region <private methods>
-        private void WriteLog(EventType pEventType, string pSource, string pText)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pEvent"></param>
+        private void WriteLog(Event pEvent)
+        {
+            WriteLog(String.Empty, pEvent);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <param name="pEventType"></param>
+        /// <param name="pSource"></param>
+        /// <param name="pText"></param>
+        private void WriteLog( EventType pEventType, string pSource, string pText)
+        {
+            WriteLog(String.Empty, pEventType,pSource,pText);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <param name="pEventType"></param>
+        /// <param name="pSource"></param>
+        /// <param name="pText"></param>
+        private void WriteLog(String providerName, EventType pEventType, string pSource, string pText)
         {
             // Crea un nuevo Event.
             Event wEvent = new Event(pEventType, pSource, pText);
             wEvent.AppId = appId;
             // Obtiene la Rule asociada al EventType.
-            RuleElement wRule = _LoggingSection.GetRuleByEventType(pEventType);
+            LogProviderElement wRule = _LoggingSection.GetProvider();
 
             // Escribe el log según la Rule.
-            Target wTarget = GetTargetByRule(wRule);
+            Target wTarget = GetTargetByProviderElement(wRule);
             wTarget.Write(wEvent);  
 
             // Limpieza.
@@ -151,34 +199,42 @@ namespace Fwk.Logging
         /// <summary>
         /// Escribe un log
         /// </summary>
+        /// <param name="providerName"></param>
         /// <param name="pEvent"></param>
-        private void WriteLog(Event pEvent)
+        private void WriteLog(string providerName,Event pEvent)
         {
-            // Obtiene la Rule asociada al EventType.
-            RuleElement wRule = _LoggingSection.GetRuleByEventType(pEvent.LogType);
+
+            // Obtiene el provider
+            LogProviderElement provider = _LoggingSection.GetProvider(providerName);
 
             // Escribe el log según la Rule.
-            Target wTarget = GetTargetByRule(wRule);
+            Target wTarget = GetTargetByProviderElement(provider);
             wTarget.Write(pEvent);
 
-            wRule = null;
-            pEvent = null;
+            //wRule = null;
+            //pEvent = null;
         }
-        private Target GetTargetByRule(RuleElement pRule)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerElement"></param>
+        /// <returns></returns>
+        private Target GetTargetByProviderElement(LogProviderElement providerElement)
         {
-            switch (pRule.Target)
+            switch (providerElement.Target)
             {
                
                 case TargetType.Database:
                     {
                         DatabaseTarget wDatabase = new DatabaseTarget();
-                        wDatabase.CnnStringName = pRule.CnnStringName;
+                        wDatabase.CnnStringName = providerElement.CnnStringName;
                         return wDatabase;
                     }
                 case TargetType.File:
                     {
                         FileTarget wFile = new FileTarget();
-                        wFile.FileName = pRule.FileName;
+                        wFile.FileName = providerElement.FileName;
                         return wFile;
                     }
                 case TargetType.WindowsEvent:
@@ -188,7 +244,7 @@ namespace Fwk.Logging
                 case TargetType.Xml:
                     {
                         XmlTarget wXml = new XmlTarget();
-                        wXml.FileName = pRule.FileName;
+                        wXml.FileName = providerElement.FileName;
                         return wXml;
                     }
                

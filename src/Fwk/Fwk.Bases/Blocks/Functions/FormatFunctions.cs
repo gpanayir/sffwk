@@ -250,7 +250,7 @@ namespace Fwk.HelperFunctions
             return strIn;
         }
         /// <summary>
-        /// Retorna un array de string sobre una propiedad de la clase en cuestion.-
+        /// Retorna un array de string sobre T.ToString() de la lista en cuestion.-
         /// Realiza Convert.ToString(t) de cada uno de los elementos de la lista tipo T;
         /// </summary>
         /// <typeparam name="T">Tipo del elemento en la lista</typeparam>

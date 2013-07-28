@@ -43,7 +43,7 @@ namespace Fwk.Logging.Targets
             if (XmlTarget.Logs == null) 
                 XmlTarget.Logs = OpenLogsFromFile();
             XmlTarget.Logs.Add(pEvent);
-
+            //TODO: Falta analisis para ejectuar el append
             Fwk.HelperFunctions.FileFunctions.SaveTextFile(this.FileName, XmlTarget.Logs.GetXml(), false);
           
         }

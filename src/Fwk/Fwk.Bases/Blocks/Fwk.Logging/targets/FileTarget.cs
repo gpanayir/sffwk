@@ -53,12 +53,6 @@ namespace Fwk.Logging.Targets
         {
             CheckOpenStreamWriter();
             Fwk.HelperFunctions.FileFunctions.SaveTextFile(this.FileName, pEvent.ToString(), true);
-            //StreamWriter wStreamWriter;
-            //wStreamWriter = OpenStreamWriter();
-            //wStreamWriter.WriteLine(pEvent.ToString());
-            //wStreamWriter.Flush();
-            //wStreamWriter.Close();
-            //wStreamWriter = null;
         }
 
         /// <summary>

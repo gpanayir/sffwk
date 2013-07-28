@@ -34,6 +34,15 @@ namespace Fwk.Logging
         #region Metodos para generar log usando AppSetting
 
         /// <summary>
+        ///  Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de Logueo</param>
+        /// <param name="eventType"></param>
+        public static void Log(String providerName, Event eventType)
+        {
+            WriteLog( providerName,eventType, string.Empty, string.Empty);
+        }
+        /// <summary>
         /// Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
         /// </summary>
         /// <param name="eventType"></param>
@@ -41,6 +50,20 @@ namespace Fwk.Logging
         {
             WriteLog(eventType, string.Empty, string.Empty);
         }
+
+
+        /// <summary>
+        /// Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de Logueo</param>
+        /// <param name="ev"></param>
+        /// <param name="path">Ruta donde se desea almacenar el log</param>
+        /// <param name="fileNamePrefix">prefijo (obcional) del archivo </param>
+        public static void Log(String providerName, Event ev, string path, string fileNamePrefix)
+        {
+            WriteLog(providerName,ev, path, fileNamePrefix);
+        }
+
         /// <summary>
         /// Escribe el log de un evento .. Este metodo utiliza la configuracion del appsetting
         /// </summary>
@@ -69,7 +92,6 @@ namespace Fwk.Logging
             WriteLogNoConfig(targetType, eventLog, fullFileName, cnnStringName);
         }
 
-       
 
 
 
@@ -78,7 +100,23 @@ namespace Fwk.Logging
         #endregion
         #region <private methods>
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de Logueo</param>
+        /// <param name="ev"></param>
+        /// <param name="path"></param>
+        /// <param name="fileNamePrefix"></param>
+        private static void WriteLog(String providerName, Event ev, string path, string fileNamePrefix)
+        {
+            // Obtiene la Rule asociada al EventType.
+            LogProviderElement provider = _LoggingSection.GetProvider(providerName);
 
+            // Escribe el log según la Rule.
+            Target wTarget = GetTargetByRule(provider, path, fileNamePrefix);
+            wTarget.Write(ev);
+
+        }
 
         /// <summary>
         /// Escrive un log.- Utiliza AppSetting. Es desir la informaciòn del archivo de configuración
@@ -88,14 +126,8 @@ namespace Fwk.Logging
         /// <param name="fileNamePrefix">Prefijo del nombre de archivo</param>
         private static void WriteLog(Event ev, string path, string fileNamePrefix)
         {
-            // Obtiene la Rule asociada al EventType.
-            RuleElement wRule = _LoggingSection.GetRuleByEventType(ev.LogType);
-
-            // Escribe el log según la Rule.
-            Target wTarget = GetTargetByRule(wRule, path, fileNamePrefix);
-            wTarget.Write(ev);
-
-       
+            WriteLog(String.Empty,ev,path,fileNamePrefix);
+      
         }
 
         /// <summary>
@@ -132,7 +164,7 @@ namespace Fwk.Logging
         /// <param name="path"></param>
         /// <param name="fileNamePrefix"></param>
         /// <returns></returns>
-        private static Target GetTargetByRule(RuleElement rule, string path, string fileNamePrefix)
+        private static Target GetTargetByRule(LogProviderElement rule, string path, string fileNamePrefix)
         {
             ITarget target = null;
             switch (rule.Target)

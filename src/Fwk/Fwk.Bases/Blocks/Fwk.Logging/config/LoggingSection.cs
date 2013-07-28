@@ -15,7 +15,7 @@ namespace Fwk.ConfigSection
     public class LoggingSection : ConfigurationSection
     {
         #region <private members>
-        RuleElement _RuleElement;
+        LogProviderElement _LogProviderElement;
         #endregion
 
         #region <constructor>
@@ -24,54 +24,129 @@ namespace Fwk.ConfigSection
         /// </summary>
         public LoggingSection()
         {
-            _RuleElement = new RuleElement();
+            _LogProviderElement = new LogProviderElement();
         }
         #endregion
 
         #region <public properties>
-        /// <summary>
-        /// Colección de reglas de logueo. 
-        /// </summary>
-        [ConfigurationProperty("Rules", IsDefaultCollection = false)]
-        public RuleElementCollection Rules
+
+        [ConfigurationProperty("defaultProviderName", DefaultValue = "defaultProvider")]
+        public string DefaultProviderName
         {
             get
             {
-                RuleElementCollection wRuleElementCollection = (RuleElementCollection)base["Rules"];
+                return (string)base["defaultProviderName"];
+
+            }
+            set
+            {
+                base["defaultProviderName"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Colección de reglas de logueo. 
+        /// </summary>
+        [ConfigurationProperty("Providers", IsDefaultCollection = false)]
+        public LogProviderCollection Providers
+        {
+            get
+            {
+                LogProviderCollection wRuleElementCollection = (LogProviderCollection)base["Providers"];
                 return wRuleElementCollection;
             }
         }
         #endregion
 
         #region <public methods>
+        public LogProviderElement GetProvider()
+        {
+            return GetProvider(this.DefaultProviderName);
+        }
+        /// <summary>
+        /// Retorna un proveedor determinado
+        /// </summary>
+        /// <param name="name">nombre del proveedor configurado.</param>
+        /// <returns>Provider (Rule).</returns>
+        public LogProviderElement GetProvider(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return this.DefaultProvider;
+            foreach (LogProviderElement wElement in this.Providers)
+            {
+                if (name.CompareTo(wElement.Name) == 0)
+                {
+                    return wElement;
+                }
+
+            }
+            return null;
+        }
+
+        LogProviderElement _DefaultProvider = null;
+
         /// <summary>
         /// Retorna la regla (Rule) que corresponde a determinado
         /// tipo de evento.
         /// </summary>
         /// <param name="pEventType">Tipo de evento.</param>
         /// <returns>Regla (Rule).</returns>
-        public RuleElement GetRuleByEventType(EventType pEventType)
-        {
-            RuleElement wRule = null;
-            foreach (RuleElement r in this.Rules)
-            {
-                if ( r.Events.Contains<EventType>(pEventType))
-                wRule = r;
-               
-            }
-            if(wRule  ==null)
-            {
+        //public LogProviderElement GetRuleByEventType(string providerName)
+        //{
+        //    LogProviderElement wRule = null;
+        //    foreach (LogProviderElement r in this.Providers)
+        //    {
+        //        if (r.Events.Contains<EventType>(pEventType))
+        //            wRule = r;
 
-                TechnicalException te = new TechnicalException(String.Format("No se encuentra configurado el evento {0} en la seccion FwkLogging.", pEventType.ToString()));
-                te.Assembly = "Fwk.Logging";
-                te.Class = "LoginSection";
-                te.ErrorId = "9001";
-                te.Namespace = "Fwk.Logging";
-                te.UserName = Environment.UserName;
-                te.Machine = Environment.MachineName;
-                throw te;
+        //    }
+        //    if (wRule == null)
+        //    {
+
+        //        TechnicalException te = new TechnicalException(String.Format("No se encuentra configurado el evento {0} en la seccion FwkLogging.", pEventType.ToString()));
+        //        te.Assembly = "Fwk.Logging";
+        //        te.Class = "LoginSection";
+        //        te.ErrorId = "9001";
+        //        te.Namespace = "Fwk.Logging";
+        //        te.UserName = Environment.UserName;
+        //        te.Machine = Environment.MachineName;
+        //        throw te;
+        //    }
+        //    return wRule;
+        //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public LogProviderElement DefaultProvider
+        {
+            get
+            {
+                string s = (string)base["defaultProviderName"];
+                if (string.IsNullOrEmpty((string)base["defaultProviderName"]))
+                {
+                    //base["defaultProviderName"]=  this.Providers[0].Name;
+                    if (this.Providers.Count != 0)
+                        _DefaultProvider = this.Providers[0];
+                    else
+                    {
+                        TechnicalException te = new TechnicalException(String.Format("No se encuentra configurado ningun Provider en la seccion FwkLogging."));
+                        te.Assembly = "Fwk.Logging";
+                        te.Class = "LogginSection";
+                        te.ErrorId = "9001";
+                        te.Namespace = "Fwk.Logging";
+                        te.UserName = Environment.UserName;
+                        te.Machine = Environment.MachineName;
+                        throw te;
+                    }
+                }
+
+
+                if (_DefaultProvider == null)
+                    _DefaultProvider = this.GetProvider((string)base["defaultProviderName"]);
+
+                return _DefaultProvider;
             }
-            return wRule;
         }
         #endregion
     }

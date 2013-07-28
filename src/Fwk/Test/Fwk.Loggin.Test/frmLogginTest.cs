@@ -54,7 +54,7 @@ namespace Fwk.Logging.Test
         private void button2_Click(object sender, EventArgs e)
         {
 
-            Events _Logs = Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(_LoggingSection.GetRuleByEventType(EventType.Error).FileName));
+            Events _Logs = Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(_LoggingSection.GetProvider().FileName));
             
             loadingResultsTextBox.Text = _Logs.GetXml();
 
@@ -83,7 +83,7 @@ namespace Fwk.Logging.Test
         {
             try
             {
-                Events _Logs = Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(_LoggingSection.GetRuleByEventType(EventType.Warning).FileName));
+                Events _Logs = Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(_LoggingSection.GetProvider().FileName));
 
                 txtNoStaticResult.Text = _Logs.GetXml();
             }
@@ -100,7 +100,7 @@ namespace Fwk.Logging.Test
 
                 Events _Logs = Fwk.Logging.Events.GetFromXml<Events>
                     (Fwk.HelperFunctions.FileFunctions.OpenTextFile
-                    (_LoggingSection.GetRuleByEventType(EventType.Audit).FileName));
+                    (_LoggingSection.GetProvider().FileName));
 
                 txtNoStaticResult.Text = _Logs.GetXml();
             }
@@ -117,7 +117,7 @@ namespace Fwk.Logging.Test
                 Event ev = new Event();
                 ev.Message.Text = "test login" + i.ToString() + "aaaaaaaaaaaaaaaa";
                 ev.LogType = EventType.Error;
-                Fwk.Logging.StaticLogger.Log(ev);
+                Fwk.Logging.StaticLogger.Log("P4",ev);
 
             }
 
@@ -128,7 +128,7 @@ namespace Fwk.Logging.Test
             try
             {
 
-                ITarget target = GetTarget(EventType.Warning);
+                ITarget target = GetTarget(String.Empty);
                 //string filename = string.Concat(txtFilePrefix.Text, _LoggingSection.GetRuleByEventType(EventType.Warning).FileName);
                 //filename = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
                 //Events _Logs = Fwk.Logging.Events.GetFromXml<Events>(Fwk.HelperFunctions.FileFunctions.OpenTextFile(filename));
@@ -144,23 +144,23 @@ namespace Fwk.Logging.Test
             }
 
         }
-        ITarget GetTarget(EventType type)
+        ITarget GetTarget(string providerName)
         {
             ITarget target = null;
-            RuleElement rule = _LoggingSection.GetRuleByEventType(type);
-            switch (rule.Target)
+            LogProviderElement provider = _LoggingSection.GetProvider(providerName);
+            switch (provider.Target)
             {
                 case TargetType.Database:
                     {
                         target = new DatabaseTarget();
-                        ((DatabaseTarget)target).CnnStringName = rule.CnnStringName;
+                        ((DatabaseTarget)target).CnnStringName = provider.CnnStringName;
 
                         break;
                     }
                 case TargetType.Xml:
                     {
                         target = new XmlTarget();
-                        ((XmlTarget)target).FileName = rule.FileName;
+                        ((XmlTarget)target).FileName = provider.FileName;
                         break;
                     }
             }
@@ -181,10 +181,10 @@ namespace Fwk.Logging.Test
             try
             {
                 _loger.Information("Fwk Loggin test", "Mensaje de prueba para Fwk Loggin");
-                System.Configuration.ConnectionStringSettings cnn = System.Configuration.ConfigurationManager.ConnectionStrings[_LoggingSection.GetRuleByEventType(EventType.Information).CnnStringName];
+                System.Configuration.ConnectionStringSettings cnn = System.Configuration.ConfigurationManager.ConnectionStrings[_LoggingSection.GetProvider().CnnStringName];
                 if(cnn == null)
                 {
-                    throw new Exception("no existe la ConnectionString " + _LoggingSection.GetRuleByEventType(EventType.Information).CnnStringName + " configurada en el config file para EventType.Information");
+                    throw new Exception("no existe la ConnectionString " + _LoggingSection.GetProvider().CnnStringName + " configurada en el config file para EventType.Information");
                 }
                 ITarget t = DatabaseTarget.TargetFactory(TargetType.Database, cnn.Name);
                 _loger.Information("test logging", "Informe de error");
@@ -210,7 +210,7 @@ namespace Fwk.Logging.Test
         private void btnClearWarning_Click(object sender, EventArgs e)
         {
             //TRaigo el target de warning por medio del TargetFactory.. Uso como clave _LoggingSection.GetRuleByEventType(EventType.Warning).FileName 
-            ITarget t = XmlTarget.TargetFactory(TargetType.Xml, _LoggingSection.GetRuleByEventType(EventType.Warning).FileName);
+            ITarget t = XmlTarget.TargetFactory(TargetType.Xml, _LoggingSection.GetProvider().FileName);
             List<string> lst = new List<string>();
             
 

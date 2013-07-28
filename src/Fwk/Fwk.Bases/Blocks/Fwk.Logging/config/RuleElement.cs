@@ -14,14 +14,14 @@ namespace Fwk.ConfigSection
     /// </summary>
     /// <date>2006/09/02</date>
     /// <author>moviedo</author>
-    public class RuleElement : ConfigurationElement
+    public class LogProviderElement : ConfigurationElement
     {
       
         #region <constructor>
         /// <summary>
         /// Constructor de RuleElement.
         /// </summary>
-        public RuleElement() { }
+        public LogProviderElement() { }
         #endregion
 
         #region <public properties>
@@ -42,66 +42,66 @@ namespace Fwk.ConfigSection
         /// Conjunto de tipos de eventos sobre los cuales aplica
         /// la regla. Deben ser escritos separados por coma.
         /// </summary>
-        [ConfigurationProperty("events", IsRequired = true, IsKey = false), 
-         StringValidator(InvalidCharacters = @" ~!@#$%^&*()[]{}/;'""|\")]
-        public  string EventsString
-        {
-            get
-            {
-                return (string)this["events"];
-            }
-        }
+        //[ConfigurationProperty("events", IsRequired = true, IsKey = false), 
+        // StringValidator(InvalidCharacters = @" ~!@#$%^&*()[]{}/;'""|\")]
+        //public  string EventsString
+        //{
+        //    get
+        //    {
+        //        return (string)this["events"];
+        //    }
+        //}
 
         /// <summary>
         /// Lista de tipos de eventos sobre los cuales aplica
         /// la regla.
         /// </summary>
-        public List<EventType> Events
-        {
-            get
-            {
-                string[] wEventsString = EventsString.Split(',');
-                List<EventType> wEvents = new List<EventType>();
-                foreach (string wSingleEvent in wEventsString)
-                {
-                    switch (wSingleEvent)
-                    {
+        //public List<EventType> Events
+        //{
+        //    get
+        //    {
+        //        string[] wEventsString = EventsString.Split(',');
+        //        List<EventType> wEvents = new List<EventType>();
+        //        foreach (string wSingleEvent in wEventsString)
+        //        {
+        //            switch (wSingleEvent)
+        //            {
                     
-                        case "Error":
-                            {
-                                wEvents.Add(EventType.Error);
-                                break;
-                            }
-                        case "Information":
-                            {
-                                wEvents.Add(EventType.Information);
-                                break;
-                            }
-                        case "Warning":
-                            {
-                                wEvents.Add(EventType.Warning);
-                                break;
-                            }
-                        case "Audit":
-                            {
-                                wEvents.Add(EventType.Audit);
-                                break;
-                            }
-                    }
-                }
-                if (wEvents.Count > 0)
-                {
-                    return wEvents;
-                }
-                return null;
-            }
-        }
+        //                case "Error":
+        //                    {
+        //                        wEvents.Add(EventType.Error);
+        //                        break;
+        //                    }
+        //                case "Information":
+        //                    {
+        //                        wEvents.Add(EventType.Information);
+        //                        break;
+        //                    }
+        //                case "Warning":
+        //                    {
+        //                        wEvents.Add(EventType.Warning);
+        //                        break;
+        //                    }
+        //                case "Audit":
+        //                    {
+        //                        wEvents.Add(EventType.Audit);
+        //                        break;
+        //                    }
+        //            }
+        //        }
+        //        if (wEvents.Count > 0)
+        //        {
+        //            return wEvents;
+        //        }
+        //        return null;
+        //    }
+        //}
 
         /// <summary>
         /// Cadena de texto con el destino o tipo de salida sobre la cual será escrito el log 
         /// del evento. Puede ser File, Xml, Database, WindowEvent o Console.
         /// </summary>
-        [ConfigurationProperty("target", IsRequired = true, IsKey = false), 
+        [ConfigurationProperty("target", IsRequired = true, IsKey = false),
          StringValidator(InvalidCharacters = @" ~!@#$%^&*()[]{}/;'""|\")]
         public string TargetString
         {

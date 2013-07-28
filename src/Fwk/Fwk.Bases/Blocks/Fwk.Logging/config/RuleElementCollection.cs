@@ -11,13 +11,13 @@ namespace Fwk.ConfigSection
     /// </summary>
     /// <date>2006/09/02</date>
     /// <author>moviedo</author>
-    public class RuleElementCollection : ConfigurationElementCollection
+    public class LogProviderCollection : ConfigurationElementCollection
     {
         #region <constructor>
         /// <summary>
         /// Constructor de RuleElementCollection.
         /// </summary>
-        public RuleElementCollection(){}
+        public LogProviderCollection(){}
         #endregion
 
         #region <protected overrides>
@@ -27,7 +27,7 @@ namespace Fwk.ConfigSection
         /// <returns>ConfigurationElement.</returns>
         protected override ConfigurationElement CreateNewElement()
         {
-            return new RuleElement();
+            return new LogProviderElement();
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Fwk.ConfigSection
         /// <returns>RuleElement.</returns>
         protected override Object GetElementKey(ConfigurationElement element)
         {
-            return ((RuleElement)element).Name;
+            return ((LogProviderElement)element).Name;
         }
         #endregion
 
@@ -57,11 +57,11 @@ namespace Fwk.ConfigSection
         /// </summary>
         /// <param name="pIndex">índice de la regla de logueo que se desea obtener.</param>
         /// <returns>Regla de logueo.</returns>
-        public RuleElement this[int pIndex]
+        public LogProviderElement this[int pIndex]
         {
             get
             {
-                return (RuleElement)BaseGet(pIndex);
+                return (LogProviderElement)BaseGet(pIndex);
             }
         }
         #endregion
@@ -72,7 +72,7 @@ namespace Fwk.ConfigSection
         /// </summary>
         /// <param name="pRuleElement">Regla de logueo de la cual se desea conocer su </param>
         /// <returns>índice de la regla de logueo.</returns>
-        public int IndexOf(RuleElement pRuleElement)
+        public int IndexOf(LogProviderElement pRuleElement)
         {
             return BaseIndexOf(pRuleElement);
         }
