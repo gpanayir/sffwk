@@ -84,7 +84,7 @@ namespace Fwk.UI.Controls
                 items.Clear();
                 Type enumType =
                     Fwk.HelperFunctions.ReflectionFunctions.CreateType(
-                        Fwk.UI.Common.HelperFunctions.Enumerations.GetDescription(_enumType), "Fwk.UI.Common");
+                        Fwk.UI.Common.HelperFunctions.Enumerations.GetDescription(_enumType), "Fwk.Bases");
 
                 items.AddEnum(enumType);
 
