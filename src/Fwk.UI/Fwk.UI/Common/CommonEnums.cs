@@ -121,13 +121,13 @@ namespace Fwk.UI.Common
         /// <summary>
         /// Tipos de Autenticación
         /// </summary>
-        [Description("Fwk.UI.Common.AuthenticationModeEnum")]
+        [Description("Fwk.Bases.AuthenticationModeEnum")]
         AuthenticationModeEnum = 100,
-        [Description("Fwk.UI.Common.DataOriginTypeEnum")]
+        [Description("Fwk.UI.DataOriginTypeEnum")]
         DataOriginTypeEnum = 200,
-        [Description("Fwk.UI.Common.FloorTypesEnum")]
+        [Description("Fwk.UI.FloorTypesEnum")]
         FloorTypesEnum = 300,
-        [Description("Fwk.UI.Common.TerminalIdentification")]
+        [Description("Fwk.UI.TerminalIdentification")]
         TerminalIdentification = 400
 
     }
