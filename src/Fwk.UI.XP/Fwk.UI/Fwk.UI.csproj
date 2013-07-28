@@ -924,6 +924,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)$(TargetName).*"  "$(ProjectDir)..\..\Libraries\Framework\$(TargetName).*"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetDir)$(TargetName).*"  "$(ProjectDir)..\..\Libraries\Framework\Fwk.UI.XP\$(TargetName).*"</PostBuildEvent>
   </PropertyGroup>
 </Project>
