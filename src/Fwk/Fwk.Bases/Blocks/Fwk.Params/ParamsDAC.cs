@@ -91,13 +91,13 @@ namespace Fwk.Params.Back
             {
                 using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
                 {
-                    var types = from s in dc.ParamTypes where
+                    var types = from s in dc.fwk_ParamTypes where
 
                                   (parentId.HasValue || s.ParentId.Equals(parentId))
                                         &&
                                            (enabled.HasValue || s.Enabled.Equals(enabled))
                                 select s;
-                    foreach (Fwk.ConfigData.ParamType tp in types.ToList<Fwk.ConfigData.ParamType>())
+                    foreach (Fwk.ConfigData.fwk_ParamType tp in types.ToList<Fwk.ConfigData.fwk_ParamType>())
                     { 
                         wBE = new ParamTypeBE();
 
