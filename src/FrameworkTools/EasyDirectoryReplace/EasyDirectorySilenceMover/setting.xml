@@ -1,7 +1,12 @@
 ﻿<ArrayOfReplacePattern>
   <ReplacePattern>
-    <From>c:\Users\moviedo\Documents\</From>
-    <To>\\pccecilia\back\pcmoira</To>
+    <From>d:\SourceTest\</From>
+    <To>d:\BackUpPrueva\</To>
+    <ReplaceContent>false</ReplaceContent>
+  </ReplacePattern>
+  <ReplacePattern>
+    <From>d:\SourceTest2\</From>
+    <To>d:\BackUpPrueva\</To>
     <ReplaceContent>false</ReplaceContent>
   </ReplacePattern>
 </ArrayOfReplacePattern>

@@ -15,6 +15,7 @@ using Fwk.Bases.FrontEnd.Controls;
 using Fwk.Security;
 using Fwk.Security.Admin.Controls;
 using System.Reflection;
+using Fwk.UI.Controls;
 
 namespace Fwk.Security.Admin
 {
@@ -22,12 +23,25 @@ namespace Fwk.Security.Admin
     {
         bool onInit = true;
         SecurityControlBase currontSecurityControlBase;
-        public static MembershipProvider Provider = Membership.Provider;
+        public static MembershipProvider Provider = null;//Membership.Provider;
         public static Boolean CurrentProviderConnectedOk = false;
         public frmAdmin()
         {
 
             InitializeComponent();
+            try
+            {
+                Provider = Membership.Provider;
+            }
+            catch(System.Configuration.Provider.ProviderException ex)
+                {
+                    ExceptionViewComponent wExceptionViewer = new ExceptionViewComponent();
+                    wExceptionViewer.ButtonsYesNoVisible = DevExpress.XtraBars.BarItemVisibility.Always;
+                    wExceptionViewer.Title = "Error de configuracion ";
+
+                   wExceptionViewer.Show(wExceptionViewer.Title, ex.Message, string.Empty, false);
+
+                }
             this.Text = string.Concat(this.Text, " version ", Assembly.GetExecutingAssembly().GetName().Version.ToString());
             SetEnabledItems();
         }

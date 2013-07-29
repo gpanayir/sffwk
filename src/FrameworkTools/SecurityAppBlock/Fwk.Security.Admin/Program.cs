@@ -28,7 +28,7 @@ namespace Fwk.Security.Admin
 
                 wExceptionViewer.Title = string.Concat(wExceptionViewer.Title, " : ", wException.Source);
 
-                DialogResult wResult = wExceptionViewer.Show(wExceptionViewer.Title, Fwk.Exceptions.ExceptionHelper.GetAllMessageException(wException), string.Empty, false);
+                DialogResult wResult = wExceptionViewer.Show(wExceptionViewer.Title, wException.Message, Fwk.Exceptions.ExceptionHelper.GetAllMessageException(wException), false);
 
                 if (wResult == DialogResult.OK)
                     Application.Exit();
