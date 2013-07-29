@@ -27,10 +27,12 @@ f: \.csproj.user$ ##
 f: \.user$ ## 
 f: \.ncb$ ##
 f: \.tlog$ ## 
+f: \.gpState$ ## 
 d: \\cvs$ ## CVS control directory
 d: \\.svn$ ## Subversion control directory
 d: \\obj$ ## 
 d: \\bin$ ## 
 d: \\Entregas$ ##
 d: \\Release$ ## 
-d: \\.gpState$ ## 
+d: \\Debug$ ## 
+
