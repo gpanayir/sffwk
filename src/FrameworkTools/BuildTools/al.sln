@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectReferencesCreator", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyDirectoryReplace", "..\EasyDirectoryReplace\EasyDirectoryReplace\EasyDirectoryReplace.csproj", "{440B2CEA-383F-439A-95CA-81FA1FBF1942}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsLogViewer", "..\WindowsLogViewer\WindowsLogViewer.csproj", "{0C493F24-E959-49A0-B337-818A3D39AF7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{440B2CEA-383F-439A-95CA-81FA1FBF1942}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{440B2CEA-383F-439A-95CA-81FA1FBF1942}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{440B2CEA-383F-439A-95CA-81FA1FBF1942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C493F24-E959-49A0-B337-818A3D39AF7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
