@@ -52,13 +52,13 @@ namespace Fwk.BusinessFacades
         /// <author>moviedo</author>
         public IServiceContract ExecuteService(string providerName, IServiceContract pRequest)
         {
-            if(FacadeHelper.Stopped)
-            {
-                TechnicalException te = new TechnicalException("El despachador no puede responder debido a que ocurrieron problemas en la carga de la configuración del dispatcher");
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
-                te.ErrorId = "7008";
-                throw te;
-            }
+            //if(FacadeHelper.Stopped)
+            //{
+            //    TechnicalException te = new TechnicalException("El despachador no puede responder debido a que ocurrieron problemas en la carga de la configuración del dispatcher");
+            //    Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
+            //    te.ErrorId = "7008";
+            //    throw te;
+            //}
             IServiceContract wResult = null;
             if (string.IsNullOrEmpty(pRequest.ServiceName))
             {
