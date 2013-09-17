@@ -50,7 +50,7 @@ namespace Fwk.BusinessFacades.Utils
     public sealed class FacadeHelper
     {
         internal static fwk_ServiceDispatcher ServiceDispatcherConfig=null;
-        internal static bool Stopped = true;
+        internal static bool DefaultSettings = true;
 
         /// <summary>
         /// 
@@ -67,7 +67,7 @@ namespace Fwk.BusinessFacades.Utils
         internal static void ReloadConfig(out String stringMessage)
         {
             stringMessage = string.Empty;
-            if (Stopped)
+            if (DefaultSettings)
             {
 
                 try
@@ -99,18 +99,22 @@ namespace Fwk.BusinessFacades.Utils
                         }
 
                         ConfigurationsHelper.HostApplicationName = ServiceDispatcherConfig.InstanseName;
-                        Stopped = false;
+                        DefaultSettings = false;
                     }
                     else
                     {
-                        Stopped = true;
-
+                        DefaultSettings = true;
+                        ServiceDispatcherConfig = new fwk_ServiceDispatcher();
+                        ServiceDispatcherConfig.AuditMode = (int)AuditMode.None;
+                        ServiceDispatcherConfig.HostIp = "127.0.0.1";
+                        ServiceDispatcherConfig.InstanseName = "Fwk Dispatcher (default name)";
+                        
                         stringMessage = Audit.LogDispatcherErrorConfig(null).Message;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Stopped = true;
+                    DefaultSettings = true;
 
                     stringMessage = Audit.LogDispatcherErrorConfig(ex).Message;
                 }
