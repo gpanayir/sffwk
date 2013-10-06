@@ -78,6 +78,11 @@ namespace Fwk.Bases
            _dic.Remove(key);
                
         }
+        public void Clear(string key)
+        {
+            _dic.Clear();
+
+        }
     }
 
 

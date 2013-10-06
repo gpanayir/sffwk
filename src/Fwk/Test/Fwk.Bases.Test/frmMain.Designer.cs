@@ -117,7 +117,7 @@
             this.button_SingletonFactoryArray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_SingletonFactoryArray.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_SingletonFactoryArray.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.button_SingletonFactoryArray.Location = new System.Drawing.Point(419, 141);
+            this.button_SingletonFactoryArray.Location = new System.Drawing.Point(418, 134);
             this.button_SingletonFactoryArray.Margin = new System.Windows.Forms.Padding(4);
             this.button_SingletonFactoryArray.Name = "button_SingletonFactoryArray";
             this.button_SingletonFactoryArray.Size = new System.Drawing.Size(274, 44);

@@ -13,6 +13,8 @@ using Fwk.WCF.Services;
 
 namespace CentralizedSecurity.wcf
 {
+    [ServiceContract(Namespace = "CoreSecurity")]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class CoreSecurityAspnet : ICoreSecurityAspnet
     {
         public LoogonUserResult Autenticate(string userName, string password, string domain)
@@ -27,7 +29,7 @@ namespace CentralizedSecurity.wcf
 
             return string.Join(",", list);
         }
-
+        [WebGet(ResponseFormat = WebMessageFormat.Json)]
         public String Test()
         {
             return "Hi wellcome to CentralizedSecurity.wcf a " + System.DateTime.Now.ToString();
