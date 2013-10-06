@@ -63,6 +63,7 @@ namespace Fwk.DataBase
 		{
 			get
 			{
+                
 				return _DataBaseServer.CnnString.DataSource;
 			}
 			

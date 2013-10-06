@@ -47,5 +47,41 @@ namespace Fwk.Bases.Test
             using (frmException frm = new frmException())
             { frm.ShowDialog(); }
         }
+
+
+        
+        public class Person
+        {
+            public Person(int id,string nombre) {
+                this.Id = id;
+                this.Nombre = nombre;
+            }
+            public Person() { }
+            public int Id { get; set; }
+            public string Nombre { get; set; }
+        }
+
+        private void button_SingletonFactoryArray_Click(object sender, EventArgs e)
+        {
+            SingletonFactoryArray<Person> personList = new SingletonFactoryArray<Person>();
+
+            Person p1 = new Person();
+            p1.Id = 1000;
+            p1.Nombre = "Gaus";
+            personList.Add(p1.Nombre, p1);
+
+            Person p2 = new Person();
+            p2.Id = 2000;
+            p2.Nombre = "Hendryx";
+            personList.Add(p2.Nombre, p2);
+
+
+
+           Person p3 =  personList.Create("Maria");
+           Person p4 = personList.Create("Robert", new Object[] { 3000, "Robert" });
+        }
+
+
+
     }
 }

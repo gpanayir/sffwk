@@ -33,7 +33,7 @@ namespace Fwk.Bases
             _ConstructorParams = constructorParams;
         }
         /// <summary>
-        /// Retorna un objeto tipo T.-
+        /// Instancia y retorna un objeto tipo T.-
         /// </summary>
         /// <returns></returns>
         public T GetObject()
@@ -48,6 +48,10 @@ namespace Fwk.Bases
             return _SomeObject;
         }
 
+        /// <summary>
+        /// Establece el valor del objeto T
+        /// </summary>
+        /// <param name="someObject"></param>
         public void  SetObject(T someObject)
         {
             _SomeObject = someObject;
