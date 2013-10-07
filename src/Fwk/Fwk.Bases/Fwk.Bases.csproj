@@ -300,7 +300,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SingletonFactoryArray.cs" />
+    <Compile Include="Classes\SingletonFactoryArray.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
