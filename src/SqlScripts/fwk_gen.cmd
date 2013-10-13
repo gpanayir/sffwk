@@ -1,7 +1,7 @@
 ECHO ** generador**
 
 
-@set "vs=Microsoft Visual Studio 10.0\VC\"
+@set "vs=\Microsoft Visual Studio 10.0\VC"
 
  @SET "SPDIR= %PROGRAMFILES%%vs%"
 
@@ -13,7 +13,8 @@ ECHO ** generador**
 @echo %SPDIR%
 
 cd %SPDIR%
-dir
+
+
 @ECHO OFF
 ECHO:
 ECHO  ** Se limpio el directorio correctamente **
