@@ -1,22 +1,20 @@
 ECHO ** generador**
-
-
-@set "vs=\Microsoft Visual Studio 10.0\VC"
-
- @SET "SPDIR= %PROGRAMFILES%%vs%"
-
+@set OLDDIR=%CD%
+@set "vs=\Microsoft Visual Studio 10.0\VC\Bin"
+@SET "SPDIR= %PROGRAMFILES%%vs%"
 @if not "%PROGRAMFILES(X86)%" == "" (
  @SET "SPDIR= %PROGRAMFILES(X86)%%vs%"
 )
 
 
-@echo %SPDIR%
 
-cd %SPDIR%
+@CHDIR %SPDIR%
 
+
+%SPDIR%\gacutil -i "%OLDDIR%\JavascriptCruncher.dll"
 
 @ECHO OFF
 ECHO:
-ECHO  ** Se limpio el directorio correctamente **
+ECHO  ** installing gac sussefully**
 ECHO:
 pause
