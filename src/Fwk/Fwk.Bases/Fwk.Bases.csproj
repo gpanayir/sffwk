@@ -144,7 +144,7 @@
     <Compile Include="Blocks\Fwk.Security.Cryptography\FwkSymetricAlg.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\ISymetriCypher.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\SymetricCypherFactory.cs" />
-    <Compile Include="Blocks\Fwk.Security.Cryptography\SymetriCypher.cs" />
+    <Compile Include="Blocks\Fwk.Security.Cryptography\SymetriCypher_EntLibs.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderCollection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderElement.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderSection.cs" />

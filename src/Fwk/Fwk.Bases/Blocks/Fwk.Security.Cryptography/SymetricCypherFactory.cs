@@ -46,7 +46,7 @@ namespace Fwk.Security.Cryptography
             }
 
             SymetriCypher<T> symetriCypher = null;
-
+            //Busca el SymetriCypher en el diccionario
             if (list.ContainsKey(string.Concat(key, typeof(T).FullName)))
                 symetriCypher = (SymetriCypher<T>)list[string.Concat(key, typeof(T).FullName)];
             else

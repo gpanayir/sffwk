@@ -198,13 +198,13 @@ namespace Fwk.Security.Cryptography
             //{
             //    keyFileName = System.Configuration.ConfigurationSettings.AppSettings["CrypKeyFile"];
             //}
-            if (string.IsNullOrEmpty(keyName))
-            {
-                te = new TechnicalException("La clave de encriptacion no puede ser nula");
-                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
-                te.ErrorId = "4401";
-                throw te;
-            }
+            //if (string.IsNullOrEmpty(keyName))
+            //{
+            //    te = new TechnicalException("La clave de encriptacion no puede ser nula");
+            //    ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
+            //    te.ErrorId = "4401";
+            //    throw te;
+            //}
 
             //if (!File.Exists(keyFileName))
             //{
