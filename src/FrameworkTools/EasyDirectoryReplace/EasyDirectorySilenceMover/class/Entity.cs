@@ -111,7 +111,7 @@ namespace Fwk.Bases
     public abstract class Entity:IEntity
     {
         #region  History
-        List<String> _HistoryProperties;
+      
 
         
         protected bool mBeingUndone = false;
