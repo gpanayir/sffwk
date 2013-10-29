@@ -60,7 +60,7 @@ namespace Fwk.Security.ISVC.ResetUserPassword
         /// <summary>
         /// Nombre de usuario al que se le resseteara la password
         /// </summary>
-        public String UserName {get;set;}
+        public String UserName { get; set; }
 
         /// <summary>
         /// Buevo valor de la password
@@ -77,6 +77,6 @@ namespace Fwk.Security.ISVC.ResetUserPassword
     }
 
 
-   
+
 
 }

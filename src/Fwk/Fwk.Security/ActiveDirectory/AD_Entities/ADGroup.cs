@@ -202,8 +202,8 @@ namespace Fwk.Security.ActiveDirectory
                 propAux = prop.Split('=');
                 //if (propAux[0].CompareTo("CN") == 0)
                 //{
-                //    base.Name = propAux[1];
-                //    _CN = base.Name;
+                //    //base.Name = propAux[1];
+                //    _CN = propAux[1];
 
                 //}
                 if (propAux[0].CompareTo("OU") == 0)
