@@ -53,9 +53,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.domainGoups2);
             this.groupBox1.Location = new System.Drawing.Point(11, 129);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(931, 683);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
@@ -67,7 +67,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.domainGoups2.Location = new System.Drawing.Point(9, 24);
-            this.domainGoups2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.domainGoups2.Margin = new System.Windows.Forms.Padding(5);
             this.domainGoups2.Name = "domainGoups2";
             this.domainGoups2.Size = new System.Drawing.Size(912, 608);
             this.domainGoups2.TabIndex = 21;
@@ -77,7 +77,7 @@
             // 
             this.txtDomain.Enabled = false;
             this.txtDomain.Location = new System.Drawing.Point(1085, 11);
-            this.txtDomain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDomain.Margin = new System.Windows.Forms.Padding(4);
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(239, 22);
             this.txtDomain.TabIndex = 13;
@@ -90,7 +90,7 @@
             this.btnSearchInDomain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchInDomain.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.srch_16;
             this.btnSearchInDomain.Location = new System.Drawing.Point(1351, 8);
-            this.btnSearchInDomain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchInDomain.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchInDomain.Name = "btnSearchInDomain";
             this.btnSearchInDomain.Size = new System.Drawing.Size(48, 25);
             this.btnSearchInDomain.TabIndex = 15;
@@ -106,7 +106,7 @@
             this.grdGroupInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdGroupInfo.DataSource = this.objectDomainGroupBindingSource;
             this.grdGroupInfo.Location = new System.Drawing.Point(16, 820);
-            this.grdGroupInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grdGroupInfo.Margin = new System.Windows.Forms.Padding(4);
             this.grdGroupInfo.Name = "grdGroupInfo";
             this.grdGroupInfo.Size = new System.Drawing.Size(1396, 30);
             this.grdGroupInfo.TabIndex = 24;
@@ -117,7 +117,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.domainUsers1.Location = new System.Drawing.Point(968, 146);
-            this.domainUsers1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.domainUsers1.Margin = new System.Windows.Forms.Padding(5);
             this.domainUsers1.Name = "domainUsers1";
             this.domainUsers1.Size = new System.Drawing.Size(483, 615);
             this.domainUsers1.TabIndex = 22;
@@ -127,7 +127,7 @@
             // txtPath
             // 
             this.txtPath.Location = new System.Drawing.Point(147, 82);
-            this.txtPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPath.Margin = new System.Windows.Forms.Padding(4);
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(699, 22);
             this.txtPath.TabIndex = 71;
@@ -156,19 +156,20 @@
             // txtLoginName
             // 
             this.txtLoginName.Location = new System.Drawing.Point(147, 11);
-            this.txtLoginName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLoginName.Margin = new System.Windows.Forms.Padding(4);
             this.txtLoginName.Name = "txtLoginName";
             this.txtLoginName.Size = new System.Drawing.Size(236, 22);
             this.txtLoginName.TabIndex = 72;
-            this.txtLoginName.Text = "pnunez";
+            this.txtLoginName.Text = "reseteos";
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(147, 50);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(236, 22);
             this.txtPassword.TabIndex = 73;
+            this.txtPassword.Text = "*R3s3t30s+";
             // 
             // label2
             // 
@@ -186,8 +187,8 @@
             this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheck.Image = global::Fwk.Security.ActiveDirectory.Test.Properties.Resources.apply_16;
             this.btnCheck.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCheck.Location = new System.Drawing.Point(629, 15);
-            this.btnCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCheck.Location = new System.Drawing.Point(576, 16);
+            this.btnCheck.Margin = new System.Windows.Forms.Padding(4);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(131, 31);
             this.btnCheck.TabIndex = 75;
@@ -213,7 +214,7 @@
             this.Controls.Add(this.grdGroupInfo);
             this.Controls.Add(this.domainUsers1);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTestGroups";
             this.Text = "frmTestGroups";
             this.groupBox1.ResumeLayout(false);
