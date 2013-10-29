@@ -23,7 +23,7 @@ namespace Fwk.Security.ActiveDirectory.Test
         internal static void LoadDomain(string domainName)
         {
 
-            _ADHelper = new ADHelper( domainName );
+            _ADHelper = new ADHelper(domainName, "SqlServices");
 
         }
     }

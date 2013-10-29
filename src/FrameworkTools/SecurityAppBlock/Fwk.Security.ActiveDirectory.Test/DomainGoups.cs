@@ -88,6 +88,11 @@ namespace Fwk.Security.ActiveDirectory.Test
             }
         }
 
-    
+
+
+        internal void Initialize(string path, string user, string pwd)
+        {
+             _ADHelper = new ADHelper(path, user, pwd);
+        }
     }
 }
