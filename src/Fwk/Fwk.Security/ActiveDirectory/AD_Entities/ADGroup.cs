@@ -152,7 +152,7 @@ namespace Fwk.Security.ActiveDirectory
 
             _FirstName = ADHelper.GetProperty(directoryGroup, ADProperties.LOGINNAME);
             _Category = ADHelper.GetProperty(directoryGroup, ADProperties.OBJECTCATEGORY);
-
+            _CN = ADHelper.GetProperty(directoryGroup, ADProperties.CONTAINERNAME);
             if (!string.IsNullOrEmpty(userPrincipalName))
             {
                 domainAddress = userPrincipalName.Split('@')[1];
