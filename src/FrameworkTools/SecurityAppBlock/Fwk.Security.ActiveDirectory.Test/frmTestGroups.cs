@@ -68,5 +68,12 @@ namespace Fwk.Security.ActiveDirectory.Test
                 frm.ShowDialog();
             }
         }
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            ADHelper _ADHelper = new ADHelper(txtPath.Text, txtLoginName.Text, txtPassword.Text);
+            _ADHelper.Groups_GetAll();
+            domainUsers1.Populate(pGroup.Name);
+        }
     }
 }
