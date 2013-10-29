@@ -29,9 +29,9 @@ namespace Fwk.Security.ActiveDirectory.Test
             //txtXmlGroupInfo.Text = _CurrentObjectDomainGroup.GetXml();
            
           
-            objectDomainGroupBindingSource.DataSource = pGroup;
-            grdGroupInfo.Refresh();
-            StaticAD.LoadDomain(txtDomain.Text);
+            //objectDomainGroupBindingSource.DataSource = pGroup;
+            //grdGroupInfo.Refresh();
+            //StaticAD.LoadDomain(txtDomain.Text);
             
             domainUsers1.Populate(pGroup.Name);
             //domainGoups1.Populate(pGroup.ActiveDirectoryMembersGroups);

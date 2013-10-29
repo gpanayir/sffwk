@@ -131,7 +131,7 @@
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(699, 22);
             this.txtPath.TabIndex = 71;
-            this.txtPath.Text = "LDAP://123.22.12.142:389/DC=pelsoft,DC=ar";
+            this.txtPath.Text = "LDAP://allus.ar/DC=allus,DC=ar";
             // 
             // label1
             // 
