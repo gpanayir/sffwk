@@ -496,9 +496,10 @@ namespace Fwk.Bases
         /// Rellena la clase con los valores del XML 
         /// <param name="pXmlData">Xml con el que se crea el objeto</param>
         /// <summary>
+        [Obsolete("Utilizar en metodo estatico de la clase =  T GetFromXml<T>(string pXmlData) ")]
         public void SetXml(string pXmlData)
         {
-            helper.SerializationFunctions.DeserializeFromXml(this.GetType(), pXmlData);
+           
         }
         /// <summary>
         /// Retorna un objeto a partir de la instancia estatica
