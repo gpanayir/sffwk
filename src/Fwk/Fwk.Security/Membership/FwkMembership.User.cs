@@ -70,9 +70,15 @@ namespace Fwk.Security
 
             //TODO: Ver por que esta declaracion  FwkIdentity
             //FwkIdentity wFwkIdentity = new FwkIdentity();            
-            MembershipCreateStatus s;
-            CreateUser(userName, password, string.Empty, null, null, true, out s, wProvider.Name);
-
+            MembershipCreateStatus status;
+            CreateUser(userName, password, string.Empty, null, null, true, out status, wProvider.Name);
+            if (status != MembershipCreateStatus.Success)
+            {
+                Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Concat("Fwk Membership error", GetErrorMessage(status)));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4005";
+                throw te;
+            }
           
         }
 
