@@ -256,7 +256,7 @@ namespace Fwk.Logging
                         {
                             currentFileName = fullFileName;
                         }
-                        target = Target.TargetFactory(TargetType.Xml, fullFileName);
+                        target = Target.TargetFactory(TargetType.File, fullFileName);
                         break;
                     }
                 case TargetType.WindowsEvent:
