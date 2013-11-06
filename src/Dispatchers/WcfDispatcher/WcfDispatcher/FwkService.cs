@@ -27,23 +27,23 @@ namespace WcfDispatcher
     }
 
 
-    public class FwkService2 : IFwkService2
-    {
+    //public class FwkService2 : IFwkService2
+    //{
 
 
-        #region IFwkService2 Members
+    //    #region IFwkService2 Members
 
-        public T ExecuteService<T>(T pReq)
-        {
-            object x = null;
-            T data = (T)x;
-            return data;
-        }
+    //    public T ExecuteService<T>(T pReq)
+    //    {
+    //        object x = null;
+    //        T data = (T)x;
+    //        return data;
+    //    }
 
-        #endregion
+    //    #endregion
 
         
-    }
+    //}
 
 
 }

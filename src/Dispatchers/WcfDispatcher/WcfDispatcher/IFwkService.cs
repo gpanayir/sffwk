@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using Fwk.HelperFunctions.Caching;
+
 using Fwk.Bases;
-using WcfCommon;
+using Fwk.Caching;
 
 namespace WcfDispatcher
 {
@@ -23,13 +23,13 @@ namespace WcfDispatcher
 
 
     [DataContract]
-    [KnownType(typeof(Survey))]
+    //[KnownType(typeof(Survey))]
     public class CompositeType
     {
  
         private ContextInformation _ContextField;
         private IEntity _EntityField;
-        private CacheSettings _CacheField;
+        
 
 
         [DataMember(IsRequired = false, Name = "Context", Order = 0)]
@@ -46,12 +46,12 @@ namespace WcfDispatcher
             get { return _EntityField; }
             set { _EntityField = value; }
         }
-
-        [DataMember(IsRequired = false, Name = "Cache", Order = 2)]
-        public CacheSettings CacheField
-        {
-            get { return _CacheField; }
-            set { _CacheField = value; }
-        }
+        //private CacheSettings _CacheField;
+        //[DataMember(IsRequired = false, Name = "Cache", Order = 2)]
+        //public CacheSettings CacheField
+        //{
+        //    get { return _CacheField; }
+        //    set { _CacheField = value; }
+        //}
     }
 }

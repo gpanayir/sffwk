@@ -23,21 +23,43 @@ namespace WcfDispatcher_Host
             //    Console.Write("OLECRAM SERVICE...");
             //    Console.ReadLine();
             //}
-            //using (ServiceHost host = new ServiceHost(typeof(FwkService1)))
+            using (ServiceHost host = new ServiceHost(typeof(FwkService1)))
+            {
+                host.Open();
+                
+                Console.Write("OLECRAM SERVICE...1");
+                Console.WriteLine("STATE:" + host.State.ToString());
+                Console.WriteLine();
+                Console.WriteLine("BaseAddresses");
+
+                Console.WriteLine("....................................................");
+                Console.WriteLine();
+                foreach (var url in host.BaseAddresses)
+                {
+                    Console.WriteLine(url.AbsoluteUri.ToString());
+                }
+                Console.WriteLine();
+                Console.WriteLine("Endpoints");
+                Console.WriteLine("....................................................");
+                Console.WriteLine();
+                foreach (var ep in ((System.ServiceModel.ServiceHostBase)(host)).Description.Endpoints)
+                {
+                    Console.WriteLine("Name " + ep.Name);
+                    Console.WriteLine("Address " + ep.Address.ToString());
+                    Console.WriteLine("Name " + ep.Binding.Name);
+                    Console.WriteLine();
+                }
+                
+                Console.ReadLine();
+            }
+
+            //using (ServiceHost host = new ServiceHost(typeof(FwkService2)))
             //{
             //    host.Open();
 
-            //    Console.Write("OLECRAM SERVICE...1");
+            //    Console.Write("OLECRAM SERVICE...2");
             //    Console.ReadLine();
             //}
-
-            using (ServiceHost host = new ServiceHost(typeof(FwkService2)))
-            {
-                host.Open();
-
-                Console.Write("OLECRAM SERVICE...2");
-                Console.ReadLine();
-            }
         }
 
         void SetNetTcpBinding(ServiceHost host)
