@@ -62,7 +62,7 @@ namespace Fwk.Security.ActiveDirectory.Test
             }
 
             _DomainUsers = StaticAD.ADHelper.Users_SearchByGroupName(groupName); ;
-            
+            txDomainUserName.Text = groupName;
             aDUserBindingSource.DataSource = _DomainUsers;
         }
 
@@ -81,7 +81,9 @@ namespace Fwk.Security.ActiveDirectory.Test
         {
             using (new WaitCursorHelper(this))
             {
-                aDUserBindingSource.DataSource = ADUser.FilterByName(txDomainUserName.Text, _DomainUsers);
+
+                aDUserBindingSource.DataSource  = StaticAD.ADHelper.Users_SearchByGroupName(txDomainUserName.Text);
+              //= ADUser.FilterByName(, _DomainUsers);
             }
             
         }
@@ -110,6 +112,11 @@ namespace Fwk.Security.ActiveDirectory.Test
 
             _CurrentUserName = (ADUser)grdDomainUsers.CurrentRow.DataBoundItem;
             OnObjectDomainDoubleClick();
+        }
+
+        private void txDomainUserName_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
       

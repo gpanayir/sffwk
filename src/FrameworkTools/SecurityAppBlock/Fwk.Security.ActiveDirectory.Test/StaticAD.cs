@@ -17,7 +17,10 @@ namespace Fwk.Security.ActiveDirectory.Test
             {
                 return _ADHelper;
             }
-
+            set
+            {
+                 _ADHelper = value;
+            }
         }
 
         internal static void LoadDomain(string domainName)

@@ -62,19 +62,20 @@
             // 
             // txDomainUserName
             // 
-            this.txDomainUserName.Location = new System.Drawing.Point(69, 7);
+            this.txDomainUserName.Location = new System.Drawing.Point(106, 9);
             this.txDomainUserName.Name = "txDomainUserName";
             this.txDomainUserName.Size = new System.Drawing.Size(178, 20);
             this.txDomainUserName.TabIndex = 23;
+            this.txDomainUserName.TextChanged += new System.EventHandler(this.txDomainUserName_TextChanged);
             this.txDomainUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txDomainUserName_KeyDown);
             // 
             // grdDomainUsers
             // 
             this.grdDomainUsers.AllowUserToAddRows = false;
             this.grdDomainUsers.AllowUserToDeleteRows = false;
-            this.grdDomainUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdDomainUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grdDomainUsers.AutoGenerateColumns = false;
             this.grdDomainUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDomainUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -256,7 +257,7 @@
             this.btnFilterUsers.BackColor = System.Drawing.Color.White;
             this.btnFilterUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFilterUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFilterUsers.Location = new System.Drawing.Point(250, 6);
+            this.btnFilterUsers.Location = new System.Drawing.Point(290, 7);
             this.btnFilterUsers.Name = "btnFilterUsers";
             this.btnFilterUsers.Size = new System.Drawing.Size(59, 22);
             this.btnFilterUsers.TabIndex = 24;
@@ -284,9 +285,9 @@
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
             this.label1.Location = new System.Drawing.Point(27, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 42;
-            this.label1.Text = "Users";
+            this.label1.Text = "group name";
             // 
             // DomainUsers
             // 
