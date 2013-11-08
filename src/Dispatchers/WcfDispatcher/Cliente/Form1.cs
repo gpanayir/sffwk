@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using WcfCommon;
+
 
 namespace Cliente
 {
@@ -19,20 +19,23 @@ namespace Cliente
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Cliente.ServiceReference1.CompositeType req = new Cliente.ServiceReference1.CompositeType();
-            req.Context = new Fwk.Bases.ContextInformation();
-            req.Context.HostName = Environment.MachineName;
-            
-            Survey survey = new Survey();
-            survey.Description = "alskflH FLADSKFÑL SFFSADF FSDFSF";
-            survey.ModifiedByUserId = 12342134;
-            survey.Name = "asd asdsd mdhfghgfh";
-            req.EntityField = survey;
+            ServiceReference1.ExecuteServiceRequest req = new ServiceReference1.ExecuteServiceRequest();
+            req.composite = new ServiceReference1.CompositeType();
+            req.composite.Context = new ServiceReference1.ContextInformation();
+            req.composite.Context._HostName = Environment.MachineName;
+            req.composite.Context._HostTime = System.DateTime.Now;
 
-            using (Cliente.ServiceReference1.FwkService1Client svcProxy = new Cliente.ServiceReference1.FwkService1Client())
+            SomeCompany.BE.AccountBE account = new SomeCompany.BE.AccountBE();
+            account.Name = "alskflH FLADSKFÑL SFFSADF FSDFSF";
+            account.Id = 12342134;
+            account.TypeId = 1009;
+            req.composite.JsonBussinesData = Newtonsoft.Json.JsonConvert.SerializeObject(account, Newtonsoft.Json.Formatting.Indented);
+
+            using (ServiceReference1.FwkService1Client svcProxy = new ServiceReference1.FwkService1Client("FirstEndpoint"))
             {
                 svcProxy.Open();
-                Cliente.ServiceReference1.CompositeType res = svcProxy.ExecuteService(req);
+                ServiceReference1.ExecuteServiceResponse res = svcProxy.ExecuteService(req);
+                
                 
             }
         }
@@ -43,18 +46,18 @@ namespace Cliente
             //req.Context = new Fwk.Bases.ContextInformation();
             //req.Context.HostName = Environment.MachineName;
 
-            Survey survey = new Survey();
-            survey.Description = "alskflH FLADSKFÑL SFFSADF FSDFSF";
-            survey.ModifiedByUserId = 12342134;
-            survey.Name = "asd asdsd mdhfghgfh";
-            //req.EntityField = survey;
+            //Survey survey = new Survey();
+            //survey.Description = "alskflH FLADSKFÑL SFFSADF FSDFSF";
+            //survey.ModifiedByUserId = 12342134;
+            //survey.Name = "asd asdsd mdhfghgfh";
+            ////req.EntityField = survey;
 
-            using (Cliente.ServiceReference2.FwkService2Client svcProxy = new Cliente.ServiceReference2.FwkService2Client ())
-            {
-                svcProxy.Open();
-                object res = svcProxy.ExecuteService(survey);
+            //using (Cliente.ServiceReference2.FwkService2Client svcProxy = new Cliente.ServiceReference2.FwkService2Client ())
+            //{
+            //    svcProxy.Open();
+            //    object res = svcProxy.ExecuteService(survey);
 
-            }
+            //}
         }
     }
 }
