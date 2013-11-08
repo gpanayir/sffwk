@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfDispatcher", "WcfDispatc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfDispatcher_Host", "WcfDispatcher_Host\WcfDispatcher_Host.csproj", "{6E86955E-7756-4DF1-AE79-DC6D1B5AA5C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeCompany.BE", "SomeCompany.BE\SomeCompany.BE.csproj", "{7070D9B9-65D3-433E-A504-E9C30952F973}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -23,6 +25,10 @@ Global
 		{6E86955E-7756-4DF1-AE79-DC6D1B5AA5C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E86955E-7756-4DF1-AE79-DC6D1B5AA5C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E86955E-7756-4DF1-AE79-DC6D1B5AA5C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7070D9B9-65D3-433E-A504-E9C30952F973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7070D9B9-65D3-433E-A504-E9C30952F973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7070D9B9-65D3-433E-A504-E9C30952F973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7070D9B9-65D3-433E-A504-E9C30952F973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

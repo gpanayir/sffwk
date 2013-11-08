@@ -19,19 +19,19 @@ namespace WcfDispatcher
     {
         [OperationContract]
         CompositeType ExecuteService(CompositeType composite);
+
+
     }
 
 
     [DataContract]
-    //[KnownType(typeof(Survey))]
     public class CompositeType
     {
  
         private ContextInformation _ContextField;
-        private IEntity _EntityField;
+        private String ServiceName { get; set; }
+        private String _JsonBussinesData;
         
-
-
         [DataMember(IsRequired = false, Name = "Context", Order = 0)]
         public ContextInformation Context
         {
@@ -41,17 +41,11 @@ namespace WcfDispatcher
 
 
         [DataMember()]
-        public IEntity EntityField
+        public String JsonBussinesData
         {
-            get { return _EntityField; }
-            set { _EntityField = value; }
+            get { return _JsonBussinesData; }
+            set { _JsonBussinesData = value; }
         }
-        //private CacheSettings _CacheField;
-        //[DataMember(IsRequired = false, Name = "Cache", Order = 2)]
-        //public CacheSettings CacheField
-        //{
-        //    get { return _CacheField; }
-        //    set { _CacheField = value; }
-        //}
+       
     }
 }
