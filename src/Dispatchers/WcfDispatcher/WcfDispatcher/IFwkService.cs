@@ -18,9 +18,7 @@ namespace WcfDispatcher
     public interface IFwkService1
     {
         [OperationContract]
-        CompositeType ExecuteService(CompositeType composite);
-
-
+        String ExecuteService(String providerName, String serviceName, String jsonRequets);
     }
 
 

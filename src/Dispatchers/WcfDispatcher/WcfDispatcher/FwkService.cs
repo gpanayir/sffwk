@@ -11,17 +11,29 @@ namespace WcfDispatcher
     public class FwkService1 : IFwkService1
     {
 
-            Fwk.BusinessFacades.SimpleFacade fw = new Fwk.BusinessFacades.SimpleFacade();
+        Fwk.BusinessFacades.SimpleFacade fw = new Fwk.BusinessFacades.SimpleFacade();
 
-
-
-
-        CompositeType IFwkService1.ExecuteService(CompositeType composite)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <param name="serviceName"></param>
+        /// <param name="jsonRequets"></param>
+        /// <returns></returns>
+        string IFwkService1.ExecuteService(String providerName, String serviceName, String jsonRequets)
         {
-            CompositeType r = new CompositeType();
-            //fw.ExecuteService(
-            return r;
+            return fw.ExecuteServiceJson(providerName, serviceName, jsonRequets);
+
         }
+
+
+        //CompositeType IFwkService1.ExecuteService(CompositeType composite)
+        //{
+        //    CompositeType r = new CompositeType();
+
+        //    return r;
+        //}
+
 
 
     }
