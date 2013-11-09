@@ -10,12 +10,8 @@ using Fwk.Caching;
 
 namespace WcfDispatcher
 {
-    // NOTE: If you change the interface name "IService1" here, you must also update the reference to "IService1" in App.config.
-    
-
-
     [ServiceContract]
-    public interface IFwkService1
+    public interface IFwkService
     {
         [OperationContract]
         String ExecuteService(String providerName, String serviceName, String jsonRequets);

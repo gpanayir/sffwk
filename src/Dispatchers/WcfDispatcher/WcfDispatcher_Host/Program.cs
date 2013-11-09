@@ -14,7 +14,7 @@ namespace WcfDispatcher_Host
         {
 
 
-            //Uri wUri = new Uri("net.tcp://santana:8001/FwkService1");
+            //Uri wUri = new Uri("net.tcp://santana:8001/FwkService");
 
             //using (ServiceHost host = new ServiceHost(typeof(FwkService1), wUri))
             //{
@@ -23,7 +23,7 @@ namespace WcfDispatcher_Host
             //    Console.Write("OLECRAM SERVICE...");
             //    Console.ReadLine();
             //}
-            using (ServiceHost host = new ServiceHost(typeof(FwkService1)))
+            using (ServiceHost host = new ServiceHost(typeof(FwkService)))
             {
                 host.Open();
                 
@@ -69,7 +69,7 @@ namespace WcfDispatcher_Host
             Uri wUri = new Uri("net.tcp://santana:8001/FwkService1");
             tcpBinding.TransactionFlow = true;
 
-            host.AddServiceEndpoint(typeof(IFwkService1), tcpBinding, wUri);
+            host.AddServiceEndpoint(typeof(IFwkService), tcpBinding, wUri);
             host.Open();
         }
 
