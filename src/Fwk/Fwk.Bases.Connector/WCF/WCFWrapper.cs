@@ -43,16 +43,16 @@ namespace Fwk.Bases.Connector
             set { _URL = value; }
         }
 
-        string _SourceInfo;
+        //string _SourceInfo;
 
-        /// <summary>
-        /// Archivo de configuracion de remoting
-        /// </summary>
-        public string SourceInfo
-        {
-            get { return _SourceInfo; }
-            set { _SourceInfo = value; }
-        }
+        ///// <summary>
+        ///// Archivo de configuracion de remoting
+        ///// </summary>
+        //public string SourceInfo
+        //{
+        //    get { return _SourceInfo; }
+        //    set { _SourceInfo = value; }
+        //}
 
         string _ServiceMetadataProviderName = string.Empty;
 
@@ -270,9 +270,15 @@ namespace Fwk.Bases.Connector
                 this.binding = new NetTcpBinding();
                 binding.Name = "tcp";
 
-                address = new EndpointAddress(_SourceInfo);
+                address = new EndpointAddress(_URL);
             }
         }
-        
+
+
+
+        public string CheckServiceAvailability()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
