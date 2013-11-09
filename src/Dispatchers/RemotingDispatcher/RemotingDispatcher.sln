@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Remoting.Listener", "Fwk.Remoting.Listener\Fwk.Remoting.Listener.csproj", "{1D29B9D0-6E3C-45D6-AFBE-D9CCAF88012A}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RemotingDispatcherSetup", "RemotingDispatcherSetup\RemotingDispatcherSetup.vdproj", "{95A476C5-20F0-4E5B-BBD6-3F2B06FD4F2D}"
