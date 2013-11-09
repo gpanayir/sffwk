@@ -73,6 +73,10 @@
     <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -99,6 +103,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Remoting\RemotingWrapper.cs" />
+    <Compile Include="Service References\WCFServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="WCF\WCFWrapper.cs" />
     <Compile Include="Web References\ASPNetSecurity\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,6 +132,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Service References\WCFServiceReference\Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFServiceReference\FwkService.wsdl" />
+    <None Include="Service References\WCFServiceReference\item.wsdl" />
+    <None Include="Service References\WCFServiceReference\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web References\ASPNetSecurity\ASPNet.wsdl" />
     <None Include="Web References\ASPNetSecurity\MetadataProvider.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -212,13 +233,25 @@
     <None Include="Web References\Singleservice\SingleService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="WCF\" />
+    <WCFMetadataStorage Include="Service References\WCFServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\ASPNetSecurity\ASPNet.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WCFServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
