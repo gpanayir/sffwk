@@ -15,6 +15,7 @@ using Fwk.Logging.Targets;
 using System.Configuration;
 using System.Collections.Generic;
 using Fwk.ConfigSection;
+using Newtonsoft.Json;
 
 namespace Fwk.BusinessFacades
 {
@@ -159,6 +160,53 @@ namespace Fwk.BusinessFacades
 
         }
 
+        /// <summary>
+        /// Ejecuta un servicio de negocio.
+        /// </summary>
+        /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
+        /// <param name="serviceName">Nombre del servicio de negocio.</param> 
+        /// <param name="jsonRequest">JSON con datos de entrada para la  ejecución del servicio.</param>
+        /// <returns>JSON con el resultado de la  ejecución del servicio.</returns>
+        /// <date>2008-04-07T00:00:00</date>
+        /// <author>moviedo</author>
+        public string ExecuteServiceJson(string providerName, string serviceName, string jsonRequest)
+        {
+            string wResult;
+
+            ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName, serviceName);
+
+            IServiceContract wRequest = (IServiceContract)ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
+            if (wRequest == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("El despachador de servicio no pudo continuar debido\r\na que no construir el requets del servicio: ",
+                    serviceName, "\r\nVerifique que se encuentre los componentes necesarios para su ejecucion esten en el servidor de aplicación. "));
+
+                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<SimpleFacade>(te);
+                te.Assembly = this.GetType().Assembly.FullName;
+                te.Source = this.GetType().Assembly.FullName;
+                te.Class = "SimpleFacade";
+                te.Namespace = "Fwk.BusinessFacades";
+                te.Machine = Environment.MachineName;
+                if (string.IsNullOrEmpty(ConfigurationsHelper.HostApplicationName))
+                    te.Source = "Despachador de servicios en " + Environment.MachineName;
+                else
+                    te.Source = ConfigurationsHelper.HostApplicationName;
+
+                te.ErrorId = "7003";
+                throw te;
+            }
+           //Type type =  ReflectionFunctions.CreateType(wServiceConfiguration.Request);
+
+           wRequest = (IServiceContract)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequest);
+
+           IServiceContract res = ExecuteService(providerName, wRequest);
+           wResult = Newtonsoft.Json.JsonConvert.SerializeObject(res, Newtonsoft.Json.Formatting.None);
+            //wResult = ExecuteService(providerName, wRequest).GetXml();
+
+            return wResult;
+
+
+        }
 
 
 
