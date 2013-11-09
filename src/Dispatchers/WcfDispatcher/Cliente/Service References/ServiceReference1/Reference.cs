@@ -9,240 +9,13 @@
 //------------------------------------------------------------------------------
 
 namespace Cliente.ServiceReference1 {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/WcfDispatcher")]
-    [System.SerializableAttribute()]
-    public partial class CompositeType : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string JsonBussinesDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Cliente.ServiceReference1.ContextInformation ContextField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string JsonBussinesData {
-            get {
-                return this.JsonBussinesDataField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.JsonBussinesDataField, value) != true)) {
-                    this.JsonBussinesDataField = value;
-                    this.RaisePropertyChanged("JsonBussinesData");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
-        public Cliente.ServiceReference1.ContextInformation Context {
-            get {
-                return this.ContextField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContextField, value) != true)) {
-                    this.ContextField = value;
-                    this.RaisePropertyChanged("Context");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ContextInformation", Namespace="http://schemas.datacontract.org/2004/07/Fwk.Bases")]
-    [System.SerializableAttribute()]
-    public partial class ContextInformation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string _AppIdField;
-        
-        private string _HostNameField;
-        
-        private System.DateTime _HostTimeField;
-        
-        private string _ProviderNameField;
-        
-        private string _ServerNameField;
-        
-        private System.DateTime _ServerTimeField;
-        
-        private string _UserIdField;
-        
-        private string AppIdk__BackingFieldField;
-        
-        private string ProviderNameWithCultureInfok__BackingFieldField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string _AppId {
-            get {
-                return this._AppIdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this._AppIdField, value) != true)) {
-                    this._AppIdField = value;
-                    this.RaisePropertyChanged("_AppId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string _HostName {
-            get {
-                return this._HostNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this._HostNameField, value) != true)) {
-                    this._HostNameField = value;
-                    this.RaisePropertyChanged("_HostName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public System.DateTime _HostTime {
-            get {
-                return this._HostTimeField;
-            }
-            set {
-                if ((this._HostTimeField.Equals(value) != true)) {
-                    this._HostTimeField = value;
-                    this.RaisePropertyChanged("_HostTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string _ProviderName {
-            get {
-                return this._ProviderNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this._ProviderNameField, value) != true)) {
-                    this._ProviderNameField = value;
-                    this.RaisePropertyChanged("_ProviderName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string _ServerName {
-            get {
-                return this._ServerNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this._ServerNameField, value) != true)) {
-                    this._ServerNameField = value;
-                    this.RaisePropertyChanged("_ServerName");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public System.DateTime _ServerTime {
-            get {
-                return this._ServerTimeField;
-            }
-            set {
-                if ((this._ServerTimeField.Equals(value) != true)) {
-                    this._ServerTimeField = value;
-                    this.RaisePropertyChanged("_ServerTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public string _UserId {
-            get {
-                return this._UserIdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this._UserIdField, value) != true)) {
-                    this._UserIdField = value;
-                    this.RaisePropertyChanged("_UserId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<AppId>k__BackingField", IsRequired=true)]
-        public string AppIdk__BackingField {
-            get {
-                return this.AppIdk__BackingFieldField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AppIdk__BackingFieldField, value) != true)) {
-                    this.AppIdk__BackingFieldField = value;
-                    this.RaisePropertyChanged("AppIdk__BackingField");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="<ProviderNameWithCultureInfo>k__BackingField", IsRequired=true)]
-        public string ProviderNameWithCultureInfok__BackingField {
-            get {
-                return this.ProviderNameWithCultureInfok__BackingFieldField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProviderNameWithCultureInfok__BackingFieldField, value) != true)) {
-                    this.ProviderNameWithCultureInfok__BackingFieldField = value;
-                    this.RaisePropertyChanged("ProviderNameWithCultureInfok__BackingField");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IFwkService1")]
-    public interface IFwkService1 {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IFwkService")]
+    public interface IFwkService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFwkService1/ExecuteService", ReplyAction="http://tempuri.org/IFwkService1/ExecuteServiceResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFwkService/ExecuteService", ReplyAction="http://tempuri.org/IFwkService/ExecuteServiceResponse")]
         Cliente.ServiceReference1.ExecuteServiceResponse ExecuteService(Cliente.ServiceReference1.ExecuteServiceRequest request);
     }
     
@@ -252,13 +25,21 @@ namespace Cliente.ServiceReference1 {
     public partial class ExecuteServiceRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Cliente.ServiceReference1.CompositeType composite;
+        public string providerName;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string serviceName;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public string jsonRequets;
         
         public ExecuteServiceRequest() {
         }
         
-        public ExecuteServiceRequest(Cliente.ServiceReference1.CompositeType composite) {
-            this.composite = composite;
+        public ExecuteServiceRequest(string providerName, string serviceName, string jsonRequets) {
+            this.providerName = providerName;
+            this.serviceName = serviceName;
+            this.jsonRequets = jsonRequets;
         }
     }
     
@@ -268,40 +49,40 @@ namespace Cliente.ServiceReference1 {
     public partial class ExecuteServiceResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public Cliente.ServiceReference1.CompositeType ExecuteServiceResult;
+        public string ExecuteServiceResult;
         
         public ExecuteServiceResponse() {
         }
         
-        public ExecuteServiceResponse(Cliente.ServiceReference1.CompositeType ExecuteServiceResult) {
+        public ExecuteServiceResponse(string ExecuteServiceResult) {
             this.ExecuteServiceResult = ExecuteServiceResult;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IFwkService1Channel : Cliente.ServiceReference1.IFwkService1, System.ServiceModel.IClientChannel {
+    public interface IFwkServiceChannel : Cliente.ServiceReference1.IFwkService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class FwkService1Client : System.ServiceModel.ClientBase<Cliente.ServiceReference1.IFwkService1>, Cliente.ServiceReference1.IFwkService1 {
+    public partial class FwkServiceClient : System.ServiceModel.ClientBase<Cliente.ServiceReference1.IFwkService>, Cliente.ServiceReference1.IFwkService {
         
-        public FwkService1Client() {
+        public FwkServiceClient() {
         }
         
-        public FwkService1Client(string endpointConfigurationName) : 
+        public FwkServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public FwkService1Client(string endpointConfigurationName, string remoteAddress) : 
+        public FwkServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public FwkService1Client(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public FwkServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public FwkService1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public FwkServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

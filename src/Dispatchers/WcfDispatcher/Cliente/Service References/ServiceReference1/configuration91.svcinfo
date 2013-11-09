@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="foLECHfGBofcl+CK0WvWh2c7cFc=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="SI502Q6cRd9+/B5WEfQjru6xFI4=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="tcp">
       <properties>
@@ -242,10 +242,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="tcp" contract="ServiceReference1.IFwkService1" bindingType="netTcpBinding" address="net.tcp://localhost:8001/FwkService1" bindingConfiguration="tcp">
+    <endpoint name="tcp" contract="ServiceReference1.IFwkService" bindingType="netTcpBinding" address="net.tcp://localhost:8001/FwkService" bindingConfiguration="tcp">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://localhost:8001/FwkService1</serializedValue>
+          <serializedValue>net.tcp://localhost:8001/FwkService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -257,7 +257,7 @@
           <serializedValue>tcp</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceReference1.IFwkService1</serializedValue>
+          <serializedValue>ServiceReference1.IFwkService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -327,10 +327,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="web" contract="ServiceReference1.IFwkService1" bindingType="wsHttpBinding" address="http://localhost:8732/WcfDispatcher/FwkService1/mex" bindingConfiguration="web">
+    <endpoint name="web" contract="ServiceReference1.IFwkService" bindingType="wsHttpBinding" address="http://localhost:8732/WcfDispatcher/FwkService/mex" bindingConfiguration="web">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:8732/WcfDispatcher/FwkService1/mex</serializedValue>
+          <serializedValue>http://localhost:8732/WcfDispatcher/FwkService/mex</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -342,7 +342,7 @@
           <serializedValue>web</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ServiceReference1.IFwkService1</serializedValue>
+          <serializedValue>ServiceReference1.IFwkService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

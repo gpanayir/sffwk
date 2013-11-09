@@ -18,15 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8732/WcfDispatcher/FwkService1/?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8732/WcfDispatcher/FwkService/?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="FwkService1.wsdl" MetadataType="Wsdl" ID="1b059a46-ddb0-4cf2-90a1-001b799fb00a" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService1/?wsdl" />
-    <MetadataFile FileName="item.wsdl" MetadataType="Wsdl" ID="84684014-3752-484b-b095-f6bd8ea153eb" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService1/?wsdl=wsdl0" />
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="738b379c-f923-4310-a6a4-df968133c1c3" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService1/?xsd=xsd1" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="a940dda2-e114-41af-8f5e-f5fd75b63204" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService1/?xsd=xsd0" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="af05013f-911b-4f59-8c2e-03d01aec7239" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService1/?xsd=xsd3" />
-    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="b3435f5f-7deb-4636-b465-22a7ef10fcbb" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService1/?xsd=xsd2" />
+    <MetadataFile FileName="item.wsdl" MetadataType="Wsdl" ID="84684014-3752-484b-b095-f6bd8ea153eb" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?wsdl=wsdl0" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="a940dda2-e114-41af-8f5e-f5fd75b63204" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd0" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="738b379c-f923-4310-a6a4-df968133c1c3" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd1" />
+    <MetadataFile FileName="FwkService.wsdl" MetadataType="Wsdl" ID="1b059a46-ddb0-4cf2-90a1-001b799fb00a" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

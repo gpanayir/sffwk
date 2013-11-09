@@ -123,18 +123,13 @@
     <None Include="Service References\ServiceReference1\Cliente.ServiceReference1.ExecuteServiceResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServiceReference1\FwkService.wsdl" />
     <None Include="Service References\ServiceReference1\FwkService1.wsdl" />
     <None Include="Service References\ServiceReference1\item.wsdl" />
     <None Include="Service References\ServiceReference1\item.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference1\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceReference1\item3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
