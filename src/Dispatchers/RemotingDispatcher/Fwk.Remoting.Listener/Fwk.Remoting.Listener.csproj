@@ -120,6 +120,7 @@
     </None>
     <None Include="RemotingHost.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="StartService.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
