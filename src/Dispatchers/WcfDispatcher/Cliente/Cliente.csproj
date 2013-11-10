@@ -56,6 +56,12 @@
     <Reference Include="Fwk.Bases">
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
+    <Reference Include="Fwk.Bases.Connector">
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.Connector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching">
+      <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
