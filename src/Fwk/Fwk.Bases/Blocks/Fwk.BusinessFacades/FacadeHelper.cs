@@ -50,7 +50,7 @@ namespace Fwk.BusinessFacades.Utils
     public sealed class FacadeHelper
     {
         internal static fwk_ServiceDispatcher ServiceDispatcherConfig=null;
-        internal static bool DefaultSettings = true;
+        internal static bool DefaultSettings = false;
 
         /// <summary>
         /// 
@@ -67,24 +67,31 @@ namespace Fwk.BusinessFacades.Utils
         internal static void ReloadConfig(out String stringMessage)
         {
             stringMessage = string.Empty;
-            if (DefaultSettings)
-            {
 
-                try
+
+
+            //ConnectionString donde proviene la configuracion del Service Dispatcher
+            ConfigurationsHelper.ServiceDispatcherConnection = System.Configuration.ConfigurationManager.AppSettings["ServiceDispatcherConnection"];
+            string serviceDispatcherName = System.Configuration.ConfigurationManager.AppSettings["ServiceDispatcherName"];
+
+            if (!String.IsNullOrEmpty(ConfigurationsHelper.ServiceDispatcherConnection) || !String.IsNullOrEmpty(serviceDispatcherName))
+            {
+                #region Check cnn string if exist
+                if (System.Configuration.ConfigurationManager.ConnectionStrings[ConfigurationsHelper.ServiceDispatcherConnection] == null)
                 {
-                    //ConnectionString donde proviene la configuracion del Service Dispatcher
-                    ConfigurationsHelper.ServiceDispatcherConnection = System.Configuration.ConfigurationManager.AppSettings["ServiceDispatcherConnection"];
-                    string serviceDispatcherName = System.Configuration.ConfigurationManager.AppSettings["ServiceDispatcherName"];
-                    if (!String.IsNullOrEmpty(ConfigurationsHelper.ServiceDispatcherConnection) ||
-                        !String.IsNullOrEmpty(serviceDispatcherName))
+                    TechnicalException te = new TechnicalException(string.Concat("No se puede encontrar la cadena de conexión : ", ConfigurationsHelper.ServiceDispatcherConnection));
+                    ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
+                    te.ErrorId = "8200";
+                    stringMessage = Audit.LogDispatcherErrorConfig(te).Message;
+                    DefaultSettings = true;
+                }
+                #endregion
+
+                if (DefaultSettings == false)
+                {
+                    #region Try coinnect tod serivice dispatcher database
+                    try
                     {
-                        if (System.Configuration.ConfigurationManager.ConnectionStrings[ConfigurationsHelper.ServiceDispatcherConnection] == null)
-                        {
-                            TechnicalException te = new TechnicalException(string.Concat("No se puede encontrar la cadena de conexión : ", ConfigurationsHelper.ServiceDispatcherConnection));
-                            ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
-                            te.ErrorId = "8200";
-                            stringMessage = Audit.LogDispatcherErrorConfig(te).Message;
-                        }
                         using (FwkDatacontext context = new FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[ConfigurationsHelper.ServiceDispatcherConnection].ConnectionString))
                         {
                             ServiceDispatcherConfig = context.fwk_ServiceDispatchers.Where(s => s.InstanseName.Equals(serviceDispatcherName.Trim())).FirstOrDefault();
@@ -99,27 +106,32 @@ namespace Fwk.BusinessFacades.Utils
                         }
 
                         ConfigurationsHelper.HostApplicationName = ServiceDispatcherConfig.InstanseName;
-                        DefaultSettings = false;
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        DefaultSettings = true;
-                        ServiceDispatcherConfig = new fwk_ServiceDispatcher();
-                        ServiceDispatcherConfig.AuditMode = (int)AuditMode.None;
-                        ServiceDispatcherConfig.HostIp = "127.0.0.1";
-                        ServiceDispatcherConfig.InstanseName = "Fwk Dispatcher (default name)";
-                        
-                        stringMessage = Audit.LogDispatcherErrorConfig(null).Message;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DefaultSettings = true;
 
-                    stringMessage = Audit.LogDispatcherErrorConfig(ex).Message;
+                        DefaultSettings = true;
+                        stringMessage = Audit.LogDispatcherErrorConfig(ex).Message;
+                    }
+                    #endregion
                 }
+
             }
+            else
+            { DefaultSettings = true; }
+
+            if (DefaultSettings)
+            {
+                ServiceDispatcherConfig = new fwk_ServiceDispatcher();
+                ServiceDispatcherConfig.AuditMode = (int)AuditMode.None;
+                ServiceDispatcherConfig.HostIp = "127.0.0.1";
+                ServiceDispatcherConfig.InstanseName = "Fwk Dispatcher (default name)";
+               stringMessage = Audit.LogDispatcherErrorConfig(null).Message;
+            }
+
+
         }
+    
 
         #region Run services
         /// <summary>

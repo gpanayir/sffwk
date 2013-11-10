@@ -68,9 +68,9 @@ namespace Fwk.BusinessFacades.Utils
                 s.AppendLine("Error Interno:");
                 s.AppendLine(Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex));
             }
-            TechnicalException te = new TechnicalException();
+
+            TechnicalException te = new TechnicalException(s.ToString());
             te.ErrorId = "7007";
-            
             Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FacadeHelper>(te);
 
             try

@@ -174,9 +174,9 @@ namespace Fwk.BusinessFacades
             string wResult;
 
             ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName, serviceName);
-
-            IServiceContract wRequest = (IServiceContract)ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
-            if (wRequest == null)
+            Type reqType = Type.GetType(wServiceConfiguration.Request);
+            //var wRequest = ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
+            if (reqType == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("El despachador de servicio no pudo continuar debido\r\na que no construir el requets del servicio: ",
                     serviceName, "\r\nVerifique que se encuentre los componentes necesarios para su ejecucion esten en el servidor de aplicación. "));
@@ -195,13 +195,13 @@ namespace Fwk.BusinessFacades
                 te.ErrorId = "7003";
                 throw te;
             }
-           //Type type =  ReflectionFunctions.CreateType(wServiceConfiguration.Request);
+           
+           var wRequest = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequest, reqType, new JsonSerializerSettings());
+           
 
-           wRequest = (IServiceContract)Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequest);
-
-           IServiceContract res = ExecuteService(providerName, wRequest);
+           IServiceContract res = ExecuteService(providerName, (IServiceContract)wRequest);
            wResult = Newtonsoft.Json.JsonConvert.SerializeObject(res, Newtonsoft.Json.Formatting.None);
-            //wResult = ExecuteService(providerName, wRequest).GetXml();
+           
 
             return wResult;
 

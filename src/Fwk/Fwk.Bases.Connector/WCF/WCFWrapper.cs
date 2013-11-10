@@ -136,12 +136,9 @@ namespace Fwk.Bases.Connector
                 
 
             }
-            TResponse response = (TResponse)Newtonsoft.Json.JsonConvert.DeserializeObject(wcfRes.ExecuteServiceResult, settings);
+            TResponse response = Newtonsoft.Json.JsonConvert.DeserializeObject<TResponse>(wcfRes.ExecuteServiceResult, settings);
             response.InitializeHostContextInformation();
-
             return response;
-
-            
         }
 
 
