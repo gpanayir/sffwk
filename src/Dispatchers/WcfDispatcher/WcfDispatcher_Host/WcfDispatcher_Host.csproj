@@ -80,6 +80,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -101,6 +104,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SomeCompany.BE\SomeCompany.BE.csproj">
+      <Project>{7070D9B9-65D3-433E-A504-E9C30952F973}</Project>
+      <Name>SomeCompany.BE</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WcfDispatcher\WcfDispatcher.csproj">
       <Project>{01286891-AE8E-4A3A-B7EB-E22FCECC3F05}</Project>
       <Name>WcfDispatcher</Name>
@@ -130,6 +137,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Metasvc.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
