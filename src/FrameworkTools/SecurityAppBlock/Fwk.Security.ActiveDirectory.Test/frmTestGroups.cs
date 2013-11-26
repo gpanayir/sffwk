@@ -39,7 +39,13 @@ namespace Fwk.Security.ActiveDirectory.Test
             
         }
 
-      
+        void Init()
+        {
+            
+            txtPassword.Text = System.Configuration.ConfigurationManager.AppSettings["pwd"];
+            txtLoginName.Text = System.Configuration.ConfigurationManager.AppSettings["user"];
+            txtPath.Text = System.Configuration.ConfigurationManager.AppSettings["LDAP"];
+        }
 
         private void btnSearchInDomain_Click(object sender, EventArgs e)
         {
@@ -81,6 +87,11 @@ namespace Fwk.Security.ActiveDirectory.Test
 
        
             
+        }
+
+        private void frmTestGroups_Load(object sender, EventArgs e)
+        {
+            Init();
         }
     }
 }
