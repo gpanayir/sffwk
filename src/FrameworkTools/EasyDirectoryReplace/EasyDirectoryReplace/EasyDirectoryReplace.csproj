@@ -131,7 +131,9 @@
     <None Include="Resources\BPDef32.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Resources\Untitled %28243%29.ico" />
   </ItemGroup>
   <ItemGroup>

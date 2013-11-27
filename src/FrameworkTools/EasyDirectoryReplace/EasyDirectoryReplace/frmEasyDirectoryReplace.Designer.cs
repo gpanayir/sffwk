@@ -43,6 +43,8 @@ namespace EasyDirectoryReplace
             this.btnProcess = new System.Windows.Forms.Button();
             this.replacePatternControl1 = new EasyDirectoryReplace.ReplacePatternControl();
             this.chkIgnoreSvn = new System.Windows.Forms.CheckBox();
+            this.btnRenameOnly = new System.Windows.Forms.Button();
+            this.chkRenameOnly = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -229,12 +231,45 @@ namespace EasyDirectoryReplace
             this.chkIgnoreSvn.Text = "Ignore subversion folders";
             this.chkIgnoreSvn.UseVisualStyleBackColor = true;
             // 
+            // btnRenameOnly
+            // 
+            this.btnRenameOnly.Enabled = false;
+            this.btnRenameOnly.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnRenameOnly.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnRenameOnly.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRenameOnly.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRenameOnly.ForeColor = System.Drawing.Color.SlateGray;
+            this.btnRenameOnly.Image = global::EasyDirectoryReplace.Properties.Resources.Untitled__243_;
+            this.btnRenameOnly.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRenameOnly.Location = new System.Drawing.Point(15, 359);
+            this.btnRenameOnly.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRenameOnly.Name = "btnRenameOnly";
+            this.btnRenameOnly.Size = new System.Drawing.Size(142, 38);
+            this.btnRenameOnly.TabIndex = 16;
+            this.btnRenameOnly.Text = "Renombrar";
+            this.btnRenameOnly.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRenameOnly.UseVisualStyleBackColor = true;
+            this.btnRenameOnly.Click += new System.EventHandler(this.btnRenameOnly_Click);
+            // 
+            // chkRenameOnly
+            // 
+            this.chkRenameOnly.AutoSize = true;
+            this.chkRenameOnly.Location = new System.Drawing.Point(16, 331);
+            this.chkRenameOnly.Name = "chkRenameOnly";
+            this.chkRenameOnly.Size = new System.Drawing.Size(276, 21);
+            this.chkRenameOnly.TabIndex = 17;
+            this.chkRenameOnly.Text = "Renombrar en la misma carpeta origen";
+            this.chkRenameOnly.UseVisualStyleBackColor = true;
+            this.chkRenameOnly.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chkRenameOnly_MouseClick);
+            // 
             // frmEasyReplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1512, 497);
+            this.Controls.Add(this.chkRenameOnly);
+            this.Controls.Add(this.btnRenameOnly);
             this.Controls.Add(this.chkIgnoreSvn);
             this.Controls.Add(this.replacePatternControl1);
             this.Controls.Add(this.btnAdd);
@@ -271,6 +306,8 @@ namespace EasyDirectoryReplace
         private System.Windows.Forms.Button btnAdd;
         private ReplacePatternControl replacePatternControl1;
         private System.Windows.Forms.CheckBox chkIgnoreSvn;
+        private System.Windows.Forms.Button btnRenameOnly;
+        private System.Windows.Forms.CheckBox chkRenameOnly;
     }
 }
 

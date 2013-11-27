@@ -42,7 +42,27 @@ namespace EasyDirectoryReplace
 
 
 
+        private void btnRenameOnly_Click(object sender, EventArgs e)
+        {
+            String[] wDirectories;
+             try
+             {
+                 String[] wFiles = Directory.GetFiles(txtRuta1.Text, "*", SearchOption.AllDirectories);
+                 wDirectories = Directory.GetDirectories(txtRuta1.Text, "*", SearchOption.AllDirectories);
+                 progressBar1.Maximum = wFiles.Length + wDirectories.Length + 1;
+                 progressBar1.Visible = true;
 
+                    FillReplacePaternList(true);
+                 RenameFilesAndDirectories(txtRuta1.Text, "*", _Store.ReplacePatternList);
+
+                 progressBar1.Value = 0;
+                 progressBar1.Visible = false;
+             }
+             catch (Exception ex)
+             {
+                 FwkMessageView.Show(ex, "Error", MessageBoxButtons.OK, Fwk.Bases.FrontEnd.Controls.MessageBoxIcon.Error);
+             }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -163,6 +183,32 @@ namespace EasyDirectoryReplace
             foreach (DirectoryInfo directoryInfo in wDirectories)
             {
                 RenameFilesAndDirectories(directoryInfo.FullName, Path.Combine(destination, destinationDirectoryInfo.Name), searchPattern,
+                                          list);
+            }
+
+        }
+        void RenameFilesAndDirectories(string source, string searchPattern, ReplacePaternList list)
+        {
+            #region Declarations
+            FileInfo[] wFiles = new DirectoryInfo(source).GetFiles(searchPattern, SearchOption.TopDirectoryOnly);
+            DirectoryInfo[] wDirectories = new DirectoryInfo(source).GetDirectories(searchPattern, SearchOption.TopDirectoryOnly);
+
+            #endregion
+
+
+            String newFileName;
+            foreach (FileInfo file in wFiles)
+            {
+                progressBar1.Value++;
+                //StringBuilder strErrors = null;
+                newFileName = ReplaceNameContainsPattern(file.FullName, list);
+                File.Move(file.FullName, newFileName);
+
+            }
+            //por cada subdirectorio
+            foreach (DirectoryInfo directoryInfo in wDirectories)
+            {
+                RenameFilesAndDirectories(directoryInfo.FullName, searchPattern,
                                           list);
             }
 
@@ -342,5 +388,15 @@ namespace EasyDirectoryReplace
             flowLayoutPanel1.Controls.Remove((ReplacePatternControl)sender);
 
         }
+
+        private void chkRenameOnly_MouseClick(object sender, MouseEventArgs e)
+        {
+           btnRenameOnly.Enabled = chkRenameOnly.Checked;
+           btnOpenDest.Enabled = txtRuta2.Enabled = btnProcess.Enabled = !chkRenameOnly.Checked;
+                
+
+        }
+
+      
     }
 }
