@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.WCF.CentralizedSecurity", "Fwk.WCF.CentralizedSecurity.csproj", "{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.WCF.Services", "..\Fwk.WCF.Services\Fwk.WCF.Services.csproj", "{FA61CFD2-61D8-4D9C-B9A9-C344197F31B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Security", "..\..\..\Fwk\Fwk.Security\Fwk.Security.csproj", "{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}.Release|x64.ActiveCfg = Release|Any CPU
+		{FA61CFD2-61D8-4D9C-B9A9-C344197F31B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA61CFD2-61D8-4D9C-B9A9-C344197F31B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA61CFD2-61D8-4D9C-B9A9-C344197F31B1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FA61CFD2-61D8-4D9C-B9A9-C344197F31B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA61CFD2-61D8-4D9C-B9A9-C344197F31B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA61CFD2-61D8-4D9C-B9A9-C344197F31B1}.Release|x64.ActiveCfg = Release|Any CPU
+		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Debug|x64.ActiveCfg = Debug|x64
+		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Debug|x64.Build.0 = Debug|x64
+		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Release|x64.ActiveCfg = Release|x64
+		{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
