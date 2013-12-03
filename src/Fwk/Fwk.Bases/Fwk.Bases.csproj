@@ -129,6 +129,9 @@
     <Compile Include="Blocks\Fwk.Params\ParamsController.cs" />
     <Compile Include="Blocks\Fwk.Params\SearchParamService.cs" />
     <Compile Include="Blocks\Fwk.Params\SearchParamTypeService.cs" />
+    <Compile Include="Blocks\Fwk.Security.Cryptography\Config\CypherProviderCollection.cs" />
+    <Compile Include="Blocks\Fwk.Security.Cryptography\Config\CypherProviderElement.cs" />
+    <Compile Include="Blocks\Fwk.Security.Cryptography\Config\CypherProviderSection.cs" />
     <Compile Include="Blocks\FwkData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

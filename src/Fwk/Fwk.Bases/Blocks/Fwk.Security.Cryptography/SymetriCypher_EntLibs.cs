@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Security.Cryptography;
 using System.IO;
 using System.Security.Cryptography;
+using Fwk.HelperFunctions;
 using Fwk.Exceptions;
 
 namespace Fwk.Security.Cryptography

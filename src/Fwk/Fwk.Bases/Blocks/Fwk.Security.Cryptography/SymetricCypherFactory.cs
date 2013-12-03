@@ -6,6 +6,8 @@ using Microsoft.Practices.EnterpriseLibrary.Security.Cryptography;
 using System.IO;
 using System.Security.Cryptography;
 using Fwk.Exceptions;
+using Fwk.Security.Cryptography.Config;
+using Fwk.Bases.Properties;
 
 namespace Fwk.Security.Cryptography
 
@@ -18,24 +20,114 @@ namespace Fwk.Security.Cryptography
     /// </summary>
     public static class SymetricCypherFactory
     {
-        static Dictionary<string, ISymetriCypher> list;
 
+       
+        static Dictionary<string, ISymetriCypher> CypherProviders;
+        static CypherProviderSection _CypherProviders;
+ 
         /// <summary>
         /// Crea el diccionario de ISymetriCypher
         /// </summary>
         static SymetricCypherFactory()
         {
-            list = new Dictionary<string, ISymetriCypher>();
+         
+        }
+         static void InitializeProviders()
+        {
+            if (CypherProviders != null) return;
+            CypherProviders = new Dictionary<string, ISymetriCypher>();
+            String k = String.Empty;
+            TechnicalException te;
+            try
+            {
+                _CypherProviders = System.Configuration.ConfigurationManager.GetSection("FwkCypherProvider") as CypherProviderSection;
+                if (_CypherProviders == null)
+                {
+                    te = new TechnicalException(String.Format(Fwk.Bases.Properties.Resources.setting_section_not_found, "FwkCypherProvider", "FwkCypherProvider"));
+                    te.ErrorId = String.Empty;
+
+                    throw te;
+                }
+
+                foreach (CypherProviderElement provider in _CypherProviders.Providers)
+                {
+
+                    if (provider.Type.Equals("file"))
+                    {
+                        if (System.IO.File.Exists(provider.Source))
+                            k = Fwk.HelperFunctions.FileFunctions.OpenTextFile(provider.Source);
+                        else
+                        {
+                            te = new TechnicalException(String.Format(Fwk.Bases.Properties.Resources.security_provider_keyfile_not_found, provider.Source, provider.Name));
+                            throw te;
+                        }
+                    }
+                    Add<RijndaelManaged>(provider.Name, k);
+                }
+            }
+            catch (System.Exception ex)
+            {
+
+                //te = new TechnicalException(ex);
+                //ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
+                //te.ErrorId = "";
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static ISymetriCypher Cypher()
+        {
+            
+            return Cypher(String.Empty);
+        }
+        /// <summary>
+        /// Busca un cryptographer determinado por medio de su nombre  
+        /// </summary>
+        /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
+        /// <param name="providerName">nombre proveedor configurado </param>
+        /// <returns>Argoritmo </returns>
+        public static ISymetriCypher Cypher(string providerName)
+        {
+            InitializeProviders();
+            //if (CypherProviders == null)
+            //{
+            //    TechnicalException te = new TechnicalException("Debe llamar al metodo InitializeProviders antes de ejecutar alguna accion sobre un encriptador");
+            //    //te.ErrorId = "4402";
+            //    throw te;
+            //}
+            if (String.IsNullOrEmpty(providerName))
+                providerName = _CypherProviders.DefaultProviderName;
+
+            ISymetriCypher symetriCypher = null;
+            //Busca el SymetriCypher en el diccionario
+            if (CypherProviders.ContainsKey(providerName))
+                symetriCypher = (ISymetriCypher)CypherProviders[providerName];
+         
+            else
+            {
+
+                TechnicalException te = new TechnicalException(String.Format(Fwk.Bases.Properties.Resources.setting_provider_not_found, providerName, "FwkCypherProvider"));
+                te.ErrorId = "4401";
+                throw te;
+            }
+            return symetriCypher;
         }
 
         /// <summary>
         /// Busca un criptographer determinado por medio de su nombre de archivo de encriptacion y tipo de algoritmo simetrico
         /// </summary>
+        /// <providerName>Provider Name</typeparam>
         /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
         /// <param name="keyFileName">nombre de archivo de encriptacion </param>
-        /// <returns>Argoritmo <see cref="SymetriCypher"/></returns>
-        public static SymetriCypher<T> Get<T>(string key) where T : SymmetricAlgorithm
+        /// <returns>Argoritmo</returns>
+        static SymetriCypher<T> Add<T>(string providerName,string key) where T : SymmetricAlgorithm
         {
+            if (String.IsNullOrEmpty(providerName))
+                providerName = _CypherProviders.DefaultProviderName;
+
             if (string.IsNullOrEmpty(key))
             {
 
@@ -47,86 +139,64 @@ namespace Fwk.Security.Cryptography
 
             SymetriCypher<T> symetriCypher = null;
             //Busca el SymetriCypher en el diccionario
-            if (list.ContainsKey(string.Concat(key, typeof(T).FullName)))
-                symetriCypher = (SymetriCypher<T>)list[string.Concat(key, typeof(T).FullName)];
+            if (CypherProviders.ContainsKey(providerName))
+                symetriCypher = (SymetriCypher<T>)CypherProviders[providerName];
             else
             {
                 symetriCypher = new SymetriCypher<T>(key);
-         
-                list.Add(string.Concat(key, typeof(T).FullName), symetriCypher);
+
+                CypherProviders.Add(providerName, symetriCypher);
             }
 
             return symetriCypher;
         }
 
-        /// <summary>
-        /// Crea un algoritmo sin nombre de archivo de encriptacion. Este constructor es util cando se trata de un encriptador para crear archivos .key
-        /// </summary>
-        /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
-        /// <returns>Argoritmo <see cref="SymetriCypher"/></returns>
-        public static SymetriCypher<T> Get<T>() where T : SymmetricAlgorithm
-        {
-            return new SymetriCypher<T>();
-        }
 
-    }
-
-
-    /// <summary>
-    /// Fabrica de SymetriCypher_EntLibs <![CDATA[SymetriCypher_EntLibs<T>]]>
-    /// </summary>
-    public static class SymetricCypherFactory_EntLibs
-    {
-        static Dictionary<string, ISymetriCypher> list;
-
-        /// <summary>
-        /// Crea el diccionario de ISymetriCypher
-        /// </summary>
-        static SymetricCypherFactory_EntLibs()
-        {
-            list = new Dictionary<string, ISymetriCypher>();
-        }
 
         /// <summary>
         /// Busca un criptographer determinado por medio de su nombre de archivo de encriptacion y tipo de algoritmo simetrico
         /// </summary>
         /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
         /// <param name="keyFileName">nombre de archivo de encriptacion </param>
-        /// <returns>Argoritmo <see cref="SymetriCypher_EntLibs"/></returns>
-        public static SymetriCypher_EntLibs<T> Get<T>(string keyFileName) where T : SymmetricAlgorithm
-        {
-            if (string.IsNullOrEmpty(keyFileName))
-            {
+        /// <returns>Argoritmo <see cref="SymetriCypher"/></returns>
+        //public static SymetriCypher<T> Get<T>(string key) where T : SymmetricAlgorithm
+        //{
+        //    if (string.IsNullOrEmpty(key))
+        //    {
 
-                TechnicalException te = new TechnicalException("La clave de encriptacion no puede ser nula");
-                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
-                te.ErrorId = "4401";
-                throw te;
-            }
+        //        TechnicalException te = new TechnicalException("La clave de encriptacion no puede ser nula");
+        //        ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
+        //        te.ErrorId = "4401";
+        //        throw te;
+        //    }
 
-            SymetriCypher_EntLibs<T> symetriCypher = null;
+        //    SymetriCypher<T> symetriCypher = null;
+        //    //Busca el SymetriCypher en el diccionario
+        //    if (CypherProviders.ContainsKey(string.Concat(key, typeof(T).FullName)))
+        //        symetriCypher = (SymetriCypher<T>)CypherProviders[string.Concat(key, typeof(T).FullName)];
+        //    else
+        //    {
+        //        symetriCypher = new SymetriCypher<T>(key);
+         
+        //        CypherProviders.Add(string.Concat(key, typeof(T).FullName), symetriCypher);
+        //    }
 
-            if (list.ContainsKey(string.Concat(keyFileName, typeof(T).FullName)))
-                symetriCypher = (SymetriCypher_EntLibs<T>)list[string.Concat(keyFileName, typeof(T).FullName)];
-            else
-            {
-                symetriCypher = new SymetriCypher_EntLibs<T>();
-                symetriCypher.KeyFileName = keyFileName;
-                list.Add(string.Concat(keyFileName, typeof(T).FullName), symetriCypher);
-            }
+        //    return symetriCypher;
+        //}
 
-            return symetriCypher;
-        }
-
+     
         /// <summary>
-        /// Crea un algoritmo sin nombre de archivo de encriptacion. Este constructor es util cando se trata de un encriptador para crear archivos .key
+        /// 
         /// </summary>
-        /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
-        /// <returns>Argoritmo <see cref="SymetriCypher_EntLibs<T>"/></returns>
-        public static SymetriCypher_EntLibs<T> Get<T>() where T : SymmetricAlgorithm
+        /// <returns></returns>
+        public static String GenNewKey() 
         {
-               return  new SymetriCypher_EntLibs<T>();
+          SymetriCypher<RijndaelManaged> c =new SymetriCypher<RijndaelManaged> ();
+          return c.GeneratetNewK();
         }
 
     }
+
+
+    
 }
