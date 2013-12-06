@@ -16,7 +16,7 @@ namespace Fwk.Security.Cryptography
 
 
     /// <summary>
-    /// Fabrica de SymetriCypher <![CDATA[SymetriCypher<T>]]>
+    /// Fabrica de SymetriCypher <![CDATA[SymetriCypher<T>]]> Crea todo los algoritmos de tipo RijndaelManaged
     /// </summary>
     public static class SymetricCypherFactory
     {
@@ -121,7 +121,7 @@ namespace Fwk.Security.Cryptography
         /// </summary>
         /// <providerName>Provider Name</typeparam>
         /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
-        /// <param name="keyFileName">nombre de archivo de encriptacion </param>
+        /// <param name="key">Clave de encriptacion</param>
         /// <returns>Argoritmo</returns>
         static SymetriCypher<T> Add<T>(string providerName,string key) where T : SymmetricAlgorithm
         {
