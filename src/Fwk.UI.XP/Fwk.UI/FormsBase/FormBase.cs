@@ -23,7 +23,7 @@ namespace Fwk.UI.Forms
 {
 
     /// <summary>
-    /// Formulario base del cual heredan todos los formularios de .- 
+    /// Formulario base del cual heredan todos los formularios .- 
     /// Este formulario inicializa la seguridad y dispone de metodos y propiedades estaticos utiles para los demas
     /// componentes de Pelsoft.-
     /// 
@@ -49,7 +49,7 @@ namespace Fwk.UI.Forms
 
         #region Authorization Factory
 
-        internal static IAuthorizationProvider RuleProvider;
+        public static IAuthorizationProvider RuleProvider;
         public static IPrincipal Principal;
         public static string IdentityName;
         /// <summary>
@@ -266,8 +266,8 @@ namespace Fwk.UI.Forms
 
             //if (FormBase.IndentityUserInfo == null)
             FormBase.IndentityUserInfo = SecurityController.AuthenticateUser(pName, pPassword, pAuthenticationMode, pDomain, pIsEnvironmentUser);
-
-            FormBase.IndentityUserInfo.AuthenticationMode = pAuthenticationMode;
+            if(FormBase.IndentityUserInfo!=null)
+                FormBase.IndentityUserInfo.AuthenticationMode = pAuthenticationMode;
         }
 
 

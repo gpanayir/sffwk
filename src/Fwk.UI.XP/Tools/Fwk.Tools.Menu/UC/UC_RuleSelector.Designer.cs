@@ -30,9 +30,9 @@ namespace Fwk.UI.Security.Controls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.grdRules = new Fwk.UI.Controls.GridNoEditWithGroup();
+            this.grdRules = new DevExpress.XtraGrid.GridControl();
             this.authorizationRuleDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gridNoEditWithGroupView1 = new Fwk.UI.Controls.GridNoEditWithGroupView();
+            this.gridNoEditWithGroupView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblSelectedRule = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.grdRules)).BeginInit();
@@ -119,8 +119,8 @@ namespace Fwk.UI.Security.Controls
 
         #endregion
 
-        private Fwk.UI.Controls.GridNoEditWithGroup grdRules;
-        private Fwk.UI.Controls.GridNoEditWithGroupView gridNoEditWithGroupView1;
+        private DevExpress.XtraGrid.GridControl grdRules;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridNoEditWithGroupView1;
         private System.Windows.Forms.BindingSource authorizationRuleDataBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraEditors.LabelControl lblSelectedRule;

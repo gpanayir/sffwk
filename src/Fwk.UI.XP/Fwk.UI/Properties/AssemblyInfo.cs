@@ -7,7 +7,7 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Fwk.UI")]
-[assembly: AssemblyDescription("User interfaz XP Release")]
+[assembly: AssemblyDescription("User interfaz for XP ")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 

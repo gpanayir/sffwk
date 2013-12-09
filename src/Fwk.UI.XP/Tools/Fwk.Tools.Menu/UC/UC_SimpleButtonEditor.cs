@@ -219,6 +219,11 @@ namespace Fwk.Tools.Menu
                 
         }
 
+        private void labelControl5_Click(object sender, EventArgs e)
+        {
+
+        }
+
       
 
         

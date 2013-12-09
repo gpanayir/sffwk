@@ -155,15 +155,6 @@
     <Compile Include="UC\FRM_RuleSelector.Designer.cs">
       <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\GridNoEditWithGroup.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UC\GridNoEditWithGroupInfoRegistrator.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UC\GridNoEditWithGroupView.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="UC\UC_ButtonGroupEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -228,10 +219,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC\FRM_RuleSelector.resx">
       <DependentUpon>FRM_RuleSelector.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UC\GridNoEditWithGroup.resx">
-      <DependentUpon>GridNoEditWithGroup.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UC_ButtonGroupEditor.resx">

@@ -105,12 +105,13 @@ namespace Fwk.UI.Controls
         /// <summary>
         /// Titulo
         /// </summary>
-        [CategoryAttribute("Fwk.Factory"), Description("Titulo")]
+        [CategoryAttribute("Fwk.Factory"), Description("MessageView Title")]
         public String Title
         {
             get { return _FwkMessageView.Text ; }
             set { _FwkMessageView.Text = value; }
         }
+
         #endregion
 
         #region Constructor
