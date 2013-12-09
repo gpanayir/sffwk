@@ -39,7 +39,7 @@ namespace Fwk.UI.Controls
         /// <summary>
         /// Tama�o del icono
         /// </summary>
-        [CategoryAttribute("Fwk.Factory"), Description("Tamaño del icono"), DefaultValue(IconSize.Small)]
+        [CategoryAttribute("Fwk.Factory"), Description("Tamano del icono"), DefaultValue(IconSize.Small)]
         public Fwk.UI.Common.IconSize IconSize
         {
             get { return _IconSize; }

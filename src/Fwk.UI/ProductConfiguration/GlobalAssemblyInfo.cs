@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 
 [assembly: AssemblyCompany("Fwk Pelsoft .")]
-[assembly: AssemblyProduct(".: Fwk libraries - :.")]
+[assembly: AssemblyProduct(".: Fwk libraries For Windows 7- :.")]
 [assembly: AssemblyCopyright("Copyright  Fwk  2010")]
 
 
