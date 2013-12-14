@@ -24,7 +24,7 @@ namespace WcfDispatcher
  
         private ContextInformation _ContextField;
         private String ServiceName { get; set; }
-        private String _JsonBussinesData;
+        private String _JsonBusinesData;
         
         [DataMember(IsRequired = false, Name = "Context", Order = 0)]
         public ContextInformation Context
@@ -35,10 +35,10 @@ namespace WcfDispatcher
 
 
         [DataMember()]
-        public String JsonBussinesData
+        public String JsonBusinesData
         {
-            get { return _JsonBussinesData; }
-            set { _JsonBussinesData = value; }
+            get { return _JsonBusinesData; }
+            set { _JsonBusinesData = value; }
         }
        
     }
