@@ -8,6 +8,7 @@ using System.Text;
 using Fwk.Bases;
 using Fwk.Caching;
 
+//http://msdn.microsoft.com/en-us/library/ee939340.aspx
 namespace WcfDispatcher
 {
     [ServiceContract]
