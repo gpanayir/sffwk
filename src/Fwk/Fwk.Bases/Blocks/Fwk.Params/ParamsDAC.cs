@@ -17,15 +17,15 @@ namespace Fwk.Params.Back
 
 
         /// <summary>
-        /// Retorna parametros por id, id padre, y filtra x vigentes o no vigentes
+        /// Retorna parametros por id, id padre, y filtra x vigentes o no vigentes La cultura puede se String.Empty
+        /// en cuyo caso no la tendra en cuenta para el filtro
         /// </summary>
-        /// <param name="paramTypeId">Tipo (gasto, clase, forma pago etc)</param>
         /// <param name="parentId">Relacion con otro param</param>
         /// <param name="enabled">Vigentes o no</param>
         /// <param name="culture">Cultura que se desea consultar: th-TH, en-US, es-AR etc etc</param>
         /// <param name="cnnStringName">Cadena de coneccion</param>
         /// <returns></returns>
-        public static ParamList RetriveByParams(int? paramTypeId, int? parentId, bool? enabled,string culture, string cnnStringName)
+        public static ParamList RetriveByParams(int? parentId, bool? enabled,string culture, string cnnStringName)
         {
 
 
@@ -36,8 +36,8 @@ namespace Fwk.Params.Back
                 using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
                 {
                     var rulesinCat = from s in dc.fwk_Params where 
-                                        (paramTypeId.HasValue || s.ParamTypeId.Equals(paramTypeId))
-                                        &&
+                                        
+                                        
                                            (parentId.HasValue || s.ParentId.Equals(parentId))
                                         &&
                                            (enabled.HasValue || s.Enabled.Equals(enabled)
@@ -50,7 +50,6 @@ namespace Fwk.Params.Back
                     {
                         wParamBE = new ParamBE();
                         wParamBE.ParamId = param_db.ParamId;
-                        wParamBE.ParamTypeId = param_db.ParamTypeId;
                         wParamBE.ParentId = param_db.ParentId;
                         wParamBE.Name = param_db.Name;
                         wParamBE.Description = param_db.Description;
@@ -74,51 +73,6 @@ namespace Fwk.Params.Back
 
            
         }
-
-        /// <summary>
-        /// Retorna registros de la tabla ParamType por parametros. Permite filtrar por padre y vigencia
-        /// </summary>
-        /// <param name="parentId">Id tipo parametro padre</param>
-        /// <param name="enabled">Vigencia</param>
-        /// <param name="cnnStringName">Cadena de conexion</param>
-        /// <returns></returns>
-        public static ParamTypeList RetriveParamType(int? parentId,bool? enabled, string cnnStringName)
-        {
-
-            ParamTypeList wList = new ParamTypeList();
-            ParamTypeBE wBE = null;
-            try
-            {
-                using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
-                {
-                    var types = from s in dc.fwk_ParamTypes where
-
-                                  (parentId.HasValue || s.ParentId.Equals(parentId))
-                                        &&
-                                           (enabled.HasValue || s.Enabled.Equals(enabled))
-                                select s;
-                    foreach (Fwk.ConfigData.fwk_ParamType tp in types.ToList<Fwk.ConfigData.fwk_ParamType>())
-                    { 
-                        wBE = new ParamTypeBE();
-
-                        wBE.ParamTypeId = tp.ParamTypeId;
-                        wBE.Name = tp.Name;
-
-                        wList.Add(wBE);
-                    }
-                }
-
-
-                return wList;
-
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
 
 
        

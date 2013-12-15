@@ -86,7 +86,6 @@ namespace Fwk.Security.Cryptography
         /// <summary>
         /// Busca un cryptographer determinado por medio de su nombre  
         /// </summary>
-        /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
         /// <param name="providerName">nombre proveedor configurado </param>
         /// <returns>Argoritmo </returns>
         public static ISymetriCypher Cypher(string providerName)
@@ -119,7 +118,7 @@ namespace Fwk.Security.Cryptography
         /// <summary>
         /// Busca un criptographer determinado por medio de su nombre de archivo de encriptacion y tipo de algoritmo simetrico
         /// </summary>
-        /// <providerName>Provider Name</typeparam>
+        /// <providerName>Provider Name</providerName>
         /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
         /// <param name="key">Clave de encriptacion</param>
         /// <returns>Argoritmo</returns>

@@ -26,37 +26,17 @@
         <elementListCompartment Id="b31ed4c5-6861-4206-806c-546d94e3854f" absoluteBounds="1.8900000000000001, 7.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="348c1b9a-9ac5-424c-8e48-7f5db1db2f00" absoluteBounds="4.375, 1.75, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/FwkDatacontext/fwk_ParamType" />
-      <nestedChildShapes>
-        <elementListCompartment Id="582843bc-a52c-411b-a9da-210a3f30833e" absoluteBounds="4.39, 2.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(5.08052987154447 : 3.52089680989583); (5.08052987154447 : 3.77089680989583); (5.68349251552484 : 3.77089680989583); (5.68349251552484 : 3.52089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/FwkDatacontext/fwk_ParamType/fwk_ParamType_fwk_ParamType" />
-      <nodes>
-        <classShapeMoniker Id="348c1b9a-9ac5-424c-8e48-7f5db1db2f00" />
-        <classShapeMoniker Id="348c1b9a-9ac5-424c-8e48-7f5db1db2f00" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="63a77f51-f7ca-4949-964e-472d374791c1" absoluteBounds="0.75, 0.875, 2, 2.3478011067708335">
+    <classShape Id="4c3152c5-57a2-4e16-a4c7-33a8d89ecd7b" absoluteBounds="1.375, 1.25, 2, 2.1554996744791666">
       <DataClassMoniker Name="/FwkDatacontext/fwk_Param" />
       <nestedChildShapes>
-        <elementListCompartment Id="fd2f4dab-8152-4c7b-b7eb-176f152e868d" absoluteBounds="0.765, 1.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d933f913-cc40-4f1d-9240-d596b5dc5b14" absoluteBounds="1.3900000000000001, 1.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.45923076923077 : 3.22280110677083); (1.45923076923077 : 3.47280110677083); (2.05461538461538 : 3.47280110677083); (2.05461538461538 : 3.22280110677083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.08423076923077 : 3.40549967447917); (2.08423076923077 : 3.65549967447917); (2.67961538461538 : 3.65549967447917); (2.67961538461538 : 3.40549967447917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/FwkDatacontext/fwk_Param/fwk_Param_fwk_Param" />
       <nodes>
-        <classShapeMoniker Id="63a77f51-f7ca-4949-964e-472d374791c1" />
-        <classShapeMoniker Id="63a77f51-f7ca-4949-964e-472d374791c1" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(4.375 : 2.48640055338542); (2.75 : 2.48640055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/FwkDatacontext/fwk_ParamType/fwk_ParamType_fwk_Param" />
-      <nodes>
-        <classShapeMoniker Id="348c1b9a-9ac5-424c-8e48-7f5db1db2f00" />
-        <classShapeMoniker Id="63a77f51-f7ca-4949-964e-472d374791c1" />
+        <classShapeMoniker Id="4c3152c5-57a2-4e16-a4c7-33a8d89ecd7b" />
+        <classShapeMoniker Id="4c3152c5-57a2-4e16-a4c7-33a8d89ecd7b" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

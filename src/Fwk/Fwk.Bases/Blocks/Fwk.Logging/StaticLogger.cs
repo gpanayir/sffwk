@@ -109,11 +109,12 @@ namespace Fwk.Logging
         /// <param name="fileNamePrefix"></param>
         private static void WriteLog(String providerName, Event ev, string path, string fileNamePrefix)
         {
-            // Obtiene la Rule asociada al EventType.
+            // Obtiene el provider
             LogProviderElement provider = _LoggingSection.GetProvider(providerName);
 
             // Escribe el log según la Rule.
-            Target wTarget = GetTargetByRule(provider, path, fileNamePrefix);
+            Target wTarget = GetTargetByProvider(provider, path, fileNamePrefix);
+
             wTarget.Write(ev);
 
         }
@@ -140,7 +141,7 @@ namespace Fwk.Logging
         private static void WriteLogNoConfig(TargetType targetType, Event ev, string fullFileName, string cnnStringName)
         {
             // Escribe el log según la Rule.
-            Target wTarget = GetTargetByRule_NoConfig(targetType, fullFileName, cnnStringName);
+            Target wTarget = GetTargetByType_NoConfig(targetType, fullFileName, cnnStringName);
             wTarget.Write(ev);
 
             ev = null;
@@ -160,28 +161,28 @@ namespace Fwk.Logging
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="rule"></param>
+        /// <param name="provider"></param>
         /// <param name="path"></param>
         /// <param name="fileNamePrefix"></param>
         /// <returns></returns>
-        private static Target GetTargetByRule(LogProviderElement rule, string path, string fileNamePrefix)
+        private static Target GetTargetByProvider(LogProviderElement provider, string path, string fileNamePrefix)
         {
             ITarget target = null;
-            switch (rule.Target)
+            switch (provider.Target)
             {
 
                 case TargetType.Database:
                     {
-                        target = Target.TargetFactory(TargetType.Database, rule.CnnStringName);
+                        target = Target.TargetFactory(TargetType.Database, provider.CnnStringName);
                         break;
                     }
                 case TargetType.File:
                     {
                         string fileName;
                         if (string.IsNullOrEmpty(path))
-                            fileName = string.Concat(fileNamePrefix, rule.FileName);
+                            fileName = string.Concat(fileNamePrefix, provider.FileName);
                         else
-                            fileName = System.IO.Path.Combine(path, string.Concat(fileNamePrefix, rule.FileName));
+                            fileName = System.IO.Path.Combine(path, string.Concat(fileNamePrefix, provider.FileName));
 
                         //Si cambio el nombre del archivo de log reinicio los logs para que Xmltarget lo busque 
                         // en el archivo correspondiente o genere uno nuevo
@@ -191,7 +192,7 @@ namespace Fwk.Logging
                             currentFileName = fileName;
 
                         }
-                        target = Target.TargetFactory(TargetType.File, rule.FileName);
+                        target = Target.TargetFactory(TargetType.File, provider.FileName);
                         break;
                     }
                 case TargetType.WindowsEvent:
@@ -203,9 +204,9 @@ namespace Fwk.Logging
                     {
                         string fileName;
                         if (string.IsNullOrEmpty(path))
-                            fileName = string.Concat(fileNamePrefix, rule.FileName);
+                            fileName = string.Concat(fileNamePrefix, provider.FileName);
                         else
-                            fileName = System.IO.Path.Combine(path, string.Concat(fileNamePrefix, rule.FileName));
+                            fileName = System.IO.Path.Combine(path, string.Concat(fileNamePrefix, provider.FileName));
 
                         //Si cambio el nombre del archivo de log reinicio los logs para que Xmltarget lo busque 
                         // en el archivo correspondiente o genere uno nuevo
@@ -229,7 +230,7 @@ namespace Fwk.Logging
         /// <param name="fullFileName">Nombre de archivo (opcional)</param>
         /// <param name="cnnStringName">Cadena de coneccion</param>
         /// <returns></returns>
-        private static Target GetTargetByRule_NoConfig(TargetType targetType, string fullFileName, string cnnStringName)
+        private static Target GetTargetByType_NoConfig(TargetType targetType, string fullFileName, string cnnStringName)
         {
             ITarget target = null;
             switch (targetType)

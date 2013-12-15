@@ -89,8 +89,8 @@ namespace Fwk.Mail.Imap
         /// <param name="nPort">Imap server port</param>
         /// <param name="sUserId">User's login id</param>
         /// <param name="sPassword">User's password</param>
-        /// <exception cref="IMAP_ERR_LOGIN"
-        /// <exception cref="IMAP_ERR_INVALIDPARAM"
+        /// <exception cref="IMAP_ERR_LOGIN"></exception>
+        /// <exception cref="IMAP_ERR_INVALIDPARAM"></exception>
 		public LoginResponseEnum Login(string sHost, ushort nPort, string sUserId, string sPassword, bool useSSL ) 
 		{
             m_useSSL = useSSL;
@@ -267,9 +267,9 @@ namespace Fwk.Mail.Imap
         /// Select the sFolder/mailbox after login
         /// </summary>
         /// <param name="sFolder">mailbox folder</param>
-        /// <exception cref="IMAP_ERR_SELECT"
-        /// <exception cref="IMAP_ERR_INSUFFICIENT_DATA"
-        /// <exception cref="IMAP_ERR_INVALIDPARAM"
+        /// <exception cref="IMAP_ERR_SELECT"></exception>
+        /// <exception cref="IMAP_ERR_INSUFFICIENT_DATA"></exception>
+        /// <exception cref="IMAP_ERR_INVALIDPARAM"></exception>
 		public void SelectFolder(string sFolder) 
 		{
 			if (!m_bIsLoggedIn)

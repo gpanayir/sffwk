@@ -415,7 +415,7 @@ namespace Fwk.Net.Ftp
         /// <param name="remFileName">Nombre del archivo remoto</param>
         /// <param name="fullLocalFileName">Nombre del archivo destino, Ruta+Nombre
         /// La ruta debe existir y el archivo sera creado.
-        /// </param>
+        /// </summary>
         public void Download(string remFileName, string fullLocalFileName)
         {
             Download(remFileName, fullLocalFileName, false);
@@ -431,7 +431,7 @@ namespace Fwk.Net.Ftp
         /// <param name="resume">Llama al comando REST: Reiniciar cargas y descargas de FTP y despues RETR
         /// Las descargas se pueden reiniciar emitiendo primero un comando rest con el desplazamiento deseado y, 
         /// a continuación, emitiendo el comando retr.
-        /// </param>
+        /// </summary>
         public void Download(string remFileName, string fullLocalFileName, Boolean resume)
         {
 

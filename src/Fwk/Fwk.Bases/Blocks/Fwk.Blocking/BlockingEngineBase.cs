@@ -35,7 +35,7 @@ namespace Fwk.Blocking
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="pTableNamme">Nombre de la tabla en Bloqcking</param>
+        /// <param name="pBlockingTableNamme">Nombre de la tabla en Bloqcking</param>
         public BlockingEngineBase(String pBlockingTableNamme)
         {
             _Table_BlockingMarks_Name = pBlockingTableNamme;
@@ -51,7 +51,7 @@ namespace Fwk.Blocking
         /// BlockingMarks. Previamente verifica que no haya sido bloqueadas
         /// anteriormente ninguna de las instancias.
         /// </summary>
-        /// <param name="IBlockingMark"><see cref="IBlockingMark"/></param>
+        /// <param name="pIBlockingMark"><see cref="IBlockingMark"/></param>
         public int Create(IBlockingMark pIBlockingMark)
         {
             ///Llama a al metodo abstracto que es implementado por las clases hijas para obtener los

@@ -24,18 +24,7 @@
     <IsolationLevel>ReadCommitted</IsolationLevel>
     <ApplicationId>Framework</ApplicationId>
   </ServiceConfiguration>
-  <ServiceConfiguration name="SearchParamTypeService">
-    <CreatedUserName>marcelo</CreatedUserName>
-    <CreatedDateTime>2012-04-29T12:43:02.4513801-03:00</CreatedDateTime>
-    <Handler>Fwk.Params.Svc.SearchParamTypeService, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Fwk.Params.Isvc.SearchParamType.SearchParamTypeReq, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Fwk.Params.Isvc.SearchParamType.SearchParamTypeRes, Fwk.Bases, Version=10.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
-    <Available>true</Available>
-    <Audit>false</Audit>
-    <TransactionalBehaviour>Suppres</TransactionalBehaviour>
-    <IsolationLevel>ReadCommitted</IsolationLevel>
-    <ApplicationId>Framework</ApplicationId>
-  </ServiceConfiguration>
+ 
   <ServiceConfiguration name="ValidateUserExistService">
     <CreatedUserName>pelsoft</CreatedUserName>
     <CreatedDateTime>2012-04-06T12:35:47.0558685-03:00</CreatedDateTime>

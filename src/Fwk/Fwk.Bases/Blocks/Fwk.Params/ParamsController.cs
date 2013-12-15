@@ -26,10 +26,10 @@ namespace Fwk.Params
         /// <param name="parentId"></param>
         /// <param name="userId"></param>
         /// <returns>Lista de registros de la tabla param</returns>
-        public static ParamList SearchParams(string wrapperProviderName, int? paramTypeId, int? parentId, string userId)
+        public static ParamList SearchParams(string wrapperProviderName, int? parentId, string userId)
         {
             SearchParamsReq req = new SearchParamsReq();
-            req.BusinessData.ParamTypeId = paramTypeId;
+     
             req.BusinessData.ParentId = parentId;
             req.BusinessData.Enabled = true;
             req.ContextInformation.UserId = userId;

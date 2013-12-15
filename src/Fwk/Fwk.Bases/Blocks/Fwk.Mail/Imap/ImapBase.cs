@@ -557,7 +557,6 @@ namespace Fwk.Mail.Imap
 		/// <summary>
 		///  retrieve response
 		/// </summary>
-		/// <param name="command">Command to send Imap Server</param>
 		/// <param name="sResultArray">Imap Server response</param>
 		/// <returns>ImapResponseEnum type</returns>
 		protected ImapResponseEnum Receive(ref ArrayList sResultArray)

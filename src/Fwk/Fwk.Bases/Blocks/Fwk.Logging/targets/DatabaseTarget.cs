@@ -115,6 +115,7 @@ namespace Fwk.Logging.Targets
             }
         }
        
+
         /// <summary>
         /// SearchByParam
         /// </summary>

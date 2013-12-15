@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="fwkdata" EntityNamespace="Fwk.ConfigData" ContextNamespace="Fwk.ConfigData" Class="FwkDatacontext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=SANTANA\SQLEXPRESS;Initial Catalog=fwkdata;Integrated Security=True" SettingsObjectName="Fwk.Bases.Properties.Settings" SettingsPropertyName="fwkdataConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=CLAPTON\SQLEXPRESS;Initial Catalog=fwkdata;User ID=sa" SettingsObjectName="Fwk.Bases.Properties.Settings" SettingsPropertyName="fwkdataConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.fwk_Logs" Member="fwk_Logs">
     <Type Name="fwk_Log">
       <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -50,31 +50,17 @@
       <Column Name="Port" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.fwk_ParamType" Member="fwk_ParamTypes">
-    <Type Name="fwk_ParamType">
-      <Column Name="ParamTypeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="Enabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="fwk_ParamType_fwk_ParamType" Member="fwk_ParamTypes" ThisKey="ParamTypeId" OtherKey="ParentId" Type="fwk_ParamType" />
-      <Association Name="fwk_ParamType_fwk_Param" Member="fwk_Params" ThisKey="ParamTypeId" OtherKey="ParamTypeId" Type="fwk_Param" />
-      <Association Name="fwk_ParamType_fwk_ParamType" Member="fwk_ParamType1" ThisKey="ParentId" OtherKey="ParamTypeId" Type="fwk_ParamType" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.fwk_Param" Member="fwk_Params">
     <Type Name="fwk_Param">
       <Column Name="ParamId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ParentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ParamTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Enabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Culture" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Association Name="fwk_Param_fwk_Param" Member="fwk_Param2" ThisKey="Id" OtherKey="Id" Type="fwk_Param" Cardinality="One" />
       <Association Name="fwk_Param_fwk_Param" Member="fwk_Param1" ThisKey="Id" OtherKey="Id" Type="fwk_Param" IsForeignKey="true" />
-      <Association Name="fwk_ParamType_fwk_Param" Member="fwk_ParamType" ThisKey="ParamTypeId" OtherKey="ParamTypeId" Type="fwk_ParamType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

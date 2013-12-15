@@ -42,16 +42,13 @@ namespace Fwk.ConfigData
     partial void Insertfwk_ServiceDispatcher(fwk_ServiceDispatcher instance);
     partial void Updatefwk_ServiceDispatcher(fwk_ServiceDispatcher instance);
     partial void Deletefwk_ServiceDispatcher(fwk_ServiceDispatcher instance);
-    partial void Insertfwk_ParamType(fwk_ParamType instance);
-    partial void Updatefwk_ParamType(fwk_ParamType instance);
-    partial void Deletefwk_ParamType(fwk_ParamType instance);
     partial void Insertfwk_Param(fwk_Param instance);
     partial void Updatefwk_Param(fwk_Param instance);
     partial void Deletefwk_Param(fwk_Param instance);
     #endregion
 		
 		public FwkDatacontext() : 
-				base(global::Fwk.Bases.Properties.Settings.Default.fwkdataConnectionString, mappingSource)
+				base(global::Fwk.Bases.Properties.Settings.Default.fwkdataConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -109,14 +106,6 @@ namespace Fwk.ConfigData
 			get
 			{
 				return this.GetTable<fwk_ServiceDispatcher>();
-			}
-		}
-		
-		public System.Data.Linq.Table<fwk_ParamType> fwk_ParamTypes
-		{
-			get
-			{
-				return this.GetTable<fwk_ParamType>();
 			}
 		}
 		
@@ -1097,261 +1086,6 @@ namespace Fwk.ConfigData
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fwk_ParamType")]
-	public partial class fwk_ParamType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ParamTypeId;
-		
-		private string _Name;
-		
-		private System.Nullable<int> _ParentId;
-		
-		private string _Description;
-		
-		private bool _Enabled;
-		
-		private EntitySet<fwk_ParamType> _fwk_ParamTypes;
-		
-		private EntitySet<fwk_Param> _fwk_Params;
-		
-		private EntityRef<fwk_ParamType> _fwk_ParamType1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnParamTypeIdChanging(int value);
-    partial void OnParamTypeIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnParentIdChanging(System.Nullable<int> value);
-    partial void OnParentIdChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnEnabledChanging(bool value);
-    partial void OnEnabledChanged();
-    #endregion
-		
-		public fwk_ParamType()
-		{
-			this._fwk_ParamTypes = new EntitySet<fwk_ParamType>(new Action<fwk_ParamType>(this.attach_fwk_ParamTypes), new Action<fwk_ParamType>(this.detach_fwk_ParamTypes));
-			this._fwk_Params = new EntitySet<fwk_Param>(new Action<fwk_Param>(this.attach_fwk_Params), new Action<fwk_Param>(this.detach_fwk_Params));
-			this._fwk_ParamType1 = default(EntityRef<fwk_ParamType>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParamTypeId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int ParamTypeId
-		{
-			get
-			{
-				return this._ParamTypeId;
-			}
-			set
-			{
-				if ((this._ParamTypeId != value))
-				{
-					this.OnParamTypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._ParamTypeId = value;
-					this.SendPropertyChanged("ParamTypeId");
-					this.OnParamTypeIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId", DbType="Int")]
-		public System.Nullable<int> ParentId
-		{
-			get
-			{
-				return this._ParentId;
-			}
-			set
-			{
-				if ((this._ParentId != value))
-				{
-					if (this._fwk_ParamType1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnParentIdChanging(value);
-					this.SendPropertyChanging();
-					this._ParentId = value;
-					this.SendPropertyChanged("ParentId");
-					this.OnParentIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NChar(10)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Enabled", DbType="Bit NOT NULL")]
-		public bool Enabled
-		{
-			get
-			{
-				return this._Enabled;
-			}
-			set
-			{
-				if ((this._Enabled != value))
-				{
-					this.OnEnabledChanging(value);
-					this.SendPropertyChanging();
-					this._Enabled = value;
-					this.SendPropertyChanged("Enabled");
-					this.OnEnabledChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="fwk_ParamType_fwk_ParamType", Storage="_fwk_ParamTypes", ThisKey="ParamTypeId", OtherKey="ParentId")]
-		public EntitySet<fwk_ParamType> fwk_ParamTypes
-		{
-			get
-			{
-				return this._fwk_ParamTypes;
-			}
-			set
-			{
-				this._fwk_ParamTypes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="fwk_ParamType_fwk_Param", Storage="_fwk_Params", ThisKey="ParamTypeId", OtherKey="ParamTypeId")]
-		public EntitySet<fwk_Param> fwk_Params
-		{
-			get
-			{
-				return this._fwk_Params;
-			}
-			set
-			{
-				this._fwk_Params.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="fwk_ParamType_fwk_ParamType", Storage="_fwk_ParamType1", ThisKey="ParentId", OtherKey="ParamTypeId", IsForeignKey=true)]
-		public fwk_ParamType fwk_ParamType1
-		{
-			get
-			{
-				return this._fwk_ParamType1.Entity;
-			}
-			set
-			{
-				fwk_ParamType previousValue = this._fwk_ParamType1.Entity;
-				if (((previousValue != value) 
-							|| (this._fwk_ParamType1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._fwk_ParamType1.Entity = null;
-						previousValue.fwk_ParamTypes.Remove(this);
-					}
-					this._fwk_ParamType1.Entity = value;
-					if ((value != null))
-					{
-						value.fwk_ParamTypes.Add(this);
-						this._ParentId = value.ParamTypeId;
-					}
-					else
-					{
-						this._ParentId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("fwk_ParamType1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_fwk_ParamTypes(fwk_ParamType entity)
-		{
-			this.SendPropertyChanging();
-			entity.fwk_ParamType1 = this;
-		}
-		
-		private void detach_fwk_ParamTypes(fwk_ParamType entity)
-		{
-			this.SendPropertyChanging();
-			entity.fwk_ParamType1 = null;
-		}
-		
-		private void attach_fwk_Params(fwk_Param entity)
-		{
-			this.SendPropertyChanging();
-			entity.fwk_ParamType = this;
-		}
-		
-		private void detach_fwk_Params(fwk_Param entity)
-		{
-			this.SendPropertyChanging();
-			entity.fwk_ParamType = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fwk_Param")]
 	public partial class fwk_Param : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1360,11 +1094,9 @@ namespace Fwk.ConfigData
 		
 		private int _ParamId;
 		
-		private int _ParentId;
+		private System.Nullable<int> _ParentId;
 		
 		private string _Name;
-		
-		private int _ParamTypeId;
 		
 		private string _Description;
 		
@@ -1378,20 +1110,16 @@ namespace Fwk.ConfigData
 		
 		private EntityRef<fwk_Param> _fwk_Param1;
 		
-		private EntityRef<fwk_ParamType> _fwk_ParamType;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnParamIdChanging(int value);
     partial void OnParamIdChanged();
-    partial void OnParentIdChanging(int value);
+    partial void OnParentIdChanging(System.Nullable<int> value);
     partial void OnParentIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
-    partial void OnParamTypeIdChanging(int value);
-    partial void OnParamTypeIdChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
     partial void OnEnabledChanging(bool value);
@@ -1406,7 +1134,6 @@ namespace Fwk.ConfigData
 		{
 			this._fwk_Param2 = default(EntityRef<fwk_Param>);
 			this._fwk_Param1 = default(EntityRef<fwk_Param>);
-			this._fwk_ParamType = default(EntityRef<fwk_ParamType>);
 			OnCreated();
 		}
 		
@@ -1430,8 +1157,8 @@ namespace Fwk.ConfigData
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId", DbType="Int NOT NULL")]
-		public int ParentId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId", DbType="Int")]
+		public System.Nullable<int> ParentId
 		{
 			get
 			{
@@ -1466,30 +1193,6 @@ namespace Fwk.ConfigData
 					this._Name = value;
 					this.SendPropertyChanged("Name");
 					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParamTypeId", DbType="Int NOT NULL")]
-		public int ParamTypeId
-		{
-			get
-			{
-				return this._ParamTypeId;
-			}
-			set
-			{
-				if ((this._ParamTypeId != value))
-				{
-					if (this._fwk_ParamType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnParamTypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._ParamTypeId = value;
-					this.SendPropertyChanged("ParamTypeId");
-					this.OnParamTypeIdChanged();
 				}
 			}
 		}
@@ -1637,40 +1340,6 @@ namespace Fwk.ConfigData
 						this._Id = default(int);
 					}
 					this.SendPropertyChanged("fwk_Param1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="fwk_ParamType_fwk_Param", Storage="_fwk_ParamType", ThisKey="ParamTypeId", OtherKey="ParamTypeId", IsForeignKey=true)]
-		public fwk_ParamType fwk_ParamType
-		{
-			get
-			{
-				return this._fwk_ParamType.Entity;
-			}
-			set
-			{
-				fwk_ParamType previousValue = this._fwk_ParamType.Entity;
-				if (((previousValue != value) 
-							|| (this._fwk_ParamType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._fwk_ParamType.Entity = null;
-						previousValue.fwk_Params.Remove(this);
-					}
-					this._fwk_ParamType.Entity = value;
-					if ((value != null))
-					{
-						value.fwk_Params.Add(this);
-						this._ParamTypeId = value.ParamTypeId;
-					}
-					else
-					{
-						this._ParamTypeId = default(int);
-					}
-					this.SendPropertyChanged("fwk_ParamType");
 				}
 			}
 		}
