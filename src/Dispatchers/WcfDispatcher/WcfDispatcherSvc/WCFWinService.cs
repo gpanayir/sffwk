@@ -21,7 +21,7 @@ namespace WcfDispatcherSvc
             InitializeComponent();
 
             Fwk.Bases.ConfigurationsHelper.HostApplicationName = string.Concat("Fwk WCF ", this.ServiceName);
-            Fwk.Bases.ConfigurationsHelper.ServiceDispatcherConnection
+            
         }
 
         protected override void OnStart(string[] args)
