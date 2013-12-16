@@ -377,7 +377,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Blocks\Fwk.Configuration\app.config" />
+    <None Include="Blocks\Fwk.Configuration\app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
     <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />

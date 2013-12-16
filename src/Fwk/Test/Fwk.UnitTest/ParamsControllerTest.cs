@@ -88,7 +88,7 @@ namespace Fwk.UnitTest
         {
             try
             {
-                ParamList expected = ParamsController.SearchParams(wrapperProviderName, 9002, null, "");
+                ParamList expected = ParamsController.SearchParams(wrapperProviderName, 9002, "");
             }
             catch (Exception ex)
             {
