@@ -259,14 +259,21 @@ namespace Fwk.Bases.Connector
         }
         #endregion [ServiceConfiguration]
 
-
+        const int factorSize = 5;
         void InitHost()
         {
             if (binding == null)
             {
+                //El tamaño de los mensajes que se pueden recibir durante la conexión a los servicios mediante BasicHttpBinding
                 this.binding = new NetTcpBinding();
+                
                 binding.Name = "tcp";
-
+                binding.MaxReceivedMessageSize *= factorSize;
+                binding.MaxBufferSize *= factorSize;
+                binding.MaxBufferPoolSize *= factorSize;
+                binding.ReaderQuotas.MaxStringContentLength = 2147483647;
+                binding.ReaderQuotas.MaxArrayLength = 2147483647;
+                binding.ReaderQuotas.MaxBytesPerRead = 2147483647;
                 address = new EndpointAddress(_URL);
             }
         }
