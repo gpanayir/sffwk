@@ -92,6 +92,14 @@ namespace Fwk.Bases
                 foreach (WrapperProviderElement provider in _ProviderSection.Providers)
                 {
                     w = (IServiceWrapper)ReflectionFunctions.CreateInstance(provider.WrapperProviderType);
+                    if (w == null)
+                    {
+
+                        TechnicalException te = new TechnicalException(string.Concat("No existe el tipo de wrapper: ", provider.WrapperProviderType));
+                        te.ErrorId = "6000";
+                        Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(WrapperFactory));
+                        throw te;
+                    }
                     w.ProviderName = provider.Name;
                     w.SourceInfo = provider.SourceInfo;
                     w.ServiceMetadataProviderName = provider.ServiceMetadataProviderName;
