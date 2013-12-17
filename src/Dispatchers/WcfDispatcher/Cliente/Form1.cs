@@ -22,7 +22,7 @@ namespace Cliente
         {
             InitializeComponent();
         }
-
+        ServiceReference1.FwkServiceClient svcProxy;
         private void button1_Click(object sender, EventArgs e)
         {
             ServiceReference1.ExecuteServiceRequest req = new ServiceReference1.ExecuteServiceRequest();
@@ -32,18 +32,22 @@ namespace Cliente
             account.Id = 12342134;
             account.TypeId = 1009;
             req.jsonRequets = Newtonsoft.Json.JsonConvert.SerializeObject(account, Newtonsoft.Json.Formatting.Indented);
+            checkProxy();
 
-            using (ServiceReference1.FwkServiceClient svcProxy = new ServiceReference1.FwkServiceClient("FirstEndpoint"))
+            ServiceReference1.ExecuteServiceResponse res = svcProxy.ExecuteService(req);
+            
+        }
+        void checkProxy()
+        {
+            if(svcProxy==null)
             {
+                svcProxy = new ServiceReference1.FwkServiceClient("FirstEndpoint");
                 svcProxy.Open();
-                ServiceReference1.ExecuteServiceResponse res = svcProxy.ExecuteService(req);
-
-
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
+            
             ServiceReference1.ExecuteServiceRequest req = new ServiceReference1.ExecuteServiceRequest();
 
             SomeCompany.BE.AccountBE account = new SomeCompany.BE.AccountBE();
