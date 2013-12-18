@@ -12,29 +12,60 @@ using Health.BE;
 using Newtonsoft.Json;
 using Fwk.HelperFunctions;
 using Fwk.Bases;
+using Fwk.Bases.Connector;
 
 
 namespace Cliente
 {
     public partial class Form1 : Form
     {
+        WCFWrapper_01 _WCFWrapper_01 =null;
+        WCFWrapper_02 _WCFWrapper_02 = null;
+        ServiceReference1.FwkServiceClient svcProxy;
         public Form1()
         {
             InitializeComponent();
+          
         }
-        ServiceReference1.FwkServiceClient svcProxy;
-        private void button1_Click(object sender, EventArgs e)
+
+        private void Form1_Load(object sender, EventArgs e)
         {
-            ServiceReference1.ExecuteServiceRequest req = new ServiceReference1.ExecuteServiceRequest();
+             _WCFWrapper_01 = new WCFWrapper_01();
+             _WCFWrapper_02 = new WCFWrapper_02();
+            _WCFWrapper_01.SourceInfo = "net.tcp://localhost:8001/FwkService";
+            _WCFWrapper_02.SourceInfo = "net.tcp://localhost:8001/FwkService";
 
-            SomeCompany.BE.AccountBE account = new SomeCompany.BE.AccountBE();
-            account.Name = "alskflH FLADSKFÑL SFFSADF FSDFSF";
-            account.Id = 12342134;
-            account.TypeId = 1009;
-            req.jsonRequets = Newtonsoft.Json.JsonConvert.SerializeObject(account, Newtonsoft.Json.Formatting.Indented);
-            checkProxy();
+        }
+     
+        private void btn_RetrivePatientsReq1_Click(object sender, EventArgs e)
+        {
+            //ServiceReference1.ExecuteServiceRequest req = new ServiceReference1.ExecuteServiceRequest();
 
-            ServiceReference1.ExecuteServiceResponse res = svcProxy.ExecuteService(req);
+            //SomeCompany.BE.AccountBE account = new SomeCompany.BE.AccountBE();
+            //account.Name = "alskflH FLADSKFÑL SFFSADF FSDFSF";
+            //account.Id = 12342134;
+            //account.TypeId = 1009;
+            //req.jsonRequets = Newtonsoft.Json.JsonConvert.SerializeObject(account, Newtonsoft.Json.Formatting.Indented);
+            //checkProxy();
+
+            //ServiceReference1.ExecuteServiceResponse res = svcProxy.ExecuteService(req);
+
+
+            RetrivePatientsReq req = new RetrivePatientsReq();
+
+            req.BusinessData.Id = 1;
+            req.ContextInformation.UserId = "hylux";
+            req.ContextInformation.AppId = "ddsadsa";
+
+            RetrivePatientsRes res = _WCFWrapper_01.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
+           
+
+            if (res.Error != null)
+                MessageBox.Show(Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message);
+
+
+            txtResponse.Text = res.BusinessData.GetXml();
+             
             
         }
         void checkProxy()
@@ -73,7 +104,21 @@ namespace Cliente
 
         private void button3_Click(object sender, EventArgs e)
         {
-            PatientList list = RetrivePatients(1);
+
+            RetrivePatientsReq req = new RetrivePatientsReq();
+
+            req.BusinessData.Id = 1;
+            req.ContextInformation.UserId = "hylux";
+            req.ContextInformation.AppId = "ddsadsa";
+
+            RetrivePatientsRes res = _WCFWrapper_02.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
+
+
+            if (res.Error != null)
+                MessageBox.Show(Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message);
+
+
+            txtResponse.Text = res.BusinessData.GetXml();
         }
 
 
@@ -87,7 +132,7 @@ namespace Cliente
             req.ContextInformation.AppId = "ddsadsa";
 
             RetrivePatientsRes res = req.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
-
+           
 
             if (res.Error != null)
                 MessageBox.Show(Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message);
@@ -110,5 +155,6 @@ namespace Cliente
          var wRequest = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequets, reqType, new JsonSerializerSettings());
          //IServiceContract wRequest2 = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequets, typeof(IServiceContract), new JsonSerializerSettings());   
         }
+
     }
 }
