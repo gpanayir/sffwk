@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Web.Security;
 using Fwk.Security.Common;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.Common;
 using System.Data;
-using Microsoft.Practices.EnterpriseLibrary.Security;
+
 using System.Text;
 using System.Linq;
 using System.Web.Configuration;

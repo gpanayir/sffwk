@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Web.Security;
 using Fwk.Security.Common;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Security.Principal;
 using Fwk.Bases.FrontEnd.Controls;
 using Fwk.Security;

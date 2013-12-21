@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Fwk.Bases.FrontEnd;
-
 using System.Security.Principal;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using System.Windows.Forms;
 using System.Web.Security;
@@ -25,14 +22,14 @@ namespace Fwk.Security.Test
                 //ICacheManager cc = CacheFactory.GetCacheManager("XCache2");
 
                 //Authenticate the user and initialize the security cache
-                ISecurityCacheProvider secCache = SecurityCacheFactory.GetSecurityCacheProvider("ProveedorAlmacenCaching");
+                //ISecurityCacheProvider secCache = SecurityCacheFactory.GetSecurityCacheProvider("ProveedorAlmacenCaching");
                 // Cache the identity. The SecurityCache will generate and return a token.
                 //IToken token = secCache.SaveIdentity(new GenericIdentity(Environment.UserName));
-                IToken token = secCache.SaveIdentity(new GenericIdentity("xxxx"));
+                //IToken token = secCache.SaveIdentity(new GenericIdentity("xxxx"));
 
 
-                // Retrieves the identity previoussecCachely saved by using the corresponding token.
-                IIdentity savedIdentity = secCache.GetIdentity(token);
+                //// Retrieves the identity previoussecCachely saved by using the corresponding token.
+                //IIdentity savedIdentity = secCache.GetIdentity(token);
 
 
 

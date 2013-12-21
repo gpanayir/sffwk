@@ -7,6 +7,7 @@ using Fwk.BusinessFacades;
 using Fwk.Bases;
 using System.Collections.Generic;
 using Fwk.ConfigSection;
+using Fwk.BusinessFacades.Utils;
 
 
 
@@ -166,7 +167,8 @@ using Fwk.ConfigSection;
         [WebMethod]
         public List<MetadataProvider> RetriveProviders()
         {
-            return FacadeHelper.RetriveProviders();
+           
+            return FacadeHelper.RetriveDispatcherInfo().MetadataProviders;
 
         }
         /// <summary>

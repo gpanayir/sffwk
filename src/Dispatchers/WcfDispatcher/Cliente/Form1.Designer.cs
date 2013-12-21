@@ -37,6 +37,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_RetrivePatientsReq1
@@ -52,7 +54,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(656, 39);
+            this.button2.Location = new System.Drawing.Point(742, 82);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(272, 41);
@@ -85,16 +87,17 @@
             // 
             // txtResponse
             // 
-            this.txtResponse.Location = new System.Drawing.Point(12, 223);
+            this.txtResponse.Location = new System.Drawing.Point(12, 190);
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
-            this.txtResponse.Size = new System.Drawing.Size(479, 298);
+            this.txtResponse.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtResponse.Size = new System.Drawing.Size(479, 447);
             this.txtResponse.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 178);
+            this.label1.Location = new System.Drawing.Point(22, 170);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 17);
             this.label1.TabIndex = 5;
@@ -131,11 +134,36 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Wraapper Dispose using";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Location = new System.Drawing.Point(380, 18);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(167, 36);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "RetrivePatientsReq";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Location = new System.Drawing.Point(554, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(166, 40);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Repetitivo Wraapper Dispose using";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1073, 639);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -165,6 +193,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
     }
 }
 

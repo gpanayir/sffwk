@@ -18,7 +18,7 @@ namespace Fwk.Criptography.Test
 
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
-            txtOut.Text = Fwk.HelperFunctions.CryptographyFunctions.Encrypt(txtIn.Text);
+            
             
         }
 
@@ -29,7 +29,7 @@ namespace Fwk.Criptography.Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            txtDecryptedText.Text = Fwk.HelperFunctions.CryptographyFunctions.Decrypt(txtOut.Text);
+            
             
             
 

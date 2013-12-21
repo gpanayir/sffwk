@@ -79,23 +79,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cryptography, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -151,15 +139,21 @@
     <Compile Include="ActiveDirectory\FwkActiveDirectory.cs" />
     <Compile Include="ActiveDirectory\IDirectoryService.cs" />
     <Compile Include="ActiveDirectory\LDAPHelper.cs" />
+    <Compile Include="CustomRuleProvider\AnonymousExpression.cs" />
+    <Compile Include="CustomRuleProvider\BooleanExpression.cs" />
+    <Compile Include="CustomRuleProvider\AnyExpression.cs" />
+    <Compile Include="CustomRuleProvider\Enums.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRule.cs" />
     <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProvider.cs" />
-    <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderData.cs" />
-    <Compile Include="CustomRuleProvider\FwkAuthorizationRuleProviderPolicyCreator.cs" />
+    <Compile Include="CustomRuleProvider\IdentityExpression.cs" />
+    <Compile Include="CustomRuleProvider\Operators.cs" />
+    <Compile Include="CustomRuleProvider\RoleExpression.cs" />
     <Compile Include="Entities\FwkIdentity.cs" />
     <Compile Include="Entities\FwkPrincipal.cs" />
     <Compile Include="Entities\SimpleEntities.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Impersonalization.cs" />
+    <Compile Include="CustomRuleProvider\Impersonalization.cs" />
+    <Compile Include="CustomRuleProvider\LexicalAnalyzer.cs" />
     <Compile Include="Membership\FwkMembership.Appliction.cs" />
     <Compile Include="Membership\FwkMembership.Category.cs" />
     <Compile Include="Membership\FwkMembership.Roles.cs" />
@@ -172,6 +166,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RuleProvider.dbml</DependentUpon>
     </Compile>
+    <Compile Include="CustomRuleProvider\Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -232,6 +227,8 @@
     <Compile Include="Service\SVC\Users\ResetUserPassword.cs" />
     <Compile Include="Service\SVC\Users\SearchAllUsersService.cs" />
     <Compile Include="Service\SVC\Users\UpdateUserService.cs" />
+    <Compile Include="CustomRuleProvider\WordExpression.cs" />
+    <Compile Include="CustomRuleProvider\SyntaxException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CustomRuleProvider\ASP_DataBaseUpdate\installSecurityInDB.bat" />

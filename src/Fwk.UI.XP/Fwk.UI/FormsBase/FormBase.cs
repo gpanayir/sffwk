@@ -7,12 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-
 using System.Web.Security;
 using System.Security.Principal;
 using Fwk.Security.Common;
 using Fwk.Security.BE;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 using Fwk.Security;
 using Fwk.Bases;
 using Fwk.UI.Controller;
@@ -49,7 +47,7 @@ namespace Fwk.UI.Forms
 
         #region Authorization Factory
 
-        public static IAuthorizationProvider RuleProvider;
+        public static FwkAuthorizationRuleProvider RuleProvider;
         public static IPrincipal Principal;
         public static string IdentityName;
         /// <summary>

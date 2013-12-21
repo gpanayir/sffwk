@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Security.Principal;
 using System.Web.Security;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 using Fwk.Security;
 
 namespace Fwk.Security.Admin.Controls
@@ -30,7 +29,7 @@ namespace Fwk.Security.Admin.Controls
             if (this.identityTextBox.Text.CompareTo(String.Empty) != 0 && this.rulesComboBox.SelectedIndex != -1)
             {
                 string identity = this.identityTextBox.Text;
-                string rule = ((Microsoft.Practices.EnterpriseLibrary.Security.Configuration.AuthorizationRuleData)
+                string rule = ((FwkAuthorizationRule)
                     this.rulesComboBox.SelectedItem).Name;
 
 
@@ -84,14 +83,10 @@ namespace Fwk.Security.Admin.Controls
         public override void Initialize()
         {
             // inicializo Fwk Authorization provider y cathcing security provider
-            // ASP.NET Membership y Profile providers no se inicializan de esta manera.
-            //this.ruleProvider = AuthorizationFactory.GetAuthorizationProvider(frmAdmin.Provider.Name);
-
-            //this.cache = SecurityCacheFactory.GetSecurityCacheProvider("ProveedorAlmacenCaching");
+  
             this.ruleProvider  = ControlsFactory.CreateAuthorizationProvider(frmAdmin.Provider.Name);
 
-
-            rulesComboBox.DataSource = FwkMembership.GetRulesList(frmAdmin.Provider.Name);
+            rulesComboBox.DataSource = FwkMembership.GetRules(frmAdmin.Provider.Name);
 
         }
 

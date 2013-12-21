@@ -151,7 +151,6 @@ namespace Fwk.Bases
         #endregion 
     }
 
-    [DebuggerVisualizer(typeof(IEntityVisualizer))]
     [Serializable]
     public class BaseEntities<T> : List<T>, IBaseEntity where T : BaseEntity
     {

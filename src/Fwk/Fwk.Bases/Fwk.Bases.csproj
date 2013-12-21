@@ -88,13 +88,7 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cryptography, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\Libraries\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -149,7 +143,6 @@
     <Compile Include="Blocks\Fwk.Security.Cryptography\FwkSymetricAlg.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\ISymetriCypher.cs" />
     <Compile Include="Blocks\Fwk.Security.Cryptography\SymetricCypherFactory.cs" />
-    <Compile Include="Blocks\Fwk.Security.Cryptography\SymetriCypher_EntLibs.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderCollection.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderElement.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\config\ServiceProviderSection.cs" />

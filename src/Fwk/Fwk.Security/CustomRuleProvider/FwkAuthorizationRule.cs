@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Practices.EnterpriseLibrary.Security;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using System.Configuration;
 using Fwk.Bases;
 using Fwk.Security.Common;
 using System.Xml.Serialization;
+using System.Security.Principal;
 
 namespace Fwk.Security
 {
@@ -19,12 +18,18 @@ namespace Fwk.Security
     /// <see cref="AuthorizationRuleProvider"/>.
     /// </summary>
     [Serializable]
-    public class FwkAuthorizationRule :  NamedConfigurationElement, IAuthorizationRule,Fwk.Bases.IEntity
+    public class FwkAuthorizationRule :  IAuthorizationRule,Fwk.Bases.IEntity
     {
         private string _Expression;
         private System.Guid _ApplicationId;
         private System.String _ApplicationName;
-       
+        private System.String _Name;
+
+        public System.String Name
+        {
+            get { return _Name; }
+            set { _Name = value; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the 
@@ -40,7 +45,7 @@ namespace Fwk.Security
         /// <param name="name">The name of the rule</param>
         /// <param name="expression">The expression to evaluate.</param>
         public FwkAuthorizationRule(string name, string expression)
-            : base(name)
+           
         {
             _Expression = expression;
 
@@ -52,7 +57,7 @@ namespace Fwk.Security
         /// <param name="expression">The expression to evaluate.</param>
         /// <param name="applicationId">Apliocacion  la que pertenece.</param>
         public FwkAuthorizationRule(string name, string expression, Guid applicationId)
-            : base(name)
+            
         {
             _Expression = expression;
             _ApplicationId = applicationId;
@@ -63,7 +68,7 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="pFwkAuthorizationRule">Framework rule</param>
         public FwkAuthorizationRule(FwkAuthorizationRuleAux pFwkAuthorizationRule)
-            : base(pFwkAuthorizationRule.Name)
+           
         {
             _ApplicationId = pFwkAuthorizationRule.ApplicationId;
             _ApplicationName = pFwkAuthorizationRule.ApplicationName;
@@ -504,5 +509,26 @@ namespace Fwk.Security
        
 
       
+    }
+
+
+    public interface IAuthorizationRule
+    {
+        string Expression { get; }
+        string Name { get; }
+    }
+    /// <summary>
+    /// Defines the basic functionality of an authorization provider.
+    /// </summary>
+    public interface IAuthorizationProvider
+    {
+        /// <summary>
+        /// Evaluates the specified authority against the specified context.
+        /// </summary>
+        /// <param name="principal">Must be an <see cref="IPrincipal"/> object.</param>
+        /// <param name="context">Name of the rule to evaluate.</param>
+        /// <returns><strong>True</strong> if the expression evaluates to true,
+        /// otherwise <strong>false</strong>.</returns>
+        bool Authorize(IPrincipal principal, string context);
     }
 }

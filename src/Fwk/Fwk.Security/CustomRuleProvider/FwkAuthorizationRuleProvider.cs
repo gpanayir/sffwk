@@ -4,33 +4,24 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Security.Principal;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.Security;
+
 //using Fwk.Security.Configuration;
 using System.Collections.Specialized;
 
+
 namespace Fwk.Security
-{/// <summary>
+{
+    /// <summary>
     /// Represents an authorization provider that evaluates
     /// boolean expressions to determine whether 
     /// <see cref="System.Security.Principal.IPrincipal"/> objects
     /// are authorized.
     /// </summary>
-    [ConfigurationElementType(typeof(CustomAuthorizationProviderData))]
-    public class FwkAuthorizationRuleProvider : AuthorizationProvider
+    public class FwkAuthorizationRuleProvider : IAuthorizationProvider
     {
         private readonly IDictionary<string, IAuthorizationRule> authorizationRules;
 
-        /// <summary>
-        /// Metodo requerido por exigencia de CustomAuthorizationProviderData todavia esta en desarrollo no se utiliza
-        /// </summary>
-        /// <param name="configurationItems"></param>
-        [Obsolete]
-        public FwkAuthorizationRuleProvider(NameValueCollection configurationItems)
-        {
-
-        }
+      
         /// <summary>
         /// Initialize an instance of the <see cref="AuthorizationRuleProvider"/> class.
         /// </summary>
@@ -49,9 +40,9 @@ namespace Fwk.Security
         /// <param name="proividerName">Nombre del membership provider</param>
         public FwkAuthorizationRuleProvider(string proividerName)
         {
-            List<AuthorizationRuleData> authorizationRules = FwkMembership.GetRulesList(proividerName);
+            List<FwkAuthorizationRule> authorizationRules = FwkMembership.GetRules(proividerName);
 
-            this.authorizationRules = CreateRulesDictionary<AuthorizationRuleData>(authorizationRules);
+            this.authorizationRules = CreateRulesDictionary<FwkAuthorizationRule>(authorizationRules);
         }
 
         /// <summary>
@@ -61,7 +52,7 @@ namespace Fwk.Security
         /// <param name="ruleName">The name of the rule to evaluate.</param>
         /// <returns><c>true</c> if the expression evaluates to true,
         /// otherwise <c>false</c>.</returns>
-        public override bool Authorize(IPrincipal principal, string ruleName)
+        public  bool Authorize(IPrincipal principal, string ruleName)
         {
 
 
@@ -70,7 +61,7 @@ namespace Fwk.Security
 
 
 
-            InstrumentationProvider.FireAuthorizationCheckPerformed(principal.Identity.Name, ruleName);
+            //InstrumentationProvider.FireAuthorizationCheckPerformed(principal.Identity.Name, ruleName);
             bool expressionEmpty = false;
             BooleanExpression booleanExpression = GetParsedExpression(ruleName, expressionEmpty);
             if (expressionEmpty) return false;
@@ -81,10 +72,10 @@ namespace Fwk.Security
 
             bool result = booleanExpression.Evaluate(principal);
 
-            if (result == false)
-            {
-                InstrumentationProvider.FireAuthorizationCheckFailed(principal.Identity.Name, ruleName);
-            }
+            //if (result == false)
+            //{
+            //    InstrumentationProvider.FireAuthorizationCheckFailed(principal.Identity.Name, ruleName);
+            //}
             return result;
         }
 

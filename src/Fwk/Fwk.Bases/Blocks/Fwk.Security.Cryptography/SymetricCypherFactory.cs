@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Practices.EnterpriseLibrary.Security.Cryptography;
 using System.IO;
 using System.Security.Cryptography;
 using Fwk.Exceptions;
@@ -131,7 +130,7 @@ namespace Fwk.Security.Cryptography
             {
 
                 TechnicalException te = new TechnicalException("La clave de encriptacion no puede ser nula");
-                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
+                
                 te.ErrorId = "4401";
                 throw te;
             }
@@ -151,37 +150,6 @@ namespace Fwk.Security.Cryptography
         }
 
 
-
-        /// <summary>
-        /// Busca un criptographer determinado por medio de su nombre de archivo de encriptacion y tipo de algoritmo simetrico
-        /// </summary>
-        /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
-        /// <param name="keyFileName">nombre de archivo de encriptacion </param>
-        /// <returns>Argoritmo <see cref="SymetriCypher"/></returns>
-        //public static SymetriCypher<T> Get<T>(string key) where T : SymmetricAlgorithm
-        //{
-        //    if (string.IsNullOrEmpty(key))
-        //    {
-
-        //        TechnicalException te = new TechnicalException("La clave de encriptacion no puede ser nula");
-        //        ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
-        //        te.ErrorId = "4401";
-        //        throw te;
-        //    }
-
-        //    SymetriCypher<T> symetriCypher = null;
-        //    //Busca el SymetriCypher en el diccionario
-        //    if (CypherProviders.ContainsKey(string.Concat(key, typeof(T).FullName)))
-        //        symetriCypher = (SymetriCypher<T>)CypherProviders[string.Concat(key, typeof(T).FullName)];
-        //    else
-        //    {
-        //        symetriCypher = new SymetriCypher<T>(key);
-         
-        //        CypherProviders.Add(string.Concat(key, typeof(T).FullName), symetriCypher);
-        //    }
-
-        //    return symetriCypher;
-        //}
 
      
         /// <summary>

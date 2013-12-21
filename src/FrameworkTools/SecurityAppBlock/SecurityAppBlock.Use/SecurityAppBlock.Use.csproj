@@ -77,13 +77,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Fwk 3.0\Libraries\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">

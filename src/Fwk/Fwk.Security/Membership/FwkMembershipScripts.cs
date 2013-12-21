@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Fwk.Security.Common;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 
 namespace Fwk.Security
 {

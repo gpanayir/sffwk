@@ -7,8 +7,6 @@ using System.Data;
 using System.Data.Common;
 using Fwk.Security.Common;
 using System.Web.Security;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Fwk.Security.Properties;
 using Fwk.Exceptions;
 
@@ -172,7 +170,7 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="providerName">Nombre del proveedor de membership</param>
         /// <returns></returns>
-        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string providerName)
+        public static List<FwkAuthorizationRule> GetRules(string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
             return GetRules(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
@@ -188,16 +186,16 @@ namespace Fwk.Security
         /// <param name="connectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
         /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
         /// <returns></returns>
-        public static NamedElementCollection<FwkAuthorizationRule> GetRules(string applicationName, string connectionStringName)
+        public static List<FwkAuthorizationRule> GetRules(string applicationName, string connectionStringName)
         {
             FwkAuthorizationRule rule = null;
-            NamedElementCollection<FwkAuthorizationRule> wRules = null;
+            List<FwkAuthorizationRule> wRules = null;
             try
             {
 
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
 
-                wRules = new NamedElementCollection<FwkAuthorizationRule>();
+                wRules = new List<FwkAuthorizationRule>();
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
                 {
                     var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
@@ -234,11 +232,11 @@ namespace Fwk.Security
         /// </summary>
         /// <param name="providerName"></param>
         /// <returns></returns>
-        public static List<AuthorizationRuleData> GetRulesList(string providerName)
-        {
-            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
-            return GetRulesList(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
-        }
+        //public static List<AuthorizationRuleData> GetRulesList(string providerName)
+        //{
+        //    SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+        //    return GetRulesList(wProvider.ApplicationName, GetProvider_ConnectionStringName(wProvider.Name));
+        //}
 
         /// <summary>
         /// Retorna una lista de reglas de una determinada coneccion 
@@ -246,41 +244,41 @@ namespace Fwk.Security
         /// <param name="applicationName">Nombre de la aplicacion. Coincide con CompanyId en la arquitectura</param>
         /// <param name="connectionStringName">Nombre de cadena de coneccion del archivo de configuracion.-</param>
         /// <returns></returns>
-        public static List<AuthorizationRuleData> GetRulesList(string applicationName, string connectionStringName)
-        {
-            AuthorizationRuleData rule = null;
-            List<AuthorizationRuleData> wRules = null;
-            try
-            {
-                Guid wApplicationId = GetApplication(applicationName, connectionStringName);
-                wRules = new List<AuthorizationRuleData>();
-                using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
-                {
-                    var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
+        //public static List<AuthorizationRuleData> GetRulesList(string applicationName, string connectionStringName)
+        //{
+        //    AuthorizationRuleData rule = null;
+        //    List<AuthorizationRuleData> wRules = null;
+        //    try
+        //    {
+        //        Guid wApplicationId = GetApplication(applicationName, connectionStringName);
+        //        wRules = new List<AuthorizationRuleData>();
+        //        using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
+        //        {
+        //            var aspnet_Rules = from s in dc.aspnet_Rules where s.ApplicationId == wApplicationId select s;
 
-                    foreach (aspnet_Rule aspnet_Rule in aspnet_Rules.ToList<aspnet_Rule>())
-                    {
-                        rule = new AuthorizationRuleData();
-                        rule.Name = aspnet_Rule.name.Trim();
-                        rule.Expression = aspnet_Rule.expression;
-                        wRules.Add(rule);
-                    }
-                }
-                return wRules;
-            }
-            catch (TechnicalException tx)
-            { throw tx; }
-            catch (Exception ex)
-            {
+        //            foreach (aspnet_Rule aspnet_Rule in aspnet_Rules.ToList<aspnet_Rule>())
+        //            {
+        //                rule = new AuthorizationRuleData();
+        //                rule.Name = aspnet_Rule.name.Trim();
+        //                rule.Expression = aspnet_Rule.expression;
+        //                wRules.Add(rule);
+        //            }
+        //        }
+        //        return wRules;
+        //    }
+        //    catch (TechnicalException tx)
+        //    { throw tx; }
+        //    catch (Exception ex)
+        //    {
 
-                TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingAlls_Error, applicationName), ex);
-                te.ErrorId = "4004";
+        //        TechnicalException te = new TechnicalException(string.Format(Resource.Rule_ProblemGetingAlls_Error, applicationName), ex);
+        //        te.ErrorId = "4004";
 
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
-                throw te;
-            }
+        //        Fwk.Exceptions.ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+        //        throw te;
+        //    }
 
-        }
+        //}
 
         /// <summary>
         /// Retorna una lista de reglas de una determinada coneccion 

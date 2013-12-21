@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
+
 
 namespace Fwk.Security.Admin
 {
     public class RuleObjetoSource
     {
-        private List<AuthorizationRuleData> _RuleList;
+        private List<FwkAuthorizationRule> _RuleList;
         private object _Source;
 
-        public RuleObjetoSource(object pSource, List<AuthorizationRuleData> pRuleList)
+        public RuleObjetoSource(object pSource, List<FwkAuthorizationRule> pRuleList)
         {
             _RuleList = pRuleList;
             _Source = pSource;
         }
 
-        public List<AuthorizationRuleData> RuleList
+        public List<Fwk.Security.FwkAuthorizationRule> RuleList
         {
             get { return _RuleList; }
             set { _RuleList = value; }

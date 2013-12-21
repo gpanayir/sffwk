@@ -36,38 +36,17 @@ namespace Cliente
             _WCFWrapper_02.SourceInfo = "net.tcp://localhost:8001/FwkService";
 
         }
-     
+
         private void btn_RetrivePatientsReq1_Click(object sender, EventArgs e)
         {
-            //ServiceReference1.ExecuteServiceRequest req = new ServiceReference1.ExecuteServiceRequest();
-
-            //SomeCompany.BE.AccountBE account = new SomeCompany.BE.AccountBE();
-            //account.Name = "alskflH FLADSKFÑL SFFSADF FSDFSF";
-            //account.Id = 12342134;
-            //account.TypeId = 1009;
-            //req.jsonRequets = Newtonsoft.Json.JsonConvert.SerializeObject(account, Newtonsoft.Json.Formatting.Indented);
-            //checkProxy();
-
-            //ServiceReference1.ExecuteServiceResponse res = svcProxy.ExecuteService(req);
-
-
-            RetrivePatientsReq req = new RetrivePatientsReq();
-
-            req.BusinessData.Id = 1;
-            req.ContextInformation.UserId = "hylux";
-            req.ContextInformation.AppId = "ddsadsa";
-
+            RetrivePatientsReq req = CreateReq();
             RetrivePatientsRes res = _WCFWrapper_01.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
-           
-
             if (res.Error != null)
                 MessageBox.Show(Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message);
 
-
             txtResponse.Text = res.BusinessData.GetXml();
-             
-            
-        }
+        }   
+        
         void checkProxy()
         {
             if(svcProxy==null)
@@ -104,15 +83,9 @@ namespace Cliente
 
         private void button3_Click(object sender, EventArgs e)
         {
-
-            RetrivePatientsReq req = new RetrivePatientsReq();
-
-            req.BusinessData.Id = 1;
-            req.ContextInformation.UserId = "hylux";
-            req.ContextInformation.AppId = "ddsadsa";
+            RetrivePatientsReq req = CreateReq();
 
             RetrivePatientsRes res = _WCFWrapper_02.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
-
 
             if (res.Error != null)
                 MessageBox.Show(Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message);
@@ -124,15 +97,8 @@ namespace Cliente
 
         public static PatientList RetrivePatients(int? IdPersona)
         {
-            RetrivePatientsReq req = new RetrivePatientsReq();
-
-            req.BusinessData.Id = IdPersona;
-            req.ContextInformation.UserId = "hylux";
-
-            req.ContextInformation.AppId = "ddsadsa";
-
+            RetrivePatientsReq req = CreateReq();
             RetrivePatientsRes res = req.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
-           
 
             if (res.Error != null)
                 MessageBox.Show(Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message);
@@ -155,6 +121,36 @@ namespace Cliente
          var wRequest = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequets, reqType, new JsonSerializerSettings());
          //IServiceContract wRequest2 = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequets, typeof(IServiceContract), new JsonSerializerSettings());   
         }
+        StringBuilder str = new StringBuilder();
 
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RetrivePatientsReq req = CreateReq();
+            int i=0;
+            while (i < 100)
+            {
+                i++;
+                RetrivePatientsRes res = req.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
+
+                if (res.Error != null)
+                    str.AppendLine(String.Concat(i, " ", Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message));
+
+                str.AppendLine(String.Concat(i, " ", res.BusinessData.GetXml()));
+
+                txtResponse.Text = str.ToString();
+            }
+        }
+
+        static RetrivePatientsReq CreateReq()
+        {
+            RetrivePatientsReq req = new RetrivePatientsReq();
+
+            req.BusinessData.Id = 33;
+            req.ContextInformation.UserId = "hylux";
+            req.ContextInformation.AppId = "ddsadsa";
+            return req;
+        }
     }
 }

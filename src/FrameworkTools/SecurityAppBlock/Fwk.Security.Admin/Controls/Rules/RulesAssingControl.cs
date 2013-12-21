@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using Fwk.Security.Common;
 using Fwk.Security;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Web.Security;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 

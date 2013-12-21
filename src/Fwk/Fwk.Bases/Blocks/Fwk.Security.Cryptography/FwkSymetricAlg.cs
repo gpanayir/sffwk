@@ -225,7 +225,7 @@ namespace Fwk.Security.Cryptography
             catch (Exception e)
             {
                 te = new TechnicalException("Error al intentar crear SymmetricAlgorithmProvider ", e);
-                ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
+                ExceptionHelper.SetTechnicalException<SymetriCypher<T>>(te);
                 te.ErrorId = "4400";
                 throw te;
             }

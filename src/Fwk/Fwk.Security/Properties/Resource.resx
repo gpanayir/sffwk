@@ -335,4 +335,7 @@ Result: user is authorized</value>
   <data name="RuleUpdatedMessage" xml:space="preserve">
     <value>The rule {0} was successfully updated</value>
   </data>
+  <data name="UnexpectedTokenMessage" xml:space="preserve">
+    <value>Found token "{1}" when expecting {0} at position {2}.</value>
+  </data>
 </root>

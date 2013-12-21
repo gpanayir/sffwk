@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using System.Web.Security;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Fwk.Security;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Security.Principal;
 
 namespace SecurityAppBlock.Use

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using System.Text;
 using DevExpress.XtraNavBar;
 using System.Windows.Forms;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Security.Principal;
 
 
