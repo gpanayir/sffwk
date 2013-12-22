@@ -24,13 +24,13 @@ namespace Fwk.UI.Security.Controls
             set { uC_RulesMain1.AllowRulesMultiSelect = value; }
         }
         [Browsable(false)]
-        public FwkAuthorizationRuleAuxList SelectedRules
+        public FwkAuthorizationRuleList SelectedRules
         {
             get { return uC_RulesMain1.GetSelectedRules(); }
         }
 
         [Browsable(false)]
-        public FwkAuthorizationRuleAux SelectedRule
+        public FwkAuthorizationRule SelectedRule
         {
             get { return uC_RulesMain1.GetSelectedRules()[0]; }
         }

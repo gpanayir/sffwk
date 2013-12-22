@@ -6,9 +6,9 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Fwk.UI.Controls.Menu;
 using Fwk.UI.Common;
+using Fwk.Security;
 
 namespace Fwk.Tools.Menu
 {
@@ -47,10 +47,10 @@ namespace Fwk.Tools.Menu
         //        EditorValueChanges(this, new EventArgs());
         //    }
         //}
-        private AuthorizationRuleData _SelectedRule;
+        private FwkAuthorizationRule _SelectedRule;
 
         [Browsable(false)]
-        public AuthorizationRuleData SelectedRule
+        public FwkAuthorizationRule SelectedRule
         {
             get { return _SelectedRule; }
             set { _SelectedRule = value; }

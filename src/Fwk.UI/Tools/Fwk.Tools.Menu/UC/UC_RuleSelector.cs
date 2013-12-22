@@ -6,8 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Fwk.UI.Controls;
+using Fwk.Security;
 
 namespace Fwk.UI.Security.Controls
 {
@@ -15,11 +15,11 @@ namespace Fwk.UI.Security.Controls
     public partial class UC_RuleSelector : UC_UserControlBase
     {
         public event System.EventHandler OnSelectRule;
-        private AuthorizationRuleData _SelectedRule;
-        public static List<AuthorizationRuleData> Rules;
+        private FwkAuthorizationRule _SelectedRule;
+        public static List<FwkAuthorizationRule> Rules;
 
         [Browsable(false)]
-        public AuthorizationRuleData SelectedRule
+        public FwkAuthorizationRule SelectedRule
         {
             get { return _SelectedRule; }
             set { _SelectedRule = value; }
@@ -31,13 +31,13 @@ namespace Fwk.UI.Security.Controls
         public void populate()
         {
 
-            authorizationRuleDataBindingSource.DataSource = Rules;
+            FwkAuthorizationRuleBindingSource.DataSource = Rules;
             grdRules.RefreshDataSource();
         }
 
         private void grdRules_Click(object sender, EventArgs e)
         {
-            _SelectedRule = (AuthorizationRuleData)((System.Windows.Forms.BindingSource)grdRules.DataSource).Current;
+            _SelectedRule = (FwkAuthorizationRule)((System.Windows.Forms.BindingSource)grdRules.DataSource).Current;
             if (_SelectedRule != null)
                 lblSelectedRule.Text = _SelectedRule.Name;
         }

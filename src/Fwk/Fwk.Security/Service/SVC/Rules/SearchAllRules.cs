@@ -19,7 +19,7 @@ namespace Fwk.Security.ISVC.SearchAllRules
    
 
     [Serializable]
-    public class SearchAllRulesRes : Response<FwkAuthorizationRuleAuxList>
+    public class SearchAllRulesRes : Response<FwkAuthorizationRuleList>
     {
     }
 

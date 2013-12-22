@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using System.IO;
 using Fwk.HelperFunctions;
 using System.Drawing.Imaging;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Fwk.UI.Forms;
 using Fwk.UI.Security.Controls;
 using Fwk.UI.Controls.Menu;
@@ -200,7 +199,7 @@ namespace Fwk.Tools.Menu
 
         void wRuleSelectorForm_OnSelectRule(object sender, EventArgs e)
         {
-            btnAuthorizationRule.Text = ((FRM_RuleSelector)sender).SelectedRule.Name;// wRuleSelectorForm.se //((AuthorizationRuleData)sender).Name; 
+            btnAuthorizationRule.Text = ((FRM_RuleSelector)sender).SelectedRule.Name;// wRuleSelectorForm.se //((FwkAuthorizationRule)sender).Name; 
         }
        
         private void buttonsBindingSource_CurrentItemChanged(object sender, EventArgs e)

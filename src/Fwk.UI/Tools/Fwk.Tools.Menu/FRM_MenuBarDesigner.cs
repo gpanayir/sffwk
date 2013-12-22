@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraEditors;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
+
 using Fwk.Caching;
 using Fwk.HelperFunctions;
 using System.IO;

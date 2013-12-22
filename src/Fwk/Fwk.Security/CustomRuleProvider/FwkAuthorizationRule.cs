@@ -18,7 +18,7 @@ namespace Fwk.Security
     /// <see cref="AuthorizationRuleProvider"/>.
     /// </summary>
     [Serializable]
-    public class FwkAuthorizationRule :  IAuthorizationRule,Fwk.Bases.IEntity
+    public class FwkAuthorizationRule :Entity,  IAuthorizationRule
     {
         private string _Expression;
         private System.Guid _ApplicationId;
@@ -63,24 +63,7 @@ namespace Fwk.Security
             _ApplicationId = applicationId;
 
         }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FwkAuthorizationRuleAux"/> class with the specified name and expression.
-        /// </summary>
-        /// <param name="pFwkAuthorizationRule">Framework rule</param>
-        public FwkAuthorizationRule(FwkAuthorizationRuleAux pFwkAuthorizationRule)
-           
-        {
-            _ApplicationId = pFwkAuthorizationRule.ApplicationId;
-            _ApplicationName = pFwkAuthorizationRule.ApplicationName;
-            _CategoryId = pFwkAuthorizationRule.CategoryId;
-            _Expression = pFwkAuthorizationRule.Expression;
-            _Name = pFwkAuthorizationRule.Name;
-            _Description = pFwkAuthorizationRule.Description;
-            _Id = pFwkAuthorizationRule.Id;
-            
-
-
-        }
+    
         /// <summary>
         /// Gets or sets the expression associated with
         /// this rule.
@@ -168,53 +151,9 @@ namespace Fwk.Security
                 _Description = value;
             }
         }
-        #region IEntity Members IBaseEntity Members
+        
 
-        public System.Data.DataSet GetDataSet()
-        {
-            throw new NotImplementedException("No se implementa GetDataSet en esta entidad");
-        }
-
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string GetXml()
-        {
-            throw new NotImplementedException("No se implementa GetXml en esta entidad");
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public void SetXml(string pXmlData)
-        {
-            throw new NotImplementedException("No se implementa SetXml en esta entidad");
-        }
-
-        #endregion
-
-        #region ICloneable Members
-
-        /// <summary>
-        /// Crea una copia espejo de la clase.-
-        /// </summary>
-        /// <returns></returns>
-        public FwkAuthorizationRule Clone()
-        {
-            return (FwkAuthorizationRule)((ICloneable)this).Clone();
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        object ICloneable.Clone()
-        {
-            return this.MemberwiseClone();
-        }
-
-        #endregion
+        
 
 
     }
@@ -222,50 +161,9 @@ namespace Fwk.Security
     /// Lista de reglas de autorizacion
     /// </summary>
     [XmlRoot("FwkAuthorizationRuleList"), SerializableAttribute]
-    public class FwkAuthorizationRuleList : List<FwkAuthorizationRule>, IEntity
+    public class FwkAuthorizationRuleList : Entities<FwkAuthorizationRule>
     {
-        #region IEntity Members
-
-        public System.Data.DataSet GetDataSet()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region IBaseEntity Members
-
-        public string GetXml()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetXml(string pXmlData)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region ICloneable Members
-
-        public object Clone()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pFwkAuthorizationRuleauxList"></param>
-        public void Populate(FwkAuthorizationRuleAuxList pFwkAuthorizationRuleauxList)
-        {
-            pFwkAuthorizationRuleauxList.ForEach(a => this.Add(new FwkAuthorizationRule(a)));
-        }
-
-       
+      
     }
 
     /// <summary>
@@ -345,171 +243,171 @@ namespace Fwk.Security
     /// Esta clace es una auxiliar de FwkAuthorizationRule con la exepcion de que no  hereda de NamedConfigurationElement
     /// lo que la hace serializable .-
     /// </summary>
-    [XmlInclude(typeof(FwkAuthorizationRuleAux)), Serializable]
-    public class FwkAuthorizationRuleAux : Entity, IAuthorizationRule
-    {
-        #region Properties
-        private string _Expression;
-        private System.Guid _ApplicationId;
-        private System.String _ApplicationName;
-        private System.String _Name;
-        private int _CategoryId;
+    //[XmlInclude(typeof(FwkAuthorizationRuleAux)), Serializable]
+    //public class FwkAuthorizationRuleAux : Entity, IAuthorizationRule
+    //{
+    //    #region Properties
+    //    private string _Expression;
+    //    private System.Guid _ApplicationId;
+    //    private System.String _ApplicationName;
+    //    private System.String _Name;
+    //    private int _CategoryId;
 
-        public System.String Name
-        {
-            get { return _Name; }
-            set { _Name = value; }
-        }
+    //    public System.String Name
+    //    {
+    //        get { return _Name; }
+    //        set { _Name = value; }
+    //    }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Expression
-        {
-            get
-            {
-                return _Expression;
-            }
-            set
-            {
-                _Expression = value;
-            }
-        }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    public string Expression
+    //    {
+    //        get
+    //        {
+    //            return _Expression;
+    //        }
+    //        set
+    //        {
+    //            _Expression = value;
+    //        }
+    //    }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public int CategoryId
-        {
-            get
-            {
-                return _CategoryId;
-            }
-            set
-            {
-                _CategoryId = value;
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public System.Guid ApplicationId
-        {
-            get { return _ApplicationId; }
-            set { _ApplicationId = value; }
-        }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    public int CategoryId
+    //    {
+    //        get
+    //        {
+    //            return _CategoryId;
+    //        }
+    //        set
+    //        {
+    //            _CategoryId = value;
+    //        }
+    //    }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    public System.Guid ApplicationId
+    //    {
+    //        get { return _ApplicationId; }
+    //        set { _ApplicationId = value; }
+    //    }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public System.String ApplicationName
-        {
-            get { return _ApplicationName; }
-            set { _ApplicationName = value; }
-        }
-
-
-
-        int _Id;
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                _Id = value;
-            }
-        }
-        string _Description;
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                _Description = value;
-            }
-        }
-        #endregion 
-
-        /// <summary>
-        /// Initializes a new instance of the 
-        /// <see cref="FwkAuthorizationRuleAux"/> class.
-        /// </summary>
-        public FwkAuthorizationRuleAux()
-        {
-        }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    public System.String ApplicationName
+    //    {
+    //        get { return _ApplicationName; }
+    //        set { _ApplicationName = value; }
+    //    }
 
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FwkAuthorizationRuleAux"/> class with the specified name and expression.
-        /// </summary>
-        /// <param name="pFwkAuthorizationRule">Framework rule</param>
-        public FwkAuthorizationRuleAux(FwkAuthorizationRule pFwkAuthorizationRule)
+
+    //    int _Id;
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    public int Id
+    //    {
+    //        get
+    //        {
+    //            return _Id;
+    //        }
+    //        set
+    //        {
+    //            _Id = value;
+    //        }
+    //    }
+    //    string _Description;
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    public string Description
+    //    {
+    //        get
+    //        {
+    //            return _Description;
+    //        }
+    //        set
+    //        {
+    //            _Description = value;
+    //        }
+    //    }
+    //    #endregion 
+
+    //    /// <summary>
+    //    /// Initializes a new instance of the 
+    //    /// <see cref="FwkAuthorizationRuleAux"/> class.
+    //    /// </summary>
+    //    public FwkAuthorizationRuleAux()
+    //    {
+    //    }
+
+
+    //    /// <summary>
+    //    /// Initializes a new instance of the <see cref="FwkAuthorizationRuleAux"/> class with the specified name and expression.
+    //    /// </summary>
+    //    /// <param name="pFwkAuthorizationRule">Framework rule</param>
+    //    public FwkAuthorizationRuleAux(FwkAuthorizationRule pFwkAuthorizationRule)
             
-        {
-            _ApplicationId = pFwkAuthorizationRule.ApplicationId;
-            _ApplicationName = pFwkAuthorizationRule.ApplicationName;
-            _CategoryId = pFwkAuthorizationRule.CategoryId;
-            _Expression = pFwkAuthorizationRule.Expression;
-            _Name = pFwkAuthorizationRule.Name;
-            _Id = pFwkAuthorizationRule.Id;
-            _Description = pFwkAuthorizationRule.Description;
-        }
+    //    {
+    //        _ApplicationId = pFwkAuthorizationRule.ApplicationId;
+    //        _ApplicationName = pFwkAuthorizationRule.ApplicationName;
+    //        _CategoryId = pFwkAuthorizationRule.CategoryId;
+    //        _Expression = pFwkAuthorizationRule.Expression;
+    //        _Name = pFwkAuthorizationRule.Name;
+    //        _Id = pFwkAuthorizationRule.Id;
+    //        _Description = pFwkAuthorizationRule.Description;
+    //    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AuthorizationRuleData"/> class with the specified name and expression.
-        /// </summary>
-        /// <param name="name">The name of the rule</param>
-        /// <param name="expression">The expression to evaluate.</param>
-        public FwkAuthorizationRuleAux(string name, string expression)
+    //    /// <summary>
+    //    /// Initializes a new instance of the <see cref="AuthorizationRuleData"/> class with the specified name and expression.
+    //    /// </summary>
+    //    /// <param name="name">The name of the rule</param>
+    //    /// <param name="expression">The expression to evaluate.</param>
+    //    public FwkAuthorizationRuleAux(string name, string expression)
             
-        {
-            _Expression = expression;
-            _Name = name;
+    //    {
+    //        _Expression = expression;
+    //        _Name = name;
 
-        }
+    //    }
     
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="newExpresion"></param>
-        public void SetExpression(string newExpresion)
-        {
-            _Expression = newExpresion;
-        }
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="newExpresion"></param>
+    //    public void SetExpression(string newExpresion)
+    //    {
+    //        _Expression = newExpresion;
+    //    }
 
-    }
+    //}
 
-    /// <summary>
-    /// Esta clace es una auxiliar de FwkAuthorizationRuleList con la exepcion de que no  hereda de NamedConfigurationElement
-    /// lo que la hace serializable .-
-    /// </summary>
-    [XmlRoot("FwkAuthorizationRuleAuxList"), SerializableAttribute]
-    public class FwkAuthorizationRuleAuxList:Entities<FwkAuthorizationRuleAux>
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pFwkAuthorizationRuleList"></param>
-        public void Populate(FwkAuthorizationRuleList pFwkAuthorizationRuleList)
-        {
-            pFwkAuthorizationRuleList.ForEach(a=> this.Add(new  FwkAuthorizationRuleAux(a)));  
-        }
+    ///// <summary>
+    ///// Esta clace es una auxiliar de FwkAuthorizationRuleList con la exepcion de que no  hereda de NamedConfigurationElement
+    ///// lo que la hace serializable .-
+    ///// </summary>
+    //[XmlRoot("FwkAuthorizationRuleAuxList"), SerializableAttribute]
+    //public class FwkAuthorizationRuleAuxList:Entities<FwkAuthorizationRuleAux>
+    //{
+    //    /// <summary>
+    //    /// 
+    //    /// </summary>
+    //    /// <param name="pFwkAuthorizationRuleList"></param>
+    //    public void Populate(FwkAuthorizationRuleList pFwkAuthorizationRuleList)
+    //    {
+    //        pFwkAuthorizationRuleList.ForEach(a=> this.Add(new  FwkAuthorizationRuleAux(a)));  
+    //    }
        
 
       
-    }
+    //}
 
 
     public interface IAuthorizationRule

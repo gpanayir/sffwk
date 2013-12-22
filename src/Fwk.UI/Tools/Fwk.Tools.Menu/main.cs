@@ -7,10 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Fwk.UI.Controls.Menu;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 using Fwk.Security;
 using System.Web.Security;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using Fwk.Caching;
 using Fwk.UI.Security.Controls;
 

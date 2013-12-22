@@ -1,15 +1,12 @@
 using System;
-
 using Fwk.UI.Controls.Menu;
 using Fwk.Security.Common;
 using Fwk.Security;
-using Microsoft.Practices.EnterpriseLibrary.Security;
 using System.Web.Security;
 using Fwk.Configuration;
 using System.ComponentModel;
 using Fwk.Security.BE;
 using System.Windows.Forms;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
 using System.Collections.Generic;
 using Fwk.UI.Common;
 using System.Runtime.Remoting.Messaging;
@@ -28,11 +25,11 @@ namespace Fwk.UI.Security.Controls.Rules
         #region Members
         FwkCategoryList _Categories;
         FwkCategory _SelectedCategory;
-        FwkAuthorizationRuleAuxList _SelectedRules = new FwkAuthorizationRuleAuxList();
-        FwkAuthorizationRuleAux _FwkAuthorizationRule;
+        FwkAuthorizationRuleList _SelectedRules = new FwkAuthorizationRuleList();
+        FwkAuthorizationRule _FwkAuthorizationRule;
 
         [Browsable(false)]
-        public FwkAuthorizationRuleAux SelectedRule
+        public FwkAuthorizationRule SelectedRule
         {
             get { return _FwkAuthorizationRule; }
         }
@@ -147,14 +144,14 @@ namespace Fwk.UI.Security.Controls.Rules
             e.NodeImageIndex = e.Node.Expanded ? 1 : 0;
         }
 
-        public FwkAuthorizationRuleAuxList GetSelectedRules()
+        public FwkAuthorizationRuleList GetSelectedRules()
         {
-            FwkAuthorizationRuleAux wFwkAuthorizationRule;
+            FwkAuthorizationRule wFwkAuthorizationRule;
            
             _SelectedRules.Clear();
             foreach (int row in grdViewRulesByCategory.GetSelectedRows())
             {
-                wFwkAuthorizationRule = (FwkAuthorizationRuleAux)grdViewRulesByCategory.GetRow(row);
+                wFwkAuthorizationRule = (FwkAuthorizationRule)grdViewRulesByCategory.GetRow(row);
                 _SelectedRules.Add(wFwkAuthorizationRule);
             }
 
@@ -167,7 +164,7 @@ namespace Fwk.UI.Security.Controls.Rules
         {
             if (((BindingSource)grdViewRulesByCategory.DataSource).Current == null)
                 return;
-            _FwkAuthorizationRule = ((FwkAuthorizationRuleAux)((BindingSource)grdViewRulesByCategory.DataSource).Current);
+            _FwkAuthorizationRule = ((FwkAuthorizationRule)((BindingSource)grdViewRulesByCategory.DataSource).Current);
 
         }
        

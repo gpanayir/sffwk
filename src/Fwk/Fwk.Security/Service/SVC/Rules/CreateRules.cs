@@ -8,7 +8,7 @@ namespace Fwk.Security.ISVC.CreateRules
 {
 	
 	[Serializable]
-    public class CreateRuleReq : Request<FwkAuthorizationRuleAux>
+    public class CreateRuleReq : Request<FwkAuthorizationRule>
 	{
         public CreateRuleReq()
 		{

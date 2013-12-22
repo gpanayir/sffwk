@@ -27,9 +27,9 @@ namespace Fwk.Security.SVC
 
             FwkAuthorizationRuleList rules = FwkMembership.GetRulesAuxList(pServiceRequest.SecurityProviderName);
 
-            FwkAuthorizationRuleAuxList pFwkAuthorizationRuleAuxList = new FwkAuthorizationRuleAuxList();
-            pFwkAuthorizationRuleAuxList.Populate(rules);
-            wRes.BusinessData = pFwkAuthorizationRuleAuxList;
+
+
+            wRes.BusinessData = rules;
          
             return wRes;
         }
