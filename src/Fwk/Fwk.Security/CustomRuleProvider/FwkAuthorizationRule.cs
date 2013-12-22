@@ -74,7 +74,7 @@ namespace Fwk.Security
             _ApplicationName = pFwkAuthorizationRule.ApplicationName;
             _CategoryId = pFwkAuthorizationRule.CategoryId;
             _Expression = pFwkAuthorizationRule.Expression;
-
+            _Name = pFwkAuthorizationRule.Name;
             _Description = pFwkAuthorizationRule.Description;
             _Id = pFwkAuthorizationRule.Id;
             
