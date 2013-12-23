@@ -53,9 +53,9 @@ namespace Fwk.Security.Admin
             set { SecurityController._AllRolList = value; }
         }
 
-        static FwkAuthorizationRuleAuxList _FwkAuthorizationRuleList;
+        static FwkAuthorizationRuleList _FwkAuthorizationRuleList;
 
-        public static FwkAuthorizationRuleAuxList FwkAuthorizationRuleList
+        public static FwkAuthorizationRuleList FwkAuthorizationRuleList
         {
             get { return SecurityController._FwkAuthorizationRuleList; }
             set { SecurityController._FwkAuthorizationRuleList = value; }
@@ -404,7 +404,7 @@ namespace Fwk.Security.Admin
         /// 
         /// </summary>
         /// <returns></returns>
-        public static FwkAuthorizationRuleAuxList SearchAllRules()
+        public static FwkAuthorizationRuleList SearchAllRules()
         {
             SearchAllRulesReq req = new SearchAllRulesReq();
 
@@ -427,7 +427,7 @@ namespace Fwk.Security.Admin
         /// <param name="pRol"></param>
         /// <param name="pRulesList">Lista de reglas que queda asociada al nuevo rol</param>
         /// <param name="pPerformRemoveRoles"></param>
-        public static void RulesUpdateService(Rol pRol, FwkAuthorizationRuleAuxList pRulesList, bool pPerformRemoveRoles)
+        public static void RulesUpdateService(Rol pRol, FwkAuthorizationRuleList pRulesList, bool pPerformRemoveRoles)
         {
             if (pPerformRemoveRoles)
                 RulesRemoveRol(pRol, pRulesList);
@@ -446,11 +446,11 @@ namespace Fwk.Security.Admin
         }
 
         //TODO: usar scripts
-        static void RulesApendRol(Rol pRol, FwkAuthorizationRuleAuxList pRulesList)
+        static void RulesApendRol(Rol pRol, FwkAuthorizationRuleList pRulesList)
         {
             RolList rollistAux = new RolList();
             UserList userListAux = new UserList(); ;
-            foreach (FwkAuthorizationRuleAux rule in pRulesList)
+            foreach (FwkAuthorizationRule rule in pRulesList)
             {
                 rollistAux.Clear();
                 userListAux.Clear();
@@ -464,11 +464,11 @@ namespace Fwk.Security.Admin
             }
         }
         //TODO: usar scripts
-        static void RulesRemoveRol(Rol pRol, FwkAuthorizationRuleAuxList pRulesList)
+        static void RulesRemoveRol(Rol pRol, FwkAuthorizationRuleList pRulesList)
         {
             RolList rollistAux = new RolList();
             UserList userListAux = new UserList();
-            foreach (FwkAuthorizationRuleAux rule in pRulesList)
+            foreach (FwkAuthorizationRule rule in pRulesList)
             {
                 rollistAux.Clear();
                 userListAux.Clear();
