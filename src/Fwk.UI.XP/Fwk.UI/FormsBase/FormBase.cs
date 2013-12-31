@@ -217,8 +217,7 @@ namespace Fwk.UI.Forms
                 if (FormBase.RuleProvider == null)
                 {
 
-                    FwkAuthorizationRuleList wFwkAuthorizationRuleList = new FwkAuthorizationRuleList();
-                    wFwkAuthorizationRuleList.Populate(SecurityController.SearchAllRules());
+                    FwkAuthorizationRuleList wFwkAuthorizationRuleList =SecurityController.SearchAllRules();
                     FormBase.RuleProvider = new FwkAuthorizationRuleProvider(wFwkAuthorizationRuleList);
                 }
                 FormBase.IdentityName = FormBase.IndentityUserInfo.UserName;

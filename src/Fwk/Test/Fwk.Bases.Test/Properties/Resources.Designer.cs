@@ -60,6 +60,9 @@ namespace Fwk.Bases.Test.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap redo_24 {
             get {
                 object obj = ResourceManager.GetObject("redo_24", resourceCulture);
@@ -67,6 +70,9 @@ namespace Fwk.Bases.Test.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap undo_24 {
             get {
                 object obj = ResourceManager.GetObject("undo_24", resourceCulture);

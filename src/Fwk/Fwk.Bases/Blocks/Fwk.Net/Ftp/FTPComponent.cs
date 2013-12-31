@@ -760,7 +760,7 @@ namespace Fwk.Net.Ftp
             if (ftpPort == 0)
                 ftpPort = 21;
             clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint ep = new IPEndPoint(Dns.Resolve(ftpServer).AddressList[0], ftpPort);
+            IPEndPoint ep = new IPEndPoint(Dns.GetHostEntry(ftpServer).AddressList[0], ftpPort);
 
         
             clientSocket.Connect(ep);
@@ -1070,9 +1070,9 @@ namespace Fwk.Net.Ftp
             string ipAddress = string.Concat(parts[0], ".", parts[1] + ".", parts[2] + ".", parts[3]);
 
             int port = (parts[4] << 8) + parts[5];
-
+            
             Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint ep = new IPEndPoint(Dns.Resolve(ipAddress).AddressList[0], port);
+            IPEndPoint ep = new IPEndPoint(Dns.GetHostEntry(ipAddress).AddressList[0], port);
 
             try
             {

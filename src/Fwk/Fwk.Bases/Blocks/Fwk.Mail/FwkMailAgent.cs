@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 using Fwk.Caching;
-using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Fwk.Mail.Common;
 using Fwk.Mail;
 using Fwk.Configuration;
@@ -18,7 +17,7 @@ namespace Fwk.Mail
     {
         Pop3Services _Pop3;
         
-        FwkCache _Cache;
+        
         ObjCache _NewItemCache = null;
         ObjCache _ItemCache = null;
         System.Timers.Timer _Timer = null;
@@ -148,11 +147,11 @@ namespace Fwk.Mail
         {
             _ItemCache = new ObjCache();
            
-            _Cache = new FwkCache();
+            
            
 
             // Se obtiene el objeto con los datos de la cache
-            _ItemCache = (ObjCache)_Cache.GetItemFromCache("MailAgentCache");
+            _ItemCache = (ObjCache)CacheManager.GetData("MailAgentCache");
         }
 
         /// <summary>
@@ -161,10 +160,8 @@ namespace Fwk.Mail
         /// <param name="pItemCache">Data que se agregara a la cache</param>
         public void PutInCache(ObjCache pItemCache)
         {
-            _ItemCache = new ObjCache();
-            _Cache = new FwkCache();
-            _Cache.RemoveItem("MailAgentCache");
-            _Cache.SaveItemInCache("MailAgentCache", pItemCache, CacheItemPriority.Normal, 365, Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum.FromDays,false);
+            
+            CacheManager.Add("MailAgentCache", pItemCache, 365, Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum.FromDays);
         }
         #endregion
 
@@ -174,7 +171,6 @@ namespace Fwk.Mail
         /// </summary>
         private void InitializeMailService()
         {
-         
             // se obtienen los datos de la cache yse guardan en wItemCache
             GetFromCache();
 

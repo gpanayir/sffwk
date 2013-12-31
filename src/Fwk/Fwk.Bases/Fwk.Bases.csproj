@@ -79,13 +79,10 @@
       <HintPath>..\..\..\..\..\..\..\Archivos de programa\Microsoft Visual Studio 9.0\Visual Studio Tools for Office\PIA\Office12\dao.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
@@ -103,6 +100,7 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
@@ -115,6 +113,8 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Blocks\Functions\WindowsFunction.cs" />
+    <Compile Include="Blocks\Fwk.Caching\BackgroundScheduler.cs" />
+    <Compile Include="Blocks\Fwk.Caching\CacheManager.cs" />
     <Compile Include="Blocks\Fwk.Configuration\Services\GetFwkConfigurationService.cs" />
     <Compile Include="Blocks\Fwk.Params\CreateParamService.cs" />
     <Compile Include="Blocks\Fwk.Params\DeleteParamService.cs" />
@@ -237,9 +237,6 @@
     <Compile Include="Blocks\Fwk.AssemblyExplorer\AssemblyMethod.cs" />
     <Compile Include="Blocks\Fwk.AssemblyExplorer\AssemblyParameter.cs" />
     <Compile Include="Blocks\Fwk.AssemblyExplorer\AssemblyProperty.cs" />
-    <Compile Include="Blocks\Fwk.Caching\Cache.cs" />
-    <Compile Include="Blocks\Fwk.Caching\CacheCollectionMannager.cs" />
-    <Compile Include="Blocks\Fwk.Caching\CacheRefreshAction.cs" />
     <Compile Include="Blocks\Fwk.Caching\CacheSettings.cs" />
     <Compile Include="Blocks\Fwk.Exceptions\BlockingFunctionalException.cs" />
     <Compile Include="Blocks\Fwk.Exceptions\ExceptionEnums.cs" />
@@ -310,7 +307,7 @@
       <LastGenOutput>FwkData.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="fwk.snk" />
+   
     <None Include="Blocks\Fwk.Caching\Caching.cd" />
     <None Include="Blocks\Fwk.Caching\ConfigCaching_App.config" />
     <None Include="Blocks\Fwk.Logging\diagrams\Diagram.cd" />

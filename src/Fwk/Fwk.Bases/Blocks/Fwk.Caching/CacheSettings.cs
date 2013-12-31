@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Fwk.HelperFunctions;
 
 namespace Fwk.Caching
@@ -90,28 +89,8 @@ namespace Fwk.Caching
             get { return _ResponseCacheId; }
             set { _ResponseCacheId = value; }
         }
-
-
-
-        private CacheItemPriority _Priority;
-
-        ///<summary>
-        ///Especifica la prioridad relativa de los elementos almacenados en el objeto Cache.  <see cref="CacheItemPriority"/>
-        ///AboveNormal Los elementos de la memoria caché con este nivel de prioridad tienen menos posibilidades de ser eliminados cuando el servidor libera la memoria del sistema que aquéllos que tengan asignada una prioridad Normal.  
-        ///BelowNormal Los elementos de la memoria caché con este nivel de prioridad tienen más posibilidad de ser eliminados cuando el servidor libera la memoria del sistema que aquéllos que tengan asignada una prioridad Normal.  
-        ///Default El valor predeterminado para la prioridad de un elemento de la memoria caché es Normal.  
-        ///High Los elementos de la memoria caché con este nivel de prioridad son los que menos posibilidades tienen de ser eliminados de la memoria caché cuando el servidor libera la memoria del sistema.  
-        ///Low Los elementos de la memoria caché con este nivel de prioridad son los que más posibilidades tienen de ser eliminados de la memoria caché cuando el servidor libera la memoria del sistema.  
-        ///Normal Los elementos de la memoria caché con este nivel de prioridad podrán ser eliminados de la memoria caché cuando el servidor libere la memoria del sistema sólo después de eliminarse los elementos con la prioridad Low o BelowNormal. Éste es el valor predeterminado.  
-        ///NotRemovable Los elementos de la memoria caché con este nivel de prioridad no se eliminarán de la memoria caché cuando el servidor libere la memoria del sistema. Sin embargo, los elementos con este nivel de prioridad se quitan junto con otros elementos en función de la fecha de caducidad absoluta o variable del elemento.   
-        /// </summary>
-        public CacheItemPriority Priority
-        {
-            get { return _Priority; }
-            set { _Priority = value; }
-        }
-
-        private Double _ExpirationTime = 0;
+   
+        private Int32 _ExpirationTime = 0;
         private Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum _TimeMeasuresEnum = DateFunctions.TimeMeasuresEnum.FromDays;
 
         /// <summary>
@@ -122,13 +101,14 @@ namespace Fwk.Caching
         public Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum TimeMeasures
         {
             get { return _TimeMeasuresEnum; }
-            set { _TimeMeasuresEnum = value; }
+            set { _TimeMeasuresEnum = value
+; }
         }
         /// <summary>
         /// Valor que indica la cantidad de dias que la cache espera a ser eliminada del cache repository.-
         /// Se pueden utilizar fracciones de dia.-
         /// </summary>
-        public Double ExpirationTime
+        public Int32 ExpirationTime
         {
             get { return _ExpirationTime; }
             set { _ExpirationTime = value; }
@@ -166,6 +146,7 @@ namespace Fwk.Caching
         /// <summary>
         /// Indica si el tiempo de expitracion del item cacheado se renuevan al volver a consultarlos
         /// </summary>
+        [Obsolete("Esta propiedad no proporciona ningun valor de acción.")]
         public bool RefreshOnExpired
         {
             get { return _RefreshOnExpired; }

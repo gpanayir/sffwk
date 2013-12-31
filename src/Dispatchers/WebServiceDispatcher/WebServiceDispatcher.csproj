@@ -35,9 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
+    <Reference Include="Fwk.Bases">
+      <HintPath>..\..\..\Libraries\Fwk.Bases.dll</HintPath>
     </Reference>
     <Reference Include="Fwk.Bases.Connector">
       <HintPath>..\..\libs\Fwk.Bases.Connector.dll</HintPath>

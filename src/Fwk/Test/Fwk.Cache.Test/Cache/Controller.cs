@@ -18,7 +18,7 @@ namespace Fwk.Cache.Test
         public static DomainList Cargos;
         public static DomainList Sucursales;
         public static DomainList RelatedDomains;
-        static Fwk.Caching.FwkCache cache;
+        
         /// <summary>
         /// busca los dominios relacionados al usuario
         /// </summary>
@@ -40,11 +40,11 @@ namespace Fwk.Cache.Test
 
             if (pRefreshData)
             {
-                cache.RemoveItem(string.Concat(req.ServiceName + puserName));
+                CacheManager.Remove(string.Concat(req.ServiceName + puserName));
             }
             //req.CacheSettings.CacheManagerName = cacheName;
             req.CacheSettings.CacheOnClientSide = true;
-            req.CacheSettings.RefreshOnExpired = false;
+            
             req.CacheSettings.ResponseCacheId = string.Concat(req.ServiceName + puserName);
 
 

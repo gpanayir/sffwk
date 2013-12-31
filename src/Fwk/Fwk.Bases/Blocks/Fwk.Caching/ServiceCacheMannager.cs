@@ -24,10 +24,10 @@ namespace Fwk.Caching
             if (string.IsNullOrEmpty(req.CacheSettings.ResponseCacheId))
                 req.CacheSettings.ResponseCacheId = req.ServiceName;
 
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(pRequest.CacheSettings.CacheManagerName);
+            
 
             //TODO: Agregar manejo de error para catching
-            wItemInCache = wFwkCache.GetItemFromCache(req.CacheSettings.ResponseCacheId);
+            wItemInCache = CacheManager.GetData(req.CacheSettings.ResponseCacheId);
 
 
             if (wItemInCache == null)
@@ -52,22 +52,16 @@ namespace Fwk.Caching
         {
             IRequest req = (IRequest)pRequest;
 
-         
-
             if (string.IsNullOrEmpty(req.CacheSettings.ResponseCacheId))
                 req.CacheSettings.ResponseCacheId = pRequest.ServiceName;
 
-            //Almaceno el resultado en la cache
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(req.CacheSettings.CacheManagerName);
-
-            wFwkCache.SaveItemInCache(
+            CacheManager.Add(
                 req.CacheSettings.ResponseCacheId,
                 pResult,
-                req.CacheSettings.Priority,
-                req.CacheSettings.ExpirationTime, req.CacheSettings.TimeMeasures, req.CacheSettings.RefreshOnExpired);
-
-            
+                req.CacheSettings.ExpirationTime, req.CacheSettings.TimeMeasures);
         }
+            
+        
 
         /// <summary>
         /// Limpia todos los resultado de servicios en cache
@@ -75,7 +69,7 @@ namespace Fwk.Caching
         /// <param name="pCacheMannagerName"></param>
         public static void ClearAll(String pCacheMannagerName)
         {
-            KwkCacheFactory.GetFwkCache(pCacheMannagerName).ClearAll();
+            CacheManager.Flush();
 
         }
 

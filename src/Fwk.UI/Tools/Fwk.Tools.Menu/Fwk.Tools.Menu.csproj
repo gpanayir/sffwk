@@ -94,10 +94,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Security.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\StaticLibs\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\StaticLibs\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>

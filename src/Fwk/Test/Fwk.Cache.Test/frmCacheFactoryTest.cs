@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Fwk.Caching;
-using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Fwk.HelperFunctions;
 
 namespace Fwk.Cache.Test
@@ -28,27 +27,28 @@ namespace Fwk.Cache.Test
 
         private void viewFileButton_Click(object sender, EventArgs e)
         {
-            FwkCache wFwkCache = new FwkCache("Ventas");
+            
 
             ClienteBE wCli = new ClienteBE();
             wCli.IdCliente = 50999;
             wCli.Apellido = "Aguirre";
             wCli.Edad = 69;
 
-            wFwkCache.SaveItemInCache(wCli.IdCliente.ToString(), wCli);
+            CacheManager.Add(wCli.IdCliente.ToString(), wCli,10, DateFunctions.TimeMeasuresEnum.FromSeconds);
         }
 
         private void primitivesAddButton_Click(object sender, EventArgs e)
         {
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
-            
+
+
             using (frmAddItem addItemForm = new frmAddItem())
             {
                 if (addItemForm.ShowDialog() == DialogResult.OK)
                 {
-                    primitivesResultsTextBox.Text = "Se agrego a " + cmbCacheMannagerSettingName.SelectedItem.ToString() + " el id " + addItemForm.Id + Environment.NewLine;
+                    
 
-                    wFwkCache.SaveItemInCache(addItemForm.Id,addItemForm.ClienteCollectionBE,true);
+                    CacheManager.Add(addItemForm.Id, addItemForm.ClienteCollectionBE, 1, DateFunctions.TimeMeasuresEnum.FromMinutes);
+                    primitivesResultsTextBox.Text = "Se agrego a " + cmbCacheMannagerSettingName.SelectedItem.ToString() + " el id " + addItemForm.Id + Environment.NewLine;
                 }
             }
         }
@@ -65,8 +65,9 @@ namespace Fwk.Cache.Test
         {
             if (selectItemForm.ShowDialog() == DialogResult.OK)
             {
-                FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
-                ClienteCollectionBE wClienteCollectionBE = (ClienteCollectionBE)wFwkCache.GetItemFromCache(selectItemForm.ItemKey);
+                
+                ClienteCollectionBE wClienteCollectionBE = (ClienteCollectionBE)CacheManager.GetData(selectItemForm.ItemKey);
+
                 if (wClienteCollectionBE != null)
                 {
                     primitivesResultsTextBox.Text += wClienteCollectionBE.GetXml() + Environment.NewLine;
@@ -75,7 +76,7 @@ namespace Fwk.Cache.Test
                 {
                     primitivesResultsTextBox.Text += string.Format("No se encuentra en cache el item", selectItemForm.ItemKey) + Environment.NewLine;
                 }
-                AddScenarioSeparator(primitivesResultsTextBox);
+             
             }
         }
 
@@ -83,11 +84,11 @@ namespace Fwk.Cache.Test
         {
             if (selectItemForm.ShowDialog() == DialogResult.OK)
             {
-                FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
+                
 
-                if (wFwkCache.CheckIfCachingExists(selectItemForm.ItemKey))
+                if (CacheManager.Contains(selectItemForm.ItemKey))
                 {
-                    wFwkCache.RemoveItem(selectItemForm.ItemKey);
+                    CacheManager.Remove(selectItemForm.ItemKey);
                     primitivesResultsTextBox.Text = "Se elimino de " + cmbCacheMannagerSettingName.SelectedItem.ToString() + " el id " + selectItemForm.ItemKey + Environment.NewLine;
                 }
                 else
@@ -95,26 +96,27 @@ namespace Fwk.Cache.Test
                     primitivesResultsTextBox.Text = "En " + cmbCacheMannagerSettingName.SelectedItem.ToString() + " el id " + selectItemForm.ItemKey + " no existe" + Environment.NewLine ;
                 }
             }
-            AddScenarioSeparator(primitivesResultsTextBox);
+            
         }
 
         private void primitivesFlushCacheButton_Click(object sender, EventArgs e)
         {
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
-            wFwkCache.ClearAll();
+            
+            
+            CacheManager.Flush();
             primitivesResultsTextBox.Text = "Se eliminaron todos los elementos de " + cmbCacheMannagerSettingName.SelectedItem.ToString() +  Environment.NewLine;
         }
 
         private void primitivesAddRandomButton_Click(object sender, EventArgs e)
         {
 
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
+            
             
             try
             {
                 for (int i = 1; i <= nudItemsCount.Value; i++)
                 {
-                    wFwkCache.SaveItemInCache(i.ToString() + DateTime.Now.ToString(), Helper.GetClienteCollection(), CacheItemPriority.Low, 10, Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum.FromMinutes,false);
+                    CacheManager.Add(i.ToString() , Helper.GetClienteCollection(),  10, Fwk.HelperFunctions.DateFunctions.TimeMeasuresEnum.FromMinutes);
                 }
 
                 primitivesResultsTextBox.Text = "Se agregaron a " + cmbCacheMannagerSettingName.SelectedItem.ToString() + " " + nudItemsCount.Value + " elementos" + Environment.NewLine;
@@ -129,8 +131,8 @@ namespace Fwk.Cache.Test
 
         private void btnCount_Click(object sender, EventArgs e)
         {
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
-            MessageBox.Show("Cantidad de elementos en " + wFwkCache.CacheManagerName + " = "+ wFwkCache.CacheManager.Count);
+
+            MessageBox.Show("Cantidad de elementos en CacheManager " +  CacheManager.Count);
            
 
            
@@ -145,10 +147,9 @@ namespace Fwk.Cache.Test
             wCli.Edad = 69;
 
 
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
+            
             DateFunctions.TimeMeasuresEnum tm = (DateFunctions.TimeMeasuresEnum)Enum.Parse(typeof(DateFunctions.TimeMeasuresEnum),cmbTimeMessure.Text);
-            wFwkCache.SaveItemInCache("TestTimeMeasuresEnum", wCli, 
-                CacheItemPriority.Low, (double)numericUpDown1.Value, tm,false);
+            CacheManager.Add("TestTimeMeasuresEnum", wCli, Convert.ToInt32(numericUpDown1.Value), tm);
 
             MessageBox.Show("Se agrego correctamente TestTimeMeasuresEnum ");
             textBox1.Text = wCli.GetXml();
@@ -157,9 +158,9 @@ namespace Fwk.Cache.Test
 
         private void btnGetFromCache_Click(object sender, EventArgs e)
         {
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
 
-            ClienteBE wCli = (ClienteBE)wFwkCache.GetItemFromCache("TestTimeMeasuresEnum");
+
+            ClienteBE wCli = (ClienteBE)CacheManager.GetData("TestTimeMeasuresEnum");
 
             if(wCli == null)
                 MessageBox.Show("El item TestTimeMeasuresEnum no se encuentra en cache o expiro");
@@ -169,8 +170,7 @@ namespace Fwk.Cache.Test
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
-            wFwkCache.RemoveItem("TestTimeMeasuresEnum");
+            CacheManager.Remove("TestTimeMeasuresEnum");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -194,7 +194,7 @@ namespace Fwk.Cache.Test
 
         private void button5_Click(object sender, EventArgs e)
         {
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
+            
             #region fill data
             SearchRelatedDomainsByUserRes wSearchRelatedDomainsByUserRes = new SearchRelatedDomainsByUserRes();
             wSearchRelatedDomainsByUserRes.BusinessData = new DomainList();
@@ -203,14 +203,14 @@ namespace Fwk.Cache.Test
             d.Name = "Dominio A";
             wSearchRelatedDomainsByUserRes.BusinessData.Add(d);
             #endregion
-            //wFwkCache.Add(pCahcheId, pObject, pPriority, wCacheRefreshAction, new SlidingTime(TimeSpan.FromDays(pExpirationTime)));
-            wFwkCache.SaveItemInCache("SearchRelatedDomainsByUser", wSearchRelatedDomainsByUserRes);
+            
+            //CacheManager.Add("SearchRelatedDomainsByUser", wSearchRelatedDomainsByUserRes);
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(cmbCacheMannagerSettingName.SelectedItem.ToString());
-            SearchRelatedDomainsByUserRes res = (SearchRelatedDomainsByUserRes)wFwkCache.GetItemFromCache("SearchRelatedDomainsByUser");
+
+            SearchRelatedDomainsByUserRes res = (SearchRelatedDomainsByUserRes)CacheManager.GetData("SearchRelatedDomainsByUser");
             if (res == null)
             {
                 textBox2.Text = "No se encuentra el item en cache";

@@ -22,7 +22,7 @@ namespace Fwk.Tools.Menu
 
         #region [Private Vars]
         MenuFile _SelectedMenuFile;
-        FwkCache _FwkCache = null;
+        
         private MenuFileList _MenuFileList = new MenuFileList();
      
         #endregion
@@ -328,11 +328,11 @@ namespace Fwk.Tools.Menu
 
         #region [Form Event Handling]
         
-        public FRM_ToolBarDesigner(MenuFileList pFilesDict, FwkCache cache)
+        public FRM_ToolBarDesigner(MenuFileList pFilesDict)
         {
             InitializeComponent();
             _MenuFileList = pFilesDict;
-            _FwkCache = cache;
+            
             RefreshMenuFileListFromFiles();
             menuFileBindingSource.DataSource = _MenuFileList;
             lstFiles.Refresh();
@@ -369,13 +369,11 @@ namespace Fwk.Tools.Menu
                 f.Toolbar = null;
             }
             base.SetMessageViewInfoDefault();
-            if (_FwkCache != null)
-            {
-                _FwkCache.RemoveItem("MenuFileList_ToolBar");
-                _FwkCache.SaveItemInCache("MenuFileList_ToolBar", _MenuFileList);
+            
+                Fwk.Tools.Menu.Main.storeToolBar.StorageObject= _MenuFileList;
 
                
-            }
+            
         }
 
         #region Diseño de tool bar

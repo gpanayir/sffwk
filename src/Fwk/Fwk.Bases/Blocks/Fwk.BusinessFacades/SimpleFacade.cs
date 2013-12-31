@@ -1,17 +1,13 @@
 using System;
 using System.Text;
 using Fwk.Exceptions;
-
 using Fwk.BusinessFacades.Utils;
 using Fwk.ServiceManagement;
 using Fwk.Bases;
-using Microsoft.Practices.EnterpriseLibrary.Caching;
-using Microsoft.Practices.EnterpriseLibrary.Caching.Expirations;
 using Fwk.HelperFunctions;
 using Fwk.Caching;
 using Fwk.Logging;
 using Fwk.Logging.Targets;
-
 using System.Configuration;
 using System.Collections.Generic;
 using Fwk.ConfigSection;
@@ -231,9 +227,9 @@ namespace Fwk.BusinessFacades
             object wItemInCache = null;
             if (string.IsNullOrEmpty(pRequest.CacheSettings.ResponseCacheId))
                 pRequest.CacheSettings.ResponseCacheId = pRequest.ServiceName;
-            FwkCache wFwkCache = KwkCacheFactory.GetFwkCache(pRequest.CacheSettings.CacheManagerName);
+            
             //TODO: Agregar manejo de error para catching
-              wItemInCache = wFwkCache.GetItemFromCache(pRequest.CacheSettings.ResponseCacheId);
+            wItemInCache = CacheManager.GetData(pRequest.CacheSettings.ResponseCacheId);
             
 
             if (wItemInCache == null)
@@ -256,12 +252,10 @@ namespace Fwk.BusinessFacades
                 //Almaceno el resultado en la cache solo si no hay errores en la ejecucion del servicio
                 if (wResult.Error == null)
                 {
-
-                    KwkCacheFactory.GetFwkCache(pRequest.CacheSettings.CacheManagerName).SaveItemInCache(
-                        pRequest.CacheSettings.ResponseCacheId,
-                        wResult,
-                        pRequest.CacheSettings.Priority,
-                        pRequest.CacheSettings.ExpirationTime, pRequest.CacheSettings.TimeMeasures, pRequest.CacheSettings.RefreshOnExpired);
+                    CacheManager.Add(
+                      pRequest.CacheSettings.ResponseCacheId,
+                      wResult,
+                      pRequest.CacheSettings.ExpirationTime, pRequest.CacheSettings.TimeMeasures);
                 }
             }
 

@@ -157,9 +157,11 @@ namespace Fwk.Tools.Menu
 
         }
 
-        FwkCache _FwkCache;
+        
         MenuFileList _MenuFileList_ToolBar = null;
         MenuFileList _MenuFileList_MenuBar = null;
+        public static Fwk.Caching.FwkSimpleStorageBase<MenuFileList> storeToolBar = new FwkSimpleStorageBase<MenuFileList>();
+        public static Fwk.Caching.FwkSimpleStorageBase<MenuFileList> storeMenuBar = new FwkSimpleStorageBase<MenuFileList>();
         internal void Init()
         {
 
@@ -169,16 +171,16 @@ namespace Fwk.Tools.Menu
             }
             catch
             { }
-            _FwkCache = new FwkCache();
-
-            _MenuFileList_ToolBar = (MenuFileList)_FwkCache.GetItemFromCache("MenuFileList_ToolBar");
+            storeToolBar.Load();
+            storeToolBar.Load();
+            _MenuFileList_ToolBar = storeToolBar.StorageObject;
 
             if (_MenuFileList_ToolBar == null)
             {
                 _MenuFileList_ToolBar = new MenuFileList();
             }
 
-            _MenuFileList_MenuBar = (MenuFileList)_FwkCache.GetItemFromCache("MenuFileList_MenuBar");
+            _MenuFileList_MenuBar = storeToolBar.StorageObject;
 
             if (_MenuFileList_MenuBar == null)
             {
@@ -193,7 +195,7 @@ namespace Fwk.Tools.Menu
 
         private void barButtonItem3_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FRM_ToolBarDesigner newDesigner = new FRM_ToolBarDesigner(_MenuFileList_ToolBar,_FwkCache);
+            FRM_ToolBarDesigner newDesigner = new FRM_ToolBarDesigner(_MenuFileList_ToolBar);
 
             newDesigner.MdiParent = this;
             newDesigner.Show();
@@ -201,7 +203,7 @@ namespace Fwk.Tools.Menu
 
         private void barButtonItem4_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            FRM_MenuBarDesigner newDesigner = new FRM_MenuBarDesigner(_MenuFileList_MenuBar, _FwkCache);
+            FRM_MenuBarDesigner newDesigner = new FRM_MenuBarDesigner(_MenuFileList_MenuBar);
             newDesigner.MdiParent = this;
             newDesigner.Show();
         }

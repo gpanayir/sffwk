@@ -62,10 +62,6 @@
     <OutputPath>bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
