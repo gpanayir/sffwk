@@ -31,12 +31,12 @@ namespace Fwk.UI.Security.Controls
         {
             this.components = new System.ComponentModel.Container();
             this.grdRules = new DevExpress.XtraGrid.GridControl();
-            this.authorizationRuleDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.FwkAuthorizationRuleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridNoEditWithGroupView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblSelectedRule = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.grdRules)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.authorizationRuleDataBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FwkAuthorizationRuleBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridNoEditWithGroupView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +45,7 @@ namespace Fwk.UI.Security.Controls
             this.grdRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdRules.DataSource = this.authorizationRuleDataBindingSource;
+            this.grdRules.DataSource = this.FwkAuthorizationRuleBindingSource;
             this.grdRules.Location = new System.Drawing.Point(3, 8);
             this.grdRules.MainView = this.gridNoEditWithGroupView1;
             this.grdRules.Name = "grdRules";
@@ -56,9 +56,9 @@ namespace Fwk.UI.Security.Controls
             this.grdRules.DoubleClick += new System.EventHandler(this.grdRules_DoubleClick);
             this.grdRules.Click += new System.EventHandler(this.grdRules_Click);
             // 
-            // authorizationRuleDataBindingSource
+            // FwkAuthorizationRuleBindingSource
             // 
-            this.authorizationRuleDataBindingSource.DataSource = typeof(Microsoft.Practices.EnterpriseLibrary.Security.Configuration.AuthorizationRuleData);
+            this.FwkAuthorizationRuleBindingSource.DataSource = typeof(Fwk.Security.FwkAuthorizationRule);
             // 
             // gridNoEditWithGroupView1
             // 
@@ -110,7 +110,7 @@ namespace Fwk.UI.Security.Controls
             this.Controls.Add(this.grdRules);
             this.Name = "UC_RuleSelector";
             ((System.ComponentModel.ISupportInitialize)(this.grdRules)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.authorizationRuleDataBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FwkAuthorizationRuleBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridNoEditWithGroupView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -121,7 +121,7 @@ namespace Fwk.UI.Security.Controls
 
         private DevExpress.XtraGrid.GridControl grdRules;
         private DevExpress.XtraGrid.Views.Grid.GridView gridNoEditWithGroupView1;
-        private System.Windows.Forms.BindingSource authorizationRuleDataBindingSource;
+        private System.Windows.Forms.BindingSource FwkAuthorizationRuleBindingSource;
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraEditors.LabelControl lblSelectedRule;
     }

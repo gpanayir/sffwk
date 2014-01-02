@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraEditors;
-using Microsoft.Practices.EnterpriseLibrary.Security.Configuration;
+
 using Fwk.Caching;
 using Fwk.HelperFunctions;
 using System.IO;
@@ -23,7 +23,7 @@ namespace Fwk.Tools.Menu
     public partial class FRM_MenuBarDesigner : FormBase
     {
         #region [Private Vars]
-        FwkCache _FwkCache = null;
+        
         MenuFileList _MenuFileList = null;
         MenuFile _SelectedMenuFile;
     
@@ -33,11 +33,11 @@ namespace Fwk.Tools.Menu
         #endregion
 
         #region [Form Event Handling]
-        public FRM_MenuBarDesigner(MenuFileList pMenuFilelist, FwkCache cache)
+        public FRM_MenuBarDesigner(MenuFileList pMenuFilelist)
         {
             InitializeComponent();
             _MenuFileList = pMenuFilelist;
-            _FwkCache = cache;
+        
             RefreshMenuFileListFromFiles();
             menuFileBindingSource.DataSource = _MenuFileList;
             lstFiles.Refresh();
@@ -58,11 +58,10 @@ namespace Fwk.Tools.Menu
         }
         private void MenuBarDesigner_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_FwkCache != null)
-            {
-                _FwkCache.RemoveItem("MenuFileList_MenuBar");
-                _FwkCache.SaveItemInCache("MenuFileList_MenuBar", _MenuFileList);
-            }
+          
+                
+                Fwk.Tools.Menu.Main.storeMenuBar.StorageObject =  _MenuFileList;
+            
         }
         #endregion
 

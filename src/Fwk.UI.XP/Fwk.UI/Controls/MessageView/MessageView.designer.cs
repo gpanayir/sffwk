@@ -125,6 +125,7 @@ namespace Fwk.UI.Controls
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.lbOptionalMessage);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.LookAndFeel.SkinName = "Money Twins";
             this.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.Name = "MessageView";
