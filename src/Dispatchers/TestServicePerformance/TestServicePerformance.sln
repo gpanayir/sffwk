@@ -1,15 +1,15 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{75EE0B3D-C5AF-4321-823B-4D7D3EE79871}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Back", "Back", "{A4715247-F3AF-40AA-8C13-94031008F234}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestServicePerformance", "TestServicePerformance\TestServicePerformance.csproj", "{90018318-C658-4242-B83C-0233A09936B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Remoting.Listener", "RemotingDispatcher_Epec\Fwk.Remoting.Listener\Fwk.Remoting.Listener.csproj", "{1D29B9D0-6E3C-45D6-AFBE-D9CCAF88012A}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RemotingDispatcherSetup", "RemotingDispatcher_Epec\RemotingDispatcherSetup\RemotingDispatcherSetup.vdproj", "{B3FCF94C-8BD8-4F1D-975F-E903220955AA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{75EE0B3D-C5AF-4321-823B-4D7D3EE79871}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Back", "Back", "{A4715247-F3AF-40AA-8C13-94031008F234}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "back.SVC", "back\back.SVC\back.SVC.csproj", "{78896792-2416-4C36-86C4-427AE8F38A2E}"
 EndProject
@@ -40,8 +40,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B3FCF94C-8BD8-4F1D-975F-E903220955AA} = {75EE0B3D-C5AF-4321-823B-4D7D3EE79871}
 		{1D29B9D0-6E3C-45D6-AFBE-D9CCAF88012A} = {75EE0B3D-C5AF-4321-823B-4D7D3EE79871}
+		{B3FCF94C-8BD8-4F1D-975F-E903220955AA} = {75EE0B3D-C5AF-4321-823B-4D7D3EE79871}
 		{78896792-2416-4C36-86C4-427AE8F38A2E} = {A4715247-F3AF-40AA-8C13-94031008F234}
 	EndGlobalSection
 EndGlobal
