@@ -23,7 +23,7 @@ namespace back.BackEnd.SVC
             SearchSalesOrderDetailRes res = new SearchSalesOrderDetailRes();
 
 
-            SampleBC BC = new SampleBC(req.ContextInformation.CompanyId);
+            SampleBC BC = new SampleBC(req.ContextInformation.AppId);
             Measures m = null;
             res.BusinessData.SalesOrderDetailList = BC.SearchSalesOrderDetail(out m );
 
