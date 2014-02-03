@@ -141,17 +141,10 @@ namespace Fwk.Caching
         }
 
 
-        bool _RefreshOnExpired = false;
+        
 
-        /// <summary>
-        /// Indica si el tiempo de expitracion del item cacheado se renuevan al volver a consultarlos
-        /// </summary>
-        [Obsolete("Esta propiedad no proporciona ningun valor de acción.")]
-        public bool RefreshOnExpired
-        {
-            get { return _RefreshOnExpired; }
-            set { _RefreshOnExpired = value; }
-        }
+        
+        
 
     }
 }
