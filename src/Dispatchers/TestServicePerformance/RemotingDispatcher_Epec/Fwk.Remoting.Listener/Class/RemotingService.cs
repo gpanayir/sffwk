@@ -73,6 +73,7 @@ namespace Fwk.Remoting.Listener
         protected override void OnStart(string[] args)
         {
             ConfigurationsHelper.HostApplicationName = string.Concat("Fwk remoting ", this.ServiceName);
+            System.Threading.Thread.Sleep(8000);
             RemotingConfiguration.Configure(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile, false);
             
             //RemotingHelper.WriteLog("Servicio de host de Remoting iniciado.", EventLogEntryType.Information);
