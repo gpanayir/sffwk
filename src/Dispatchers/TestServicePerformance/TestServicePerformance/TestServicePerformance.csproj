@@ -75,10 +75,6 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
       <HintPath>..\..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\src\Libraries\Microsoft.VisualStudio.DebuggerVisualizers.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -167,12 +163,6 @@
     <None Include="Resources\Ball %28Red%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\back\back.SVC\back.SVC.csproj">
-      <Project>{78896792-2416-4C36-86C4-427AE8F38A2E}</Project>
-      <Name>back.SVC</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="RemotingConfigFile_2_.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -197,6 +187,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\back\back.SVC\back.SVC.csproj">
+      <Project>{78896792-2416-4C36-86C4-427AE8F38A2E}</Project>
+      <Name>back.SVC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
