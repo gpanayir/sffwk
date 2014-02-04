@@ -405,7 +405,7 @@ namespace TestServicePerformance
                 SearchSalesOrderDetailRes res = ControllerTest.SearchSalesOrderDetailRes();
                 
                 if (res.Error != null)
-                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
+                    MessageBox.Show( Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message);
             }
             catch (Exception ex)
             {
