@@ -45,7 +45,13 @@ namespace Fwk.ServiceManagement
 
             try
             {
+                if (!System.IO.File.Exists(xmlConfigFile))
                 
+                {
+                    //Application.StartupPath
+                    xmlConfigFile = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), xmlConfigFile);
+                }
+
                 String xml = FileFunctions.OpenTextFile(xmlConfigFile);
                 return (ServiceConfigurationCollection)SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), xml);
 
