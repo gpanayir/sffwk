@@ -97,14 +97,24 @@ namespace Fwk.Bases.Connector
         {
 
             FwkRemoteObject wFwkRemoteObject = CreateRemoteObject();
+            TResponse response ;
+            try
+            {
+                req.InitializeHostContextInformation();
+                response = (TResponse)wFwkRemoteObject.ExecuteService(_ServiceMetadataProviderName, req);
+                response.InitializeHostContextInformation();
+            }
+            catch (Exception ex)
+            {
+                
+                    response  = new TResponse();
+                response.Error = ProcessConnectionsException.Process(ex, "");
+            }
 
-            req.InitializeHostContextInformation();
-            TResponse response = (TResponse)wFwkRemoteObject.ExecuteService(_ServiceMetadataProviderName, req);
-            response.InitializeHostContextInformation();
 
             return response;
 
-            
+
         }
 
         ///// <summary>
