@@ -608,13 +608,14 @@ namespace Fwk.BusinessFacades.Utils
         public static MetadataProvider GetProviderInfo(string providerName)
         {
             ServiceProviderElement provider = ServiceMetadata.ProviderSection.GetProvider(providerName);
-            if (provider == null)
-            {
-                if (string.IsNullOrEmpty(providerName))
-                    throw GetTechnicalException("No se encuentra configurado un proveedor de metadatos de servicios por defecto en el despachador de servicios \r\n", "7201", null);
-                else
-                    throw GetTechnicalException(string.Format("No se encuentra configurado el proveedor de metadatos de servicios con el nombre \"{0}\" en el despachador de servicios \r\n", providerName),"7201", null);
-            }
+            ServiceMetadata.CheckProvider(providerName, provider);
+            //if (provider == null)
+            //{
+            //    if (string.IsNullOrEmpty(providerName))
+            //        throw GetTechnicalException("No se encuentra configurado un proveedor de metadatos de servicios por defecto en el despachador de servicios \r\n", "7201", null);
+            //    else
+            //        throw GetTechnicalException(string.Format("No se encuentra configurado el proveedor de metadatos de servicios con el nombre \"{0}\" en el despachador de servicios \r\n", providerName),"7201", null);
+            //}
 
             return new MetadataProvider(provider);
         }

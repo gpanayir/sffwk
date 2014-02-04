@@ -444,7 +444,7 @@ namespace Fwk.ServiceManagement
         /// </summary>
         /// <param name="providerName"></param>
         /// <param name="provider"></param>
-        static void CheckProvider(string providerName, ServiceProviderElement provider)
+        internal static void CheckProvider(string providerName, ServiceProviderElement provider)
         {
             if (provider == null)
                 if (string.IsNullOrEmpty(providerName))
