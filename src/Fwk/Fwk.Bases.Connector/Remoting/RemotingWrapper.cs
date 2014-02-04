@@ -176,10 +176,12 @@ namespace Fwk.Bases.Connector
             //Carga la configuracion de remoting en el archivo indicado por RemotingConfigFile en _SourceInfo
             if (!IsConfigured())
             {
+                if (System.IO.File.Exists(_SourceInfo)==false  )
+                    throw new Exception("No existe el archivo de configuración de remoting del lado del cliente.\r\nRevice la configuracion del Wrapper " + _ProviderName);
                 //Si no se encuentra algun nombre de archivo en el App.config
                 if (_SourceInfo == string.Empty)
                 {
-                    throw new Exception("No hay ruta especificada para el archivo de configuración.");
+                    throw new Exception("No hay ruta especificada para el archivo de configuración.\r\nRevice la configuracion del Wrapper " + _ProviderName);
                 }
                 else
                 {
