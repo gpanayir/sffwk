@@ -23,7 +23,7 @@ namespace TestServicePerformance
     public partial class frmTest : Form
     {
         Measures _Sizes = new Measures();
-        ControllerTest _ControllerTest = new ControllerTest();
+        
         ControllerTest Ctrl;
         RemotingWrapper _RemotingWrapper;
         RemotingWrapper_config _RemotingWrapper_config;
@@ -321,7 +321,7 @@ namespace TestServicePerformance
         {
 
             ex = null;
-            _SearchSalesOrderDetailRes = _ControllerTest.SearchSalesOrderDetailRes();
+            _SearchSalesOrderDetailRes = ControllerTest.SearchSalesOrderDetailRes();
 
         }
         #endregion
@@ -396,6 +396,22 @@ namespace TestServicePerformance
             }
 
             return true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SearchSalesOrderDetailRes res = ControllerTest.SearchSalesOrderDetailRes();
+                
+                if (res.Error != null)
+                    throw Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 

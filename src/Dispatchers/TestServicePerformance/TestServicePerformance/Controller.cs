@@ -12,16 +12,16 @@ using back.Common.BE;
 namespace TestServicePerformance
 {
 
-    public class ControllerTest : Fwk.Bases.ClientServiceBase
+    public class ControllerTest
     {
         public static FwkSimpleStorageBase<Store> Storage = new FwkSimpleStorageBase<Store>();
 
 
-        public SearchSalesOrderDetailRes SearchSalesOrderDetailRes()
+        public static SearchSalesOrderDetailRes SearchSalesOrderDetailRes()
         {
             SearchSalesOrderDetailReq wRequest = new SearchSalesOrderDetailReq();
-      
-            return this.ExecuteService<SearchSalesOrderDetailReq, SearchSalesOrderDetailRes>(wRequest);
+
+            return wRequest.ExecuteService<SearchSalesOrderDetailReq, SearchSalesOrderDetailRes>(wRequest);
 
 
         }
