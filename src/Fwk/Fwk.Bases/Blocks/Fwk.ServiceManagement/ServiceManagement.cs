@@ -89,8 +89,6 @@ namespace Fwk.ServiceManagement
             ServiceConfiguration svc = null;
             ServiceProviderElement provider = GetProvider(providerName);
 
-            CheckProvider(providerName, provider);
-
             ServiceConfigurationCollection svcList = GetAllServices(provider);
             svc = svcList.GetServiceConfiguration(serviceName, provider.ApplicationId);
 
@@ -262,8 +260,6 @@ namespace Fwk.ServiceManagement
         {
             ServiceProviderElement provider = GetProvider(providerName);
 
-            CheckProvider(providerName, provider);
-
             return GetAllServices(provider);
 
         }
@@ -278,8 +274,6 @@ namespace Fwk.ServiceManagement
         {
 
             ServiceProviderElement provider = GetProvider(providerName);
-
-            CheckProvider(providerName, provider);
 
             ServiceConfigurationCollection svcList = GetAllServices(provider);
             if (!svcList.Exists(serviceName, provider.ApplicationId))
@@ -312,8 +306,6 @@ namespace Fwk.ServiceManagement
         {
             ServiceProviderElement provider = GetProvider(providerName);
 
-            CheckProvider(providerName, provider);
-
             ServiceConfigurationCollection svcList = GetAllServices(provider);
 
             if (svcList.Exists(pServiceConfiguration.Name, pServiceConfiguration.ApplicationId))
@@ -344,9 +336,6 @@ namespace Fwk.ServiceManagement
 
             ServiceProviderElement provider = GetProvider(providerName);
 
-
-            CheckProvider(providerName, provider);
-
             ServiceConfigurationCollection svcList = GetAllServices(provider);
             if (!svcList.Exists(serviceName, provider.ApplicationId))
             {
@@ -374,10 +363,7 @@ namespace Fwk.ServiceManagement
         /// <returns></returns>
         public static List<String> GetAllApplicationsId(string providerName)
         {
-
             ServiceProviderElement provider = GetProvider(providerName);
-
-            CheckProvider(providerName, provider);
 
             ServiceConfigurationCollection svcList = GetAllServices(provider);
 
@@ -462,9 +448,9 @@ namespace Fwk.ServiceManagement
         {
             if (provider == null)
                 if (string.IsNullOrEmpty(providerName))
-                    throw GetTechnicalException("No se encuentra configurado un proveedor de metadatos de servicios por defecto en el despachador de servicios \r\n", "7201", null);
+                    throw GetTechnicalException(string.Format(Fwk.Bases.Properties.Resources.ServiceManagement_MetadataProviderNotFound, "por defecto"), "7201", null);
                 else
-                    throw GetTechnicalException(string.Format("No se encuentra configurado el proveedor de metadatos de servicios con el nombre {0} en el despachador de servicios \r\n", providerName), "7201", null);
+                    throw GetTechnicalException(string.Format(Fwk.Bases.Properties.Resources.ServiceManagement_MetadataProviderNotFound, providerName), "7201", null);
 
         }
     }

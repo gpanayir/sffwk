@@ -150,4 +150,7 @@ correcto y existente.</value>
   <data name="setting_section_not_found" xml:space="preserve">
     <value>No se puede cargar la seccion {0}, verifique si existe en el archivo de configuracion.</value>
   </data>
+  <data name="ServiceManagement_MetadataProviderNotFound" xml:space="preserve">
+    <value>No se encuentra configurado el proveedor de metadatos de servicios {0} en el despachador de servicios.\r\nVerifique en el cliente el atributo [serviceMetadataProviderName] del wrapper</value>
+  </data>
 </root>
