@@ -277,6 +277,8 @@ namespace Fwk.Exceptions
             pinfo.AddValue("mClass", mClass);
             pinfo.AddValue("mUserName", mUserName);
             pinfo.AddValue("mNamespace", mNamespace);
+            pinfo.AddValue("_ErrorId", _ErrorId);
+            
         }
         #endregion
 
