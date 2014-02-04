@@ -188,7 +188,6 @@ namespace Fwk.Bases
                     }
                     catch (TechnicalException te)
                     {
-
                         if (te.ErrorId.Equals("7201"))
                             wResponse.Error = ProcessConnectionsException.Process(
                                 new TechnicalException(

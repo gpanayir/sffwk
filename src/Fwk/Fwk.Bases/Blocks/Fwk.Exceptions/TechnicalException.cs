@@ -34,7 +34,7 @@ namespace Fwk.Exceptions
         #endregion
 
         #region --[Protected Vars]--
-        private String _ErrorId;
+        private String _ErrorId = String.Empty;
 
         /// <summary>
         /// Assembly.
