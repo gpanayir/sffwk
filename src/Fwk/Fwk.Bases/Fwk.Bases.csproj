@@ -271,7 +271,6 @@
     <Compile Include="Interfaces\IServiceConfigurationManager.cs" />
     <Compile Include="Classes\Request.cs" />
     <Compile Include="Classes\Response.cs" />
-    <Compile Include="Classes\SearchEntityArg.cs" />
     <Compile Include="Classes\ServiceConfiguration.cs" />
     <Compile Include="Classes\ServiceContractBase.cs" />
     <Compile Include="Interfaces\IBusinessFacade.cs" />
