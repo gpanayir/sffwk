@@ -94,12 +94,13 @@ namespace Fwk.Security.Admin
 
                 this.Cursor = Cursors.WaitCursor;
                 frmAdmin.Provider = Membership.Providers[cmbProviders.Text];
-
+                RoleProvider wRoleProvider =  FwkMembership.GetRoleProvider(cmbProviders.Text);
                 string cnnString = FwkMembership.GetProvider_ConnectionString(frmAdmin.Provider.Name);
                 Fwk.DataBase.CnnString cnn = new DataBase.CnnString("", cnnString);
 
                 lblServer.Text = cnn.DataSource;
                 lblDatabase.Text = cnn.InitialCatalog;
+                lblCnnString.Text = cnn.ToString();
                 if (!onInit)
                 {
                     DataBase.Metadata m = new DataBase.Metadata(cnn);
@@ -165,6 +166,11 @@ namespace Fwk.Security.Admin
                 navBarItem_CategoryCreate.Enabled =
                 navBarItem_Check_Rule.Enabled = navBarItem_CreateRule.Enabled =
                navBarItem_RoleCreate.Enabled = IsSoftwareFactory;
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
 
         }
     }

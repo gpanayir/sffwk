@@ -79,6 +79,7 @@ namespace Fwk.Security
             try
             {
                 RoleProvider rol = Roles.Providers[providerName];
+        
                 if (rol == null)
                 {
                     TechnicalException te = new TechnicalException(string.Format(Resource.ProviderNameNotFound, providerName, "rol"));
@@ -89,6 +90,22 @@ namespace Fwk.Security
 
                 }
                 return rol;
+            }
+            catch (System.Configuration.Provider.ProviderException pe)
+            {
+                StringBuilder err = new StringBuilder("El la configuracion RoleProvider lanzo el siguiente error:");
+                err.AppendLine( pe.Message);
+                err.AppendLine("Revise la configuraciopn del porveedor por defecto que este correcta (cadena de conexion, application Name, etc)" );
+
+                //if (pe.Message.Contains("The connection name") || pe.Message.Contains("was not found in the applications configuration or the connection string is empty."))
+                //{
+                    
+                //}
+
+                TechnicalException te = new TechnicalException(err.ToString());
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
             catch (System.Configuration.ConfigurationException c)
             {
