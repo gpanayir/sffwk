@@ -27,7 +27,7 @@ namespace Fwk.Security
 
             RolList wRolList = null;
             Rol wRol = null;
-             try
+            try
             {
                 Guid wApplicationId = GetApplication(applicationName, connectionStringName);
                 using (Fwk.Security.RuleProviderDataContext dc = new Fwk.Security.RuleProviderDataContext(System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString))
@@ -39,10 +39,10 @@ namespace Fwk.Security
                     {
                         wRol = new Rol();
                         wRol.Description = aspnet_rol.Description;
-                        
-                            wRol.RolName = aspnet_rol.RoleName;
 
-                            wRolList.Add(wRol);
+                        wRol.RolName = aspnet_rol.RoleName;
+
+                        wRolList.Add(wRol);
                     }
 
                 }
@@ -53,6 +53,7 @@ namespace Fwk.Security
             }
             catch (TechnicalException tx)
             { throw tx; }
+           
             catch (Exception ex)
             {
 
@@ -74,9 +75,9 @@ namespace Fwk.Security
         {
             Rol r;
             RolList wRoleList = new RolList();
-            if(string.IsNullOrEmpty(providerName))
-               providerName = GetSqlMembershipProvider( providerName).Name;
-            
+            if (string.IsNullOrEmpty(providerName))
+                providerName = GetSqlMembershipProvider(providerName).Name;
+
 
             try
             {
@@ -94,6 +95,15 @@ namespace Fwk.Security
             catch (System.NullReferenceException)
             {
                 TechnicalException te = new TechnicalException(string.Format(Fwk.Security.Properties.Resource.RuleProvider_NotExist, providerName));
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
+            }
+            catch (System.Configuration.Provider.ProviderException pe)
+            {
+                TechnicalException te = new TechnicalException(
+                    String.Format("El proveedor SqlMembership {0} lanzo el siguiente error: {1}", providerName, pe.Message)
+                    );
                 ExceptionHelper.SetTechnicalException<FwkMembership>(te);
                 te.ErrorId = "4000";
                 throw te;
@@ -137,6 +147,15 @@ namespace Fwk.Security
             {
                 throw err;
             }
+            catch (System.Configuration.Provider.ProviderException pe)
+            {
+                TechnicalException te = new TechnicalException(
+                    String.Format("El proveedor SqlMembership {0} lanzo el siguiente error: {1}", providerName, pe.Message)
+                    );
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
+            }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
@@ -163,11 +182,20 @@ namespace Fwk.Security
             {
 
                 return GetRoleProvider(providerName).GetRolesForUser(userName);
-                
+
             }
             catch (TechnicalException err)
             {
                 throw err;
+            }
+            catch (System.Configuration.Provider.ProviderException pe)
+            {
+                TechnicalException te = new TechnicalException(
+                    String.Format("El proveedor SqlMembership {0} lanzo el siguiente error: {1}", providerName, pe.Message)
+                    );
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
             catch (Exception ex)
             {
@@ -197,7 +225,7 @@ namespace Fwk.Security
                 if (!GetRoleProvider(providerName).RoleExists(roleName))
                 {
                     Roles.Providers[providerName].CreateRole(roleName);
-                    if(!string.IsNullOrEmpty(description))
+                    if (!string.IsNullOrEmpty(description))
                         UpdateRole(roleName, description, providerName);
                 }
                 else
@@ -211,6 +239,15 @@ namespace Fwk.Security
             catch (TechnicalException err)
             {
                 throw err;
+            }
+            catch (System.Configuration.Provider.ProviderException pe)
+            {
+                TechnicalException te = new TechnicalException(
+                    String.Format("El proveedor SqlMembership {0} lanzo el siguiente error: {1}", providerName, pe.Message)
+                    );
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
             catch (Exception ex)
             {
@@ -250,6 +287,15 @@ namespace Fwk.Security
             {
                 throw err;
             }
+            catch (System.Configuration.Provider.ProviderException pe)
+            {
+                TechnicalException te = new TechnicalException(
+                    String.Format("El proveedor SqlMembership {0} lanzo el siguiente error: {1}", providerName, pe.Message)
+                    );
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
+            }
             catch (Exception ex)
             {
 
@@ -287,7 +333,15 @@ namespace Fwk.Security
                 wCmd.CommandType = CommandType.Text;
                 wDataBase.ExecuteNonQuery(wCmd);
             }
-   
+            catch (System.Configuration.Provider.ProviderException pe)
+            {
+                TechnicalException te = new TechnicalException(
+                    String.Format("El proveedor SqlMembership {0} lanzo el siguiente error: {1}", providerName, pe.Message)
+                    );
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
+            }
             catch (Exception ex)
             {
                 TechnicalException te = new TechnicalException(Fwk.Security.Properties.Resource.MembershipSecurityGenericError, ex);
@@ -322,6 +376,15 @@ namespace Fwk.Security
             catch (TechnicalException err)
             {
                 throw err;
+            }
+            catch (System.Configuration.Provider.ProviderException pe)
+            {
+                TechnicalException te = new TechnicalException(
+                    String.Format("El proveedor SqlMembership {0} lanzo el siguiente error: {1}", providerName, pe.Message)
+                    );
+                ExceptionHelper.SetTechnicalException<FwkMembership>(te);
+                te.ErrorId = "4000";
+                throw te;
             }
             catch (Exception ex)
             {
