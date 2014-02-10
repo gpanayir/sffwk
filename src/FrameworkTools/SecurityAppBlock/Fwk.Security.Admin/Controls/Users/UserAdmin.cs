@@ -171,6 +171,17 @@ namespace Fwk.Security.Admin.Controls
            
         }
 
+        private void btnUnlock_Click(object sender, EventArgs e)
+        {
+            if (usersGrid1.CurrentUser == null) return;
+          
+                FwkMembership.UnlockUser(usersGrid1.CurrentUser.UserName, frmAdmin.Provider.Name);
+                MessageViewInfo.Show(string.Format("User {0} was successfully unlocked", usersGrid1.CurrentUser.UserName));
+            
+
+            usersGrid1.Initialize();
+        }
+
     
 
     }
