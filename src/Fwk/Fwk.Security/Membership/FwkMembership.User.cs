@@ -41,12 +41,11 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void CreateUser(string userName, string password, string email, string providerName)
         {
-            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
-            //TODO: Ver por que esta declaracion  FwkIdentity
-            //FwkIdentity wFwkIdentity = new FwkIdentity();
+            
+          
             MembershipCreateStatus status;
             //wProvider.CreateUser(userName, password, email, string.Empty, string.Empty, true, status);
-            FwkMembership.CreateUser(userName, password, email, null, null, true, out  status, wProvider.Name);
+            FwkMembership.CreateUser(userName, password, email, null, null, true, out  status, providerName);
             if (status != MembershipCreateStatus.Success)
             {
                 Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Concat("Fwk Membership error", GetErrorMessage(status)));
@@ -65,13 +64,9 @@ namespace Fwk.Security
         /// <param name="providerName">Nombre del proveedor de membership</param>
         public static void CreateUser(string userName, string password, string providerName)
         {
-            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName); 
-            
-
-            //TODO: Ver por que esta declaracion  FwkIdentity
-            //FwkIdentity wFwkIdentity = new FwkIdentity();            
+                        
             MembershipCreateStatus status;
-            CreateUser(userName, password, string.Empty, null, null, true, out status, wProvider.Name);
+            CreateUser(userName, password, string.Empty, null, null, true, out status, providerName);
             if (status != MembershipCreateStatus.Success)
             {
                 Fwk.Exceptions.TechnicalException te = new TechnicalException(string.Concat("Fwk Membership error", GetErrorMessage(status)));
