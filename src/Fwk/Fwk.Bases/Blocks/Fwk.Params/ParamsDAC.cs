@@ -38,9 +38,9 @@ namespace Fwk.Params.Back
                     var rulesinCat = from s in dc.fwk_Params where 
                                         
                                         
-                                           (parentId.HasValue || s.ParentId.Equals(parentId))
+                                           (!parentId.HasValue || s.ParentId.Equals(parentId))
                                         &&
-                                           (enabled.HasValue || s.Enabled.Equals(enabled)
+                                           (!enabled.HasValue || s.Enabled.Equals(enabled)
                                              &&
                                            (string.IsNullOrEmpty(culture) || s.Culture.Equals(culture)))
                                      select s;
