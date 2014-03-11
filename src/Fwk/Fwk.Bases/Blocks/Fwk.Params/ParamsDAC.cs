@@ -83,7 +83,7 @@ namespace Fwk.Params.Back
         /// <param name="paramBE"></param>
         /// <param name="userId"></param>
         /// <param name="cnnStringName"></param>
-        public static void Create(ParamBE paramBE, Guid userId, string cnnStringName)
+        public static void Create(ParamBE paramBE, Guid? userId, string cnnStringName)
         {
             using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
             {
