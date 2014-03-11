@@ -5,6 +5,7 @@ using System.Data.Common;
 using Fwk.Bases;
 using System.Linq;
 using Fwk.Params.BE;
+using Fwk.ConfigData;
 
 
 namespace Fwk.Params.Back
@@ -84,70 +85,51 @@ namespace Fwk.Params.Back
         /// <param name="cnnStringName"></param>
         public static void Create(ParamBE paramBE, Guid userId, string cnnStringName)
         {
-            //Database wDatabase = null;
-            //DbCommand wCmd = null;
-
-            //try
-            //{
-            //    wDatabase = DatabaseFactory.CreateDatabase(cnnStringName);
-            //    wCmd = wDatabase.GetStoredProcCommand("Param_i");
-
-            //    wDatabase.AddOutParameter(wCmd, "ParamId", DbType.Int32, 4);
-
-            //    wDatabase.AddInParameter(wCmd, "@ParamTypeId", System.Data.DbType.Int32, paramBE.ParamTypeId.Value);
-
-            //    if(paramBE.ParentId!=null)
-            //        wDatabase.AddInParameter(wCmd, "@ParentId", System.Data.DbType.Int32, paramBE.ParentId);
-
-            //    wDatabase.AddInParameter(wCmd, "Name", System.Data.DbType.String, paramBE.Name);
-
-            //    wDatabase.AddInParameter(wCmd, "UserId", DbType.Guid, userId);
-
-            //    //wDatabase.AddInParameter(wCmd, "CompanyId", System.Data.DbType.String, pCompanyId);
-
-            //    if (!string.IsNullOrEmpty(paramBE.Description))
-            //        wDatabase.AddInParameter(wCmd, "Descripcion", System.Data.DbType.String, paramBE.Description);
-
-            //    wDatabase.ExecuteNonQuery(wCmd);
-            //    paramBE.ParamId = (System.Int32)wDatabase.GetParameterValue(wCmd, "ParamId");
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
-            throw new NotImplementedException("Fwk Create Param no esta implementado");
+            using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
+            {
+                Fwk.ConfigData.fwk_Param param = new ConfigData.fwk_Param();
+                param.Culture = paramBE.Culture;
+                param.Description = paramBE.Description;
+                param.Enabled = true;
+                param.Name = paramBE.Name;
+                param.ParamId = paramBE.ParamId;
+                param.ParentId = paramBE.ParamTypeId;
+                
+                dc.fwk_Params.InsertOnSubmit(param);
+                dc.SubmitChanges();
+                paramBE.Id = param.Id;
+                
+            }
+           
         }
 
        
         /// <summary>
-        /// 
+        /// Permite eliminar por 
+        /// solo parentId
+        /// solo paramId
+        /// por ambos
+        /// no permite que ambos sean Null
         /// </summary>
         /// <param name="paramId"></param>
         /// <param name="parentId"></param>
         /// <param name="cnnStringName"></param>
-        public static void Delete(int? paramId,int? parentId,string cnnStringName)
+        public static void Delete(int? paramId, int? parentId, string cnnStringName)
         {
+            //no permite que ambos sean Null
+            if (paramId.HasValue == false || parentId.HasValue == false)
+                throw new Fwk.Exceptions.TechnicalException("Debe proporcinar almeno uno de los dos parametros");
+            using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
+            {
+                var paramsList = dc.fwk_Params.Where(p => (paramId.HasValue == false || p.ParamId.Equals(paramId.Value)) &&
+                       (parentId.HasValue == false || p.ParentId.Equals(parentId.Value)));
+                foreach (fwk_Param p in paramsList)
+                {
+                    dc.fwk_Params.DeleteOnSubmit(p);
+                }
+                dc.SubmitChanges();
 
-            //Database wDatabase = null;
-            //DbCommand wCmd = null;
-
-            //try
-            //{
-            //    wDatabase = DatabaseFactory.CreateDatabase(cnnStringName);
-            //    wCmd = wDatabase.GetStoredProcCommand("Param_d");
-
-            //    /// IdTipoGasto
-            //    wDatabase.AddInParameter(wCmd, "ParamId", System.Data.DbType.Int32, paramId);
-
-
-            //    wDatabase.ExecuteNonQuery(wCmd);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
-            throw new NotImplementedException("Fwk Delete Param no esta implementado");
+            }
         }
 
 
