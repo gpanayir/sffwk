@@ -93,7 +93,7 @@ namespace Fwk.Params.Back
                 param.Enabled = true;
                 param.Name = paramBE.Name;
                 param.ParamId = paramBE.ParamId;
-                param.ParentId = paramBE.ParamTypeId;
+                param.ParentId = paramBE.ParentId;
                 
                 dc.fwk_Params.InsertOnSubmit(param);
                 dc.SubmitChanges();

@@ -87,6 +87,8 @@ namespace Fwk.Params.BE
         /// <summary>
         /// 
         /// </summary>
+        /// 
+        [Obsolete("Utilizar ParentId")]
         public Nullable<global::System.Int32> ParamTypeId
         {
             get
