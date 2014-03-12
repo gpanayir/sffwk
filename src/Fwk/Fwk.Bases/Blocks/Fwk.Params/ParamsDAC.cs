@@ -15,6 +15,40 @@ namespace Fwk.Params.Back
     /// </summary>
     public class ParamDAC
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="paramId"></param>
+        /// <param name="parentId"></param>
+        /// <param name="culture"></param>
+        /// <param name="cnnStringName"></param>
+        /// <returns></returns>
+        public static Boolean Exist(int? paramId, int? parentId, string culture, string cnnStringName)
+        {
+          
+            try
+            {
+                using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
+                {
+                    bool exist =  dc.fwk_Params.Any(s=>
+
+                                        (!parentId.HasValue || s.ParentId.Equals(parentId))
+                                         &&
+                                         (!paramId.HasValue || s.ParamId.Equals(paramId))
+                                         &&
+                                         (string.IsNullOrEmpty(culture) || s.Culture.Equals(culture))
+                                         );
+
+                    return exist;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
 
 
         /// <summary>
@@ -103,7 +137,32 @@ namespace Fwk.Params.Back
            
         }
 
-       
+
+        /// <summary>
+        /// Actualiza fwk_Param
+        /// </summary>
+        /// <param name="paramBE"></param>
+        /// <param name="userUpdateId"></param>
+        /// <param name="cnnStringName"></param>
+        public static void Update(ParamBE paramBE, Guid? userUpdateId, string cnnStringName)
+        {
+            using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
+            {
+                Fwk.ConfigData.fwk_Param param = dc.fwk_Params.Where(p => p.Id.Equals(paramBE.Id)).FirstOrDefault();
+                if (param != null)
+                {
+                  
+                    param.Enabled = true;
+                    param.Name = paramBE.Name;
+                    param.Culture = paramBE.Culture;
+                    param.Description = paramBE.Description;
+                    //param.ParamId = paramBE.ParamId;
+                    //param.ParentId = paramBE.ParentId;
+                    dc.SubmitChanges();
+                }
+            }
+        }
+
         /// <summary>
         /// Permite eliminar por 
         /// solo parentId
