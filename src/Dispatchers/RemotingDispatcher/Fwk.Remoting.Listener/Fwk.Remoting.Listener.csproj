@@ -97,17 +97,17 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Class\Functions.cs" />
+    <Compile Include="Class\MultipleInstanceInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Class\MultipleInstanceInstaller.Designer.cs">
+      <DependentUpon>MultipleInstanceInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Class\RemotingService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Class\RemotingService.Designer.cs">
       <DependentUpon>RemotingService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Class\ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Class\ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -135,12 +135,6 @@
     <None Include="InstallUtil.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Class\ProjectInstaller.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
