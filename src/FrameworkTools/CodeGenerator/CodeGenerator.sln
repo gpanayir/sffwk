@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonLibreries", "CommonLibreries", "{1554FCE0-4237-485B-BC97-91065BB7CD67}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackGenerator", "BackGenerator", "{741163F7-5284-45C1-BBDC-DC043E6AAF5E}"

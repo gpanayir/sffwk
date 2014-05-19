@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -24,10 +25,11 @@
     </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <PublishUrl>http://localhost/CodeGenerator/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -40,9 +42,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -62,18 +64,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharpBinding, Version=2.1.0.2429, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="CSharpBinding">
+      <HintPath>..\..\..\Libraries\CSharpBinding.dll</HintPath>
     </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\Microsoft Visual Studio 9.0\Common7\IDE\PublicAssemblies\EnvDTE.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Fwk.Controls.Win32, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="ICSharpCode.TextEditor, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+    <Reference Include="Fwk.Bases">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fwk.Bases.FrontEnd">
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Controls.Win32">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Controls.Win32.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.DataBase">
+      <HintPath>..\..\..\Libraries\Framework\Fwk.DataBase.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor">
+      <HintPath>..\..\..\Libraries\ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -98,6 +112,7 @@
       <DependentUpon>ConnectionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Bases\FrmBase.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Bases\FrmBase.Designer.cs">
       <DependentUpon>FrmBase.cs</DependentUpon>
@@ -117,16 +132,19 @@
       <DependentUpon>MessageViewWait.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DACClasses\frm_DACGenerator.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\DACClasses\frm_DACGenerator.Designer.cs">
       <DependentUpon>frm_DACGenerator.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EntityClasses\frm_DataEntityGenerator.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\EntityClasses\frm_DataEntityGenerator.Designer.cs">
       <DependentUpon>frm_DataEntityGenerator.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmTemplateSetting.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmTemplateSetting.Designer.cs">
       <DependentUpon>FrmTemplateSetting.cs</DependentUpon>
@@ -178,6 +196,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Forms\ServicesClasess\frm_ServicesGenerator.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ServicesClasess\frm_ServicesGenerator.Designer.cs">
       <DependentUpon>frm_ServicesGenerator.cs</DependentUpon>
@@ -304,6 +323,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
       <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
@@ -317,6 +341,11 @@
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
