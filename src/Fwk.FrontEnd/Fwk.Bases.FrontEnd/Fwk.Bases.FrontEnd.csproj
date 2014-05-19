@@ -74,7 +74,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libraries\Framework\Fwk.Bases.Connector.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">

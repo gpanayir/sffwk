@@ -208,28 +208,16 @@
       <Link>Templates\Templates.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ExternalTools\ConfigurationApp\ConfigurationApp.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ExternalTools\ConfigurationApp\Templates.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ExternalTools\TextToStringBuilder\Fwk.Bases.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ExternalTools\TextToStringBuilder\Fwk.Controls.Win32.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ExternalTools\TextToStringBuilder\Fwk.Controls.Win32.TextCodeEditor.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="ExternalTools\TextToStringBuilder\TextToStringBuilder.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Files\DataBaseConfig.xml">
-    </None>
-    <None Include="ExternalTools\ConfigurationApp\ConfigurationApp.exe.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\serviceunknown.ico" />
     <None Include="Resources\servicepaused.ico" />
@@ -350,126 +338,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.AppSettings.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Cryptography.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Database.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.Database.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Caching.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Common.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.HostAdapter.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Configuration.Design.UI.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Configuration.EnvironmentalOverrides.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Data.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Logging.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.CallHandlers.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cache.CachingStore.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cache.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Security.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Validation.Configuration.Design.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Validation.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.AspNet.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WinForms.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Microsoft.Practices.ObjectBuilder.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Fwk.Configuration.Common.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\ConfigurationApp\Fwk.Security.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
     <Component Include="ExternalTools\TextToStringBuilder\CSharpBinding.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Component>
