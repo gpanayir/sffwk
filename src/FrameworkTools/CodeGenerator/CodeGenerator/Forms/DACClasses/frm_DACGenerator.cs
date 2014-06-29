@@ -135,13 +135,13 @@ namespace CodeGenerator.DACClasses
 
             _DACGenController.Generate();
 
-            if(LastEntityName.Length !=0)
-                textCodeEditor1.Text = listViewCodeGenerated1.GetLastSelectedEntityCode(LastParentKey, LastEntityName);
-            else
-            {
-                textCodeEditor1.Text = String.Empty;
-                textCodeEditor1.TitleText = String.Empty;
-            }
+            //if(LastEntityName.Length !=0)
+                textCodeEditor1.Text = listViewCodeGenerated1.GetFirstEntityCode("DAC");
+            //else
+            //{
+            //    textCodeEditor1.Text = String.Empty;
+            //    textCodeEditor1.TitleText = String.Empty;
+            //}
         }
 
        

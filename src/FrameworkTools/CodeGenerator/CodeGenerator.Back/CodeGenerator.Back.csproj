@@ -64,6 +64,12 @@
     <Reference Include="Fwk.Bases">
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
+    <Reference Include="Fwk.Bases.FrontEnd">
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Controls.Win32">
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Controls.Win32.dll</HintPath>
+    </Reference>
     <Reference Include="Fwk.DataBase">
       <HintPath>..\..\..\Libraries\Framework\Fwk.DataBase.dll</HintPath>
     </Reference>
@@ -78,12 +84,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\CommonConstants.cs" />
+    <Compile Include="Common\Configuration\DBTypeElement.cs" />
+    <Compile Include="Common\Configuration\DBTypeElementCollection.cs" />
+    <Compile Include="Common\Configuration\DBTypesMappingSection.cs" />
+    <Compile Include="Common\Enumerations.cs" />
+    <Compile Include="Common\ParametersDAC.cs" />
+    <Compile Include="Common\Templates\Template.cs" />
+    <Compile Include="Common\Templates\TemplateProvider.cs" />
+    <Compile Include="Common\Templates\TemplateSettingObject.cs" />
+    <Compile Include="DataAccess\AplicationBlockTDG.cs" />
+    <Compile Include="DataAccess\BaseGenTDG.cs" />
+    <Compile Include="DataAccess\DACGenerator.cs" />
+    <Compile Include="DataAccess\TDGGenerator.cs" />
+    <Compile Include="Entities\DataEntityGenEngine.cs" />
+    <Compile Include="Entities\ElementTypeGenEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SP\ParametersSP.cs" />
+    <Compile Include="SP\SPCodeGenerator.cs" />
+    <Compile Include="SP\SPCodeGeneratorBase.cs" />
+    <Compile Include="Svc\Services\DataServiceGenerator.cs" />
+    <Compile Include="Svc\Services\ServiceBase.cs" />
+    <Compile Include="Svc\Services\ServiceGenerator.cs" />
+    <Compile Include="Svc\XSDGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SchemaEngine\XSDTreeView.resx">
@@ -119,12 +148,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeGenerator.Common\CodeGenerator.Back.Common.csproj">
-      <Project>{2A1C7DDF-418E-4116-9B8A-8EC01E3BF9A1}</Project>
-      <Name>CodeGenerator.Back.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -150,6 +173,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\Templates.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

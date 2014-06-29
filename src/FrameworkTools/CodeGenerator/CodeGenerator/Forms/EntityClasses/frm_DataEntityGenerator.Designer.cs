@@ -58,6 +58,7 @@ namespace CodeGenerator.EntityClasses
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -101,28 +102,29 @@ namespace CodeGenerator.EntityClasses
             this.ctlProperties.HelpBackColor = System.Drawing.Color.SteelBlue;
             this.ctlProperties.HelpForeColor = System.Drawing.Color.White;
             this.ctlProperties.LineColor = System.Drawing.Color.SteelBlue;
-            this.ctlProperties.Location = new System.Drawing.Point(2, 360);
-            this.ctlProperties.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ctlProperties.Location = new System.Drawing.Point(-4, 336);
+            this.ctlProperties.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ctlProperties.Name = "ctlProperties";
             this.ctlProperties.PropertySort = System.Windows.Forms.PropertySort.Alphabetical;
-            this.ctlProperties.Size = new System.Drawing.Size(216, 128);
+            this.ctlProperties.Size = new System.Drawing.Size(288, 158);
             this.ctlProperties.TabIndex = 16;
             this.ctlProperties.ToolbarVisible = false;
             this.ctlProperties.ViewForeColor = System.Drawing.Color.Black;
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(5, 28);
+            this.tabControl1.Location = new System.Drawing.Point(7, 34);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.ShowToolTips = true;
-            this.tabControl1.Size = new System.Drawing.Size(222, 438);
+            this.tabControl1.Size = new System.Drawing.Size(296, 539);
             this.tabControl1.TabIndex = 20;
             this.tabControl1.Click += new System.EventHandler(this.tabControl1_Click);
             // 
@@ -131,10 +133,11 @@ namespace CodeGenerator.EntityClasses
             this.tabPage1.BackColor = System.Drawing.Color.SteelBlue;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage1.Controls.Add(this.treeViewTables1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 40);
+            this.tabPage1.Location = new System.Drawing.Point(4, 46);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(214, 394);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(288, 489);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Tag = "0";
             this.tabPage1.Text = "From tables";
@@ -142,15 +145,16 @@ namespace CodeGenerator.EntityClasses
             // 
             // treeViewTables1
             // 
-            this.treeViewTables1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeViewTables1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.treeViewTables1.Location = new System.Drawing.Point(3, 2);
+            this.treeViewTables1.Location = new System.Drawing.Point(4, 2);
+            this.treeViewTables1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.treeViewTables1.Name = "treeViewTables1";
             this.treeViewTables1.SelectedTable = null;
-            this.treeViewTables1.SelectedTableName = global::CodeGenerator.Properties.Resources.AppIcon;
-            this.treeViewTables1.Size = new System.Drawing.Size(203, 387);
+            this.treeViewTables1.SelectedTableName = "";
+            this.treeViewTables1.Size = new System.Drawing.Size(280, 467);
             this.treeViewTables1.TabIndex = 1;
             this.treeViewTables1.Tablas = null;
             this.treeViewTables1.SelectObjectEvent += new Fwk.DataBase.CustomControls.SelectObjectHandler(this.treeViewTables1_SelectObjectEvent);
@@ -160,10 +164,11 @@ namespace CodeGenerator.EntityClasses
             this.tabPage2.BackColor = System.Drawing.Color.SteelBlue;
             this.tabPage2.Controls.Add(this.ctlProperties);
             this.tabPage2.Controls.Add(this.tvwSchema);
-            this.tabPage2.Location = new System.Drawing.Point(4, 40);
+            this.tabPage2.Location = new System.Drawing.Point(4, 46);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(214, 394);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(288, 489);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Tag = "2";
             this.tabPage2.Text = "From XSD Schema";
@@ -171,20 +176,22 @@ namespace CodeGenerator.EntityClasses
             // 
             // tvwSchema
             // 
-            this.tvwSchema.Location = new System.Drawing.Point(4, 6);
+            this.tvwSchema.Location = new System.Drawing.Point(5, 7);
+            this.tvwSchema.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tvwSchema.Name = "tvwSchema";
             this.tvwSchema.ShowNodeToolTips = true;
-            this.tvwSchema.Size = new System.Drawing.Size(210, 347);
+            this.tvwSchema.Size = new System.Drawing.Size(279, 391);
             this.tvwSchema.TabIndex = 15;
             this.tvwSchema.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwSchema_AfterSelect);
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.treeViewStoreProcedures1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 40);
+            this.tabPage3.Location = new System.Drawing.Point(4, 46);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(214, 394);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Size = new System.Drawing.Size(288, 489);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Tag = "1";
             this.tabPage3.Text = "From store procedures";
@@ -192,15 +199,16 @@ namespace CodeGenerator.EntityClasses
             // 
             // treeViewStoreProcedures1
             // 
-            this.treeViewStoreProcedures1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeViewStoreProcedures1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewStoreProcedures1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.treeViewStoreProcedures1.Location = new System.Drawing.Point(-1, 6);
+            this.treeViewStoreProcedures1.Location = new System.Drawing.Point(-1, 7);
+            this.treeViewStoreProcedures1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.treeViewStoreProcedures1.Name = "treeViewStoreProcedures1";
             this.treeViewStoreProcedures1.SelectedStoreProcedure = null;
-            this.treeViewStoreProcedures1.SelectedStoreProcedureName = global::CodeGenerator.Properties.Resources.AppIcon;
-            this.treeViewStoreProcedures1.Size = new System.Drawing.Size(215, 379);
+            this.treeViewStoreProcedures1.SelectedStoreProcedureName = "";
+            this.treeViewStoreProcedures1.Size = new System.Drawing.Size(287, 466);
             this.treeViewStoreProcedures1.StoreProcedures = null;
             this.treeViewStoreProcedures1.TabIndex = 1;
             // 
@@ -224,7 +232,7 @@ namespace CodeGenerator.EntityClasses
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(913, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1217, 27);
             this.toolStrip1.TabIndex = 27;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -234,7 +242,7 @@ namespace CodeGenerator.EntityClasses
             this.btnConnect.Image = ((System.Drawing.Image)(resources.GetObject("btnConnect.Image")));
             this.btnConnect.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(23, 22);
+            this.btnConnect.Size = new System.Drawing.Size(23, 24);
             this.btnConnect.Text = "Connect";
             this.btnConnect.ToolTipText = "Connect to database";
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
@@ -242,13 +250,13 @@ namespace CodeGenerator.EntityClasses
             // lblServerName
             // 
             this.lblServerName.Name = "lblServerName";
-            this.lblServerName.Size = new System.Drawing.Size(49, 22);
+            this.lblServerName.Size = new System.Drawing.Size(61, 24);
             this.lblServerName.Text = "Server : ";
             // 
             // lblDatabaseName
             // 
             this.lblDatabaseName.Name = "lblDatabaseName";
-            this.lblDatabaseName.Size = new System.Drawing.Size(60, 22);
+            this.lblDatabaseName.Size = new System.Drawing.Size(79, 24);
             this.lblDatabaseName.Text = "Database: ";
             // 
             // Refresh1
@@ -257,7 +265,7 @@ namespace CodeGenerator.EntityClasses
             this.Refresh1.Image = ((System.Drawing.Image)(resources.GetObject("Refresh1.Image")));
             this.Refresh1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Refresh1.Name = "Refresh1";
-            this.Refresh1.Size = new System.Drawing.Size(23, 22);
+            this.Refresh1.Size = new System.Drawing.Size(23, 24);
             this.Refresh1.ToolTipText = "Refresh connection";
             this.Refresh1.Click += new System.EventHandler(this.Refresh1_Click);
             // 
@@ -266,7 +274,7 @@ namespace CodeGenerator.EntityClasses
             this.txtSchemPath1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtSchemPath1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystem;
             this.txtSchemPath1.Name = "txtSchemPath1";
-            this.txtSchemPath1.Size = new System.Drawing.Size(300, 25);
+            this.txtSchemPath1.Size = new System.Drawing.Size(399, 27);
             this.txtSchemPath1.Leave += new System.EventHandler(this.txtSchemPath1_Leave);
             // 
             // btnSearchSchema
@@ -275,14 +283,14 @@ namespace CodeGenerator.EntityClasses
             this.btnSearchSchema.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchSchema.Image")));
             this.btnSearchSchema.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSearchSchema.Name = "btnSearchSchema";
-            this.btnSearchSchema.Size = new System.Drawing.Size(23, 22);
+            this.btnSearchSchema.Size = new System.Drawing.Size(23, 24);
             this.btnSearchSchema.Text = "Select XSD schema";
             this.btnSearchSchema.Click += new System.EventHandler(this.btnSearchSchema_Click);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(47, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(39, 24);
             this.toolStripLabel1.Text = "..........";
             // 
             // toolStripButtonGenerate
@@ -291,17 +299,18 @@ namespace CodeGenerator.EntityClasses
             this.toolStripButtonGenerate.Image = global::CodeGenerator.Properties.Resources.servicerunning;
             this.toolStripButtonGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonGenerate.Name = "toolStripButtonGenerate";
-            this.toolStripButtonGenerate.Size = new System.Drawing.Size(72, 22);
+            this.toolStripButtonGenerate.Size = new System.Drawing.Size(89, 24);
             this.toolStripButtonGenerate.Text = "Generate";
             this.toolStripButtonGenerate.ToolTipText = "Generate code ..";
             this.toolStripButtonGenerate.Click += new System.EventHandler(this.toolStripButtonGenerate_Click);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(229, 32);
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(305, 39);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -312,63 +321,67 @@ namespace CodeGenerator.EntityClasses
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listViewCodeGenerated1);
-            this.splitContainer1.Size = new System.Drawing.Size(684, 435);
-            this.splitContainer1.SplitterDistance = 500;
+            this.splitContainer1.Size = new System.Drawing.Size(912, 535);
+            this.splitContainer1.SplitterDistance = 666;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 33;
             // 
             // textCodeEditor1
             // 
-            this.textCodeEditor1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textCodeEditor1.Location = new System.Drawing.Point(6, 3);
+            this.textCodeEditor1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textCodeEditor1.Location = new System.Drawing.Point(8, 4);
+            this.textCodeEditor1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textCodeEditor1.Name = "textCodeEditor1";
-            this.textCodeEditor1.Size = new System.Drawing.Size(490, 427);
+            this.textCodeEditor1.Size = new System.Drawing.Size(652, 526);
             this.textCodeEditor1.TabIndex = 31;
             this.textCodeEditor1.TitleText = "";
             this.textCodeEditor1.TitleVisible = true;
             // 
             // listViewCodeGenerated1
             // 
-            this.listViewCodeGenerated1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewCodeGenerated1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewCodeGenerated1.ForeColorBE = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.listViewCodeGenerated1.ForeColorDAC = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listViewCodeGenerated1.ForeColorSP = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.listViewCodeGenerated1.ForeColorSVC = System.Drawing.Color.Empty;
             this.listViewCodeGenerated1.ForeColorTDG = System.Drawing.Color.Gainsboro;
             this.listViewCodeGenerated1.GeneratedBECodeList = null;
-            this.listViewCodeGenerated1.Location = new System.Drawing.Point(-2, -3);
+            this.listViewCodeGenerated1.Location = new System.Drawing.Point(-3, -4);
+            this.listViewCodeGenerated1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listViewCodeGenerated1.Name = "listViewCodeGenerated1";
             this.listViewCodeGenerated1.NodeCustomSVC = null;
             this.listViewCodeGenerated1.NodeDAC = null;
             this.listViewCodeGenerated1.NodeSP = null;
             this.listViewCodeGenerated1.NodeSVC = null;
             this.listViewCodeGenerated1.NodeTDG = null;
-            this.listViewCodeGenerated1.Size = new System.Drawing.Size(183, 442);
+            this.listViewCodeGenerated1.Size = new System.Drawing.Size(245, 544);
             this.listViewCodeGenerated1.TabIndex = 0;
             this.listViewCodeGenerated1.BECodeGeneratedSelectEvent += new CodeGenerator.Controls.BECodeGeneratedSelectHandler(this.listViewCodeGenerated1_BECodeGeneratedSelectEvent);
             // 
             // frm_DataEntityGenerator
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(913, 499);
+            this.ClientSize = new System.Drawing.Size(1217, 614);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(921, 533);
+            this.MinimumSize = new System.Drawing.Size(1222, 646);
             this.Name = "frm_DataEntityGenerator";
             this.TabText = "Entities :.";
             this.Text = "Entities code generator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataEntityGenerator_FormClosing);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataEntityGenerator_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataEntityGenerator_DragEnter);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataEntityGenerator_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -377,6 +390,7 @@ namespace CodeGenerator.EntityClasses
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

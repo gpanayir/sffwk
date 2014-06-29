@@ -280,18 +280,19 @@ namespace CodeGenerator.EntityClasses
             //}
             if (this.tabControl1.SelectedIndex != 1)
             {
-                if (LastEntityName.Length != 0)
-                {
-                    textCodeEditor1.Text = listViewCodeGenerated1.GetLastSelectedEntityCode(LastParentKey, LastEntityName);
-                }
-                else
-                {
-                    if (textCodeEditor1 != null)
-                    {
-                        textCodeEditor1.Text = String.Empty;
-                        textCodeEditor1.TitleText = String.Empty;
-                    }
-                }
+                //if (LastEntityName.Length != 0)
+                //{
+                    //textCodeEditor1.Text = listViewCodeGenerated1.GetLastSelectedEntityCode(LastParentKey, LastEntityName);
+                    textCodeEditor1.Text = listViewCodeGenerated1.GetFirstEntityCode("BE");
+                //}
+                //else
+                //{
+                //    if (textCodeEditor1 != null)
+                //    {
+                //        textCodeEditor1.Text = String.Empty;
+                //        textCodeEditor1.TitleText = String.Empty;
+                //    }
+                //}
             }
         }
               

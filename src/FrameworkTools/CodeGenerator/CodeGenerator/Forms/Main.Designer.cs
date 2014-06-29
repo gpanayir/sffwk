@@ -61,7 +61,8 @@ namespace CodeGenerator
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(887, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1183, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -75,7 +76,7 @@ namespace CodeGenerator
             this.generatosFormsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.generatosFormsToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.WinXPSetV4_Icon_60;
             this.generatosFormsToolStripMenuItem.Name = "generatosFormsToolStripMenuItem";
-            this.generatosFormsToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.generatosFormsToolStripMenuItem.Size = new System.Drawing.Size(111, 21);
             this.generatosFormsToolStripMenuItem.Text = "Generatos ";
             // 
             // backEndToolStripMenuItem
@@ -97,7 +98,6 @@ namespace CodeGenerator
             // 
             // servicesToolStripMenuItem1
             // 
-            this.servicesToolStripMenuItem1.Image = global::CodeGenerator.Properties.Resources.Asp_Page_16;
             this.servicesToolStripMenuItem1.Name = "servicesToolStripMenuItem1";
             this.servicesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.servicesToolStripMenuItem1.Text = "Services";
@@ -111,16 +111,15 @@ namespace CodeGenerator
             this.customizeTemplateToolStripMenuItem});
             this.toolsToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.toolsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.toolsToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.Configure_16x16;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(57, 21);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // textToStringBuilderToolStripMenuItem
             // 
             this.textToStringBuilderToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.textdoc;
             this.textToStringBuilderToolStripMenuItem.Name = "textToStringBuilderToolStripMenuItem";
-            this.textToStringBuilderToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.textToStringBuilderToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.textToStringBuilderToolStripMenuItem.Text = "Text to StringBuilder";
             this.textToStringBuilderToolStripMenuItem.Click += new System.EventHandler(this.textToStringBuilderToolStripMenuItem_Click);
             // 
@@ -128,7 +127,7 @@ namespace CodeGenerator
             // 
             this.ConfigurationLibrariesToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.Web_XML;
             this.ConfigurationLibrariesToolStripMenuItem.Name = "ConfigurationLibrariesToolStripMenuItem";
-            this.ConfigurationLibrariesToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.ConfigurationLibrariesToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.ConfigurationLibrariesToolStripMenuItem.Text = " Configuration libraries";
             this.ConfigurationLibrariesToolStripMenuItem.Click += new System.EventHandler(this.ConfigurationLibrariesToolStripMenuItem_Click);
             // 
@@ -136,7 +135,7 @@ namespace CodeGenerator
             // 
             this.customizeTemplateToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.SetDef32;
             this.customizeTemplateToolStripMenuItem.Name = "customizeTemplateToolStripMenuItem";
-            this.customizeTemplateToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.customizeTemplateToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.customizeTemplateToolStripMenuItem.Text = "Customize Template";
             this.customizeTemplateToolStripMenuItem.Click += new System.EventHandler(this.customizeTemplateToolStripMenuItem_Click);
             // 
@@ -149,21 +148,21 @@ namespace CodeGenerator
             this.aboutToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.aboutToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.question;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(67, 21);
             this.aboutToolStripMenuItem.Text = "&Help";
             // 
             // clearDataConnectionToolStripMenuItem
             // 
             this.clearDataConnectionToolStripMenuItem.Image = global::CodeGenerator.Properties.Resources.clear_small;
             this.clearDataConnectionToolStripMenuItem.Name = "clearDataConnectionToolStripMenuItem";
-            this.clearDataConnectionToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.clearDataConnectionToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.clearDataConnectionToolStripMenuItem.Text = "Clear data connection";
             this.clearDataConnectionToolStripMenuItem.Click += new System.EventHandler(this.clearDataConnectionToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(211, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(233, 22);
             this.aboutToolStripMenuItem1.Text = "About Code Generator";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
@@ -174,8 +173,9 @@ namespace CodeGenerator
             this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dockPanel1.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
             this.dockPanel1.Location = new System.Drawing.Point(0, 0);
+            this.dockPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dockPanel1.Name = "dockPanel1";
-            this.dockPanel1.Size = new System.Drawing.Size(887, 574);
+            this.dockPanel1.Size = new System.Drawing.Size(1183, 706);
             this.dockPanel1.TabIndex = 3;
             // 
             // toolStrip1
@@ -187,9 +187,9 @@ namespace CodeGenerator
             this.toolStripButton3,
             this.toolStripSeparator1,
             this.toolStripButton4});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(887, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1183, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -219,7 +219,7 @@ namespace CodeGenerator
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::CodeGenerator.Properties.Resources.Asp_Page_16;
+            this.toolStripButton3.Image = global::CodeGenerator.Properties.Resources.services;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
@@ -242,17 +242,18 @@ namespace CodeGenerator
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(887, 574);
+            this.ClientSize = new System.Drawing.Size(1183, 706);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.dockPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(895, 608);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1187, 738);
             this.Name = "Main";
             this.Text = "Code generator";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

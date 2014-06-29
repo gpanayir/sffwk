@@ -64,9 +64,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharpBinding">
-      <HintPath>..\..\..\Libraries\CSharpBinding.dll</HintPath>
-    </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Archivos de programa\Microsoft Visual Studio 9.0\Common7\IDE\PublicAssemblies\EnvDTE.dll</HintPath>
@@ -85,10 +82,6 @@
     </Reference>
     <Reference Include="Fwk.DataBase">
       <HintPath>..\..\..\Libraries\Framework\Fwk.DataBase.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.TextEditor, Version=3.2.1.6466, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ICSharpCode.TextEditor.3.2.1.6466\lib\Net20\ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -132,6 +125,22 @@
     <Compile Include="Bases\MessageViewWait.Designer.cs">
       <DependentUpon>MessageViewWait.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controller\ControllerBase.cs" />
+    <Compile Include="Controller\Controls\GenTemplateSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controller\Controls\GenTemplateSetting.Designer.cs">
+      <DependentUpon>GenTemplateSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\Controls\ListViewCodeGenDraw.cs" />
+    <Compile Include="Controller\Controls\ListViewCodeGenerated.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controller\Controls\ListViewCodeGenerated.Designer.cs">
+      <DependentUpon>ListViewCodeGenerated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\DACGenController.cs" />
+    <Compile Include="Controller\ServiceControlle.cs" />
     <Compile Include="Forms\DACClasses\frm_DACGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +168,14 @@
     <Compile Include="Properties\GlobalAssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controller\Controls\GenTemplateSetting.resx">
+      <DependentUpon>GenTemplateSetting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\Controls\ListViewCodeGenerated.resx">
+      <DependentUpon>ListViewCodeGenerated.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DACClasses\frm_DACGenerator.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frm_DACGenerator.cs</DependentUpon>
@@ -172,7 +189,7 @@
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -187,7 +204,6 @@
     </Compile>
     <None Include="App.config" />
     <None Include="Files\CnnCrypt.key" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -206,19 +222,18 @@
     <Compile Include="WorkSpace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\CodeGenerator.Common\Templates\Templates.xml">
-      <Link>Templates\Templates.xml</Link>
+    <Content Include="Templates\Templates.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ExternalTools\TextToStringBuilder\Fwk.Bases.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ExternalTools\TextToStringBuilder\Fwk.Controls.Win32.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ExternalTools\TextToStringBuilder\TextToStringBuilder.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="Resources\Project41.ico" />
+    <None Include="Resources\Project31.ico" />
+    <None Include="Resources\Project21.ico" />
+    <None Include="Resources\mail_small1.gif" />
+    <None Include="Resources\Project4.ico" />
+    <None Include="Resources\Project3.ico" />
+    <None Include="Resources\Project2.ico" />
+    <None Include="Resources\mail_small.gif" />
+    <None Include="Resources\filesaveas2.ico" />
     <None Include="Files\DataBaseConfig.xml">
     </None>
     <None Include="Resources\serviceunknown.ico" />
@@ -303,14 +318,6 @@
       <Project>{2096F683-37F1-45CD-B60C-F43826E39EAA}</Project>
       <Name>CodeGenerator.Back</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CodeGenerator.Common\CodeGenerator.Back.Common.csproj">
-      <Project>{2A1C7DDF-418E-4116-9B8A-8EC01E3BF9A1}</Project>
-      <Name>CodeGenerator.Back.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CodeGenerator.Controllers\CodeGenerator.Controllers.csproj">
-      <Project>{D5FC280E-83C3-44AD-A9DB-EABCCCDD2C6F}</Project>
-      <Name>CodeGenerator.Controllers</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -340,38 +347,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Component Include="ExternalTools\TextToStringBuilder\CSharpBinding.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.Core.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.NRefactory.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.SharpDevelop.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.SharpDevelop.Dom.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.SharpDevelop.Widgets.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\ICSharpCode.TextEditor.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\log4net.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\Mono.Cecil.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
-    <Component Include="ExternalTools\TextToStringBuilder\WeifenLuo.WinFormsUI.Docking.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Component>
+    <Folder Include="ExternalTools\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
