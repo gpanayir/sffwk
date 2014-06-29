@@ -25,4 +25,4 @@ using System.Runtime.InteropServices;
 //      Revision
 //
 [assembly: AssemblyVersion("10.0.0.0")]
-[assembly: AssemblyFileVersion("10.3.1.6")]
+[assembly: AssemblyFileVersion("10.3.1.7")]
