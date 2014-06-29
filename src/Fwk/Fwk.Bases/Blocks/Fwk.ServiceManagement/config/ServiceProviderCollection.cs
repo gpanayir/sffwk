@@ -98,5 +98,14 @@ namespace Fwk.ConfigSection
         }
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        public void Remove(String name)
+        {
+
+            base.RemoveElementName = name;
+        }
     }
 }

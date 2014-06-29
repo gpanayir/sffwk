@@ -138,7 +138,13 @@ namespace Fwk.ConfigSection
                 
             }
         }
-      
+       public void RemoveProvider(String providerName)
+        {
+            if (this.GetProvider(providerName) != null)
+            {
+                this.Providers.Remove(providerName);
+            }
+        }
         #endregion
     }
 

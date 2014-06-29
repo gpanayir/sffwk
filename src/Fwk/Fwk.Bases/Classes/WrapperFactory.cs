@@ -148,7 +148,9 @@ namespace Fwk.Bases
             //InitWrapper(providerName);//Commented because every provider was loaded on static init constructor 
             if (String.IsNullOrEmpty(providerName))
                 providerName = _DefaultProviderName;
-            CheckWrapperExist(providerName);
+
+            CheckWrapperExist(providerName, wResponse);
+            
             Boolean wExecuteOndispatcher = true;
             //Si no ocurrio algun error
             if (wResponse.Error == null)
@@ -296,7 +298,7 @@ namespace Fwk.Bases
         /// Solo chequea si existe el proveedor. Si no, lanza una excepción.-
         /// </summary>
         /// <param name="providerName"></param>
-        static void CheckWrapperExist(string providerName)
+        static void CheckWrapperExist(string providerName,IServiceContract res)
         {
             //Dado que el proveedor por defecto es agregado como String.Empty
             if (String.IsNullOrEmpty(providerName)) providerName = _DefaultProviderName;
@@ -305,13 +307,13 @@ namespace Fwk.Bases
             {
                 TechnicalException te;
                  if (providerName.Equals(_DefaultProviderName)) 
-                    te = new TechnicalException(string.Concat("El proveedor de configuracion del wrapper por defecto del lado del cliente, no existe, verifique en el archivo de configuracion si existe la seccion FwkWrapper y el proveedor por defecto"));
+                    te = new TechnicalException(string.Concat("El proveedor de configuración del wrapper por defecto del lado del cliente, no existe, verifique en el archivo de configuracion si existe la seccion FwkWrapper y el proveedor por defecto"));
                 else
-                    te = new TechnicalException(string.Concat("El proveedor de configuracion del wrapper ", providerName, " del lado del cliente, no existe, verifique en el archivo de configuracion si existe la seccion FwkWrapper y el proveedor mencionado"));
+                    te = new TechnicalException(string.Concat("El proveedor de configuración del wrapper ", providerName, " del lado del cliente, no existe, verifique en el archivo de configuracion si existe la seccion FwkWrapper y el proveedor mencionado"));
 
                 te.ErrorId = "6000";
                 Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(WrapperFactory));
-                throw te;
+                res.Error = ProcessConnectionsException.Process(te);
             }
         }
 
