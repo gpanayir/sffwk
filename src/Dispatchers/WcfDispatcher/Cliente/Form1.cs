@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using Fwk.HelperFunctions;
 using Fwk.Bases;
 using Fwk.Bases.Connector;
+using Fwk.ConfigSection;
 
 
 namespace Cliente
@@ -25,15 +26,22 @@ namespace Cliente
         public Form1()
         {
             InitializeComponent();
-          
+            FillProviders();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
              _WCFWrapper_01 = new WCFWrapper_01();
              _WCFWrapper_02 = new WCFWrapper_02();
-            _WCFWrapper_01.SourceInfo = "net.tcp://localhost:8001/FwkService";
-            _WCFWrapper_02.SourceInfo = "net.tcp://localhost:8001/FwkService";
+            //_WCFWrapper_01.SourceInfo = "net.tcp://localhost:8001/FwkService";
+            //_WCFWrapper_02.SourceInfo = "net.tcp://localhost:8001/FwkService";
+             wrap_provider w = comboProviders.SelectedItem as wrap_provider;
+             StringBuilder str = new StringBuilder("Wrapper name: " + w.Name);
+             str.AppendLine();
+             str.AppendLine("SourceInfo: " + w.SourceInfo);
+             str.AppendLine("WrapperProviderType: " + w.WrapperProviderType);
+             str.AppendLine("ApplicationId: " + w.ApplicationId);
+             textBox1.Text = str.ToString();
 
         }
 
@@ -95,10 +103,10 @@ namespace Cliente
         }
 
 
-        public static PatientList RetrivePatients(int? IdPersona)
+        public  PatientList RetrivePatients(int? IdPersona)
         {
             RetrivePatientsReq req = CreateReq();
-            RetrivePatientsRes res = req.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
+            RetrivePatientsRes res = req.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(comboProviders.Text, req);
 
             if (res.Error != null)
                 MessageBox.Show(Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message);
@@ -127,18 +135,25 @@ namespace Cliente
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RetrivePatientsReq req = CreateReq();
-            int i=0;
-            while (i < 100)
+            Int32 iter =0;
+
+            if (Int32.TryParse(txtIteraciones.Text, out iter))
             {
-                i++;
-                RetrivePatientsRes res = req.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
+                RetrivePatientsReq req = CreateReq();
+                int i = 0;
+                while (i < iter)
+                {
+                    i++;
+                    RetrivePatientsRes res = req.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
 
-                if (res.Error != null)
-                    str.AppendLine(String.Concat(i, " ", Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message));
+                    if (res.Error != null)
+                        str.AppendLine(String.Concat(i, " ", Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message));
 
-                str.AppendLine(String.Concat(i, " ", res.BusinessData.GetXml()));
+                    str.AppendLine(String.Concat(i, " ", res.BusinessData.GetXml()));
+                    str.AppendLine(String.Concat(i, " cliente: ", res.ContextInformation.ServerName));
 
+                   
+                } 
                 txtResponse.Text = str.ToString();
             }
         }
@@ -151,6 +166,28 @@ namespace Cliente
             req.ContextInformation.UserId = "hylux";
             req.ContextInformation.AppId = "ddsadsa";
             return req;
+        }
+        void FillProviders()
+        {
+            List<wrap_provider> providers = new List<wrap_provider>();
+            foreach (WrapperProviderElement p in WrapperFactory.ProviderSection.Providers)
+            {
+                providers.Add(new  wrap_provider(p) );
+            }
+            wrapproviderBindingSource.DataSource = providers;
+            comboProviders.Refresh();
+            
+        }
+
+        private void comboProviders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            wrap_provider w = comboProviders.SelectedItem as wrap_provider;
+            StringBuilder str = new StringBuilder("Wrapper name: " + w.Name);
+            str.AppendLine();
+            str.AppendLine("SourceInfo: " + w.SourceInfo);
+            str.AppendLine("WrapperProviderType: " + w.WrapperProviderType);
+            str.AppendLine("ApplicationId: " + w.ApplicationId);
+            textBox1.Text = str.ToString();
         }
     }
 }
