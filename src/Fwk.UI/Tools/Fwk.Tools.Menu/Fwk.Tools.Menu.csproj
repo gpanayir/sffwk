@@ -94,10 +94,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Security.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\StaticLibs\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -250,62 +246,62 @@
   <ItemGroup>
     <PublishFile Include="DevExpress.Data.v11.1">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraBars.v11.1">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraGrid.v11.1">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraLayout.v11.1">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="DevExpress.XtraTreeList.v11.1">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="Microsoft.VisualStudio.DebuggerVisualizers">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
   </ItemGroup>

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using Fwk.UI.Common;
 using System.Runtime.Remoting.Messaging;
 using Fwk.UI.Controller;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+
 using Fwk.UI.Controls;
 using DevExpress.XtraEditors;
 
