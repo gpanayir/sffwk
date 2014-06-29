@@ -6,9 +6,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ICSharpCode.TextEditor;
-using CSharpBinding.FormattingStrategy;
-using ICSharpCode.TextEditor.Document;
+using ICSharpCode.AvalonEdit;
+using AvalonEdit.Sample;
+using ICSharpCode.AvalonEdit.Folding;
+using ICSharpCode.AvalonEdit.Highlighting;
+using System.IO;
+using System.Xml;
+using System.Reflection;
 
 namespace Fwk.Controls.Win32.TextCodeEditor
 {
@@ -16,51 +20,34 @@ namespace Fwk.Controls.Win32.TextCodeEditor
     {
         public TextCodeEditor()
         {
-
+           
+          
             this.InitializeComponent();
-            this.FormattingStrategy();
-            this.IndentLines();
 
+            
+           
         }
 
-
-        #region --[PROPIEDADES]--
-
-        // <summary>
-        /// Supported Languages.
-        /// </summary>
-        public enum TipoLenguaje
+        public void HostControl()
         {
-
-            CSHARP = 2,
-            C64CHARP = 3,
-            CPP = 4,
-            HTML = 5,
-            JAVA = 6,
-            JAVASCRIPT = 7,
-
-            Text = 9,
-            VBNET = 10,
-            VBSCRIPT = 11,
-            XML = 12
+            this.textCodeEditorHost1.HostControl();
         }
-
-
-        private TipoLenguaje m_Lenguaje = TipoLenguaje.C64CHARP;
 
         [DesignOnly(false), Browsable(true), Category("Text Control"), Description("Texto enriqucido del control text code editor.-")]
         public override string Text
         {
             get
             {
-                this.txtEditor.Refresh();
-                return this.txtEditor.Document.TextBufferStrategy.GetText(0, this.txtEditor.Document.TextLength);
+                return textCodeEditorHost1.Text;
+                //this.textEditor.Refresh();
+                //return this.textEditor.Document.TextBufferStrategy.GetText(0, this.textEditor.Document.TextLength);
             }
             set
             {
-                this.txtEditor.Refresh();
-                this.txtEditor.Document.TextContent = value;
-                this.IndentLines();
+                //this.textEditor.Refresh();
+                this.textCodeEditorHost1.Text = value;
+                //textEditor.Load(currentFileName);
+              
             }
         }
  
@@ -99,7 +86,7 @@ namespace Fwk.Controls.Win32.TextCodeEditor
                     y = 0;
                 }
                 Point point = new Point(x, y);
-                this.txtEditor.Location = point;
+                this.textCodeEditorHost1.Location = point;
                 this.lblTitle.Visible = value;
             }
         }
@@ -110,31 +97,7 @@ namespace Fwk.Controls.Win32.TextCodeEditor
 
 
 
-        #endregion
 
-        #region --[METODOS]--
-
-        private void FormattingStrategy()
-        {
-            IFormattingStrategy strategy = new CSharpFormattingStrategy();
-            this.txtEditor.Document.HighlightingStrategy = HighlightingStrategyFactory.CreateHighlightingStrategy("C#");
-            this.txtEditor.Document.FormattingStrategy = strategy;
-        }
-
- 
-
- 
-
-        
-
-
-
-        private void IndentLines()
-        {
-            TextAreaControl control = new TextAreaControl(this.txtEditor);
-            new CSharpFormattingStrategy().IndentLines(control.TextArea, 0, this.txtEditor.Document.TotalNumberOfLines - 1);
-        }
-        #endregion
 
   
 
