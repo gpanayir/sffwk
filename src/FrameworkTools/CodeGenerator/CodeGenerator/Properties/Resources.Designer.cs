@@ -92,9 +92,9 @@ namespace CodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Asp_Page_16 {
+        public static System.Drawing.Bitmap config {
             get {
-                object obj = ResourceManager.GetObject("Asp Page 16", resourceCulture);
+                object obj = ResourceManager.GetObject("config", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -112,7 +112,7 @@ namespace CodeGenerator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap clear_small {
+        public static System.Drawing.Bitmap DataSourceSchema2 {
             get {
                 object obj = ResourceManager.GetObject("DataSourceSchema2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
