@@ -15,6 +15,7 @@ using Fwk.ConfigSection;
 using Fwk.ConfigData;
 using System.Web.Configuration;
 using System.Configuration;
+using System.Threading.Tasks;
 
 namespace Fwk.BusinessFacades.Utils
 {
@@ -28,15 +29,15 @@ namespace Fwk.BusinessFacades.Utils
         /// <summary>
         /// Se auditará la  ejecución del servicio, sin importar la configuración del mismo.
         /// </summary>
-        Required=0,
+        Required = 0,
         /// <summary>
         /// Se auditará la  ejecución del servicio si éste está configurado para ser auditado.
         /// </summary>
-        Optional=1,
+        Optional = 1,
         /// <summary>
         /// No se auditará la  ejecución del servicio, sin importar la configuración del mismo.
         /// </summary>
-        None=2
+        None = 2
     }
 
     /// <summary>
@@ -49,7 +50,7 @@ namespace Fwk.BusinessFacades.Utils
     /// <author>moviedo</author>
     public sealed class FacadeHelper
     {
-        internal static fwk_ServiceDispatcher ServiceDispatcherConfig=null;
+        internal static fwk_ServiceDispatcher ServiceDispatcherConfig = null;
         internal static bool DefaultSettings = false;
 
         /// <summary>
@@ -126,12 +127,12 @@ namespace Fwk.BusinessFacades.Utils
                 ServiceDispatcherConfig.AuditMode = (int)AuditMode.None;
                 ServiceDispatcherConfig.HostIp = "127.0.0.1";
                 ServiceDispatcherConfig.InstanseName = "Fwk Dispatcher (default name)";
-               stringMessage = Audit.LogDispatcherErrorConfig(null).Message;
+                stringMessage = Audit.LogDispatcherErrorConfig(null).Message;
             }
 
 
         }
-    
+
 
         #region Run services
         /// <summary>
@@ -209,7 +210,7 @@ namespace Fwk.BusinessFacades.Utils
         {
             ServiceError wServiceError = null;
             return RunService(pData, serviceConfiguration, out wServiceError);
-            
+
         }
 
         /// <summary>
@@ -324,18 +325,11 @@ namespace Fwk.BusinessFacades.Utils
             pserviError = wResponse.Error;
 
             #region < Log >
-            if ((AuditMode)FacadeHelper.ServiceDispatcherConfig.AuditMode == AuditMode.Required)
-                Audit.LogSuccessfulExecution(pRequest, wResponse);
-            else
-            {
-                if (pServiceConfiguration.Audit == true )
-                {
-                    Audit.LogSuccessfulExecution(pRequest, wResponse);
-                }
-            }
-            //Si ocurre un error cualquiera se loguea el mismo
-            if (wResponse.Error != null)
-                Audit.LogNonSucessfulExecution(pRequest, wResponse);//, pServiceConfiguration);
+            //Audito ensegundo plano
+            Action actionAudit = () => { DoAudit(pServiceConfiguration, pRequest, wResponse); };
+            Task.Factory.StartNew(actionAudit);
+
+
             #endregion
 
 
@@ -343,6 +337,22 @@ namespace Fwk.BusinessFacades.Utils
 
             return wResponse;
 
+        }
+        //Mtodo que audita
+        static void DoAudit(ServiceConfiguration pServiceConfiguration, IServiceContract pRequest, IServiceContract wResponse)
+        {
+            if ((AuditMode)FacadeHelper.ServiceDispatcherConfig.AuditMode == AuditMode.Required)
+                Audit.LogSuccessfulExecution(pRequest, wResponse);
+            else
+            {
+                if (pServiceConfiguration.Audit == true)
+                {
+                    Audit.LogSuccessfulExecution(pRequest, wResponse);
+                }
+            }
+            //Si ocurre un error cualquiera se loguea el mismo
+            if (wResponse.Error != null)
+                Audit.LogNonSucessfulExecution(pRequest, wResponse);
         }
 
         static ServiceError GetServiceError(Exception e)
@@ -461,7 +471,7 @@ namespace Fwk.BusinessFacades.Utils
                 pServiceError.Source = ConfigurationsHelper.HostApplicationName;
 
             //if (pException.InnerException != null)
-             pServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException);
+            pServiceError.InnerMessageException = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(pException);
         }
         /// <summary>
         /// Completa el error del que va dentro del Request con informacion de :
@@ -497,7 +507,7 @@ namespace Fwk.BusinessFacades.Utils
         /// </summary>
         /// <param name="pServiceConfiguration"><see cref="ServiceConfiguration"/></param>
         /// <returns>IServiceContract</returns>
-         static IServiceContract GetResponse(ServiceConfiguration pServiceConfiguration)
+        static IServiceContract GetResponse(ServiceConfiguration pServiceConfiguration)
         {
             IServiceContract wResponse;
             try
@@ -541,7 +551,7 @@ namespace Fwk.BusinessFacades.Utils
             return wResult;
         }
 
-  
+
 
         /// <summary>
         /// Obtiene todos los servicios configurados
@@ -553,7 +563,7 @@ namespace Fwk.BusinessFacades.Utils
             return ServiceMetadata.GetAllServices(providerName);
         }
 
-    
+
         /// <summary>
         /// Actualiza la configuración de un servicio de negocio.
         /// </summary>
@@ -562,9 +572,9 @@ namespace Fwk.BusinessFacades.Utils
         /// <param name="serviceConfiguration"></param>
         public static void SetServiceConfiguration(string providerName, String serviceName, ServiceConfiguration serviceConfiguration)
         {
-            ServiceMetadata.SetServiceConfiguration(providerName,serviceName, serviceConfiguration);
+            ServiceMetadata.SetServiceConfiguration(providerName, serviceName, serviceConfiguration);
         }
-       
+
 
         /// <summary>
         /// Almacena la configuración de un nuevo servicio de negocio.
@@ -575,8 +585,8 @@ namespace Fwk.BusinessFacades.Utils
         {
             ServiceMetadata.AddServiceConfiguration(providerName, serviceConfiguration);
         }
-        
-      
+
+
 
         /// <summary>
         /// Elimina la configuración de un servicio de negocio.
@@ -596,8 +606,8 @@ namespace Fwk.BusinessFacades.Utils
         /// <returns></returns>
         public static List<String> GetAllApplicationsId(string providerName)
         {
-            
-           return ServiceMetadata.GetAllApplicationsId(providerName);
+
+            return ServiceMetadata.GetAllApplicationsId(providerName);
         }
 
         /// <summary>
@@ -633,7 +643,7 @@ namespace Fwk.BusinessFacades.Utils
             {
                 list.Add(new MetadataProvider(providerElement));
             }
-            dispatcherInfo.MetadataProviders= list;
+            dispatcherInfo.MetadataProviders = list;
 
 
             dispatcherInfo.ServiceDispatcherConnection = System.Configuration.ConfigurationManager.AppSettings["ServiceDispatcherConnection"];
@@ -651,12 +661,12 @@ namespace Fwk.BusinessFacades.Utils
 
             MembershipSection wMembershipSection = (MembershipSection)System.Configuration.ConfigurationManager.GetSection("system.web/membership");
 
-            
+
             return dispatcherInfo;
         }
         #endregion
 
-        
+
         /// <summary>
         /// Valida que el servicio está disponible para ser ejecutado.
         /// </summary>
@@ -755,10 +765,10 @@ namespace Fwk.BusinessFacades.Utils
             return wAssembliesPath;
         }
 
-   
+
 
         #endregion
 
-       
+
     }
 }
