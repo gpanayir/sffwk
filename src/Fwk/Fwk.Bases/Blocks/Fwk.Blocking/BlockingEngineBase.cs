@@ -10,14 +10,14 @@ using System.Diagnostics;
 
 namespace Fwk.Blocking
 {
-    
+
     /// <summary>
     /// Clase base de implementacien standar de blocking
     /// </summary>
     /// <Auhor>moviedo</Auhor>
     public abstract class BlockingEngineBase : IBlockingEngine
     {
-        
+
         #region Members
 
         String _Table_BlockingMarks_Name;
@@ -57,8 +57,8 @@ namespace Fwk.Blocking
             ///Llama a al metodo abstracto que es implementado por las clases hijas para obtener los
             ///parametros customizados.-
             List<SqlParameter> wSqlParameterlist = GetCustomParametersToInsert(pIBlockingMark);
-            
-            return BlockingEngineDAC.AddMark(pIBlockingMark, wSqlParameterlist,_Table_BlockingMarks_Name);
+
+            return BlockingEngineDAC.AddMark(pIBlockingMark, wSqlParameterlist, _Table_BlockingMarks_Name);
         }
 
 
@@ -72,7 +72,7 @@ namespace Fwk.Blocking
 
             BlockingMarkBase wBlockingMark = new BlockingMarkBase(_Table_BlockingMarks_Name);
             wBlockingMark.BlockingId = pBlockingId;
-          
+
             BlockingEngineDAC.RemoveMark(wBlockingMark);
         }
 
@@ -103,39 +103,28 @@ namespace Fwk.Blocking
             using (SqlConnection wCnn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["BlockingModel"].ConnectionString))
             using (SqlCommand wCmd = new SqlCommand("BlockingMarks_d_clear", wCnn))
             {
-                try
-                {
-                    wCmd.CommandType = CommandType.StoredProcedure;
-
-                    /// Se setean los parámetros.
-                    SqlParameter wParam;
 
 
-                    wParam = wCmd.Parameters.Add("@Count", SqlDbType.Int);
-                    wParam.Value = 0;
-                    wParam.Direction = ParameterDirection.Output;
+                wCmd.CommandType = CommandType.StoredProcedure;
 
-                    /// Se abre la conexión y se ejecuta el comando.
-                    wCnn.Open();
-                    wCmd.ExecuteNonQuery();
+                /// Se setean los parámetros.
+                SqlParameter wParam;
 
-                    /// Se retorna la cantidad de marcas borradas.
-                    return int.Parse(wCmd.Parameters["@Count"].Value.ToString());
-                }
-                catch (Exception ex)
-                {
-                    /// Si se produjo alguna excepción, se reenvía
-                    throw ex;
-                }
-                finally
-                {
-                    /// Cierra la conexión si está abierta
-                    if (wCnn.State == ConnectionState.Open)
-                        wCnn.Close();
-                }
+
+                wParam = wCmd.Parameters.Add("@Count", SqlDbType.Int);
+                wParam.Value = 0;
+                wParam.Direction = ParameterDirection.Output;
+
+                /// Se abre la conexión y se ejecuta el comando.
+                wCnn.Open();
+                wCmd.ExecuteNonQuery();
+
+                /// Se retorna la cantidad de marcas borradas.
+                return int.Parse(wCmd.Parameters["@Count"].Value.ToString());
+
             }
         }
-        
+
         public DataTable GetByParam(IBlockingMark pBlockingMark)
         {
             return BlockingEngineDAC.GetByParam(pBlockingMark);
@@ -214,7 +203,7 @@ namespace Fwk.Blocking
 
             pBlockingMark.BlockingId = pBlockingId;
 
-            return BlockingEngineDAC.Exists(pBlockingMark,_Table_BlockingMarks_Name);
+            return BlockingEngineDAC.Exists(pBlockingMark, _Table_BlockingMarks_Name);
         }
 
 
@@ -226,8 +215,8 @@ namespace Fwk.Blocking
         public List<string> ExistsUser(IBlockingMark pBlockingMark)
         {
             List<SqlParameter> wSqlParameterlist = GetCustomParametersUserExist(pBlockingMark);
-     
-            return BlockingEngineDAC.ExistsUsers(pBlockingMark, wSqlParameterlist,_Table_BlockingMarks_Name);
+
+            return BlockingEngineDAC.ExistsUsers(pBlockingMark, wSqlParameterlist, _Table_BlockingMarks_Name);
         }
 
         #endregion

@@ -9,8 +9,6 @@ using System.Xml;
 using System.Text ;
 using Fwk.HelperFunctions;
 using System.Configuration;
-using Microsoft.Practices.EnterpriseLibrary.Security.Cryptography;
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;

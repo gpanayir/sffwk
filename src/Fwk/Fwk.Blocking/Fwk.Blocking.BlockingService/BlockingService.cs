@@ -78,7 +78,6 @@ namespace Fwk.Blocking.BlockingService
             {
                 /// Controla que está configurado el intervalo de  ejecución
                 /// del servicio.
-                //BlockingHelper.WriteLog("Interval", EventLogEntryType.FailureAudit);
                 _Interval = Fwk.Blocking.BlockingService.Properties.Settings.Default.Interval;// ConfigurationManager.GetProperty("BlockingModel", "Interval");
 
 
@@ -97,8 +96,8 @@ namespace Fwk.Blocking.BlockingService
             }
             catch (Exception ex)
             {
-                BlockingHelper.WriteLog("\r\nSe produjo una excepción al inicializar el servicio." +
-                    "\r\n\r\n" + ex.ToString(),
+                BlockingHelper.WriteLog(
+                    String.Concat("Se produjo una excepción al inicializar el servicio.\r\n\r\n" , Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex)),
                     EventLogEntryType.Error);
 
                 throw ex;
@@ -116,33 +115,37 @@ namespace Fwk.Blocking.BlockingService
         /// <param name="e"></param>
         private void _Timer_Elapsed(object sender, Timer.ElapsedEventArgs e)
         {
-            try
-            {
-                /// Crea un thread para la  ejecución de ClearBlockingMarks.
-                Thread thread = new Thread(new ThreadStart(ClearBlockingMarks));
-                thread.Start();
+            _Timer.Stop();
+            ClearBlockingMarks();
+            _Timer.Start();
+            //try
+            //{
+            /// Crea un thread para la  ejecución de ClearBlockingMarks.
+            //Thread thread = new Thread(new ThreadStart(ClearBlockingMarks));
+            //thread.Start();
 
-                /// Espera hasta que se cumpla el tiempo estipulado
-                /// de espera.
-                thread.Join(_WaitForComplete * 1000);
+            /// Espera hasta que se cumpla el tiempo estipulado
+            /// de espera.
+            //thread.Join(_WaitForComplete * 1000);
 
-                /// Si el thread todavía está vivo lo mata.
-                if (thread.IsAlive)
-                {
-                    BlockingHelper.WriteLog("\r\nHay un thread que ha superado el tiempo de espera estipulado.",
-                        EventLogEntryType.Error);
+            ///// Si el thread todavía está vivo lo mata.
+            //if (thread.IsAlive)
+            //{
+            //    BlockingHelper.WriteLog("\r\nHay un thread que ha superado el tiempo de espera estipulado.",
+            //        EventLogEntryType.Error);
 
-                    thread.Abort();
+            //    thread.Abort();
 
-                    throw new Exception("\r\nHay un thread que ha superado el tiempo de espera estipulado.");
-                }
-            }
-            catch (Exception ex)
-            {
-                BlockingHelper.WriteLog("\r\nSe produjo una excepción al llamar a " +
-                    "ClearBlockingMarks.\r\nDescripción  Técnica: " + ex.Message +
-                    "\r\n\r\n" + ex.ToString(), EventLogEntryType.Error);
-            }
+            //    throw new Exception("\r\nHay un thread que ha superado el tiempo de espera estipulado.");
+            //}
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    BlockingHelper.WriteLog("\r\nSe produjo una excepción al llamar a " +
+            //        "ClearBlockingMarks.\r\nDescripción  Técnica: " + ex.Message +
+            //        "\r\n\r\n" + ex.ToString(), EventLogEntryType.Error);
+            //}
         }
 
         private void ClearBlockingMarks()
@@ -155,9 +158,9 @@ namespace Fwk.Blocking.BlockingService
             }
             catch (Exception ex)
             {
-                BlockingHelper.WriteLog("\r\nSe produjo una excepción al llamar a " +
-                    "ClearBlockingMarks.\r\nDescripción  Técnica: " + ex.Message +
-                    "\r\n\r\n" + ex.ToString(), EventLogEntryType.Error);
+                BlockingHelper.WriteLog(
+                      String.Concat("Excepción al intentar limpiar las marcas de bloqueo\r\n", Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex)),
+                     EventLogEntryType.Error);
             }
         }
 
