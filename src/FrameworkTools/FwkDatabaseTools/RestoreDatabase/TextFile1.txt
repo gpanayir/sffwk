@@ -1,4 +1,0 @@
-BACKUP DATABASE [SCA_MigracionChile] TO  DISK = N'C:\Paso\Migracion\Bkp_SCA_MigracionChile.bak' WITH NOFORMAT, INIT,  NAME = N'SCA_MigracionChile-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10
-GO
-RESTORE DATABASE [SCA_MigracionChile] FROM  DISK = N'C:\Paso\Migracion\Bkp_SCA_MigracionChile.bak' WITH  FILE = 1,  NOUNLOAD,  REPLACE,  STATS = 10
-GO
