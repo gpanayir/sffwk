@@ -14,7 +14,7 @@ def: include
 f: \.aps$ ## VC Binary version of resource file, for quick loading
 f: \.bsc$ ## VC Browser database
 f: \.dll$ ## Windows DLL
-f: \.dll.dll.config$ ## 
+f: \.dll.config$ ## 
 f: \.exe$ ## Windows executable
 f: \.obj$ ## VC object module file
 f: \.pdb$ ## VC program database file (debugging symbolic information)
