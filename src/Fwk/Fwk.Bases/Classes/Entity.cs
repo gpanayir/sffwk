@@ -295,12 +295,12 @@ namespace Fwk.Bases
         }
 
         /// <summary>
-        /// Rellena la clase con los valores del XML 
+        /// Rellena la clase con los valores del XML :No utilizar este método
         /// <param name="pXmlData">Xml con el que se crea el objeto</param>
         /// <summary>
+        [Obsolete("A partir del framework de .net version 2.0 se debe utilizar el metodo generico GetFromXml<IEntity>() ")]
         public void SetXml(string pXmlData)
         {
-            helper.SerializationFunctions.DeserializeFromXml(this.GetType(), pXmlData);
         }
         /// <summary>
         /// Retorna un objeto a partir de la instancia estatica
@@ -310,7 +310,6 @@ namespace Fwk.Bases
         /// <returns>Entidad  </returns>
         public static T GetFromXml<T>(string pXmlData) where T : Entity
         {
-
             return (T)helper.SerializationFunctions.DeserializeFromXml(typeof(T), pXmlData);
         }
         #endregion

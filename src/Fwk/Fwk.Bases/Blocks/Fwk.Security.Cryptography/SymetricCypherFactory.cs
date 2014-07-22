@@ -47,19 +47,28 @@ namespace Fwk.Security.Cryptography
 
                     throw te;
                 }
-
+                var wFullFileName = String.Empty;
                 foreach (CypherProviderElement provider in _CypherProviders.Providers)
                 {
 
                     if (provider.Type.Equals("file"))
                     {
                         if (System.IO.File.Exists(provider.Source))
-                            k = Fwk.HelperFunctions.FileFunctions.OpenTextFile(provider.Source);
+                        {
+                            wFullFileName = provider.Source;
+                         
+                        }
                         else
+                        {
+                            wFullFileName = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), provider.Source);
+                            
+                        }
+                        if (!System.IO.File.Exists(wFullFileName))
                         {
                             te = new TechnicalException(String.Format(Fwk.Bases.Properties.Resources.security_provider_keyfile_not_found, provider.Source, provider.Name));
                             throw te;
                         }
+                        k = Fwk.HelperFunctions.FileFunctions.OpenTextFile(wFullFileName);
                     }
                     Add<RijndaelManaged>(provider.Name, k);
                 }
@@ -90,12 +99,7 @@ namespace Fwk.Security.Cryptography
         public static ISymetriCypher Cypher(string providerName)
         {
             InitializeProviders();
-            //if (CypherProviders == null)
-            //{
-            //    TechnicalException te = new TechnicalException("Debe llamar al metodo InitializeProviders antes de ejecutar alguna accion sobre un encriptador");
-            //    //te.ErrorId = "4402";
-            //    throw te;
-            //}
+
             if (String.IsNullOrEmpty(providerName))
                 providerName = _CypherProviders.DefaultProviderName;
 
@@ -114,11 +118,12 @@ namespace Fwk.Security.Cryptography
             return symetriCypher;
         }
 
+     
         /// <summary>
         /// Busca un criptographer determinado por medio de su nombre de archivo de encriptacion y tipo de algoritmo simetrico
         /// </summary>
-        /// <providerName>Provider Name</providerName>
         /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
+        /// <param name="providerName">Nombre de proveedor de encriptación</param>
         /// <param name="key">Clave de encriptacion</param>
         /// <returns>Argoritmo</returns>
         static SymetriCypher<T> Add<T>(string providerName,string key) where T : SymmetricAlgorithm
@@ -128,9 +133,7 @@ namespace Fwk.Security.Cryptography
 
             if (string.IsNullOrEmpty(key))
             {
-
                 TechnicalException te = new TechnicalException("La clave de encriptacion no puede ser nula");
-                
                 te.ErrorId = "4401";
                 throw te;
             }
