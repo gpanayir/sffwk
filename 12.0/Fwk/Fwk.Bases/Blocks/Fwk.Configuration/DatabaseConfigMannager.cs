@@ -40,39 +40,87 @@ namespace Fwk.Configuration
         /// Obtiene una propiedad determinada de un archivo de configuracion .-
         /// </summary>
         /// <param name="configProvider">Proveedor de configuuracion</param>
-        /// <param name="pGroupName">Nombre del grupo donde se encuentra la propiedad</param>
-        /// <param name="pPropertyName">Nombre de la propiedad a obtener</param>
+        /// <param name="groupName">Nombre del grupo donde se encuentra la propiedad</param>
+        /// <param name="propertyName">Nombre de la propiedad a obtener</param>
         /// <returns>String con la propiedad</returns>
         /// <Author>Marcelo Oviedo</Author>
-        internal static string GetProperty(string configProvider, string pGroupName, string pPropertyName)
+        internal static string GetProperty(string configProvider, string groupName, string propertyName)
         {
-            ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
+            return GetProperty_FromDB(configProvider, groupName, propertyName);
+            //ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);
+            //ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);
 
-            Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
-            if (wGroup == null)
-            {
+            //Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
+            //if (wGroup == null)
+            //{
 
-                TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", provider.BaseConfigFile }));
-                te.ErrorId = "8006";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
-                throw te;
-            }
-            Key wKey = wGroup.Keys.GetFirstByName(pPropertyName);
-            if (wKey == null)
-            {
-                TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra la propiedad ", pPropertyName, " en el grupo de propiedades: ", pGroupName, " del archivo de configuración: ", provider.BaseConfigFile }));
-                te.ErrorId = "8007";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
-                throw te;
-            }
+            //    TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", provider.BaseConfigFile }));
+            //    te.ErrorId = "8006";
+            //    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+            //    throw te;
+            //}
+            //Key wKey = wGroup.Keys.GetFirstByName(propertyName);
+            //if (wKey == null)
+            //{
+            //    TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra la propiedad ", propertyName, " en el grupo de propiedades: ", pGroupName, " del archivo de configuración: ", provider.BaseConfigFile }));
+            //    te.ErrorId = "8007";
+            //    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+            //    throw te;
+            //}
 
 
-            return wKey.Value.Text;
+            //return wKey.Value.Text;
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configProvider"></param>
+        /// <param name="groupName"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        static string GetProperty_FromDB(string configProvider, string groupName, string propertyName)
+        {
+            ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
+            if (System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo] == null)
+            {
+                TechnicalException te = new TechnicalException(string.Concat("Problemas con Fwk.Configuration, no se puede encontrar la cadena de conexión: ", provider.SourceInfo));
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
+                te.ErrorId = "8200";
+                throw te;
+            }
+         
+            try
+            {
+                using (FwkDatacontext dc = new FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo].ConnectionString))
+                {
+                    var val = dc.fwk_ConfigManagers.Where(config =>
+                        config.ConfigurationFileName.ToLower().Equals(provider.BaseConfigFile.ToLower())  &&
+                        config.group.ToLower().Equals(groupName.ToLower()) &&
+                        config.key.ToLower().Equals(propertyName.ToLower())).FirstOrDefault();
 
+                    if (val == null)
+                    {
+                        TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra la propiedad ", propertyName, " en el grupo de propiedades: ", groupName, " del archivo de configuración: ", provider.BaseConfigFile }));
+                        te.ErrorId = "8007";
+                        Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                        throw te;
+                   }
+                    return val.value;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
+                te.ErrorId = "8200";
+                throw te;
+
+            }
+
+        }
 
         /// <summary>
         /// Obtiene un ConfigurationFile <see cref="ConfigurationFile" atravez de su nombre/>
@@ -83,9 +131,7 @@ namespace Fwk.Configuration
         /// <Author>Marcelo Oviedo</Author>
         internal static ConfigurationFile GetConfigurationFile(ConfigProviderElement provider)
         {
-
-
-            return GetConfig(provider, provider.SourceInfo); ;
+            return GetConfig(provider, provider.SourceInfo); 
         }
 
 
@@ -93,25 +139,66 @@ namespace Fwk.Configuration
         /// Obtiene un grupo determinado en el archivo de configuracion
         /// </summary>
         /// <param name="configProvider">Proveedor de configuuracion</param>
-        /// <param name="pGroupName">Nombre del grupo</param>
+        /// <param name="groupName">Nombre del grupo</param>
         /// <returns>Hashtable con los grupos contenidos en el archivo de configuracion</returns>
         /// <Author>Marcelo Oviedo</Author>
-        internal static Group GetGroup(string configProvider, string pGroupName)
+        internal static Group GetGroup(string configProvider, string groupName)
         {
             ConfigProviderElement provider = ConfigurationManager.GetProvider(configProvider);
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);
-
-
-
-            Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
-            if (wGroup == null)
+            Group wGroup = null;
+            try
             {
-                TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", provider.BaseConfigFile }));
-                te.ErrorId = "8006";
-                Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
-                throw te;
+                using (FwkDatacontext dc = new FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[provider.SourceInfo].ConnectionString))
+                {
+                    var properties_group = dc.fwk_ConfigManagers.Where(config =>
+                       config.ConfigurationFileName.ToLower().Equals(provider.BaseConfigFile.ToLower()) &&
+                       config.group.ToLower().Equals(groupName.ToLower())
+                       );
+
+                    if (properties_group == null)
+                    {
+                        TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", groupName, " en el archivo de configuración: ", provider.BaseConfigFile }));
+                        te.ErrorId = "8006";
+                        Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+                        throw te;
+                    }
+                    wGroup = new Group();
+                    wGroup.Keys = new Keys();
+                    Key wKey = new Key();
+
+                    foreach (var item in properties_group)
+                    {
+                        wKey = new Key();
+                        wKey.Name = item.key;
+                        wKey.Value.Text = item.value;
+                        wKey.Encrypted = item.encrypted;
+                        wGroup.Keys.Add(wKey);
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                TechnicalException te = new TechnicalException("Problemas con Fwk.Configuration al realizar operaciones con la base de datos \r\n", ex);
+                ExceptionHelper.SetTechnicalException<DatabaseConfigManager>(te);
+                te.ErrorId = "8200";
+                throw te;
+
+            }
+
+
+            //ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);
+
+
+
+            //Group wGroup = wConfigurationFile.Groups.GetFirstByName(pGroupName);
+            //if (wGroup == null)
+            //{
+            //    TechnicalException te = new TechnicalException(string.Concat(new String[] { "No se encuentra el grupo ", pGroupName, " en el archivo de configuración: ", provider.BaseConfigFile }));
+            //    te.ErrorId = "8006";
+            //    Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(ConfigurationManager));
+            //    throw te;
+            //}
 
 
 

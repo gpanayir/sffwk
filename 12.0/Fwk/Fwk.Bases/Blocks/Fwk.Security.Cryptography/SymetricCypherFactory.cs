@@ -133,9 +133,7 @@ namespace Fwk.Security.Cryptography
 
             if (string.IsNullOrEmpty(key))
             {
-
                 TechnicalException te = new TechnicalException("La clave de encriptacion no puede ser nula");
-                
                 te.ErrorId = "4401";
                 throw te;
             }
