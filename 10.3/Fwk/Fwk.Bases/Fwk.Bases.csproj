@@ -167,27 +167,6 @@
     <Compile Include="Blocks\Fwk.Logging\config\RuleElement.cs" />
     <Compile Include="Blocks\Fwk.Logging\config\RuleElementCollection.cs" />
     <Compile Include="Blocks\Fwk.Logging\targets\ITarget.cs" />
-    <Compile Include="Blocks\Fwk.Mail\config\MailAgentFactory.cs" />
-    <Compile Include="Blocks\Fwk.Mail\config\MailAgentSection.cs" />
-    <Compile Include="Blocks\Fwk.Mail\config\MailAgentElement.cs" />
-    <Compile Include="Blocks\Fwk.Mail\config\MailAgentElementCollection.cs" />
-    <Compile Include="Blocks\Fwk.Mail\Common.cs" />
-    <Compile Include="Blocks\Fwk.Mail\FwkMailAgent.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Blocks\Fwk.Mail\FwkMailAgent.Designer.cs">
-      <DependentUpon>FwkMailAgent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Blocks\Fwk.Mail\ImapServices.cs" />
-    <Compile Include="Blocks\Fwk.Mail\Imap\Imap.cs" />
-    <Compile Include="Blocks\Fwk.Mail\Imap\ImapBase.cs" />
-    <Compile Include="Blocks\Fwk.Mail\Imap\ImapException.cs" />
-    <Compile Include="Blocks\Fwk.Mail\Message.cs" />
-    <Compile Include="Blocks\Fwk.Mail\ObjCache.cs" />
-    <Compile Include="Blocks\Fwk.Mail\Pop3Services.cs" />
-    <Compile Include="Blocks\Fwk.Mail\Pop3\Pop3.cs" />
-    <Compile Include="Blocks\Fwk.Mail\Pop3\Pop3Exception.cs" />
-    <Compile Include="Blocks\Fwk.Mail\ProtocolMailBase.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Database\DatabaseServiceConfigurationManager.cs" />
     <Compile Include="Blocks\Fwk.ServiceManagement\Xml\XmlServiceConfigurationManager.cs" />
     <Compile Include="Classes\BackEndBases.cs" />
@@ -307,10 +286,6 @@
     <None Include="Blocks\FwkData.dbml.layout">
       <DependentUpon>FwkData.dbml</DependentUpon>
     </None>
-    <EmbeddedResource Include="Blocks\Fwk.Mail\FwkMailAgent.resx">
-      <DependentUpon>FwkMailAgent.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Blocks\Fwk.Net\Ftp\FTPComponent.resx">
       <DependentUpon>FTPComponent.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -362,7 +337,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Blocks\Fwk.Logging\config\LoginAppSample.config" />
-    <None Include="Blocks\Fwk.Mail\config\MailAgentAppSample.config" />
     <None Include="Blocks\Fwk.ServiceManagement\ProcessConfigurationManager.cd" />
     <Content Include="Blocks\Fwk.Exceptions\FrameworkErrors.txt" />
     <None Include="Properties\Settings.settings">
