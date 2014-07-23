@@ -70,7 +70,7 @@ namespace Fwk.CodeGenerator
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(4, 38);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -85,9 +85,9 @@ namespace Fwk.CodeGenerator
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage1.Controls.Add(this.ctrlTreeViewTables1);
             this.tabPage1.Location = new System.Drawing.Point(4, 46);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(280, 558);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Tag = "0";
@@ -101,7 +101,7 @@ namespace Fwk.CodeGenerator
             this.ctrlTreeViewTables1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ctrlTreeViewTables1.CheckBoxes = true;
             this.ctrlTreeViewTables1.Location = new System.Drawing.Point(3, 2);
-            this.ctrlTreeViewTables1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ctrlTreeViewTables1.Margin = new System.Windows.Forms.Padding(5);
             this.ctrlTreeViewTables1.Name = "ctrlTreeViewTables1";
             this.ctrlTreeViewTables1.Size = new System.Drawing.Size(264, 563);
             this.ctrlTreeViewTables1.TabIndex = 0;
@@ -111,9 +111,9 @@ namespace Fwk.CodeGenerator
             this.tabPage2.BackColor = System.Drawing.Color.SteelBlue;
             this.tabPage2.Controls.Add(this.treeViewStoreProcedures1);
             this.tabPage2.Location = new System.Drawing.Point(4, 46);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(280, 558);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Tag = "1";
@@ -126,10 +126,10 @@ namespace Fwk.CodeGenerator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewStoreProcedures1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.treeViewStoreProcedures1.Location = new System.Drawing.Point(0, 4);
-            this.treeViewStoreProcedures1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.treeViewStoreProcedures1.Margin = new System.Windows.Forms.Padding(5);
             this.treeViewStoreProcedures1.Name = "treeViewStoreProcedures1";
             this.treeViewStoreProcedures1.SelectedStoreProcedure = null;
-            this.treeViewStoreProcedures1.SelectedStoreProcedureName = global::Fwk.CodeGenerator.Properties.Resources.AppIcon;
+            this.treeViewStoreProcedures1.SelectedStoreProcedureName = "";
             this.treeViewStoreProcedures1.Size = new System.Drawing.Size(276, 554);
             this.treeViewStoreProcedures1.StoreProcedures = null;
             this.treeViewStoreProcedures1.TabIndex = 0;
@@ -139,9 +139,9 @@ namespace Fwk.CodeGenerator
             // 
             this.tabPage3.Controls.Add(this.ctrlTreeViewViews1);
             this.tabPage3.Location = new System.Drawing.Point(4, 46);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage3.Size = new System.Drawing.Size(280, 558);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Tag = "3";
@@ -156,7 +156,7 @@ namespace Fwk.CodeGenerator
             this.ctrlTreeViewViews1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ctrlTreeViewViews1.CheckBoxes = true;
             this.ctrlTreeViewViews1.Location = new System.Drawing.Point(0, 0);
-            this.ctrlTreeViewViews1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ctrlTreeViewViews1.Margin = new System.Windows.Forms.Padding(5);
             this.ctrlTreeViewViews1.Name = "ctrlTreeViewViews1";
             this.ctrlTreeViewViews1.Size = new System.Drawing.Size(269, 570);
             this.ctrlTreeViewViews1.TabIndex = 0;
@@ -164,7 +164,7 @@ namespace Fwk.CodeGenerator
             // btnGenerate2
             // 
             this.btnGenerate2.Location = new System.Drawing.Point(0, 0);
-            this.btnGenerate2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGenerate2.Margin = new System.Windows.Forms.Padding(4);
             this.btnGenerate2.Name = "btnGenerate2";
             this.btnGenerate2.Size = new System.Drawing.Size(100, 28);
             this.btnGenerate2.TabIndex = 33;
@@ -223,7 +223,7 @@ namespace Fwk.CodeGenerator
             this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(23, 22);
-            this.btnRefresh.Text = "toolStripButton2";
+            this.btnRefresh.Text = "Refresh";
             this.btnRefresh.ToolTipText = "Refresh ";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -254,7 +254,7 @@ namespace Fwk.CodeGenerator
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(293, 34);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -276,7 +276,7 @@ namespace Fwk.CodeGenerator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textCodeEditor1.BackColor = System.Drawing.Color.GhostWhite;
             this.textCodeEditor1.Location = new System.Drawing.Point(7, 4);
-            this.textCodeEditor1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textCodeEditor1.Margin = new System.Windows.Forms.Padding(4);
             this.textCodeEditor1.Name = "textCodeEditor1";
             this.textCodeEditor1.Size = new System.Drawing.Size(547, 594);
             this.textCodeEditor1.TabIndex = 31;
@@ -293,7 +293,7 @@ namespace Fwk.CodeGenerator
             this.listViewCodeGenerated1.ForeColorSP = System.Drawing.Color.Empty;
             this.listViewCodeGenerated1.ForeColorSVC = System.Drawing.Color.Empty;
             this.listViewCodeGenerated1.Location = new System.Drawing.Point(4, -9);
-            this.listViewCodeGenerated1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.listViewCodeGenerated1.Margin = new System.Windows.Forms.Padding(5);
             this.listViewCodeGenerated1.Name = "listViewCodeGenerated1";
             this.listViewCodeGenerated1.NodeBE = null;
             this.listViewCodeGenerated1.NodeCustomSVC = null;
@@ -301,7 +301,7 @@ namespace Fwk.CodeGenerator
             this.listViewCodeGenerated1.NodeSP = null;
             this.listViewCodeGenerated1.NodeSVC = null;
             this.listViewCodeGenerated1.NodeTDG = null;
-            this.listViewCodeGenerated1.Size = new System.Drawing.Size(275, 607);
+            this.listViewCodeGenerated1.Size = new System.Drawing.Size(272, 607);
             this.listViewCodeGenerated1.TabIndex = 0;
             this.listViewCodeGenerated1.ServiceCodeGeneratedSelectEvent += new Fwk.CodeGenerator.ServiceCodeGeneratedSelectHandler(this.listViewCodeGenerated1_ServiceCodeGeneratedSelectEvent);
             this.listViewCodeGenerated1.StoredProcedureCodeGeneratedSelectEvent += new Fwk.CodeGenerator.StoredProcedureCodeGeneratedSelectHandler(this.listViewCodeGenerated1_StoreProcedureCodeGeneratedSelectEvent);
@@ -327,7 +327,7 @@ namespace Fwk.CodeGenerator
             this.Controls.Add(this.btnGenerate2);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1058, 647);
             this.Name = "frm_DACGenerator";

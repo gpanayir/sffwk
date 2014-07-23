@@ -48,7 +48,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharpBinding, Version=2.1.0.2429, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Fwk.Bases, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
@@ -61,16 +60,15 @@
       <HintPath>..\..\..\Libraries\Framework\Fwk.Controls.Win32.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Fwk.DataBase, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Fwk.DataBase">
+      <HintPath>..\..\..\Libraries\Framework\Fwk.DataBase.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.Core, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
-    <Reference Include="ICSharpCode.NRefactory, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=efe927acf176eea2, processorArchitecture=MSIL" />
-    <Reference Include="ICSharpCode.SharpDevelop, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
-    <Reference Include="ICSharpCode.SharpDevelop.Dom, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
-    <Reference Include="ICSharpCode.SharpDevelop.Sda, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
-    <Reference Include="ICSharpCode.SharpDevelop.Widgets, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=f829da5c02be14ee, processorArchitecture=MSIL" />
-    <Reference Include="ICSharpCode.TextEditor, Version=2.1.0.2429, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL" />
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\..\..\Libraries\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.Core">
+      <HintPath>..\..\..\Libraries\ICSharpCode.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
@@ -109,9 +107,6 @@
     <Reference Include="Microsoft.SqlServer.WmiEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Microsoft SQL Server\100\SDK\Assemblies\Microsoft.SqlServer.WmiEnum.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -293,6 +288,65 @@
       <DependentUpon>wizTablesTreeSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectModel\WorkSpace.cs" />
+    <None Include="xshd\ASPX.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\Boo.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\Coco-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\CPP-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\CSharp-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\CSS-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\HTML-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\Java-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\JavaScript-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\MarkDown-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\ModeV1.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\ModeV2.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\Patch-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\PHP-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\PowerShell.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\Tex-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\VBNET-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\XML-Mode.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="xshd\XmlDoc.xshd">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Files\DataBaseConfig.xml">

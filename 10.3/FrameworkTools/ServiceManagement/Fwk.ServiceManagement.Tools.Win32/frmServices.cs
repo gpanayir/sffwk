@@ -283,6 +283,11 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         private void btnNewProvider_Click(object sender, EventArgs e)
         {
+            using (frmManageProviders frm = new frmManageProviders())
+            {
+                frm.ShowDialog();
+            }
+            return;
             using (frmCreateProvider frm = new frmCreateProvider())
             {
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -295,12 +300,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
                         cb.Items.Add(p.Name);
                         if (frm.CreatedProvider.Name.Equals(p.Name)) cb.SelectedIndex = index;
                         index++;
-                        
-                    }
-
-                    
-                   
-
+                   }
                 }
             }
         }

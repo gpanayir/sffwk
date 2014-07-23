@@ -24,6 +24,19 @@ namespace Fwk.ServiceManagement.Tools.Win32
             if (pProvider == null) return;
             SetProvider();
         }
+        public void Populate(Provider pProvider)
+        {
+            Provider = new ServiceProviderElement();
+            Provider.ApplicationId = pProvider.ApplicationId;
+            Provider.Name = pProvider.Name;
+            Provider.SecurityProviderName = pProvider.SecurityProviderName;
+            Provider.ProviderType = pProvider.ProviderType;
+            Provider.SourceInfo = pProvider.SourceInfo;
+
+
+            if (pProvider == null) return;
+            SetProvider();
+        }
         public void SetConnected(bool pIsConnected)
         {
             if (pIsConnected)

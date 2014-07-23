@@ -60,6 +60,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
@@ -67,6 +70,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Delete {
             get {
                 object obj = ResourceManager.GetObject("Delete", resourceCulture);
@@ -74,6 +80,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap documents_large {
             get {
                 object obj = ResourceManager.GetObject("documents_large", resourceCulture);
@@ -81,6 +90,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap documents_small {
             get {
                 object obj = ResourceManager.GetObject("documents_small", resourceCulture);
@@ -88,6 +100,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap export_16 {
             get {
                 object obj = ResourceManager.GetObject("export_16", resourceCulture);
@@ -95,6 +110,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap file_add_16 {
             get {
                 object obj = ResourceManager.GetObject("file_add_16", resourceCulture);
@@ -102,6 +120,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap file_del_16 {
             get {
                 object obj = ResourceManager.GetObject("file_del_16", resourceCulture);
@@ -109,6 +130,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap foldr_16 {
             get {
                 object obj = ResourceManager.GetObject("foldr_16", resourceCulture);
@@ -116,6 +140,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap foldr_24 {
             get {
                 object obj = ResourceManager.GetObject("foldr_24", resourceCulture);
@@ -123,6 +150,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap foldr_32 {
             get {
                 object obj = ResourceManager.GetObject("foldr_32", resourceCulture);
@@ -130,6 +160,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mostrar {
             get {
                 object obj = ResourceManager.GetObject("mostrar", resourceCulture);
@@ -137,6 +170,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap open_folder_large {
             get {
                 object obj = ResourceManager.GetObject("open_folder_large", resourceCulture);
@@ -144,6 +180,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap open_folder_small {
             get {
                 object obj = ResourceManager.GetObject("open_folder_small", resourceCulture);
@@ -151,6 +190,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap prntpv_16 {
             get {
                 object obj = ResourceManager.GetObject("prntpv_16", resourceCulture);
@@ -158,6 +200,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Refresh {
             get {
                 object obj = ResourceManager.GetObject("Refresh", resourceCulture);
@@ -165,6 +210,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap save_as_large {
             get {
                 object obj = ResourceManager.GetObject("save_as_large", resourceCulture);
@@ -172,6 +220,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap save_as_small {
             get {
                 object obj = ResourceManager.GetObject("save_as_small", resourceCulture);
@@ -179,6 +230,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap save_large {
             get {
                 object obj = ResourceManager.GetObject("save_large", resourceCulture);
@@ -186,6 +240,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap save_small {
             get {
                 object obj = ResourceManager.GetObject("save_small", resourceCulture);
@@ -193,6 +250,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TortoiseAdded {
             get {
                 object obj = ResourceManager.GetObject("TortoiseAdded", resourceCulture);
@@ -200,6 +260,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TortoiseConflict {
             get {
                 object obj = ResourceManager.GetObject("TortoiseConflict", resourceCulture);
@@ -207,6 +270,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TortoiseInSubVersion {
             get {
                 object obj = ResourceManager.GetObject("TortoiseInSubVersion", resourceCulture);
@@ -214,6 +280,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TortoiseLocked {
             get {
                 object obj = ResourceManager.GetObject("TortoiseLocked", resourceCulture);
@@ -221,6 +290,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Web_WebConfig {
             get {
                 object obj = ResourceManager.GetObject("Web_WebConfig", resourceCulture);
@@ -228,6 +300,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap zoomi_16 {
             get {
                 object obj = ResourceManager.GetObject("zoomi_16", resourceCulture);
@@ -235,6 +310,9 @@ namespace ConfigurationApp.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap zoomo_16 {
             get {
                 object obj = ResourceManager.GetObject("zoomo_16", resourceCulture);

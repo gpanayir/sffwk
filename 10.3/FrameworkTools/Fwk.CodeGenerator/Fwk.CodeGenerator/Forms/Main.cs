@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+
 
 
 
@@ -26,6 +28,7 @@ namespace Fwk.CodeGenerator
             //En el constructor mismo se inicializa el Storage
             _LastAccessStorage = new LastAccessStorage();
             InitTemplateSettingObject();
+            this.Text = string.Concat(this.Text, " v.", Assembly.GetExecutingAssembly().GetName().Version.ToString());
         }
 
         private void toolStripMenuItemDAC_Click(object sender, EventArgs e)

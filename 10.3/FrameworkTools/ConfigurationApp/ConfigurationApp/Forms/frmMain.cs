@@ -208,6 +208,12 @@ namespace ConfigurationApp
         }
         #endregion
 
+        private void btnExportXmlToBd_Click(object sender, EventArgs e)
+        {
+            frmExportXmlToBd wFrm = new frmExportXmlToBd();
+            wFrm.Show();
+        }
+
 
 
     }
