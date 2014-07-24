@@ -223,7 +223,7 @@ namespace Fwk.CodeGenerator
             this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(23, 22);
-            this.btnRefresh.Text = "Refrsh";
+            this.btnRefresh.Text = "Refresh";
             this.btnRefresh.ToolTipText = "Refresh ";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 

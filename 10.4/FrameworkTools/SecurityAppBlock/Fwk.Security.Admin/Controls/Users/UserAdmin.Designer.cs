@@ -52,6 +52,7 @@
             this.btnchangePwd = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
             this.txtComments = new DevExpress.XtraEditors.MemoEdit();
+            this.btnUnlock = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -346,10 +347,26 @@
             this.txtComments.Size = new System.Drawing.Size(765, 45);
             this.txtComments.TabIndex = 29;
             // 
+            // btnUnlock
+            // 
+            this.btnUnlock.BackColor = System.Drawing.Color.White;
+            this.btnUnlock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUnlock.Image = global::Fwk.Security.Admin.Properties.Resources.ulock_24;
+            this.btnUnlock.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnUnlock.Location = new System.Drawing.Point(725, 4);
+            this.btnUnlock.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUnlock.Name = "btnUnlock";
+            this.btnUnlock.Size = new System.Drawing.Size(148, 32);
+            this.btnUnlock.TabIndex = 33;
+            this.btnUnlock.Text = "Desbloquear";
+            this.btnUnlock.UseVisualStyleBackColor = true;
+            this.btnUnlock.Click += new System.EventHandler(this.btnUnlock_Click);
+            // 
             // UserAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnUnlock);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.btnchangePwd);
             this.Controls.Add(this.btnRemove);
@@ -403,5 +420,6 @@
         private System.Windows.Forms.Button btnchangePwd;
         private System.Windows.Forms.Button btnApprove;
         private DevExpress.XtraEditors.MemoEdit txtComments;
+        private System.Windows.Forms.Button btnUnlock;
     }
 }
