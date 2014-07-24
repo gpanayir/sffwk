@@ -86,10 +86,6 @@
     <Reference Include="Fwk.DataBase">
       <HintPath>..\..\..\Libraries\Framework\Fwk.DataBase.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
     <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -173,6 +169,12 @@
     <Compile Include="Forms\dockPanelConfigManager.Designer.cs">
       <DependentUpon>dockPanelConfigManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmExportXmlToBd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmExportXmlToBd.Designer.cs">
+      <DependentUpon>frmExportXmlToBd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,6 +220,9 @@
     <EmbeddedResource Include="Forms\dockPanelConfigManager.resx">
       <SubType>Designer</SubType>
       <DependentUpon>dockPanelConfigManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmExportXmlToBd.resx">
+      <DependentUpon>frmExportXmlToBd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMain.resx">
       <SubType>Designer</SubType>

@@ -48,6 +48,7 @@ namespace ConfigurationApp
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnExportXmlToBd = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -56,9 +57,9 @@ namespace ConfigurationApp
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(2, 49);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -105,14 +106,14 @@ namespace ConfigurationApp
             // 
             this.tsMenuNewAppClientConfig.Image = global::ConfigurationApp.Properties.Resources.documents_small;
             this.tsMenuNewAppClientConfig.Name = "tsMenuNewAppClientConfig";
-            this.tsMenuNewAppClientConfig.Size = new System.Drawing.Size(111, 22);
+            this.tsMenuNewAppClientConfig.Size = new System.Drawing.Size(103, 22);
             this.tsMenuNewAppClientConfig.Text = "New";
             // 
             // tsMenuLoadAppClientConfig
             // 
             this.tsMenuLoadAppClientConfig.Image = global::ConfigurationApp.Properties.Resources.open_folder_small;
             this.tsMenuLoadAppClientConfig.Name = "tsMenuLoadAppClientConfig";
-            this.tsMenuLoadAppClientConfig.Size = new System.Drawing.Size(111, 22);
+            this.tsMenuLoadAppClientConfig.Size = new System.Drawing.Size(103, 22);
             this.tsMenuLoadAppClientConfig.Text = "Open";
             // 
             // tsMenuItemSave
@@ -160,12 +161,13 @@ namespace ConfigurationApp
             this.btnNewProvider,
             this.btnQuitProvider,
             this.btnExport,
+            this.btnExportXmlToBd,
             this.toolStripSeparator,
             this.toolStripSeparator1,
             this.helpToolStripButton});
             this.toolStripAppClientConfig.Location = new System.Drawing.Point(0, 24);
             this.toolStripAppClientConfig.Name = "toolStripAppClientConfig";
-            this.toolStripAppClientConfig.Size = new System.Drawing.Size(116, 25);
+            this.toolStripAppClientConfig.Size = new System.Drawing.Size(193, 25);
             this.toolStripAppClientConfig.TabIndex = 7;
             this.toolStripAppClientConfig.Text = "toolStrip1";
             // 
@@ -227,7 +229,7 @@ namespace ConfigurationApp
             this.helpToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripButton.Image")));
             this.helpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.helpToolStripButton.Name = "helpToolStripButton";
-            this.helpToolStripButton.Size = new System.Drawing.Size(23, 20);
+            this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.helpToolStripButton.Text = "He&lp";
             this.helpToolStripButton.Visible = false;
             // 
@@ -240,7 +242,17 @@ namespace ConfigurationApp
             this.label1.Size = new System.Drawing.Size(778, 17);
             this.label1.TabIndex = 8;
             this.label1.Text = "Para agregar  un nuevo ConfigManager debe editar el archivo .config de esta aplic" +
-                "acion agregando un nuevo proveedor.-";
+    "acion agregando un nuevo proveedor.-";
+            // 
+            // btnExportXmlToBd
+            // 
+            this.btnExportXmlToBd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExportXmlToBd.Image = ((System.Drawing.Image)(resources.GetObject("btnExportXmlToBd.Image")));
+            this.btnExportXmlToBd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportXmlToBd.Name = "btnExportXmlToBd";
+            this.btnExportXmlToBd.Size = new System.Drawing.Size(23, 22);
+            this.btnExportXmlToBd.Text = "toolStripButton1";
+            this.btnExportXmlToBd.Click += new System.EventHandler(this.btnExportXmlToBd_Click);
             // 
             // frmMain
             // 
@@ -253,7 +265,7 @@ namespace ConfigurationApp
             this.Controls.Add(this.toolStripAppClientConfig);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
             this.Text = "Fwk libraries configuration";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -292,6 +304,7 @@ namespace ConfigurationApp
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripButton btnExportXmlToBd;
     }
 }
 
