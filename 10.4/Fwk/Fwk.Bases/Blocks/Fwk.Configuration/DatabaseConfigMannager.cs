@@ -224,15 +224,16 @@ namespace Fwk.Configuration
         {
 
 
-            ConfigurationFile wConfigurationFile = _Repository.GetConfigurationFile(provider.Name);
+            ConfigurationFile wConfigurationFile = GetFromDatabase(provider.BaseConfigFile, pCnnStringName);
+            //_Repository.GetConfigurationFile(provider.Name);
 
-            if (wConfigurationFile == null)
-            {
-                wConfigurationFile = GetFromDatabase(provider.BaseConfigFile, pCnnStringName);
-                wConfigurationFile.ProviderName = provider.Name;
-                _Repository.AddConfigurationFile(wConfigurationFile);
+            //if (wConfigurationFile == null)
+            //{
+            //    wConfigurationFile = GetFromDatabase(provider.BaseConfigFile, pCnnStringName);
+            //    wConfigurationFile.ProviderName = provider.Name;
+            //    _Repository.AddConfigurationFile(wConfigurationFile);
 
-            }
+            //}
 
 
             return wConfigurationFile;
@@ -274,8 +275,6 @@ namespace Fwk.Configuration
 
                                                                              select s;
 
-
-
                     foreach (fwk_ConfigManager fwk_Config in fwk_ConfigManagerList.OrderBy(p => p.group))
                     {
                         if (!groupAuxiliar.Equals(fwk_Config.group))
@@ -287,10 +286,9 @@ namespace Fwk.Configuration
                         }
 
                         k = new Key();
-                        k.Encrypted = Convert.ToBoolean(fwk_Config.encrypted);
-                        k.Name = Convert.ToString(fwk_Config.key);
-                        k.Value.Text = Convert.ToString(fwk_Config.value);
-
+                        k.Encrypted = fwk_Config.encrypted;
+                        k.Name = fwk_Config.key;
+                        k.Value.Text = fwk_Config.value;
 
                         g.Keys.Add(k);
                     }
