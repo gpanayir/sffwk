@@ -276,33 +276,6 @@ namespace Fwk.HelperFunctions
             return strIn;
         }
 
-        /// <summary>
-        /// Retorna un array de string separados por "separator" de una enumeracion.- 
-        /// Utiliza la porcion nunmerica de la enumeracion.- es decir su valor numerico no el valor de nombre
-        /// </summary>
-        /// <param name="list">lista de enumeraciones</param>
-        /// <param name="separator">Caracter separadors</param>
-        /// <returns>EJ "1,2,3"</returns>
-        [Obsolete("Use GetStringBuilderWhitSeparatorFromEnum(IList<int> list, char separator)")]
-        public static StringBuilder GetStringBuilderWhitSeparatorFromEnum(IList list, char separator)
-        {
-            StringBuilder strIn = new StringBuilder();
-            if (list != null)
-            {
-
-                foreach (object t in list)
-                {
-                    int val = (int)t;
-                    strIn.Append(val);
-                    strIn.Append(separator);
-                }
-            }
-            if (strIn.Length > 0)
-                strIn.Remove(strIn.Length - 1, 1);
-
-            return strIn;
-        }
-
         /// Retorna un array de string separados por "separator" de una enumeracion.- 
         /// Utiliza la porcion nunmerica de la enumeracion.- es decir su valor numerico no el valor de nombre
         /// </summary>
