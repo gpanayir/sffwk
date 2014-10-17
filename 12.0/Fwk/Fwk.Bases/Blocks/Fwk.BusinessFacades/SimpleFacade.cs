@@ -191,14 +191,14 @@ namespace Fwk.BusinessFacades
                 te.ErrorId = "7003";
                 throw te;
             }
-           
-           var wRequest = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequest, reqType, new JsonSerializerSettings());
-           
+            //var wRequest = Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(reqType, jsonRequest);
+           //var wRequest = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequest, reqType, new JsonSerializerSettings());
+            IServiceContract wRequest = Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<IServiceContract>(jsonRequest);
 
            IServiceContract res = ExecuteService(providerName, (IServiceContract)wRequest);
-           wResult = Newtonsoft.Json.JsonConvert.SerializeObject(res, Newtonsoft.Json.Formatting.None);
-           
+           //wResult = Newtonsoft.Json.JsonConvert.SerializeObject(res, Newtonsoft.Json.Formatting.None);
 
+           wResult = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<IServiceContract>(res);
             return wResult;
 
 

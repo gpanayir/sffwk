@@ -185,7 +185,8 @@ namespace Fwk.HelperFunctions
 
 			return wResObj;
 		}
-
+       
+      
 		/// <summary>
 		/// 
 		/// </summary>
@@ -258,6 +259,41 @@ namespace Fwk.HelperFunctions
 
 		#endregion
 
+        /// <summary>
+        /// Serealiza pobject to json
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string SerializeObjectToJson<T>( object obj)
+        {
+            MemoryStream stream1 = new MemoryStream();
+            System.Runtime.Serialization.Json.DataContractJsonSerializer ser = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(T));
+            ser.WriteObject(stream1, obj);
+
+            stream1.Position = 0;
+            StreamReader sr = new StreamReader(stream1);
+            return sr.ReadToEnd();
+        }
+
+   
+          
+        //}
+        /// <summary>
+        /// deserialize an instance of type T from JSON
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        public static T DeSerializeObjectFromJson<T>(string json)
+        {
+            var instance = Activator.CreateInstance<T>();
+            using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(json)))
+            {
+                var serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(instance.GetType());
+                return (T)serializer.ReadObject(ms);
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
