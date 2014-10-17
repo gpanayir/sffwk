@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace Fwk.Bases.Test
 {
@@ -81,7 +84,60 @@ namespace Fwk.Bases.Test
            Person p4 = personList.Create("Robert", new Object[] { 3000, "Robert" });
         }
 
+        private void btnJSON_Click(object sender, EventArgs e)
+        {
+            EventResponse wEventResponse = new EventResponse();
+            IServiceContract sc = (IServiceContract)wEventResponse;
+            EventResponseParams wEventResponseParams = new EventResponseParams();
+            wEventResponseParams.AuthModesResponse = new EventResponseParams.AuthenticationModesResponse();
+            wEventResponseParams.AuthModesResponse.Domains = new DomainList();
+
+            Domain d = new Domain();
+            d.Id = "1";
+            d.Name = "asdsad";
+            wEventResponseParams.AuthModesResponse.Domains.Add(d);
+            d = new Domain();
+            d.Id = "2";
+            d.Name = "allus";
+            wEventResponseParams.AuthModesResponse.Domains.Add(d);
+
+            wEventResponseParams.TrackingGUID = Guid.NewGuid();
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Formatting = Formatting.None;
+            wEventResponse.BusinessData = wEventResponseParams;
+            settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+            
+            //String res = Newtonsoft.Json.JsonConvert.SerializeObject(wEventResponse, settings);
+            //String res2 = Newtonsoft.Json.JsonConvert.SerializeObject(sc, settings);
+
+         
+
+            String xml = wEventResponse.GetXml();
+            
+            //EventResponse response2 = Newtonsoft.Json.JsonConvert.DeserializeObject<EventResponse>(res2, settings);
+
+            String res3 = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<EventResponse>( wEventResponse);
+            EventResponse response3 = (EventResponse)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson < EventResponse>( res3);
 
 
+
+            IServiceContract res333 = (IServiceContract)Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(IServiceContract), xml);
+
+
+
+   
+            //response2 = new TResponse();
+            //response2.SetXml(xml);
+
+            //response2.SetXml(xml);
+        }
+
+      
     }
+
+   
 }

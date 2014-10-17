@@ -66,6 +66,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -88,6 +92,8 @@
     <Compile Include="Colaborator.cs" />
     <Compile Include="Domain.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventResponseParams.cs" />
+    <Compile Include="ExecuteEventISVC.cs" />
     <Compile Include="frmEntitiesTest.cs">
       <SubType>Form</SubType>
     </Compile>

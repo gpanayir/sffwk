@@ -132,11 +132,12 @@ namespace Fwk.Bases.Connector
                 settings.Formatting = Formatting.None;
 
                 wcfRes = svcProxy.ExecuteService(wcfReq);
-             
-                
-
             }
-            TResponse response = Newtonsoft.Json.JsonConvert.DeserializeObject<TResponse>(wcfRes.ExecuteServiceResult, settings);
+            //TResponse response = Newtonsoft.Json.JsonConvert.DeserializeObject<TResponse>(wcfRes.ExecuteServiceResult, settings);
+            //response = new TResponse();
+            //response.SetXml(wcfRes.ExecuteServiceResult);
+            TResponse response = (TResponse)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<TResponse>(wcfRes.ExecuteServiceResult);
+
             response.InitializeHostContextInformation();
             return response;
         }
