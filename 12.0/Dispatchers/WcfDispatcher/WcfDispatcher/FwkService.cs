@@ -5,13 +5,15 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Diagnostics;
+using Fwk.Bases.Blocks.Fwk.BusinessFacades;
+using System.ServiceModel.Channels;
+using System.Net;
 
 namespace WcfDispatcher
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public class FwkService : IFwkService
     {
-        int x = 0            ;
         String sessionId = string.Empty;
         Fwk.BusinessFacades.SimpleFacade fw = new Fwk.BusinessFacades.SimpleFacade();
 
@@ -22,12 +24,20 @@ namespace WcfDispatcher
         /// <param name="serviceName"></param>
         /// <param name="jsonRequets"></param>
         /// <returns></returns>
-         string IFwkService.ExecuteService(String providerName, String serviceName, String jsonRequets)
+        string IFwkService.ExecuteService(String providerName, String serviceName, String jsonRequets)
         {
-            x = x + 1;
-            
-            System.Diagnostics.Trace.WriteLine(String.Concat(OperationContext.Current.SessionId," " ,x));
-            return fw.ExecuteServiceJson(providerName, serviceName, jsonRequets);
+            string[] computer_name = null;
+            HostContext hostContext = new HostContext();
+            OperationContext context = OperationContext.Current;
+            MessageProperties prop = context.IncomingMessageProperties;
+            RemoteEndpointMessageProperty endpoint = prop[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
+            computer_name = Dns.GetHostEntry(endpoint.Address).HostName.Split(new Char[] { '.' });
+
+            hostContext.HostIp = endpoint.Address;
+            if (computer_name.Count() > 0)
+                hostContext.HostName = computer_name[0].ToString();
+
+            return fw.ExecuteServiceJson(providerName, serviceName, jsonRequets, hostContext);
 
         }
 
@@ -35,7 +45,7 @@ namespace WcfDispatcher
     }
 
 
-    
+
 
 
 }

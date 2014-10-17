@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Collections.Generic;
 using Fwk.ConfigSection;
 using Newtonsoft.Json;
+using Fwk.Bases.Blocks.Fwk.BusinessFacades;
 
 namespace Fwk.BusinessFacades
 {
@@ -165,7 +166,7 @@ namespace Fwk.BusinessFacades
         /// <returns>JSON con el resultado de la  ejecución del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public string ExecuteServiceJson(string providerName, string serviceName, string jsonRequest)
+        public string ExecuteServiceJson(string providerName, string serviceName, string jsonRequest, HostContext hostContext)
         {
             string wResult;
 
@@ -191,8 +192,10 @@ namespace Fwk.BusinessFacades
                 te.ErrorId = "7003";
                 throw te;
             }
-            //var wRequest = Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(reqType, jsonRequest);
+           //var wRequest = Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(reqType, jsonRequest);
            //var wRequest = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequest, reqType, new JsonSerializerSettings());
+           ((IServiceContract)wRequest).ContextInformation.HostName = hostContext.HostName;
+           ((IServiceContract)wRequest).ContextInformation.HostIp = hostContext.HostIp;
             IServiceContract wRequest = Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<IServiceContract>(jsonRequest);
 
            IServiceContract res = ExecuteService(providerName, (IServiceContract)wRequest);

@@ -14,6 +14,7 @@ namespace Fwk.Bases
         string _ProviderName;
 		string _UserId;
         string _HostName;
+        string _HostIp;
         string _ServerName;
         DateTime _ServerTime = new DateTime();
         DateTime _HostTime = new DateTime();
@@ -35,6 +36,15 @@ namespace Fwk.Bases
         {
             get { return _HostName; }
             set { _HostName = value; }
+        }
+
+        /// <summary>
+        /// Indica `la IP del host que inicio la peticion del servicio .-
+        /// </summary>
+        public string HostIp
+        {
+            get { return _HostIp; }
+            set { _HostIp = value; }
         }
 
         /// <summary>
