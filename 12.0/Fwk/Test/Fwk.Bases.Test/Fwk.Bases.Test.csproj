@@ -92,6 +92,7 @@
     <Compile Include="Colaborator.cs" />
     <Compile Include="Domain.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="EventRequest.cs" />
     <Compile Include="EventResponseParams.cs" />
     <Compile Include="ExecuteEventISVC.cs" />
     <Compile Include="frmEntitiesTest.cs">
@@ -253,6 +254,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="GetColaboratorDataByParamsResponse.xml" />
+    <Content Include="TextFile1.txt" />
     <Content Include="XmlWhitAttributes.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -110,30 +110,37 @@ namespace Fwk.Bases.Test
                 TypeNameHandling = TypeNameHandling.All,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
+            var sd = Procesar<EventResponse, EventResponse>(wEventResponse);
+
             
-            //String res = Newtonsoft.Json.JsonConvert.SerializeObject(wEventResponse, settings);
-            //String res2 = Newtonsoft.Json.JsonConvert.SerializeObject(sc, settings);
 
-         
+            String jsonReq = Fwk.HelperFunctions.FileFunctions.OpenTextFile(@"E:\Projects\fwk\trunk\12.0\Fwk\Test\Fwk.Bases.Test\TextFile1.txt");
 
-            String xml = wEventResponse.GetXml();
+            EventRequest req2 = (EventRequest)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<EventRequest>(jsonReq);
+
+            IServiceContract req = (IServiceContract)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<IServiceContract>( jsonReq);
+
+
+           String xml = wEventResponse.GetXml();
             
             //EventResponse response2 = Newtonsoft.Json.JsonConvert.DeserializeObject<EventResponse>(res2, settings);
 
-            String res3 = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<EventResponse>( wEventResponse);
-            EventResponse response3 = (EventResponse)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson < EventResponse>( res3);
-
-
-
-            IServiceContract res333 = (IServiceContract)Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(IServiceContract), xml);
-
-
+            //String res3 = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<EventResponse>( wEventResponse);
+            //EventResponse response3 = (EventResponse)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson < EventResponse>( res3);
 
    
-            //response2 = new TResponse();
-            //response2.SetXml(xml);
+        }
 
-            //response2.SetXml(xml);
+
+        public TResponse Procesar<TRequest, TResponse>(TRequest req)
+            where TRequest : IServiceContract
+            where TResponse : IServiceContract, new()
+        {
+            String json = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<TRequest>(req);
+
+            TResponse res = (TResponse)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<TResponse>(json);
+
+            return res;
         }
 
       
