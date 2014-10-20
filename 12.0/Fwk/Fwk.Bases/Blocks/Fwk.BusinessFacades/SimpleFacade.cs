@@ -194,14 +194,17 @@ namespace Fwk.BusinessFacades
             }
            //var wRequest = Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(reqType, jsonRequest);
            //var wRequest = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequest, reqType, new JsonSerializerSettings());
-           ((IServiceContract)wRequest).ContextInformation.HostName = hostContext.HostName;
-           ((IServiceContract)wRequest).ContextInformation.HostIp = hostContext.HostIp;
-            IServiceContract wRequest = Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<IServiceContract>(jsonRequest);
+           
+           //IServiceContract wRequest = Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<IServiceContract>(jsonRequest);
+           var wRequest = (IServiceContract)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson(reqType, jsonRequest);
+           wRequest.ContextInformation.HostName = hostContext.HostName;
+           wRequest.ContextInformation.HostIp = hostContext.HostIp;
 
            IServiceContract res = ExecuteService(providerName, (IServiceContract)wRequest);
            //wResult = Newtonsoft.Json.JsonConvert.SerializeObject(res, Newtonsoft.Json.Formatting.None);
-
-           wResult = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<IServiceContract>(res);
+           Type resType = Type.GetType(wServiceConfiguration.Response);
+           wResult = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson(resType, res);
+           //wResult = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<IServiceContract>(res);
             return wResult;
 
 

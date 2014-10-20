@@ -118,18 +118,19 @@ namespace Fwk.Bases.Connector
 
             ExecuteServiceRequest wcfReq = new ExecuteServiceRequest();
             ExecuteServiceResponse wcfRes = null;
-            JsonSerializerSettings settings = null;
+            //JsonSerializerSettings settings = null;
 
             wcfReq.serviceName = req.ServiceName;
-            wcfReq.providerName = _ServiceMetadataProviderName; 
-            wcfReq.jsonRequets = Newtonsoft.Json.JsonConvert.SerializeObject(req, Formatting.None);
+            wcfReq.providerName = _ServiceMetadataProviderName;
+            wcfReq.jsonRequets = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<TRequest>(req);
+            //wcfReq.jsonRequets = Newtonsoft.Json.JsonConvert.SerializeObject(req, Formatting.None);
 
             using (FwkServiceClient svcProxy = new WCFServiceReference.FwkServiceClient(binding, address))
             {
                
                 svcProxy.Open();
-                settings = new JsonSerializerSettings();
-                settings.Formatting = Formatting.None;
+                //settings = new JsonSerializerSettings();
+                //settings.Formatting = Formatting.None;
 
                 wcfRes = svcProxy.ExecuteService(wcfReq);
             }
