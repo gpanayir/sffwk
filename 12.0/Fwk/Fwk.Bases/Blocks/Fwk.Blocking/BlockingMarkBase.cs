@@ -9,9 +9,9 @@ using Fwk.Exceptions;
 using System.Diagnostics;
 using Fwk.Blocking;
 
-
 namespace Fwk.Blocking
 {
+
     /// <summary>
     /// Marca base de blocking .- Si decea implementar su propia clase de marcas haga heredadr su 
     /// clase de IBlockingMark e implemente una clase IBlockingEngine para la nueva definicion 
@@ -22,6 +22,7 @@ namespace Fwk.Blocking
     {
         
         #region Private members
+
         private Boolean _AlreadyExists;
         private DateTime? _DueDate;
         private String _Process;
@@ -32,9 +33,9 @@ namespace Fwk.Blocking
         private String _TableName = "BlockingMarks";
         private String _Attribute;
         private String _AttValue;
-
        
         #endregion
+
 
         #region Constructors
 
@@ -51,7 +52,6 @@ namespace Fwk.Blocking
             //Set default values
             SetValues();
         }
-
         /// <summary>
         /// Constructor que asigna un nombre de tabla de modo de tratar con una tabla que no 
         /// sea la por defecto de blocking.
@@ -65,8 +65,6 @@ namespace Fwk.Blocking
            _FwkGuid = pGuid;
            SetValues();
        }
-
-
         /// <summary>
         /// Constructor por defecto 
         /// </summary>
@@ -78,7 +76,6 @@ namespace Fwk.Blocking
             _FwkGuid = pGuid;
             SetValues();
         }
-
         /// <summary>
         /// Constructor por defecto 
         /// este constructor genera un nuevo valor Guid par ala marca.
@@ -108,6 +105,7 @@ namespace Fwk.Blocking
 
         #endregion
 
+
         #region Properties
 
         public String AttValue
@@ -128,7 +126,6 @@ namespace Fwk.Blocking
             get { return _BlockingId; }
             set { _BlockingId = value; }
         }
-
         /// <summary>
         /// Nombre del proceso de nogocio que requiere el bloqueo
         /// </summary>
@@ -137,7 +134,6 @@ namespace Fwk.Blocking
             get { return _Process; }
             set { _Process = value; }
         }
-
         /// <summary>
         /// Guid del Contexto de Bloqueo.- (solo lectura)
         /// </summary>
@@ -146,16 +142,14 @@ namespace Fwk.Blocking
             get { return _FwkGuid; }
             set { _FwkGuid = value; }
         }
-
         /// <summary>
         /// 
         /// </summary>
         public DateTime? DueDate
         {
             get { return _DueDate; }
-            //set { m_DueDate = value; }
+            set { _DueDate = value; }
         }
-
         /// <summary>
         /// Indica si la marca existe en la base de datos.
         /// </summary>
@@ -164,7 +158,6 @@ namespace Fwk.Blocking
             get { return _AlreadyExists; }
             set { _AlreadyExists = value; }
         }
-
         /// <summary>
         /// Time-To-Live del contexto de bloqueo.-
         /// </summary>
@@ -185,7 +178,6 @@ namespace Fwk.Blocking
             get { return _User; }
             set { _User = value; }
         }
-
         /// <summary>
         /// Nombre de la tabla de bloqueo.- 
         /// </summary>
@@ -195,6 +187,7 @@ namespace Fwk.Blocking
         }
 
         #endregion
+
 
         #region Private Methods
         

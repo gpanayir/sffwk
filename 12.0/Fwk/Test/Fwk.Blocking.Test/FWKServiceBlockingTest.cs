@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fwk.Blocking;
 using Fwk.Configuration;
+using Fwk.Blocking.ISVC;
 
 
 namespace Test.Blocking
@@ -13,23 +14,21 @@ namespace Test.Blocking
     /// Summary description for UnitTest1
     /// </summary>
     [TestClass]
-    public class StandarBlockingTest
+    public class FWKServiceBlockingTest
     {
-        BlockingMarkBase _BlockingMarkBase = null;
-        public StandarBlockingTest()
+
+        public FWKServiceBlockingTest()
         {
-            _BlockingMarkBase = new BlockingMarkBase();
-            _BlockingMarkBase.Process = "Test";
-            _BlockingMarkBase.User = Environment.UserName;
-            try
-            {
-                if (ConfigurationManager.GetProperty("BlockingModel", "TestTTL") != null)
-                    _BlockingMarkBase.TTL = Convert.ToInt32(ConfigurationManager.GetProperty("BlockingModel", "TTLInfo"));
-            }
-            catch
-            {
-                _BlockingMarkBase.TTL = 10;
-            }
+          //int TTLInfo=0;
+          //  try
+          //  {
+          //      if (ConfigurationManager.GetProperty("BlockingModel", "TestTTL") != null)
+          //           TTLInfo = Convert.ToInt32(ConfigurationManager.GetProperty("BlockingModel", "TTLInfo"));
+          //  }
+          //  catch
+          //  {
+               
+          //  }
         }
 
         private TestContext testContextInstance;
@@ -73,16 +72,28 @@ namespace Test.Blocking
         #endregion
 
         [TestMethod]
-        public void StantarBlockingEngine()
+        public void ClearBlockingMarksService()
         {
-            //FwkBlockingEngine wFwkBlockingEngine = new FwkBlockingEngine();
+            string err = String.Empty;
+            try
+            {
+                /// Llama al método que limpia las marcas para las
+                /// cuales se cumplióel TTL.
+                //BlockingEngineBase.ClearBlockingMarks();
+                Fwk.Blocking.ISVC.ClearBlockingMarksReq req = new Fwk.Blocking.ISVC.ClearBlockingMarksReq();
+                ClearBlockingMarksRes res = req.ExecuteService<ClearBlockingMarksReq, ClearBlockingMarksRes>(req);
 
-   
-
-      
-
-            //wFwkBlockingEngine.Create(_BlockingMarkBase);
-
+                if (res.Error != null)
+                {
+                    err =  res.Error.Message;
+                }
+            }
+            catch (Exception ex)
+            {
+                err =  Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+            }
+            Assert.AreEqual(err, String.Empty, err);
         }
+       
     }
 }

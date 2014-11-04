@@ -8,7 +8,6 @@ using Fwk.Configuration;
 using Fwk.Exceptions;
 using System.Diagnostics;
 
-
 namespace Fwk.Blocking
 {
     /// <summary>
@@ -16,7 +15,6 @@ namespace Fwk.Blocking
     /// </summary>
     internal class BlockingEngineDAC
     {
-
         static string msz_ConnectionString;
         static BlockingEngineDAC()
         {
@@ -56,7 +54,7 @@ namespace Fwk.Blocking
                     if (pCustomParametersToInsert != null)
                         if (pCustomParametersToInsert.Count != 0)
                             wCmd.Parameters.AddRange(pCustomParametersToInsert.ToArray());
-                   
+
 
                     wParam = wCmd.Parameters.Add("@BlockingId", SqlDbType.Int);
                     wParam.Direction = ParameterDirection.Output;
@@ -86,8 +84,6 @@ namespace Fwk.Blocking
                         wParam.Value = null;
                     else
                         wParam.Value = pIBlockingMark.Process;
-
-
 
                     wCnn.Open();
                     wCmd.ExecuteNonQuery();
@@ -124,7 +120,7 @@ namespace Fwk.Blocking
                     wParam = wCmd.Parameters.Add("@BlockingId", SqlDbType.Int);
                     wParam.Value = pBlockingMark.BlockingId;
 
-                    
+
                     wParam = wCmd.Parameters.Add("@FwkGuid", SqlDbType.UniqueIdentifier);
                     wParam.Value = pBlockingMark.FwkGuid;
 
@@ -138,6 +134,45 @@ namespace Fwk.Blocking
                 }
                 finally
                 {
+                    if (wCnn.State == ConnectionState.Open)
+                        wCnn.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Limpia las marcas de dicho usuario
+        /// </summary>
+        /// <param name="pBlockingTable"></param>
+        /// <param name="pUserName"></param>
+        internal static void ClearBlockingMarksByUserName(String pBlockingTable, String pUserName)
+        { 
+        /// Declaro conexión y comando
+            using (SqlConnection wCnn = new SqlConnection(msz_ConnectionString))
+            using (SqlCommand wCmd = new SqlCommand(pBlockingTable + "_d_ByUserName", wCnn))
+            {
+                try
+                {
+                    wCmd.CommandType = CommandType.StoredProcedure;
+
+                    /// Se setean los parámetros.
+                    SqlParameter wParam;
+
+                    wParam = wCmd.Parameters.Add("@UserName", SqlDbType.VarChar, 32);
+                    wParam.Value = pUserName;
+
+                    /// Se abre la conexión y se ejecuta el comando.
+                    wCnn.Open();
+                    wCmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    /// Si se produjo alguna excepción, se reenvía
+                    throw ex;
+                }
+                finally
+                {
+                    /// Cierra la conexión si está abierta
                     if (wCnn.State == ConnectionState.Open)
                         wCnn.Close();
                 }
@@ -195,7 +230,7 @@ namespace Fwk.Blocking
         /// <param name="pCustomParametersExist">Parametros personalizados</param>
         /// <param name="pBlockingTable">Nombre de la tabla de Blocking</param>
         /// <returns>Registro blocking</returns>
-        internal static bool Exists(IBlockingMark pIBlockingMark,String pBlockingTable)
+        internal static bool Exists(IBlockingMark pIBlockingMark, String pBlockingTable)
         {
             SqlParameter wParam;
             using (SqlConnection wCnn = new SqlConnection(msz_ConnectionString))
@@ -225,9 +260,8 @@ namespace Fwk.Blocking
                     wCnn.Open();
                     wCmd.ExecuteNonQuery();
                     wExist = Boolean.Parse(wCmd.Parameters["@Exist"].Value.ToString());
-                  
-                    return wExist;
 
+                    return wExist;
                 }
                 catch (Exception ex)
                 {
@@ -239,9 +273,9 @@ namespace Fwk.Blocking
                     if (wCnn.State == ConnectionState.Open)
                         wCnn.Close();
                 }
-
             }
         }
+
         /// <summary>
         /// Verifica si existe marcas. Si exite alguna marca retorna los usuarios.
         /// </summary>
@@ -249,11 +283,11 @@ namespace Fwk.Blocking
         /// <param name="pCustomParametersExist">Parametros personalizados</param>
         /// <param name="pBlockingTable">Parametros personalizados</param>
         /// <returns></returns>
-        internal static List<String> ExistsUsers(IBlockingMark pIBlockingMark, List<SqlParameter> pCustomParametersExist,String pBlockingTable)
+        internal static List<String> ExistsUsers(IBlockingMark pIBlockingMark, List<SqlParameter> pCustomParametersExist, String pBlockingTable)
         {
-
             List<string> strUserList = new List<string>();
             SqlParameter wParam;
+
             using (SqlConnection wCnn = new SqlConnection(msz_ConnectionString))
             using (SqlCommand wCmd = new SqlCommand(pBlockingTable + "_g_ExistUser", wCnn))
             {
@@ -296,6 +330,7 @@ namespace Fwk.Blocking
                         wParam = wCmd.Parameters.Add("@Process", SqlDbType.VarChar, 50);
                         wParam.Value = pIBlockingMark.Process;
                     }
+
                     //TableName
                     if (pIBlockingMark.TableName != null)
                     {
@@ -331,16 +366,15 @@ namespace Fwk.Blocking
         /// <returns>Tabla con laas marcas obtenidas.-</returns>
         internal static DataTable GetByParam(IBlockingMark pIBlockingMark, List<SqlParameter> pCustomParametersGetByParam)
         {
-
             DataSet wDS = new DataSet();
             SqlParameter wParam;
             string wUsuario = string.Empty;
+
             using (SqlConnection wCnn = new SqlConnection(msz_ConnectionString))
             using (SqlCommand wCmd = new SqlCommand(pIBlockingMark.TableName + "_s", wCnn))
             {
                 try
                 {
-
                     wCmd.CommandType = CommandType.StoredProcedure;
                     if (pCustomParametersGetByParam != null)
                     {
@@ -354,13 +388,16 @@ namespace Fwk.Blocking
                     wParam = wCmd.Parameters.Add("@BlockingId", SqlDbType.Int, 4);
                     wParam.Value = pIBlockingMark.BlockingId;
 
+
                     //TableName
+
                     wParam = wCmd.Parameters.Add("@TableName", SqlDbType.VarChar, 100);
                     wParam.Value = pIBlockingMark.TableName;
 
                     //Attribute
                     wParam = wCmd.Parameters.Add("@Attribute", SqlDbType.VarChar, 100);
                     wParam.Value = pIBlockingMark.Attribute;
+
 
                     //TTL
                     wParam = wCmd.Parameters.Add("@TTL", SqlDbType.Int, 4);
@@ -419,36 +456,67 @@ namespace Fwk.Blocking
                     wCmd.CommandType = CommandType.StoredProcedure;
 
                     //BlockingId
-                    wParam = wCmd.Parameters.Add("@BlockingId", SqlDbType.Int, 4);
-                    wParam.Value = pIBlockingMark.BlockingId;
+                    if (pIBlockingMark.BlockingId != 0)
+                    {
+                        wParam = wCmd.Parameters.Add("@BlockingId", SqlDbType.Int, 4);
+                        wParam.Value = pIBlockingMark.BlockingId;
+                    }
 
                     //TableName
-                    wParam = wCmd.Parameters.Add("@TableName", SqlDbType.VarChar, 100);
-                    wParam.Value = pIBlockingMark.TableName;
+                    if (!string.IsNullOrEmpty(pIBlockingMark.TableName))
+                    {
+                        wParam = wCmd.Parameters.Add("@TableName", SqlDbType.VarChar, 100);
+                        wParam.Value = pIBlockingMark.TableName;
+                    }
 
                     //Attribute
-                    wParam = wCmd.Parameters.Add("@Attribute", SqlDbType.VarChar, 100);
-                    wParam.Value = pIBlockingMark.Attribute;
+                    if (!string.IsNullOrEmpty(pIBlockingMark.Attribute))
+                    {
+                        wParam = wCmd.Parameters.Add("@Attribute", SqlDbType.VarChar, 100);
+                        wParam.Value = pIBlockingMark.Attribute;
+                    }
+
+                    //AttValue
+                    if (!string.IsNullOrEmpty(pIBlockingMark.AttValue))
+                    {
+                        wParam = wCmd.Parameters.Add("@AttValue", SqlDbType.VarChar, 100);
+                        wParam.Value = pIBlockingMark.AttValue;
+                    }
 
                     //TTL
-                    wParam = wCmd.Parameters.Add("@TTL", SqlDbType.Int, 4);
-                    wParam.Value = pIBlockingMark.TTL;
+                    if (pIBlockingMark.TTL != 0)
+                    {
+                        wParam = wCmd.Parameters.Add("@TTL", SqlDbType.Int, 4);
+                        wParam.Value = pIBlockingMark.TTL;
+                    }
 
                     //UserName
-                    wParam = wCmd.Parameters.Add("@UserName", SqlDbType.VarChar, 32);
-                    wParam.Value = pIBlockingMark.User;
+                    if (!string.IsNullOrEmpty(pIBlockingMark.User))
+                    {
+                        wParam = wCmd.Parameters.Add("@UserName", SqlDbType.VarChar, 32);
+                        wParam.Value = pIBlockingMark.User;
+                    }
 
                     //FwkGuid
-                    wParam = wCmd.Parameters.Add("@FwkGuid", SqlDbType.UniqueIdentifier);
-                    wParam.Value = pIBlockingMark.FwkGuid;
+                    if (pIBlockingMark.FwkGuid.HasValue)
+                    {
+                        wParam = wCmd.Parameters.Add("@FwkGuid", SqlDbType.UniqueIdentifier);
+                        wParam.Value = pIBlockingMark.FwkGuid;
+                    }
 
                     //DueDate
-                    wParam = wCmd.Parameters.Add("@DueDate", SqlDbType.DateTime);
-                    wParam.Value = pIBlockingMark.DueDate;
+                    if (pIBlockingMark.DueDate.HasValue)
+                    {
+                        wParam = wCmd.Parameters.Add("@DueDate", SqlDbType.DateTime);
+                        wParam.Value = pIBlockingMark.DueDate;
+                    }
 
                     //Process
-                    wParam = wCmd.Parameters.Add("@Process", SqlDbType.VarChar, 50);
-                    wParam.Value = pIBlockingMark.Process;
+                    if (!string.IsNullOrEmpty(pIBlockingMark.Process))
+                    {
+                        wParam = wCmd.Parameters.Add("@Process", SqlDbType.VarChar, 50);
+                        wParam.Value = pIBlockingMark.Process;
+                    }
 
                     SqlDataAdapter wDA = new SqlDataAdapter(wCmd);
 
