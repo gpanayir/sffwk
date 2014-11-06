@@ -96,8 +96,8 @@ namespace Fwk.Blocking.BlockingService
             }
             catch (Exception ex)
             {
-                BlockingHelper.WriteLog(
-                    String.Concat("Se produjo una excepción al inicializar el servicio.\r\n\r\n" , Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex)),
+                BlockingHelper.WriteLog("\r\nSe produjo una excepción al inicializar el servicio." +
+                    "\r\n\r\n" + ex.ToString(),
                     EventLogEntryType.Error);
 
                 throw ex;
@@ -158,9 +158,9 @@ namespace Fwk.Blocking.BlockingService
             }
             catch (Exception ex)
             {
-                BlockingHelper.WriteLog(
-                      String.Concat("Excepción al intentar limpiar las marcas de bloqueo\r\n", Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex)),
-                     EventLogEntryType.Error);
+                BlockingHelper.WriteLog("\r\nSe produjo una excepción al llamar a " +
+                    "ClearBlockingMarks.\r\nDescripción  Técnica: " + ex.Message +
+                    "\r\n\r\n" + ex.ToString(), EventLogEntryType.Error);
             }
         }
 
