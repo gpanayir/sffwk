@@ -167,6 +167,7 @@
     <Compile Include="Membership\FwkMembership.User.cs" />
     <Compile Include="Membership\FwkMembershipScripts.cs" />
     <Compile Include="Membership\FwkMembership.cs" />
+    <Compile Include="Membership\MembershipEnums.cs" />
     <Compile Include="Membership\RuleProvider.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
