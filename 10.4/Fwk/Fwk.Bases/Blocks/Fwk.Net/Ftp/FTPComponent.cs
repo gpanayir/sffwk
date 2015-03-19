@@ -405,17 +405,12 @@ namespace Fwk.Net.Ftp
             
             }
         }
-        
-
-
 
         /// <summary>
         /// Descarga el archivo remoto. 
-        /// <summary>
-        /// <param name="remFileName">Nombre del archivo remoto</param>
-        /// <param name="fullLocalFileName">Nombre del archivo destino, Ruta+Nombre
-        /// La ruta debe existir y el archivo sera creado.
         /// </summary>
+        /// <param name="remFileName">Nombre del archivo remoto</param>
+        /// <param name="fullLocalFileName">Nombre del archivo destino, Ruta+Nombre La ruta debe existir y el archivo sera creado.</param>
         public void Download(string remFileName, string fullLocalFileName)
         {
             Download(remFileName, fullLocalFileName, false);

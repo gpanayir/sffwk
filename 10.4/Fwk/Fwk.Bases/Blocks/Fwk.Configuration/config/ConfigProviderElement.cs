@@ -71,8 +71,7 @@ namespace Fwk.ConfigSection
         /// Nombre de cadena de coneccion
         ///  
         /// </summary>
-        [ConfigurationProperty("sourceinfo", IsRequired = false, IsKey = false),
-         StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
+        [ConfigurationProperty("sourceinfo", IsRequired = false, IsKey = false)]
         public string SourceInfo
         {
             get
@@ -81,8 +80,13 @@ namespace Fwk.ConfigSection
             }
             set { this["sourceinfo"] = value; }
         }
+
+
+         /// <summary>
+         /// Solo se utiliza en caso de typo sqldatabase y acepta 
+         /// </summary>
+        public Boolean SourceInfoIsConnectionString{get;set;}
        
-    
         #endregion
     }
 }
