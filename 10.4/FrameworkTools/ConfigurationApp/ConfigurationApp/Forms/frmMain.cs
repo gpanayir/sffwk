@@ -14,10 +14,8 @@ namespace ConfigurationApp
 
         #region [Private members]
         private WorkSpace _WorkSpace = new WorkSpace();
-
-        private ConfigurationApp.Forms.dockPanelConfigManager _dockPanelConfigManager = null;
         private Storage _Storage = null;
-        private SelectedRoot m_SelectedRoot = SelectedRoot.None;
+        private SelectedRoot selectedRoot = SelectedRoot.None;
         #endregion
 
         public frmMain()
@@ -27,13 +25,26 @@ namespace ConfigurationApp
             InitializeDocPanels();
             this.Text = string.Concat(this.Text, " version ", Assembly.GetExecutingAssembly().GetName().Version.ToString());
             //if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
-                _dockPanelConfigManager.LoadFiles();
+            dockPanelConfigManager1.LoadFiles();
         }
 
+        private void InitializeDocPanels()
+        {
+            _Storage = new Storage();
+
+            dockPanelConfigManager1.Storage = _Storage;
+
+            dockPanelConfigManager1.Panel = this.splitContainer1.Panel2.Controls;
+            if (!_WorkSpace.Contains(ConfigurationType.ConfigurationManager))
+            {
+                dockPanelConfigManager1.Storage = _Storage;
+                dockPanelConfigManager1.Enter += new EventHandler(_dockPanelConfigManager_Enter);
+
+                _WorkSpace.Add(dockPanelConfigManager1, ConfigurationType.ConfigurationManager);
+            }
+        }
 
         #region Events --> MainMenuStrip
-
-
 
         /// <summary>
         /// Vuelve a cargar todos los archivos tanto de treeview como App client config
@@ -45,64 +56,36 @@ namespace ConfigurationApp
             RefreshAllFiles();
         }
 
-   
-
-        
-
-        #endregion
-
-
-
-        #region Events --> toolStripAppClientConfig
-
-
-
         private void tsButtonRefreshAll_Click(object sender, EventArgs e)
         {
-            _dockPanelConfigManager.SaveIsolatedStorage();
+            dockPanelConfigManager1.SaveIsolatedStorage();
 
             RefreshAllFiles();
         }
-        #endregion
 
+        #endregion
         private void tsButtonConfigManagerShow_Click(object sender, EventArgs e)
         {
             if (!_WorkSpace.Contains(ConfigurationType.ConfigurationManager))
             {
-                _dockPanelConfigManager = new dockPanelConfigManager();
-
-                _dockPanelConfigManager.Storage = _Storage;
-              
-                _dockPanelConfigManager.Panel = this.splitContainer1.Panel2.Controls;
-                
-          
-                _dockPanelConfigManager.Enter += new EventHandler(_dockPanelConfigManager_Enter);
-                _dockPanelConfigManager.FormClosing += new FormClosingEventHandler(_dockPanelConfigManager_FormClosing);
-
-                _dockPanelConfigManager.Show(dockPanel1, Fwk.Controls.Win32.DockState.DockLeft);
-
-                _WorkSpace.Add(_dockPanelConfigManager, ConfigurationType.ConfigurationManager); 
+                dockPanelConfigManager1.Storage = _Storage;
+                dockPanelConfigManager1.Panel = this.splitContainer1.Panel2.Controls;
+                dockPanelConfigManager1.Enter += new EventHandler(_dockPanelConfigManager_Enter);
+                _WorkSpace.Add(dockPanelConfigManager1, ConfigurationType.ConfigurationManager);
             }
         }
-
         void _dockPanelConfigManager_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _WorkSpace.Remove(ConfigurationType.ConfigurationManager); 
+            _WorkSpace.Remove(ConfigurationType.ConfigurationManager);
         }
         void _dockPanelAppConfigClient_FormClosing(object sender, FormClosingEventArgs e)
         {
             _WorkSpace.Remove(ConfigurationType.ApplicationConfiuration);
         }
-        
-
-
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
-
-            _dockPanelConfigManager.SaveIsolatedStorage();
-
+            dockPanelConfigManager1.SaveIsolatedStorage();
         }
 
         private void btnNewProvider_Click(object sender, EventArgs e)
@@ -111,10 +94,7 @@ namespace ConfigurationApp
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-
-
                     RefreshAllFiles();
-
                 }
             }
         }
@@ -130,42 +110,8 @@ namespace ConfigurationApp
                 }
             }
 
-            
         }
 
-     
-
-
-
-
-
-
-        private void InitializeDocPanels()
-        {
-            _Storage = new Storage();
-
-            _dockPanelConfigManager = new dockPanelConfigManager();
-            _dockPanelConfigManager.Storage = _Storage;
-
-            if (!_WorkSpace.Contains(ConfigurationType.ConfigurationManager))
-            {
-                _dockPanelConfigManager = new dockPanelConfigManager();
-
-                _dockPanelConfigManager.Storage = _Storage;
-
-                _dockPanelConfigManager.Panel = this.splitContainer1.Panel2.Controls;
-
-
-                _dockPanelConfigManager.Enter += new EventHandler(_dockPanelConfigManager_Enter);
-                _dockPanelConfigManager.FormClosing += new FormClosingEventHandler(_dockPanelConfigManager_FormClosing);
-
-                _dockPanelConfigManager.Show(dockPanel1, Fwk.Controls.Win32.DockState.DockLeft);
-
-                _WorkSpace.Add(_dockPanelConfigManager, ConfigurationType.ConfigurationManager);
-            }
-
-
-        }
 
         #region File methods
         //private void SaveAllFiles()
@@ -190,21 +136,18 @@ namespace ConfigurationApp
 
         void _dockPanelConfigManager_Enter(object sender, EventArgs e)
         {
-            m_SelectedRoot = SelectedRoot.ConfigManagerRoot;
+            selectedRoot = SelectedRoot.ConfigManagerRoot;
         }
 
         void _dockPanelAppConfigClient_Enter(object sender, EventArgs e)
         {
-            m_SelectedRoot = SelectedRoot.AppConfigRoot;
+            selectedRoot = SelectedRoot.AppConfigRoot;
         }
 
         private void RefreshAllFiles()
         {
-
-
-
-            if (m_SelectedRoot == SelectedRoot.ConfigManagerRoot)
-                _dockPanelConfigManager.RefreshAllFiles();
+            if (selectedRoot == SelectedRoot.ConfigManagerRoot)
+                dockPanelConfigManager1.RefreshAllFiles();
         }
         #endregion
 
@@ -214,7 +157,12 @@ namespace ConfigurationApp
             wFrm.Show();
         }
 
+        private void frmMain_Load(object sender, EventArgs e)
+        {
 
+        }
+
+      
 
     }
 }

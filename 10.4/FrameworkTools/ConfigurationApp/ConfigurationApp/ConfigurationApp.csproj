@@ -27,7 +27,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ManifestCertificateThumbprint>EEC61322099B950A032B3CA952C322600BDF0D26</ManifestCertificateThumbprint>
     <ManifestKeyFile>ConfigurationApp_TemporaryKey.pfx</ManifestKeyFile>
@@ -73,20 +73,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fwk.Bases, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Fwk.Bases">
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
     <Reference Include="Fwk.Bases.FrontEnd, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Controls.Win32, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Framework\Fwk.Controls.Win32.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.DataBase, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Fwk.DataBase">
       <HintPath>..\..\..\Libraries\Framework\Fwk.DataBase.dll</HintPath>
     </Reference>
     <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -167,7 +161,7 @@
       <DependentUpon>UCBServiceGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\dockPanelConfigManager.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\dockPanelConfigManager.Designer.cs">
       <DependentUpon>dockPanelConfigManager.cs</DependentUpon>
@@ -221,8 +215,8 @@
       <DependentUpon>UCBServiceGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\dockPanelConfigManager.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>dockPanelConfigManager.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmExportXmlToBd.resx">
       <DependentUpon>frmExportXmlToBd.cs</DependentUpon>
@@ -286,9 +280,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TortoiseReadOnly.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TortoiseAdded.ico" />

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Fwk.ConfigSection;
 using Fwk.Configuration.Common;
 
 namespace ConfigurationApp.Forms
@@ -53,7 +54,7 @@ namespace ConfigurationApp.Forms
 
             try
             {
-                btnDbCheck.Enabled = false;
+                
                 wConn = CreateConnection();
                 if (wConn == null)
                     return;
@@ -123,27 +124,34 @@ namespace ConfigurationApp.Forms
 
                 progressBar1.Increment(48);
 
-                wBuilder = new StringBuilder();
-                foreach (Group wGrp in wConfigFile.Groups)
-                {
-                    foreach (Fwk.Configuration.Common.Key wKey in wGrp.Keys)
-                    {
-                        wBuilder.Append("INSERT INTO [dbo].[fwk_ConfigManager]([ConfigurationFileName],[group],[key],[encrypted],[value])VALUES(");
-                        wBuilder.Append(string.Concat("'", wFInfo.Name, "', "));
-                        wBuilder.Append(string.Concat("'", wGrp.Name, "', "));
-                        wBuilder.Append(string.Concat("'", wKey.Name, "', "));
-                        wBuilder.Append(string.Concat(Convert.ToInt32(wKey.Encrypted), ", "));
-                        wBuilder.Append(string.Concat("'", wKey.Value.ToString().Replace("'", string.Empty), "'"));
-                        wBuilder.Append(")");
-                        wBuilder.AppendLine();
-                    }
-                }
+                //wBuilder = new StringBuilder();
+                //foreach (Group wGrp in wConfigFile.Groups)
+                //{
+                //    foreach (Fwk.Configuration.Common.Key wKey in wGrp.Keys)
+                //    {
+                //        wBuilder.Append("INSERT INTO [dbo].[fwk_ConfigManager]([ConfigurationFileName],[group],[key],[encrypted],[value])VALUES(");
+                //        wBuilder.Append(string.Concat("'", wFInfo.Name, "', "));
+                //        wBuilder.Append(string.Concat("'", wGrp.Name, "', "));
+                //        wBuilder.Append(string.Concat("'", wKey.Name, "', "));
+                //        wBuilder.Append(string.Concat(Convert.ToInt32(wKey.Encrypted), ", "));
+                //        wBuilder.Append(string.Concat("'", wKey.Value.ToString().Replace("'", string.Empty), "'"));
+                //        wBuilder.Append(")");
+                //        wBuilder.AppendLine();
+                //    }
+                //}
 
                 progressBar1.Increment(40);
+                ConfigProviderElement tempProvider = new ConfigProviderElement();
+                tempProvider.BaseConfigFile = wFInfo.Name;
+                tempProvider.ConfigProviderType = ConfigProviderType.sqldatabase;
+                tempProvider.SourceInfo = wConn.ConnectionString;
+                tempProvider.SourceInfoIsConnectionString = true;
+                //Fwk.Configuration.ConfigurationManager.ConfigProvider.AddNewProvider(tempProvider);
 
-                wConn.Open();
-                wCmd = new SqlCommand(wBuilder.ToString(), wConn) { CommandType = CommandType.Text };
-                wCmd.ExecuteNonQuery();
+                Fwk.Configuration.ConfigurationManager_CRUD.Import(wConfigFile,tempProvider);
+                //wConn.Open();
+                //wCmd = new SqlCommand(wBuilder.ToString(), wConn) { CommandType = CommandType.Text };
+                //wCmd.ExecuteNonQuery();
 
                 progressBar1.Increment(10);
 
@@ -194,40 +202,34 @@ namespace ConfigurationApp.Forms
         {
             bool wValid = true;
 
-
+            errorProvider1.Clear();
             if (string.IsNullOrEmpty(txtServer.Text.Trim()))
             {
-                txtServer.BackColor = Color.FromName(_ErrorColor);
+                errorProvider1.SetError(txtServer, "Server name is required");
                 wValid = false;
             }
-            else
-                txtServer.BackColor = Color.White;
+        
 
             if (string.IsNullOrEmpty(txtDataBase.Text.Trim()))
             {
-                txtDataBase.BackColor = Color.FromName(_ErrorColor);
+                 errorProvider1.SetError(txtDataBase, "Database name is required");
                 wValid = false;
             }
-            else
-                txtDataBase.BackColor = Color.White;
+
 
             if (cmbAuthenticationMode.Text == ConfigurationApp.Common.Helper.GetEnumDescription(AuthenticationModes.SqlAuthentication))
             {
                 if (string.IsNullOrEmpty(txtUser.Text.Trim()))
                 {
-                    txtUser.BackColor = Color.FromName(_ErrorColor);
+                    errorProvider1.SetError(txtUser, "Username is required");
                     wValid = false;
                 }
-                else
-                    txtUser.BackColor = Color.White;
-
-                if (string.IsNullOrEmpty(txtPassword.Text.Trim()))
-                {
-                    txtPassword.BackColor = Color.FromName(_ErrorColor);
-                    wValid = false;
-                }
-                else
-                    txtPassword.BackColor = Color.White;
+                //if (string.IsNullOrEmpty(txtPassword.Text.Trim()))
+                //{
+                //    errorProvider1.SetError(txtServer, "Password must not be empty");
+                //    wValid = false;
+                //}
+   
             }
 
             return wValid;
@@ -239,17 +241,15 @@ namespace ConfigurationApp.Forms
 
             if (string.IsNullOrEmpty(txtXml.Text))
             {
-                txtXml.BackColor = Color.FromName(_ErrorColor);
+                errorProvider1.SetError(txtXml, "The input configuration file must not be empty");
                 wValid = false;
             }
             if (!System.IO.File.Exists(txtXml.Text))
             {
-                MessageBox.Show("Archivo XML inexistente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtXml.BackColor = Color.FromName(_ErrorColor);
+                errorProvider1.SetError(txtXml,"The input configuration file is incorrect or not exist.. please check the correct file location ");
                 wValid = false;
             }
-            else
-                txtXml.BackColor = Color.White;
+   
 
             return wValid;
         }
