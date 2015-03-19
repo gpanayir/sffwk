@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Fwk.ConfigSection;
 using Fwk.Configuration.Common;
 
 namespace ConfigurationApp.Forms
@@ -123,27 +124,34 @@ namespace ConfigurationApp.Forms
 
                 progressBar1.Increment(48);
 
-                wBuilder = new StringBuilder();
-                foreach (Group wGrp in wConfigFile.Groups)
-                {
-                    foreach (Fwk.Configuration.Common.Key wKey in wGrp.Keys)
-                    {
-                        wBuilder.Append("INSERT INTO [dbo].[fwk_ConfigManager]([ConfigurationFileName],[group],[key],[encrypted],[value])VALUES(");
-                        wBuilder.Append(string.Concat("'", wFInfo.Name, "', "));
-                        wBuilder.Append(string.Concat("'", wGrp.Name, "', "));
-                        wBuilder.Append(string.Concat("'", wKey.Name, "', "));
-                        wBuilder.Append(string.Concat(Convert.ToInt32(wKey.Encrypted), ", "));
-                        wBuilder.Append(string.Concat("'", wKey.Value.ToString().Replace("'", string.Empty), "'"));
-                        wBuilder.Append(")");
-                        wBuilder.AppendLine();
-                    }
-                }
+                //wBuilder = new StringBuilder();
+                //foreach (Group wGrp in wConfigFile.Groups)
+                //{
+                //    foreach (Fwk.Configuration.Common.Key wKey in wGrp.Keys)
+                //    {
+                //        wBuilder.Append("INSERT INTO [dbo].[fwk_ConfigManager]([ConfigurationFileName],[group],[key],[encrypted],[value])VALUES(");
+                //        wBuilder.Append(string.Concat("'", wFInfo.Name, "', "));
+                //        wBuilder.Append(string.Concat("'", wGrp.Name, "', "));
+                //        wBuilder.Append(string.Concat("'", wKey.Name, "', "));
+                //        wBuilder.Append(string.Concat(Convert.ToInt32(wKey.Encrypted), ", "));
+                //        wBuilder.Append(string.Concat("'", wKey.Value.ToString().Replace("'", string.Empty), "'"));
+                //        wBuilder.Append(")");
+                //        wBuilder.AppendLine();
+                //    }
+                //}
 
                 progressBar1.Increment(40);
+                ConfigProviderElement tempProvider = new ConfigProviderElement();
+                tempProvider.BaseConfigFile = wFInfo.Name;
+                tempProvider.ConfigProviderType = ConfigProviderType.sqldatabase;
+                tempProvider.SourceInfo = wConn.ConnectionString;
+                tempProvider.SourceInfoIsConnectionString = true;
+                //Fwk.Configuration.ConfigurationManager.ConfigProvider.AddNewProvider(tempProvider);
 
-                wConn.Open();
-                wCmd = new SqlCommand(wBuilder.ToString(), wConn) { CommandType = CommandType.Text };
-                wCmd.ExecuteNonQuery();
+                Fwk.Configuration.ConfigurationManager_CRUD.Import(wConfigFile,tempProvider);
+                //wConn.Open();
+                //wCmd = new SqlCommand(wBuilder.ToString(), wConn) { CommandType = CommandType.Text };
+                //wCmd.ExecuteNonQuery();
 
                 progressBar1.Increment(10);
 

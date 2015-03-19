@@ -149,6 +149,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(303, 22);
             this.txtPassword.TabIndex = 9;
+            this.txtPassword.Text = "as";
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUser
@@ -158,6 +159,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(303, 22);
             this.txtUser.TabIndex = 8;
+            this.txtUser.Text = "sa";
             // 
             // cmbAuthenticationMode
             // 
@@ -177,6 +179,7 @@
             this.txtDataBase.Name = "txtDataBase";
             this.txtDataBase.Size = new System.Drawing.Size(303, 22);
             this.txtDataBase.TabIndex = 6;
+            this.txtDataBase.Text = "fwkdata";
             // 
             // txtServer
             // 
@@ -185,6 +188,7 @@
             this.txtServer.Name = "txtServer";
             this.txtServer.Size = new System.Drawing.Size(303, 22);
             this.txtServer.TabIndex = 5;
+            this.txtServer.Text = "clapton\\SQLEXPRESS2008";
             // 
             // label5
             // 
