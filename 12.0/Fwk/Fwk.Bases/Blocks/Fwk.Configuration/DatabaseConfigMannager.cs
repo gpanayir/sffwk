@@ -310,7 +310,8 @@ namespace Fwk.Configuration
         #endregion
 
         /// <summary>
-        /// 
+        ///Si grupo no existe en un provider p/bd es por que seguramente se agrego el grupo por la aplicacion del fwk y ahun este grupo se encuentra vasio.
+        ///y no es posible agregar grupos vasios ya que los grupos tienen que tener al menos una propiedad para ser agregados a la tabla
         /// </summary>
         /// <param name="provider">Proveedor de configuracion</param>
         /// <param name="key"></param>
@@ -326,8 +327,18 @@ namespace Fwk.Configuration
             }
             System.Text.StringBuilder sqlCommand = new StringBuilder();
 
-            ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);  //_Repository.GetConfigurationFile(provider.BaseConfigFile);
+            ConfigurationFile wConfigurationFile = GetConfig(provider, provider.SourceInfo);  //_Repository.GetConfigurationFile(provider.BaseConfigFile);+
             Group wGroup = wConfigurationFile.Groups.GetFirstByName(groupName);
+
+            //Si grupo no existe en un provider p/bd es por que seguramente se agrego el grupo por la aplicacion del fwk y ahun este grupo se encuentra vasio.
+            //y no es posible agregar grupos vasios ya que los grupos tienen que tener al menos una propiedad para ser agregados a la tabla
+            if (wGroup == null)
+            {
+                wGroup = new Group();
+                wGroup.Keys = new Keys();
+                wGroup.Name=groupName;
+                AddGroup(provider, wGroup);
+            }
             wGroup.Keys.Add(key);
 
 

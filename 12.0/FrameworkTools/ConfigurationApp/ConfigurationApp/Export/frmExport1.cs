@@ -15,12 +15,12 @@ namespace ConfigurationApp
 {
     public partial class frmExport1 : FrmBase
     {
-        bool init = true;
+        
         public frmExport1()
         {
             InitializeComponent();
             Init();
-            init = false;
+            
         }
        
         void Init()

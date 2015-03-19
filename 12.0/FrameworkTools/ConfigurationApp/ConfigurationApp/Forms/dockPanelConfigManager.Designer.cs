@@ -120,7 +120,7 @@ namespace ConfigurationApp.Forms
             treeNode1});
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.Size = new System.Drawing.Size(353, 394);
+            this.treeView1.Size = new System.Drawing.Size(353, 596);
             this.treeView1.TabIndex = 1;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -254,15 +254,10 @@ namespace ConfigurationApp.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(365, 399);
-            this.CloseButton = false;
             this.Controls.Add(this.treeView1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "dockPanelConfigManager";
-            this.TabText = "Config Manager";
-            this.Text = "Config Manager";
-            this.ToolTipText = "Config Manager ";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.dockPanelConfigManager_FormClosed);
+            this.Size = new System.Drawing.Size(365, 601);
             this.mnConfigManagerRoot.ResumeLayout(false);
             this.mnCnfgManFile.ResumeLayout(false);
             this.mnGroupAndKey.ResumeLayout(false);

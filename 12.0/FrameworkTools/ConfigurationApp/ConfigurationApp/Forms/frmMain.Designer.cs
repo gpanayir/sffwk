@@ -30,7 +30,7 @@ namespace ConfigurationApp
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dockPanel1 = new Fwk.Controls.Win32.DockPanel();
+            this.dockPanelConfigManager1 = new ConfigurationApp.Forms.dockPanelConfigManager();
             this.clienteDeDespachadorDeServicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuNewAppClientConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuLoadAppClientConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,11 +44,11 @@ namespace ConfigurationApp
             this.btnNewProvider = new System.Windows.Forms.ToolStripButton();
             this.btnQuitProvider = new System.Windows.Forms.ToolStripButton();
             this.btnExport = new System.Windows.Forms.ToolStripButton();
+            this.btnExportXmlToBd = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnExportXmlToBd = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -60,38 +60,34 @@ namespace ConfigurationApp
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(2, 49);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 60);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dockPanel1);
+            this.splitContainer1.Panel1.Controls.Add(this.dockPanelConfigManager1);
             this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.AllowDrop = true;
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Size = new System.Drawing.Size(824, 462);
-            this.splitContainer1.SplitterDistance = 256;
+            this.splitContainer1.Size = new System.Drawing.Size(1632, 621);
+            this.splitContainer1.SplitterDistance = 395;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
-            // dockPanel1
+            // dockPanelConfigManager1
             // 
-            this.dockPanel1.ActiveAutoHideContent = null;
-            this.dockPanel1.AllowDrop = true;
-            this.dockPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dockPanel1.DockBottomPortion = 0.1D;
-            this.dockPanel1.DockLeftPortion = 0.9D;
-            this.dockPanel1.DockRightPortion = 0.1D;
-            this.dockPanel1.DocumentStyle = Fwk.Controls.Win32.DocumentStyles.DockingSdi;
-            this.dockPanel1.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
-            this.dockPanel1.Location = new System.Drawing.Point(0, 0);
-            this.dockPanel1.Name = "dockPanel1";
-            this.dockPanel1.ShowDocumentIcon = true;
-            this.dockPanel1.Size = new System.Drawing.Size(256, 462);
-            this.dockPanel1.TabIndex = 6;
+            this.dockPanelConfigManager1.AllowDrop = true;
+            this.dockPanelConfigManager1.BackColor = System.Drawing.Color.GhostWhite;
+            this.dockPanelConfigManager1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPanelConfigManager1.Location = new System.Drawing.Point(0, 0);
+            this.dockPanelConfigManager1.Margin = new System.Windows.Forms.Padding(4);
+            this.dockPanelConfigManager1.Name = "dockPanelConfigManager1";
+            this.dockPanelConfigManager1.Panel = null;
+            this.dockPanelConfigManager1.Size = new System.Drawing.Size(395, 621);
+            this.dockPanelConfigManager1.TabIndex = 0;
             // 
             // clienteDeDespachadorDeServicioToolStripMenuItem
             // 
@@ -106,14 +102,14 @@ namespace ConfigurationApp
             // 
             this.tsMenuNewAppClientConfig.Image = global::ConfigurationApp.Properties.Resources.documents_small;
             this.tsMenuNewAppClientConfig.Name = "tsMenuNewAppClientConfig";
-            this.tsMenuNewAppClientConfig.Size = new System.Drawing.Size(103, 22);
+            this.tsMenuNewAppClientConfig.Size = new System.Drawing.Size(114, 24);
             this.tsMenuNewAppClientConfig.Text = "New";
             // 
             // tsMenuLoadAppClientConfig
             // 
             this.tsMenuLoadAppClientConfig.Image = global::ConfigurationApp.Properties.Resources.open_folder_small;
             this.tsMenuLoadAppClientConfig.Name = "tsMenuLoadAppClientConfig";
-            this.tsMenuLoadAppClientConfig.Size = new System.Drawing.Size(103, 22);
+            this.tsMenuLoadAppClientConfig.Size = new System.Drawing.Size(114, 24);
             this.tsMenuLoadAppClientConfig.Text = "Open";
             // 
             // tsMenuItemSave
@@ -165,9 +161,9 @@ namespace ConfigurationApp
             this.toolStripSeparator,
             this.toolStripSeparator1,
             this.helpToolStripButton});
-            this.toolStripAppClientConfig.Location = new System.Drawing.Point(0, 24);
+            this.toolStripAppClientConfig.Location = new System.Drawing.Point(0, 30);
             this.toolStripAppClientConfig.Name = "toolStripAppClientConfig";
-            this.toolStripAppClientConfig.Size = new System.Drawing.Size(193, 25);
+            this.toolStripAppClientConfig.Size = new System.Drawing.Size(139, 25);
             this.toolStripAppClientConfig.TabIndex = 7;
             this.toolStripAppClientConfig.Text = "toolStrip1";
             // 
@@ -213,6 +209,16 @@ namespace ConfigurationApp
             this.btnExport.ToolTipText = "Print selected file";
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // btnExportXmlToBd
+            // 
+            this.btnExportXmlToBd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExportXmlToBd.Image = ((System.Drawing.Image)(resources.GetObject("btnExportXmlToBd.Image")));
+            this.btnExportXmlToBd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportXmlToBd.Name = "btnExportXmlToBd";
+            this.btnExportXmlToBd.Size = new System.Drawing.Size(23, 22);
+            this.btnExportXmlToBd.Text = "toolStripButton1";
+            this.btnExportXmlToBd.Click += new System.EventHandler(this.btnExportXmlToBd_Click);
+            // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
@@ -237,39 +243,31 @@ namespace ConfigurationApp
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(118, 9);
+            this.label1.Location = new System.Drawing.Point(157, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(778, 17);
+            this.label1.Size = new System.Drawing.Size(904, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Para agregar  un nuevo ConfigManager debe editar el archivo .config de esta aplic" +
     "acion agregando un nuevo proveedor.-";
             // 
-            // btnExportXmlToBd
-            // 
-            this.btnExportXmlToBd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExportXmlToBd.Image = ((System.Drawing.Image)(resources.GetObject("btnExportXmlToBd.Image")));
-            this.btnExportXmlToBd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExportXmlToBd.Name = "btnExportXmlToBd";
-            this.btnExportXmlToBd.Size = new System.Drawing.Size(23, 22);
-            this.btnExportXmlToBd.Text = "toolStripButton1";
-            this.btnExportXmlToBd.Click += new System.EventHandler(this.btnExportXmlToBd_Click);
-            // 
             // frmMain
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(862, 527);
+            this.ClientSize = new System.Drawing.Size(1682, 701);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStripAppClientConfig);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmMain";
             this.Text = "Fwk libraries configuration";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -296,7 +294,6 @@ namespace ConfigurationApp
 
         private System.Windows.Forms.ToolStrip toolStripAppClientConfig;
         private System.Windows.Forms.ToolStripButton tsButtonRefreshAll;
-        private Fwk.Controls.Win32.DockPanel dockPanel1;
         private System.Windows.Forms.ToolStripButton btnNewProvider;
         private System.Windows.Forms.ToolStripButton btnExport;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
@@ -305,6 +302,7 @@ namespace ConfigurationApp
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripButton btnExportXmlToBd;
+        private Forms.dockPanelConfigManager dockPanelConfigManager1;
     }
 }
 
