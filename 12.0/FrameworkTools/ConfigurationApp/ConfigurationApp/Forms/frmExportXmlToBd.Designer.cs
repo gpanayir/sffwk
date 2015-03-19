@@ -266,7 +266,6 @@
             this.txtXml.Location = new System.Drawing.Point(8, 23);
             this.txtXml.Margin = new System.Windows.Forms.Padding(4);
             this.txtXml.Name = "txtXml";
-            this.txtXml.ReadOnly = true;
             this.txtXml.Size = new System.Drawing.Size(581, 22);
             this.txtXml.TabIndex = 11;
             // 

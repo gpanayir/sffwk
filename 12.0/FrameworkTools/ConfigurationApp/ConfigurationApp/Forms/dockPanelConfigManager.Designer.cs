@@ -159,7 +159,7 @@ namespace ConfigurationApp.Forms
             this.tsMenuItemNewGroup,
             this.exploreToolStripMenuItem});
             this.mnCnfgManFile.Name = "mnContextConfigManager";
-            this.mnCnfgManFile.Size = new System.Drawing.Size(154, 124);
+            this.mnCnfgManFile.Size = new System.Drawing.Size(154, 146);
             // 
             // tsMenuItemSaveFile
             // 
@@ -170,6 +170,7 @@ namespace ConfigurationApp.Forms
             // 
             // tsMenuItemQuitFile
             // 
+            this.tsMenuItemQuitFile.Enabled = false;
             this.tsMenuItemQuitFile.Image = global::ConfigurationApp.Properties.Resources.Delete;
             this.tsMenuItemQuitFile.Name = "tsMenuItemQuitFile";
             this.tsMenuItemQuitFile.Size = new System.Drawing.Size(153, 24);

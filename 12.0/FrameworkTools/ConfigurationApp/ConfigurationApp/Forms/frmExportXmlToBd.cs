@@ -233,17 +233,15 @@ namespace ConfigurationApp.Forms
 
             if (string.IsNullOrEmpty(txtXml.Text))
             {
-                txtXml.BackColor = Color.Red;
+                errorProvider1.SetError(txtXml, "The input configuration file must not be empty");
                 wValid = false;
             }
             if (!System.IO.File.Exists(txtXml.Text))
             {
-                MessageBox.Show("Archivo XML inexistente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtXml.BackColor = Color.Red;
+                errorProvider1.SetError(txtXml,"The input configuration file is incorrect or not exist.. please check the correct file location ");
                 wValid = false;
             }
-            else
-                txtXml.BackColor = Color.White;
+   
 
             return wValid;
         }
