@@ -95,10 +95,9 @@ namespace ConfigurationApp.Forms
         private void btnExport_Click(object sender, EventArgs e)
         {
             SqlConnection wConn = null;
-            SqlCommand wCmd = null;
             string wXmlText = string.Empty;
             ConfigurationFile wConfigFile = null;
-            StringBuilder wBuilder = null;
+            
             System.IO.FileInfo wFInfo = null;
 
             try
@@ -124,34 +123,17 @@ namespace ConfigurationApp.Forms
 
                 progressBar1.Increment(48);
 
-                //wBuilder = new StringBuilder();
-                //foreach (Group wGrp in wConfigFile.Groups)
-                //{
-                //    foreach (Fwk.Configuration.Common.Key wKey in wGrp.Keys)
-                //    {
-                //        wBuilder.Append("INSERT INTO [dbo].[fwk_ConfigManager]([ConfigurationFileName],[group],[key],[encrypted],[value])VALUES(");
-                //        wBuilder.Append(string.Concat("'", wFInfo.Name, "', "));
-                //        wBuilder.Append(string.Concat("'", wGrp.Name, "', "));
-                //        wBuilder.Append(string.Concat("'", wKey.Name, "', "));
-                //        wBuilder.Append(string.Concat(Convert.ToInt32(wKey.Encrypted), ", "));
-                //        wBuilder.Append(string.Concat("'", wKey.Value.ToString().Replace("'", string.Empty), "'"));
-                //        wBuilder.Append(")");
-                //        wBuilder.AppendLine();
-                //    }
-                //}
-
+              
                 progressBar1.Increment(40);
                 ConfigProviderElement tempProvider = new ConfigProviderElement();
-                tempProvider.BaseConfigFile = wFInfo.Name;
+                tempProvider.BaseConfigFile = txtConfigFileName.Text;
                 tempProvider.ConfigProviderType = ConfigProviderType.sqldatabase;
                 tempProvider.SourceInfo = wConn.ConnectionString;
                 tempProvider.SourceInfoIsConnectionString = true;
-                //Fwk.Configuration.ConfigurationManager.ConfigProvider.AddNewProvider(tempProvider);
+           
 
                 Fwk.Configuration.ConfigurationManager_CRUD.Import(wConfigFile,tempProvider);
-                //wConn.Open();
-                //wCmd = new SqlCommand(wBuilder.ToString(), wConn) { CommandType = CommandType.Text };
-                //wCmd.ExecuteNonQuery();
+           
 
                 progressBar1.Increment(10);
 
@@ -224,11 +206,6 @@ namespace ConfigurationApp.Forms
                     errorProvider1.SetError(txtUser, "Username is required");
                     wValid = false;
                 }
-                //if (string.IsNullOrEmpty(txtPassword.Text.Trim()))
-                //{
-                //    errorProvider1.SetError(txtServer, "Password must not be empty");
-                //    wValid = false;
-                //}
    
             }
 
@@ -247,6 +224,11 @@ namespace ConfigurationApp.Forms
             if (!System.IO.File.Exists(txtXml.Text))
             {
                 errorProvider1.SetError(txtXml,"The input configuration file is incorrect or not exist.. please check the correct file location ");
+                wValid = false;
+            }
+            if (string.IsNullOrEmpty(txtConfigFileName.Text))
+            {
+                errorProvider1.SetError(txtConfigFileName, "The  configFileName must not be empty");
                 wValid = false;
             }
    
@@ -278,6 +260,14 @@ namespace ConfigurationApp.Forms
         }
 
         #endregion
+
+        private void txtXml_TextChanged(object sender, EventArgs e)
+        {
+            if (!System.IO.File.Exists(txtXml.Text)) return;
+
+            System.IO.FileInfo f = new System.IO.FileInfo(txtXml.Text);
+            txtConfigFileName.Text = f.Name;
+        }
 
 
     }

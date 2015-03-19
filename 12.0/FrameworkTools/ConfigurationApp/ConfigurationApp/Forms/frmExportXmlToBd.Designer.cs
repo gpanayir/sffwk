@@ -52,6 +52,8 @@
             this.btnExport = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtConfigFileName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,7 +71,7 @@
             this.groupBox1.Size = new System.Drawing.Size(691, 54);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tipo de Exportación";
+            this.groupBox1.Text = "Export type";
             // 
             // radioButton2
             // 
@@ -110,18 +112,18 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(3, 135);
+            this.groupBox2.Location = new System.Drawing.Point(3, 149);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(691, 209);
+            this.groupBox2.Size = new System.Drawing.Size(691, 195);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Base de Datos";
             // 
             // btnDbCheck
             // 
-            this.btnDbCheck.Location = new System.Drawing.Point(599, 174);
+            this.btnDbCheck.Location = new System.Drawing.Point(600, 167);
             this.btnDbCheck.Margin = new System.Windows.Forms.Padding(4);
             this.btnDbCheck.Name = "btnDbCheck";
             this.btnDbCheck.Size = new System.Drawing.Size(83, 28);
@@ -133,7 +135,7 @@
             // chkShowPassword
             // 
             this.chkShowPassword.AutoSize = true;
-            this.chkShowPassword.Location = new System.Drawing.Point(169, 177);
+            this.chkShowPassword.Location = new System.Drawing.Point(512, 60);
             this.chkShowPassword.Margin = new System.Windows.Forms.Padding(4);
             this.chkShowPassword.Name = "chkShowPassword";
             this.chkShowPassword.Size = new System.Drawing.Size(129, 21);
@@ -150,7 +152,6 @@
             this.txtPassword.Size = new System.Drawing.Size(303, 22);
             this.txtPassword.TabIndex = 9;
             this.txtPassword.UseSystemPasswordChar = true;
-            
             // 
             // txtUser
             // 
@@ -159,7 +160,6 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(303, 22);
             this.txtUser.TabIndex = 8;
-            
             // 
             // cmbAuthenticationMode
             // 
@@ -194,9 +194,9 @@
             this.label5.Location = new System.Drawing.Point(13, 64);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(105, 17);
+            this.label5.Size = new System.Drawing.Size(73, 17);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Base de Datos:";
+            this.label5.Text = "Database:";
             // 
             // label4
             // 
@@ -204,9 +204,9 @@
             this.label4.Location = new System.Drawing.Point(13, 92);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(149, 17);
+            this.label4.Size = new System.Drawing.Size(68, 17);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Tipo de Autenticación:";
+            this.label4.Text = "Auth type";
             // 
             // label3
             // 
@@ -214,9 +214,9 @@
             this.label3.Location = new System.Drawing.Point(13, 121);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 17);
+            this.label3.Size = new System.Drawing.Size(42, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Usuario:";
+            this.label3.Text = "User.";
             // 
             // label2
             // 
@@ -224,9 +224,9 @@
             this.label2.Location = new System.Drawing.Point(13, 149);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 17);
+            this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Contraseña:";
+            this.label2.Text = "Password:";
             // 
             // label1
             // 
@@ -234,19 +234,21 @@
             this.label1.Location = new System.Drawing.Point(13, 36);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 17);
+            this.label1.Size = new System.Drawing.Size(48, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Servidor:";
+            this.label1.Text = "server";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.txtConfigFileName);
             this.groupBox3.Controls.Add(this.btnBrowse);
             this.groupBox3.Controls.Add(this.txtXml);
             this.groupBox3.Location = new System.Drawing.Point(3, 63);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(691, 64);
+            this.groupBox3.Size = new System.Drawing.Size(691, 85);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Xml";
@@ -270,6 +272,7 @@
             this.txtXml.Name = "txtXml";
             this.txtXml.Size = new System.Drawing.Size(581, 22);
             this.txtXml.TabIndex = 11;
+            this.txtXml.TextChanged += new System.EventHandler(this.txtXml_TextChanged);
             // 
             // progressBar1
             // 
@@ -297,6 +300,25 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // txtConfigFileName
+            // 
+            this.txtConfigFileName.BackColor = System.Drawing.Color.White;
+            this.txtConfigFileName.Location = new System.Drawing.Point(193, 56);
+            this.txtConfigFileName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtConfigFileName.Name = "txtConfigFileName";
+            this.txtConfigFileName.Size = new System.Drawing.Size(279, 22);
+            this.txtConfigFileName.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(53, 56);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 17);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Config file name";
             // 
             // frmExportXmlToBd
             // 
@@ -348,5 +370,7 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtConfigFileName;
     }
 }
