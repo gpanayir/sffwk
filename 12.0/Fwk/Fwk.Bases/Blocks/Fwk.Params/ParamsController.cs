@@ -22,7 +22,6 @@ namespace Fwk.Params
         ///  La cadena de conexión se obtiene del atributo appId del wrapper 
         /// </summary>
         /// <param name="wrapperProviderName">Proveedor que espesifica el despachador de servicios</param>
-        /// <param name="paramTypeId"></param>
         /// <param name="parentId"></param>
         /// <param name="userId"></param>
         /// <returns>Lista de registros de la tabla param</returns>

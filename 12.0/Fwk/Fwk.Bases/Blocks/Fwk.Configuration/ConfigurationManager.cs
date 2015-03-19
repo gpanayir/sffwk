@@ -476,6 +476,32 @@ namespace Fwk.Configuration
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceConfigurationFile"></param>
+        /// <param name="provider"></param>
+        public static void Import(ConfigurationFile sourceConfigurationFile, ConfigProviderElement provider)
+        {
+            
+            if (provider == null) return;
+            switch (provider.ConfigProviderType)
+            {
+                case ConfigProviderType.local:
+                    {
+                        throw new NotImplementedException("Funcionalidad de exportacion no impolementada");
+                    }
+                case ConfigProviderType.sqldatabase:
+                    {
+                        DatabaseConfigManager.Import(provider, sourceConfigurationFile); break;
+                    }
+                case ConfigProviderType.servicewrapper:
+                    {
+                        throw new NotImplementedException("Funcionalidad de exportacion no impolementada");
+                    }
+            }
+           
+        }
 
         /// <summary>
         /// Vuelve a cargar el archivo de configuracion desde el origen de datos
