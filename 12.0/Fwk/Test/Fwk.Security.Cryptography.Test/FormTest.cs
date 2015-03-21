@@ -18,9 +18,21 @@ namespace Fwk.Security.Cryptography.Test
 
         private void btnKey_Click(object sender, EventArgs e)
         {
+            StringBuilder str = new StringBuilder();
+       
+            //Error
+            //SymetriCypher<System.Security.Cryptography.TripleDES> wTripleDES = new SymetriCypher<System.Security.Cryptography.TripleDES>();
+            SymetriCypher<AesManaged> c =new SymetriCypher<AesManaged> ();
+
+            //str.Append(SymetricCypherFactory.GenNewKey());
 
 
-            txtKey.Text = SymetricCypherFactory.GenNewKey();
+            str.AppendLine(c.GeneratetNewK());
+            c.Encrypt("", "j7Ab7ScPtcoxGTDANnvn3e4VJxqD+dR5bnJO6+hXn78=$HJoNwcu5Riru293Mj2dEXQ==");
+            txtKey.Text = str.ToString();
+
+            
+
         }
 
         private void btnEncrypt_Click(object sender, EventArgs e)

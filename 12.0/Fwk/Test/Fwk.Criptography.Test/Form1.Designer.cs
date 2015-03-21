@@ -1,4 +1,4 @@
-﻿namespace Fwk.Criptography.Test
+﻿namespace Fwk.Cryptography.Test
 {
     partial class Form1
     {
@@ -55,7 +55,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(776, 44);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Fwk Criptography";
+            this.label3.Text = "Fwk Cryptography";
             // 
             // txtOut
             // 
@@ -64,7 +64,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOut.ForeColor = System.Drawing.SystemColors.InfoText;
             this.txtOut.Location = new System.Drawing.Point(481, 238);
-            this.txtOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOut.Margin = new System.Windows.Forms.Padding(4);
             this.txtOut.Multiline = true;
             this.txtOut.Name = "txtOut";
             this.txtOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -78,7 +78,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtIn.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.txtIn.Location = new System.Drawing.Point(15, 238);
-            this.txtIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIn.Margin = new System.Windows.Forms.Padding(4);
             this.txtIn.Multiline = true;
             this.txtIn.Name = "txtIn";
             this.txtIn.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -114,7 +114,7 @@
             // 
             this.btnEncrypt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEncrypt.Location = new System.Drawing.Point(481, 158);
-            this.btnEncrypt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEncrypt.Margin = new System.Windows.Forms.Padding(4);
             this.btnEncrypt.Name = "btnEncrypt";
             this.btnEncrypt.Size = new System.Drawing.Size(128, 32);
             this.btnEncrypt.TabIndex = 12;
@@ -156,7 +156,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(676, 25);
             this.label6.TabIndex = 15;
-            this.label6.Text = "C:\\Projects\\Fwk 3.0\\Fwk\\Fwk.Criptography.Test\\CyptSeed.key";
+            this.label6.Text = "CyptSeed.key";
             // 
             // label7
             // 
@@ -198,7 +198,7 @@
             // 
             this.btnDecrypt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDecrypt.Location = new System.Drawing.Point(885, 158);
-            this.btnDecrypt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDecrypt.Margin = new System.Windows.Forms.Padding(4);
             this.btnDecrypt.Name = "btnDecrypt";
             this.btnDecrypt.Size = new System.Drawing.Size(128, 32);
             this.btnDecrypt.TabIndex = 19;
@@ -225,7 +225,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDecryptedText.ForeColor = System.Drawing.SystemColors.InfoText;
             this.txtDecryptedText.Location = new System.Drawing.Point(872, 238);
-            this.txtDecryptedText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDecryptedText.Margin = new System.Windows.Forms.Padding(4);
             this.txtDecryptedText.Multiline = true;
             this.txtDecryptedText.Name = "txtDecryptedText";
             this.txtDecryptedText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -254,9 +254,9 @@
             this.Controls.Add(this.txtIn);
             this.Controls.Add(this.label3);
             this.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Test Fwk Criptography";
+            this.Text = "Test Fwk Cryptography";
             this.ResumeLayout(false);
             this.PerformLayout();
 

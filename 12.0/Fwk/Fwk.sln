@@ -34,7 +34,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Logging.Test", "Test\Fw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Blocking.Test", "Test\Fwk.Blocking.Test\Fwk.Blocking.Test.csproj", "{D1E836A9-2E4C-4FBF-A88D-B70DD0663B5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Criptography.Test", "Test\Fwk.Criptography.Test\Fwk.Criptography.Test.csproj", "{6DE96512-F2C4-4285-8E77-56C2C7999A7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Cryptography.Test", "Test\Fwk.Criptography.Test\Fwk.Cryptography.Test.csproj", "{6DE96512-F2C4-4285-8E77-56C2C7999A7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.DataBase", "Fwk.DataBase\Fwk.DataBase.csproj", "{87C826E0-D87A-4C89-94ED-3B1044746A34}"
 EndProject
