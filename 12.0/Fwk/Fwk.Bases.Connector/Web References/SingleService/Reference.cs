@@ -701,6 +701,8 @@ namespace Fwk.Bases.Connector.Singleservice {
         private string serviceDispatcherConnectionField;
         
         private string serviceDispatcherNameField;
+
+        private string machineIp;
         
         /// <remarks/>
         public MetadataProvider[] MetadataProviders {
@@ -751,6 +753,17 @@ namespace Fwk.Bases.Connector.Singleservice {
                 this.serviceDispatcherNameField = value;
             }
         }
+         /// <remarks/>
+        public string MachineIp
+        {
+            get {
+                return this.machineIp;
+            }
+            set {
+                this.machineIp = value;
+            }
+        }
+        
     }
     
     /// <remarks/>
