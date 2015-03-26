@@ -172,6 +172,16 @@ using Fwk.BusinessFacades.Utils;
 
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [WebMethod]
+        public Fwk.ConfigSection.DispatcherInfo RetriveDispatcherInfo()
+        {
+            SimpleFacade wSimpleFacade = CreateSimpleFacade();
+            return wSimpleFacade.RetriveDispatcherInfo();
+        }
+        /// <summary>
         /// Factory de SimpleFacade
         /// </summary>  
         /// <returns></returns>
