@@ -186,6 +186,8 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comboProviders);
             this.Name = "frmMain";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dispatcher client checker";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.wrapproviderBindingSource)).EndInit();
