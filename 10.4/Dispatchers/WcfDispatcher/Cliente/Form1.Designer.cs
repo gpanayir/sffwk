@@ -37,7 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRetrivePatients = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -140,17 +140,17 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Wraapper Dispose using _WCFWrapper_02";
             // 
-            // button1
+            // btnRetrivePatients
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(9, 54);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(167, 36);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "RetrivePatientsReq";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnRetrivePatients.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnRetrivePatients.Location = new System.Drawing.Point(9, 54);
+            this.btnRetrivePatients.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRetrivePatients.Name = "btnRetrivePatients";
+            this.btnRetrivePatients.Size = new System.Drawing.Size(167, 36);
+            this.btnRetrivePatients.TabIndex = 10;
+            this.btnRetrivePatients.Text = "RetrivePatientsReq";
+            this.btnRetrivePatients.UseVisualStyleBackColor = false;
+            this.btnRetrivePatients.Click += new System.EventHandler(this.btnRetrivePatientsReq_Click);
             // 
             // label5
             // 
@@ -183,7 +183,7 @@
             this.tabPage1.Controls.Add(this.txtIteraciones);
             this.tabPage1.Controls.Add(this.comboProviders);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.btnRetrivePatients);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -197,7 +197,7 @@
             this.textBox1.Location = new System.Drawing.Point(10, 291);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(376, 146);
+            this.textBox1.Size = new System.Drawing.Size(376, 215);
             this.textBox1.TabIndex = 16;
             // 
             // label6
@@ -230,6 +230,7 @@
             this.txtIteraciones.Name = "txtIteraciones";
             this.txtIteraciones.Size = new System.Drawing.Size(114, 22);
             this.txtIteraciones.TabIndex = 13;
+            this.txtIteraciones.Text = "1";
             // 
             // comboProviders
             // 
@@ -273,7 +274,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Test wrapper WCF";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -295,7 +296,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRetrivePatients;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;

@@ -133,7 +133,7 @@ namespace Cliente
 
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRetrivePatientsReq_Click(object sender, EventArgs e)
         {
             Int32 iter =0;
 
@@ -144,7 +144,7 @@ namespace Cliente
                 while (i < iter)
                 {
                     i++;
-                    RetrivePatientsRes res = req.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(req);
+                    RetrivePatientsRes res = req.ExecuteService<RetrivePatientsReq, RetrivePatientsRes>(comboProviders.Text,req);
 
                     if (res.Error != null)
                         str.AppendLine(String.Concat(i, " ", Fwk.Exceptions.ExceptionHelper.ProcessException(res.Error).Message));

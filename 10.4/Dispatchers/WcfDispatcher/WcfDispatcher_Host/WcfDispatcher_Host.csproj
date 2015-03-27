@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WcfDispatcher_Host</RootNamespace>
     <AssemblyName>WcfDispatcher_Host</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
@@ -94,10 +94,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SomeCompany.BE\SomeCompany.BE.csproj">
-      <Project>{7070D9B9-65D3-433E-A504-E9C30952F973}</Project>
-      <Name>SomeCompany.BE</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WcfDispatcher\WcfDispatcher.csproj">
       <Project>{01286891-AE8E-4A3A-B7EB-E22FCECC3F05}</Project>
       <Name>WcfDispatcher</Name>
