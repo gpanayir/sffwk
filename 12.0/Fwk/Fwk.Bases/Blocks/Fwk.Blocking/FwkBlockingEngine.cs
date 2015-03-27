@@ -6,7 +6,17 @@ namespace Fwk.Blocking
 	/// </summary>
     public class FwkBlockingEngine : BlockingEngineBase
 	{
+		
+      
+        /// <summary>
+        /// Constructor de <see cref="FwkBlockingEngine"/>
+        /// </summary>
         public FwkBlockingEngine(): base("BlockingMarks") { }
+
+
+
+
+
 
         /// <summary>
         /// Retorna los parametros necesarios para realizar un INSERT
@@ -19,6 +29,7 @@ namespace Fwk.Blocking
             return null;
         }
 
+
         /// <summary>
         /// Retorna los parametros necesarios para realizar un GET
         /// </summary>
@@ -30,6 +41,7 @@ namespace Fwk.Blocking
             return null;
         }
 
+
         /// <summary>
         /// Retorna los parametros necesarios para realizar una busqueda de EXISTENCIA
         /// </summary>
@@ -40,7 +52,5 @@ namespace Fwk.Blocking
         {
             return null;
         }
-
     }
-
 }
