@@ -12,6 +12,7 @@ using Fwk.HelperFunctions;
 using System.Configuration;
 using Fwk.ConfigSection;
 using Fwk.Exceptions;
+using System.Reflection;
 
 
 namespace Fwk.ServiceManagement.Tools.Win32
@@ -33,6 +34,7 @@ namespace Fwk.ServiceManagement.Tools.Win32
 			InitializeComponent();
             cnfg();
             ctrlService1.ShowAction = Action.Query;
+            this.Text = string.Concat(this.Text, " v.", Assembly.GetExecutingAssembly().GetName().Version.ToString());
 		}
 
 
@@ -283,11 +285,11 @@ namespace Fwk.ServiceManagement.Tools.Win32
 
         private void btnNewProvider_Click(object sender, EventArgs e)
         {
-            using (frmManageProviders frm = new frmManageProviders())
-            {
-                frm.ShowDialog();
-            }
-            return;
+            //using (frmManageProviders frm = new frmManageProviders())
+            //{
+            //    frm.ShowDialog();
+             
+            //}
             using (frmCreateProvider frm = new frmCreateProvider())
             {
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -300,7 +302,12 @@ namespace Fwk.ServiceManagement.Tools.Win32
                         cb.Items.Add(p.Name);
                         if (frm.CreatedProvider.Name.Equals(p.Name)) cb.SelectedIndex = index;
                         index++;
-                   }
+                        
+                    }
+
+                    
+                   
+
                 }
             }
         }

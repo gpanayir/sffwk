@@ -21,7 +21,7 @@ namespace Fwk.Remoting.Listener
         public RemotingService()
         {
             InitializeComponent();
-            this.ServiceName = System.Configuration.ConfigurationManager.AppSettings.Get("ServiceDispatcherName");
+           
         }
 
 

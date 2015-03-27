@@ -60,6 +60,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon _4 {
             get {
                 object obj = ResourceManager.GetObject("_4", resourceCulture);
@@ -67,6 +70,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddService {
             get {
                 object obj = ResourceManager.GetObject("AddService", resourceCulture);
@@ -74,6 +80,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddTableHS {
             get {
                 object obj = ResourceManager.GetObject("AddTableHS", resourceCulture);
@@ -81,6 +90,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Delete {
             get {
                 object obj = ResourceManager.GetObject("Delete", resourceCulture);
@@ -88,6 +100,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DocumentHS {
             get {
                 object obj = ResourceManager.GetObject("DocumentHS", resourceCulture);
@@ -95,6 +110,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EditService {
             get {
                 object obj = ResourceManager.GetObject("EditService", resourceCulture);
@@ -102,6 +120,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap langicon {
             get {
                 object obj = ResourceManager.GetObject("langicon", resourceCulture);
@@ -109,6 +130,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mostrar {
             get {
                 object obj = ResourceManager.GetObject("mostrar", resourceCulture);
@@ -116,6 +140,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PageUpHS {
             get {
                 object obj = ResourceManager.GetObject("PageUpHS", resourceCulture);
@@ -123,6 +150,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap PreviousPageHS {
             get {
                 object obj = ResourceManager.GetObject("PreviousPageHS", resourceCulture);
@@ -130,6 +160,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap prntpv_16 {
             get {
                 object obj = ResourceManager.GetObject("prntpv_16", resourceCulture);
@@ -137,6 +170,9 @@ namespace Fwk.ServiceManagement.Tools.Win32.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon Refresh {
             get {
                 object obj = ResourceManager.GetObject("Refresh", resourceCulture);

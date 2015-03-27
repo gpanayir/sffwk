@@ -14,9 +14,26 @@ using Fwk.ConfigSection;
 
 namespace ConfigurationApp.Forms
 {
-    public delegate void  DoActionEventHandler(Object sender);
-    public partial class dockPanelConfigManager :  Fwk.Controls.Win32.DockContent
+    public delegate void DoActionEventHandler(Object sender);
+    public partial class dockPanelConfigManager : UserControl
     {
+        private Control.ControlCollection _Panel;
+        public Control.ControlCollection Panel
+        {
+            get { return _Panel; }
+            set
+            {
+                if (value == null) return;
+                _Panel = value;
+                _UCConfigElement = new UCConfigElement();
+                _Panel.Clear();
+                _UCConfigElement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+                _Panel.Add(_UCConfigElement);
+            }
+
+        }
         private event DoActionEventHandler _DoActionEvent;
 
         private void OnDoActionEvent(Object sender)
@@ -42,28 +59,13 @@ namespace ConfigurationApp.Forms
         private CnfgManagerSelectedNodeType _CnfgManagerSelectedNodeType = CnfgManagerSelectedNodeType.Root;
         private Storage _Storage = null;
 
-    
+
+
+
+
+
       
 
-
-
-        private Control.ControlCollection _Panel;
-        public  Control.ControlCollection Panel
-        {
-            get { return _Panel; }
-            set
-            {
-                _Panel = value;
-                _UCConfigElement = new UCConfigElement();
-                _Panel.Clear();
-                _UCConfigElement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-                _Panel.Add(_UCConfigElement);
-            }
-
-        }
-        
         public TreeNode SelectedNode
         {
             get { return treeView1.SelectedNode; }
@@ -79,11 +81,11 @@ namespace ConfigurationApp.Forms
             InitializeComponent();
         }
 
-        #region Events --> mnCnfgManFile 
+        #region Events --> mnCnfgManFile
 
 
 
-        
+
 
         /// <summary>
         /// Inserta un nuevo grupo en el archivo y el xml
@@ -106,7 +108,7 @@ namespace ConfigurationApp.Forms
         }
         #endregion
 
-      
+
         #region Events --> mnGroupAndKey
 
         /// <summary>
@@ -163,8 +165,8 @@ namespace ConfigurationApp.Forms
 
         #region File Methods
 
-        
-  
+
+
         /// <summary>
         /// Vuelve a cargar todo
         /// </summary>
@@ -176,7 +178,7 @@ namespace ConfigurationApp.Forms
             treeView1.Nodes[0].Nodes.Clear();
 
 
-            ConfigManagerControl.RefreshAllFiles(treeView1.Nodes[0], mnCnfgManFile,mnCnfgManFile_Fail, mnGroupAndKey, _Storage);
+            ConfigManagerControl.RefreshAllFiles(treeView1.Nodes[0], mnCnfgManFile, mnCnfgManFile_Fail, mnGroupAndKey, _Storage);
             treeView1.EndUpdate();
             treeView1.Refresh();
             treeView1.ExpandAll();
@@ -192,9 +194,9 @@ namespace ConfigurationApp.Forms
         {
             _CnfgManagerSelectedNodeType = CnfgManagerSelectedNodeType.Root;
             treeView1.BeginUpdate();
-    
 
-            ConfigManagerControl.LoadFiles(treeView1.Nodes[0], mnCnfgManFile,mnCnfgManFile_Fail, mnGroupAndKey, _Storage);
+
+            ConfigManagerControl.LoadFiles(treeView1.Nodes[0], mnCnfgManFile, mnCnfgManFile_Fail, mnGroupAndKey, _Storage);
             treeView1.EndUpdate();
             treeView1.Refresh();
             treeView1.ExpandAll();
@@ -202,8 +204,8 @@ namespace ConfigurationApp.Forms
 
         }
         public void QuitFile()
-        { 
-        
+        {
+
         }
         #endregion
 
@@ -211,7 +213,7 @@ namespace ConfigurationApp.Forms
         private void CnfgManagerApplyChanges(TreeNode ptreeNode)
         {
 
-            
+
             switch (_CnfgManagerSelectedNodeType)
             {
                 case CnfgManagerSelectedNodeType.Key:
@@ -237,22 +239,20 @@ namespace ConfigurationApp.Forms
                     }
             }
         }
-      
-     
+
+
 
 
         #endregion
 
 
-        UCConfigElement _UCConfigElement = new UCConfigElement ();
+        UCConfigElement _UCConfigElement = new UCConfigElement();
 
         private void DoConfigManager(TreeNode pTreeNodeSelected)
         {
-            
-
             Group wGroup;
             ListDictionary dic;
-       
+
             switch (_CnfgManagerSelectedNodeType)
             {
                 case CnfgManagerSelectedNodeType.Key:
@@ -261,7 +261,7 @@ namespace ConfigurationApp.Forms
 
                         dic = (ListDictionary)pTreeNodeSelected.Parent.Parent.Tag;
                         ConfigurationFile wConfigurationFile = (ConfigurationFile)dic["ConfigurationFile"];
-                     
+
                         wGroup = (Group)pTreeNodeSelected.Parent.Tag;
 
                         _UCConfigElement.Populate(wKey, wConfigurationFile.FileName, wGroup.Name);
@@ -281,22 +281,22 @@ namespace ConfigurationApp.Forms
                         if (pTreeNodeSelected.Parent.Index == 1)
                         {
                             _UCConfigElement.Populate(pTreeNodeSelected.Text);
-                          
-                  
+
+
                         }
-                      
+
                         break;
                     }
                 case CnfgManagerSelectedNodeType.Root:
                     {
-                     
+
                         break;
                     }
             }
             OnDoActionEvent(this);
         }
 
-       
+
         private TreeNode GetTreeNodeFile()
         {
             TreeNode wTreeNodeFile = null;
@@ -346,7 +346,7 @@ namespace ConfigurationApp.Forms
 
 
             // Determino que es lo que esta seleccionado 
-            _CnfgManagerSelectedNodeType = (CnfgManagerSelectedNodeType) Enum.Parse(typeof (CnfgManagerSelectedNodeType), e.Node.Level.ToString());
+            _CnfgManagerSelectedNodeType = (CnfgManagerSelectedNodeType)Enum.Parse(typeof(CnfgManagerSelectedNodeType), e.Node.Level.ToString());
 
             DoConfigManager(treeView1.SelectedNode);
         }
@@ -378,17 +378,6 @@ namespace ConfigurationApp.Forms
         #endregion
 
 
-        /// <summary>
-        /// Cuando el formulario se sierra se guardan los archivos abiertos por el usuario en el Isolated Storage
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dockPanelConfigManager_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            SaveIsolatedStorage();
-            
-        }
-
 
         /// <summary>
         /// Almaceno la informacion de las rutas a los archivos cargados en el tree view en un 
@@ -399,13 +388,13 @@ namespace ConfigurationApp.Forms
             ConfigManagerControl.SaveIsolatedStorage(treeView1.Nodes[0], _Storage);
         }
 
-        
+
 
         private void exploreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode wTreeNodeFile = GetTreeNodeFile();
             System.Diagnostics.Process.Start("IExplore", wTreeNodeFile.ToolTipText);
-            
+
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
@@ -433,8 +422,8 @@ namespace ConfigurationApp.Forms
             //    this.ExceptionViewer.Show(ex);
             //}
 
-            
-           // RefreshAllFiles();
+
+            // RefreshAllFiles();
 
         }
 
@@ -454,7 +443,7 @@ namespace ConfigurationApp.Forms
             if (e.Data.GetDataPresent(DataFormats.FileDrop, false) == true)
             {
                 e.Effect = DragDropEffects.All;
-            } 
+            }
         }
 
         private void treeView1_DragDrop(object sender, DragEventArgs e)
@@ -466,12 +455,12 @@ namespace ConfigurationApp.Forms
                 using (frmCreateProvider frm = new frmCreateProvider(files[0]))
                 {
 
-                    if(frm.ShowDialog()== DialogResult.OK)
+                    if (frm.ShowDialog() == DialogResult.OK)
                         RefreshAllFiles();
                 }
 
         }
 
-        
+
     }
 }

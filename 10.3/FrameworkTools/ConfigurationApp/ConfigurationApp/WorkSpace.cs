@@ -2,16 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
+using System.Windows.Forms;
 
 
 namespace ConfigurationApp.Common
 {
     public class WorkSpace
     {
-        
-        private Dictionary<ConfigurationType, Fwk.Controls.Win32.DockContent> _GeneratorsList = new Dictionary<ConfigurationType, Fwk.Controls.Win32.DockContent>();
 
-        internal void Add(Fwk.Controls.Win32.DockContent frm, ConfigurationType pGeneratorsType)
+        private Dictionary<ConfigurationType, UserControl> _GeneratorsList = new Dictionary<ConfigurationType, UserControl>();
+
+        internal void Add(UserControl frm, ConfigurationType pGeneratorsType)
         {
             if (!_GeneratorsList.ContainsKey(pGeneratorsType))
             {

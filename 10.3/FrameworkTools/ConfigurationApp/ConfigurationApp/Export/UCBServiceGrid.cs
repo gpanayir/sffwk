@@ -30,10 +30,7 @@ namespace ConfigurationApp
             get { return ConfigList; }
            
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        public event OnClickServiceHandler OnClickServiceHandler;
+        
         private ConfigurationFile _ConfigurationFile = null;
        
 

@@ -76,11 +76,9 @@
     <Reference Include="Fwk.Bases">
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
     </Reference>
-    <Reference Include="Fwk.Bases.FrontEnd">
+    <Reference Include="Fwk.Bases.FrontEnd, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.FrontEnd.dll</HintPath>
-    </Reference>
-    <Reference Include="Fwk.Controls.Win32">
-      <HintPath>..\..\..\Libraries\Framework\Fwk.Controls.Win32.dll</HintPath>
     </Reference>
     <Reference Include="Fwk.DataBase">
       <HintPath>..\..\..\Libraries\Framework\Fwk.DataBase.dll</HintPath>
@@ -163,12 +161,14 @@
       <DependentUpon>UCBServiceGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\dockPanelConfigManager.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Forms\dockPanelConfigManager.Designer.cs">
       <DependentUpon>dockPanelConfigManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmExportXmlToBd.cs" />
+    <Compile Include="Forms\frmExportXmlToBd.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmExportXmlToBd.Designer.cs">
       <DependentUpon>frmExportXmlToBd.cs</DependentUpon>
     </Compile>
@@ -215,8 +215,8 @@
       <DependentUpon>UCBServiceGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\dockPanelConfigManager.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>dockPanelConfigManager.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmExportXmlToBd.resx">
       <DependentUpon>frmExportXmlToBd.cs</DependentUpon>
@@ -280,9 +280,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TortoiseReadOnly.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TortoiseAdded.ico" />
