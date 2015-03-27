@@ -1,6 +1,7 @@
 namespace Fwk.Blocking
 {
-	/// <summary>
+	
+    /// <summary>
 	/// Marca de bloqueo para un registro de una tabla.-
 	/// </summary>
     public class FwkBlockingEngine : BlockingEngineBase
