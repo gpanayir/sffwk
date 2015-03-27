@@ -7,6 +7,7 @@ using System.Text;
 
 using Fwk.Bases;
 using Fwk.Caching;
+using Fwk.ConfigSection;
 
 //http://msdn.microsoft.com/en-us/library/ee939340.aspx
 namespace WcfDispatcher
@@ -18,6 +19,23 @@ namespace WcfDispatcher
     {
         [OperationContract]
         String ExecuteService(String providerName, String serviceName, String jsonRequets);
+
+
+        [OperationContract]
+        String GetServiceConfiguration(string providerName, string serviceName);
+
+        [OperationContract]
+        String GetServicesList(string providerName, Boolean ViewAsXml);
+
+        [OperationContract]
+        Fwk.ConfigSection.DispatcherInfo RetriveDispatcherInfo();
+
+        [OperationContract]
+        List<String> GetAllApplicationsId(string providerName);
+
+        [OperationContract]
+        MetadataProvider GetProviderInfo(string providerName);
+        
     }
 
 
