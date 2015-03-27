@@ -411,7 +411,9 @@ namespace Fwk.Bases.Connector
               Fwk.Bases.Connector.Singleservice.DispatcherInfo  wsDispatcherInfo = wService.RetriveDispatcherInfo();
                 DispatcherInfo wDispatcherInfo = new DispatcherInfo();
 
+
                 wDispatcherInfo.ServiceDispatcherConnection = wsDispatcherInfo.ServiceDispatcherConnection;
+                wDispatcherInfo.MachineIp = wsDispatcherInfo.MachineIp;
                 wDispatcherInfo.ServiceDispatcherName = wsDispatcherInfo.ServiceDispatcherName;
                 List<Fwk.ConfigSection.MetadataProvider> providers = new List<MetadataProvider>();
                 MetadataProvider provider = null;

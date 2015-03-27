@@ -637,7 +637,14 @@ namespace Fwk.BusinessFacades.Utils
         public static DispatcherInfo RetriveDispatcherInfo()
         {
             DispatcherInfo dispatcherInfo = new DispatcherInfo();
-
+            try
+            {
+                dispatcherInfo.MachineIp = Fwk.HelperFunctions.EnvironmentFunctions.GetMachineIp();
+            }
+            catch (Exception e)
+            {
+                dispatcherInfo.MachineIp = e.Message;
+            }
             List<MetadataProvider> list = new List<MetadataProvider>();
             foreach (ServiceProviderElement providerElement in ServiceMetadata.ProviderSection.Providers)
             {

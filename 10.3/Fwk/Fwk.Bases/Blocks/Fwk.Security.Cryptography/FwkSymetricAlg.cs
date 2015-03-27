@@ -9,7 +9,9 @@ using Fwk.Exceptions;
 namespace Fwk.Security.Cryptography
 {
     /// <summary>
-    /// 
+    /// Por el momento solo hay soporte para estos algoritmos
+    /// AesManaged
+    /// RijndaelManaged
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class SymetriCypher<T> : ISymetriCypher where T :SymmetricAlgorithm
@@ -194,37 +196,36 @@ namespace Fwk.Security.Cryptography
         {
             if (_SymmetricAlgorithm != null) return;
             TechnicalException te;
-            //if (string.IsNullOrEmpty(keyFileName))
-            //{
-            //    keyFileName = System.Configuration.ConfigurationSettings.AppSettings["CrypKeyFile"];
-            //}
-            //if (string.IsNullOrEmpty(keyName))
-            //{
-            //    te = new TechnicalException("La clave de encriptacion no puede ser nula");
-            //    ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
-            //    te.ErrorId = "4401";
-            //    throw te;
-            //}
-
-            //if (!File.Exists(keyFileName))
-            //{
-            //    throw new Fwk.Exceptions.TechnicalException();
-
-            //    te = new TechnicalException(string.Concat("La clave de encriptacion ", keyFileName, " no existe"));
-            //    ExceptionHelper.SetTechnicalException<SymetriCypher_EntLibs<T>>(te);
-            //    te.ErrorId = "4401";
-            //    throw te;
-
-            //}
             try
             {
                 if (_SymmetricAlgorithm == null)
+                {
+                    if (typeof(T).AssemblyQualifiedName.Contains("TripleDES"))
+                    {
+                        te = new TechnicalException("Consider using the algorithm, Advanced Encryption Standard (AES) class and its derived classes instead of the TripleDES. Use TripleDES only for compatibility with legacy applications and data.  ");
+                        te.ErrorId = "4400";
+                        throw te;
 
-                    _SymmetricAlgorithm =(T) Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(typeof(T).AssemblyQualifiedName);
+                    }
+                    ///No se puede crear una clase AesManaged por reflection.. Pide la System.Core  a pesar de que esta .. Seguramente hay que usar reflect por dll
+                    //Utilizando esta forma de instanciar dio buen resultado 
+                    if (typeof(T).AssemblyQualifiedName.Contains("AesManaged"))
+                    {
+                        AesManaged aes = new AesManaged();
+                        _SymmetricAlgorithm = (T)((System.Security.Cryptography.SymmetricAlgorithm)aes);
+                    }
+                    else
+                    {
+                        _SymmetricAlgorithm = (T)Fwk.HelperFunctions.ReflectionFunctions.CreateInstance(typeof(T).AssemblyQualifiedName);
+                    }
+                }
             }
+            catch (TechnicalException tech)
+            { throw tech; }
             catch (Exception e)
             {
-                te = new TechnicalException("Error al intentar crear SymmetricAlgorithmProvider ", e);
+                //
+                te = new TechnicalException(String.Format("Error al intentar crear {0} ", typeof(T).FullName), e);
                 ExceptionHelper.SetTechnicalException<SymetriCypher<T>>(te);
                 te.ErrorId = "4400";
                 throw te;
@@ -234,7 +235,7 @@ namespace Fwk.Security.Cryptography
 
     }
 
-    public class FwkSymetricAlg : ISymetriCypher
+     class FwkSymetricAlg : ISymetriCypher
     {
          static RijndaelManaged _SymmetricAlgorithm;
 
@@ -248,7 +249,7 @@ namespace Fwk.Security.Cryptography
         /// 
         /// </summary>
         /// <param name="k"></param>
-        public  FwkSymetricAlg(string k)
+        public FwkSymetricAlg(string k)
         {
             
 

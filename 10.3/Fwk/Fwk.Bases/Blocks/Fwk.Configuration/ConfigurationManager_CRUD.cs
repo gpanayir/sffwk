@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Fwk.ConfigSection;
 using Fwk.Configuration.Common;
 
 namespace Fwk.Configuration
@@ -82,5 +83,14 @@ namespace Fwk.Configuration
             ConfigurationManager.ChangeProperty(configProvider, groupName, property, propertyName);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceConfigurationFile"></param>
+        /// <param name="provider"></param>
+        public static void Import(ConfigurationFile sourceConfigurationFile,ConfigProviderElement provider)
+        {
+            ConfigurationManager.Import(sourceConfigurationFile, provider);
+        }
     }
 }

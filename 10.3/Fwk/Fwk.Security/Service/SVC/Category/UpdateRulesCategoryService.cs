@@ -25,15 +25,17 @@ namespace Fwk.Security.SVC
     /// </summary>
     public class UpdateRulesCategoryService : BusinessService<UpdateRulesCategoryReq, UpdateRulesCategoryRes>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pServiceRequest"></param>
+        /// <returns></returns>
         public override UpdateRulesCategoryRes Execute(UpdateRulesCategoryReq pServiceRequest)
         {
             UpdateRulesCategoryRes wRes = new UpdateRulesCategoryRes();
             //TOD0: terminar desarrollor de UpdateRulesCategoryService 
-           /// RulesCategoryBE wRC = new RulesCategoryBE();
-
-            ///wRC = RulesCategoryBE.GetFromXml < RulesCategoryBE>(pServiceRequest.BusinessData.GetXml());
-
-           
+            // RulesCategoryBE wRC = new RulesCategoryBE();
+            //wRC = RulesCategoryBE.GetFromXml < RulesCategoryBE>(pServiceRequest.BusinessData.GetXml());
             
             return wRes;
         }

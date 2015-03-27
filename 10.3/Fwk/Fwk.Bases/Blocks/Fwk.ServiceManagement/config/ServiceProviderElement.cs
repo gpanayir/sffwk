@@ -243,30 +243,56 @@ namespace Fwk.ConfigSection
         /// Nombre de instancia del dispatcher
         /// </summary>
         public string ServiceDispatcherName { get; set; }
+
+        /// <summary>
+        /// Ip donde esta correindo el servicio
+        /// </summary>
+        public string MachineIp { get; set; }
     }
 
-    //[XmlRoot("DictionarySettingList"), SerializableAttribute]
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class DictionarySettingList : List<DictionarySetting>
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void Add(string key, string value)
         {
             this.Add(new DictionarySetting(key, value));
         }
     }
 
-    //[XmlInclude(typeof(DictionarySetting)), Serializable]
     [Serializable]
     public class DictionarySetting //: Fwk.Bases.BaseEntity
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public DictionarySetting(string key, string value)
         {
             this.Key = key;
             this.Value = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public DictionarySetting()
         { }
+        /// <summary>
+        /// 
+        /// </summary>
         public String Key { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public String Value { get; set; }
     }
 
