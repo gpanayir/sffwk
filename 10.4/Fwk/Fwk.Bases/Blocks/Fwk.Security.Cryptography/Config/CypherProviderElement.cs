@@ -57,8 +57,9 @@ namespace Fwk.Security.Cryptography.Config
 
         
         /// <summary>
-        /// if type = file -->  text file 
-         /// if type = sqldata cnn string name
+        /// si type es = file: source representa unarchivo .key que contiene la clave de encriptacion 
+        /// Ejemplo KJVzHoMkFCWQCEsHaUbjPzT8kUGFRh6e2gQJC+Vtw+s=$P6ydBMk84v+lTBOd/3wtzw== 
+        /// 
         /// </summary>
         [ConfigurationProperty("source", IsRequired = false, IsKey = false),
          StringValidator(InvalidCharacters = @"~!@#$%^&*[]{};'""|")]
@@ -70,42 +71,10 @@ namespace Fwk.Security.Cryptography.Config
             }
             set { this["source"] = value; }
         }
-        //public override string ToString()
-        //{
-        //    return string.Concat("Cuenta: ", this.Cuenta, "Subarea: ", this.ProviderName);
-        //}
-
+ 
         #endregion
-        //string cnnStringName;
-
-        //public string CnnStringName
-        //{
-        //    get
-        //    {
-                
-        //        return cnnStringName;
-        //    }
-        //    set
-        //    {
-                
-        //        cnnStringName = value;
-        //        if (ConfigurationManager.ConnectionStrings[cnnStringName]!=null)
-        //            cnnString = ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString;
-        //    }
-        //}
       
-       
-        //string cnnString;
-        //public string CnnString
-        //{
-        //    get
-        //    {
-        //        //if (String.IsNullOrEmpty(cnnString))
-        //        //    cnnString = ConfigurationManager.ConnectionStrings["meucci"].ConnectionString;
-        //        return cnnString;
-        //    }
-            
-        //}
+     
        
     }
 }

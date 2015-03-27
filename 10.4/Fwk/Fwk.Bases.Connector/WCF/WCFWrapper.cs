@@ -147,18 +147,6 @@ namespace Fwk.Bases.Connector
 
         #endregion
        
-     
-
-       
-       
-		
-
-       
-
-
-
-
-
         #region [ServiceConfiguration]
 
 
@@ -170,10 +158,25 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public ServiceConfigurationCollection GetAllServices()
         {
+            InitHost();
 
-            throw new NotImplementedException();
-            //return wFwkRemoteObject.GetServicesList(_ServiceMetadataProviderName);
-          
+            GetServicesListRequest wcfReq = new GetServicesListRequest();
+            GetServicesListResponse wcfRes = null;
+
+            wcfReq.providerName = _ServiceMetadataProviderName;
+            wcfReq.ViewAsXml = true;
+
+            using (FwkServiceClient svcProxy = new WCFServiceReference.FwkServiceClient(binding, address))
+            {
+
+                svcProxy.Open();
+                wcfRes = svcProxy.GetServicesList(wcfReq);
+            }
+            ServiceConfigurationCollection wServiceConfigurationCollection = (ServiceConfigurationCollection)
+           Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), wcfRes.GetServicesListResult);
+
+            return wServiceConfigurationCollection;
+
         }
 
         /// <summary>
@@ -185,8 +188,24 @@ namespace Fwk.Bases.Connector
         /// <author>moviedo</author>
         public ServiceConfiguration GetServiceConfiguration(String pServiceName)
         {
-            throw new NotImplementedException();
-            //return wFwkRemoteObject.GetServiceConfiguration(_ServiceMetadataProviderName, pServiceName);
+            InitHost();
+
+            GetServiceConfigurationRequest wcfReq = new GetServiceConfigurationRequest();
+            GetServiceConfigurationResponse wcfRes = null;
+
+            wcfReq.providerName = _ServiceMetadataProviderName;
+            wcfReq.serviceName = pServiceName;
+
+            using (FwkServiceClient svcProxy = new WCFServiceReference.FwkServiceClient(binding, address))
+            {
+
+                svcProxy.Open();
+                wcfRes = svcProxy.GetServiceConfiguration(wcfReq);
+            }
+            ServiceConfiguration wServiceConfiguration = (ServiceConfiguration)
+           Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfiguration), wcfRes.GetServiceConfigurationResult);
+
+            return wServiceConfiguration;
            
         }
 
@@ -234,9 +253,23 @@ namespace Fwk.Bases.Connector
         /// <returns></returns>
         public  List<String> GetAllApplicationsId()
         {
-            throw new NotImplementedException();
-            //return wFwkRemoteObject.GetAllApplicationsId(_ServiceMetadataProviderName);
+            InitHost();
+
+            GetAllApplicationsIdRequest wcfReq = new GetAllApplicationsIdRequest();
+            GetAllApplicationsIdResponse wcfRes = null;
+
+            wcfReq.providerName = _ServiceMetadataProviderName;
             
+            
+            using (FwkServiceClient svcProxy = new WCFServiceReference.FwkServiceClient(binding, address))
+            {
+
+                svcProxy.Open();
+                wcfRes = svcProxy.GetAllApplicationsId(wcfReq);
+            }
+            List<String > list = new List<string> ();
+            list.AddRange(wcfRes.GetAllApplicationsIdResult);
+            return list;
         }
         /// <summary>
         /// Obtiene info del proveedor de metadata
@@ -245,8 +278,22 @@ namespace Fwk.Bases.Connector
         /// <returns></returns>
         public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
         {
-            throw new NotImplementedException();
-            //return wFwkRemoteObject.GetProviderInfo(providerName);
+            InitHost();
+
+            GetProviderInfoRequest wcfReq = new GetProviderInfoRequest();
+            GetProviderInfoResponse wcfRes = null;
+
+            wcfReq.providerName = providerName;
+
+            using (FwkServiceClient svcProxy = new WCFServiceReference.FwkServiceClient(binding, address))
+            {
+
+                svcProxy.Open();
+                wcfRes = svcProxy.GetProviderInfo(wcfReq);
+            }
+
+            MetadataProvider wMetadataProvider = wcfRes.GetProviderInfoResult;
+            return wMetadataProvider;
         }
 
         /// <summary>
@@ -255,8 +302,20 @@ namespace Fwk.Bases.Connector
         /// <returns></returns>
         public DispatcherInfo RetriveDispatcherInfo()
         {
-            throw new NotImplementedException();
-            //return wFwkRemoteObject.RetriveDispatcherInfo();
+            InitHost();
+
+            RetriveDispatcherInfoRequest wcfReq = new RetriveDispatcherInfoRequest();
+            RetriveDispatcherInfoResponse wcfRes = null;
+
+            using (FwkServiceClient svcProxy = new WCFServiceReference.FwkServiceClient(binding, address))
+            {
+
+                svcProxy.Open();
+                wcfRes = svcProxy.RetriveDispatcherInfo(wcfReq);
+            }
+
+            DispatcherInfo wDispatcherInfo = wcfRes.RetriveDispatcherInfoResult;
+            return wDispatcherInfo;
            
         }
         #endregion [ServiceConfiguration]

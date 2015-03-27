@@ -14,8 +14,7 @@ namespace Fwk.Security
 
     /// <summary>
     /// Represents the configuration data for a
-    /// rule that is governed by an 
-    /// <see cref="AuthorizationRuleProvider"/>.
+    /// rule that is governed by an AuthorizationRuleData
     /// </summary>
     [Serializable]
     public class FwkAuthorizationRule :Entity,  IAuthorizationRule
@@ -25,6 +24,9 @@ namespace Fwk.Security
         private System.String _ApplicationName;
         private System.String _Name;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public System.String Name
         {
             get { return _Name; }
@@ -40,7 +42,7 @@ namespace Fwk.Security
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthorizationRuleData"/> class with the specified name and expression.
+        /// Initializes a new instance of the class with the specified name and expression.
         /// </summary>
         /// <param name="name">The name of the rule</param>
         /// <param name="expression">The expression to evaluate.</param>
@@ -51,7 +53,7 @@ namespace Fwk.Security
 
         }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AuthorizationRuleData"/> class with the specified name and expression.
+        /// Initializes a new instance of the AuthorizationRuleData class with the specified name and expression.
         /// </summary>
         /// <param name="name">The name of the rule</param>
         /// <param name="expression">The expression to evaluate.</param>
@@ -366,7 +368,7 @@ namespace Fwk.Security
     //    }
 
     //    /// <summary>
-    //    /// Initializes a new instance of the <see cref="AuthorizationRuleData"/> class with the specified name and expression.
+    //    /// Initializes a new instance of the AuthorizationRuleData class with the specified name and expression.
     //    /// </summary>
     //    /// <param name="name">The name of the rule</param>
     //    /// <param name="expression">The expression to evaluate.</param>

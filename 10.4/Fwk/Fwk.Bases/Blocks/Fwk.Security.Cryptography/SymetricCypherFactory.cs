@@ -15,7 +15,7 @@ namespace Fwk.Security.Cryptography
 
 
     /// <summary>
-    /// Fabrica de SymetriCypher <![CDATA[SymetriCypher<T>]]> Crea todo los algoritmos de tipo RijndaelManaged
+    /// Fabrica de SymetriCypher. Crea todo los algoritmos de tipo RijndaelManaged
     /// </summary>
     public static class SymetricCypherFactory
     {
@@ -42,7 +42,7 @@ namespace Fwk.Security.Cryptography
                 _CypherProviders = System.Configuration.ConfigurationManager.GetSection("FwkCypherProvider") as CypherProviderSection;
                 if (_CypherProviders == null)
                 {
-                    te = new TechnicalException(String.Format(Fwk.Bases.Properties.Resources.setting_section_not_found, "FwkCypherProvider", "FwkCypherProvider"));
+                    te = new TechnicalException(String.Format(Fwk.Bases.Properties.Resources.setting_section_not_found, "FwkCypherProvider" ));
                     te.ErrorId = String.Empty;
 
                     throw te;
@@ -71,6 +71,7 @@ namespace Fwk.Security.Cryptography
                         k = Fwk.HelperFunctions.FileFunctions.OpenTextFile(wFullFileName);
                     }
                     Add<RijndaelManaged>(provider.Name, k);
+                    
                 }
             }
             catch (System.Exception ex)
@@ -82,20 +83,21 @@ namespace Fwk.Security.Cryptography
                 throw ex;
             }
         }
+
         /// <summary>
-        /// 
+        /// Utiliza el SymetriCypher por defecto configurado en el .config
         /// </summary>
         /// <returns></returns>
         public static ISymetriCypher Cypher()
         {
-            
             return Cypher(String.Empty);
         }
+
         /// <summary>
         /// Busca un cryptographer determinado por medio de su nombre  
         /// </summary>
-        /// <param name="providerName">nombre proveedor configurado </param>
-        /// <returns>Argoritmo </returns>
+        /// <param name="providerName">nombre proveedor configurado en el .config</param>
+        /// <returns>Argoritmo ISymetriCypher</returns>
         public static ISymetriCypher Cypher(string providerName)
         {
             InitializeProviders();
@@ -104,6 +106,8 @@ namespace Fwk.Security.Cryptography
                 providerName = _CypherProviders.DefaultProviderName;
 
             ISymetriCypher symetriCypher = null;
+
+
             //Busca el SymetriCypher en el diccionario
             if (CypherProviders.ContainsKey(providerName))
                 symetriCypher = (ISymetriCypher)CypherProviders[providerName];
@@ -120,13 +124,13 @@ namespace Fwk.Security.Cryptography
 
      
         /// <summary>
-        /// Busca un criptographer determinado por medio de su nombre de archivo de encriptacion y tipo de algoritmo simetrico
+        /// Busca un cryptographer determinado por medio de su nombre de archivo de encriptacion y tipo de algoritmo simetrico
         /// </summary>
         /// <typeparam name="T">Tipo de algoritmo simetrico</typeparam>
         /// <param name="providerName">Nombre de proveedor de encriptación</param>
         /// <param name="key">Clave de encriptacion</param>
         /// <returns>Argoritmo</returns>
-        static SymetriCypher<T> Add<T>(string providerName,string key) where T : SymmetricAlgorithm
+        static SymetriCypher<T> Add<T>(string providerName, string key) where T : SymmetricAlgorithm
         {
             if (String.IsNullOrEmpty(providerName))
                 providerName = _CypherProviders.DefaultProviderName;

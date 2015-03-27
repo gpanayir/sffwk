@@ -92,6 +92,7 @@
       <HintPath>..\..\Libraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -165,8 +166,11 @@
     <Compile Include="Membership\FwkMembership.Roles.cs" />
     <Compile Include="Membership\FwkMembership.Rules.cs" />
     <Compile Include="Membership\FwkMembership.User.cs" />
+    <Compile Include="Membership\FwkMembershiProvider.cs" />
     <Compile Include="Membership\FwkMembershipScripts.cs" />
     <Compile Include="Membership\FwkMembership.cs" />
+    <Compile Include="Membership\IFwkSecurityManageProvider.cs" />
+    <Compile Include="Membership\MembershipEnums.cs" />
     <Compile Include="Membership\RuleProvider.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

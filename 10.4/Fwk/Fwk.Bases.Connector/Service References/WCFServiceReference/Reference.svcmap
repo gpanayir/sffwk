@@ -21,10 +21,13 @@
     <MetadataSource Address="http://localhost:8732/WcfDispatcher/FwkService/?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.wsdl" MetadataType="Wsdl" ID="76113a4e-1973-4b4f-888c-f3bbb69e8fb6" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?wsdl=wsdl0" />
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="0d646ce9-b0c2-441d-8593-9aa831a166c3" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd0" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="e5832437-82f1-4122-94c9-824aec4c4bbf" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd1" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="82d14a58-929c-4551-9688-3195d1062800" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd4" />
+    <MetadataFile FileName="item.wsdl" MetadataType="Wsdl" ID="76113a4e-1973-4b4f-888c-f3bbb69e8fb6" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?wsdl=wsdl0" />
+    <MetadataFile FileName="item21.xsd" MetadataType="Schema" ID="1a444277-8c69-419d-8a2c-46f2992ac757" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd3" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="0d646ce9-b0c2-441d-8593-9aa831a166c3" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd0" />
     <MetadataFile FileName="FwkService.wsdl" MetadataType="Wsdl" ID="f363e4f1-19a7-4b51-900e-1116906a3753" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?wsdl" />
+    <MetadataFile FileName="item22.xsd" MetadataType="Schema" ID="0d5f7295-5ea6-4f61-bad7-9208bf416cc3" SourceId="1" SourceUrl="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

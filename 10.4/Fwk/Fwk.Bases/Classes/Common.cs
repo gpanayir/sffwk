@@ -239,7 +239,9 @@ namespace Fwk.Bases
         [Description("Autenticación de Windows")]
         LDAP = 3,
         [Description("Use SQL Membeships provider and SQL Rol provider")]
-        ASPNETMemberShips = 4
+        ASPNETMemberShips = 4,
+        [Description("The ASP.NET Identity system is designed to replace the previous ASP.NET Membership ")]
+        ASPNETIdentity_2_0 = 5,
 
     }
 }

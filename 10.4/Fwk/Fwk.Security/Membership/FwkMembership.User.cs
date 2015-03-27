@@ -9,6 +9,7 @@ using Fwk.Security.Common;
 using System.Data;
 using Fwk.Exceptions;
 using Fwk.Security.Properties;
+using Fwk.Security.Membership;
 
 namespace Fwk.Security
 {
@@ -27,10 +28,87 @@ namespace Fwk.Security
         public static Boolean ValidateUser(string userName, string password, string providerName)
         {
             SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+           
+           bool isValid = wProvider.ValidateUser(userName, password);
 
-            return wProvider.ValidateUser(userName, password);
+           if (!isValid)
+           {
+               MembershipUser user = wProvider.GetUser(userName,true);
+               if (user != null)
+               {
+                   //User exists
+                   if (!user.IsApproved)
+                   {
+                       //Account Unapproved
+                       throw new TechnicalException("Your account is not approved.");
+                   }
+                   else if (user.IsLockedOut)
+                   {
+                       //Account Locked
+                 
+                       throw new TechnicalException("Your account is locked.");
+                   }
+                   else
+                   {
+                       //Invalid username or password
+                       
+                       throw new TechnicalException("Invalid username or password.");
+                   }
+               }
+               else
+               {
+                    throw new TechnicalException("Invalid username or password.");
+               }
+           }
+           return isValid;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="providerName"></param>
+        /// <returns></returns>
+        public static MembershipEnums CheckUserStatus(string userName, string password, string providerName)
+        {
+            MembershipEnums status = MembershipEnums.AccountUsernameAndPassword_IS_OK;
+            SqlMembershipProvider wProvider = GetSqlMembershipProvider(providerName);
+
+            bool isValid = wProvider.ValidateUser(userName, password);
+
+            if (!isValid)
+            {
+                MembershipUser user = wProvider.GetUser(userName, true);
+                if (user != null)
+                {
+                    //User exists
+                    if (!user.IsApproved)
+                    {
+                        //Account Unapproved
+                        status = MembershipEnums.AccountIsNotApproved;
+                    }
+                    else if (user.IsLockedOut)
+                    {
+                        //Account Locked
+                        status = MembershipEnums.AccountIsLockedOut;
+                        
+                    }
+                    else
+                    {
+                        //Invalid username or password
+                        status = MembershipEnums.InvalidUsernameOrPassword;
+                        
+                    }
+                }
+                else
+                {
+                    status = MembershipEnums.InvalidUsernameOrPassword;
+                }
+            }
+            return status;
+
+        }
         /// <summary>
         /// Crea un usuario
         /// Si el usuario existe lanza una (System.Web.Security.MembershipCreateUserException ex) 

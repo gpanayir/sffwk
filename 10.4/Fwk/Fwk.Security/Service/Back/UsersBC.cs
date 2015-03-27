@@ -74,9 +74,7 @@ namespace Fwk.Security.BC
         /// Actualiza los datos del usuario.
         /// </summary>
         /// <param name="pUser">Usuario que se desea actualizar.</param>
-        /// <param name="userName">Nombre no modificado del usuario.- El nuevo nombre de usuario en caso de modifucacion 
-        /// va en el parametro pUser </param>
-        /// <param name="pCustomUserTable">Nombre de la tabla customizada</param>
+        /// <param name="userName">Nombre no modificado del usuario.- El nuevo nombre de usuario en caso de modifucacion     va en el parametro pUser </param>
         public void Update(User pUser, string userName)
         {
             Validate(pUser, false);

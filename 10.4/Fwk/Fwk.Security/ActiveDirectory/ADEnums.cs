@@ -159,7 +159,7 @@ namespace Fwk.Security.ActiveDirectory
         ADS_UF_DONT_REQUIRE_PREAUTH = 4194304,   // 0x400000
         /// <summary>
         /// The user password has expired. This flag is created by the system using data from the password last set attribute and the domain policy. It is read-only and cannot be set. To manually set a user password as expired, use the NetUserSetInfo function with the USER_INFO_3 (usri3_password_expired member) or USER_INFO_4 (usri4_password_expired member) structure.
-        //Active Directory Client Extension:  Not supported.
+        ///Active Directory Client Extension:  Not supported.
         /// </summary>
         ADS_UF_PASSWORD_EXPIRED = 8388608,   // 0x800000
         /// <summary>
@@ -198,8 +198,13 @@ namespace Fwk.Security.ActiveDirectory
         /// Cuenta de usuario bloqueada
         /// </summary>
         LOGIN_USER_ACCOUNT_LOCKOUT,
-
+        /// <summary>
+        /// 
+        /// </summary>
         ERROR_PASSWORD_MUST_CHANGE = 1907,
+        /// <summary>
+        /// 
+        /// </summary>
         ERROR_PASSWORD_EXPIRED = 1330,
 
         /// <summary>

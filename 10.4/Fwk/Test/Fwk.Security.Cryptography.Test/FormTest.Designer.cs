@@ -47,25 +47,28 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtKey.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtKey.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
-            this.txtKey.Location = new System.Drawing.Point(30, 45);
+            this.txtKey.Location = new System.Drawing.Point(40, 55);
+            this.txtKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(565, 20);
+            this.txtKey.Size = new System.Drawing.Size(752, 22);
             this.txtKey.TabIndex = 26;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 24);
+            this.label1.Location = new System.Drawing.Point(36, 30);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(259, 13);
+            this.label1.Size = new System.Drawing.Size(346, 17);
             this.label1.TabIndex = 27;
             this.label1.Text = "Kye file (genere la clave y almacenela en un archivo )";
             // 
             // btnKey
             // 
-            this.btnKey.Location = new System.Drawing.Point(618, 41);
+            this.btnKey.Location = new System.Drawing.Point(824, 50);
+            this.btnKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnKey.Name = "btnKey";
-            this.btnKey.Size = new System.Drawing.Size(116, 22);
+            this.btnKey.Size = new System.Drawing.Size(155, 27);
             this.btnKey.TabIndex = 25;
             this.btnKey.Text = "Create key file";
             this.btnKey.UseVisualStyleBackColor = true;
@@ -75,18 +78,20 @@
             // 
             this.txtValorOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValorOriginal.Location = new System.Drawing.Point(29, 314);
+            this.txtValorOriginal.Location = new System.Drawing.Point(39, 386);
+            this.txtValorOriginal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtValorOriginal.Multiline = true;
             this.txtValorOriginal.Name = "txtValorOriginal";
-            this.txtValorOriginal.Size = new System.Drawing.Size(584, 57);
+            this.txtValorOriginal.Size = new System.Drawing.Size(777, 69);
             this.txtValorOriginal.TabIndex = 24;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 284);
+            this.label3.Location = new System.Drawing.Point(13, 350);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.Size = new System.Drawing.Size(80, 17);
             this.label3.TabIndex = 23;
             this.label3.Text = "Valor inicial";
             // 
@@ -95,18 +100,20 @@
             this.txtNoCifrado.AcceptsReturn = true;
             this.txtNoCifrado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNoCifrado.Location = new System.Drawing.Point(30, 69);
+            this.txtNoCifrado.Location = new System.Drawing.Point(40, 85);
+            this.txtNoCifrado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNoCifrado.Multiline = true;
             this.txtNoCifrado.Name = "txtNoCifrado";
-            this.txtNoCifrado.Size = new System.Drawing.Size(584, 94);
+            this.txtNoCifrado.Size = new System.Drawing.Size(777, 115);
             this.txtNoCifrado.TabIndex = 22;
             this.txtNoCifrado.Text = "Cuando comen los leones";
             // 
             // btnDEncrypt
             // 
-            this.btnDEncrypt.Location = new System.Drawing.Point(638, 204);
+            this.btnDEncrypt.Location = new System.Drawing.Point(851, 251);
+            this.btnDEncrypt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDEncrypt.Name = "btnDEncrypt";
-            this.btnDEncrypt.Size = new System.Drawing.Size(81, 38);
+            this.btnDEncrypt.Size = new System.Drawing.Size(108, 47);
             this.btnDEncrypt.TabIndex = 21;
             this.btnDEncrypt.Text = "Desencriptar";
             this.btnDEncrypt.UseVisualStyleBackColor = true;
@@ -115,9 +122,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1, 166);
+            this.label2.Location = new System.Drawing.Point(1, 204);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.Size = new System.Drawing.Size(112, 17);
             this.label2.TabIndex = 20;
             this.label2.Text = "Valor encriptado";
             // 
@@ -125,17 +133,19 @@
             // 
             this.txtCifrado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCifrado.Location = new System.Drawing.Point(30, 186);
+            this.txtCifrado.Location = new System.Drawing.Point(40, 229);
+            this.txtCifrado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCifrado.Multiline = true;
             this.txtCifrado.Name = "txtCifrado";
-            this.txtCifrado.Size = new System.Drawing.Size(584, 95);
+            this.txtCifrado.Size = new System.Drawing.Size(777, 116);
             this.txtCifrado.TabIndex = 19;
             // 
             // btnEncrypt
             // 
-            this.btnEncrypt.Location = new System.Drawing.Point(638, 94);
+            this.btnEncrypt.Location = new System.Drawing.Point(851, 116);
+            this.btnEncrypt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(81, 38);
+            this.btnEncrypt.Size = new System.Drawing.Size(108, 47);
             this.btnEncrypt.TabIndex = 18;
             this.btnEncrypt.Text = "Encriptar";
             this.btnEncrypt.UseVisualStyleBackColor = true;
@@ -143,9 +153,9 @@
             // 
             // FormTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 469);
+            this.ClientSize = new System.Drawing.Size(992, 577);
             this.Controls.Add(this.txtKey);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnKey);
@@ -156,9 +166,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtCifrado);
             this.Controls.Add(this.btnEncrypt);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormTest";
-            this.Text = "Form_ConArchivo";
+            this.Text = "Fwk Cryptography";
             this.ResumeLayout(false);
             this.PerformLayout();
 

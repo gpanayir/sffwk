@@ -139,12 +139,36 @@
     <None Include="Service References\WCFServiceReference\Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\WCFServiceReference\Fwk.Bases.Connector.WCFServiceReference.GetAllApplicationsIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFServiceReference\Fwk.Bases.Connector.WCFServiceReference.GetProviderInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFServiceReference\Fwk.Bases.Connector.WCFServiceReference.GetServiceConfigurationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFServiceReference\Fwk.Bases.Connector.WCFServiceReference.GetServicesListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WCFServiceReference\Fwk.Bases.Connector.WCFServiceReference.RetriveDispatcherInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\WCFServiceReference\FwkService.wsdl" />
     <None Include="Service References\WCFServiceReference\item.wsdl" />
     <None Include="Service References\WCFServiceReference\item.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\WCFServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFServiceReference\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFServiceReference\item21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFServiceReference\item22.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web References\ASPNetSecurity\ASPNet.wsdl" />

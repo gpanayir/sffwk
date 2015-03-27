@@ -34,6 +34,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.btnExeptions = new System.Windows.Forms.Button();
             this.button_SingletonFactoryArray = new System.Windows.Forms.Button();
+            this.btnJSON = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -126,11 +127,27 @@
             this.button_SingletonFactoryArray.UseVisualStyleBackColor = false;
             this.button_SingletonFactoryArray.Click += new System.EventHandler(this.button_SingletonFactoryArray_Click);
             // 
+            // btnJSON
+            // 
+            this.btnJSON.BackColor = System.Drawing.Color.White;
+            this.btnJSON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJSON.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJSON.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.btnJSON.Location = new System.Drawing.Point(418, 246);
+            this.btnJSON.Margin = new System.Windows.Forms.Padding(4);
+            this.btnJSON.Name = "btnJSON";
+            this.btnJSON.Size = new System.Drawing.Size(274, 44);
+            this.btnJSON.TabIndex = 7;
+            this.btnJSON.Text = "JSON ";
+            this.btnJSON.UseVisualStyleBackColor = false;
+            this.btnJSON.Click += new System.EventHandler(this.btnJSON_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 327);
+            this.Controls.Add(this.btnJSON);
             this.Controls.Add(this.button_SingletonFactoryArray);
             this.Controls.Add(this.btnExeptions);
             this.Controls.Add(this.button4);
@@ -152,5 +169,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnExeptions;
         private System.Windows.Forms.Button button_SingletonFactoryArray;
+        private System.Windows.Forms.Button btnJSON;
     }
 }
