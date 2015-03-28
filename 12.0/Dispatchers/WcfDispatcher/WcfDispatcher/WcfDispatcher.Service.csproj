@@ -8,8 +8,8 @@
     <ProjectGuid>{01286891-AE8E-4A3A-B7EB-E22FCECC3F05}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WcfDispatcher</RootNamespace>
-    <AssemblyName>WcfDispatcher</AssemblyName>
+    <RootNamespace>WcfDispatcher.Service</RootNamespace>
+    <AssemblyName>WcfDispatcher.Service</AssemblyName>
     <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

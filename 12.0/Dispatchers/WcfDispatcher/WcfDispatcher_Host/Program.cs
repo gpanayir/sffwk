@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using WcfDispatcher;
+using WcfDispatcher.Service;
 
 namespace WcfDispatcher_Host
 {
@@ -14,6 +15,7 @@ namespace WcfDispatcher_Host
         {
             using (ServiceHost host = new ServiceHost(typeof(FwkService)))
             {
+               
                 host.Open();
                 MetadataHelper.Log_ServiceHost(host);
                 Console.ReadLine();
@@ -28,8 +30,9 @@ namespace WcfDispatcher_Host
             NetTcpBinding tcpBinding = new NetTcpBinding();
             Uri wUri = new Uri("net.tcp://santana:8001/FwkService1");
             tcpBinding.TransactionFlow = true;
-
+            
             host.AddServiceEndpoint(typeof(IFwkService), tcpBinding, wUri);
+            
             host.Open();
         }
 

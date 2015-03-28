@@ -10,6 +10,7 @@ using System.ServiceModel;
 using WcfDispatcher;
 using Fwk.Logging;
 using Fwk.Logging.Targets;
+using WcfDispatcher.Service;
 
 namespace WcfDispatcherSvc
 {

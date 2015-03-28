@@ -10,7 +10,7 @@ using System.ServiceModel.Channels;
 using System.Net;
 using Fwk.BusinessFacades;
 
-namespace WcfDispatcher
+namespace WcfDispatcher.Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public class FwkService : IFwkService

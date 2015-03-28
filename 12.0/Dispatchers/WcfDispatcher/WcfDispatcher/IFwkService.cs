@@ -10,7 +10,7 @@ using Fwk.Caching;
 using Fwk.ConfigSection;
 
 //http://msdn.microsoft.com/en-us/library/ee939340.aspx
-namespace WcfDispatcher
+namespace WcfDispatcher.Service
 {
     //Single(Singleton) - If WCF service is configured as “Single” then for all the clients only one service instance will be created and this service instance will common for all the clients. This is like “[Application]” object in ASP.Net. For this implementation you have to set InstanceContextMode attribute like this-
 

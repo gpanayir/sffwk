@@ -94,9 +94,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WcfDispatcher\WcfDispatcher.csproj">
+    <ProjectReference Include="..\WcfDispatcher\WcfDispatcher.Service.csproj">
       <Project>{01286891-AE8E-4A3A-B7EB-E22FCECC3F05}</Project>
-      <Name>WcfDispatcher</Name>
+      <Name>WcfDispatcher.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

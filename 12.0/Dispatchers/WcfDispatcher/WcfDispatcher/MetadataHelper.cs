@@ -7,7 +7,7 @@ using System.ServiceModel.Channels;
 using System.Diagnostics;
 using System.ServiceModel;
 
-namespace WcfDispatcher
+namespace WcfDispatcher.Service
 {
 
     public static class MetadataHelper

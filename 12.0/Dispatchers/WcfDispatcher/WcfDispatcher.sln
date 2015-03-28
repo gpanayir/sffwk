@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfDispatcher", "WcfDispatcher\WcfDispatcher.csproj", "{01286891-AE8E-4A3A-B7EB-E22FCECC3F05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfDispatcher.Service", "WcfDispatcher\WcfDispatcher.Service.csproj", "{01286891-AE8E-4A3A-B7EB-E22FCECC3F05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfDispatcher_Host", "WcfDispatcher_Host\WcfDispatcher_Host.csproj", "{6E86955E-7756-4DF1-AE79-DC6D1B5AA5C1}"
 EndProject
