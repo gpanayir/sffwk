@@ -1,0 +1,37 @@
+pasos básicos necesarios para crear un servicio de Windows Communication Foundation (WCF) que se hospeda en Internet Information Services (IIS).
+
+Para crear un servicio hospedado por IIS
+
+1 - Cree una nueva carpeta para los archivos de la aplicación denominada <%FWKDIPATCHERNAME%> Y
+	asegúrese de que ASP.NET tiene acceso al contenido de la carpeta
+2 - Cree un nuevo archivo denominado "service.svc" en el directorio de la aplicación. Modifique este archivo agregando el elemento @ServiceHost siguiente.
+    
+	 <%@ServiceHost language=c# Debug="true" Service="Microsoft.ServiceModel.Samples.CalculatorService"%>
+	 
+3 - Cree un subdirectorio App_Code dentro del directorio de la aplicación.
+4 - Cree un archivo "Web.config" en el directorio de la aplicación y agregue el código de configuración siguiente a dicho archivo. 
+ 
+Xml
+	<?xml version="1.0" encoding="utf-8" ?>
+	<configuration>
+	  <system.serviceModel>
+	    <services>
+	      <!-- This section is optional with the default configuration
+	        model introduced in .NET Framework 4 -->
+	      <service name="Microsoft.ServiceModel.Samples.CalculatorService">
+
+	        <!-- This endpoint is exposed at the base address provided by host:                                        http://localhost/servicemodelsamples/service.svc  -->
+	        <endpoint address=""
+	                  binding="wsHttpBinding"
+	                  contract="Microsoft.ServiceModel.Samples.ICalculator" />
+
+	        <!-- The mex endpoint is exposed at http://localhost/servicemodelsamples/service.svc/mex -->
+	        <endpoint address="mex"
+	                  binding="mexHttpBinding"
+	                  contract="IMetadataExchange" />
+	      </service>
+	    </services>
+	  </system.serviceModel>
+
+	</configuration>
+
