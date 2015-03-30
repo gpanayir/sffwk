@@ -17,9 +17,9 @@ namespace Fwk.Bases.Connector
     /// Wrapper espesializado para una conexión TCP a NetTcpBinding
     /// </summary>
     [Serializable]
-    public class WCFWrapper :IServiceWrapper
+    public class WCFWrapper_IIS : IServiceWrapper
     {
-        NetTcpBinding binding=null;
+        BasicHttpBinding binding = null;
         EndpointAddress address = null;
         string _ProviderName;
 
@@ -42,17 +42,6 @@ namespace Fwk.Bases.Connector
             get { return _URL; }
             set { _URL = value; }
         }
-
-        //string _SourceInfo;
-
-        ///// <summary>
-        ///// Archivo de configuracion de remoting
-        ///// </summary>
-        //public string SourceInfo
-        //{
-        //    get { return _SourceInfo; }
-        //    set { _SourceInfo = value; }
-        //}
 
         string _ServiceMetadataProviderName = string.Empty;
 
@@ -87,12 +76,12 @@ namespace Fwk.Bases.Connector
         }
         #region IServiceInterfaceWrapper Members
 
-         /// <summary>
-         /// 
-         /// </summary>
-         /// <param name="pServiceName"></param>
-         /// <param name="pData"></param>
-         /// <returns></returns>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pServiceName"></param>
+        /// <param name="pData"></param>
+        /// <returns></returns>
         public string ExecuteService(string pServiceName, string pData)
         {
             throw new NotImplementedException();
@@ -118,28 +107,46 @@ namespace Fwk.Bases.Connector
 
             ExecuteServiceRequest wcfReq = new ExecuteServiceRequest();
             ExecuteServiceResponse wcfRes = null;
-            
+            //JsonSerializerSettings settings = null;
 
             wcfReq.serviceName = req.ServiceName;
             wcfReq.providerName = _ServiceMetadataProviderName;
             wcfReq.jsonRequets = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<TRequest>(req);
 
+
+            var channelFactory = new ChannelFactory<IFwkService>(binding, address);
+
             IFwkService client = null;
-            ChannelFactory<IFwkService> channelFactory = new ChannelFactory<IFwkService>(binding, address);
             try
             {
                 client = channelFactory.CreateChannel();
-                wcfRes = client.ExecuteService(wcfReq);
-                channelFactory.Close();
+                client.ExecuteService(wcfReq);
+                ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
                     ((ICommunicationObject)client).Abort();
-                }
-                throw ex;
+                } throw ex;
             }
+
+            //using (FwkServiceClient svcProxy = new WCFServiceReference.FwkServiceClient(binding, address))
+            //{
+            //    try
+            //    {
+            //        svcProxy.Open();
+
+            //        wcfRes = svcProxy.ExecuteService(wcfReq);
+            //    }
+            //  catch(Exception ex)
+            //    {
+            //        if (svcProxy != null)
+            //        {
+            //            svcProxy.Abort();
+            //        }
+            //    }
+            //}
 
             TResponse response = (TResponse)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<TResponse>(wcfRes.ExecuteServiceResult);
 
@@ -150,7 +157,7 @@ namespace Fwk.Bases.Connector
 
 
         #endregion
-       
+
         #region [ServiceConfiguration]
 
 
@@ -169,15 +176,16 @@ namespace Fwk.Bases.Connector
 
             wcfReq.providerName = _ServiceMetadataProviderName;
             wcfReq.ViewAsXml = true;
+
+            var channelFactory = new ChannelFactory<IFwkService>(binding, address);
             IFwkService client = null;
-            ChannelFactory<IFwkService> channelFactory = new ChannelFactory<IFwkService>(binding, address);
             try
             {
                 client = channelFactory.CreateChannel();
                 wcfRes = client.GetServicesList(wcfReq);
-                channelFactory.Close();
+                ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
@@ -185,7 +193,24 @@ namespace Fwk.Bases.Connector
                 }
                 throw ex;
             }
-            
+
+            //using (FwkServiceClient svcProxy = new WCFServiceReference.FwkServiceClient(binding, address))
+            //{
+            //    try
+            //    {
+            //        svcProxy.Open();
+
+            //        wcfRes = svcProxy.GetServicesList(wcfReq);
+            //    }
+            //    catch
+            //    {
+            //        if (svcProxy != null)
+            //        {
+            //            svcProxy.Abort();
+            //        }throw ex;
+            //    }
+            //}
+
             ServiceConfigurationCollection wServiceConfigurationCollection = (ServiceConfigurationCollection)
            Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), wcfRes.GetServicesListResult);
 
@@ -209,6 +234,7 @@ namespace Fwk.Bases.Connector
 
             wcfReq.providerName = _ServiceMetadataProviderName;
             wcfReq.serviceName = pServiceName;
+
             var channelFactory = new ChannelFactory<IFwkService>(binding, address);
             IFwkService client = null;
             try
@@ -217,7 +243,7 @@ namespace Fwk.Bases.Connector
                 wcfRes = client.GetServiceConfiguration(wcfReq);
                 ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
@@ -225,11 +251,17 @@ namespace Fwk.Bases.Connector
                 }
                 throw ex;
             }
+            //using (FwkServiceClient svcProxy = new WCFServiceReference.FwkServiceClient(binding, address))
+            //{
+
+            //    svcProxy.Open();
+            //    wcfRes = svcProxy.GetServiceConfiguration(wcfReq);
+            //}
             ServiceConfiguration wServiceConfiguration = (ServiceConfiguration)
            Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfiguration), wcfRes.GetServiceConfigurationResult);
 
             return wServiceConfiguration;
-           
+
         }
 
         /// <summary>
@@ -239,7 +271,7 @@ namespace Fwk.Bases.Connector
         /// <param name="pServiceConfiguration">configuración del servicio de negocio.</param>
         /// <date>2008-04-10T00:00:00</date>
         /// <author>moviedo</author>
-        public void SetServiceConfiguration(string pServiceName,ServiceConfiguration pServiceConfiguration)
+        public void SetServiceConfiguration(string pServiceName, ServiceConfiguration pServiceConfiguration)
         {
             throw new NotImplementedException();
             //wFwkRemoteObject.SetServiceConfiguration(_ServiceMetadataProviderName, pServiceName, pServiceConfiguration);
@@ -268,13 +300,13 @@ namespace Fwk.Bases.Connector
             throw new NotImplementedException();
             //wFwkRemoteObject.DeleteServiceConfiguration(_ServiceMetadataProviderName, pServiceName);
         }
-        
+
         /// <summary>
         /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
         /// proveedor
         /// </summary>
         /// <returns></returns>
-        public  List<String> GetAllApplicationsId()
+        public List<String> GetAllApplicationsId()
         {
             InitHost();
 
@@ -284,6 +316,7 @@ namespace Fwk.Bases.Connector
             wcfReq.providerName = _ServiceMetadataProviderName;
 
             var channelFactory = new ChannelFactory<IFwkService>(binding, address);
+
             IFwkService client = null;
             try
             {
@@ -291,7 +324,7 @@ namespace Fwk.Bases.Connector
                 wcfRes = client.GetAllApplicationsId(wcfReq);
                 ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
@@ -299,7 +332,8 @@ namespace Fwk.Bases.Connector
                 }
                 throw ex;
             }
-            List<String > list = new List<string> ();
+
+            List<String> list = new List<string>();
             list.AddRange(wcfRes.GetAllApplicationsIdResult);
             return list;
         }
@@ -316,6 +350,7 @@ namespace Fwk.Bases.Connector
             GetProviderInfoResponse wcfRes = null;
 
             wcfReq.providerName = providerName;
+
             var channelFactory = new ChannelFactory<IFwkService>(binding, address);
             IFwkService client = null;
             try
@@ -324,7 +359,7 @@ namespace Fwk.Bases.Connector
                 wcfRes = client.GetProviderInfo(wcfReq);
                 ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
@@ -356,7 +391,7 @@ namespace Fwk.Bases.Connector
                 wcfRes = client.RetriveDispatcherInfo(wcfReq);
                 ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
@@ -367,7 +402,7 @@ namespace Fwk.Bases.Connector
 
             DispatcherInfo wDispatcherInfo = wcfRes.RetriveDispatcherInfoResult;
             return wDispatcherInfo;
-           
+
         }
         #endregion [ServiceConfiguration]
 
@@ -377,12 +412,13 @@ namespace Fwk.Bases.Connector
             if (binding == null)
             {
                 //El tamaño de los mensajes que se pueden recibir durante la conexión a los servicios mediante BasicHttpBinding
-                this.binding = new NetTcpBinding();
-                
-                binding.Name = "tcp";
-                binding.MaxReceivedMessageSize *= factorSize;
-                binding.MaxBufferSize *= factorSize;
-                binding.MaxBufferPoolSize *= factorSize;
+                this.binding = new BasicHttpBinding();
+
+                binding.Name = "iis";
+                //binding.MaxReceivedMessageSize *= factorSize;
+                 
+                //binding.MaxBufferSize *= factorSize;
+                //binding.MaxBufferPoolSize *= factorSize;
                 binding.ReaderQuotas.MaxStringContentLength = 2147483647;
                 binding.ReaderQuotas.MaxArrayLength = 2147483647;
                 binding.ReaderQuotas.MaxBytesPerRead = 2147483647;

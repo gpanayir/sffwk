@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="ASPNetSecurity\ASPNetSecurityWrapper.cs" />
     <Compile Include="Local\LocalWrapper.cs" />
+    <Compile Include="WCF\WCFWrapper_IIS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
