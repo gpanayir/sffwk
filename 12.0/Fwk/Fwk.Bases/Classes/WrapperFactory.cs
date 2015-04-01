@@ -96,7 +96,7 @@ namespace Fwk.Bases
                     {
 
                         TechnicalException te = new TechnicalException(string.Concat("No existe el tipo de wrapper: ", provider.WrapperProviderType));
-                        te.ErrorId = "6000";
+                        te.Er rorId = "6000";
                         Fwk.Exceptions.ExceptionHelper.SetTechnicalException(te, typeof(WrapperFactory));
                         throw te;
                     }

@@ -1,4 +1,4 @@
-using System;
+锘縰sing System;
 using System.Collections.Generic;
 using System.Text;
 using Fwk.Bases;
@@ -9,20 +9,28 @@ using Fwk.BusinessFacades.Utils;
 using Fwk.ConfigSection;
 using System.ServiceModel;
 using Fwk.Bases.Connector.WCFServiceReference;
-using Newtonsoft.Json;
+using System.ServiceModel.Channels;
+
+
 
 namespace Fwk.Bases.Connector
 {
+
     /// <summary>
-    /// Wrapper espesializado para una conexi髇 TCP a NetTcpBinding
+    /// Wrapper espesializado para una conexi贸n http a WSHttpBinding
     /// </summary>
     [Serializable]
-    public class WCFWrapper :IServiceWrapper
+    public abstract class WCFRrapperBase<T> : IServiceWrapper where T : System.ServiceModel.Channels.Binding
     {
-        NetTcpBinding binding=null;
-        EndpointAddress address = null;
+        protected const int factorSize = 5;
+       protected T binding = null;
+       protected EndpointAddress address = null;
         string _ProviderName;
 
+        public WCFRrapperBase()
+        {
+            
+        }
         /// <summary>
         /// Proveedor del wrapper. Este valor debe coincidir con un proveedor de metadata en el dispatcher
         /// </summary>
@@ -42,17 +50,6 @@ namespace Fwk.Bases.Connector
             get { return _URL; }
             set { _URL = value; }
         }
-
-        //string _SourceInfo;
-
-        ///// <summary>
-        ///// Archivo de configuracion de remoting
-        ///// </summary>
-        //public string SourceInfo
-        //{
-        //    get { return _SourceInfo; }
-        //    set { _SourceInfo = value; }
-        //}
 
         string _ServiceMetadataProviderName = string.Empty;
 
@@ -87,12 +84,12 @@ namespace Fwk.Bases.Connector
         }
         #region IServiceInterfaceWrapper Members
 
-         /// <summary>
-         /// 
-         /// </summary>
-         /// <param name="pServiceName"></param>
-         /// <param name="pData"></param>
-         /// <returns></returns>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pServiceName"></param>
+        /// <param name="pData"></param>
+        /// <returns></returns>
         public string ExecuteService(string pServiceName, string pData)
         {
             throw new NotImplementedException();
@@ -104,7 +101,7 @@ namespace Fwk.Bases.Connector
         /// The parameter is incorrect. (Exception from HRESULT: 0x80070057 (E_INVALIDARG))
         /// Se debe a un error que lanza una llamada asincrona en modo debug  
         /// </summary>
-        /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecuci髇 del servicio.</param>
+        /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecuci贸n del servicio.</param>
         /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
         /// <returns>response</returns>
         public TResponse ExecuteService<TRequest, TResponse>(TRequest req)
@@ -112,34 +109,36 @@ namespace Fwk.Bases.Connector
             where TResponse : IServiceContract, new()
         {
 
-            InitHost();
+            InitilaizeBinding();
 
             req.InitializeHostContextInformation();
 
             ExecuteServiceRequest wcfReq = new ExecuteServiceRequest();
             ExecuteServiceResponse wcfRes = null;
-            
 
             wcfReq.serviceName = req.ServiceName;
             wcfReq.providerName = _ServiceMetadataProviderName;
             wcfReq.jsonRequets = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<TRequest>(req);
 
+
+            var channelFactory = new ChannelFactory<IFwkService>(binding, address);
+
             IFwkService client = null;
-            ChannelFactory<IFwkService> channelFactory = new ChannelFactory<IFwkService>(binding, address);
             try
             {
                 client = channelFactory.CreateChannel();
-                wcfRes = client.ExecuteService(wcfReq);
-                channelFactory.Close();
+                client.ExecuteService(wcfReq);
+                ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
                     ((ICommunicationObject)client).Abort();
-                }
-                throw ex;
+                } throw ex;
             }
+
+
 
             TResponse response = (TResponse)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<TResponse>(wcfRes.ExecuteServiceResult);
 
@@ -150,34 +149,35 @@ namespace Fwk.Bases.Connector
 
 
         #endregion
-       
+
         #region [ServiceConfiguration]
 
 
         /// <summary>
-        /// Recupera la configuraci髇 de todos los servicios de negocio.
+        /// Recupera la configuraci贸n de todos los servicios de negocio.
         /// </summary>
         /// <returns>Lista de configuraciones de servicios de negocio.</returns>
         /// <date>2008-04-10T00:00:00</date>
         /// <author>moviedo</author>
         public ServiceConfigurationCollection GetAllServices()
         {
-            InitHost();
+            InitilaizeBinding();
 
             GetServicesListRequest wcfReq = new GetServicesListRequest();
             GetServicesListResponse wcfRes = null;
 
             wcfReq.providerName = _ServiceMetadataProviderName;
             wcfReq.ViewAsXml = true;
+
+            var channelFactory = new ChannelFactory<IFwkService>(binding, address);
             IFwkService client = null;
-            ChannelFactory<IFwkService> channelFactory = new ChannelFactory<IFwkService>(binding, address);
             try
             {
                 client = channelFactory.CreateChannel();
                 wcfRes = client.GetServicesList(wcfReq);
-                channelFactory.Close();
+                ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
@@ -185,7 +185,8 @@ namespace Fwk.Bases.Connector
                 }
                 throw ex;
             }
-            
+
+
             ServiceConfigurationCollection wServiceConfigurationCollection = (ServiceConfigurationCollection)
            Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfigurationCollection), wcfRes.GetServicesListResult);
 
@@ -194,21 +195,22 @@ namespace Fwk.Bases.Connector
         }
 
         /// <summary>
-        /// Recupera la configuraci髇 de un servicio de negocio.
+        /// Recupera la configuraci贸n de un servicio de negocio.
         /// </summary>
         /// <param name="pServiceName">Nombre del servicio.</param>
-        /// <returns>configuraci髇 del servicio de negocio.</returns>
+        /// <returns>configuraci贸n del servicio de negocio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
-        public ServiceConfiguration GetServiceConfiguration(String pServiceName)
+        public Fwk.Bases.ServiceConfiguration GetServiceConfiguration(String pServiceName)
         {
-            InitHost();
 
+            InitilaizeBinding();
             GetServiceConfigurationRequest wcfReq = new GetServiceConfigurationRequest();
             GetServiceConfigurationResponse wcfRes = null;
 
             wcfReq.providerName = _ServiceMetadataProviderName;
             wcfReq.serviceName = pServiceName;
+
             var channelFactory = new ChannelFactory<IFwkService>(binding, address);
             IFwkService client = null;
             try
@@ -217,7 +219,7 @@ namespace Fwk.Bases.Connector
                 wcfRes = client.GetServiceConfiguration(wcfReq);
                 ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
@@ -225,40 +227,41 @@ namespace Fwk.Bases.Connector
                 }
                 throw ex;
             }
-            ServiceConfiguration wServiceConfiguration = (ServiceConfiguration)
-           Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(ServiceConfiguration), wcfRes.GetServiceConfigurationResult);
+
+            Fwk.Bases.ServiceConfiguration wServiceConfiguration = (Fwk.Bases.ServiceConfiguration)
+         Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(typeof(Fwk.Bases.ServiceConfiguration), wcfRes.GetServiceConfigurationResult);
 
             return wServiceConfiguration;
-           
+
         }
 
         /// <summary>
-        /// Actualiza la configuraci髇 de un servicio de negocio.
+        /// Actualiza la configuraci贸n de un servicio de negocio.
         /// </summary>
         /// <param name="pServiceName">Nombre del servicio a actualizar.</param>
-        /// <param name="pServiceConfiguration">configuraci髇 del servicio de negocio.</param>
+        /// <param name="pServiceConfiguration">configuraci贸n del servicio de negocio.</param>
         /// <date>2008-04-10T00:00:00</date>
         /// <author>moviedo</author>
-        public void SetServiceConfiguration(string pServiceName,ServiceConfiguration pServiceConfiguration)
+        public void SetServiceConfiguration(string pServiceName, Fwk.Bases.ServiceConfiguration pServiceConfiguration)
         {
             throw new NotImplementedException();
             //wFwkRemoteObject.SetServiceConfiguration(_ServiceMetadataProviderName, pServiceName, pServiceConfiguration);
         }
 
         /// <summary>
-        /// Almacena la configuraci髇 de un nuevo servicio de negocio.
+        /// Almacena la configuraci贸n de un nuevo servicio de negocio.
         /// </summary>
-        /// <param name="pServiceConfiguration">configuraci髇 del servicio de negocio.</param>
+        /// <param name="pServiceConfiguration">configuraci贸n del servicio de negocio.</param>
         /// <date>2008-04-13T00:00:00</date>
         /// <author>moviedo</author>
-        public void AddServiceConfiguration(ServiceConfiguration pServiceConfiguration)
+        public void AddServiceConfiguration(Fwk.Bases.ServiceConfiguration pServiceConfiguration)
         {
             throw new NotImplementedException();
             //wFwkRemoteObject.AddServiceConfiguration(_ServiceMetadataProviderName, pServiceConfiguration);
         }
 
         /// <summary>
-        /// Elimina la configuraci髇 de un servicio de negocio.
+        /// Elimina la configuraci贸n de un servicio de negocio.
         /// </summary>
         /// <param name="pServiceName">Nombre del servicio.</param>
         /// <date>2008-04-13T00:00:00</date>
@@ -268,22 +271,22 @@ namespace Fwk.Bases.Connector
             throw new NotImplementedException();
             //wFwkRemoteObject.DeleteServiceConfiguration(_ServiceMetadataProviderName, pServiceName);
         }
-        
+
         /// <summary>
         /// Obtiene una lista de todas las aplicaciones configuradas en el origen de datos configurado por el 
         /// proveedor
         /// </summary>
         /// <returns></returns>
-        public  List<String> GetAllApplicationsId()
+        public List<String> GetAllApplicationsId()
         {
-            InitHost();
-
+            InitilaizeBinding();
             GetAllApplicationsIdRequest wcfReq = new GetAllApplicationsIdRequest();
             GetAllApplicationsIdResponse wcfRes = null;
 
             wcfReq.providerName = _ServiceMetadataProviderName;
 
             var channelFactory = new ChannelFactory<IFwkService>(binding, address);
+
             IFwkService client = null;
             try
             {
@@ -291,7 +294,7 @@ namespace Fwk.Bases.Connector
                 wcfRes = client.GetAllApplicationsId(wcfReq);
                 ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
@@ -299,7 +302,8 @@ namespace Fwk.Bases.Connector
                 }
                 throw ex;
             }
-            List<String > list = new List<string> ();
+
+            List<String> list = new List<string>();
             list.AddRange(wcfRes.GetAllApplicationsIdResult);
             return list;
         }
@@ -310,12 +314,13 @@ namespace Fwk.Bases.Connector
         /// <returns></returns>
         public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
         {
-            InitHost();
+            InitilaizeBinding();
 
             GetProviderInfoRequest wcfReq = new GetProviderInfoRequest();
             GetProviderInfoResponse wcfRes = null;
 
             wcfReq.providerName = providerName;
+
             var channelFactory = new ChannelFactory<IFwkService>(binding, address);
             IFwkService client = null;
             try
@@ -324,7 +329,7 @@ namespace Fwk.Bases.Connector
                 wcfRes = client.GetProviderInfo(wcfReq);
                 ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
@@ -343,7 +348,7 @@ namespace Fwk.Bases.Connector
         /// <returns></returns>
         public DispatcherInfo RetriveDispatcherInfo()
         {
-            InitHost();
+            InitilaizeBinding();
 
             RetriveDispatcherInfoRequest wcfReq = new RetriveDispatcherInfoRequest();
             RetriveDispatcherInfoResponse wcfRes = null;
@@ -353,48 +358,39 @@ namespace Fwk.Bases.Connector
             try
             {
                 client = channelFactory.CreateChannel();
+                
                 wcfRes = client.RetriveDispatcherInfo(wcfReq);
                 ((ICommunicationObject)client).Close();
             }
-          catch(Exception ex)
+            catch (Exception ex)
             {
                 if (client != null)
                 {
                     ((ICommunicationObject)client).Abort();
-                } 
+                }
                 throw ex;
             }
 
             DispatcherInfo wDispatcherInfo = wcfRes.RetriveDispatcherInfoResult;
             return wDispatcherInfo;
-           
+
         }
         #endregion [ServiceConfiguration]
 
-        const int factorSize = 5;
-        void InitHost()
-        {
-            if (binding == null)
-            {
-                //El tama駉 de los mensajes que se pueden recibir durante la conexi髇 a los servicios mediante BasicHttpBinding
-                this.binding = new NetTcpBinding();
-                
-                binding.Name = "tcp";
-                binding.MaxReceivedMessageSize *= factorSize;
-                binding.MaxBufferSize *= factorSize;
-                binding.MaxBufferPoolSize *= factorSize;
-                binding.ReaderQuotas.MaxStringContentLength = 2147483647;
-                binding.ReaderQuotas.MaxArrayLength = 2147483647;
-                binding.ReaderQuotas.MaxBytesPerRead = 2147483647;
-                address = new EndpointAddress(_URL);
-            }
-        }
 
+
+        public abstract void InitilaizeBinding();
+        
+        
+        
 
 
         public string CheckServiceAvailability()
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
+
