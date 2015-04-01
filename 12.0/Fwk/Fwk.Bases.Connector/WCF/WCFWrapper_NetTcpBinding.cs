@@ -32,7 +32,7 @@ namespace Fwk.Bases.Connector
                 this.binding = new NetTcpBinding();
 
                 binding.Name = "tcp";
-                binding.MaxReceivedMessageSize *= factorSize;
+                binding.MaxReceivedMessageSize = System.Int32.MaxValue;
                 binding.MaxBufferSize *= factorSize;
                 binding.MaxBufferPoolSize *= factorSize;
                 binding.ReaderQuotas.MaxDepth = System.Int32.MaxValue;

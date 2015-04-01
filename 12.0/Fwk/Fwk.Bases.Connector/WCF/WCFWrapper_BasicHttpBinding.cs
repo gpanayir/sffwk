@@ -32,8 +32,8 @@ namespace Fwk.Bases.Connector
                 //binding.Security.Mode = BasicHttpSecurityMode.Transport;
                 //binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Ntlm;
                 binding.Name = "iis";
-                
-                //binding.MaxReceivedMessageSize *= factorSize;
+
+                binding.MaxReceivedMessageSize = System.Int32.MaxValue;
                 //binding.MaxBufferSize *= factorSize;
                 //binding.MaxBufferPoolSize *= factorSize;
                 binding.ReaderQuotas.MaxStringContentLength = System.Int32.MaxValue;

@@ -35,7 +35,7 @@ namespace Fwk.Bases.Connector
                 // Error in deserializing body of reply message for operation 'ProcessClientRequest'. 
                 // The maximum string content length quota (8192) has been exceeded while reading XML data. 
 
-                binding.MaxReceivedMessageSize *= factorSize;
+                binding.MaxReceivedMessageSize = System.Int32.MaxValue;
                 binding.MaxBufferPoolSize *= factorSize;
                 binding.ReaderQuotas.MaxDepth = System.Int32.MaxValue;
                 binding.ReaderQuotas.MaxNameTableCharCount = System.Int32.MaxValue;
