@@ -1,4 +1,5 @@
-﻿using Fwk.Bases;
+﻿using DispatcherClientChecker.wrappers;
+using Fwk.Bases;
 using Fwk.ConfigSection;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,18 @@ namespace DispatcherClientChecker
         {
 
             List<wrap_provider> providers = new List<wrap_provider>();
-            foreach (WrapperProviderElement p in Fwk.Bases.WrapperFactory.ProviderSection.Providers)
+
+            try
             {
-                providers.Add(new wrap_provider(p));
+                foreach (WrapperProviderElement p in Fwk.Bases.WrapperFactory.ProviderSection.Providers)
+                {
+                    providers.Add(new wrap_provider(p));
+                }
+            }
+            catch (Exception ex)
+            {
+                txtResult.Text = "Debe verificar la configuracion del wrapper. Que todos los wrappers registrados sen validos." + Environment.NewLine + Environment.NewLine + Fwk.Exceptions.ExceptionHelper.GetAllMessageException(ex);
+                comboProviders.Enabled = false;
             }
             wrapproviderBindingSource.DataSource = providers;
             comboProviders.Refresh();
@@ -43,10 +53,13 @@ namespace DispatcherClientChecker
             setWrapper();
         }
         IServiceWrapper selectedWrapper = null;
+
         void setWrapper()
         {
+
             wrap_provider w = comboProviders.SelectedItem as wrap_provider;
             selectedWrapper = Fwk.Bases.WrapperFactory.GetWrapper(w.Name);
+
             StringBuilder str = new StringBuilder("Wrapper name: " + w.Name);
             str.AppendLine();
             str.AppendLine("SourceInfo: " + w.SourceInfo);
