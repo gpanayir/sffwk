@@ -127,7 +127,7 @@ namespace Fwk.Bases.Connector
             try
             {
                 client = channelFactory.CreateChannel();
-                client.ExecuteService(wcfReq);
+               wcfRes = client.ExecuteService(wcfReq);
                 ((ICommunicationObject)client).Close();
             }
             catch (Exception ex)
