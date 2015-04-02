@@ -12,7 +12,7 @@ namespace DispatcherClientChecker.wrappers
     ///encrypts all communication on the channel and thus provides for integrity, privacy,
     ///and mutual authentication
     /// </summary>
-    public class WCFRrapper_WsHttpBinding_transport : WCFRrapper_WsHttpBinding
+    public class WCFRrapper_WsHttpBinding_transport : WCFWrapper_WsHttpBinding
     {
 
         

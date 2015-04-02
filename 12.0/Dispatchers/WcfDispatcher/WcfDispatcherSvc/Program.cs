@@ -20,5 +20,7 @@ namespace WcfDispatcherSvc
 			};
             ServiceBase.Run(ServicesToRun);
         }
+        
+
     }
 }

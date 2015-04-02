@@ -20,7 +20,8 @@ namespace WcfDispatcher_Host
                 MetadataHelper.Log_ServiceHost(host);
                 Console.ReadLine();
             }
-            
+           
+
 
         }
 

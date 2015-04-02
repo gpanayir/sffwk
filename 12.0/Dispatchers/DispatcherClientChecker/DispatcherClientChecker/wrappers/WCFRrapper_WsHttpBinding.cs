@@ -20,14 +20,15 @@ namespace DispatcherClientChecker.wrappers
     /// Wrapper espesializado para una conexión http a WSHttpBinding
     /// </summary>
     [Serializable]
-    public abstract class WCFRrapper_WsHttpBinding : IServiceWrapper 
+    public  class WCFWrapper_WsHttpBinding : IServiceWrapper
     {
+        #region properties
         protected const int factorSize = 5;
        protected WSHttpBinding binding = null;
        protected EndpointAddress address = null;
         string _ProviderName;
 
-        public WCFRrapper_WsHttpBinding()
+        public WCFWrapper_WsHttpBinding()
         {
             
         }
@@ -82,6 +83,38 @@ namespace DispatcherClientChecker.wrappers
             get { return _DefaultCulture; }
             set { _DefaultCulture = value; }
         }
+        #endregion
+        public virtual void InitilaizeBinding()
+        {
+            if (binding == null)
+            {
+                //El tamaño de los mensajes que se pueden recibir durante la conexión a los servicios mediante BasicHttpBinding
+                this.binding = new WSHttpBinding();
+
+                //binding.Security.Mode = SecurityMode.Message;
+                //binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Ntlm;
+
+
+                this.binding.Name = "iis";
+                //binding.MaxReceivedMessageSize *= factorSize;
+
+                //Para que no tire error 
+                // Error in deserializing body of reply message for operation 'ProcessClientRequest'. 
+                // The maximum string content length quota (8192) has been exceeded while reading XML data. 
+
+                binding.MaxReceivedMessageSize *= factorSize;
+                binding.MaxBufferPoolSize *= factorSize;
+                binding.ReaderQuotas.MaxDepth = System.Int32.MaxValue;
+                binding.ReaderQuotas.MaxNameTableCharCount = System.Int32.MaxValue;
+                binding.ReaderQuotas.MaxStringContentLength = System.Int32.MaxValue;
+                binding.ReaderQuotas.MaxArrayLength = System.Int32.MaxValue;
+                binding.ReaderQuotas.MaxBytesPerRead = System.Int32.MaxValue;
+                address = new EndpointAddress(_URL);
+                //var channelFactory = new ChannelFactory<IFwkService>(binding, address);
+                //client = channelFactory.CreateChannel();
+            }
+        }
+
         #region IServiceInterfaceWrapper Members
 
         /// <summary>
@@ -149,7 +182,7 @@ namespace DispatcherClientChecker.wrappers
 
 
         #endregion
-
+        IFwkService client = null;
         #region [ServiceConfiguration]
 
 
@@ -379,34 +412,7 @@ namespace DispatcherClientChecker.wrappers
 
        
        
-        public virtual void InitilaizeBinding()
-        {
-            if (binding == null)
-            {
-                //El tamaño de los mensajes que se pueden recibir durante la conexión a los servicios mediante BasicHttpBinding
-                this.binding = new WSHttpBinding();
-
-                //binding.Security.Mode = SecurityMode.Message;
-                //binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Ntlm;
-
-
-                this.binding.Name = "iis";
-                //binding.MaxReceivedMessageSize *= factorSize;
-
-                //Para que no tire error 
-                // Error in deserializing body of reply message for operation 'ProcessClientRequest'. 
-                // The maximum string content length quota (8192) has been exceeded while reading XML data. 
-
-                binding.MaxReceivedMessageSize *= factorSize;
-                binding.MaxBufferPoolSize *= factorSize;
-                binding.ReaderQuotas.MaxDepth = System.Int32.MaxValue;
-                binding.ReaderQuotas.MaxNameTableCharCount = System.Int32.MaxValue;
-                binding.ReaderQuotas.MaxStringContentLength = System.Int32.MaxValue;
-                binding.ReaderQuotas.MaxArrayLength = System.Int32.MaxValue;
-                binding.ReaderQuotas.MaxBytesPerRead = System.Int32.MaxValue;
-                address = new EndpointAddress(_URL);
-            }
-        }
+   
         
         
 

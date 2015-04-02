@@ -16,8 +16,30 @@ namespace WcfDispatcher.Service
     public class FwkService : IFwkService
     {
         String sessionId = string.Empty;
-        Fwk.BusinessFacades.SimpleFacade wSimpleFacade = new Fwk.BusinessFacades.SimpleFacade();
+        static Fwk.BusinessFacades.SimpleFacade simpleFacade;
+        static HostContext hostContext;
+        void CreteSimpleFacade()
+        {
+            if (simpleFacade == null)
+            {
+                simpleFacade = new Fwk.BusinessFacades.SimpleFacade();
+            
+            }
+            if (hostContext == null)
+            {
+                string[] computer_name = null;
+                 hostContext = new HostContext();
+                OperationContext context = OperationContext.Current;
+                MessageProperties prop = context.IncomingMessageProperties;
+                RemoteEndpointMessageProperty endpoint = prop[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
+                computer_name = Dns.GetHostEntry(endpoint.Address).HostName.Split(new Char[] { '.' });
 
+                hostContext.HostIp = endpoint.Address;
+                if (computer_name.Count() > 0)
+                    hostContext.HostName = computer_name[0].ToString();
+            }
+
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -27,18 +49,9 @@ namespace WcfDispatcher.Service
         /// <returns></returns>
         string IFwkService.ExecuteService(String providerName, String serviceName, String jsonRequets)
         {
-            string[] computer_name = null;
-            HostContext hostContext = new HostContext();
-            OperationContext context = OperationContext.Current;
-            MessageProperties prop = context.IncomingMessageProperties;
-            RemoteEndpointMessageProperty endpoint = prop[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
-            computer_name = Dns.GetHostEntry(endpoint.Address).HostName.Split(new Char[] { '.' });
 
-            hostContext.HostIp = endpoint.Address;
-            if (computer_name.Count() > 0)
-                hostContext.HostName = computer_name[0].ToString();
-
-            return wSimpleFacade.ExecuteServiceJson(providerName, serviceName, jsonRequets, hostContext);
+            CreteSimpleFacade();
+            return simpleFacade.ExecuteServiceJson(providerName, serviceName, jsonRequets, hostContext);
 
         }
 
@@ -52,7 +65,8 @@ namespace WcfDispatcher.Service
         /// <returns></returns>
         public String GetServiceConfiguration(string providerName, string serviceName)
         {
-            return wSimpleFacade.GetServiceConfiguration(providerName, serviceName);
+            CreteSimpleFacade();
+            return simpleFacade.GetServiceConfiguration(providerName, serviceName);
         }
 
         /// <summary>
@@ -64,7 +78,8 @@ namespace WcfDispatcher.Service
         /// <returns>Lista de servicios configurados</returns>
         public String GetServicesList(string providerName, bool ViewAsXml)
         {
-            return wSimpleFacade.GetServicesList(providerName, ViewAsXml); 
+            CreteSimpleFacade();
+            return simpleFacade.GetServicesList(providerName, ViewAsXml); 
         }
 
         /// <summary>
@@ -73,7 +88,8 @@ namespace WcfDispatcher.Service
         /// <returns></returns>
         public Fwk.ConfigSection.DispatcherInfo RetriveDispatcherInfo()
         {
-            return wSimpleFacade.RetriveDispatcherInfo();
+            CreteSimpleFacade();
+            return simpleFacade.RetriveDispatcherInfo();
         }
 
         /// <summary>
@@ -83,7 +99,8 @@ namespace WcfDispatcher.Service
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         public List<String> GetAllApplicationsId(string providerName)
         {
-            return wSimpleFacade.GetAllApplicationsId(providerName);
+            CreteSimpleFacade();
+            return simpleFacade.GetAllApplicationsId(providerName);
         }
 
         /// <summary>
@@ -93,7 +110,8 @@ namespace WcfDispatcher.Service
         /// <returns></returns>
         public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
         {
-            return wSimpleFacade.GetProviderInfo(providerName);
+            CreteSimpleFacade();
+            return simpleFacade.GetProviderInfo(providerName);
         }
     }
 
