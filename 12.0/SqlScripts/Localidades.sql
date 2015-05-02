@@ -1,9 +1,9 @@
 USE [club]
 GO
 
-IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_State_CountryId]') AND type = 'D')
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Province_CountryId]') AND type = 'D')
 BEGIN
-ALTER TABLE [dbo].[State] DROP CONSTRAINT [DF_State_CountryId]
+ALTER TABLE [dbo].[Province] DROP CONSTRAINT [DF_Province_CountryId]
 END
 
 GO
@@ -11,15 +11,15 @@ GO
 USE [club]
 GO
 
-/****** Object:  Table [dbo].[State]    Script Date: 05/02/2015 10:32:41 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[State]') AND type in (N'U'))
-DROP TABLE [dbo].[State]
+/****** Object:  Table [dbo].[Province]    Script Date: 05/02/2015 10:32:41 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Province]') AND type in (N'U'))
+DROP TABLE [dbo].[Province]
 GO
 
 USE [club]
 GO
 
-/****** Object:  Table [dbo].[State]    Script Date: 05/02/2015 10:32:41 ******/
+/****** Object:  Table [dbo].[Province]    Script Date: 05/02/2015 10:32:41 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -29,13 +29,13 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [dbo].[State](
-	[StateId] [int] NOT NULL,
+CREATE TABLE [dbo].[Province](
+	[ProvinceId] [int] NOT NULL,
 	[Name] [varchar](250) NOT NULL,
 	[CountryId] [int] NOT NULL,
- CONSTRAINT [PK_State] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Province] PRIMARY KEY CLUSTERED 
 (
-	[StateId] ASC
+	[ProvinceId] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
@@ -44,13 +44,13 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-ALTER TABLE [dbo].[State] ADD  CONSTRAINT [DF_State_CountryId]  DEFAULT ((1)) FOR [CountryId]
+ALTER TABLE [dbo].[Province] ADD  CONSTRAINT [DF_Province_CountryId]  DEFAULT ((1)) FOR [CountryId]
 GO
 
 
 
-INSERT INTO [club].[dbo].[State]
-           ([StateId]
+INSERT INTO [club].[dbo].[Province]
+           ([ProvinceId]
            ,[Name]
            )
      VALUES
@@ -82,9 +82,9 @@ INSERT INTO [club].[dbo].[State]
 GO
 
 
-IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_Localidad_Active]') AND type = 'D')
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF_City_Active]') AND type = 'D')
 BEGIN
-ALTER TABLE [dbo].[Localidad] DROP CONSTRAINT [DF_Localidad_Active]
+ALTER TABLE [dbo].[City] DROP CONSTRAINT [DF_City_Active]
 END
 
 GO
@@ -92,15 +92,15 @@ GO
 USE [club]
 GO
 
-/****** Object:  Table [dbo].[Localidad]    Script Date: 05/02/2015 10:34:36 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Localidad]') AND type in (N'U'))
-DROP TABLE [dbo].[Localidad]
+/****** Object:  Table [dbo].[City]    Script Date: 05/02/2015 10:34:36 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[City]') AND type in (N'U'))
+DROP TABLE [dbo].[City]
 GO
 
 USE [club]
 GO
 
-/****** Object:  Table [dbo].[Localidad]    Script Date: 05/02/2015 10:34:36 ******/
+/****** Object:  Table [dbo].[City]    Script Date: 05/02/2015 10:34:36 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -110,14 +110,14 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [dbo].[Localidad](
-	[LocalidadId] [int] NOT NULL,
+CREATE TABLE [dbo].[City](
+	[CityId] [int] NOT NULL,
 	[Name] [varchar](50) NOT NULL,
-	[StateId] [int] NOT NULL,
+	[ProvinceId] [int] NOT NULL,
 	[Active] [bit] NULL,
- CONSTRAINT [PK_Localidad] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_City] PRIMARY KEY CLUSTERED 
 (
-	[LocalidadId] ASC
+	[CityId] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
@@ -126,12 +126,12 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-ALTER TABLE [dbo].[Localidad] ADD  CONSTRAINT [DF_Localidad_Active]  DEFAULT ((1)) FOR [Active]
+ALTER TABLE [dbo].[City] ADD  CONSTRAINT [DF_City_Active]  DEFAULT ((1)) FOR [Active]
 GO
 
-INSERT INTO [dbo].[Localidad]
-           ([LocalidadId]
-            ,[StateId]
+INSERT INTO [dbo].[City]
+           ([CityId]
+            ,[ProvinceId]
            ,[Name]                   )
                 VALUES
 (1, 1, '25 de Mayo'),
@@ -1133,7 +1133,7 @@ INSERT INTO [dbo].[Localidad]
 (997, 9, 'Aldea Spatzenkutter'),
 (998, 9, 'Aldea Sta. María'),
 (999, 9, 'Aldea Sta. Rosa');
-INSERT INTO [dbo].[Localidad]([LocalidadId] ,[StateId],[Name])VALUES
+INSERT INTO [dbo].[City]([CityId] ,[ProvinceId],[Name])VALUES
 (1000, 9, 'Aldea Valle María'),
 (1001, 9, 'Altamirano Sur'),
 (1002, 9, 'Antelo'),
@@ -2134,7 +2134,7 @@ INSERT INTO [dbo].[Localidad]([LocalidadId] ,[StateId],[Name])VALUES
 (1997, 22, 'Ituzaingó'),
 (1998, 22, 'Jacinto L. Aráuz'),
 (1999, 22, 'Josefina');
-INSERT INTO [dbo].[Localidad]([LocalidadId] ,[StateId],[Name])VALUES
+INSERT INTO [dbo].[City]([CityId] ,[ProvinceId],[Name])VALUES
 (2000, 22, 'Juan B. Molina'),
 (2001, 22, 'Juan de Garay'),
 (2002, 22, 'Juncal'),
@@ -2209,7 +2209,7 @@ INSERT INTO [dbo].[Localidad]([LocalidadId] ,[StateId],[Name])VALUES
 (2071, 22, 'Palacios'),
 (2072, 22, 'Pavón'),
 (2073, 22, 'Pavón Arriba');
-INSERT INTO [dbo].[Localidad]([LocalidadId] ,[StateId],[Name])VALUES
+INSERT INTO [dbo].[City]([CityId] ,[ProvinceId],[Name])VALUES
 (2074, 22, 'Pedro Gómez Cello'),
 (2075, 22, 'Pérez'),
 (2076, 22, 'Peyrano'),
