@@ -33,8 +33,8 @@ namespace Fwk.Security.ActiveDirectory.Test
             {
                 try
                 {
-                    userByAppBindingSource.DataSource = FwkMembership.GetAllUsers(Membership.Provider.Name);
-                    rolListBindingSource.DataSource = FwkMembership.GetAllRoles(Membership.Provider.Name);
+                    userByAppBindingSource.DataSource = FwkMembership.GetAllUsers(System.Web.Security.Membership.Provider.Name);
+                    rolListBindingSource.DataSource = FwkMembership.GetAllRoles(System.Web.Security.Membership.Provider.Name);
                 }
                 catch (Exception ex)
                 {
@@ -59,7 +59,7 @@ namespace Fwk.Security.ActiveDirectory.Test
                 }
 
             }
-            userByAppBindingSource.DataSource = FwkMembership.GetAllUsers(Membership.Provider.Name);
+            userByAppBindingSource.DataSource = FwkMembership.GetAllUsers(System.Web.Security.Membership.Provider.Name);
         }
 
 
