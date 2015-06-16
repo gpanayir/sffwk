@@ -194,7 +194,6 @@
     <Compile Include="Helper.cs" />
     <Compile Include="CustomRuleProvider\Impersonalization.cs" />
     <Compile Include="CustomRuleProvider\LexicalAnalyzer.cs" />
-    <Compile Include="Identity2.0\ApplicationDbContext.cs" />
     <Compile Include="Membership\FwkMembership.Appliction.cs" />
     <Compile Include="Membership\FwkMembership.Category.cs" />
     <Compile Include="Membership\FwkMembership.Roles.cs" />
@@ -318,7 +317,6 @@
     </None>
     <None Include="ActiveDirectory\doc\AdUserDiagram.cd" />
     <None Include="app.config" />
-    <Compile Include="Identity2.0\ASPNET_IdentityProvider.cs" />
     <None Include="Membership\FwkMemberships.cd" />
     <None Include="Membership\RuleProvider.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
