@@ -14,6 +14,9 @@ using System.Reflection;
 using System.Runtime.ConstrainedExecution;
 using Microsoft.Win32.SafeHandles;
 using System.Security;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using System.Data.Common;
+using System.Data;
 namespace Fwk.Security.ActiveDirectory
 {
     /// <summary>
@@ -80,10 +83,10 @@ namespace Fwk.Security.ActiveDirectory
         /// <summary>
         /// Domain name ej Pelsoft-ar
         /// </summary>
-        public  string LDAPDomainName
+        public string LDAPDomainName
         {
             get { return _LDAPDomainName; }
-            
+
         }
         /// <summary>
         ///Ej: 
@@ -215,31 +218,82 @@ namespace Fwk.Security.ActiveDirectory
         /// <param name="cnnString"></param>
         /// <param name="domainName"></param>
         /// <returns></returns>
-        public static DomainUrlInfo DomainsUrl_Get(string cnnString, string domainName)
+        //public static DomainUrlInfo DomainsUrl_Get(string cnnString, string domainName)
+        //{
+        //    try
+        //    {
+        //        using (SqlDomainURLDataContext dc = new SqlDomainURLDataContext(cnnString))
+        //        {
+        //            IEnumerable<DomainUrlInfo> list = from s in dc.DomainsUrls
+        //                                              where (domainName.Equals(string.Empty) || s.DomainName.Equals(domainName.Trim()))// si domainName en empty no filtra por este
+        //                                              select
+        //                                                  new DomainUrlInfo
+        //                                                  {
+        //                                                      DomainName = s.DomainName,
+        //                                                      LDAPPath = s.LDAPPath,
+        //                                                      Usr = s.Usr,
+        //                                                      Pwd = s.Pwd,
+        //                                                      Id = s.DomainID,
+        //                                                      SiteName = s.SiteName,
+        //                                                      DomainDN = s.DomainDN
+        //                                                  };
+        //            return list.FirstOrDefault<DomainUrlInfo>();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al intentar obtener la lista de dominios desde la base de datos: ", ex);
+        //        LDAPHelper.SetError(te);
+        //        te.ErrorId = "15004";
+        //        throw te;
+        //    }
+        //}
+
+        /// <summary>
+        /// Retorna DolmainUrl por medio de un sp usp_GetDomainsUrl_ByDomainName que lee de bd encriptada
+        /// </summary>
+        /// <param name="cnnStringName">Nombre de la cadena de cnn</param>
+        /// <param name="domainName">ej Allus-Ar</param>
+        /// <returns></returns>
+        public static DomainUrlInfo DomainsUrl_Get_FromSp(string cnnStringName, string domainName)
         {
+            String wApplicationId = String.Empty;
+            Database dataBase = null;
+            DbCommand cmd = null;
+            DomainUrlInfo wDomainUrlInfo = null;
             try
             {
-                using (SqlDomainURLDataContext dc = new SqlDomainURLDataContext(cnnString))
+                dataBase = DatabaseFactory.CreateDatabase(cnnStringName);
+                 cmd = dataBase.GetStoredProcCommand("dbo.usp_GetDomainsUrl_ByDomainName");
+
+                // ApplicationName
+                 dataBase.AddInParameter(cmd, "pDomainName", System.Data.DbType.String, domainName);
+
+
+
+                using (IDataReader dr = dataBase.ExecuteReader(cmd))
                 {
-                    IEnumerable<DomainUrlInfo> list = from s in dc.DomainsUrls
-                                                      where (domainName.Equals(string.Empty) || s.DomainName.Equals(domainName.Trim()))// si domainName en empty no filtra por este
-                                                      select
-                                                          new DomainUrlInfo
-                                                          {
-                                                              DomainName = s.DomainName,
-                                                              LDAPPath = s.LDAPPath,
-                                                              Usr = s.Usr,
-                                                              Pwd = s.Pwd,
-                                                              Id = s.DomainID,
-                                                              SiteName = s.SiteName,
-                                                              DomainDN = s.DomainDN
-                                                          };
-                    return list.FirstOrDefault<DomainUrlInfo>();
+                    while (dr.Read())
+                    {
+                        wDomainUrlInfo = new DomainUrlInfo();
+                        wDomainUrlInfo.DomainDN = dr["DomainDN"].ToString();
+                        wDomainUrlInfo.DomainName = dr["DomainName"].ToString();
+                        wDomainUrlInfo.Id = Convert.ToInt32(dr["Id"]);
+                        wDomainUrlInfo.LDAPPath = dr["LDAPPath"].ToString();
+
+                        wDomainUrlInfo.Pwd = dr["Pwd"].ToString();
+                        wDomainUrlInfo.SiteName = dr["SiteName"].ToString();
+                        wDomainUrlInfo.Usr = dr["Usr"].ToString();
+                    }
                 }
+
+                return wDomainUrlInfo;
+
+
             }
             catch (Exception ex)
             {
-                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al intentar obtener la lista de dominios desde la base de datos: ", ex);
+                Fwk.Exceptions.TechnicalException te = new Fwk.Exceptions.TechnicalException("Error al intentar obtener los datos del dominio desde la base de datos: ", ex);
                 LDAPHelper.SetError(te);
                 te.ErrorId = "15004";
                 throw te;

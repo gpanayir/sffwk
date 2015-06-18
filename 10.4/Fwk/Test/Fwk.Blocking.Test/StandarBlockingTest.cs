@@ -75,13 +75,13 @@ namespace Test.Blocking
         [TestMethod]
         public void StantarBlockingEngine()
         {
-            //FwkBlockingEngine wFwkBlockingEngine = new FwkBlockingEngine();
+            FwkBlockingEngine wFwkBlockingEngine = new FwkBlockingEngine();
 
    
 
       
 
-            //wFwkBlockingEngine.Create(_BlockingMarkBase);
+            wFwkBlockingEngine.Create(_BlockingMarkBase);
 
         }
     }
