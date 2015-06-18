@@ -275,6 +275,7 @@ namespace Fwk.HelperFunctions
 
             return strIn;
         }
+   
 
         /// Retorna un array de string separados por "separator" de una enumeracion.- 
         /// Utiliza la porcion nunmerica de la enumeracion.- es decir su valor numerico no el valor de nombre
