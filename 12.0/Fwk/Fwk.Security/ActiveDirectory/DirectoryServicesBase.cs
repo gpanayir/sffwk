@@ -278,9 +278,7 @@ namespace Fwk.Security.ActiveDirectory
                         wDomainUrlInfo = new DomainUrlInfo();
                         wDomainUrlInfo.DomainDN = dr["DomainDN"].ToString();
                         wDomainUrlInfo.DomainName = dr["DomainName"].ToString();
-                        wDomainUrlInfo.Id = Convert.ToInt32(dr["Id"]);
                         wDomainUrlInfo.LDAPPath = dr["LDAPPath"].ToString();
-
                         wDomainUrlInfo.Pwd = dr["Pwd"].ToString();
                         wDomainUrlInfo.SiteName = dr["SiteName"].ToString();
                         wDomainUrlInfo.Usr = dr["Usr"].ToString();
