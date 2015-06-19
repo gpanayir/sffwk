@@ -33,8 +33,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.CheckLogging", "Fwk.Che
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.WCF.CentralizedSecurity", "Fwk.WCF.CentralizedSecurity\Fwk.WCF.CentralizedSecurity.csproj", "{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.CentralizedSecurity", "Fwk.CentralizedSecurity\Fwk.CentralizedSecurity.csproj", "{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}"
-EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -145,15 +143,6 @@ Global
 		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3}.Release|x86.ActiveCfg = Release|Any CPU
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -167,6 +156,5 @@ Global
 		{FA61CFD2-61D8-4D9C-B9A9-C344197F31B1} = {D72E92CB-E82D-4227-B8EB-684872547CA3}
 		{6483389E-4CBA-4034-8F9E-2200232E98E5} = {D72E92CB-E82D-4227-B8EB-684872547CA3}
 		{9F45B384-90AF-411A-BD0C-D17D8E6E48B3} = {D72E92CB-E82D-4227-B8EB-684872547CA3}
-		{E9E83CEA-C479-4AF5-8EBE-96F4F9BF9943} = {D72E92CB-E82D-4227-B8EB-684872547CA3}
 	EndGlobalSection
 EndGlobal
