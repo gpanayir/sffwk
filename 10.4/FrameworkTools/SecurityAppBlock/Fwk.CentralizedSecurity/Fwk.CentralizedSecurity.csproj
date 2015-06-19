@@ -20,6 +20,10 @@
     <OldToolsVersion>4.0</OldToolsVersion>
     <UseIISExpress>false</UseIISExpress>
     <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +48,10 @@
     <Reference Include="Fwk.Bases, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libraries\Framework\Fwk.Bases.dll</HintPath>
+    </Reference>
+    <Reference Include="Fwk.Security, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libraries\Framework\Fwk.Security.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -88,12 +96,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\ActiveDirectoryService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Fwk\Fwk.Security\Fwk.Security.csproj">
-      <Project>{ADBA9438-D15D-4F34-AA76-05CD0A193FDE}</Project>
-      <Name>Fwk.Security</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
