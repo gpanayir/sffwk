@@ -6,7 +6,7 @@ using System.Web.Services;
 using Fwk.CentralizedSecurity.Contracts;
 using Fwk.CentralizedSecurity.Service;
 using System.Web.Services.Protocols;
-
+          
 namespace Fwk.CentralizedSecurity
 {
     /// <summary>
