@@ -9,6 +9,7 @@ using Fwk.Bases.Blocks.Fwk.BusinessFacades;
 using System.ServiceModel.Channels;
 using System.Net;
 using Fwk.BusinessFacades;
+using Fwk.Bases;
 
 namespace WcfDispatcher.Service
 {
@@ -41,7 +42,7 @@ namespace WcfDispatcher.Service
 
         }
         /// <summary>
-        /// 
+        /// Use json
         /// </summary>
         /// <param name="providerName"></param>
         /// <param name="serviceName"></param>
@@ -55,7 +56,25 @@ namespace WcfDispatcher.Service
 
         }
 
+        /// <summary>
+        /// transport Binary
+        /// </summary>
+        /// <param name="providerName"></param>
+        /// <param name="serviceName"></param>
+        /// <param name="contract"></param>
+        /// <returns></returns>
+        WCFResponse IFwkService.ExecuteServiceBin( WCFRequet req)
+        {
 
+            CreteSimpleFacade();
+            //IServiceContract result = simpleFacade.ExecuteService(req.ProviderName, req.BusinessData);
+
+            WCFResponse res = new WCFResponse();
+            //res.Contract = result;
+            return res;
+        }
+
+        
 
         /// <summary>
         /// 

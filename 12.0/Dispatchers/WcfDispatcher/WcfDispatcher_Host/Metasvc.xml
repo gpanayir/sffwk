@@ -3,9 +3,9 @@
   <ServiceConfiguration name="DeleteParametroService">
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2011-05-31T12:16:59.839-03:00</CreatedDateTime>
-    <Handler>Health.Svc.DeleteParametroService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.DeleteParametro.DeleteParametroReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.DeleteParametro.DeleteParametroRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.DeleteParametroService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.DeleteParametro.DeleteParametroReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.DeleteParametro.DeleteParametroRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -14,9 +14,9 @@
   <ServiceConfiguration name="SearchParametroByParamsService">
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2011-05-31T12:48:35.854625-03:00</CreatedDateTime>
-    <Handler>Health.Svc.SearchParametroByParamsService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.SearchParametroByParams.SearchParametroByParamsReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.SearchParametroByParams.SearchParametroByParamsRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.SearchParametroByParamsService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.SearchParametroByParams.SearchParametroByParamsReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.SearchParametroByParams.SearchParametroByParamsRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -276,9 +276,9 @@
   <ServiceConfiguration name="GetUserDataService">
     <CreatedUserName>moviedo</CreatedUserName>
     <CreatedDateTime>2011-06-13T16:56:34.9045-03:00</CreatedDateTime>
-    <Handler>Health.Svc.GetUserDataService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.GetUserData.GetUserDataReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.GetUserData.GetUserDataRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.GetUserDataService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.GetUserData.GetUserDataReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.GetUserData.GetUserDataRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -287,9 +287,9 @@
   <ServiceConfiguration name="CrearProfesionalService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-02-17T15:41:26.4679911-03:00</CreatedDateTime>
-    <Handler>Health.Svc.CrearProfesionalService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CrearProfesional.CrearProfesionalReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CrearProfesional.CrearProfesionalRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.CrearProfesionalService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.CrearProfesional.CrearProfesionalReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.CrearProfesional.CrearProfesionalRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -298,9 +298,9 @@
   <ServiceConfiguration name="CrearPatientService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-02-17T15:41:45.9020838-03:00</CreatedDateTime>
-    <Handler>Health.Svc.CrearPatientService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CrearPatient.CrearPatientReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CrearPatient.CrearPatientRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.CrearPatientService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.CrearPatient.CrearPatientReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.CrearPatient.CrearPatientRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -309,9 +309,9 @@
   <ServiceConfiguration name="RetriveProfesionalesService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-02-17T15:41:54.2300935-03:00</CreatedDateTime>
-    <Handler>Health.Svc.RetriveProfesionalesService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.RetriveProfesionales.RetriveProfesionalesReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.RetriveProfesionales.RetriveProfesionalesRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.RetriveProfesionalesService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.RetriveProfesionales.RetriveProfesionalesReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.RetriveProfesionales.RetriveProfesionalesRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -320,9 +320,9 @@
   <ServiceConfiguration name="RetrivePersonasService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-02-17T15:42:10.2455405-03:00</CreatedDateTime>
-    <Handler>Health.Svc.RetrivePersonasService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.RetrivePersonas.RetrivePersonasReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.RetrivePersonas.RetrivePersonasRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.RetrivePersonasService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.RetrivePersonas.RetrivePersonasReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.RetrivePersonas.RetrivePersonasRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -331,9 +331,9 @@
   <ServiceConfiguration name="UpdatePatientService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-01T17:20:51.8965601-03:00</CreatedDateTime>
-    <Handler>Health.Svc.UpdatePatientService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.UpdatePatient.UpdatePatientReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.UpdatePatient.UpdatePatientRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.UpdatePatientService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.UpdatePatient.UpdatePatientReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.UpdatePatient.UpdatePatientRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -342,9 +342,9 @@
   <ServiceConfiguration name="UpdatePlanVacunacionService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-01T17:21:00.1044149-03:00</CreatedDateTime>
-    <Handler>Health.Svc.UpdatePlanVacunacionService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.UpdatePlanVacunacion.UpdatePlanVacunacionReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.UpdatePlanVacunacion.UpdatePlanVacunacionRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.UpdatePlanVacunacionService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.UpdatePlanVacunacion.UpdatePlanVacunacionReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.UpdatePlanVacunacion.UpdatePlanVacunacionRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -353,9 +353,9 @@
   <ServiceConfiguration name="UpdateProfesionalService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-01T17:21:23.3497273-03:00</CreatedDateTime>
-    <Handler>Health.Svc.UpdateProfesionalService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.UpdateProfesional.UpdateProfesionalReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.UpdateProfesional.UpdateProfesionalRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.UpdateProfesionalService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.UpdateProfesional.UpdateProfesionalReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.UpdateProfesional.UpdateProfesionalRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -364,9 +364,9 @@
   <ServiceConfiguration name="GetPlanVacunacionService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-01T17:21:10.2621864-03:00</CreatedDateTime>
-    <Handler>Health.Svc.GetPlanVacunacionService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.GetPlanVacunacion.GetPlanVacunacionReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.GetPlanVacunacion.GetPlanVacunacionRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.GetPlanVacunacionService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.GetPlanVacunacion.GetPlanVacunacionReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.GetPlanVacunacion.GetPlanVacunacionRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -375,9 +375,9 @@
   <ServiceConfiguration name="RetrivePatientsService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-02-17T15:42:00.676238-03:00</CreatedDateTime>
-    <Handler>Health.Svc.RetrivePatientsService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.RetrivePatients.RetrivePatientsReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.RetrivePatients.RetrivePatientsRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.RetrivePatientsService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.RetrivePatients.RetrivePatientsReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.RetrivePatients.RetrivePatientsRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -386,9 +386,9 @@
   <ServiceConfiguration name="GetProfesionalService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-10T12:31:03.1562242-03:00</CreatedDateTime>
-    <Handler>Health.Svc.GetProfesionalService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.GetProfesional.GetProfesionalReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.GetProfesional.GetProfesionalRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.GetProfesionalService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.GetProfesional.GetProfesionalReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.GetProfesional.GetProfesionalRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -398,9 +398,9 @@
   <ServiceConfiguration name="CreateResourceSchedulingService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-12T15:08:27.463062-03:00</CreatedDateTime>
-    <Handler>Health.Svc.CreateResourceSchedulingService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CreateResourceScheduling.CreateResourceSchedulingReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CreateResourceScheduling.CreateResourceSchedulingRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.CreateResourceSchedulingService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.CreateResourceScheduling.CreateResourceSchedulingReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.CreateResourceScheduling.CreateResourceSchedulingRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -410,9 +410,9 @@
   <ServiceConfiguration name="CreateAppointmentsService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-13T08:52:55.5377017-03:00</CreatedDateTime>
-    <Handler>Health.Svc.CreateAppointmentsService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CreateAppointments.CreateAppointmentsReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CreateAppointments.CreateAppointmentsRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.CreateAppointmentsService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.CreateAppointments.CreateAppointmentsReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.CreateAppointments.CreateAppointmentsRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -422,9 +422,9 @@
   <ServiceConfiguration name="UpdateResourceSchedulingService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-13T09:14:30.0687885-03:00</CreatedDateTime>
-    <Handler>Health.Svc.UpdateResourceSchedulingService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.UpdateResourceScheduling.UpdateResourceSchedulingReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.UpdateResourceScheduling.UpdateResourceSchedulingRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.UpdateResourceSchedulingService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.UpdateResourceScheduling.UpdateResourceSchedulingReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.UpdateResourceScheduling.UpdateResourceSchedulingRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -434,9 +434,9 @@
   <ServiceConfiguration name="RetriveResourceSchedulingAndAppoinmentsService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-13T14:50:24.7592029-03:00</CreatedDateTime>
-    <Handler>Health.Svc.RetriveResourceSchedulingAndAppoinmentsService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.RetriveResourceSchedulingAndAppoinments.RetriveResourceSchedulingAndAppoinmentsReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.RetriveResourceSchedulingAndAppoinments.RetriveResourceSchedulingAndAppoinmentsRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.RetriveResourceSchedulingAndAppoinmentsService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.RetriveResourceSchedulingAndAppoinments.RetriveResourceSchedulingAndAppoinmentsReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.RetriveResourceSchedulingAndAppoinments.RetriveResourceSchedulingAndAppoinmentsRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -446,9 +446,9 @@
   <ServiceConfiguration name="RetriveAppointmentService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-16T11:34:16.4352351-03:00</CreatedDateTime>
-    <Handler>Health.Svc.RetriveAppointmentService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.RetriveAppointment.RetriveAppointmentReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.RetriveAppointment.RetriveAppointmentRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.RetriveAppointmentService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.RetriveAppointment.RetriveAppointmentReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.RetriveAppointment.RetriveAppointmentRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -458,9 +458,9 @@
   <ServiceConfiguration name="RetriveAllObraSocialService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-17T09:05:08.5329294-03:00</CreatedDateTime>
-    <Handler>Health.Svc.RetriveAllObraSocialService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.RetriveAllObraSocial.RetriveAllObraSocialReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.RetriveAllObraSocial.RetriveAllObraSocialRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.RetriveAllObraSocialService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.RetriveAllObraSocial.RetriveAllObraSocialReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.RetriveAllObraSocial.RetriveAllObraSocialRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -470,9 +470,9 @@
   <ServiceConfiguration name="GetPatientService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-19T10:28:05.4257721-03:00</CreatedDateTime>
-    <Handler>Health.Svc.GetPatientService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.GetPatient.GetPatientReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.GetPatient.GetPatientRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.GetPatientService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.GetPatient.GetPatientReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.GetPatient.GetPatientRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -482,9 +482,9 @@
   <ServiceConfiguration name="GetObraSocialPorPatientService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-19T10:28:05.4257721-03:00</CreatedDateTime>
-    <Handler>Health.Svc.GetObraSocialPorPatientService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.GetObraSocialPorPatient.GetObraSocialPorPatientReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.GetObraSocialPorPatient.GetObraSocialPorPatientRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.GetObraSocialPorPatientService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.GetObraSocialPorPatient.GetObraSocialPorPatientReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.GetObraSocialPorPatient.GetObraSocialPorPatientRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -494,9 +494,9 @@
   <ServiceConfiguration name="AsociarPatientAPersonaService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-19T10:28:05.4257721-03:00</CreatedDateTime>
-    <Handler>Health.Svc.AsociarPatientAPersonaService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.AsociarPatientAPersona.AsociarPatientAPersonaReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.AsociarPatientAPersona.AsociarPatientAPersonaRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.AsociarPatientAPersonaService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.AsociarPatientAPersona.AsociarPatientAPersonaReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.AsociarPatientAPersona.AsociarPatientAPersonaRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -506,9 +506,9 @@
   <ServiceConfiguration name="GetPatientAllergyService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-19T10:28:05.4257721-03:00</CreatedDateTime>
-    <Handler>Health.Svc.GetPatientAllergyService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.GetPatientAllergy.GetPatientAllergyReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.GetPatientAllergy.GetPatientAllergyRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.GetPatientAllergyService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.GetPatientAllergy.GetPatientAllergyReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.GetPatientAllergy.GetPatientAllergyRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -518,9 +518,9 @@
   <ServiceConfiguration name="CreateUpdatePatientMedicamentService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-05-06T11:44:19.8144416-03:00</CreatedDateTime>
-    <Handler>Health.Svc.CreateUpdatePatientMedicamentService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CreateUpdatePatientMedicament.CreateUpdatePatientMedicamentReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CreateUpdatePatientMedicament.CreateUpdatePatientMedicamentRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.CreateUpdatePatientMedicamentService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.CreateUpdatePatientMedicament.CreateUpdatePatientMedicamentReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.CreateUpdatePatientMedicament.CreateUpdatePatientMedicamentRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -530,9 +530,9 @@
   <ServiceConfiguration name="RetrivePatientMedicamentsService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-05-06T11:44:48.9131059-03:00</CreatedDateTime>
-    <Handler>Health.Svc.RetrivePatientMedicamentsService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.RetrivePatientMedicaments.RetrivePatientMedicamentsReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.RetrivePatientMedicaments.RetrivePatientMedicamentsRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.RetrivePatientMedicamentsService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.RetrivePatientMedicaments.RetrivePatientMedicamentsReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.RetrivePatientMedicaments.RetrivePatientMedicamentsRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>Suppres</TransactionalBehaviour>
@@ -542,9 +542,9 @@
   <ServiceConfiguration name="CreatePatientEventService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-05-08T15:32:33.6124898-03:00</CreatedDateTime>
-    <Handler>Health.Svc.CreatePatientEventService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CreatePatientEvent.CreatePatientEventReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CreatePatientEvent.CreatePatientEventRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.CreatePatientEventService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.CreatePatientEvent.CreatePatientEventReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.CreatePatientEvent.CreatePatientEventRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -554,9 +554,9 @@
   <ServiceConfiguration name="UpdatePatientEventService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-05-08T10:49:05.9143238-03:00</CreatedDateTime>
-    <Handler>Health.Svc.UpdatePatientEventService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.UpdatePatientEvent.UpdatePatientEventReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.UpdatePatientEvent.UpdatePatientEventRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.UpdatePatientEventService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.UpdatePatientEvent.UpdatePatientEventReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.UpdatePatientEvent.UpdatePatientEventRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -566,9 +566,9 @@
   <ServiceConfiguration name="UpdateAppointmentsService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-05-08T10:49:45.4215835-03:00</CreatedDateTime>
-    <Handler>Health.Svc.UpdateAppointmentsService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.UpdateAppointments.UpdateAppointmentsReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.UpdateAppointments.UpdateAppointmentsRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.UpdateAppointmentsService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.UpdateAppointments.UpdateAppointmentsReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.UpdateAppointments.UpdateAppointmentsRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -579,9 +579,9 @@
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-17T09:26:30.3196055-03:00</CreatedDateTime>
     <Description>dsalkdj erwe</Description>
-    <Handler>Health.Svc.CreateObraSocialService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CreateObraSocial.CreateObraSocialReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CreateObraSocial.CreateObraSocialRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.CreateObraSocialService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.CreateObraSocial.CreateObraSocialReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.CreateObraSocial.CreateObraSocialRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>true</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>
@@ -591,9 +591,9 @@
   <ServiceConfiguration name="CreateUpdatePatientAllergyService">
     <CreatedUserName>marcelo</CreatedUserName>
     <CreatedDateTime>2012-03-19T10:28:05.4257721-03:00</CreatedDateTime>
-    <Handler>Health.Svc.CreateUpdatePatientAllergyService,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
-    <Request>Health.Isvc.CreateUpdatePatientAllergy.CreateUpdatePatientAllergyReq,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
-    <Response>Health.Isvc.CreateUpdatePatientAllergy.CreateUpdatePatientAllergyRes,SomeCompany, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
+    <Handler>Health.Svc.CreateUpdatePatientAllergyService, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Handler>
+    <Request>Health.Isvc.CreateUpdatePatientAllergy.CreateUpdatePatientAllergyReq, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Request>
+    <Response>Health.Isvc.CreateUpdatePatientAllergy.CreateUpdatePatientAllergyRes, Health.SVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Response>
     <Available>true</Available>
     <Audit>false</Audit>
     <TransactionalBehaviour>RequiresNew</TransactionalBehaviour>

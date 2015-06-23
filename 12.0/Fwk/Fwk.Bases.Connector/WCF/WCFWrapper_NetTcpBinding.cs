@@ -21,6 +21,49 @@ namespace Fwk.Bases.Connector
          
 
     {
+        public override TResponse ExecuteService<TRequest, TResponse>(TRequest req)
+        {
+            return base.ExecuteService<TRequest, TResponse>(req);
+
+            //InitilaizeBinding();
+
+            //req.InitializeHostContextInformation();
+
+            //ExecuteServiceBinRequest wcfReq = new ExecuteServiceBinRequest();
+            //ExecuteServiceBinResponse wcfRes = null;
+
+            //wcfReq.req = new  WCFRequet();
+            //wcfReq.req.ServiceName = req.ServiceName;
+            //wcfReq.req.ProviderName = this.ServiceMetadataProviderName;
+            //wcfReq.req.ContextInformation = req.ContextInformation;
+
+
+            //wcfReq.req.BusinessData = req.IEntity;
+
+            //var channelFactory = new ChannelFactory<IFwkService>(binding, address);
+
+            //IFwkService client = null;
+            //try
+            //{
+            //    client = channelFactory.CreateChannel();
+            //    wcfRes = client.ExecuteServiceBin(wcfReq);
+            //    ((ICommunicationObject)client).Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    if (client != null)
+            //    {
+            //        ((ICommunicationObject)client).Abort();
+            //    } throw ex;
+            //}
+
+
+
+            //TResponse response = (TResponse)wcfRes.ExecuteServiceBinResult.BusinessData;
+
+            //response.InitializeHostContextInformation();
+            //return response;
+        }
         /// <summary>
         /// 
         /// </summary>

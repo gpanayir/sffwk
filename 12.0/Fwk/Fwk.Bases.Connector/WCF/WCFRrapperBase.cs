@@ -104,7 +104,7 @@ namespace Fwk.Bases.Connector
         /// <param name="req">Clase que imlementa la interfaz IServiceContract datos de entrada para la  ejecución del servicio.</param>
         /// <returns>Clase que imlementa la interfaz IServiceContract con datos de respuesta del servicio.</returns>
         /// <returns>response</returns>
-        public TResponse ExecuteService<TRequest, TResponse>(TRequest req)
+        public virtual TResponse ExecuteService<TRequest, TResponse>(TRequest req)
             where TRequest : IServiceContract
             where TResponse : IServiceContract, new()
         {

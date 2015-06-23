@@ -20,6 +20,8 @@ namespace WcfDispatcher.Service
         [OperationContract]
         String ExecuteService(String providerName, String serviceName, String jsonRequets);
 
+        [OperationContract]
+        WCFResponse ExecuteServiceBin( WCFRequet req);
 
         [OperationContract]
         String GetServiceConfiguration(string providerName, string serviceName);

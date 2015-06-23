@@ -9,7 +9,163 @@
 //------------------------------------------------------------------------------
 
 namespace Fwk.Bases.Connector.WCFServiceReference {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WCFRequet", Namespace="http://schemas.datacontract.org/2004/07/WcfDispatcher.Service")]
+    [System.SerializableAttribute()]
+    public partial class WCFRequet : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object BusinessDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Fwk.Bases.ContextInformation ContextInformationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProviderNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ServiceNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object BusinessData {
+            get {
+                return this.BusinessDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BusinessDataField, value) != true)) {
+                    this.BusinessDataField = value;
+                    this.RaisePropertyChanged("BusinessData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Fwk.Bases.ContextInformation ContextInformation {
+            get {
+                return this.ContextInformationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContextInformationField, value) != true)) {
+                    this.ContextInformationField = value;
+                    this.RaisePropertyChanged("ContextInformation");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProviderName {
+            get {
+                return this.ProviderNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProviderNameField, value) != true)) {
+                    this.ProviderNameField = value;
+                    this.RaisePropertyChanged("ProviderName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ServiceName {
+            get {
+                return this.ServiceNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ServiceNameField, value) != true)) {
+                    this.ServiceNameField = value;
+                    this.RaisePropertyChanged("ServiceName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WCFResponse", Namespace="http://schemas.datacontract.org/2004/07/WcfDispatcher.Service")]
+    [System.SerializableAttribute()]
+    public partial class WCFResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private object BusinessDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Fwk.Exceptions.ServiceError ErrorField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public object BusinessData {
+            get {
+                return this.BusinessDataField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BusinessDataField, value) != true)) {
+                    this.BusinessDataField = value;
+                    this.RaisePropertyChanged("BusinessData");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Fwk.Exceptions.ServiceError Error {
+            get {
+                return this.ErrorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorField, value) != true)) {
+                    this.ErrorField = value;
+                    this.RaisePropertyChanged("Error");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WCFServiceReference.IFwkService")]
@@ -22,6 +178,14 @@ namespace Fwk.Bases.Connector.WCFServiceReference {
         System.IAsyncResult BeginExecuteService(Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceRequest request, System.AsyncCallback callback, object asyncState);
         
         Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceResponse EndExecuteService(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFwkService/ExecuteServiceBin", ReplyAction="http://tempuri.org/IFwkService/ExecuteServiceBinResponse")]
+        Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinResponse ExecuteServiceBin(Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/IFwkService/ExecuteServiceBin", ReplyAction="http://tempuri.org/IFwkService/ExecuteServiceBinResponse")]
+        System.IAsyncResult BeginExecuteServiceBin(Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinRequest request, System.AsyncCallback callback, object asyncState);
+        
+        Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinResponse EndExecuteServiceBin(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFwkService/GetServiceConfiguration", ReplyAction="http://tempuri.org/IFwkService/GetServiceConfigurationResponse")]
         Fwk.Bases.Connector.WCFServiceReference.GetServiceConfigurationResponse GetServiceConfiguration(Fwk.Bases.Connector.WCFServiceReference.GetServiceConfigurationRequest request);
@@ -101,6 +265,38 @@ namespace Fwk.Bases.Connector.WCFServiceReference {
         
         public ExecuteServiceResponse(string ExecuteServiceResult) {
             this.ExecuteServiceResult = ExecuteServiceResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ExecuteServiceBin", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ExecuteServiceBinRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Fwk.Bases.Connector.WCFServiceReference.WCFRequet req;
+        
+        public ExecuteServiceBinRequest() {
+        }
+        
+        public ExecuteServiceBinRequest(Fwk.Bases.Connector.WCFServiceReference.WCFRequet req) {
+            this.req = req;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ExecuteServiceBinResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ExecuteServiceBinResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Fwk.Bases.Connector.WCFServiceReference.WCFResponse ExecuteServiceBinResult;
+        
+        public ExecuteServiceBinResponse() {
+        }
+        
+        public ExecuteServiceBinResponse(Fwk.Bases.Connector.WCFServiceReference.WCFResponse ExecuteServiceBinResult) {
+            this.ExecuteServiceBinResult = ExecuteServiceBinResult;
         }
     }
     
@@ -290,6 +486,25 @@ namespace Fwk.Bases.Connector.WCFServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ExecuteServiceBinCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public ExecuteServiceBinCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinResponse Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetServiceConfigurationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -393,6 +608,12 @@ namespace Fwk.Bases.Connector.WCFServiceReference {
         
         private System.Threading.SendOrPostCallback onExecuteServiceCompletedDelegate;
         
+        private BeginOperationDelegate onBeginExecuteServiceBinDelegate;
+        
+        private EndOperationDelegate onEndExecuteServiceBinDelegate;
+        
+        private System.Threading.SendOrPostCallback onExecuteServiceBinCompletedDelegate;
+        
         private BeginOperationDelegate onBeginGetServiceConfigurationDelegate;
         
         private EndOperationDelegate onEndGetServiceConfigurationDelegate;
@@ -443,6 +664,8 @@ namespace Fwk.Bases.Connector.WCFServiceReference {
         }
         
         public event System.EventHandler<ExecuteServiceCompletedEventArgs> ExecuteServiceCompleted;
+        
+        public event System.EventHandler<ExecuteServiceBinCompletedEventArgs> ExecuteServiceBinCompleted;
         
         public event System.EventHandler<GetServiceConfigurationCompletedEventArgs> GetServiceConfigurationCompleted;
         
@@ -502,6 +725,56 @@ namespace Fwk.Bases.Connector.WCFServiceReference {
             }
             base.InvokeAsync(this.onBeginExecuteServiceDelegate, new object[] {
                         request}, this.onEndExecuteServiceDelegate, this.onExecuteServiceCompletedDelegate, userState);
+        }
+        
+        public Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinResponse ExecuteServiceBin(Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinRequest request) {
+            return base.Channel.ExecuteServiceBin(request);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public System.IAsyncResult BeginExecuteServiceBin(Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinRequest request, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginExecuteServiceBin(request, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        public Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinResponse EndExecuteServiceBin(System.IAsyncResult result) {
+            return base.Channel.EndExecuteServiceBin(result);
+        }
+        
+        private System.IAsyncResult OnBeginExecuteServiceBin(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinRequest request = ((Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinRequest)(inValues[0]));
+            return this.BeginExecuteServiceBin(request, callback, asyncState);
+        }
+        
+        private object[] OnEndExecuteServiceBin(System.IAsyncResult result) {
+            Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinResponse retVal = this.EndExecuteServiceBin(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnExecuteServiceBinCompleted(object state) {
+            if ((this.ExecuteServiceBinCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.ExecuteServiceBinCompleted(this, new ExecuteServiceBinCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void ExecuteServiceBinAsync(Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinRequest request) {
+            this.ExecuteServiceBinAsync(request, null);
+        }
+        
+        public void ExecuteServiceBinAsync(Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinRequest request, object userState) {
+            if ((this.onBeginExecuteServiceBinDelegate == null)) {
+                this.onBeginExecuteServiceBinDelegate = new BeginOperationDelegate(this.OnBeginExecuteServiceBin);
+            }
+            if ((this.onEndExecuteServiceBinDelegate == null)) {
+                this.onEndExecuteServiceBinDelegate = new EndOperationDelegate(this.OnEndExecuteServiceBin);
+            }
+            if ((this.onExecuteServiceBinCompletedDelegate == null)) {
+                this.onExecuteServiceBinCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnExecuteServiceBinCompleted);
+            }
+            base.InvokeAsync(this.onBeginExecuteServiceBinDelegate, new object[] {
+                        request}, this.onEndExecuteServiceBinDelegate, this.onExecuteServiceBinCompletedDelegate, userState);
         }
         
         public Fwk.Bases.Connector.WCFServiceReference.GetServiceConfigurationResponse GetServiceConfiguration(Fwk.Bases.Connector.WCFServiceReference.GetServiceConfigurationRequest request) {

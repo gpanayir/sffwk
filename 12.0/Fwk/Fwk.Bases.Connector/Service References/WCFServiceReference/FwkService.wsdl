@@ -34,9 +34,11 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Fwk.ConfigSection" />
+      <xsd:import schemaLocation="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfDispatcher.Service" />
       <xsd:import schemaLocation="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Fwk.Bases" />
-      <xsd:import schemaLocation="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Fwk.Exceptions" />
+      <xsd:import schemaLocation="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Fwk.ConfigSection" />
+      <xsd:import schemaLocation="http://localhost:8732/WcfDispatcher/FwkService/?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IFwkService_ExecuteService_InputMessage">
@@ -44,6 +46,12 @@
   </wsdl:message>
   <wsdl:message name="IFwkService_ExecuteService_OutputMessage">
     <wsdl:part name="parameters" element="tns:ExecuteServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFwkService_ExecuteServiceBin_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteServiceBin" />
+  </wsdl:message>
+  <wsdl:message name="IFwkService_ExecuteServiceBin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteServiceBinResponse" />
   </wsdl:message>
   <wsdl:message name="IFwkService_GetServiceConfiguration_InputMessage">
     <wsdl:part name="parameters" element="tns:GetServiceConfiguration" />
@@ -80,6 +88,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IFwkService/ExecuteService" message="tns:IFwkService_ExecuteService_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFwkService/ExecuteServiceResponse" message="tns:IFwkService_ExecuteService_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ExecuteServiceBin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFwkService/ExecuteServiceBin" message="tns:IFwkService_ExecuteServiceBin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFwkService/ExecuteServiceBinResponse" message="tns:IFwkService_ExecuteServiceBin_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetServiceConfiguration">
       <wsdl:input wsaw:Action="http://tempuri.org/IFwkService/GetServiceConfiguration" message="tns:IFwkService_GetServiceConfiguration_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFwkService/GetServiceConfigurationResponse" message="tns:IFwkService_GetServiceConfiguration_OutputMessage" />
@@ -106,6 +118,15 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="ExecuteService">
       <soap12:operation soapAction="http://tempuri.org/IFwkService/ExecuteService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteServiceBin">
+      <soap12:operation soapAction="http://tempuri.org/IFwkService/ExecuteServiceBin" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

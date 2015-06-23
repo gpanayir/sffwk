@@ -140,6 +140,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Service References\WCFServiceReference\Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceBinResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\WCFServiceReference\Fwk.Bases.Connector.WCFServiceReference.ExecuteServiceResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -173,6 +176,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\WCFServiceReference\item22.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFServiceReference\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WCFServiceReference\item4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web References\ASPNetSecurity\ASPNet.wsdl" />
