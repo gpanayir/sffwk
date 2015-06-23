@@ -151,6 +151,7 @@ namespace Fwk.BusinessFacades
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <param name="serviceName">Nombre del servicio de negocio.</param> 
         /// <param name="jsonRequest">JSON con datos de entrada para la  ejecución del servicio.</param>
+        /// <param name="hostContext">Info del despachador de servicio</param>
         /// <returns>JSON con el resultado de la  ejecución del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
@@ -160,7 +161,6 @@ namespace Fwk.BusinessFacades
 
             ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName, serviceName);
             Type reqType = Type.GetType(wServiceConfiguration.Request);
-            //var wRequest = ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
             if (reqType == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("El despachador de servicio no pudo continuar debido\r\na que no construir el requets del servicio: ",
@@ -175,22 +175,15 @@ namespace Fwk.BusinessFacades
                 te.ErrorId = "7003";
                 throw te;
             }
-           //var wRequest = Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(reqType, jsonRequest);
-           //var wRequest = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequest, reqType, new JsonSerializerSettings());
-           
-           //IServiceContract wRequest = Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<IServiceContract>(jsonRequest);
-           var wRequest = (IServiceContract)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson(reqType, jsonRequest);
-           wRequest.ContextInformation.HostName = hostContext.HostName;
-           wRequest.ContextInformation.HostIp = hostContext.HostIp;
 
-           IServiceContract res = ExecuteService(providerName, (IServiceContract)wRequest);
-           //wResult = Newtonsoft.Json.JsonConvert.SerializeObject(res, Newtonsoft.Json.Formatting.None);
-           Type resType = Type.GetType(wServiceConfiguration.Response);
-           wResult = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson(resType, res);
-           //wResult = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<IServiceContract>(res);
+            var wRequest = (IServiceContract)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson(reqType, jsonRequest);
+            wRequest.ContextInformation.HostName = hostContext.HostName;
+            wRequest.ContextInformation.HostIp = hostContext.HostIp;
+
+            IServiceContract res = ExecuteService(providerName, (IServiceContract)wRequest);
+            Type resType = Type.GetType(wServiceConfiguration.Response);
+            wResult = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson(resType, res);
             return wResult;
-
-
         }
 
 
@@ -272,13 +265,11 @@ namespace Fwk.BusinessFacades
             catch (System.NullReferenceException)
             {
                 //TODO: Poner Id error
-                //wServiceInfo = string.Concat("El servicio ", serviceName , " no se encuentra configurado");
                 throw new TechnicalException(string.Concat("El servicio ", serviceName , " no se encuentra configurado"));
             }
             catch (Exception e)
             {
                 //TODO: Poner Id error
-                //wServiceInfo = Fwk.Exceptions.ExceptionHelper.GetAllMessageException(e);
                 throw new TechnicalException(string.Concat("Error al obtener la configuracion del servicio  servicio ", serviceName) , e);
             }
             
@@ -527,6 +518,7 @@ namespace Fwk.BusinessFacades
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         /// <param name="serviceName">Nombre del servicio de negocio.</param> 
         /// <param name="jsonRequest">JSON con datos de entrada para la  ejecución del servicio.</param>
+        /// <param name="hostContext">Info del despachador de servicio</param>
         /// <returns>JSON con el resultado de la  ejecución del servicio.</returns>
         /// <date>2008-04-07T00:00:00</date>
         /// <author>moviedo</author>
@@ -536,7 +528,6 @@ namespace Fwk.BusinessFacades
 
             ServiceConfiguration wServiceConfiguration = FacadeHelper.GetServiceConfiguration(providerName, serviceName);
             Type reqType = Type.GetType(wServiceConfiguration.Request);
-            //var wRequest = ReflectionFunctions.CreateInstance(wServiceConfiguration.Request);
             if (reqType == null)
             {
                 TechnicalException te = new TechnicalException(string.Concat("El despachador de servicio no pudo continuar debido\r\na que no construir el requets del servicio: ",
@@ -552,19 +543,12 @@ namespace Fwk.BusinessFacades
                 te.ErrorId = "7003";
                 throw te;
             }
-            //var wRequest = Fwk.HelperFunctions.SerializationFunctions.DeserializeFromXml(reqType, jsonRequest);
-            //var wRequest = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonRequest, reqType, new JsonSerializerSettings());
-
-            //IServiceContract wRequest = Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson<IServiceContract>(jsonRequest);
             var wRequest = (IServiceContract)Fwk.HelperFunctions.SerializationFunctions.DeSerializeObjectFromJson(reqType, jsonRequest);
             wRequest.ContextInformation.HostName = hostContext.HostName;
             wRequest.ContextInformation.HostIp = hostContext.HostIp;
-
             IServiceContract res = ExecuteService(providerName, (IServiceContract)wRequest);
-            //wResult = Newtonsoft.Json.JsonConvert.SerializeObject(res, Newtonsoft.Json.Formatting.None);
             Type resType = Type.GetType(wServiceConfiguration.Response);
             wResult = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson(resType, res);
-            //wResult = Fwk.HelperFunctions.SerializationFunctions.SerializeObjectToJson<IServiceContract>(res);
             return wResult;
 
 

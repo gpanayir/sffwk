@@ -288,7 +288,7 @@ namespace Fwk.Bases
 
         #region IServiceContract Members
         /// <summary>
-        /// 
+        /// GetBusinessDataObject
         /// </summary>
         public IEntity IEntity
         {
@@ -300,6 +300,7 @@ namespace Fwk.Bases
         }
 
         #endregion
+
 
     }
 }

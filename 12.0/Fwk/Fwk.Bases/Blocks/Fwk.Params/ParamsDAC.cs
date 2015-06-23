@@ -50,6 +50,48 @@ namespace Fwk.Params.Back
 
         }
 
+        /// <summary>
+        /// Retorna un param por id y cultura
+        /// </summary>
+        /// <param name="paramId"></param>
+        /// <param name="culture"></param>
+        /// <param name="cnnStringName"></param>
+        /// <returns></returns>
+        public static ParamBE Get(int? paramId, string culture, string cnnStringName)
+        {
+            ParamBE wParamBE =null;
+
+            try
+            {
+                using (Fwk.ConfigData.FwkDatacontext dc = new Fwk.ConfigData.FwkDatacontext(System.Configuration.ConfigurationManager.ConnectionStrings[cnnStringName].ConnectionString))
+                {
+                    var param_db = dc.fwk_Params.Where(s =>
+                                        
+                                         (!paramId.HasValue || s.ParamId.Equals(paramId))
+                                         &&
+                                         (string.IsNullOrEmpty(culture) || s.Culture.Equals(culture))
+                                         ).FirstOrDefault();
+                    if (param_db != null)
+                    {
+                        wParamBE = new ParamBE();
+                        wParamBE.ParamId = param_db.ParamId;
+                        wParamBE.ParentId = param_db.ParentId;
+                        wParamBE.Name = param_db.Name;
+                        wParamBE.Description = param_db.Description;
+                        wParamBE.Enabled = param_db.Enabled;
+                        wParamBE.Culture = param_db.Culture;
+                        wParamBE.Id = param_db.Id;
+                    }
+                    return wParamBE;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
 
         /// <summary>
         /// Retorna parametros por id, id padre, y filtra x vigentes o no vigentes La cultura puede se String.Empty

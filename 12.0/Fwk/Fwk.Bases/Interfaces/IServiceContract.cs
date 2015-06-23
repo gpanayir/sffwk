@@ -16,6 +16,7 @@ namespace Fwk.Bases
   	public interface IServiceContract
 
 	{
+        
         /// <summary>
         /// Interfaz de entidad 
         /// </summary>
