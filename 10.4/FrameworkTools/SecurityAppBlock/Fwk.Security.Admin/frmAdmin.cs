@@ -30,7 +30,7 @@ namespace Fwk.Security.Admin
             InitializeComponent();
             try
             {
-                Provider = Membership.Provider;
+                Provider = System.Web.Security.Membership.Provider;
             }
             catch(System.Configuration.Provider.ProviderException ex)
                 {
