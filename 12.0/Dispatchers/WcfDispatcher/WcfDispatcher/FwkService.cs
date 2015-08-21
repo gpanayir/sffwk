@@ -19,7 +19,7 @@ namespace WcfDispatcher.Service
         String sessionId = string.Empty;
         static Fwk.BusinessFacades.SimpleFacade simpleFacade;
         static HostContext hostContext;
-        void CreteSimpleFacade()
+        void CreateSimpleFacade()
         {
             if (simpleFacade == null)
             {
@@ -51,7 +51,7 @@ namespace WcfDispatcher.Service
         string IFwkService.ExecuteService(String providerName, String serviceName, String jsonRequets)
         {
 
-            CreteSimpleFacade();
+            CreateSimpleFacade();
             return simpleFacade.ExecuteServiceJson(providerName, serviceName, jsonRequets, hostContext);
 
         }
@@ -66,7 +66,7 @@ namespace WcfDispatcher.Service
         WCFResponse IFwkService.ExecuteServiceBin( WCFRequet req)
         {
 
-            CreteSimpleFacade();
+            CreateSimpleFacade();
             //IServiceContract result = simpleFacade.ExecuteService(req.ProviderName, req.BusinessData);
 
             WCFResponse res = new WCFResponse();
@@ -84,7 +84,7 @@ namespace WcfDispatcher.Service
         /// <returns></returns>
         public String GetServiceConfiguration(string providerName, string serviceName)
         {
-            CreteSimpleFacade();
+            CreateSimpleFacade();
             return simpleFacade.GetServiceConfiguration(providerName, serviceName);
         }
 
@@ -97,7 +97,7 @@ namespace WcfDispatcher.Service
         /// <returns>Lista de servicios configurados</returns>
         public String GetServicesList(string providerName, bool ViewAsXml)
         {
-            CreteSimpleFacade();
+            CreateSimpleFacade();
             return simpleFacade.GetServicesList(providerName, ViewAsXml); 
         }
 
@@ -107,7 +107,7 @@ namespace WcfDispatcher.Service
         /// <returns></returns>
         public Fwk.ConfigSection.DispatcherInfo RetriveDispatcherInfo()
         {
-            CreteSimpleFacade();
+            CreateSimpleFacade();
             return simpleFacade.RetriveDispatcherInfo();
         }
 
@@ -118,7 +118,7 @@ namespace WcfDispatcher.Service
         /// <param name="providerName">Nombre del proveedor de metadata de servicios.-</param>
         public List<String> GetAllApplicationsId(string providerName)
         {
-            CreteSimpleFacade();
+            CreateSimpleFacade();
             return simpleFacade.GetAllApplicationsId(providerName);
         }
 
@@ -129,7 +129,7 @@ namespace WcfDispatcher.Service
         /// <returns></returns>
         public Fwk.ConfigSection.MetadataProvider GetProviderInfo(string providerName)
         {
-            CreteSimpleFacade();
+            CreateSimpleFacade();
             return simpleFacade.GetProviderInfo(providerName);
         }
     }

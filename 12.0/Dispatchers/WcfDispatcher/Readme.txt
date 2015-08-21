@@ -1,4 +1,4 @@
-Para la ejecucion de todos los proyectos q levantan algunservicio WCF hay que iniciar el VS como administrador
+Para la ejecucion de todos los proyectos q levantan algun servicio WCF hay que iniciar el VS como administrador
 
 WcfDispatcher_Host :
 Es un proyecto de consola que levanta un FwkService:
