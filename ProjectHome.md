@@ -1,0 +1,2 @@
+Este proyecto tiene por objetivo la construccion de un marco de trabajo comun compuesto por bloques de componentes que resulven diferentes aspectos en la construccion de sistemas de informacion
+Estos componentes logran soluciones basadas en tecnología .net que nace de prácticas exitosas ante problemas arraigados con el transcurso del tiempo.
